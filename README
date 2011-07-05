@@ -83,6 +83,23 @@ deployed on the same server (unless you do some fancy proxy magic).
 
 
 ======
+Misc. notes
+
+
+If your server limits the size of responses received from HTTP requests,
+then you might need to add the following .htaccess file in your
+top-level (front-end) directory, in order to allow Online Python Tutor
+to receive traces from the back-end:
+
+<IfModule mod_security.c>
+
+# Set a ~10MB limit for response headers (way bigger than default 512K limit)
+SecResponseBodyLimit 10000000
+
+</IfModule>
+
+
+======
 Original founding vision (from January 2010):
 
 I want to create a web-based interactive learning platform for students
