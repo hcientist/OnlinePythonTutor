@@ -18,14 +18,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# Executes the Online Python Tutor backend as a CGI script, which
+# Executes the Online Python Tutor back-end as a CGI script, which
 # accepts one POST parameter, 'user_script', containing the string
 # contents of the Python script that the user wants to execute.
 #
 # Returns a complete JSON execution trace to the front-end.
 #
-# This version works using Python 2.5 on the MIT CSAIL servers.
-# (note that Python 2.4 doesn't seem to work on CSAIL, but Python 2.5 does)
+# This version uses Python 2.5 on the MIT CSAIL servers.
+# (note that Python 2.4 doesn't work on CSAIL, but Python 2.5 does)
 #
 # If you want to run this script, then you'll need to change the
 # shebang line at the top of this file to point to your system's Python.

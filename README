@@ -27,11 +27,62 @@ Using this application, teachers and students can write small Python
 code snippets together and see what happens to the data structures when
 the code gets executed.
 
----
-
 Try it out live at: http://people.csail.mit.edu/pgbovine/python/
 
----
+======
+System architecture overview:
+
+The Online Python Tutor is implemented as a web application, with a
+JavaScript front-end making AJAX calls to a pure-Python back-end.
+
+The back-end has been tested on an Apache server running Python 2.5
+through CGI.  Note that it will probably fail in subtle ways on other
+Python 2.X (and will DEFINITELY fail on Python 3.X).  Peter Wentworth
+has create a port to Python 3.X, and hopefully we can soon integrate his
+code into my repository.
+
+
+The front-end is HTML/javascript (using the jQuery library).  It's
+responsible for the input text box, submitting the Python code (as
+plaintext) to the back-end, receiving an execution trace from the
+back-end, and then rendering that trace as data structure
+visualizations.  The front-end code is publicly available in these 5
+files in the current directory:
+
+  index.html
+  edu-python.js
+  edu-python.css
+  jquery-1.3.2.min.js
+  jquery.textarea.js
+
+
+The back-end is a server-side app that takes Python script source code
+as input, executes the entire script (up to 100 executed lines, to
+prevent infinite loops), and collects a full trace of all variable
+values (i.e., data structures) after each line is executed.  It then
+sends that complete trace to the front-end in an encoded JSON format.
+The front-end then parses that trace, which is how it's able to
+single-step forwards AND backwards through execution.
+
+The back-end files reside in the cgi-bin/ sub-directory in this
+repository:
+
+  cgi-bin/web_exec.py   - the CGI entrance point to the back-end
+  cgi-bin/pg_logger.py  - the 'meat' of the back-end
+  cgi-bin/pg_encoder.py - encodes Python data into JSON
+  cgi-bin/demjson.py    - 3rd-party JSON module, since Python 2.5
+                        - doesn't have the built-in 'import json'
+  cgi-bin/create_db.py  - for optional sqlite query logging
+  cgi-bin/db_common.py  - for optional sqlite query logging
+  cgi-bin/.htaccess     - for Apache CGI execute permissions
+  cgi-bin/run_tests.py  - simple regression tests
+
+
+Due to the AJAX same-origin policy, the front-end and back-end must be
+deployed on the same server (unless you do some fancy proxy magic).
+
+
+======
 Original vision (from January 2010):
 
 I want to create a web-based interactive learning platform for students
@@ -63,44 +114,4 @@ The PDB debugger (Lib/pdb.py) is written in pure Python:
   http://docs.python.org/library/pdb.html
   - the bdb debugger framework is the C module that pdb calls
     http://docs.python.org/library/bdb.html
-
----
-
-Informal system architecture overview --- sent in an email on 2010-09-05
-
-'''
-i'll give you a bit of background on the architecture of the system:
-
-1.) The front-end is HTML/javascript (using the jQuery library) ... it's
-responsible for the input text box, submitting the Python code (as
-plaintext) to the backend, receiving an execution trace from the
-backend, and then rendering that trace as data structure visualizations.
-all the front-end code is already publicly available in these 5 files:
-
-http://people.csail.mit.edu/pgbovine/python/index.html
-http://people.csail.mit.edu/pgbovine/python/jquery-1.3.2.min.js
-http://people.csail.mit.edu/pgbovine/python/jquery.textarea.js
-http://people.csail.mit.edu/pgbovine/python/edu-python.js
-http://people.csail.mit.edu/pgbovine/python/edu-python.css
-
-
-2.) The back-end is a server-side app that takes Python script source
-code as input, executes the entire script (up to 100 executed lines, to
-prevent infinite loops), and collects a full trace of all variable
-values after each line is executed.  It then sends that trace to the
-front-end in an encoded JSON format.  The front-end then parses that
-trace, which is how it's able to single-step forwards AND backwards
-through execution.
-
-The back-end currently runs on my server, and I think the most
-convenient thing to do right now is to simply invoke it as a web
-service.  This is the URL:
-
-http://people.csail.mit.edu/pgbovine/python/cgi-bin/web_exec.py
-
-and it expects only ONE following parameter to be passed in via POST.
-that parameter is called 'user_script', and it's a string that contains
-the text of the script to be executed.  so the interface is pretty
-simple ;)
-'''
 

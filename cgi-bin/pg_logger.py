@@ -15,12 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# This is the meat of the Online Python Tutor backend.  It implements a
+
+# This is the meat of the Online Python Tutor back-end.  It implements a
 # full logger for Python program execution (based on pdb, the standard
-# Python debugger via the bdb module).
+# Python debugger imported via the bdb module), printing out the values
+# of all in-scope data structures after each executed instruction.
 
 # Note that I've only tested this logger on Python 2.5, so it will
-# probably fail in subtle way on other Python 2.X (and will DEFINITELY
+# probably fail in subtle ways on other Python 2.X (and will DEFINITELY
 # fail on Python 3.X).
 
 

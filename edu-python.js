@@ -19,6 +19,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
+// The Online Python Tutor front-end, which calls the cgi-bin/web_exec.py
+// back-end with a string representing the user's script POST['user_script']
+// and receives a complete execution trace, which it parses and displays to HTML.
+
+
 var localTesting = false; // if this is true, mock-data.js had also better be included
 
 
