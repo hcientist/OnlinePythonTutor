@@ -1,0 +1,25 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<module>",
+    "globals" : { "x" : [ "LIST",
+            99999,
+            1,
+            2,
+            "hello",
+            [ "TUPLE",
+              99999,
+              3,
+              4
+            ]
+          ] },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  }
+]

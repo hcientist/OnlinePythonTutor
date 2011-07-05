@@ -1,0 +1,11 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "uncaught_exception",
+    "exception_msg" : "Unknown error"
+  }
+]

@@ -1,0 +1,33 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "x" : [ "LIST",
+            99999,
+            1,
+            2
+          ] },
+    "line" : 4,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<module>",
+    "globals" : { "x" : [ "LIST",
+            99999,
+            1,
+            2,
+            [ "CIRCULAR_REF",
+              99999
+            ]
+          ] },
+    "line" : 4,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  }
+]

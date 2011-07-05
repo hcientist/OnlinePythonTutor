@@ -1,0 +1,350 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "Staff601",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [ [ "Staff601",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "Staff601",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [ [ "Staff601",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "Staff601",
+    "globals" : {  },
+    "line" : 2,
+    "stack_locals" : [ [ "Staff601",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "Staff601",
+    "globals" : {  },
+    "line" : 3,
+    "stack_locals" : [ [ "Staff601",
+          { "course" : "6.01" }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "Staff601",
+    "globals" : {  },
+    "line" : 4,
+    "stack_locals" : [ [ "Staff601",
+          { "building" : 34,
+            "course" : "6.01"
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "Staff601",
+    "globals" : {  },
+    "line" : 4,
+    "stack_locals" : [ [ "Staff601",
+          { "__return__" : [ "DICT",
+                99999,
+                [ "building",
+                  34
+                ],
+                [ "course",
+                  "6.01"
+                ],
+                [ "room",
+                  501
+                ]
+              ],
+            "building" : 34,
+            "course" : "6.01",
+            "room" : 501
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Staff601" : [ "CLASS",
+            "Staff601",
+            99999,
+            [  ],
+            [ "building",
+              34
+            ],
+            [ "course",
+              "6.01"
+            ],
+            [ "room",
+              501
+            ]
+          ] },
+    "line" : 6,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Staff601" : [ "CLASS",
+            "Staff601",
+            99999,
+            [  ],
+            [ "building",
+              34
+            ],
+            [ "course",
+              "6.01"
+            ],
+            [ "room",
+              501
+            ]
+          ],
+        "pat" : [ "INSTANCE",
+            "Staff601",
+            99999
+          ]
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Staff601" : [ "CLASS",
+            "Staff601",
+            99999,
+            [  ],
+            [ "building",
+              34
+            ],
+            [ "course",
+              "6.01"
+            ],
+            [ "room",
+              501
+            ]
+          ],
+        "pat" : [ "INSTANCE",
+            "Staff601",
+            99999
+          ]
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "6.01\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Staff601" : [ "CLASS",
+            "Staff601",
+            99999,
+            [  ],
+            [ "building",
+              34
+            ],
+            [ "course",
+              "6.01"
+            ],
+            [ "room",
+              501
+            ]
+          ],
+        "pat" : [ "INSTANCE",
+            "Staff601",
+            99999,
+            [ "name",
+              "Pat"
+            ]
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "6.01\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Staff601" : [ "CLASS",
+            "Staff601",
+            99999,
+            [  ],
+            [ "building",
+              34
+            ],
+            [ "course",
+              "6.01"
+            ],
+            [ "room",
+              501
+            ]
+          ],
+        "pat" : [ "INSTANCE",
+            "Staff601",
+            99999,
+            [ "age",
+              60
+            ],
+            [ "name",
+              "Pat"
+            ]
+          ]
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "6.01\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Staff601" : [ "CLASS",
+            "Staff601",
+            99999,
+            [  ],
+            [ "building",
+              34
+            ],
+            [ "course",
+              "6.01"
+            ],
+            [ "room",
+              501
+            ]
+          ],
+        "pat" : [ "INSTANCE",
+            "Staff601",
+            99999,
+            [ "age",
+              60
+            ],
+            [ "name",
+              "Pat"
+            ],
+            [ "role",
+              "Professor"
+            ]
+          ]
+      },
+    "line" : 13,
+    "stack_locals" : [  ],
+    "stdout" : "6.01\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Staff601" : [ "CLASS",
+            "Staff601",
+            99999,
+            [  ],
+            [ "building",
+              34
+            ],
+            [ "course",
+              "6.01"
+            ],
+            [ "room",
+              501
+            ]
+          ],
+        "pat" : [ "INSTANCE",
+            "Staff601",
+            99999,
+            [ "age",
+              60
+            ],
+            [ "name",
+              "Pat"
+            ],
+            [ "role",
+              "Professor"
+            ]
+          ]
+      },
+    "line" : 14,
+    "stack_locals" : [  ],
+    "stdout" : "6.01\n34\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Staff601" : [ "CLASS",
+            "Staff601",
+            99999,
+            [  ],
+            [ "building",
+              34
+            ],
+            [ "course",
+              "6.01"
+            ],
+            [ "room",
+              501
+            ]
+          ],
+        "pat" : [ "INSTANCE",
+            "Staff601",
+            99999,
+            [ "age",
+              60
+            ],
+            [ "building",
+              32
+            ],
+            [ "name",
+              "Pat"
+            ],
+            [ "role",
+              "Professor"
+            ]
+          ]
+      },
+    "line" : 15,
+    "stack_locals" : [  ],
+    "stdout" : "6.01\n34\n"
+  },
+  { "event" : "return",
+    "func_name" : "<module>",
+    "globals" : { "Staff601" : [ "CLASS",
+            "Staff601",
+            99999,
+            [  ],
+            [ "building",
+              34
+            ],
+            [ "course",
+              "6.01"
+            ],
+            [ "room",
+              501
+            ]
+          ],
+        "pat" : [ "INSTANCE",
+            "Staff601",
+            99999,
+            [ "age",
+              60
+            ],
+            [ "building",
+              32
+            ],
+            [ "name",
+              "Pat"
+            ],
+            [ "role",
+              "Professor"
+            ]
+          ]
+      },
+    "line" : 15,
+    "stack_locals" : [  ],
+    "stdout" : "6.01\n34\n32\n"
+  }
+]

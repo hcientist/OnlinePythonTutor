@@ -1,0 +1,110 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "a" : [ "LIST",
+            99999,
+            10,
+            20,
+            30
+          ] },
+    "line" : 4,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "a" : [ "LIST",
+            99999,
+            10,
+            20,
+            30
+          ],
+        "b" : [ "LIST",
+            99999,
+            10,
+            20,
+            30
+          ]
+      },
+    "line" : 5,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "a" : [ "LIST",
+            99999,
+            10,
+            20,
+            30
+          ],
+        "b" : [ "LIST",
+            99999,
+            10,
+            20,
+            30
+          ],
+        "c" : [ "LIST",
+            99999,
+            10,
+            20,
+            30
+          ]
+      },
+    "line" : 6,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<module>",
+    "globals" : { "a" : [ "LIST",
+            99999,
+            10,
+            20,
+            30
+          ],
+        "b" : [ "LIST",
+            99999,
+            10,
+            20,
+            30
+          ],
+        "c" : [ "LIST",
+            99999,
+            10,
+            20,
+            30
+          ],
+        "d" : [ "TUPLE",
+            99999,
+            [ "LIST",
+              99999,
+              10,
+              20,
+              30
+            ],
+            [ "LIST",
+              99999,
+              10,
+              20,
+              30
+            ],
+            [ "LIST",
+              99999,
+              10,
+              20,
+              30
+            ]
+          ]
+      },
+    "line" : 6,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  }
+]

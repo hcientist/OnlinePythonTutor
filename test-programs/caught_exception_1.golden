@@ -1,0 +1,44 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 2,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "exception",
+    "exception_msg" : "ZeroDivisionError: integer division or modulo by zero",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 2,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 4,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 4,
+    "stack_locals" : [  ],
+    "stdout" : "DIVIDE BY ZERO\n"
+  }
+]

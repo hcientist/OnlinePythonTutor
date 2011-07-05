@@ -1,0 +1,52 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "x" : [ "generator",
+            99999,
+            "<generator object <genexpr> at 0x4ba580>"
+          ] },
+    "line" : 2,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "x" : [ "generator",
+            99999,
+            "<generator object <genexpr> at 0x4ba580>"
+          ],
+        "y" : [ "generator",
+            99999,
+            "<generator object <genexpr> at 0x4ba580>"
+          ]
+      },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<module>",
+    "globals" : { "x" : [ "generator",
+            99999,
+            "<generator object <genexpr> at 0x4ba580>"
+          ],
+        "y" : [ "generator",
+            99999,
+            "<generator object <genexpr> at 0x4ba580>"
+          ],
+        "z" : [ "generator",
+            99999,
+            "<generator object <genexpr> at 0x4baaa8>"
+          ]
+      },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  }
+]

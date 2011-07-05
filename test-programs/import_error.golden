@@ -1,0 +1,16 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 2,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "exception",
+    "exception_msg" : "ImportError: __import__ not found",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 2,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  }
+]

@@ -1,0 +1,244 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "x" : 5 },
+    "line" : 2,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 0,
+        "x" : 5
+      },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 0,
+        "x" : 5
+      },
+    "line" : 6,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 0,
+        "x" : 5,
+        "z" : 0
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 0,
+        "x" : 5,
+        "z" : 0
+      },
+    "line" : 2,
+    "stack_locals" : [  ],
+    "stdout" : "0\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 1,
+        "x" : 5,
+        "z" : 0
+      },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : "0\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 1,
+        "x" : 5,
+        "z" : 0
+      },
+    "line" : 6,
+    "stack_locals" : [  ],
+    "stdout" : "0\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 1,
+        "x" : 5,
+        "z" : 1
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "0\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 1,
+        "x" : 5,
+        "z" : 1
+      },
+    "line" : 2,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 2,
+        "x" : 5,
+        "z" : 1
+      },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 2,
+        "x" : 5,
+        "z" : 1
+      },
+    "line" : 6,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 2,
+        "x" : 5,
+        "z" : 2
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 2,
+        "x" : 5,
+        "z" : 2
+      },
+    "line" : 2,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n2\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 3,
+        "x" : 5,
+        "z" : 2
+      },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n2\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 3,
+        "x" : 5,
+        "z" : 2
+      },
+    "line" : 6,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n2\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 3,
+        "x" : 5,
+        "z" : 3
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n2\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 3,
+        "x" : 5,
+        "z" : 3
+      },
+    "line" : 2,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n2\n3\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 4,
+        "x" : 5,
+        "z" : 3
+      },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n2\n3\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 4,
+        "x" : 5,
+        "z" : 3
+      },
+    "line" : 6,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n2\n3\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 4,
+        "x" : 5,
+        "z" : 4
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n2\n3\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 4,
+        "x" : 5,
+        "z" : 4
+      },
+    "line" : 2,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n2\n3\n4\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 5,
+        "x" : 5,
+        "z" : 4
+      },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n2\n3\n4\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "i" : 5,
+        "x" : 5,
+        "z" : 4
+      },
+    "line" : 4,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n2\n3\n4\n"
+  },
+  { "event" : "exception",
+    "exception_msg" : "NameError: name 'y' is not defined",
+    "func_name" : "<module>",
+    "globals" : { "i" : 5,
+        "x" : 5,
+        "z" : 4
+      },
+    "line" : 4,
+    "stack_locals" : [  ],
+    "stdout" : "0\n1\n2\n3\n4\n"
+  }
+]

@@ -1,0 +1,136 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "Outer",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [ [ "Outer",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "Outer",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [ [ "Outer",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "Outer",
+    "globals" : {  },
+    "line" : 2,
+    "stack_locals" : [ [ "Outer",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "Outer",
+    "globals" : {  },
+    "line" : 2,
+    "stack_locals" : [ [ "Outer",
+          { "__return__" : [ "DICT",
+                99999
+              ] }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Outer" : [ "CLASS",
+            "Outer",
+            99999,
+            [  ]
+          ] },
+    "line" : 4,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Outer" : [ "CLASS",
+            "Outer",
+            99999,
+            [  ]
+          ],
+        "o" : [ "INSTANCE",
+            "Outer",
+            99999
+          ]
+      },
+    "line" : 5,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Outer" : [ "CLASS",
+            "Outer",
+            99999,
+            [  ]
+          ],
+        "o" : [ "INSTANCE",
+            "Outer",
+            99999,
+            [ "a",
+              5
+            ]
+          ]
+      },
+    "line" : 6,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Outer" : [ "CLASS",
+            "Outer",
+            99999,
+            [  ]
+          ],
+        "o" : [ "INSTANCE",
+            "Outer",
+            99999,
+            [ "a",
+              5
+            ],
+            [ "b",
+              "Hi"
+            ]
+          ]
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<module>",
+    "globals" : { "Outer" : [ "CLASS",
+            "Outer",
+            99999,
+            [  ]
+          ],
+        "o" : [ "INSTANCE",
+            "Outer",
+            99999,
+            [ "a",
+              5
+            ],
+            [ "b",
+              "Hi"
+            ]
+          ]
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "<__main__.Outer instance at 0x4c26c0>\n"
+  }
+]

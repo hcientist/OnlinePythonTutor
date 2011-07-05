@@ -1,0 +1,874 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "Point",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [ [ "Point",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "Point",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [ [ "Point",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "Point",
+    "globals" : {  },
+    "line" : 2,
+    "stack_locals" : [ [ "Point",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "Point",
+    "globals" : {  },
+    "line" : 6,
+    "stack_locals" : [ [ "Point",
+          { "__init__" : [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ] }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "Point",
+    "globals" : {  },
+    "line" : 6,
+    "stack_locals" : [ [ "Point",
+          { "__init__" : [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ],
+            "__return__" : [ "DICT",
+                99999,
+                [ "__str__",
+                  [ "function",
+                    99999,
+                    "<function __str__ at 0x4b8830>"
+                  ]
+                ],
+                [ "__init__",
+                  [ "function",
+                    99999,
+                    "<function __init__ at 0x3fb130>"
+                  ]
+                ]
+              ],
+            "__str__" : [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ] },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "__init__",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ] },
+    "line" : 2,
+    "stack_locals" : [ [ "__init__",
+          { "self" : [ "INSTANCE",
+                "Point",
+                99999
+              ],
+            "x" : 1,
+            "y" : 2
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "__init__",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ] },
+    "line" : 3,
+    "stack_locals" : [ [ "__init__",
+          { "self" : [ "INSTANCE",
+                "Point",
+                99999
+              ],
+            "x" : 1,
+            "y" : 2
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "__init__",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ] },
+    "line" : 4,
+    "stack_locals" : [ [ "__init__",
+          { "self" : [ "INSTANCE",
+                "Point",
+                99999,
+                [ "x",
+                  1
+                ]
+              ],
+            "x" : 1,
+            "y" : 2
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "__init__",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ] },
+    "line" : 4,
+    "stack_locals" : [ [ "__init__",
+          { "__return__" : null,
+            "self" : [ "INSTANCE",
+                "Point",
+                99999,
+                [ "x",
+                  1
+                ],
+                [ "y",
+                  2
+                ]
+              ],
+            "x" : 1,
+            "y" : 2
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ],
+        "p" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              1
+            ],
+            [ "y",
+              2
+            ]
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "__str__",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ],
+        "p" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              1
+            ],
+            [ "y",
+              2
+            ]
+          ]
+      },
+    "line" : 6,
+    "stack_locals" : [ [ "__str__",
+          { "self" : [ "INSTANCE",
+                "Point",
+                99999,
+                [ "x",
+                  1
+                ],
+                [ "y",
+                  2
+                ]
+              ] }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "__str__",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ],
+        "p" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              1
+            ],
+            [ "y",
+              2
+            ]
+          ]
+      },
+    "line" : 7,
+    "stack_locals" : [ [ "__str__",
+          { "self" : [ "INSTANCE",
+                "Point",
+                99999,
+                [ "x",
+                  1
+                ],
+                [ "y",
+                  2
+                ]
+              ] }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "__str__",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ],
+        "p" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              1
+            ],
+            [ "y",
+              2
+            ]
+          ]
+      },
+    "line" : 7,
+    "stack_locals" : [ [ "__str__",
+          { "__return__" : "(1, 2)",
+            "self" : [ "INSTANCE",
+                "Point",
+                99999,
+                [ "x",
+                  1
+                ],
+                [ "y",
+                  2
+                ]
+              ]
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ],
+        "p" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              1
+            ],
+            [ "y",
+              2
+            ]
+          ]
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "(1, 2)\n"
+  },
+  { "event" : "call",
+    "func_name" : "__init__",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ],
+        "p" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              1
+            ],
+            [ "y",
+              2
+            ]
+          ]
+      },
+    "line" : 2,
+    "stack_locals" : [ [ "__init__",
+          { "self" : [ "INSTANCE",
+                "Point",
+                99999
+              ],
+            "x" : 3,
+            "y" : -4
+          }
+        ] ],
+    "stdout" : "(1, 2)\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "__init__",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ],
+        "p" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              1
+            ],
+            [ "y",
+              2
+            ]
+          ]
+      },
+    "line" : 3,
+    "stack_locals" : [ [ "__init__",
+          { "self" : [ "INSTANCE",
+                "Point",
+                99999
+              ],
+            "x" : 3,
+            "y" : -4
+          }
+        ] ],
+    "stdout" : "(1, 2)\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "__init__",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ],
+        "p" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              1
+            ],
+            [ "y",
+              2
+            ]
+          ]
+      },
+    "line" : 4,
+    "stack_locals" : [ [ "__init__",
+          { "self" : [ "INSTANCE",
+                "Point",
+                99999,
+                [ "x",
+                  3
+                ]
+              ],
+            "x" : 3,
+            "y" : -4
+          }
+        ] ],
+    "stdout" : "(1, 2)\n"
+  },
+  { "event" : "return",
+    "func_name" : "__init__",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ],
+        "p" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              1
+            ],
+            [ "y",
+              2
+            ]
+          ]
+      },
+    "line" : 4,
+    "stack_locals" : [ [ "__init__",
+          { "__return__" : null,
+            "self" : [ "INSTANCE",
+                "Point",
+                99999,
+                [ "x",
+                  3
+                ],
+                [ "y",
+                  -4
+                ]
+              ],
+            "x" : 3,
+            "y" : -4
+          }
+        ] ],
+    "stdout" : "(1, 2)\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ],
+        "p" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              1
+            ],
+            [ "y",
+              2
+            ]
+          ],
+        "p2" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              3
+            ],
+            [ "y",
+              -4
+            ]
+          ]
+      },
+    "line" : 12,
+    "stack_locals" : [  ],
+    "stdout" : "(1, 2)\n"
+  },
+  { "event" : "call",
+    "func_name" : "__str__",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ],
+        "p" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              1
+            ],
+            [ "y",
+              2
+            ]
+          ],
+        "p2" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              3
+            ],
+            [ "y",
+              -4
+            ]
+          ]
+      },
+    "line" : 6,
+    "stack_locals" : [ [ "__str__",
+          { "self" : [ "INSTANCE",
+                "Point",
+                99999,
+                [ "x",
+                  3
+                ],
+                [ "y",
+                  -4
+                ]
+              ] }
+        ] ],
+    "stdout" : "(1, 2)\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "__str__",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ],
+        "p" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              1
+            ],
+            [ "y",
+              2
+            ]
+          ],
+        "p2" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              3
+            ],
+            [ "y",
+              -4
+            ]
+          ]
+      },
+    "line" : 7,
+    "stack_locals" : [ [ "__str__",
+          { "self" : [ "INSTANCE",
+                "Point",
+                99999,
+                [ "x",
+                  3
+                ],
+                [ "y",
+                  -4
+                ]
+              ] }
+        ] ],
+    "stdout" : "(1, 2)\n"
+  },
+  { "event" : "return",
+    "func_name" : "__str__",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ],
+        "p" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              1
+            ],
+            [ "y",
+              2
+            ]
+          ],
+        "p2" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              3
+            ],
+            [ "y",
+              -4
+            ]
+          ]
+      },
+    "line" : 7,
+    "stack_locals" : [ [ "__str__",
+          { "__return__" : "(3, -4)",
+            "self" : [ "INSTANCE",
+                "Point",
+                99999,
+                [ "x",
+                  3
+                ],
+                [ "y",
+                  -4
+                ]
+              ]
+          }
+        ] ],
+    "stdout" : "(1, 2)\n"
+  },
+  { "event" : "return",
+    "func_name" : "<module>",
+    "globals" : { "Point" : [ "CLASS",
+            "Point",
+            99999,
+            [  ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x3fb130>"
+              ]
+            ],
+            [ "__str__",
+              [ "function",
+                99999,
+                "<function __str__ at 0x4b8830>"
+              ]
+            ]
+          ],
+        "p" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              1
+            ],
+            [ "y",
+              2
+            ]
+          ],
+        "p2" : [ "INSTANCE",
+            "Point",
+            99999,
+            [ "x",
+              3
+            ],
+            [ "y",
+              -4
+            ]
+          ]
+      },
+    "line" : 12,
+    "stack_locals" : [  ],
+    "stdout" : "(1, 2)\n(3, -4)\n"
+  }
+]

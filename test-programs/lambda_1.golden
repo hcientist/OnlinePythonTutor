@@ -1,0 +1,1997 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ] },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 12,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "sumsquares",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 9,
+    "stack_locals" : [ [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "sumsquares",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 1,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ]
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 2,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ]
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 3,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 0
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 4,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 0,
+            "x" : 1
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 5,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 0,
+            "x" : 1
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 1 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 0,
+            "x" : 1
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 1 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 0,
+            "x" : 1
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "__return__" : 1,
+            "x" : 1
+          }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 0,
+            "x" : 1
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 6,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 1,
+            "x" : 1
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 1 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 1,
+            "x" : 1
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 1 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 1,
+            "x" : 1
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "__return__" : 2,
+            "x" : 1
+          }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 1,
+            "x" : 1
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 4,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 1,
+            "x" : 2
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 5,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 1,
+            "x" : 2
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 2 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 1,
+            "x" : 2
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 2 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 1,
+            "x" : 2
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "__return__" : 4,
+            "x" : 2
+          }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 1,
+            "x" : 2
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 6,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 5,
+            "x" : 2
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 2 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 5,
+            "x" : 2
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 2 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 5,
+            "x" : 2
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "__return__" : 3,
+            "x" : 2
+          }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 5,
+            "x" : 2
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 4,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 5,
+            "x" : 3
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 5,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 5,
+            "x" : 3
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 3 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 5,
+            "x" : 3
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 3 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 5,
+            "x" : 3
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "__return__" : 9,
+            "x" : 3
+          }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 5,
+            "x" : 3
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 6,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 14,
+            "x" : 3
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 3 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 14,
+            "x" : 3
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 3 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 14,
+            "x" : 3
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "__return__" : 4,
+            "x" : 3
+          }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 14,
+            "x" : 3
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 4,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 14,
+            "x" : 4
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 5,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 14,
+            "x" : 4
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 4 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 14,
+            "x" : 4
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 4 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 14,
+            "x" : 4
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "__return__" : 16,
+            "x" : 4
+          }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 14,
+            "x" : 4
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 6,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 30,
+            "x" : 4
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 4 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 30,
+            "x" : 4
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 4 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 30,
+            "x" : 4
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "__return__" : 5,
+            "x" : 4
+          }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 30,
+            "x" : 4
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 4,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 30,
+            "x" : 5
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 5,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 30,
+            "x" : 5
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 5 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 30,
+            "x" : 5
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 5 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 30,
+            "x" : 5
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "__return__" : 25,
+            "x" : 5
+          }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 30,
+            "x" : 5
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 6,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 55,
+            "x" : 5
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 5 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 55,
+            "x" : 5
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "x" : 5 }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 55,
+            "x" : 5
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<lambda>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "lambda on line 10",
+          { "__return__" : 6,
+            "x" : 5
+          }
+        ],
+        [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 55,
+            "x" : 5
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 4,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 55,
+            "x" : 6
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 7,
+    "stack_locals" : [ [ "summation",
+          { "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 55,
+            "x" : 6
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "summation",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 7,
+    "stack_locals" : [ [ "summation",
+          { "__return__" : 55,
+            "f" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8db0>"
+              ],
+            "high" : 5,
+            "low" : 1,
+            "next" : [ "function",
+                99999,
+                "<function <lambda> at 0x4b8d70>"
+              ],
+            "s" : 55,
+            "x" : 6
+          }
+        ],
+        [ "sumsquares",
+          { "high" : 5,
+            "low" : 1
+          }
+        ]
+      ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "sumsquares",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [ [ "sumsquares",
+          { "__return__" : 55,
+            "high" : 5,
+            "low" : 1
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<module>",
+    "globals" : { "summation" : [ "function",
+            99999,
+            "<function summation at 0x4b8eb0>"
+          ],
+        "sumsquares" : [ "function",
+            99999,
+            "<function sumsquares at 0x4b8e70>"
+          ]
+      },
+    "line" : 12,
+    "stack_locals" : [  ],
+    "stdout" : "55\n"
+  }
+]

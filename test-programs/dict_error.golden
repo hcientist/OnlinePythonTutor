@@ -1,0 +1,78 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "foo" : [ "function",
+            99999,
+            "<function foo at 0x4b8970>"
+          ] },
+    "line" : 4,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "foo",
+    "globals" : { "foo" : [ "function",
+            99999,
+            "<function foo at 0x4b8970>"
+          ] },
+    "line" : 1,
+    "stack_locals" : [ [ "foo",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "foo",
+    "globals" : { "foo" : [ "function",
+            99999,
+            "<function foo at 0x4b8970>"
+          ] },
+    "line" : 2,
+    "stack_locals" : [ [ "foo",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "exception",
+    "exception_msg" : "NameError: global name 'local_y' is not defined",
+    "func_name" : "foo",
+    "globals" : { "foo" : [ "function",
+            99999,
+            "<function foo at 0x4b8970>"
+          ] },
+    "line" : 2,
+    "stack_locals" : [ [ "foo",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "foo",
+    "globals" : { "foo" : [ "function",
+            99999,
+            "<function foo at 0x4b8970>"
+          ] },
+    "line" : 2,
+    "stack_locals" : [ [ "foo",
+          { "__return__" : null }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "exception",
+    "exception_msg" : "NameError: global name 'local_y' is not defined",
+    "func_name" : "<module>",
+    "globals" : { "foo" : [ "function",
+            99999,
+            "<function foo at 0x4b8970>"
+          ] },
+    "line" : 4,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  }
+]

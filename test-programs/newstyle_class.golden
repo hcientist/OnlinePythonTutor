@@ -1,0 +1,629 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "A",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [ [ "A",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "A",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [ [ "A",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "A",
+    "globals" : {  },
+    "line" : 2,
+    "stack_locals" : [ [ "A",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "A",
+    "globals" : {  },
+    "line" : 3,
+    "stack_locals" : [ [ "A",
+          { "bla" : "A" }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "A",
+    "globals" : {  },
+    "line" : 6,
+    "stack_locals" : [ [ "A",
+          { "__init__" : [ "function",
+                99999,
+                "<function __init__ at 0x4b8db0>"
+              ],
+            "bla" : "A"
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "A",
+    "globals" : {  },
+    "line" : 6,
+    "stack_locals" : [ [ "A",
+          { "__init__" : [ "function",
+                99999,
+                "<function __init__ at 0x4b8db0>"
+              ],
+            "__return__" : [ "DICT",
+                99999,
+                [ "x",
+                  [ "function",
+                    99999,
+                    "<function x at 0x4b8fb0>"
+                  ]
+                ],
+                [ "bla",
+                  "A"
+                ],
+                [ "__init__",
+                  [ "function",
+                    99999,
+                    "<function __init__ at 0x4b8db0>"
+                  ]
+                ]
+              ],
+            "bla" : "A",
+            "x" : [ "function",
+                99999,
+                "<function x at 0x4b8fb0>"
+              ]
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "A" : [ "CLASS",
+            "A",
+            99999,
+            [ "object" ],
+            [ "__dict__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__dict__' of 'A' objects>"
+              ]
+            ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x4b8db0>"
+              ]
+            ],
+            [ "__weakref__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__weakref__' of 'A' objects>"
+              ]
+            ],
+            [ "bla",
+              "A"
+            ],
+            [ "x",
+              [ "function",
+                99999,
+                "<function x at 0x4b8fb0>"
+              ]
+            ]
+          ] },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "__init__",
+    "globals" : { "A" : [ "CLASS",
+            "A",
+            99999,
+            [ "object" ],
+            [ "__dict__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__dict__' of 'A' objects>"
+              ]
+            ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x4b8db0>"
+              ]
+            ],
+            [ "__weakref__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__weakref__' of 'A' objects>"
+              ]
+            ],
+            [ "bla",
+              "A"
+            ],
+            [ "x",
+              [ "function",
+                99999,
+                "<function x at 0x4b8fb0>"
+              ]
+            ]
+          ] },
+    "line" : 3,
+    "stack_locals" : [ [ "__init__",
+          { "self" : [ "INSTANCE",
+                "A",
+                99999
+              ] }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "__init__",
+    "globals" : { "A" : [ "CLASS",
+            "A",
+            99999,
+            [ "object" ],
+            [ "__dict__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__dict__' of 'A' objects>"
+              ]
+            ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x4b8db0>"
+              ]
+            ],
+            [ "__weakref__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__weakref__' of 'A' objects>"
+              ]
+            ],
+            [ "bla",
+              "A"
+            ],
+            [ "x",
+              [ "function",
+                99999,
+                "<function x at 0x4b8fb0>"
+              ]
+            ]
+          ] },
+    "line" : 4,
+    "stack_locals" : [ [ "__init__",
+          { "self" : [ "INSTANCE",
+                "A",
+                99999
+              ] }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "__init__",
+    "globals" : { "A" : [ "CLASS",
+            "A",
+            99999,
+            [ "object" ],
+            [ "__dict__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__dict__' of 'A' objects>"
+              ]
+            ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x4b8db0>"
+              ]
+            ],
+            [ "__weakref__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__weakref__' of 'A' objects>"
+              ]
+            ],
+            [ "bla",
+              "A"
+            ],
+            [ "x",
+              [ "function",
+                99999,
+                "<function x at 0x4b8fb0>"
+              ]
+            ]
+          ] },
+    "line" : 4,
+    "stack_locals" : [ [ "__init__",
+          { "__return__" : null,
+            "self" : [ "INSTANCE",
+                "A",
+                99999,
+                [ "blb",
+                  "B"
+                ]
+              ]
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "A" : [ "CLASS",
+            "A",
+            99999,
+            [ "object" ],
+            [ "__dict__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__dict__' of 'A' objects>"
+              ]
+            ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x4b8db0>"
+              ]
+            ],
+            [ "__weakref__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__weakref__' of 'A' objects>"
+              ]
+            ],
+            [ "bla",
+              "A"
+            ],
+            [ "x",
+              [ "function",
+                99999,
+                "<function x at 0x4b8fb0>"
+              ]
+            ]
+          ],
+        "a" : [ "INSTANCE",
+            "A",
+            99999,
+            [ "blb",
+              "B"
+            ]
+          ]
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "x",
+    "globals" : { "A" : [ "CLASS",
+            "A",
+            99999,
+            [ "object" ],
+            [ "__dict__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__dict__' of 'A' objects>"
+              ]
+            ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x4b8db0>"
+              ]
+            ],
+            [ "__weakref__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__weakref__' of 'A' objects>"
+              ]
+            ],
+            [ "bla",
+              "A"
+            ],
+            [ "x",
+              [ "function",
+                99999,
+                "<function x at 0x4b8fb0>"
+              ]
+            ]
+          ],
+        "a" : [ "INSTANCE",
+            "A",
+            99999,
+            [ "blb",
+              "B"
+            ]
+          ]
+      },
+    "line" : 6,
+    "stack_locals" : [ [ "x",
+          { "self" : [ "INSTANCE",
+                "A",
+                99999,
+                [ "blb",
+                  "B"
+                ]
+              ] }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "x",
+    "globals" : { "A" : [ "CLASS",
+            "A",
+            99999,
+            [ "object" ],
+            [ "__dict__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__dict__' of 'A' objects>"
+              ]
+            ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x4b8db0>"
+              ]
+            ],
+            [ "__weakref__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__weakref__' of 'A' objects>"
+              ]
+            ],
+            [ "bla",
+              "A"
+            ],
+            [ "x",
+              [ "function",
+                99999,
+                "<function x at 0x4b8fb0>"
+              ]
+            ]
+          ],
+        "a" : [ "INSTANCE",
+            "A",
+            99999,
+            [ "blb",
+              "B"
+            ]
+          ]
+      },
+    "line" : 7,
+    "stack_locals" : [ [ "x",
+          { "self" : [ "INSTANCE",
+                "A",
+                99999,
+                [ "blb",
+                  "B"
+                ]
+              ] }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "x",
+    "globals" : { "A" : [ "CLASS",
+            "A",
+            99999,
+            [ "object" ],
+            [ "__dict__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__dict__' of 'A' objects>"
+              ]
+            ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x4b8db0>"
+              ]
+            ],
+            [ "__weakref__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__weakref__' of 'A' objects>"
+              ]
+            ],
+            [ "bla",
+              "A"
+            ],
+            [ "x",
+              [ "function",
+                99999,
+                "<function x at 0x4b8fb0>"
+              ]
+            ]
+          ],
+        "a" : [ "INSTANCE",
+            "A",
+            99999,
+            [ "bla",
+              "B"
+            ],
+            [ "blb",
+              "B"
+            ]
+          ]
+      },
+    "line" : 7,
+    "stack_locals" : [ [ "x",
+          { "__return__" : null,
+            "self" : [ "INSTANCE",
+                "A",
+                99999,
+                [ "bla",
+                  "B"
+                ],
+                [ "blb",
+                  "B"
+                ]
+              ]
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "A" : [ "CLASS",
+            "A",
+            99999,
+            [ "object" ],
+            [ "__dict__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__dict__' of 'A' objects>"
+              ]
+            ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x4b8db0>"
+              ]
+            ],
+            [ "__weakref__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__weakref__' of 'A' objects>"
+              ]
+            ],
+            [ "bla",
+              "A"
+            ],
+            [ "x",
+              [ "function",
+                99999,
+                "<function x at 0x4b8fb0>"
+              ]
+            ]
+          ],
+        "a" : [ "INSTANCE",
+            "A",
+            99999,
+            [ "bla",
+              "B"
+            ],
+            [ "blb",
+              "B"
+            ]
+          ]
+      },
+    "line" : 13,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "A" : [ "CLASS",
+            "A",
+            99999,
+            [ "object" ],
+            [ "__dict__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__dict__' of 'A' objects>"
+              ]
+            ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x4b8db0>"
+              ]
+            ],
+            [ "__weakref__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__weakref__' of 'A' objects>"
+              ]
+            ],
+            [ "bla",
+              "A"
+            ],
+            [ "x",
+              [ "function",
+                99999,
+                "<function x at 0x4b8fb0>"
+              ]
+            ]
+          ],
+        "a" : [ "INSTANCE",
+            "A",
+            99999,
+            [ "bla",
+              "B"
+            ],
+            [ "blb",
+              "B"
+            ]
+          ]
+      },
+    "line" : 14,
+    "stack_locals" : [  ],
+    "stdout" : "B\n"
+  },
+  { "event" : "return",
+    "func_name" : "<module>",
+    "globals" : { "A" : [ "CLASS",
+            "A",
+            99999,
+            [ "object" ],
+            [ "__dict__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__dict__' of 'A' objects>"
+              ]
+            ],
+            [ "__init__",
+              [ "function",
+                99999,
+                "<function __init__ at 0x4b8db0>"
+              ]
+            ],
+            [ "__weakref__",
+              [ "getset_descriptor",
+                99999,
+                "<attribute '__weakref__' of 'A' objects>"
+              ]
+            ],
+            [ "bla",
+              "A"
+            ],
+            [ "x",
+              [ "function",
+                99999,
+                "<function x at 0x4b8fb0>"
+              ]
+            ]
+          ],
+        "a" : [ "INSTANCE",
+            "A",
+            99999,
+            [ "bla",
+              "B"
+            ],
+            [ "blb",
+              "B"
+            ]
+          ]
+      },
+    "line" : 14,
+    "stack_locals" : [  ],
+    "stdout" : "B\nA\n"
+  }
+]

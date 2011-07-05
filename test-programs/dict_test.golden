@@ -1,0 +1,345 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "x" : [ "DICT",
+            99999,
+            [ 1,
+              2
+            ]
+          ] },
+    "line" : 2,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "x" : [ "DICT",
+            99999,
+            [ 1,
+              2
+            ],
+            [ [ "TUPLE",
+                99999,
+                "tup",
+                "le"
+              ],
+              [ "SET",
+                99999,
+                1,
+                2,
+                3
+              ]
+            ]
+          ] },
+    "line" : 4,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "foo" : [ "function",
+            99999,
+            "<function foo at 0x4b84f0>"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ 1,
+              2
+            ],
+            [ [ "TUPLE",
+                99999,
+                "tup",
+                "le"
+              ],
+              [ "SET",
+                99999,
+                1,
+                2,
+                3
+              ]
+            ]
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "foo",
+    "globals" : { "foo" : [ "function",
+            99999,
+            "<function foo at 0x4b84f0>"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ 1,
+              2
+            ],
+            [ [ "TUPLE",
+                99999,
+                "tup",
+                "le"
+              ],
+              [ "SET",
+                99999,
+                1,
+                2,
+                3
+              ]
+            ]
+          ]
+      },
+    "line" : 4,
+    "stack_locals" : [ [ "foo",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "foo",
+    "globals" : { "foo" : [ "function",
+            99999,
+            "<function foo at 0x4b84f0>"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ 1,
+              2
+            ],
+            [ [ "TUPLE",
+                99999,
+                "tup",
+                "le"
+              ],
+              [ "SET",
+                99999,
+                1,
+                2,
+                3
+              ]
+            ]
+          ]
+      },
+    "line" : 5,
+    "stack_locals" : [ [ "foo",
+          {  }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "foo",
+    "globals" : { "foo" : [ "function",
+            99999,
+            "<function foo at 0x4b84f0>"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ 1,
+              2
+            ],
+            [ [ "TUPLE",
+                99999,
+                "tup",
+                "le"
+              ],
+              [ "SET",
+                99999,
+                1,
+                2,
+                3
+              ]
+            ]
+          ]
+      },
+    "line" : 6,
+    "stack_locals" : [ [ "foo",
+          { "local_x" : [ "DICT",
+                99999,
+                [ 1,
+                  2
+                ]
+              ] }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "foo",
+    "globals" : { "foo" : [ "function",
+            99999,
+            "<function foo at 0x4b84f0>"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ 1,
+              2
+            ],
+            [ [ "TUPLE",
+                99999,
+                "tup",
+                "le"
+              ],
+              [ "SET",
+                99999,
+                1,
+                2,
+                3
+              ]
+            ]
+          ]
+      },
+    "line" : 7,
+    "stack_locals" : [ [ "foo",
+          { "local_x" : [ "DICT",
+                99999,
+                [ 1,
+                  2
+                ]
+              ],
+            "local_y" : [ "DICT",
+                99999
+              ]
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "foo",
+    "globals" : { "foo" : [ "function",
+            99999,
+            "<function foo at 0x4b84f0>"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ 1,
+              2
+            ],
+            [ [ "TUPLE",
+                99999,
+                "tup",
+                "le"
+              ],
+              [ "SET",
+                99999,
+                1,
+                2,
+                3
+              ]
+            ]
+          ]
+      },
+    "line" : 8,
+    "stack_locals" : [ [ "foo",
+          { "local_x" : [ "DICT",
+                99999,
+                [ 1,
+                  2
+                ]
+              ],
+            "local_y" : [ "DICT",
+                99999,
+                [ [ "TUPLE",
+                    99999,
+                    "tup",
+                    "le"
+                  ],
+                  [ "SET",
+                    99999,
+                    1,
+                    2,
+                    3
+                  ]
+                ]
+              ]
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "foo",
+    "globals" : { "foo" : [ "function",
+            99999,
+            "<function foo at 0x4b84f0>"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ 1,
+              2
+            ],
+            [ [ "TUPLE",
+                99999,
+                "tup",
+                "le"
+              ],
+              [ "SET",
+                99999,
+                1,
+                2,
+                3
+              ]
+            ]
+          ]
+      },
+    "line" : 8,
+    "stack_locals" : [ [ "foo",
+          { "__return__" : null,
+            "local_x" : [ "DICT",
+                99999,
+                [ 1,
+                  2
+                ]
+              ],
+            "local_y" : [ "DICT",
+                99999,
+                [ [ "TUPLE",
+                    99999,
+                    "tup",
+                    "le"
+                  ],
+                  [ "SET",
+                    99999,
+                    1,
+                    2,
+                    3
+                  ]
+                ]
+              ]
+          }
+        ] ],
+    "stdout" : "hello [set([1, 2, 3])]\n"
+  },
+  { "event" : "return",
+    "func_name" : "<module>",
+    "globals" : { "foo" : [ "function",
+            99999,
+            "<function foo at 0x4b84f0>"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ 1,
+              2
+            ],
+            [ [ "TUPLE",
+                99999,
+                "tup",
+                "le"
+              ],
+              [ "SET",
+                99999,
+                1,
+                2,
+                3
+              ]
+            ]
+          ]
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "hello [set([1, 2, 3])]\n"
+  }
+]

@@ -1,0 +1,207 @@
+A disorganized collection of TODOs, bug reports, and suggestions from friends
+---
+
+Ideas for programming tutorials
+  - Could do a track on more advanced Python concepts for people who are
+    already pretty comfortable with programming ... an intro to Python
+    for programmers
+
+
+Don't display boilerplate code when classes are being initialized
+
+
+Rob Miller's suggestions for handling aliasing:
+
+'''
+Incidentally, for the aliasing example, it might help if you strive to
+have one object be the "official" one, in a sense, and make the aliases
+to it look different.  For example, the x list would be displayed
+normally, but the y list might be displayed faded out (with a little
+note that says "this is the same object as x above").  Mousing over the
+x list or y list might highlight its aliases.
+
+That would reinforce the fact that there's only one object in memory.
+We usually do that on the blackboard -- draw only one object, and have
+arrows from x and y pointing to that single object.
+'''
+
+
+Hubert's suggestions for permalinks:
+'''
+Hubert: 1) It would be cool to have the ability to link directly to an
+execution point, so that when I send you a link, you could see the code
+I'd written and the point in execution that I want to discuss.
+
+me: good suggestion.  that also requires me to save your code in
+something other than a regular POST variable, which i'm not doing right
+now.  then i could send links of the following form:
+
+  http://python.pgrind.com/code_id=20#4 (for line 4 of code snippet 20)
+
+Hubert: yup, yeah the problem lies in storing the code, which brings in
+a whole can of worms.  but suppose you did, consider a RESTful approach
+(which I am drilling into deeply, hence it's on my mind):
+
+http://python.pgrind.com/pg/code/20#4
+
+...quite easy to do and manage in a framework like Django.
+'''
+
+
+Cory: 'Might be nice to be able to automatically jump to particular step
+# rather than just inc/decrement and jump to ends, particular if the
+number of steps executed is significant.'
+
+
+Maybe integrate in this snazzy code EditArea, if it doesn't look too ugly:
+  (ugh kinda cheesy tho)
+  http://www.cdolivet.com/index.php?page=editArea&sess=3a3d89b7ef37aa5f74d6d4682aeda876
+
+
+Deployment on Google App Engine for scalability
+  http://code.google.com/appengine/docs/python/runtime.html
+  - the main issue is whether their restricted Python will allow us to
+    run 'import bdb' and other necessary modules
+  - could try to get Sal Khan to pay for my hosting if I host it
+    alongside Khan Academy
+  - could store analytics and user data in Google's db
+
+
+Related work:
+  - PyWhip: http://pywhip.appspot.com/
+    - also powered by Google App Engine
+  - Crunchy: http://code.google.com/p/crunchy/
+
+
+From Hubert, regarding rendering linked structures vs. using
+containment:
+'''
+i totally agree with the sentiment that if you're not ever going to use it (for
+any binding of "it"), don't add the complexity.  i sympathize with the laziness
+argument, that it's easy to do HTML tables than arrowheads, but if you change
+your mind, consider using HTML5's canvas -- many browsers support it.
+regarding the aliasing, from an epistemological standpoint, do you foresee that
+you'll have to cover the difference between passing by reference vs by value?
+this was a rather big stumbling block for me when learning Python, having come
+from C where the different passing styles are syntactically explicit.  i
+recognize that the current visualizations don't depict argument passing, so it
+may be moot.  but one cheap trick you can explore is to "color" identical
+objects with the same color, so that if a data structure appears in multiple
+places, it is colored differently, if they are indeed different objects.
+'''
+
+---
+2010-09-05
+
+From an email from Peter Wentworth (p.wentworth@ru.ac.za)
+
+'''
+I'd like to see the heap explicitly represented, so that mutable
+structures like lists are created in the heap rather than "in the stack
+frame".  Passing a list as an argument then becomes "pass the
+reference".
+ 
+I appreciate that you do have the id tags to indicate which are the
+aliases, but I think the instructional value would be even more
+compelling to see some pointers referencing the same underlying object.
+'''
+
+---
+From Hacker News feedback:
+
+- support for raw_input() sounds like something reasonable to include,
+  though, since it could simply pop up a text box and ask the user to
+  input a string e.g., javascript:alert("hello, " + prompt("what is your
+  name?"))
+
+---
+2010-09-29
+
+Chas Leichner (chaoslichen@gmail.com) emailed me to show me his related
+project:
+
+  http://www.youtube.com/watch?v=ZiS4MZF5eDQ
+  http://code.google.com/p/idlecarpentry/
+
+He had an interesting idea of annotating lines of code with special
+comments, and those comments would display when those lines were being
+executed.  That way, you can have sorta like 'literate programming
+tutorials' that intermix code and comments.  I could think about
+implementing something similar within my Online Python Tutor.
+
+e.g.,
+
+#> declare a variable
+x = 5
+
+#> an if statement tests a condition
+if x < 5:
+  y = x + 5
+else:
+  y = x - 5
+
+the appropriate annotations would display when you stepped through the
+line of code immediately below each annotation.
+
+---
+2011-01-16
+
+Bug report from Peter Wentworth
+
+'''
+I also have what I think is a bug report:   your front-end javascript treats variables with the value None as if they are undefined.  (They are reflected in the trace that we get from the server.)
+ 
+X = 123
+z = 'hello'
+x = None
+y = 123
+ 
+del  y
+print(x)
+print(type(x))
+ 
+---
+I changed your script  - around line 293 of edu-python.js, you have a condition checking for undefined (search for the comment containing “which is OKAY!”).  I just eliminated the check, and can’t figure out which cases I might have broken it for!
+'''
+
+---
+2011-05-23
+
+Bug report from Peter Wentworth
+
+'''
+Hi Philip
+ 
+I hope you are keeping well!  
+ 
+Scripts fail in the visualizer when the user has a variable called “length”, because somehow the front-end jquery is doing something wrong.  It happens both when used as a local or as a global variable.  See my image of what is happening on your site.  (Tried in both Firefox and Internet Explorer).
+ 
+It looks like a jquery bug (I haven’t tried moving to a newer version – I’m using 1.3.2 that I got from your version).
+ 
+The iterators  + lambda functions appear to be misbehaving when varname has the value “length”.
+So I’ve had to rip out the iterators and gone for vanilla javascript loops, which has solved it for me.
+ 
+I’ve done changes similar to this in 4 places in function  updateOutput  in file edu_python.js
+ 
+ 
+//      $.each(curTrace[i].globals, function(varname, val) {
+//        // eliminate duplicates (act as an ordered set)
+//        if ($.inArray(varname, orderedGlobals) == -1) {
+//          orderedGlobals.push(varname);
+//          curGlobalFields[varname] = undefined; // 'unset it'
+//        }
+//      });
+ 
+      for (varname in curTrace[i].globals) {
+          // eliminate duplicates (act as an ordered set)                
+           if ($.inArray(varname, orderedGlobals) == -1) {
+              orderedGlobals.push(varname);
+              curGlobalFields[varname] = undefined; // 'unset it'
+           }
+      }
+ 
+Regards
+ 
+Peter
+'''
+

@@ -1,0 +1,1309 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1,
+            1
+          ] },
+    "line" : 5,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1,
+            1
+          ] },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1,
+            1
+          ] },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1,
+            1
+          ] },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1,
+            1
+          ],
+        "tmp" : 2
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1,
+            1,
+            2
+          ],
+        "tmp" : 2
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1,
+            2
+          ],
+        "tmp" : 2
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1,
+            2
+          ],
+        "tmp" : 2
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1,
+            2
+          ],
+        "tmp" : 2
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1,
+            2
+          ],
+        "tmp" : 3
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1,
+            2,
+            3
+          ],
+        "tmp" : 3
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            2,
+            3
+          ],
+        "tmp" : 3
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            2,
+            3
+          ],
+        "tmp" : 3
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            2,
+            3
+          ],
+        "tmp" : 3
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            2,
+            3
+          ],
+        "tmp" : 5
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            2,
+            3,
+            5
+          ],
+        "tmp" : 5
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            3,
+            5
+          ],
+        "tmp" : 5
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            3,
+            5
+          ],
+        "tmp" : 5
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            3,
+            5
+          ],
+        "tmp" : 5
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            3,
+            5
+          ],
+        "tmp" : 8
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            3,
+            5,
+            8
+          ],
+        "tmp" : 8
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            5,
+            8
+          ],
+        "tmp" : 8
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            5,
+            8
+          ],
+        "tmp" : 8
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            5,
+            8
+          ],
+        "tmp" : 8
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            5,
+            8
+          ],
+        "tmp" : 13
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            5,
+            8,
+            13
+          ],
+        "tmp" : 13
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            8,
+            13
+          ],
+        "tmp" : 13
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            8,
+            13
+          ],
+        "tmp" : 13
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            8,
+            13
+          ],
+        "tmp" : 13
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            8,
+            13
+          ],
+        "tmp" : 21
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            8,
+            13,
+            21
+          ],
+        "tmp" : 21
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            13,
+            21
+          ],
+        "tmp" : 21
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            13,
+            21
+          ],
+        "tmp" : 21
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            13,
+            21
+          ],
+        "tmp" : 21
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            13,
+            21
+          ],
+        "tmp" : 34
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            13,
+            21,
+            34
+          ],
+        "tmp" : 34
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            21,
+            34
+          ],
+        "tmp" : 34
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            21,
+            34
+          ],
+        "tmp" : 34
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            21,
+            34
+          ],
+        "tmp" : 34
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            21,
+            34
+          ],
+        "tmp" : 55
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            21,
+            34,
+            55
+          ],
+        "tmp" : 55
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            34,
+            55
+          ],
+        "tmp" : 55
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            34,
+            55
+          ],
+        "tmp" : 55
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            34,
+            55
+          ],
+        "tmp" : 55
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            34,
+            55
+          ],
+        "tmp" : 89
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            34,
+            55,
+            89
+          ],
+        "tmp" : 89
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            55,
+            89
+          ],
+        "tmp" : 89
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            55,
+            89
+          ],
+        "tmp" : 89
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            55,
+            89
+          ],
+        "tmp" : 89
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            55,
+            89
+          ],
+        "tmp" : 144
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            55,
+            89,
+            144
+          ],
+        "tmp" : 144
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            89,
+            144
+          ],
+        "tmp" : 144
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            89,
+            144
+          ],
+        "tmp" : 144
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            89,
+            144
+          ],
+        "tmp" : 144
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            89,
+            144
+          ],
+        "tmp" : 233
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            89,
+            144,
+            233
+          ],
+        "tmp" : 233
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            144,
+            233
+          ],
+        "tmp" : 233
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            144,
+            233
+          ],
+        "tmp" : 233
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            144,
+            233
+          ],
+        "tmp" : 233
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            144,
+            233
+          ],
+        "tmp" : 377
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            144,
+            233,
+            377
+          ],
+        "tmp" : 377
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            233,
+            377
+          ],
+        "tmp" : 377
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            233,
+            377
+          ],
+        "tmp" : 377
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            233,
+            377
+          ],
+        "tmp" : 377
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            233,
+            377
+          ],
+        "tmp" : 610
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            233,
+            377,
+            610
+          ],
+        "tmp" : 610
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            377,
+            610
+          ],
+        "tmp" : 610
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            377,
+            610
+          ],
+        "tmp" : 610
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            377,
+            610
+          ],
+        "tmp" : 610
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            377,
+            610
+          ],
+        "tmp" : 987
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            377,
+            610,
+            987
+          ],
+        "tmp" : 987
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            610,
+            987
+          ],
+        "tmp" : 987
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            610,
+            987
+          ],
+        "tmp" : 987
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            610,
+            987
+          ],
+        "tmp" : 987
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            610,
+            987
+          ],
+        "tmp" : 1597
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            610,
+            987,
+            1597
+          ],
+        "tmp" : 1597
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            987,
+            1597
+          ],
+        "tmp" : 1597
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            987,
+            1597
+          ],
+        "tmp" : 1597
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            987,
+            1597
+          ],
+        "tmp" : 1597
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            987,
+            1597
+          ],
+        "tmp" : 2584
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            987,
+            1597,
+            2584
+          ],
+        "tmp" : 2584
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1597,
+            2584
+          ],
+        "tmp" : 2584
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1597,
+            2584
+          ],
+        "tmp" : 2584
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1597,
+            2584
+          ],
+        "tmp" : 2584
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1597,
+            2584
+          ],
+        "tmp" : 4181
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            1597,
+            2584,
+            4181
+          ],
+        "tmp" : 4181
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            2584,
+            4181
+          ],
+        "tmp" : 4181
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            2584,
+            4181
+          ],
+        "tmp" : 4181
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            2584,
+            4181
+          ],
+        "tmp" : 4181
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n4181\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            2584,
+            4181
+          ],
+        "tmp" : 6765
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n4181\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            2584,
+            4181,
+            6765
+          ],
+        "tmp" : 6765
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n4181\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            4181,
+            6765
+          ],
+        "tmp" : 6765
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n4181\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            4181,
+            6765
+          ],
+        "tmp" : 6765
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n4181\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            4181,
+            6765
+          ],
+        "tmp" : 6765
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n4181\n6765\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            4181,
+            6765
+          ],
+        "tmp" : 10946
+      },
+    "line" : 10,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n4181\n6765\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            4181,
+            6765,
+            10946
+          ],
+        "tmp" : 10946
+      },
+    "line" : 11,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n4181\n6765\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            6765,
+            10946
+          ],
+        "tmp" : 10946
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n4181\n6765\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            6765,
+            10946
+          ],
+        "tmp" : 10946
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n4181\n6765\n"
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "arr" : [ "LIST",
+            99999,
+            6765,
+            10946
+          ],
+        "tmp" : 10946
+      },
+    "line" : 9,
+    "stack_locals" : [  ],
+    "stdout" : "1\n1\n2\n3\n5\n8\n13\n21\n34\n55\n89\n144\n233\n377\n610\n987\n1597\n2584\n4181\n6765\n10946\n"
+  },
+  { "event" : "instruction_limit_reached",
+    "exception_msg" : "(stopped after 100 steps to prevent possible infinite loop)"
+  }
+]

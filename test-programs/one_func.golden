@@ -1,0 +1,150 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "add" : [ "function",
+            99999,
+            "<function add at 0x4c0070>"
+          ] },
+    "line" : 5,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "add" : [ "function",
+            99999,
+            "<function add at 0x4c0070>"
+          ],
+        "x" : 5
+      },
+    "line" : 6,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "add" : [ "function",
+            99999,
+            "<function add at 0x4c0070>"
+          ],
+        "x" : 5,
+        "y" : 10
+      },
+    "line" : 7,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "add" : [ "function",
+            99999,
+            "<function add at 0x4c0070>"
+          ],
+        "x" : 5,
+        "y" : 10,
+        "z" : 50
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "call",
+    "func_name" : "add",
+    "globals" : { "add" : [ "function",
+            99999,
+            "<function add at 0x4c0070>"
+          ],
+        "x" : 5,
+        "y" : 10,
+        "z" : 50
+      },
+    "line" : 1,
+    "stack_locals" : [ [ "add",
+          { "a" : 5,
+            "b" : 10,
+            "c" : 50
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "add",
+    "globals" : { "add" : [ "function",
+            99999,
+            "<function add at 0x4c0070>"
+          ],
+        "x" : 5,
+        "y" : 10,
+        "z" : 50
+      },
+    "line" : 2,
+    "stack_locals" : [ [ "add",
+          { "a" : 5,
+            "b" : 10,
+            "c" : 50
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "add",
+    "globals" : { "add" : [ "function",
+            99999,
+            "<function add at 0x4c0070>"
+          ],
+        "x" : 5,
+        "y" : 10,
+        "z" : 50
+      },
+    "line" : 3,
+    "stack_locals" : [ [ "add",
+          { "a" : 5,
+            "b" : 10,
+            "c" : 50,
+            "d" : 15
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "add",
+    "globals" : { "add" : [ "function",
+            99999,
+            "<function add at 0x4c0070>"
+          ],
+        "x" : 5,
+        "y" : 10,
+        "z" : 50
+      },
+    "line" : 3,
+    "stack_locals" : [ [ "add",
+          { "__return__" : 65,
+            "a" : 5,
+            "b" : 10,
+            "c" : 50,
+            "d" : 15
+          }
+        ] ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<module>",
+    "globals" : { "add" : [ "function",
+            99999,
+            "<function add at 0x4c0070>"
+          ],
+        "x" : 5,
+        "y" : 10,
+        "z" : 50
+      },
+    "line" : 8,
+    "stack_locals" : [  ],
+    "stdout" : "65\n"
+  }
+]

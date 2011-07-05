@@ -1,0 +1,222 @@
+[ { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : {  },
+    "line" : 1,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "x" : [ "DICT",
+            99999
+          ] },
+    "line" : 2,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "l" : [ "LIST",
+            99999,
+            "hello",
+            "world",
+            "goodbye"
+          ],
+        "x" : [ "DICT",
+            99999
+          ]
+      },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "e" : "hello",
+        "i" : 0,
+        "l" : [ "LIST",
+            99999,
+            "hello",
+            "world",
+            "goodbye"
+          ],
+        "x" : [ "DICT",
+            99999
+          ]
+      },
+    "line" : 4,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "e" : "hello",
+        "i" : 0,
+        "l" : [ "LIST",
+            99999,
+            "hello",
+            "world",
+            "goodbye"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ "hello",
+              0
+            ]
+          ]
+      },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "e" : "world",
+        "i" : 1,
+        "l" : [ "LIST",
+            99999,
+            "hello",
+            "world",
+            "goodbye"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ "hello",
+              0
+            ]
+          ]
+      },
+    "line" : 4,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "e" : "world",
+        "i" : 1,
+        "l" : [ "LIST",
+            99999,
+            "hello",
+            "world",
+            "goodbye"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ "world",
+              1
+            ],
+            [ "hello",
+              0
+            ]
+          ]
+      },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "e" : "goodbye",
+        "i" : 2,
+        "l" : [ "LIST",
+            99999,
+            "hello",
+            "world",
+            "goodbye"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ "world",
+              1
+            ],
+            [ "hello",
+              0
+            ]
+          ]
+      },
+    "line" : 4,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "e" : "goodbye",
+        "i" : 2,
+        "l" : [ "LIST",
+            99999,
+            "hello",
+            "world",
+            "goodbye"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ "world",
+              1
+            ],
+            [ "hello",
+              0
+            ],
+            [ "goodbye",
+              2
+            ]
+          ]
+      },
+    "line" : 3,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "step_line",
+    "func_name" : "<module>",
+    "globals" : { "e" : "goodbye",
+        "i" : 2,
+        "l" : [ "LIST",
+            99999,
+            "hello",
+            "world",
+            "goodbye"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ "world",
+              1
+            ],
+            [ "hello",
+              0
+            ],
+            [ "goodbye",
+              2
+            ]
+          ]
+      },
+    "line" : 5,
+    "stack_locals" : [  ],
+    "stdout" : ""
+  },
+  { "event" : "return",
+    "func_name" : "<module>",
+    "globals" : { "e" : "goodbye",
+        "i" : 2,
+        "l" : [ "LIST",
+            99999,
+            "hello",
+            "world",
+            "goodbye"
+          ],
+        "x" : [ "DICT",
+            99999,
+            [ "world",
+              1
+            ],
+            [ "hello",
+              0
+            ],
+            [ "goodbye",
+              2
+            ]
+          ]
+      },
+    "line" : 5,
+    "stack_locals" : [  ],
+    "stdout" : "{'world': 1, 'hello': 0, 'goodbye': 2}\n"
+  }
+]
