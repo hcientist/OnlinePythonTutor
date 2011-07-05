@@ -16,7 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# regression tests for online Python tutor back-end
+# Regression tests for Online Python Tutor back-end
+#
+# Run using:
+#   python run_tests.py --all
 
 import os, sys, re, shutil, filecmp, optparse, difflib
 import pg_logger

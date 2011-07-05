@@ -71,11 +71,11 @@ repository:
   cgi-bin/pg_logger.py  - the 'meat' of the back-end
   cgi-bin/pg_encoder.py - encodes Python data into JSON
   cgi-bin/demjson.py    - 3rd-party JSON module, since Python 2.5
-                        - doesn't have the built-in 'import json'
+                          doesn't have the built-in 'import json'
   cgi-bin/create_db.py  - for optional sqlite query logging
   cgi-bin/db_common.py  - for optional sqlite query logging
   cgi-bin/.htaccess     - for Apache CGI execute permissions
-  cgi-bin/run_tests.py  - simple regression tests
+  cgi-bin/run_tests.py  - back-end regression tests
 
 
 Due to the AJAX same-origin policy, the front-end and back-end must be
