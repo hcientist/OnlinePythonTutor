@@ -204,6 +204,21 @@ Peter
 '''
 
 ---
+2011-09-14
+
+While I've been studying for programming interviews, I started thinking
+about how this Online Python Tutor could be a good resource for asking
+Programming Interview style questions and visualizing/debugging the
+answers.
+
+In order to do a good job, we'd want to create a special LinkedList
+class and render it in a special way (e.g., draw pointers to the MIDDLE
+of linked lists, etc.) ... and maybe even a BinaryTree or Graph classes
+if we're more ambitious.  Otherwise, the default rendering SUCKS for
+those types of programming interview style questions.
+
+
+---
 2011-09-15
 
 - Peter Wentworth told me that my Online Python Tutor doesn't properly
