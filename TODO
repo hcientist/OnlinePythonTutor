@@ -48,7 +48,7 @@ http://python.pgrind.com/pg/code/20#4
 '''
 
 
-Cory: 'Might be nice to be able to automatically jump to particular step
+Cory McLean: 'Might be nice to be able to automatically jump to particular step
 # rather than just inc/decrement and jump to ends, particular if the
 number of steps executed is significant.'
 
@@ -62,8 +62,6 @@ Deployment on Google App Engine for scalability
   http://code.google.com/appengine/docs/python/runtime.html
   - the main issue is whether their restricted Python will allow us to
     run 'import bdb' and other necessary modules
-  - could try to get Sal Khan to pay for my hosting if I host it
-    alongside Khan Academy
   - could store analytics and user data in Google's db
 
 
@@ -208,14 +206,19 @@ Peter
 ---
 2011-09-15
 
-Peter Wentworth told me that my Online Python Tutor doesn't properly
-render 'None' types.  e.g.,:
+- Peter Wentworth told me that my Online Python Tutor doesn't properly
+  render 'None' types.  e.g.,:
 
 z = None
 
 
-Also, in Peter Wentworth's Python 3 implementation, when you've hit the
-FINAL step, he displays that the program has terminated rather than
-"Step N of N", which is a more user-friendly touch!  Instead, he
-displays the penultimate step as "Step (N-1) of (N-1)"
+- Also, in Peter Wentworth's Python 3 implementation, when you've hit
+  the FINAL step, he displays that the program has terminated rather
+  than "Step N of N", which is a more user-friendly touch!  Instead, he
+  displays the penultimate step as "Step (N-1) of (N-1)"
+
+
+- Integrate Peter's Python 3 fork into one unified application, and
+  perhaps deploy online on WebFaction, since they offer both Python 2.X
+  and Python 3.X on their servers.
 
