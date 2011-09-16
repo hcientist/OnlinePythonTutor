@@ -205,3 +205,17 @@ Regards
 Peter
 '''
 
+---
+2011-09-15
+
+Peter Wentworth told me that my Online Python Tutor doesn't properly
+render 'None' types.  e.g.,:
+
+z = None
+
+
+Also, in Peter Wentworth's Python 3 implementation, when you've hit the
+FINAL step, he displays that the program has terminated rather than
+"Step N of N", which is a more user-friendly touch!  Instead, he
+displays the penultimate step as "Step (N-1) of (N-1)"
+
