@@ -730,5 +730,8 @@ $(document).ready(function() {
     return false;
   });
 
+
+	// select an example on start-up:
+	$("#tutorialExampleLink").trigger('click');
 });
 
