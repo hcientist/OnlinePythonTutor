@@ -742,7 +742,7 @@ $(document).ready(function() {
   });
 
 
-	// select an example on start-up:
-	$("#tutorialExampleLink").trigger('click');
+  // select an example on start-up:
+  $("#tutorialExampleLink").trigger('click');
 });
 
