@@ -315,7 +315,8 @@ function updateOutput() {
     // iterate IN ORDER (it's possible that not all vars are in curEntry.globals)
     $.each(orderedGlobals, function(i, varname) {
       var val = curEntry.globals[varname];
-      if (val != undefined) { // might not be defined at this line, which is OKAY!
+      // (use '!==' to do an EXACT match against undefined)
+      if (val !== undefined) { // might not be defined at this line, which is OKAY!
         tbl.append('<tr><td class="varname"></td><td class="val"></td></tr>');
         var curTr = tbl.find('tr:last');
         curTr.find("td.varname").html(varname);

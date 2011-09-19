@@ -142,27 +142,6 @@ the appropriate annotations would display when you stepped through the
 line of code immediately below each annotation.
 
 ---
-2011-01-16
-
-Bug report from Peter Wentworth
-
-'''
-I also have what I think is a bug report:   your front-end javascript treats variables with the value None as if they are undefined.  (They are reflected in the trace that we get from the server.)
- 
-X = 123
-z = 'hello'
-x = None
-y = 123
- 
-del  y
-print(x)
-print(type(x))
- 
----
-I changed your script  - around line 293 of edu-python.js, you have a condition checking for undefined (search for the comment containing “which is OKAY!”).  I just eliminated the check, and can’t figure out which cases I might have broken it for!
-'''
-
----
 2011-05-23
 
 Bug report from Peter Wentworth
@@ -205,12 +184,6 @@ Peter
 
 ---
 2011-09-15
-
-- Peter Wentworth told me that my Online Python Tutor doesn't properly
-  render 'None' types.  e.g.,:
-
-z = None
-
 
 - Integrate Peter's Python 3 fork into one unified application, and
   perhaps deploy online on WebFaction, since they offer both Python 2.X
