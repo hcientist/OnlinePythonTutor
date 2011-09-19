@@ -104,7 +104,7 @@ function processTrace(traceData) {
   updateOutput();
 }
 
-function highlightCodeLine(curLine, visitedLinesSet, hasError) {
+function highlightCodeLine(curLine, visitedLinesSet, hasError, isTerminated) {
   var tbl = $("table#pyCodeOutput");
 
   // reset then set:
@@ -121,14 +121,17 @@ function highlightCodeLine(curLine, visitedLinesSet, hasError) {
     lineBgCol = errorColor;
   }
 
+	// put a default white top border to keep space usage consistent
   tbl.find('td.cod').css('border-top', '1px solid #ffffff');
 
-  if (!hasError) {
-    tbl.find('td.cod:eq(' + (curLine - 1) + ')').css('border-top', '1px solid #F87D76')
+  if (!hasError && !isTerminated) {
+    tbl.find('td.cod:eq(' + (curLine - 1) + ')').css('border-top', '1px solid #F87D76');
   }
 
   tbl.find('td.cod').css('background-color', '');
-  tbl.find('td.cod:eq(' + (curLine - 1) + ')').css('background-color', lineBgCol);
+  if (!isTerminated || hasError) {
+    tbl.find('td.cod:eq(' + (curLine - 1) + ')').css('background-color', lineBgCol);
+  }
 }
 
 // relies on curTrace and curInstr globals
@@ -138,8 +141,15 @@ function updateOutput() {
 
   // render VCR controls:
   var totalInstrs = curTrace.length;
-  $("#vcrControls #curInstr").html(curInstr + 1);
-  $("#vcrControls #totalInstrs").html(totalInstrs);
+
+  // to be user-friendly, if we're on the LAST instruction, print "Program has terminated"
+  // and DON'T highlight any lines of code in the code display
+  if (curInstr == (totalInstrs-1)) {
+    $("#vcrControls #curInstr").html("Program has terminated");
+  }
+  else {
+    $("#vcrControls #curInstr").html("About to do step " + (curInstr + 1) + " of " + (totalInstrs-1));
+  }
 
   $("#vcrControls #jmpFirstInstr").attr("disabled", false);
   $("#vcrControls #jmpStepBack").attr("disabled", false);
@@ -150,7 +160,7 @@ function updateOutput() {
     $("#vcrControls #jmpFirstInstr").attr("disabled", true);
     $("#vcrControls #jmpStepBack").attr("disabled", true);
   }
-  if (curInstr == (totalInstrs - 1)) {
+  if (curInstr == (totalInstrs-1)) {
     $("#vcrControls #jmpLastInstr").attr("disabled", true);
     $("#vcrControls #jmpStepFwd").attr("disabled", true);
   }
@@ -193,7 +203,7 @@ function updateOutput() {
         visitedLinesSet[curTrace[i].line] = true;
       }
     }
-    highlightCodeLine(curEntry.line, visitedLinesSet, hasError);
+    highlightCodeLine(curEntry.line, visitedLinesSet, hasError, (curInstr == (totalInstrs-1)));
   }
 
 

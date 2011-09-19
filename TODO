@@ -212,12 +212,6 @@ Peter
 z = None
 
 
-- Also, in Peter Wentworth's Python 3 implementation, when you've hit
-  the FINAL step, he displays that the program has terminated rather
-  than "Step N of N", which is a more user-friendly touch!  Instead, he
-  displays the penultimate step as "Step (N-1) of (N-1)"
-
-
 - Integrate Peter's Python 3 fork into one unified application, and
   perhaps deploy online on WebFaction, since they offer both Python 2.X
   and Python 3.X on their servers.
