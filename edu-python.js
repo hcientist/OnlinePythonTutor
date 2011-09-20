@@ -762,6 +762,11 @@ $(document).ready(function() {
     return false;
   });
 
+  $("#pwTryFinallyLink").click(function() {
+    $.get("example-code/wentworth_try_finally.txt", function(dat) {$("#pyInput").val(dat);});
+    return false;
+  });
+
 
   // select an example on start-up:
   $("#tutorialExampleLink").trigger('click');
