@@ -232,9 +232,12 @@ function updateOutput() {
 
       // render locals in alphabetical order for tidiness:
       var orderedVarnames = [];
-      $.each(localVars, function(varname, val) {
+
+      // use plain ole' iteration rather than jQuery $.each() since
+      // the latter breaks when a variable is named "length"
+      for (varname in localVars) {
         orderedVarnames.push(varname);
-      });
+      }
       orderedVarnames.sort();
 
       if (orderedVarnames.length > 0) {
@@ -270,10 +273,12 @@ function updateOutput() {
   var nonEmptyGlobals = false;
   var curGlobalFields = {};
   if (curEntry.globals != undefined) {
-    $.each(curEntry.globals, function(varname, val) {
+    // use plain ole' iteration rather than jQuery $.each() since
+    // the latter breaks when a variable is named "length"
+    for (varname in curEntry.globals) {
       curGlobalFields[varname] = true;
       nonEmptyGlobals = true;
-    });
+    }
   }
 
   if (nonEmptyGlobals) {
@@ -288,13 +293,15 @@ function updateOutput() {
       // some entries (like for exceptions) don't have GLOBALS
       if (curTrace[i].globals == undefined) continue;
 
-      $.each(curTrace[i].globals, function(varname, val) {
+      // use plain ole' iteration rather than jQuery $.each() since
+      // the latter breaks when a variable is named "length"
+      for (varname in curTrace[i].globals) {
         // eliminate duplicates (act as an ordered set)
         if ($.inArray(varname, orderedGlobals) == -1) {
           orderedGlobals.push(varname);
           curGlobalFields[varname] = undefined; // 'unset it'
         }
-      });
+      }
 
       var earlyStop = true;
       // as an optimization, STOP as soon as you've found everything in curGlobalFields:
