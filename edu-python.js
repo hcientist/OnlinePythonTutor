@@ -37,6 +37,10 @@ var visitedLineColor = '#3D58A2';
 var curTrace = null;
 var curInstr = 0;
 
+// true iff trace ended prematurely since maximum instruction limit has
+// been reached
+var instrLimitReached = false;
+
 function assert(cond) {
   if (!cond) {
     alert("Error: ASSERTION FAILED");
@@ -72,6 +76,9 @@ function processTrace(traceData) {
   if (curTrace.length > 0) {
     var lastEntry = curTrace[curTrace.length - 1];
 
+    // GLOBAL!
+    instrLimitReached = (lastEntry.event == 'instruction_limit_reached');
+
     // if there is some sort of error, then JUMP to it so that we can
     // immediately alert the user:
     // (cgi-bin/pg_logger.py ensures that if there is an uncaught
@@ -88,7 +95,7 @@ function processTrace(traceData) {
       curInstr = curTrace.length - 1;
     }
     */
-    if (lastEntry.event == 'instruction_limit_reached') {
+    if (instrLimitReached) {
       curTrace.pop() // kill last entry
       var warningMsg = lastEntry.exception_msg;
       $("#warningOutput").html(htmlspecialchars(warningMsg));
@@ -145,7 +152,12 @@ function updateOutput() {
   // to be user-friendly, if we're on the LAST instruction, print "Program has terminated"
   // and DON'T highlight any lines of code in the code display
   if (curInstr == (totalInstrs-1)) {
-    $("#vcrControls #curInstr").html("Program has terminated");
+    if (instrLimitReached) {
+      $("#vcrControls #curInstr").html("Instruction limit reached");
+    }
+    else {
+      $("#vcrControls #curInstr").html("Program has terminated");
+    }
   }
   else {
     $("#vcrControls #curInstr").html("About to do step " + (curInstr + 1) + " of " + (totalInstrs-1));
@@ -203,7 +215,9 @@ function updateOutput() {
         visitedLinesSet[curTrace[i].line] = true;
       }
     }
-    highlightCodeLine(curEntry.line, visitedLinesSet, hasError, (curInstr == (totalInstrs-1)));
+    highlightCodeLine(curEntry.line, visitedLinesSet, hasError,
+                      /* if instrLimitReached, then treat like a normal non-terminating line */
+                      (!instrLimitReached && (curInstr == (totalInstrs-1))));
   }
 
 
