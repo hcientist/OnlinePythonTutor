@@ -254,7 +254,18 @@ table.listTbl {
   border-spacing: 0px;
 }
 
-table.listTbl td.listHeader {
+table.tupleTbl {
+  background-color: #dddddd; /* must match .frameDataViz background-color */
+  border-spacing: 0px;
+  color: black;
+
+  border-bottom: 1px solid #555555; /* must match td.tupleHeader border */
+  border-top: 1px solid #555555; /* must match td.tupleHeader border */
+  border-right: 1px solid #555555; /* must match td.tupleHeader border */
+}
+
+table.listTbl td.listHeader,
+table.tupleTbl td.tupleHeader {
   padding-left: 5px;
   padding-top: 3px;
   font-size: 8pt;
@@ -264,44 +275,21 @@ table.listTbl td.listHeader {
 }
 
 table.listTbl td.listElt {
-  padding-top: 0px;
-  padding-bottom: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
   border-bottom: 1px solid #555555; /* must match td.listHeader border */
-  border-left:   1px solid #555555; /* must match td.listHeader border */
-  vertical-align: bottom;
-}
-
-table.tupleTbl {
-  background-color: #dddddd; /* must match .frameDataViz background-color */
-  border-spacing: 0px;
-  color: black;
-
-  border-bottom: 1px solid #555555; /* must match td.tupleHeader border */
-  border-top:   1px solid #555555; /* must match td.tupleHeader border */
-  border-right:   1px solid #555555; /* must match td.tupleHeader border */
-}
-
-table.tupleTbl td.tupleHeader {
-  padding-left: 5px;
-  padding-top: 3px;
-  padding-bottom: 0px;
-  font-size: 8pt;
-  color: #666666;
-  text-align: left;
-  border-left: 1px solid #555555;
+  border-left: 1px solid #555555; /* must match td.listHeader border */
 }
 
 table.tupleTbl td.tupleElt {
-  vertical-align: bottom;
+  border-left: 1px solid #555555; /* must match td.tupleHeader border */
+}
 
+table.listTbl td.listElt,
+table.tupleTbl td.tupleElt {
   padding-top: 0px;
   padding-bottom: 8px;
   padding-left: 10px;
   padding-right: 10px;
-
-  border-left:   1px solid #555555; /* must match td.tupleHeader border */
+  vertical-align: bottom;
 }
 
 table.setTbl {
@@ -316,11 +304,10 @@ table.setTbl td.setElt {
   padding: 8px;
 }
 
+
 table.dictTbl {
-  background-color: #899CD1;
   border-collapse: collapse;
   border-spacing: 2px;
-  /*margin: 12px;*/
 }
 
 table.dictTbl tr.dictEntry {
@@ -329,26 +316,11 @@ table.dictTbl tr.dictEntry {
 
 table.dictTbl td.dictKey {
   background-color: #41507A;
-  color: #dddddd;
-
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 8px;
-
-  text-align: right;
-  vertical-align: center;
 }
 
+table.dictTbl,
 table.dictTbl td.dictVal {
-  background-color: #899CD1; /* must match color of table.dictTbl */
-
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: 10px;
-  padding-left: 8px;
-
-  vertical-align: center;
+  background-color: #899CD1;
 }
 
 
@@ -364,30 +336,14 @@ table.classTbl tr.classEntry {
 
 table.classTbl td.classKey {
   background-color: #222222;
-  color: #dddddd;
-
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 8px;
-
-  text-align: right;
-  vertical-align: center;
 }
 
 table.classTbl td.classVal {
   background-color: #ffffff;
-
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: 10px;
-  padding-left: 8px;
-  vertical-align: center;
 }
 
 
 table.instTbl {
-  background-color: #FFFFDD;
   border-collapse: collapse;
   border-spacing: 2px;
 }
@@ -399,25 +355,36 @@ table.instTbl tr.instEntry {
 table.instTbl td.instKey {
   background-color: #41507A;
   color: #ffffff;
+}
 
+table.instTbl,
+table.instTbl td.instVal {
+  background-color: #FFFFDD; /* must match color of table.instTbl */
+}
+
+table.dictTbl td.dictKey,
+table.classTbl td.classKey,
+table.instTbl td.instKey {
+  color: #dddddd;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 8px;
-
   text-align: right;
   vertical-align: center;
 }
 
+table.dictTbl td.dictVal,
+table.classTbl td.classVal,
 table.instTbl td.instVal {
-  background-color: #FFFFDD; /* must match color of table.instTbl */
-
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 10px;
   padding-left: 8px;
   vertical-align: center;
 }
+
+
 
 
 .typeLabel {
