@@ -369,7 +369,7 @@ table.classTbl td.classKey {
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 10px;
-  padding-right: 6px;
+  padding-right: 8px;
 
   text-align: right;
   vertical-align: center;
@@ -381,8 +381,8 @@ table.classTbl td.classVal {
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 10px;
-  padding-left: 6px;
-  vertical-align: top;
+  padding-left: 8px;
+  vertical-align: center;
 }
 
 
@@ -403,7 +403,7 @@ table.instTbl td.instKey {
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 10px;
-  padding-right: 6px;
+  padding-right: 8px;
 
   text-align: right;
   vertical-align: center;
@@ -415,10 +415,9 @@ table.instTbl td.instVal {
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 10px;
-  padding-left: 6px;
-  vertical-align: top;
+  padding-left: 8px;
+  vertical-align: center;
 }
-
 
 
 .typeLabel {

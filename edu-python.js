@@ -407,6 +407,11 @@ function renderData(obj, jDomElt) {
   else if (typ == "string") {
     // escape using htmlspecialchars to prevent HTML/script injection
     var literalStr = htmlspecialchars(obj);
+
+    // print as a double-quoted string literal
+    literalStr = literalStr.replace('\"', '\\"'); // escape action!
+    literalStr = '"' + literalStr + '"';
+
     jDomElt.append('<span class="stringObj">' + literalStr + '</span>');
   }
   else if (typ == "object") {
