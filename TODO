@@ -58,13 +58,6 @@ Maybe integrate in this snazzy code EditArea, if it doesn't look too ugly:
   http://www.cdolivet.com/index.php?page=editArea&sess=3a3d89b7ef37aa5f74d6d4682aeda876
 
 
-Deployment on Google App Engine for scalability
-  http://code.google.com/appengine/docs/python/runtime.html
-  - the main issue is whether their restricted Python will allow us to
-    run 'import bdb' and other necessary modules
-  - could store analytics and user data in Google's db
-
-
 Related work:
   - PyWhip: http://pywhip.appspot.com/
     - also powered by Google App Engine
