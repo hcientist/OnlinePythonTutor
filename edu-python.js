@@ -239,7 +239,6 @@ function updateOutput() {
 // Renders the current trace entry (curEntry) into the div named by vizDiv
 function renderDataStructures(curEntry, vizDiv) {
   renderDataStructuresVersion1(curEntry, vizDiv);
-
   //renderDataStructuresVersion2(curEntry, vizDiv);
 }
 
@@ -392,12 +391,12 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
       var funcName = htmlspecialchars(frame[0]); // might contain '<' or '>' for weird names like <genexpr>
       var localVars = frame[1];
 
-      // the stackFrame div's id is simply its index ("stack_<index>")
+      // the stackFrame div's id is simply its index ("stack<index>")
       var divClass = (i==0) ? "stackFrame topStackFrame" : "stackFrame";
-      var divID = "stack_" + i;
+      var divID = "stack" + i;
       $(vizDiv + " #stack").append('<div class="' + divClass + '" id="' + divID + '"></div>');
 
-      var headerDivID = "stack_header_" + i;
+      var headerDivID = "stack_header" + i;
       $(vizDiv + " #stack #" + divID).append('<div id="' + headerDivID + '" class="stackFrameHeader inactiveStackFrameHeader">' + funcName + '</div>');
 
       // render locals in alphabetical order for tidiness:
@@ -410,18 +409,6 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
         orderedVarnames.push(varname);
       }
       orderedVarnames.sort();
-
-
-/*
-    <table class="stackFrameVarTable" id="TowerOfHanoi1_table">
-      <tr>
-        <td class="stackFrameVar">a</td>
-        <!-- IE needs the div to be NON-EMPTY in order to properly
-        render the plumb endpoints!!! -->
-        <td class="stackFrameValue"><div id="TowerOfHanoi1_a">&nbsp;</div></td>
-      </tr>
-    </table>
-*/
 
       if (orderedVarnames.length > 0) {
         var tableID = divID + '_table';
@@ -438,7 +425,21 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
           else {
             curTr.find("td.stackFrameVar").html(varname);
           }
-          renderData(val, curTr.find("td.stackFrameValue"));
+
+          // render primitives inline and compound types on the heap
+          if (isPrimitiveType(val)) {
+            renderData(val, curTr.find("td.stackFrameValue"));
+          }
+          else {
+            // add a stub so that we can connect it with a connector later.
+            // IE needs this div to be NON-EMPTY in order to properly
+            // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
+
+            // TODO: make sure varname doesn't contain any weird
+            // characters that are illegal for CSS ID's ...
+            var varDivID = divID + '__' + varname;
+            curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
+          }
         });
       }
     });
@@ -446,7 +447,7 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
 
 
   // render globals LAST:
-  $(vizDiv + " #stack").append('<div class="globalFrame" id="globals"><div class="stackFrameHeader inactiveStackFrameHeader">Global variables</div></div>');
+  $(vizDiv + " #stack").append('<div class="globalFrame" id="globals"><div id="globals_header" class="stackFrameHeader inactiveStackFrameHeader">Global variables</div></div>');
 
   var nonEmptyGlobals = false;
   var curGlobalFields = {};
@@ -508,7 +509,21 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
         tbl.append('<tr><td class="stackFrameVar"></td><td class="stackFrameValue"></td></tr>');
         var curTr = tbl.find('tr:last');
         curTr.find("td.stackFrameVar").html(varname);
-        renderData(val, curTr.find("td.stackFrameValue"));
+
+        // render primitives inline
+        if (isPrimitiveType(val)) {
+          renderData(val, curTr.find("td.stackFrameValue"));
+        }
+        else {
+          // add a stub so that we can connect it with a connector later.
+          // IE needs this div to be NON-EMPTY in order to properly
+          // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
+
+          // TODO: make sure varname doesn't contain any weird
+          // characters that are illegal for CSS ID's ...
+          var varDivID = 'global__' + varname;
+          curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
+        }
       }
     });
   }
@@ -519,6 +534,12 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
   // finally connect stack variables to heap objects via connectors
 
 }
+
+function isPrimitiveType(obj) {
+  var typ = typeof obj;
+  return ((obj == null) || (typ == "number") || (typ == "boolean") || (typ == "string"));
+}
+
 
 // render the JS data object obj inside of jDomElt,
 // which is a jQuery wrapped DOM object

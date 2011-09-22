@@ -437,7 +437,7 @@ div.globalFrame {
   margin-bottom: 15px;
   padding: 2px;
   padding-left: 8px;
-  font-size: 12pt;
+  font-size: 11pt;
 }
 
 /* apply to the currently selected stack frame (e.g., on mouse hover) */
@@ -465,7 +465,7 @@ div.inactiveStackFrameHeader {
 
 td.stackFrameVar {
   text-align: right;
-  padding-right: 10px;
+  padding-right: 8px;
   min-width: 120px; /* to prevent excess jittering as new variables are added*/
 }
 
