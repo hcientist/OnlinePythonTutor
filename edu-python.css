@@ -248,6 +248,11 @@ button.bigBtn {
   font-size: 10pt;
 }
 
+.retval {
+  font-size: 10pt;
+  font-style: italic;
+}
+
 table.listTbl {
   border: 0px solid black;
   background-color: #F5F798;
@@ -423,11 +428,16 @@ div#stack {
 }
 
 div.stackFrame {
+  border-left: 1px solid #999999;
+}
+
+div.stackFrame,
+div.globalFrame {
   background-color: #ffffff;
   margin-bottom: 15px;
   padding: 2px;
   padding-left: 8px;
-  border-left: 1px solid #999999;
+  font-size: 12pt;
 }
 
 /* apply to the currently selected stack frame (e.g., on mouse hover) */
@@ -453,13 +463,14 @@ div.inactiveStackFrameHeader {
   cursor: pointer;
 }
 
-div.stackFrame .stackFrameVar {
+td.stackFrameVar {
   text-align: right;
   padding-right: 10px;
+  min-width: 120px; /* to prevent excess jittering as new variables are added*/
 }
 
-div.stackFrame .stackFrameValue {
-  text-align: right;
+td.stackFrameValue {
+  text-align: left;
 }
 
 div.stackFrame .stackFrameVarTable {
