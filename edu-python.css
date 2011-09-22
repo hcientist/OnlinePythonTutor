@@ -274,7 +274,7 @@ table.listTbl td.listElt {
 }
 
 table.tupleTbl {
-  /*background-color: #dddddd;*/ /* must match .frameDataViz background-color */
+  background-color: #dddddd; /* must match .frameDataViz background-color */
   border-spacing: 0px;
   color: black;
 

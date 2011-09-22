@@ -232,8 +232,27 @@ function updateOutput() {
   $("#pyStdout").scrollTop($("#pyStdout").attr('scrollHeight'));
 
 
+  // finally, render all the data structures!!!
+  renderDataStructures(curEntry, "#dataViz");
+}
+
+// Renders the current trace entry (curEntry) into the div named by vizDiv
+function renderDataStructures(curEntry, vizDiv) {
+  renderDataStructuresVersion1(curEntry, vizDiv);
+
+  // Version 2.0 forthcoming!
+  //renderDataStructuresVersion2(curEntry, vizDiv);
+}
+
+
+// The ORIGINAL "1.0" version of renderDataStructures, which renders
+// variables and values INLINE within each stack frame without any
+// explicit representation of data structure aliasing.
+//
+// This version was originally created in January 2010
+function renderDataStructuresVersion1(curEntry, vizDiv) {
   // render data structures:
-  $("#dataViz").html(''); // CLEAR IT!
+  $(vizDiv).html(''); // CLEAR IT!
 
 
   // render locals on stack:
@@ -242,7 +261,7 @@ function updateOutput() {
       var funcName = htmlspecialchars(frame[0]); // might contain '<' or '>' for weird names like <genexpr>
       var localVars = frame[1];
 
-      $("#dataViz").append('<div class="vizFrame">Local variables for <span style="font-family: Andale mono, monospace;">' + funcName + '</span>:</div>');
+      $(vizDiv).append('<div class="vizFrame">Local variables for <span style="font-family: Andale mono, monospace;">' + funcName + '</span>:</div>');
 
       // render locals in alphabetical order for tidiness:
       var orderedVarnames = [];
@@ -255,7 +274,7 @@ function updateOutput() {
       orderedVarnames.sort();
 
       if (orderedVarnames.length > 0) {
-        $("#dataViz .vizFrame:last").append('<br/><table class="frameDataViz"></table>');
+        $(vizDiv + " .vizFrame:last").append('<br/><table class="frameDataViz"></table>');
         var tbl = $("#pyOutputPane table:last");
         $.each(orderedVarnames, function(i, varname) {
           var val = localVars[varname];
@@ -274,7 +293,7 @@ function updateOutput() {
         tbl.find("tr:last").find("td.val").css('border-bottom', '0px');
       }
       else {
-        $("#dataViz .vizFrame:last").append(' <i>none</i>');
+        $(vizDiv + " .vizFrame:last").append(' <i>none</i>');
       }
     });
   }
@@ -282,7 +301,7 @@ function updateOutput() {
 
   // render globals LAST:
 
-  $("#dataViz").append('<div class="vizFrame">Global variables:</div>');
+  $(vizDiv).append('<div class="vizFrame">Global variables:</div>');
 
   var nonEmptyGlobals = false;
   var curGlobalFields = {};
@@ -296,7 +315,7 @@ function updateOutput() {
   }
 
   if (nonEmptyGlobals) {
-    $("#dataViz .vizFrame:last").append('<br/><table class="frameDataViz"></table>');
+    $(vizDiv + " .vizFrame:last").append('<br/><table class="frameDataViz"></table>');
 
     // render all global variables IN THE ORDER they were created by the program,
     // in order to ensure continuity:
@@ -349,8 +368,18 @@ function updateOutput() {
     tbl.find("tr:last").find("td.val").css('border-bottom', '0px');
   }
   else {
-    $("#dataViz .vizFrame:last").append(' <i>none</i>');
+    $(vizDiv + " .vizFrame:last").append(' <i>none</i>');
   }
+
+}
+
+
+// The "2.0" version of renderDataStructures, which renders variables in
+// a stack and values in a separate heap, with data structure aliasing
+// explicitly represented via line connectors.
+//
+// This version was originally created in September 2011
+function renderDataStructuresVersion2(curEntry, vizDiv) {
 
 }
 
