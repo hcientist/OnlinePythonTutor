@@ -409,7 +409,7 @@ function renderData(obj, jDomElt) {
     var literalStr = htmlspecialchars(obj);
 
     // print as a double-quoted string literal
-    literalStr = literalStr.replace('\"', '\\"'); // escape action!
+    literalStr = literalStr.replace(new RegExp('\"', 'g'), '\\"'); // replace ALL
     literalStr = '"' + literalStr + '"';
 
     jDomElt.append('<span class="stringObj">' + literalStr + '</span>');
