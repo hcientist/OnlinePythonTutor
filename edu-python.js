@@ -377,10 +377,7 @@ function renderData(obj, jDomElt) {
   }
   else if (typ == "string") {
     // escape using htmlspecialchars to prevent HTML/script injection
-    // print as a JSON literal
     var literalStr = htmlspecialchars(obj);
-    literalStr = literalStr.replace('\"', '\\"');
-    literalStr = '"' + literalStr + '"';
     jDomElt.append('<span class="stringObj">' + literalStr + '</span>');
   }
   else if (typ == "object") {
@@ -510,7 +507,7 @@ function renderData(obj, jDomElt) {
           // the keys should always be strings, so render them directly (and without quotes):
           assert(typeof kvPair[0] == "string");
           var attrnameStr = htmlspecialchars(kvPair[0]);
-          keyTd.append('<span class="stringObj">' + attrnameStr + '</span>');
+          keyTd.append('<span class="keyObj">' + attrnameStr + '</span>');
 
           // values can be arbitrary objects, so recurse:
           renderData(kvPair[1], valTd);
@@ -540,7 +537,7 @@ function renderData(obj, jDomElt) {
           // the keys should always be strings, so render them directly (and without quotes):
           assert(typeof kvPair[0] == "string");
           var attrnameStr = htmlspecialchars(kvPair[0]);
-          keyTd.append('<span class="stringObj">' + attrnameStr + '</span>');
+          keyTd.append('<span class="keyObj">' + attrnameStr + '</span>');
 
           // values can be arbitrary objects, so recurse:
           renderData(kvPair[1], valTd);
