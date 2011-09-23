@@ -147,7 +147,7 @@ table#pyCodeOutput {
   border-top: 1px solid #999999;
   padding-top: 3px;
   border-bottom: 1px solid #999999;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 
 /* don't wrap lines within code output ... FORCE scrollbars to appear */
@@ -512,15 +512,19 @@ div.heapObject {
   padding-left: 7px; /* leave some room for connector endpoints */
 }
 
-div.stackHeader {
-  margin-bottom: 10px;
+div#stackHeader {
+  margin-bottom: 15px;
   text-align: right;
-  color: #888888;
 }
 
-div.heapHeader {
-  margin-bottom: 10px;
-  text-align: left;
-  color: #888888;
+div#heapHeader {
+  margin-top: 2px;
+  margin-bottom: 13px;
+}
+
+div#stackHeader,
+div#heapHeader {
+  color: #333333;
+  font-size: 10pt;
 }
 
