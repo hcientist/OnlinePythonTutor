@@ -10,7 +10,10 @@ y = "hello"
 
 def foo(lst):
   lst.append("hello")
-  print lst
+  bar(lst)
+
+def bar(myLst):
+  print myLst
 
 foo(x)
 foo(z)
