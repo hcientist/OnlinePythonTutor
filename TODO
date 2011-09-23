@@ -1,5 +1,7 @@
-A disorganized collection of TODOs, bug reports, and suggestions from friends
+A disorganized collection of TODOs, bug reports, and friends' suggestions
 ---
+
+January/Feb 2010 (notes from initial release)
 
 Ideas for programming tutorials
   - Could do a track on more advanced Python concepts for people who are
@@ -53,51 +55,14 @@ Cory McLean: 'Might be nice to be able to automatically jump to particular step
 number of steps executed is significant.'
 
 
-Maybe integrate in this snazzy code EditArea, if it doesn't look too ugly:
-  (ugh kinda cheesy tho)
-  http://www.cdolivet.com/index.php?page=editArea&sess=3a3d89b7ef37aa5f74d6d4682aeda876
-
-
 Related work:
   - PyWhip: http://pywhip.appspot.com/
     - also powered by Google App Engine
   - Crunchy: http://code.google.com/p/crunchy/
 
-
-From Hubert, regarding rendering linked structures vs. using
-containment:
-'''
-i totally agree with the sentiment that if you're not ever going to use it (for
-any binding of "it"), don't add the complexity.  i sympathize with the laziness
-argument, that it's easy to do HTML tables than arrowheads, but if you change
-your mind, consider using HTML5's canvas -- many browsers support it.
-regarding the aliasing, from an epistemological standpoint, do you foresee that
-you'll have to cover the difference between passing by reference vs by value?
-this was a rather big stumbling block for me when learning Python, having come
-from C where the different passing styles are syntactically explicit.  i
-recognize that the current visualizations don't depict argument passing, so it
-may be moot.  but one cheap trick you can explore is to "color" identical
-objects with the same color, so that if a data structure appears in multiple
-places, it is colored differently, if they are indeed different objects.
-'''
-
 ---
 2010-09-05
 
-From an email from Peter Wentworth (p.wentworth@ru.ac.za)
-
-'''
-I'd like to see the heap explicitly represented, so that mutable
-structures like lists are created in the heap rather than "in the stack
-frame".  Passing a list as an argument then becomes "pass the
-reference".
- 
-I appreciate that you do have the id tags to indicate which are the
-aliases, but I think the instructional value would be even more
-compelling to see some pointers referencing the same underlying object.
-'''
-
----
 From Hacker News feedback:
 
 - support for raw_input() sounds like something reasonable to include,
@@ -156,4 +121,11 @@ line of code immediately below each annotation.
   global state should be identical except for the latest stack frame
   being MISSING (but what about if you step backwards into a 'return'
   statement, though???)
+
+- The BACKEND can easily print out a nice list of variables in each
+  stack frame (and globals) by order of their APPEARANCE in the original
+  program execution ... that way, the front-end doesn't have to "guess"
+  an optimal order and can simply use the order that the backend has
+  pre-computed.  e.g., list local stack variables by their order of
+  definition in the original program execution.
 
