@@ -42,7 +42,8 @@ var lightLineColor = '#FFFFCC';
 var errorColor = '#F87D76';
 var visitedLineColor = '#3D58A2';
 
-var lightGray = "#dddddd";
+var lightGray = "#cccccc";
+//var lightGray = "#dddddd";
 var darkBlue = "#3D58A2";
 var pinkish = "#F15149";
 
@@ -501,7 +502,7 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
   function renderGlobals() {
     // render global variables:
     if (orderedGlobals.length > 0) {
-      $(vizDiv + " #stack").append('<div class="globalFrame" id="globals"><div id="globals_header" class="stackFrameHeader inactiveStackFrameHeader">Global variables</div></div>');
+      $(vizDiv + " #stack").append('<div class="stackFrame" id="globals"><div id="globals_header" class="stackFrameHeader inactiveStackFrameHeader">Global variables</div></div>');
 
       $(vizDiv + " #stack #globals").append('<table class="stackFrameVarTable" id="global_table"></table>');
 
@@ -581,6 +582,9 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
         // special treatment for displaying return value and indicating
         // that the function is about to return to its caller
         if (varname == '__return__') {
+          assert(curEntry.event == 'return'); // sanity check
+
+          tbl.append('<tr><td colspan="2" class="returnWarning">About to return to caller</td></tr>');
           tbl.append('<tr><td class="stackFrameVar"><span class="retval">Return value:</span></td><td class="stackFrameValue"></td></tr>');
         }
         else {

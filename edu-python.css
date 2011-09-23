@@ -255,9 +255,17 @@ button.bigBtn {
   font-size: 10pt;
 }
 
-.retval {
+
+.retval,
+.returnWarning {
   font-size: 9pt;
 }
+
+.returnWarning {
+  padding-top: 10px;
+  color: #9d1e18;
+}
+
 
 table.listTbl {
   border: 0px solid black;
@@ -434,11 +442,6 @@ div#stack {
 }
 
 div.stackFrame {
-  border-left: 1px solid #999999;
-}
-
-div.stackFrame,
-div.globalFrame {
   background-color: #ffffff;
   margin-bottom: 15px;
   padding: 2px;
@@ -446,6 +449,7 @@ div.globalFrame {
   padding-right: 6px;
   padding-bottom: 4px;
   font-size: 11pt;
+  border-left: 1px solid #999999;
 }
 
 /* apply to the currently selected stack frame (e.g., on mouse hover) */
