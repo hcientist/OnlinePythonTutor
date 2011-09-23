@@ -1,13 +1,16 @@
+# Example of aliasing
 x = [1, 2, 3]
 y = x
 x.append(4)
 y.append(5)
 z = [1, 2, 3, 4, 5]
 x.append(6)
+y.append(7)
 y = "hello"
 
 def foo(lst):
-  lst.append("hi there")
+  lst.append("hello")
+  print lst
 
 foo(x)
 foo(z)

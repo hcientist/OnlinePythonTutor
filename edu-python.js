@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // set to true to use jsPlumb library to render connections between
 // stack and heap objects
-var useJsPlumbRendering = false;
+var useJsPlumbRendering = true;
 
 // if true, then render the stack as growing downwards
 // (if useJsPlumbRendering is true)
@@ -157,8 +157,7 @@ function highlightCodeLine(curLine, visitedLinesSet, hasError, isTerminated) {
 
 // relies on curTrace and curInstr globals
 function updateOutput() {
-  // update based on experimental checkbox ...
-  useJsPlumbRendering = $("#useJsPlumbCheckbox").prop("checked");
+  useJsPlumbRendering = !($("#classicModeCheckbox").prop("checked"));
 
   var curEntry = curTrace[curInstr];
   var hasError = false;
@@ -413,7 +412,7 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
 
   // create a tabular layout for stack and heap side-by-side
   // TODO: figure out how to do this using CSS in a robust way!
-  $(vizDiv).html('<table id="stackHeapTable"><tr><td><div id="stack"></div></td><td><div id="heap"></div></td></tr></table>');
+  $(vizDiv).html('<table id="stackHeapTable"><tr><td id="stack_td"><div id="stack"></div></td><td id="heap_td"><div id="heap"></div></td></tr></table>');
 
 
   var nonEmptyGlobals = false;
@@ -1226,7 +1225,7 @@ $(document).ready(function() {
 
 
   // select an example on start-up:
-  $("#tutorialExampleLink").trigger('click');
+  $("#aliasExampleLink").trigger('click');
 
 
   // disable controls initially ...

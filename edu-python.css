@@ -94,8 +94,10 @@ span {
   margin-bottom: 35px;
 }
 
-table#stackHeapTable td {
+td#stack_td,
+td#heap_td {
   vertical-align:top;
+  font-size: 12pt;
 }
 
 table#pyOutputPane {
