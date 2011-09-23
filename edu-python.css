@@ -145,6 +145,7 @@ table#pyCodeOutput {
   border-top: 1px solid #999999;
   padding-top: 3px;
   border-bottom: 1px solid #999999;
+  margin-top: 5px;
 }
 
 /* don't wrap lines within code output ... FORCE scrollbars to appear */
