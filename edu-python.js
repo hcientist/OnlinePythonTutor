@@ -158,6 +158,10 @@ function highlightCodeLine(curLine, visitedLinesSet, hasError, isTerminated) {
 
 // relies on curTrace and curInstr globals
 function updateOutput() {
+  if (!curTrace) {
+    return;
+  }
+
   useJsPlumbRendering = !($("#classicModeCheckbox").prop("checked"));
 
   var curEntry = curTrace[curInstr];
