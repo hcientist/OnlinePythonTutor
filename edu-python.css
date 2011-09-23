@@ -490,7 +490,7 @@ td.stackFrameValue {
 
 }
 
-div.stackFrame .stackFrameVarTable {
+.stackFrameVarTable {
   text-align: right;
   padding-top: 3px;
 
