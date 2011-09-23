@@ -62,19 +62,6 @@ function assert(cond) {
   }
 }
 
-// OMG WTF Internet Explorer, I HATE YOU!!!
-// Thanks to: http://soledadpenades.com/2007/05/17/arrayindexof-in-internet-explorer/
-if (!Array.indexOf) {
-  Array.prototype.indexOf = function(obj){
-    for(var i=0; i<this.length; i++){
-        if(this[i]==obj){
-          return i;
-        }
-    }
-    return -1;
-  }
-}
-
 // taken from http://www.toao.net/32-my-htmlspecialchars-function-for-javascript
 function htmlspecialchars(str) {
   if (typeof(str) == "string") {
@@ -583,8 +570,8 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
       var tbl = $(vizDiv + " #" + tableID);
 
       // put return value at the VERY END (if it exists)
-      var retvalIdx = orderedVarnames.indexOf('__return__');
-      if (retvalIdx >= 0) {
+      var retvalIdx = $.inArray('__return__', orderedVarnames); // more robust than indexOf()
+      if (retvalIdx > -1) {
         orderedVarnames.splice(retvalIdx, 1);
         orderedVarnames.push('__return__');
       }
