@@ -147,3 +147,6 @@ line of code immediately below each annotation.
 - Make the 'Edit code' window display in the same place as the read-only
   code display column, in order to prevent abrupt jumping.
 
+- Experiment with having the stack grow DOWNWARDS and see if variable
+  displays get more STABLE if we do it that way
+

@@ -474,7 +474,6 @@ td.stackFrameVar {
   padding-right: 8px;
   padding-top: 3px;
   padding-bottom: 3px;
-  min-width: 130px; /* to prevent excess jittering as new variables are added*/
 }
 
 td.stackFrameValue {
