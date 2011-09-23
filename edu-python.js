@@ -337,6 +337,10 @@ function renderDataStructuresVersion1(curEntry, vizDiv) {
 
     // render all global variables IN THE ORDER they were created by the program,
     // in order to ensure continuity:
+    //
+    // TODO: in the future, the back-end can actually pre-compute this
+    // list so that the front-end doesn't have to do any extra work!
+
     var orderedGlobals = []
 
     // iterating over ALL instructions (could be SLOW if not for our optimization below)
@@ -507,9 +511,8 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
         var val = curEntry.globals[varname];
         // (use '!==' to do an EXACT match against undefined)
         if (val !== undefined) { // might not be defined at this line, which is OKAY!
-          tbl.append('<tr><td class="stackFrameVar"></td><td class="stackFrameValue"></td></tr>');
+          tbl.append('<tr><td class="stackFrameVar">' + varname + '</td><td class="stackFrameValue"></td></tr>');
           var curTr = tbl.find('tr:last');
-          curTr.find("td.stackFrameVar").html(varname);
 
           // render primitives inline
           if (isPrimitiveType(val)) {
@@ -548,6 +551,8 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
 
     // render locals in alphabetical order for tidiness:
     // TODO: later on, render locals in order of first appearance, for consistency!!!
+    // (the back-end can actually pre-compute this list so that the
+    // front-end doesn't have to do any extra work!)
     var orderedVarnames = [];
 
     // use plain ole' iteration rather than jQuery $.each() since
@@ -562,16 +567,27 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
       $(vizDiv + " #stack #" + divID).append('<table class="stackFrameVarTable" id="' + tableID + '"></table>');
 
       var tbl = $(vizDiv + " #" + tableID);
+
+      // put return value at the VERY END (if it exists)
+      var retvalIdx = orderedVarnames.indexOf('__return__');
+      if (retvalIdx >= 0) {
+        orderedVarnames.splice(retvalIdx, 1);
+        orderedVarnames.push('__return__');
+      }
+
       $.each(orderedVarnames, function(i, varname) {
         var val = localVars[varname];
-        tbl.append('<tr><td class="stackFrameVar"></td><td class="stackFrameValue"></td></tr>');
-        var curTr = tbl.find('tr:last');
+
+        // special treatment for displaying return value and indicating
+        // that the function is about to return to its caller
         if (varname == '__return__') {
-          curTr.find("td.stackFrameVar").html('<span class="retval">return value</span>');
+          tbl.append('<tr><td class="stackFrameVar"><span class="retval">Return value:</span></td><td class="stackFrameValue"></td></tr>');
         }
         else {
-          curTr.find("td.stackFrameVar").html(varname);
+          tbl.append('<tr><td class="stackFrameVar">' + varname + '</td><td class="stackFrameValue"></td></tr>');
         }
+
+        var curTr = tbl.find('tr:last');
 
         // render primitives inline and compound types on the heap
         if (isPrimitiveType(val)) {
@@ -592,6 +608,7 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
           connectionEndpointIDs[varDivID] = heapObjID;
         }
       });
+
     }
 
   }
