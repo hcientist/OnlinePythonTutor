@@ -8,7 +8,7 @@ def TowerOfHanoi(n, a, b, tmp):
     b.append(a.pop())
     TowerOfHanoi(n-1, tmp, b, a)
       
-stack1 = [5,4,3,2,1]
+stack1 = [4,3,2,1]
 stack2 = []
 stack3 = []
       

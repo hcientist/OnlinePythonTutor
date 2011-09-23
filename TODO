@@ -141,3 +141,9 @@ line of code immediately below each annotation.
   perhaps deploy online on WebFaction, since they offer both Python 2.X
   and Python 3.X on their servers.
 
+---
+2011-09-22
+
+- Make the 'Edit code' window display in the same place as the read-only
+  code display column, in order to prevent abrupt jumping.
+

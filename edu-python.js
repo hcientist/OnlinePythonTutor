@@ -153,6 +153,9 @@ function highlightCodeLine(curLine, visitedLinesSet, hasError, isTerminated) {
 
 // relies on curTrace and curInstr globals
 function updateOutput() {
+  // update based on experimental checkbox ...
+  useJsPlumbRendering = $("#useJsPlumbCheckbox").prop("checked");
+
   var curEntry = curTrace[curInstr];
   var hasError = false;
 
@@ -388,10 +391,20 @@ function renderDataStructuresVersion1(curEntry, vizDiv) {
 
 // The "2.0" version of renderDataStructures, which renders variables in
 // a stack and values in a separate heap, with data structure aliasing
-// explicitly represented via line connectors.
+// explicitly represented via line connectors (thanks to jsPlumb lib).
 //
 // This version was originally created in September 2011
 function renderDataStructuresVersion2(curEntry, vizDiv) {
+
+  // before we wipe out the old state of the visualization, CLEAR all
+  // the click listeners first
+  $(".stackFrameHeader").unbind();
+
+  // VERY VERY IMPORTANT --- and reset ALL jsPlumb state to prevent
+  // weird mis-behavior!!!
+  jsPlumb.reset();
+
+
   $(vizDiv).html(''); // CLEAR IT!
 
   // create a tabular layout for stack and heap side-by-side
@@ -567,6 +580,7 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
   // from bottom to top, so that we can hopefully prevent objects from
   // jumping around
 
+
   orderedGlobals.reverse(); // so that we can iterate backwards
 
   $.each(orderedGlobals, function(i, varname) {
@@ -648,6 +662,7 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
     var enclosingStackFrameID = enclosingStackFrame.attr('id');
 
     var allConnections = jsPlumb.getConnections();
+    //console.log('allConnections: ' + allConnections);
     for (var i = 0; i < allConnections.length; i++) {
       var c = allConnections[i];
 
@@ -686,7 +701,7 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
 
   // 'click' on the top-most stack frame if available,
   // or on "Global variables" otherwise
-  if (curEntry.stack_locals != undefined && curEntry.stack_locals.length) {
+  if (curEntry.stack_locals != undefined && curEntry.stack_locals.length > 0) {
     $('#stack_header0').trigger('click');
   }
   else {
@@ -1008,6 +1023,7 @@ $(document).ready(function() {
   $("#editCodeLink").click(function() {
     $("#pyInputPane").show();
     $("#pyInputPane").css('border-bottom', '2px dashed #bbbbbb');
+    updateOutput();
     return false; // to prevent page reload
   });
 
@@ -1134,20 +1150,44 @@ $(document).ready(function() {
     return false;
   });
 
-  if (useJsPlumbRendering) {
-    // set some sensible defaults
-    jsPlumb.Defaults.Endpoint = ["Dot", {radius:3}];
-    //jsPlumb.Defaults.Endpoint = ["Rectangle", {width:3, height:3}];
-    jsPlumb.Defaults.EndpointStyle = {fillStyle: lightGray};
-    jsPlumb.Defaults.Anchors = ["RightMiddle", "LeftMiddle"];
-    jsPlumb.Defaults.Connector = [ "Bezier", { curviness:15 }]; /* too much 'curviness' causes lines to run together */
-    jsPlumb.Defaults.PaintStyle = {lineWidth:1, strokeStyle: lightGray};
 
-    jsPlumb.Defaults.EndpointHoverStyle = {fillStyle: pinkish};
-    jsPlumb.Defaults.HoverPaintStyle = {lineWidth:2, strokeStyle: pinkish};
-  }
+  // set some sensible jsPlumb defaults
+  jsPlumb.Defaults.Endpoint = ["Dot", {radius:3}];
+  //jsPlumb.Defaults.Endpoint = ["Rectangle", {width:3, height:3}];
+  jsPlumb.Defaults.EndpointStyle = {fillStyle: lightGray};
+  jsPlumb.Defaults.Anchors = ["RightMiddle", "LeftMiddle"];
+  jsPlumb.Defaults.Connector = [ "Bezier", { curviness:15 }]; /* too much 'curviness' causes lines to run together */
+  jsPlumb.Defaults.PaintStyle = {lineWidth:1, strokeStyle: lightGray};
+
+  jsPlumb.Defaults.EndpointHoverStyle = {fillStyle: pinkish};
+  jsPlumb.Defaults.HoverPaintStyle = {lineWidth:2, strokeStyle: pinkish};
+
 
   // select an example on start-up:
   $("#tutorialExampleLink").trigger('click');
+
+
+  // disable controls initially ...
+  $("#vcrControls #jmpFirstInstr").attr("disabled", true);
+  $("#vcrControls #jmpStepBack").attr("disabled", true);
+  $("#vcrControls #jmpStepFwd").attr("disabled", true);
+  $("#vcrControls #jmpLastInstr").attr("disabled", true);
+
+
+  // set keyboard event listeners ...
+  $(document).keydown(function(k) {
+    if (k.keyCode == 37) { // left arrow
+      if (!$("#vcrControls #jmpStepBack").attr("disabled")) {
+        $("#jmpStepBack").trigger('click');
+        k.preventDefault(); // don't horizontally scroll the display
+      }
+    }
+    else if (k.keyCode == 39) { // right arrow
+      if (!$("#vcrControls #jmpStepFwd").attr("disabled")) {
+        $("#jmpStepFwd").trigger('click');
+        k.preventDefault(); // don't horizontally scroll the display
+      }
+    }
+  });
 });
 
