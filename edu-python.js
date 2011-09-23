@@ -24,6 +24,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // and receives a complete execution trace, which it parses and displays to HTML.
 
 
+// set to true to use jsPlumb library to render connections between
+// stack and heap objects
+var useJsPlumbRendering = false;
+
+
 var localTesting = false; // if this is true, mock-data.js had also better be included
 
 
@@ -32,6 +37,11 @@ var lightYellow = '#F5F798';
 var lightLineColor = '#FFFFCC';
 var errorColor = '#F87D76';
 var visitedLineColor = '#3D58A2';
+
+var lightGray = "#dddddd";
+var darkBlue = "#3D58A2";
+var pinkish = "#F15149";
+
 
 // ugh globals!
 var curTrace = null;
@@ -238,8 +248,12 @@ function updateOutput() {
 
 // Renders the current trace entry (curEntry) into the div named by vizDiv
 function renderDataStructures(curEntry, vizDiv) {
-  renderDataStructuresVersion1(curEntry, vizDiv);
-  //renderDataStructuresVersion2(curEntry, vizDiv);
+  if (useJsPlumbRendering) { 
+    renderDataStructuresVersion2(curEntry, vizDiv);
+  }
+  else {
+    renderDataStructuresVersion1(curEntry, vizDiv);
+  }
 }
 
 
@@ -378,13 +392,16 @@ function renderDataStructuresVersion1(curEntry, vizDiv) {
 //
 // This version was originally created in September 2011
 function renderDataStructuresVersion2(curEntry, vizDiv) {
-  //console.log(curEntry);
-
   $(vizDiv).html(''); // CLEAR IT!
 
   // create a tabular layout for stack and heap side-by-side
   // TODO: figure out how to do this using CSS in a robust way!
   $(vizDiv).html('<table id="stackHeapTable"><tr><td><div id="stack"></div></td><td><div id="heap"></div></td></tr></table>');
+
+
+  // Key:   CSS ID of the div element representing the variable
+  // Value: CSS ID of the div element representing the value rendered in the heap
+  connectionEndpointIDs = {};
 
   // first render the stack (and global vars)
 
@@ -442,6 +459,10 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
             // characters that are illegal for CSS ID's ...
             var varDivID = divID + '__' + varname;
             curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
+
+            assert(connectionEndpointIDs[varDivID] === undefined);
+            var heapObjID = 'heap_object_' + getObjectID(val);
+            connectionEndpointIDs[varDivID] = heapObjID;
           }
         });
       }
@@ -528,6 +549,10 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
           // characters that are illegal for CSS ID's ...
           var varDivID = 'global__' + varname;
           curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
+
+          assert(connectionEndpointIDs[varDivID] === undefined);
+          var heapObjID = 'heap_object_' + getObjectID(val);
+          connectionEndpointIDs[varDivID] = heapObjID;
         }
       }
     });
@@ -610,6 +635,63 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
 
 
   // finally connect stack variables to heap objects via connectors
+
+  for (varID in connectionEndpointIDs) {
+    var valueID = connectionEndpointIDs[varID];
+    jsPlumb.connect({source: varID, target: valueID});
+  }
+
+
+  // add an on-click listener to all stack frame headers
+  $(".stackFrameHeader").click(function() {
+    var enclosingStackFrame = $(this).parent();
+    var enclosingStackFrameID = enclosingStackFrame.attr('id');
+
+    var allConnections = jsPlumb.getConnections();
+    for (var i = 0; i < allConnections.length; i++) {
+      var c = allConnections[i];
+
+      // this is VERY VERY fragile code, since it assumes that going up
+      // five layers of parent() calls will get you from the source end
+      // of the connector to the enclosing stack frame
+      var stackFrameDiv = c.source.parent().parent().parent().parent().parent();
+
+      // if this connector starts in the selected stack frame ...
+      if (stackFrameDiv.attr('id') == enclosingStackFrameID) {
+        // then HIGHLIGHT IT!
+        c.setPaintStyle({lineWidth:2, strokeStyle: darkBlue});
+        c.endpoints[0].setPaintStyle({fillStyle: darkBlue});
+        c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
+
+        // ... and move it to the VERY FRONT
+        $(c.canvas).css("z-index", 1000);
+      }
+      else {
+        // else unhighlight it
+        c.setPaintStyle({lineWidth:1, strokeStyle: lightGray});
+        c.endpoints[0].setPaintStyle({fillStyle: lightGray});
+        c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
+        $(c.canvas).css("z-index", 0);
+      }
+    }
+
+    // clear everything, then just activate $(this) one ...
+    $(".stackFrame").removeClass("selectedStackFrame");
+    $(".stackFrameHeader").addClass("inactiveStackFrameHeader");
+
+    enclosingStackFrame.addClass("selectedStackFrame");
+    $(this).removeClass("inactiveStackFrameHeader");
+  });
+
+
+  // 'click' on the top-most stack frame if available,
+  // or on "Global variables" otherwise
+  if (curEntry.stack_locals != undefined && curEntry.stack_locals.length) {
+    $('#stack_header0').trigger('click');
+  }
+  else {
+    $('#globals_header').trigger('click');
+  }
 
 }
 
@@ -1042,11 +1124,28 @@ $(document).ready(function() {
     return false;
   });
 
+  $("#towersOfHanoiLink").click(function() {
+    $.get("example-code/towers_of_hanoi.txt", function(dat) {$("#pyInput").val(dat);});
+    return false;
+  });
+
   $("#pwTryFinallyLink").click(function() {
     $.get("example-code/wentworth_try_finally.txt", function(dat) {$("#pyInput").val(dat);});
     return false;
   });
 
+  if (useJsPlumbRendering) {
+    // set some sensible defaults
+    jsPlumb.Defaults.Endpoint = ["Dot", {radius:3}];
+    //jsPlumb.Defaults.Endpoint = ["Rectangle", {width:3, height:3}];
+    jsPlumb.Defaults.EndpointStyle = {fillStyle: lightGray};
+    jsPlumb.Defaults.Anchors = ["RightMiddle", "LeftMiddle"];
+    jsPlumb.Defaults.Connector = [ "Bezier", { curviness:15 }]; /* too much 'curviness' causes lines to run together */
+    jsPlumb.Defaults.PaintStyle = {lineWidth:1, strokeStyle: lightGray};
+
+    jsPlumb.Defaults.EndpointHoverStyle = {fillStyle: pinkish};
+    jsPlumb.Defaults.HoverPaintStyle = {lineWidth:2, strokeStyle: pinkish};
+  }
 
   // select an example on start-up:
   $("#tutorialExampleLink").trigger('click');
