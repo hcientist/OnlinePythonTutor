@@ -1298,5 +1298,12 @@ $(document).ready(function() {
       }
     }
   });
+
+  // redraw everything on window resize so that connectors are in the
+  // right place
+  $(window).resize(function() {
+    updateOutput();
+  });
+
 });
 
