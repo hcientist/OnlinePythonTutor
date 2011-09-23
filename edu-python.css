@@ -94,6 +94,9 @@ span {
   margin-bottom: 40px;
 }
 
+table#stackHeapTable td {
+  vertical-align:top;
+}
 
 table#pyOutputPane {
   padding: 15px;
@@ -244,7 +247,8 @@ button.bigBtn {
 }
 
 .customObj {
-  font-style: italic;
+  font-family: Andale mono, monospace;
+  /*font-style: italic;*/
   font-size: 10pt;
 }
 
@@ -423,8 +427,8 @@ td.dictKey .typeLabel {
 div#stack {
   float: left;
   padding-left: 10px;
-  padding-right: 35px;
-  border-right: 1px dashed #cccccc;
+  padding-right: 30px;
+  border-right: 1px dashed #bbbbbb;
 }
 
 div.stackFrame {
@@ -449,7 +453,7 @@ div.topStackFrame {
   border-left: 1px solid #F15149;
 }
 
-div.stackFrame div.stackFrameHeader {
+div.stackFrameHeader {
   font-family: Andale mono, monospace;
   font-size: 10pt;
   margin-top: 4px;
@@ -484,7 +488,7 @@ div.stackFrame .stackFrameVarTable {
 
 div#heap {
   float: left;
-  padding-left: 35px;
+  padding-left: 30px;
 }
 
 div.heapObject {

@@ -378,12 +378,15 @@ function renderDataStructuresVersion1(curEntry, vizDiv) {
 //
 // This version was originally created in September 2011
 function renderDataStructuresVersion2(curEntry, vizDiv) {
-  console.log(curEntry);
+  //console.log(curEntry);
 
   $(vizDiv).html(''); // CLEAR IT!
 
+  // create a tabular layout for stack and heap side-by-side
+  // TODO: figure out how to do this using CSS in a robust way!
+  $(vizDiv).html('<table id="stackHeapTable"><tr><td><div id="stack"></div></td><td><div id="heap"></div></td></tr></table>');
+
   // first render the stack (and global vars)
-  $(vizDiv).append('<div id="stack"></div>');
 
   // render locals on stack:
   if (curEntry.stack_locals != undefined) {
@@ -460,10 +463,12 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
     }
   }
 
+
+  // render all global variables IN THE ORDER they were created by the program,
+  // in order to ensure continuity:
+  var orderedGlobals = []
+
   if (nonEmptyGlobals) {
-    // render all global variables IN THE ORDER they were created by the program,
-    // in order to ensure continuity:
-    var orderedGlobals = []
 
     // iterating over ALL instructions up to curInstr
     // (could be SLOW if not for our optimization below)
@@ -531,13 +536,99 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
 
   // then render the heap
 
+  alreadyRenderedObjectIDs = {}; // set of object IDs that have already been rendered
+
+  // now go BACKWARDS starting at globals and then crawling up the stack
+  // from bottom to top, so that we can hopefully prevent objects from
+  // jumping around
+
+  orderedGlobals.reverse(); // so that we can iterate backwards
+
+  $.each(orderedGlobals, function(i, varname) {
+    var val = curEntry.globals[varname];
+
+    // remember that primitive types are already rendered in the stack
+    if (!isPrimitiveType(val)) {
+      var objectID = getObjectID(val);
+
+      // don't double-render objects with the same ID
+      if (alreadyRenderedObjectIDs[objectID] === undefined) {
+        var heapObjID = 'heap_object_' + objectID;
+
+        // use prepend to push in front
+        $(vizDiv + ' #heap').prepend('<div class="heapObject" id="' + heapObjID + '"></div>');
+        renderData(val, $(vizDiv + ' #heap #' + heapObjID));
+
+        alreadyRenderedObjectIDs[objectID] = 1;
+      }
+    }
+  });
+
+
+  if (curEntry.stack_locals != undefined) {
+    // go BACKWARDS
+    for (var i = curEntry.stack_locals.length - 1; i >= 0; i--) {
+      var frame = curEntry.stack_locals[i];
+      var funcName = htmlspecialchars(frame[0]); // might contain '<' or '>' for weird names like <genexpr>
+      var localVars = frame[1];
+
+      // the stackFrame div's id is simply its index ("stack<index>")
+      var divID = "stack" + i;
+
+      var orderedVarnames = [];
+
+      // use plain ole' iteration rather than jQuery $.each() since
+      // the latter breaks when a variable is named "length"
+      for (varname in localVars) {
+        orderedVarnames.push(varname);
+      }
+      orderedVarnames.sort();
+
+      orderedVarnames.reverse(); // so that we can iterate backwards
+
+      if (orderedVarnames.length > 0) {
+        $.each(orderedVarnames, function(i, varname) {
+          var val = localVars[varname];
+
+          if (!isPrimitiveType(val)) {
+            var objectID = getObjectID(val);
+
+            if (alreadyRenderedObjectIDs[objectID] === undefined) {
+              var heapObjID = 'heap_object_' + objectID;
+              // use prepend to push in front
+              $(vizDiv + ' #heap').prepend('<div class="heapObject" id="' + heapObjID + '"></div>');
+              renderData(val, $(vizDiv + ' #heap #' + heapObjID));
+
+              alreadyRenderedObjectIDs[objectID] = 1;
+            }
+
+          }
+        });
+      }
+    }
+  }
+
+
   // finally connect stack variables to heap objects via connectors
 
 }
 
 function isPrimitiveType(obj) {
   var typ = typeof obj;
-  return ((obj == null) || (typ == "number") || (typ == "boolean") || (typ == "string"));
+  return ((obj == null) || (typ != "object"));
+}
+
+function getObjectID(obj) {
+  // pre-condition
+  assert(!isPrimitiveType(obj));
+  assert($.isArray(obj));
+
+  if ((obj[0] == 'INSTANCE') || (obj[0] == 'CLASS')) {
+    return obj[2];
+  }
+  else {
+    return obj[1];
+  }
 }
 
 
