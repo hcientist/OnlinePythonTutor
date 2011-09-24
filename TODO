@@ -122,3 +122,22 @@ line of code immediately below each annotation.
   pre-computed.  e.g., list local stack variables by their order of
   definition in the original program execution.
 
+---
+2011-09-24
+
+Ron's suggestion:
+
+Ron Yeh - Feedback: It'd be nice if (for longer programs) the text
+window would auto scroll to the current line. For your "Philip's
+10-minute intro to Python" example, I was stepping through your code but
+then the current line went off screen. I had to manually scroll down a
+few times.
+
+Philip Guo - great idea! do you know if there's any jQuery or other js
+tricks to do this sort of scrolling?
+
+Ron Yeh - Pretty sure I've done this before, a while back. Basicaly you
+just need a named div or anchor in your document, and then you can
+scroll to it. This page might help:
+http://css-tricks.com/snippets/jquery/smooth-scrolling/
+
