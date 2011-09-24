@@ -213,7 +213,7 @@ function updateOutput() {
 
     $("#editCodeLinkOnError").click(function() {
       $("#pyInputPane").show();
-      $("#pyInputPane").css('border-bottom', '2px dashed #bbbbbb');
+      $("#pyOutputPane").hide();
       return false; // to prevent page reload
     });
 
@@ -1135,8 +1135,7 @@ $(document).ready(function() {
 
   $("#editCodeLink").click(function() {
     $("#pyInputPane").show();
-    $("#pyInputPane").css('border-bottom', '2px dashed #bbbbbb');
-    updateOutput();
+    $("#pyOutputPane").hide();
     return false; // to prevent page reload
   });
 
