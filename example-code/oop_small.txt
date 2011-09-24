@@ -1,13 +1,13 @@
 class A:
-  x = 1
-  y = 'hello'
+    x = 1
+    y = 'hello'
 
 class B:
-  z = 'bye'
+    z = 'bye'
 
 class C(A,B):
-  def salutation(self):
-    return '%d %s %s' % (self.x, self.y, self.z)
+    def salutation(self):
+        return '%d %s %s' % (self.x, self.y, self.z)
 
 inst = C()
 print inst.salutation()
