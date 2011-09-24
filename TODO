@@ -141,3 +141,6 @@ just need a named div or anchor in your document, and then you can
 scroll to it. This page might help:
 http://css-tricks.com/snippets/jquery/smooth-scrolling/
 
+(also auto-scroll the program's stdout output as well as the code
+display!)
+

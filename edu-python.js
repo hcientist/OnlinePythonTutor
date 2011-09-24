@@ -1133,10 +1133,9 @@ $(document).ready(function() {
   });
 
 
-  $("#editCodeLink").click(function() {
+  $("#editBtn").click(function() {
     $("#pyInputPane").show();
     $("#pyOutputPane").hide();
-    return false; // to prevent page reload
   });
 
 

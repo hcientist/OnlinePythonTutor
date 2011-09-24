@@ -174,7 +174,7 @@ table#pyCodeOutput .cod {
 
 div#editCodeLinkDiv {
   text-align: center;
-  margin-top: 6px;
+  margin-top: 10px;
 }
 
 #editCodeLinkOnError {
