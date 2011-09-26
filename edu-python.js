@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // back-end with a string representing the user's script POST['user_script']
 // and receives a complete execution trace, which it parses and displays to HTML.
 
+var appMode = 'edit'; // 'edit' or 'visualize'
 
 // set to true to use jsPlumb library to render connections between
 // stack and heap objects
@@ -214,6 +215,7 @@ function updateOutput() {
     $("#editCodeLinkOnError").click(function() {
       $("#pyInputPane").show();
       $("#pyOutputPane").hide();
+      appMode = 'edit';
       return false; // to prevent page reload
     });
 
@@ -1110,6 +1112,7 @@ $(document).ready(function() {
 
       $("#pyInputPane").hide();
       $("#pyOutputPane").show();
+      appMode = 'visualize';
     }
     else {
       $('#executeBtn').html("Please wait ... processing your code");
@@ -1124,6 +1127,7 @@ $(document).ready(function() {
 
               $("#pyInputPane").hide();
               $("#pyOutputPane").show();
+              appMode = 'visualize';
 
               $('#executeBtn').html("Visualize execution");
               $('#executeBtn').attr('disabled', false);
@@ -1136,6 +1140,7 @@ $(document).ready(function() {
   $("#editBtn").click(function() {
     $("#pyInputPane").show();
     $("#pyOutputPane").hide();
+    appMode = 'edit';
   });
 
 
@@ -1287,16 +1292,19 @@ $(document).ready(function() {
 
   // set keyboard event listeners ...
   $(document).keydown(function(k) {
-    if (k.keyCode == 37) { // left arrow
-      if (!$("#vcrControls #jmpStepBack").attr("disabled")) {
-        $("#jmpStepBack").trigger('click');
-        k.preventDefault(); // don't horizontally scroll the display
+    // ONLY capture keys if we're in 'visualize code' mode:
+    if (appMode == 'visualize') {
+      if (k.keyCode == 37) { // left arrow
+        if (!$("#vcrControls #jmpStepBack").attr("disabled")) {
+          $("#jmpStepBack").trigger('click');
+          k.preventDefault(); // don't horizontally scroll the display
+        }
       }
-    }
-    else if (k.keyCode == 39) { // right arrow
-      if (!$("#vcrControls #jmpStepFwd").attr("disabled")) {
-        $("#jmpStepFwd").trigger('click');
-        k.preventDefault(); // don't horizontally scroll the display
+      else if (k.keyCode == 39) { // right arrow
+        if (!$("#vcrControls #jmpStepFwd").attr("disabled")) {
+          $("#jmpStepFwd").trigger('click');
+          k.preventDefault(); // don't horizontally scroll the display
+        }
       }
     }
   });
