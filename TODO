@@ -144,3 +144,25 @@ http://css-tricks.com/snippets/jquery/smooth-scrolling/
 (also auto-scroll the program's stdout output as well as the code
 display!)
 
+---
+2011-09-26
+
+A subset of the suggestions from MIT folks:
+
+- people thought that it's important to draw arrowheads at the end of
+  pointers ... try to make them relatively 'clean-looking', though
+
+- what if the user accidentally (or purposefully) creates a HUGE list or
+  other data structure?  how will the visualization handle this?  right
+  now it might croak.
+  - one idea is to LIMIT the size of the returned JSON data from the
+    back-end???
+
+- add a highlighter in the code to indicate that the program has
+  TERMINATED properly (maybe light blue highlight of the code line?)
+
+- to make it easier to jump to certain points in execution rather than
+  tediously single-step through execution.  e.g., could imagine adding a
+  scrubber (like for video playback) combined with pointing at line of
+  code to jump to the NEXT or PREV time that line of code as executed.
+
