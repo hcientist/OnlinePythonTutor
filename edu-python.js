@@ -1165,5 +1165,12 @@ function eduPythonCommonInit() {
       updateOutput();
     }
   });
+
+  $("#classicModeCheckbox").click(function() {
+    if (appMode == 'visualize') {
+      updateOutput();
+    }
+  });
+
 }
 
