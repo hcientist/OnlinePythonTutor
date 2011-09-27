@@ -3,29 +3,8 @@ A disorganized collection of TODOs, bug reports, and friends' suggestions
 
 January/Feb 2010 (notes from initial release)
 
-Ideas for programming tutorials
-  - Could do a track on more advanced Python concepts for people who are
-    already pretty comfortable with programming ... an intro to Python
-    for programmers
 
-
-Don't display boilerplate code when classes are being initialized
-
-
-Rob Miller's suggestions for handling aliasing:
-
-'''
-Incidentally, for the aliasing example, it might help if you strive to
-have one object be the "official" one, in a sense, and make the aliases
-to it look different.  For example, the x list would be displayed
-normally, but the y list might be displayed faded out (with a little
-note that says "this is the same object as x above").  Mousing over the
-x list or y list might highlight its aliases.
-
-That would reinforce the fact that there's only one object in memory.
-We usually do that on the blackboard -- draw only one object, and have
-arrows from x and y pointing to that single object.
-'''
+Maybe don't display boilerplate code when classes are being initialized?
 
 
 Hubert's suggestions for permalinks:
@@ -137,7 +116,7 @@ scroll to it. This page might help:
 http://css-tricks.com/snippets/jquery/smooth-scrolling/
 
 (also auto-scroll the program's stdout output as well as the code
-display!)
+display ... that one is easy --- always auto-scroll to BOTTOM!)
 
 ---
 2011-09-26

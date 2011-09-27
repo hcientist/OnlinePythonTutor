@@ -535,3 +535,16 @@ div#heapHeader {
   font-size: 10pt;
 }
 
+
+/* styles for Online Python Tutor questions site */
+
+#questionsHeaderPane {
+  text-align: left;
+  margin-bottom: 10px;
+  width: 650px;
+}
+
+.questionsHeaderStmt {
+  margin-bottom: 5px;
+}
+

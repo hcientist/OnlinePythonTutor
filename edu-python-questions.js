@@ -29,6 +29,9 @@ $(document).ready(function() {
 
   $("#pyOutputPane").hide();
 
+  // for demo purposes ...
+
+
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(function() {
     $('#executeBtn').html("Please wait ... processing your code");
