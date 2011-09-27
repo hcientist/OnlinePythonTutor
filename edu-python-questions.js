@@ -19,9 +19,43 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-
 // UI for online problem sets
 
 // Pre-req: edu-python.js should be imported BEFORE this file
 
+
+$(document).ready(function() {
+  eduPythonCommonInit(); // must call this first!
+
+  $("#pyOutputPane").hide();
+
+  $("#executeBtn").attr('disabled', false);
+  $("#executeBtn").click(function() {
+    $('#executeBtn').html("Please wait ... processing your code");
+    $('#executeBtn').attr('disabled', true);
+    $("#pyOutputPane").hide();
+
+    $.post("cgi-bin/web_exec.py",
+           {user_script : $("#pyInput").val()},
+           function(traceData) {
+             renderPyCodeOutput($("#pyInput").val());
+             processTrace(traceData);
+
+            $("#pyInputPane").hide();
+            $("#pyOutputPane").show();
+            appMode = 'visualize';
+
+            $('#executeBtn').html("Visualize execution");
+            $('#executeBtn').attr('disabled', false);
+           },
+           "json");
+  });
+
+
+  $("#editBtn").click(function() {
+    $("#pyInputPane").show();
+    $("#pyOutputPane").hide();
+    appMode = 'edit';
+  });
+});
 

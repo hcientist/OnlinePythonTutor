@@ -33,35 +33,24 @@ $(document).ready(function() {
 
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(function() {
-    if (localTesting) {
-      renderPyCodeOutput($("#pyInput").val());
+    $('#executeBtn').html("Please wait ... processing your code");
+    $('#executeBtn').attr('disabled', true);
+    $("#pyOutputPane").hide();
 
-      processTrace(data_test_trace);
+    $.post("cgi-bin/web_exec.py",
+           {user_script : $("#pyInput").val()},
+           function(traceData) {
+             renderPyCodeOutput($("#pyInput").val());
+             processTrace(traceData);
 
-      $("#pyInputPane").hide();
-      $("#pyOutputPane").show();
-      appMode = 'visualize';
-    }
-    else {
-      $('#executeBtn').html("Please wait ... processing your code");
-      $('#executeBtn').attr('disabled', true);
-      $("#pyOutputPane").hide();
+            $("#pyInputPane").hide();
+            $("#pyOutputPane").show();
+            appMode = 'visualize';
 
-      $.post("cgi-bin/web_exec.py",
-             {user_script : $("#pyInput").val()},
-             function(traceData) {
-               renderPyCodeOutput($("#pyInput").val());
-               processTrace(traceData);
-
-              $("#pyInputPane").hide();
-              $("#pyOutputPane").show();
-              appMode = 'visualize';
-
-              $('#executeBtn').html("Visualize execution");
-              $('#executeBtn').attr('disabled', false);
-             },
-             "json");
-    }
+            $('#executeBtn').html("Visualize execution");
+            $('#executeBtn').attr('disabled', false);
+           },
+           "json");
   });
 
 

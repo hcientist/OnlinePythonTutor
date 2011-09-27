@@ -32,9 +32,6 @@ var useJsPlumbRendering = true;
 var stackGrowsDown = true;
 
 
-var localTesting = false; // if this is true, mock-data.js had also better be included
-
-
 /* colors - see edu-python.css */
 var lightYellow = '#F5F798';
 var lightLineColor = '#FFFFCC';
@@ -44,6 +41,7 @@ var visitedLineColor = '#3D58A2';
 var lightGray = "#cccccc";
 //var lightGray = "#dddddd";
 var darkBlue = "#3D58A2";
+var lightBlue = "#899CD1";
 var pinkish = "#F15149";
 
 
@@ -152,6 +150,9 @@ function highlightCodeLine(curLine, visitedLinesSet, hasError, isTerminated) {
   tbl.find('td.cod').css('background-color', '');
   if (!isTerminated || hasError) {
     tbl.find('td.cod:eq(' + (curLine - 1) + ')').css('background-color', lineBgCol);
+  }
+  else if (isTerminated) {
+    tbl.find('td.cod:eq(' + (curLine - 1) + ')').css('background-color', lightBlue);
   }
 }
 
