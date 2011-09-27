@@ -43,7 +43,6 @@ $(document).ready(function() {
            {user_script : $("#pyInput").val()},
            function(traceData) {
              renderPyCodeOutput($("#pyInput").val());
-             processTrace(traceData, false);
 
              $("#pyInputPane").hide();
              $("#pyOutputPane").show();
@@ -51,6 +50,10 @@ $(document).ready(function() {
 
              $('#executeBtn').html("Visualize execution");
              $('#executeBtn').attr('disabled', false);
+
+             // do this AFTER making #pyOutputPane visible, or else
+             // jsPlumb connectors won't render properly
+             processTrace(traceData, false);
            },
            "json");
   });

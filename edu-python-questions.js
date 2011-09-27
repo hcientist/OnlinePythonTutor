@@ -75,7 +75,6 @@ reverse(input)\n";
            {user_script : submittedCode},
            function(traceData) {
              renderPyCodeOutput(submittedCode);
-             processTrace(traceData, true);
 
              $("#pyInputPane").hide();
              $("#pyOutputPane").show();
@@ -83,6 +82,10 @@ reverse(input)\n";
 
              $('#executeBtn').html("Visualize execution");
              $('#executeBtn').attr('disabled', false);
+
+             // do this AFTER making #pyOutputPane visible, or else
+             // jsPlumb connectors won't render properly
+             processTrace(traceData, true);
            },
            "json");
   });
