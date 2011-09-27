@@ -54,24 +54,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <body>
 
 
+<center>
+
 <div id="questionsHeaderPane">
 
-<div id="ProblemStatement"><b>Problem</b>: Write a function that
+<div class="questionsHeaderStmt" id="ProblemStatement"><b>Problem</b>: Write a function that
 reverses a list in-place.</div>
 
-<div id="HintStatement"><a href="#" id="showHintHref">Show hint</a></div>
+<div class="questionsHeaderStmt" id="ExampleStatement"><b>Example</b>: A list [INSERT LIST DIAGRAM]
+should be mutate to look like [INSERT LIST DIAGRAM]</div>
 
-<div id="SolutionStatement"><a href="#" id="showSolutionHref">Show solution</a></div>
+<div class="questionsHeaderStmt" id="HintStatement"><a href="#" id="showHintHref">Show hint</a></div>
+
+<div class="questionsHeaderStmt" id="SolutionStatement"><a href="#" id="showSolutionHref">Show solution</a></div>
 
 </div>
+
+</center>
 
 
 <div id="pyInputPane">
 
-<textarea id="pyInput" cols="55" rows="20" wrap="off"></textarea>
+<textarea id="pyInput" cols="60" rows="18" wrap="off">
+def reverse(lst):
+    # fill in your code here
+</textarea>
 
 <p/>Test code:<br/>
-<textarea id="pyInput" cols="55" rows="4" wrap="off"></textarea>
+<textarea id="pyInput" cols="60" rows="4" wrap="off">
+input = ['a', 'b', 'c', 'd', 'e']
+reverse(input)
+</textarea>
 
 <p>
 
