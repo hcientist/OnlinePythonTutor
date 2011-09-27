@@ -19,9 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// The Online Python Tutor front-end, which calls the cgi-bin/web_exec.py
-// back-end with a string representing the user's script POST['user_script']
-// and receives a complete execution trace, which it parses and displays to HTML.
+// code that is common to all Online Python Tutor pages
 
 var appMode = 'edit'; // 'edit' or 'visualize'
 
@@ -1093,56 +1091,9 @@ function renderPyCodeOutput(codeStr) {
 
 }
 
-$(document).ready(function() {
-
-  $("#pyOutputPane").hide();
-
-  $("#executeBtn").attr('disabled', false);
-
+// initialization function that should be called when the page is loaded
+function eduPythonCommonInit() {
   $("#pyInput").tabby(); // recognize TAB and SHIFT-TAB
-
-  // disable autogrow for simplicity
-  //$("#pyInput").autogrow();
-
-  $("#executeBtn").click(function() {
-    if (localTesting) {
-      renderPyCodeOutput($("#pyInput").val());
-
-      processTrace(data_test_trace);
-
-      $("#pyInputPane").hide();
-      $("#pyOutputPane").show();
-      appMode = 'visualize';
-    }
-    else {
-      $('#executeBtn').html("Please wait ... processing your code");
-      $('#executeBtn').attr('disabled', true);
-      $("#pyOutputPane").hide();
-
-      $.post("cgi-bin/web_exec.py",
-             {user_script : $("#pyInput").val()},
-             function(traceData) {
-               renderPyCodeOutput($("#pyInput").val());
-               processTrace(traceData);
-
-              $("#pyInputPane").hide();
-              $("#pyOutputPane").show();
-              appMode = 'visualize';
-
-              $('#executeBtn').html("Visualize execution");
-              $('#executeBtn').attr('disabled', false);
-             },
-             "json");
-    }
-  });
-
-
-  $("#editBtn").click(function() {
-    $("#pyInputPane").show();
-    $("#pyOutputPane").hide();
-    appMode = 'edit';
-  });
-
 
   $("#jmpFirstInstr").click(function() {
     curInstr = 0;
@@ -1168,103 +1119,11 @@ $(document).ready(function() {
     }
   });
 
-
-  // canned examples
-
-  $("#tutorialExampleLink").click(function() {
-    $.get("example-code/py_tutorial.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#strtokExampleLink").click(function() {
-    $.get("example-code/strtok.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#fibonacciExampleLink").click(function() {
-    $.get("example-code/fib.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#memoFibExampleLink").click(function() {
-    $.get("example-code/memo_fib.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#factExampleLink").click(function() {
-    $.get("example-code/fact.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#filterExampleLink").click(function() {
-    $.get("example-code/filter.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#insSortExampleLink").click(function() {
-    $.get("example-code/ins_sort.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#aliasExampleLink").click(function() {
-    $.get("example-code/aliasing.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#newtonExampleLink").click(function() {
-    $.get("example-code/sqrt.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#oopSmallExampleLink").click(function() {
-    $.get("example-code/oop_small.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#mapExampleLink").click(function() {
-    $.get("example-code/map.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#oop1ExampleLink").click(function() {
-    $.get("example-code/oop_1.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#oop2ExampleLink").click(function() {
-    $.get("example-code/oop_2.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#inheritanceExampleLink").click(function() {
-    $.get("example-code/oop_inherit.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#sumExampleLink").click(function() {
-    $.get("example-code/sum.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#pwGcdLink").click(function() {
-    $.get("example-code/wentworth_gcd.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#pwSumListLink").click(function() {
-    $.get("example-code/wentworth_sumList.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#towersOfHanoiLink").click(function() {
-    $.get("example-code/towers_of_hanoi.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
-
-  $("#pwTryFinallyLink").click(function() {
-    $.get("example-code/wentworth_try_finally.txt", function(dat) {$("#pyInput").val(dat);});
-    return false;
-  });
+  // disable controls initially ...
+  $("#vcrControls #jmpFirstInstr").attr("disabled", true);
+  $("#vcrControls #jmpStepBack").attr("disabled", true);
+  $("#vcrControls #jmpStepFwd").attr("disabled", true);
+  $("#vcrControls #jmpLastInstr").attr("disabled", true);
 
 
   // set some sensible jsPlumb defaults
@@ -1277,17 +1136,6 @@ $(document).ready(function() {
 
   jsPlumb.Defaults.EndpointHoverStyle = {fillStyle: pinkish};
   jsPlumb.Defaults.HoverPaintStyle = {lineWidth:2, strokeStyle: pinkish};
-
-
-  // select an example on start-up:
-  $("#aliasExampleLink").trigger('click');
-
-
-  // disable controls initially ...
-  $("#vcrControls #jmpFirstInstr").attr("disabled", true);
-  $("#vcrControls #jmpStepBack").attr("disabled", true);
-  $("#vcrControls #jmpStepFwd").attr("disabled", true);
-  $("#vcrControls #jmpLastInstr").attr("disabled", true);
 
 
   // set keyboard event listeners ...
@@ -1311,9 +1159,11 @@ $(document).ready(function() {
 
   // redraw everything on window resize so that connectors are in the
   // right place
+  // TODO: can be SLOW on older browsers!!!
   $(window).resize(function() {
-    updateOutput();
+    if (appMode == 'visualize') {
+      updateOutput();
+    }
   });
-
-});
+}
 

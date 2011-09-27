@@ -22,4 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // UI for online problem sets
 
+// Pre-req: edu-python.js should be imported BEFORE this file
+
 
