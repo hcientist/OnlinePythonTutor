@@ -1094,8 +1094,6 @@ function renderPyCodeOutput(codeStr) {
 
 // initialization function that should be called when the page is loaded
 function eduPythonCommonInit() {
-  $("#pyInput").tabby(); // recognize TAB and SHIFT-TAB
-
   $("#jmpFirstInstr").click(function() {
     curInstr = 0;
     updateOutput();

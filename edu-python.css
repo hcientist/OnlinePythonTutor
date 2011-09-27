@@ -81,7 +81,7 @@ span {
   padding: 0px;
 }
 
-#pyInput {
+.codeInputPane {
   font-size: 12pt;
   font-family: Andale mono, monospace;
   /*font-weight: bold;*/
@@ -540,8 +540,9 @@ div#heapHeader {
 
 #questionsHeaderPane {
   text-align: left;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   width: 650px;
+  border-bottom: 1px solid #bbbbbb;
 }
 
 .questionsHeaderStmt {

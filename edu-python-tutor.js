@@ -29,6 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 $(document).ready(function() {
   eduPythonCommonInit(); // must call this first!
 
+  $("#pyInput").tabby(); // recognize TAB and SHIFT-TAB
+
   $("#pyOutputPane").hide();
 
   $("#executeBtn").attr('disabled', false);
@@ -43,12 +45,12 @@ $(document).ready(function() {
              renderPyCodeOutput($("#pyInput").val());
              processTrace(traceData);
 
-            $("#pyInputPane").hide();
-            $("#pyOutputPane").show();
-            appMode = 'visualize';
+             $("#pyInputPane").hide();
+             $("#pyOutputPane").show();
+             appMode = 'visualize';
 
-            $('#executeBtn').html("Visualize execution");
-            $('#executeBtn').attr('disabled', false);
+             $('#executeBtn').html("Visualize execution");
+             $('#executeBtn').attr('disabled', false);
            },
            "json");
   });
