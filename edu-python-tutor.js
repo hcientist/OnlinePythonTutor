@@ -43,7 +43,7 @@ $(document).ready(function() {
            {user_script : $("#pyInput").val()},
            function(traceData) {
              renderPyCodeOutput($("#pyInput").val());
-             processTrace(traceData);
+             processTrace(traceData, false);
 
              $("#pyInputPane").hide();
              $("#pyOutputPane").show();

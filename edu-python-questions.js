@@ -75,7 +75,7 @@ reverse(input)\n";
            {user_script : submittedCode},
            function(traceData) {
              renderPyCodeOutput(submittedCode);
-             processTrace(traceData);
+             processTrace(traceData, true);
 
              $("#pyInputPane").hide();
              $("#pyOutputPane").show();

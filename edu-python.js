@@ -77,7 +77,7 @@ function htmlspecialchars(str) {
   return str;
 }
 
-function processTrace(traceData) {
+function processTrace(traceData, jumpToEnd) {
   curTrace = traceData;
   curInstr = 0;
 
@@ -91,22 +91,6 @@ function processTrace(traceData) {
     // GLOBAL!
     instrLimitReached = (lastEntry.event == 'instruction_limit_reached');
 
-    // if there is some sort of error, then JUMP to it so that we can
-    // immediately alert the user:
-    // (cgi-bin/pg_logger.py ensures that if there is an uncaught
-    //  exception, then that exception event will be the FINAL
-    //  entry in curTrace.  a caught exception will appear somewhere in
-    //  the MIDDLE of curTrace)
-    //
-    // on second thought, let's hold off on that for now
-
-    /*
-    if (lastEntry.event == 'exception' ||
-        lastEntry.event == 'uncaught_exception') {
-      // updateOutput should take care of the rest ...
-      curInstr = curTrace.length - 1;
-    }
-    */
     if (instrLimitReached) {
       curTrace.pop() // kill last entry
       var warningMsg = lastEntry.exception_msg;
@@ -118,6 +102,23 @@ function processTrace(traceData) {
     else if (curTrace.length == 2) {
       curTrace.shift();
     }
+
+
+    if (jumpToEnd) {
+      // if there's an exception, then jump to the FIRST occurrence of
+      // that exception.  otherwise, jump to the very end of execution.
+      curInstr = curTrace.length - 1;
+
+      for (var i = 0; i < curTrace.length; i++) {
+        var curEntry = curTrace[i];
+        if (curEntry.event == 'exception' ||
+            curEntry.event == 'uncaught_exception') {
+          curInstr = i;
+          break;
+        }
+      }
+    }
+
   }
 
   updateOutput();
