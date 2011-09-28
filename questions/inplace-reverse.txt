@@ -1,47 +1,53 @@
-Name: In-place reverse
+Name:
+In-place reverse
 
-Problem: Write a function to reverse a list
-in-place.  For example, it should mutate ['a', 'b, 'c', 'd', 'e'] into
-['e', 'd', 'c', 'b', 'a'].
+Question:
+Write a function to reverse a list in-place.  For example, it
+should mutate ['a', 'b, 'c', 'd', 'e'] into ['e', 'd', 'c', 'b', 'a'].
 
-Hint: Think about swapping pairs of elements.
+Hint:
+Think about swapping pairs of elements.
 
-Solution: Swap the first and last elements, then the second and
-second-to-last elements, etc.
+Solution:
+Swap the first and last elements, then the second and second-to-last
+elements, etc.
 
 Skeleton:
 
 def reverse(lst):
   # write your solution code here
 
-Tests:
-
+Test:
 input = ['a', 'b', 'c', 'd', 'e']
 reverse(input)
 
-Expect: input = ['e', 'd', 'c', 'b', 'a']
+Expect:
+input = ['e', 'd', 'c', 'b', 'a']
 
-
+Test:
 input = ['a', 'b', 'c', 'd']
 reverse(input)
 
-Expect: input = ['d', 'c', 'b', 'a']
+Expect:
+input = ['d', 'c', 'b', 'a']
 
-
+Test:
 input = ['a', 'b', 'c']
 reverse(input)
 
-Expect: input = ['c', 'b', 'a']
+Expect:
+input = ['c', 'b', 'a']
 
-
+Test:
 input = ['a', 'b']
 reverse(input)
 
-Expect: input = ['b', 'a']
+Expect:
+input = ['b', 'a']
 
-
+Test:
 input = ['a']
 reverse(input)
 
-Expect: input = ['a']
-
+Expect:
+input = ['a']
