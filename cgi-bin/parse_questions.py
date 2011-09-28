@@ -25,12 +25,11 @@ delimiters = set(['Name:', 'Question:', 'Hint:', 'Solution:',
 
 def parseQuestionsFile(filename):
   ret = {}
+  ret['tests'] = []
+  ret['expects'] = []
 
   curParts = []
   curDelimiter = None
-
-  tests = []
-  expects = []
 
   def processRecord():
     if curDelimiter == 'Name:':
@@ -44,9 +43,9 @@ def parseQuestionsFile(filename):
     elif curDelimiter == 'Skeleton:':
       ret['skeleton'] = '\n'.join(curParts).strip()
     elif curDelimiter == 'Test:':
-      tests.append('\n'.join(curParts).strip())
+      ret['tests'].append('\n'.join(curParts).strip())
     elif curDelimiter == 'Expect:':
-      expects.append('\n'.join(curParts).strip())
+      ret['expects'].append('\n'.join(curParts).strip())
 
 
   for line in open(filename):
@@ -60,10 +59,10 @@ def parseQuestionsFile(filename):
     else:
       curParts.append(line)
 
+  # don't forget to process the FINAL record
   processRecord()
 
-  ret['tests'] = tests
-  ret['expects'] = expects
+  assert len(ret['tests']) == len(ret['expects'])
 
   return ret
 
