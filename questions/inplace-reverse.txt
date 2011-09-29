@@ -16,7 +16,7 @@ Skeleton:
 
 def reverse(lst):
     # write your solution code here
-    N = len(lst) - 1
+    N = len(lst)
     for i in range(N/2):
         tmp = lst[i]
         lst[i] = lst[N-i]
