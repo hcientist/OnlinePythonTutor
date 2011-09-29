@@ -563,15 +563,20 @@ div#heapHeader {
 }
 
 table#gradeMatrix {
-  margin-top: 20px;
+  margin-top: 12px;
 }
 
 table#gradeMatrix thead {
   font-weight: bold;
+  border: solid;
 }
 
 table#gradeMatrix td {
   padding: 5px;
   vertical-align: middle;
 }
-
+ 
+#gradeSummary {
+  margin-top: 12px;
+  font-size: 12pt;
+}

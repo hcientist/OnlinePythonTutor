@@ -29,6 +29,26 @@ var tests = null;
 var expects = null;
 var curTestIndex = -1;
 
+// the traces returned by executing the respective 'tests' and 'expects'
+// Python code.  See resetResultTraces for invariants.
+var testsTraces = null;
+var expectsTraces = null;
+
+// Pre: 'tests' and 'expects' are non-null
+function resetResultTraces() {
+  testsTraces = [];
+  expectsTraces = [];
+  $.each(tests, function(i) {
+    testsTraces.push(null);
+    expectsTraces.push(null);
+  });
+
+  assert(testsTraces.length > 0);
+  assert(testsTraces.length == expectsTraces.length);
+  assert(testsTraces.length == tests.length);
+  assert(expectsTraces.length == expects.length);
+}
+
 
 $(document).ready(function() {
   eduPythonCommonInit(); // must call this first!
@@ -79,6 +99,9 @@ function enterVisualizeMode() {
 
   $("#HintStatement").show();
   $("#SolutionStatement").show();
+
+  $('#submitBtn').html("Submit answer");
+  $('#submitBtn').attr('disabled', false);
 }
 
 function enterGradingMode() {
@@ -90,6 +113,42 @@ function enterGradingMode() {
 
   $("#HintStatement").hide();
   $("#SolutionStatement").hide();
+}
+
+
+// returns a curried function!
+function genTestResultHandler(idx) {
+  function ret(traceData) {
+    assert(testsTraces[idx] === null);
+    testsTraces[idx] = traceData;
+
+    // if ALL results have been delivered, then call
+    // readyToGradeSubmission() ...
+    for (var i = 0; i < testsTraces.length; i++) {
+      if (testsTraces[i] === null || expectsTraces[i] === null) {
+        return;
+      }
+    }
+    readyToGradeSubmission();
+  }
+  return ret;
+}
+
+function genExpectResultHandler(idx) {
+  function ret(traceData) {
+    assert(expectsTraces[idx] === null);
+    expectsTraces[idx] = traceData;
+
+    // if ALL results have been delivered, then call
+    // readyToGradeSubmission() ...
+    for (var i = 0; i < testsTraces.length; i++) {
+      if (testsTraces[i] === null || expectsTraces[i] === null) {
+        return;
+      }
+    }
+    readyToGradeSubmission();
+  }
+  return ret;
 }
 
 
@@ -115,7 +174,9 @@ function finishQuestionsInit(questionsDat) {
   tests = questionsDat.tests;
   expects = questionsDat.expects;
   curTestIndex = 0;
-  assert(tests.length == expects.length);
+
+  resetResultTraces();
+
 
   $("#testCodeInput").val(tests[curTestIndex]);
 
@@ -152,9 +213,31 @@ function finishQuestionsInit(questionsDat) {
 
 
   $("#submitBtn").click(function() {
-    enterGradingMode();
-    console.log("SUBMIT!");
+    $('#submitBtn').html("Please wait ... submitting ...");
+    $('#submitBtn').attr('disabled', true);
 
+    // right now I make (2 * tests.length) HTTP POST calls, which might
+    // be inefficient, so optimize later if necessary
+    //
+    // remember to code this up VERY CAREFULLY because the responses
+    // will come in asynchronously and probably OUT-OF-ORDER
+    for (var i = 0; i < tests.length; i++) {
+      var submittedCode = concatSolnTestCode($("#actualCodeInput").val(), tests[i]);
+      $.post("cgi-bin/web_exec.py",
+             {user_script : submittedCode},
+             genTestResultHandler(i),
+             "json");
+
+      var expectCode = expects[i];
+      $.post("cgi-bin/web_exec.py",
+             {user_script : expectCode},
+             genExpectResultHandler(i),
+             "json");
+    }
+
+    return;
+
+    enterGradingMode();
     $("#submittedCodeRO").val($("#actualCodeInput").val());
 
     // iterate through all pairs of test and expect code:
@@ -177,3 +260,10 @@ function finishQuestionsInit(questionsDat) {
   });
 
 }
+
+// should be called after ALL elements in testsTraces and expectsTraces
+// have been populated by their respective AJAX POST calls
+function readyToGradeSubmission() {
+  console.log('readyToGradeSubmission');
+}
+
