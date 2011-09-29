@@ -89,30 +89,25 @@ def really_finalize():
     ret = {}
     ret['status'] = 'ok'
     ret['passed_test'] = False
-
-    assert single_var_to_compare
     ret['var_to_compare'] = single_var_to_compare
 
-    if user_trace_final_entry['event'] == 'return': # regular termination
+    if user_trace_final_entry['event'] == 'return': # normal termination
       if single_var_to_compare not in user_trace_final_entry['globals']:
         ret['status'] = 'error'
         ret['error_msg'] = "Error: output has no global var named '%s'" % (single_var_to_compare,)
       else:
-        expect_val = expect_trace_final_entry['globals'][single_var_to_compare]
-        test_val   = user_trace_final_entry['globals'][single_var_to_compare]
-
-        ret['test_val'] = expect_val
-        ret['expect_val'] = expect_val
+        ret['expect_val'] = expect_trace_final_entry['globals'][single_var_to_compare]
+        ret['test_val']   = user_trace_final_entry['globals'][single_var_to_compare]
 
         # do the actual comparison here!
-        if expect_val == test_val:
+        if ret['expect_val'] == ret['test_val']:
           ret['passed_test'] = True
 
-        # find the INITIAL value of single_var_to_compare by finding its
+        # get the INITIAL value of single_var_to_compare by finding its
         # FIRST occurrence in user_trace
         #
         # NB: This means that the initialization code for the input can
-        # only span ONE instruction.  i.e., it must be a primitive
+        # only span ONE Python source line.  i.e., it must be a primitive
         # literal assignment and not a data structure that's built up
         # incrementally over several steps.
         for e in user_trace:
