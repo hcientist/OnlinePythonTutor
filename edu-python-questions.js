@@ -235,35 +235,71 @@ function finishQuestionsInit(questionsDat) {
              "json");
     }
 
-    return;
-
-    enterGradingMode();
-    $("#submittedCodeRO").val($("#actualCodeInput").val());
-
-    // iterate through all pairs of test and expect code:
-    for (var i = 0; i < tests.length; i++) {
-      $("#gradeMatrix tbody").append("<tr></tr>");
-
-      var submittedCode = concatSolnTestCode($("#actualCodeInput").val(), tests[i]);
-      var expectCode = expects[i];
-
-      $("#gradeMatrix tr:last").append("<td><pre>" + tests[i] + "</pre></td>");
-      $("#gradeMatrix tr:last").append("<td><pre>" + expectCode + "</pre></td>");
-      if (i % 2) {
-        $("#gradeMatrix tr:last").append('<td><img style="vertical-align: middle; margin-right: 4px;" src="red-sad-face.jpg"/> <span><a href="#">Debug me</a></span></td>');
-      }
-      else {
-        $("#gradeMatrix tr:last").append('<td><img style="vertical-align: middle;" src="yellow-happy-face.png"/></td>');
-      }
-
-    }
   });
 
 }
 
+
 // should be called after ALL elements in testsTraces and expectsTraces
 // have been populated by their respective AJAX POST calls
 function readyToGradeSubmission() {
-  console.log('readyToGradeSubmission');
-}
+  enterGradingMode();
+  $("#submittedCodeRO").val($("#actualCodeInput").val());
 
+  for (var i = 0; i < tests.length; i++) {
+    $("#gradeMatrix tbody").append("<tr></tr>");
+
+    var testResults = testsTraces[i];
+    var expectResults = expectsTraces[i];
+    assert(testResults && expectResults);
+
+
+    // Procedure for grading testResults vs. expectResults:
+    // - The final line in expectResults should be a 'return' from
+    //   '<module>' that contains only ONE global variable.  THAT'S
+    //   the variable that we're gonna compare against testResults.
+
+    var testLastEntry = testResults[testResults.length - 1];
+    var expectLastEntry = expectResults[expectResults.length - 1];
+
+    assert(expectLastEntry.event == 'return');
+    assert(expectLastEntry.func_name == '<module>');
+
+    // find the SOLE global variable in expectLastEntry and use that as
+    // the point of comparison against testLastEntry
+    var expectGlobals = [];
+    for (g in expectLastEntry.globals) {
+      expectGlobals.push(g);
+    }
+    assert(expectGlobals.length == 1);
+    var varToCompare = expectGlobals[0];
+
+    var resultIsCorrect = false;
+
+    if (testLastEntry.event == 'return') {
+      var testVal = testLastEntry.globals[varToCompare];
+      var expectVal = expectLastEntry.globals[varToCompare];
+      console.log(testVal);
+      console.log(expectVal);
+      if (equalsModuloID(testVal, expectVal)) {
+        resultIsCorrect = true;
+      }
+    }
+    else {
+      // something else happened, and there's no match!
+      assert(testLastEntry.exception_msg);
+      console.log(testLastEntry.exception_msg);
+    }
+
+    $("#gradeMatrix tr:last").append("<td><pre>in</pre></td>");
+    $("#gradeMatrix tr:last").append("<td><pre>out</pre></td>");
+
+    if (resultIsCorrect) {
+      $("#gradeMatrix tr:last").append('<td><img style="vertical-align: middle;" src="yellow-happy-face.png"/></td>');
+    }
+    else {
+      $("#gradeMatrix tr:last").append('<td><img style="vertical-align: middle; margin-right: 4px;" src="red-sad-face.jpg"/> <span><a href="#">Debug me</a></span></td>');
+    }
+
+  }
+}

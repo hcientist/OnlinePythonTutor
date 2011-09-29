@@ -16,6 +16,12 @@ Skeleton:
 
 def reverse(lst):
     # write your solution code here
+    N = len(lst) - 1
+    for i in range(N/2):
+        tmp = lst[i]
+        lst[i] = lst[N-i]
+        lst[N-i] = tmp
+
 
 Test:
 input = ['a', 'b', 'c', 'd', 'e']
