@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 <head>
-  <title>Online Python Tutor: [TEST INTERFACE FOR PRACTICE PROBLEMS]</title>
+  <title>Online Python Tutor: Practice Questions</title>
 
 <!-- jQuery 1.6.0 -->
 
@@ -57,8 +57,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <div id="questionsHeaderPane">
 
-<div class="questionsHeaderStmt" id="ProblemStatement"><b>Problem</b>: Write a function that
-reverses a list in-place.</div>
+<div class="questionsHeaderTitle" id="ProblemName"></div>
+
+<div class="questionsHeaderStmt" id="ProblemStatement">(please load a question, e.g., "?inplace-reverse.txt")</div>
 
 <div class="questionsHeaderStmt" id="HintStatement"><a href="#" id="showHintHref">Show hint</a></div>
 <div class="questionsHeaderStmt" id="SolutionStatement"><a href="#" id="showSolutionHref">Show solution</a></div>
@@ -135,8 +136,34 @@ Program output:
 </tr>
 </table>
 
+
+<div id="pyGradingPane">
+
 <center>
 
+Your submitted solution:<br/>
+<textarea id="submittedCodeRO" cols="60" rows="12" wrap="off" readonly="readonly">
+</textarea>
+
+<table id="gradeMatrix">
+<thead>
+<tr>
+<td>Input</td>
+<td>Output</td>
+<td>Result</td>
+</tr>
+</thead>
+<tbody>
+
+</tbody>
+</table>
+
+</center>
+
+</div>
+
+
+<center>
 
 <div id="footer">
 

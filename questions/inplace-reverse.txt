@@ -15,7 +15,7 @@ elements, etc.
 Skeleton:
 
 def reverse(lst):
-  # write your solution code here
+    # write your solution code here
 
 Test:
 input = ['a', 'b', 'c', 'd', 'e']

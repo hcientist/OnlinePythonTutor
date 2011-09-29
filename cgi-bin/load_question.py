@@ -18,13 +18,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# Load a question file in the '../questions/' sub-directory, parse it,
+# Load a question file in the 'questions/' sub-directory, parse it,
 # and return it to the caller in JSON format
 QUESTIONS_DIR = '../questions/'
 
 from parse_questions import parseQuestionsFile
 
-import cgi, os
+import cgi, os, demjson
 
 form = cgi.FieldStorage()
 question_file = form['question_file'].value
@@ -32,10 +32,8 @@ question_file = form['question_file'].value
 fn = QUESTIONS_DIR + question_file
 assert os.path.isfile(fn)
 
-output_json = demjson.encode(parseQuestionsFile(fn), compactly=False)
-
 
 # Crucial first line to make sure that Apache serves this data
 # correctly - DON'T FORGET THE EXTRA NEWLINES!!!:
 print "Content-type: text/plain; charset=iso-8859-1\n\n"
-print output_json
+print demjson.encode(parseQuestionsFile(fn))

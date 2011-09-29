@@ -24,39 +24,100 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Pre-req: edu-python.js should be imported BEFORE this file
 
 
+// matching arrays of test code and 'expected outputs' from those tests
+var tests = null;
+var expects = null;
+var curTestIndex = -1;
+
+
 $(document).ready(function() {
   eduPythonCommonInit(); // must call this first!
+
+  enterEditMode();
 
   $("#actualCodeInput").tabby(); // recognize TAB and SHIFT-TAB
   $("#testCodeInput").tabby();   // recognize TAB and SHIFT-TAB
 
+
+  // load the questions file specified by the query string
+  var questionsFilename = location.search.substring(1);
+
+  $.get("cgi-bin/load_question.py",
+        {question_file : questionsFilename},
+        function(questionsDat) {
+          finishQuestionsInit(questionsDat);
+        },
+        "json");
+
+});
+
+
+// concatenate solution code and test code:
+function concatSolnTestCode(solnCode, testCode) {
+  var filler = (solnCode[solnCode.length - 1] != '\n') ? '\n' : '';
+  return solnCode + filler + "\n# Everything below here is test code\n" + testCode;
+}
+
+
+function enterEditMode() {
+  appMode = 'edit';
+
+  $("#pyInputPane").show();
   $("#pyOutputPane").hide();
+  $("#pyGradingPane").hide();
 
-  // for demo purposes ...
-  var reverseScript =
-"def reverse(lst):\n\
-    N = len(lst) - 1\n\
-    for i in range(N/2):\n\
-        tmp = lst[i]\n\
-        lst[i] = lst[N-i]\n\
-        lst[N-i] = tmp\n";
+  $("#HintStatement").show();
+  $("#SolutionStatement").show();
+}
 
-  var testCode =
-"input = ['a', 'b', 'c', 'd', 'e']\n\
-reverse(input)\n";
+function enterVisualizeMode() {
+  appMode = 'visualize';
 
-  $("#actualCodeInput").val(reverseScript);
-  $("#testCodeInput").val(testCode);
+  $("#pyInputPane").hide();
+  $("#pyOutputPane").show();
+  $("#pyGradingPane").hide();
+
+  $("#HintStatement").show();
+  $("#SolutionStatement").show();
+}
+
+function enterGradingMode() {
+  appMode = 'grade';
+
+  $("#pyInputPane").hide();
+  $("#pyOutputPane").hide();
+  $("#pyGradingPane").show();
+
+  $("#HintStatement").hide();
+  $("#SolutionStatement").hide();
+}
+
+
+function finishQuestionsInit(questionsDat) {
+  $("#ProblemName").html(questionsDat.name);
+  $("#ProblemStatement").html(questionsDat.question);
 
   $("#showHintHref").click(function() {
-    $("#HintStatement").html("<b>Hint</b>: Think about swapping pairs of elements.");
+    $("#HintStatement").html("<b>Hint</b>: " + questionsDat.hint);
     return false; // don't reload the page
   });
 
   $("#showSolutionHref").click(function() {
-    $("#SolutionStatement").html("<b>Solution</b>: Swap the first and last elements, then the second and second-to-last elements, etc.");
+    $("#SolutionStatement").html("<b>Solution</b>: " + questionsDat.solution);
     return false; // don't reload the page
   });
+
+
+  $("#actualCodeInput").val(questionsDat.skeleton);
+
+
+  // set some globals
+  tests = questionsDat.tests;
+  expects = questionsDat.expects;
+  curTestIndex = 0;
+  assert(tests.length == expects.length);
+
+  $("#testCodeInput").val(tests[curTestIndex]);
 
 
   $("#executeBtn").attr('disabled', false);
@@ -65,20 +126,14 @@ reverse(input)\n";
     $('#executeBtn').attr('disabled', true);
     $("#pyOutputPane").hide();
 
-    // concatenate the values from #actualCodeInput and #testCodeInput,
-    // separated by a comment
-    var submittedCode = $("#actualCodeInput").val() +
-                        "\n# Everything below here is test code\n" +
-                        $("#testCodeInput").val();
+    var submittedCode = concatSolnTestCode($("#actualCodeInput").val(), $("#testCodeInput").val());
 
     $.post("cgi-bin/web_exec.py",
            {user_script : submittedCode},
            function(traceData) {
              renderPyCodeOutput(submittedCode);
 
-             $("#pyInputPane").hide();
-             $("#pyOutputPane").show();
-             appMode = 'visualize';
+             enterVisualizeMode();
 
              $('#executeBtn').html("Visualize execution");
              $('#executeBtn').attr('disabled', false);
@@ -92,9 +147,33 @@ reverse(input)\n";
 
 
   $("#editBtn").click(function() {
-    $("#pyInputPane").show();
-    $("#pyOutputPane").hide();
-    appMode = 'edit';
+    enterEditMode();
   });
-});
 
+
+  $("#submitBtn").click(function() {
+    enterGradingMode();
+    console.log("SUBMIT!");
+
+    $("#submittedCodeRO").val($("#actualCodeInput").val());
+
+    // iterate through all pairs of test and expect code:
+    for (var i = 0; i < tests.length; i++) {
+      $("#gradeMatrix tbody").append("<tr></tr>");
+
+      var submittedCode = concatSolnTestCode($("#actualCodeInput").val(), tests[i]);
+      var expectCode = expects[i];
+
+      $("#gradeMatrix tr:last").append("<td><pre>" + tests[i] + "</pre></td>");
+      $("#gradeMatrix tr:last").append("<td><pre>" + expectCode + "</pre></td>");
+      if (i % 2) {
+        $("#gradeMatrix tr:last").append('<td><img style="vertical-align: middle; margin-right: 4px;" src="red-sad-face.jpg"/> <span><a href="#">Debug me</a></span></td>');
+      }
+      else {
+        $("#gradeMatrix tr:last").append('<td><img style="vertical-align: middle;" src="yellow-happy-face.png"/></td>');
+      }
+
+    }
+  });
+
+}

@@ -549,3 +549,29 @@ div#heapHeader {
   margin-bottom: 5px;
 }
 
+.questionsHeaderTitle {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+#submittedCodeRO {
+  font-size: 10pt;
+  font-family: Andale mono, monospace;
+  padding: 4px;
+  margin-top: 5px;
+}
+
+table#gradeMatrix {
+  margin-top: 20px;
+}
+
+table#gradeMatrix thead {
+  font-weight: bold;
+}
+
+table#gradeMatrix td {
+  padding: 5px;
+  vertical-align: middle;
+}
+

@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // code that is common to all Online Python Tutor pages
 
-var appMode = 'edit'; // 'edit' or 'visualize'
+var appMode = 'edit'; // 'edit', 'visualize', or 'grade' (only for question.html)
 
 // set to true to use jsPlumb library to render connections between
 // stack and heap objects
@@ -206,18 +206,11 @@ function updateOutput() {
     assert(curEntry.exception_msg);
 
     if (curEntry.exception_msg == "Unknown error") {
-      $("#errorOutput").html('Unknown error: <a id="editCodeLinkOnError" href="#">view code</a> and please<br/>email as a bug report to philip@pgbovine.net');
+      $("#errorOutput").html('Unknown error: Please email a bug report to philip@pgbovine.net');
     }
     else {
       $("#errorOutput").html(htmlspecialchars(curEntry.exception_msg));
     }
-
-    $("#editCodeLinkOnError").click(function() {
-      $("#pyInputPane").show();
-      $("#pyOutputPane").hide();
-      appMode = 'edit';
-      return false; // to prevent page reload
-    });
 
     $("#errorOutput").show();
 

@@ -53,7 +53,7 @@ if LOG_QUERIES:
 def web_finalizer(output_lst):
   # use compactly=False to produce human-readable JSON,
   # except at the expense of being a LARGER download
-  output_json = demjson.encode(output_lst, compactly=False)
+  output_json = demjson.encode(output_lst, compactly=True)
 
   # query logging is optional
   if LOG_QUERIES:
