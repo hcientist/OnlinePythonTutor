@@ -221,7 +221,7 @@ function readyToGradeSubmission() {
   for (var i = 0; i < tests.length; i++) {
     var res = testResults[i];
 
-    $("#gradeMatrix tbody").append('<tr class="gradeMatrixRow"></tr>');
+    $("#gradeMatrix tbody.gradeMatrixTbody").append('<tr class="gradeMatrixRow"></tr>');
 
     $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="testInputCell"></td>');
 
@@ -260,13 +260,17 @@ function readyToGradeSubmission() {
       renderData(res.test_val, curCell.find('td.testOutputValCell:last'), true /* ignoreIDs */);
     }
 
+
     if (res.passed_test) {
-      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td><img style="vertical-align: middle;" src="yellow-happy-face.png"/></td>');
+      var happyFaceImg = '<img style="vertical-align: middle;" src="yellow-happy-face.png"/>';
+      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td>' + happyFaceImg + '</td>');
     }
     else {
-      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td><img style="vertical-align: middle; margin-right: 4px;" src="red-sad-face.jpg"/> <span><a href="#">Debug me</a></span></td>');
-    }
+      var sadFaceImg  = '<img style="vertical-align: middle; margin-right: 4px;" src="red-sad-face.jpg"/>';
+      var debugMeSpan = ' <span><a href="#">Debug me</a></span>';
 
+      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td>' + sadFaceImg + debugMeSpan + '</td>');
+    }
   }
 
 

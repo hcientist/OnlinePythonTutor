@@ -572,7 +572,8 @@ table#gradeMatrix thead {
   text-align: center;
 }
 
-table#gradeMatrix td {
+table#gradeMatrix td.testInputCell,
+table#gradeMatrix td.testOutputCell {
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 8px;
@@ -586,11 +587,11 @@ table#gradeMatrix td {
 
 td.testInputVarnameCell,
 td.testOutputVarnameCell {
-
+  padding-right: 8px;
 }
 
 td.testInputValCell,
 td.testOutputValCell {
-
+  padding-right: 5px;
 }
 
