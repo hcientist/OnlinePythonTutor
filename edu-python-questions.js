@@ -131,13 +131,13 @@ function genTestResultHandler(idx) {
   return ret;
 }
 
-function genDebugLinkHandler(testResult) {
+function genDebugLinkHandler(failingTestIndex) {
   function ret() {
-    //console.log('DEBUG', testResult);
+    console.log('DEBUG', failingTestIndex);
 
-    // TODO: switch back to visualize mode, populating all the edit
-    // fields with the input and outputs from the failing test input
-    // but keeping the user's submitted solution code unchanged
+    // TODO: switch back to visualize mode, populating the "test" input
+    // field with the failing test case, and RE-RUN the back-end to
+    // visualize execution (with proper IDs)
 
     return false; // don't reload the page
   }
@@ -288,7 +288,7 @@ function readyToGradeSubmission() {
       $("#gradeMatrix tr.gradeMatrixRow:last").append('<td>' + sadFaceImg + debugMeSpan + '</td>');
 
       $('#' + linkID).unbind(); // unbind it just to be paranoid
-      $('#' + linkID).click(genDebugLinkHandler(res));
+      $('#' + linkID).click(genDebugLinkHandler(i));
     }
   }
 
