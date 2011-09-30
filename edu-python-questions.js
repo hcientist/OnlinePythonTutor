@@ -111,7 +111,7 @@ function enterGradingMode() {
 }
 
 
-// returns a curried function!
+// returns a closure!
 function genTestResultHandler(idx) {
   function ret(res) {
     assert(testResults[idx] === null);
@@ -127,6 +127,19 @@ function genTestResultHandler(idx) {
     }
 
     readyToGradeSubmission();
+  }
+  return ret;
+}
+
+function genDebugLinkHandler(testResult) {
+  function ret() {
+    //console.log('DEBUG', testResult);
+
+    // TODO: switch back to visualize mode, populating all the edit
+    // fields with the input and outputs from the failing test input
+    // but keeping the user's submitted solution code unchanged
+
+    return false; // don't reload the page
   }
   return ret;
 }
@@ -267,9 +280,15 @@ function readyToGradeSubmission() {
     }
     else {
       var sadFaceImg  = '<img style="vertical-align: middle; margin-right: 4px;" src="red-sad-face.jpg"/>';
-      var debugMeSpan = ' <span><a href="#">Debug me</a></span>';
+
+      // set its ID to 'debug_test_$i'
+      var linkID = 'debug_test_' + i;
+      var debugMeSpan = ' <span><a href="#" id="' + linkID + '">Debug me</a></span>';
 
       $("#gradeMatrix tr.gradeMatrixRow:last").append('<td>' + sadFaceImg + debugMeSpan + '</td>');
+
+      $('#' + linkID).unbind(); // unbind it just to be paranoid
+      $('#' + linkID).click(genDebugLinkHandler(res));
     }
   }
 
