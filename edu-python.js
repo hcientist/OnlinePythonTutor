@@ -304,7 +304,7 @@ function renderDataStructuresVersion1(curEntry, vizDiv) {
           else {
             curTr.find("td.varname").html(varname);
           }
-          renderData(val, curTr.find("td.val"));
+          renderData(val, curTr.find("td.val"), false);
         });
 
         tbl.find("tr:last").find("td.varname").css('border-bottom', '0px');
@@ -382,7 +382,7 @@ function renderDataStructuresVersion1(curEntry, vizDiv) {
         tbl.append('<tr><td class="varname"></td><td class="val"></td></tr>');
         var curTr = tbl.find('tr:last');
         curTr.find("td.varname").html(varname);
-        renderData(val, curTr.find("td.val"));
+        renderData(val, curTr.find("td.val"), false);
       }
     });
 
@@ -516,7 +516,7 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
 
           // render primitives inline
           if (isPrimitiveType(val)) {
-            renderData(val, curTr.find("td.stackFrameValue"));
+            renderData(val, curTr.find("td.stackFrameValue"), false);
           }
           else {
             // add a stub so that we can connect it with a connector later.
@@ -594,7 +594,7 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
 
         // render primitives inline and compound types on the heap
         if (isPrimitiveType(val)) {
-          renderData(val, curTr.find("td.stackFrameValue"));
+          renderData(val, curTr.find("td.stackFrameValue"), false);
         }
         else {
           // add a stub so that we can connect it with a connector later.
@@ -658,7 +658,7 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
       else {
         $(vizDiv + ' #heap').prepend(newDiv);
       }
-      renderData(obj, $(vizDiv + ' #heap #' + heapObjID));
+      renderData(obj, $(vizDiv + ' #heap #' + heapObjID), false);
 
       alreadyRenderedObjectIDs[objectID] = 1;
     }
@@ -840,7 +840,7 @@ function getObjectID(obj) {
 // render the JS data object obj inside of jDomElt,
 // which is a jQuery wrapped DOM object
 // (obj is in a format encoded by cgi-bin/pg_encoder.py)
-function renderData(obj, jDomElt) {
+function renderData(obj, jDomElt, ignoreIDs) {
   // dispatch on types:
   var typ = typeof obj;
 
@@ -871,13 +871,19 @@ function renderData(obj, jDomElt) {
   else if (typ == "object") {
     assert($.isArray(obj));
 
+    var idStr = '';
+    if (!ignoreIDs) {
+      idStr = ' (id=' + getObjectID(obj) + ')';
+    }
+
     if (obj[0] == 'LIST') {
       assert(obj.length >= 2);
       if (obj.length == 2) {
-        jDomElt.append('<div class="typeLabel">empty list (id=' + obj[1] + ')</div>');
+        jDomElt.append('<div class="typeLabel">empty list' + idStr + '</div>');
       }
       else {
-        jDomElt.append('<div class="typeLabel">list (id=' + obj[1] + '):</div>');
+        jDomElt.append('<div class="typeLabel">list' + idStr + ':</div>');
+
         jDomElt.append('<table class="listTbl"><tr></tr><tr></tr></table>');
         var tbl = jDomElt.children('table');
         var headerTr = tbl.find('tr:first');
@@ -891,17 +897,17 @@ function renderData(obj, jDomElt) {
           headerTr.find('td:last').append(ind - 2);
 
           contentTr.append('<td class="listElt"></td>');
-          renderData(val, contentTr.find('td:last'));
+          renderData(val, contentTr.find('td:last'), ignoreIDs);
         });
       }
     }
     else if (obj[0] == 'TUPLE') {
       assert(obj.length >= 2);
       if (obj.length == 2) {
-        jDomElt.append('<div class="typeLabel">empty tuple (id=' + obj[1] + ')</div>');
+        jDomElt.append('<div class="typeLabel">empty tuple' + idStr + '</div>');
       }
       else {
-        jDomElt.append('<div class="typeLabel">tuple (id=' + obj[1] + '):</div>');
+        jDomElt.append('<div class="typeLabel">tuple' + idStr + ':</div>');
         jDomElt.append('<table class="tupleTbl"><tr></tr><tr></tr></table>');
         var tbl = jDomElt.children('table');
         var headerTr = tbl.find('tr:first');
@@ -915,17 +921,17 @@ function renderData(obj, jDomElt) {
           headerTr.find('td:last').append(ind - 2);
 
           contentTr.append('<td class="tupleElt"></td>');
-          renderData(val, contentTr.find('td:last'));
+          renderData(val, contentTr.find('td:last'), ignoreIDs);
         });
       }
     }
     else if (obj[0] == 'SET') {
       assert(obj.length >= 2);
       if (obj.length == 2) {
-        jDomElt.append('<div class="typeLabel">empty set (id=' + obj[1] + ')</div>');
+        jDomElt.append('<div class="typeLabel">empty set' + idStr + '</div>');
       }
       else {
-        jDomElt.append('<div class="typeLabel">set (id=' + obj[1] + '):</div>');
+        jDomElt.append('<div class="typeLabel">set' + idStr + ':</div>');
         jDomElt.append('<table class="setTbl"></table>');
         var tbl = jDomElt.children('table');
         // create an R x C matrix:
@@ -952,17 +958,17 @@ function renderData(obj, jDomElt) {
 
           var curTr = tbl.find('tr:last');
           curTr.append('<td class="setElt"></td>');
-          renderData(val, curTr.find('td:last'));
+          renderData(val, curTr.find('td:last'), ignoreIDs);
         });
       }
     }
     else if (obj[0] == 'DICT') {
       assert(obj.length >= 2);
       if (obj.length == 2) {
-        jDomElt.append('<div class="typeLabel">empty dict (id=' + obj[1] + ')</div>');
+        jDomElt.append('<div class="typeLabel">empty dict' + idStr + '</div>');
       }
       else {
-        jDomElt.append('<div class="typeLabel">dict (id=' + obj[1] + '):</div>');
+        jDomElt.append('<div class="typeLabel">dict' + idStr + ':</div>');
         jDomElt.append('<table class="dictTbl"></table>');
         var tbl = jDomElt.children('table');
         $.each(obj, function(ind, kvPair) {
@@ -972,14 +978,14 @@ function renderData(obj, jDomElt) {
           var newRow = tbl.find('tr:last');
           var keyTd = newRow.find('td:first');
           var valTd = newRow.find('td:last');
-          renderData(kvPair[0], keyTd);
-          renderData(kvPair[1], valTd);
+          renderData(kvPair[0], keyTd, ignoreIDs);
+          renderData(kvPair[1], valTd, ignoreIDs);
         });
       }
     }
     else if (obj[0] == 'INSTANCE') {
       assert(obj.length >= 3);
-      jDomElt.append('<div class="typeLabel">' + obj[1] + ' instance (id=' + obj[2] + ')</div>');
+      jDomElt.append('<div class="typeLabel">' + obj[1] + ' instance' + idStr + '</div>');
 
       if (obj.length > 3) {
         jDomElt.append('<table class="instTbl"></table>');
@@ -998,7 +1004,7 @@ function renderData(obj, jDomElt) {
           keyTd.append('<span class="keyObj">' + attrnameStr + '</span>');
 
           // values can be arbitrary objects, so recurse:
-          renderData(kvPair[1], valTd);
+          renderData(kvPair[1], valTd, ignoreIDs);
         });
       }
     }
@@ -1009,7 +1015,7 @@ function renderData(obj, jDomElt) {
         superclassStr += ('[extends ' + obj[3].join(',') + '] ');
       }
 
-      jDomElt.append('<div class="typeLabel">' + obj[1] + ' class ' + superclassStr + '(id=' + obj[2] + ')</div>');
+      jDomElt.append('<div class="typeLabel">' + obj[1] + ' class ' + superclassStr + idStr + '</div>');
 
       if (obj.length > 4) {
         jDomElt.append('<table class="classTbl"></table>');
@@ -1028,7 +1034,7 @@ function renderData(obj, jDomElt) {
           keyTd.append('<span class="keyObj">' + attrnameStr + '</span>');
 
           // values can be arbitrary objects, so recurse:
-          renderData(kvPair[1], valTd);
+          renderData(kvPair[1], valTd, ignoreIDs);
         });
       }
     }
@@ -1048,13 +1054,13 @@ function renderData(obj, jDomElt) {
       // then display an abbreviated version rather than the gory details
       noStrReprRE = /<.* at 0x.*>/;
       if (noStrReprRE.test(strRepr)) {
-        jDomElt.append('<span class="customObj">' + typeName + ' (id=' + id + ')</span>');
+        jDomElt.append('<span class="customObj">' + typeName + idStr + '</span>');
       }
       else {
         strRepr = htmlspecialchars(strRepr); // escape strings!
 
         // warning: we're overloading tuple elts for custom data types
-        jDomElt.append('<div class="typeLabel">' + typeName + ' (id=' + id + '):</div>');
+        jDomElt.append('<div class="typeLabel">' + typeName + idStr + ':</div>');
         jDomElt.append('<table class="tupleTbl"><tr><td class="tupleElt">' + strRepr + '</td></tr></table>');
       }
     }

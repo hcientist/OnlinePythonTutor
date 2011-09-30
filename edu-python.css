@@ -572,7 +572,9 @@ table#gradeMatrix thead {
 }
 
 table#gradeMatrix td {
-  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 8px;
   vertical-align: middle;
 }
  

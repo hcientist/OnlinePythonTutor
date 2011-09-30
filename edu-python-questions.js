@@ -117,8 +117,6 @@ function genTestResultHandler(idx) {
     assert(testResults[idx] === null);
     testResults[idx] = res;
 
-    console.log(idx, res);
-
     // if ALL results have been delivered, then call
     // readyToGradeSubmission() ... (remember that each result comes in
     // asynchronously and probably out-of-order)
@@ -223,16 +221,39 @@ function readyToGradeSubmission() {
   for (var i = 0; i < tests.length; i++) {
     var res = testResults[i];
 
-    $("#gradeMatrix tbody").append("<tr></tr>");
+    $("#gradeMatrix tbody").append('<tr class="gradeMatrixRow"></tr>');
 
-    $("#gradeMatrix tr:last").append("<td><pre>in</pre></td>");
-    $("#gradeMatrix tr:last").append("<td><pre>out</pre></td>");
+    $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="testInputCell"></td>');
 
-    if (res.passed_test) {
-      $("#gradeMatrix tr:last").append('<td><img style="vertical-align: middle;" src="yellow-happy-face.png"/></td>');
+    // input_val could be null if there's a REALLY bad error :(
+    if (res.input_globals) {
+      //console.log(i, res.input_globals);
+
+      // TODO: create a div for every NON-function element of input_globals
+
+      //renderData(res.input_val,
+      //           $("#gradeMatrix tr.gradeMatrixRow:last td.testInputCell:last"),
+      //           true /* ignoreIDs */);
+    }
+
+    if (res.status == 'error') {
+      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="testOutputCell">' + res.error_msg + '</td>');
     }
     else {
-      $("#gradeMatrix tr:last").append('<td><img style="vertical-align: middle; margin-right: 4px;" src="red-sad-face.jpg"/> <span><a href="#">Debug me</a></span></td>');
+      assert(res.status == 'ok');
+      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="testOutputCell"></td>');
+
+      $("#gradeMatrix tr.gradeMatrixRow:last td.testOutputCell:last").append(res.output_var_to_compare + ' = ');
+      renderData(res.test_val,
+                 $("#gradeMatrix tr.gradeMatrixRow:last td.testOutputCell:last"),
+                 true /* ignoreIDs */);
+    }
+
+    if (res.passed_test) {
+      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td><img style="vertical-align: middle;" src="yellow-happy-face.png"/></td>');
+    }
+    else {
+      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td><img style="vertical-align: middle; margin-right: 4px;" src="red-sad-face.jpg"/> <span><a href="#">Debug me</a></span></td>');
     }
 
   }

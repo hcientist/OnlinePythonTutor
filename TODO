@@ -138,3 +138,9 @@ file):
   scrubber (like for video playback) combined with pointing at line of
   code to jump to the NEXT or PREV time that line of code as executed.
 
+---
+2011-09-29
+
+Upgrade to Python 2.7 after moving over to Webfaction, so that I can use
+the default standard library "import json"
+

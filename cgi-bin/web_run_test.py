@@ -35,8 +35,7 @@ expect_trace_final_entry = None
 
 def user_script_finalizer(output_lst):
   # very important!
-  global user_trace
-  global expect_trace_final_entry
+  global user_trace, expect_trace_final_entry
 
   user_trace = output_lst
 
@@ -47,8 +46,7 @@ def user_script_finalizer(output_lst):
 
 def expect_script_finalizer(output_lst):
   # very important!
-  global user_trace
-  global expect_trace_final_entry
+  global user_trace, expect_trace_final_entry
 
   expect_trace_final_entry = output_lst[-1]
 
@@ -89,7 +87,18 @@ def really_finalize():
     ret = {}
     ret['status'] = 'ok'
     ret['passed_test'] = False
-    ret['var_to_compare'] = single_var_to_compare
+    ret['output_var_to_compare'] = single_var_to_compare
+
+    # Grab the 'inputs' by finding all global vars that are in scope
+    # prior to making the first function call.
+    #
+    # NB: This means that you can't call any functions to initialize
+    # your input data, since the FIRST function call must be the function
+    # that you're testing.
+    for e in user_trace:
+      if e['event'] == 'call':
+        ret['input_globals'] = e['globals']
+        break
 
     if user_trace_final_entry['event'] == 'return': # normal termination
       if single_var_to_compare not in user_trace_final_entry['globals']:
@@ -102,18 +111,6 @@ def really_finalize():
         # do the actual comparison here!
         if ret['expect_val'] == ret['test_val']:
           ret['passed_test'] = True
-
-        # get the INITIAL value of single_var_to_compare by finding its
-        # FIRST occurrence in user_trace
-        #
-        # NB: This means that the initialization code for the input can
-        # only span ONE Python source line.  i.e., it must be a primitive
-        # literal assignment and not a data structure that's built up
-        # incrementally over several steps.
-        for e in user_trace:
-          if 'globals' in e and single_var_to_compare in e['globals']:
-            ret['input_val'] = e['globals'][single_var_to_compare]
-            break # BREAK AFTER FIRST MATCH!!!
 
     else:
       ret['status'] = 'error'
