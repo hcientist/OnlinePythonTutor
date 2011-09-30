@@ -227,13 +227,21 @@ function readyToGradeSubmission() {
 
     // input_val could be null if there's a REALLY bad error :(
     if (res.input_globals) {
-      //console.log(i, res.input_globals);
+      var curCell = $("#gradeMatrix tr.gradeMatrixRow:last td.testInputCell:last");
 
-      // TODO: create a div for every NON-function element of input_globals
+      curCell.append('<table class="testInputTable"></table>');
 
-      //renderData(res.input_val,
-      //           $("#gradeMatrix tr.gradeMatrixRow:last td.testInputCell:last"),
-      //           true /* ignoreIDs */);
+      // print out all non-function input global variables in a table
+      for (k in res.input_globals) {
+        var v = res.input_globals[k];
+        if (isPrimitiveType(v) || v[0] != 'function') {
+          curCell.find('table.testInputTable').append('<tr class="testInputVarRow"></tr>');
+          curCell.find('table.testInputTable tr.testInputVarRow:last').append('<td class="testInputVarnameCell">' + k + '</td>');
+
+          curCell.find('table.testInputTable tr.testInputVarRow:last').append('<td class="testInputValCell"></td>');
+          renderData(v, curCell.find('table.testInputTable td.testInputValCell:last'), true /* ignoreIDs */);
+        }
+      }
     }
 
     if (res.status == 'error') {
@@ -243,10 +251,13 @@ function readyToGradeSubmission() {
       assert(res.status == 'ok');
       $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="testOutputCell"></td>');
 
-      $("#gradeMatrix tr.gradeMatrixRow:last td.testOutputCell:last").append(res.output_var_to_compare + ' = ');
-      renderData(res.test_val,
-                 $("#gradeMatrix tr.gradeMatrixRow:last td.testOutputCell:last"),
-                 true /* ignoreIDs */);
+      var curCell = $("#gradeMatrix tr.gradeMatrixRow:last td.testOutputCell:last");
+      curCell.append('<table><tr class="testOutputVarRow"></tr></table>');
+
+      curCell.find('tr.testOutputVarRow:last').append('<td class="testOutputVarnameCell">' + res.output_var_to_compare + '</td>');
+
+      curCell.find('tr.testOutputVarRow:last').append('<td class="testOutputValCell"></td>');
+      renderData(res.test_val, curCell.find('td.testOutputValCell:last'), true /* ignoreIDs */);
     }
 
     if (res.passed_test) {
@@ -257,4 +268,22 @@ function readyToGradeSubmission() {
     }
 
   }
+
+
+  var numPassed = 0;
+  for (var i = 0; i < tests.length; i++) {
+    var res = testResults[i];
+    if (res.passed_test) {
+      numPassed++;
+    }
+  }
+
+  if (numPassed < tests.length) {
+    $("#gradeSummary").html('Your solution passed ' + numPassed + '/' + tests.length + ' tests.  Try to debug the incorrect outputs!');
+  }
+  else {
+    assert(numPassed == tests.length);
+    $("#gradeSummary").html('Congrats, your solution passed all ' + tests.length + ' tests!');
+  }
+
 }

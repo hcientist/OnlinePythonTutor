@@ -569,6 +569,7 @@ table#gradeMatrix {
 table#gradeMatrix thead {
   font-weight: bold;
   border: solid;
+  text-align: center;
 }
 
 table#gradeMatrix td {
@@ -582,3 +583,14 @@ table#gradeMatrix td {
   margin-top: 12px;
   font-size: 12pt;
 }
+
+td.testInputVarnameCell,
+td.testOutputVarnameCell {
+
+}
+
+td.testInputValCell,
+td.testOutputValCell {
+
+}
+
