@@ -332,7 +332,8 @@ function gradeSubmission() {
         var v = res.input_globals[k];
         if (isPrimitiveType(v) || v[0] != 'function') {
           curCell.find('table.testInputTable').append('<tr class="testInputVarRow"></tr>');
-          curCell.find('table.testInputTable tr.testInputVarRow:last').append('<td class="testInputVarnameCell">' + k + '</td>');
+
+          curCell.find('table.testInputTable tr.testInputVarRow:last').append('<td class="testInputVarnameCell">' + k + ':</td>');
 
           curCell.find('table.testInputTable tr.testInputVarRow:last').append('<td class="testInputValCell"></td>');
           renderData(v, curCell.find('table.testInputTable td.testInputValCell:last'), true /* ignoreIDs */);
@@ -350,7 +351,7 @@ function gradeSubmission() {
       var curCell = $("#gradeMatrix tr.gradeMatrixRow:last td.testOutputCell:last");
       curCell.append('<table><tr class="testOutputVarRow"></tr></table>');
 
-      curCell.find('tr.testOutputVarRow:last').append('<td class="testOutputVarnameCell">' + res.output_var_to_compare + '</td>');
+      curCell.find('tr.testOutputVarRow:last').append('<td class="testOutputVarnameCell">' + res.output_var_to_compare + ':</td>');
 
       curCell.find('tr.testOutputVarRow:last').append('<td class="testOutputValCell"></td>');
       renderData(res.test_val, curCell.find('td.testOutputValCell:last'), true /* ignoreIDs */);

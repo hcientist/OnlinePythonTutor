@@ -581,7 +581,8 @@ table#gradeMatrix td.testOutputCell {
  
 td.testInputVarnameCell,
 td.testOutputVarnameCell {
-  padding-right: 8px;
+  padding-right: 2px;
+  text-align: right;
 }
 
 td.testInputValCell,
