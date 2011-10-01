@@ -57,6 +57,11 @@ $(document).ready(function() {
   $(window).bind("hashchange", function(e) {
     appMode = $.bbq.getState("mode"); // assign this to the GLOBAL appMode
 
+    // default mode is 'edit'
+    if (appMode == undefined) {
+      appMode = 'edit';
+    }
+
     if (appMode == 'edit') {
       $("#pyInputPane").show();
       $("#pyOutputPane").hide();
@@ -111,7 +116,6 @@ $(document).ready(function() {
   });
 
 
-  enterEditMode();
   // From: http://benalman.com/projects/jquery-bbq-plugin/
   //   Since the event is only triggered when the hash changes, we need
   //   to trigger the event now, to handle the hash the page may have
