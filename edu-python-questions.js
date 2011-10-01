@@ -48,8 +48,6 @@ function resetTestResults() {
 $(document).ready(function() {
   eduPythonCommonInit(); // must call this first!
 
-  enterEditMode();
-
   $("#actualCodeInput").tabby(); // recognize TAB and SHIFT-TAB
   $("#testCodeInput").tabby();   // recognize TAB and SHIFT-TAB
 
@@ -111,6 +109,14 @@ $(document).ready(function() {
       gradeSubmission();
     }
   });
+
+
+  enterEditMode();
+  // From: http://benalman.com/projects/jquery-bbq-plugin/
+  //   Since the event is only triggered when the hash changes, we need
+  //   to trigger the event now, to handle the hash the page may have
+  //   loaded with.
+  $(window).trigger( "hashchange" );
 
 
   // load the questions file specified by the query string

@@ -29,7 +29,7 @@ import cgi, os, demjson
 form = cgi.FieldStorage()
 question_file = form['question_file'].value
 
-fn = QUESTIONS_DIR + question_file
+fn = QUESTIONS_DIR + question_file + '.txt'
 assert os.path.isfile(fn)
 
 
