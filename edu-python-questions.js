@@ -62,6 +62,14 @@ $(document).ready(function() {
       appMode = 'edit';
     }
 
+    // if there's no curTrace, then default to edit mode since there's
+    // nothing to visualize or grade:
+    if (!curTrace) {
+      appMode = 'edit';
+      $.bbq.pushState({ mode: 'edit' });
+    }
+
+
     if (appMode == 'edit') {
       $("#pyInputPane").show();
       $("#pyOutputPane").hide();
