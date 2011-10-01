@@ -1,0 +1,51 @@
+Name:
+Optimize: Element search
+
+Question:
+
+The following search function finds the index of the first occurrence of
+elt in lst (or -1 if elt not found).  Optimize this function so that it
+processes an 16-element list in less than executed 50 instructions.
+
+Hint:
+Linear search will never work.
+
+Solution:
+Implement binary search instead of linear search.
+
+MaxInstructions: 50
+
+Skeleton:
+
+def search(lst, elt):
+    ind = -1;
+    for i in range(len(lst)):
+        if lst[i] == elt:
+            return i
+    return -1
+
+
+Test:
+haystack = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p']
+needle = 'n'
+result = search(haystack, needle)
+
+Expect:
+result = 13
+
+Test:
+haystack = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p']
+needle = 'l'
+result = search(haystack, needle)
+
+Expect:
+result = 11
+
+Test:
+haystack = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p']
+needle = 'g'
+result = search(haystack, needle)
+
+Expect:
+result = 6
+
