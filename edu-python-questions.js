@@ -24,6 +24,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Pre-req: edu-python.js should be imported BEFORE this file
 
 
+// parsed form of a questions file from questions/
+var curQuestion = null;
+
+
 // matching arrays of test code and 'expected outputs' from those tests
 var tests = null;
 var expects = null;
@@ -208,6 +212,8 @@ function genDebugLinkHandler(failingTestIndex) {
 
 
 function finishQuestionsInit(questionsDat) {
+  curQuestion = questionsDat; // initialize global
+
   $("#ProblemName").html(questionsDat.name);
   $("#ProblemStatement").html(questionsDat.question);
 
@@ -238,6 +244,31 @@ function finishQuestionsInit(questionsDat) {
 
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(function() {
+
+    if (curQuestion.max_line_delta) {
+      // if the question has a 'max_line_delta' field, then check to see
+      // if > curQuestion.max_line_delta lines have changed from
+      // curQuestion.skeleton, and reject the attempt if that's the case
+      var numChangedLines = 0;
+
+      // split on newlines to do a line-level diff
+      var diffResults = diff($("#actualCodeInput").val().split(/\n/), questionsDat.skeleton.split(/\n/));
+      //console.log(diffResults);
+      $.each(diffResults, function(i, e) {
+        if (e.file1 && e.file2) {
+          // i THINK this is the right way to calculate the number of
+          // changed lines ... taking the MAXIMUM of the delta lengths
+          // of e.file1 and e.file2:
+          numChangedLines += Math.max(e.file1.length, e.file2.length);
+        }
+      });
+
+      if (numChangedLines > curQuestion.max_line_delta) {
+        alert("Error: You have changed " + numChangedLines + " lines of code, but you are only allowed to change " + curQuestion.max_line_delta + " lines to solve this problem.");
+        return;
+      }
+    }
+
     $('#executeBtn').html("Please wait ... processing your code");
     $('#executeBtn').attr('disabled', true);
     $("#pyOutputPane").hide();

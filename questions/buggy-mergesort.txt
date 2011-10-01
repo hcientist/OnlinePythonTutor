@@ -3,18 +3,22 @@ Debugging: Mergesort
 
 Question:
 
-Make the given mergesort function work properly.
+Add at most TWO LINES of code to make the given mergesort function work
+properly.
 
 Hint:
 Focus on the merge function.
 
 Solution:
-The merge function must append all of the 'leftovers' from left and
-right onto result.
+The merge function must append all of the leftover entries from 'left'
+and 'right' onto 'result'.
+
+MaxLineDelta: 2
 
 Skeleton:
 
-# Adapted from: http://en.literateprograms.org/Merge_sort_(Python)
+# Adapted from:
+# http://en.literateprograms.org/Merge_sort_(Python)
 
 def merge(left, right):
     result = []
@@ -44,4 +48,26 @@ result = mergesort(input)
 
 Expect:
 result = [1,2,3,4]
+
+Test:
+input = [3,4,6,5,8,7,2,1]
+result = mergesort(input)
+
+Expect:
+result = [1,2,3,4,5,6,7,8]
+
+Test:
+input = [2,1,3]
+result = mergesort(input)
+
+Expect:
+result = [1,2,3]
+
+
+Test:
+input = [1]
+result = mergesort(input)
+
+Expect:
+result = [1]
 

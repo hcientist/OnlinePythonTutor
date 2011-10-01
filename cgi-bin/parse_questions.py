@@ -52,6 +52,16 @@ def parseQuestionsFile(filename):
     # only strip TRAILING spaces and not leading spaces
     line = line.rstrip()
 
+    # special-case one-liners:
+    if line.startswith('MaxLineDelta:'):
+      ret['max_line_delta'] = int(line.split(':')[1])
+      continue # move to next line
+
+    if line.startswith('MaxInstructions:'):
+      ret['max_instructions'] = int(line.split(':')[1])
+      continue # move to next line
+
+
     if line in delimiters:
       processRecord()
       curDelimiter = line

@@ -7,6 +7,8 @@ The given function reverses a list in-place, but it doesn't work for all
 test inputs (try to "Submit answer" to see the failing tests).  Change
 ONE line to make this function pass all tests.
 
+MaxLineDelta: 1
+
 Hint:
 Focus on the 'indices' variable.
 

@@ -28,7 +28,7 @@
 
 # upper-bound on the number of executed lines, in order to guard against
 # infinite loops
-MAX_EXECUTED_LINES = 100
+MAX_EXECUTED_LINES = 300
 
 
 import sys
