@@ -203,6 +203,25 @@ function finishQuestionsInit(questionsDat) {
              // do this AFTER making #pyOutputPane visible, or else
              // jsPlumb connectors won't render properly
              processTrace(traceData, true);
+
+             // don't let the user submit answer when there's an error
+             var hasError = false;
+             for (var i = 0; i < curTrace.length; i++) {
+                var curEntry = curTrace[i];
+                if (curEntry.event == 'exception' ||
+                    curEntry.event == 'uncaught_exception') {
+                  hasError = true;
+                  break;
+                }
+             }
+
+             if (hasError) {
+               $('#submitBtn').attr('disabled', true);
+             }
+             else {
+               $('#submitBtn').attr('disabled', false);
+             }
+
            },
            "json");
   });
