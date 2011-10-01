@@ -54,6 +54,65 @@ $(document).ready(function() {
   $("#testCodeInput").tabby();   // recognize TAB and SHIFT-TAB
 
 
+  // be friendly to the browser's forward and back buttons
+  // thanks to http://benalman.com/projects/jquery-bbq-plugin/
+  $(window).bind("hashchange", function(e) {
+    appMode = $.bbq.getState("mode"); // assign this to the GLOBAL appMode
+
+    if (appMode == 'edit') {
+      $("#pyInputPane").show();
+      $("#pyOutputPane").hide();
+      $("#pyGradingPane").hide();
+
+      $("#HintStatement").show();
+      $("#SolutionStatement").show();
+    }
+    else if (appMode == 'visualize') {
+      $("#pyInputPane").hide();
+      $("#pyOutputPane").show();
+      $("#pyGradingPane").hide();
+
+      $("#HintStatement").show();
+      $("#SolutionStatement").show();
+
+      $('#submitBtn').html("Submit answer");
+      $('#submitBtn').attr('disabled', false);
+
+      $('#executeBtn').html("Visualize execution");
+      $('#executeBtn').attr('disabled', false);
+
+
+      // do this AFTER making #pyOutputPane visible, or else
+      // jsPlumb connectors won't render properly
+      processTrace(curTrace /* kinda dumb and redundant */, true);
+
+      // don't let the user submit answer when there's an error
+      var hasError = false;
+      for (var i = 0; i < curTrace.length; i++) {
+         var curEntry = curTrace[i];
+         if (curEntry.event == 'exception' ||
+             curEntry.event == 'uncaught_exception') {
+           hasError = true;
+           break;
+         }
+      }
+      $('#submitBtn').attr('disabled', hasError);
+    }
+    else if (appMode == 'grade') {
+      $("#gradeMatrix #gradeMatrixTbody").empty(); // clear it!!!
+
+      $("#pyInputPane").hide();
+      $("#pyOutputPane").hide();
+      $("#pyGradingPane").show();
+
+      $("#HintStatement").hide();
+      $("#SolutionStatement").hide();
+
+      gradeSubmission();
+    }
+  });
+
+
   // load the questions file specified by the query string
   var questionsFilename = location.search.substring(1);
 
@@ -75,41 +134,17 @@ function concatSolnTestCode(solnCode, testCode) {
 
 
 function enterEditMode() {
-  appMode = 'edit';
-
-  $("#pyInputPane").show();
-  $("#pyOutputPane").hide();
-  $("#pyGradingPane").hide();
-
-  $("#HintStatement").show();
-  $("#SolutionStatement").show();
+  $.bbq.pushState({ mode: 'edit' });
 }
 
-function enterVisualizeMode() {
-  appMode = 'visualize';
-
-  $("#pyInputPane").hide();
-  $("#pyOutputPane").show();
-  $("#pyGradingPane").hide();
-
-  $("#HintStatement").show();
-  $("#SolutionStatement").show();
-
-  $('#submitBtn').html("Submit answer");
-  $('#submitBtn').attr('disabled', false);
+function enterVisualizeMode(traceData) {
+  curTrace = traceData; // first assign it to the global curTrace, then
+                        // let jQuery BBQ take care of the rest
+  $.bbq.pushState({ mode: 'visualize' });
 }
 
 function enterGradingMode() {
-  appMode = 'grade';
-
-  $("#gradeMatrix #gradeMatrixTbody").empty(); // clear it!!!
-
-  $("#pyInputPane").hide();
-  $("#pyOutputPane").hide();
-  $("#pyGradingPane").show();
-
-  $("#HintStatement").hide();
-  $("#SolutionStatement").hide();
+  $.bbq.pushState({ mode: 'grade' });
 }
 
 
@@ -119,16 +154,17 @@ function genTestResultHandler(idx) {
     assert(testResults[idx] === null);
     testResults[idx] = res;
 
-    // if ALL results have been delivered, then call
-    // readyToGradeSubmission() ... (remember that each result comes in
+    // if ALL results have been successfully delivered, then call
+    // enterGradingMode() (remember that each result comes in
     // asynchronously and probably out-of-order)
+
     for (var i = 0; i < testResults.length; i++) {
       if (testResults[i] === null) {
         return;
       }
     }
 
-    readyToGradeSubmission();
+    enterGradingMode();
   }
 
   return ret;
@@ -194,34 +230,7 @@ function finishQuestionsInit(questionsDat) {
            {user_script : submittedCode},
            function(traceData) {
              renderPyCodeOutput(submittedCode);
-
-             enterVisualizeMode();
-
-             $('#executeBtn').html("Visualize execution");
-             $('#executeBtn').attr('disabled', false);
-
-             // do this AFTER making #pyOutputPane visible, or else
-             // jsPlumb connectors won't render properly
-             processTrace(traceData, true);
-
-             // don't let the user submit answer when there's an error
-             var hasError = false;
-             for (var i = 0; i < curTrace.length; i++) {
-                var curEntry = curTrace[i];
-                if (curEntry.event == 'exception' ||
-                    curEntry.event == 'uncaught_exception') {
-                  hasError = true;
-                  break;
-                }
-             }
-
-             if (hasError) {
-               $('#submitBtn').attr('disabled', true);
-             }
-             else {
-               $('#submitBtn').attr('disabled', false);
-             }
-
+             enterVisualizeMode(traceData);
            },
            "json");
   });
@@ -248,17 +257,13 @@ function finishQuestionsInit(questionsDat) {
              "json");
     }
   });
-
 }
 
 
 // should be called after ALL elements in testsTraces and expectsTraces
 // have been populated by their respective AJAX POST calls
-function readyToGradeSubmission() {
-  enterGradingMode();
-
+function gradeSubmission() {
   $("#submittedCodePRE").html(htmlspecialchars($("#actualCodeInput").val()));
-  //$("#submittedCodeRO").val($("#actualCodeInput").val());
 
   for (var i = 0; i < tests.length; i++) {
     var res = testResults[i];
