@@ -102,6 +102,8 @@ function enterVisualizeMode() {
 function enterGradingMode() {
   appMode = 'grade';
 
+  $("#gradeMatrix #gradeMatrixTbody").empty(); // clear it!!!
+
   $("#pyInputPane").hide();
   $("#pyOutputPane").hide();
   $("#pyGradingPane").show();
@@ -128,19 +130,26 @@ function genTestResultHandler(idx) {
 
     readyToGradeSubmission();
   }
+
   return ret;
 }
 
 function genDebugLinkHandler(failingTestIndex) {
   function ret() {
-    console.log('DEBUG', failingTestIndex);
-
-    // TODO: switch back to visualize mode, populating the "test" input
+    // Switch back to visualize mode, populating the "test" input
     // field with the failing test case, and RE-RUN the back-end to
     // visualize execution (with proper IDs)
 
+    curTestIndex = failingTestIndex;
+    $("#testCodeInput").val(tests[curTestIndex]);
+
+    $(this).html("One sec ..."); // this is the current LINK element
+
+    $("#executeBtn").trigger('click'); // emulate an execute button press!
+
     return false; // don't reload the page
   }
+
   return ret;
 }
 
@@ -229,12 +238,14 @@ function finishQuestionsInit(questionsDat) {
 // have been populated by their respective AJAX POST calls
 function readyToGradeSubmission() {
   enterGradingMode();
-  $("#submittedCodeRO").val($("#actualCodeInput").val());
+
+  $("#submittedCodePRE").html(htmlspecialchars($("#actualCodeInput").val()));
+  //$("#submittedCodeRO").val($("#actualCodeInput").val());
 
   for (var i = 0; i < tests.length; i++) {
     var res = testResults[i];
 
-    $("#gradeMatrix tbody.gradeMatrixTbody").append('<tr class="gradeMatrixRow"></tr>');
+    $("#gradeMatrix tbody#gradeMatrixTbody").append('<tr class="gradeMatrixRow"></tr>');
 
     $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="testInputCell"></td>');
 
@@ -258,7 +269,7 @@ function readyToGradeSubmission() {
     }
 
     if (res.status == 'error') {
-      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="testOutputCell">' + res.error_msg + '</td>');
+      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="testOutputCell"><span style="padding: 5px; background-color: ' + errorColor + ';">' + res.error_msg + '</span></td>');
     }
     else {
       assert(res.status == 'ok');
@@ -302,11 +313,11 @@ function readyToGradeSubmission() {
   }
 
   if (numPassed < tests.length) {
-    $("#gradeSummary").html('Your solution passed ' + numPassed + '/' + tests.length + ' tests.  Try to debug the incorrect outputs!');
+    $("#gradeSummary").html('Your submitted answer passed ' + numPassed + ' out of ' + tests.length + ' tests.  Try to debug the failed tests!');
   }
   else {
     assert(numPassed == tests.length);
-    $("#gradeSummary").html('Congrats, your solution passed all ' + tests.length + ' tests!');
+    $("#gradeSummary").html('Congrats, your submitted answer passed all ' + tests.length + ' tests!');
   }
 
 }

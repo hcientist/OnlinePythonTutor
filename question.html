@@ -139,13 +139,13 @@ Program output:
 
 <div id="pyGradingPane">
 
+
 <center>
 
-Your submitted solution:<br/>
-<textarea id="submittedCodeRO" cols="60" rows="12" wrap="off" readonly="readonly">
-</textarea>
-
-<div id="gradeSummary"></div>
+<div id="submittedSolutionDisplay">
+  <pre id="submittedCodePRE"></pre>
+  <div id="gradeSummary"></div>
+</div>
 
 <table id="gradeMatrix">
 <thead>
@@ -155,7 +155,7 @@ Your submitted solution:<br/>
 <td>Status</td>
 </tr>
 </thead>
-<tbody class="gradeMatrixTbody">
+<tbody id="gradeMatrixTbody">
 </tbody>
 </table>
 

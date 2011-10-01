@@ -43,6 +43,7 @@ var lightGray = "#cccccc";
 var darkBlue = "#3D58A2";
 var lightBlue = "#899CD1";
 var pinkish = "#F15149";
+var darkRed = "#9d1e18";
 
 
 // ugh globals!
