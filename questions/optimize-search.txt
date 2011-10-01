@@ -4,8 +4,9 @@ Optimize: Element search
 Question:
 
 The following search function finds the index of the first occurrence of
-elt in lst (or -1 if elt not found).  Optimize this function so that it
-processes an 16-element list in less than executed 50 instructions.
+elt in a sorted list lst (or -1 if elt not found).  Optimize this
+function so that it works on a 64-element sorted list using less than 50
+instructions.
 
 Hint:
 Linear search will never work.
@@ -26,26 +27,34 @@ def search(lst, elt):
 
 
 Test:
-haystack = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p']
-needle = 'n'
+haystack = range(64)
+needle = 63
 result = search(haystack, needle)
 
 Expect:
-result = 13
+result = 63
 
 Test:
-haystack = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p']
-needle = 'l'
+haystack = range(64)
+needle = 60
 result = search(haystack, needle)
 
 Expect:
-result = 11
+result = 60
 
 Test:
-haystack = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p']
-needle = 'g'
+haystack = range(64)
+needle = 32
 result = search(haystack, needle)
 
 Expect:
-result = 6
+result = 32
+
+Test:
+haystack = range(64)
+needle = 65
+result = search(haystack, needle)
+
+Expect:
+result = -1
 
