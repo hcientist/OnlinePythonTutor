@@ -1,0 +1,47 @@
+Name:
+Debugging: Mergesort
+
+Question:
+
+Make the given mergesort function work properly.
+
+Hint:
+Focus on the merge function.
+
+Solution:
+The merge function must append all of the 'leftovers' from left and
+right onto result.
+
+Skeleton:
+
+# Adapted from: http://en.literateprograms.org/Merge_sort_(Python)
+
+def merge(left, right):
+    result = []
+    i ,j = 0, 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    return result
+
+def mergesort(list):
+    if len(list) < 2:
+        return list
+    else:
+        middle = len(list) / 2
+        left = mergesort(list[:middle])
+        right = mergesort(list[middle:])
+        return merge(left, right)
+
+
+Test:
+input = [4,3,2,1]
+result = mergesort(input)
+
+Expect:
+result = [1,2,3,4]
+
