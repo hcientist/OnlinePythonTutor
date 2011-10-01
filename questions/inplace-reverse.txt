@@ -1,26 +1,27 @@
 Name:
-In-place reverse
+Debugging: In-place reverse
 
 Question:
-Write a function to reverse a list in-place.  For example, it
-should mutate ['a', 'b, 'c', 'd', 'e'] into ['e', 'd', 'c', 'b', 'a'].
+
+The given function reverses a list in-place, but it doesn't work for all
+test inputs (try to "Submit answer" to see the failing tests).  Change
+ONE line to make this function pass all tests.
 
 Hint:
-Think about swapping pairs of elements.
+Focus on the 'indices' variable.
 
 Solution:
-Swap the first and last elements, then the second and second-to-last
-elements, etc.
+Change line 3 to "indices = range((maxIndex + 1)/2)"
 
 Skeleton:
 
 def reverse(lst):
-    # write your solution code here
-    N = len(lst)
-    for i in range(N/2):
+    maxIndex = len(lst) - 1
+    indices = range(maxIndex/2)
+    for i in indices:
         tmp = lst[i]
-        lst[i] = lst[N-i]
-        lst[N-i] = tmp
+        lst[i] = lst[maxIndex - i]
+        lst[maxIndex - i] = tmp
 
 
 Test:
@@ -30,12 +31,14 @@ reverse(input)
 Expect:
 input = ['e', 'd', 'c', 'b', 'a']
 
+
 Test:
 input = ['a', 'b', 'c', 'd']
 reverse(input)
 
 Expect:
 input = ['d', 'c', 'b', 'a']
+
 
 Test:
 input = ['a', 'b', 'c']
@@ -44,12 +47,14 @@ reverse(input)
 Expect:
 input = ['c', 'b', 'a']
 
+
 Test:
 input = ['a', 'b']
 reverse(input)
 
 Expect:
 input = ['b', 'a']
+
 
 Test:
 input = ['a']
