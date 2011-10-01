@@ -607,3 +607,6 @@ div#submittedSolutionDisplay {
   margin-top: 12px;
 }
 
+#pyGradingPane {
+  margin-bottom: 20px;
+}

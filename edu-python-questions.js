@@ -136,18 +136,17 @@ function genTestResultHandler(idx) {
 
 function genDebugLinkHandler(failingTestIndex) {
   function ret() {
-    // Switch back to visualize mode, populating the "test" input
+    // Switch back to visualize mode, populating the "testCodeInput"
     // field with the failing test case, and RE-RUN the back-end to
-    // visualize execution (with proper IDs)
-
+    // visualize execution (this time with proper object IDs)
     curTestIndex = failingTestIndex;
     $("#testCodeInput").val(tests[curTestIndex]);
 
-    $(this).html("One sec ..."); // this is the current LINK element
+    // prevent multiple-clicking ...
+    $(this).html("One sec ...");
+    $(this).attr('disabled', true);
 
     $("#executeBtn").trigger('click'); // emulate an execute button press!
-
-    return false; // don't reload the page
   }
 
   return ret;
@@ -290,16 +289,15 @@ function readyToGradeSubmission() {
       $("#gradeMatrix tr.gradeMatrixRow:last").append('<td>' + happyFaceImg + '</td>');
     }
     else {
-      var sadFaceImg  = '<img style="vertical-align: middle; margin-right: 4px;" src="red-sad-face.jpg"/>';
+      var sadFaceImg = '<img style="vertical-align: middle; margin-right: 8px;" src="red-sad-face.jpg"/>';
 
-      // set its ID to 'debug_test_$i'
-      var linkID = 'debug_test_' + i;
-      var debugMeSpan = ' <span><a href="#" id="' + linkID + '">Debug me</a></span>';
+      var debugBtnID  = 'debug_test_' + i;
+      var debugMeBtn = '<button id="' + debugBtnID + '" class="debugBtn" type="button">Debug me</button>';
 
-      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td>' + sadFaceImg + debugMeSpan + '</td>');
+      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td>' + sadFaceImg + debugMeBtn + '</td>');
 
-      $('#' + linkID).unbind(); // unbind it just to be paranoid
-      $('#' + linkID).click(genDebugLinkHandler(i));
+      $('#' + debugBtnID).unbind(); // unbind it just to be paranoid
+      $('#' + debugBtnID).click(genDebugLinkHandler(i));
     }
   }
 
