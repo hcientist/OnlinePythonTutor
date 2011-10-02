@@ -355,7 +355,7 @@ function gradeSubmission() {
     }
 
     if (res.status == 'error') {
-      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="testOutputCell"><span style="padding-left: 3px; padding-right: 3px; background-color: ' + errorColor + '">' + res.error_msg + '</span></td>');
+      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="testOutputCell"><span style="color: ' + darkRed + '">' + res.error_msg + '</span></td>');
     }
     else {
       assert(res.status == 'ok');
