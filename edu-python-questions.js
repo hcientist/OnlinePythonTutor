@@ -380,8 +380,12 @@ function gradeSubmission() {
 
       var debugBtnID  = 'debug_test_' + i;
       var debugMeBtn = '<button id="' + debugBtnID + '" class="debugBtn" type="button">Debug me</button>';
+      var expectedSpan = '<span class="expectedSpan">Expected: </span>';
 
-      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td>' + sadFaceImg + debugMeBtn + '</td>');
+      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="statusCell">' + sadFaceImg + debugMeBtn + expectedSpan + '</td>');
+
+      var curCell = $("#gradeMatrix tr.gradeMatrixRow:last td.statusCell:last");
+      renderData(res.expect_val, curCell.find('span.expectedSpan:last'), true /* ignoreIDs */);
 
       $('#' + debugBtnID).unbind(); // unbind it just to be paranoid
       $('#' + debugBtnID).click(genDebugLinkHandler(i));

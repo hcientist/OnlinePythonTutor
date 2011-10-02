@@ -565,7 +565,7 @@ table#gradeMatrix {
 table#gradeMatrix thead {
   font-weight: bold;
   border: solid;
-  text-align: center;
+  /*text-align: center;*/
 }
 
 table#gradeMatrix td.testInputCell,
@@ -606,4 +606,8 @@ div#submittedSolutionDisplay {
 
 #pyGradingPane {
   margin-bottom: 20px;
+}
+
+.expectedSpan {
+  margin-left: 8px;
 }
