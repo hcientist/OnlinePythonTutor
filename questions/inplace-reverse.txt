@@ -4,7 +4,8 @@ Debug: In-place reverse
 Question:
 
 The given function reverses a list in-place, but it doesn't work for all
-test inputs.  Change only ONE line to make this function pass all tests.
+test inputs.  Change only ONE line of code to make this function pass
+all tests.
 
 MaxLineDelta: 1
 

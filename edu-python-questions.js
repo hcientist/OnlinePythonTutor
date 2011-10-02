@@ -150,8 +150,8 @@ $(document).ready(function() {
 
 // concatenate solution code and test code:
 function concatSolnTestCode(solnCode, testCode) {
-  var filler = (solnCode[solnCode.length - 1] != '\n') ? '\n' : '';
-  return solnCode + filler + "\n# Everything below here is test code\n" + testCode;
+  // use rtrim to get rid of trailing whitespace and newlines
+  return solnCode.rtrim() + "\n\n# Everything below here is test code\n" + testCode;
 }
 
 
@@ -252,7 +252,9 @@ function finishQuestionsInit(questionsDat) {
       var numChangedLines = 0;
 
       // split on newlines to do a line-level diff
-      var diffResults = diff($("#actualCodeInput").val().split(/\n/), questionsDat.skeleton.split(/\n/));
+      // (rtrim both strings to discount the effect of trailing
+      // whitespace and newlines)
+      var diffResults = diff($("#actualCodeInput").val().rtrim().split(/\n/), questionsDat.skeleton.rtrim().split(/\n/));
       //console.log(diffResults);
       $.each(diffResults, function(i, e) {
         if (e.file1 && e.file2) {

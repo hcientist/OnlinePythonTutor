@@ -175,6 +175,7 @@ table#pyCodeOutput .cod {
 div#editCodeLinkDiv {
   text-align: center;
   margin-top: 8px;
+  margin-bottom: 4px;
 }
 
 #editCodeLinkOnError {
@@ -205,7 +206,7 @@ button.medBtn {
 
 #vcrControls {
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 #vcrControls button {
