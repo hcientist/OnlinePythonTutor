@@ -273,8 +273,8 @@ function renderDataStructures(curEntry, vizDiv) {
 // This version was originally created in January 2010
 function renderDataStructuresVersion1(curEntry, vizDiv) {
   // render data structures:
-  $(vizDiv).html(''); // CLEAR IT!
 
+  $(vizDiv).empty(); // jQuery empty() is better than .html('')
 
   // render locals on stack:
   if (curEntry.stack_locals != undefined) {
@@ -415,7 +415,8 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
   jsPlumb.reset();
 
 
-  $(vizDiv).html(''); // CLEAR IT!
+  $(vizDiv).empty(); // jQuery empty() is better than .html('')
+
 
   // create a tabular layout for stack and heap side-by-side
   // TODO: figure out how to do this using CSS in a robust way!
@@ -1080,7 +1081,7 @@ String.prototype.rtrim = function() {
 
 function renderPyCodeOutput(codeStr) {
   var tbl = $("#pyCodeOutput");
-  tbl.html('');
+  tbl.empty(); // jQuery empty() is better than .html('')
   var lines = codeStr.rtrim().split('\n');
 
   $.each(lines, function(i, cod) {
