@@ -1,0 +1,66 @@
+Name:
+Remove duplicate characters
+
+Question:
+Write a function to return a new string that contains the contents of
+the input string with all duplicates removed.
+
+Hint:
+Think about using a set to keep track of already-seen characters.
+
+Solution:
+Iterate through the input string and keep already-seen characters in a
+set.  If a character hasn't been seen yet, then append it to an output
+list.  Finally convert the list into a string using "''.join()" and then
+return it.
+
+Skeleton:
+
+def removeDups(s):
+    # write your solution code here
+
+// # Example solution:
+// def removeDups(s):
+//     seen = set()
+//     out = []
+//     for c in s:
+//         if c not in seen:
+//             out.append(c)
+//         seen.add(c)
+//     return ''.join(out)
+
+Test:
+input = "AAAABBBBB"
+result = removeDups(input)
+
+Expect:
+result = "AB"
+
+Test:
+input = "Hello World"
+result = removeDups(input)
+
+Expect:
+result = "Helo Wrd"
+
+Test:
+input = "Hello World"
+result = removeDups(input)
+
+Expect:
+result = "Helo Wrd"
+
+Test:
+input = "alibaba"
+result = removeDups(input)
+
+Expect:
+result = "alib"
+
+Test:
+input = "abcdefg"
+result = removeDups(input)
+
+Expect:
+result = "abcdefg"
+
