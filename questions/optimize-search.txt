@@ -52,7 +52,15 @@ result = 32
 
 Test:
 haystack = range(64)
-needle = 65
+needle = 3
+result = search(haystack, needle)
+
+Expect:
+result = 3
+
+Test:
+haystack = range(64)
+needle = 1000
 result = search(haystack, needle)
 
 Expect:
