@@ -90,6 +90,7 @@ def web_finalizer(output_lst):
 
 form = cgi.FieldStorage()
 user_script = form['user_script'].value
+if 'max_instructions' in form:
+  pg_logger.set_max_executed_lines(int(form['max_instructions'].value))
 
 pg_logger.exec_script_str(user_script, web_finalizer)
-

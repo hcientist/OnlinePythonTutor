@@ -190,11 +190,6 @@ div#editCodeLinkDiv {
   margin-bottom: 4px;
 }
 
-#warningOutput {
-  font-size: 9pt;
-  color: #666666;
-}
-
 button.bigBtn {
   font-size: 14pt;
   padding: 3px;

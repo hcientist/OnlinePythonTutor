@@ -28,8 +28,11 @@
 
 # upper-bound on the number of executed lines, in order to guard against
 # infinite loops
-MAX_EXECUTED_LINES = 300
+MAX_EXECUTED_LINES = 200
 
+def set_max_executed_lines(m):
+  global MAX_EXECUTED_LINES
+  MAX_EXECUTED_LINES = m
 
 import sys
 import bdb # the KEY import here!

@@ -128,12 +128,16 @@ form = cgi.FieldStorage()
 user_script = form['user_script'].value
 expect_script = form['expect_script'].value
 
-
 # WEIRD: always run the expect_script FIRST since it's less likely to have
 # errors.  for some mysterious reason, if there's an error in user_script,
 # then it will never run expect_script
 #
 # also make sure to ignore IDs so that we can do direct object comparisons!
 pg_logger.exec_script_str(expect_script, expect_script_finalizer, ignore_id=True)
-pg_logger.exec_script_str(user_script, user_script_finalizer, ignore_id=True)
 
+
+# set a custom instruction limit only for user scripts ...
+if 'max_instructions' in form:
+  pg_logger.set_max_executed_lines(int(form['max_instructions'].value))
+
+pg_logger.exec_script_str(user_script, user_script_finalizer, ignore_id=True)

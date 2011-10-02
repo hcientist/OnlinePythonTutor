@@ -5,8 +5,8 @@ Question:
 
 The following search function finds the index of the first occurrence of
 elt in a sorted list lst (or -1 if elt not found).  Optimize this
-function so that it works on a 64-element sorted list using less than 50
-instructions.
+function so that it works on a 64-element sorted list by executing less
+than 50 instructions.
 
 Hint:
 Linear search will never work.

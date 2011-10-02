@@ -275,8 +275,13 @@ function finishQuestionsInit(questionsDat) {
 
     var submittedCode = concatSolnTestCode($("#actualCodeInput").val(), $("#testCodeInput").val());
 
+    var postParams = {user_script : submittedCode};
+    if (questionsDat.max_instructions) {
+      postParams.max_instructions = questionsDat.max_instructions;
+    }
+
     $.post("cgi-bin/web_exec.py",
-           {user_script : submittedCode},
+           postParams,
            function(traceData) {
              renderPyCodeOutput(submittedCode);
              enterVisualizeMode(traceData);
@@ -300,8 +305,14 @@ function finishQuestionsInit(questionsDat) {
     // out-of-order, so code very carefully here!!!
     for (var i = 0; i < tests.length; i++) {
       var submittedCode = concatSolnTestCode($("#actualCodeInput").val(), tests[i]);
+
+      var postParams = {user_script : submittedCode, expect_script : expects[i]};
+      if (questionsDat.max_instructions) {
+        postParams.max_instructions = questionsDat.max_instructions;
+      }
+
       $.post("cgi-bin/web_run_test.py",
-             {user_script : submittedCode, expect_script : expects[i]},
+             postParams,
              genTestResultHandler(i),
              "json");
     }
@@ -342,7 +353,7 @@ function gradeSubmission() {
     }
 
     if (res.status == 'error') {
-      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="testOutputCell"><span style="padding: 5px; background-color: ' + errorColor + ';">' + res.error_msg + '</span></td>');
+      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="testOutputCell"><span style="padding-left: 3px; padding-right: 3px; background-color: ' + errorColor + '">' + res.error_msg + '</span></td>');
     }
     else {
       assert(res.status == 'ok');

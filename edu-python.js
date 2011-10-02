@@ -83,7 +83,6 @@ function processTrace(traceData, jumpToEnd) {
   curInstr = 0;
 
   // delete all stale output
-  $("#warningOutput").html('');
   $("#pyStdout").val('');
 
   if (curTrace.length > 0) {
@@ -95,7 +94,8 @@ function processTrace(traceData, jumpToEnd) {
     if (instrLimitReached) {
       curTrace.pop() // kill last entry
       var warningMsg = lastEntry.exception_msg;
-      $("#warningOutput").html(htmlspecialchars(warningMsg));
+      $("#errorOutput").html(htmlspecialchars(warningMsg));
+      $("#errorOutput").show();
     }
     // as imran suggests, for a (non-error) one-liner, SNIP off the
     // first instruction so that we start after the FIRST instruction
@@ -218,7 +218,9 @@ function updateOutput() {
     hasError = true;
   }
   else {
-    $("#errorOutput").hide();
+    if (!instrLimitReached) { // ugly, I know :/
+      $("#errorOutput").hide();
+    }
   }
 
 
