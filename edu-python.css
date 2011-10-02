@@ -565,13 +565,23 @@ table#gradeMatrix {
 table#gradeMatrix thead {
   font-weight: bold;
   border: solid;
-  /*text-align: center;*/
+}
+
+table#gradeMatrix thead td.statusCell {
+  padding-left: 18px; /* to line up with smiley faces */
 }
 
 table#gradeMatrix td.testInputCell,
 table#gradeMatrix td.testOutputCell {
   padding-right: 25px;
-  padding-bottom: 8px;
+  padding-bottom: 10px;
+  vertical-align: middle;
+}
+
+table#gradeMatrix td.statusCell,
+table#gradeMatrix td.expectedCell {
+  padding-left: 12px;
+  padding-bottom: 10px;
   vertical-align: middle;
 }
  
@@ -608,6 +618,4 @@ div#submittedSolutionDisplay {
   margin-bottom: 20px;
 }
 
-.expectedSpan {
-  margin-left: 8px;
-}
+

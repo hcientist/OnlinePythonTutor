@@ -373,19 +373,23 @@ function gradeSubmission() {
 
     if (res.passed_test) {
       var happyFaceImg = '<img style="vertical-align: middle;" src="yellow-happy-face.png"/>';
-      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td>' + happyFaceImg + '</td>');
+      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="statusCell">' + happyFaceImg + '</td>');
+
+      // add an empty 'expected' cell
+      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="expectedCell"></td>');
     }
     else {
       var sadFaceImg = '<img style="vertical-align: middle; margin-right: 8px;" src="red-sad-face.jpg"/>';
 
       var debugBtnID  = 'debug_test_' + i;
       var debugMeBtn = '<button id="' + debugBtnID + '" class="debugBtn" type="button">Debug me</button>';
-      var expectedSpan = '<span class="expectedSpan">Expected: </span>';
+      var expectedTd = '<td class="expectedCell">Expected: </td>';
 
-      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="statusCell">' + sadFaceImg + debugMeBtn + expectedSpan + '</td>');
+      $("#gradeMatrix tr.gradeMatrixRow:last").append('<td class="statusCell">' + sadFaceImg + debugMeBtn + '</td>' + expectedTd);
 
-      var curCell = $("#gradeMatrix tr.gradeMatrixRow:last td.statusCell:last");
-      renderData(res.expect_val, curCell.find('span.expectedSpan:last'), true /* ignoreIDs */);
+      renderData(res.expect_val,
+                 $("#gradeMatrix tr.gradeMatrixRow:last td.expectedCell:last"),
+                 true /* ignoreIDs */);
 
       $('#' + debugBtnID).unbind(); // unbind it just to be paranoid
       $('#' + debugBtnID).click(genDebugLinkHandler(i));
