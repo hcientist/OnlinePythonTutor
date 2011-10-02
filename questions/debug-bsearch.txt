@@ -1,0 +1,84 @@
+Name:
+Debug: Binary search
+
+Question:
+
+Change ONE line of code to make the given binary search function work
+properly on all tests.
+
+Hint:
+What happens when you search for an element that is not in the list?
+'bsearch' should return -1.
+
+Solution:
+Change the first line of 'helper' to "if low >= hi:"
+
+MaxLineDelta: 1
+MaxInstructions: 100
+
+Skeleton:
+
+def bsearch(lst, elt):
+    return helper(lst, elt, 0, len(lst))
+
+def helper(lst, elt, lo, hi):
+    if lo > hi:
+        return -1
+    mid = (lo+hi)//2
+    midval = lst[mid]
+    if midval < elt:
+        return helper(lst, elt, mid+1, hi)
+    elif midval > elt: 
+        return helper(lst, elt, lo, mid)
+    else:
+        return mid
+
+
+Test:
+haystack = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+needle = 'f'
+result = bsearch(haystack, needle)
+
+Expect:
+result = 5
+
+Test:
+haystack = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+needle = 'a'
+result = bsearch(haystack, needle)
+
+Expect:
+result = 0
+
+Test:
+haystack = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+needle = 'd'
+result = bsearch(haystack, needle)
+
+Expect:
+result = 3
+
+Test:
+haystack = ['b', 'c', 'd', 'e', 'f', 'g', 'h']
+needle = 'a'
+result = bsearch(haystack, needle)
+
+Expect:
+result = -1
+
+Test:
+haystack = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+needle = 'x'
+result = bsearch(haystack, needle)
+
+Expect:
+result = -1
+
+Test:
+haystack = ['a', 'b', 'd', 'e', 'f', 'g', 'h']
+needle = 'c'
+result = bsearch(haystack, needle)
+
+Expect:
+result = -1
+

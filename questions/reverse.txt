@@ -1,0 +1,57 @@
+Name:
+Reverse list
+
+Question:
+Write a function to return the reverse of the input list.
+
+Hint:
+Think about iterating backwards.
+
+Solution:
+Either iterate backwards to build a new list, or use the Python extended
+indexing syntax: "return lst[::-1]"
+
+Skeleton:
+
+def reverse(lst):
+    # write your solution code here
+
+Test:
+input = ['a', 'b', 'c', 'd', 'e']
+result = reverse(input)
+
+Expect:
+result = ['e', 'd', 'c', 'b', 'a']
+
+
+Test:
+input = ['a', 'b', 'c', 'd']
+result = reverse(input)
+
+Expect:
+result = ['d', 'c', 'b', 'a']
+
+
+Test:
+input = ['a', 'b', 'c']
+result = reverse(input)
+
+Expect:
+result = ['c', 'b', 'a']
+
+
+Test:
+input = ['a', 'b']
+result = reverse(input)
+
+Expect:
+result = ['b', 'a']
+
+
+Test:
+input = ['a']
+result = reverse(input)
+
+Expect:
+result = ['a']
+

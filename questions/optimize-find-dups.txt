@@ -1,0 +1,60 @@
+Name:
+Optimize: Find duplicates
+
+Question:
+
+The given function returns a list of duplicate elements in the input
+list.  Optimize this function so that it works on any 10-element sorted
+list by executing less than 50 instructions.
+
+Hint:
+Think about iterating through the list only once.
+
+Solution:
+Use a set to check for duplicates.
+
+MaxInstructions: 50
+
+Skeleton:
+
+def findDups(lst):
+    dups = set()
+    for i in range(len(lst)):
+      for j in range(i + 1, len(lst)):
+          if lst[i] == lst[j]:
+            dups.add(lst[i])
+    return dups
+
+
+// sample solution:
+// def findDups(lst):
+//     seen = set()
+//     dups = set()
+//     for e in lst:
+//         if e in seen:
+//             dups.add(e)
+//         seen.add(e)
+//     return dups
+
+
+Test:
+input = ['a', 'b', 'c', 'a', 'd', 'c', 'e', 'f', 'g', 'f']
+result = findDups(input)
+
+Expect:
+result = set(['a', 'c', 'f'])
+
+Test:
+input = ['a', 'b', 'xxx', 'c', 'd', 'e', 'f', 'g', 'h', 'xxx']
+result = findDups(input)
+
+Expect:
+result = set(['xxx'])
+
+Test:
+input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+result = findDups(input)
+
+Expect:
+result = set()
+
