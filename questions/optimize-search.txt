@@ -5,14 +5,15 @@ Question:
 
 The following search function finds the index of the first occurrence of
 elt in a sorted list lst (or -1 if elt not found).  Optimize this
-function so that it works on a 64-element sorted list by executing less
-than 50 instructions.
+function so that it works on any 64-element sorted list by executing
+less than 50 instructions.
 
 Hint:
 Linear search will never work.
 
 Solution:
-Implement binary search instead of linear search.
+Implement binary search instead of linear search.  A recursive solution
+might not be efficient enough, though!
 
 MaxInstructions: 50
 
@@ -24,6 +25,38 @@ def search(lst, elt):
         if lst[i] == elt:
             return i
     return -1
+
+
+// # Iterative solution from stackoverflow
+// # http://stackoverflow.com/questions/212358/binary-search-in-python
+// def search(lst, elt):
+//     lo, hi = 0, len(lst)
+//     while lo < hi:
+//         mid = (lo+hi)//2
+//         midval = lst[mid]
+//         if midval < elt:
+//             lo = mid+1
+//         elif midval > elt: 
+//             hi = mid
+//         else:
+//             return mid
+//     return -1
+//
+// # recursive implementation, which is too slow
+// def search(lst, elt):
+//     return bsearch(lst, elt, 0, len(lst))
+//
+// def bsearch(lst, elt, lo, hi):
+//     if lo > hi:
+//         return -1
+//     mid = (lo+hi)//2
+//     midval = lst[mid]
+//     if midval < elt:
+//         return bsearch(lst, elt, mid+1, hi)
+//     elif midval > elt: 
+//         return bsearch(lst, elt, lo, mid)
+//     else:
+//         return mid
 
 
 Test:

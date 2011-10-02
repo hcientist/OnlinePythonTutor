@@ -52,6 +52,12 @@ def parseQuestionsFile(filename):
     # only strip TRAILING spaces and not leading spaces
     line = line.rstrip()
 
+    # comments are denoted by a leading '//', so ignore those lines.
+    # Note that I don't use '#' as the comment token since sometimes I
+    # want to include Python comments in the skeleton code.
+    if line.startswith('//'):
+      continue
+
     # special-case one-liners:
     if line.startswith('MaxLineDelta:'):
       ret['max_line_delta'] = int(line.split(':')[1])
