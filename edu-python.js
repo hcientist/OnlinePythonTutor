@@ -399,6 +399,20 @@ function renderDataStructuresVersion1(curEntry, vizDiv) {
 }
 
 
+// make sure varname doesn't contain any weird
+// characters that are illegal for CSS ID's ...
+//
+// I know for a fact that iterator tmp variables named '_[1]'
+// are NOT legal names for CSS ID's.
+// I also threw in '{', '}', '(', ')', '<', '>' as illegal characters.
+//
+// TODO: what other characters are illegal???
+var lbRE = new RegExp('\\[|{|\\(|<', 'g');
+var rbRE = new RegExp('\\]|}|\\)|>', 'g');
+function varnameToCssID(varname) {
+  return varname.replace(lbRE, 'LeftB_').replace(rbRE, '_RightB');
+}
+
 // The "2.0" version of renderDataStructures, which renders variables in
 // a stack and values in a separate heap, with data structure aliasing
 // explicitly represented via line connectors (thanks to jsPlumb lib).
@@ -527,9 +541,9 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
             // IE needs this div to be NON-EMPTY in order to properly
             // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
 
-            // TODO: make sure varname doesn't contain any weird
+            // make sure varname doesn't contain any weird
             // characters that are illegal for CSS ID's ...
-            var varDivID = 'global__' + varname;
+            var varDivID = 'global__' + varnameToCssID(varname);
             curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
 
             assert(connectionEndpointIDs[varDivID] === undefined);
@@ -605,9 +619,9 @@ function renderDataStructuresVersion2(curEntry, vizDiv) {
           // IE needs this div to be NON-EMPTY in order to properly
           // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
 
-          // TODO: make sure varname doesn't contain any weird
+          // make sure varname doesn't contain any weird
           // characters that are illegal for CSS ID's ...
-          var varDivID = divID + '__' + varname;
+          var varDivID = divID + '__' + varnameToCssID(varname);
           curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
 
           assert(connectionEndpointIDs[varDivID] === undefined);
