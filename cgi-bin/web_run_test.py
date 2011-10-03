@@ -100,13 +100,15 @@ def really_finalize():
         ret['input_globals'] = e['globals']
         break
 
+    # always fetch expect_val
+    ret['expect_val'] = expect_trace_final_entry['globals'][single_var_to_compare]
+
     if user_trace_final_entry['event'] == 'return': # normal termination
       if single_var_to_compare not in user_trace_final_entry['globals']:
         ret['status'] = 'error'
         ret['error_msg'] = "Error: output has no global var named '%s'" % (single_var_to_compare,)
       else:
-        ret['expect_val'] = expect_trace_final_entry['globals'][single_var_to_compare]
-        ret['test_val']   = user_trace_final_entry['globals'][single_var_to_compare]
+        ret['test_val'] = user_trace_final_entry['globals'][single_var_to_compare]
 
         # do the actual comparison here!
         if ret['expect_val'] == ret['test_val']:
