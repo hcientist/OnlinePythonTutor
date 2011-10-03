@@ -1,0 +1,48 @@
+Name:
+Optimize: Greatest sum
+
+Question:
+
+The given function finds the greatest sum amongst all pairs of elements
+in the array.  Optimize this function so that it works on any 5-element
+list list by executing less than 20 instructions.
+
+Hint:
+Think about sorting.
+
+Solution:
+Sort the list and return the sum of the two largest elements.
+
+MaxInstructions: 20
+
+Skeleton:
+
+def maxPairSum(lst):
+    maxSum = None
+    for i in range(len(lst)):
+      for j in range(i + 1, len(lst)):
+          maxSum = max(lst[i] + lst[j], maxSum)
+    return maxSum
+
+
+Test:
+input = [10, 2, 1, 7, 3, 4, 5, 6, 8, 9]
+result = maxPairSum(input)
+
+Expect:
+result = 19
+
+Test:
+input = [10, 2, 1, 7, 3, 4, 5, 6, 80, 9]
+result = maxPairSum(input)
+
+Expect:
+result = 90
+
+Test:
+input = [1,1,1,1,2,1,1,1,1,1]
+result = maxPairSum(input)
+
+Expect:
+result = 3
+
