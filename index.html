@@ -22,9 +22,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
  -->
 
-
 <head>
-  <title>Online Python Tutor: Write Python code online and single-step through its execution</title>
+
+<title>Online Python Tutor: Learn and practice programming from your web browser</title>
 
 <!-- jQuery 1.6.0 -->
 
@@ -37,153 +37,60 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
 
 
-<!-- load these local files only when localTesting == true 
-
-<script type="text/javascript" src="mock-data.js"></script> 
-
--->
-
-<script type="text/javascript" src="jquery.textarea.js"></script>
-
-<!-- disable autogrow for simplicity
-  <script type="text/javascript" src="jquery.autogrow.js"></script>
- -->
-
-<!-- jsPlumb library for rendering connectors -->
-<script type="text/javascript" src="jquery.jsPlumb-1.3.3-all-min.js "></script>
-
-<!-- my own code -->
-<script type="text/javascript" src="edu-python.js"></script>
-<script type="text/javascript" src="edu-python-tutor.js"></script>
-
-<link rel="stylesheet" href="edu-python.css"/>
+<link rel="stylesheet" href="edu-python-title.css"/>
 
 </head>
 
 <body>
 
-<div id="pyInputPane">
-
-Write your Python code here:
-<br/>
-
-<textarea class="codeInputPane" id="pyInput" cols="55" rows="20" wrap="off"></textarea>
-
-<p>
-
-<button id="executeBtn" class="bigBtn" type="button">Visualize execution</button>
-
-</p>
-
-<p style="margin-top: 25px;">Try these small examples:<br/>
-
-<a id="aliasExampleLink" href="#">aliasing</a> |
-<a id="tutorialExampleLink" href="#">intro</a> |
-<a id="factExampleLink" href="#">factorial</a> |
-<a id="fibonacciExampleLink" href="#">fibonacci</a> |
-<a id="memoFibExampleLink" href="#">memoized fib</a> |
-<a id="newtonExampleLink" href="#">square root</a> |
-<a id="insSortExampleLink" href="#">insertion sort</a>
-<br/>
-<a id="filterExampleLink" href="#">filter</a> |
-<a id="strtokExampleLink" href="#">tokenize</a> |
-<a id="oopSmallExampleLink" href="#">OOP</a> |
-<a id="pwGcdLink" href="#">gcd</a> |
-<a id="pwSumListLink" href="#">sumList</a> |
-<a id="towersOfHanoiLink" href="#">towers of hanoi</a> |
-<a id="pwTryFinallyLink" href="#">exceptions</a>
-
-</p>
-
-<p style="margin-top: 25px;">Examples from the MIT 
-<a href="http://mit.edu/6.01/">6.01</a> course:<br/>
-
-<a id="mapExampleLink" href="#">list map</a> |
-<a id="sumExampleLink" href="#">summation</a> |
-<a id="oop1ExampleLink" href="#">OOP 1</a> |
-<a id="oop2ExampleLink" href="#">OOP 2</a> |
-<a id="inheritanceExampleLink" href="#">inheritance</a>
-
-</p>
+<div id="titlePane">
 
 </div>
 
+<div class="activityPane" id="solvePane">
 
-<table border="0" id="pyOutputPane">
-<tr>
-<td valign="top">
+<h1>Learn</h1>
+<h2>Python by writing code and visualizing execution</h2>
 
-<center>
-
-<div id="pyCodeOutputDiv">
-
-Use left and right arrow keys to step through this code:
-<table id="pyCodeOutput"></table>
+<p>lorem ipsum</p>
 
 </div>
 
-<div id="editCodeLinkDiv">
+<div class="activityPane" id="solvePane">
 
-<button id="editBtn" class="medBtn" type="button">Edit code</button>
+<h1>Solve</h1>
+<h2>programming problems by writing Python code</h2>
+
+<p>lorem ipsum</p>
 
 </div>
 
-<div id="vcrControls">
-  <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>
-  <button id="jmpStepBack", type="button">&lt; Back</button>
-  <span id="curInstr">Step ? of ?</span>
-  <button id="jmpStepFwd", type="button">Forward &gt;</button>
-  <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>
+<div class="activityPane" id="debugPane">
+
+<h1>Debug</h1>
+<h2>existing programs that almost work properly</h2>
+
+<p>lorem ipsum</p>
+
 </div>
 
-<div id="errorOutput"></div>
+<div class="activityPane" id="debugPane">
 
+<h1>Optimize</h1>
+<h2>existing programs to run using fewer instructions</h2>
 
-</center>
+<p>lorem ipsum</p>
 
-Program output:
-<br/>
-<textarea id="pyStdout" cols="50" rows="13" wrap="off" readonly></textarea>
-
-
-</td>
-<td valign="top">
-
-<div id="dataViz"></div>
-
-</td>
-</tr>
-</table>
-
-<center>
-
-
-<div id="footer">
-
-<input type="checkbox" id="classicModeCheckbox"/> Use low-bandwidth mode (for older browsers)
-
-<p/>
-This application supports the core <a
-href="http://www.python.org/doc/2.5/">Python 2.5</a> language, with no
-module imports or file I/O.  It's meant to be used as a platform for
-creating programming tutorials, not for running or debugging
-production code.
-
-<p style="margin-top: 8px;"/>Official Python 3 support is coming soon;
-for now, try the <a
-href="http://netserv.ict.ru.ac.za/python3_viz/">Python 3 fork</a> by
-Peter Wentworth.
-
-<p style="margin-top: 8px;"/> 
-Check out the <a
-href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub</a>
-repository and send bug reports, feedback, and suggestions to philip@pgbovine.net
-
-<p style="margin-top: 8px;"/>
-Copyright &copy; 2010-2011 <a href="http://www.stanford.edu/~pgbovine/">Philip J. Guo</a>
 </div>
 
-</center>
+<!-- TODOs
+
+Include links to original source files of questions for more detailed
+info.
+
+Also include links to my contact info and GitHub pages.
+
+ -->
 
 </body>
 </html>

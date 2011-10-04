@@ -18,7 +18,7 @@ MaxInstructions: 20
 Skeleton:
 
 def maxPairSum(lst):
-    maxSum = None
+    maxSum = -99999
     for i in range(len(lst)):
       for j in range(i + 1, len(lst)):
           maxSum = max(lst[i] + lst[j], maxSum)
