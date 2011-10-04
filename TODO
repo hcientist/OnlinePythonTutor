@@ -96,6 +96,7 @@ line of code immediately below each annotation.
   pre-computed.  e.g., list local stack variables by their order of
   definition in the original program execution.
 
+
 ---
 2011-09-24
 
@@ -123,9 +124,6 @@ display ... that one is easy --- always auto-scroll to BOTTOM!)
 
 A subset of the suggestions from MIT folks (see more in my private notes
 file):
-
-- people thought that it's important to draw arrowheads at the end of
-  pointers ... try to make them relatively 'clean-looking', though
 
 - what if the user accidentally (or purposefully) creates a HUGE list or
   other data structure?  how will the visualization handle this?  right

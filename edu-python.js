@@ -1151,6 +1151,9 @@ function eduPythonCommonInit() {
   jsPlumb.Defaults.Connector = [ "Bezier", { curviness:15 }]; /* too much 'curviness' causes lines to run together */
   jsPlumb.Defaults.PaintStyle = {lineWidth:1, strokeStyle: lightGray};
 
+  // experiment with arrows ...
+  jsPlumb.Defaults.Overlays = [[ "Arrow", { length: 14, width:10, foldback:0.55, location:0.35 }]]
+
   jsPlumb.Defaults.EndpointHoverStyle = {fillStyle: pinkish};
   jsPlumb.Defaults.HoverPaintStyle = {lineWidth:2, strokeStyle: pinkish};
 
