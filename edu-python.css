@@ -578,8 +578,8 @@ table#gradeMatrix td.testOutputCell {
   vertical-align: middle;
 }
 
-table#gradeMatrix td.statusCell,
-table#gradeMatrix td.expectedCell {
+table#gradeMatrix tbody td.statusCell,
+table#gradeMatrix tbody td.expectedCell {
   padding-left: 12px;
   padding-bottom: 10px;
   vertical-align: middle;
