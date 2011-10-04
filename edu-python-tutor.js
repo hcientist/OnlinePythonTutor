@@ -23,7 +23,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // back-end with a string representing the user's script POST['user_script']
 // and receives a complete execution trace, which it parses and displays to HTML.
 
-// Pre-req: edu-python.js should be imported BEFORE this file
+// Pre-req: edu-python.js and jquery.ba-bbq.min.js should be imported BEFORE this file
+
+
+function enterEditMode() {
+  $.bbq.pushState({ mode: 'edit' });
+}
+
+function enterVisualizeMode(traceData) {
+  curTrace = traceData; // first assign it to the global curTrace, then
+                        // let jQuery BBQ take care of the rest
+  $.bbq.pushState({ mode: 'visualize' });
+}
 
 
 $(document).ready(function() {
@@ -31,7 +42,52 @@ $(document).ready(function() {
 
   $("#pyInput").tabby(); // recognize TAB and SHIFT-TAB
 
-  $("#pyOutputPane").hide();
+
+  // be friendly to the browser's forward and back buttons
+  // thanks to http://benalman.com/projects/jquery-bbq-plugin/
+  $(window).bind("hashchange", function(e) {
+    appMode = $.bbq.getState("mode"); // assign this to the GLOBAL appMode
+
+    // default mode is 'edit'
+    if (appMode == undefined) {
+      appMode = 'edit';
+    }
+
+    // if there's no curTrace, then default to edit mode since there's
+    // nothing to visualize:
+    if (!curTrace) {
+      appMode = 'edit';
+      $.bbq.pushState({ mode: 'edit' });
+    }
+
+
+    if (appMode == 'edit') {
+      $("#pyInputPane").show();
+      $("#pyOutputPane").hide();
+    }
+    else if (appMode == 'visualize') {
+      $("#pyInputPane").hide();
+      $("#pyOutputPane").show();
+
+      $('#executeBtn').html("Visualize execution");
+      $('#executeBtn').attr('disabled', false);
+
+
+      // do this AFTER making #pyOutputPane visible, or else
+      // jsPlumb connectors won't render properly
+      processTrace(curTrace /* kinda dumb and redundant */, true);
+    }
+    else {
+      assert(false);
+    }
+  });
+
+  // From: http://benalman.com/projects/jquery-bbq-plugin/
+  //   Since the event is only triggered when the hash changes, we need
+  //   to trigger the event now, to handle the hash the page may have
+  //   loaded with.
+  $(window).trigger( "hashchange" );
+
 
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(function() {
@@ -43,26 +99,14 @@ $(document).ready(function() {
            {user_script : $("#pyInput").val()},
            function(traceData) {
              renderPyCodeOutput($("#pyInput").val());
-
-             $("#pyInputPane").hide();
-             $("#pyOutputPane").show();
-             appMode = 'visualize';
-
-             $('#executeBtn').html("Visualize execution");
-             $('#executeBtn').attr('disabled', false);
-
-             // do this AFTER making #pyOutputPane visible, or else
-             // jsPlumb connectors won't render properly
-             processTrace(traceData, false);
+             enterVisualizeMode(traceData);
            },
            "json");
   });
 
 
   $("#editBtn").click(function() {
-    $("#pyInputPane").show();
-    $("#pyOutputPane").hide();
-    appMode = 'edit';
+    enterEditMode();
   });
 
 
