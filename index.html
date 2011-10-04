@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <head>
 
-<title>Online Python Tutor: Learn and practice programming from your web browser</title>
+<title>Online Python Tutor: Learn and practice programming in your web browser</title>
 
 <!-- jQuery 1.6.0 -->
 
@@ -56,7 +56,7 @@ $(document).ready(function() {
 <div class="titlePane">
 
 <h1>Online Python Tutor</h1>
-<h2>Learn and practice Python programming from your web browser</h2>
+<h2>Learn and practice Python programming in your web browser</h2>
 
 </div>
 
@@ -82,7 +82,7 @@ y = x
 z = ["Alice", "Bob", "Charlie"]
 </pre>
 
-<p>will be visualized as the following diagram, which properly shows
+<p>will be visualized as the following HTML diagram, which properly shows
 aliasing relationships:</p>
 
 <center>
@@ -106,11 +106,13 @@ or technical job interviews.</p>
 executing on a series of graded test inputs, and showing what tests
 passed and failed.</p>
 
+<center>
 <img src="grading-375.png"/>
+</center>
 
-<p>The above screenshot shows passed/failed tests.  The user can click
-on the "Debug me" button besides one of the sad faces to debug why the
-program failed on a particular test.</p>
+<p>The above screenshot shows passed and failed tests.  The user can
+click on the "Debug me" button besides one of the sad faces to debug why
+the program failed on a particular test.</p>
 
 <p>Here are some sample practice problems:</p>
 
@@ -130,12 +132,12 @@ program failed on a particular test.</p>
 <h2>existing programs that almost work properly</h2>
 
 <p>Using the Online Python Tutor's bidirectional single-stepping and
-data structure visualization technologies, students can practice
+data structure visualization capabilities, students can practice
 debugging, an important skill which is rarely covered in web-based
 programming problems.</p>
 
-<p>They can solve problems like, <i>"Change at most 2 lines of code
-to make this almost-correct Python program work properly."</i> Here are
+<p>They can work on problems like, <i>"Change at most 2 lines of code to
+make this almost-correct Python program work properly."</i> Here are
 some sample debugging problems:</p>
 
 <ul>
@@ -154,9 +156,9 @@ some sample debugging problems:</p>
 <h2>existing programs to run using fewer instructions</h2>
 
 <p>Students can practice refactoring already-correct programs to run
-faster and using fewer executed instructions.</p>
+faster and execute fewer instructions.</p>
 
-<p>They can solve problems like, <i>"Optimize this program so that it
+<p>They can work on problems like, <i>"Optimize this program so that it
 terminates correctly after running less than 50 lines of Python
 code."</i> Here are some sample optimization problems:</p>
 
@@ -175,13 +177,20 @@ code."</i> Here are some sample optimization problems:</p>
 <h1>Create</h1>
 <h2>new practice problems in plain text format</h2>
 
-<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+<p>Teachers can easily create new practice problems by writing them in a
+lightweight plain text format.  For example, <a
+href="questions/reverse.txt">reverse.txt</a> provides the specification
+for the <a href="question.html?reverse">Reverse list</a> problem.</p>
 
-<p>Questions are specified in a simple textual format, e.g.,: <a
-href="questions/reverse.txt">reverse.txt</a>.</p>
+<p>The problem specification format allows constraints like <i>"code
+diffs must be less than N lines"</i> (used for debugging problems) and
+<i>"tests must terminate in at most M executed Python lines"</i> (used
+for optimization problems).</p>
 
-<p>COMING SOON: semantic constraints on execution</p>
+<p>I plan to add support for semantic constraints like <i>"don't allow
+the program to create any auxiliary data structures"</i>, which could be
+used for problems like <i>"merge these two lists in-place without
+creating any new temporary lists"</i>.</p>
 
 </div>
 
@@ -192,7 +201,7 @@ href="questions/reverse.txt">reverse.txt</a>.</p>
 <div id="footer">
 
 <p>This application was created by <a
-href="http://www.stanford.edu/~pgbovine/academic.htm">Philip Guo</a>, a
+href="http://www.stanford.edu/~pgbovine/">Philip Guo</a>, a
 Stanford Computer Science Ph.D. student and Python enthusiast.</p>
 
 <p>
@@ -203,7 +212,7 @@ philip@pgbovine.net
 </p>
 
 <p>
-Copyright &copy; 2010-2011 <a href="http://www.stanford.edu/~pgbovine/">Philip J. Guo</a>.  All rights reserved.
+Copyright &copy; 2010-2011 <a href="http://www.stanford.edu/~pgbovine/">Philip Guo</a>.  All rights reserved.
 </p>
 
 </div>
