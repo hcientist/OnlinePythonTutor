@@ -2,8 +2,10 @@ Name:
 Remove duplicate characters
 
 Question:
+
 Write a function to return a new string that contains the contents of
-the input string with all duplicates removed.
+the input string (in the original order) with all duplicate characters
+removed.
 
 Hint:
 Think about using a set to keep track of already-seen characters.

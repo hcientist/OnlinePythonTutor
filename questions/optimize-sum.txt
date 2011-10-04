@@ -5,7 +5,7 @@ Question:
 
 The given function finds the greatest sum amongst all pairs of elements
 in the array.  Optimize this function so that it works on any 5-element
-list list by executing less than 20 instructions.
+list by executing less than 20 instructions.
 
 Hint:
 Think about sorting.
