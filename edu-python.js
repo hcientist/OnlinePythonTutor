@@ -1194,8 +1194,8 @@ function eduPythonCommonInit() {
 
 
   // log a generic AJAX error handler
-  $(window).ajaxError(function() {
-    alert("Uh oh, the server returned an error, boo :(  Please reload and try again");
+  $(document).ajaxError(function() {
+    alert("Uh oh, the server returned an error, boo :(  Please reload the page and try executing a different Python script.");
   });
 
 }
