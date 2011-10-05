@@ -27,7 +27,7 @@ Using this tool, teachers and students can write small Python code
 snippets together and see what happens to the data structures when the
 code gets executed.
 
-Try it out live at: http://people.csail.mit.edu/pgbovine/python/
+Try it out live at: http://www.onlinepythontutor.com/
 
 ======
 System architecture overview:
@@ -49,16 +49,32 @@ back-end, and then rendering that trace as data structure
 visualizations.  The front-end code resides in these files in the
 current directory:
 
-  index.html
+  tutor.html
+  question.html
   edu-python.js
+  edu-python-tutor.js
+  edu-python-questions.js
   edu-python.css
-  jquery-1.3.2.min.js
   jquery.textarea.js
   .htaccess - to increase the size of allowed Apache HTTP responses
 
+  (there are also other 3rd-party JavaScript library files)
+
+Note on .htaccess: If your server limits the size of responses received
+from HTTP requests, then you might need to use the following .htaccess
+file included in your top-level (front-end) directory, to allow the
+Online Python Tutor to receive traces from the back-end:
+
+<IfModule mod_security.c>
+
+# Set a ~2MB limit for response headers (bigger than default 512K limit)
+SecResponseBodyLimit 2000000
+
+</IfModule>
+
 
 The back-end is a server-side CGI application that takes Python script
-source code as input, executes the entire script (up to 100 executed
+source code as input, executes the entire script (up to 200 executed
 lines, to prevent infinite loops), and collects a full trace of all
 variable values (i.e., data structures) after each line has been
 executed.  It then sends that full trace to the front-end in a
@@ -68,35 +84,20 @@ through execution.
 
 The back-end resides in the cgi-bin/ sub-directory in this repository:
 
-  cgi-bin/web_exec.py   - the CGI entrance point to the back-end
-  cgi-bin/pg_logger.py  - the 'meat' of the back-end
-  cgi-bin/pg_encoder.py - encodes Python data into JSON
-  cgi-bin/demjson.py    - 3rd-party JSON module, since Python 2.5
-                          doesn't have the built-in 'import json'
-  cgi-bin/create_db.py  - for optional sqlite query logging
-  cgi-bin/db_common.py  - for optional sqlite query logging
-  cgi-bin/.htaccess     - for Apache CGI execute permissions
-  cgi-bin/run_tests.py  - back-end regression tests
+  cgi-bin/web_exec.py     - the CGI entrance point to the back-end
+  cgi-bin/web_run_test.py - the CGI entrance point to the question
+                            grading back-end
+  cgi-bin/pg_logger.py    - the 'meat' of the back-end
+  cgi-bin/pg_encoder.py   - encodes Python data into JSON
+  cgi-bin/demjson.py      - 3rd-party JSON module, since Python 2.5
+                            doesn't have the built-in 'import json'
+  cgi-bin/create_db.py    - for optional sqlite query logging
+  cgi-bin/db_common.py    - for optional sqlite query logging
+  cgi-bin/.htaccess       - for Apache CGI execute permissions
 
 
 Due to the AJAX same-origin policy, the front-end and back-end must be
 deployed on the same server (unless you do some fancy proxy magic).
-
-
-======
-Misc. notes
-
-If your server limits the size of responses received from HTTP requests,
-then you might need to add the following .htaccess file in your
-top-level (front-end) directory, in order to allow Online Python Tutor
-to receive traces from the back-end:
-
-<IfModule mod_security.c>
-
-# Set a ~2MB limit for response headers (bigger than default 512K limit)
-SecResponseBodyLimit 2000000
-
-</IfModule>
 
 
 ======
