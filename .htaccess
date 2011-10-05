@@ -1,0 +1,6 @@
+<IfModule mod_security.c>
+
+# Set a ~2MB limit for response headers (bigger than default 512K limit)
+SecResponseBodyLimit 2000000
+
+</IfModule>

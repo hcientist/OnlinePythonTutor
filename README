@@ -54,6 +54,7 @@ current directory:
   edu-python.css
   jquery-1.3.2.min.js
   jquery.textarea.js
+  .htaccess - to increase the size of allowed Apache HTTP responses
 
 
 The back-end is a server-side CGI application that takes Python script
@@ -85,7 +86,6 @@ deployed on the same server (unless you do some fancy proxy magic).
 ======
 Misc. notes
 
-
 If your server limits the size of responses received from HTTP requests,
 then you might need to add the following .htaccess file in your
 top-level (front-end) directory, in order to allow Online Python Tutor
@@ -93,8 +93,8 @@ to receive traces from the back-end:
 
 <IfModule mod_security.c>
 
-# Set a ~10MB limit for response headers (way bigger than default 512K limit)
-SecResponseBodyLimit 10000000
+# Set a ~2MB limit for response headers (bigger than default 512K limit)
+SecResponseBodyLimit 2000000
 
 </IfModule>
 
