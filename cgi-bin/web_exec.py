@@ -38,7 +38,7 @@
 
 
 # set to true if you want to log queries in DB_FILE 
-LOG_QUERIES = True
+LOG_QUERIES = False # don't do logging for now
 
 import cgi
 import pg_logger
