@@ -142,3 +142,36 @@ file):
 Upgrade to Python 2.7 after moving over to Webfaction, so that I can use
 the default standard library "import json"
 
+
+---
+2011-10-05 feedback from Imran:
+
+'''
+ok, here's a super artificial example that actually is really confusing
+in the standard Python REPL as well:
+
+cA = type("A",(object,),{})
+cA2 = type("A",(object,),{})
+
+a=cA()
+a2=cA2()
+
+If you visualize this program, it's actually better than CPython because
+it shows that the two class objects have different ids even though they
+have the same __name__, but then a and a2 are just shown as instances of
+"A", which is now ambiguous.
+
+you're well within your rights to call this example bad code (because
+holy hell, it is) and out of the scope of your project, but one way to
+handle it might be to keep a separate column for type objects, or to
+include the class id along with the class __name__ when identifying the
+type of an object.
+
+also, if you modify the OOP example to make A and B new-style classes
+inheriting from object, the class visualization shows the __dict__ and
+__weakref__ fields in the A and B type objects, with no useful repr for
+them. Do you really want those shown?
+
+can you tell i've been doing crazy python oop stuff recently?
+'''
+
