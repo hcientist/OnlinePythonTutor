@@ -66,3 +66,11 @@ result = removeDups(input)
 Expect:
 result = "abcdefg"
 
+
+Test:
+input = ""
+result = removeDups(input)
+
+Expect:
+result = ""
+

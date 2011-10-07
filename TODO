@@ -173,5 +173,14 @@ __weakref__ fields in the A and B type objects, with no useful repr for
 them. Do you really want those shown?
 
 can you tell i've been doing crazy python oop stuff recently?
+
+ps here's an even more painful instance of the bug report:
+
+x=[1,2,3]
+wtfpwn = type('list',(list,),{})
+INCEPTION = [wtfpwn()]
+print x
+
+which "list" is which???
 '''
 

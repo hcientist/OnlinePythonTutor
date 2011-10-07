@@ -56,3 +56,11 @@ result = reverse(input)
 Expect:
 result = ['a']
 
+
+Test:
+input = []
+result = reverse(input)
+
+Expect:
+result = []
+
