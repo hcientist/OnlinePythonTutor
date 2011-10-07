@@ -39,7 +39,8 @@ Secondary Color B:
 body {
   background-color: white;
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 10pt;
+  /*font-size: 10pt;*/
+  font-size: 14px; /* for better readability */
 }
 
 a {
@@ -72,6 +73,7 @@ h2 {
   line-height: 1.1em; /* enforce single spacing so that Georgia works */
 
   margin-top: 2px;
+  margin-bottom: 20px;
 }
 
 div.activityPane {
@@ -99,7 +101,7 @@ pre {
 
 #footer {
   text-align: center;
-  color: #666666;
+  color: #444444;
   font-size: 9pt;
   max-width: 700px;
   border-top: 1px solid #bbbbbb;
