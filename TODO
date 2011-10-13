@@ -184,3 +184,30 @@ print x
 which "list" is which???
 '''
 
+---
+2011-10-12
+
+Code snippets from Adam Hartz for time-limiting a Python child process:
+
+def setlimits():
+   """
+   Helper to set CPU time limit for check_code, so that infinite loops
+   in submitted code get caught instead of running forever.
+   """
+   resource.setrlimit(resource.RLIMIT_CPU, (10, 10))
+
+def check_python_code(code):
+   #TODO: Investigate pypy for sandboxing
+   """
+   Run the given code; outputs a tuple containing:
+   the program's output (stdout), error messages (stderr)
+   """
+   python = subprocess.Popen(["python"],stdin=subprocess.PIPE,\
+                                        stdout=subprocess.PIPE,\
+                                        stderr=subprocess.PIPE,\
+                                        preexec_fn=setlimits)
+   PY_PROCESS_LOCK.acquire()
+   output = python.communicate(code)
+   PY_PROCESS_LOCK.release()
+   return output
+
