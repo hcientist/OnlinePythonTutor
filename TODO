@@ -211,3 +211,13 @@ def check_python_code(code):
    PY_PROCESS_LOCK.release()
    return output
 
+---
+2011-10-17
+
+Bug report from user ... problems with utf-8 in non-commented code:
+
+# coding = utf-8
+x = [1, 2, 3] # čęė  - OK
+y = x
+y = u"asdęė"  # problem
+
