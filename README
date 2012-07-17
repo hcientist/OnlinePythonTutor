@@ -43,7 +43,7 @@ System architecture overview:
 The Online Python Tutor is implemented as a web application, with a
 JavaScript front-end making AJAX calls to a pure-Python back-end.
 
-The back-end has been tested on an Apache server running Python 2.5
+The back-end has been tested on an Apache server running Python 2.6
 through CGI.  Note that it will probably fail in subtle ways on other
 Python 2.X (and will DEFINITELY fail on Python 3.X).  Peter Wentworth
 has create a port to Python 3.X, and hopefully we can eventually
@@ -97,8 +97,6 @@ The back-end resides in the cgi-bin/ sub-directory in this repository:
                             grading back-end
   cgi-bin/pg_logger.py    - the 'meat' of the back-end
   cgi-bin/pg_encoder.py   - encodes Python data into JSON
-  cgi-bin/demjson.py      - 3rd-party JSON module, since Python 2.5
-                            doesn't have the built-in 'import json'
   cgi-bin/create_db.py    - for optional sqlite query logging
   cgi-bin/db_common.py    - for optional sqlite query logging
   cgi-bin/.htaccess       - for Apache CGI execute permissions

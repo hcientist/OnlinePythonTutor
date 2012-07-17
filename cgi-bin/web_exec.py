@@ -1,4 +1,4 @@
-#!/usr/bin/python2.5
+#!/usr/bin/python2.6
 
 # Online Python Tutor
 # https://github.com/pgbovine/OnlinePythonTutor/
@@ -31,8 +31,8 @@
 #
 # Returns a complete JSON execution trace to the front-end.
 #
-# This version uses Python 2.5 on the MIT CSAIL servers.
-# (note that Python 2.4 doesn't work on CSAIL, but Python 2.5 does)
+# This version uses Python 2.6 on the MIT CSAIL servers.
+# (note that Python 2.4 doesn't work on CSAIL, but Python 2.6 does)
 #
 # If you want to run this script, then you'll need to change the
 # shebang line at the top of this file to point to your system's Python.
@@ -50,9 +50,7 @@ LOG_QUERIES = False # don't do logging for now
 import cgi
 import pg_logger
 
-# Python 2.5 doesn't have a built-in json module, so I'm using a
-# 3rd-party module.  I think you can do 'import json' in Python >= 2.6
-import demjson
+import json
 
 if LOG_QUERIES:
   import os, time, db_common
@@ -60,7 +58,7 @@ if LOG_QUERIES:
 def web_finalizer(output_lst):
   # use compactly=False to produce human-readable JSON,
   # except at the expense of being a LARGER download
-  output_json = demjson.encode(output_lst, compactly=True)
+  output_json = json.dumps(output_lst)
 
   # query logging is optional
   if LOG_QUERIES:

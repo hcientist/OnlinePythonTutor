@@ -28,7 +28,7 @@
 # Python debugger imported via the bdb module), printing out the values
 # of all in-scope data structures after each executed instruction.
 
-# Note that I've only tested this logger on Python 2.5, so it will
+# Note that I've only tested this logger on Python 2.6, so it will
 # probably fail in subtle ways on other Python 2.X (and will DEFINITELY
 # fail on Python 3.X).
 

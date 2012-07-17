@@ -1,4 +1,4 @@
-#!/usr/bin/python2.5
+#!/usr/bin/python2.6
 
 # Online Python Tutor
 # https://github.com/pgbovine/OnlinePythonTutor/

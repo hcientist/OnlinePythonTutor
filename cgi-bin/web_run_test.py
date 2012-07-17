@@ -1,4 +1,4 @@
-#!/usr/bin/python2.5
+#!/usr/bin/python2.6
 
 # Online Python Tutor
 # https://github.com/pgbovine/OnlinePythonTutor/
@@ -33,9 +33,7 @@
 import cgi
 import pg_logger
 
-# Python 2.5 doesn't have a built-in json module, so I'm using a
-# 3rd-party module.  I think you can do 'import json' in Python >= 2.6
-import demjson
+import json
 
 user_trace = None # the FULL user trace (without any IDs, though)
 expect_trace_final_entry = None
@@ -67,7 +65,7 @@ def expect_script_finalizer(output_lst):
     # Crucial first line to make sure that Apache serves this data
     # correctly - DON'T FORGET THE EXTRA NEWLINES!!!:
     print "Content-type: text/plain; charset=iso-8859-1\n\n"
-    output_json = demjson.encode(ret, compactly=True)
+    output_json = json.dumps(ret)
     print output_json
 
   else:
