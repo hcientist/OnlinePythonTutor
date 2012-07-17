@@ -30,7 +30,6 @@
 
 import os, sys, re, shutil, filecmp, optparse, difflib
 import pg_logger
-import demjson
 
 
 # all tests are found in this directory:
@@ -42,7 +41,7 @@ ALL_TESTS = [e for e in os.listdir(REGTEST_DIR) if e.endswith('.py')]
 def execute(test_script):
   def my_finalizer(output_lst):
     outfile = open(test_script[:-3] + '.out', 'w')
-    output_json = demjson.encode(output_lst, compactly=False)
+    output_json = json.dumps(output_lst)
     print >> outfile, output_json
 
   pg_logger.exec_script_str(open(test_script).read(), my_finalizer, True)

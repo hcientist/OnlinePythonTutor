@@ -31,7 +31,7 @@ QUESTIONS_DIR = '../questions/'
 
 from parse_questions import parseQuestionsFile
 
-import cgi, os, demjson
+import cgi, os
 
 form = cgi.FieldStorage()
 question_file = form['question_file'].value
@@ -43,4 +43,4 @@ assert os.path.isfile(fn)
 # Crucial first line to make sure that Apache serves this data
 # correctly - DON'T FORGET THE EXTRA NEWLINES!!!:
 print "Content-type: text/plain; charset=iso-8859-1\n\n"
-print demjson.encode(parseQuestionsFile(fn))
+print json.dumps(parseQuestionsFile(fn))

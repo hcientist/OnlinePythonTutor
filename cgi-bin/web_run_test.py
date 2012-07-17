@@ -127,7 +127,7 @@ def really_finalize():
   # Crucial first line to make sure that Apache serves this data
   # correctly - DON'T FORGET THE EXTRA NEWLINES!!!:
   print "Content-type: text/plain; charset=iso-8859-1\n\n"
-  output_json = demjson.encode(ret, compactly=True)
+  output_json = json.dumps(ret)
   print output_json
 
 
