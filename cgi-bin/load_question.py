@@ -31,7 +31,7 @@ QUESTIONS_DIR = '../questions/'
 
 from parse_questions import parseQuestionsFile
 
-import cgi, os
+import cgi, os, json
 
 form = cgi.FieldStorage()
 question_file = form['question_file'].value
