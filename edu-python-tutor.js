@@ -47,7 +47,8 @@ function enterVisualizeMode(traceData) {
 $(document).ready(function() {
   eduPythonCommonInit(); // must call this first!
 
-  $("#pyInput").tabby(); // recognize TAB and SHIFT-TAB
+  // this doesn't work since we need jquery.textarea.js ...
+  //$("#pyInput").tabby(); // recognize TAB and SHIFT-TAB
 
 
   // be friendly to the browser's forward and back buttons
