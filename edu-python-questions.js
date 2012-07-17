@@ -59,8 +59,9 @@ function resetTestResults() {
 $(document).ready(function() {
   eduPythonCommonInit(); // must call this first!
 
-  $("#actualCodeInput").tabby(); // recognize TAB and SHIFT-TAB
-  $("#testCodeInput").tabby();   // recognize TAB and SHIFT-TAB
+  // this doesn't work since we need jquery.textarea.js ...
+  //$("#actualCodeInput").tabby(); // recognize TAB and SHIFT-TAB
+  //$("#testCodeInput").tabby();   // recognize TAB and SHIFT-TAB
 
 
   // be friendly to the browser's forward and back buttons
