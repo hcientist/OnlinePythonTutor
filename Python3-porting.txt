@@ -1,3 +1,6 @@
+See cgi-bin/p4_encoder.py for some proposed changes
+
+
 Notes from Peter Wentworth about porting to Python 3
 '''
 Hi Philip - a bug in the code I sent you [NB, see: python3_viz.zip]!  I
