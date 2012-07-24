@@ -1,5 +1,15 @@
 See cgi-bin/p4_encoder.py for some proposed changes
 
+John DeNero's comments on 2012-07-23
+'''
+Distinguishing whether
+some x is a class or not in Python 3 should be performed via:
+
+isinstance(x, type)
+
+I don't think any sort of hack or repr comparison is required.
+'''
+
 
 Notes from Peter Wentworth about porting to Python 3
 '''
