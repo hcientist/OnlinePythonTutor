@@ -1590,7 +1590,10 @@ function eduPythonCommonInit() {
 
   // log a generic AJAX error handler
   $(document).ajaxError(function() {
-    alert("Uh oh, the server returned an error, boo :(  Please reload the page and try executing a different Python script.");
+    alert("Server error (possibly due to memory/resource overload).");
+
+    $('#executeBtn').html("Visualize execution");
+    $('#executeBtn').attr('disabled', false);
   });
 
 }
