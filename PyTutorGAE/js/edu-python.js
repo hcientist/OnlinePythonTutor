@@ -603,16 +603,27 @@ function renderDataStructures(curEntry, vizDiv) {
   }
 
 
+
   // variables are displayed in the following order, so lay out heap objects in the same order:
   //   - globals
   //   - stack entries (regular and zombies)
+
+  // if there are multiple aliases to the same object, we want to render
+  // the one "deepest" in the stack, so that we can hopefully prevent
+  // objects from jumping around as functions are called and returned.
+  // e.g., if a list L appears as a global variable and as a local in a
+  // function, we want to render L when rendering the global frame.
+  //
+  // this is straightforward: just go through globals first and then
+  // each stack frame in order :)
+
   $.each(curEntry.ordered_globals, function(i, varname) {
     var val = curEntry.globals[varname];
     // (use '!==' to do an EXACT match against undefined)
     if (val !== undefined) { // might not be defined at this line, which is OKAY!
       if (!isPrimitiveType(val)) {
         layoutHeapObject(val);
-        console.log('global:', varname, getRefID(val));
+        //console.log('global:', varname, getRefID(val));
       }
     }
   });
@@ -629,7 +640,7 @@ function renderDataStructures(curEntry, vizDiv) {
 
         if (!isPrimitiveType(val)) {
           layoutHeapObject(val);
-          console.log(frame.func_name + ':', varname, getRefID(val));
+          //console.log(frame.func_name + ':', varname, getRefID(val));
         }
       });
     }
@@ -637,10 +648,12 @@ function renderDataStructures(curEntry, vizDiv) {
 
 
   // print toplevelHeapLayout
+  /*
   $.each(toplevelHeapLayout, function(i, elt) {
     console.log(elt);
   });
   console.log('---');
+  */
 
 
   var renderedObjectIDs = {}; // set (TODO: refactor all sets to use d3.map)
@@ -673,7 +686,7 @@ function renderDataStructures(curEntry, vizDiv) {
 
   function renderNestedObject(obj, d3DomElement) {
     if (isPrimitiveType(obj)) {
-      renderPrimitiveObject(obj, d3DomElement, false);
+      renderPrimitiveObject(obj, d3DomElement);
     }
     else {
       renderCompoundObject(getRefID(obj), d3DomElement, false);
@@ -814,7 +827,7 @@ function renderDataStructures(curEntry, vizDiv) {
       else {
         var superclassStr = '';
         if (obj[2].length > 0) {
-          superclassStr += ('[extends ' + obj[2].join(',') + '] ');
+          superclassStr += ('[extends ' + obj[2].join(', ') + '] ');
         }
         d3DomElement.append('<div class="typeLabel">' + obj[1] + ' class ' + superclassStr + '</div>');
       }
@@ -875,12 +888,11 @@ function renderDataStructures(curEntry, vizDiv) {
   // prepend heap header after all the dust settles:
   $(vizDiv + ' #heap').prepend('<div id="heapHeader">Objects</div>');
 
-  return;
 
 
-  // Key:   CSS ID of the div element representing the variable
-  //        (or heap object, for heap->heap connections, where the
-  //        format is: 'heap_pointer_src_<src id>')
+  // Key:   CSS ID of the div element representing the stack frame variable
+  //        (for stack->heap connections) or heap object (for heap->heap connections)
+  //        the format is: 'heap_pointer_src_<src id>'
   // Value: CSS ID of the div element representing the value rendered in the heap
   //        (the format is: 'heap_object_<id>')
   var connectionEndpointIDs = {};
@@ -889,44 +901,49 @@ function renderDataStructures(curEntry, vizDiv) {
   var heap_pointer_src_id = 1; // increment this to be unique for each heap_pointer_src_*
 
 
-  function renderGlobals() {
-    // render all global variables IN THE ORDER they were created by the program,
-    // in order to ensure continuity:
-    if (curEntry.ordered_globals.length > 0) {
-      $(vizDiv + " #stack").append('<div class="stackFrame" id="globals"><div id="globals_header" class="stackFrameHeader">Global variables</div></div>');
+  // Render globals and then stack frames:
 
-      $(vizDiv + " #stack #globals").append('<table class="stackFrameVarTable" id="global_table"></table>');
+  // render all global variables IN THE ORDER they were created by the program,
+  // in order to ensure continuity:
+  if (curEntry.ordered_globals.length > 0) {
+    $(vizDiv + " #stack").append('<div class="stackFrame" id="globals"><div id="globals_header" class="stackFrameHeader">Global variables</div></div>');
+    $(vizDiv + " #stack #globals").append('<table class="stackFrameVarTable" id="global_table"></table>');
 
-      var tbl = $(vizDiv + " #global_table");
-      // iterate IN ORDER (it's possible that not all vars are in curEntry.globals)
-      $.each(curEntry.ordered_globals, function(i, varname) {
-        var val = curEntry.globals[varname];
-        // (use '!==' to do an EXACT match against undefined)
-        if (val !== undefined) { // might not be defined at this line, which is OKAY!
-          tbl.append('<tr><td class="stackFrameVar">' + varname + '</td><td class="stackFrameValue"></td></tr>');
-          var curTr = tbl.find('tr:last');
+    var tbl = $(vizDiv + " #global_table");
 
-          if (renderInline(val)) {
-            renderData(val, curTr.find("td.stackFrameValue"), false /* don't wrap it in a .heapObject div */);
-          }
-          else{
-            // add a stub so that we can connect it with a connector later.
-            // IE needs this div to be NON-EMPTY in order to properly
-            // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
+    $.each(curEntry.ordered_globals, function(i, varname) {
+      var val = curEntry.globals[varname];
+      // (use '!==' to do an EXACT match against undefined)
+      if (val !== undefined) { // might not be defined at this line, which is OKAY!
+        tbl.append('<tr><td class="stackFrameVar">' + varname + '</td><td class="stackFrameValue"></td></tr>');
+        var curTr = tbl.find('tr:last');
 
-            // make sure varname doesn't contain any weird
-            // characters that are illegal for CSS ID's ...
-            var varDivID = 'global__' + varnameToCssID(varname);
-            curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
-
-            assert(connectionEndpointIDs[varDivID] === undefined);
-            var heapObjID = 'heap_object_' + getObjectID(val);
-            connectionEndpointIDs[varDivID] = heapObjID;
-          }
+        if (isPrimitiveType(val)) {
+          renderPrimitiveObject(val, curTr.find("td.stackFrameValue"));
         }
-      });
-    }
+        else{
+          // add a stub so that we can connect it with a connector later.
+          // IE needs this div to be NON-EMPTY in order to properly
+          // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
+
+          // make sure varname doesn't contain any weird
+          // characters that are illegal for CSS ID's ...
+          var varDivID = 'global__' + varnameToCssID(varname);
+          curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
+
+          assert(connectionEndpointIDs[varDivID] === undefined);
+          var heapObjID = 'heap_object_' + getRefID(val);
+          connectionEndpointIDs[varDivID] = heapObjID;
+        }
+      }
+    });
   }
+
+
+  $.each(stack_to_render, function(i, e) {
+    renderStackFrame(e, i, e.is_zombie);
+  });
+
 
   function renderStackFrame(frame, ind, is_zombie) {
     var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
@@ -965,7 +982,6 @@ function renderDataStructures(curEntry, vizDiv) {
     }
     $(vizDiv + " #stack #" + divID).append('<div id="' + headerDivID + '" class="stackFrameHeader">' + headerLabel + '</div>');
 
-
     if (frame.ordered_varnames.length > 0) {
       var tableID = divID + '_table';
       $(vizDiv + " #stack #" + divID).append('<table class="stackFrameVarTable" id="' + tableID + '"></table>');
@@ -996,8 +1012,8 @@ function renderDataStructures(curEntry, vizDiv) {
 
         var curTr = tbl.find('tr:last');
 
-        if (renderInline(val)) {
-          renderData(val, curTr.find("td.stackFrameValue"), false /* don't wrap it in a .heapObject div */);
+        if (isPrimitiveType(val)) {
+          renderPrimitiveObject(val, curTr.find("td.stackFrameValue"));
         }
         else {
           // add a stub so that we can connect it with a connector later.
@@ -1014,127 +1030,11 @@ function renderDataStructures(curEntry, vizDiv) {
           connectionEndpointIDs[varDivID] = heapObjID;
         }
       });
-
-    }
-
-  }
-
-
-  // first render the stack (and global vars)
-  renderGlobals();
-
-  // merge zombie_stack_locals and stack_locals into one master
-  // ordered list using some simple rules for aesthetics
-  var stack_to_render = [];
-
-  // first push all regular stack entries backwards
-  if (curEntry.stack_locals) {
-    for (var i = curEntry.stack_locals.length - 1; i >= 0; i--) {
-      var entry = curEntry.stack_locals[i];
-      entry.is_zombie = false;
-      entry.is_highlighted = (i == 0);
-      stack_to_render.push(entry);
-    }
-  }
-
-  // zombie stack consists of exited functions that have returned nested functions
-  // push zombie stack entries at the BEGINNING of stack_to_render,
-  // EXCEPT put zombie entries BEHIND regular entries that are their parents
-  if (curEntry.zombie_stack_locals) {
-
-    for (var i = curEntry.zombie_stack_locals.length - 1; i >= 0; i--) {
-      var entry = curEntry.zombie_stack_locals[i];
-      entry.is_zombie = true;
-      entry.is_highlighted = false; // never highlight zombie entries
-
-      // j should be 0 most of the time, so we're always inserting new
-      // elements to the front of stack_to_render (which is why we are
-      // iterating backwards over zombie_stack_locals).
-      var j = 0;
-      for (j = 0; j < stack_to_render.length; j++) {
-        if ($.inArray(stack_to_render[j].frame_id, entry.parent_frame_id_list) >= 0) {
-          continue;
-        }
-        break;
-      }
-
-      stack_to_render.splice(j, 0, entry);
-    }
-
-  }
-
-
-  $.each(stack_to_render, function(i, e) {
-    renderStackFrame(e, i, e.is_zombie);
-  });
-
-
-  // then render the heap
-
-  alreadyRenderedObjectIDs = {}; // set of object IDs that have already been rendered
-
-  // if addToEnd is true, then APPEND to the end of the heap,
-  // otherwise PREPEND to the front
-  function renderHeapObjectDEPRECATED(obj, addToEnd) {
-    var objectID = getObjectID(obj);
-
-    if (alreadyRenderedObjectIDs[objectID] === undefined) {
-      var toplevelHeapObjID = 'toplevel_heap_object_' + objectID;
-      var newDiv = '<table class="heapRow"><tr><td class="toplevelHeapObject" id="' + toplevelHeapObjID + '"></td></tr></table>';
-
-      if (addToEnd) {
-        $(vizDiv + ' #heap').append(newDiv);
-      }
-      else {
-        $(vizDiv + ' #heap').prepend(newDiv);
-      }
-      renderData(obj, $(vizDiv + ' #heap #' + toplevelHeapObjID), true);
-
-      alreadyRenderedObjectIDs[objectID] = 1;
     }
   }
 
 
-  // if there are multiple aliases to the same object, we want to render
-  // the one deepest in the stack, so that we can hopefully prevent
-  // objects from jumping around as functions are called and returned.
-  // e.g., if a list L appears as a global variable and as a local in a
-  // function, we want to render L when rendering the global frame.
-
-  // this is straightforward: just go through globals first and then
-  // each stack frame in order :)
-
-  $.each(curEntry.ordered_globals, function(i, varname) {
-    var val = curEntry.globals[varname];
-    if (!renderInline(val)) {
-      renderHeapObject(val, true); // APPEND
-    }
-  });
-
-
-  $.each(stack_to_render, function(i, frame) {
-    var localVars = frame.encoded_locals;
-
-    $.each(frame.ordered_varnames, function(i2, varname) {
-
-      // don't render return values for zombie frames
-      if (frame.is_zombie && varname == '__return__') {
-        return;
-      }
-
-      var val = localVars[varname];
-      if (!renderInline(val)) {
-        renderHeapObject(val, true); // APPEND
-      }
-    });
-  });
-
-  
-  // prepend heap header after all the dust settles:
-  $(vizDiv + ' #heap').prepend('<div id="heapHeader">Objects</div>');
-
-
-  // finally connect stack variables to heap objects via connectors
+  // finally add all the connectors!
   for (varID in connectionEndpointIDs) {
     var valueID = connectionEndpointIDs[varID];
     jsPlumb.connect({source: varID, target: valueID});
