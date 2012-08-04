@@ -8,11 +8,11 @@ x.append(6)
 y.append(7)
 y = "hello"
 
-def foo(lst):
+def foo(lst): # breakpoint
     lst.append("hello")
     bar(lst)
 
-def bar(myLst):
+def bar(myLst): # breakpoint
     print myLst
 
 foo(x)
