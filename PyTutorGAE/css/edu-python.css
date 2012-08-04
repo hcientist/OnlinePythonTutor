@@ -126,7 +126,7 @@ span {
 td#stack_td,
 td#heap_td {
   vertical-align:top;
-  font-size: 12pt;
+  font-size: 10pt; /* don't make fonts in the heap so big! */
 }
 
 table#pyOutputPane {
@@ -286,19 +286,16 @@ button.smallBtn {
 }
 
 .keyObj {
-  font-size: 10pt;
 }
 
 .customObj {
   font-family: Andale mono, monospace;
   /*font-style: italic;*/
-  font-size: 10pt;
 }
 
 .funcObj {
   font-family: Andale mono, monospace;
   /*font-style: italic;*/
-  font-size: 10pt;
 }
 
 .retval,
@@ -347,6 +344,16 @@ table.listTbl td.listElt {
 
 table.tupleTbl td.tupleElt {
   border-left: 1px solid #555555; /* must match td.tupleHeader border */
+}
+
+table.customObjTbl {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+table.customObjTbl td.customObjElt {
+  padding: 5px;
 }
 
 table.listTbl td.listElt,

@@ -726,8 +726,9 @@ function renderDataStructures(curEntry, vizDiv) {
     var obj = curEntry.heap[objID];
     assert($.isArray(obj));
 
-    if (obj[0] == 'LIST' || obj[0] == 'TUPLE') {
-      var label = obj[0] == 'LIST' ? 'list' : 'tuple';
+
+    if (obj[0] == 'LIST' || obj[0] == 'TUPLE' || obj[0] == 'SET' || obj[0] == 'DICT') {
+      var label = obj[0].toLowerCase();
 
       assert(obj.length >= 1);
       if (obj.length == 1) {
@@ -735,46 +736,147 @@ function renderDataStructures(curEntry, vizDiv) {
       }
       else {
         d3DomElement.append('<div class="typeLabel">' + label + '</div>');
-        d3DomElement.append('<table class="' + label + 'Tbl"><tr></tr><tr></tr></table>');
+        d3DomElement.append('<table class="' + label + 'Tbl"></table>');
         var tbl = d3DomElement.children('table');
-        var headerTr = tbl.find('tr:first');
-        var contentTr = tbl.find('tr:last');
-        $.each(obj, function(ind, val) {
-          if (ind < 1) return; // skip type tag and ID entry
 
-          // add a new column and then pass in that newly-added column
-          // as d3DomElement to the recursive call to child:
-          headerTr.append('<td class="' + label + 'Header"></td>');
-          headerTr.find('td:last').append(ind - 1);
+        if (obj[0] == 'LIST' || obj[0] == 'TUPLE') {
+          tbl.append('<tr></tr><tr></tr>');
+          var headerTr = tbl.find('tr:first');
+          var contentTr = tbl.find('tr:last');
+          $.each(obj, function(ind, val) {
+            if (ind < 1) return; // skip type tag and ID entry
 
-          contentTr.append('<td class="'+ label + 'Elt"></td>');
-          renderNestedObject(val, contentTr.find('td:last'));
+            // add a new column and then pass in that newly-added column
+            // as d3DomElement to the recursive call to child:
+            headerTr.append('<td class="' + label + 'Header"></td>');
+            headerTr.find('td:last').append(ind - 1);
+
+            contentTr.append('<td class="'+ label + 'Elt"></td>');
+            renderNestedObject(val, contentTr.find('td:last'));
+          });
+        }
+        else if (obj[0] == 'SET') {
+          // create an R x C matrix:
+          var numElts = obj.length - 1;
+
+          // gives roughly a 3x5 rectangular ratio, square is too, err,
+          // 'square' and boring
+          var numRows = Math.round(Math.sqrt(numElts));
+          if (numRows > 3) {
+            numRows -= 1;
+          }
+
+          var numCols = Math.round(numElts / numRows);
+          // round up if not a perfect multiple:
+          if (numElts % numRows) {
+            numCols += 1;
+          }
+
+          jQuery.each(obj, function(ind, val) {
+            if (ind < 1) return; // skip 'SET' tag
+
+            if (((ind - 1) % numCols) == 0) {
+              tbl.append('<tr></tr>');
+            }
+
+            var curTr = tbl.find('tr:last');
+            curTr.append('<td class="setElt"></td>');
+            renderNestedObject(val, curTr.find('td:last'));
+          });
+        }
+        else if (obj[0] == 'DICT') {
+          $.each(obj, function(ind, kvPair) {
+            if (ind < 1) return; // skip 'DICT' tag
+
+            tbl.append('<tr class="dictEntry"><td class="dictKey"></td><td class="dictVal"></td></tr>');
+            var newRow = tbl.find('tr:last');
+            var keyTd = newRow.find('td:first');
+            var valTd = newRow.find('td:last');
+
+            var key = kvPair[0];
+            var val = kvPair[1];
+
+            renderNestedObject(key, keyTd);
+            renderNestedObject(val, valTd);
+          });
+        }
+      }
+    }
+    else if (obj[0] == 'INSTANCE' || obj[0] == 'CLASS') {
+      var isInstance = (obj[0] == 'INSTANCE');
+      var headerLength = isInstance ? 2 : 3;
+
+      assert(obj.length >= headerLength);
+
+      if (isInstance) {
+        d3DomElement.append('<div class="typeLabel">' + obj[1] + ' instance</div>');
+      }
+      else {
+        var superclassStr = '';
+        if (obj[2].length > 0) {
+          superclassStr += ('[extends ' + obj[2].join(',') + '] ');
+        }
+        d3DomElement.append('<div class="typeLabel">' + obj[1] + ' class ' + superclassStr + '</div>');
+      }
+
+      if (obj.length > headerLength) {
+        var lab = isInstance ? 'inst' : 'class';
+        d3DomElement.append('<table class="' + lab + 'Tbl"></table>');
+
+        var tbl = d3DomElement.children('table');
+
+        $.each(obj, function(ind, kvPair) {
+          if (ind < headerLength) return; // skip header tags
+
+          tbl.append('<tr class="' + lab + 'Entry"><td class="' + lab + 'Key"></td><td class="' + lab + 'Val"></td></tr>');
+
+          var newRow = tbl.find('tr:last');
+          var keyTd = newRow.find('td:first');
+          var valTd = newRow.find('td:last');
+
+          // the keys should always be strings, so render them directly (and without quotes):
+          assert(typeof kvPair[0] == "string");
+          var attrnameStr = htmlspecialchars(kvPair[0]);
+          keyTd.append('<span class="keyObj">' + attrnameStr + '</span>');
+
+          // values can be arbitrary objects, so recurse:
+          renderNestedObject(kvPair[1], valTd);
         });
       }
     }
-    else if (obj[0] == 'SET') {
-
-    }
-    else if (obj[0] == 'DICT') {
-
-    }
-    else if (obj[0] == 'INSTANCE') {
-    }
-    else if (obj[0] == 'CLASS') {
-    }
     else if (obj[0] == 'FUNCTION') {
+      assert(obj.length == 3);
+
+      var funcName = htmlspecialchars(obj[1]); // for displaying weird names like '<lambda>'
+      var parentFrameID = obj[2]; // optional
+
+      if (parentFrameID) {
+        d3DomElement.append('<div class="funcObj">function ' + funcName + ' [parent=f'+ parentFrameID + ']</div>');
+      }
+      else {
+        d3DomElement.append('<div class="funcObj">function ' + funcName + '</div>');
+      }
     }
     else {
       // render custom data type
+      assert(obj.length == 2);
+
+      var typeName = obj[0];
+      var strRepr = obj[1];
+
+      strRepr = htmlspecialchars(strRepr); // escape strings!
+
+      d3DomElement.append('<div class="typeLabel">' + typeName + '</div>');
+      d3DomElement.append('<table class="customObjTbl"><tr><td class="customObjElt">' + strRepr + '</td></tr></table>');
     }
   }
-
 
 
   // prepend heap header after all the dust settles:
   $(vizDiv + ' #heap').prepend('<div id="heapHeader">Objects</div>');
 
   return;
+
 
   // Key:   CSS ID of the div element representing the variable
   //        (or heap object, for heap->heap connections, where the
@@ -785,333 +887,6 @@ function renderDataStructures(curEntry, vizDiv) {
   var heapConnectionEndpointIDs = {}; // subset of connectionEndpointIDs for heap->heap connections
 
   var heap_pointer_src_id = 1; // increment this to be unique for each heap_pointer_src_*
-
-
-  // nested helper functions are SUPER-helpful!
-
-  // render the JS data object obj inside of jDomElt,
-  // which is a jQuery wrapped DOM object
-  // (obj is in a format encoded by pg_encoder.py on the backend)
-  // isTopLevel is true only if this is a top-level heap object (rather
-  // than a nested sub-object)
-  function renderData(obj, jDomElt, isTopLevel) {
-    var typ = typeof obj;
-    var oID = getObjectID(obj);
-
-    if (isPrimitiveType(obj)) {
-      // only wrap primitive types in heap objects if they are at the
-      // TOP-LEVEL (otherwise just render them inline within other data
-      // structures)
-      if (isTopLevel) {
-        jDomElt.append('<div class="heapObject" id="heap_object_' + oID + '"></div>');
-        jDomElt = $('#heap_object_' + oID);
-      }
-
-      if (obj == null) {
-        jDomElt.append('<span class="nullObj">None</span>');
-      }
-      else if (typ == "number") {
-        jDomElt.append('<span class="numberObj">' + obj + '</span>');
-      }
-      else if (typ == "boolean") {
-        if (obj) {
-          jDomElt.append('<span class="boolObj">True</span>');
-        }
-        else {
-          jDomElt.append('<span class="boolObj">False</span>');
-        }
-      }
-      else if (typ == "string") {
-        // escape using htmlspecialchars to prevent HTML/script injection
-        var literalStr = htmlspecialchars(obj);
-
-        // print as a double-quoted string literal
-        literalStr = literalStr.replace(new RegExp('\"', 'g'), '\\"'); // replace ALL
-        literalStr = '"' + literalStr + '"';
-
-        jDomElt.append('<span class="stringObj">' + literalStr + '</span>');
-      }
-    }
-    else {
-      assert(typ == "object");
-      assert($.isArray(obj));
-
-      if ((compound_objects_already_rendered[oID] !== undefined) ||
-          (obj[0] == 'CIRCULAR_REF')) {
-        // render heap->heap connection
-        if (!isTopLevel) {
-          // add a stub so that we can connect it with a connector later.
-          // IE needs this div to be NON-EMPTY in order to properly
-          // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
-
-          var srcDivID = 'heap_pointer_src_' + heap_pointer_src_id;
-          heap_pointer_src_id++; // just make sure each source has a UNIQUE ID
-          jDomElt.append('<div id="' + srcDivID + '">&nbsp;</div>');
-
-          assert(connectionEndpointIDs[srcDivID] === undefined);
-          connectionEndpointIDs[srcDivID] = 'heap_object_' + oID;
-
-          assert(heapConnectionEndpointIDs[srcDivID] === undefined);
-          heapConnectionEndpointIDs[srcDivID] = 'heap_object_' + oID;
-        }
-      }
-      else {
-        // wrap compound objects in a heapObject div so that jsPlumb
-        // connectors can point to it:
-        jDomElt.append('<div class="heapObject" id="heap_object_' + oID + '"></div>');
-        jDomElt = $('#heap_object_' + oID);
-        
-        if (obj[0] == 'LIST') {
-          assert(obj.length >= 2);
-          if (obj.length == 2) {
-            jDomElt.append('<div class="typeLabel">empty list</div>');
-          }
-          else {
-            jDomElt.append('<div class="typeLabel">list</div>');
-
-            jDomElt.append('<table class="listTbl"><tr></tr><tr></tr></table>');
-            var tbl = jDomElt.children('table');
-            var headerTr = tbl.find('tr:first');
-            var contentTr = tbl.find('tr:last');
-            jQuery.each(obj, function(ind, val) {
-              if (ind < 2) return; // skip 'LIST' tag and ID entry
-
-              // add a new column and then pass in that newly-added column
-              // as jDomElt to the recursive call to child:
-              headerTr.append('<td class="listHeader"></td>');
-              headerTr.find('td:last').append(ind - 2);
-
-              contentTr.append('<td class="listElt"></td>');
-
-              // heuristic for rendering top-level 1-D linked data structures as separate top-level objects
-              // (and then drawing an arrow to the next element using a regular renderData() call)
-              if (isTopLevel && structurallyEquivalent(obj, val)) {
-                var childHeapObjectID = 'toplevel_heap_object_' + getObjectID(val);
-
-                var enclosingTr = jDomElt.parent().parent();
-                enclosingTr.append('<td class="toplevelHeapObject" id="' + childHeapObjectID + '"></td>');
-                renderData(val, enclosingTr.find('#' + childHeapObjectID), true /* isTopLevel */);
-              }
-
-              renderData(val, contentTr.find('td:last'), false);
-            });
-          }
-        }
-        else if (obj[0] == 'TUPLE') {
-          assert(obj.length >= 2);
-          if (obj.length == 2) {
-            jDomElt.append('<div class="typeLabel">empty tuple</div>');
-          }
-          else {
-            jDomElt.append('<div class="typeLabel">tuple</div>');
-            jDomElt.append('<table class="tupleTbl"><tr></tr><tr></tr></table>');
-            var tbl = jDomElt.children('table');
-            var headerTr = tbl.find('tr:first');
-            var contentTr = tbl.find('tr:last');
-            jQuery.each(obj, function(ind, val) {
-              if (ind < 2) return; // skip 'TUPLE' tag and ID entry
-
-              // add a new column and then pass in that newly-added column
-              // as jDomElt to the recursive call to child:
-              headerTr.append('<td class="tupleHeader"></td>');
-              headerTr.find('td:last').append(ind - 2);
-
-              contentTr.append('<td class="tupleElt"></td>');
-
-              // heuristic for rendering top-level 1-D linked data structures as separate top-level objects
-              // (and then drawing an arrow to the next element using a regular renderData() call)
-              if (isTopLevel && structurallyEquivalent(obj, val)) {
-                var childHeapObjectID = 'toplevel_heap_object_' + getObjectID(val);
-
-                var enclosingTr = jDomElt.parent().parent();
-                enclosingTr.append('<td class="toplevelHeapObject" id="' + childHeapObjectID + '"></td>');
-                renderData(val, enclosingTr.find('#' + childHeapObjectID), true /* isTopLevel */);
-              }
-
-              renderData(val, contentTr.find('td:last'), false);
-            });
-          }
-        }
-        else if (obj[0] == 'SET') {
-          assert(obj.length >= 2);
-          if (obj.length == 2) {
-            jDomElt.append('<div class="typeLabel">empty set</div>');
-          }
-          else {
-            jDomElt.append('<div class="typeLabel">set</div>');
-            jDomElt.append('<table class="setTbl"></table>');
-            var tbl = jDomElt.children('table');
-            // create an R x C matrix:
-            var numElts = obj.length - 2;
-            // gives roughly a 3x5 rectangular ratio, square is too, err,
-            // 'square' and boring
-            var numRows = Math.round(Math.sqrt(numElts));
-            if (numRows > 3) {
-              numRows -= 1;
-            }
-
-            var numCols = Math.round(numElts / numRows);
-            // round up if not a perfect multiple:
-            if (numElts % numRows) {
-              numCols += 1;
-            }
-
-            jQuery.each(obj, function(ind, val) {
-              if (ind < 2) return; // skip 'SET' tag and ID entry
-
-              if (((ind - 2) % numCols) == 0) {
-                tbl.append('<tr></tr>');
-              }
-
-              var curTr = tbl.find('tr:last');
-              curTr.append('<td class="setElt"></td>');
-              renderData(val, curTr.find('td:last'), false);
-            });
-          }
-        }
-        else if (obj[0] == 'DICT') {
-          assert(obj.length >= 2);
-          if (obj.length == 2) {
-            jDomElt.append('<div class="typeLabel">empty dict</div>');
-          }
-          else {
-            jDomElt.append('<div class="typeLabel">dict</div>');
-            jDomElt.append('<table class="dictTbl"></table>');
-            var tbl = jDomElt.children('table');
-            $.each(obj, function(ind, kvPair) {
-              if (ind < 2) return; // skip 'DICT' tag and ID entry
-
-              tbl.append('<tr class="dictEntry"><td class="dictKey"></td><td class="dictVal"></td></tr>');
-              var newRow = tbl.find('tr:last');
-              var keyTd = newRow.find('td:first');
-              var valTd = newRow.find('td:last');
-
-              var key = kvPair[0];
-              var val = kvPair[1];
-
-              renderData(key, keyTd, false);
-
-              // heuristic for rendering top-level 1-D linked data structures as separate top-level objects
-              // (and then drawing an arrow to the next element using a regular renderData() call)
-              if (isTopLevel && structurallyEquivalent(obj, val)) {
-                var childHeapObjectID = 'toplevel_heap_object_' + getObjectID(val);
-
-                var enclosingTr = jDomElt.parent().parent();
-                enclosingTr.append('<td class="toplevelHeapObject" id="' + childHeapObjectID + '"></td>');
-                renderData(val, enclosingTr.find('#' + childHeapObjectID), true /* isTopLevel */);
-              }
-
-              renderData(val, valTd, false);
-            });
-          }
-        }
-        else if (obj[0] == 'INSTANCE') {
-          assert(obj.length >= 3);
-          jDomElt.append('<div class="typeLabel">' + obj[1] + ' instance</div>');
-
-          if (obj.length > 3) {
-            jDomElt.append('<table class="instTbl"></table>');
-            var tbl = jDomElt.children('table');
-            $.each(obj, function(ind, kvPair) {
-              if (ind < 3) return; // skip type tag, class name, and ID entry
-
-              tbl.append('<tr class="instEntry"><td class="instKey"></td><td class="instVal"></td></tr>');
-              var newRow = tbl.find('tr:last');
-              var keyTd = newRow.find('td:first');
-              var valTd = newRow.find('td:last');
-
-              // the keys should always be strings, so render them directly (and without quotes):
-              assert(typeof kvPair[0] == "string");
-              var attrnameStr = htmlspecialchars(kvPair[0]);
-              keyTd.append('<span class="keyObj">' + attrnameStr + '</span>');
-
-              // values can be arbitrary objects, so recurse:
-              var val = kvPair[1];
-
-              // heuristic for rendering top-level 1-D linked data structures as separate top-level objects
-              // (and then drawing an arrow to the next element using a regular renderData() call)
-              if (isTopLevel && structurallyEquivalent(obj, val)) {
-                var childHeapObjectID = 'toplevel_heap_object_' + getObjectID(val);
-
-                var enclosingTr = jDomElt.parent().parent();
-                enclosingTr.append('<td class="toplevelHeapObject" id="' + childHeapObjectID + '"></td>');
-                renderData(val, enclosingTr.find('#' + childHeapObjectID), true /* isTopLevel */);
-              }
-
-              renderData(val, valTd, false);
-            });
-          }
-        }
-        else if (obj[0] == 'CLASS') {
-          assert(obj.length >= 4);
-          var superclassStr = '';
-          if (obj[3].length > 0) {
-            superclassStr += ('[extends ' + obj[3].join(',') + '] ');
-          }
-
-          jDomElt.append('<div class="typeLabel">' + obj[1] + ' class ' + superclassStr + '</div>');
-
-          if (obj.length > 4) {
-            jDomElt.append('<table class="classTbl"></table>');
-            var tbl = jDomElt.children('table');
-            $.each(obj, function(ind, kvPair) {
-              if (ind < 4) return; // skip type tag, class name, ID, and superclasses entries
-
-              tbl.append('<tr class="classEntry"><td class="classKey"></td><td class="classVal"></td></tr>');
-              var newRow = tbl.find('tr:last');
-              var keyTd = newRow.find('td:first');
-              var valTd = newRow.find('td:last');
-
-              // the keys should always be strings, so render them directly (and without quotes):
-              assert(typeof kvPair[0] == "string");
-              var attrnameStr = htmlspecialchars(kvPair[0]);
-              keyTd.append('<span class="keyObj">' + attrnameStr + '</span>');
-
-              // values can be arbitrary objects, so recurse:
-              renderData(kvPair[1], valTd, false);
-            });
-          }
-        }
-        else if (obj[0] == 'FUNCTION') {
-          assert(obj.length == 4);
-          id = obj[1];
-          funcName = htmlspecialchars(obj[2]); // for displaying names like '<lambda>'
-          parentFrameID = obj[3]; // optional
-
-          if (parentFrameID) {
-            jDomElt.append('<div class="funcObj">function ' + funcName + ' [parent=f'+ parentFrameID + ']</div>');
-          }
-          else {
-            jDomElt.append('<div class="funcObj">function ' + funcName + '</div>');
-          }
-
-        }
-        else {
-          // render custom data type
-          assert(obj.length == 3);
-          typeName = obj[0];
-          id = obj[1];
-          strRepr = obj[2];
-
-          // if obj[2] is like '<generator object <genexpr> at 0x84760>',
-          // then display an abbreviated version rather than the gory details
-          noStrReprRE = /<.* at 0x.*>/;
-          if (noStrReprRE.test(strRepr)) {
-            jDomElt.append('<span class="customObj">' + typeName + '</span>');
-          }
-          else {
-            strRepr = htmlspecialchars(strRepr); // escape strings!
-
-            // warning: we're overloading tuple elts for custom data types
-            jDomElt.append('<div class="typeLabel">' + typeName + '</div>');
-            jDomElt.append('<table class="tupleTbl"><tr><td class="tupleElt">' + strRepr + '</td></tr></table>');
-          }
-        }
-
-        compound_objects_already_rendered[oID] = 1; // add to set
-      }
-    }
-  }
 
 
   function renderGlobals() {
