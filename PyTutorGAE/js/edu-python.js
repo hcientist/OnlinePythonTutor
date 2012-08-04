@@ -280,6 +280,23 @@ function updateOutput() {
   }
 
 
+  $("#vcrControls #jmpFirstInstr").attr("disabled", false);
+  $("#vcrControls #jmpStepBack").attr("disabled", false);
+  $("#vcrControls #jmpStepFwd").attr("disabled", false);
+  $("#vcrControls #jmpLastInstr").attr("disabled", false);
+
+  if (curInstr == 0) {
+    $("#vcrControls #jmpFirstInstr").attr("disabled", true);
+    $("#vcrControls #jmpStepBack").attr("disabled", true);
+  }
+  if (curInstr == (totalInstrs-1)) {
+    $("#vcrControls #jmpLastInstr").attr("disabled", true);
+    $("#vcrControls #jmpStepFwd").attr("disabled", true);
+  }
+
+
+
+
   // PROGRAMMATICALLY change the value, so evt.originalEvent should be undefined
   $('#executionSlider').slider('value', curInstr);
 
@@ -921,7 +938,10 @@ function renderDataStructures(curEntry, vizDiv) {
   $(vizDiv + ' #heap').prepend('<div id="heapHeader">Objects</div>');
 
 
+
   // Render globals and then stack frames:
+  // TODO: could convert to using d3 to map globals and stack frames directly into stack frame divs
+  // (which might make it easier to do smooth transitions)
 
   // render all global variables IN THE ORDER they were created by the program,
   // in order to ensure continuity:
@@ -1447,6 +1467,39 @@ function clearSliderBreakpoints() {
 
 // initialization function that should be called when the page is loaded
 function eduPythonCommonInit() {
+
+  $("#jmpFirstInstr").click(function() {
+    curInstr = 0;
+    updateOutput();
+  });
+
+  $("#jmpLastInstr").click(function() {
+    curInstr = curTrace.length - 1;
+    updateOutput();
+  });
+
+  $("#jmpStepBack").click(function() {
+    if (curInstr > 0) {
+      curInstr -= 1;
+      updateOutput();
+    }
+  });
+
+  $("#jmpStepFwd").click(function() {
+    if (curInstr < curTrace.length - 1) {
+      curInstr += 1;
+      updateOutput();
+    }
+  });
+
+  // disable controls initially ...
+  $("#vcrControls #jmpFirstInstr").attr("disabled", true);
+  $("#vcrControls #jmpStepBack").attr("disabled", true);
+  $("#vcrControls #jmpStepFwd").attr("disabled", true);
+  $("#vcrControls #jmpLastInstr").attr("disabled", true);
+
+
+
   // set some sensible jsPlumb defaults
   jsPlumb.Defaults.Endpoint = ["Dot", {radius:3}];
   //jsPlumb.Defaults.Endpoint = ["Rectangle", {width:3, height:3}];
