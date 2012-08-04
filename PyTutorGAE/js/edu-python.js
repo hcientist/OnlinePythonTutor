@@ -43,7 +43,6 @@ var errorColor = '#F87D76';
 var visitedLineColor = '#3D58A2';
 
 var lightGray = "#cccccc";
-//var lightGray = "#dddddd";
 var darkBlue = "#3D58A2";
 var lightBlue = "#899CD1";
 var pinkish = "#F15149";
