@@ -698,3 +698,7 @@ div#submittedSolutionDisplay {
   fill: #F15149;
 }
 
+
+/* necessary for CodeMirror line highlighting to work! */
+.CodeMirror .errorLine { background: #F89D99 !important; }
+

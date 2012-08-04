@@ -58,7 +58,7 @@ $(document).ready(function() {
   pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
     mode: 'python',
     lineNumbers: true,
-    tabSize: 2,
+    tabSize: 2
   });
 
   pyInputCodeMirror.setSize(null, '450px');
@@ -133,11 +133,34 @@ $(document).ready(function() {
 
     // TODO: is GET or POST best here?
     $.get("exec",
-           {user_script : pyInputCodeMirror.getValue()},
-           function(traceData) {
-             enterVisualizeMode(traceData, pyInputCodeMirror.getValue());
-           },
-           "json");
+          {user_script : pyInputCodeMirror.getValue()},
+          function(traceData) {
+            // don't enter visualize mode if there are killer errors:
+            if (!traceData ||
+                ((traceData.length == 1) && traceData[0].event == 'uncaught_exception')) {
+              var errorLineNo = traceData[0].line - 1; /* CodeMirror lines are zero-indexed */
+              if (errorLineNo !== undefined) {
+                // highlight the faulting line in pyInputCodeMirror
+                pyInputCodeMirror.focus();
+                pyInputCodeMirror.setCursor(errorLineNo, 0);
+                pyInputCodeMirror.setLineClass(errorLineNo, null, 'errorLine');
+
+                pyInputCodeMirror.setOption('onChange', function() {
+                  pyInputCodeMirror.setLineClass(errorLineNo, null, null); // reset line back to normal
+                  pyInputCodeMirror.setOption('onChange', null); // cancel
+                });
+              }
+
+              alert(traceData[0].exception_msg);
+
+              $('#executeBtn').html("Visualize execution");
+              $('#executeBtn').attr('disabled', false);
+            }
+            else {
+              enterVisualizeMode(traceData, pyInputCodeMirror.getValue());
+            }
+          },
+          "json");
   });
 
 
