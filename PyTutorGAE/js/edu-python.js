@@ -1570,6 +1570,9 @@ function eduPythonCommonInit() {
             if (prevBreakpoint != -1) {
               curInstr = prevBreakpoint;
             }
+            else {
+              curInstr -= 1; // prevent keyboard keys from "getting stuck" on a solitary breakpoint
+            }
           }
           else {
             curInstr -= 1;
@@ -1588,6 +1591,9 @@ function eduPythonCommonInit() {
             var nextBreakpoint = findNextBreakpoint(curInstr);
             if (nextBreakpoint != -1) {
               curInstr = nextBreakpoint;
+            }
+            else {
+              curInstr += 1; // prevent keyboard keys from "getting stuck" on a solitary breakpoint
             }
           }
           else {
