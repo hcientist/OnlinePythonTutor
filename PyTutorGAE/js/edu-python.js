@@ -254,6 +254,171 @@ function isOutputLineVisible(lineNo) {
 
 
 
+// Pre-compute the layout of top-level heap objects for ALL execution
+// points as soon as a trace is first loaded. The reason why we want to
+// do this is so that when the user steps through execution points, the
+// heap objects don't "jiggle around" (i.e., preserving positional
+// invariance). Also, if we set up the layout objects properly, then we
+// can take full advantage of d3 to perform rendering and transitions.
+
+
+// curTraceLayouts is a list of top-level heap layout "objects" with the
+// same length as curTrace after it's been fully initialized. Each
+// element of curTraceLayouts is computed from the contents of its
+// immediate predecessor, thus ensuring that objects don't "jiggle
+// around" between consecutive execution points.
+//
+// Each top-level heap layout "object" is itself a LIST of LISTS of
+// object IDs, where each element of the outer list represents a row,
+// and each element of the inner list represents columns within a
+// particular row. Each row can have a different number of columns. Most
+// rows have exactly ONE column (representing ONE object ID), but rows
+// containing 1-D linked data structures have multiple columns. Each
+// inner list element looks something like ['row1', 3, 2, 1] where the
+// first element is a unique row ID tag, which is used as a key for d3 to
+// preserve "object constancy" for updates, transitions, etc. The row ID
+// is derived from the FIRST object ID inserted into the row. Since all
+// object IDs are unique, all row IDs will also be unique.
+var curTraceLayouts = null;
+
+/* This is a good, simple example to test whether objects "jiggle"
+
+x = [1, [2, [3, None]]]
+y = [4, [5, [6, None]]]
+
+x[1][1] = y[1]
+
+*/
+
+
+function precomputeCurTraceLayouts() {
+  curTraceLayouts = [];
+  curTraceLayouts.push([]); // pre-seed with an empty sentinel to simplify the code
+
+  assert(curTrace.length > 0);
+
+ 
+  $.each(curTrace, function(i, elt) {
+    var prevLayout = curTraceLayouts[curTraceLayouts.length - 1];
+
+    // make a DEEP COPY of prevLayout to use as the basis for curLine
+    var curLayout = $.extend(true /* deep copy */ , [], prevLayout);
+
+    // initialize with all IDs from curLayout
+    var idsToRemove = d3.map();
+    $.each(curLayout, function(i, row) {
+      for (var j = 1 /* ignore row ID tag */; j < row.length; j++) {
+        idsToRemove.set(row[j], 1);
+      }
+    });
+
+
+    function curLayoutIndexOf(id) {
+      for (var i = 0; i < curLayout.length; i++) {
+        var row = curLayout[i];
+        var index = row.indexOf(id);
+        if (index > 0) { // index of 0 is impossible since it's the row ID tag
+          return {row: row, index: index}
+        }
+      }
+      return null;
+    }
+
+
+    // a krazy function!
+    // id     - the new object ID to be inserted somewhere in curLayout
+    //          (if it's not already in there)
+    // curRow - a row within curLayout where new linked list
+    //          elements can be appended onto (might be null)
+    // newRow - a new row that might be spliced into curRow or appended
+    //          as a new row in curLayout
+    function updateCurLayout(id, curRow, newRow) {
+      var curLayoutLoc = curLayoutIndexOf(id);
+
+      // if id is already in curLayout ...
+      if (curLayoutLoc) {
+        var foundRow = curLayoutLoc.row;
+        var foundIndex = curLayoutLoc.index;
+
+        // splice the contents of newRow right BEFORE foundIndex.
+        // (Think about when you're trying to insert in id=3 into ['row1', 2, 1]
+        //  to represent a linked list 3->2->1. You want to splice the 3
+        //  entry right before the 2 to form ['row1', 3, 2, 1])
+        if (newRow.length > 1) {
+          var args = [foundIndex - 1, 0];
+          for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
+            args.push(newRow[i]);
+            idsToRemove.remove(newRow[i]);
+          }
+          foundRow.splice.apply(args);
+
+          // remove ALL elements from newRow since they've all been accounted for
+          // (but don't reassign it away to an empty list, since the
+          // CALLER checks its value. TODO: get rid of this gross hack?!?)
+          newRow.splice(0, newRow.length);
+        }
+
+        // recurse to find more top-level linked entries to append onto curRow
+        //   updateCurLayout(child ID, foundRow, [])
+
+      }
+      else {
+        // push id into newRow ...
+        if (newRow.length == 0) {
+          newRow.push('row' + id); // unique row ID (since IDs are unique)
+        }
+        newRow.push(id);
+
+        // RECURSE to find possible top-level linked entries
+        //   updateCurLayout(child ID, curRow, newRow)
+
+
+        // if newRow hasn't been spliced into an existing row yet during
+        // a child recursive call ...
+        if (newRow.length > 0) {
+          if (curRow && curRow.length > 0) {
+            // append onto the END of curRow if it exists
+            for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
+              curRow.push(newRow[i]);
+            }
+          }
+          else {
+            // otherwise push to curLayout as a new row
+            curLayout.push(newRow);
+          }
+
+          // regardless, newRow is now accounted for, so clear it
+          for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
+            idsToRemove.remove(newRow[i]);
+          }
+          newRow.splice(0, newRow.length);
+        }
+
+      }
+    }
+
+
+    // iterate through all globals and ordered stack frames
+    //   and then call updateCurLayout(id, null, []);
+
+
+    // iterate through remaining elements of idsToRemove and REMOVE them
+    // from curLayout
+    idsToRemove.forEach(function(id, xxx) {
+      var ind = row.indexOf(id);
+      if (ind > 0) { // remember that index 0 of the row is the row ID tag
+        row.splice(ind, 1);
+      }
+    });
+
+    curTraceLayouts.push(curLayout);
+  });
+
+  curTraceLayouts.splice(0, 1); // remove seeded empty sentinel element
+  assert (curTrace.length == curTraceLayouts.length);
+}
+
+
 // relies on curTrace and curInstr globals
 function updateOutput() {
   if (!curTrace) {
