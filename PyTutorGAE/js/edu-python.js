@@ -626,47 +626,6 @@ function renderDataStructures(curEntry, vizDiv) {
   $(vizDiv + " #stack").append('<div id="stackHeader">Frames</div>');
 
 
-  // merge zombie_stack_locals and stack_locals into one master
-  // ordered list using some simple rules for aesthetics
-  var stack_to_render = [];
-
-  // first push all regular stack entries backwards
-  if (curEntry.stack_locals) {
-    for (var i = curEntry.stack_locals.length - 1; i >= 0; i--) {
-      var entry = curEntry.stack_locals[i];
-      entry.is_zombie = false;
-      entry.is_highlighted = (i == 0);
-      stack_to_render.push(entry);
-    }
-  }
-
-  // zombie stack consists of exited functions that have returned nested functions
-  // push zombie stack entries at the BEGINNING of stack_to_render,
-  // EXCEPT put zombie entries BEHIND regular entries that are their parents
-  if (curEntry.zombie_stack_locals) {
-
-    for (var i = curEntry.zombie_stack_locals.length - 1; i >= 0; i--) {
-      var entry = curEntry.zombie_stack_locals[i];
-      entry.is_zombie = true;
-      entry.is_highlighted = false; // never highlight zombie entries
-
-      // j should be 0 most of the time, so we're always inserting new
-      // elements to the front of stack_to_render (which is why we are
-      // iterating backwards over zombie_stack_locals).
-      var j = 0;
-      for (j = 0; j < stack_to_render.length; j++) {
-        if ($.inArray(stack_to_render[j].frame_id, entry.parent_frame_id_list) >= 0) {
-          continue;
-        }
-        break;
-      }
-
-      stack_to_render.splice(j, 0, entry);
-    }
-
-  }
-
-
   // first build up a list of lists representing the locations of TOP-LEVEL heap objects to be rendered.
   // doing so decouples the data format of curEntry from the nitty-gritty HTML rendering code,
   // which gives us more flexibility in experimenting with layout strategies.
@@ -813,15 +772,10 @@ function renderDataStructures(curEntry, vizDiv) {
     }
   });
 
-  $.each(stack_to_render, function(i, frame) {
+  $.each(curEntry.stack_to_render, function(i, frame) {
     if (frame.ordered_varnames.length > 0) {
       $.each(frame.ordered_varnames, function(xxx, varname) {
         var val = frame.encoded_locals[varname];
-
-        // ignore return values for zombie frames
-        if (frame.is_zombie && varname == '__return__') {
-          return;
-        }
 
         if (!isPrimitiveType(val)) {
           layoutHeapObject(val);
@@ -1148,7 +1102,7 @@ function renderDataStructures(curEntry, vizDiv) {
   }
 
 
-  $.each(stack_to_render, function(i, e) {
+  $.each(curEntry.stack_to_render, function(i, e) {
     renderStackFrame(e, i, e.is_zombie);
   });
 
@@ -1198,11 +1152,6 @@ function renderDataStructures(curEntry, vizDiv) {
 
       $.each(frame.ordered_varnames, function(xxx, varname) {
         var val = localVars[varname];
-
-        // don't render return values for zombie frames
-        if (is_zombie && varname == '__return__') {
-          return;
-        }
 
         // special treatment for displaying return value and indicating
         // that the function is about to return to its caller
@@ -1296,7 +1245,7 @@ function renderDataStructures(curEntry, vizDiv) {
 
   // highlight the top-most non-zombie stack frame or, if not available, globals
   var frame_already_highlighted = false;
-  $.each(stack_to_render, function(i, e) {
+  $.each(curEntry.stack_to_render, function(i, e) {
     if (e.is_highlighted) {
       highlight_frame('stack' + i);
       frame_already_highlighted = true;

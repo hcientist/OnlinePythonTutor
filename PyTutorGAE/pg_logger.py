@@ -383,13 +383,56 @@ class PGLogger(bdb.Bdb):
         ordered_globals = [e for e in self.all_globals_in_order if e in encoded_globals]
         assert len(ordered_globals) == len(encoded_globals)
 
+
+        # merge zombie_encoded_stack_locals and encoded_stack_locals
+        # into one master ordered list using some simple rules for
+        # making it look aesthetically pretty
+        stack_to_render = [];
+
+        # first push all regular stack entries BACKWARDS
+        if encoded_stack_locals:
+          stack_to_render = encoded_stack_locals[::-1]
+          for e in stack_to_render:
+            e['is_zombie'] = False
+            e['is_highlighted'] = False
+
+          stack_to_render[-1]['is_highlighted'] = True
+
+
+        # zombie_encoded_stack_locals consists of exited functions that have returned
+        # nested functions. Push zombie stack entries at the BEGINNING of stack_to_render,
+        # EXCEPT put zombie entries BEHIND regular entries that are their parents
+        for e in zombie_encoded_stack_locals[::-1]:
+          # don't display return value for zombie frames
+          try:
+            e['ordered_varnames'].remove('__return__')
+          except ValueError:
+            pass
+
+          e['is_zombie'] = True
+          e['is_highlighted'] = False # never highlight zombie entries
+
+          # j should be 0 most of the time, so we're always inserting new
+          # elements to the front of stack_to_render (which is why we are
+          # iterating backwards over zombie_stack_locals).
+          j = 0
+          while j < len(stack_to_render):
+            if stack_to_render[j]['frame_id'] in e['parent_frame_id_list']:
+              j += 1
+              continue
+            break
+
+          stack_to_render.insert(j, e)
+
+
         trace_entry = dict(line=lineno,
                            event=event_type,
                            func_name=tos[0].f_code.co_name,
                            globals=encoded_globals,
                            ordered_globals=ordered_globals,
-                           stack_locals=encoded_stack_locals,
-                           zombie_stack_locals=zombie_encoded_stack_locals,
+                           #stack_locals=encoded_stack_locals,               # DEPRECATED in favor of stack_to_render
+                           #zombie_stack_locals=zombie_encoded_stack_locals, # DEPRECATED in favor of stack_to_render
+                           stack_to_render=stack_to_render,
                            heap=self.encoder.get_heap(),
                            stdout=get_user_stdout(tos[0]))
 
