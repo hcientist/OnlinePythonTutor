@@ -383,13 +383,10 @@ table.dictTbl {
   border-spacing: 1px;
 }
 
-table.dictTbl tr.dictEntry {
-  border: 1px #111111 solid;
-}
 
 table.dictTbl td.dictKey,
 table.instTbl td.instKey {
-  background-color: #ffffff;
+  background-color: white;
 }
 
 table.dictTbl,
@@ -440,6 +437,7 @@ table.instTbl {
   border-spacing: 1px;
 }
 
+table.dictTbl tr.dictEntry,
 table.instTbl tr.instEntry {
   border: 1px #555555 solid;
 }
