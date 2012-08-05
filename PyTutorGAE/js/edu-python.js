@@ -44,12 +44,15 @@ var visitedLineColor = '#3D58A2';
 
 var lightGray = "#cccccc";
 var darkBlue = "#3D58A2";
+var medBlue = "#41507A";
+var medLightBlue = "#6F89D1";
 var lightBlue = "#899CD1";
 var pinkish = "#F15149";
 var lightPink = "#F89D99";
 var darkRed = "#9D1E18";
 
 var breakpointColor = pinkish;
+var hoverBreakpointColor = medLightBlue;
 
 
 var keyStuckDown = false;
@@ -1265,14 +1268,18 @@ function renderPyCodeOutput(codeStr) {
       }
      })
     .on('mouseover', function() {
-      setBreakpoint(this);
+      setHoverBreakpoint(this);
      })
     .on('mouseout', function() {
+      hoverBreakpoints = {};
+
       var breakpointHere = d3.select(this).datum().breakpointHere;
 
       if (!breakpointHere) {
         unsetBreakpoint(this);
       }
+
+      renderSliderBreakpoints(); // get rid of hover breakpoint colors
      })
     .on('mousedown', function() {
       // don't do anything if exePts is empty
@@ -1299,13 +1306,14 @@ function renderPyCodeOutput(codeStr) {
 
 
 
-var breakpointLines = {}; // set of lines to set as breakpoints
+var breakpoints = {}; // set of execution points to set as breakpoints
 var sortedBreakpointsList = []; // sorted and synced with breakpointLines
+var hoverBreakpoints = {}; // set of breakpoints because we're HOVERING over a given line
 
 
 function _getSortedBreakpointsList() {
   var ret = [];
-  for (var k in breakpointLines) {
+  for (var k in breakpoints) {
     ret.push(Number(k)); // these should be NUMBERS, not strings
   }
   ret.sort(function(x,y){return x-y}); // WTF, javascript sort is lexicographic by default!
@@ -1314,7 +1322,7 @@ function _getSortedBreakpointsList() {
 
 function addToBreakpoints(executionPoints) {
   $.each(executionPoints, function(i, e) {
-    breakpointLines[e] = 1;
+    breakpoints[e] = 1;
   });
 
   sortedBreakpointsList = _getSortedBreakpointsList();
@@ -1322,7 +1330,7 @@ function addToBreakpoints(executionPoints) {
 
 function removeFromBreakpoints(executionPoints) {
   $.each(executionPoints, function(i, e) {
-    delete breakpointLines[e];
+    delete breakpoints[e];
   });
 
   sortedBreakpointsList = _getSortedBreakpointsList();
@@ -1375,6 +1383,25 @@ function findNextBreakpoint(c) {
     var lastElt = sortedBreakpointsList[sortedBreakpointsList.length - 1];
     return (lastElt > c) ? lastElt : -1;
   }
+}
+
+
+function setHoverBreakpoint(t) {
+  var exePts = d3.select(t).datum().executionPoints;
+
+  // don't do anything if exePts is empty
+  // (i.e., this line was never executed)
+  if (!exePts || exePts.length == 0) {
+    return;
+  }
+
+  hoverBreakpoints = {};
+  $.each(exePts, function(i, e) {
+    hoverBreakpoints[e] = 1;
+  });
+
+  addToBreakpoints(exePts);
+  renderSliderBreakpoints();
 }
 
 
@@ -1453,13 +1480,22 @@ function renderSliderBreakpoints() {
       })
       .attr('y', 0)
       .attr('width', 2)
-      .attr('height', 12);
+      .attr('height', 12)
+      .style('fill', function(d) {
+         if (hoverBreakpoints[d] === undefined) {
+           return breakpointColor;
+         }
+         else {
+           return hoverBreakpointColor;
+         }
+       });
 }
 
 
 function clearSliderBreakpoints() {
-  breakpointLines = {};
+  breakpoints = {};
   sortedBreakpointsList = [];
+  hoverBreakpoints = {};
   renderSliderBreakpoints();
 }
 

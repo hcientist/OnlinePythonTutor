@@ -694,10 +694,6 @@ div#submittedSolutionDisplay {
   margin-top: -7px; /* make it butt up against #executionSlider */
 }
 
-#sliderOverlay {
-  fill: #F15149;
-}
-
 
 /* necessary for CodeMirror line highlighting to work! */
 .CodeMirror .errorLine { background: #F89D99 !important; }
