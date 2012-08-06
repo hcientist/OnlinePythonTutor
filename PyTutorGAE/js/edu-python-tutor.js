@@ -159,21 +159,28 @@ $(document).ready(function() {
           function(traceData) {
             // don't enter visualize mode if there are killer errors:
             if (!traceData ||
+                (traceData.length == 0) ||
                 ((traceData.length == 1) && traceData[0].event == 'uncaught_exception')) {
-              var errorLineNo = traceData[0].line - 1; /* CodeMirror lines are zero-indexed */
-              if (errorLineNo !== undefined) {
-                // highlight the faulting line in pyInputCodeMirror
-                pyInputCodeMirror.focus();
-                pyInputCodeMirror.setCursor(errorLineNo, 0);
-                pyInputCodeMirror.setLineClass(errorLineNo, null, 'errorLine');
 
-                pyInputCodeMirror.setOption('onChange', function() {
-                  pyInputCodeMirror.setLineClass(errorLineNo, null, null); // reset line back to normal
-                  pyInputCodeMirror.setOption('onChange', null); // cancel
-                });
+              if (traceData.length > 0) {
+                var errorLineNo = traceData[0].line - 1; /* CodeMirror lines are zero-indexed */
+                if (errorLineNo !== undefined) {
+                  // highlight the faulting line in pyInputCodeMirror
+                  pyInputCodeMirror.focus();
+                  pyInputCodeMirror.setCursor(errorLineNo, 0);
+                  pyInputCodeMirror.setLineClass(errorLineNo, null, 'errorLine');
+
+                  pyInputCodeMirror.setOption('onChange', function() {
+                    pyInputCodeMirror.setLineClass(errorLineNo, null, null); // reset line back to normal
+                    pyInputCodeMirror.setOption('onChange', null); // cancel
+                  });
+                }
+
+                alert(traceData[0].exception_msg);
               }
-
-              alert(traceData[0].exception_msg);
+              else {
+                alert("Whoa, unknown error! Please reload and try again.");
+              }
 
               $('#executeBtn').html("Visualize execution");
               $('#executeBtn').attr('disabled', false);
