@@ -298,7 +298,7 @@ function precomputeCurTraceLayouts() {
   assert(curTrace.length > 0);
 
  
-  $.each(curTrace, function(i, elt) {
+  $.each(curTrace, function(i, curEntry) {
     var prevLayout = curTraceLayouts[curTraceLayouts.length - 1];
 
     // make a DEEP COPY of prevLayout to use as the basis for curLine
@@ -325,6 +325,56 @@ function precomputeCurTraceLayouts() {
     }
 
 
+    function recurseIntoObject(id, curRow, newRow) {
+      // heuristic for laying out 1-D linked data structures: check for enclosing elements that are
+      // structurally identical and then lay them out as siblings in the same "row"
+      var heapObj = curEntry.heap[id];
+      assert(heapObj);
+
+      if (heapObj[0] == 'LIST' || heapObj[0] == 'TUPLE') {
+        $.each(heapObj, function(ind, child) {
+          if (ind < 1) return; // skip type tag
+
+          if (!isPrimitiveType(child)) {
+            var childID = getRefID(child);
+            if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
+              updateCurLayout(childID, curRow, newRow);
+            }
+          }
+        });
+      }
+      else if (heapObj[0] == 'DICT') {
+        $.each(heapObj, function(ind, child) {
+          if (ind < 1) return; // skip type tag
+
+          var dictVal = child[1];
+          if (!isPrimitiveType(dictVal)) {
+            var childID = getRefID(dictVal);
+            if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
+              updateCurLayout(childID, curRow, newRow);
+            }
+          }
+        });
+      }
+      else if (heapObj[0] == 'INSTANCE') {
+        jQuery.each(heapObj, function(ind, child) {
+          if (ind < 2) return; // skip type tag and class name
+
+          // instance keys are always strings, so no need to recurse
+          assert(typeof child[0] == "string");
+
+          var instVal = child[1];
+          if (!isPrimitiveType(instVal)) {
+            var childID = getRefID(instVal);
+            if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
+              updateCurLayout(childID, curRow, newRow);
+            }
+          }
+        });
+      }
+    }
+
+
     // a krazy function!
     // id     - the new object ID to be inserted somewhere in curLayout
     //          (if it's not already in there)
@@ -335,10 +385,14 @@ function precomputeCurTraceLayouts() {
     function updateCurLayout(id, curRow, newRow) {
       var curLayoutLoc = curLayoutIndexOf(id);
 
+      console.log('updateCurLayout', id, curRow, newRow, curLayoutLoc);
+
       // if id is already in curLayout ...
       if (curLayoutLoc) {
         var foundRow = curLayoutLoc.row;
         var foundIndex = curLayoutLoc.index;
+
+        idsToRemove.remove(id); // this id is already accounted for!
 
         // splice the contents of newRow right BEFORE foundIndex.
         // (Think about when you're trying to insert in id=3 into ['row1', 2, 1]
@@ -358,9 +412,8 @@ function precomputeCurTraceLayouts() {
           newRow.splice(0, newRow.length);
         }
 
-        // recurse to find more top-level linked entries to append onto curRow
-        //   updateCurLayout(child ID, foundRow, [])
-
+        // recurse to find more top-level linked entries to append onto foundRow
+        recurseIntoObject(id, foundRow, []);
       }
       else {
         // push id into newRow ...
@@ -369,8 +422,8 @@ function precomputeCurTraceLayouts() {
         }
         newRow.push(id);
 
-        // RECURSE to find possible top-level linked entries
-        //   updateCurLayout(child ID, curRow, newRow)
+        // recurse to find more top-level linked entries ...
+        recurseIntoObject(id, curRow, newRow);
 
 
         // if newRow hasn't been spliced into an existing row yet during
@@ -384,34 +437,76 @@ function precomputeCurTraceLayouts() {
           }
           else {
             // otherwise push to curLayout as a new row
-            curLayout.push(newRow);
+            //
+            // TODO: this might not always look the best, since we might
+            // sometimes want to splice newRow in the MIDDLE of
+            // curLayout. Consider this example:
+            //
+            // x = [1,2,3]
+            // y = [4,5,6]
+            // x = [7,8,9]
+            //
+            // when the third line is executed, the arrows for x and y
+            // will be crossed (ugly!) since the new row for the [7,8,9]
+            // object is pushed to the end (bottom) of curLayout. The
+            // proper behavior is to push it to the beginning of
+            // curLayout where the old row for 'x' used to be.
+            curLayout.push($.extend(true /* make a deep copy */ , [], newRow));
           }
 
           // regardless, newRow is now accounted for, so clear it
           for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
             idsToRemove.remove(newRow[i]);
           }
-          newRow.splice(0, newRow.length);
+          newRow.splice(0, newRow.length); // kill it!
         }
 
       }
     }
 
-
-    // iterate through all globals and ordered stack frames
-    //   and then call updateCurLayout(id, null, []);
+    console.log('BEG precomputeCurTraceLayouts', i);
 
 
-    // iterate through remaining elements of idsToRemove and REMOVE them
-    // from curLayout
-    idsToRemove.forEach(function(id, xxx) {
-      var ind = row.indexOf(id);
-      if (ind > 0) { // remember that index 0 of the row is the row ID tag
-        row.splice(ind, 1);
+    // iterate through all globals and ordered stack frames and call updateCurLayout
+    $.each(curEntry.ordered_globals, function(i, varname) {
+      var val = curEntry.globals[varname];
+      if (val !== undefined) { // might not be defined at this line, which is OKAY!
+        if (!isPrimitiveType(val)) {
+          var id = getRefID(val);
+          updateCurLayout(id, null, []);
+        }
       }
     });
 
+    $.each(curEntry.stack_to_render, function(i, frame) {
+      $.each(frame.ordered_varnames, function(xxx, varname) {
+        var val = frame.encoded_locals[varname];
+
+        if (!isPrimitiveType(val)) {
+          var id = getRefID(val);
+          updateCurLayout(id, null, []);
+        }
+      });
+    });
+
+
+    // iterate through remaining elements of idsToRemove and REMOVE them from curLayout
+    idsToRemove.forEach(function(id, xxx) {
+      id = Number(id); // keys are stored as strings, so convert!!!
+      $.each(curLayout, function(rownum, row) {
+        var ind = row.indexOf(id);
+        if (ind > 0) { // remember that index 0 of the row is the row ID tag
+          row.splice(ind, 1);
+        }
+      });
+    });
+
+    // now remove empty rows (i.e., those with only a row ID tag) from curLayout
+    curLayout = curLayout.filter(function(row) {return row.length > 1});
+
     curTraceLayouts.push(curLayout);
+    console.log('END precomputeCurTraceLayouts', i);
+    idsToRemove.forEach(function (id, xxx) {console.log('  idsToRemove:', id);});
   });
 
   curTraceLayouts.splice(0, 1); // remove seeded empty sentinel element

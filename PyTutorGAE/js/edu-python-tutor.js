@@ -39,6 +39,8 @@ function enterVisualizeMode(traceData, inputCode) {
   curTrace = traceData;
   curInputCode = inputCode;
 
+  precomputeCurTraceLayouts(); // bam!
+
   renderPyCodeOutput(inputCode);
 
   $.bbq.pushState({ mode: 'visualize' }, 2 /* completely override other hash strings to keep URL clean */);
