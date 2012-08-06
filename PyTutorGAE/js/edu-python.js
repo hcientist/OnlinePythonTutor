@@ -108,7 +108,7 @@ function htmlspecialchars(str) {
   return str;
 }
 
-function processTrace(jumpToEnd) {
+function enterVisualizeMode(jumpToEnd) {
   curInstr = 0;
 
   // only do this at most ONCE, and then clear out preseededCurInstr
@@ -121,28 +121,9 @@ function processTrace(jumpToEnd) {
   $("#pyStdout").val('');
 
   if (curTrace.length > 0) {
-    var lastEntry = curTrace[curTrace.length - 1];
-
-    // GLOBAL!
-    instrLimitReached = (lastEntry.event == 'instruction_limit_reached');
-
-    if (instrLimitReached) {
-      curTrace.pop() // kill last entry
-      var warningMsg = lastEntry.exception_msg;
-      $("#errorOutput").html(htmlspecialchars(warningMsg));
-      $("#errorOutput").show();
-    }
-    // as imran suggests, for a (non-error) one-liner, SNIP off the
-    // first instruction so that we start after the FIRST instruction
-    // has been executed ...
-    else if (curTrace.length == 2) {
-      curTrace.shift();
-    }
-
-
     if (jumpToEnd) {
       // if there's an exception, then jump to the FIRST occurrence of
-      // that exception.  otherwise, jump to the very end of execution.
+      // that exception. otherwise, jump to the very end of execution.
       curInstr = curTrace.length - 1;
 
       for (var i = 0; i < curTrace.length; i++) {
@@ -165,8 +146,7 @@ function processTrace(jumpToEnd) {
   $('#executionSlider').slider({
     min: 0,
     max: curTrace.length - 1,
-    step: 1
-
+    step: 1,
   });
 
   //disable keyboard actions on the slider itself (to prevent double-firing of events)
@@ -888,6 +868,15 @@ function renderDataStructures(curEntry, vizDiv) {
   });
   console.log('---');
   */
+
+  // VERY VERY experimental!!!
+  // when doing this for realz, convert to using d3 and use row ID tag
+  // as unique object ID for object constancy.
+  var curEntryLayout = curTraceLayouts[curInstr];
+  toplevelHeapLayout = curEntryLayout.map(function(row)
+    {return row.slice(1, row.length); // KRAZY!!! remove row ID tag for now
+  });
+
 
 
   // Heap object rendering phase:

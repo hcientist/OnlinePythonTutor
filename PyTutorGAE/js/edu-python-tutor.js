@@ -34,14 +34,34 @@ function enterEditMode() {
   $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
 }
 
-function enterVisualizeMode(traceData, inputCode) {
+function preprocessBackendResult(traceData, inputCode) {
   // set gross globals, then let jQuery BBQ take care of the rest
   curTrace = traceData;
   curInputCode = inputCode;
 
-  precomputeCurTraceLayouts(); // bam!
-
   renderPyCodeOutput(inputCode);
+
+
+  // must postprocess traceData prior to running precomputeCurTraceLayouts() ...
+  var lastEntry = curTrace[curTrace.length - 1];
+
+  // GLOBAL!
+  instrLimitReached = (lastEntry.event == 'instruction_limit_reached');
+
+  if (instrLimitReached) {
+    curTrace.pop() // kill last entry
+    var warningMsg = lastEntry.exception_msg;
+    $("#errorOutput").html(htmlspecialchars(warningMsg));
+    $("#errorOutput").show();
+  }
+  // as imran suggests, for a (non-error) one-liner, SNIP off the
+  // first instruction so that we start after the FIRST instruction
+  // has been executed ...
+  else if (curTrace.length == 2) {
+    curTrace.shift();
+  }
+
+  precomputeCurTraceLayouts(); // bam!
 
   $.bbq.pushState({ mode: 'visualize' }, 2 /* completely override other hash strings to keep URL clean */);
 }
@@ -113,7 +133,7 @@ $(document).ready(function() {
 
       // do this AFTER making #pyOutputPane visible, or else
       // jsPlumb connectors won't render properly
-      processTrace(false);
+      enterVisualizeMode(false);
     }
     else {
       assert(false);
@@ -159,7 +179,7 @@ $(document).ready(function() {
               $('#executeBtn').attr('disabled', false);
             }
             else {
-              enterVisualizeMode(traceData, pyInputCodeMirror.getValue());
+              preprocessBackendResult(traceData, pyInputCodeMirror.getValue());
             }
           },
           "json");
