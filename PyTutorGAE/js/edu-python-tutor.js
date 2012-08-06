@@ -317,6 +317,11 @@ $(document).ready(function() {
     $.get("example-code/aliasing/aliasing7.txt", setCodeMirrorVal);
     return false;
   });
+  $('#aliasing8Link').click(function() {
+    $.get("example-code/aliasing/aliasing8.txt", setCodeMirrorVal);
+    return false;
+  });
+
 
   $('#ll1Link').click(function() {
     $.get("example-code/linked-lists/ll1.txt", setCodeMirrorVal);
