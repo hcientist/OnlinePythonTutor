@@ -717,185 +717,20 @@ function renderDataStructures(curEntry, vizDiv) {
   $(vizDiv + " #stack").append('<div id="stackHeader">Frames</div>');
 
 
-  // first build up a list of lists representing the locations of TOP-LEVEL heap objects to be rendered.
-  // doing so decouples the data format of curEntry from the nitty-gritty HTML rendering code,
-  // which gives us more flexibility in experimenting with layout strategies.
-  //
-  // each outer list represents a "row" in the heap layout (represented via, say, div elements)
-  // and each inner list represents "columns" within a row (represented via, say, table td elements)
-  var toplevelHeapLayout = [];
-  var toplevelHeapLayoutIDs = {}; // set of IDs contained within toplevelHeapLayout
-  var alreadyLaidObjectIDs = {};  // set of IDs of objects that have already been laid out
-                                  // (not necessarily just in toplevelHeapLayout since some elements
-                                  //  are EMBEDDED within other heap objects)
+
+  // Heap object rendering phase:
 
 
-  function layoutHeapObject(ref) {
-
-    function layoutHeapObjectHelper(id, row /* list of IDs */, isTopLevel) {
-      if (alreadyLaidObjectIDs[id] == undefined) {
-
-        // Only push to row if isTopLevel since it only stores top-level objects ...
-        if (isTopLevel) {
-          row.push(id);
-        }
-
-        // but ALWAYS record that this object has already been laid out, no matter what 
-        alreadyLaidObjectIDs[id] = 1;
-
-        // heuristic for laying out 1-D linked data structures: check for enclosing elements that are
-        // structurally identical and then lay them out as siblings in the same "row"
-        var heapObj = curEntry.heap[id];
-        assert(heapObj);
-
-        if (heapObj[0] == 'LIST' || heapObj[0] == 'TUPLE') {
-          jQuery.each(heapObj, function(ind, child) {
-            if (ind < 1) return; // skip type tag
-
-            if (!isPrimitiveType(child)) {
-              var childID = getRefID(child);
-              if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-                layoutHeapObjectHelper(childID, row, true);
-              }
-              else {
-                layoutHeapObjectHelper(childID, null, false /* render embedded within heapObj */);
-              }
-            }
-          });
-        }
-        else if (heapObj[0] == 'SET') {
-          jQuery.each(heapObj, function(ind, child) {
-            if (ind < 1) return; // skip type tag
-            if (!isPrimitiveType(child)) {
-              layoutHeapObjectHelper(getRefID(child), null, false /* render embedded within heapObj */);
-            }
-          });
-        }
-        else if (heapObj[0] == 'DICT') {
-          jQuery.each(heapObj, function(ind, child) {
-            if (ind < 1) return; // skip type tag
-
-            var dictKey = child[0];
-            if (!isPrimitiveType(dictKey)) {
-              layoutHeapObjectHelper(getRefID(dictKey), null, false /* render embedded within heapObj */);
-            }
-
-            var dictVal = child[1];
-            if (!isPrimitiveType(dictVal)) {
-              var childID = getRefID(dictVal);
-              if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-                layoutHeapObjectHelper(childID, row, true);
-              }
-              else {
-                layoutHeapObjectHelper(childID, null, false /* render embedded within heapObj */);
-              }
-            }
-          });
-        }
-        else if (heapObj[0] == 'INSTANCE') {
-          jQuery.each(heapObj, function(ind, child) {
-            if (ind < 2) return; // skip type tag and class name
-
-            // instance keys are always strings, so no need to recurse
-            assert(typeof child[0] == "string");
-
-            var instVal = child[1];
-            if (!isPrimitiveType(instVal)) {
-              var childID = getRefID(instVal);
-              if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-                layoutHeapObjectHelper(childID, row, true);
-              }
-              else {
-                layoutHeapObjectHelper(childID, null, false /* render embedded within heapObj */);
-              }
-            }
-          });
-        }
-        else if (heapObj[0] == 'CLASS') {
-          jQuery.each(heapObj, function(ind, child) {
-            if (ind < 3) return; // skip type tag, class name, and superclass names
-            // class attr keys are always strings, so no need to recurse
-
-            var classAttrVal = child[1];
-            if (!isPrimitiveType(classAttrVal)) {
-              layoutHeapObjectHelper(getRefID(classAttrVal), null, false /* render embedded within heapObj */);
-            }
-          });
-        }
-      }
-    }
-
-    var id = getRefID(ref);
-    var newRow = [];
-
-    layoutHeapObjectHelper(id, newRow, true);
-    if (newRow.length > 0) {
-      toplevelHeapLayout.push(newRow);
-      $.each(newRow, function(i, e) {
-        toplevelHeapLayoutIDs[e] = 1;
-      });
-    }
-  }
-
-
-
-  // variables are displayed in the following order, so lay out heap objects in the same order:
-  //   - globals
-  //   - stack entries (regular and zombies)
-
-  // if there are multiple aliases to the same object, we want to render
-  // the one "deepest" in the stack, so that we can hopefully prevent
-  // objects from jumping around as functions are called and returned.
-  // e.g., if a list L appears as a global variable and as a local in a
-  // function, we want to render L when rendering the global frame.
-  //
-  // this is straightforward: just go through globals first and then
-  // each stack frame in order :)
-
-  $.each(curEntry.ordered_globals, function(i, varname) {
-    var val = curEntry.globals[varname];
-    // (use '!==' to do an EXACT match against undefined)
-    if (val !== undefined) { // might not be defined at this line, which is OKAY!
-      if (!isPrimitiveType(val)) {
-        layoutHeapObject(val);
-        //console.log('global:', varname, getRefID(val));
-      }
-    }
-  });
-
-  $.each(curEntry.stack_to_render, function(i, frame) {
-    if (frame.ordered_varnames.length > 0) {
-      $.each(frame.ordered_varnames, function(xxx, varname) {
-        var val = frame.encoded_locals[varname];
-
-        if (!isPrimitiveType(val)) {
-          layoutHeapObject(val);
-          //console.log(frame.func_name + ':', varname, getRefID(val));
-        }
-      });
-    }
-  });
-
-
-  // print toplevelHeapLayout
-  /*
-  $.each(toplevelHeapLayout, function(i, elt) {
-    console.log(elt);
-  });
-  console.log('---');
-  */
 
   // VERY VERY experimental!!!
   // when doing this for realz, convert to using d3 and use row ID tag
   // as unique object ID for object constancy.
   var curEntryLayout = curTraceLayouts[curInstr];
-  toplevelHeapLayout = curEntryLayout.map(function(row)
-    {return row.slice(1, row.length); // KRAZY!!! remove row ID tag for now
+
+  var toplevelHeapLayout = curEntryLayout.map(function(row) {
+    return row.slice(1, row.length); // KRAZY!!! remove row ID tag for now
   });
 
-
-
-  // Heap object rendering phase:
 
 
   // Key:   CSS ID of the div element representing the stack frame variable
@@ -909,12 +744,14 @@ function renderDataStructures(curEntry, vizDiv) {
   var heap_pointer_src_id = 1; // increment this to be unique for each heap_pointer_src_*
 
 
-  var renderedObjectIDs = {}; // set (TODO: refactor all sets to use d3.map)
+  var renderedObjectIDs = d3.map();
 
-  // count all toplevelHeapLayoutIDs as already rendered since we will render them
+  // count everything in toplevelHeapLayout as already rendered since we will render them
   // in the d3 .each() statement labeled 'FOOBAR' (might be confusing!)
-  $.each(toplevelHeapLayoutIDs, function(k, v) {
-    renderedObjectIDs[k] = v;
+  $.each(toplevelHeapLayout, function(xxx, row) {
+    for (var i = 0; i < row.length; i++) {
+      renderedObjectIDs.set(row[i], 1);
+    }
   });
 
 
@@ -978,8 +815,9 @@ function renderDataStructures(curEntry, vizDiv) {
 
 
   function renderCompoundObject(objID, d3DomElement, isTopLevel) {
-    if (!isTopLevel && (renderedObjectIDs[objID] != undefined)) {
-      // TODO: render jsPlumb arrow source since this heap object has already been rendered
+    if (!isTopLevel && renderedObjectIDs.has(objID)) {
+      // render jsPlumb arrow source since this heap object has already been rendered
+      // (or will be rendered soon)
 
       // add a stub so that we can connect it with a connector later.
       // IE needs this div to be NON-EMPTY in order to properly
@@ -1005,7 +843,7 @@ function renderDataStructures(curEntry, vizDiv) {
     d3DomElement = $('#heap_object_' + objID);
 
 
-    renderedObjectIDs[objID] = 1;
+    renderedObjectIDs.set(objID, 1);
 
     var obj = curEntry.heap[objID];
     assert($.isArray(obj));
