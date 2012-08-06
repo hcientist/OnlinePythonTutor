@@ -308,6 +308,10 @@ function precomputeCurTraceLayouts() {
 
 
     function recurseIntoObject(id, curRow, newRow) {
+      if (idsAlreadyLaidOut.has(id)) {
+        return;
+      }
+
       // heuristic for laying out 1-D linked data structures: check for enclosing elements that are
       // structurally identical and then lay them out as siblings in the same "row"
       var heapObj = curEntry.heap[id];
@@ -365,12 +369,6 @@ function precomputeCurTraceLayouts() {
     // newRow - a new row that might be spliced into curRow or appended
     //          as a new row in curLayout
     function updateCurLayout(id, curRow, newRow) {
-      // if this object has already been laid out, then PUNT!!!
-      if (idsAlreadyLaidOut.has(id)) {
-        return;
-      }
-      idsAlreadyLaidOut.set(id, 1);
-
       var curLayoutLoc = curLayoutIndexOf(id);
 
       console.log('updateCurLayout', id, curRow, newRow, curLayoutLoc);
@@ -382,22 +380,27 @@ function precomputeCurTraceLayouts() {
 
         idsToRemove.remove(id); // this id is already accounted for!
 
-        // splice the contents of newRow right BEFORE foundIndex.
-        // (Think about when you're trying to insert in id=3 into ['row1', 2, 1]
-        //  to represent a linked list 3->2->1. You want to splice the 3
-        //  entry right before the 2 to form ['row1', 3, 2, 1])
-        if (newRow.length > 1) {
-          var args = [foundIndex - 1, 0];
-          for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
-            args.push(newRow[i]);
-            idsToRemove.remove(newRow[i]);
-          }
-          foundRow.splice.apply(args);
+        // very subtle ... if id hasn't already been handled in
+        // this iteration, then splice newRow into foundRow. otherwise
+        // (later) append newRow onto curLayout as a truly new row
+        if (!idsAlreadyLaidOut.has(id)) {
+          // splice the contents of newRow right BEFORE foundIndex.
+          // (Think about when you're trying to insert in id=3 into ['row1', 2, 1]
+          //  to represent a linked list 3->2->1. You want to splice the 3
+          //  entry right before the 2 to form ['row1', 3, 2, 1])
+          if (newRow.length > 1) {
+            var args = [foundIndex, 0];
+            for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
+              args.push(newRow[i]);
+              idsToRemove.remove(newRow[i]);
+            }
+            foundRow.splice.apply(foundRow, args);
 
-          // remove ALL elements from newRow since they've all been accounted for
-          // (but don't reassign it away to an empty list, since the
-          // CALLER checks its value. TODO: get rid of this gross hack?!?)
-          newRow.splice(0, newRow.length);
+            // remove ALL elements from newRow since they've all been accounted for
+            // (but don't reassign it away to an empty list, since the
+            // CALLER checks its value. TODO: how to get rid of this gross hack?!?)
+            newRow.splice(0, newRow.length);
+          }
         }
 
         // recurse to find more top-level linked entries to append onto foundRow
@@ -450,6 +453,9 @@ function precomputeCurTraceLayouts() {
         }
 
       }
+
+      // do this at the VERY END!
+      idsAlreadyLaidOut.set(id, 1);
     }
 
     console.log('BEG precomputeCurTraceLayouts', i);
