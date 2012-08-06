@@ -308,6 +308,8 @@ function precomputeCurTraceLayouts() {
 
 
     function recurseIntoObject(id, curRow, newRow) {
+      console.log('recurseIntoObject', id, curRow, newRow);
+
       // heuristic for laying out 1-D linked data structures: check for enclosing elements that are
       // structurally identical and then lay them out as siblings in the same "row"
       var heapObj = curEntry.heap[id];
@@ -320,9 +322,7 @@ function precomputeCurTraceLayouts() {
           if (!isPrimitiveType(child)) {
             var childID = getRefID(child);
             if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-              if (!idsAlreadyLaidOut.has(childID)) { // TODO: awkward guard location
-                updateCurLayout(childID, curRow, newRow);
-              }
+              updateCurLayout(childID, curRow, newRow);
             }
           }
         });
@@ -335,9 +335,7 @@ function precomputeCurTraceLayouts() {
           if (!isPrimitiveType(dictVal)) {
             var childID = getRefID(dictVal);
             if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-              if (!idsAlreadyLaidOut.has(childID)) { // TODO: awkward guard location
-                updateCurLayout(childID, curRow, newRow);
-              }
+              updateCurLayout(childID, curRow, newRow);
             }
           }
         });
@@ -353,9 +351,7 @@ function precomputeCurTraceLayouts() {
           if (!isPrimitiveType(instVal)) {
             var childID = getRefID(instVal);
             if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-              if (!idsAlreadyLaidOut.has(childID)) { // TODO: awkward guard location
-                updateCurLayout(childID, curRow, newRow);
-              }
+              updateCurLayout(childID, curRow, newRow);
             }
           }
         });
@@ -371,9 +367,11 @@ function precomputeCurTraceLayouts() {
     // newRow - a new row that might be spliced into curRow or appended
     //          as a new row in curLayout
     function updateCurLayout(id, curRow, newRow) {
-      var curLayoutLoc = curLayoutIndexOf(id);
+      if (idsAlreadyLaidOut.has(id)) {
+        return; // PUNT!
+      }
 
-      console.log('updateCurLayout', id, curRow, newRow, curLayoutLoc);
+      var curLayoutLoc = curLayoutIndexOf(id);
 
       var alreadyLaidOut = idsAlreadyLaidOut.has(id);
       idsAlreadyLaidOut.set(id, 1); // unconditionally set now
