@@ -308,7 +308,6 @@ function precomputeCurTraceLayouts() {
 
 
     function recurseIntoObject(id, curRow, newRow) {
-      console.log('recurseIntoObject', id, curRow, newRow);
 
       // heuristic for laying out 1-D linked data structures: check for enclosing elements that are
       // structurally identical and then lay them out as siblings in the same "row"
@@ -458,8 +457,6 @@ function precomputeCurTraceLayouts() {
       }
     }
 
-    console.log('BEG precomputeCurTraceLayouts', i);
-
 
     // iterate through all globals and ordered stack frames and call updateCurLayout
     $.each(curEntry.ordered_globals, function(i, varname) {
@@ -499,8 +496,6 @@ function precomputeCurTraceLayouts() {
     curLayout = curLayout.filter(function(row) {return row.length > 1});
 
     curTraceLayouts.push(curLayout);
-    console.log('END precomputeCurTraceLayouts', i);
-    idsToRemove.forEach(function (id, xxx) {console.log('  idsToRemove:', id);});
   });
 
   curTraceLayouts.splice(0, 1); // remove seeded empty sentinel element
