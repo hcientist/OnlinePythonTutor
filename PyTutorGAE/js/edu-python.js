@@ -308,10 +308,6 @@ function precomputeCurTraceLayouts() {
 
 
     function recurseIntoObject(id, curRow, newRow) {
-      if (idsAlreadyLaidOut.has(id)) {
-        return;
-      }
-
       // heuristic for laying out 1-D linked data structures: check for enclosing elements that are
       // structurally identical and then lay them out as siblings in the same "row"
       var heapObj = curEntry.heap[id];
@@ -324,7 +320,9 @@ function precomputeCurTraceLayouts() {
           if (!isPrimitiveType(child)) {
             var childID = getRefID(child);
             if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-              updateCurLayout(childID, curRow, newRow);
+              if (!idsAlreadyLaidOut.has(childID)) { // TODO: awkward guard location
+                updateCurLayout(childID, curRow, newRow);
+              }
             }
           }
         });
@@ -337,7 +335,9 @@ function precomputeCurTraceLayouts() {
           if (!isPrimitiveType(dictVal)) {
             var childID = getRefID(dictVal);
             if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-              updateCurLayout(childID, curRow, newRow);
+              if (!idsAlreadyLaidOut.has(childID)) { // TODO: awkward guard location
+                updateCurLayout(childID, curRow, newRow);
+              }
             }
           }
         });
@@ -353,7 +353,9 @@ function precomputeCurTraceLayouts() {
           if (!isPrimitiveType(instVal)) {
             var childID = getRefID(instVal);
             if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-              updateCurLayout(childID, curRow, newRow);
+              if (!idsAlreadyLaidOut.has(childID)) { // TODO: awkward guard location
+                updateCurLayout(childID, curRow, newRow);
+              }
             }
           }
         });
@@ -373,6 +375,9 @@ function precomputeCurTraceLayouts() {
 
       console.log('updateCurLayout', id, curRow, newRow, curLayoutLoc);
 
+      var alreadyLaidOut = idsAlreadyLaidOut.has(id);
+      idsAlreadyLaidOut.set(id, 1); // unconditionally set now
+
       // if id is already in curLayout ...
       if (curLayoutLoc) {
         var foundRow = curLayoutLoc.row;
@@ -383,7 +388,7 @@ function precomputeCurTraceLayouts() {
         // very subtle ... if id hasn't already been handled in
         // this iteration, then splice newRow into foundRow. otherwise
         // (later) append newRow onto curLayout as a truly new row
-        if (!idsAlreadyLaidOut.has(id)) {
+        if (!alreadyLaidOut) {
           // splice the contents of newRow right BEFORE foundIndex.
           // (Think about when you're trying to insert in id=3 into ['row1', 2, 1]
           //  to represent a linked list 3->2->1. You want to splice the 3
@@ -453,9 +458,6 @@ function precomputeCurTraceLayouts() {
         }
 
       }
-
-      // do this at the VERY END!
-      idsAlreadyLaidOut.set(id, 1);
     }
 
     console.log('BEG precomputeCurTraceLayouts', i);
