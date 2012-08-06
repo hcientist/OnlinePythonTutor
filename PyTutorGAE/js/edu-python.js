@@ -292,6 +292,8 @@ function precomputeCurTraceLayouts() {
       }
     });
 
+    var idsAlreadyLaidOut = d3.map(); // to prevent infinite recursion
+
 
     function curLayoutIndexOf(id) {
       for (var i = 0; i < curLayout.length; i++) {
@@ -363,6 +365,12 @@ function precomputeCurTraceLayouts() {
     // newRow - a new row that might be spliced into curRow or appended
     //          as a new row in curLayout
     function updateCurLayout(id, curRow, newRow) {
+      // if this object has already been laid out, then PUNT!!!
+      if (idsAlreadyLaidOut.has(id)) {
+        return;
+      }
+      idsAlreadyLaidOut.set(id, 1);
+
       var curLayoutLoc = curLayoutIndexOf(id);
 
       console.log('updateCurLayout', id, curRow, newRow, curLayoutLoc);
