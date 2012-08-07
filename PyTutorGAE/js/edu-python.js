@@ -756,29 +756,22 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
     .data(function(d, i) {return d.slice(1, d.length);}, /* map over each row, skipping row ID tag */
           function(objID) {return objID;} /* each object ID is unique for constancy */)
 
-  heapColumns.each(function(objID, i) {
-      console.log('UPDATE ELT', objID);
+  heapColumns
+    .order() // VERY IMPORTANT to put in the order corresponding to data elements
+    // d3 automatically adds NEW elements to the update selection, to prevent code duplication
+    .each(function(objID, i) {
+      console.log('NEW/UPDATE ELT', objID);
       // TODO: add a smoother transition in the future
       // Right now, just delete the old element and render a new one in its place
       $(this).empty();
       renderCompoundObject(objID, $(this), true);
     })
 
-  // the problem here is that new columns are always appended at the end of the row using append().
-  // e.g., if you have a transition from ['row1', 1] to ['row1', 2, 1], you want the column
-  // for object 2 to be inserted BEFORE than the one for object 1, but right now it's inserted AFTER.
-  // insert() allows insertion based on some constant selector, though.
-  // an alternative is to simply append() and then sort the table columns somehow in the each()?
-  heapColumns.enter().insert('td', ':first-child')
+  heapColumns.enter().append('td')
     .attr('class', 'toplevelHeapObject')
     .attr('id', function(d, i) {return 'toplevel_heap_object_' + d;})
-    .each(function(objID, i) {
-      console.log('NEW ELT', objID);
-      renderCompoundObject(objID, $(this), true);
-    })
 
   heapColumns.exit()
-    .each(function(objID, i) {console.log('DEL ELT:', objID, i); $(this).empty();})
     .remove()
 
 
@@ -789,15 +782,6 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
     .selectAll('td')
     .data(function(d, i) {return d.slice(1, d.length);}, /* map over each row, skipping row ID tag */
           function(objID) {return objID;} /* each object ID is unique for constancy */)
-    // TODO: I don't think we need to handle updates to elements of NEW rows, since all of the
-    // constituent elements are going to be new by definition
-    //.each(function(objID, i) {
-    //  console.log('UPDATE ELT B', objID);
-    //  // TODO: add a smoother transition in the future
-    //  // Right now, just delete the old element and render a new one in its place
-    //  $(this).empty();
-    //  renderCompoundObject(objID, $(this), true);
-    //})
     .enter().append('td')
     .attr('class', 'toplevelHeapObject')
     .attr('id', function(d, i) {return 'toplevel_heap_object_' + d;})
