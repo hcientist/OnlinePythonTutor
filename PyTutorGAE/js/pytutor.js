@@ -28,9 +28,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 // Massive refactoring notes:
-//   - we need a d3 selector for domRoot (use this
+//   - test whether preseeded code and curInstr works
+//   - test whether back button works properly
 //   - does jsPlumb have a notion of "sets" of connectors so that we can reset a particular
 //     set rather than ALL connections?
+//   - executed lines highlighting seems to be broken
 
 
 function ExecutionVisualizer(inputCode, traceData, startingInstruction, domRootID) {
@@ -268,6 +270,9 @@ ExecutionVisualizer.prototype.render = function() {
             myViz.curInstr -= 1;
           }
           myViz.updateOutput();
+
+          k.preventDefault(); // don't horizontally scroll the display
+          myViz.keyStuckDown = true;
         }
       }
       else if (k.keyCode == 39) { // right arrow
@@ -284,11 +289,11 @@ ExecutionVisualizer.prototype.render = function() {
             myViz.curInstr += 1;
           }
           myViz.updateOutput();
+
+          k.preventDefault(); // don't horizontally scroll the display
+          myViz.keyStuckDown = true;
         }
       }
-
-      k.preventDefault(); // don't horizontally scroll the display
-      myViz.keyStuckDown = true;
     }
   });
 
