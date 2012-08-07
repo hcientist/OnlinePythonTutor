@@ -27,41 +27,60 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
-var keyStuckDown = false;
+// Massive refactoring notes:
+//   - we need a d3 selector for domRoot (use this
+//   - does jsPlumb have a notion of "sets" of connectors so that we can reset a particular
+//     set rather than ALL connections?
 
 
-// ugh globals! should really refactor into a "current state" object or
-// something like that ...
-var curTrace = null;
-var curInputCode = null;
-var curInstr = 0;
+function ExecutionVisualizer(inputCode, traceData, startingInstruction, domRootID) {
+  this.curInputCode = inputCode;
+  this.curTrace = traceData;
+  this.curInstr = startingInstruction;
 
-var preseededCode = null;     // if you passed in a 'code=<code string>' in the URL, then set this var
-var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
+  // an array of objects with the following fields:
+  //   'text' - the text of the line of code
+  //   'lineNumber' - one-indexed (always the array index + 1)
+  //   'executionPoints' - an ordered array of zero-indexed execution points where this line was executed
+  //   'backgroundColor' - current code output line background color
+  //   'breakpointHere' - has a breakpoint been set here?
+  this.codeOutputLines = [];
 
-
-// an array of objects with the following fields:
-//   'text' - the text of the line of code
-//   'lineNumber' - one-indexed (always the array index + 1)
-//   'executionPoints' - an ordered array of zero-indexed execution points where this line was executed
-//   'backgroundColor' - current code output line background color
-//   'breakpointHere' - has a breakpoint been set here?
-var codeOutputLines = [];
-
-var visitedLinesSet = {} // YUCKY GLOBAL!
+  this.visitedLinesSet = d3.map();
 
 
-
-// true iff trace ended prematurely since maximum instruction limit has
-// been reached
-var instrLimitReached = false;
-
+  // true iff trace ended prematurely since maximum instruction limit has
+  // been reached
+  var instrLimitReached = false;
 
 
-function createVisualization(traceData, inputCode, domRoot) {
+  this.domRoot = $('#' + domRootID);
+
+  this.domRootD3 = d3.select('#' + domRootID);
+
+  this.keyStuckDown = false;
+
+  this.breakpoints = d3.map(); // set of execution points to set as breakpoints
+  this.sortedBreakpointsList = []; // sorted and synced with breakpointLines
+  this.hoverBreakpoints = d3.map(); // set of breakpoints because we're HOVERING over a given line
+
+
+  this.hasRendered = false;
+}
+
+
+ExecutionVisualizer.prototype.render = function() {
+  //createVisualization(this.curTrace, this.curInputCode, this.curInstr, this.domRoot);
+  if (this.hasRendered) {
+    alert('ERROR: You should only call render() ONCE on an ExecutionVisualizer object.');
+    return;
+  }
+
+
+  var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
   // TODO: make less gross!
-  domRoot.html(
+  this.domRoot.html(
   '<table border="0">\
     <tr>\
       <td valign="top">\
@@ -71,7 +90,7 @@ function createVisualization(traceData, inputCode, domRoot) {
             <button id="editBtn" class="medBtn" type="button">Edit code</button>\
           </div>\
           <div id="executionSliderCaption">\
-            Use the <i>left</i> and <i>right</i> arrow keys to step through execution.\
+            Click here to focus and then use the left and right arrow keys to step through execution.\
             <br/>Click on lines of code to set breakpoints.\
           </div>\
           <div id="executionSlider"/>\
@@ -111,61 +130,55 @@ function createVisualization(traceData, inputCode, domRoot) {
   </table>');
 
 
-
-  $('#executionSlider').bind('slide', function(evt, ui) {
+  this.domRoot.find('#executionSlider').bind('slide', function(evt, ui) {
     // this is SUPER subtle. if this value was changed programmatically,
     // then evt.originalEvent will be undefined. however, if this value
     // was changed by a user-initiated event, then this code should be
     // executed ...
     if (evt.originalEvent) {
-      curInstr = ui.value;
-      updateOutput(true); // need to pass 'true' here to prevent infinite loop
+      myViz.curInstr = ui.value;
+      myViz.updateOutput(true); // need to pass 'true' here to prevent infinite loop
     }
   });
 
 
-  $('#genUrlBtn').bind('click', function() {
+  this.domRoot.find('#genUrlBtn').bind('click', function() {
     // override mode with 'visualize' ...
-    var urlStr = jQuery.param.fragment(window.location.href, {code: curInputCode, curInstr: curInstr}, 2);
+    var urlStr = jQuery.param.fragment(window.location.href, {code: myViz.curInputCode, curInstr: myViz.curInstr}, 2);
 
-    $('#urlOutput').val(urlStr);
-  });
-
-  $("#editBtn").click(function() {
-    enterEditMode();
+    myViz.domRoot.find('#urlOutput').val(urlStr);
   });
 
 
-
-  $("#jmpFirstInstr").click(function() {
-    curInstr = 0;
-    updateOutput();
+  this.domRoot.find("#jmpFirstInstr").click(function() {
+    myViz.curInstr = 0;
+    myViz.updateOutput();
   });
 
-  $("#jmpLastInstr").click(function() {
-    curInstr = curTrace.length - 1;
-    updateOutput();
+  this.domRoot.find("#jmpLastInstr").click(function() {
+    myViz.curInstr = myViz.curTrace.length - 1;
+    myViz.updateOutput();
   });
 
-  $("#jmpStepBack").click(function() {
-    if (curInstr > 0) {
-      curInstr -= 1;
-      updateOutput();
+  this.domRoot.find("#jmpStepBack").click(function() {
+    if (myViz.curInstr > 0) {
+      myViz.curInstr -= 1;
+      myViz.updateOutput();
     }
   });
 
-  $("#jmpStepFwd").click(function() {
-    if (curInstr < curTrace.length - 1) {
-      curInstr += 1;
-      updateOutput();
+  this.domRoot.find("#jmpStepFwd").click(function() {
+    if (myViz.curInstr < myViz.curTrace.length - 1) {
+      myViz.curInstr += 1;
+      myViz.updateOutput();
     }
   });
 
   // disable controls initially ...
-  $("#vcrControls #jmpFirstInstr").attr("disabled", true);
-  $("#vcrControls #jmpStepBack").attr("disabled", true);
-  $("#vcrControls #jmpStepFwd").attr("disabled", true);
-  $("#vcrControls #jmpLastInstr").attr("disabled", true);
+  this.domRoot.find("#vcrControls #jmpFirstInstr").attr("disabled", true);
+  this.domRoot.find("#vcrControls #jmpStepBack").attr("disabled", true);
+  this.domRoot.find("#vcrControls #jmpStepFwd").attr("disabled", true);
+  this.domRoot.find("#vcrControls #jmpLastInstr").attr("disabled", true);
 
 
 
@@ -173,9 +186,7 @@ function createVisualization(traceData, inputCode, domRoot) {
   jsPlumb.Defaults.Endpoint = ["Dot", {radius:3}];
   //jsPlumb.Defaults.Endpoint = ["Rectangle", {width:3, height:3}];
   jsPlumb.Defaults.EndpointStyle = {fillStyle: lightGray};
-
   jsPlumb.Defaults.Anchors = ["RightMiddle", "LeftMiddle"]; // for aesthetics!
-
   jsPlumb.Defaults.PaintStyle = {lineWidth:1, strokeStyle: lightGray};
 
   // bezier curve style:
@@ -186,248 +197,565 @@ function createVisualization(traceData, inputCode, domRoot) {
   jsPlumb.Defaults.Connector = [ "StateMachine" ];
   jsPlumb.Defaults.Overlays = [[ "Arrow", { length: 10, width:7, foldback:0.55, location:1 }]];
 
-
   jsPlumb.Defaults.EndpointHoverStyle = {fillStyle: pinkish};
   jsPlumb.Defaults.HoverPaintStyle = {lineWidth:2, strokeStyle: pinkish};
 
 
-  // set keyboard event listeners ...
-  // TODO: too global!
-  $(document).keydown(function(k) {
-    // ONLY capture keys if we're in 'visualize code' mode:
-    if (appMode == 'visualize' && !keyStuckDown) {
+
+  // find the previous/next breakpoint to c or return -1 if it doesn't exist
+  function findPrevBreakpoint(c) {
+    if (myViz.sortedBreakpointsList.length == 0) {
+      return -1;
+    }
+    else {
+      for (var i = 1; i < myViz.sortedBreakpointsList.length; i++) {
+        var prev = myViz.sortedBreakpointsList[i-1];
+        var cur = myViz.sortedBreakpointsList[i];
+        if (c <= prev)
+          return -1;
+        if (cur >= c)
+          return prev;
+      }
+
+      // final edge case:
+      var lastElt = myViz.sortedBreakpointsList[myViz.sortedBreakpointsList.length - 1];
+      return (lastElt < c) ? lastElt : -1;
+    }
+  }
+
+  function findNextBreakpoint(c) {
+    if (myViz.sortedBreakpointsList.length == 0) {
+      return -1;
+    }
+    else {
+      for (var i = 0; i < myViz.sortedBreakpointsList.length - 1; i++) {
+        var cur = myViz.sortedBreakpointsList[i];
+        var next = myViz.sortedBreakpointsList[i+1];
+        if (c < cur)
+          return cur;
+        if (cur <= c && c < next) // subtle
+          return next;
+      }
+
+      // final edge case:
+      var lastElt = myViz.sortedBreakpointsList[myViz.sortedBreakpointsList.length - 1];
+      return (lastElt > c) ? lastElt : -1;
+    }
+  }
+
+
+
+  // Set keyboard event listeners for domRoot.
+  // Note that if domRoot is a div, it must have a 'tabindex="0"' attribute set
+  // before it can receive focus and thus receive keyboard events. Set it here:
+  this.domRoot.attr('tabindex', '0');
+  this.domRoot.css('outline', 'none'); // don't display a tacky border when focused
+  this.domRoot.focus();
+
+  this.domRoot.keydown(function(k) {
+    if (!myViz.keyStuckDown) {
       if (k.keyCode == 37) { // left arrow
-        if (curInstr > 0) {
+        if (myViz.curInstr > 0) {
           // if there is a prev breakpoint, then jump to it ...
-          if (sortedBreakpointsList.length > 0) {
-            var prevBreakpoint = findPrevBreakpoint(curInstr);
-            if (prevBreakpoint != -1) {
-              curInstr = prevBreakpoint;
-            }
-            else {
-              curInstr -= 1; // prevent keyboard keys from "getting stuck" on a solitary breakpoint
-            }
+          if (myViz.sortedBreakpointsList.length > 0) {
+            var prevBreakpoint = findPrevBreakpoint(myViz.curInstr);
+            if (prevBreakpoint != -1)
+              myViz.curInstr = prevBreakpoint;
+            else
+              myViz.curInstr -= 1; // prevent keyboard keys from "getting stuck" on a solitary breakpoint
           }
           else {
-            curInstr -= 1;
+            myViz.curInstr -= 1;
           }
-          updateOutput();
+          myViz.updateOutput();
         }
-
-        k.preventDefault(); // don't horizontally scroll the display
-
-        keyStuckDown = true;
       }
       else if (k.keyCode == 39) { // right arrow
-        if (curInstr < curTrace.length - 1) {
+        if (myViz.curInstr < myViz.curTrace.length - 1) {
           // if there is a next breakpoint, then jump to it ...
-          if (sortedBreakpointsList.length > 0) {
-            var nextBreakpoint = findNextBreakpoint(curInstr);
-            if (nextBreakpoint != -1) {
-              curInstr = nextBreakpoint;
-            }
-            else {
-              curInstr += 1; // prevent keyboard keys from "getting stuck" on a solitary breakpoint
-            }
+          if (myViz.sortedBreakpointsList.length > 0) {
+            var nextBreakpoint = findNextBreakpoint(myViz.curInstr);
+            if (nextBreakpoint != -1)
+              myViz.curInstr = nextBreakpoint;
+            else
+              myViz.curInstr += 1; // prevent keyboard keys from "getting stuck" on a solitary breakpoint
           }
           else {
-            curInstr += 1;
+            myViz.curInstr += 1;
           }
-          updateOutput();
+          myViz.updateOutput();
         }
-
-        k.preventDefault(); // don't horizontally scroll the display
-
-        keyStuckDown = true;
       }
+
+      k.preventDefault(); // don't horizontally scroll the display
+      myViz.keyStuckDown = true;
     }
   });
 
-  // TODO: too global!
-  $(document).keyup(function(k) {
-    keyStuckDown = false;
+  this.domRoot.keyup(function(k) {
+    myViz.keyStuckDown = false;
   });
 
 
-  // redraw everything on window resize so that connectors are in the
-  // right place
-  // TODO: can be SLOW on older browsers!!!
-  // TODO: too global!
-  $(window).resize(function() {
-    if (appMode == 'visualize') {
-      updateOutput();
-    }
-  });
-
-
-
-  // set gross globals, then let jQuery BBQ take care of the rest
-  curTrace = traceData;
-  curInputCode = inputCode;
-
-  renderPyCodeOutput(inputCode);
+  this.renderPyCodeOutput();
 
 
   // must postprocess traceData prior to running precomputeCurTraceLayouts() ...
-  var lastEntry = curTrace[curTrace.length - 1];
+  var lastEntry = this.curTrace[this.curTrace.length - 1];
 
-  // GLOBAL!
-  instrLimitReached = (lastEntry.event == 'instruction_limit_reached');
+  this.instrLimitReached = (lastEntry.event == 'instruction_limit_reached');
 
-  if (instrLimitReached) {
-    curTrace.pop() // kill last entry
+  if (this.instrLimitReached) {
+    this.curTrace.pop() // kill last entry
     var warningMsg = lastEntry.exception_msg;
-    $("#errorOutput").html(htmlspecialchars(warningMsg));
-    $("#errorOutput").show();
+    domRoot.find("#errorOutput").html(htmlspecialchars(warningMsg));
+    domRoot.find("#errorOutput").show();
   }
   // as imran suggests, for a (non-error) one-liner, SNIP off the
   // first instruction so that we start after the FIRST instruction
   // has been executed ...
-  else if (curTrace.length == 2) {
-    curTrace.shift();
+  else if (this.curTrace.length == 2) {
+    this.curTrace.shift();
   }
 
-  precomputeCurTraceLayouts(); // bam!
 
-  $.bbq.pushState({ mode: 'visualize' }, 2 /* completely override other hash strings to keep URL clean */);
-}
+  this.precomputeCurTraceLayouts(); // almost there!!!
+
+  this.updateOutput();
+
+  this.hasRendered = true;
+};
 
 
+ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
+  var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
+  // start fresh!
+  this.breakpoints = d3.map();
+  this.sortedBreakpointsList = [];
+  this.hoverBreakpoints = d3.map();
 
-function enterVisualizeMode(jumpToEnd) {
-  curInstr = 0;
+  function renderSliderBreakpoints() {
+    myViz.domRoot.find("#executionSliderFooter").empty();
 
-  // only do this at most ONCE, and then clear out preseededCurInstr
-  if (preseededCurInstr && preseededCurInstr < curTrace.length) { // NOP anyways if preseededCurInstr is 0
-    curInstr = preseededCurInstr;
-    preseededCurInstr = null;
-  }
+    // I originally didn't want to delete and re-create this overlay every time,
+    // but if I don't do so, there are weird flickering artifacts with clearing
+    // the SVG container; so it's best to just delete and re-create the container each time
+    var sliderOverlay = myViz.domRootD3.select('#executionSliderFooter')
+      .append('svg')
+      .attr('id', 'sliderOverlay')
+      .attr('width', $('#executionSlider').width())
+      .attr('height', 12);
 
-  // delete all stale output
-  $("#pyStdout").val('');
+    var xrange = d3.scale.linear()
+      .domain([0, myViz.curTrace.length - 1])
+      .range([0, $('#executionSlider').width()]);
 
-  if (curTrace.length > 0) {
-    if (jumpToEnd) {
-      // if there's an exception, then jump to the FIRST occurrence of
-      // that exception. otherwise, jump to the very end of execution.
-      curInstr = curTrace.length - 1;
-
-      for (var i = 0; i < curTrace.length; i++) {
-        var curEntry = curTrace[i];
-        if (curEntry.event == 'exception' ||
-            curEntry.event == 'uncaught_exception') {
-          curInstr = i;
-          break;
+    sliderOverlay.selectAll('rect')
+      .data(myViz.sortedBreakpointsList)
+      .enter().append('rect')
+      .attr('x', function(d, i) {
+        // make the edge cases look decent
+        if (d == 0) {
+          return 0;
         }
+        else {
+          return xrange(d) - 3;
+        }
+      })
+      .attr('y', 0)
+      .attr('width', 2)
+      .attr('height', 12)
+      .style('fill', function(d) {
+         if (!myViz.hoverBreakpoints.has(d)) {
+           return breakpointColor;
+         }
+         else {
+           return hoverBreakpointColor;
+         }
+      });
+  }
+
+  function _getSortedBreakpointsList() {
+    var ret = [];
+    myViz.breakpoints.forEach(function(k, v) {
+      ret.push(Number(k)); // these should be NUMBERS, not strings
+    });
+    ret.sort(function(x,y){return x-y}); // WTF, javascript sort is lexicographic by default!
+    return ret;
+  }
+
+  function addToBreakpoints(executionPoints) {
+    $.each(executionPoints, function(i, ep) {
+      myViz.breakpoints.set(ep, 1);
+    });
+    myViz.sortedBreakpointsList = _getSortedBreakpointsList();
+  }
+
+  function removeFromBreakpoints(executionPoints) {
+    $.each(executionPoints, function(i, ep) {
+      myViz.breakpoints.remove(ep);
+    });
+    myViz.sortedBreakpointsList = _getSortedBreakpointsList();
+  }
+
+
+  function setHoverBreakpoint(t) {
+    var exePts = d3.select(t).datum().executionPoints;
+
+    // don't do anything if exePts is empty
+    // (i.e., this line was never executed)
+    if (!exePts || exePts.length == 0) {
+      return;
+    }
+
+    myViz.hoverBreakpoints = d3.map();
+    $.each(exePts, function(i, ep) {
+      myViz.hoverBreakpoints.set(ep, 1);
+    });
+
+    addToBreakpoints(exePts);
+    renderSliderBreakpoints();
+  }
+
+
+  function setBreakpoint(t) {
+    var exePts = d3.select(t).datum().executionPoints;
+
+    // don't do anything if exePts is empty
+    // (i.e., this line was never executed)
+    if (!exePts || exePts.length == 0) {
+      return;
+    }
+
+    addToBreakpoints(exePts);
+
+    d3.select(t.parentNode).select('td.lineNo').style('color', breakpointColor);
+    d3.select(t.parentNode).select('td.lineNo').style('font-weight', 'bold');
+
+    renderSliderBreakpoints();
+  }
+
+  function unsetBreakpoint(t) {
+    var exePts = d3.select(t).datum().executionPoints;
+
+    // don't do anything if exePts is empty
+    // (i.e., this line was never executed)
+    if (!exePts || exePts.length == 0) {
+      return;
+    }
+
+    removeFromBreakpoints(exePts);
+
+    var lineNo = d3.select(t).datum().lineNumber;
+
+    if (myViz.visitedLinesSet[lineNo]) {
+      d3.select(t.parentNode).select('td.lineNo').style('color', visitedLineColor);
+      d3.select(t.parentNode).select('td.lineNo').style('font-weight', 'bold');
+    }
+    else {
+      d3.select(t.parentNode).select('td.lineNo').style('color', '');
+      d3.select(t.parentNode).select('td.lineNo').style('font-weight', '');
+    }
+
+    renderSliderBreakpoints();
+  }
+
+  var lines = this.curInputCode.rtrim().split('\n');
+
+  this.codeOutputLines = [];
+  for (var i = 0; i < lines.length; i++) {
+    var cod = lines[i];
+
+    var n = {};
+    n.text = cod;
+    n.lineNumber = i + 1;
+    n.executionPoints = [];
+    n.backgroundColor = null;
+    n.breakpointHere = false;
+
+    $.each(this.curTrace, function(j, elt) {
+      if (elt.line == n.lineNumber) {
+        n.executionPoints.push(j);
+      }
+    });
+
+ 
+    // if there is a comment containing 'breakpoint' and this line was actually executed,
+    // then set a breakpoint on this line
+    var breakpointInComment = false;
+    var toks = cod.split('#');
+    for (var j = 1 /* start at index 1, not 0 */; j < toks.length; j++) {
+      if (toks[j].indexOf('breakpoint') != -1) {
+        breakpointInComment = true;
       }
     }
 
+    if (breakpointInComment && n.executionPoints.length > 0) {
+      n.breakpointHere = true;
+      addToBreakpoints(n.executionPoints);
+    }
+
+    this.codeOutputLines.push(n);
   }
 
 
-  // clear stack and heap visualizations:
-  $('#dataViz #stack').html('<div id="stackHeader">Frames</div>');
-  $('#dataViz #heap').html('<div id="heapHeader">Objects</div>');
+  $('#pyCodeOutputDiv').empty();
+
+  // maps this.codeOutputLines to both table columns
+  this.domRootD3.select('#pyCodeOutputDiv')
+    .append('table')
+    .attr('id', 'pyCodeOutput')
+    .selectAll('tr')
+    .data(this.codeOutputLines)
+    .enter().append('tr')
+    .selectAll('td')
+    .data(function(e, i){return [e, e];}) // bind an alias of the element to both table columns
+    .enter().append('td')
+    .attr('class', function(d, i) {return (i == 0) ? 'lineNo' : 'cod';})
+    .style('cursor', function(d, i) {return 'pointer'})
+    .html(function(d, i) {
+      if (i == 0) {
+        return d.lineNumber;
+      }
+      else {
+        return htmlspecialchars(d.text);
+      }
+     })
+    .on('mouseover', function() {
+      setHoverBreakpoint(this);
+     })
+    .on('mouseout', function() {
+      hoverBreakpoints = d3.map();
+
+      var breakpointHere = d3.select(this).datum().breakpointHere;
+
+      if (!breakpointHere) {
+        unsetBreakpoint(this);
+      }
+
+      renderSliderBreakpoints(); // get rid of hover breakpoint colors
+     })
+    .on('mousedown', function() {
+      // don't do anything if exePts is empty
+      // (i.e., this line was never executed)
+      var exePts = d3.select(this).datum().executionPoints;
+      if (!exePts || exePts.length == 0) {
+        return;
+      }
+
+      // toggle breakpoint
+      d3.select(this).datum().breakpointHere = !d3.select(this).datum().breakpointHere;
+
+      var breakpointHere = d3.select(this).datum().breakpointHere;
+      if (breakpointHere) {
+        setBreakpoint(this);
+      }
+      else {
+        unsetBreakpoint(this);
+      }
+     });
 
 
-  // remove any existing sliders
-  $('#executionSlider').slider('destroy');
-  $('#executionSlider').empty();
 
-  $('#executionSlider').slider({
+  this.domRoot.find('#executionSlider').slider({
     min: 0,
-    max: curTrace.length - 1,
+    max: this.curTrace.length - 1,
     step: 1,
   });
 
   //disable keyboard actions on the slider itself (to prevent double-firing of events)
-  $("#executionSlider .ui-slider-handle").unbind('keydown');
+  this.domRoot.find("#executionSlider .ui-slider-handle").unbind('keydown');
   // make skinnier and taller
-  $("#executionSlider .ui-slider-handle").css('width', '0.8em');
-  $("#executionSlider .ui-slider-handle").css('height', '1.4em');
-
-  $(".ui-widget-content").css('font-size', '0.9em');
+  this.domRoot.find("#executionSlider .ui-slider-handle").css('width', '0.8em');
+  this.domRoot.find("#executionSlider .ui-slider-handle").css('height', '1.4em');
+  this.domRoot.find(".ui-widget-content").css('font-size', '0.9em');
  
-  updateOutput();
+
+  renderSliderBreakpoints(); // renders breakpoints written in as code comments
 }
 
 
-function highlightCodeLine(curLine, hasError, isTerminated) {
-  d3.selectAll('#pyCodeOutputDiv td.lineNo')
-    .attr('id', function(d) {return 'lineNo' + d.lineNumber;})
-    .style('color', function(d)
-      {return d.breakpointHere ? breakpointColor : (visitedLinesSet[d.lineNumber] ? visitedLineColor : null);})
-    .style('font-weight', function(d)
-      {return d.breakpointHere ? 'bold' : (visitedLinesSet[d.lineNumber] ? 'bold' : null);});
+// TODO: call this when the window gets resized
+ExecutionVisualizer.prototype.updateOutput = function() {
+  var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
-  d3.selectAll('#pyCodeOutputDiv td.cod')
-    .style('background-color', function(d) {
-      if (d.lineNumber == curLine) {
-        if (hasError) {
-          d.backgroundColor = errorColor;
-        }
-        else if (isTerminated) {
-          d.backgroundColor = lightBlue;
+  assert(this.curTrace);
+
+  this.domRoot.find('#urlOutput').val(''); // blank out
+
+  var curEntry = this.curTrace[this.curInstr];
+  var hasError = false;
+
+  // render VCR controls:
+  var totalInstrs = this.curTrace.length;
+
+  // to be user-friendly, if we're on the LAST instruction, print "Program has terminated"
+  // and DON'T highlight any lines of code in the code display
+  if (this.curInstr == (totalInstrs-1)) {
+    if (this.instrLimitReached) {
+      $("#vcrControls #curInstr").html("Instruction limit reached");
+    }
+    else {
+      $("#vcrControls #curInstr").html("Program has terminated");
+    }
+  }
+  else {
+    $("#vcrControls #curInstr").html("About to run step " + (this.curInstr + 1) + " of " + (totalInstrs-1));
+  }
+
+
+  $("#vcrControls #jmpFirstInstr").attr("disabled", false);
+  $("#vcrControls #jmpStepBack").attr("disabled", false);
+  $("#vcrControls #jmpStepFwd").attr("disabled", false);
+  $("#vcrControls #jmpLastInstr").attr("disabled", false);
+
+  if (this.curInstr == 0) {
+    $("#vcrControls #jmpFirstInstr").attr("disabled", true);
+    $("#vcrControls #jmpStepBack").attr("disabled", true);
+  }
+  if (this.curInstr == (totalInstrs-1)) {
+    $("#vcrControls #jmpLastInstr").attr("disabled", true);
+    $("#vcrControls #jmpStepFwd").attr("disabled", true);
+  }
+
+
+  // PROGRAMMATICALLY change the value, so evt.originalEvent should be undefined
+  $('#executionSlider').slider('value', this.curInstr);
+
+
+  // render error (if applicable):
+  if (curEntry.event == 'exception' ||
+      curEntry.event == 'uncaught_exception') {
+    assert(curEntry.exception_msg);
+
+    if (curEntry.exception_msg == "Unknown error") {
+      $("#errorOutput").html('Unknown error: Please email a bug report to philip@pgbovine.net');
+    }
+    else {
+      $("#errorOutput").html(htmlspecialchars(curEntry.exception_msg));
+    }
+
+    $("#errorOutput").show();
+
+    hasError = true;
+  }
+  else {
+    if (!this.instrLimitReached) { // ugly, I know :/
+      $("#errorOutput").hide();
+    }
+  }
+
+
+
+  function highlightCodeLine(curLine, hasError, isTerminated) {
+    myViz.domRootD3.selectAll('#pyCodeOutputDiv td.lineNo')
+      .attr('id', function(d) {return 'lineNo' + d.lineNumber;})
+      .style('color', function(d)
+        {return d.breakpointHere ? breakpointColor : (myViz.visitedLinesSet.has(d.lineNumber) ? visitedLineColor : null);})
+      .style('font-weight', function(d)
+        {return d.breakpointHere ? 'bold' : (myViz.visitedLinesSet.has(d.lineNumber) ? 'bold' : null);});
+
+    myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
+      .style('background-color', function(d) {
+        if (d.lineNumber == curLine) {
+          if (hasError) {
+            d.backgroundColor = errorColor;
+          }
+          else if (isTerminated) {
+            d.backgroundColor = lightBlue;
+          }
+          else {
+            d.backgroundColor = lightLineColor;
+          }
         }
         else {
-          d.backgroundColor = lightLineColor;
+          d.backgroundColor = null;
         }
-      }
-      else {
-        d.backgroundColor = null;
-      }
 
-      return d.backgroundColor;
-    })
-    .style('border-top', function(d) {
-      if ((d.lineNumber == curLine) && !hasError && !isTerminated) {
-        return '1px solid #F87D76';
-      }
-      else {
-        // put a default white top border to keep space usage consistent
-        return '1px solid #ffffff';
-      }
-    });
+        return d.backgroundColor;
+      })
+      .style('border-top', function(d) {
+        if ((d.lineNumber == curLine) && !hasError && !isTerminated) {
+          return '1px solid #F87D76';
+        }
+        else {
+          // put a default white top border to keep space usage consistent
+          return '1px solid #ffffff';
+        }
+      });
 
 
 
-  // returns True iff lineNo is visible in pyCodeOutputDiv
-  function isOutputLineVisible(lineNo) {
-    var lineNoTd = $('#lineNo' + lineNo);
-    var LO = lineNoTd.offset().top;
+    // returns True iff lineNo is visible in pyCodeOutputDiv
+    function isOutputLineVisible(lineNo) {
+      var lineNoTd = $('#lineNo' + lineNo);
+      var LO = lineNoTd.offset().top;
 
-    var codeOutputDiv = $('#pyCodeOutputDiv');
-    var PO = codeOutputDiv.offset().top;
-    var ST = codeOutputDiv.scrollTop();
-    var H = codeOutputDiv.height();
+      var codeOutputDiv = $('#pyCodeOutputDiv');
+      var PO = codeOutputDiv.offset().top;
+      var ST = codeOutputDiv.scrollTop();
+      var H = codeOutputDiv.height();
 
-    // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
-    return (PO <= LO) && (LO < (PO + H - 15));
+      // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
+      return (PO <= LO) && (LO < (PO + H - 15));
+    }
+
+
+    // smoothly scroll pyCodeOutputDiv so that the given line is at the center
+    function scrollCodeOutputToLine(lineNo) {
+      var lineNoTd = $('#lineNo' + lineNo);
+      var LO = lineNoTd.offset().top;
+
+      var codeOutputDiv = $('#pyCodeOutputDiv');
+      var PO = codeOutputDiv.offset().top;
+      var ST = codeOutputDiv.scrollTop();
+      var H = codeOutputDiv.height();
+
+      codeOutputDiv.animate({scrollTop: (ST + (LO - PO - (Math.round(H / 2))))}, 300);
+    }
+
+
+
+    // smoothly scroll code display
+    if (!isOutputLineVisible(curLine)) {
+      scrollCodeOutputToLine(curLine);
+    }
   }
 
 
-  // smoothly scroll pyCodeOutputDiv so that the given line is at the center
-  function scrollCodeOutputToLine(lineNo) {
-    var lineNoTd = $('#lineNo' + lineNo);
-    var LO = lineNoTd.offset().top;
 
-    var codeOutputDiv = $('#pyCodeOutputDiv');
-    var PO = codeOutputDiv.offset().top;
-    var ST = codeOutputDiv.scrollTop();
-    var H = codeOutputDiv.height();
+  // render code output:
+  if (curEntry.line) {
+    // calculate all lines that have been 'visited' 
+    // by execution up to (but NOT INCLUDING) curInstr:
+    this.visitedLinesSet = d3.map();
+    for (var i = 0; i < curInstr; i++) {
+      if (this.curTrace[i].line) {
+        this.visitedLinesSet.set(this.curTrace[i].line, 1);
+      }
+    }
 
-    codeOutputDiv.animate({scrollTop: (ST + (LO - PO - (Math.round(H / 2))))}, 300);
+    highlightCodeLine(curEntry.line, hasError,
+                      /* if instrLimitReached, then treat like a normal non-terminating line */
+                      (!this.instrLimitReached && (this.curInstr == (totalInstrs-1))));
   }
 
 
+  // render stdout:
 
-  // smoothly scroll code display
-  if (!isOutputLineVisible(curLine)) {
-    scrollCodeOutputToLine(curLine);
-  }
+  // keep original horizontal scroll level:
+  var oldLeft = $("#pyStdout").scrollLeft();
+  $("#pyStdout").val(curEntry.stdout);
+
+  $("#pyStdout").scrollLeft(oldLeft);
+  // scroll to bottom, though:
+  $("#pyStdout").scrollTop($("#pyStdout")[0].scrollHeight);
+
+
+  // finally, render all the data structures!!!
+  this.renderDataStructures();
 }
-
 
 
 // Pre-compute the layout of top-level heap objects for ALL execution
@@ -437,45 +765,44 @@ function highlightCodeLine(curLine, hasError, isTerminated) {
 // invariance). Also, if we set up the layout objects properly, then we
 // can take full advantage of d3 to perform rendering and transitions.
 
+ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 
-// curTraceLayouts is a list of top-level heap layout "objects" with the
-// same length as curTrace after it's been fully initialized. Each
-// element of curTraceLayouts is computed from the contents of its
-// immediate predecessor, thus ensuring that objects don't "jiggle
-// around" between consecutive execution points.
-//
-// Each top-level heap layout "object" is itself a LIST of LISTS of
-// object IDs, where each element of the outer list represents a row,
-// and each element of the inner list represents columns within a
-// particular row. Each row can have a different number of columns. Most
-// rows have exactly ONE column (representing ONE object ID), but rows
-// containing 1-D linked data structures have multiple columns. Each
-// inner list element looks something like ['row1', 3, 2, 1] where the
-// first element is a unique row ID tag, which is used as a key for d3 to
-// preserve "object constancy" for updates, transitions, etc. The row ID
-// is derived from the FIRST object ID inserted into the row. Since all
-// object IDs are unique, all row IDs will also be unique.
-var curTraceLayouts = null;
+  // curTraceLayouts is a list of top-level heap layout "objects" with the
+  // same length as curTrace after it's been fully initialized. Each
+  // element of curTraceLayouts is computed from the contents of its
+  // immediate predecessor, thus ensuring that objects don't "jiggle
+  // around" between consecutive execution points.
+  //
+  // Each top-level heap layout "object" is itself a LIST of LISTS of
+  // object IDs, where each element of the outer list represents a row,
+  // and each element of the inner list represents columns within a
+  // particular row. Each row can have a different number of columns. Most
+  // rows have exactly ONE column (representing ONE object ID), but rows
+  // containing 1-D linked data structures have multiple columns. Each
+  // inner list element looks something like ['row1', 3, 2, 1] where the
+  // first element is a unique row ID tag, which is used as a key for d3 to
+  // preserve "object constancy" for updates, transitions, etc. The row ID
+  // is derived from the FIRST object ID inserted into the row. Since all
+  // object IDs are unique, all row IDs will also be unique.
 
-/* This is a good, simple example to test whether objects "jiggle"
+  /* This is a good, simple example to test whether objects "jiggle"
 
-x = [1, [2, [3, None]]]
-y = [4, [5, [6, None]]]
+  x = [1, [2, [3, None]]]
+  y = [4, [5, [6, None]]]
 
-x[1][1] = y[1]
+  x[1][1] = y[1]
 
-*/
+  */
+  this.curTraceLayouts = [];
+  this.curTraceLayouts.push([]); // pre-seed with an empty sentinel to simplify the code
 
+  assert(this.curTrace.length > 0);
 
-function precomputeCurTraceLayouts() {
-  curTraceLayouts = [];
-  curTraceLayouts.push([]); // pre-seed with an empty sentinel to simplify the code
-
-  assert(curTrace.length > 0);
+  var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
  
-  $.each(curTrace, function(i, curEntry) {
-    var prevLayout = curTraceLayouts[curTraceLayouts.length - 1];
+  $.each(this.curTrace, function(i, curEntry) {
+    var prevLayout = myViz.curTraceLayouts[myViz.curTraceLayouts.length - 1];
 
     // make a DEEP COPY of prevLayout to use as the basis for curLine
     var curLayout = $.extend(true /* deep copy */ , [], prevLayout);
@@ -691,125 +1018,15 @@ function precomputeCurTraceLayouts() {
     // now remove empty rows (i.e., those with only a row ID tag) from curLayout
     curLayout = curLayout.filter(function(row) {return row.length > 1});
 
-    curTraceLayouts.push(curLayout);
+    myViz.curTraceLayouts.push(curLayout);
   });
 
-  curTraceLayouts.splice(0, 1); // remove seeded empty sentinel element
-  assert (curTrace.length == curTraceLayouts.length);
-}
-
-
-// relies on curTrace and curInstr globals
-function updateOutput() {
-  if (!curTrace) {
-    return;
-  }
-
-  $('#urlOutput').val(''); // blank out
-
-  var curEntry = curTrace[curInstr];
-  var hasError = false;
-
-  // render VCR controls:
-  var totalInstrs = curTrace.length;
-
-  // to be user-friendly, if we're on the LAST instruction, print "Program has terminated"
-  // and DON'T highlight any lines of code in the code display
-  if (curInstr == (totalInstrs-1)) {
-    if (instrLimitReached) {
-      $("#vcrControls #curInstr").html("Instruction limit reached");
-    }
-    else {
-      $("#vcrControls #curInstr").html("Program has terminated");
-    }
-  }
-  else {
-    $("#vcrControls #curInstr").html("About to run step " + (curInstr + 1) + " of " + (totalInstrs-1));
-  }
-
-
-  $("#vcrControls #jmpFirstInstr").attr("disabled", false);
-  $("#vcrControls #jmpStepBack").attr("disabled", false);
-  $("#vcrControls #jmpStepFwd").attr("disabled", false);
-  $("#vcrControls #jmpLastInstr").attr("disabled", false);
-
-  if (curInstr == 0) {
-    $("#vcrControls #jmpFirstInstr").attr("disabled", true);
-    $("#vcrControls #jmpStepBack").attr("disabled", true);
-  }
-  if (curInstr == (totalInstrs-1)) {
-    $("#vcrControls #jmpLastInstr").attr("disabled", true);
-    $("#vcrControls #jmpStepFwd").attr("disabled", true);
-  }
-
-
-
-
-  // PROGRAMMATICALLY change the value, so evt.originalEvent should be undefined
-  $('#executionSlider').slider('value', curInstr);
-
-
-  // render error (if applicable):
-  if (curEntry.event == 'exception' ||
-      curEntry.event == 'uncaught_exception') {
-    assert(curEntry.exception_msg);
-
-    if (curEntry.exception_msg == "Unknown error") {
-      $("#errorOutput").html('Unknown error: Please email a bug report to philip@pgbovine.net');
-    }
-    else {
-      $("#errorOutput").html(htmlspecialchars(curEntry.exception_msg));
-    }
-
-    $("#errorOutput").show();
-
-    hasError = true;
-  }
-  else {
-    if (!instrLimitReached) { // ugly, I know :/
-      $("#errorOutput").hide();
-    }
-  }
-
-
-  // render code output:
-  if (curEntry.line) {
-    // calculate all lines that have been 'visited' 
-    // by execution up to (but NOT INCLUDING) curInstr:
-    visitedLinesSet = {} // GLOBAL!
-    for (var i = 0; i < curInstr; i++) {
-      if (curTrace[i].line) {
-        visitedLinesSet[curTrace[i].line] = true;
-      }
-    }
-
-    highlightCodeLine(curEntry.line, hasError,
-                      /* if instrLimitReached, then treat like a normal non-terminating line */
-                      (!instrLimitReached && (curInstr == (totalInstrs-1))));
-  }
-
-
-  // render stdout:
-
-  // keep original horizontal scroll level:
-  var oldLeft = $("#pyStdout").scrollLeft();
-  $("#pyStdout").val(curEntry.stdout);
-
-  $("#pyStdout").scrollLeft(oldLeft);
-  // scroll to bottom, though:
-  $("#pyStdout").scrollTop($("#pyStdout")[0].scrollHeight);
-
-
-  // finally, render all the data structures!!!
-  var curToplevelLayout = curTraceLayouts[curInstr];
-  renderDataStructures(curEntry, curToplevelLayout, "#dataViz");
+  this.curTraceLayouts.splice(0, 1); // remove seeded empty sentinel element
+  assert (this.curTrace.length == this.curTraceLayouts.length);
 }
 
 
 
-// Renders the current trace entry (curEntry) into the div named by vizDiv
-// using the top-level heap layout provided by toplevelHeapLayout
-//
 // The "3.0" version of renderDataStructures renders variables in
 // a stack, values in a separate heap, and draws line connectors
 // to represent both stack->heap object references and, more importantly,
@@ -825,18 +1042,20 @@ function updateOutput() {
 // INLINE within each stack frame without any explicit representation
 // of data structure aliasing. That is, aliased objects were rendered
 // multiple times, and a unique ID label was used to identify aliases.
-function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
+ExecutionVisualizer.prototype.renderDataStructures = function() {
+  var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
   // VERY VERY IMPORTANT --- and reset ALL jsPlumb state to prevent
   // weird mis-behavior!!!
   jsPlumb.reset();
 
+  var curEntry = this.curTrace[this.curInstr];
+  var curToplevelLayout = this.curTraceLayouts[this.curInstr];
 
   // clear the stack and render it from scratch.
   // the heap must be PERSISTENT so that d3 can render heap transitions.
-  $(vizDiv + " #stack").empty();
-  $(vizDiv + " #stack").append('<div id="stackHeader">Frames</div>');
-
+  this.domRoot.find("#stack").empty();
+  this.domRoot.find("#stack").append('<div id="stackHeader">Frames</div>');
 
 
   // Heap object rendering phase:
@@ -855,21 +1074,21 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
 
   var renderedObjectIDs = d3.map();
 
-  // count everything in toplevelHeapLayout as already rendered since we will render them
+  // count everything in curToplevelLayout as already rendered since we will render them
   // in the d3 .each() statement labeled 'FOOBAR' (might be confusing!)
-  $.each(toplevelHeapLayout, function(xxx, row) {
+  $.each(curToplevelLayout, function(xxx, row) {
     for (var i = 0; i < row.length; i++) {
       renderedObjectIDs.set(row[i], 1);
     }
   });
 
 
-  // use d3 to render the heap by mapping toplevelHeapLayout into <table class="heapRow">
+  // use d3 to render the heap by mapping curToplevelLayout into <table class="heapRow">
   // and <td class="toplevelHeapObject"> elements
 
-  var heapRows = d3.select(vizDiv + ' #heap')
+  var heapRows = myViz.domRootD3.select('#heap')
     .selectAll('table.heapRow')
-    .data(toplevelHeapLayout, function(objLst) {
+    .data(curToplevelLayout, function(objLst) {
       return objLst[0]; // return first element, which is the row ID tag
   })
 
@@ -1159,10 +1378,10 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
   // render all global variables IN THE ORDER they were created by the program,
   // in order to ensure continuity:
   if (curEntry.ordered_globals.length > 0) {
-    $(vizDiv + " #stack").append('<div class="stackFrame" id="globals"><div id="globals_header" class="stackFrameHeader">Global variables</div></div>');
-    $(vizDiv + " #stack #globals").append('<table class="stackFrameVarTable" id="global_table"></table>');
+    this.domRoot.find("#stack").append('<div class="stackFrame" id="globals"><div id="globals_header" class="stackFrameHeader">Global variables</div></div>');
+    this.domRoot.find("#stack #globals").append('<table class="stackFrameVarTable" id="global_table"></table>');
 
-    var tbl = $(vizDiv + " #global_table");
+    var tbl = this.domRoot.find("#global_table");
 
     $.each(curEntry.ordered_globals, function(i, varname) {
       var val = curEntry.globals[varname];
@@ -1224,7 +1443,7 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
       headerDivID = "stack_header" + ind;
     }
 
-    $(vizDiv + " #stack").append('<div class="' + divClass + '" id="' + divID + '"></div>');
+    myViz.domRoot.find("#stack").append('<div class="' + divClass + '" id="' + divID + '"></div>');
 
     var headerLabel = funcName + '()';
     if (frameID) {
@@ -1233,13 +1452,13 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
     if (parentFrameID) {
       headerLabel = headerLabel + ' [parent=f' + parentFrameID + ']';
     }
-    $(vizDiv + " #stack #" + divID).append('<div id="' + headerDivID + '" class="stackFrameHeader">' + headerLabel + '</div>');
+    myViz.domRoot.find("#stack #" + divID).append('<div id="' + headerDivID + '" class="stackFrameHeader">' + headerLabel + '</div>');
 
     if (frame.ordered_varnames.length > 0) {
       var tableID = divID + '_table';
-      $(vizDiv + " #stack #" + divID).append('<table class="stackFrameVarTable" id="' + tableID + '"></table>');
+      myViz.domRoot.find("#stack #" + divID).append('<table class="stackFrameVarTable" id="' + tableID + '"></table>');
 
-      var tbl = $(vizDiv + " #" + tableID);
+      var tbl = myViz.domRoot.find("#" + tableID);
 
       $.each(frame.ordered_varnames, function(xxx, varname) {
         var val = localVars[varname];
@@ -1350,304 +1569,6 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
 }
 
 
-function renderPyCodeOutput(codeStr) {
-  clearSliderBreakpoints(); // start fresh!
-
-  var lines = codeStr.rtrim().split('\n');
-
-  // reset it!
-  codeOutputLines = [];
-  $.each(lines, function(i, cod) {
-    var n = {};
-    n.text = cod;
-    n.lineNumber = i + 1;
-    n.executionPoints = [];
-    n.backgroundColor = null;
-    n.breakpointHere = false;
-
-
-    $.each(curTrace, function(i, elt) {
-      if (elt.line == n.lineNumber) {
-        n.executionPoints.push(i);
-      }
-    });
-
-
-    // if there is a comment containing 'breakpoint' and this line was actually executed,
-    // then set a breakpoint on this line
-    var breakpointInComment = false;
-    toks = cod.split('#');
-    for (var j = 1 /* start at index 1, not 0 */; j < toks.length; j++) {
-      if (toks[j].indexOf('breakpoint') != -1) {
-        breakpointInComment = true;
-      }
-    }
-
-    if (breakpointInComment && n.executionPoints.length > 0) {
-      n.breakpointHere = true;
-      addToBreakpoints(n.executionPoints);
-    }
-
-    codeOutputLines.push(n);
-  });
-
-  $('#pyCodeOutputDiv').empty();
-
-
-  // maps codeOutputLines to both table columns
-  d3.select('#pyCodeOutputDiv')
-    .append('table')
-    .attr('id', 'pyCodeOutput')
-    .selectAll('tr')
-    .data(codeOutputLines)
-    .enter().append('tr')
-    .selectAll('td')
-    .data(function(e, i){return [e, e];}) // bind an alias of the element to both table columns
-    .enter().append('td')
-    .attr('class', function(d, i) {return (i == 0) ? 'lineNo' : 'cod';})
-    .style('cursor', function(d, i) {return 'pointer'})
-    .html(function(d, i) {
-      if (i == 0) {
-        return d.lineNumber;
-      }
-      else {
-        return htmlspecialchars(d.text);
-      }
-     })
-    .on('mouseover', function() {
-      setHoverBreakpoint(this);
-     })
-    .on('mouseout', function() {
-      hoverBreakpoints = d3.map();
-
-      var breakpointHere = d3.select(this).datum().breakpointHere;
-
-      if (!breakpointHere) {
-        unsetBreakpoint(this);
-      }
-
-      renderSliderBreakpoints(); // get rid of hover breakpoint colors
-     })
-    .on('mousedown', function() {
-      // don't do anything if exePts is empty
-      // (i.e., this line was never executed)
-      var exePts = d3.select(this).datum().executionPoints;
-      if (!exePts || exePts.length == 0) {
-        return;
-      }
-
-      // toggle breakpoint
-      d3.select(this).datum().breakpointHere = !d3.select(this).datum().breakpointHere;
-
-      var breakpointHere = d3.select(this).datum().breakpointHere;
-      if (breakpointHere) {
-        setBreakpoint(this);
-      }
-      else {
-        unsetBreakpoint(this);
-      }
-     });
-
-  renderSliderBreakpoints(); // renders breakpoints written in as code comments
-}
-
-
-
-var breakpoints = d3.map(); // set of execution points to set as breakpoints
-var sortedBreakpointsList = []; // sorted and synced with breakpointLines
-var hoverBreakpoints = d3.map(); // set of breakpoints because we're HOVERING over a given line
-
-
-function _getSortedBreakpointsList() {
-  var ret = [];
-  breakpoints.forEach(function(k, v) {
-    ret.push(Number(k)); // these should be NUMBERS, not strings
-  });
-  ret.sort(function(x,y){return x-y}); // WTF, javascript sort is lexicographic by default!
-  return ret;
-}
-
-function addToBreakpoints(executionPoints) {
-  $.each(executionPoints, function(i, e) {
-    breakpoints.set(e, 1);
-  });
-
-  sortedBreakpointsList = _getSortedBreakpointsList();
-}
-
-function removeFromBreakpoints(executionPoints) {
-  $.each(executionPoints, function(i, e) {
-    breakpoints.remove(e);
-  });
-
-  sortedBreakpointsList = _getSortedBreakpointsList();
-}
-
-// find the previous/next breakpoint to c or return -1 if it doesn't exist
-function findPrevBreakpoint(c) {
-  if (sortedBreakpointsList.length == 0) {
-    return -1;
-  }
-  else {
-    for (var i = 1; i < sortedBreakpointsList.length; i++) {
-      var prev = sortedBreakpointsList[i-1];
-      var cur = sortedBreakpointsList[i];
-
-      if (c <= prev) {
-        return -1;
-      }
-
-      if (cur >= c) {
-        return prev;
-      }
-    }
-
-    // final edge case:
-    var lastElt = sortedBreakpointsList[sortedBreakpointsList.length - 1];
-    return (lastElt < c) ? lastElt : -1;
-  }
-}
-
-function findNextBreakpoint(c) {
-  if (sortedBreakpointsList.length == 0) {
-    return -1;
-  }
-  else {
-    for (var i = 0; i < sortedBreakpointsList.length - 1; i++) {
-      var cur = sortedBreakpointsList[i];
-      var next = sortedBreakpointsList[i+1];
-
-      if (c < cur) {
-        return cur;
-      }
-
-      if (cur <= c && c < next) { // subtle
-        return next;
-      }
-    }
-
-    // final edge case:
-    var lastElt = sortedBreakpointsList[sortedBreakpointsList.length - 1];
-    return (lastElt > c) ? lastElt : -1;
-  }
-}
-
-
-function setHoverBreakpoint(t) {
-  var exePts = d3.select(t).datum().executionPoints;
-
-  // don't do anything if exePts is empty
-  // (i.e., this line was never executed)
-  if (!exePts || exePts.length == 0) {
-    return;
-  }
-
-  hoverBreakpoints = d3.map();
-  $.each(exePts, function(i, e) {
-    hoverBreakpoints.set(e, 1);
-  });
-
-  addToBreakpoints(exePts);
-  renderSliderBreakpoints();
-}
-
-
-function setBreakpoint(t) {
-  var exePts = d3.select(t).datum().executionPoints;
-
-  // don't do anything if exePts is empty
-  // (i.e., this line was never executed)
-  if (!exePts || exePts.length == 0) {
-    return;
-  }
-
-  addToBreakpoints(exePts);
-
-  d3.select(t.parentNode).select('td.lineNo').style('color', breakpointColor);
-  d3.select(t.parentNode).select('td.lineNo').style('font-weight', 'bold');
-
-  renderSliderBreakpoints();
-}
-
-function unsetBreakpoint(t) {
-  var exePts = d3.select(t).datum().executionPoints;
-
-  // don't do anything if exePts is empty
-  // (i.e., this line was never executed)
-  if (!exePts || exePts.length == 0) {
-    return;
-  }
-
-  removeFromBreakpoints(exePts);
-
-
-  var lineNo = d3.select(t).datum().lineNumber;
-
-  if (visitedLinesSet[lineNo]) {
-    d3.select(t.parentNode).select('td.lineNo').style('color', visitedLineColor);
-    d3.select(t.parentNode).select('td.lineNo').style('font-weight', 'bold');
-  }
-  else {
-    d3.select(t.parentNode).select('td.lineNo').style('color', '');
-    d3.select(t.parentNode).select('td.lineNo').style('font-weight', '');
-  }
-
-  renderSliderBreakpoints();
-}
-
-
-// depends on sortedBreakpointsList global
-function renderSliderBreakpoints() {
-  $("#executionSliderFooter").empty(); // jQuery empty() is better than .html('')
-
-  // I originally didn't want to delete and re-create this overlay every time,
-  // but if I don't do so, there are weird flickering artifacts with clearing
-  // the SVG container; so it's best to just delete and re-create the container each time
-  var sliderOverlay = d3.select('#executionSliderFooter')
-    .append('svg')
-    .attr('id', 'sliderOverlay')
-    .attr('width', $('#executionSlider').width())
-    .attr('height', 12);
-
-  var xrange = d3.scale.linear()
-    .domain([0, curTrace.length - 1])
-    .range([0, $('#executionSlider').width()]);
-
-  sliderOverlay.selectAll('rect')
-      .data(sortedBreakpointsList)
-    .enter().append('rect')
-      .attr('x', function(d, i) {
-        // make the edge cases look decent
-        if (d == 0) {
-          return 0;
-        }
-        else {
-          return xrange(d) - 3;
-        }
-      })
-      .attr('y', 0)
-      .attr('width', 2)
-      .attr('height', 12)
-      .style('fill', function(d) {
-         if (!hoverBreakpoints.has(d)) {
-           return breakpointColor;
-         }
-         else {
-           return hoverBreakpointColor;
-         }
-       });
-}
-
-
-function clearSliderBreakpoints() {
-  breakpoints = d3.map();
-  sortedBreakpointsList = [];
-  hoverBreakpoints = d3.map();
-  renderSliderBreakpoints();
-}
-
-
-
 // Utilities
 
 
@@ -1749,15 +1670,15 @@ function structurallyEquivalent(obj1, obj2) {
       return false;
     }
 
-    var obj1fields = {};
+    var obj1fields = d3.map();
 
     // for a dict or object instance, same names of fields (ordering doesn't matter)
     for (var i = startingInd; i < obj1.length; i++) {
-      obj1fields[obj1[i][0]] = 1; // use as a set
+      obj1fields.set(obj1[i][0], 1); // use as a set
     }
 
     for (var i = startingInd; i < obj2.length; i++) {
-      if (obj1fields[obj2[i][0]] == undefined) {
+      if (!obj1fields.has(obj2[i][0])) {
         return false;
       }
     }

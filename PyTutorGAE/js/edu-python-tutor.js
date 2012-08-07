@@ -31,7 +31,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 var appMode = 'edit'; // 'edit', 'visualize', or 'grade' (only for question.html)
 
+var preseededCode = null;     // if you passed in a 'code=<code string>' in the URL, then set this var
+var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
 
+
+var myVisualizer = null; // singleton ExecutionVisualizer instance
 
 function enterEditMode() {
   $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
@@ -74,9 +78,9 @@ $(document).ready(function() {
       appMode = 'edit';
     }
 
-    // if there's no curTrace, then default to edit mode since there's
+    // if there's no myVisualizer, then default to edit mode since there's
     // nothing to visualize:
-    if (!curTrace) {
+    if (!myVisualizer) {
       appMode = 'edit';
 
       if (preseededCode) {
@@ -103,7 +107,13 @@ $(document).ready(function() {
 
       // do this AFTER making #pyOutputPane visible, or else
       // jsPlumb connectors won't render properly
-      enterVisualizeMode(false);
+      myVisualizer.render();
+
+      // customize edit button click functionality AFTER rendering (TODO: awkward!)
+      $('#pyOutputPane #editBtn').click(function() {
+        enterEditMode();
+      });
+
     }
     else {
       assert(false);
@@ -156,7 +166,17 @@ $(document).ready(function() {
               $('#executeBtn').attr('disabled', false);
             }
             else {
-              createVisualization(traceData, pyInputCodeMirror.getValue(), $('#pyOutputPane'));
+              var startingInstruction = 0;
+
+              // only do this at most ONCE, and then clear out preseededCurInstr
+              if (preseededCurInstr && preseededCurInstr < traceData.length) { // NOP anyways if preseededCurInstr is 0
+                startingInstruction = preseededCurInstr;
+                preseededCurInstr = null;
+              }
+
+              myVisualizer = new ExecutionVisualizer(pyInputCodeMirror.getValue(), traceData, startingInstruction, 'pyOutputPane');
+
+              $.bbq.pushState({ mode: 'visualize' }, 2 /* completely override other hash strings to keep URL clean */);
             }
           },
           "json");
@@ -342,12 +362,21 @@ $(document).ready(function() {
 
 
   // log a generic AJAX error handler
-  // TODO: too global!
   $(document).ajaxError(function() {
     alert("Server error (possibly due to memory/resource overload).");
 
     $('#executeBtn').html("Visualize execution");
     $('#executeBtn').attr('disabled', false);
+  });
+
+
+  // redraw everything on window resize so that connectors are in the
+  // right place
+  // TODO: can be SLOW on older browsers!!!
+  $(window).resize(function() {
+    if (appMode == 'visualize') {
+      myVisualizer.updateOutput();
+    }
   });
 
 });
