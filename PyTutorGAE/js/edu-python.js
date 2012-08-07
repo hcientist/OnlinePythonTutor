@@ -31,11 +31,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // since the latter might exhibit funny behavior for certain reserved keywords
 
 
-// code that is common to all Online Python Tutor pages
-
-var appMode = 'edit'; // 'edit', 'visualize', or 'grade' (only for question.html)
-
-
 /* colors - see edu-python.css */
 var lightYellow = '#F5F798';
 var lightLineColor = '#FFFFCC';
@@ -53,6 +48,10 @@ var darkRed = "#9D1E18";
 
 var breakpointColor = pinkish;
 var hoverBreakpointColor = medLightBlue;
+
+
+
+var appMode = 'edit'; // 'edit', 'visualize', or 'grade' (only for question.html)
 
 
 var keyStuckDown = false;
@@ -84,29 +83,7 @@ var visitedLinesSet = {} // YUCKY GLOBAL!
 // been reached
 var instrLimitReached = false;
 
-function assert(cond) {
-  if (!cond) {
-    alert("Error: ASSERTION FAILED");
-  }
-}
 
-// taken from http://www.toao.net/32-my-htmlspecialchars-function-for-javascript
-function htmlspecialchars(str) {
-  if (typeof(str) == "string") {
-    str = str.replace(/&/g, "&amp;"); /* must do &amp; first */
-
-    // ignore these for now ...
-    //str = str.replace(/"/g, "&quot;");
-    //str = str.replace(/'/g, "&#039;");
-
-    str = str.replace(/</g, "&lt;");
-    str = str.replace(/>/g, "&gt;");
-
-    // replace spaces:
-    str = str.replace(/ /g, "&nbsp;");
-  }
-  return str;
-}
 
 function enterVisualizeMode(jumpToEnd) {
   curInstr = 0;
@@ -165,6 +142,7 @@ function enterVisualizeMode(jumpToEnd) {
   updateOutput();
 }
 
+
 function highlightCodeLine(curLine, hasError, isTerminated) {
   d3.selectAll('#pyCodeOutputDiv td.lineNo')
     .attr('id', function(d) {return 'lineNo' + d.lineNumber;})
@@ -202,39 +180,42 @@ function highlightCodeLine(curLine, hasError, isTerminated) {
       }
     });
 
+
+
+  // returns True iff lineNo is visible in pyCodeOutputDiv
+  function isOutputLineVisible(lineNo) {
+    var lineNoTd = $('#lineNo' + lineNo);
+    var LO = lineNoTd.offset().top;
+
+    var codeOutputDiv = $('#pyCodeOutputDiv');
+    var PO = codeOutputDiv.offset().top;
+    var ST = codeOutputDiv.scrollTop();
+    var H = codeOutputDiv.height();
+
+    // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
+    return (PO <= LO) && (LO < (PO + H - 15));
+  }
+
+
+  // smoothly scroll pyCodeOutputDiv so that the given line is at the center
+  function scrollCodeOutputToLine(lineNo) {
+    var lineNoTd = $('#lineNo' + lineNo);
+    var LO = lineNoTd.offset().top;
+
+    var codeOutputDiv = $('#pyCodeOutputDiv');
+    var PO = codeOutputDiv.offset().top;
+    var ST = codeOutputDiv.scrollTop();
+    var H = codeOutputDiv.height();
+
+    codeOutputDiv.animate({scrollTop: (ST + (LO - PO - (Math.round(H / 2))))}, 300);
+  }
+
+
+
   // smoothly scroll code display
   if (!isOutputLineVisible(curLine)) {
     scrollCodeOutputToLine(curLine);
   }
-}
-
-
-// smoothly scroll pyCodeOutputDiv so that the given line is at the center
-function scrollCodeOutputToLine(lineNo) {
-  var lineNoTd = $('#lineNo' + lineNo);
-  var LO = lineNoTd.offset().top;
-
-  var codeOutputDiv = $('#pyCodeOutputDiv');
-  var PO = codeOutputDiv.offset().top;
-  var ST = codeOutputDiv.scrollTop();
-  var H = codeOutputDiv.height();
-
-  codeOutputDiv.animate({scrollTop: (ST + (LO - PO - (Math.round(H / 2))))}, 300);
-}
-
-
-// returns True iff lineNo is visible in pyCodeOutputDiv
-function isOutputLineVisible(lineNo) {
-  var lineNoTd = $('#lineNo' + lineNo);
-  var LO = lineNoTd.offset().top;
-
-  var codeOutputDiv = $('#pyCodeOutputDiv');
-  var PO = codeOutputDiv.offset().top;
-  var ST = codeOutputDiv.scrollTop();
-  var H = codeOutputDiv.height();
-
-  // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
-  return (PO <= LO) && (LO < (PO + H - 15));
 }
 
 
@@ -612,73 +593,6 @@ function updateOutput() {
   // finally, render all the data structures!!!
   var curToplevelLayout = curTraceLayouts[curInstr];
   renderDataStructures(curEntry, curToplevelLayout, "#dataViz");
-}
-
-
-// make sure varname doesn't contain any weird
-// characters that are illegal for CSS ID's ...
-//
-// I know for a fact that iterator tmp variables named '_[1]'
-// are NOT legal names for CSS ID's.
-// I also threw in '{', '}', '(', ')', '<', '>' as illegal characters.
-//
-// TODO: what other characters are illegal???
-var lbRE = new RegExp('\\[|{|\\(|<', 'g');
-var rbRE = new RegExp('\\]|}|\\)|>', 'g');
-function varnameToCssID(varname) {
-  return varname.replace(lbRE, 'LeftB_').replace(rbRE, '_RightB');
-}
-
-
-// compare two JSON-encoded compound objects for structural equivalence:
-function structurallyEquivalent(obj1, obj2) {
-  // punt if either isn't a compound type
-  if (isPrimitiveType(obj1) || isPrimitiveType(obj2)) {
-    return false;
-  }
-
-  // must be the same compound type
-  if (obj1[0] != obj2[0]) {
-    return false;
-  }
-
-  // must have the same number of elements or fields
-  if (obj1.length != obj2.length) {
-    return false;
-  }
-
-  // for a list or tuple, same size (e.g., a cons cell is a list/tuple of size 2)
-  if (obj1[0] == 'LIST' || obj1[0] == 'TUPLE') {
-    return true;
-  }
-  else {
-    var startingInd = -1;
-
-    if (obj1[0] == 'DICT') {
-      startingInd = 2;
-    }
-    else if (obj1[0] == 'INSTANCE') {
-      startingInd = 3;
-    }
-    else {
-      return false;
-    }
-
-    var obj1fields = {};
-
-    // for a dict or object instance, same names of fields (ordering doesn't matter)
-    for (var i = startingInd; i < obj1.length; i++) {
-      obj1fields[obj1[i][0]] = 1; // use as a set
-    }
-
-    for (var i = startingInd; i < obj2.length; i++) {
-      if (obj1fields[obj2[i][0]] == undefined) {
-        return false;
-      }
-    }
-
-    return true;
-  }
 }
 
 
@@ -1150,7 +1064,7 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
           curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
 
           assert(connectionEndpointIDs[varDivID] === undefined);
-          var heapObjID = 'heap_object_' + getObjectID(val);
+          var heapObjID = 'heap_object_' + getRefID(val);
           connectionEndpointIDs[varDivID] = heapObjID;
         }
       });
@@ -1226,63 +1140,6 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
 }
 
 
-function isPrimitiveType(obj) {
-  var typ = typeof obj;
-  return ((obj == null) || (typ != "object"));
-}
-
-function getRefID(obj) {
-  assert(obj[0] == 'REF');
-  return obj[1];
-}
-
-/*
-function renderInline(obj) {
-  return isPrimitiveType(obj) && (typeof obj != 'string');
-}
-*/
-
-// Key is a primitive value (e.g., 'hello', 3.14159, true)
-// Value is a unique primitive ID (starting with 'p' to disambiguate
-// from regular object IDs)
-var primitive_IDs = {null: 'p0', true: 'p1', false: 'p2'};
-var cur_pID = 3;
-
-function getObjectID(obj) {
-  if (isPrimitiveType(obj)) {
-    // primitive objects get IDs starting with 'p' ...
-    // this renders aliases as 'interned' for simplicity
-    var pID = primitive_IDs[obj];
-    if (pID !== undefined) {
-      return pID;
-    }
-    else {
-      var new_pID = 'p' + cur_pID;
-      primitive_IDs[obj] = new_pID;
-      cur_pID++;
-      return new_pID;
-    }
-    return obj;
-  }
-  else {
-    assert($.isArray(obj));
-
-    if ((obj[0] == 'INSTANCE') || (obj[0] == 'CLASS')) {
-      return obj[2];
-    }
-    else {
-      return obj[1];
-    }
-  }
-}
-
-
-
-String.prototype.rtrim = function() {
-  return this.replace(/\s*$/g, "");
-}
-
-
 function renderPyCodeOutput(codeStr) {
   clearSliderBreakpoints(); // start fresh!
 
@@ -1353,7 +1210,7 @@ function renderPyCodeOutput(codeStr) {
       setHoverBreakpoint(this);
      })
     .on('mouseout', function() {
-      hoverBreakpoints = {};
+      hoverBreakpoints = d3.map();
 
       var breakpointHere = d3.select(this).datum().breakpointHere;
 
@@ -1388,23 +1245,23 @@ function renderPyCodeOutput(codeStr) {
 
 
 
-var breakpoints = {}; // set of execution points to set as breakpoints
+var breakpoints = d3.map(); // set of execution points to set as breakpoints
 var sortedBreakpointsList = []; // sorted and synced with breakpointLines
-var hoverBreakpoints = {}; // set of breakpoints because we're HOVERING over a given line
+var hoverBreakpoints = d3.map(); // set of breakpoints because we're HOVERING over a given line
 
 
 function _getSortedBreakpointsList() {
   var ret = [];
-  for (var k in breakpoints) {
+  breakpoints.forEach(function(k, v) {
     ret.push(Number(k)); // these should be NUMBERS, not strings
-  }
+  });
   ret.sort(function(x,y){return x-y}); // WTF, javascript sort is lexicographic by default!
   return ret;
 }
 
 function addToBreakpoints(executionPoints) {
   $.each(executionPoints, function(i, e) {
-    breakpoints[e] = 1;
+    breakpoints.set(e, 1);
   });
 
   sortedBreakpointsList = _getSortedBreakpointsList();
@@ -1412,7 +1269,7 @@ function addToBreakpoints(executionPoints) {
 
 function removeFromBreakpoints(executionPoints) {
   $.each(executionPoints, function(i, e) {
-    delete breakpoints[e];
+    breakpoints.remove(e);
   });
 
   sortedBreakpointsList = _getSortedBreakpointsList();
@@ -1477,9 +1334,9 @@ function setHoverBreakpoint(t) {
     return;
   }
 
-  hoverBreakpoints = {};
+  hoverBreakpoints = d3.map();
   $.each(exePts, function(i, e) {
-    hoverBreakpoints[e] = 1;
+    hoverBreakpoints.set(e, 1);
   });
 
   addToBreakpoints(exePts);
@@ -1564,7 +1421,7 @@ function renderSliderBreakpoints() {
       .attr('width', 2)
       .attr('height', 12)
       .style('fill', function(d) {
-         if (hoverBreakpoints[d] === undefined) {
+         if (!hoverBreakpoints.has(d)) {
            return breakpointColor;
          }
          else {
@@ -1575,9 +1432,9 @@ function renderSliderBreakpoints() {
 
 
 function clearSliderBreakpoints() {
-  breakpoints = {};
+  breakpoints = d3.map();
   sortedBreakpointsList = [];
-  hoverBreakpoints = {};
+  hoverBreakpoints = d3.map();
   renderSliderBreakpoints();
 }
 
@@ -1720,5 +1577,128 @@ function eduPythonCommonInit() {
     $('#executeBtn').attr('disabled', false);
   });
 
+}
+
+
+
+
+
+// Utilities
+
+function assert(cond) {
+  if (!cond) {
+    alert("Error: ASSERTION FAILED");
+  }
+}
+
+// taken from http://www.toao.net/32-my-htmlspecialchars-function-for-javascript
+function htmlspecialchars(str) {
+  if (typeof(str) == "string") {
+    str = str.replace(/&/g, "&amp;"); /* must do &amp; first */
+
+    // ignore these for now ...
+    //str = str.replace(/"/g, "&quot;");
+    //str = str.replace(/'/g, "&#039;");
+
+    str = str.replace(/</g, "&lt;");
+    str = str.replace(/>/g, "&gt;");
+
+    // replace spaces:
+    str = str.replace(/ /g, "&nbsp;");
+  }
+  return str;
+}
+
+String.prototype.rtrim = function() {
+  return this.replace(/\s*$/g, "");
+}
+
+
+// make sure varname doesn't contain any weird
+// characters that are illegal for CSS ID's ...
+//
+// I know for a fact that iterator tmp variables named '_[1]'
+// are NOT legal names for CSS ID's.
+// I also threw in '{', '}', '(', ')', '<', '>' as illegal characters.
+//
+// TODO: what other characters are illegal???
+var lbRE = new RegExp('\\[|{|\\(|<', 'g');
+var rbRE = new RegExp('\\]|}|\\)|>', 'g');
+function varnameToCssID(varname) {
+  return varname.replace(lbRE, 'LeftB_').replace(rbRE, '_RightB');
+}
+
+
+// compare two JSON-encoded compound objects for structural equivalence:
+function structurallyEquivalent(obj1, obj2) {
+  // punt if either isn't a compound type
+  if (isPrimitiveType(obj1) || isPrimitiveType(obj2)) {
+    return false;
+  }
+
+  // must be the same compound type
+  if (obj1[0] != obj2[0]) {
+    return false;
+  }
+
+  // must have the same number of elements or fields
+  if (obj1.length != obj2.length) {
+    return false;
+  }
+
+  // for a list or tuple, same size (e.g., a cons cell is a list/tuple of size 2)
+  if (obj1[0] == 'LIST' || obj1[0] == 'TUPLE') {
+    return true;
+  }
+  else {
+    var startingInd = -1;
+
+    if (obj1[0] == 'DICT') {
+      startingInd = 2;
+    }
+    else if (obj1[0] == 'INSTANCE') {
+      startingInd = 3;
+    }
+    else {
+      return false;
+    }
+
+    var obj1fields = {};
+
+    // for a dict or object instance, same names of fields (ordering doesn't matter)
+    for (var i = startingInd; i < obj1.length; i++) {
+      obj1fields[obj1[i][0]] = 1; // use as a set
+    }
+
+    for (var i = startingInd; i < obj2.length; i++) {
+      if (obj1fields[obj2[i][0]] == undefined) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+}
+
+
+function isPrimitiveType(obj) {
+  var typ = typeof obj;
+  return ((obj == null) || (typ != "object"));
+}
+
+function getRefID(obj) {
+  assert(obj[0] == 'REF');
+  return obj[1];
+}
+
+function getObjectID(obj) {
+  assert($.isArray(obj));
+
+  if ((obj[0] == 'INSTANCE') || (obj[0] == 'CLASS')) {
+    return obj[2];
+  }
+  else {
+    return obj[1];
+  }
 }
 

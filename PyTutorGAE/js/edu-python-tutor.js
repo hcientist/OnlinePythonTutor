@@ -375,7 +375,6 @@ $(document).ready(function() {
   }
 
 
-  // TODO: refactor so that it applies to edu-python-questions.js as well ...
 
   $('#executionSlider').bind('slide', function(evt, ui) {
     // this is SUPER subtle. if this value was changed programmatically,
