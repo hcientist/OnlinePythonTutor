@@ -66,7 +66,9 @@ var instrLimitReached = false;
 
 
 
-function createVisualization(traceData, inputCode) {
+function createVisualization(traceData, inputCode, domRoot) {
+
+
   // set gross globals, then let jQuery BBQ take care of the rest
   curTrace = traceData;
   curInputCode = inputCode;
@@ -1197,9 +1199,7 @@ function renderPyCodeOutput(codeStr) {
     codeOutputLines.push(n);
   });
 
-  // re-create a pyCodeOutputDiv from scratch each time to prevent weird
-  // scrolling bugs ... ugh hacky
-  $('#pyCodeOutputDivWrapper').html('<div id="pyCodeOutputDiv"/>');
+  $('#pyCodeOutputDiv').empty();
 
 
   // maps codeOutputLines to both table columns

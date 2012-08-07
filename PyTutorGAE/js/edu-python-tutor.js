@@ -154,7 +154,7 @@ $(document).ready(function() {
               $('#executeBtn').attr('disabled', false);
             }
             else {
-              createVisualization(traceData, pyInputCodeMirror.getValue());
+              createVisualization(traceData, pyInputCodeMirror.getValue(), $('#pyOutputPane'));
             }
           },
           "json");
