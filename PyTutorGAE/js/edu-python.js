@@ -27,14 +27,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
-// TODO: look into using the d3.map class instead of direct object operations in js,
-// since the latter might exhibit funny behavior for certain reserved keywords
-
-
-
-var appMode = 'edit'; // 'edit', 'visualize', or 'grade' (only for question.html)
-
-
 var keyStuckDown = false;
 
 
@@ -67,6 +59,206 @@ var instrLimitReached = false;
 
 
 function createVisualization(traceData, inputCode, domRoot) {
+
+  // TODO: make less gross!
+  domRoot.html(
+  '<table border="0">\
+    <tr>\
+      <td valign="top">\
+        <center>\
+          <div id="pyCodeOutputDiv"/>\
+          <div id="editCodeLinkDiv">\
+            <button id="editBtn" class="medBtn" type="button">Edit code</button>\
+          </div>\
+          <div id="executionSliderCaption">\
+            Use the <i>left</i> and <i>right</i> arrow keys to step through execution.\
+            <br/>Click on lines of code to set breakpoints.\
+          </div>\
+          <div id="executionSlider"/>\
+          <div id="executionSliderFooter"/>\
+          <div id="vcrControls">\
+            <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
+            <button id="jmpStepBack", type="button">&lt; Back</button>\
+            <span id="curInstr">Step ? of ?</span>\
+            <button id="jmpStepFwd", type="button">Forward &gt;</button>\
+            <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
+          </div>\
+          <div id="errorOutput"/>\
+        </center>\
+        Program output:<br/>\
+        <textarea id="pyStdout" cols="50" rows="13" wrap="off" readonly></textarea>\
+        <p><button id="genUrlBtn" class="smallBtn" type="button">Generate URL</button> <input type="text" id="urlOutput" size="60"/></p>\
+      </td>\
+      <td valign="top">\
+        <div id="dataViz">\
+          <table id="stackHeapTable">\
+            <tr>\
+              <td id="stack_td">\
+                <div id="stack">\
+                  <div id="stackHeader">Frames</div>\
+                </div>\
+              </td>\
+              <td id="heap_td">\
+                <div id="heap">\
+                  <div id="heapHeader">Objects</div>\
+                </div>\
+              </td>\
+            </tr>\
+          </table>\
+        </div>\
+      </td>\
+    </tr>\
+  </table>');
+
+
+
+  $('#executionSlider').bind('slide', function(evt, ui) {
+    // this is SUPER subtle. if this value was changed programmatically,
+    // then evt.originalEvent will be undefined. however, if this value
+    // was changed by a user-initiated event, then this code should be
+    // executed ...
+    if (evt.originalEvent) {
+      curInstr = ui.value;
+      updateOutput(true); // need to pass 'true' here to prevent infinite loop
+    }
+  });
+
+
+  $('#genUrlBtn').bind('click', function() {
+    // override mode with 'visualize' ...
+    var urlStr = jQuery.param.fragment(window.location.href, {code: curInputCode, curInstr: curInstr}, 2);
+
+    $('#urlOutput').val(urlStr);
+  });
+
+  $("#editBtn").click(function() {
+    enterEditMode();
+  });
+
+
+
+  $("#jmpFirstInstr").click(function() {
+    curInstr = 0;
+    updateOutput();
+  });
+
+  $("#jmpLastInstr").click(function() {
+    curInstr = curTrace.length - 1;
+    updateOutput();
+  });
+
+  $("#jmpStepBack").click(function() {
+    if (curInstr > 0) {
+      curInstr -= 1;
+      updateOutput();
+    }
+  });
+
+  $("#jmpStepFwd").click(function() {
+    if (curInstr < curTrace.length - 1) {
+      curInstr += 1;
+      updateOutput();
+    }
+  });
+
+  // disable controls initially ...
+  $("#vcrControls #jmpFirstInstr").attr("disabled", true);
+  $("#vcrControls #jmpStepBack").attr("disabled", true);
+  $("#vcrControls #jmpStepFwd").attr("disabled", true);
+  $("#vcrControls #jmpLastInstr").attr("disabled", true);
+
+
+
+  // set some sensible jsPlumb defaults
+  jsPlumb.Defaults.Endpoint = ["Dot", {radius:3}];
+  //jsPlumb.Defaults.Endpoint = ["Rectangle", {width:3, height:3}];
+  jsPlumb.Defaults.EndpointStyle = {fillStyle: lightGray};
+
+  jsPlumb.Defaults.Anchors = ["RightMiddle", "LeftMiddle"]; // for aesthetics!
+
+  jsPlumb.Defaults.PaintStyle = {lineWidth:1, strokeStyle: lightGray};
+
+  // bezier curve style:
+  //jsPlumb.Defaults.Connector = [ "Bezier", { curviness:15 }]; /* too much 'curviness' causes lines to run together */
+  //jsPlumb.Defaults.Overlays = [[ "Arrow", { length: 14, width:10, foldback:0.55, location:0.35 }]]
+
+  // state machine curve style:
+  jsPlumb.Defaults.Connector = [ "StateMachine" ];
+  jsPlumb.Defaults.Overlays = [[ "Arrow", { length: 10, width:7, foldback:0.55, location:1 }]];
+
+
+  jsPlumb.Defaults.EndpointHoverStyle = {fillStyle: pinkish};
+  jsPlumb.Defaults.HoverPaintStyle = {lineWidth:2, strokeStyle: pinkish};
+
+
+  // set keyboard event listeners ...
+  // TODO: too global!
+  $(document).keydown(function(k) {
+    // ONLY capture keys if we're in 'visualize code' mode:
+    if (appMode == 'visualize' && !keyStuckDown) {
+      if (k.keyCode == 37) { // left arrow
+        if (curInstr > 0) {
+          // if there is a prev breakpoint, then jump to it ...
+          if (sortedBreakpointsList.length > 0) {
+            var prevBreakpoint = findPrevBreakpoint(curInstr);
+            if (prevBreakpoint != -1) {
+              curInstr = prevBreakpoint;
+            }
+            else {
+              curInstr -= 1; // prevent keyboard keys from "getting stuck" on a solitary breakpoint
+            }
+          }
+          else {
+            curInstr -= 1;
+          }
+          updateOutput();
+        }
+
+        k.preventDefault(); // don't horizontally scroll the display
+
+        keyStuckDown = true;
+      }
+      else if (k.keyCode == 39) { // right arrow
+        if (curInstr < curTrace.length - 1) {
+          // if there is a next breakpoint, then jump to it ...
+          if (sortedBreakpointsList.length > 0) {
+            var nextBreakpoint = findNextBreakpoint(curInstr);
+            if (nextBreakpoint != -1) {
+              curInstr = nextBreakpoint;
+            }
+            else {
+              curInstr += 1; // prevent keyboard keys from "getting stuck" on a solitary breakpoint
+            }
+          }
+          else {
+            curInstr += 1;
+          }
+          updateOutput();
+        }
+
+        k.preventDefault(); // don't horizontally scroll the display
+
+        keyStuckDown = true;
+      }
+    }
+  });
+
+  // TODO: too global!
+  $(document).keyup(function(k) {
+    keyStuckDown = false;
+  });
+
+
+  // redraw everything on window resize so that connectors are in the
+  // right place
+  // TODO: can be SLOW on older browsers!!!
+  // TODO: too global!
+  $(window).resize(function() {
+    if (appMode == 'visualize') {
+      updateOutput();
+    }
+  });
+
 
 
   // set gross globals, then let jQuery BBQ take care of the rest
@@ -1452,161 +1644,6 @@ function clearSliderBreakpoints() {
   sortedBreakpointsList = [];
   hoverBreakpoints = d3.map();
   renderSliderBreakpoints();
-}
-
-
-
-// initialization function that should be called when the page is loaded
-function eduPythonCommonInit() {
-
-  $('#executionSlider').bind('slide', function(evt, ui) {
-    // this is SUPER subtle. if this value was changed programmatically,
-    // then evt.originalEvent will be undefined. however, if this value
-    // was changed by a user-initiated event, then this code should be
-    // executed ...
-    if (evt.originalEvent) {
-      curInstr = ui.value;
-      updateOutput(true); // need to pass 'true' here to prevent infinite loop
-    }
-  });
-
-
-  $('#genUrlBtn').bind('click', function() {
-    // override mode with 'visualize' ...
-    var urlStr = jQuery.param.fragment(window.location.href, {code: curInputCode, curInstr: curInstr}, 2);
-
-    $('#urlOutput').val(urlStr);
-  });
-
-
-
-  $("#jmpFirstInstr").click(function() {
-    curInstr = 0;
-    updateOutput();
-  });
-
-  $("#jmpLastInstr").click(function() {
-    curInstr = curTrace.length - 1;
-    updateOutput();
-  });
-
-  $("#jmpStepBack").click(function() {
-    if (curInstr > 0) {
-      curInstr -= 1;
-      updateOutput();
-    }
-  });
-
-  $("#jmpStepFwd").click(function() {
-    if (curInstr < curTrace.length - 1) {
-      curInstr += 1;
-      updateOutput();
-    }
-  });
-
-  // disable controls initially ...
-  $("#vcrControls #jmpFirstInstr").attr("disabled", true);
-  $("#vcrControls #jmpStepBack").attr("disabled", true);
-  $("#vcrControls #jmpStepFwd").attr("disabled", true);
-  $("#vcrControls #jmpLastInstr").attr("disabled", true);
-
-
-
-  // set some sensible jsPlumb defaults
-  jsPlumb.Defaults.Endpoint = ["Dot", {radius:3}];
-  //jsPlumb.Defaults.Endpoint = ["Rectangle", {width:3, height:3}];
-  jsPlumb.Defaults.EndpointStyle = {fillStyle: lightGray};
-
-  jsPlumb.Defaults.Anchors = ["RightMiddle", "LeftMiddle"]; // for aesthetics!
-
-  jsPlumb.Defaults.PaintStyle = {lineWidth:1, strokeStyle: lightGray};
-
-  // bezier curve style:
-  //jsPlumb.Defaults.Connector = [ "Bezier", { curviness:15 }]; /* too much 'curviness' causes lines to run together */
-  //jsPlumb.Defaults.Overlays = [[ "Arrow", { length: 14, width:10, foldback:0.55, location:0.35 }]]
-
-  // state machine curve style:
-  jsPlumb.Defaults.Connector = [ "StateMachine" ];
-  jsPlumb.Defaults.Overlays = [[ "Arrow", { length: 10, width:7, foldback:0.55, location:1 }]];
-
-
-  jsPlumb.Defaults.EndpointHoverStyle = {fillStyle: pinkish};
-  jsPlumb.Defaults.HoverPaintStyle = {lineWidth:2, strokeStyle: pinkish};
-
-
-  // set keyboard event listeners ...
-  // TODO: too global!
-  $(document).keydown(function(k) {
-    // ONLY capture keys if we're in 'visualize code' mode:
-    if (appMode == 'visualize' && !keyStuckDown) {
-      if (k.keyCode == 37) { // left arrow
-        if (curInstr > 0) {
-          // if there is a prev breakpoint, then jump to it ...
-          if (sortedBreakpointsList.length > 0) {
-            var prevBreakpoint = findPrevBreakpoint(curInstr);
-            if (prevBreakpoint != -1) {
-              curInstr = prevBreakpoint;
-            }
-            else {
-              curInstr -= 1; // prevent keyboard keys from "getting stuck" on a solitary breakpoint
-            }
-          }
-          else {
-            curInstr -= 1;
-          }
-          updateOutput();
-        }
-
-        k.preventDefault(); // don't horizontally scroll the display
-
-        keyStuckDown = true;
-      }
-      else if (k.keyCode == 39) { // right arrow
-        if (curInstr < curTrace.length - 1) {
-          // if there is a next breakpoint, then jump to it ...
-          if (sortedBreakpointsList.length > 0) {
-            var nextBreakpoint = findNextBreakpoint(curInstr);
-            if (nextBreakpoint != -1) {
-              curInstr = nextBreakpoint;
-            }
-            else {
-              curInstr += 1; // prevent keyboard keys from "getting stuck" on a solitary breakpoint
-            }
-          }
-          else {
-            curInstr += 1;
-          }
-          updateOutput();
-        }
-
-        k.preventDefault(); // don't horizontally scroll the display
-
-        keyStuckDown = true;
-      }
-    }
-  });
-
-  // TODO: too global!
-  $(document).keyup(function(k) {
-    keyStuckDown = false;
-  });
-
-
-  // redraw everything on window resize so that connectors are in the
-  // right place
-  // TODO: can be SLOW on older browsers!!!
-  // TODO: too global!
-  $(window).resize(function() {
-    if (appMode == 'visualize') {
-      updateOutput();
-    }
-  });
-
-  $("#classicModeCheckbox").click(function() {
-    if (appMode == 'visualize') {
-      updateOutput();
-    }
-  });
 }
 
 

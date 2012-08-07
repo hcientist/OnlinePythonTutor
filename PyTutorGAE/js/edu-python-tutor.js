@@ -29,6 +29,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // Pre-reqs: edu-python.js and jquery.ba-bbq.min.js should be imported BEFORE this file
 
+var appMode = 'edit'; // 'edit', 'visualize', or 'grade' (only for question.html)
+
+
 
 function enterEditMode() {
   $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
@@ -43,7 +46,6 @@ function setCodeMirrorVal(dat) {
 
 
 $(document).ready(function() {
-  eduPythonCommonInit(); // must call this first!
 
   pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
     mode: 'python',
@@ -160,10 +162,6 @@ $(document).ready(function() {
           "json");
   });
 
-
-  $("#editBtn").click(function() {
-    enterEditMode();
-  });
 
 
   // canned examples
