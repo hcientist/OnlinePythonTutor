@@ -739,9 +739,8 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
   });
 
 
-  // render the heap by mapping toplevelHeapLayout into <table class="heapRow"> and <td class="toplevelHeapObject"> elements using d3
-
-  // TODO: make the #heap div PERSISTENT so that d3 can know how to properly handle transitions
+  // use d3 to render the heap by mapping toplevelHeapLayout into <table class="heapRow">
+  // and <td class="toplevelHeapObject"> elements
 
   var heapRows = d3.select(vizDiv + ' #heap')
     .selectAll('table.heapRow')
@@ -750,34 +749,40 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
   })
 
 
-  // update existing heap row
-  var heapColumns = heapRows.each(function(objLst, i) { console.log('UPDATE ROW:', objLst, i); })
+  // update an existing heap row
+  var heapColumns = heapRows
+    //.each(function(objLst, i) { console.log('UPDATE ROW:', objLst, i); })
     .selectAll('td')
     .data(function(d, i) {return d.slice(1, d.length);}, /* map over each row, skipping row ID tag */
           function(objID) {return objID;} /* each object ID is unique for constancy */)
 
+  // ENTER
+  heapColumns.enter().append('td')
+    .attr('class', 'toplevelHeapObject')
+    .attr('id', function(d, i) {return 'toplevel_heap_object_' + d;})
+    // remember that the enter selection is added to the update
+    // selection so that we can process it later ...
+
+  // UPDATE
   heapColumns
     .order() // VERY IMPORTANT to put in the order corresponding to data elements
-    // d3 automatically adds NEW elements to the update selection, to prevent code duplication
     .each(function(objID, i) {
-      console.log('NEW/UPDATE ELT', objID);
+      //console.log('NEW/UPDATE ELT', objID);
+
       // TODO: add a smoother transition in the future
       // Right now, just delete the old element and render a new one in its place
       $(this).empty();
       renderCompoundObject(objID, $(this), true);
     })
 
-  heapColumns.enter().append('td')
-    .attr('class', 'toplevelHeapObject')
-    .attr('id', function(d, i) {return 'toplevel_heap_object_' + d;})
-
+  // EXIT
   heapColumns.exit()
     .remove()
 
 
   // insert new heap rows
   heapRows.enter().append('table')
-    .each(function(objLst, i) {console.log('NEW ROW:', objLst, i);})
+    //.each(function(objLst, i) {console.log('NEW ROW:', objLst, i);})
     .attr('class', 'heapRow')
     .selectAll('td')
     .data(function(d, i) {return d.slice(1, d.length);}, /* map over each row, skipping row ID tag */
@@ -786,13 +791,15 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
     .attr('class', 'toplevelHeapObject')
     .attr('id', function(d, i) {return 'toplevel_heap_object_' + d;})
     .each(function(objID, i) {
-      console.log('NEW ELT', objID);
+      //console.log('NEW ELT', objID);
+
+      // TODO: add a smoother transition in the future
       renderCompoundObject(objID, $(this), true);
     });
 
   // remove deleted rows
   heapRows.exit()
-    .each(function(objLst, i) {console.log('DEL ROW:', objLst, i);})
+    //.each(function(objLst, i) {console.log('DEL ROW:', objLst, i);})
     .remove();
 
 
