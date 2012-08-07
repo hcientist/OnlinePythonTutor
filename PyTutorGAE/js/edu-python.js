@@ -138,9 +138,10 @@ function enterVisualizeMode(jumpToEnd) {
 
   }
 
+
   // clear stack and heap visualizations:
-  $('#dataViz #stack').html('<div id="stackHeader">Frames</div>')
-  $('#dataViz #heap').html('<div id="heapHeader">Objects</div>')
+  $('#dataViz #stack').html('<div id="stackHeader">Frames</div>');
+  $('#dataViz #heap').html('<div id="heapHeader">Objects</div>');
 
 
   // remove any existing sliders
@@ -1323,8 +1324,9 @@ function renderPyCodeOutput(codeStr) {
     codeOutputLines.push(n);
   });
 
-
-  $("#pyCodeOutputDiv").empty(); // jQuery empty() is better than .html('')
+  // re-create a pyCodeOutputDiv from scratch each time to prevent weird
+  // scrolling bugs ... ugh hacky
+  $('#pyCodeOutputDivWrapper').html('<div id="pyCodeOutputDiv"/>');
 
 
   // maps codeOutputLines to both table columns
