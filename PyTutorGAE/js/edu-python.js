@@ -138,6 +138,10 @@ function enterVisualizeMode(jumpToEnd) {
 
   }
 
+  // clear stack and heap visualizations:
+  $('#dataViz #stack').html('<div id="stackHeader">Frames</div>')
+  $('#dataViz #heap').html('<div id="heapHeader">Objects</div>')
+
 
   // remove any existing sliders
   $('#executionSlider').slider('destroy');
@@ -702,13 +706,10 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
   // weird mis-behavior!!!
   jsPlumb.reset();
 
-  $(vizDiv).empty(); // jQuery empty() is better than .html('')
 
-
-  // create a tabular layout for stack and heap side-by-side
-  // TODO: figure out how to do this using CSS in a robust way!
-  $(vizDiv).html('<table id="stackHeapTable"><tr><td id="stack_td"><div id="stack"></div></td><td id="heap_td"><div id="heap"></div></td></tr></table>');
-
+  // clear the stack and render it from scratch.
+  // the heap must be PERSISTENT so that d3 can render heap transitions.
+  $(vizDiv + " #stack").empty();
   $(vizDiv + " #stack").append('<div id="stackHeader">Frames</div>');
 
 
@@ -750,15 +751,25 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
 
 
   // update existing heap row
-  heapRows.each(function(objLst, i) { console.log('UPDATE ROW:', objLst, i); })
+  var heapColumns = heapRows.each(function(objLst, i) { console.log('UPDATE ROW:', objLst, i); })
     .selectAll('td')
     .data(function(d, i) {return d.slice(1, d.length);}, /* map over each row, skipping row ID tag */
           function(objID) {return objID;} /* each object ID is unique for constancy */)
-    .each(function(objID, i) {
+
+  heapColumns.each(function(objID, i) {
       console.log('UPDATE ELT', objID);
-      // TODO: how do we sensibly render an UPDATE to an element?
+      // TODO: add a smoother transition in the future
+      // Right now, just delete the old element and render a new one in its place
+      $(this).empty();
+      renderCompoundObject(objID, $(this), true);
     })
-    .enter().append('td')
+
+  // the problem here is that new columns are always appended at the end of the row using append().
+  // e.g., if you have a transition from ['row1', 1] to ['row1', 2, 1], you want the column
+  // for object 2 to be inserted BEFORE than the one for object 1, but right now it's inserted AFTER.
+  // insert() allows insertion based on some constant selector, though.
+  // an alternative is to simply append() and then sort the table columns somehow in the each()?
+  heapColumns.enter().insert('td', ':first-child')
     .attr('class', 'toplevelHeapObject')
     .attr('id', function(d, i) {return 'toplevel_heap_object_' + d;})
     .each(function(objID, i) {
@@ -766,10 +777,9 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
       renderCompoundObject(objID, $(this), true);
     })
 
-    // TODO: handle exit
-    //.exit()
-    //.each(function(objID, i) {console.log('DEL ELT:', objID, i);})
-    //.remove()
+  heapColumns.exit()
+    .each(function(objID, i) {console.log('DEL ELT:', objID, i); $(this).empty();})
+    .remove()
 
 
   // insert new heap rows
@@ -779,10 +789,15 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
     .selectAll('td')
     .data(function(d, i) {return d.slice(1, d.length);}, /* map over each row, skipping row ID tag */
           function(objID) {return objID;} /* each object ID is unique for constancy */)
-    .each(function(objID, i) {
-      console.log('UPDATE ELT', objID);
-      // TODO: how do we sensibly render an UPDATE to an element?
-    })
+    // TODO: I don't think we need to handle updates to elements of NEW rows, since all of the
+    // constituent elements are going to be new by definition
+    //.each(function(objID, i) {
+    //  console.log('UPDATE ELT B', objID);
+    //  // TODO: add a smoother transition in the future
+    //  // Right now, just delete the old element and render a new one in its place
+    //  $(this).empty();
+    //  renderCompoundObject(objID, $(this), true);
+    //})
     .enter().append('td')
     .attr('class', 'toplevelHeapObject')
     .attr('id', function(d, i) {return 'toplevel_heap_object_' + d;})
@@ -1019,11 +1034,6 @@ function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
       d3DomElement.append('<table class="customObjTbl"><tr><td class="customObjElt">' + strRepr + '</td></tr></table>');
     }
   }
-
-
-  // prepend heap header after all the dust settles:
-  $(vizDiv + ' #heap').prepend('<div id="heapHeader">Objects</div>');
-
 
 
   // Render globals and then stack frames:
