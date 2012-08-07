@@ -605,7 +605,8 @@ function updateOutput() {
 
 
   // finally, render all the data structures!!!
-  renderDataStructures(curEntry, "#dataViz");
+  var curToplevelLayout = curTraceLayouts[curInstr];
+  renderDataStructures(curEntry, curToplevelLayout, "#dataViz");
 }
 
 
@@ -678,6 +679,7 @@ function structurallyEquivalent(obj1, obj2) {
 
 
 // Renders the current trace entry (curEntry) into the div named by vizDiv
+// using the top-level heap layout provided by toplevelHeapLayout
 //
 // The "3.0" version of renderDataStructures renders variables in
 // a stack, values in a separate heap, and draws line connectors
@@ -694,7 +696,7 @@ function structurallyEquivalent(obj1, obj2) {
 // INLINE within each stack frame without any explicit representation
 // of data structure aliasing. That is, aliased objects were rendered
 // multiple times, and a unique ID label was used to identify aliases.
-function renderDataStructures(curEntry, vizDiv) {
+function renderDataStructures(curEntry, toplevelHeapLayout, vizDiv) {
 
   // VERY VERY IMPORTANT --- and reset ALL jsPlumb state to prevent
   // weird mis-behavior!!!
@@ -712,18 +714,6 @@ function renderDataStructures(curEntry, vizDiv) {
 
 
   // Heap object rendering phase:
-
-
-
-  // VERY VERY experimental!!!
-  // when doing this for realz, convert to using d3 and use row ID tag
-  // as unique object ID for object constancy.
-  var curEntryLayout = curTraceLayouts[curInstr];
-
-  var toplevelHeapLayout = curEntryLayout.map(function(row) {
-    return row.slice(1, row.length); // KRAZY!!! remove row ID tag for now
-  });
-
 
 
   // Key:   CSS ID of the div element representing the stack frame variable
@@ -749,19 +739,63 @@ function renderDataStructures(curEntry, vizDiv) {
 
 
   // render the heap by mapping toplevelHeapLayout into <table class="heapRow"> and <td class="toplevelHeapObject"> elements using d3
-  d3.select(vizDiv + ' #heap')
-    .selectAll('table')
-    .data(toplevelHeapLayout)
-    .enter().append('table')
-    .attr('class', 'heapRow')
+
+  // TODO: make the #heap div PERSISTENT so that d3 can know how to properly handle transitions
+
+  var heapRows = d3.select(vizDiv + ' #heap')
+    .selectAll('table.heapRow')
+    .data(toplevelHeapLayout, function(objLst) {
+      return objLst[0]; // return first element, which is the row ID tag
+  })
+
+
+  // update existing heap row
+  heapRows.each(function(objLst, i) { console.log('UPDATE ROW:', objLst, i); })
     .selectAll('td')
-    .data(function(d, i) {return d;}) // map over each row ...
+    .data(function(d, i) {return d.slice(1, d.length);}, /* map over each row, skipping row ID tag */
+          function(objID) {return objID;} /* each object ID is unique for constancy */)
+    .each(function(objID, i) {
+      console.log('UPDATE ELT', objID);
+      // TODO: how do we sensibly render an UPDATE to an element?
+    })
     .enter().append('td')
     .attr('class', 'toplevelHeapObject')
     .attr('id', function(d, i) {return 'toplevel_heap_object_' + d;})
     .each(function(objID, i) {
-      renderCompoundObject(objID, $(this), true); // label FOOBAR (see renderedObjectIDs)
+      console.log('NEW ELT', objID);
+      renderCompoundObject(objID, $(this), true);
+    })
+
+    // TODO: handle exit
+    //.exit()
+    //.each(function(objID, i) {console.log('DEL ELT:', objID, i);})
+    //.remove()
+
+
+  // insert new heap rows
+  heapRows.enter().append('table')
+    .each(function(objLst, i) {console.log('NEW ROW:', objLst, i);})
+    .attr('class', 'heapRow')
+    .selectAll('td')
+    .data(function(d, i) {return d.slice(1, d.length);}, /* map over each row, skipping row ID tag */
+          function(objID) {return objID;} /* each object ID is unique for constancy */)
+    .each(function(objID, i) {
+      console.log('UPDATE ELT', objID);
+      // TODO: how do we sensibly render an UPDATE to an element?
+    })
+    .enter().append('td')
+    .attr('class', 'toplevelHeapObject')
+    .attr('id', function(d, i) {return 'toplevel_heap_object_' + d;})
+    .each(function(objID, i) {
+      console.log('NEW ELT', objID);
+      renderCompoundObject(objID, $(this), true);
     });
+
+  // remove deleted rows
+  heapRows.exit()
+    .each(function(objLst, i) {console.log('DEL ROW:', objLst, i);})
+    .remove();
+
 
 
   function renderNestedObject(obj, d3DomElement) {
