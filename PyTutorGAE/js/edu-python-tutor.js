@@ -27,7 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
-// Pre-reqs: edu-python.js and jquery.ba-bbq.min.js should be imported BEFORE this file
+// Pre-reqs: pytutor.js and jquery.ba-bbq.min.js should be imported BEFORE this file
 
 var appMode = 'edit'; // 'edit', 'visualize', or 'grade' (only for question.html)
 
@@ -66,7 +66,7 @@ $(document).ready(function() {
   $(window).bind("hashchange", function(e) {
     appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
 
-    // globals defined in edu-python.js
+    // globals defined in pytutor.js
     preseededCode = $.bbq.getState('code');
 
     if (!preseededCurInstr) { // TODO: kinda gross hack

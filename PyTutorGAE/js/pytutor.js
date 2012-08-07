@@ -1572,7 +1572,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 // Utilities
 
 
-/* colors - see edu-python.css */
+/* colors - see pytutor.css */
 var lightYellow = '#F5F798';
 var lightLineColor = '#FFFFCC';
 var errorColor = '#F87D76';
