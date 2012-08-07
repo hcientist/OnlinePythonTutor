@@ -34,38 +34,6 @@ function enterEditMode() {
   $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
 }
 
-function preprocessBackendResult(traceData, inputCode) {
-  // set gross globals, then let jQuery BBQ take care of the rest
-  curTrace = traceData;
-  curInputCode = inputCode;
-
-  renderPyCodeOutput(inputCode);
-
-
-  // must postprocess traceData prior to running precomputeCurTraceLayouts() ...
-  var lastEntry = curTrace[curTrace.length - 1];
-
-  // GLOBAL!
-  instrLimitReached = (lastEntry.event == 'instruction_limit_reached');
-
-  if (instrLimitReached) {
-    curTrace.pop() // kill last entry
-    var warningMsg = lastEntry.exception_msg;
-    $("#errorOutput").html(htmlspecialchars(warningMsg));
-    $("#errorOutput").show();
-  }
-  // as imran suggests, for a (non-error) one-liner, SNIP off the
-  // first instruction so that we start after the FIRST instruction
-  // has been executed ...
-  else if (curTrace.length == 2) {
-    curTrace.shift();
-  }
-
-  precomputeCurTraceLayouts(); // bam!
-
-  $.bbq.pushState({ mode: 'visualize' }, 2 /* completely override other hash strings to keep URL clean */);
-}
-
 
 var pyInputCodeMirror; // CodeMirror object that contains the input text
 
@@ -153,7 +121,7 @@ $(document).ready(function() {
     $('#executeBtn').attr('disabled', true);
     $("#pyOutputPane").hide();
 
-    // TODO: is GET or POST best here?
+
     $.get("exec",
           {user_script : pyInputCodeMirror.getValue()},
           function(traceData) {
@@ -186,7 +154,7 @@ $(document).ready(function() {
               $('#executeBtn').attr('disabled', false);
             }
             else {
-              preprocessBackendResult(traceData, pyInputCodeMirror.getValue());
+              createVisualization(traceData, pyInputCodeMirror.getValue());
             }
           },
           "json");
@@ -375,24 +343,13 @@ $(document).ready(function() {
   }
 
 
+  // log a generic AJAX error handler
+  // TODO: too global!
+  $(document).ajaxError(function() {
+    alert("Server error (possibly due to memory/resource overload).");
 
-  $('#executionSlider').bind('slide', function(evt, ui) {
-    // this is SUPER subtle. if this value was changed programmatically,
-    // then evt.originalEvent will be undefined. however, if this value
-    // was changed by a user-initiated event, then this code should be
-    // executed ...
-    if (evt.originalEvent) {
-      curInstr = ui.value;
-      updateOutput(true); // need to pass 'true' here to prevent infinite loop
-    }
-  });
-
-
-  $('#genUrlBtn').bind('click', function() {
-    // override mode with 'visualize' ...
-    var urlStr = jQuery.param.fragment(window.location.href, {code: curInputCode, curInstr: curInstr}, 2);
-
-    $('#urlOutput').val(urlStr);
+    $('#executeBtn').html("Visualize execution");
+    $('#executeBtn').attr('disabled', false);
   });
 
 });

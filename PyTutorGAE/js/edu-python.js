@@ -31,25 +31,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // since the latter might exhibit funny behavior for certain reserved keywords
 
 
-/* colors - see edu-python.css */
-var lightYellow = '#F5F798';
-var lightLineColor = '#FFFFCC';
-var errorColor = '#F87D76';
-var visitedLineColor = '#3D58A2';
-
-var lightGray = "#cccccc";
-var darkBlue = "#3D58A2";
-var medBlue = "#41507A";
-var medLightBlue = "#6F89D1";
-var lightBlue = "#899CD1";
-var pinkish = "#F15149";
-var lightPink = "#F89D99";
-var darkRed = "#9D1E18";
-
-var breakpointColor = pinkish;
-var hoverBreakpointColor = medLightBlue;
-
-
 
 var appMode = 'edit'; // 'edit', 'visualize', or 'grade' (only for question.html)
 
@@ -82,6 +63,41 @@ var visitedLinesSet = {} // YUCKY GLOBAL!
 // true iff trace ended prematurely since maximum instruction limit has
 // been reached
 var instrLimitReached = false;
+
+
+
+function createVisualization(traceData, inputCode) {
+  // set gross globals, then let jQuery BBQ take care of the rest
+  curTrace = traceData;
+  curInputCode = inputCode;
+
+  renderPyCodeOutput(inputCode);
+
+
+  // must postprocess traceData prior to running precomputeCurTraceLayouts() ...
+  var lastEntry = curTrace[curTrace.length - 1];
+
+  // GLOBAL!
+  instrLimitReached = (lastEntry.event == 'instruction_limit_reached');
+
+  if (instrLimitReached) {
+    curTrace.pop() // kill last entry
+    var warningMsg = lastEntry.exception_msg;
+    $("#errorOutput").html(htmlspecialchars(warningMsg));
+    $("#errorOutput").show();
+  }
+  // as imran suggests, for a (non-error) one-liner, SNIP off the
+  // first instruction so that we start after the FIRST instruction
+  // has been executed ...
+  else if (curTrace.length == 2) {
+    curTrace.shift();
+  }
+
+  precomputeCurTraceLayouts(); // bam!
+
+  $.bbq.pushState({ mode: 'visualize' }, 2 /* completely override other hash strings to keep URL clean */);
+}
+
 
 
 
@@ -1443,6 +1459,27 @@ function clearSliderBreakpoints() {
 // initialization function that should be called when the page is loaded
 function eduPythonCommonInit() {
 
+  $('#executionSlider').bind('slide', function(evt, ui) {
+    // this is SUPER subtle. if this value was changed programmatically,
+    // then evt.originalEvent will be undefined. however, if this value
+    // was changed by a user-initiated event, then this code should be
+    // executed ...
+    if (evt.originalEvent) {
+      curInstr = ui.value;
+      updateOutput(true); // need to pass 'true' here to prevent infinite loop
+    }
+  });
+
+
+  $('#genUrlBtn').bind('click', function() {
+    // override mode with 'visualize' ...
+    var urlStr = jQuery.param.fragment(window.location.href, {code: curInputCode, curInstr: curInstr}, 2);
+
+    $('#urlOutput').val(urlStr);
+  });
+
+
+
   $("#jmpFirstInstr").click(function() {
     curInstr = 0;
     updateOutput();
@@ -1498,6 +1535,7 @@ function eduPythonCommonInit() {
 
 
   // set keyboard event listeners ...
+  // TODO: too global!
   $(document).keydown(function(k) {
     // ONLY capture keys if we're in 'visualize code' mode:
     if (appMode == 'visualize' && !keyStuckDown) {
@@ -1548,6 +1586,7 @@ function eduPythonCommonInit() {
     }
   });
 
+  // TODO: too global!
   $(document).keyup(function(k) {
     keyStuckDown = false;
   });
@@ -1556,6 +1595,7 @@ function eduPythonCommonInit() {
   // redraw everything on window resize so that connectors are in the
   // right place
   // TODO: can be SLOW on older browsers!!!
+  // TODO: too global!
   $(window).resize(function() {
     if (appMode == 'visualize') {
       updateOutput();
@@ -1567,27 +1607,36 @@ function eduPythonCommonInit() {
       updateOutput();
     }
   });
-
-
-  // log a generic AJAX error handler
-  $(document).ajaxError(function() {
-    alert("Server error (possibly due to memory/resource overload).");
-
-    $('#executeBtn').html("Visualize execution");
-    $('#executeBtn').attr('disabled', false);
-  });
-
 }
-
-
 
 
 
 // Utilities
 
+
+/* colors - see edu-python.css */
+var lightYellow = '#F5F798';
+var lightLineColor = '#FFFFCC';
+var errorColor = '#F87D76';
+var visitedLineColor = '#3D58A2';
+
+var lightGray = "#cccccc";
+var darkBlue = "#3D58A2";
+var medBlue = "#41507A";
+var medLightBlue = "#6F89D1";
+var lightBlue = "#899CD1";
+var pinkish = "#F15149";
+var lightPink = "#F89D99";
+var darkRed = "#9D1E18";
+
+var breakpointColor = pinkish;
+var hoverBreakpointColor = medLightBlue;
+
+
 function assert(cond) {
+  // TODO: add more precision in the error message
   if (!cond) {
-    alert("Error: ASSERTION FAILED");
+    alert("Error: ASSERTION FAILED!!!");
   }
 }
 
@@ -1689,16 +1738,5 @@ function isPrimitiveType(obj) {
 function getRefID(obj) {
   assert(obj[0] == 'REF');
   return obj[1];
-}
-
-function getObjectID(obj) {
-  assert($.isArray(obj));
-
-  if ((obj[0] == 'INSTANCE') || (obj[0] == 'CLASS')) {
-    return obj[2];
-  }
-  else {
-    return obj[1];
-  }
 }
 
