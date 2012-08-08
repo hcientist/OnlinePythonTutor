@@ -136,14 +136,16 @@ $(document).ready(function() {
 
     $.get("exec",
           {user_script : pyInputCodeMirror.getValue()},
-          function(traceData) {
+          function(dataFromBackend) {
+            var trace = dataFromBackend.trace;
+            
             // don't enter visualize mode if there are killer errors:
-            if (!traceData ||
-                (traceData.length == 0) ||
-                ((traceData.length == 1) && traceData[0].event == 'uncaught_exception')) {
+            if (!trace ||
+                (trace.length == 0) ||
+                ((trace.length == 1) && trace[0].event == 'uncaught_exception')) {
 
-              if (traceData.length > 0) {
-                var errorLineNo = traceData[0].line - 1; /* CodeMirror lines are zero-indexed */
+              if (trace.length > 0) {
+                var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
                 if (errorLineNo !== undefined) {
                   // highlight the faulting line in pyInputCodeMirror
                   pyInputCodeMirror.focus();
@@ -156,7 +158,7 @@ $(document).ready(function() {
                   });
                 }
 
-                alert(traceData[0].exception_msg);
+                alert(trace[0].exception_msg);
               }
               else {
                 alert("Whoa, unknown error! Please reload and try again.");
@@ -169,12 +171,12 @@ $(document).ready(function() {
               var startingInstruction = 0;
 
               // only do this at most ONCE, and then clear out preseededCurInstr
-              if (preseededCurInstr && preseededCurInstr < traceData.length) { // NOP anyways if preseededCurInstr is 0
+              if (preseededCurInstr && preseededCurInstr < trace.length) { // NOP anyways if preseededCurInstr is 0
                 startingInstruction = preseededCurInstr;
                 preseededCurInstr = null;
               }
 
-              myVisualizer = new ExecutionVisualizer(pyInputCodeMirror.getValue(), traceData, startingInstruction, 'pyOutputPane');
+              myVisualizer = new ExecutionVisualizer(dataFromBackend, startingInstruction, 'pyOutputPane');
 
               $.bbq.pushState({ mode: 'visualize' }, 2 /* completely override other hash strings to keep URL clean */);
             }

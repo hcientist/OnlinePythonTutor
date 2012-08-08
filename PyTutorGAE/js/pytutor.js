@@ -29,10 +29,20 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer instance
 
-function ExecutionVisualizer(inputCode, traceData, startingInstruction, domRootID) {
-  this.curInputCode = inputCode;
-  this.curTrace = traceData;
-  this.curInstr = startingInstruction;
+// domRootID is the string ID of the root element where to render this instance
+// dat is data returned by the Python Tutor backend consisting of two fields:
+//   code  - string of executed code
+//   trace - a full execution trace 
+// startingInstruction is (optional) the execution point to display upon rendering (one-indexed)
+function ExecutionVisualizer(domRootID, dat, startingInstruction /* optional */) {
+  this.curInputCode = dat.code;
+  this.curTrace = dat.trace;
+
+  this.curInstr = 0;
+
+  if (startingInstruction) {
+    this.curInstr = (startingInstruction - 1); // zero-indexed
+  }
 
   this.visualizerID = curVisualizerID;
   curVisualizerID++;
@@ -1103,9 +1113,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   //        (the format is: '<this.visualizerID>__heap_object_<id>')
   //
   // The reason we need to prepend this.visualizerID is because jsPlumb needs
-  // GLOBALLY UNIQUE IDs for use as connector endpoints. Actually this is no
-  // longer true since we can use this.jsPlumbInstance, but still it's nice
-  // to have unique div IDs
+  // GLOBALLY UNIQUE IDs for use as connector endpoints.
   var connectionEndpointIDs = d3.map();
   var heapConnectionEndpointIDs = d3.map(); // subset of connectionEndpointIDs for heap->heap connections
 
@@ -1427,10 +1435,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // render all global variables IN THE ORDER they were created by the program,
   // in order to ensure continuity:
   if (curEntry.ordered_globals.length > 0) {
-    this.domRoot.find("#stack").append('<div class="stackFrame" id="globals"><div id="globals_header" class="stackFrameHeader">Global variables</div></div>');
-    this.domRoot.find("#stack #globals").append('<table class="stackFrameVarTable" id="global_table"></table>');
+    this.domRoot.find("#stack").append('<div class="stackFrame" id="' + myViz.visualizerID + '__globals"><div id="' + myViz.visualizerID + '__globals_header" class="stackFrameHeader">Global variables</div></div>');
+    this.domRoot.find('#stack #' + myViz.visualizerID + '__globals').append('<table class="stackFrameVarTable" id="' + myViz.visualizerID + '__global_table"></table>');
 
-    var tbl = this.domRoot.find("#global_table");
+    var tbl = this.domRoot.find('#' + myViz.visualizerID + '__global_table');
 
     $.each(curEntry.ordered_globals, function(i, varname) {
       var val = curEntry.globals[varname];
@@ -1449,7 +1457,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
           // make sure varname doesn't contain any weird
           // characters that are illegal for CSS ID's ...
-          var varDivID = 'global__' + varnameToCssID(varname);
+          var varDivID = myViz.visualizerID + '__global__' + varnameToCssID(varname);
           curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
 
           assert(!connectionEndpointIDs.has(varDivID));
@@ -1483,12 +1491,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     var divClass, divID, headerDivID;
     if (is_zombie) {
       divClass = 'zombieStackFrame';
-      divID = "zombie_stack" + ind;
+      divID = myViz.visualizerID + "__zombie_stack" + ind;
       headerDivID = "zombie_stack_header" + ind;
     }
     else {
       divClass = 'stackFrame';
-      divID = "stack" + ind;
+      divID = myViz.visualizerID + "__stack" + ind;
       headerDivID = "stack_header" + ind;
     }
 
@@ -1605,13 +1613,13 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   var frame_already_highlighted = false;
   $.each(curEntry.stack_to_render, function(i, e) {
     if (e.is_highlighted) {
-      highlight_frame('stack' + i);
+      highlight_frame(myViz.visualizerID + '__stack' + i);
       frame_already_highlighted = true;
     }
   });
 
   if (!frame_already_highlighted) {
-    highlight_frame('globals');
+    highlight_frame(myViz.visualizerID + '__globals');
   }
 
 }

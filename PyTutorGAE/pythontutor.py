@@ -50,15 +50,15 @@ class TutorPage(webapp2.RequestHandler):
 
 class ExecScript(webapp2.RequestHandler):
 
-  def json_finalizer(self, output_lst):
-    json_output = json.dumps(output_lst, indent=None) # use indent=None for most compact repr
+  def json_finalizer(self, input_code, output_trace):
+    ret = dict(code=input_code, trace=output_trace)
+    json_output = json.dumps(ret, indent=None) # use indent=None for most compact repr
     self.response.out.write(json_output)
 
   def get(self):
     self.response.headers['Content-Type'] = 'application/json'
     self.response.headers['Cache-Control'] = 'no-cache'
     pg_logger.exec_script_str(self.request.get('user_script'), self.json_finalizer)
-    #pg_logger.exec_script_str(TEST_STR, self.json_finalizer)
 
 
 app = webapp2.WSGIApplication([('/', TutorPage),

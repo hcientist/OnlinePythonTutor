@@ -110,6 +110,8 @@ class PGLogger(bdb.Bdb):
         # execution, or else canonical small IDs won't be consistent.
         self.encoder = pg_encoder.ObjectEncoder()
 
+        self.executed_script = None # Python script to be executed!
+
 
     # Returns the (lexical) parent frame of the function that was called
     # to create the stack frame 'frame'.
@@ -452,6 +454,8 @@ class PGLogger(bdb.Bdb):
 
 
     def _runscript(self, script_str):
+        self.executed_script = script_str
+
         # When bdb sets tracing, a number of call and line events happens
         # BEFORE debugger even reaches user's code (and the exact sequence of
         # events depends on python version). So we take special measures to
@@ -542,7 +546,7 @@ class PGLogger(bdb.Bdb):
 
       #for e in self.trace: print >> sys.stderr, e
 
-      self.finalizer_func(self.trace)
+      self.finalizer_func(self.executed_script, self.trace)
 
 
 
