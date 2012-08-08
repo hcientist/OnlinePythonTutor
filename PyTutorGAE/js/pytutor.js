@@ -88,7 +88,7 @@ ExecutionVisualizer.prototype.render = function() {
             <button id="editBtn" class="medBtn" type="button">Edit code</button>\
           </div>\
           <div id="executionSliderCaption">\
-            Hover here to focus and then use the left and right arrow keys to<br/>\
+            Click to focus and then use the left and right arrow keys to<br/>\
             step through execution. Click on lines of code to set breakpoints.\
           </div>\
           <div id="executionSlider"/>\
@@ -288,9 +288,12 @@ ExecutionVisualizer.prototype.setKeyboardBindings = function() {
 
   // focus on mouse entering td#left_pane (so that the user doesn't need
   // to click to focus)
+  // This is actually annoying because the display JERKS to focus on elements ...
+  /*
   leftTablePane.mouseenter(function() {
     leftTablePane.focus();
   });
+  */
     
  
   leftTablePane.keydown(function(k) {
