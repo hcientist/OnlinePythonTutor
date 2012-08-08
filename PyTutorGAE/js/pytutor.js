@@ -44,6 +44,7 @@ function ExecutionVisualizer(domRootID, dat, startingInstruction /* optional */)
     this.curInstr = (startingInstruction - 1); // zero-indexed
   }
 
+  // needs to be unique!
   this.visualizerID = curVisualizerID;
   curVisualizerID++;
 
@@ -92,6 +93,13 @@ function ExecutionVisualizer(domRootID, dat, startingInstruction /* optional */)
   this.hasRendered = false;
 
   this.render(); // go for it!
+}
+
+
+// create a unique ID, which is often necessary so that jsPlumb doesn't get confused
+// due to multiple ExecutionVisualizer instances being displayed simultaneously
+ExecutionVisualizer.prototype.generateID = function(original_id) {
+  return this.visualizerID + '__' + original_id;
 }
 
 
@@ -1248,11 +1256,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       // IE needs this div to be NON-EMPTY in order to properly
       // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
 
-      var srcDivID = myViz.visualizerID + '__heap_pointer_src_' + heap_pointer_src_id;
+      var srcDivID = myViz.generateID('heap_pointer_src_' + heap_pointer_src_id);
       heap_pointer_src_id++; // just make sure each source has a UNIQUE ID
       d3DomElement.append('<div id="' + srcDivID + '">&nbsp;</div>');
 
-      var dstDivID = myViz.visualizerID + '__heap_object_' + objID;
+      var dstDivID = myViz.generateID('heap_object_' + objID);
 
       assert(!connectionEndpointIDs.has(srcDivID));
       connectionEndpointIDs.set(srcDivID, dstDivID);
@@ -1264,7 +1272,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     }
 
 
-    var heapObjID = myViz.visualizerID + '__heap_object_' + objID;
+    var heapObjID = myViz.generateID('heap_object_' + objID);
 
 
     // wrap ALL compound objects in a heapObject div so that jsPlumb
@@ -1435,10 +1443,14 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // render all global variables IN THE ORDER they were created by the program,
   // in order to ensure continuity:
   if (curEntry.ordered_globals.length > 0) {
-    this.domRoot.find("#stack").append('<div class="stackFrame" id="' + myViz.visualizerID + '__globals"><div id="' + myViz.visualizerID + '__globals_header" class="stackFrameHeader">Global variables</div></div>');
-    this.domRoot.find('#stack #' + myViz.visualizerID + '__globals').append('<table class="stackFrameVarTable" id="' + myViz.visualizerID + '__global_table"></table>');
 
-    var tbl = this.domRoot.find('#' + myViz.visualizerID + '__global_table');
+    var globalsID = myViz.generateID('globals');
+    var globalTblID = myViz.generateID('global_table');
+
+    this.domRoot.find("#stack").append('<div class="stackFrame" id="' + globalsID + '"><div id="' + myViz.generateID('globals_header') + '" class="stackFrameHeader">Global variables</div></div>');
+    this.domRoot.find('#stack #' + globalsID).append('<table class="stackFrameVarTable" id="' + globalTblID + '"></table>');
+
+    var tbl = this.domRoot.find('#' + globalTblID);
 
     $.each(curEntry.ordered_globals, function(i, varname) {
       var val = curEntry.globals[varname];
@@ -1457,11 +1469,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
           // make sure varname doesn't contain any weird
           // characters that are illegal for CSS ID's ...
-          var varDivID = myViz.visualizerID + '__global__' + varnameToCssID(varname);
+          var varDivID = myViz.generateID('global__' + varnameToCssID(varname));
           curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
 
           assert(!connectionEndpointIDs.has(varDivID));
-          var heapObjID = myViz.visualizerID + '__heap_object_' + getRefID(val);
+          var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
           connectionEndpointIDs.set(varDivID, heapObjID);
         }
       }
@@ -1491,13 +1503,13 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     var divClass, divID, headerDivID;
     if (is_zombie) {
       divClass = 'zombieStackFrame';
-      divID = myViz.visualizerID + "__zombie_stack" + ind;
-      headerDivID = "zombie_stack_header" + ind;
+      divID = myViz.generateID("zombie_stack" + ind);
+      headerDivID = myViz.generateID("zombie_stack_header" + ind);
     }
     else {
       divClass = 'stackFrame';
-      divID = myViz.visualizerID + "__stack" + ind;
-      headerDivID = "stack_header" + ind;
+      divID = myViz.generateID("stack" + ind);
+      headerDivID = myViz.generateID("stack_header" + ind);
     }
 
     myViz.domRoot.find("#stack").append('<div class="' + divClass + '" id="' + divID + '"></div>');
@@ -1551,7 +1563,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
           assert(!connectionEndpointIDs.has(varDivID));
 
-          var heapObjID = myViz.visualizerID + '__heap_object_' + getRefID(val);
+          var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
           connectionEndpointIDs.set(varDivID, heapObjID);
         }
       });
@@ -1613,13 +1625,13 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   var frame_already_highlighted = false;
   $.each(curEntry.stack_to_render, function(i, e) {
     if (e.is_highlighted) {
-      highlight_frame(myViz.visualizerID + '__stack' + i);
+      highlight_frame(myViz.generateID('stack' + i));
       frame_already_highlighted = true;
     }
   });
 
   if (!frame_already_highlighted) {
-    highlight_frame(myViz.visualizerID + '__globals');
+    highlight_frame(myViz.generateID('globals'));
   }
 
 }
