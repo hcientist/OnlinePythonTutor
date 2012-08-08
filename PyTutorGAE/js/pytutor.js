@@ -228,6 +228,13 @@ ExecutionVisualizer.prototype.render = function() {
     if (myViz.sortedBreakpointsList.length == 0) {
       return -1;
     }
+    // usability hack: if you're currently on a breakpoint, then
+    // single-step forward to the next execution point, NOT the next
+    // breakpoint. it's often useful to see what happens when the line
+    // at a breakpoint executes.
+    else if ($.inArray(c, myViz.sortedBreakpointsList) >= 0) {
+      return c + 1;
+    }
     else {
       for (var i = 0; i < myViz.sortedBreakpointsList.length - 1; i++) {
         var cur = myViz.sortedBreakpointsList[i];
