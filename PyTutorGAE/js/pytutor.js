@@ -30,6 +30,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // Massive refactoring notes:
 //   - does jsPlumb have a notion of "sets" of connectors so that we can reset a particular
 //     set rather than ALL connections?
+//     - or maybe each ExecutionVisualizer instance needs to keep track
+//       of its own set of jsPlumb elements ...
 
 
 function ExecutionVisualizer(inputCode, traceData, startingInstruction, domRootID) {
@@ -84,15 +86,15 @@ ExecutionVisualizer.prototype.render = function() {
   this.domRoot.html(
   '<table border="0">\
     <tr>\
-      <td valign="top">\
+      <td valign="top" id="left_pane">\
         <center>\
           <div id="pyCodeOutputDiv"/>\
           <div id="editCodeLinkDiv">\
             <button id="editBtn" class="medBtn" type="button">Edit code</button>\
           </div>\
           <div id="executionSliderCaption">\
-            Click here to focus and then use the left and right arrow keys to step through execution.\
-            <br/>Click on lines of code to set breakpoints.\
+            Hover here to focus and then use the left and right arrow keys to<br/>\
+            step through execution. Click on lines of code to set breakpoints.\
           </div>\
           <div id="executionSlider"/>\
           <div id="executionSliderFooter"/>\
@@ -138,7 +140,7 @@ ExecutionVisualizer.prototype.render = function() {
     // executed ...
     if (evt.originalEvent) {
       myViz.curInstr = ui.value;
-      myViz.updateOutput(true); // need to pass 'true' here to prevent infinite loop
+      myViz.updateOutput();
     }
   });
 
@@ -244,14 +246,22 @@ ExecutionVisualizer.prototype.render = function() {
 
 
 
-  // Set keyboard event listeners for domRoot.
-  // Note that if domRoot is a div, it must have a 'tabindex="0"' attribute set
-  // before it can receive focus and thus receive keyboard events. Set it here:
-  this.domRoot.attr('tabindex', '0');
-  this.domRoot.css('outline', 'none'); // don't display a tacky border when focused
- 
+  // Set keyboard event listeners for td#left_pane. Note that it must
+  // have a 'tabindex="0"' attribute set before it can receive focus and
+  // thus receive keyboard events. Set it here:
+  var leftTablePane = this.domRoot.find('td#left_pane');
 
-  this.domRoot.keydown(function(k) {
+  leftTablePane.attr('tabindex', '0');
+  leftTablePane.css('outline', 'none'); // don't display a tacky border when focused
+
+  // focus on mouse entering td#left_pane (so that the user doesn't need
+  // to click to focus)
+  leftTablePane.mouseenter(function() {
+    leftTablePane.focus();
+  });
+    
+ 
+  leftTablePane.keydown(function(k) {
     if (!myViz.keyStuckDown) {
       if (k.keyCode == 37) { // left arrow
         if (myViz.curInstr > 0) {
@@ -294,15 +304,12 @@ ExecutionVisualizer.prototype.render = function() {
     }
   });
 
-  this.domRoot.keyup(function(k) {
+  leftTablePane.keyup(function(k) {
     myViz.keyStuckDown = false;
   });
 
 
-  this.renderPyCodeOutput();
-
-
-  // must postprocess traceData prior to running precomputeCurTraceLayouts() ...
+  // must post-process traceData prior to running precomputeCurTraceLayouts() ...
   var lastEntry = this.curTrace[this.curTrace.length - 1];
 
   this.instrLimitReached = (lastEntry.event == 'instruction_limit_reached');
@@ -321,7 +328,23 @@ ExecutionVisualizer.prototype.render = function() {
   }
 
 
-  this.precomputeCurTraceLayouts(); // almost there!!!
+  this.domRoot.find('#executionSlider').slider({
+    min: 0,
+    max: this.curTrace.length - 1,
+    step: 1,
+  });
+
+  //disable keyboard actions on the slider itself (to prevent double-firing of events)
+  this.domRoot.find("#executionSlider .ui-slider-handle").unbind('keydown');
+  // make skinnier and taller
+  this.domRoot.find("#executionSlider .ui-slider-handle").css('width', '0.8em');
+  this.domRoot.find("#executionSlider .ui-slider-handle").css('height', '1.4em');
+  this.domRoot.find(".ui-widget-content").css('font-size', '0.9em');
+
+
+  this.precomputeCurTraceLayouts();
+
+  this.renderPyCodeOutput();
 
   this.updateOutput();
 
@@ -559,21 +582,6 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
      });
 
 
-
-  this.domRoot.find('#executionSlider').slider({
-    min: 0,
-    max: this.curTrace.length - 1,
-    step: 1,
-  });
-
-  //disable keyboard actions on the slider itself (to prevent double-firing of events)
-  this.domRoot.find("#executionSlider .ui-slider-handle").unbind('keydown');
-  // make skinnier and taller
-  this.domRoot.find("#executionSlider .ui-slider-handle").css('width', '0.8em');
-  this.domRoot.find("#executionSlider .ui-slider-handle").css('height', '1.4em');
-  this.domRoot.find(".ui-widget-content").css('font-size', '0.9em');
- 
-
   renderSliderBreakpoints(); // renders breakpoints written in as code comments
 }
 
@@ -581,7 +589,7 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
 ExecutionVisualizer.prototype.updateOutput = function() {
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
-  this.domRoot.focus(); // grab focus so that keyboard shortcuts can work
+  this.domRoot.find('td#left_pane').focus(); // to start accepting keyboard inputs
 
   assert(this.curTrace);
 
@@ -592,6 +600,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
   // render VCR controls:
   var totalInstrs = this.curTrace.length;
+
 
   // to be user-friendly, if we're on the LAST instruction, print "Program has terminated"
   // and DON'T highlight any lines of code in the code display
@@ -604,7 +613,9 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     }
   }
   else {
-    myViz.domRoot.find("#vcrControls #curInstr").html("About to run step " + (this.curInstr + 1) + " of " + (totalInstrs-1));
+    myViz.domRoot.find("#vcrControls #curInstr").html("About to run step " +
+                                                      String(this.curInstr + 1) +
+                                                      " of " + String(totalInstrs-1));
   }
 
 
@@ -657,22 +668,20 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.lineNo')
       .attr('id', function(d) {return 'lineNo' + d.lineNumber;})
       .style('color', function(d)
-        {return d.breakpointHere ? breakpointColor : (myViz.visitedLinesSet.has(d.lineNumber) ? visitedLineColor : null);})
+        {return d.breakpointHere ? breakpointColor :
+                                   (myViz.visitedLinesSet.has(d.lineNumber) ? visitedLineColor : null);
+       })
       .style('font-weight', function(d)
-        {return d.breakpointHere ? 'bold' : (myViz.visitedLinesSet.has(d.lineNumber) ? 'bold' : null);});
+        {return d.breakpointHere ? 'bold' :
+                                   (myViz.visitedLinesSet.has(d.lineNumber) ? 'bold' : null);
+       });
+
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
       .style('background-color', function(d) {
         if (d.lineNumber == curEntry.line) {
-          if (hasError) {
-            d.backgroundColor = errorColor;
-          }
-          else if (isTerminated) {
-            d.backgroundColor = lightBlue;
-          }
-          else {
-            d.backgroundColor = lightLineColor;
-          }
+          d.backgroundColor = hasError ? errorColor :
+                                         (isTerminated ?  lightBlue : lightLineColor);
         }
         else {
           d.backgroundColor = null;
@@ -682,14 +691,13 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       })
       .style('border-top', function(d) {
         if ((d.lineNumber == curEntry.line) && !hasError && !isTerminated) {
-          return '1px solid #F87D76';
+          return '1px solid ' + errorColor;
         }
         else {
           // put a default white top border to keep space usage consistent
           return '1px solid #ffffff';
         }
       });
-
 
 
     // returns True iff lineNo is visible in pyCodeOutputDiv
