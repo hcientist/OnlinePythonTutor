@@ -28,9 +28,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 // Massive refactoring notes:
-//   - when you highlight breakpoints, the executed lines unhighlight :(
-//   - test whether preseeded code and curInstr works
-//   - test whether back button works properly
 //   - does jsPlumb have a notion of "sets" of connectors so that we can reset a particular
 //     set rather than ALL connections?
 
@@ -313,8 +310,8 @@ ExecutionVisualizer.prototype.render = function() {
   if (this.instrLimitReached) {
     this.curTrace.pop() // kill last entry
     var warningMsg = lastEntry.exception_msg;
-    domRoot.find("#errorOutput").html(htmlspecialchars(warningMsg));
-    domRoot.find("#errorOutput").show();
+    myViz.domRoot.find("#errorOutput").html(htmlspecialchars(warningMsg));
+    myViz.domRoot.find("#errorOutput").show();
   }
   // as imran suggests, for a (non-error) one-liner, SNIP off the
   // first instruction so that we start after the FIRST instruction
