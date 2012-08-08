@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 // Massive refactoring notes:
+//   - when you highlight breakpoints, the executed lines unhighlight :(
 //   - test whether preseeded code and curInstr works
 //   - test whether back button works properly
 //   - does jsPlumb have a notion of "sets" of connectors so that we can reset a particular
@@ -652,7 +653,10 @@ ExecutionVisualizer.prototype.updateOutput = function() {
   }
 
 
-  function highlightCodeLine(curLine, hasError, isTerminated) {
+  function highlightCodeLine() {
+    /* if instrLimitReached, then treat like a normal non-terminating line */
+    var isTerminated = (!myViz.instrLimitReached && (myViz.curInstr == (totalInstrs-1)));
+
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.lineNo')
       .attr('id', function(d) {return 'lineNo' + d.lineNumber;})
       .style('color', function(d)
@@ -662,7 +666,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
       .style('background-color', function(d) {
-        if (d.lineNumber == curLine) {
+        if (d.lineNumber == curEntry.line) {
           if (hasError) {
             d.backgroundColor = errorColor;
           }
@@ -680,7 +684,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
         return d.backgroundColor;
       })
       .style('border-top', function(d) {
-        if ((d.lineNumber == curLine) && !hasError && !isTerminated) {
+        if ((d.lineNumber == curEntry.line) && !hasError && !isTerminated) {
           return '1px solid #F87D76';
         }
         else {
@@ -721,27 +725,25 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
 
     // smoothly scroll code display
-    if (!isOutputLineVisible(curLine)) {
-      scrollCodeOutputToLine(curLine);
+    if (!isOutputLineVisible(curEntry.line)) {
+      scrollCodeOutputToLine(curEntry.line);
     }
   }
 
 
+  // calculate all lines that have been 'visited' (executed)
+  // by execution up to (but NOT INCLUDING) this.curInstr:
+  this.visitedLinesSet = d3.map();
+  for (var i = 0; i < this.curInstr; i++) {
+    if (this.curTrace[i].line) {
+      this.visitedLinesSet.set(this.curTrace[i].line, 1);
+    }
+  }
+
 
   // render code output:
   if (curEntry.line) {
-    // calculate all lines that have been 'visited' (executed)
-    // by execution up to (but NOT INCLUDING) this.curInstr:
-    this.visitedLinesSet = d3.map();
-    for (var i = 0; i < this.curInstr; i++) {
-      if (this.curTrace[i].line) {
-        this.visitedLinesSet.set(this.curTrace[i].line, 1);
-      }
-    }
-
-    highlightCodeLine(curEntry.line, hasError,
-                      /* if instrLimitReached, then treat like a normal non-terminating line */
-                      (!this.instrLimitReached && (this.curInstr == (totalInstrs-1))));
+    highlightCodeLine();
   }
 
 
