@@ -32,7 +32,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //   - test whether back button works properly
 //   - does jsPlumb have a notion of "sets" of connectors so that we can reset a particular
 //     set rather than ALL connections?
-//   - executed lines highlighting seems to be broken
 
 
 function ExecutionVisualizer(inputCode, traceData, startingInstruction, domRootID) {
@@ -735,7 +734,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     // calculate all lines that have been 'visited' 
     // by execution up to (but NOT INCLUDING) curInstr:
     this.visitedLinesSet = d3.map();
-    for (var i = 0; i < curInstr; i++) {
+    for (var i = 0; i < this.curInstr; i++) {
       if (this.curTrace[i].line) {
         this.visitedLinesSet.set(this.curTrace[i].line, 1);
       }
