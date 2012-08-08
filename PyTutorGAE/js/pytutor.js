@@ -47,7 +47,7 @@ function ExecutionVisualizer(inputCode, traceData, startingInstruction, domRootI
   //   'breakpointHere' - has a breakpoint been set here?
   this.codeOutputLines = [];
 
-  this.visitedLinesSet = d3.map();
+  this.visitedLinesSet = null; // will change at every execution point
 
 
   // true iff trace ended prematurely since maximum instruction limit has
@@ -731,8 +731,8 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
   // render code output:
   if (curEntry.line) {
-    // calculate all lines that have been 'visited' 
-    // by execution up to (but NOT INCLUDING) curInstr:
+    // calculate all lines that have been 'visited' (executed)
+    // by execution up to (but NOT INCLUDING) this.curInstr:
     this.visitedLinesSet = d3.map();
     for (var i = 0; i < this.curInstr; i++) {
       if (this.curTrace[i].line) {
