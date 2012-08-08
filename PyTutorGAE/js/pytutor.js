@@ -39,13 +39,6 @@ function ExecutionVisualizer(inputCode, traceData, startingInstruction, domRootI
   this.curTrace = traceData;
   this.curInstr = startingInstruction;
 
-  // an array of objects with the following fields:
-  //   'text' - the text of the line of code
-  //   'lineNumber' - one-indexed (always the array index + 1)
-  //   'executionPoints' - an ordered array of zero-indexed execution points where this line was executed
-  //   'backgroundColor' - current code output line background color
-  //   'breakpointHere' - has a breakpoint been set here?
-  this.codeOutputLines = [];
 
   this.visitedLinesSet = null; // will change at every execution point
 
@@ -61,9 +54,12 @@ function ExecutionVisualizer(inputCode, traceData, startingInstruction, domRootI
 
   this.keyStuckDown = false;
 
-  this.breakpoints = d3.map(); // set of execution points to set as breakpoints
-  this.sortedBreakpointsList = []; // sorted and synced with breakpointLines
-  this.hoverBreakpoints = d3.map(); // set of breakpoints because we're HOVERING over a given line
+
+  // initialize in renderPyCodeOutput()
+  this.codeOutputLines = null;
+  this.breakpoints = null;           // set of execution points to set as breakpoints
+  this.sortedBreakpointsList = null; // sorted and synced with breakpointLines
+  this.hoverBreakpoints = null;      // set of breakpoints because we're HOVERING over a given line
 
 
   this.hasRendered = false;
@@ -73,7 +69,6 @@ function ExecutionVisualizer(inputCode, traceData, startingInstruction, domRootI
 
 
 ExecutionVisualizer.prototype.render = function() {
-  //createVisualization(this.curTrace, this.curInputCode, this.curInstr, this.domRoot);
   if (this.hasRendered) {
     alert('ERROR: You should only call render() ONCE on an ExecutionVisualizer object.');
     return;
@@ -133,20 +128,11 @@ ExecutionVisualizer.prototype.render = function() {
   </table>');
 
 
-  this.domRoot.find('#executionSlider').bind('slide', function(evt, ui) {
-    // this is SUPER subtle. if this value was changed programmatically,
-    // then evt.originalEvent will be undefined. however, if this value
-    // was changed by a user-initiated event, then this code should be
-    // executed ...
-    if (evt.originalEvent) {
-      myViz.curInstr = ui.value;
-      myViz.updateOutput();
-    }
-  });
-
 
   this.domRoot.find('#genUrlBtn').bind('click', function() {
-    var urlStr = jQuery.param.fragment(window.location.href, {code: myViz.curInputCode, curInstr: myViz.curInstr}, 2);
+    var urlStr = $.param.fragment(window.location.href,
+                                  {code: myViz.curInputCode, curInstr: myViz.curInstr},
+                                  2);
     myViz.domRoot.find('#urlOutput').val(urlStr);
   });
 
@@ -183,25 +169,64 @@ ExecutionVisualizer.prototype.render = function() {
 
 
 
-  // set some sensible jsPlumb defaults
-  jsPlumb.Defaults.Endpoint = ["Dot", {radius:3}];
-  //jsPlumb.Defaults.Endpoint = ["Rectangle", {width:3, height:3}];
-  jsPlumb.Defaults.EndpointStyle = {fillStyle: lightGray};
-  jsPlumb.Defaults.Anchors = ["RightMiddle", "LeftMiddle"]; // for aesthetics!
-  jsPlumb.Defaults.PaintStyle = {lineWidth:1, strokeStyle: lightGray};
+  // must postprocess curTrace prior to running precomputeCurTraceLayouts() ...
+  var lastEntry = this.curTrace[this.curTrace.length - 1];
 
-  // bezier curve style:
-  //jsPlumb.Defaults.Connector = [ "Bezier", { curviness:15 }]; /* too much 'curviness' causes lines to run together */
-  //jsPlumb.Defaults.Overlays = [[ "Arrow", { length: 14, width:10, foldback:0.55, location:0.35 }]]
+  this.instrLimitReached = (lastEntry.event == 'instruction_limit_reached');
 
-  // state machine curve style:
-  jsPlumb.Defaults.Connector = [ "StateMachine" ];
-  jsPlumb.Defaults.Overlays = [[ "Arrow", { length: 10, width:7, foldback:0.55, location:1 }]];
+  if (this.instrLimitReached) {
+    this.curTrace.pop() // kill last entry
+    var warningMsg = lastEntry.exception_msg;
+    myViz.domRoot.find("#errorOutput").html(htmlspecialchars(warningMsg));
+    myViz.domRoot.find("#errorOutput").show();
+  }
+  // as imran suggests, for a (non-error) one-liner, SNIP off the
+  // first instruction so that we start after the FIRST instruction
+  // has been executed ...
+  else if (this.curTrace.length == 2) {
+    this.curTrace.shift();
+  }
 
-  jsPlumb.Defaults.EndpointHoverStyle = {fillStyle: pinkish};
-  jsPlumb.Defaults.HoverPaintStyle = {lineWidth:2, strokeStyle: pinkish};
+  var sliderDiv = this.domRoot.find('#executionSlider');
+
+  // set up slider after postprocessing curTrace
+  sliderDiv.slider({min: 0, max: this.curTrace.length - 1, step: 1});
+
+  //disable keyboard actions on the slider itself (to prevent double-firing of events)
+  sliderDiv.find(".ui-slider-handle").unbind('keydown');
+  // make skinnier and taller
+  sliderDiv.find(".ui-slider-handle").css('width', '0.8em');
+  sliderDiv.find(".ui-slider-handle").css('height', '1.4em');
+  this.domRoot.find(".ui-widget-content").css('font-size', '0.9em');
+
+  this.domRoot.find('#executionSlider').bind('slide', function(evt, ui) {
+    // this is SUPER subtle. if this value was changed programmatically,
+    // then evt.originalEvent will be undefined. however, if this value
+    // was changed by a user-initiated event, then this code should be
+    // executed ...
+    if (evt.originalEvent) {
+      myViz.curInstr = ui.value;
+      myViz.updateOutput();
+    }
+  });
 
 
+
+  this.setKeyboardBindings();
+
+  this.precomputeCurTraceLayouts();
+
+  this.renderPyCodeOutput();
+
+  this.updateOutput();
+
+  this.hasRendered = true;
+};
+
+
+
+ExecutionVisualizer.prototype.setKeyboardBindings = function() {
+  var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
   // find the previous/next breakpoint to c or return -1 if it doesn't exist
   function findPrevBreakpoint(c) {
@@ -314,58 +339,26 @@ ExecutionVisualizer.prototype.render = function() {
   leftTablePane.keyup(function(k) {
     myViz.keyStuckDown = false;
   });
-
-
-  // must post-process traceData prior to running precomputeCurTraceLayouts() ...
-  var lastEntry = this.curTrace[this.curTrace.length - 1];
-
-  this.instrLimitReached = (lastEntry.event == 'instruction_limit_reached');
-
-  if (this.instrLimitReached) {
-    this.curTrace.pop() // kill last entry
-    var warningMsg = lastEntry.exception_msg;
-    myViz.domRoot.find("#errorOutput").html(htmlspecialchars(warningMsg));
-    myViz.domRoot.find("#errorOutput").show();
-  }
-  // as imran suggests, for a (non-error) one-liner, SNIP off the
-  // first instruction so that we start after the FIRST instruction
-  // has been executed ...
-  else if (this.curTrace.length == 2) {
-    this.curTrace.shift();
-  }
-
-
-  this.domRoot.find('#executionSlider').slider({
-    min: 0,
-    max: this.curTrace.length - 1,
-    step: 1,
-  });
-
-  //disable keyboard actions on the slider itself (to prevent double-firing of events)
-  this.domRoot.find("#executionSlider .ui-slider-handle").unbind('keydown');
-  // make skinnier and taller
-  this.domRoot.find("#executionSlider .ui-slider-handle").css('width', '0.8em');
-  this.domRoot.find("#executionSlider .ui-slider-handle").css('height', '1.4em');
-  this.domRoot.find(".ui-widget-content").css('font-size', '0.9em');
-
-
-  this.precomputeCurTraceLayouts();
-
-  this.renderPyCodeOutput();
-
-  this.updateOutput();
-
-  this.hasRendered = true;
-};
+}
 
 
 ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
-  // start fresh!
+
+  // initialize!
   this.breakpoints = d3.map();
   this.sortedBreakpointsList = [];
   this.hoverBreakpoints = d3.map();
+
+  // an array of objects with the following fields:
+  //   'text' - the text of the line of code
+  //   'lineNumber' - one-indexed (always the array index + 1)
+  //   'executionPoints' - an ordered array of zero-indexed execution points where this line was executed
+  //   'backgroundColor' - current code output line background color
+  //   'breakpointHere' - has a breakpoint been set here?
+  this.codeOutputLines = [];
+
 
   function renderSliderBreakpoints() {
     myViz.domRoot.find("#executionSliderFooter").empty();
@@ -399,11 +392,11 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
       .attr('width', 2)
       .attr('height', 12)
       .style('fill', function(d) {
-         if (!myViz.hoverBreakpoints.has(d)) {
-           return breakpointColor;
+         if (myViz.hoverBreakpoints.has(d)) {
+           return hoverBreakpointColor;
          }
          else {
-           return hoverBreakpointColor;
+           return breakpointColor;
          }
       });
   }
@@ -495,7 +488,6 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
 
   var lines = this.curInputCode.rtrim().split('\n');
 
-  this.codeOutputLines = [];
   for (var i = 0; i < lines.length; i++) {
     var cod = lines[i];
 
@@ -553,10 +545,10 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
       else {
         return htmlspecialchars(d.text);
       }
-     })
+    })
     .on('mouseover', function() {
       setHoverBreakpoint(this);
-     })
+    })
     .on('mouseout', function() {
       myViz.hoverBreakpoints = d3.map();
 
@@ -567,7 +559,7 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
       }
 
       renderSliderBreakpoints(); // get rid of hover breakpoint colors
-     })
+    })
     .on('mousedown', function() {
       // don't do anything if exePts is empty
       // (i.e., this line was never executed)
@@ -586,13 +578,14 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
       else {
         unsetBreakpoint(this);
       }
-     });
+    });
 
 
   renderSliderBreakpoints(); // renders breakpoints written in as code comments
 }
 
 
+// This function is called every time the display needs to be updated
 ExecutionVisualizer.prototype.updateOutput = function() {
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
@@ -608,36 +601,39 @@ ExecutionVisualizer.prototype.updateOutput = function() {
   // render VCR controls:
   var totalInstrs = this.curTrace.length;
 
+  var isLastInstr = (this.curInstr == (totalInstrs-1));
+
+  var vcrControls = myViz.domRoot.find("#vcrControls");
 
   // to be user-friendly, if we're on the LAST instruction, print "Program has terminated"
   // and DON'T highlight any lines of code in the code display
-  if (this.curInstr == (totalInstrs-1)) {
+  if (isLastInstr) {
     if (this.instrLimitReached) {
-      myViz.domRoot.find("#vcrControls #curInstr").html("Instruction limit reached");
+      vcrControls.find("#curInstr").html("Instruction limit reached");
     }
     else {
-      myViz.domRoot.find("#vcrControls #curInstr").html("Program has terminated");
+      vcrControls.find("#curInstr").html("Program has terminated");
     }
   }
   else {
-    myViz.domRoot.find("#vcrControls #curInstr").html("About to run step " +
-                                                      String(this.curInstr + 1) +
-                                                      " of " + String(totalInstrs-1));
+    vcrControls.find("#curInstr").html("About to run step " +
+                                       String(this.curInstr + 1) +
+                                       " of " + String(totalInstrs-1));
   }
 
 
-  myViz.domRoot.find("#vcrControls #jmpFirstInstr").attr("disabled", false);
-  myViz.domRoot.find("#vcrControls #jmpStepBack").attr("disabled", false);
-  myViz.domRoot.find("#vcrControls #jmpStepFwd").attr("disabled", false);
-  myViz.domRoot.find("#vcrControls #jmpLastInstr").attr("disabled", false);
+  vcrControls.find("#jmpFirstInstr").attr("disabled", false);
+  vcrControls.find("#jmpStepBack").attr("disabled", false);
+  vcrControls.find("#jmpStepFwd").attr("disabled", false);
+  vcrControls.find("#jmpLastInstr").attr("disabled", false);
 
   if (this.curInstr == 0) {
-    myViz.domRoot.find("#vcrControls #jmpFirstInstr").attr("disabled", true);
-    myViz.domRoot.find("#vcrControls #jmpStepBack").attr("disabled", true);
+    vcrControls.find("#jmpFirstInstr").attr("disabled", true);
+    vcrControls.find("#jmpStepBack").attr("disabled", true);
   }
-  if (this.curInstr == (totalInstrs-1)) {
-    myViz.domRoot.find("#vcrControls #jmpLastInstr").attr("disabled", true);
-    myViz.domRoot.find("#vcrControls #jmpStepFwd").attr("disabled", true);
+  if (isLastInstr) {
+    vcrControls.find("#jmpLastInstr").attr("disabled", true);
+    vcrControls.find("#jmpStepFwd").attr("disabled", true);
   }
 
 
@@ -670,7 +666,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
   function highlightCodeLine() {
     /* if instrLimitReached, then treat like a normal non-terminating line */
-    var isTerminated = (!myViz.instrLimitReached && (myViz.curInstr == (totalInstrs-1)));
+    var isTerminated = (!myViz.instrLimitReached && isLastInstr);
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.lineNo')
       .attr('id', function(d) {return 'lineNo' + d.lineNumber;})
@@ -1083,8 +1079,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   //        the format is: 'heap_pointer_src_<src id>'
   // Value: CSS ID of the div element representing the value rendered in the heap
   //        (the format is: 'heap_object_<id>')
-  var connectionEndpointIDs = {};
-  var heapConnectionEndpointIDs = {}; // subset of connectionEndpointIDs for heap->heap connections
+  var connectionEndpointIDs = d3.map();
+  var heapConnectionEndpointIDs = d3.map(); // subset of connectionEndpointIDs for heap->heap connections
 
   var heap_pointer_src_id = 1; // increment this to be unique for each heap_pointer_src_*
 
@@ -1092,7 +1088,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   var renderedObjectIDs = d3.map();
 
   // count everything in curToplevelLayout as already rendered since we will render them
-  // in the d3 .each() statement labeled 'FOOBAR' (might be confusing!)
+  // in d3 .each() statements
   $.each(curToplevelLayout, function(xxx, row) {
     for (var i = 0; i < row.length; i++) {
       renderedObjectIDs.set(row[i], 1);
@@ -1221,11 +1217,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       heap_pointer_src_id++; // just make sure each source has a UNIQUE ID
       d3DomElement.append('<div id="' + srcDivID + '">&nbsp;</div>');
 
-      assert(connectionEndpointIDs[srcDivID] === undefined);
-      connectionEndpointIDs[srcDivID] = 'heap_object_' + objID;
+      assert(!connectionEndpointIDs.has(srcDivID));
+      connectionEndpointIDs.set(srcDivID, 'heap_object_' + objID);
 
-      assert(heapConnectionEndpointIDs[srcDivID] === undefined);
-      heapConnectionEndpointIDs[srcDivID] = 'heap_object_' + objID;
+      assert(!heapConnectionEndpointIDs.has(srcDivID));
+      heapConnectionEndpointIDs.set(srcDivID, 'heap_object_' + objID);
 
       return; // early return!
     }
@@ -1391,6 +1387,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // Render globals and then stack frames:
   // TODO: could convert to using d3 to map globals and stack frames directly into stack frame divs
   // (which might make it easier to do smooth transitions)
+  // However, I need to think carefully about what to use as object keys for stack objects.
+  // Perhaps a combination of function name and current position index? This might handle
+  // recursive calls well (i.e., when there are multiple invocations of the same function
+  // on the stack)
 
   // render all global variables IN THE ORDER they were created by the program,
   // in order to ensure continuity:
@@ -1420,9 +1420,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
           var varDivID = 'global__' + varnameToCssID(varname);
           curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
 
-          assert(connectionEndpointIDs[varDivID] === undefined);
-          var heapObjID = 'heap_object_' + getRefID(val);
-          connectionEndpointIDs[varDivID] = heapObjID;
+          assert(!connectionEndpointIDs.has(varDivID));
+          connectionEndpointIDs.set(varDivID, 'heap_object_' + getRefID(val));
         }
       }
     });
@@ -1509,9 +1508,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
           var varDivID = divID + '__' + varnameToCssID(varname);
           curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
 
-          assert(connectionEndpointIDs[varDivID] === undefined);
-          var heapObjID = 'heap_object_' + getRefID(val);
-          connectionEndpointIDs[varDivID] = heapObjID;
+          assert(!connectionEndpointIDs.has(varDivID));
+          connectionEndpointIDs.set(varDivID, 'heap_object_' + getRefID(val));
         }
       });
     }
@@ -1519,10 +1517,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
 
   // finally add all the connectors!
-  for (varID in connectionEndpointIDs) {
-    var valueID = connectionEndpointIDs[varID];
+  connectionEndpointIDs.forEach(function(varID, valueID) {
     jsPlumb.connect({source: varID, target: valueID});
-  }
+  });
 
 
   function highlight_frame(frameID) {
@@ -1542,24 +1539,23 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         c.endpoints[0].setPaintStyle({fillStyle: darkBlue});
         c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
 
-        // ... and move it to the VERY FRONT
-        $(c.canvas).css("z-index", 1000);
+        $(c.canvas).css("z-index", 1000); // ... and move it to the VERY FRONT
       }
       // for heap->heap connectors
-      else if (heapConnectionEndpointIDs[c.endpoints[0].elementId] !== undefined) {
+      else if (heapConnectionEndpointIDs.has(c.endpoints[0].elementId)) {
         // then HIGHLIGHT IT!
-        c.setPaintStyle({lineWidth:1, strokeStyle: darkBlue}); // make thinner
+        c.setPaintStyle({lineWidth:1, strokeStyle: darkBlue});
         c.endpoints[0].setPaintStyle({fillStyle: darkBlue});
         c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
-        //c.setConnector([ "Bezier", {curviness: 80} ]); // make it more curvy
-        c.setConnector([ "StateMachine" ]);
-        c.addOverlay([ "Arrow", { length: 10, width:7, foldback:0.55, location:1 }]);
+
+        $(c.canvas).css("z-index", 1000); // ... and move it to the VERY FRONT
       }
       else {
         // else unhighlight it
         c.setPaintStyle({lineWidth:1, strokeStyle: lightGray});
         c.endpoints[0].setPaintStyle({fillStyle: lightGray});
         c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
+
         $(c.canvas).css("z-index", 0);
       }
     }
@@ -1714,4 +1710,29 @@ function getRefID(obj) {
   assert(obj[0] == 'REF');
   return obj[1];
 }
+
+
+
+// global initializers (fortunately, jQuery allows multiple $(document).ready calls!)
+$(document).ready(function() {
+
+  // set some sensible jsPlumb defaults
+  jsPlumb.Defaults.Endpoint = ["Dot", {radius:3}];
+  //jsPlumb.Defaults.Endpoint = ["Rectangle", {width:3, height:3}];
+  jsPlumb.Defaults.EndpointStyle = {fillStyle: lightGray};
+  jsPlumb.Defaults.Anchors = ["RightMiddle", "LeftMiddle"]; // for aesthetics!
+  jsPlumb.Defaults.PaintStyle = {lineWidth:1, strokeStyle: lightGray};
+
+  // bezier curve style:
+  //jsPlumb.Defaults.Connector = [ "Bezier", { curviness:15 }]; /* too much 'curviness' causes lines to run together */
+  //jsPlumb.Defaults.Overlays = [[ "Arrow", { length: 14, width:10, foldback:0.55, location:0.35 }]]
+
+  // state machine curve style:
+  jsPlumb.Defaults.Connector = [ "StateMachine" ];
+  jsPlumb.Defaults.Overlays = [[ "Arrow", { length: 10, width:7, foldback:0.55, location:1 }]];
+
+  jsPlumb.Defaults.EndpointHoverStyle = {fillStyle: pinkish};
+  jsPlumb.Defaults.HoverPaintStyle = {lineWidth:2, strokeStyle: pinkish};
+
+});
 
