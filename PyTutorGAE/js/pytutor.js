@@ -454,7 +454,7 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
 
     var lineNo = d3.select(t).datum().lineNumber;
 
-    if (myViz.visitedLinesSet[lineNo]) {
+    if (myViz.visitedLinesSet.has(lineNo)) {
       d3.select(t.parentNode).select('td.lineNo').style('color', visitedLineColor);
       d3.select(t.parentNode).select('td.lineNo').style('font-weight', 'bold');
     }
