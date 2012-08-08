@@ -67,6 +67,8 @@ function ExecutionVisualizer(inputCode, traceData, startingInstruction, domRootI
 
 
   this.hasRendered = false;
+
+  this.render(); // go for it!
 }
 
 
@@ -144,9 +146,7 @@ ExecutionVisualizer.prototype.render = function() {
 
 
   this.domRoot.find('#genUrlBtn').bind('click', function() {
-    // override mode with 'visualize' ...
     var urlStr = jQuery.param.fragment(window.location.href, {code: myViz.curInputCode, curInstr: myViz.curInstr}, 2);
-
     myViz.domRoot.find('#urlOutput').val(urlStr);
   });
 
@@ -251,7 +251,7 @@ ExecutionVisualizer.prototype.render = function() {
   // before it can receive focus and thus receive keyboard events. Set it here:
   this.domRoot.attr('tabindex', '0');
   this.domRoot.css('outline', 'none'); // don't display a tacky border when focused
-  this.domRoot.focus();
+ 
 
   this.domRoot.keydown(function(k) {
     if (!myViz.keyStuckDown) {
@@ -348,12 +348,12 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
     var sliderOverlay = myViz.domRootD3.select('#executionSliderFooter')
       .append('svg')
       .attr('id', 'sliderOverlay')
-      .attr('width', $('#executionSlider').width())
+      .attr('width', myViz.domRoot.find('#executionSlider').width())
       .attr('height', 12);
 
     var xrange = d3.scale.linear()
       .domain([0, myViz.curTrace.length - 1])
-      .range([0, $('#executionSlider').width()]);
+      .range([0, myViz.domRoot.find('#executionSlider').width()]);
 
     sliderOverlay.selectAll('rect')
       .data(myViz.sortedBreakpointsList)
@@ -504,7 +504,7 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
   }
 
 
-  $('#pyCodeOutputDiv').empty();
+  myViz.domRoot.find('#pyCodeOutputDiv').empty();
 
   // maps this.codeOutputLines to both table columns
   this.domRootD3.select('#pyCodeOutputDiv')
@@ -580,9 +580,10 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
 }
 
 
-// TODO: call this when the window gets resized
 ExecutionVisualizer.prototype.updateOutput = function() {
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
+
+  this.domRoot.focus(); // grab focus so that keyboard shortcuts can work
 
   assert(this.curTrace);
 
@@ -598,34 +599,34 @@ ExecutionVisualizer.prototype.updateOutput = function() {
   // and DON'T highlight any lines of code in the code display
   if (this.curInstr == (totalInstrs-1)) {
     if (this.instrLimitReached) {
-      $("#vcrControls #curInstr").html("Instruction limit reached");
+      myViz.domRoot.find("#vcrControls #curInstr").html("Instruction limit reached");
     }
     else {
-      $("#vcrControls #curInstr").html("Program has terminated");
+      myViz.domRoot.find("#vcrControls #curInstr").html("Program has terminated");
     }
   }
   else {
-    $("#vcrControls #curInstr").html("About to run step " + (this.curInstr + 1) + " of " + (totalInstrs-1));
+    myViz.domRoot.find("#vcrControls #curInstr").html("About to run step " + (this.curInstr + 1) + " of " + (totalInstrs-1));
   }
 
 
-  $("#vcrControls #jmpFirstInstr").attr("disabled", false);
-  $("#vcrControls #jmpStepBack").attr("disabled", false);
-  $("#vcrControls #jmpStepFwd").attr("disabled", false);
-  $("#vcrControls #jmpLastInstr").attr("disabled", false);
+  myViz.domRoot.find("#vcrControls #jmpFirstInstr").attr("disabled", false);
+  myViz.domRoot.find("#vcrControls #jmpStepBack").attr("disabled", false);
+  myViz.domRoot.find("#vcrControls #jmpStepFwd").attr("disabled", false);
+  myViz.domRoot.find("#vcrControls #jmpLastInstr").attr("disabled", false);
 
   if (this.curInstr == 0) {
-    $("#vcrControls #jmpFirstInstr").attr("disabled", true);
-    $("#vcrControls #jmpStepBack").attr("disabled", true);
+    myViz.domRoot.find("#vcrControls #jmpFirstInstr").attr("disabled", true);
+    myViz.domRoot.find("#vcrControls #jmpStepBack").attr("disabled", true);
   }
   if (this.curInstr == (totalInstrs-1)) {
-    $("#vcrControls #jmpLastInstr").attr("disabled", true);
-    $("#vcrControls #jmpStepFwd").attr("disabled", true);
+    myViz.domRoot.find("#vcrControls #jmpLastInstr").attr("disabled", true);
+    myViz.domRoot.find("#vcrControls #jmpStepFwd").attr("disabled", true);
   }
 
 
   // PROGRAMMATICALLY change the value, so evt.originalEvent should be undefined
-  $('#executionSlider').slider('value', this.curInstr);
+  myViz.domRoot.find('#executionSlider').slider('value', this.curInstr);
 
 
   // render error (if applicable):
@@ -634,22 +635,21 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     assert(curEntry.exception_msg);
 
     if (curEntry.exception_msg == "Unknown error") {
-      $("#errorOutput").html('Unknown error: Please email a bug report to philip@pgbovine.net');
+      myViz.domRoot.find("#errorOutput").html('Unknown error: Please email a bug report to philip@pgbovine.net');
     }
     else {
-      $("#errorOutput").html(htmlspecialchars(curEntry.exception_msg));
+      myViz.domRoot.find("#errorOutput").html(htmlspecialchars(curEntry.exception_msg));
     }
 
-    $("#errorOutput").show();
+    myViz.domRoot.find("#errorOutput").show();
 
     hasError = true;
   }
   else {
     if (!this.instrLimitReached) { // ugly, I know :/
-      $("#errorOutput").hide();
+      myViz.domRoot.find("#errorOutput").hide();
     }
   }
-
 
 
   function highlightCodeLine(curLine, hasError, isTerminated) {
@@ -693,10 +693,10 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
     // returns True iff lineNo is visible in pyCodeOutputDiv
     function isOutputLineVisible(lineNo) {
-      var lineNoTd = $('#lineNo' + lineNo);
+      var lineNoTd = myViz.domRoot.find('#lineNo' + lineNo);
       var LO = lineNoTd.offset().top;
 
-      var codeOutputDiv = $('#pyCodeOutputDiv');
+      var codeOutputDiv = myViz.domRoot.find('#pyCodeOutputDiv');
       var PO = codeOutputDiv.offset().top;
       var ST = codeOutputDiv.scrollTop();
       var H = codeOutputDiv.height();
@@ -708,17 +708,16 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
     // smoothly scroll pyCodeOutputDiv so that the given line is at the center
     function scrollCodeOutputToLine(lineNo) {
-      var lineNoTd = $('#lineNo' + lineNo);
+      var lineNoTd = myViz.domRoot.find('#lineNo' + lineNo);
       var LO = lineNoTd.offset().top;
 
-      var codeOutputDiv = $('#pyCodeOutputDiv');
+      var codeOutputDiv = myViz.domRoot.find('#pyCodeOutputDiv');
       var PO = codeOutputDiv.offset().top;
       var ST = codeOutputDiv.scrollTop();
       var H = codeOutputDiv.height();
 
       codeOutputDiv.animate({scrollTop: (ST + (LO - PO - (Math.round(H / 2))))}, 300);
     }
-
 
 
     // smoothly scroll code display
@@ -749,15 +748,15 @@ ExecutionVisualizer.prototype.updateOutput = function() {
   // render stdout:
 
   // keep original horizontal scroll level:
-  var oldLeft = $("#pyStdout").scrollLeft();
-  $("#pyStdout").val(curEntry.stdout);
+  var oldLeft = myViz.domRoot.find("#pyStdout").scrollLeft();
+  myViz.domRoot.find("#pyStdout").val(curEntry.stdout);
 
-  $("#pyStdout").scrollLeft(oldLeft);
+  myViz.domRoot.find("#pyStdout").scrollLeft(oldLeft);
   // scroll to bottom, though:
-  $("#pyStdout").scrollTop($("#pyStdout")[0].scrollHeight);
+  myViz.domRoot.find("#pyStdout").scrollTop(myViz.domRoot.find("#pyStdout")[0].scrollHeight);
 
 
-  // finally, render all the data structures!!!
+  // finally, render all of the data structures
   this.renderDataStructures();
 }
 
@@ -1221,7 +1220,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     // wrap ALL compound objects in a heapObject div so that jsPlumb
     // connectors can point to it:
     d3DomElement.append('<div class="heapObject" id="heap_object_' + objID + '"></div>');
-    d3DomElement = $('#heap_object_' + objID);
+    d3DomElement = myViz.domRoot.find('#heap_object_' + objID);
 
 
     renderedObjectIDs.set(objID, 1);
@@ -1551,9 +1550,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       }
     }
 
-    // clear everything, then just activate $(this) one ...
-    $(".stackFrame").removeClass("highlightedStackFrame");
-    $('#' + frameID).addClass("highlightedStackFrame");
+    // clear everything, then just activate this one ...
+    myViz.domRoot.find(".stackFrame").removeClass("highlightedStackFrame");
+    myViz.domRoot.find('#' + frameID).addClass("highlightedStackFrame");
   }
 
 

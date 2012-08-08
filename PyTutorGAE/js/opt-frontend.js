@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // Pre-reqs: pytutor.js and jquery.ba-bbq.min.js should be imported BEFORE this file
 
-var appMode = 'edit'; // 'edit', 'visualize', or 'grade' (only for question.html)
+var appMode = 'edit'; // 'edit' or 'visualize'
 
 var preseededCode = null;     // if you passed in a 'code=<code string>' in the URL, then set this var
 var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
@@ -107,7 +107,7 @@ $(document).ready(function() {
 
       // do this AFTER making #pyOutputPane visible, or else
       // jsPlumb connectors won't render properly
-      myVisualizer.render();
+      myVisualizer.updateOutput();
 
       // customize edit button click functionality AFTER rendering (TODO: awkward!)
       $('#pyOutputPane #editBtn').click(function() {
