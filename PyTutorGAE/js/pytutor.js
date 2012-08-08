@@ -27,17 +27,34 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
-// Massive refactoring notes:
-//   - does jsPlumb have a notion of "sets" of connectors so that we can reset a particular
-//     set rather than ALL connections?
-//     - or maybe each ExecutionVisualizer instance needs to keep track
-//       of its own set of jsPlumb elements ...
-
+var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer instance
 
 function ExecutionVisualizer(inputCode, traceData, startingInstruction, domRootID) {
   this.curInputCode = inputCode;
   this.curTrace = traceData;
   this.curInstr = startingInstruction;
+
+  this.visualizerID = curVisualizerID;
+  curVisualizerID++;
+
+
+  // cool, we can create a separate jsPlumb instance for each visualization:
+  this.jsPlumbInstance = jsPlumb.getInstance({
+    Endpoint: ["Dot", {radius:3}],
+    EndpointStyles: [{fillStyle: lightGray}, {fillstyle: null} /* make right endpoint invisible */],
+    Anchors: ["RightMiddle", "LeftMiddle"],
+    PaintStyle: {lineWidth:1, strokeStyle: lightGray},
+
+    // bezier curve style:
+    //Connector: [ "Bezier", { curviness:15 }], /* too much 'curviness' causes lines to run together */
+    //Overlays: [[ "Arrow", { length: 14, width:10, foldback:0.55, location:0.35 }]],
+
+    // state machine curve style:
+    Connector: [ "StateMachine" ],
+    Overlays: [[ "Arrow", { length: 10, width:7, foldback:0.55, location:1 }]],
+    EndpointHoverStyles: [{fillStyle: pinkish}, {fillstyle: null} /* make right endpoint invisible */],
+    HoverPaintStyle: {lineWidth:2, strokeStyle: pinkish},
+  });
 
 
   this.visitedLinesSet = null; // will change at every execution point
@@ -1059,11 +1076,13 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 // of data structure aliasing. That is, aliased objects were rendered
 // multiple times, and a unique ID label was used to identify aliases.
 ExecutionVisualizer.prototype.renderDataStructures = function() {
-  var myViz = this; // to prevent confusion of 'this' inside of nested functions
+  // TODO: this is a known performance bottleneck (e.g., try to
+  // scroll quickly through the Towers of Hanoi example) since
+  // we are removing and redrawing ALL arrows on every call, so
+  // look into incrementally redrawing only what's changed between calls.
+  this.jsPlumbInstance.reset();
 
-  // VERY VERY IMPORTANT --- and reset ALL jsPlumb state to prevent
-  // weird mis-behavior!!!
-  jsPlumb.reset();
+  var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
   var curEntry = this.curTrace[this.curInstr];
   var curToplevelLayout = this.curTraceLayouts[this.curInstr];
@@ -1079,9 +1098,14 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   // Key:   CSS ID of the div element representing the stack frame variable
   //        (for stack->heap connections) or heap object (for heap->heap connections)
-  //        the format is: 'heap_pointer_src_<src id>'
+  //        the format is: '<this.visualizerID>__heap_pointer_src_<src id>'
   // Value: CSS ID of the div element representing the value rendered in the heap
-  //        (the format is: 'heap_object_<id>')
+  //        (the format is: '<this.visualizerID>__heap_object_<id>')
+  //
+  // The reason we need to prepend this.visualizerID is because jsPlumb needs
+  // GLOBALLY UNIQUE IDs for use as connector endpoints. Actually this is no
+  // longer true since we can use this.jsPlumbInstance, but still it's nice
+  // to have unique div IDs
   var connectionEndpointIDs = d3.map();
   var heapConnectionEndpointIDs = d3.map(); // subset of connectionEndpointIDs for heap->heap connections
 
@@ -1216,24 +1240,29 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       // IE needs this div to be NON-EMPTY in order to properly
       // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
 
-      var srcDivID = 'heap_pointer_src_' + heap_pointer_src_id;
+      var srcDivID = myViz.visualizerID + '__heap_pointer_src_' + heap_pointer_src_id;
       heap_pointer_src_id++; // just make sure each source has a UNIQUE ID
       d3DomElement.append('<div id="' + srcDivID + '">&nbsp;</div>');
 
+      var dstDivID = myViz.visualizerID + '__heap_object_' + objID;
+
       assert(!connectionEndpointIDs.has(srcDivID));
-      connectionEndpointIDs.set(srcDivID, 'heap_object_' + objID);
+      connectionEndpointIDs.set(srcDivID, dstDivID);
 
       assert(!heapConnectionEndpointIDs.has(srcDivID));
-      heapConnectionEndpointIDs.set(srcDivID, 'heap_object_' + objID);
+      heapConnectionEndpointIDs.set(srcDivID, dstDivID);
 
       return; // early return!
     }
 
 
+    var heapObjID = myViz.visualizerID + '__heap_object_' + objID;
+
+
     // wrap ALL compound objects in a heapObject div so that jsPlumb
     // connectors can point to it:
-    d3DomElement.append('<div class="heapObject" id="heap_object_' + objID + '"></div>');
-    d3DomElement = myViz.domRoot.find('#heap_object_' + objID);
+    d3DomElement.append('<div class="heapObject" id="' + heapObjID + '"></div>');
+    d3DomElement = myViz.domRoot.find('#' + heapObjID);
 
 
     renderedObjectIDs.set(objID, 1);
@@ -1424,7 +1453,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
           curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
 
           assert(!connectionEndpointIDs.has(varDivID));
-          connectionEndpointIDs.set(varDivID, 'heap_object_' + getRefID(val));
+          var heapObjID = myViz.visualizerID + '__heap_object_' + getRefID(val);
+          connectionEndpointIDs.set(varDivID, heapObjID);
         }
       }
     });
@@ -1512,7 +1542,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
           curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
 
           assert(!connectionEndpointIDs.has(varDivID));
-          connectionEndpointIDs.set(varDivID, 'heap_object_' + getRefID(val));
+
+          var heapObjID = myViz.visualizerID + '__heap_object_' + getRefID(val);
+          connectionEndpointIDs.set(varDivID, heapObjID);
         }
       });
     }
@@ -1521,12 +1553,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   // finally add all the connectors!
   connectionEndpointIDs.forEach(function(varID, valueID) {
-    jsPlumb.connect({source: varID, target: valueID});
+    myViz.jsPlumbInstance.connect({source: varID, target: valueID});
   });
 
 
   function highlight_frame(frameID) {
-    var allConnections = jsPlumb.getConnections();
+    var allConnections = myViz.jsPlumbInstance.getConnections();
     for (var i = 0; i < allConnections.length; i++) {
       var c = allConnections[i];
 
@@ -1540,7 +1572,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         // then HIGHLIGHT IT!
         c.setPaintStyle({lineWidth:1, strokeStyle: darkBlue});
         c.endpoints[0].setPaintStyle({fillStyle: darkBlue});
-        c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
+        //c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
 
         $(c.canvas).css("z-index", 1000); // ... and move it to the VERY FRONT
       }
@@ -1549,7 +1581,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         // then HIGHLIGHT IT!
         c.setPaintStyle({lineWidth:1, strokeStyle: darkBlue});
         c.endpoints[0].setPaintStyle({fillStyle: darkBlue});
-        c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
+        //c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
 
         $(c.canvas).css("z-index", 1000); // ... and move it to the VERY FRONT
       }
@@ -1557,7 +1589,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         // else unhighlight it
         c.setPaintStyle({lineWidth:1, strokeStyle: lightGray});
         c.endpoints[0].setPaintStyle({fillStyle: lightGray});
-        c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
+        //c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
 
         $(c.canvas).css("z-index", 0);
       }
@@ -1713,29 +1745,4 @@ function getRefID(obj) {
   assert(obj[0] == 'REF');
   return obj[1];
 }
-
-
-
-// global initializers (fortunately, jQuery allows multiple $(document).ready calls!)
-$(document).ready(function() {
-
-  // set some sensible jsPlumb defaults
-  jsPlumb.Defaults.Endpoint = ["Dot", {radius:3}];
-  //jsPlumb.Defaults.Endpoint = ["Rectangle", {width:3, height:3}];
-  jsPlumb.Defaults.EndpointStyle = {fillStyle: lightGray};
-  jsPlumb.Defaults.Anchors = ["RightMiddle", "LeftMiddle"]; // for aesthetics!
-  jsPlumb.Defaults.PaintStyle = {lineWidth:1, strokeStyle: lightGray};
-
-  // bezier curve style:
-  //jsPlumb.Defaults.Connector = [ "Bezier", { curviness:15 }]; /* too much 'curviness' causes lines to run together */
-  //jsPlumb.Defaults.Overlays = [[ "Arrow", { length: 14, width:10, foldback:0.55, location:0.35 }]]
-
-  // state machine curve style:
-  jsPlumb.Defaults.Connector = [ "StateMachine" ];
-  jsPlumb.Defaults.Overlays = [[ "Arrow", { length: 10, width:7, foldback:0.55, location:1 }]];
-
-  jsPlumb.Defaults.EndpointHoverStyle = {fillStyle: pinkish};
-  jsPlumb.Defaults.HoverPaintStyle = {lineWidth:2, strokeStyle: pinkish};
-
-});
 
