@@ -531,7 +531,7 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
       setHoverBreakpoint(this);
      })
     .on('mouseout', function() {
-      hoverBreakpoints = d3.map();
+      myViz.hoverBreakpoints = d3.map();
 
       var breakpointHere = d3.select(this).datum().breakpointHere;
 
