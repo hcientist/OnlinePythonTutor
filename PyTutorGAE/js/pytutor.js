@@ -36,6 +36,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 // params contains optional parameters, such as:
 //   startingInstruction - the (one-indexed) execution point to display upon rendering
 //   hideOutput - hide "Program output" and "Generate URL" displays
+//   codeDivHeight - maximum height of #pyCodeOutputDiv (in pixels)
 function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code;
   this.curTrace = dat.trace;
@@ -163,6 +164,10 @@ ExecutionVisualizer.prototype.render = function() {
       </td>\
     </tr>\
   </table>');
+
+  if (this.params && this.params.codeDivHeight) {
+    this.domRoot.find('#pyCodeOutputDiv').css('max-height', this.params.codeDivHeight);
+  }
 
 
   if (this.params && this.params.hideOutput) {
