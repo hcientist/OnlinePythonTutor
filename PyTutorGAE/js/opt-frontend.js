@@ -176,7 +176,9 @@ $(document).ready(function() {
                 preseededCurInstr = null;
               }
 
-              myVisualizer = new ExecutionVisualizer(dataFromBackend, startingInstruction, 'pyOutputPane');
+              myVisualizer = new ExecutionVisualizer('pyOutputPane',
+                                                     dataFromBackend,
+                                                     {startingInstruction: startingInstruction});
 
               $.bbq.pushState({ mode: 'visualize' }, 2 /* completely override other hash strings to keep URL clean */);
             }

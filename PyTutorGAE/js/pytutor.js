@@ -33,16 +33,16 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 // dat is data returned by the Python Tutor backend consisting of two fields:
 //   code  - string of executed code
 //   trace - a full execution trace 
-// startingInstruction is (optional) the execution point to display upon rendering (one-indexed)
-function ExecutionVisualizer(domRootID, dat, startingInstruction /* optional */) {
+// params contains optional parameters, such as:
+//   startingInstruction - the (one-indexed) execution point to display upon rendering
+//   hideOutput - hide "Program output" and "Generate URL" displays
+function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code;
   this.curTrace = dat.trace;
 
   this.curInstr = 0;
 
-  if (startingInstruction) {
-    this.curInstr = (startingInstruction - 1); // zero-indexed
-  }
+  this.params = params;
 
   // needs to be unique!
   this.visualizerID = curVisualizerID;
@@ -137,9 +137,11 @@ ExecutionVisualizer.prototype.render = function() {
           </div>\
           <div id="errorOutput"/>\
         </center>\
+        <div id="progOutputs">\
         Program output:<br/>\
         <textarea id="pyStdout" cols="50" rows="13" wrap="off" readonly></textarea>\
         <p><button id="genUrlBtn" class="smallBtn" type="button">Generate URL</button> <input type="text" id="urlOutput" size="60"/></p>\
+        </div>\
       </td>\
       <td valign="top">\
         <div id="dataViz">\
@@ -163,6 +165,9 @@ ExecutionVisualizer.prototype.render = function() {
   </table>');
 
 
+  if (this.params && this.params.hideOutput) {
+    this.domRoot.find('#progOutputs').hide();
+  }
 
   this.domRoot.find('#genUrlBtn').bind('click', function() {
     var urlStr = $.param.fragment(window.location.href,
@@ -222,11 +227,10 @@ ExecutionVisualizer.prototype.render = function() {
     this.curTrace.shift();
   }
 
-  var sliderDiv = this.domRoot.find('#executionSlider');
-
   // set up slider after postprocessing curTrace
-  sliderDiv.slider({min: 0, max: this.curTrace.length - 1, step: 1});
 
+  var sliderDiv = this.domRoot.find('#executionSlider');
+  sliderDiv.slider({min: 0, max: this.curTrace.length - 1, step: 1});
   //disable keyboard actions on the slider itself (to prevent double-firing of events)
   sliderDiv.find(".ui-slider-handle").unbind('keydown');
   // make skinnier and taller
@@ -245,6 +249,12 @@ ExecutionVisualizer.prototype.render = function() {
     }
   });
 
+
+  if (this.params && this.params.startingInstruction) {
+    assert(1 <= this.params.startingInstruction &&
+           this.params.startingInstruction <= this.curTrace.length);
+    this.curInstr = (this.params.startingInstruction - 1); // convert to zero-indexed
+  }
 
 
   this.setKeyboardBindings();
@@ -626,8 +636,6 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
 // This function is called every time the display needs to be updated
 ExecutionVisualizer.prototype.updateOutput = function() {
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
-
-  this.domRoot.find('td#left_pane').focus(); // to start accepting keyboard inputs
 
   assert(this.curTrace);
 
