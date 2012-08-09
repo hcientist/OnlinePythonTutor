@@ -109,6 +109,9 @@ $(document).ready(function() {
       // jsPlumb connectors won't render properly
       myVisualizer.updateOutput();
 
+      // grab focus so that keyboard events work
+      myVisualizer.grabKeyboardFocus();
+
       // customize edit button click functionality AFTER rendering (TODO: awkward!)
       $('#pyOutputPane #editBtn').click(function() {
         enterEditMode();

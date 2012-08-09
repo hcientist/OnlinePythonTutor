@@ -395,6 +395,11 @@ ExecutionVisualizer.prototype.setKeyboardBindings = function() {
 }
 
 
+ExecutionVisualizer.prototype.grabKeyboardFocus = function() {
+  this.domRoot.find('td#left_pane').focus();
+}
+
+
 ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
