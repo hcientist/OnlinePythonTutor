@@ -1577,17 +1577,23 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .data(curEntry.stack_to_render, function(frame, i) {
       // use a frankenstein combination of frame identifiers and also the INDEX (stack position)
       // as the join key, to properly handle closures and recursive calls of the same function
-      return frame.func_name + '_' + String(frame.is_zombie) + '_' + String(frame.frame_id) + '_' + String(frame.parent_frame_id_list) + '_' + i;
+      return frame.func_name + '_' + String(frame.frame_id) + '_' + String(frame.parent_frame_id_list) + '_' + String(frame.is_zombie) + '_' + i;
     });
  
   // ENTER - create a new stack frame div for each entry in curEntry.stack_to_render
   stackD3.enter()
     .append('div')
+    .each(function(frame, i) {
+      console.log('APPEND DIV', (frame.func_name + '_' + String(frame.frame_id) + '_' + String(frame.parent_frame_id_list) + '_' + i));
+    })
     .attr('class', function(d, i) {return d.is_zombie ? 'zombieStackFrame' : 'stackFrame';})
     .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i) : myViz.generateID("stack" + i);})
 
+  /*
   // UPDATE:
-  stackD3.append('div')
+  var stackFrameTable = stackD3
+    .order()  // VERY IMPORTANT to put in the order corresponding to data elements
+    .append('div')
     .attr('class', 'stackFrameHeader')
     .attr('id', function(frame, i) {return frame.is_zombie ? myViz.generateID("zombie_stack_header" + i) : myViz.generateID("stack_header" + i);})
     .html(function(frame, i) {
@@ -1607,10 +1613,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
       return headerLabel;
     });
-
-
-  // remember that the enter selection is added to the update
-  // selection so that we can process it later ...
+  */
 
   /*
   var stackFrameTable = stackD3.order()
