@@ -1102,7 +1102,6 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 }
 
 
-
 // The "3.0" version of renderDataStructures renders variables in
 // a stack, values in a separate heap, and draws line connectors
 // to represent both stack->heap object references and, more importantly,
@@ -1575,18 +1574,27 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   var stackDiv = myViz.domRootD3.select('#stack');
 
   var stackFrameDiv = stackDiv.selectAll('div')
-    .data(curEntry.stack_to_render, function(frame, i) {
-      // use a frankenstein combination of frame identifiers and also the INDEX (stack position)
-      // as the join key, to properly handle closures and recursive calls of the same function
-      return frame.func_name + '_' + String(frame.frame_id) + '_' + String(frame.parent_frame_id_list) + '_' + String(frame.is_zombie) + '_' + i;
+    .data(curEntry.stack_to_render, function(frame) {
+      return frame.unique_hash; // VERY IMPORTANT for properly handling closures and nested functions
     });
 
   stackFrameDiv.enter().append('div')
     .attr('class', function(d, i) {return d.is_zombie ? 'zombieStackFrame' : 'stackFrame';})
-    .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i) : myViz.generateID("stack" + i);});
+    //.attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack_" + htmlspecialchars(d.unique_hash))
+    //                                               : myViz.generateID("stack_" + htmlspecialchars(d.unique_hash));
+    //})
+    .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i)
+                                                   : myViz.generateID("stack" + i);
+    })
 
 
+
+  /*
+  // I suspect I need to use .order() somewhere, but I can't seem to get it in the right place :(
   stackFrameDiv
+    .each(function(frame, i) {
+      console.log('UPDATE stackFrameDiv', frame.unique_hash);
+    })
     .append('div')
     .attr('class', 'stackFrameHeader')
     .html(function(frame, i) {
@@ -1605,9 +1613,13 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       }
 
       return headerLabel;
-    });
+    })
+  */
+
+  stackFrameDiv.exit().remove();
 
 
+  /*
   stackFrameDiv
     .append('div')
     .attr('class', 'derrrr')
@@ -1637,9 +1649,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     });
 
   stackVarTable.exit().remove();
+  */
 
 
-  stackFrameDiv.exit().remove();
 
   /*
   stackFrame.enter()

@@ -436,6 +436,24 @@ class PGLogger(bdb.Bdb):
 
           stack_to_render.insert(j, e)
 
+        # create a unique hash for this stack entry, so that the
+        # frontend can uniquely identify it when doing incremental
+        # rendering. the strategy is to use a frankenstein-like mix of the
+        # relevant fields to properly disambiguate closures and recursive
+        # calls to the same function (stack_index is key for
+        # disambiguating recursion!)
+        for (stack_index, e) in enumerate(stack_to_render):
+          hash_str = e['func_name']
+          if e['frame_id']:
+            hash_str += '_f' + str(e['frame_id'])
+          if e['parent_frame_id_list']:
+            hash_str += '_p' + '_'.join([str(i) for i in e['parent_frame_id_list']])
+          if e['is_zombie']:
+            hash_str += '_z'
+          hash_str += '_i' + str(stack_index)
+
+          e['unique_hash'] = hash_str
+
 
         trace_entry = dict(line=lineno,
                            event=event_type,
