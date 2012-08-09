@@ -1572,27 +1572,26 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   */
 
 
-  var stackD3 = d3.select('#stack')
-    .selectAll('div')
+  var stackDiv = myViz.domRootD3.select('#stack');
+
+  var stackFrameDiv = stackDiv.selectAll('div')
     .data(curEntry.stack_to_render, function(frame, i) {
       // use a frankenstein combination of frame identifiers and also the INDEX (stack position)
       // as the join key, to properly handle closures and recursive calls of the same function
       return frame.func_name + '_' + String(frame.frame_id) + '_' + String(frame.parent_frame_id_list) + '_' + String(frame.is_zombie) + '_' + i;
     });
- 
-  // ENTER - create a new stack frame div for each entry in curEntry.stack_to_render
-  var stackEnter = stackD3.enter();
 
-  var stackFrame = stackEnter.append('div')
-    .each(function(frame, i) {
-      console.log('APPEND DIV', (frame.func_name + '_' + String(frame.frame_id) + '_' + String(frame.parent_frame_id_list) + '_' + i));
-    })
+  stackFrameDiv.enter().append('div')
     .attr('class', function(d, i) {return d.is_zombie ? 'zombieStackFrame' : 'stackFrame';})
     .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i) : myViz.generateID("stack" + i);});
 
-  var stackVarsTable = stackFrame
+
+  var stackVarTable = stackFrameDiv
+    .each(function(frame, i) {
+      console.log('ENTER/UPDATE DIV', (frame.func_name + '_' + String(frame.frame_id) + '_' + String(frame.parent_frame_id_list) + '_' + i));
+    })
     .selectAll('li')
-    .data(function(frame, i) {
+    .data(function(frame) {
       // each list element contains a reference to the entire frame object as well as the variable name
       // TODO: look into whether we can use d3 parent nodes to avoid this hack ... http://bost.ocks.org/mike/nest/
       return frame.ordered_varnames.map(function(e) {return [e, frame];});
@@ -1600,19 +1599,18 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       function(d) {return d[0];} // use variable name as key
     );
 
-  stackVarsTable
+  stackVarTable
     .enter()
-    .append('li');
-
-  stackVarsTable
+    .append('li')
     .html(function(d, i) {
       var varname = d[0];
       var frame = d[1];
       return varname + '_' + frame.func_name;
     });
 
-  stackVarsTable.exit().remove();
+  stackVarTable.exit().remove();
 
+  stackFrameDiv.exit().remove();
 
   /*
   stackFrame.enter()
@@ -1695,10 +1693,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   stackFrameTable.exit()
     .remove
   */
-
-  // EXIT - stack frame
-  stackD3.exit()
-    .remove()
 
 
   function renderStackFrame(frame, ind, is_zombie) {
