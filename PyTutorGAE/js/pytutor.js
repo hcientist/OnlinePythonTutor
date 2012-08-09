@@ -1505,36 +1505,47 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .selectAll('td')
     .data(function(d, i){return d;}) /* map varname down both columns */
     .each(function(varname, i) {
-      console.log('EACH!', i, varname);
-
       if (i == 1) {
         var val = curEntry.globals[varname];
 
-        if (isPrimitiveType(val)) {
-          $(this).empty(); // crude but effective; maybe soften with a transition later
-          renderPrimitiveObject(val, $(this));
+        // include type in repr to prevent conflating integer 5 with string "5"
+        var valStringRepr = String(typeof val) + ':' + String(val);
+
+        // SUPER HACK - retrieve previous value as a hidden attribute
+        var prevValStringRepr = $(this).attr('data-curvalue');
+
+        // IMPORTANT! only clear the div and render a new element if the
+        // value has changed
+        if (valStringRepr != prevValStringRepr) {
+          // TODO: render a transition
+
+          $(this).empty(); // crude but effective for now
+
+          if (isPrimitiveType(val)) {
+            renderPrimitiveObject(val, $(this));
+          }
+          else {
+            // add a stub so that we can connect it with a connector later.
+            // IE needs this div to be NON-EMPTY in order to properly
+            // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
+
+            // make sure varname doesn't contain any weird
+            // characters that are illegal for CSS ID's ...
+            var varDivID = myViz.generateID('global__' + varnameToCssID(varname));
+            $(this).append('<div id="' + varDivID + '">&nbsp;</div>');
+
+            assert(!connectionEndpointIDs.has(varDivID));
+            var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
+            connectionEndpointIDs.set(varDivID, heapObjID);
+          }
+
+          console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
         }
-        else {
-          $(this).empty(); // crude but effective; maybe soften with a transition later
 
-          // or even better, simply keep <div id=varDivID> around if it already exists
-          // so that jsPlumb connectors can persist.
-
-
-          // add a stub so that we can connect it with a connector later.
-          // IE needs this div to be NON-EMPTY in order to properly
-          // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
-
-          // make sure varname doesn't contain any weird
-          // characters that are illegal for CSS ID's ...
-          var varDivID = myViz.generateID('global__' + varnameToCssID(varname));
-          $(this).append('<div id="' + varDivID + '">&nbsp;</div>');
-
-          assert(!connectionEndpointIDs.has(varDivID));
-          var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
-          connectionEndpointIDs.set(varDivID, heapObjID);
-        }
+        // SUPER HACK - set current value as a hidden string attribute
+        $(this).attr('data-curvalue', valStringRepr);
       }
+
     });
 
   globalsD3.exit()
