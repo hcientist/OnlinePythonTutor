@@ -487,11 +487,13 @@ td.dictKey .typeLabel {
 
 /* new stuff added for Online Python Tutor "2.0" release */
 
-div#stack {
-  float: left;
+div#stack, div#globals_area {
   padding-left: 10px;
   padding-right: 30px;
-  border-right: 1px dashed #bbbbbb;
+
+  /* no longer necessary ... */
+  /*float: left;*/
+  /* border-right: 1px dashed #bbbbbb; */
 }
 
 div.stackFrame, div.zombieStackFrame {

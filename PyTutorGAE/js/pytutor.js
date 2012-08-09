@@ -150,8 +150,10 @@ ExecutionVisualizer.prototype.render = function() {
           <table id="stackHeapTable">\
             <tr>\
               <td id="stack_td">\
-                <div id="stack">\
+                <div id="globals_area">\
                   <div id="stackHeader">Frames</div>\
+                </div>\
+                <div id="stack">\
                 </div>\
               </td>\
               <td id="heap_td">\
@@ -168,7 +170,8 @@ ExecutionVisualizer.prototype.render = function() {
 
 
   // create a persistent globals frame
-  this.domRoot.find("#stack").append('<div class="stackFrame" id="'
+  // (note that we need to keep #globals_area separate from #stack for d3 to work its magic)
+  this.domRoot.find("#globals_area").append('<div class="stackFrame" id="'
     + myViz.generateID('globals') + '"><div id="' + myViz.generateID('globals_header')
     + '" class="stackFrameHeader">Global variables</div><table class="stackFrameVarTable" id="'
     + myViz.generateID('global_table') + '"></table></div>');
@@ -1548,6 +1551,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
     });
 
+  // EXIT
   globalsD3.exit()
     .remove();
 
@@ -1566,6 +1570,73 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     renderStackFrame(e, i, e.is_zombie);
   });
   */
+
+
+  var stackD3 = d3.select('#stack')
+    .selectAll('div')
+    .data(curEntry.stack_to_render, function(d, i) {
+      // use a frankenstein combination of function name, zombie status, and INDEX as the key,
+      // to properly handle closures and recursive calls of the same function
+      return d.func_name + '_' + d.is_zombie + '_' + i;
+    });
+ 
+  // ENTER
+  stackD3.enter()
+    .append('div')
+    .attr('class', function(d, i) {return d.is_zombie ? 'zombieStackFrame' : 'stackFrame';})
+    .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i) : myViz.generateID("stack" + i);})
+
+
+  // remember that the enter selection is added to the update
+  // selection so that we can process it later ...
+
+  // UPDATE
+  stackD3.order() // VERY IMPORTANT to put in the order corresponding to data elements
+    .append('div')
+    .attr('class', 'stackFrameHeader')
+    .attr('id', function(d, i) {
+      return d.is_zombie ? myViz.generateID("zombie_stack_header" + i) : myViz.generateID("stack_header" + i);
+    })
+    .html(function(frame, i) {
+      console.log('UPDATE', frame.func_name);
+
+      var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
+
+      var headerLabel = funcName + '()';
+
+      var frameID = frame.frame_id; // optional (btw, this isn't a CSS id)
+      if (frameID) {
+        headerLabel = 'f' + frameID + ': ' + headerLabel;
+      }
+
+      // optional (btw, this isn't a CSS id)
+      if (frame.parent_frame_id_list.length > 0) {
+        var parentFrameID = frame.parent_frame_id_list[0];
+        headerLabel = headerLabel + ' [parent=f' + parentFrameID + ']';
+      }
+
+      return headerLabel;
+    })
+    .append('table')
+    .attr('class', 'stackFrameVarTable')
+    .selectAll('tr')
+    .data(function(frame, i) {
+      // each list element contains a reference to the entire frame object as well as the variable name
+      // TODO: look into whether we can use d3 parent nodes to avoid this hack ... http://bost.ocks.org/mike/nest/
+      return frame.ordered_varnames.map(function(e) {return [e, frame];});
+    })
+    .enter()
+    .append('tr')
+    .append('td')
+    .html(function(d, i) {
+      var varname = d[0];
+      var frame = d[1];
+      return varname + '_' + frame.func_name;
+    })
+
+  // EXIT
+  stackD3.exit()
+    .remove()
 
 
   function renderStackFrame(frame, ind, is_zombie) {
