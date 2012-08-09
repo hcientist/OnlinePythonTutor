@@ -1574,33 +1574,24 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   var stackD3 = d3.select('#stack')
     .selectAll('div')
-    .data(curEntry.stack_to_render, function(d, i) {
-      // use a frankenstein combination of function name, zombie status, and INDEX as the key,
-      // to properly handle closures and recursive calls of the same function
-      return d.func_name + '_' + d.is_zombie + '_' + i;
+    .data(curEntry.stack_to_render, function(frame, i) {
+      // use a frankenstein combination of frame identifiers and also the INDEX (stack position)
+      // as the join key, to properly handle closures and recursive calls of the same function
+      return frame.func_name + '_' + String(frame.is_zombie) + '_' + String(frame.frame_id) + '_' + String(frame.parent_frame_id_list) + '_' + i;
     });
  
-  // ENTER
+  // ENTER - create a new stack frame div for each entry in curEntry.stack_to_render
   stackD3.enter()
     .append('div')
     .attr('class', function(d, i) {return d.is_zombie ? 'zombieStackFrame' : 'stackFrame';})
     .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i) : myViz.generateID("stack" + i);})
-    .append('div')
+
+  // UPDATE:
+  stackD3.append('div')
     .attr('class', 'stackFrameHeader')
-    .attr('id', function(d, i) {
-      return d.is_zombie ? myViz.generateID("zombie_stack_header" + i) : myViz.generateID("stack_header" + i);
-    })
-
-  // remember that the enter selection is added to the update
-  // selection so that we can process it later ...
-
-  // UPDATE
-  stackD3.order() // VERY IMPORTANT to put in the order corresponding to data elements
+    .attr('id', function(frame, i) {return frame.is_zombie ? myViz.generateID("zombie_stack_header" + i) : myViz.generateID("stack_header" + i);})
     .html(function(frame, i) {
-      console.log('UPDATE', frame.func_name);
-
       var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
-
       var headerLabel = funcName + '()';
 
       var frameID = frame.frame_id; // optional (btw, this isn't a CSS id)
@@ -1615,11 +1606,15 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       }
 
       return headerLabel;
-    })
+    });
 
-  var stackFrameTable = stackD3
-    .append('table')
-    .attr('class', 'stackFrameVarTable')
+
+  // remember that the enter selection is added to the update
+  // selection so that we can process it later ...
+
+  /*
+  var stackFrameTable = stackD3.order()
+    .select('.stackFrameVarTable')
     .selectAll('tr')
     .data(function(frame, i) {
       // each list element contains a reference to the entire frame object as well as the variable name
@@ -1629,16 +1624,25 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       function(d) {return d[0];} // use variable name as key
     );
 
+  // ENTER - stack frame variables table
   stackFrameTable.enter()
     .append('tr')
     .append('td')
+
+  // UPDATE - stack frame variables table
+  stackFrameTable
     .html(function(d, i) {
       var varname = d[0];
       var frame = d[1];
       return varname + '_' + frame.func_name;
     })
 
-  // EXIT
+  // EXIT - stack frame variables table
+  stackFrameTable.exit()
+    .remove
+  */
+
+  // EXIT - stack frame
   stackD3.exit()
     .remove()
 
