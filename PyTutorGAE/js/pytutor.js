@@ -1586,7 +1586,33 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i) : myViz.generateID("stack" + i);});
 
 
-  var stackVarTable = stackFrameDiv
+  stackFrameDiv
+    .append('div')
+    .attr('class', 'stackFrameHeader')
+    .html(function(frame, i) {
+      var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
+      var headerLabel = funcName + '()';
+
+      var frameID = frame.frame_id; // optional (btw, this isn't a CSS id)
+      if (frameID) {
+        headerLabel = 'f' + frameID + ': ' + headerLabel;
+      }
+
+      // optional (btw, this isn't a CSS id)
+      if (frame.parent_frame_id_list.length > 0) {
+        var parentFrameID = frame.parent_frame_id_list[0];
+        headerLabel = headerLabel + ' [parent=f' + parentFrameID + ']';
+      }
+
+      return headerLabel;
+    });
+
+
+  stackFrameDiv
+    .append('div')
+    .attr('class', 'derrrr')
+
+  var stackVarTable = stackFrameDiv.select('div.derrrr')
     .each(function(frame, i) {
       console.log('ENTER/UPDATE DIV', (frame.func_name + '_' + String(frame.frame_id) + '_' + String(frame.parent_frame_id_list) + '_' + i));
     })
@@ -1602,6 +1628,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   stackVarTable
     .enter()
     .append('li')
+
+  stackVarTable
     .html(function(d, i) {
       var varname = d[0];
       var frame = d[1];
@@ -1609,6 +1637,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     });
 
   stackVarTable.exit().remove();
+
 
   stackFrameDiv.exit().remove();
 
