@@ -94,7 +94,7 @@ class ObjectEncoder:
   # and as a side effect, update encoded_heap_objects
   def encode(self, dat):
     # primitive type
-    if type(dat) in (int, float, str, bool, type(None)):
+    if type(dat) in (int, long, float, str, bool, type(None)):
       return dat
 
     # compound type - return an object reference and update encoded_heap_objects
