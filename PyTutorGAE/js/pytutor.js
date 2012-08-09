@@ -1585,18 +1585,17 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .append('div')
     .attr('class', function(d, i) {return d.is_zombie ? 'zombieStackFrame' : 'stackFrame';})
     .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i) : myViz.generateID("stack" + i);})
-
+    .append('div')
+    .attr('class', 'stackFrameHeader')
+    .attr('id', function(d, i) {
+      return d.is_zombie ? myViz.generateID("zombie_stack_header" + i) : myViz.generateID("stack_header" + i);
+    })
 
   // remember that the enter selection is added to the update
   // selection so that we can process it later ...
 
   // UPDATE
   stackD3.order() // VERY IMPORTANT to put in the order corresponding to data elements
-    .append('div')
-    .attr('class', 'stackFrameHeader')
-    .attr('id', function(d, i) {
-      return d.is_zombie ? myViz.generateID("zombie_stack_header" + i) : myViz.generateID("stack_header" + i);
-    })
     .html(function(frame, i) {
       console.log('UPDATE', frame.func_name);
 
@@ -1617,6 +1616,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
       return headerLabel;
     })
+
+  var stackFrameTable = stackD3
     .append('table')
     .attr('class', 'stackFrameVarTable')
     .selectAll('tr')
@@ -1624,8 +1625,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       // each list element contains a reference to the entire frame object as well as the variable name
       // TODO: look into whether we can use d3 parent nodes to avoid this hack ... http://bost.ocks.org/mike/nest/
       return frame.ordered_varnames.map(function(e) {return [e, frame];});
-    })
-    .enter()
+      },
+      function(d) {return d[0];} // use variable name as key
+    );
+
+  stackFrameTable.enter()
     .append('tr')
     .append('td')
     .html(function(d, i) {
