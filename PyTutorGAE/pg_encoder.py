@@ -1,8 +1,8 @@
 # Online Python Tutor
 # https://github.com/pgbovine/OnlinePythonTutor/
-# 
+#
 # Copyright (C) 2010-2012 Philip J. Guo (philip@pgbovine.net)
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the
 # "Software"), to deal in the Software without restriction, including
@@ -10,10 +10,10 @@
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to
 # the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included
 # in all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
 # OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -55,6 +55,10 @@ classRE = re.compile("<class '(.*)'>")
 
 import inspect
 
+def get_name(obj):
+  """Return the name of an object."""
+  return obj.__name__ if hasattr(obj, '__name__') else get_name(type(obj))
+
 
 # Note that this might BLOAT MEMORY CONSUMPTION since we're holding on
 # to every reference ever created by the program without ever releasing
@@ -90,8 +94,7 @@ class ObjectEncoder:
   # and as a side effect, update encoded_heap_objects
   def encode(self, dat):
     # primitive type
-    if dat is None or \
-       type(dat) in (int, long, float, str, bool):
+    if type(dat) in (int, float, str, bool, type(None)):
       return dat
 
     # compound type - return an object reference and update encoded_heap_objects
@@ -122,18 +125,21 @@ class ObjectEncoder:
 
       if typ == list:
         new_obj.append('LIST')
-        for e in dat: new_obj.append(self.encode(e))
+        for e in dat:
+          new_obj.append(self.encode(e))
       elif typ == tuple:
         new_obj.append('TUPLE')
-        for e in dat: new_obj.append(self.encode(e))
+        for e in dat:
+          new_obj.append(self.encode(e))
       elif typ == set:
         new_obj.append('SET')
-        for e in dat: new_obj.append(self.encode(e))
+        for e in dat:
+          new_obj.append(self.encode(e))
       elif typ == dict:
         new_obj.append('DICT')
-        for (k, v) in dat.iteritems():
+        for (k, v) in dat.items():
           # don't display some built-in locals ...
-          if k not in ('__module__', '__return__'):
+          if k not in ('__module__', '__return__', '__locals__'):
             new_obj.append([self.encode(k), self.encode(v)])
 
       elif typ in (types.InstanceType, types.ClassType, types.TypeType) or \
@@ -162,7 +168,7 @@ class ObjectEncoder:
         if argspec.keywords:
           printed_args.extend(['**' + e for e in argspec.keywords])
 
-        pretty_name = dat.__name__ + '(' + ', '.join(printed_args) + ')'
+        pretty_name = get_name(dat) + '(' + ', '.join(printed_args) + ')'
         new_obj.extend(['FUNCTION', pretty_name, None]) # the final element will be filled in later
       else:
         typeStr = str(typ)

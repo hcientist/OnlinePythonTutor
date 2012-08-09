@@ -1,8 +1,8 @@
 # Online Python Tutor
 # https://github.com/pgbovine/OnlinePythonTutor/
-# 
+#
 # Copyright (C) 2010-2012 Philip J. Guo (philip@pgbovine.net)
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the
 # "Software"), to deal in the Software without restriction, including
@@ -10,7 +10,7 @@
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to
 # the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included
 # in all copies or substantial portions of the Software.
 # 
@@ -67,7 +67,7 @@ def get_user_locals(frame):
 
 def filter_var_dict(d):
   ret = {}
-  for (k,v) in d.iteritems():
+  for (k,v) in d.items():
     if k not in IGNORE_VARS:
       ret[k] = v
   return ret
@@ -94,7 +94,7 @@ class PGLogger(bdb.Bdb):
         # Key:   function object
         # Value: parent frame
         self.closures = {}
-                 
+
         # List of frames to KEEP AROUND after the function exits,
         # because nested functions were defined in those frames.
         # ORDER matters for aesthetics.
@@ -125,7 +125,8 @@ class PGLogger(bdb.Bdb):
     # to make an educated guess based on the contents of local
     # variables inherited from possible parent frame candidates.
     def get_parent_frame(self, frame):
-      for (func_obj, parent_frame) in self.closures.iteritems():
+      # TODO(denero) Is this true in Python 3?!?
+      for (func_obj, parent_frame) in self.closures.items():
         # ok, there's a possible match, but let's compare the
         # local variables in parent_frame to those of frame
         # to make sure. this is a hack that happens to work because in
@@ -138,7 +139,7 @@ class PGLogger(bdb.Bdb):
               if parent_frame.f_locals[k] != frame.f_locals[k]:
                 all_matched = False
                 break
-          
+
           if all_matched:
             return parent_frame
 
@@ -191,7 +192,7 @@ class PGLogger(bdb.Bdb):
     def user_line(self, frame):
         """This function is called when we stop or break at this line."""
         if self._wait_for_mainpyfile:
-            if (self.canonic(frame.f_code.co_filename) != "<string>" or 
+            if (self.canonic(frame.f_code.co_filename) != "<string>" or
                 frame.f_lineno <= 0):
                 return
             self._wait_for_mainpyfile = 0
@@ -267,7 +268,7 @@ class PGLogger(bdb.Bdb):
           # effects of aliasing later down the line ...
           encoded_locals = {}
 
-          for (k, v) in get_user_locals(cur_frame).iteritems():
+          for (k, v) in get_user_locals(cur_frame).items():
             is_in_parent_frame = False
 
             # don't display locals that appear in your parents' stack frames,
@@ -275,7 +276,8 @@ class PGLogger(bdb.Bdb):
             for pid in parent_frame_id_list:
               parent_frame = self.lookup_zombie_frame_by_id(pid)
               if k in parent_frame.f_locals:
-                # ignore __return__
+                # TODO(denero) Check Python3
+                # ignore __return__, which is never copied
                 if k != '__return__':
                   # these values SHOULD BE ALIASES
                   # (don't do an 'is' check since it might not fire for primitives)
@@ -292,6 +294,7 @@ class PGLogger(bdb.Bdb):
             encoded_val = self.encoder.encode(v)
 
             # UGH, this is SUPER ugly but needed for nested function defs
+            # TODO(denero) Is this true in Python 3?!?
             if type(v) in (types.FunctionType, types.MethodType):
               try:
                 enclosing_frame = self.closures[v]
@@ -323,6 +326,13 @@ class PGLogger(bdb.Bdb):
           if '__return__' in encoded_locals:
             ordered_varnames.append('__return__')
 
+          # doctor Python 3 initializer to look like a normal function (denero)
+          if '__locals__' in encoded_locals:
+            ordered_varnames.remove('__locals__')
+            local = encoded_locals.pop('__locals__')
+            if encoded_locals.get('__return__', True) is None:
+              encoded_locals['__return__'] = local
+
           # crucial sanity checks!
           assert len(ordered_varnames) == len(encoded_locals)
           for e in ordered_varnames:
@@ -340,7 +350,7 @@ class PGLogger(bdb.Bdb):
         # look for whether a nested function has been defined during
         # this particular call:
         if i > 1: # i == 1 implies that there's only a global scope visible
-          for (k, v) in get_user_locals(top_frame).iteritems():
+          for (k, v) in get_user_locals(top_frame).items():
             if (type(v) in (types.FunctionType, types.MethodType) and \
                 v not in self.closures):
               self.closures[v] = top_frame
@@ -364,7 +374,7 @@ class PGLogger(bdb.Bdb):
         # encode in a JSON-friendly format now, in order to prevent ill
         # effects of aliasing later down the line ...
         encoded_globals = {}
-        for (k, v) in get_user_globals(tos[0]).iteritems():
+        for (k, v) in get_user_globals(tos[0]).items():
           encoded_val = self.encoder.encode(v)
 
           # UGH, this is SUPER ugly but needed for nested function defs
@@ -471,9 +481,9 @@ class PGLogger(bdb.Bdb):
         # allowing certain potentially dangerous operations:
         user_builtins = {}
         for (k,v) in __builtins__.iteritems():
-          if k in ('reload', 'input', 'apply', 'open', 'compile', 
+          if k in ('reload', 'input', 'apply', 'open', 'compile',
                    '__import__', 'file', 'eval', 'execfile',
-                   'exit', 'quit', 'raw_input', 
+                   'exit', 'quit', 'raw_input',
                    'dir', 'globals', 'locals', 'vars',
                    'compile'):
             continue
