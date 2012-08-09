@@ -1581,13 +1581,64 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     });
  
   // ENTER - create a new stack frame div for each entry in curEntry.stack_to_render
-  stackD3.enter()
-    .append('div')
+  var stackEnter = stackD3.enter();
+
+  var stackFrame = stackEnter.append('div')
     .each(function(frame, i) {
       console.log('APPEND DIV', (frame.func_name + '_' + String(frame.frame_id) + '_' + String(frame.parent_frame_id_list) + '_' + i));
     })
     .attr('class', function(d, i) {return d.is_zombie ? 'zombieStackFrame' : 'stackFrame';})
-    .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i) : myViz.generateID("stack" + i);})
+    .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i) : myViz.generateID("stack" + i);});
+
+  var stackVarsTable = stackFrame
+    .selectAll('li')
+    .data(function(frame, i) {
+      // each list element contains a reference to the entire frame object as well as the variable name
+      // TODO: look into whether we can use d3 parent nodes to avoid this hack ... http://bost.ocks.org/mike/nest/
+      return frame.ordered_varnames.map(function(e) {return [e, frame];});
+      },
+      function(d) {return d[0];} // use variable name as key
+    );
+
+  stackVarsTable
+    .enter()
+    .append('li');
+
+  stackVarsTable
+    .html(function(d, i) {
+      var varname = d[0];
+      var frame = d[1];
+      return varname + '_' + frame.func_name;
+    });
+
+  stackVarsTable.exit().remove();
+
+
+  /*
+  stackFrame.enter()
+    .append('div')
+    .attr('class', 'stackFrameHeader')
+    .attr('id', function(frame, i) {return frame.is_zombie ? myViz.generateID("zombie_stack_header" + i) : myViz.generateID("stack_header" + i);})
+    .html(function(frame, i) {
+      var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
+      var headerLabel = funcName + '()';
+
+      var frameID = frame.frame_id; // optional (btw, this isn't a CSS id)
+      if (frameID) {
+        headerLabel = 'f' + frameID + ': ' + headerLabel;
+      }
+
+      // optional (btw, this isn't a CSS id)
+      if (frame.parent_frame_id_list.length > 0) {
+        var parentFrameID = frame.parent_frame_id_list[0];
+        headerLabel = headerLabel + ' [parent=f' + parentFrameID + ']';
+      }
+
+      return headerLabel;
+    });
+  */
+
+
 
   /*
   // UPDATE:
