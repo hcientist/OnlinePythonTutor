@@ -100,7 +100,8 @@ function ExecutionVisualizer(domRootID, dat, params) {
 // create a unique ID, which is often necessary so that jsPlumb doesn't get confused
 // due to multiple ExecutionVisualizer instances being displayed simultaneously
 ExecutionVisualizer.prototype.generateID = function(original_id) {
-  return this.visualizerID + '__' + original_id;
+  // (it's safer to start names with a letter rather than a number)
+  return 'v' + this.visualizerID + '__' + original_id;
 }
 
 
@@ -164,6 +165,14 @@ ExecutionVisualizer.prototype.render = function() {
       </td>\
     </tr>\
   </table>');
+
+
+  // create a persistent globals frame
+  this.domRoot.find("#stack").append('<div class="stackFrame" id="'
+    + myViz.generateID('globals') + '"><div id="' + myViz.generateID('globals_header')
+    + '" class="stackFrameHeader">Global variables</div><table class="stackFrameVarTable" id="'
+    + myViz.generateID('global_table') + '"></table></div>');
+
 
   if (this.params && this.params.codeDivHeight) {
     this.domRoot.find('#pyCodeOutputDiv').css('max-height', this.params.codeDivHeight);
@@ -592,17 +601,12 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
     .data(this.codeOutputLines)
     .enter().append('tr')
     .selectAll('td')
-    .data(function(e, i){return [e, e];}) // bind an alias of the element to both table columns
+    .data(function(d, i){return [d, d] /* map full data item down both columns */;})
     .enter().append('td')
     .attr('class', function(d, i) {return (i == 0) ? 'lineNo' : 'cod';})
     .style('cursor', function(d, i) {return 'pointer'})
     .html(function(d, i) {
-      if (i == 0) {
-        return d.lineNumber;
-      }
-      else {
-        return htmlspecialchars(d.text);
-      }
+      return (i == 0) ? d.lineNumber : htmlspecialchars(d.text);
     })
     .on('mouseover', function() {
       setHoverBreakpoint(this);
@@ -1123,11 +1127,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   var curEntry = this.curTrace[this.curInstr];
   var curToplevelLayout = this.curTraceLayouts[this.curInstr];
 
-  // clear the stack and render it from scratch.
-  // the heap must be PERSISTENT so that d3 can render heap transitions.
-  this.domRoot.find("#stack").empty();
-  this.domRoot.find("#stack").append('<div id="stackHeader">Frames</div>');
-
 
   // Heap object rendering phase:
 
@@ -1164,7 +1163,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .selectAll('table.heapRow')
     .data(curToplevelLayout, function(objLst) {
       return objLst[0]; // return first element, which is the row ID tag
-  })
+  });
 
 
   // update an existing heap row
@@ -1172,12 +1171,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     //.each(function(objLst, i) { console.log('UPDATE ROW:', objLst, i); })
     .selectAll('td')
     .data(function(d, i) {return d.slice(1, d.length);}, /* map over each row, skipping row ID tag */
-          function(objID) {return objID;} /* each object ID is unique for constancy */)
+          function(objID) {return objID;} /* each object ID is unique for constancy */);
 
   // ENTER
   heapColumns.enter().append('td')
     .attr('class', 'toplevelHeapObject')
-    .attr('id', function(d, i) {return 'toplevel_heap_object_' + d;})
+    .attr('id', function(d, i) {return 'toplevel_heap_object_' + d;});
     // remember that the enter selection is added to the update
     // selection so that we can process it later ...
 
@@ -1191,11 +1190,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       // Right now, just delete the old element and render a new one in its place
       $(this).empty();
       renderCompoundObject(objID, $(this), true);
-    })
+    });
 
   // EXIT
   heapColumns.exit()
-    .remove()
+    .remove();
 
 
   // insert new heap rows
@@ -1450,37 +1449,78 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   }
 
 
-  // Render globals and then stack frames:
-  // TODO: could convert to using d3 to map globals and stack frames directly into stack frame divs
-  // (which might make it easier to do smooth transitions)
-  // However, I need to think carefully about what to use as object keys for stack objects.
-  // Perhaps a combination of function name and current position index? This might handle
-  // recursive calls well (i.e., when there are multiple invocations of the same function
-  // on the stack)
+  // Render globals and then stack frames using d3:
+
+  // TODO: However, I need to think carefully about what to use as
+  // object keys for stack objects.  Perhaps a combination of function
+  // name and current position index? This might handle recursive calls
+  // well (i.e., when there are multiple invocations of the same
+  // function on the stack)
+
 
   // render all global variables IN THE ORDER they were created by the program,
   // in order to ensure continuity:
-  if (curEntry.ordered_globals.length > 0) {
 
-    var globalsID = myViz.generateID('globals');
-    var globalTblID = myViz.generateID('global_table');
+  // Derive a list where each element contains a pair of
+  // [varname, value] as long as value is NOT undefined.
+  // (Sometimes entries in curEntry.ordered_globals are undefined,
+  // so filter those out.)
+  var realGlobalsLst = [];
+  $.each(curEntry.ordered_globals, function(i, varname) {
+    var val = curEntry.globals[varname];
 
-    this.domRoot.find("#stack").append('<div class="stackFrame" id="' + globalsID + '"><div id="' + myViz.generateID('globals_header') + '" class="stackFrameHeader">Global variables</div></div>');
-    this.domRoot.find('#stack #' + globalsID).append('<table class="stackFrameVarTable" id="' + globalTblID + '"></table>');
+    // (use '!==' to do an EXACT match against undefined)
+    if (val !== undefined) { // might not be defined at this line, which is OKAY!
+      realGlobalsLst.push([varname, varname]); /* purposely map varname down both columns */
+    }
+  });
 
-    var tbl = this.domRoot.find('#' + globalTblID);
+  var globalsID = myViz.generateID('globals');
+  var globalTblID = myViz.generateID('global_table');
 
-    $.each(curEntry.ordered_globals, function(i, varname) {
-      var val = curEntry.globals[varname];
-      // (use '!==' to do an EXACT match against undefined)
-      if (val !== undefined) { // might not be defined at this line, which is OKAY!
-        tbl.append('<tr><td class="stackFrameVar">' + varname + '</td><td class="stackFrameValue"></td></tr>');
-        var curTr = tbl.find('tr:last');
+  var globalsD3 = myViz.domRootD3.select('#' + globalTblID)
+    .selectAll('tr')
+    .data(realGlobalsLst, function(d) {
+      return d[0]; // use variable name as key
+    });
+    
+
+  // ENTER
+  globalsD3.enter()
+    .append('tr')
+    .selectAll('td')
+    .data(function(d, i){return d;}) /* map varname down both columns */
+    .enter()
+    .append('td')
+    .attr('class', function(d, i) {return (i == 0) ? 'stackFrameVar' : 'stackFrameValue';})
+    .html(function(d, i) {
+      return (i == 0) ? d : '' /* initialize in each() later */;
+    })
+  // remember that the enter selection is added to the update
+  // selection so that we can process it later ...
+
+  // UPDATE
+  globalsD3
+    .order() // VERY IMPORTANT to put in the order corresponding to data elements
+    .selectAll('td')
+    .data(function(d, i){return d;}) /* map varname down both columns */
+    .each(function(varname, i) {
+      console.log('EACH!', i, varname);
+
+      if (i == 1) {
+        var val = curEntry.globals[varname];
 
         if (isPrimitiveType(val)) {
-          renderPrimitiveObject(val, curTr.find("td.stackFrameValue"));
+          $(this).empty(); // crude but effective; maybe soften with a transition later
+          renderPrimitiveObject(val, $(this));
         }
-        else{
+        else {
+          $(this).empty(); // crude but effective; maybe soften with a transition later
+
+          // or even better, simply keep <div id=varDivID> around if it already exists
+          // so that jsPlumb connectors can persist.
+
+
           // add a stub so that we can connect it with a connector later.
           // IE needs this div to be NON-EMPTY in order to properly
           // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
@@ -1488,7 +1528,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
           // make sure varname doesn't contain any weird
           // characters that are illegal for CSS ID's ...
           var varDivID = myViz.generateID('global__' + varnameToCssID(varname));
-          curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
+          $(this).append('<div id="' + varDivID + '">&nbsp;</div>');
 
           assert(!connectionEndpointIDs.has(varDivID));
           var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
@@ -1496,12 +1536,25 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         }
       }
     });
+
+  globalsD3.exit()
+    .remove();
+
+
+  // for aesthetics, hide globals if there aren't any globals to display
+  if (curEntry.ordered_globals.length == 0) {
+    this.domRoot.find('#' + globalsID).hide();
+  }
+  else {
+    this.domRoot.find('#' + globalsID).show();
   }
 
 
+  /*
   $.each(curEntry.stack_to_render, function(i, e) {
     renderStackFrame(e, i, e.is_zombie);
   });
+  */
 
 
   function renderStackFrame(frame, ind, is_zombie) {
@@ -1601,9 +1654,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       var c = allConnections[i];
 
       // this is VERY VERY fragile code, since it assumes that going up
-      // five layers of parent() calls will get you from the source end
+      // FOUR layers of parent() calls will get you from the source end
       // of the connector to the enclosing stack frame
-      var stackFrameDiv = c.source.parent().parent().parent().parent().parent();
+      var stackFrameDiv = c.source.parent().parent().parent().parent();
 
       // if this connector starts in the selected stack frame ...
       if (stackFrameDiv.attr('id') == frameID) {
