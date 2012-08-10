@@ -1560,9 +1560,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   }
 
 
+  // holy cow, the d3 code for stack rendering is ABSOLUTELY NUTS!
 
   var stackDiv = myViz.domRootD3.select('#stack');
 
+  // VERY IMPORTANT for selectAll selector to be SUPER specific here!
   var stackFrameDiv = stackDiv.selectAll('div.stackFrame,div.zombieStackFrame')
     .data(curEntry.stack_to_render, function(frame) {
       // VERY VERY VERY IMPORTANT for properly handling closures and nested functions
@@ -1570,13 +1572,36 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       return frame.unique_hash;
     });
 
-  stackFrameDiv.enter()
+  var sfdEnter = stackFrameDiv.enter()
     .append('div')
     .attr('class', function(d, i) {return d.is_zombie ? 'zombieStackFrame' : 'stackFrame';})
     .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i)
                                                    : myViz.generateID("stack" + i);
     })
     .each(function(frame, i) {console.log('NEW STACK FRAME', frame.unique_hash);})
+
+  sfdEnter
+    .append('div')
+    .attr('class', 'stackFrameHeader')
+    .html(function(frame, i) {
+      var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
+      var headerLabel = funcName + '()';
+
+      var frameID = frame.frame_id; // optional (btw, this isn't a CSS id)
+      if (frameID) {
+        headerLabel = 'f' + frameID + ': ' + headerLabel;
+      }
+
+      // optional (btw, this isn't a CSS id)
+      if (frame.parent_frame_id_list.length > 0) {
+        var parentFrameID = frame.parent_frame_id_list[0];
+        headerLabel = headerLabel + ' [parent=f' + parentFrameID + ']';
+      }
+
+      return headerLabel;
+    })
+
+  sfdEnter
     .append('table')
     .attr('class', 'stackFrameVarTable');
 
@@ -1614,12 +1639,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       var frame = d.frame;
 
       if (i == 0) {
-        if (varname == '__return__' && !frame.is_zombie) {
+        if (varname == '__return__' && !frame.is_zombie)
           $(this).html('<span class="retval">Return value</span>');
-        }
-        else {
+        else
           $(this).html(varname);
-        }
       }
       else {
         var val = frame.encoded_locals[varname];
@@ -1675,33 +1698,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .each(function(frame, i) {console.log('DEL STACK FRAME', frame.unique_hash, i);})
     .remove();
 
-
-  // render stack frame headers in a "brute force" way by
-  // first clearing all of them ...
-  myViz.domRoot.find('#stack').find('.stackFrame,.zombieStackFrame').find('.stackFrameHeader').remove();
-
-  // ... and then rendering all of them again in one fell swoop
-  myViz.domRootD3.select('#stack').selectAll('.stackFrame,.zombieStackFrame')
-    .data(curEntry.stack_to_render)
-    .insert('div', ':first-child') // prepend before first child
-    .attr('class', 'stackFrameHeader')
-    .html(function(frame, i) {
-      var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
-      var headerLabel = funcName + '()';
-
-      var frameID = frame.frame_id; // optional (btw, this isn't a CSS id)
-      if (frameID) {
-        headerLabel = 'f' + frameID + ': ' + headerLabel;
-      }
-
-      // optional (btw, this isn't a CSS id)
-      if (frame.parent_frame_id_list.length > 0) {
-        var parentFrameID = frame.parent_frame_id_list[0];
-        headerLabel = headerLabel + ' [parent=f' + parentFrameID + ']';
-      }
-
-      return headerLabel;
-    })
 
 
   // finally add all the connectors!
