@@ -168,7 +168,10 @@ class ObjectEncoder:
         if argspec.keywords:
           printed_args.extend(['**' + e for e in argspec.keywords])
 
-        pretty_name = get_name(dat) + '(' + ', '.join(printed_args) + ')'
+        func_name = get_name(dat)
+        if func_name == '<lambda>':
+          func_name = u"\u03BB" # Unicode lambda :)
+        pretty_name = func_name + '(' + ', '.join(printed_args) + ')'
         new_obj.extend(['FUNCTION', pretty_name, None]) # the final element will be filled in later
       else:
         typeStr = str(typ)
