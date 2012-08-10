@@ -562,8 +562,11 @@ div#heap {
 }
 
 td.toplevelHeapObject {
-  padding-left: 0px;
-  padding-right: 20px;
+  margin-left: 0px;
+  margin-right: 20px;
+
+  padding: 8px;
+  border: 2px dotted white; /* to make room for transition animations */
 }
 
 table.heapRow {

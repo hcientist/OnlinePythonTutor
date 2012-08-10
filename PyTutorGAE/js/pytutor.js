@@ -1201,6 +1201,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   heapRows.enter().append('table')
     //.each(function(objLst, i) {console.log('NEW ROW:', objLst, i);})
     .attr('class', 'heapRow')
+    .append('tr')
     .selectAll('td')
     .data(function(d, i) {return d.slice(1, d.length);}, /* map over each row, skipping row ID tag */
           function(objID) {return objID;} /* each object ID is unique for constancy */)
@@ -1212,7 +1213,18 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
       // TODO: add a smoother transition in the future
       renderCompoundObject(objID, $(this), true);
-    });
+    })
+    /*
+    .transition()
+    .style('border-color', 'red')
+    .duration(100)
+    .transition()
+    .style('border-color', 'white')
+    .delay(100)
+    .duration(600)
+    */
+
+
 
   // remove deleted rows
   heapRows.exit()
