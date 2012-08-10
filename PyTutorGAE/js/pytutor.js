@@ -125,7 +125,7 @@ ExecutionVisualizer.prototype.render = function() {
             <button id="editBtn" class="medBtn" type="button">Edit code</button>\
           </div>\
           <div id="executionSliderCaption">\
-            Click to focus and then use the left and right arrow keys to<br/>\
+            Click here to focus and then use the left and right arrow keys to<br/>\
             step through execution. Click on lines of code to set breakpoints.\
           </div>\
           <div id="executionSlider"/>\
