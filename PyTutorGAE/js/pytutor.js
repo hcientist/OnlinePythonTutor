@@ -1640,7 +1640,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
       if (i == 0) {
         if (varname == '__return__' && !frame.is_zombie)
-          $(this).html('<span class="retval">Return value</span>');
+          $(this).html('<span class="retval">Return<br/>value</span>');
         else
           $(this).html(varname);
       }
@@ -1698,8 +1698,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .remove();
 
 
+  // crap, we need to repaint all of the existing connectors in case their endpoints have shifted
+  // due to page elements shifting around :(
+  myViz.jsPlumbInstance.repaintEverything();
 
-  // finally add all the connectors!
+  // finally add all the NEW connectors that have arisen in this call to renderDataStructures
   connectionEndpointIDs.forEach(function(varID, valueID) {
     myViz.jsPlumbInstance.connect({source: varID, target: valueID});
   });
