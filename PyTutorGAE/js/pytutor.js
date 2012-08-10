@@ -1453,12 +1453,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   // Render globals and then stack frames using d3:
 
-  // TODO: However, I need to think carefully about what to use as
-  // object keys for stack objects.  Perhaps a combination of function
-  // name and current position index? This might handle recursive calls
-  // well (i.e., when there are multiple invocations of the same
-  // function on the stack)
-
 
   // render all global variables IN THE ORDER they were created by the program,
   // in order to ensure continuity:
@@ -1569,7 +1563,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   var stackFrameDiv = stackDiv.selectAll('div')
     .data(curEntry.stack_to_render, function(frame) {
-      return frame.unique_hash; // VERY IMPORTANT for properly handling closures and nested functions
+      // VERY VERY VERY IMPORTANT for properly handling closures and nested functions
+      // (see the backend code for more details)
+      return frame.unique_hash;
     });
 
   stackFrameDiv.enter()
@@ -1578,9 +1574,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i)
                                                    : myViz.generateID("stack" + i);
     })
-    //.append('div')
-    //.attr('class', 'stackFrameHeader')
-    // TODO: perhaps this table keeps on getting cleared out since it's done on enter()?!?
     .append('table')
     .attr('class', 'stackFrameVarTable')
 
@@ -1609,30 +1602,23 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   stackVarTableCells.enter()
     .append('td')
+    .attr('class', function(d, i) {return (i == 0) ? 'stackFrameVar' : 'stackFrameValue';})
 
   stackVarTableCells
     .order() // VERY IMPORTANT to put in the order corresponding to data elements
-    .attr('class', function(d, i) {return (i == 0) ? 'stackFrameVar' : 'stackFrameValue';})
-    .html(function(d, i) {
-      var varname = d.varname;
-      var frame = d.frame;
-      if (i == 0) {
-        if (varname == '__return__' && !frame.is_zombie) {
-          return '<span class="retval">Return value</span>'
-        }
-        else {
-          return varname;
-        }
-      }
-      else {
-        return ''; // will update in .each()
-      }
-    })
     .each(function(d, i) {
       var varname = d.varname;
       var frame = d.frame;
 
-      if (i == 1) {
+      if (i == 0) {
+        if (varname == '__return__' && !frame.is_zombie) {
+          $(this).html('<span class="retval">Return value</span>');
+        }
+        else {
+          $(this).html(varname);
+        }
+      }
+      else {
         var val = frame.encoded_locals[varname];
 
         // include type in repr to prevent conflating integer 5 with string "5"
