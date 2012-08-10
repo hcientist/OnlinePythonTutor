@@ -1529,7 +1529,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             // make sure varname doesn't contain any weird
             // characters that are illegal for CSS ID's ...
             var varDivID = myViz.generateID('global__' + varnameToCssID(varname));
-            $(this).append('<span id="' + varDivID + '">&nbsp;</span>');
+            $(this).append('<div id="' + varDivID + '">&nbsp;</div>');
 
             assert(!connectionEndpointIDs.has(varDivID));
             var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
@@ -1672,8 +1672,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             // characters that are illegal for CSS ID's ...
             var varDivID = myViz.generateID(varnameToCssID(frame.unique_hash + '__' + varname));
 
-            // creepy - <div> doesn't work here, but <span> does ... ugh
-            $(this).append('<span id="' + varDivID + '">&nbsp;</span>');
+            $(this).append('<div id="' + varDivID + '">&nbsp;</div>');
 
             assert(!connectionEndpointIDs.has(varDivID));
             var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
