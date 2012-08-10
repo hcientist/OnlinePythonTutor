@@ -1283,6 +1283,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
       assert(!connectionEndpointIDs.has(srcDivID));
       connectionEndpointIDs.set(srcDivID, dstDivID);
+      console.log('HEAP->HEAP', srcDivID, dstDivID);
 
       assert(!heapConnectionEndpointIDs.has(srcDivID));
       heapConnectionEndpointIDs.set(srcDivID, dstDivID);
@@ -1533,6 +1534,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             assert(!connectionEndpointIDs.has(varDivID));
             var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
             connectionEndpointIDs.set(varDivID, heapObjID);
+            console.log('STACK->HEAP', varDivID, heapObjID);
           }
 
           console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
@@ -1652,9 +1654,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             assert(!connectionEndpointIDs.has(varDivID));
             var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
             connectionEndpointIDs.set(varDivID, heapObjID);
+            console.log('STACK->HEAP', varDivID, heapObjID);
           }
 
-          console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
+          console.log('CHANGED', frame.unique_hash, varname, prevValStringRepr, valStringRepr);
         }
 
         // SUPER HACK - set current value as a hidden string attribute
