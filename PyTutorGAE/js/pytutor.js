@@ -1563,7 +1563,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   var stackDiv = myViz.domRootD3.select('#stack');
 
-  var stackFrameDiv = stackDiv.selectAll('div')
+  var stackFrameDiv = stackDiv.selectAll('div.stackFrame,div.zombieStackFrame')
     .data(curEntry.stack_to_render, function(frame) {
       // VERY VERY VERY IMPORTANT for properly handling closures and nested functions
       // (see the backend code for more details)
@@ -1576,8 +1576,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i)
                                                    : myViz.generateID("stack" + i);
     })
+    .each(function(frame, i) {console.log('NEW STACK FRAME', frame.unique_hash);})
     .append('table')
-    .attr('class', 'stackFrameVarTable')
+    .attr('class', 'stackFrameVarTable');
 
 
   var stackVarTable = stackFrameDiv
@@ -1670,7 +1671,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   stackVarTable.exit().remove();
 
-  stackFrameDiv.exit().remove();
+  stackFrameDiv.exit()
+    .each(function(frame, i) {console.log('DEL STACK FRAME', frame.unique_hash, i);})
+    .remove();
 
 
   // render stack frame headers in a "brute force" way by
