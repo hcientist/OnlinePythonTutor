@@ -29,6 +29,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // Pre-reqs: pytutor.js and jquery.ba-bbq.min.js should be imported BEFORE this file
 
+var backend_script = 'exec'; // URL of backend script, which must eventually call pg_logger.py
+
 var appMode = 'edit'; // 'edit' or 'visualize'
 
 var preseededCode = null;     // if you passed in a 'code=<code string>' in the URL, then set this var
@@ -137,7 +139,7 @@ $(document).ready(function() {
     $("#pyOutputPane").hide();
 
 
-    $.get("exec",
+    $.get(backend_script,
           {user_script : pyInputCodeMirror.getValue()},
           function(dataFromBackend) {
             var trace = dataFromBackend.trace;

@@ -32,7 +32,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 // domRootID is the string ID of the root element where to render this instance
 // dat is data returned by the Python Tutor backend consisting of two fields:
 //   code  - string of executed code
-//   trace - a full execution trace 
+//   trace - a full execution trace
 // params contains optional parameters, such as:
 //   startingInstruction - the (one-indexed) execution point to display upon rendering
 //   hideOutput - hide "Program output" and "Generate URL" displays
@@ -356,7 +356,7 @@ ExecutionVisualizer.prototype.setKeyboardBindings = function() {
     leftTablePane.focus();
   });
   */
-    
+ 
  
   leftTablePane.keydown(function(k) {
     if (!myViz.keyStuckDown) {

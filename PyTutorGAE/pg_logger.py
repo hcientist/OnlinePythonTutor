@@ -36,7 +36,10 @@ import re
 import traceback
 import types
 
-import cStringIO
+if sys.version_info[0] == 3:
+  import io as cStringIO
+else:
+  import cStringIO
 import pg_encoder
 
 
