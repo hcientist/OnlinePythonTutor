@@ -1534,7 +1534,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             // make sure varname doesn't contain any weird
             // characters that are illegal for CSS ID's ...
             var varDivID = myViz.generateID('global__' + varnameToCssID(varname));
-            $(this).append('<div id="' + varDivID + '">&nbsp;</div>');
+            $(this).append('<span id="' + varDivID + '">&nbsp;</span>');
 
             assert(!connectionEndpointIDs.has(varDivID));
             var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
@@ -1564,12 +1564,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   }
 
 
-  /*
-  $.each(curEntry.stack_to_render, function(i, e) {
-    renderStackFrame(e, i, e.is_zombie);
-  });
-  */
-
 
   var stackDiv = myViz.domRootD3.select('#stack');
 
@@ -1578,65 +1572,22 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       return frame.unique_hash; // VERY IMPORTANT for properly handling closures and nested functions
     });
 
-  stackFrameDiv.enter().append('div')
+  stackFrameDiv.enter()
+    .append('div')
     .attr('class', function(d, i) {return d.is_zombie ? 'zombieStackFrame' : 'stackFrame';})
     .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i)
                                                    : myViz.generateID("stack" + i);
-    });
- 
-  var stackVarTable = stackFrameDiv.selectAll('table tr' /* MULTI-LEVEL SELECTIONS!!! GAHHHH!!! */)
-    .data(function(frame) {
-      // each list element contains a reference to the entire frame object as well as the variable name
-      // TODO: look into whether we can use d3 parent nodes to avoid this hack ... http://bost.ocks.org/mike/nest/
-      return frame.ordered_varnames.map(function(e) {return [e, frame];});
-      },
-      function(d) {return d[0];} // use variable name as key
-    );
-
-  stackVarTable
-    .enter()
-    .append('tr')
-  
-  var stackVarTableCells = stackVarTable
-    .selectAll('td')
-    .data(function(d, i) {return [d, d] /* map identical data down both columns */;})
-
-  stackVarTableCells.enter()
-    .append('td')
-
-  stackVarTableCells
-    .html(function(d, i) {
-      var varname = d[0];
-      var frame = d[1];
-      if (i == 0) {
-        return varname;
-      }
-      else {
-        return frame.encoded_locals[varname];
-      }
-    });
-
-  stackVarTableCells.exit().remove();
-
-  stackVarTable.exit().remove();
-
-
-  // I suspect I need to use .order() somewhere, but I can't seem to get it in the right place :(
-  stackFrameDiv
-    .each(function(frame, i) {
-      console.log('UPDATE stackFrameDiv', frame.unique_hash, i);
     })
+    //.append('div')
+    //.attr('class', 'stackFrameHeader')
+    // TODO: perhaps this table keeps on getting cleared out since it's done on enter()?!?
+    .append('table')
+    .attr('class', 'stackFrameVarTable')
 
-  stackFrameDiv.exit().remove();
-
-
-
+  
   /*
-  stackFrameDiv.select('div')
-    .data(function
-    .append('div')
-    .attr('class', 'stackFrameHeader')
-    .text(function(frame, i) {
+  stackFrameDiv.select('div.stackFrameHeader')
+    .html(function(frame, i) {
       var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
       var headerLabel = funcName + '()';
 
@@ -1652,11 +1603,104 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       }
 
       return headerLabel;
-    })
-    .each(function(frame, i) {
-      console.log('ENTER stackFrameDiv', frame.unique_hash, i);
-    })
+    });
   */
+ 
+  var stackVarTable = stackFrameDiv
+    .order() // VERY IMPORTANT to put in the order corresponding to data elements
+    .select('table').selectAll('tr')
+    .data(function(frame) {
+      // each list element contains a reference to the entire frame object as well as the variable name
+      // TODO: look into whether we can use d3 parent nodes to avoid this hack ... http://bost.ocks.org/mike/nest/
+      return frame.ordered_varnames.map(function(varname) {return [varname, frame];});
+      },
+      function(d) {return d[0];} // use variable name as key
+    );
+
+  stackVarTable
+    .enter()
+    .append('tr')
+  
+
+  var stackVarTableCells = stackVarTable
+    .selectAll('td')
+    .data(function(d, i) {return [d, d] /* map identical data down both columns */;})
+
+  stackVarTableCells.enter()
+    .append('td')
+
+  stackVarTableCells
+    .order() // VERY IMPORTANT to put in the order corresponding to data elements
+    .attr('class', function(d, i) {return (i == 0) ? 'stackFrameVar' : 'stackFrameValue';})
+    .html(function(d, i) {
+      var varname = d[0];
+      var frame = d[1];
+      if (i == 0) {
+        if (varname == '__return__' && !frame.is_zombie) {
+          return '<span class="retval">Return value</span>'
+        }
+        else {
+          return varname;
+        }
+      }
+      else {
+        return ''; // will update in .each()
+      }
+    })
+    .each(function(d, i) {
+      var varname = d[0];
+      var frame = d[1];
+
+      if (i == 1) {
+        var val = frame.encoded_locals[varname];
+
+        // include type in repr to prevent conflating integer 5 with string "5"
+        var valStringRepr = String(typeof val) + ':' + String(val);
+
+        // SUPER HACK - retrieve previous value as a hidden attribute
+        var prevValStringRepr = $(this).attr('data-curvalue');
+
+        // IMPORTANT! only clear the div and render a new element if the
+        // value has changed
+        if (valStringRepr != prevValStringRepr) {
+          // TODO: render a transition
+
+          $(this).empty(); // crude but effective for now
+
+          if (isPrimitiveType(val)) {
+            renderPrimitiveObject(val, $(this));
+          }
+          else {
+            // add a stub so that we can connect it with a connector later.
+            // IE needs this div to be NON-EMPTY in order to properly
+            // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
+
+            // make sure varname and frame.unique_hash don't contain any weird
+            // characters that are illegal for CSS ID's ...
+            var varDivID = myViz.generateID(varnameToCssID(frame.unique_hash + '__' + varname));
+
+            // creepy - <div> doesn't work here, but <span> does ... ugh
+            $(this).append('<span id="' + varDivID + '">&nbsp;</span>');
+
+            assert(!connectionEndpointIDs.has(varDivID));
+            var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
+            connectionEndpointIDs.set(varDivID, heapObjID);
+          }
+
+          console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
+        }
+
+        // SUPER HACK - set current value as a hidden string attribute
+        $(this).attr('data-curvalue', valStringRepr);
+      }
+    });
+
+
+  stackVarTableCells.exit().remove();
+
+  stackVarTable.exit().remove();
+
+  stackFrameDiv.exit().remove();
 
 
 
@@ -1744,6 +1788,13 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     }
   }
 
+  /*
+  $.each(curEntry.stack_to_render, function(i, e) {
+    renderStackFrame(e, i, e.is_zombie);
+  });
+  */
+
+
 
   // finally add all the connectors!
   connectionEndpointIDs.forEach(function(varID, valueID) {
@@ -1796,7 +1847,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
 
   // highlight the top-most non-zombie stack frame or, if not available, globals
-  /*
   var frame_already_highlighted = false;
   $.each(curEntry.stack_to_render, function(i, e) {
     if (e.is_highlighted) {
@@ -1808,7 +1858,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   if (!frame_already_highlighted) {
     highlight_frame(myViz.generateID('globals'));
   }
-  */
 
 }
 
