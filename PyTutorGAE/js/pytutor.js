@@ -1585,50 +1585,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     //})
     .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i)
                                                    : myViz.generateID("stack" + i);
-    })
-
-
-
-  /*
-  // I suspect I need to use .order() somewhere, but I can't seem to get it in the right place :(
-  stackFrameDiv
-    .each(function(frame, i) {
-      console.log('UPDATE stackFrameDiv', frame.unique_hash);
-    })
-    .append('div')
-    .attr('class', 'stackFrameHeader')
-    .html(function(frame, i) {
-      var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
-      var headerLabel = funcName + '()';
-
-      var frameID = frame.frame_id; // optional (btw, this isn't a CSS id)
-      if (frameID) {
-        headerLabel = 'f' + frameID + ': ' + headerLabel;
-      }
-
-      // optional (btw, this isn't a CSS id)
-      if (frame.parent_frame_id_list.length > 0) {
-        var parentFrameID = frame.parent_frame_id_list[0];
-        headerLabel = headerLabel + ' [parent=f' + parentFrameID + ']';
-      }
-
-      return headerLabel;
-    })
-  */
-
-  stackFrameDiv.exit().remove();
-
-
-  /*
-  stackFrameDiv
-    .append('div')
-    .attr('class', 'derrrr')
-
-  var stackVarTable = stackFrameDiv.select('div.derrrr')
-    .each(function(frame, i) {
-      console.log('ENTER/UPDATE DIV', (frame.func_name + '_' + String(frame.frame_id) + '_' + String(frame.parent_frame_id_list) + '_' + i));
-    })
-    .selectAll('li')
+    });
+ 
+  var stackVarTable = stackFrameDiv.selectAll('li')
     .data(function(frame) {
       // each list element contains a reference to the entire frame object as well as the variable name
       // TODO: look into whether we can use d3 parent nodes to avoid this hack ... http://bost.ocks.org/mike/nest/
@@ -1645,20 +1604,18 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .html(function(d, i) {
       var varname = d[0];
       var frame = d[1];
-      return varname + '_' + frame.func_name;
+      return varname;
     });
 
   stackVarTable.exit().remove();
-  */
-
 
 
   /*
-  stackFrame.enter()
+  stackFrameDiv.select('div')
+    .data(function
     .append('div')
     .attr('class', 'stackFrameHeader')
-    .attr('id', function(frame, i) {return frame.is_zombie ? myViz.generateID("zombie_stack_header" + i) : myViz.generateID("stack_header" + i);})
-    .html(function(frame, i) {
+    .text(function(frame, i) {
       var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
       var headerLabel = funcName + '()';
 
@@ -1674,66 +1631,21 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       }
 
       return headerLabel;
-    });
+    })
+    .each(function(frame, i) {
+      console.log('ENTER stackFrameDiv', frame.unique_hash, i);
+    })
   */
 
 
-
-  /*
-  // UPDATE:
-  var stackFrameTable = stackD3
-    .order()  // VERY IMPORTANT to put in the order corresponding to data elements
-    .append('div')
-    .attr('class', 'stackFrameHeader')
-    .attr('id', function(frame, i) {return frame.is_zombie ? myViz.generateID("zombie_stack_header" + i) : myViz.generateID("stack_header" + i);})
-    .html(function(frame, i) {
-      var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
-      var headerLabel = funcName + '()';
-
-      var frameID = frame.frame_id; // optional (btw, this isn't a CSS id)
-      if (frameID) {
-        headerLabel = 'f' + frameID + ': ' + headerLabel;
-      }
-
-      // optional (btw, this isn't a CSS id)
-      if (frame.parent_frame_id_list.length > 0) {
-        var parentFrameID = frame.parent_frame_id_list[0];
-        headerLabel = headerLabel + ' [parent=f' + parentFrameID + ']';
-      }
-
-      return headerLabel;
-    });
-  */
-
-  /*
-  var stackFrameTable = stackD3.order()
-    .select('.stackFrameVarTable')
-    .selectAll('tr')
-    .data(function(frame, i) {
-      // each list element contains a reference to the entire frame object as well as the variable name
-      // TODO: look into whether we can use d3 parent nodes to avoid this hack ... http://bost.ocks.org/mike/nest/
-      return frame.ordered_varnames.map(function(e) {return [e, frame];});
-      },
-      function(d) {return d[0];} // use variable name as key
-    );
-
-  // ENTER - stack frame variables table
-  stackFrameTable.enter()
-    .append('tr')
-    .append('td')
-
-  // UPDATE - stack frame variables table
-  stackFrameTable
-    .html(function(d, i) {
-      var varname = d[0];
-      var frame = d[1];
-      return varname + '_' + frame.func_name;
+  // I suspect I need to use .order() somewhere, but I can't seem to get it in the right place :(
+  stackFrameDiv
+    .each(function(frame, i) {
+      console.log('UPDATE stackFrameDiv', frame.unique_hash, i);
     })
 
-  // EXIT - stack frame variables table
-  stackFrameTable.exit()
-    .remove
-  */
+  stackFrameDiv.exit().remove();
+
 
 
   function renderStackFrame(frame, ind, is_zombie) {
@@ -1872,6 +1784,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
 
   // highlight the top-most non-zombie stack frame or, if not available, globals
+  /*
   var frame_already_highlighted = false;
   $.each(curEntry.stack_to_render, function(i, e) {
     if (e.is_highlighted) {
@@ -1883,6 +1796,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   if (!frame_already_highlighted) {
     highlight_frame(myViz.generateID('globals'));
   }
+  */
 
 }
 
