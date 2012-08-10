@@ -1596,7 +1596,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   stackVarTable
     .enter()
     .append('tr')
-
   
   var stackVarTableCells = stackVarTable
     .selectAll('td')
@@ -1609,10 +1608,27 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .html(function(d, i) {
       var varname = d[0];
       var frame = d[1];
-      return varname;
+      if (i == 0) {
+        return varname;
+      }
+      else {
+        return frame.encoded_locals[varname];
+      }
     });
 
+  stackVarTableCells.exit().remove();
+
   stackVarTable.exit().remove();
+
+
+  // I suspect I need to use .order() somewhere, but I can't seem to get it in the right place :(
+  stackFrameDiv
+    .each(function(frame, i) {
+      console.log('UPDATE stackFrameDiv', frame.unique_hash, i);
+    })
+
+  stackFrameDiv.exit().remove();
+
 
 
   /*
@@ -1641,15 +1657,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       console.log('ENTER stackFrameDiv', frame.unique_hash, i);
     })
   */
-
-
-  // I suspect I need to use .order() somewhere, but I can't seem to get it in the right place :(
-  stackFrameDiv
-    .each(function(frame, i) {
-      console.log('UPDATE stackFrameDiv', frame.unique_hash, i);
-    })
-
-  stackFrameDiv.exit().remove();
 
 
 
