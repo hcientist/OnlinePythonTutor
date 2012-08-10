@@ -1580,14 +1580,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   stackFrameDiv.enter().append('div')
     .attr('class', function(d, i) {return d.is_zombie ? 'zombieStackFrame' : 'stackFrame';})
-    //.attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack_" + htmlspecialchars(d.unique_hash))
-    //                                               : myViz.generateID("stack_" + htmlspecialchars(d.unique_hash));
-    //})
     .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i)
                                                    : myViz.generateID("stack" + i);
     });
  
-  var stackVarTable = stackFrameDiv.selectAll('li')
+  var stackVarTable = stackFrameDiv.selectAll('table tr' /* MULTI-LEVEL SELECTIONS!!! GAHHHH!!! */)
     .data(function(frame) {
       // each list element contains a reference to the entire frame object as well as the variable name
       // TODO: look into whether we can use d3 parent nodes to avoid this hack ... http://bost.ocks.org/mike/nest/
@@ -1598,9 +1595,17 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   stackVarTable
     .enter()
-    .append('li')
+    .append('tr')
 
-  stackVarTable
+  
+  var stackVarTableCells = stackVarTable
+    .selectAll('td')
+    .data(function(d, i) {return [d, d] /* map identical data down both columns */;})
+
+  stackVarTableCells.enter()
+    .append('td')
+
+  stackVarTableCells
     .html(function(d, i) {
       var varname = d[0];
       var frame = d[1];
