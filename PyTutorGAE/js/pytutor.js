@@ -1118,11 +1118,6 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 // of data structure aliasing. That is, aliased objects were rendered
 // multiple times, and a unique ID label was used to identify aliases.
 ExecutionVisualizer.prototype.renderDataStructures = function() {
-  // TODO: this is a known performance bottleneck (e.g., try to
-  // scroll quickly through the Towers of Hanoi example) since
-  // we are removing and redrawing ALL arrows on every call, so
-  // look into incrementally redrawing only what's changed between calls.
-  this.jsPlumbInstance.reset();
 
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
@@ -1141,6 +1136,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   //
   // The reason we need to prepend this.visualizerID is because jsPlumb needs
   // GLOBALLY UNIQUE IDs for use as connector endpoints.
+
+  // the only elements in these sets are NEW elements to be rendered in this
+  // particular call to renderDataStructures.
   var connectionEndpointIDs = d3.map();
   var heapConnectionEndpointIDs = d3.map(); // subset of connectionEndpointIDs for heap->heap connections
 
@@ -1281,9 +1279,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
       var dstDivID = myViz.generateID('heap_object_' + objID);
 
+      // TODO: we might be able to further optimize, since we might be re-drawing
+      // HEAP->HEAP connections when we can just keep the existing ones
       assert(!connectionEndpointIDs.has(srcDivID));
       connectionEndpointIDs.set(srcDivID, dstDivID);
-      console.log('HEAP->HEAP', srcDivID, dstDivID);
+      //console.log('HEAP->HEAP', srcDivID, dstDivID);
 
       assert(!heapConnectionEndpointIDs.has(srcDivID));
       heapConnectionEndpointIDs.set(srcDivID, dstDivID);
@@ -1534,10 +1534,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             assert(!connectionEndpointIDs.has(varDivID));
             var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
             connectionEndpointIDs.set(varDivID, heapObjID);
-            console.log('STACK->HEAP', varDivID, heapObjID);
+            //console.log('STACK->HEAP', varDivID, heapObjID);
           }
 
-          console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
+          //console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
         }
 
         // SUPER HACK - set current value as a hidden string attribute
@@ -1578,7 +1578,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i)
                                                    : myViz.generateID("stack" + i);
     })
-    .each(function(frame, i) {console.log('NEW STACK FRAME', frame.unique_hash);})
+    //.each(function(frame, i) {console.log('NEW STACK FRAME', frame.unique_hash);})
 
   sfdEnter
     .append('div')
@@ -1677,10 +1677,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             assert(!connectionEndpointIDs.has(varDivID));
             var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
             connectionEndpointIDs.set(varDivID, heapObjID);
-            console.log('STACK->HEAP', varDivID, heapObjID);
+            //console.log('STACK->HEAP', varDivID, heapObjID);
           }
 
-          console.log('CHANGED', frame.unique_hash, varname, prevValStringRepr, valStringRepr);
+          //console.log('CHANGED', frame.unique_hash, varname, prevValStringRepr, valStringRepr);
         }
 
         // SUPER HACK - set current value as a hidden string attribute
@@ -1694,7 +1694,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   stackVarTable.exit().remove();
 
   stackFrameDiv.exit()
-    .each(function(frame, i) {console.log('DEL STACK FRAME', frame.unique_hash, i);})
+    //.each(function(frame, i) {console.log('DEL STACK FRAME', frame.unique_hash, i);})
     .remove();
 
 
@@ -1703,6 +1703,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   connectionEndpointIDs.forEach(function(varID, valueID) {
     myViz.jsPlumbInstance.connect({source: varID, target: valueID});
   });
+
+  /*
+  myViz.jsPlumbInstance.select().each(function(c) {
+    console.log(c.sourceId, c.targetId);
+  });
+  */
 
 
   function highlight_frame(frameID) {
