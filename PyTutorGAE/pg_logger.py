@@ -128,7 +128,6 @@ class PGLogger(bdb.Bdb):
     # to make an educated guess based on the contents of local
     # variables inherited from possible parent frame candidates.
     def get_parent_frame(self, frame):
-      # TODO(denero) Is this true in Python 3?!?
       for (func_obj, parent_frame) in self.closures.items():
         # ok, there's a possible match, but let's compare the
         # local variables in parent_frame to those of frame
@@ -280,7 +279,6 @@ class PGLogger(bdb.Bdb):
             for pid in parent_frame_id_list:
               parent_frame = self.lookup_zombie_frame_by_id(pid)
               if k in parent_frame.f_locals:
-                # TODO(denero) Check Python3
                 # ignore __return__, which is never copied
                 if k != '__return__':
                   # these values SHOULD BE ALIASES
@@ -298,7 +296,6 @@ class PGLogger(bdb.Bdb):
             encoded_val = self.encoder.encode(v)
 
             # UGH, this is SUPER ugly but needed for nested function defs
-            # TODO(denero) Is this true in Python 3?!?
             if type(v) in (types.FunctionType, types.MethodType):
               try:
                 enclosing_frame = self.closures[v]

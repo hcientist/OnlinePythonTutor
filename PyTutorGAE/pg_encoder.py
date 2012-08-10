@@ -22,6 +22,8 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+# Thanks to John DeNero for making the encoder work on both Python 2 and 3
+
 
 # Given an arbitrary piece of Python data, encode it in such a manner
 # that it can be later encoded into JSON.
@@ -50,10 +52,16 @@
 
 
 import re, types
+import sys
 typeRE = re.compile("<type '(.*)'>")
 classRE = re.compile("<class '(.*)'>")
 
 import inspect
+
+is_python3 = (sys.version_info[0] == 3)
+if is_python3:
+  long = None # Avoid NameError when evaluating "long"
+
 
 def get_name(obj):
   """Return the name of an object."""
@@ -141,23 +149,6 @@ class ObjectEncoder:
           # don't display some built-in locals ...
           if k not in ('__module__', '__return__', '__locals__'):
             new_obj.append([self.encode(k), self.encode(v)])
-
-      elif typ in (types.InstanceType, types.ClassType, types.TypeType) or \
-           classRE.match(str(typ)):
-        # ugh, classRE match is a bit of a hack :(
-        if typ == types.InstanceType or classRE.match(str(typ)):
-          new_obj.extend(['INSTANCE', dat.__class__.__name__])
-        else:
-          superclass_names = [e.__name__ for e in dat.__bases__]
-          new_obj.extend(['CLASS', dat.__name__, superclass_names])
-
-        # traverse inside of its __dict__ to grab attributes
-        # (filter out useless-seeming ones):
-        user_attrs = sorted([e for e in dat.__dict__.keys() 
-                             if e not in ('__doc__', '__module__', '__return__')])
-
-        for attr in user_attrs:
-          new_obj.append([self.encode(attr), self.encode(dat.__dict__[attr])])
       elif typ in (types.FunctionType, types.MethodType):
         # NB: In Python 3.0, getargspec is deprecated in favor of getfullargspec
         argspec = inspect.getargspec(dat)
@@ -173,6 +164,8 @@ class ObjectEncoder:
           func_name = u"\u03BB" # Unicode lambda :)
         pretty_name = func_name + '(' + ', '.join(printed_args) + ')'
         new_obj.extend(['FUNCTION', pretty_name, None]) # the final element will be filled in later
+      elif self.is_class(dat) or self.is_instance(dat):
+        self.encode_class_or_instance(dat, new_obj)
       else:
         typeStr = str(typ)
         m = typeRE.match(typeStr)
@@ -180,4 +173,42 @@ class ObjectEncoder:
         new_obj.extend([m.group(1), str(dat)])
 
       return ret
+
+
+  def is_class(self, dat):
+    """Return whether dat is a class."""
+    if is_python3:
+      return isinstance(dat, type)
+    else:
+      return type(dat) in (types.ClassType, types.TypeType)
+
+
+  def is_instance(self, dat):
+    """Return whether dat is an instance of a class."""
+    if is_python3:
+      return isinstance(type(dat), type) and not isinstance(dat, type)
+    else:
+      # ugh, classRE match is a bit of a hack :(
+      return type(dat) == types.InstanceType or classRE.match(str(type(dat)))
+
+
+  def encode_class_or_instance(self, dat, new_obj):
+    """Encode dat as a class or instance."""
+    if self.is_instance(dat):
+      new_obj.extend(['INSTANCE', get_name(dat.__class__)])
+    else:
+      superclass_names = [e.__name__ for e in dat.__bases__ if e is not object]
+      new_obj.extend(['CLASS', get_name(dat), superclass_names])
+
+    # traverse inside of its __dict__ to grab attributes
+    # (filter out useless-seeming ones):
+    hidden = ('__doc__', '__module__', '__return__', '__dict__',
+        '__locals__', '__weakref__')
+    if hasattr(dat, '__dict__'):
+      user_attrs = sorted([e for e in dat.__dict__ if e not in hidden])
+    else:
+      user_attrs = []
+
+    for attr in user_attrs:
+      new_obj.append([self.encode(attr), self.encode(dat.__dict__[attr])])
 
