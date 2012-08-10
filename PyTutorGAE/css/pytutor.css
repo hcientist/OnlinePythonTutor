@@ -562,11 +562,10 @@ div#heap {
 }
 
 td.toplevelHeapObject {
-  margin-left: 0px;
-  margin-right: 20px;
-
+  /* to make room for transition animations */
   padding: 8px;
-  border: 2px dotted white; /* to make room for transition animations */
+  border: 2px dotted white;
+  border-color: white; /* needed for d3 to do transitions */
 }
 
 table.heapRow {
