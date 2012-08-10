@@ -377,12 +377,10 @@ $(document).ready(function() {
   });
 
 
-  // redraw everything on window resize so that connectors are in the
-  // right place
-  // TODO: can be SLOW on older browsers!!!
+  // redraw connector arrows on window resize
   $(window).resize(function() {
     if (appMode == 'visualize') {
-      myVisualizer.updateOutput();
+      myVisualizer.redrawConnectors();
     }
   });
 

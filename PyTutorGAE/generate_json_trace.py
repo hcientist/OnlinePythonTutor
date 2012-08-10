@@ -6,8 +6,9 @@ import sys, pg_logger, json
 def json_finalizer(input_code, output_trace):
   ret = dict(code=input_code, trace=output_trace)
   json_output = json.dumps(ret, indent=None) # use indent=None for most compact repr
-  print json_output
+  print(json_output)
 
 
-pg_logger.exec_script_str(open(sys.argv[1]).read(), json_finalizer)
+for f in sys.argv[1:]:
+  pg_logger.exec_script_str(open(f).read(), json_finalizer)
 

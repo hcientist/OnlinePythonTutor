@@ -1767,6 +1767,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 }
 
 
+
+ExecutionVisualizer.prototype.redrawConnectors = function() {
+  this.jsPlumbInstance.repaintEverything();
+}
+
+
 // Utilities
 
 
@@ -1790,9 +1796,9 @@ var hoverBreakpointColor = medLightBlue;
 
 
 function assert(cond) {
-  // TODO: add more precision in the error message
   if (!cond) {
-    alert("Error: ASSERTION FAILED!!!");
+    alert("Assertion Failure (see console log for backtrace)");
+    throw 'Assertion Failure';
   }
 }
 
