@@ -1541,7 +1541,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             connectionEndpointIDs.set(varDivID, heapObjID);
           }
 
-          //console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
+          console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
         }
 
         // SUPER HACK - set current value as a hidden string attribute
@@ -1583,12 +1583,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     // TODO: perhaps this table keeps on getting cleared out since it's done on enter()?!?
     .append('table')
     .attr('class', 'stackFrameVarTable')
-    .each(function(d, i) {console.log('stackFrameDiv.enter()', d.unique_hash);})
 
 
   var stackVarTable = stackFrameDiv
     .order() // VERY IMPORTANT to put in the order corresponding to data elements
-    .each(function(d, i) {console.log('stackFrameDiv.order() POST', d.unique_hash);})
     .select('table').selectAll('tr')
     .data(function(frame) {
         // each list element contains a reference to the entire frame
@@ -1603,17 +1601,14 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   stackVarTable
     .enter()
     .append('tr')
-    .each(function(d, i) {console.log('stackVarTable.enter()', d);})
   
 
   var stackVarTableCells = stackVarTable
     .selectAll('td')
-    .each(function(d, i) {console.log('stackVarTable UPDATE', d, i);})
     .data(function(d, i) {return [d, d] /* map identical data down both columns */;})
 
   stackVarTableCells.enter()
     .append('td')
-    .each(function(d, i) {console.log('stackVarTableCells.enter()', d, i);})
 
   stackVarTableCells
     .order() // VERY IMPORTANT to put in the order corresponding to data elements
@@ -1636,8 +1631,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .each(function(d, i) {
       var varname = d.varname;
       var frame = d.frame;
-
-      console.log('stackVarTableCells.each()', varname, i);
 
       if (i == 1) {
         var val = frame.encoded_locals[varname];
@@ -1675,7 +1668,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             connectionEndpointIDs.set(varDivID, heapObjID);
           }
 
-          //console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
+          console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
         }
 
         // SUPER HACK - set current value as a hidden string attribute
@@ -1690,9 +1683,15 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   stackFrameDiv.exit().remove();
 
-  // TODO: sometimes mistakenly renders TWICE on, say, closures :(
-  stackFrameDiv
-    .insert('div', ':first-child') // prepend header after the dust settles
+
+  // render stack frame headers in a "brute force" way by
+  // first clearing all of them ...
+  myViz.domRoot.find('.stackFrame,.zombieStackFrame').find('.stackFrameHeader').remove();
+
+  // ... and then rendering all of them again in one fell swoop
+  myViz.domRootD3.select('#stack').selectAll('.stackFrame,.zombieStackFrame')
+    .data(curEntry.stack_to_render)
+    .insert('div', ':first-child') // prepend before first child
     .attr('class', 'stackFrameHeader')
     .html(function(frame, i) {
       var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
@@ -1709,10 +1708,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         headerLabel = headerLabel + ' [parent=f' + parentFrameID + ']';
       }
 
-      console.log('HEADER:', i, headerLabel);
       return headerLabel;
-    });
- 
+    })
+    .each(function(frame, i) {console.log('DRAW stackFrameHeader', frame.unique_hash, i);})
 
 
   // finally add all the connectors!
