@@ -1541,7 +1541,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             connectionEndpointIDs.set(varDivID, heapObjID);
           }
 
-          console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
+          //console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
         }
 
         // SUPER HACK - set current value as a hidden string attribute
@@ -1583,58 +1583,44 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     // TODO: perhaps this table keeps on getting cleared out since it's done on enter()?!?
     .append('table')
     .attr('class', 'stackFrameVarTable')
+    .each(function(d, i) {console.log('stackFrameDiv.enter()', d.unique_hash);})
 
-  
-  /*
-  stackFrameDiv.select('div.stackFrameHeader')
-    .html(function(frame, i) {
-      var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
-      var headerLabel = funcName + '()';
 
-      var frameID = frame.frame_id; // optional (btw, this isn't a CSS id)
-      if (frameID) {
-        headerLabel = 'f' + frameID + ': ' + headerLabel;
-      }
-
-      // optional (btw, this isn't a CSS id)
-      if (frame.parent_frame_id_list.length > 0) {
-        var parentFrameID = frame.parent_frame_id_list[0];
-        headerLabel = headerLabel + ' [parent=f' + parentFrameID + ']';
-      }
-
-      return headerLabel;
-    });
-  */
- 
   var stackVarTable = stackFrameDiv
     .order() // VERY IMPORTANT to put in the order corresponding to data elements
+    .each(function(d, i) {console.log('stackFrameDiv.order() POST', d.unique_hash);})
     .select('table').selectAll('tr')
     .data(function(frame) {
-      // each list element contains a reference to the entire frame object as well as the variable name
-      // TODO: look into whether we can use d3 parent nodes to avoid this hack ... http://bost.ocks.org/mike/nest/
-      return frame.ordered_varnames.map(function(varname) {return [varname, frame];});
+        // each list element contains a reference to the entire frame
+        // object as well as the variable name
+        // TODO: look into whether we can use d3 parent nodes to avoid
+        // this hack ... http://bost.ocks.org/mike/nest/
+        return frame.ordered_varnames.map(function(varname) {return {varname:varname, frame:frame};});
       },
-      function(d) {return d[0];} // use variable name as key
+      function(d) {return d.varname;} // use variable name as key
     );
 
   stackVarTable
     .enter()
     .append('tr')
+    .each(function(d, i) {console.log('stackVarTable.enter()', d);})
   
 
   var stackVarTableCells = stackVarTable
     .selectAll('td')
+    .each(function(d, i) {console.log('stackVarTable UPDATE', d, i);})
     .data(function(d, i) {return [d, d] /* map identical data down both columns */;})
 
   stackVarTableCells.enter()
     .append('td')
+    .each(function(d, i) {console.log('stackVarTableCells.enter()', d, i);})
 
   stackVarTableCells
     .order() // VERY IMPORTANT to put in the order corresponding to data elements
     .attr('class', function(d, i) {return (i == 0) ? 'stackFrameVar' : 'stackFrameValue';})
     .html(function(d, i) {
-      var varname = d[0];
-      var frame = d[1];
+      var varname = d.varname;
+      var frame = d.frame;
       if (i == 0) {
         if (varname == '__return__' && !frame.is_zombie) {
           return '<span class="retval">Return value</span>'
@@ -1648,8 +1634,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       }
     })
     .each(function(d, i) {
-      var varname = d[0];
-      var frame = d[1];
+      var varname = d.varname;
+      var frame = d.frame;
+
+      console.log('stackVarTableCells.each()', varname, i);
 
       if (i == 1) {
         var val = frame.encoded_locals[varname];
@@ -1687,7 +1675,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             connectionEndpointIDs.set(varDivID, heapObjID);
           }
 
-          console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
+          //console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
         }
 
         // SUPER HACK - set current value as a hidden string attribute
@@ -1702,98 +1690,29 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   stackFrameDiv.exit().remove();
 
+  // TODO: sometimes mistakenly renders TWICE on, say, closures :(
+  stackFrameDiv
+    .insert('div', ':first-child') // prepend header after the dust settles
+    .attr('class', 'stackFrameHeader')
+    .html(function(frame, i) {
+      var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
+      var headerLabel = funcName + '()';
 
+      var frameID = frame.frame_id; // optional (btw, this isn't a CSS id)
+      if (frameID) {
+        headerLabel = 'f' + frameID + ': ' + headerLabel;
+      }
 
-  function renderStackFrame(frame, ind, is_zombie) {
-    var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
-    var frameID = frame.frame_id; // optional (btw, this isn't a CSS id)
+      // optional (btw, this isn't a CSS id)
+      if (frame.parent_frame_id_list.length > 0) {
+        var parentFrameID = frame.parent_frame_id_list[0];
+        headerLabel = headerLabel + ' [parent=f' + parentFrameID + ']';
+      }
 
-    // optional (btw, this isn't a CSS id)
-    var parentFrameID = null;
-    if (frame.parent_frame_id_list.length > 0) {
-      parentFrameID = frame.parent_frame_id_list[0];
-    }
-
-    var localVars = frame.encoded_locals
-
-    // the stackFrame div's id is simply its index ("stack<index>")
-
-    var divClass, divID, headerDivID;
-    if (is_zombie) {
-      divClass = 'zombieStackFrame';
-      divID = myViz.generateID("zombie_stack" + ind);
-      headerDivID = myViz.generateID("zombie_stack_header" + ind);
-    }
-    else {
-      divClass = 'stackFrame';
-      divID = myViz.generateID("stack" + ind);
-      headerDivID = myViz.generateID("stack_header" + ind);
-    }
-
-    myViz.domRoot.find("#stack").append('<div class="' + divClass + '" id="' + divID + '"></div>');
-
-    var headerLabel = funcName + '()';
-    if (frameID) {
-      headerLabel = 'f' + frameID + ': ' + headerLabel;
-    }
-    if (parentFrameID) {
-      headerLabel = headerLabel + ' [parent=f' + parentFrameID + ']';
-    }
-    myViz.domRoot.find("#stack #" + divID).append('<div id="' + headerDivID + '" class="stackFrameHeader">' + headerLabel + '</div>');
-
-    if (frame.ordered_varnames.length > 0) {
-      var tableID = divID + '_table';
-      myViz.domRoot.find("#stack #" + divID).append('<table class="stackFrameVarTable" id="' + tableID + '"></table>');
-
-      var tbl = myViz.domRoot.find("#" + tableID);
-
-      $.each(frame.ordered_varnames, function(xxx, varname) {
-        var val = localVars[varname];
-
-        // special treatment for displaying return value and indicating
-        // that the function is about to return to its caller
-        //
-        // DON'T do this for zombie frames
-        if (varname == '__return__' && !is_zombie) {
-          assert(curEntry.event == 'return'); // sanity check
-
-          tbl.append('<tr><td colspan="2" class="returnWarning">About to return</td></tr>');
-          tbl.append('<tr><td class="stackFrameVar"><span class="retval">Return value:</span></td><td class="stackFrameValue"></td></tr>');
-        }
-        else {
-          tbl.append('<tr><td class="stackFrameVar">' + varname + '</td><td class="stackFrameValue"></td></tr>');
-        }
-
-        var curTr = tbl.find('tr:last');
-
-        if (isPrimitiveType(val)) {
-          renderPrimitiveObject(val, curTr.find("td.stackFrameValue"));
-        }
-        else {
-          // add a stub so that we can connect it with a connector later.
-          // IE needs this div to be NON-EMPTY in order to properly
-          // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
-
-          // make sure varname doesn't contain any weird
-          // characters that are illegal for CSS ID's ...
-          var varDivID = divID + '__' + varnameToCssID(varname);
-          curTr.find("td.stackFrameValue").append('<div id="' + varDivID + '">&nbsp;</div>');
-
-          assert(!connectionEndpointIDs.has(varDivID));
-
-          var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
-          connectionEndpointIDs.set(varDivID, heapObjID);
-        }
-      });
-    }
-  }
-
-  /*
-  $.each(curEntry.stack_to_render, function(i, e) {
-    renderStackFrame(e, i, e.is_zombie);
-  });
-  */
-
+      console.log('HEADER:', i, headerLabel);
+      return headerLabel;
+    });
+ 
 
 
   // finally add all the connectors!
