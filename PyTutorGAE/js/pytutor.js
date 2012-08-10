@@ -53,9 +53,9 @@ function ExecutionVisualizer(domRootID, dat, params) {
   // cool, we can create a separate jsPlumb instance for each visualization:
   this.jsPlumbInstance = jsPlumb.getInstance({
     Endpoint: ["Dot", {radius:3}],
-    EndpointStyles: [{fillStyle: lightGray}, {fillstyle: null} /* make right endpoint invisible */],
+    EndpointStyles: [{fillStyle: darkBlue}, {fillstyle: null} /* make right endpoint invisible */],
     Anchors: ["RightMiddle", "LeftMiddle"],
-    PaintStyle: {lineWidth:1, strokeStyle: lightGray},
+    PaintStyle: {lineWidth:1, strokeStyle: darkBlue},
 
     // bezier curve style:
     //Connector: [ "Bezier", { curviness:15 }], /* too much 'curviness' causes lines to run together */
@@ -1715,10 +1715,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
 
   function highlight_frame(frameID) {
-    var allConnections = myViz.jsPlumbInstance.getConnections();
-    for (var i = 0; i < allConnections.length; i++) {
-      var c = allConnections[i];
-
+    myViz.jsPlumbInstance.select().each(function(c) {
       // this is VERY VERY fragile code, since it assumes that going up
       // FOUR layers of parent() calls will get you from the source end
       // of the connector to the enclosing stack frame
@@ -1735,12 +1732,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       }
       // for heap->heap connectors
       else if (heapConnectionEndpointIDs.has(c.endpoints[0].elementId)) {
-        // then HIGHLIGHT IT!
-        c.setPaintStyle({lineWidth:1, strokeStyle: darkBlue});
-        c.endpoints[0].setPaintStyle({fillStyle: darkBlue});
-        //c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
-
-        $(c.canvas).css("z-index", 1000); // ... and move it to the VERY FRONT
+        // NOP since it's already the color and style we set by default
       }
       else {
         // else unhighlight it
@@ -1750,7 +1742,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
         $(c.canvas).css("z-index", 0);
       }
-    }
+    });
+
 
     // clear everything, then just activate this one ...
     myViz.domRoot.find(".stackFrame").removeClass("highlightedStackFrame");
