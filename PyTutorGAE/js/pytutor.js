@@ -1686,7 +1686,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   // render stack frame headers in a "brute force" way by
   // first clearing all of them ...
-  myViz.domRoot.find('.stackFrame,.zombieStackFrame').find('.stackFrameHeader').remove();
+  myViz.domRoot.find('#stack').find('.stackFrame,.zombieStackFrame').find('.stackFrameHeader').remove();
 
   // ... and then rendering all of them again in one fell swoop
   myViz.domRootD3.select('#stack').selectAll('.stackFrame,.zombieStackFrame')
@@ -1710,7 +1710,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
       return headerLabel;
     })
-    .each(function(frame, i) {console.log('DRAW stackFrameHeader', frame.unique_hash, i);})
 
 
   // finally add all the connectors!
