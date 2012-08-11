@@ -1186,7 +1186,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // update an existing heap row
   var toplevelHeapObjects = heapRows
     //.each(function(objLst, i) { console.log('UPDATE ROW:', objLst, i); })
-    .selectAll('td')
+    .selectAll('td.toplevelHeapObject')
     .data(function(d, i) {return d.slice(1, d.length);}, /* map over each row, skipping row ID tag */
           function(objID) {return objID;} /* each object ID is unique for constancy */);
 
@@ -1505,7 +1505,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // ENTER
   globalsD3.enter()
     .append('tr')
-    .selectAll('td')
+    .selectAll('td.stackFrameVar,td.stackFrameValue')
     .data(function(d, i){return d;}) /* map varname down both columns */
     .enter()
     .append('td')
@@ -1641,11 +1641,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   stackVarTable
     .enter()
-    .append('tr')
+    .append('tr');
   
 
   var stackVarTableCells = stackVarTable
-    .selectAll('td')
+    .selectAll('td.stackFrameVar,td.stackFrameValue')
     .data(function(d, i) {return [d, d] /* map identical data down both columns */;})
 
   stackVarTableCells.enter()
