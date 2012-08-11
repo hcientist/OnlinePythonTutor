@@ -1162,8 +1162,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // insert new heap rows
   heapRows.enter().append('table')
     //.each(function(objLst, i) {console.log('NEW ROW:', objLst, i);})
-    .attr('class', 'heapRow')
-    .append('tr');
+    .attr('class', 'heapRow');
 
   // delete a heap row
   var hrExit = heapRows.exit();
