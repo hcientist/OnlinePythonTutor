@@ -90,6 +90,8 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.sortedBreakpointsList = null; // sorted and synced with breakpointLines
   this.hoverBreakpoints = null;      // set of breakpoints because we're HOVERING over a given line
 
+  this.enableTransitions = false; // EXPERIMENTAL - enable transition effects
+
 
   this.hasRendered = false;
 
@@ -347,16 +349,6 @@ ExecutionVisualizer.prototype.setKeyboardBindings = function() {
 
   leftTablePane.attr('tabindex', '0');
   leftTablePane.css('outline', 'none'); // don't display a tacky border when focused
-
-  // focus on mouse entering td#left_pane (so that the user doesn't need
-  // to click to focus)
-  // This is actually annoying because the display JERKS to focus on elements ...
-  /*
-  leftTablePane.mouseenter(function() {
-    leftTablePane.focus();
-  });
-  */
- 
  
   leftTablePane.keydown(function(k) {
     if (!myViz.keyStuckDown) {
@@ -1171,39 +1163,58 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   heapRows.enter().append('table')
     //.each(function(objLst, i) {console.log('NEW ROW:', objLst, i);})
     .attr('class', 'heapRow')
-    .append('tr')
+    .append('tr');
 
   // delete a heap row
-  heapRows.exit()
-    //.each(function(objLst, i) {console.log('DEL ROW:', objLst, i);})
-    .remove();
+  var hrExit = heapRows.exit();
+
+  if (myViz.enableTransitions) {
+    hrExit
+      .style('opacity', '1')
+      .transition()
+      .style('opacity', '0')
+      .duration(500)
+      .each('end', function() {
+        hrExit.remove();
+        myViz.redrawConnectors();
+      });
+  }
+  else {
+    hrExit.remove();
+  }
 
 
   // update an existing heap row
-  var heapColumns = heapRows
-    .each(function(objLst, i) { console.log('UPDATE ROW:', objLst, i); })
+  var toplevelHeapObjects = heapRows
+    //.each(function(objLst, i) { console.log('UPDATE ROW:', objLst, i); })
     .selectAll('td')
     .data(function(d, i) {return d.slice(1, d.length);}, /* map over each row, skipping row ID tag */
           function(objID) {return objID;} /* each object ID is unique for constancy */);
 
   // insert a new toplevelHeapObject
-  heapColumns.enter().append('td')
+  var tlhEnter = toplevelHeapObjects.enter().append('td')
     .attr('class', 'toplevelHeapObject')
-    .attr('id', function(d, i) {return 'toplevel_heap_object_' + d;})
-    .style('opacity', '0')
-    .style('border-color', 'red')
-    // remember that the enter selection is added to the update
-    // selection so that we can process it later ...
-    .transition()
-    .style('opacity', '1') /* fade in */
-    .duration(500)
-    .transition()
-    .style('border-color', 'white')
-    .delay(500)
-    .duration(300);
+    .attr('id', function(d, i) {return 'toplevel_heap_object_' + d;});
+
+  if (myViz.enableTransitions) {
+    tlhEnter
+      .style('opacity', '0')
+      .style('border-color', 'red')
+      .transition()
+      .style('opacity', '1') /* fade in */
+      .duration(700)
+      .each('end', function() {
+        tlhEnter.transition()
+          .style('border-color', 'white') /* kill border */
+          .duration(300)
+        });
+  }
+
+  // remember that the enter selection is added to the update
+  // selection so that we can process it later ...
 
   // update a toplevelHeapObject
-  heapColumns
+  toplevelHeapObjects
     .order() // VERY IMPORTANT to put in the order corresponding to data elements
     .each(function(objID, i) {
       //console.log('NEW/UPDATE ELT', objID);
@@ -1215,9 +1226,20 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     });
 
   // delete a toplevelHeapObject
-  heapColumns.exit()
-    .remove();
+  var tlhExit = toplevelHeapObjects.exit();
 
+  if (myViz.enableTransitions) {
+    tlhExit.transition()
+      .style('opacity', '0') /* fade out */
+      .duration(500)
+      .each('end', function() {
+        tlhExit.remove();
+        myViz.redrawConnectors();
+      });
+  }
+  else {
+    tlhExit.remove();
+  }
 
 
   function renderNestedObject(obj, d3DomElement) {
