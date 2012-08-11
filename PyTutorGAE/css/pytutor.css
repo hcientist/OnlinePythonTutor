@@ -563,7 +563,10 @@ div#heap {
 
 td.toplevelHeapObject {
   /* to make room for transition animations */
-  padding: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   border: 2px dotted white;
   border-color: white; /* needed for d3 to do transitions */
 }
