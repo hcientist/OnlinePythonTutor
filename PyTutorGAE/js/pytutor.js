@@ -1094,6 +1094,8 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 }
 
 
+var heapPtrSrcRE = /__heap_pointer_src_/;
+
 // The "3.0" version of renderDataStructures renders variables in
 // a stack, values in a separate heap, and draws line connectors
 // to represent both stack->heap object references and, more importantly,
@@ -1118,6 +1120,19 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
 
   // Heap object rendering phase:
+
+
+  // This is VERY crude, but to prevent multiple redundant HEAP->HEAP
+  // connectors from being drawn with the same source and origin, we need to first
+  // DELETE ALL existing HEAP->HEAP connections, and then re-render all of
+  // them in each call to this function. The reason why we can't safely
+  // hold onto them is because there's no way to guarantee that the
+  // *__heap_pointer_src_<src id> IDs are consistent across execution points.
+  myViz.jsPlumbInstance.select().each(function(c) {
+    if (c.sourceId.match(heapPtrSrcRE)) {
+      myViz.jsPlumbInstance.detachAllConnections(c.sourceId);
+    }
+  });
 
 
   // Key:   CSS ID of the div element representing the stack frame variable
@@ -1299,8 +1314,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
       var dstDivID = myViz.generateID('heap_object_' + objID);
 
-      // TODO: we might be able to further optimize, since we might be re-drawing
-      // HEAP->HEAP connections when we can just keep the existing ones
       assert(!connectionEndpointIDs.has(srcDivID));
       connectionEndpointIDs.set(srcDivID, dstDivID);
       //console.log('HEAP->HEAP', srcDivID, dstDivID);
@@ -1555,6 +1568,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
             connectionEndpointIDs.set(varDivID, heapObjID);
             //console.log('STACK->HEAP', varDivID, heapObjID);
+
+            // GARBAGE COLLECTION GOTCHA! we need to get rid of the old
+            // connector in preparation for rendering a new one:
+            myViz.jsPlumbInstance.detachAllConnections(varDivID);
           }
 
           //console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
@@ -1698,6 +1715,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
             connectionEndpointIDs.set(varDivID, heapObjID);
             //console.log('STACK->HEAP', varDivID, heapObjID);
+
+            // GARBAGE COLLECTION GOTCHA! we need to get rid of the old
+            // connector in preparation for rendering a new one:
+            myViz.jsPlumbInstance.detachAllConnections(varDivID);
           }
 
           //console.log('CHANGED', frame.unique_hash, varname, prevValStringRepr, valStringRepr);
@@ -1729,9 +1750,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   /*
   myViz.jsPlumbInstance.select().each(function(c) {
-    console.log(c.sourceId, c.targetId);
+    console.log('CONN:', c.sourceId, c.targetId);
   });
   */
+  //console.log('---', myViz.jsPlumbInstance.select().length, '---');
 
 
   function highlight_frame(frameID) {
