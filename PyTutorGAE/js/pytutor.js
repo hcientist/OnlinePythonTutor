@@ -34,7 +34,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   code  - string of executed code
 //   trace - a full execution trace
 // params contains optional parameters, such as:
-//   startingInstruction - the (one-indexed) execution point to display upon rendering
+//   startingInstruction - the (zero-indexed) execution point to display upon rendering
 //   hideOutput - hide "Program output" and "Generate URL" displays
 //   codeDivHeight - maximum height of #pyCodeOutputDiv (in pixels)
 function ExecutionVisualizer(domRootID, dat, params) {
@@ -272,7 +272,7 @@ ExecutionVisualizer.prototype.render = function() {
   if (this.params && this.params.startingInstruction) {
     assert(1 <= this.params.startingInstruction &&
            this.params.startingInstruction <= this.curTrace.length);
-    this.curInstr = (this.params.startingInstruction - 1); // convert to zero-indexed
+    this.curInstr = this.params.startingInstruction;
   }
 
 
