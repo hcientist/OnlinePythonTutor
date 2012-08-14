@@ -13,7 +13,7 @@ var hanoiViz = null;
 
 $(document).ready(function() {
   aliasingViz = new ExecutionVisualizer('aliasingDiv', aliasing, {hideOutput: true, codeDivHeight: 150});
-  aliasing5Viz = new ExecutionVisualizer('aliasing5Div', aliasing5, {hideOutput: true});
+  aliasing5Viz = new ExecutionVisualizer('aliasing5Div', aliasing5, {hideOutput: true, jumpToEnd: true});
   hanoiViz = new ExecutionVisualizer('hanoiDiv', hanoi, {startingInstruction: 45, hideOutput: true});
 
   // redraw connector arrows on window resize
