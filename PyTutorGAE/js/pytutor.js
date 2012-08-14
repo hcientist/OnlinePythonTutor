@@ -118,7 +118,7 @@ ExecutionVisualizer.prototype.render = function() {
 
   // TODO: make less gross!
   this.domRoot.html(
-  '<table border="0">\
+  '<table border="0" class="visualizer">\
     <tr>\
       <td valign="top" id="left_pane">\
         <center>\

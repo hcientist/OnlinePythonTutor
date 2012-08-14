@@ -65,72 +65,16 @@ Complementary Color:
 
 */
 
-h1 {
-  font-weight: normal;
-  font-size: 20pt;
-  font-family: georgia, serif;
-  line-height: 1em;  /* enforce single spacing so that Georgia works */
-
-  margin-top: 0px;
-  margin-bottom: 8px;
-}
-
-h2 {
-  font-size: 12pt;
-  font-weight: normal;
-  font-family: georgia, serif;
-  line-height: 1.1em; /* enforce single spacing so that Georgia works */
-
-  margin-top: 2px;
-  margin-bottom: 20px;
-}
-
-
-body {
-  background-color: white;
+table.visualizer {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 10pt;
 }
 
-a {
-  color: #3D58A2;
-}
-
-a:visited {
-  color: #3D58A2;
-}
-
-a:hover {
-  color: #3D58A2;
-}
-
-span {
-  padding: 0px;
-}
-
-#pyInputPane {
-  margin-top: 20px;
-  margin-bottom: 20px;
-
-  max-width: 700px;
-  /* center align */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#codeInputPane {
-  margin-top: 5px;
-  font-size: 12pt;
-}
 
 td#stack_td,
 td#heap_td {
   vertical-align:top;
   font-size: 10pt; /* don't make fonts in the heap so big! */
-}
-
-table#pyOutputPane {
-  padding: 15px;
 }
 
 #dataViz {
