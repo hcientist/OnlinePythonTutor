@@ -788,6 +788,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       var ST = codeOutputDiv.scrollTop();
       var H = codeOutputDiv.height();
 
+      codeOutputDiv.stop(); // first stop all previously-queued animations
       codeOutputDiv.animate({scrollTop: (ST + (LO - PO - (Math.round(H / 2))))}, 300);
     }
 
