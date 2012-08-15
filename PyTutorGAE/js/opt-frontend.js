@@ -148,9 +148,9 @@ $(document).ready(function() {
             // don't enter visualize mode if there are killer errors:
             if (!trace ||
                 (trace.length == 0) ||
-                ((trace.length == 1) && trace[0].event == 'uncaught_exception')) {
+                (trace[trace.length - 1].event == 'uncaught_exception')) {
 
-              if (trace.length > 0) {
+              if (trace.length == 1) {
                 var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
                 if (errorLineNo !== undefined) {
                   // highlight the faulting line in pyInputCodeMirror
@@ -167,7 +167,7 @@ $(document).ready(function() {
                 alert(trace[0].exception_msg);
               }
               else {
-                alert("Whoa, unknown error! Please reload and try again.");
+                alert("Whoa, unknown error! Reload to try again, or report a bug to philip@pgbovine.net");
               }
 
               $('#executeBtn').html("Visualize execution");
