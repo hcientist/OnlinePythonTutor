@@ -98,10 +98,10 @@ class PGLogger(bdb.Bdb):
         # Value: parent frame
         self.closures = {}
 
-        # List of frames to KEEP AROUND after the function exits,
-        # because nested functions were defined in those frames.
-        # ORDER matters for aesthetics.
-        self.zombie_frames = []
+        # List of frames to KEEP AROUND after the function exits
+        # because nested functions were defined within those frames.
+        # (ORDER matters for aesthetics)
+        self.zombie_parent_frames = []
 
         # all globals that ever appeared in the program, in the order in
         # which they appeared. note that this might be a superset of all
@@ -148,19 +148,19 @@ class PGLogger(bdb.Bdb):
       return None
 
 
-    def get_zombie_frame_id(self, f):
+    def get_zombie_parent_frame_id(self, f):
       # should be None unless this is a zombie frame
       try:
         # make the frame id's one-indexed for clarity
         # (and to prevent possible confusion with None)
-        return self.zombie_frames.index(f) + 1
+        return self.zombie_parent_frames.index(f) + 1
       except ValueError:
         pass
       return None
 
     def lookup_zombie_frame_by_id(self, idx):
       # remember this is one-indexed
-      return self.zombie_frames[idx - 1]
+      return self.zombie_parent_frames[idx - 1]
 
 
     # unused ...
@@ -230,7 +230,7 @@ class PGLogger(bdb.Bdb):
 
         # only render zombie frames that are NO LONGER on the stack
         cur_stack_frames = [e[0] for e in self.stack]
-        zombie_frames_to_render = [e for e in self.zombie_frames if e not in cur_stack_frames]
+        zombie_frames_to_render = [e for e in self.zombie_parent_frames if e not in cur_stack_frames]
 
 
         # each element is a pair of (function name, ENCODED locals dict)
@@ -250,7 +250,7 @@ class PGLogger(bdb.Bdb):
           while True:
             p = self.get_parent_frame(f)
             if p:
-              pid = self.get_zombie_frame_id(p)
+              pid = self.get_zombie_parent_frame_id(p)
               assert pid
               parent_frame_id_list.append(pid)
               f = p
@@ -299,7 +299,7 @@ class PGLogger(bdb.Bdb):
             if type(v) in (types.FunctionType, types.MethodType):
               try:
                 enclosing_frame = self.closures[v]
-                enclosing_frame_id = self.get_zombie_frame_id(enclosing_frame)
+                enclosing_frame_id = self.get_zombie_parent_frame_id(enclosing_frame)
                 self.encoder.set_function_parent_frame_ID(encoded_val, enclosing_frame_id)
               except KeyError:
                 pass
@@ -340,7 +340,7 @@ class PGLogger(bdb.Bdb):
             assert e in encoded_locals
 
           return dict(func_name=cur_name,
-                      frame_id=self.get_zombie_frame_id(cur_frame),
+                      frame_id=self.get_zombie_parent_frame_id(cur_frame),
                       parent_frame_id_list=parent_frame_id_list,
                       encoded_locals=encoded_locals,
                       ordered_varnames=ordered_varnames)
@@ -355,8 +355,8 @@ class PGLogger(bdb.Bdb):
             if (type(v) in (types.FunctionType, types.MethodType) and \
                 v not in self.closures):
               self.closures[v] = top_frame
-              if not top_frame in self.zombie_frames:
-                self.zombie_frames.append(top_frame)
+              if not top_frame in self.zombie_parent_frames:
+                self.zombie_parent_frames.append(top_frame)
 
 
         # climb up until you find '<module>', which is (hopefully) the global scope
@@ -382,7 +382,7 @@ class PGLogger(bdb.Bdb):
           if type(v) in (types.FunctionType, types.MethodType):
             try:
               enclosing_frame = self.closures[v]
-              enclosing_frame_id = self.get_zombie_frame_id(enclosing_frame)
+              enclosing_frame_id = self.get_zombie_parent_frame_id(enclosing_frame)
               self.encoder.set_function_parent_frame_ID(encoded_val, enclosing_frame_id)
             except KeyError:
               pass

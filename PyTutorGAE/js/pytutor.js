@@ -1712,7 +1712,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       var frame = d.frame;
 
       if (i == 0) {
-        if (varname == '__return__' && !frame.is_zombie)
+        if (varname == '__return__')
           $(this).html('<span class="retval">Return<br/>value</span>');
         else
           $(this).html(varname);
