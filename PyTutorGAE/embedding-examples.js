@@ -12,9 +12,9 @@ var aliasing5Viz = null;
 var hanoiViz = null;
 
 $(document).ready(function() {
-  aliasingViz = new ExecutionVisualizer('aliasingDiv', aliasing, {hideOutput: true, codeDivHeight: 150});
-  aliasing5Viz = new ExecutionVisualizer('aliasing5Div', aliasing5, {hideOutput: true, jumpToEnd: true});
-  hanoiViz = new ExecutionVisualizer('hanoiDiv', hanoi, {startingInstruction: 45, hideOutput: true});
+  aliasingViz = new ExecutionVisualizer('aliasingDiv', aliasing, {hideOutput: true, codeDivHeight: 150, editCodeBaseURL: 'http://localhost:8080/'});
+  aliasing5Viz = new ExecutionVisualizer('aliasing5Div', aliasing5, {hideOutput: true, jumpToEnd: true, editCodeBaseURL: 'http://localhost:8080/'});
+  hanoiViz = new ExecutionVisualizer('hanoiDiv', hanoi, {startingInstruction: 45, hideOutput: true, editCodeBaseURL: 'http://localhost:8080/'});
 
   // redraw connector arrows on window resize
   $(window).resize(function() {

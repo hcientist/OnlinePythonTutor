@@ -27,6 +27,23 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
+/* To import, put this at the top of your HTML page:
+
+<!-- requirements for pytutor.js -->
+<script type="text/javascript" src="js/d3.v2.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.6.min.js"></script>
+<script type="text/javascript" src="js/jquery.ba-bbq.min.js"></script> <!-- for handling back button and URL hashes -->
+<script type="text/javascript" src="js/jquery.jsPlumb-1.3.10-all-min.js "></script> <!-- for rendering SVG connectors -->
+<script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script> <!-- for sliders and other UI elements -->
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
+
+<script type="text/javascript" src="js/pytutor.js"></script>
+<link rel="stylesheet" href="css/pytutor.css"/>
+
+*/
+
+
+
 var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer instance
 
 // domRootID is the string ID of the root element where to render this instance
@@ -38,8 +55,9 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   startingInstruction - the (zero-indexed) execution point to display upon rendering
 //   hideOutput - hide "Program output" and "Generate URL" displays
 //   codeDivHeight - maximum height of #pyCodeOutputDiv (in pixels)
+//   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code'
 function ExecutionVisualizer(domRootID, dat, params) {
-  this.curInputCode = dat.code;
+  this.curInputCode = dat.code.rtrim(); // kill trailing spaces
   this.curTrace = dat.trace;
 
   this.curInstr = 0;
@@ -125,7 +143,7 @@ ExecutionVisualizer.prototype.render = function() {
         <center>\
           <div id="pyCodeOutputDiv"/>\
           <div id="editCodeLinkDiv">\
-            <button id="editBtn" class="medBtn" type="button">Edit code</button>\
+            <a id="editBtn">Edit code</a>\
           </div>\
           <div id="executionSliderCaption">\
             Click here to focus and then use the left and right arrow keys to<br/>\
@@ -172,6 +190,18 @@ ExecutionVisualizer.prototype.render = function() {
   </table>');
 
 
+  if (this.params.editCodeBaseURL) {
+    var urlStr = $.param.fragment(this.params.editCodeBaseURL,
+                                  {code: this.curInputCode},
+                                  2);
+    this.domRoot.find('#editBtn').attr('href', urlStr);
+  }
+  else {
+    this.domRoot.find('#editBtn').attr('href', "#");
+    this.domRoot.find('#editBtn').click(function(){return false;}); // DISABLE the link!
+  }
+
+
   // create a persistent globals frame
   // (note that we need to keep #globals_area separate from #stack for d3 to work its magic)
   this.domRoot.find("#globals_area").append('<div class="stackFrame" id="'
@@ -191,7 +221,7 @@ ExecutionVisualizer.prototype.render = function() {
 
   this.domRoot.find('#genUrlBtn').bind('click', function() {
     var urlStr = $.param.fragment(window.location.href,
-                                  {code: myViz.curInputCode, curInstr: myViz.curInstr},
+                                  {code: myViz.curInputCode, curInstr: myViz.curInstr, mode: 'visualize'},
                                   2);
     myViz.domRoot.find('#urlOutput').val(urlStr);
   });
@@ -553,7 +583,7 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
     renderSliderBreakpoints();
   }
 
-  var lines = this.curInputCode.rtrim().split('\n');
+  var lines = this.curInputCode.split('\n');
 
   for (var i = 0; i < lines.length; i++) {
     var cod = lines[i];

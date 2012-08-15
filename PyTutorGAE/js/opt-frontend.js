@@ -35,6 +35,7 @@ var appMode = 'edit'; // 'edit' or 'visualize'
 
 var preseededCode = null;     // if you passed in a 'code=<code string>' in the URL, then set this var
 var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
+var preseededMode = null;     // if you passed in a 'mode=<mode string>' in the URL, then set this var
 
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
@@ -47,7 +48,7 @@ function enterEditMode() {
 var pyInputCodeMirror; // CodeMirror object that contains the input text
 
 function setCodeMirrorVal(dat) {
-  pyInputCodeMirror.setValue(dat);
+  pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
 }
 
 
@@ -68,8 +69,9 @@ $(document).ready(function() {
   $(window).bind("hashchange", function(e) {
     appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
 
-    // globals defined in pytutor.js
+    // yuck, globals!
     preseededCode = $.bbq.getState('code');
+    preseededMode = $.bbq.getState('mode');
 
     if (!preseededCurInstr) { // TODO: kinda gross hack
       preseededCurInstr = Number($.bbq.getState('curInstr'));
@@ -85,9 +87,8 @@ $(document).ready(function() {
     if (!myVisualizer) {
       appMode = 'edit';
 
-      if (preseededCode) {
-        // if you've pre-seeded 'code' and 'curInstr' params in the URL hash,
-        // then punt for now ...
+      if (preseededCode && preseededMode == 'visualize') {
+        // punt for now ...
       }
       else {
         $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
