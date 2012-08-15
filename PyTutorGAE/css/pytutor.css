@@ -449,13 +449,13 @@ div.stackFrame, div.zombieStackFrame {
   padding-left: 6px;
   padding-right: 6px;
   padding-bottom: 4px;
-  font-size: 11pt;
+  font-size: 10pt;
   border-left: 2px solid #666666;
 }
 
 div.zombieStackFrame {
-  border-left: 1px dotted #aaaaaa; /* make zombie borders thinner */
-  color: #aaaaaa;
+  border-left: 1px dotted #999999; /* make zombie borders thinner */
+  color: #999999;
 }
 
 div.highlightedStackFrame {
