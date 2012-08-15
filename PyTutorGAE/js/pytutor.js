@@ -1660,9 +1660,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
       var headerLabel = funcName + '()';
 
-      var frameID = frame.frame_id; // optional (btw, this isn't a CSS id)
-      if (frameID) {
-        headerLabel = 'f' + frameID + ': ' + headerLabel;
+      // only display if you're someone's parent
+      if (frame.is_parent) {
+        headerLabel = 'f' + frame.frame_id + ': ' + headerLabel;
       }
 
       // optional (btw, this isn't a CSS id)

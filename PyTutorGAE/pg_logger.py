@@ -91,7 +91,6 @@ class PGLogger(bdb.Bdb):
         # rather than only those currently on the stack (and their
         # lexical parents)
         self.cumulative_display = cumulative_display
-        self.cumulative_display = True
 
         # each entry contains a dict with the information for a single
         # executed line
@@ -104,7 +103,7 @@ class PGLogger(bdb.Bdb):
         # Value: parent frame
         self.closures = {}
 
-        # Key: id() of frame object
+        # Key: frame object
         # Value: monotonically increasing small ID, based on call order
         self.frame_ordered_ids = {}
         self.cur_frame_id = 1
@@ -114,6 +113,10 @@ class PGLogger(bdb.Bdb):
         # zombie_frames; otherwise keep only frames where
         # nested functions were defined within them.
         self.zombie_frames = []
+
+        # set of elements within zombie_frames that are also
+        # LEXICAL PARENTS of other frames
+        self.parent_frames_set = set()
 
         # all globals that ever appeared in the program, in the order in
         # which they appeared. note that this might be a superset of all
@@ -129,7 +132,7 @@ class PGLogger(bdb.Bdb):
 
 
     def get_frame_id(self, cur_frame):
-      return self.frame_ordered_ids[id(cur_frame)]
+      return self.frame_ordered_ids[cur_frame]
 
 
     # Returns the (lexical) parent frame of the function that was called
@@ -237,9 +240,8 @@ class PGLogger(bdb.Bdb):
                                   # or else we won't properly capture heap object mutations in the trace!
 
         if event_type == 'call':
-          tfid = id(top_frame)
-          assert tfid not in self.frame_ordered_ids
-          self.frame_ordered_ids[tfid] = self.cur_frame_id
+          assert top_frame not in self.frame_ordered_ids
+          self.frame_ordered_ids[top_frame] = self.cur_frame_id
           self.cur_frame_id += 1
 
           if self.cumulative_display:
@@ -356,8 +358,8 @@ class PGLogger(bdb.Bdb):
             assert e in encoded_locals
 
           return dict(func_name=cur_name,
+                      is_parent=(cur_frame in self.parent_frames_set),
                       frame_id=self.get_frame_id(cur_frame),
-                      # TODO: fixme
                       parent_frame_id_list=parent_frame_id_list,
                       encoded_locals=encoded_locals,
                       ordered_varnames=ordered_varnames)
@@ -372,6 +374,7 @@ class PGLogger(bdb.Bdb):
             if (type(v) in (types.FunctionType, types.MethodType) and \
                 v not in self.closures):
               self.closures[v] = top_frame
+              self.parent_frames_set.add(top_frame) # unequivocally add to this set!!!
               if not top_frame in self.zombie_frames:
                 self.zombie_frames.append(top_frame)
 
@@ -456,16 +459,17 @@ class PGLogger(bdb.Bdb):
         # frontend can uniquely identify it when doing incremental
         # rendering. the strategy is to use a frankenstein-like mix of the
         # relevant fields to properly disambiguate closures and recursive
-        # calls to the same function (stack_index is key for
-        # disambiguating recursion!)
-        for (stack_index, e) in enumerate(stack_to_render):
+        # calls to the same function
+        for e in stack_to_render:
           hash_str = e['func_name']
+          # frame_id is UNIQUE, so it can disambiguate recursive calls
           hash_str += '_f' + str(e['frame_id'])
-          if e['parent_frame_id_list']:
-            hash_str += '_p' + '_'.join([str(i) for i in e['parent_frame_id_list']])
+
+          # TODO: this is no longer needed, right? (since frame_id is unique)
+          #if e['parent_frame_id_list']:
+          #  hash_str += '_p' + '_'.join([str(i) for i in e['parent_frame_id_list']])
           if e['is_zombie']:
             hash_str += '_z'
-          hash_str += '_i' + str(stack_index)
 
           e['unique_hash'] = hash_str
 
@@ -475,8 +479,6 @@ class PGLogger(bdb.Bdb):
                            func_name=tos[0].f_code.co_name,
                            globals=encoded_globals,
                            ordered_globals=ordered_globals,
-                           #stack_locals=encoded_stack_locals,               # DEPRECATED in favor of stack_to_render
-                           #zombie_stack_locals=zombie_encoded_stack_locals, # DEPRECATED in favor of stack_to_render
                            stack_to_render=stack_to_render,
                            heap=self.encoder.get_heap(),
                            stdout=get_user_stdout(tos[0]))
