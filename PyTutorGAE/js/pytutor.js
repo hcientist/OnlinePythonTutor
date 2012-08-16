@@ -147,7 +147,7 @@ ExecutionVisualizer.prototype.render = function() {
           </div>\
           <div id="executionSliderCaption">\
             Click here to focus and then use the left and right arrow keys to<br/>\
-            step through execution. Click on lines of code to set breakpoints.\
+            step through execution. Click on lines of code to set/unset breakpoints.\
           </div>\
           <div id="executionSlider"/>\
           <div id="executionSliderFooter"/>\
@@ -229,17 +229,11 @@ ExecutionVisualizer.prototype.render = function() {
   });
 
   this.domRoot.find("#jmpStepBack").click(function() {
-    if (myViz.curInstr > 0) {
-      myViz.curInstr -= 1;
-      myViz.updateOutput();
-    }
+    myViz.stepBack();
   });
 
   this.domRoot.find("#jmpStepFwd").click(function() {
-    if (myViz.curInstr < myViz.curTrace.length - 1) {
-      myViz.curInstr += 1;
-      myViz.updateOutput();
-    }
+    myViz.stepForward();
   });
 
   // disable controls initially ...
@@ -314,58 +308,109 @@ ExecutionVisualizer.prototype.render = function() {
 };
 
 
+// find the previous/next breakpoint to c or return -1 if it doesn't exist
+ExecutionVisualizer.prototype.findPrevBreakpoint = function() {
+  var myViz = this;
+  var c = myViz.curInstr;
+
+  if (myViz.sortedBreakpointsList.length == 0) {
+    return -1;
+  }
+  else {
+    for (var i = 1; i < myViz.sortedBreakpointsList.length; i++) {
+      var prev = myViz.sortedBreakpointsList[i-1];
+      var cur = myViz.sortedBreakpointsList[i];
+      if (c <= prev)
+        return -1;
+      if (cur >= c)
+        return prev;
+    }
+
+    // final edge case:
+    var lastElt = myViz.sortedBreakpointsList[myViz.sortedBreakpointsList.length - 1];
+    return (lastElt < c) ? lastElt : -1;
+  }
+}
+
+ExecutionVisualizer.prototype.findNextBreakpoint = function() {
+  var myViz = this;
+  var c = myViz.curInstr;
+
+  if (myViz.sortedBreakpointsList.length == 0) {
+    return -1;
+  }
+  // usability hack: if you're currently on a breakpoint, then
+  // single-step forward to the next execution point, NOT the next
+  // breakpoint. it's often useful to see what happens when the line
+  // at a breakpoint executes.
+  else if ($.inArray(c, myViz.sortedBreakpointsList) >= 0) {
+    return c + 1;
+  }
+  else {
+    for (var i = 0; i < myViz.sortedBreakpointsList.length - 1; i++) {
+      var cur = myViz.sortedBreakpointsList[i];
+      var next = myViz.sortedBreakpointsList[i+1];
+      if (c < cur)
+        return cur;
+      if (cur <= c && c < next) // subtle
+        return next;
+    }
+
+    // final edge case:
+    var lastElt = myViz.sortedBreakpointsList[myViz.sortedBreakpointsList.length - 1];
+    return (lastElt > c) ? lastElt : -1;
+  }
+}
+
+
+// returns true if action successfully taken
+ExecutionVisualizer.prototype.stepForward = function() {
+  var myViz = this;
+
+  if (myViz.curInstr < myViz.curTrace.length - 1) {
+    // if there is a next breakpoint, then jump to it ...
+    if (myViz.sortedBreakpointsList.length > 0) {
+      var nextBreakpoint = myViz.findNextBreakpoint();
+      if (nextBreakpoint != -1)
+        myViz.curInstr = nextBreakpoint;
+      else
+        myViz.curInstr += 1; // prevent "getting stuck" on a solitary breakpoint
+    }
+    else {
+      myViz.curInstr += 1;
+    }
+    myViz.updateOutput();
+    return true;
+  }
+
+  return false;
+}
+
+// returns true if action successfully taken
+ExecutionVisualizer.prototype.stepBack = function() {
+  var myViz = this;
+
+  if (myViz.curInstr > 0) {
+    // if there is a prev breakpoint, then jump to it ...
+    if (myViz.sortedBreakpointsList.length > 0) {
+      var prevBreakpoint = myViz.findPrevBreakpoint();
+      if (prevBreakpoint != -1)
+        myViz.curInstr = prevBreakpoint;
+      else
+        myViz.curInstr -= 1; // prevent "getting stuck" on a solitary breakpoint
+    }
+    else {
+      myViz.curInstr -= 1;
+    }
+    myViz.updateOutput();
+    return true;
+  }
+
+  return false;
+}
 
 ExecutionVisualizer.prototype.setKeyboardBindings = function() {
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
-
-  // find the previous/next breakpoint to c or return -1 if it doesn't exist
-  function findPrevBreakpoint(c) {
-    if (myViz.sortedBreakpointsList.length == 0) {
-      return -1;
-    }
-    else {
-      for (var i = 1; i < myViz.sortedBreakpointsList.length; i++) {
-        var prev = myViz.sortedBreakpointsList[i-1];
-        var cur = myViz.sortedBreakpointsList[i];
-        if (c <= prev)
-          return -1;
-        if (cur >= c)
-          return prev;
-      }
-
-      // final edge case:
-      var lastElt = myViz.sortedBreakpointsList[myViz.sortedBreakpointsList.length - 1];
-      return (lastElt < c) ? lastElt : -1;
-    }
-  }
-
-  function findNextBreakpoint(c) {
-    if (myViz.sortedBreakpointsList.length == 0) {
-      return -1;
-    }
-    // usability hack: if you're currently on a breakpoint, then
-    // single-step forward to the next execution point, NOT the next
-    // breakpoint. it's often useful to see what happens when the line
-    // at a breakpoint executes.
-    else if ($.inArray(c, myViz.sortedBreakpointsList) >= 0) {
-      return c + 1;
-    }
-    else {
-      for (var i = 0; i < myViz.sortedBreakpointsList.length - 1; i++) {
-        var cur = myViz.sortedBreakpointsList[i];
-        var next = myViz.sortedBreakpointsList[i+1];
-        if (c < cur)
-          return cur;
-        if (cur <= c && c < next) // subtle
-          return next;
-      }
-
-      // final edge case:
-      var lastElt = myViz.sortedBreakpointsList[myViz.sortedBreakpointsList.length - 1];
-      return (lastElt > c) ? lastElt : -1;
-    }
-  }
-
 
 
   // Set keyboard event listeners for td#left_pane. Note that it must
@@ -379,39 +424,13 @@ ExecutionVisualizer.prototype.setKeyboardBindings = function() {
   leftTablePane.keydown(function(k) {
     if (!myViz.keyStuckDown) {
       if (k.keyCode == 37) { // left arrow
-        if (myViz.curInstr > 0) {
-          // if there is a prev breakpoint, then jump to it ...
-          if (myViz.sortedBreakpointsList.length > 0) {
-            var prevBreakpoint = findPrevBreakpoint(myViz.curInstr);
-            if (prevBreakpoint != -1)
-              myViz.curInstr = prevBreakpoint;
-            else
-              myViz.curInstr -= 1; // prevent keyboard keys from "getting stuck" on a solitary breakpoint
-          }
-          else {
-            myViz.curInstr -= 1;
-          }
-          myViz.updateOutput();
-
+        if (myViz.stepBack()) {
           k.preventDefault(); // don't horizontally scroll the display
           myViz.keyStuckDown = true;
         }
       }
       else if (k.keyCode == 39) { // right arrow
-        if (myViz.curInstr < myViz.curTrace.length - 1) {
-          // if there is a next breakpoint, then jump to it ...
-          if (myViz.sortedBreakpointsList.length > 0) {
-            var nextBreakpoint = findNextBreakpoint(myViz.curInstr);
-            if (nextBreakpoint != -1)
-              myViz.curInstr = nextBreakpoint;
-            else
-              myViz.curInstr += 1; // prevent keyboard keys from "getting stuck" on a solitary breakpoint
-          }
-          else {
-            myViz.curInstr += 1;
-          }
-          myViz.updateOutput();
-
+        if (myViz.stepForward()) {
           k.preventDefault(); // don't horizontally scroll the display
           myViz.keyStuckDown = true;
         }
