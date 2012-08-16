@@ -163,7 +163,6 @@ ExecutionVisualizer.prototype.render = function() {
         <div id="progOutputs">\
         Program output:<br/>\
         <textarea id="pyStdout" cols="50" rows="13" wrap="off" readonly></textarea>\
-        <p><button id="genUrlBtn" class="smallBtn" type="button">Generate URL</button> <input type="text" id="urlOutput" size="60"/></p>\
         </div>\
       </td>\
       <td valign="top">\
@@ -218,14 +217,6 @@ ExecutionVisualizer.prototype.render = function() {
   if (this.params && this.params.hideOutput) {
     this.domRoot.find('#progOutputs').hide();
   }
-
-  this.domRoot.find('#genUrlBtn').bind('click', function() {
-    var urlStr = $.param.fragment(window.location.href,
-                                  {code: myViz.curInputCode, curInstr: myViz.curInstr, mode: 'visualize'},
-                                  2);
-    myViz.domRoot.find('#urlOutput').val(urlStr);
-  });
-
 
   this.domRoot.find("#jmpFirstInstr").click(function() {
     myViz.curInstr = 0;
@@ -682,8 +673,6 @@ ExecutionVisualizer.prototype.updateOutput = function() {
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
   assert(this.curTrace);
-
-  this.domRoot.find('#urlOutput').val(''); // blank out
 
   var curEntry = this.curTrace[this.curInstr];
   var hasError = false;

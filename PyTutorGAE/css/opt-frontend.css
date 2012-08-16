@@ -62,3 +62,8 @@ table#pyOutputPane {
   font-size: 12pt;
 }
 
+button.smallBtn {
+  font-size: 10pt;
+  padding: 3px;
+}
+

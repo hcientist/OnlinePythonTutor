@@ -35,7 +35,6 @@ var appMode = 'edit'; // 'edit' or 'visualize'
 
 var preseededCode = null;     // if you passed in a 'code=<code string>' in the URL, then set this var
 var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
-var preseededMode = null;     // if you passed in a 'mode=<mode string>' in the URL, then set this var
 
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
@@ -69,11 +68,15 @@ $(document).ready(function() {
   $(window).bind("hashchange", function(e) {
     appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
 
-    // yuck, globals!
-    preseededCode = $.bbq.getState('code');
-    preseededMode = $.bbq.getState('mode');
+    preseededCode = $.bbq.getState('code'); // yuck, global!
+    var preseededMode = $.bbq.getState('mode');
 
-    if (!preseededCurInstr) { // TODO: kinda gross hack
+    if ($.bbq.getState('cumulative_mode') == 'true') {
+      $('#cumulativeMode').prop('checked', true);
+    }
+
+    // only bother with curInstr when we're visualizing ...
+    if (!preseededCurInstr && preseededMode == 'visualize') { // TODO: kinda gross hack
       preseededCurInstr = Number($.bbq.getState('curInstr'));
     }
 
@@ -168,7 +171,7 @@ $(document).ready(function() {
                 alert(trace[0].exception_msg);
               }
               else {
-                alert("Whoa, unknown error! Reload to try again, or report a bug to philip@pgbovine.net");
+                alert("Whoa, unknown error! Reload to try again, or report a bug to philip@pgbovine.net\n\n(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
               }
 
               $('#executeBtn').html("Visualize execution");
@@ -388,5 +391,15 @@ $(document).ready(function() {
     }
   });
 
+  $('#genUrlBtn').bind('click', function() {
+    var urlStr = $.param.fragment(window.location.href,
+                                  {code: pyInputCodeMirror.getValue(),
+                                   curInstr: (appMode == 'visualize') ? myVisualizer.curInstr : 0,
+                                   mode: appMode,
+                                   cumulative_mode: $('#cumulativeMode').prop('checked')
+                                  },
+                                  2);
+    $('#urlOutput').val(urlStr);
+  });
 });
 
