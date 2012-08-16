@@ -141,7 +141,8 @@ $(document).ready(function() {
 
 
     $.get(backend_script,
-          {user_script : pyInputCodeMirror.getValue()},
+          {user_script : pyInputCodeMirror.getValue(),
+           cumulative_mode: $('#cumulativeMode').prop('checked')},
           function(dataFromBackend) {
             var trace = dataFromBackend.trace;
             

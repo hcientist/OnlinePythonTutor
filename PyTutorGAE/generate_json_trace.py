@@ -1,5 +1,8 @@
 # Generates a JSON trace that is compatible with the js/pytutor.js frontend
 
+CUMULATIVE_MODE = False
+
+
 import sys, pg_logger, json
 
 
@@ -10,5 +13,5 @@ def json_finalizer(input_code, output_trace):
 
 
 for f in sys.argv[1:]:
-  pg_logger.exec_script_str(open(f).read(), json_finalizer)
+  pg_logger.exec_script_str(open(f).read(), CUMULATIVE_MODE, json_finalizer)
 

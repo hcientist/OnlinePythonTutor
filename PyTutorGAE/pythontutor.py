@@ -58,7 +58,13 @@ class ExecScript(webapp2.RequestHandler):
   def get(self):
     self.response.headers['Content-Type'] = 'application/json'
     self.response.headers['Cache-Control'] = 'no-cache'
-    pg_logger.exec_script_str(self.request.get('user_script'), self.json_finalizer)
+
+    # convert from string to a Python boolean ...
+    cumulative_mode = (self.request.get('cumulative_mode') == 'true')
+    
+    pg_logger.exec_script_str(self.request.get('user_script'),
+                              cumulative_mode,
+                              self.json_finalizer)
 
 
 app = webapp2.WSGIApplication([('/', TutorPage),

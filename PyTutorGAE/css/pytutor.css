@@ -454,8 +454,8 @@ div.stackFrame, div.zombieStackFrame {
 }
 
 div.zombieStackFrame {
-  border-left: 1px dotted #999999; /* make zombie borders thinner */
-  color: #999999;
+  border-left: 1px dotted #aaa; /* make zombie borders thinner */
+  color: #aaa;
 }
 
 div.highlightedStackFrame {

@@ -78,7 +78,7 @@ def filter_var_dict(d):
 
 class PGLogger(bdb.Bdb):
 
-    def __init__(self, finalizer_func, cumulative_display=False):
+    def __init__(self, cumulative_mode, finalizer_func):
         bdb.Bdb.__init__(self)
         self.mainpyfile = ''
         self._wait_for_mainpyfile = 0
@@ -90,7 +90,7 @@ class PGLogger(bdb.Bdb):
         # if True, then displays ALL stack frames that have ever existed
         # rather than only those currently on the stack (and their
         # lexical parents)
-        self.cumulative_display = cumulative_display
+        self.cumulative_mode = cumulative_mode
 
         # each entry contains a dict with the information for a single
         # executed line
@@ -109,7 +109,7 @@ class PGLogger(bdb.Bdb):
         self.cur_frame_id = 1
 
         # List of frames to KEEP AROUND after the function exits.
-        # If cumulative_display is True, then keep ALL frames in
+        # If cumulative_mode is True, then keep ALL frames in
         # zombie_frames; otherwise keep only frames where
         # nested functions were defined within them.
         self.zombie_frames = []
@@ -244,7 +244,7 @@ class PGLogger(bdb.Bdb):
           self.frame_ordered_ids[top_frame] = self.cur_frame_id
           self.cur_frame_id += 1
 
-          if self.cumulative_display:
+          if self.cumulative_mode:
             self.zombie_frames.append(top_frame)
 
 
@@ -465,6 +465,10 @@ class PGLogger(bdb.Bdb):
           # frame_id is UNIQUE, so it can disambiguate recursive calls
           hash_str += '_f' + str(e['frame_id'])
 
+          # needed to refresh GUI display ...
+          if e['is_parent']:
+            hash_str += '_p'
+
           # TODO: this is no longer needed, right? (since frame_id is unique)
           #if e['parent_frame_id_list']:
           #  hash_str += '_p' + '_'.join([str(i) for i in e['parent_frame_id_list']])
@@ -596,8 +600,8 @@ class PGLogger(bdb.Bdb):
 
 
 # the MAIN meaty function!!!
-def exec_script_str(script_str, finalizer_func):
-  logger = PGLogger(finalizer_func)
+def exec_script_str(script_str, cumulative_mode, finalizer_func):
+  logger = PGLogger(cumulative_mode, finalizer_func)
 
   try:
     logger._runscript(script_str)
