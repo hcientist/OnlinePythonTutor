@@ -1532,6 +1532,34 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // Render globals and then stack frames using d3:
 
 
+  function highlightAliasedConnectors(d, i) {
+    // if this row contains a stack pointer, then highlight its arrow and
+    // ALL aliases that also point to the same heap object
+    var stackPtrId = $(this).find('div.stack_pointer').attr('id');
+    if (stackPtrId) {
+      var foundTargetId = null;
+      myViz.jsPlumbInstance.select({source: stackPtrId}).each(function(c) {foundTargetId = c.targetId;});
+
+      // use foundTargetId to highlight ALL ALIASES
+      myViz.jsPlumbInstance.select().each(function(c) {
+        if (c.targetId == foundTargetId) {
+          c.setHover(true);
+        }
+        else {
+          c.setHover(false);
+        }
+      });
+    }
+  }
+
+  function unhighlightAllConnectors(d, i) {
+    myViz.jsPlumbInstance.select().each(function(c) {
+      c.setHover(false);
+    });
+  }
+
+
+
   // render all global variables IN THE ORDER they were created by the program,
   // in order to ensure continuity:
 
@@ -1562,6 +1590,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // ENTER
   globalsD3.enter()
     .append('tr')
+    .on('mouseover', highlightAliasedConnectors)
+    .on('mouseout',  unhighlightAllConnectors)
     .selectAll('td.stackFrameVar,td.stackFrameValue')
     .data(function(d, i){return d;}) /* map varname down both columns */
     .enter()
@@ -1606,7 +1636,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             // make sure varname doesn't contain any weird
             // characters that are illegal for CSS ID's ...
             var varDivID = myViz.generateID('global__' + varnameToCssID(varname));
-            $(this).append('<div id="' + varDivID + '">&nbsp;</div>');
+            $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
 
             assert(!connectionEndpointIDs.has(varDivID));
             var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
@@ -1702,8 +1732,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   stackVarTable
     .enter()
-    .append('tr');
-  
+    .append('tr')
+    .on('mouseover', highlightAliasedConnectors)
+    .on('mouseout',  unhighlightAllConnectors);
+ 
 
   var stackVarTableCells = stackVarTable
     .selectAll('td.stackFrameVar,td.stackFrameValue')
@@ -1753,7 +1785,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             // characters that are illegal for CSS ID's ...
             var varDivID = myViz.generateID(varnameToCssID(frame.unique_hash + '__' + varname));
 
-            $(this).append('<div id="' + varDivID + '">&nbsp;</div>');
+            $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
 
             assert(!connectionEndpointIDs.has(varDivID));
             var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
