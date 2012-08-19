@@ -26,7 +26,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
-
 /*
 Color scheme ideas: 
 
@@ -251,7 +250,6 @@ button.medBtn {
 
 table.listTbl {
   border: 0px solid black;
-  background-color: #F5F798;
   border-spacing: 0px;
 }
 
@@ -267,13 +265,17 @@ table.tupleTbl td.tupleHeader {
 }
 
 table.tupleTbl {
-  background-color: #F5F798;
   border-spacing: 0px;
   color: black;
 
   border-bottom: 1px solid #555555; /* must match td.tupleHeader border */
   border-top: 1px solid #555555; /* must match td.tupleHeader border */
   border-right: 1px solid #555555; /* must match td.tupleHeader border */
+}
+
+
+table.listTbl, table.tupleTbl {
+  background-color: #ffffc6 /*#fcf08f*/ /*#f7fab9*/;
 }
 
 
@@ -444,7 +446,7 @@ div.stackFrame, div.zombieStackFrame {
   padding-right: 6px;
   padding-bottom: 4px;
   font-size: 10pt;
-  border-left: 2px solid #666666;
+  /*border-left: 2px solid #666666;*/
 }
 
 div.zombieStackFrame {
@@ -453,9 +455,15 @@ div.zombieStackFrame {
 }
 
 div.highlightedStackFrame {
-  background-color: #dddddd;
-  border-left: 2px solid #F15149;
+  background-color:  #c4e9ef /*#e4faeb*/ /*#b0e1e9*/ /*#6b83c1*/ /*#8cd7d1*/ /*#4ac0b6*/ /*#b0e1e9*/ /*#3e8dad*/ /*#dddddd*/;
+  /*border-left: 2px solid #F15149;*/
 }
+
+
+div.stackFrame, div.highlightedStackFrame {
+  border-left: 2px solid /*#d0d7d8*/ #a6b3b6 /*#7c8f94*/;
+}
+
 
 div.stackFrameHeader {
   font-family: Andale mono, monospace;

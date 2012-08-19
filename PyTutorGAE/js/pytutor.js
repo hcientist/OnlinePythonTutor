@@ -72,9 +72,9 @@ function ExecutionVisualizer(domRootID, dat, params) {
   // cool, we can create a separate jsPlumb instance for each visualization:
   this.jsPlumbInstance = jsPlumb.getInstance({
     Endpoint: ["Dot", {radius:3}],
-    EndpointStyles: [{fillStyle: darkBlue}, {fillstyle: null} /* make right endpoint invisible */],
+    EndpointStyles: [{fillStyle: connectorBaseColor}, {fillstyle: null} /* make right endpoint invisible */],
     Anchors: ["RightMiddle", "LeftMiddle"],
-    PaintStyle: {lineWidth:1, strokeStyle: darkBlue},
+    PaintStyle: {lineWidth:1, strokeStyle: connectorBaseColor},
 
     // bezier curve style:
     //Connector: [ "Bezier", { curviness:15 }], /* too much 'curviness' causes lines to run together */
@@ -83,8 +83,8 @@ function ExecutionVisualizer(domRootID, dat, params) {
     // state machine curve style:
     Connector: [ "StateMachine" ],
     Overlays: [[ "Arrow", { length: 10, width:7, foldback:0.55, location:1 }]],
-    EndpointHoverStyles: [{fillStyle: pinkish}, {fillstyle: null} /* make right endpoint invisible */],
-    HoverPaintStyle: {lineWidth:2, strokeStyle: pinkish},
+    EndpointHoverStyles: [{fillStyle: connectorHighlightColor}, {fillstyle: null} /* make right endpoint invisible */],
+    HoverPaintStyle: {lineWidth: 1, strokeStyle: connectorHighlightColor},
   });
 
 
@@ -782,7 +782,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       .style('background-color', function(d) {
         if (d.lineNumber == curEntry.line) {
           d.backgroundColor = hasError ? errorColor :
-                                         (isTerminated ?  lightBlue : lightLineColor);
+                                         (isTerminated ?  terminatedLineColor : highlightedLineColor);
         }
         else {
           d.backgroundColor = null;
@@ -792,7 +792,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       })
       .style('border-top', function(d) {
         if ((d.lineNumber == curEntry.line) && !hasError && !isTerminated) {
-          return '1px solid ' + errorColor;
+          return '1px solid ' + highlightedLineTopBorderColor;
         }
         else {
           // put a default white top border to keep space usage consistent
@@ -1842,8 +1842,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       // if this connector starts in the selected stack frame ...
       if (stackFrameDiv.attr('id') == frameID) {
         // then HIGHLIGHT IT!
-        c.setPaintStyle({lineWidth:1, strokeStyle: darkBlue});
-        c.endpoints[0].setPaintStyle({fillStyle: darkBlue});
+        c.setPaintStyle({lineWidth:1, strokeStyle: connectorBaseColor});
+        c.endpoints[0].setPaintStyle({fillStyle: connectorBaseColor});
         //c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
 
         $(c.canvas).css("z-index", 1000); // ... and move it to the VERY FRONT
@@ -1854,8 +1854,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       }
       else {
         // else unhighlight it
-        c.setPaintStyle({lineWidth:1, strokeStyle: lightGray});
-        c.endpoints[0].setPaintStyle({fillStyle: lightGray});
+        c.setPaintStyle({lineWidth:1, strokeStyle: connectorInactiveColor});
+        c.endpoints[0].setPaintStyle({fillStyle: connectorInactiveColor});
         //c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
 
         $(c.canvas).css("z-index", 0);
@@ -1894,23 +1894,62 @@ ExecutionVisualizer.prototype.redrawConnectors = function() {
 // Utilities
 
 
+
+
 /* colors - see pytutor.css */
 var lightYellow = '#F5F798';
-var lightLineColor = '#FFFFCC';
-var errorColor = '#F87D76';
-var visitedLineColor = '#3D58A2';
 
-var lightGray = "#cccccc";
+//var highlightedLineColor = '#FFFFCC';
+//var highlightedLineColor = '#88e777';
+//var highlightedLineColor = '#9beb8d';
+//var highlightedLineColor = '#aeefa2';
+//var highlightedLineColor = '#c1f2b8';
+//var highlightedLineColor = '#c1f2b8';
+//var highlightedLineColor = '#d0d7d8';
+//var highlightedLineColor = '#b8f2cc';
+//var highlightedLineColor = '#e3faeb';
+var highlightedLineColor = '#cef6db';
+
+
+//var highlightedLineTopBorderColor = '#3b5998';
+var highlightedLineTopBorderColor = '#005583';
+
+//var visitedLineColor = '#3D58A2';
+var visitedLineColor = highlightedLineTopBorderColor;
+
+var errorColor = '#F87D76';
+
+//var terminatedLineColor = "#899CD1";
+//var terminatedLineColor = '#3e8dad';
+//var terminatedLineColor = '#4ac0b6';
+//var terminatedLineColor = '#77e69e';
+//var terminatedLineColor = '#8deaad';
+var terminatedLineColor = '#a2eebd';
+
 var darkBlue = "#3D58A2";
 var medBlue = "#41507A";
 var medLightBlue = "#6F89D1";
-var lightBlue = "#899CD1";
 var pinkish = "#F15149";
 var lightPink = "#F89D99";
 var darkRed = "#9D1E18";
 
-var breakpointColor = pinkish;
-var hoverBreakpointColor = medLightBlue;
+//var connectorBaseColor = darkBlue;
+//var connectorBaseColor = "#005583";
+//var connectorBaseColor = "#425c9d";
+//var connectorBaseColor = "#3b5998";
+var connectorBaseColor = '#005583';
+
+//var connectorHighlightColor = pinkish;
+var connectorHighlightColor = '#d03939';
+
+var connectorInactiveColor = '#cccccc';
+//var connectorInactiveColor = '#ecf2f5';
+
+//var breakpointColor = pinkish;
+var breakpointColor = connectorHighlightColor;
+
+//var hoverBreakpointColor = medLightBlue;
+var hoverBreakpointColor = connectorBaseColor;
 
 
 function assert(cond) {
