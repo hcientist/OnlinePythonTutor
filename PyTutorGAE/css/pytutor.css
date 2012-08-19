@@ -157,7 +157,8 @@ div#editCodeLinkDiv {
 
 
 #errorOutput {
-  background-color: #F87D76;
+  color: #d03939;
+  /*background-color: #F87D76;*/
   font-size: 12pt;
   padding: 2px;
   line-height: 1.5em;
@@ -239,12 +240,12 @@ button.medBtn {
 .retval,
 .returnWarning {
   font-size: 9pt;
-  color: #9d1e18;
+  /*color: #9d1e18;*/
 }
 
 .returnWarning {
   padding-top: 10px;
-  color: #9d1e18;
+  /*color: #9d1e18;*/
 }
 
 
@@ -274,8 +275,16 @@ table.tupleTbl {
 }
 
 
-table.listTbl, table.tupleTbl {
+table.listTbl, table.tupleTbl, table.setTbl {
   background-color: #ffffc6 /*#fcf08f*/ /*#f7fab9*/;
+}
+
+table.dictTbl,
+table.dictTbl td.dictVal,
+table.instTbl,
+table.instTbl td.instVal {
+  background-color: #ffffc6 /*#fcf08f*/ /*#f7fab9*/;
+  /*background-color: #F5F798;*/
 }
 
 
@@ -309,7 +318,7 @@ table.tupleTbl td.tupleElt {
 
 table.setTbl {
   border: 1px solid #555555;
-  background-color: #F5F798;
+  /*background-color: #F5F798;*/
   border-spacing: 0px;
   text-align: center;
 }
@@ -329,13 +338,6 @@ table.dictTbl {
 table.dictTbl td.dictKey,
 table.instTbl td.instKey {
   background-color: white;
-}
-
-table.dictTbl,
-table.dictTbl td.dictVal,
-table.instTbl,
-table.instTbl td.instVal {
-  background-color: #F5F798;
 }
 
 
@@ -451,17 +453,18 @@ div.stackFrame, div.zombieStackFrame {
 
 div.zombieStackFrame {
   border-left: 1px dotted #aaa; /* make zombie borders thinner */
-  color: #aaa;
+  color: #c0c0c0 /*#aaa*/;
 }
 
 div.highlightedStackFrame {
-  background-color:  #c4e9ef /*#e4faeb*/ /*#b0e1e9*/ /*#6b83c1*/ /*#8cd7d1*/ /*#4ac0b6*/ /*#b0e1e9*/ /*#3e8dad*/ /*#dddddd*/;
+  background-color: #a8d0df /*#c1ebf7*/  /*#8bc0d5*/ /*#afd1d7*/ /*#95c2ca*/ /*#aae4f4*/ /*#c4e9ef*/ /*#c1c7e5*/ /*#afcede*/ /*#9dc3d6*/ /*#b8f0ff - BAD*/ /*#e4faeb*/ /*#b0e1e9*/ /*#6b83c1*/ /*#8cd7d1*/ /*#4ac0b6*/ /*#b0e1e9*/ /*#3e8dad*/ /*#dddddd*/;
   /*border-left: 2px solid #F15149;*/
 }
 
 
+
 div.stackFrame, div.highlightedStackFrame {
-  border-left: 2px solid /*#d0d7d8*/ #a6b3b6 /*#7c8f94*/;
+  border-left: 2px solid #a6b3b6 /*#8a9b9f*/ /*#98a7ab*/ /*#d0d7d8*/ /*#7c8f94*/;
 }
 
 
