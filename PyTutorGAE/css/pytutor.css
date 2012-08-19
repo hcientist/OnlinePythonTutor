@@ -643,3 +643,8 @@ div#submittedSolutionDisplay {
 /* necessary for CodeMirror line highlighting to work! */
 .CodeMirror .errorLine { background: #F89D99 !important; }
 
+
+/* darken slider handle a bit */
+.ui-slider .ui-slider-handle {
+  border: 1px solid #999;
+}
