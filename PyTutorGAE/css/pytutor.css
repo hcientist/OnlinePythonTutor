@@ -457,7 +457,7 @@ div.zombieStackFrame {
 }
 
 div.highlightedStackFrame {
-  background-color: #a8d0df /*#c1ebf7*/  /*#8bc0d5*/ /*#afd1d7*/ /*#95c2ca*/ /*#aae4f4*/ /*#c4e9ef*/ /*#c1c7e5*/ /*#afcede*/ /*#9dc3d6*/ /*#b8f0ff - BAD*/ /*#e4faeb*/ /*#b0e1e9*/ /*#6b83c1*/ /*#8cd7d1*/ /*#4ac0b6*/ /*#b0e1e9*/ /*#3e8dad*/ /*#dddddd*/;
+  background-color: #c5dfea /*#a8d0df*/ /*#c1ebf7*/   /*#8bc0d5*/ /*#afd1d7*/ /*#95c2ca*/ /*#aae4f4*/ /*#c4e9ef*/ /*#c1c7e5*/ /*#afcede*/ /*#9dc3d6*/ /*#b8f0ff - BAD*/ /*#e4faeb*/ /*#b0e1e9*/ /*#6b83c1*/ /*#8cd7d1*/ /*#4ac0b6*/ /*#b0e1e9*/ /*#3e8dad*/ /*#dddddd*/;
   /*border-left: 2px solid #F15149;*/
 }
 
