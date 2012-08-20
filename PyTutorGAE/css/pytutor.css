@@ -206,7 +206,6 @@ button.medBtn {
 /* Python data value rendering */
 
 .nullObj {
-  color: #555555;
   font-size: 9pt;
 }
 
@@ -229,12 +228,10 @@ button.medBtn {
 
 .customObj {
   font-family: Andale mono, monospace;
-  /*font-style: italic;*/
 }
 
 .funcObj {
   font-family: Andale mono, monospace;
-  /*font-style: italic;*/
 }
 
 .retval,
@@ -242,12 +239,6 @@ button.medBtn {
   font-size: 9pt;
   /*color: #9d1e18;*/
 }
-
-.returnWarning {
-  padding-top: 10px;
-  /*color: #9d1e18;*/
-}
-
 
 table.listTbl {
   border: 0px solid black;
