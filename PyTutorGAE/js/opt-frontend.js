@@ -297,6 +297,11 @@ $(document).ready(function() {
     return false;
   });
 
+  $("#sumCubesLink").click(function() {
+    $.get("example-code/sum-cubes.txt", setCodeMirrorVal);
+    return false;
+  });
+
 
   $('#closure1Link').click(function() {
     $.get("example-code/closures/closure1.txt", setCodeMirrorVal);

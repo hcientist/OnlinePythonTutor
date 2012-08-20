@@ -103,6 +103,9 @@ class PGLogger(bdb.Bdb):
         # Value: parent frame
         self.closures = {}
 
+        # set of function objects that were defined in the global scope
+        self.globally_defined_funcs = set()
+
         # Key: frame object
         # Value: monotonically increasing small ID, based on call order
         self.frame_ordered_ids = {}
@@ -372,11 +375,18 @@ class PGLogger(bdb.Bdb):
         if i > 1: # i == 1 implies that there's only a global scope visible
           for (k, v) in get_user_locals(top_frame).items():
             if (type(v) in (types.FunctionType, types.MethodType) and \
-                v not in self.closures):
+                v not in self.closures and \
+                v not in self.globally_defined_funcs):
               self.closures[v] = top_frame
               self.parent_frames_set.add(top_frame) # unequivocally add to this set!!!
               if not top_frame in self.zombie_frames:
                 self.zombie_frames.append(top_frame)
+        else:
+          # if there is only a global scope visible ...
+          for (k, v) in get_user_globals(top_frame).items():
+            if (type(v) in (types.FunctionType, types.MethodType) and \
+                v not in self.closures):
+              self.globally_defined_funcs.add(v)
 
 
         # climb up until you find '<module>', which is (hopefully) the global scope
