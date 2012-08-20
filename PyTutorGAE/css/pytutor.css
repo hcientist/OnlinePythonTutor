@@ -279,14 +279,6 @@ table.listTbl, table.tupleTbl, table.setTbl {
   background-color: #ffffc6 /*#fcf08f*/ /*#f7fab9*/;
 }
 
-table.dictTbl,
-table.dictTbl td.dictVal,
-table.instTbl,
-table.instTbl td.instVal {
-  background-color: #ffffc6 /*#fcf08f*/ /*#f7fab9*/;
-  /*background-color: #F5F798;*/
-}
-
 
 table.listTbl td.listElt {
   border-bottom: 1px solid #555555; /* must match td.listHeader border */
@@ -329,15 +321,20 @@ table.setTbl td.setElt {
 
 
 table.dictTbl {
-  border: 1px solid #555555;
-  border-collapse: collapse;
+  /*border: 1px solid #555555;*/
+  /*border-collapse: collapse;*/
   border-spacing: 1px;
 }
 
 
 table.dictTbl td.dictKey,
 table.instTbl td.instKey {
-  background-color: white;
+  background-color: #faebbf /*#fde9bb*/ /*#fce1a2*/ /*#ffff78*/ /*#ffffc6*/;
+}
+
+table.dictTbl td.dictVal,
+table.instTbl td.instVal {
+  background-color: #ffffc6;
 }
 
 
@@ -379,11 +376,12 @@ table.classTbl td.classVal {
 table.instTbl {
   border-collapse: collapse;
   border-spacing: 1px;
+  border: 1px #555555 solid;
 }
 
 table.dictTbl tr.dictEntry,
 table.instTbl tr.instEntry {
-  border: 1px #555555 solid;
+  /*border: 1px #555555 solid;*/
 }
 
 
