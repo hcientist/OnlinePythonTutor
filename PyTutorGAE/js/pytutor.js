@@ -1552,6 +1552,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       myViz.jsPlumbInstance.select().each(function(c) {
         if (c.targetId == foundTargetId) {
           c.setHover(true);
+          $(c.canvas).css("z-index", 2000); // ... and move it to the VERY FRONT
         }
         else {
           c.setHover(false);
@@ -1904,7 +1905,7 @@ ExecutionVisualizer.prototype.redrawConnectors = function() {
 
 /* colors - see pytutor.css for more colors */
 
-var highlightedLineColor = '#cef6db';
+var highlightedLineColor = '#e4faeb';
 var highlightedLineTopBorderColor = '#005583';
 
 var visitedLineColor = highlightedLineTopBorderColor;
