@@ -26,43 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
-/*
-Color scheme ideas: 
-
-Current scheme: pastel blue and yellow with a hint of red:
-  http://colorschemedesigner.com/#3N32mmmuew0w0
-
-Primary Color:
-  3D58A2    41507A    142B69    6F89D1    899CD1
-Secondary Color A:
-  EBF048    B1B456    989C17    F4F776    F5F798
-Secondary Color B:
-  F15149    B55B56    9D1E18    F87D76    F89D99
-
-
-Alternates:
-
-pastel green, yellow, and purple:
-  http://colorschemedesigner.com/#2P32PbX--w0w0
-
-  Primary Color:
-    A0FFA0    8ABF8A    34A634    B8FFB8    CBFFCB
-  Secondary Color A:
-    FFEFA0    BFB68A    A69234    FFF3B8    FFF6CB
-  Secondary Color B:
-    BFABFF    9B90BF    5237A6    CFC0FF    DCD1FF
-
-
-pastel blue and yellow:
-  http://colorschemedesigner.com/#0W21TjruJw0w0
-
-Primary Color:
-  F5C260    B89B64    9F741F    FAD388    FADEA6
-Complementary Color:
-  4A67A4    49597B    18326A    7C97D1    93A7D1
-
-
-*/
+/* Most recent color scheme redesign: 2012-08-19 */
 
 table.visualizer {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -203,12 +167,13 @@ button.medBtn {
 }
 
 
-/* Python data value rendering */
+/* Rendering of primitive types */
 
 .nullObj {
-  font-size: 9pt;
+  font-size: 8pt;
 }
 
+/*
 .numberObj {
   font-size: 10pt;
 }
@@ -216,35 +181,28 @@ button.medBtn {
 .boolObj {
   font-size: 10pt;
 }
+*/
 
-.stringObj {
-  /* don't add a color since strings need to be rendered against various backgrounds */
-  font-family: Andale mono, monospace;
-  font-size: 10pt;
-}
-
-.keyObj {
-}
-
-.customObj {
+.stringObj, .customObj, .funcObj {
   font-family: Andale mono, monospace;
 }
 
-.funcObj {
-  font-family: Andale mono, monospace;
-}
-
-.retval,
-.returnWarning {
+.retval {
   font-size: 9pt;
-  /*color: #9d1e18;*/
 }
+
+
+/* Rendering of basic compound types */
+
+table.listTbl, table.tupleTbl, table.setTbl {
+  background-color: #ffffc6;
+}
+
 
 table.listTbl {
   border: 0px solid black;
   border-spacing: 0px;
 }
-
 
 table.listTbl td.listHeader,
 table.tupleTbl td.tupleHeader {
@@ -263,11 +221,6 @@ table.tupleTbl {
   border-bottom: 1px solid #555555; /* must match td.tupleHeader border */
   border-top: 1px solid #555555; /* must match td.tupleHeader border */
   border-right: 1px solid #555555; /* must match td.tupleHeader border */
-}
-
-
-table.listTbl, table.tupleTbl, table.setTbl {
-  background-color: #ffffc6 /*#fcf08f*/ /*#f7fab9*/;
 }
 
 
@@ -301,7 +254,6 @@ table.tupleTbl td.tupleElt {
 
 table.setTbl {
   border: 1px solid #555555;
-  /*background-color: #F5F798;*/
   border-spacing: 0px;
   text-align: center;
 }
@@ -311,17 +263,17 @@ table.setTbl td.setElt {
 }
 
 
-table.dictTbl {
-  /*border: 1px solid #555555;*/
-  /*border-collapse: collapse;*/
+table.dictTbl,
+table.instTbl,
+table.classTbl {
   border-spacing: 1px;
+  /*border-collapse: collapse;*/
 }
-
 
 table.dictTbl td.dictKey,
 table.instTbl td.instKey,
 table.classTbl td.classKey {
-  background-color: #faebbf /*#fde9bb*/ /*#fce1a2*/ /*#ffff78*/ /*#ffffc6*/;
+  background-color: #faebbf;
 }
 
 table.dictTbl td.dictVal,
@@ -354,6 +306,7 @@ table.classTbl td.classVal {
   vertical-align: center;
 }
 
+
 table.classTbl td,
 table.instTbl td {
   border-bottom: 1px #888 solid;
@@ -362,13 +315,6 @@ table.instTbl td {
 table.classTbl td.classVal,
 table.instTbl td.instVal {
   border-left: 1px #888 solid;
-}
-
-table.classTbl,
-table.instTbl {
-  border-spacing: 1px;
-  /*border-collapse: collapse;*/
-  /*border: 1px #555555 solid;*/
 }
 
 table.classTbl {
@@ -381,15 +327,6 @@ table.classTbl {
   font-size: 8pt;
   color: #222222;
   margin-bottom: 1px;
-}
-
-td.dictKey .typeLabel {
-  color: #eeeeee;
-}
-
-.aliasLabel {
-  font-size: 10pt;
-  color: #222222;
 }
 
 #footer {
@@ -425,23 +362,19 @@ div.stackFrame, div.zombieStackFrame {
   padding-right: 6px;
   padding-bottom: 4px;
   font-size: 10pt;
-  /*border-left: 2px solid #666666;*/
 }
 
 div.zombieStackFrame {
-  border-left: 1px dotted #aaa; /* make zombie borders thinner */
-  color: #c0c0c0 /*#aaa*/;
+  border-left: 1px dotted #aaa;
+  color: #c0c0c0;
 }
 
 div.highlightedStackFrame {
-  background-color: #c5dfea /*#a8d0df*/ /*#c1ebf7*/   /*#8bc0d5*/ /*#afd1d7*/ /*#95c2ca*/ /*#aae4f4*/ /*#c4e9ef*/ /*#c1c7e5*/ /*#afcede*/ /*#9dc3d6*/ /*#b8f0ff - BAD*/ /*#e4faeb*/ /*#b0e1e9*/ /*#6b83c1*/ /*#8cd7d1*/ /*#4ac0b6*/ /*#b0e1e9*/ /*#3e8dad*/ /*#dddddd*/;
-  /*border-left: 2px solid #F15149;*/
+  background-color: #c5dfea;
 }
 
-
-
 div.stackFrame, div.highlightedStackFrame {
-  border-left: 2px solid #a6b3b6 /*#8a9b9f*/ /*#98a7ab*/ /*#d0d7d8*/ /*#7c8f94*/;
+  border-left: 2px solid #a6b3b6;
 }
 
 
@@ -611,7 +544,6 @@ div#submittedSolutionDisplay {
 
 
 #executionSlider {
-  /*width: 900px;*/
   width: 500px;
   margin-top: 10px;
   margin-bottom: 5px;
