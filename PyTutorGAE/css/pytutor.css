@@ -328,19 +328,21 @@ table.dictTbl {
 
 
 table.dictTbl td.dictKey,
-table.instTbl td.instKey {
+table.instTbl td.instKey,
+table.classTbl td.classKey {
   background-color: #faebbf /*#fde9bb*/ /*#fce1a2*/ /*#ffff78*/ /*#ffffc6*/;
 }
 
 table.dictTbl td.dictVal,
-table.instTbl td.instVal {
+table.instTbl td.instVal,
+table.classTbl td.classVal {
   background-color: #ffffc6;
 }
 
 
 table.dictTbl td.dictKey,
-table.classTbl td.classKey,
-table.instTbl td.instKey {
+table.instTbl td.instKey,
+table.classTbl td.classKey {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 8px;
@@ -350,44 +352,9 @@ table.instTbl td.instKey {
   vertical-align: center;
 }
 
-table.classTbl td.classKey {
-  color: #dddddd;
-}
-
-table.classTbl {
-  background-color: #dddddd;
-  border-collapse: collapse;
-  border-spacing: 1px;
-}
-
-table.classTbl tr.classEntry {
-  border: 1px #777777 solid;
-}
-
-table.classTbl td.classKey {
-  background-color: #222222;
-}
-
-table.classTbl td.classVal {
-  background-color: #ffffff;
-}
-
-
-table.instTbl {
-  border-collapse: collapse;
-  border-spacing: 1px;
-  border: 1px #555555 solid;
-}
-
-table.dictTbl tr.dictEntry,
-table.instTbl tr.instEntry {
-  /*border: 1px #555555 solid;*/
-}
-
-
 table.dictTbl td.dictVal,
-table.classTbl td.classVal,
-table.instTbl td.instVal {
+table.instTbl td.instVal,
+table.classTbl td.classVal {
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 10px;
@@ -396,6 +363,27 @@ table.instTbl td.instVal {
 }
 
 
+table.classTbl td,
+table.instTbl td {
+  border-bottom: 1px #888 solid;
+}
+
+table.classTbl td.classVal,
+table.instTbl td.instVal {
+  border-left: 1px #888 solid;
+}
+
+table.classTbl,
+table.instTbl {
+  border-spacing: 1px;
+  /*border-collapse: collapse;*/
+  /*border: 1px #555555 solid;*/
+}
+
+table.classTbl {
+  border-collapse: collapse;
+  border: 1px #888 solid;
+}
 
 
 .typeLabel {
