@@ -366,7 +366,8 @@ div.stackFrame, div.zombieStackFrame {
 
 div.zombieStackFrame {
   border-left: 1px dotted #aaa;
-  color: #c0c0c0;
+  /*color: #c0c0c0;*/
+  color: #b0b0b0;
 }
 
 div.highlightedStackFrame {
