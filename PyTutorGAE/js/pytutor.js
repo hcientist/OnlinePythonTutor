@@ -1894,61 +1894,24 @@ ExecutionVisualizer.prototype.redrawConnectors = function() {
 // Utilities
 
 
+/* colors - see pytutor.css for more colors */
 
-
-/* colors - see pytutor.css */
-var lightYellow = '#F5F798';
-
-//var highlightedLineColor = '#FFFFCC';
-//var highlightedLineColor = '#88e777';
-//var highlightedLineColor = '#9beb8d';
-//var highlightedLineColor = '#aeefa2';
-//var highlightedLineColor = '#c1f2b8';
-//var highlightedLineColor = '#c1f2b8';
-//var highlightedLineColor = '#d0d7d8';
-//var highlightedLineColor = '#b8f2cc';
-//var highlightedLineColor = '#e3faeb';
 var highlightedLineColor = '#cef6db';
-
-
-//var highlightedLineTopBorderColor = '#3b5998';
 var highlightedLineTopBorderColor = '#005583';
 
-//var visitedLineColor = '#3D58A2';
 var visitedLineColor = highlightedLineTopBorderColor;
 
-var errorColor = '#F87D76';
-
-//var terminatedLineColor = "#899CD1";
-//var terminatedLineColor = '#3e8dad';
-//var terminatedLineColor = '#4ac0b6';
-//var terminatedLineColor = '#77e69e';
-//var terminatedLineColor = '#8deaad';
 var terminatedLineColor = '#a2eebd';
 
-var darkBlue = "#3D58A2";
-var medBlue = "#41507A";
-var medLightBlue = "#6F89D1";
-var pinkish = "#F15149";
-var lightPink = "#F89D99";
-var darkRed = "#9D1E18";
+var darkRed = '#d03939';
 
-//var connectorBaseColor = darkBlue;
-//var connectorBaseColor = "#005583";
-//var connectorBaseColor = "#425c9d";
-//var connectorBaseColor = "#3b5998";
 var connectorBaseColor = '#005583';
-
-//var connectorHighlightColor = pinkish;
-var connectorHighlightColor = '#d03939';
-
+var connectorHighlightColor = darkRed;
 var connectorInactiveColor = '#cccccc';
-//var connectorInactiveColor = '#ecf2f5';
 
-//var breakpointColor = pinkish;
-var breakpointColor = connectorHighlightColor;
+var errorColor = darkRed;
 
-//var hoverBreakpointColor = medLightBlue;
+var breakpointColor = darkRed;
 var hoverBreakpointColor = connectorBaseColor;
 
 
