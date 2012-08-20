@@ -543,7 +543,10 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
 
     myViz.hoverBreakpoints = d3.map();
     $.each(exePts, function(i, ep) {
-      myViz.hoverBreakpoints.set(ep, 1);
+      // don't add redundant entries
+      if (!myViz.breakpoints.has(ep)) {
+        myViz.hoverBreakpoints.set(ep, 1);
+      }
     });
 
     addToBreakpoints(exePts);
@@ -561,6 +564,11 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
     }
 
     addToBreakpoints(exePts);
+
+    // remove from hoverBreakpoints so that slider display immediately changes color
+    $.each(exePts, function(i, ep) {
+      myViz.hoverBreakpoints.remove(ep);
+    });
 
     d3.select(t.parentNode).select('td.lineNo').style('color', breakpointColor);
     d3.select(t.parentNode).select('td.lineNo').style('font-weight', 'bold');
