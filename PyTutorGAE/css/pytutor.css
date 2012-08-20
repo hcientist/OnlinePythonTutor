@@ -206,10 +206,11 @@ table.listTbl {
 
 table.listTbl td.listHeader,
 table.tupleTbl td.tupleHeader {
-  padding-left: 5px;
-  padding-top: 3px;
+  padding-left: 4px;
+  padding-top: 2px;
+  padding-bottom: 3px;
   font-size: 8pt;
-  color: #666666;
+  color: #777;
   text-align: left;
   border-left: 1px solid #555555;
 }
@@ -267,7 +268,6 @@ table.dictTbl,
 table.instTbl,
 table.classTbl {
   border-spacing: 1px;
-  /*border-collapse: collapse;*/
 }
 
 table.dictTbl td.dictKey,
@@ -286,24 +286,21 @@ table.classTbl td.classVal {
 table.dictTbl td.dictKey,
 table.instTbl td.instKey,
 table.classTbl td.classKey {
-  padding-top: 15px;
+  padding-top: 12px /*15px*/;
   padding-bottom: 5px;
   padding-left: 10px;
   padding-right: 4px;
 
   text-align: right;
-  vertical-align: center;
 }
 
 table.dictTbl td.dictVal,
 table.instTbl td.instVal,
 table.classTbl td.classVal {
-  padding-top: 15px;
+  padding-top: 12px /*15px*/;
   padding-bottom: 5px;
   padding-right: 10px;
   padding-left: 4px;
-
-  vertical-align: center;
 }
 
 
@@ -319,6 +316,15 @@ table.instTbl td.instVal {
 
 table.classTbl {
   border-collapse: collapse;
+  border: 1px #888 solid;
+}
+
+/* only add a border to dicts if they're embedded within another object */
+td.listElt table.dictTbl,
+td.tupleElt table.dictTbl,
+td.dictVal table.dictTbl,
+td.instVal table.dictTbl,
+td.classVal table.dictTbl {
   border: 1px #888 solid;
 }
 
