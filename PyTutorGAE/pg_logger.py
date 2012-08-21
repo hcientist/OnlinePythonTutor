@@ -405,10 +405,12 @@ class PGLogger(bdb.Bdb):
 
               assert chosen_parent_frame # I hope this always passes :0
 
-              self.closures[v] = chosen_parent_frame
-              self.parent_frames_set.add(chosen_parent_frame) # unequivocally add to this set!!!
-              if not chosen_parent_frame in self.zombie_frames:
-                self.zombie_frames.append(chosen_parent_frame)
+              # this condition should be False for functions declared in global scope ...
+              if chosen_parent_frame in self.frame_ordered_ids:
+                self.closures[v] = chosen_parent_frame
+                self.parent_frames_set.add(chosen_parent_frame) # unequivocally add to this set!!!
+                if not chosen_parent_frame in self.zombie_frames:
+                  self.zombie_frames.append(chosen_parent_frame)
         else:
           # if there is only a global scope visible ...
           for (k, v) in get_user_globals(top_frame).items():
