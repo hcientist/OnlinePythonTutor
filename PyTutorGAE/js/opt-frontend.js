@@ -323,6 +323,10 @@ $(document).ready(function() {
     $.get("example-code/closures/closure5.txt", setCodeMirrorVal);
     return false;
   });
+  $('#lambdaParamLink').click(function() {
+    $.get("example-code/closures/lambda-param.txt", setCodeMirrorVal);
+    return false;
+  });
 
 
   $('#aliasing1Link').click(function() {

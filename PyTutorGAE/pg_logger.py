@@ -377,6 +377,38 @@ class PGLogger(bdb.Bdb):
             if (type(v) in (types.FunctionType, types.MethodType) and \
                 v not in self.closures and \
                 v not in self.globally_defined_funcs):
+
+              '''
+              # Look for the presence of v.func_code (code object) in
+              # the constant pool (f_code.co_consts) of an enclosing
+              # stack frame, and set that frame as your parent.
+              #
+              # This technique properly handles lambdas passed as
+              # function parameters. e.g., this example:
+              #
+              # def foo(x):
+              #   bar(lambda y: x + y)
+              # def bar(a):
+              #   print a(20)
+              # foo(10)
+              chosen_parent_frame = None
+              for (my_frame, my_lineno) in self.stack:
+                if chosen_parent_frame:
+                  break
+
+                for frame_const in my_frame.f_code.co_consts:
+                  if frame_const is v.func_code:
+                    chosen_parent_frame = my_frame
+                    break
+
+              assert chosen_parent_frame # I hope this always passes :0
+
+              self.closures[v] = chosen_parent_frame
+              self.parent_frames_set.add(chosen_parent_frame) # unequivocally add to this set!!!
+              if not chosen_parent_frame in self.zombie_frames:
+                self.zombie_frames.append(chosen_parent_frame)
+              '''
+
               self.closures[v] = top_frame
               self.parent_frames_set.add(top_frame) # unequivocally add to this set!!!
               if not top_frame in self.zombie_frames:
