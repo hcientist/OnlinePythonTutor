@@ -13,8 +13,6 @@ PROGRAM = ['python', '../generate_json_trace.py']
 
 INPUT_FILE_EXTENSION = '.txt' # input test files are .txt, NOT .py
 
-TEST_DIR = '.'
-
 
 ALL_TESTS = []
 
@@ -80,9 +78,9 @@ def golden_differs_from_out(golden_file):
 def diff_test_output(test_name):
   (base, ext) = os.path.splitext(test_name)
 
-  golden_file = os.path.join(TEST_DIR, base + '.golden')
+  golden_file = base + '.golden'
   assert os.path.isfile(golden_file)
-  outfile = os.path.join(TEST_DIR, base + '.out')
+  outfile = base + '.out'
   assert os.path.isfile(outfile)
 
   golden_s = open(golden_file).readlines()
@@ -111,10 +109,10 @@ def run_test(input_filename, clobber_golden=False):
   if os.path.isfile(outfile):
     os.remove(outfile)
 
-  input_fullpath = os.path.join(TEST_DIR, input_filename)
+  input_fullpath = input_filename
   execute(input_fullpath)
 
-  golden_file = os.path.join(TEST_DIR, base + '.golden')
+  golden_file = base + '.golden'
   if os.path.isfile(golden_file):
     if golden_differs_from_out(golden_file):
       print "  FAILED"
@@ -166,7 +164,7 @@ if __name__ == "__main__":
   elif options.only_clobber:
     for t in ALL_TESTS:
       (base, ext) = os.path.splitext(t)
-      golden_file = os.path.join(TEST_DIR, base + '.golden')
+      golden_file = base + '.golden'
       clobber_golden_file(golden_file)
   else:
     parser.print_help()

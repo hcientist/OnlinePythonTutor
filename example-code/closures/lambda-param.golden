@@ -179,11 +179,11 @@
             "x": 10
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f1", 
+          "unique_hash": "foo_f1_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -197,11 +197,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "bar", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "bar_f2_p", 
+          "unique_hash": "bar_f2", 
           "ordered_varnames": [
             "a"
           ]
@@ -231,7 +231,7 @@
         "3": [
           "FUNCTION", 
           "\u03bb(y)", 
-          2
+          1
         ]
       }, 
       "line": 4, 
@@ -251,11 +251,11 @@
             "x": 10
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f1", 
+          "unique_hash": "foo_f1_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -269,11 +269,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "bar", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "bar_f2_p", 
+          "unique_hash": "bar_f2", 
           "ordered_varnames": [
             "a"
           ]
@@ -303,7 +303,7 @@
         "3": [
           "FUNCTION", 
           "\u03bb(y)", 
-          2
+          1
         ]
       }, 
       "line": 5, 
@@ -323,11 +323,11 @@
             "x": 10
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f1", 
+          "unique_hash": "foo_f1_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -341,11 +341,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "bar", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "bar_f2_p", 
+          "unique_hash": "bar_f2", 
           "ordered_varnames": [
             "a"
           ]
@@ -353,20 +353,18 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "y": 20, 
-            "x": 10
+            "y": 20
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f3", 
           "ordered_varnames": [
-            "y", 
-            "x"
+            "y"
           ]
         }
       ], 
@@ -394,7 +392,7 @@
         "3": [
           "FUNCTION", 
           "\u03bb(y)", 
-          2
+          1
         ]
       }, 
       "line": 2, 
@@ -414,11 +412,11 @@
             "x": 10
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f1", 
+          "unique_hash": "foo_f1_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -432,11 +430,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "bar", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "bar_f2_p", 
+          "unique_hash": "bar_f2", 
           "ordered_varnames": [
             "a"
           ]
@@ -444,20 +442,18 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "y": 20, 
-            "x": 10
+            "y": 20
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f3", 
           "ordered_varnames": [
-            "y", 
-            "x"
+            "y"
           ]
         }
       ], 
@@ -485,7 +481,7 @@
         "3": [
           "FUNCTION", 
           "\u03bb(y)", 
-          2
+          1
         ]
       }, 
       "line": 2, 
@@ -505,11 +501,11 @@
             "x": 10
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f1", 
+          "unique_hash": "foo_f1_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -523,11 +519,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "bar", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "bar_f2_p", 
+          "unique_hash": "bar_f2", 
           "ordered_varnames": [
             "a"
           ]
@@ -536,7 +532,6 @@
           "frame_id": 3, 
           "encoded_locals": {
             "y": 20, 
-            "x": 10, 
             "__return__": 30
           }, 
           "is_highlighted": true, 
@@ -544,12 +539,11 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f3", 
           "ordered_varnames": [
             "y", 
-            "x", 
             "__return__"
           ]
         }
@@ -578,7 +572,7 @@
         "3": [
           "FUNCTION", 
           "\u03bb(y)", 
-          2
+          1
         ]
       }, 
       "line": 2, 
@@ -598,11 +592,11 @@
             "x": 10
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f1", 
+          "unique_hash": "foo_f1_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -617,11 +611,11 @@
             "__return__": null
           }, 
           "is_highlighted": true, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "bar", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "bar_f2_p", 
+          "unique_hash": "bar_f2", 
           "ordered_varnames": [
             "a", 
             "__return__"
@@ -652,7 +646,7 @@
         "3": [
           "FUNCTION", 
           "\u03bb(y)", 
-          2
+          1
         ]
       }, 
       "line": 5, 
@@ -673,33 +667,13 @@
             "x": 10
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f1", 
+          "unique_hash": "foo_f1_p", 
           "ordered_varnames": [
             "x", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 2, 
-          "encoded_locals": {
-            "a": [
-              "REF", 
-              3
-            ], 
-            "__return__": null
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "bar", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "bar_f2_p_z", 
-          "ordered_varnames": [
-            "a", 
             "__return__"
           ]
         }
@@ -724,11 +698,6 @@
           "FUNCTION", 
           "bar(a)", 
           null
-        ], 
-        "3": [
-          "FUNCTION", 
-          "\u03bb(y)", 
-          2
         ]
       }, 
       "line": 2, 
@@ -743,22 +712,19 @@
       "func_name": "<module>", 
       "stack_to_render": [
         {
-          "frame_id": 2, 
+          "frame_id": 1, 
           "encoded_locals": {
-            "a": [
-              "REF", 
-              3
-            ], 
-            "__return__": null
+            "__return__": null, 
+            "x": 10
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
-          "func_name": "bar", 
+          "func_name": "foo", 
           "is_zombie": true, 
           "parent_frame_id_list": [], 
-          "unique_hash": "bar_f2_p_z", 
+          "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
-            "a", 
+            "x", 
             "__return__"
           ]
         }
@@ -783,11 +749,6 @@
           "FUNCTION", 
           "bar(a)", 
           null
-        ], 
-        "3": [
-          "FUNCTION", 
-          "\u03bb(y)", 
-          2
         ]
       }, 
       "line": 7, 

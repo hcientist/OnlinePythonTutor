@@ -261,11 +261,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -283,11 +283,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -330,7 +330,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ]
       }, 
       "line": 5, 
@@ -354,11 +354,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -376,11 +376,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -423,7 +423,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ]
       }, 
       "line": 6, 
@@ -447,11 +447,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -469,11 +469,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -516,7 +516,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ]
       }, 
       "line": 9, 
@@ -540,11 +540,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -562,11 +562,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -582,7 +582,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f3", 
           "ordered_varnames": [
@@ -626,7 +626,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ]
       }, 
       "line": 12, 
@@ -650,11 +650,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -672,11 +672,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -692,7 +692,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f3", 
           "ordered_varnames": [
@@ -736,7 +736,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ]
       }, 
       "line": 12, 
@@ -760,11 +760,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -782,11 +782,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -803,7 +803,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f3", 
           "ordered_varnames": [
@@ -848,7 +848,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ]
       }, 
       "line": 12, 
@@ -872,11 +872,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -894,11 +894,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -964,7 +964,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -995,11 +995,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -1017,11 +1017,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -1087,7 +1087,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -1118,11 +1118,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -1140,11 +1140,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -1210,7 +1210,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -1241,11 +1241,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -1263,11 +1263,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -1306,7 +1306,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f5", 
           "ordered_varnames": [
@@ -1350,7 +1350,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -1381,11 +1381,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -1403,11 +1403,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -1446,7 +1446,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f5", 
           "ordered_varnames": [
@@ -1490,7 +1490,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -1521,11 +1521,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -1543,11 +1543,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -1587,7 +1587,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f5", 
           "ordered_varnames": [
@@ -1632,7 +1632,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -1663,11 +1663,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -1685,11 +1685,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -1778,7 +1778,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -1815,11 +1815,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -1837,11 +1837,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -1930,7 +1930,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -1967,11 +1967,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -1989,11 +1989,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -2082,7 +2082,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -2119,11 +2119,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -2141,11 +2141,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -2207,7 +2207,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f7", 
           "ordered_varnames": [
@@ -2251,7 +2251,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -2288,11 +2288,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -2310,11 +2310,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -2376,7 +2376,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f7", 
           "ordered_varnames": [
@@ -2420,7 +2420,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -2457,11 +2457,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -2479,11 +2479,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -2546,7 +2546,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f7", 
           "ordered_varnames": [
@@ -2591,7 +2591,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -2628,11 +2628,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -2650,11 +2650,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -2766,7 +2766,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -2808,11 +2808,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -2830,11 +2830,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -2946,7 +2946,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -2988,11 +2988,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -3010,11 +3010,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -3126,7 +3126,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -3168,11 +3168,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -3190,11 +3190,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -3279,7 +3279,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f9", 
           "ordered_varnames": [
@@ -3323,7 +3323,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -3365,11 +3365,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -3387,11 +3387,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -3476,7 +3476,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f9", 
           "ordered_varnames": [
@@ -3520,7 +3520,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -3562,11 +3562,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -3584,11 +3584,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -3674,7 +3674,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f9", 
           "ordered_varnames": [
@@ -3719,7 +3719,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -3761,11 +3761,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -3783,11 +3783,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -3922,7 +3922,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -3968,11 +3968,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -3990,11 +3990,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -4129,7 +4129,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -4175,11 +4175,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -4197,11 +4197,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -4336,7 +4336,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -4382,11 +4382,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -4404,11 +4404,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -4516,7 +4516,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f11", 
           "ordered_varnames": [
@@ -4560,7 +4560,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -4606,11 +4606,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -4628,11 +4628,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -4740,7 +4740,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f11", 
           "ordered_varnames": [
@@ -4784,7 +4784,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -4830,11 +4830,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -4852,11 +4852,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -4965,7 +4965,7 @@
           "func_name": "\u03bb", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            2
+            1
           ], 
           "unique_hash": "\u03bb_f11", 
           "ordered_varnames": [
@@ -5010,7 +5010,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -5056,11 +5056,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -5078,11 +5078,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -5240,7 +5240,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -5289,11 +5289,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -5311,11 +5311,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -5473,7 +5473,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -5522,11 +5522,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -5544,11 +5544,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -5706,7 +5706,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -5755,11 +5755,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -5777,11 +5777,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -5944,7 +5944,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -5996,11 +5996,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -6018,11 +6018,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -6162,7 +6162,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -6212,11 +6212,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -6234,11 +6234,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -6355,7 +6355,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -6402,11 +6402,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -6424,11 +6424,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -6522,7 +6522,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -6565,11 +6565,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -6587,11 +6587,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst"
@@ -6662,7 +6662,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "5": [
           "LIST", 
@@ -6700,11 +6700,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -6726,11 +6726,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": true, 
+          "is_parent": false, 
           "func_name": "map", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p", 
+          "unique_hash": "map_f2", 
           "ordered_varnames": [
             "func", 
             "lst", 
@@ -6774,7 +6774,7 @@
         "4": [
           "FUNCTION", 
           "\u03bb(x)", 
-          2
+          1
         ], 
         "15": [
           "LIST", 
@@ -6810,40 +6810,12 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
-            "lst", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 2, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              15
-            ], 
-            "lst": [
-              "REF", 
-              3
-            ], 
-            "func": [
-              "REF", 
-              4
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "map", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p_z", 
-          "ordered_varnames": [
-            "func", 
             "lst", 
             "__return__"
           ]
@@ -6882,11 +6854,6 @@
           8, 
           10
         ], 
-        "4": [
-          "FUNCTION", 
-          "\u03bb(x)", 
-          2
-        ], 
         "15": [
           "LIST", 
           1.0, 
@@ -6910,7 +6877,7 @@
       "func_name": "<module>", 
       "stack_to_render": [
         {
-          "frame_id": 2, 
+          "frame_id": 1, 
           "encoded_locals": {
             "__return__": [
               "REF", 
@@ -6919,20 +6886,15 @@
             "lst": [
               "REF", 
               3
-            ], 
-            "func": [
-              "REF", 
-              4
             ]
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
-          "func_name": "map", 
+          "func_name": "halveElements", 
           "is_zombie": true, 
           "parent_frame_id_list": [], 
-          "unique_hash": "map_f2_p_z", 
+          "unique_hash": "halveElements_f1_p_z", 
           "ordered_varnames": [
-            "func", 
             "lst", 
             "__return__"
           ]
@@ -6974,11 +6936,6 @@
           6, 
           8, 
           10
-        ], 
-        "4": [
-          "FUNCTION", 
-          "\u03bb(x)", 
-          2
         ], 
         "15": [
           "LIST", 

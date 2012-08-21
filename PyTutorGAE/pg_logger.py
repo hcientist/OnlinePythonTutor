@@ -378,7 +378,6 @@ class PGLogger(bdb.Bdb):
                 v not in self.closures and \
                 v not in self.globally_defined_funcs):
 
-              '''
               # Look for the presence of v.func_code (code object) in
               # the constant pool (f_code.co_consts) of an enclosing
               # stack frame, and set that frame as your parent.
@@ -407,12 +406,6 @@ class PGLogger(bdb.Bdb):
               self.parent_frames_set.add(chosen_parent_frame) # unequivocally add to this set!!!
               if not chosen_parent_frame in self.zombie_frames:
                 self.zombie_frames.append(chosen_parent_frame)
-              '''
-
-              self.closures[v] = top_frame
-              self.parent_frames_set.add(top_frame) # unequivocally add to this set!!!
-              if not top_frame in self.zombie_frames:
-                self.zombie_frames.append(top_frame)
         else:
           # if there is only a global scope visible ...
           for (k, v) in get_user_globals(top_frame).items():
