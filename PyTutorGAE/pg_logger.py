@@ -36,7 +36,9 @@ import re
 import traceback
 import types
 
-if sys.version_info[0] == 3:
+is_python3 = (sys.version_info[0] == 3)
+
+if is_python3:
   import io as cStringIO
 else:
   import cStringIO
@@ -378,8 +380,9 @@ class PGLogger(bdb.Bdb):
                 v not in self.closures and \
                 v not in self.globally_defined_funcs):
 
-              # Look for the presence of v.func_code (code object) in
-              # the constant pool (f_code.co_consts) of an enclosing
+              # Look for the presence of the code object (v.func_code
+              # for Python 2 or v.__code__ for Python 3) in the
+              # constant pool (f_code.co_consts) of an enclosing
               # stack frame, and set that frame as your parent.
               #
               # This technique properly handles lambdas passed as
@@ -396,7 +399,7 @@ class PGLogger(bdb.Bdb):
                   break
 
                 for frame_const in my_frame.f_code.co_consts:
-                  if frame_const is v.func_code:
+                  if frame_const is (v.__code__ if is_python3 else v.func_code):
                     chosen_parent_frame = my_frame
                     break
 
