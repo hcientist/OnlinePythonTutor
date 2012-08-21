@@ -36,7 +36,7 @@ def execute(input_filename):
   (stdout, stderr) = Popen(PROGRAM + [input_filename], stdout=PIPE, stderr=PIPE).communicate()
 
   if stderr:
-    print '  (has stderr)'
+    print '(has stderr)'
   #  print '  stderr {'
   #  print stderr, '}'
 
@@ -115,7 +115,7 @@ def run_test(input_filename, clobber_golden=False):
   golden_file = base + '.golden'
   if os.path.isfile(golden_file):
     if golden_differs_from_out(golden_file):
-      print "  FAILED"
+      print "  FAILED!!!"
     if clobber_golden:
       clobber_golden_file(golden_file)
   else:
