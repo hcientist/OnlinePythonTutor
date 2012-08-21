@@ -2,17 +2,18 @@
 A simple framework for regression testing based on golden files
 by Philip Guo
 
-customized for the Online Python Tutor project
+(sloppily) customized for the Online Python Tutor project
 '''
 
-import os, shutil, optparse, difflib
+import os, re, shutil, optparse, difflib
 from subprocess import *
 
 
-PROGRAM = 'python'
+PROGRAM = ['python', '../generate_json_trace.py']
 
 INPUT_FILE_EXTENSION = '.txt' # input test files are .txt, NOT .py
-OUTPUT_FILE = 'out.trace'
+
+TEST_DIR = '.'
 
 
 ALL_TESTS = []
@@ -34,16 +35,22 @@ def execute(input_filename):
   (base, ext) = os.path.splitext(input_filename)
   assert ext == INPUT_FILE_EXTENSION
 
-  (stdout, stderr) = Popen([PROGRAM, input_filename], stdout=PIPE, stderr=PIPE).  communicate()
+  (stdout, stderr) = Popen(PROGRAM + [input_filename], stdout=PIPE, stderr=PIPE).communicate()
 
   if stderr:
-    print '  CONTAINS ERROR'
-    #print '{'
-    #print stderr, '}'
+    print '  (has stderr)'
+  #  print '  stderr {'
+  #  print stderr, '}'
 
-  assert os.path.isfile(OUTPUT_FILE)
+  # capture stdout into outfile, filtering out machine-specific addresses
   outfile = base + '.out'
-  os.rename(OUTPUT_FILE, outfile)
+  outf = open(outfile, 'w')
+
+  for line in stdout.splitlines():
+    filtered_line = re.sub(' 0x.+?>', ' 0xADDR>', line)
+    print >> outf, filtered_line
+
+  outf.close()
 
 
 def clobber_golden_file(golden_file):

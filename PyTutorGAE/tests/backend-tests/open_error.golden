@@ -1,0 +1,1233 @@
+{
+  "code": "for line in open(\"/etc/passwd\"):\n    print line\n\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "root:x:0:0:root:/root:/bin/bash\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "root:x:0:0:root:/root:/bin/bash\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "daemon:x:1:1:daemon:/usr/sbin:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "daemon:x:1:1:daemon:/usr/sbin:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "bin:x:2:2:bin:/bin:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "bin:x:2:2:bin:/bin:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "sys:x:3:3:sys:/dev:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "sys:x:3:3:sys:/dev:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "sync:x:4:65534:sync:/bin:/bin/sync\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "sync:x:4:65534:sync:/bin:/bin/sync\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "games:x:5:60:games:/usr/games:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "games:x:5:60:games:/usr/games:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "man:x:6:12:man:/var/cache/man:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "man:x:6:12:man:/var/cache/man:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "lp:x:7:7:lp:/var/spool/lpd:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "lp:x:7:7:lp:/var/spool/lpd:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "mail:x:8:8:mail:/var/mail:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "mail:x:8:8:mail:/var/mail:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "news:x:9:9:news:/var/spool/news:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "news:x:9:9:news:/var/spool/news:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "proxy:x:13:13:proxy:/bin:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "proxy:x:13:13:proxy:/bin:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "www-data:x:33:33:www-data:/var/www:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "www-data:x:33:33:www-data:/var/www:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "backup:x:34:34:backup:/var/backups:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "backup:x:34:34:backup:/var/backups:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "list:x:38:38:Mailing List Manager:/var/list:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "list:x:38:38:Mailing List Manager:/var/list:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "irc:x:39:39:ircd:/var/run/ircd:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "irc:x:39:39:ircd:/var/run/ircd:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "nobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "nobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "libuuid:x:100:101::/var/lib/libuuid:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "libuuid:x:100:101::/var/lib/libuuid:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "syslog:x:101:103::/home/syslog:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "syslog:x:101:103::/home/syslog:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "messagebus:x:102:107::/var/run/dbus:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "messagebus:x:102:107::/var/run/dbus:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "avahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "avahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "avahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "avahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "couchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "couchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "speech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "speech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "usbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "usbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "haldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "haldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "pulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "pulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "rtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "rtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "saned:x:112:118::/home/saned:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "saned:x:112:118::/home/saned:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "hplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "hplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "gdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "gdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "puppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "puppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "ntp:x:116:123::/home/ntp:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "ntp:x:116:123::/home/ntp:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "postfix:x:117:124::/var/spool/postfix:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "postfix:x:117:124::/var/spool/postfix:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "statd:x:118:65534::/var/lib/nfs:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "statd:x:118:65534::/var/lib/nfs:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "sshd:x:119:65534::/var/run/sshd:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\nsshd:x:119:65534::/var/run/sshd:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "sshd:x:119:65534::/var/run/sshd:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\nsshd:x:119:65534::/var/run/sshd:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "tss:x:109:127::/var/lib/tpm:/usr/sbin/nologin\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\nsshd:x:119:65534::/var/run/sshd:/bin/false\n\ntss:x:109:127::/var/lib/tpm:/usr/sbin/nologin\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "tss:x:109:127::/var/lib/tpm:/usr/sbin/nologin\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\nsshd:x:119:65534::/var/run/sshd:/bin/false\n\ntss:x:109:127::/var/lib/tpm:/usr/sbin/nologin\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "distccd:x:120:65534::/:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\nsshd:x:119:65534::/var/run/sshd:/bin/false\n\ntss:x:109:127::/var/lib/tpm:/usr/sbin/nologin\n\ndistccd:x:120:65534::/:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "distccd:x:120:65534::/:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\nsshd:x:119:65534::/var/run/sshd:/bin/false\n\ntss:x:109:127::/var/lib/tpm:/usr/sbin/nologin\n\ndistccd:x:120:65534::/:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "x20:x:903:65534::/nonexistent:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\nsshd:x:119:65534::/var/run/sshd:/bin/false\n\ntss:x:109:127::/var/lib/tpm:/usr/sbin/nologin\n\ndistccd:x:120:65534::/:/bin/false\n\nx20:x:903:65534::/nonexistent:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "x20:x:903:65534::/nonexistent:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\nsshd:x:119:65534::/var/run/sshd:/bin/false\n\ntss:x:109:127::/var/lib/tpm:/usr/sbin/nologin\n\ndistccd:x:120:65534::/:/bin/false\n\nx20:x:903:65534::/nonexistent:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "objfs:x:904:65534::/usr/local/google/objfs:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\nsshd:x:119:65534::/var/run/sshd:/bin/false\n\ntss:x:109:127::/var/lib/tpm:/usr/sbin/nologin\n\ndistccd:x:120:65534::/:/bin/false\n\nx20:x:903:65534::/nonexistent:/bin/false\n\nobjfs:x:904:65534::/usr/local/google/objfs:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "objfs:x:904:65534::/usr/local/google/objfs:/bin/sh\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\nsshd:x:119:65534::/var/run/sshd:/bin/false\n\ntss:x:109:127::/var/lib/tpm:/usr/sbin/nologin\n\ndistccd:x:120:65534::/:/bin/false\n\nx20:x:903:65534::/nonexistent:/bin/false\n\nobjfs:x:904:65534::/usr/local/google/objfs:/bin/sh\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "srcfs:x:905:65534::/nonexistent:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\nsshd:x:119:65534::/var/run/sshd:/bin/false\n\ntss:x:109:127::/var/lib/tpm:/usr/sbin/nologin\n\ndistccd:x:120:65534::/:/bin/false\n\nx20:x:903:65534::/nonexistent:/bin/false\n\nobjfs:x:904:65534::/usr/local/google/objfs:/bin/sh\n\nsrcfs:x:905:65534::/nonexistent:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "srcfs:x:905:65534::/nonexistent:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\nsshd:x:119:65534::/var/run/sshd:/bin/false\n\ntss:x:109:127::/var/lib/tpm:/usr/sbin/nologin\n\ndistccd:x:120:65534::/:/bin/false\n\nx20:x:903:65534::/nonexistent:/bin/false\n\nobjfs:x:904:65534::/usr/local/google/objfs:/bin/sh\n\nsrcfs:x:905:65534::/nonexistent:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "crudd:x:906:65534::/nonexistent:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\nsshd:x:119:65534::/var/run/sshd:/bin/false\n\ntss:x:109:127::/var/lib/tpm:/usr/sbin/nologin\n\ndistccd:x:120:65534::/:/bin/false\n\nx20:x:903:65534::/nonexistent:/bin/false\n\nobjfs:x:904:65534::/usr/local/google/objfs:/bin/sh\n\nsrcfs:x:905:65534::/nonexistent:/bin/false\n\ncrudd:x:906:65534::/nonexistent:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "crudd:x:906:65534::/nonexistent:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "line"
+      ], 
+      "stdout": "root:x:0:0:root:/root:/bin/bash\n\ndaemon:x:1:1:daemon:/usr/sbin:/bin/sh\n\nbin:x:2:2:bin:/bin:/bin/sh\n\nsys:x:3:3:sys:/dev:/bin/sh\n\nsync:x:4:65534:sync:/bin:/bin/sync\n\ngames:x:5:60:games:/usr/games:/bin/sh\n\nman:x:6:12:man:/var/cache/man:/bin/sh\n\nlp:x:7:7:lp:/var/spool/lpd:/bin/sh\n\nmail:x:8:8:mail:/var/mail:/bin/sh\n\nnews:x:9:9:news:/var/spool/news:/bin/sh\n\nuucp:x:10:10:uucp:/var/spool/uucp:/bin/sh\n\nproxy:x:13:13:proxy:/bin:/bin/sh\n\nwww-data:x:33:33:www-data:/var/www:/bin/sh\n\nbackup:x:34:34:backup:/var/backups:/bin/sh\n\nlist:x:38:38:Mailing List Manager:/var/list:/bin/sh\n\nirc:x:39:39:ircd:/var/run/ircd:/bin/sh\n\ngnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh\n\nnobody:x:65534:65534:nobody:/nonexistent:/bin/sh\n\nlibuuid:x:100:101::/var/lib/libuuid:/bin/sh\n\nsyslog:x:101:103::/home/syslog:/bin/false\n\nmessagebus:x:102:107::/var/run/dbus:/bin/false\n\navahi-autoipd:x:103:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false\n\navahi:x:104:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false\n\ncouchdb:x:105:113:CouchDB Administrator,,,:/var/lib/couchdb:/bin/bash\n\nspeech-dispatcher:x:106:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh\n\nusbmux:x:107:46:usbmux daemon,,,:/home/usbmux:/bin/false\n\nhaldaemon:x:108:114:Hardware abstraction layer,,,:/var/run/hald:/bin/false\n\npulse:x:110:115:PulseAudio daemon,,,:/var/run/pulse:/bin/false\n\nrtkit:x:111:117:RealtimeKit,,,:/proc:/bin/false\n\nsaned:x:112:118::/home/saned:/bin/false\n\nhplip:x:113:7:HPLIP system user,,,:/var/run/hplip:/bin/false\n\ngdm:x:114:120:Gnome Display Manager:/var/lib/gdm:/bin/false\n\npuppet:x:115:122:Puppet configuration management daemon,,,:/var/lib/puppet:/bin/false\n\nntp:x:116:123::/home/ntp:/bin/false\n\npostfix:x:117:124::/var/spool/postfix:/bin/false\n\nstatd:x:118:65534::/var/lib/nfs:/bin/false\n\nsshd:x:119:65534::/var/run/sshd:/bin/false\n\ntss:x:109:127::/var/lib/tpm:/usr/sbin/nologin\n\ndistccd:x:120:65534::/:/bin/false\n\nx20:x:903:65534::/nonexistent:/bin/false\n\nobjfs:x:904:65534::/usr/local/google/objfs:/bin/sh\n\nsrcfs:x:905:65534::/nonexistent:/bin/false\n\ncrudd:x:906:65534::/nonexistent:/bin/false\n\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "line": "crudd:x:906:65534::/nonexistent:/bin/false\n"
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "return"
+    }
+  ]
+}

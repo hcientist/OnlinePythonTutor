@@ -1,0 +1,19 @@
+{
+  "code": "print __builtins__\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "exception_msg": "Unknown error", 
+      "event": "uncaught_exception"
+    }
+  ]
+}
