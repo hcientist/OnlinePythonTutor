@@ -1,21 +1,11 @@
-from collections import OrderedDict
-from datetime import datetime
-from json import JSONDecoder
-from math import pi
-from math import sin, cos, atan2, radians, sqrt
-from random import randint
-import code
-import doctest
-import functools
-import inspect
-import io
 import math
-import operator as op
-import os
-import random
-import re
-import signal
+import operator
 import string
-import sys
-import unittest
+import collections
+import re
+import json
 
+# these don't seem allowed by bdb in Python 2.6, so punt for now
+#import random
+#import datetime
+#import functools
