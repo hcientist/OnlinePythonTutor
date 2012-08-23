@@ -45,10 +45,15 @@
 #   * instance - ['INSTANCE', class name, [attr1, value1], [attr2, value2], ..., [attrN, valueN]]
 #   * class    - ['CLASS', class name, [list of superclass names], [attr1, value1], [attr2, value2], ..., [attrN, valueN]]
 #   * function - ['FUNCTION', function name, parent frame ID (for nested functions)]
+#   * module   - ['module', module name]
 #   * other    - [<type name>, string representation of object]
 #   * compound object reference - ['REF', target object's unique_id]
 #
 # the unique_id is derived from id(), which allows us to capture aliasing
+
+
+# number of significant digits for floats
+FLOAT_PRECISION = 4
 
 
 import re, types
@@ -103,7 +108,10 @@ class ObjectEncoder:
   def encode(self, dat):
     # primitive type
     if type(dat) in (int, long, float, str, bool, type(None)):
-      return dat
+      if type(dat) is float:
+        return round(dat, FLOAT_PRECISION)
+      else:
+        return dat
 
     # compound type - return an object reference and update encoded_heap_objects
     else:
@@ -166,9 +174,15 @@ class ObjectEncoder:
         new_obj.extend(['FUNCTION', pretty_name, None]) # the final element will be filled in later
       elif self.is_class(dat) or self.is_instance(dat):
         self.encode_class_or_instance(dat, new_obj)
+      elif typ is types.ModuleType:
+        new_obj.extend(['module', dat.__name__])
       else:
         typeStr = str(typ)
         m = typeRE.match(typeStr)
+
+        if not m:
+          m = classRE.match(typeStr)
+
         assert m, typ
         new_obj.extend([m.group(1), str(dat)])
 

@@ -3122,7 +3122,7 @@
           "frame_id": 9, 
           "encoded_locals": {
             "a": 5.0, 
-            "__return__": 3.3999999999999999, 
+            "__return__": 3.4, 
             "b": 1.8
           }, 
           "is_highlighted": true, 
@@ -3255,7 +3255,7 @@
         {
           "frame_id": 8, 
           "encoded_locals": {
-            "__return__": 3.3999999999999999, 
+            "__return__": 3.4, 
             "guess": 5.0
           }, 
           "is_highlighted": true, 
@@ -3387,7 +3387,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -3517,7 +3517,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -3647,7 +3647,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3664,7 +3664,7 @@
         {
           "frame_id": 11, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -3794,7 +3794,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3811,7 +3811,7 @@
         {
           "frame_id": 11, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -3941,7 +3941,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3959,7 +3959,7 @@
           "frame_id": 11, 
           "encoded_locals": {
             "__return__": false, 
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -4090,7 +4090,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -4220,7 +4220,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4237,7 +4237,7 @@
         {
           "frame_id": 12, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -4367,7 +4367,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4384,7 +4384,7 @@
         {
           "frame_id": 12, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -4514,7 +4514,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4531,7 +4531,7 @@
         {
           "frame_id": 12, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4548,8 +4548,8 @@
         {
           "frame_id": 13, 
           "encoded_locals": {
-            "a": 3.3999999999999999, 
-            "b": 2.6470588235294117
+            "a": 3.4, 
+            "b": 2.6471
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -4680,7 +4680,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4697,7 +4697,7 @@
         {
           "frame_id": 12, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4714,8 +4714,8 @@
         {
           "frame_id": 13, 
           "encoded_locals": {
-            "a": 3.3999999999999999, 
-            "b": 2.6470588235294117
+            "a": 3.4, 
+            "b": 2.6471
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -4846,7 +4846,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4863,7 +4863,7 @@
         {
           "frame_id": 12, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4880,9 +4880,9 @@
         {
           "frame_id": 13, 
           "encoded_locals": {
-            "a": 3.3999999999999999, 
-            "__return__": 3.0235294117647058, 
-            "b": 2.6470588235294117
+            "a": 3.4, 
+            "__return__": 3.0235, 
+            "b": 2.6471
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -5014,7 +5014,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5031,8 +5031,8 @@
         {
           "frame_id": 12, 
           "encoded_locals": {
-            "__return__": 3.0235294117647058, 
-            "guess": 3.3999999999999999
+            "__return__": 3.0235, 
+            "guess": 3.4
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -5163,7 +5163,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5180,7 +5180,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -5310,7 +5310,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5327,7 +5327,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -5457,7 +5457,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5474,7 +5474,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5491,7 +5491,7 @@
         {
           "frame_id": 15, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -5621,7 +5621,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5638,7 +5638,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5655,7 +5655,7 @@
         {
           "frame_id": 15, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -5785,7 +5785,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5802,7 +5802,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5820,7 +5820,7 @@
           "frame_id": 15, 
           "encoded_locals": {
             "__return__": false, 
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -5951,7 +5951,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5968,7 +5968,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -6098,7 +6098,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6115,7 +6115,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6132,7 +6132,7 @@
         {
           "frame_id": 16, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -6262,7 +6262,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6279,7 +6279,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6296,7 +6296,7 @@
         {
           "frame_id": 16, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -6426,7 +6426,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6443,7 +6443,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6460,7 +6460,7 @@
         {
           "frame_id": 16, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6477,8 +6477,8 @@
         {
           "frame_id": 17, 
           "encoded_locals": {
-            "a": 3.0235294117647058, 
-            "b": 2.9766536964980546
+            "a": 3.0235, 
+            "b": 2.9767
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -6609,7 +6609,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6626,7 +6626,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6643,7 +6643,7 @@
         {
           "frame_id": 16, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6660,8 +6660,8 @@
         {
           "frame_id": 17, 
           "encoded_locals": {
-            "a": 3.0235294117647058, 
-            "b": 2.9766536964980546
+            "a": 3.0235, 
+            "b": 2.9767
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -6792,7 +6792,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6809,7 +6809,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6826,7 +6826,7 @@
         {
           "frame_id": 16, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6843,9 +6843,9 @@
         {
           "frame_id": 17, 
           "encoded_locals": {
-            "a": 3.0235294117647058, 
-            "__return__": 3.0000915541313802, 
-            "b": 2.9766536964980546
+            "a": 3.0235, 
+            "__return__": 3.0001, 
+            "b": 2.9767
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -6977,7 +6977,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6994,7 +6994,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7011,8 +7011,8 @@
         {
           "frame_id": 16, 
           "encoded_locals": {
-            "__return__": 3.0000915541313802, 
-            "guess": 3.0235294117647058
+            "__return__": 3.0001, 
+            "guess": 3.0235
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -7143,7 +7143,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7160,7 +7160,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7177,7 +7177,7 @@
         {
           "frame_id": 18, 
           "encoded_locals": {
-            "guess": 3.0000915541313802
+            "guess": 3.0001
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -7307,7 +7307,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7324,7 +7324,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7341,7 +7341,7 @@
         {
           "frame_id": 18, 
           "encoded_locals": {
-            "guess": 3.0000915541313802
+            "guess": 3.0001
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -7471,7 +7471,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7488,7 +7488,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7505,7 +7505,7 @@
         {
           "frame_id": 18, 
           "encoded_locals": {
-            "guess": 3.0000915541313802
+            "guess": 3.0001
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7522,7 +7522,7 @@
         {
           "frame_id": 19, 
           "encoded_locals": {
-            "guess": 3.0000915541313802
+            "guess": 3.0001
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -7652,7 +7652,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7669,7 +7669,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7686,7 +7686,7 @@
         {
           "frame_id": 18, 
           "encoded_locals": {
-            "guess": 3.0000915541313802
+            "guess": 3.0001
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7703,7 +7703,7 @@
         {
           "frame_id": 19, 
           "encoded_locals": {
-            "guess": 3.0000915541313802
+            "guess": 3.0001
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -7833,7 +7833,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7850,7 +7850,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7867,7 +7867,7 @@
         {
           "frame_id": 18, 
           "encoded_locals": {
-            "guess": 3.0000915541313802
+            "guess": 3.0001
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7885,7 +7885,7 @@
           "frame_id": 19, 
           "encoded_locals": {
             "__return__": true, 
-            "guess": 3.0000915541313802
+            "guess": 3.0001
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -8016,7 +8016,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -8033,7 +8033,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -8050,7 +8050,7 @@
         {
           "frame_id": 18, 
           "encoded_locals": {
-            "guess": 3.0000915541313802
+            "guess": 3.0001
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -8180,7 +8180,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -8197,7 +8197,7 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "guess": 3.0235294117647058
+            "guess": 3.0235
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -8214,8 +8214,8 @@
         {
           "frame_id": 18, 
           "encoded_locals": {
-            "__return__": 3.0000915541313802, 
-            "guess": 3.0000915541313802
+            "__return__": 3.0001, 
+            "guess": 3.0001
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -8346,7 +8346,7 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "guess": 3.3999999999999999
+            "guess": 3.4
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -8363,8 +8363,8 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "__return__": 3.0000915541313802, 
-            "guess": 3.0235294117647058
+            "__return__": 3.0001, 
+            "guess": 3.0235
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -8495,8 +8495,8 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "__return__": 3.0000915541313802, 
-            "guess": 3.3999999999999999
+            "__return__": 3.0001, 
+            "guess": 3.4
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -8610,7 +8610,7 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "__return__": 3.0000915541313802, 
+            "__return__": 3.0001, 
             "guess": 5.0
           }, 
           "is_highlighted": true, 
@@ -8708,7 +8708,7 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": 3.0000915541313802, 
+            "__return__": 3.0001, 
             "guess": 1.0
           }, 
           "is_highlighted": true, 
@@ -8779,7 +8779,7 @@
               "REF", 
               3
             ], 
-            "__return__": 3.0000915541313802, 
+            "__return__": 3.0001, 
             "x": 9, 
             "average": [
               "REF", 
@@ -8861,7 +8861,7 @@
               "REF", 
               3
             ], 
-            "__return__": 3.0000915541313802, 
+            "__return__": 3.0001, 
             "x": 9, 
             "average": [
               "REF", 
@@ -8893,7 +8893,7 @@
           "REF", 
           1
         ], 
-        "ans": 3.0000915541313802
+        "ans": 3.0001
       }, 
       "heap": {
         "1": [
