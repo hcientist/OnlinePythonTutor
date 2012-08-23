@@ -230,7 +230,7 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(y)", 
+          "<lambda>(y)", 
           1
         ]
       }, 
@@ -302,7 +302,7 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(y)", 
+          "<lambda>(y)", 
           1
         ]
       }, 
@@ -357,12 +357,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f3", 
+          "unique_hash": "<lambda>_f3", 
           "ordered_varnames": [
             "y"
           ]
@@ -391,7 +391,7 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(y)", 
+          "<lambda>(y)", 
           1
         ]
       }, 
@@ -446,12 +446,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f3", 
+          "unique_hash": "<lambda>_f3", 
           "ordered_varnames": [
             "y"
           ]
@@ -480,7 +480,7 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(y)", 
+          "<lambda>(y)", 
           1
         ]
       }, 
@@ -536,12 +536,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f3", 
+          "unique_hash": "<lambda>_f3", 
           "ordered_varnames": [
             "y", 
             "__return__"
@@ -571,7 +571,7 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(y)", 
+          "<lambda>(y)", 
           1
         ]
       }, 
@@ -645,7 +645,7 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(y)", 
+          "<lambda>(y)", 
           1
         ]
       }, 

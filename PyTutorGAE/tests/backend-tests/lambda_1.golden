@@ -245,12 +245,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -333,12 +333,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -423,12 +423,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -515,12 +515,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -607,12 +607,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -682,12 +682,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f3", 
+          "unique_hash": "<lambda>_f3", 
           "ordered_varnames": [
             "x"
           ]
@@ -716,12 +716,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -791,12 +791,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f3", 
+          "unique_hash": "<lambda>_f3", 
           "ordered_varnames": [
             "x"
           ]
@@ -825,12 +825,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -901,12 +901,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f3", 
+          "unique_hash": "<lambda>_f3", 
           "ordered_varnames": [
             "x", 
             "__return__"
@@ -936,12 +936,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -1028,12 +1028,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -1103,12 +1103,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f4", 
+          "unique_hash": "<lambda>_f4", 
           "ordered_varnames": [
             "x"
           ]
@@ -1137,12 +1137,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -1212,12 +1212,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f4", 
+          "unique_hash": "<lambda>_f4", 
           "ordered_varnames": [
             "x"
           ]
@@ -1246,12 +1246,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -1322,12 +1322,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f4", 
+          "unique_hash": "<lambda>_f4", 
           "ordered_varnames": [
             "x", 
             "__return__"
@@ -1357,12 +1357,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -1449,12 +1449,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -1541,12 +1541,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -1616,12 +1616,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f5", 
+          "unique_hash": "<lambda>_f5", 
           "ordered_varnames": [
             "x"
           ]
@@ -1650,12 +1650,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -1725,12 +1725,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f5", 
+          "unique_hash": "<lambda>_f5", 
           "ordered_varnames": [
             "x"
           ]
@@ -1759,12 +1759,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -1835,12 +1835,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f5", 
+          "unique_hash": "<lambda>_f5", 
           "ordered_varnames": [
             "x", 
             "__return__"
@@ -1870,12 +1870,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -1962,12 +1962,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -2037,12 +2037,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f6", 
+          "unique_hash": "<lambda>_f6", 
           "ordered_varnames": [
             "x"
           ]
@@ -2071,12 +2071,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -2146,12 +2146,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f6", 
+          "unique_hash": "<lambda>_f6", 
           "ordered_varnames": [
             "x"
           ]
@@ -2180,12 +2180,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -2256,12 +2256,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f6", 
+          "unique_hash": "<lambda>_f6", 
           "ordered_varnames": [
             "x", 
             "__return__"
@@ -2291,12 +2291,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -2383,12 +2383,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -2475,12 +2475,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -2550,12 +2550,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f7", 
+          "unique_hash": "<lambda>_f7", 
           "ordered_varnames": [
             "x"
           ]
@@ -2584,12 +2584,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -2659,12 +2659,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f7", 
+          "unique_hash": "<lambda>_f7", 
           "ordered_varnames": [
             "x"
           ]
@@ -2693,12 +2693,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -2769,12 +2769,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f7", 
+          "unique_hash": "<lambda>_f7", 
           "ordered_varnames": [
             "x", 
             "__return__"
@@ -2804,12 +2804,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -2896,12 +2896,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -2971,12 +2971,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f8", 
+          "unique_hash": "<lambda>_f8", 
           "ordered_varnames": [
             "x"
           ]
@@ -3005,12 +3005,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -3080,12 +3080,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f8", 
+          "unique_hash": "<lambda>_f8", 
           "ordered_varnames": [
             "x"
           ]
@@ -3114,12 +3114,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -3190,12 +3190,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f8", 
+          "unique_hash": "<lambda>_f8", 
           "ordered_varnames": [
             "x", 
             "__return__"
@@ -3225,12 +3225,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -3317,12 +3317,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -3409,12 +3409,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -3484,12 +3484,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f9", 
+          "unique_hash": "<lambda>_f9", 
           "ordered_varnames": [
             "x"
           ]
@@ -3518,12 +3518,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -3593,12 +3593,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f9", 
+          "unique_hash": "<lambda>_f9", 
           "ordered_varnames": [
             "x"
           ]
@@ -3627,12 +3627,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -3703,12 +3703,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f9", 
+          "unique_hash": "<lambda>_f9", 
           "ordered_varnames": [
             "x", 
             "__return__"
@@ -3738,12 +3738,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -3830,12 +3830,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -3905,12 +3905,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f10", 
+          "unique_hash": "<lambda>_f10", 
           "ordered_varnames": [
             "x"
           ]
@@ -3939,12 +3939,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -4014,12 +4014,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f10", 
+          "unique_hash": "<lambda>_f10", 
           "ordered_varnames": [
             "x"
           ]
@@ -4048,12 +4048,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -4124,12 +4124,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f10", 
+          "unique_hash": "<lambda>_f10", 
           "ordered_varnames": [
             "x", 
             "__return__"
@@ -4159,12 +4159,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -4251,12 +4251,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -4343,12 +4343,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -4418,12 +4418,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f11", 
+          "unique_hash": "<lambda>_f11", 
           "ordered_varnames": [
             "x"
           ]
@@ -4452,12 +4452,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -4527,12 +4527,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f11", 
+          "unique_hash": "<lambda>_f11", 
           "ordered_varnames": [
             "x"
           ]
@@ -4561,12 +4561,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -4637,12 +4637,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f11", 
+          "unique_hash": "<lambda>_f11", 
           "ordered_varnames": [
             "x", 
             "__return__"
@@ -4672,12 +4672,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -4764,12 +4764,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -4839,12 +4839,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f12", 
+          "unique_hash": "<lambda>_f12", 
           "ordered_varnames": [
             "x"
           ]
@@ -4873,12 +4873,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -4948,12 +4948,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f12", 
+          "unique_hash": "<lambda>_f12", 
           "ordered_varnames": [
             "x"
           ]
@@ -4982,12 +4982,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -5058,12 +5058,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "\u03bb", 
+          "func_name": "<lambda>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "\u03bb_f12", 
+          "unique_hash": "<lambda>_f12", 
           "ordered_varnames": [
             "x", 
             "__return__"
@@ -5093,12 +5093,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -5185,12 +5185,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -5277,12 +5277,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
@@ -5371,12 +5371,12 @@
         ], 
         "3": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ], 
         "4": [
           "FUNCTION", 
-          "\u03bb(x)", 
+          "<lambda>(x)", 
           1
         ]
       }, 
