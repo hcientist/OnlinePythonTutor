@@ -54,9 +54,19 @@ MAX_EXECUTED_LINES = 300
 #DEBUG = False
 DEBUG = True
 
-BUILTIN_IMPORT = __builtins__['__import__']
 
 # simple sandboxing scheme:
+
+
+# ugh, I can't figure out why in Python 2, __builtins__ seems to
+# be a dict, but in Python 3, __builtins__ seems to be a module,
+# so just handle both cases ... UGLY!
+if type(__builtins__) is dict:
+  BUILTIN_IMPORT = __builtins__['__import__']
+else:
+  assert type(__builtins__) is types.ModuleType
+  BUILTIN_IMPORT = __builtins__.__import__
+
 
 # whitelist of module imports
 ALLOWED_MODULE_IMPORTS = ('math', 'random', 'datetime',
@@ -583,7 +593,19 @@ class PGLogger(bdb.Bdb):
         # ok, let's try to sorta 'sandbox' the user script by not
         # allowing certain potentially dangerous operations.
         user_builtins = {}
-        for (k, v) in __builtins__.iteritems():
+
+        # ugh, I can't figure out why in Python 2, __builtins__ seems to
+        # be a dict, but in Python 3, __builtins__ seems to be a module,
+        # so just handle both cases ... UGLY!
+        if type(__builtins__) is dict:
+          builtin_items = __builtins__.items()
+        else:
+          assert type(__builtins__) is types.ModuleType
+          builtin_items = []
+          for k in dir(__builtins__):
+            builtin_items.append((k, getattr(__builtins__, k)))
+
+        for (k, v) in builtin_items:
           if k in BANNED_BUILTINS:
             continue
           elif k == '__import__':
