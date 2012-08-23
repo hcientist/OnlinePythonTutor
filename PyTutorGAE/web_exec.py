@@ -16,12 +16,18 @@ def cgi_finalizer(input_code, output_trace):
   print(json_output)
 
 
+cumulative_mode = False
+
+# If you pass in a filename as an argument, then process script from that file ...
 if len(sys.argv) > 1:
   user_script = open(sys.argv[1]).read()
+
+# Otherwise act like a CGI script ...
 else:
   form = cgi.FieldStorage()
   user_script = form['user_script'].value
-  # convert from string to a Python boolean ...
-  cumulative_mode = (form['cumulative_mode'].value == 'true')
+  if 'cumulative_mode' in form:
+    # convert from string to a Python boolean ...
+    cumulative_mode = (form['cumulative_mode'].value == 'true')
 
 pg_logger.exec_script_str(user_script, cumulative_mode, cgi_finalizer)
