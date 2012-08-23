@@ -169,7 +169,7 @@ class ObjectEncoder:
 
         func_name = get_name(dat)
         if func_name == '<lambda>':
-          func_name = "\u03BB" if is_python3 else u"\u03BB"
+          func_name = u"\u03BB" # for Python 3, eliminate the u prefix from the Unicode string
         pretty_name = func_name + '(' + ', '.join(printed_args) + ')'
         new_obj.extend(['FUNCTION', pretty_name, None]) # the final element will be filled in later
       elif self.is_class(dat) or self.is_instance(dat):
