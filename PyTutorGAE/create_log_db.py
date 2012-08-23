@@ -1,6 +1,6 @@
 # Setup sqlite database to support query logging from web_exec.py
 
-import os, sqlite
+import os, sqlite3
 
 DB_FILE = 'opt-query-log.sqlite3'
 
@@ -15,7 +15,7 @@ def create_db():
      http_user_agent TEXT,
      http_referer TEXT,
      user_script TEXT,
-     cumulative_mode INTEGER''')
+     cumulative_mode INTEGER)''')
   con.commit()
   cur.close()
 
