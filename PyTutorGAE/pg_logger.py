@@ -323,7 +323,7 @@ class PGLogger(bdb.Bdb):
           # special case for lambdas - grab their line numbers too (or not)
           if cur_name == '<lambda>':
             # Unicode lambda :)
-            cur_name = u"\u03BB" # + ':line' + str(cur_frame.f_code.co_firstlineno)
+            cur_name = "\u03BB" if is_python3 else u"\u03BB"
           elif cur_name == '':
             cur_name = 'unnamed function'
 
