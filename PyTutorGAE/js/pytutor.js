@@ -1512,7 +1512,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     else if (obj[0] == 'FUNCTION') {
       assert(obj.length == 3);
 
-      var funcName = htmlspecialchars(obj[1]); // for displaying weird names like '<lambda>'
+      // pretty-print lambdas and display other weird characters:
+      var funcName = htmlspecialchars(obj[1].replace('<lambda>', 'λ'));
       var parentFrameID = obj[2]; // optional
 
       if (parentFrameID) {
@@ -1704,7 +1705,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .append('div')
     .attr('class', 'stackFrameHeader')
     .html(function(frame, i) {
-      var funcName = htmlspecialchars(frame.func_name); // might contain '<' or '>' for weird names like <genexpr>
+
+      // pretty-print lambdas and display other weird characters
+      // (might contain '<' or '>' for weird names like <genexpr>)
+      var funcName = htmlspecialchars(frame.func_name.replace('<lambda>', 'λ'));
+
       var headerLabel = funcName + '()';
 
       // only display if you're someone's parent

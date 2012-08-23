@@ -168,8 +168,6 @@ class ObjectEncoder:
           printed_args.extend(['**' + e for e in argspec.keywords])
 
         func_name = get_name(dat)
-        if func_name == '<lambda>':
-          func_name = u"\u03BB" # for Python 3, eliminate the u prefix from the Unicode string
         pretty_name = func_name + '(' + ', '.join(printed_args) + ')'
         new_obj.extend(['FUNCTION', pretty_name, None]) # the final element will be filled in later
       elif self.is_class(dat) or self.is_instance(dat):

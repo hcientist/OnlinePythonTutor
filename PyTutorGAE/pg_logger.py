@@ -320,11 +320,7 @@ class PGLogger(bdb.Bdb):
 
           cur_name = cur_frame.f_code.co_name
 
-          # special case for lambdas - grab their line numbers too (or not)
-          if cur_name == '<lambda>':
-            # Unicode lambda :)
-            cur_name = u"\u03BB" # for Python 3, eliminate the u prefix from the Unicode string
-          elif cur_name == '':
+          if cur_name == '':
             cur_name = 'unnamed function'
 
           # encode in a JSON-friendly format now, in order to prevent ill
