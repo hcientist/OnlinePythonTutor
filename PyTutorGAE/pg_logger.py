@@ -54,8 +54,31 @@ MAX_EXECUTED_LINES = 300
 #DEBUG = False
 DEBUG = True
 
+BUILTIN_IMPORT = __builtins__['__import__']
 
-IGNORE_VARS = set(('__user_stdout__', '__builtins__', '__name__', '__exception__', '__doc__'))
+# simple sandboxing scheme:
+
+# whitelist of module imports
+ALLOWED_MODULE_IMPORTS = ('math', 'random', 'datetime',
+                          'functools', 'operator', 'string',
+                          'collections', 're', 'json')
+
+# Restrict imports to a whitelist
+def __restricted_import__(*args):
+  if args[0] in ALLOWED_MODULE_IMPORTS:
+    return BUILTIN_IMPORT(*args)
+  else:
+    raise ImportError('{0} not supported'.format(args[0]))
+
+
+# blacklist of builtins
+BANNED_BUILTINS = ('reload', 'input', 'apply', 'open', 'compile',
+                   'file', 'eval', 'exec', 'execfile',
+                   'exit', 'quit', 'raw_input', 'help',
+                   'dir', 'globals', 'locals', 'vars')
+
+
+IGNORE_VARS = set(('__user_stdout__', '__builtins__', '__name__', '__exception__', '__doc__', '__package__'))
 
 def get_user_stdout(frame):
   return frame.f_globals['__user_stdout__'].getvalue()
@@ -240,6 +263,10 @@ class PGLogger(bdb.Bdb):
         tos = self.stack[self.curindex]
         top_frame = tos[0]
         lineno = tos[1]
+
+        # don't trace inside of our __restricted_import__ helper function
+        if top_frame.f_code.co_name == '__restricted_import__':
+          return
 
         self.encoder.reset_heap() # VERY VERY VERY IMPORTANT,
                                   # or else we won't properly capture heap object mutations in the trace!
@@ -553,28 +580,23 @@ class PGLogger(bdb.Bdb):
         self._wait_for_mainpyfile = 1
 
 
-        # I think Google App Engine takes care of sandboxing, but maybe
-        # we should do some extra sandboxing ourselves ...
-        '''
         # ok, let's try to sorta 'sandbox' the user script by not
-        # allowing certain potentially dangerous operations:
+        # allowing certain potentially dangerous operations.
         user_builtins = {}
-        for (k,v) in __builtins__.iteritems():
-          if k in ('reload', 'input', 'apply', 'open', 'compile',
-                   '__import__', 'file', 'eval', 'execfile',
-                   'exit', 'quit', 'raw_input',
-                   'dir', 'globals', 'locals', 'vars',
-                   'compile'):
+        for (k, v) in __builtins__.iteritems():
+          if k in BANNED_BUILTINS:
             continue
-          user_builtins[k] = v
-        '''
+          elif k == '__import__':
+            user_builtins[k] = __restricted_import__
+          else:
+            user_builtins[k] = v
 
 
         user_stdout = cStringIO.StringIO()
 
         sys.stdout = user_stdout
         user_globals = {"__name__"    : "__main__",
-                        "__builtins__" : __builtins__,
+                        "__builtins__" : user_builtins,
                         "__user_stdout__" : user_stdout}
 
         try:
