@@ -1513,7 +1513,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       assert(obj.length == 3);
 
       // pretty-print lambdas and display other weird characters:
-      var funcName = htmlspecialchars(obj[1]).replace('&lt;lambda&gt;', 'λ');
+      var funcName = htmlspecialchars(obj[1]).replace('&lt;lambda&gt;', '\u03bb');
       var parentFrameID = obj[2]; // optional
 
       if (parentFrameID) {
@@ -1708,7 +1708,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
       // pretty-print lambdas and display other weird characters
       // (might contain '<' or '>' for weird names like <genexpr>)
-      var funcName = htmlspecialchars(frame.func_name).replace('&lt;lambda&gt;', 'λ');
+      var funcName = htmlspecialchars(frame.func_name).replace('&lt;lambda&gt;', '\u03bb');
 
       var headerLabel = funcName + '()';
 
