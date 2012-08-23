@@ -13,16 +13,6 @@
     }, 
     {
       "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "<module>", 
-      "stack_to_render": [], 
-      "globals": {}, 
-      "heap": {}, 
-      "line": 1, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
       "stdout": "hahahaha\n", 
       "func_name": "<module>", 
       "stack_to_render": [], 
@@ -2994,6 +2984,16 @@
     {
       "ordered_globals": [], 
       "stdout": "hahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [], 
+      "stdout": "hahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\n", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {}, 

@@ -1,5 +1,5 @@
 {
-  "code": "import math\nimport operator\nimport string\nimport collections\nimport re\nimport json\n\n# these don't seem allowed by bdb in Python 2.6, so punt for now\n#import random\n#import datetime\n#import functools\n", 
+  "code": "import math\nimport operator\nimport string\nimport collections\nimport re\nimport json\n\n# causes some errors in regression tests, but fine in GAE ...\n#import random\n#import datetime\n#import functools\n", 
   "trace": [
     {
       "ordered_globals": [], 
@@ -13,8 +13,7 @@
     }, 
     {
       "ordered_globals": [
-        "math", 
-        "__package__"
+        "math"
       ], 
       "stdout": "", 
       "func_name": "<module>", 
@@ -23,13 +22,12 @@
         "math": [
           "REF", 
           1
-        ], 
-        "__package__": null
+        ]
       }, 
       "heap": {
         "1": [
           "module", 
-          "<module 'math' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/lib-dynload/math.so'>"
+          "math"
         ]
       }, 
       "line": 2, 
@@ -38,7 +36,6 @@
     {
       "ordered_globals": [
         "math", 
-        "__package__", 
         "operator"
       ], 
       "stdout": "", 
@@ -52,17 +49,16 @@
         "math": [
           "REF", 
           1
-        ], 
-        "__package__": null
+        ]
       }, 
       "heap": {
         "1": [
           "module", 
-          "<module 'math' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/lib-dynload/math.so'>"
+          "math"
         ], 
         "2": [
           "module", 
-          "<module 'operator' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/lib-dynload/operator.so'>"
+          "operator"
         ]
       }, 
       "line": 3, 
@@ -71,7 +67,6 @@
     {
       "ordered_globals": [
         "math", 
-        "__package__", 
         "operator", 
         "string"
       ], 
@@ -90,21 +85,20 @@
         "math": [
           "REF", 
           1
-        ], 
-        "__package__": null
+        ]
       }, 
       "heap": {
         "1": [
           "module", 
-          "<module 'math' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/lib-dynload/math.so'>"
+          "math"
         ], 
         "2": [
           "module", 
-          "<module 'operator' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/lib-dynload/operator.so'>"
+          "operator"
         ], 
         "3": [
           "module", 
-          "<module 'string' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/string.pyc'>"
+          "string"
         ]
       }, 
       "line": 4, 
@@ -113,7 +107,6 @@
     {
       "ordered_globals": [
         "math", 
-        "__package__", 
         "operator", 
         "string", 
         "collections"
@@ -137,25 +130,24 @@
         "math": [
           "REF", 
           1
-        ], 
-        "__package__": null
+        ]
       }, 
       "heap": {
         "1": [
           "module", 
-          "<module 'math' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/lib-dynload/math.so'>"
+          "math"
         ], 
         "2": [
           "module", 
-          "<module 'operator' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/lib-dynload/operator.so'>"
+          "operator"
         ], 
         "3": [
           "module", 
-          "<module 'string' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/string.pyc'>"
+          "string"
         ], 
         "4": [
           "module", 
-          "<module 'collections' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/collections.pyc'>"
+          "collections"
         ]
       }, 
       "line": 5, 
@@ -164,7 +156,6 @@
     {
       "ordered_globals": [
         "math", 
-        "__package__", 
         "operator", 
         "string", 
         "collections", 
@@ -174,11 +165,10 @@
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {
-        "string": [
+        "operator": [
           "REF", 
-          3
+          2
         ], 
-        "__package__": null, 
         "re": [
           "REF", 
           5
@@ -187,9 +177,9 @@
           "REF", 
           4
         ], 
-        "operator": [
+        "string": [
           "REF", 
-          2
+          3
         ], 
         "math": [
           "REF", 
@@ -199,23 +189,23 @@
       "heap": {
         "1": [
           "module", 
-          "<module 'math' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/lib-dynload/math.so'>"
+          "math"
         ], 
         "2": [
           "module", 
-          "<module 'operator' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/lib-dynload/operator.so'>"
+          "operator"
         ], 
         "3": [
           "module", 
-          "<module 'string' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/string.pyc'>"
+          "string"
         ], 
         "4": [
           "module", 
-          "<module 'collections' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/collections.pyc'>"
+          "collections"
         ], 
         "5": [
           "module", 
-          "<module 're' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/re.pyc'>"
+          "re"
         ]
       }, 
       "line": 6, 
@@ -224,7 +214,6 @@
     {
       "ordered_globals": [
         "math", 
-        "__package__", 
         "operator", 
         "string", 
         "collections", 
@@ -239,7 +228,6 @@
           "REF", 
           3
         ], 
-        "__package__": null, 
         "re": [
           "REF", 
           5
@@ -264,27 +252,27 @@
       "heap": {
         "1": [
           "module", 
-          "<module 'math' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/lib-dynload/math.so'>"
+          "math"
         ], 
         "2": [
           "module", 
-          "<module 'operator' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/lib-dynload/operator.so'>"
+          "operator"
         ], 
         "3": [
           "module", 
-          "<module 'string' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/string.pyc'>"
+          "string"
         ], 
         "4": [
           "module", 
-          "<module 'collections' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/collections.pyc'>"
+          "collections"
         ], 
         "5": [
           "module", 
-          "<module 're' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/re.pyc'>"
+          "re"
         ], 
         "6": [
           "module", 
-          "<module 'json' from '/Library/Frameworks/Python.framework/Versions/7.0/lib/python2.7/json/__init__.pyc'>"
+          "json"
         ]
       }, 
       "line": 6, 

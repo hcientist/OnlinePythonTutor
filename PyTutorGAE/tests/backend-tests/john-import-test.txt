@@ -5,7 +5,7 @@ import collections
 import re
 import json
 
-# these don't seem allowed by bdb in Python 2.6, so punt for now
+# causes some errors in regression tests, but fine in GAE ...
 #import random
 #import datetime
 #import functools

@@ -1,4 +1,3 @@
-security breach
 {
   "code": "exec \"import os; os.system('echo security breach')\"\n", 
   "trace": [
@@ -33,52 +32,15 @@ security breach
       "event": "step_line"
     }, 
     {
-      "ordered_globals": [
-        "os", 
-        "__package__"
-      ], 
+      "ordered_globals": [], 
       "stdout": "", 
+      "exception_msg": "ImportError: os not supported", 
       "func_name": "<module>", 
       "stack_to_render": [], 
-      "globals": {
-        "os": [
-          "REF", 
-          1
-        ], 
-        "__package__": null
-      }, 
-      "heap": {
-        "1": [
-          "module", 
-          "<module 'os' from '/usr/lib/python2.6/os.pyc'>"
-        ]
-      }, 
+      "globals": {}, 
+      "heap": {}, 
       "line": 1, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [
-        "os", 
-        "__package__"
-      ], 
-      "stdout": "", 
-      "func_name": "<module>", 
-      "stack_to_render": [], 
-      "globals": {
-        "os": [
-          "REF", 
-          1
-        ], 
-        "__package__": null
-      }, 
-      "heap": {
-        "1": [
-          "module", 
-          "<module 'os' from '/usr/lib/python2.6/os.pyc'>"
-        ]
-      }, 
-      "line": 1, 
-      "event": "return"
+      "event": "exception"
     }
   ]
 }
