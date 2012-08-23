@@ -553,26 +553,28 @@ class PGLogger(bdb.Bdb):
         self._wait_for_mainpyfile = 1
 
 
+        # I think Google App Engine takes care of sandboxing, but maybe
+        # we should do some extra sandboxing ourselves ...
+        '''
         # ok, let's try to sorta 'sandbox' the user script by not
-        # allowing certain potentially dangerous operations.
-        #
-        # (Note that we still allow imports and let App Engine take care
-        # of sandboxing those appropriately.)
+        # allowing certain potentially dangerous operations:
         user_builtins = {}
         for (k,v) in __builtins__.iteritems():
           if k in ('reload', 'input', 'apply', 'open', 'compile',
-                   'file', 'eval', 'execfile',
+                   '__import__', 'file', 'eval', 'execfile',
                    'exit', 'quit', 'raw_input',
-                   'dir', 'globals', 'locals', 'vars'):
+                   'dir', 'globals', 'locals', 'vars',
+                   'compile'):
             continue
           user_builtins[k] = v
+        '''
 
 
         user_stdout = cStringIO.StringIO()
 
         sys.stdout = user_stdout
         user_globals = {"__name__"    : "__main__",
-                        "__builtins__" : user_builtins,
+                        "__builtins__" : __builtins__,
                         "__user_stdout__" : user_stdout}
 
         try:
