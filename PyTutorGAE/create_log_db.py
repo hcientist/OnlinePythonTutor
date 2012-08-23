@@ -23,5 +23,5 @@ def create_db():
 if __name__ == "__main__":
   assert not os.path.exists(DB_FILE)
   create_db()
-  print 'Created', DB_FILE
+  print('Created ' + DB_FILE)
 

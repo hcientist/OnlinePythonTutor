@@ -22,7 +22,7 @@ import sys
 LOG_QUERIES = True
 
 if LOG_QUERIES:
-  import os, datetime, create_log_db
+  import os, datetime, create_log_db, sqlite3
 
 
 def cgi_finalizer(input_code, output_trace):
@@ -41,17 +41,17 @@ def cgi_finalizer(input_code, output_trace):
       cur = con.cursor()
 
       cur.execute("INSERT INTO query_log VALUES (NULL, ?, ?, ?, ?, ?, ?)",
-                  datetime.datetime.now(),
-                  os.environ.get("REMOTE_ADDR", "N/A"),
-                  os.environ.get("HTTP_USER_AGENT", "N/A"),
-                  os.environ.get("HTTP_REFERER", "N/A"),
-                  user_script,
-                  int(cumulative_mode))
+                  (datetime.datetime.now(),
+                   os.environ.get("REMOTE_ADDR", "N/A"),
+                   os.environ.get("HTTP_USER_AGENT", "N/A"),
+                   os.environ.get("HTTP_REFERER", "N/A"),
+                   user_script,
+                   int(cumulative_mode)))
       con.commit()
       cur.close()
-    except:
+    except Exception as err:
       # this is bad form, but silently fail on error ...
-      pass
+      print(err)
 
   print("Content-type: text/plain; charset=iso-8859-1\n")
   print(json_output)
