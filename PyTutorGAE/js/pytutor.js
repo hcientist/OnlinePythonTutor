@@ -1950,6 +1950,9 @@ function htmlspecialchars(str) {
 
     // replace spaces:
     str = str.replace(/ /g, "&nbsp;");
+
+    // replace tab as four spaces:
+    str = str.replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;");
   }
   return str;
 }
