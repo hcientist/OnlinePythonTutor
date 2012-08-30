@@ -44,3 +44,11 @@ I'm also wondering whether there could be unforeseen interactions with
 other classes that might have been prespecified on that div. I don't
 know what the downsides of the new approach are, though.
 
+---
+My thoughts:
+
+- maybe just have a set of css styles for a standalone visualizer, and
+  then add an option or something to flip a bit to make it embedded ...
+  if the visualizer is embedded, then use js to set css for certain
+  attributes
+

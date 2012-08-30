@@ -97,8 +97,14 @@ function ExecutionVisualizer(domRootID, dat, params) {
 
 
   this.domRoot = $('#' + domRootID);
-
   this.domRootD3 = d3.select('#' + domRootID);
+
+  // stick a new div.ExecutionVisualizer within domRoot and make that
+  // the new domRoot:
+  this.domRoot.html('<div class="ExecutionVisualizer"></div>');
+
+  this.domRoot = this.domRoot.find('div.ExecutionVisualizer');
+  this.domRootD3 = this.domRootD3.select('div.ExecutionVisualizer');
 
   this.keyStuckDown = false;
 

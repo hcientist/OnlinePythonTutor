@@ -26,25 +26,29 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
-/* Most recent color scheme redesign: 2012-08-19 */
+/* Most recent color scheme redesign on 2012-08-19 */
 
-table.visualizer {
+/* To prevent CSS namespace clashes, prefix all rules with:
+     div.ExecutionVisualizer
+*/
+
+
+div.ExecutionVisualizer table.visualizer {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 10pt;
 }
 
-
-td#stack_td,
-td#heap_td {
+div.ExecutionVisualizer td#stack_td,
+div.ExecutionVisualizer td#heap_td {
   vertical-align:top;
   font-size: 10pt; /* don't make fonts in the heap so big! */
 }
 
-#dataViz {
+div.ExecutionVisualizer #dataViz {
   margin-left: 30px;
 }
 
-table.frameDataViz {
+div.ExecutionVisualizer table.frameDataViz {
   border-spacing: 0px;
   font-size: 12pt;
   margin-top: 5px;
@@ -53,14 +57,14 @@ table.frameDataViz {
   padding: 5px;
 }
 
-table.frameDataViz td.varname {
+div.ExecutionVisualizer table.frameDataViz td.varname {
   text-align: right;
   padding: 5px;
   padding-right: 8px;
   border-right: 1px dashed #888888;
 }
 
-table.frameDataViz td.val {
+div.ExecutionVisualizer table.frameDataViz td.val {
   padding-left: 8px;
   padding-right: 5px;
 
@@ -68,7 +72,7 @@ table.frameDataViz td.val {
   padding-bottom: 8px;
 }
 
-div#pyCodeOutputDiv {
+div.ExecutionVisualizer div#pyCodeOutputDiv {
   max-width: 550px;
   max-height: 450px;
   /*max-height: 620px;*/
@@ -76,7 +80,7 @@ div#pyCodeOutputDiv {
   /*margin-bottom: 4px;*/
 }
 
-table#pyCodeOutput {
+div.ExecutionVisualizer table#pyCodeOutput {
   font-family: Andale mono, monospace;
   font-size:12pt;
   line-height:1.1em;
@@ -88,11 +92,11 @@ table#pyCodeOutput {
 }
 
 /* don't wrap lines within code output ... FORCE scrollbars to appear */
-table#pyCodeOutput td {
+div.ExecutionVisualizer table#pyCodeOutput td {
   white-space: nowrap;
 }
 
-table#pyCodeOutput .lineNo {
+div.ExecutionVisualizer table#pyCodeOutput .lineNo {
   background-color:#FFFFFF;
   color:#AAAAAA;
   margin:0;
@@ -102,25 +106,20 @@ table#pyCodeOutput .lineNo {
   width:2.1em;
 }
 
-table#pyCodeOutput .cod {
+div.ExecutionVisualizer table#pyCodeOutput .cod {
   /*font-weight: bold;*/
   margin-left: 3px;
   padding-left: 7px;
   text-align: left; /* necessary or else doesn't work properly in IE */
 }
 
-div#editCodeLinkDiv {
+div.ExecutionVisualizer div#editCodeLinkDiv {
   text-align: center;
   margin-top: 12px;
   margin-bottom: 4px;
 }
 
-#editCodeLinkOnError {
-  color: #142B69;
-}
-
-
-#errorOutput {
+div.ExecutionVisualizer #errorOutput {
   color: #d03939;
   /*background-color: #F87D76;*/
   font-size: 12pt;
@@ -129,30 +128,19 @@ div#editCodeLinkDiv {
   margin-bottom: 4px;
 }
 
-button.bigBtn {
-  font-size: 12pt;
-  padding: 5px;
-}
-
-button.medBtn {
-  font-size: 12pt;
-  padding: 3px;
-}
-
-
 /* VCR control buttons for stepping through execution */
 
-#vcrControls {
+div.ExecutionVisualizer #vcrControls {
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-#vcrControls button {
+div.ExecutionVisualizer #vcrControls button {
   margin-left: 5px;
   margin-right: 5px;
 }
 
-#pyStdout {
+div.ExecutionVisualizer #pyStdout {
   border: 1px solid #999999;
   font-size: 12pt;
   padding: 4px;
@@ -160,7 +148,7 @@ button.medBtn {
 }
 
 
-.vizFrame {
+div.ExecutionVisualizer .vizFrame {
   margin-bottom: 20px;
   padding-left: 8px;
   border-left: 2px solid #cccccc;
@@ -169,43 +157,37 @@ button.medBtn {
 
 /* Rendering of primitive types */
 
-.nullObj {
+div.ExecutionVisualizer .nullObj {
   font-size: 8pt;
 }
 
-/*
-.numberObj {
-  font-size: 10pt;
-}
-
-.boolObj {
-  font-size: 10pt;
-}
-*/
-
-.stringObj, .customObj, .funcObj {
+div.ExecutionVisualizer .stringObj,
+div.ExecutionVisualizer .customObj,
+div.ExecutionVisualizer .funcObj {
   font-family: Andale mono, monospace;
 }
 
-.retval {
+div.ExecutionVisualizer .retval {
   font-size: 9pt;
 }
 
 
 /* Rendering of basic compound types */
 
-table.listTbl, table.tupleTbl, table.setTbl {
+div.ExecutionVisualizer table.listTbl,
+div.ExecutionVisualizer table.tupleTbl,
+div.ExecutionVisualizer table.setTbl {
   background-color: #ffffc6;
 }
 
 
-table.listTbl {
+div.ExecutionVisualizer table.listTbl {
   border: 0px solid black;
   border-spacing: 0px;
 }
 
-table.listTbl td.listHeader,
-table.tupleTbl td.tupleHeader {
+div.ExecutionVisualizer table.listTbl td.listHeader,
+div.ExecutionVisualizer table.tupleTbl td.tupleHeader {
   padding-left: 4px;
   padding-top: 2px;
   padding-bottom: 3px;
@@ -215,7 +197,7 @@ table.tupleTbl td.tupleHeader {
   border-left: 1px solid #555555;
 }
 
-table.tupleTbl {
+div.ExecutionVisualizer table.tupleTbl {
   border-spacing: 0px;
   color: black;
 
@@ -225,27 +207,27 @@ table.tupleTbl {
 }
 
 
-table.listTbl td.listElt {
+div.ExecutionVisualizer table.listTbl td.listElt {
   border-bottom: 1px solid #555555; /* must match td.listHeader border */
   border-left: 1px solid #555555; /* must match td.listHeader border */
 }
 
-table.tupleTbl td.tupleElt {
+div.ExecutionVisualizer table.tupleTbl td.tupleElt {
   border-left: 1px solid #555555; /* must match td.tupleHeader border */
 }
 
-table.customObjTbl {
+div.ExecutionVisualizer table.customObjTbl {
   background-color: white;
   color: black;
   border: 1px solid black;
 }
 
-table.customObjTbl td.customObjElt {
+div.ExecutionVisualizer table.customObjTbl td.customObjElt {
   padding: 5px;
 }
 
-table.listTbl td.listElt,
-table.tupleTbl td.tupleElt {
+div.ExecutionVisualizer table.listTbl td.listElt,
+div.ExecutionVisualizer table.tupleTbl td.tupleElt {
   padding-top: 0px;
   padding-bottom: 8px;
   padding-left: 10px;
@@ -253,39 +235,39 @@ table.tupleTbl td.tupleElt {
   vertical-align: bottom;
 }
 
-table.setTbl {
+div.ExecutionVisualizer table.setTbl {
   border: 1px solid #555555;
   border-spacing: 0px;
   text-align: center;
 }
 
-table.setTbl td.setElt {
+div.ExecutionVisualizer table.setTbl td.setElt {
   padding: 8px;
 }
 
 
-table.dictTbl,
-table.instTbl,
-table.classTbl {
+div.ExecutionVisualizer table.dictTbl,
+div.ExecutionVisualizer table.instTbl,
+div.ExecutionVisualizer table.classTbl {
   border-spacing: 1px;
 }
 
-table.dictTbl td.dictKey,
-table.instTbl td.instKey,
-table.classTbl td.classKey {
+div.ExecutionVisualizer table.dictTbl td.dictKey,
+div.ExecutionVisualizer table.instTbl td.instKey,
+div.ExecutionVisualizer table.classTbl td.classKey {
   background-color: #faebbf;
 }
 
-table.dictTbl td.dictVal,
-table.instTbl td.instVal,
-table.classTbl td.classVal {
+div.ExecutionVisualizer table.dictTbl td.dictVal,
+div.ExecutionVisualizer table.instTbl td.instVal,
+div.ExecutionVisualizer table.classTbl td.classVal {
   background-color: #ffffc6;
 }
 
 
-table.dictTbl td.dictKey,
-table.instTbl td.instKey,
-table.classTbl td.classKey {
+div.ExecutionVisualizer table.dictTbl td.dictKey,
+div.ExecutionVisualizer table.instTbl td.instKey,
+div.ExecutionVisualizer table.classTbl td.classKey {
   padding-top: 12px /*15px*/;
   padding-bottom: 5px;
   padding-left: 10px;
@@ -294,9 +276,9 @@ table.classTbl td.classKey {
   text-align: right;
 }
 
-table.dictTbl td.dictVal,
-table.instTbl td.instVal,
-table.classTbl td.classVal {
+div.ExecutionVisualizer table.dictTbl td.dictVal,
+div.ExecutionVisualizer table.instTbl td.instVal,
+div.ExecutionVisualizer table.classTbl td.classVal {
   padding-top: 12px /*15px*/;
   padding-bottom: 5px;
   padding-right: 10px;
@@ -304,54 +286,39 @@ table.classTbl td.classVal {
 }
 
 
-table.classTbl td,
-table.instTbl td {
+div.ExecutionVisualizer table.classTbl td,
+div.ExecutionVisualizer table.instTbl td {
   border-bottom: 1px #888 solid;
 }
 
-table.classTbl td.classVal,
-table.instTbl td.instVal {
+div.ExecutionVisualizer table.classTbl td.classVal,
+div.ExecutionVisualizer table.instTbl td.instVal {
   border-left: 1px #888 solid;
 }
 
-table.classTbl {
+div.ExecutionVisualizer table.classTbl {
   border-collapse: collapse;
   border: 1px #888 solid;
 }
 
 /* only add a border to dicts if they're embedded within another object */
-td.listElt table.dictTbl,
-td.tupleElt table.dictTbl,
-td.dictVal table.dictTbl,
-td.instVal table.dictTbl,
-td.classVal table.dictTbl {
+div.ExecutionVisualizer td.listElt table.dictTbl,
+div.ExecutionVisualizer td.tupleElt table.dictTbl,
+div.ExecutionVisualizer td.dictVal table.dictTbl,
+div.ExecutionVisualizer td.instVal table.dictTbl,
+div.ExecutionVisualizer td.classVal table.dictTbl {
   border: 1px #888 solid;
 }
 
 
-.typeLabel {
+div.ExecutionVisualizer .typeLabel {
   font-size: 8pt;
   color: #222222;
   margin-bottom: 1px;
 }
 
-#footer {
-  color: #666666;
-  font-size: 9pt;
-  border-top: 1px solid #bbbbbb;
-  padding-top: 5px;
-  margin-top: 5px;
-
-  max-width: 700px;
-  /* center align */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-/* new stuff added for Online Python Tutor "2.0" release */
-
-div#stack, div#globals_area {
+div.ExecutionVisualizer div#stack,
+div.ExecutionVisualizer div#globals_area {
   padding-left: 10px;
   padding-right: 30px;
 
@@ -360,7 +327,8 @@ div#stack, div#globals_area {
   /* border-right: 1px dashed #bbbbbb; */
 }
 
-div.stackFrame, div.zombieStackFrame {
+div.ExecutionVisualizer div.stackFrame,
+div.ExecutionVisualizer div.zombieStackFrame {
   background-color: #ffffff;
   margin-bottom: 15px;
   padding: 2px;
@@ -370,36 +338,37 @@ div.stackFrame, div.zombieStackFrame {
   font-size: 10pt;
 }
 
-div.zombieStackFrame {
+div.ExecutionVisualizer div.zombieStackFrame {
   border-left: 1px dotted #aaa;
   /*color: #c0c0c0;*/
   color: #b0b0b0;
 }
 
-div.highlightedStackFrame {
+div.ExecutionVisualizer div.highlightedStackFrame {
   background-color: #c5dfea;
 }
 
-div.stackFrame, div.highlightedStackFrame {
+div.ExecutionVisualizer div.stackFrame,
+div.ExecutionVisualizer div.highlightedStackFrame {
   border-left: 2px solid #a6b3b6;
 }
 
 
-div.stackFrameHeader {
+div.ExecutionVisualizer div.stackFrameHeader {
   font-family: Andale mono, monospace;
   font-size: 10pt;
   margin-top: 4px;
   margin-bottom: 3px;
 }
 
-td.stackFrameVar {
+div.ExecutionVisualizer td.stackFrameVar {
   text-align: right;
   padding-right: 8px;
   padding-top: 3px;
   padding-bottom: 3px;
 }
 
-td.stackFrameValue {
+div.ExecutionVisualizer td.stackFrameValue {
   text-align: left;
   border-bottom: 1px solid #aaaaaa;
   border-left: 1px solid #aaaaaa;
@@ -409,11 +378,11 @@ td.stackFrameValue {
   padding-bottom: 3px;
 }
 
-.stackFrameVarTable tr {
+div.ExecutionVisualizer .stackFrameVarTable tr {
 
 }
 
-.stackFrameVarTable {
+div.ExecutionVisualizer .stackFrameVarTable {
   text-align: right;
   padding-top: 3px;
 
@@ -422,12 +391,12 @@ td.stackFrameValue {
   margin-right: 0px;
 }
 
-div#heap {
+div.ExecutionVisualizer div#heap {
   float: left;
   padding-left: 30px;
 }
 
-td.toplevelHeapObject {
+div.ExecutionVisualizer td.toplevelHeapObject {
   /* to make room for transition animations */
   padding-left: 8px;
   padding-right: 8px;
@@ -437,141 +406,54 @@ td.toplevelHeapObject {
   border-color: white; /* needed for d3 to do transitions */
 }
 
-table.heapRow {
+div.ExecutionVisualizer table.heapRow {
   margin-bottom: 10px;
 }
 
-div.heapObject {
+div.ExecutionVisualizer div.heapObject {
   padding-left: 2px; /* leave a TINY amount of room for connector endpoints */
 }
 
-div#stackHeader {
+div.ExecutionVisualizer div#stackHeader {
   margin-bottom: 15px;
   text-align: right;
 }
 
-div#heapHeader {
+div.ExecutionVisualizer div#heapHeader {
   /*margin-top: 2px;
   margin-bottom: 13px;*/
   margin-bottom: 15px;
 }
 
-div#stackHeader,
-div#heapHeader {
+div.ExecutionVisualizer div#stackHeader,
+div.ExecutionVisualizer div#heapHeader {
   color: #333333;
   font-size: 10pt;
 }
 
-
-/* styles for Online Python Tutor questions site */
-
-#questionsHeaderPane {
-  text-align: left;
-  margin-bottom: 15px;
-  width: 650px;
-  border-bottom: 1px solid #bbbbbb;
-}
-
-.questionsHeaderStmt {
-  margin-bottom: 5px;
-}
-
-.questionsHeaderTitle {
-  margin-bottom: 5px;
-  font-weight: bold;
-  font-size: 12pt;
-}
-
-#submittedCodeRO {
-  font-size: 10pt;
-  font-family: Andale mono, monospace;
-  padding: 4px;
-  margin-top: 5px;
-}
-
-table#gradeMatrix {
-  margin-top: 12px;
-}
-
-table#gradeMatrix thead {
-  font-weight: bold;
-  border: solid;
-}
-
-table#gradeMatrix thead td.statusCell {
-  padding-left: 18px; /* to line up with smiley faces */
-}
-
-table#gradeMatrix td.testInputCell,
-table#gradeMatrix td.testOutputCell {
-  padding-right: 25px;
-  padding-bottom: 10px;
-  vertical-align: middle;
-}
-
-table#gradeMatrix tbody td.statusCell,
-table#gradeMatrix tbody td.expectedCell {
-  padding-left: 12px;
-  padding-bottom: 10px;
-  vertical-align: middle;
-}
- 
-td.testInputVarnameCell,
-td.testOutputVarnameCell {
-  padding-right: 2px;
-  text-align: right;
-}
-
-td.testInputValCell,
-td.testOutputValCell {
-  padding-right: 5px;
-}
-
-pre#submittedCodePRE {
-  font-size: 10pt;
-  font-family: Andale mono, monospace;
-  background-color: #dddddd;
-  padding: 5px;
-}
-
-div#submittedSolutionDisplay {
-  width: 650px; /* to line up with questionsHeaderPane */
-  text-align: left;
-  font-size: 12pt;
-  margin-bottom: 20px;
-}
-
-#gradeSummary {
-  margin-top: 12px;
-}
-
-#pyGradingPane {
-  margin-bottom: 20px;
-}
-
-
-#executionSlider {
+div.ExecutionVisualizer #executionSlider {
   width: 500px;
   margin-top: 10px;
   margin-bottom: 5px;
 }
 
-#executionSliderCaption {
+div.ExecutionVisualizer #executionSliderCaption {
   font-size: 8pt;
   color: #666666;
   margin-top: 15px;
 }
 
-#executionSliderFooter {
+div.ExecutionVisualizer #executionSliderFooter {
   margin-top: -7px; /* make it butt up against #executionSlider */
 }
 
 
-/* necessary for CodeMirror line highlighting to work! */
-.CodeMirror .errorLine { background: #F89D99 !important; }
-
-
 /* darken slider handle a bit */
-.ui-slider .ui-slider-handle {
+div.ExecutionVisualizer .ui-slider .ui-slider-handle {
   border: 1px solid #999;
 }
+
+
+/* necessary for CodeMirror line highlighting to work! */
+div.ExecutionVisualizer .CodeMirror .errorLine { background: #F89D99 !important; }
+
