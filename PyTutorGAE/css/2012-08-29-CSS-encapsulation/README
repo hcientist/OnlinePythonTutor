@@ -52,3 +52,18 @@ My thoughts:
   if the visualizer is embedded, then use js to set css for certain
   attributes
 
+---
+2012-08-29 email from me to John and Sean:
+
+Gentlemen -
+
+I just pushed some changes that implemented:
+
+- Sean's suggestion of creating a div.ExecutionVisualizer within the root DOM node passed into a new ExecutionVisualizer object,
+- prefixing of all CSS rules by div.ExecutionVisualizer
+- some of John's modified CSS
+
+Hopefully CSS clashes are less of a problem from now on.
+
+However, I still didn't implement John's suggestion for an "embedded CSS mode" yet; right now the best thing to do is to either tweak the CSS manually or to write javascript to dynamically modify the CSS.
+
