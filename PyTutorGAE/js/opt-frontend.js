@@ -302,6 +302,12 @@ $(document).ready(function() {
     return false;
   });
 
+  $("#decoratorsLink").click(function() {
+    $.get("example-code/decorators.txt", setCodeMirrorVal);
+    return false;
+  });
+
+
 
   $('#closure1Link').click(function() {
     $.get("example-code/closures/closure1.txt", setCodeMirrorVal);
