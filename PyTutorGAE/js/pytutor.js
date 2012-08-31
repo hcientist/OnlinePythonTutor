@@ -805,12 +805,22 @@ ExecutionVisualizer.prototype.updateOutput = function() {
         return d.backgroundColor;
       })
       .style('border-top', function(d) {
-        if ((d.lineNumber == curEntry.line) && !hasError && !isTerminated) {
+        if ((d.lineNumber == curEntry.line) &&
+            (curEntry.event != 'return') &&
+            !hasError && !isTerminated) {
           return '1px solid ' + highlightedLineTopBorderColor;
         }
         else {
           // put a default white top border to keep space usage consistent
           return '1px solid #ffffff';
+        }
+      })
+      .style('border-bottom', function(d) {
+        // special case to render horizontal bar *BELOW* the highlighted line
+        if ((d.lineNumber == curEntry.line) &&
+            (curEntry.event == 'return') &&
+            !hasError && !isTerminated) {
+          return '1px solid ' + highlightedLineTopBorderColor;
         }
       });
 
