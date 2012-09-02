@@ -160,9 +160,9 @@ ExecutionVisualizer.prototype.render = function() {
           <div id="executionSliderFooter"/>\
           <div id="vcrControls">\
             <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
-            <button id="jmpStepBack", type="button">&lt; Prev</button>\
+            <button id="jmpStepBack", type="button">&lt; Back</button>\
             <span id="curInstr">Step ? of ?</span>\
-            <button id="jmpStepFwd", type="button">Next &gt;</button>\
+            <button id="jmpStepFwd", type="button">Forward &gt;</button>\
             <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
           </div>\
           <div id="errorOutput"/>\
@@ -212,7 +212,7 @@ ExecutionVisualizer.prototype.render = function() {
     this.params.hideOutput = true; // put this before hideOutput handler
 
     this.domRoot.find('#executionSlider')
-      .css('width', '320px')
+      .css('width', '330px')
       .css('margin', '6px auto');
 
     this.domRoot.find('#executionSliderCaption').hide();
@@ -220,7 +220,8 @@ ExecutionVisualizer.prototype.render = function() {
     this.domRoot.find('#jmpLastInstr').hide();
 
     this.domRoot.find('#pyCodeOutputDiv')
-      .css('max-width', '350px');
+      .css('max-width', '350px')
+      .css('max-height', '400px');
 
   }
 
