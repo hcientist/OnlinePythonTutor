@@ -18,6 +18,9 @@ handlers:
 - url: /example-code
   static_dir: example-code
 
+- url: /lessons
+  static_dir: lessons
+
 - url: /.*
   script: pythontutor.app
 
