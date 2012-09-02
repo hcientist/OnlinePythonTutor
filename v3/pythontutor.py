@@ -48,6 +48,14 @@ class TutorPage(webapp2.RequestHandler):
     self.response.out.write(template.render())
 
 
+class LessonPage(webapp2.RequestHandler):
+
+  def get(self):
+    self.response.headers['Content-Type'] = 'text/html'
+    template = JINJA_ENVIRONMENT.get_template('lesson.html')
+    self.response.out.write(template.render())
+
+
 class ExecScript(webapp2.RequestHandler):
 
   def json_finalizer(self, input_code, output_trace):
@@ -68,6 +76,7 @@ class ExecScript(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([('/', TutorPage),
+                               ('/lesson.html', LessonPage),
                                ('/exec', ExecScript)],
                               debug=True)
 
