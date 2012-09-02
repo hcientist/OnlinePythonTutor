@@ -1,4 +1,4 @@
-/* CSS accompanying ../tutor.html */
+/* CSS accompanying ../lesson.html */
 
 h1 {
   font-weight: normal;
@@ -25,6 +25,24 @@ body {
   background-color: white;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 10pt;
+
+  max-width: 900px;
+  /* center align */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div#lessonHeader {
+  margin-bottom: 15pt;
+}
+
+div#lessonTitle {
+  font-size: 16pt;
+  margin-bottom: 10pt;
+}
+
+div#lessonExposition {
+  font-size: 12pt;
 }
 
 a,
@@ -72,10 +90,5 @@ button.bigBtn {
   border-top: 1px solid #bbbbbb;
   padding-top: 5px;
   margin-top: 5px;
-
-  max-width: 700px;
-  /* center align */
-  margin-left: auto;
-  margin-right: auto;
 }
 

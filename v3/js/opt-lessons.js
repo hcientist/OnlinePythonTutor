@@ -33,9 +33,6 @@ var backend_script = 'exec'; // URL of backend script, which must eventually cal
 
 var appMode = 'edit'; // 'edit' or 'visualize'
 
-var preseededCode = null;     // if you passed in a 'code=<code string>' in the URL, then set this var
-var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
-
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 
@@ -70,18 +67,6 @@ $(document).ready(function() {
   $(window).bind("hashchange", function(e) {
     appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
 
-    preseededCode = $.bbq.getState('code'); // yuck, global!
-    var preseededMode = $.bbq.getState('mode');
-
-    if ($.bbq.getState('cumulative_mode') == 'true') {
-      $('#cumulativeMode').prop('checked', true);
-    }
-
-    // only bother with curInstr when we're visualizing ...
-    if (!preseededCurInstr && preseededMode == 'visualize') { // TODO: kinda gross hack
-      preseededCurInstr = Number($.bbq.getState('curInstr'));
-    }
-
     // default mode is 'edit'
     if (appMode == undefined) {
       appMode = 'edit';
@@ -91,13 +76,7 @@ $(document).ready(function() {
     // nothing to visualize:
     if (!myVisualizer) {
       appMode = 'edit';
-
-      if (preseededCode && preseededMode == 'visualize') {
-        // punt for now ...
-      }
-      else {
-        $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
-      }
+      $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
     }
 
 
@@ -180,216 +159,15 @@ $(document).ready(function() {
               $('#executeBtn').attr('disabled', false);
             }
             else {
-              var startingInstruction = 0;
-
-              // only do this at most ONCE, and then clear out preseededCurInstr
-              if (preseededCurInstr && preseededCurInstr < trace.length) { // NOP anyways if preseededCurInstr is 0
-                startingInstruction = preseededCurInstr;
-                preseededCurInstr = null;
-              }
-
               myVisualizer = new ExecutionVisualizer('pyOutputPane',
                                                      dataFromBackend,
-                                                     {startingInstruction: startingInstruction});
+                                                     {embeddedMode: true});
 
               $.bbq.pushState({ mode: 'visualize' }, 2 /* completely override other hash strings to keep URL clean */);
             }
           },
           "json");
   });
-
-
-
-  // canned examples
-
-  $("#tutorialExampleLink").click(function() {
-    $.get("example-code/py_tutorial.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#strtokExampleLink").click(function() {
-    $.get("example-code/strtok.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#fibonacciExampleLink").click(function() {
-    $.get("example-code/fib.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#memoFibExampleLink").click(function() {
-    $.get("example-code/memo_fib.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#factExampleLink").click(function() {
-    $.get("example-code/fact.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#filterExampleLink").click(function() {
-    $.get("example-code/filter.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#insSortExampleLink").click(function() {
-    $.get("example-code/ins_sort.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#aliasExampleLink").click(function() {
-    $.get("example-code/aliasing.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#newtonExampleLink").click(function() {
-    $.get("example-code/sqrt.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#oopSmallExampleLink").click(function() {
-    $.get("example-code/oop_small.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#mapExampleLink").click(function() {
-    $.get("example-code/map.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#oop1ExampleLink").click(function() {
-    $.get("example-code/oop_1.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#oop2ExampleLink").click(function() {
-    $.get("example-code/oop_2.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#inheritanceExampleLink").click(function() {
-    $.get("example-code/oop_inherit.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#sumExampleLink").click(function() {
-    $.get("example-code/sum.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#pwGcdLink").click(function() {
-    $.get("example-code/wentworth_gcd.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#pwSumListLink").click(function() {
-    $.get("example-code/wentworth_sumList.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#towersOfHanoiLink").click(function() {
-    $.get("example-code/towers_of_hanoi.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#pwTryFinallyLink").click(function() {
-    $.get("example-code/wentworth_try_finally.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#sumCubesLink").click(function() {
-    $.get("example-code/sum-cubes.txt", setCodeMirrorVal);
-    return false;
-  });
-
-  $("#decoratorsLink").click(function() {
-    $.get("example-code/decorators.txt", setCodeMirrorVal);
-    return false;
-  });
-
-
-
-  $('#closure1Link').click(function() {
-    $.get("example-code/closures/closure1.txt", setCodeMirrorVal);
-    return false;
-  });
-  $('#closure2Link').click(function() {
-    $.get("example-code/closures/closure2.txt", setCodeMirrorVal);
-    return false;
-  });
-  $('#closure3Link').click(function() {
-    $.get("example-code/closures/closure3.txt", setCodeMirrorVal);
-    return false;
-  });
-  $('#closure4Link').click(function() {
-    $.get("example-code/closures/closure4.txt", setCodeMirrorVal);
-    return false;
-  });
-  $('#closure5Link').click(function() {
-    $.get("example-code/closures/closure5.txt", setCodeMirrorVal);
-    return false;
-  });
-  $('#lambdaParamLink').click(function() {
-    $.get("example-code/closures/lambda-param.txt", setCodeMirrorVal);
-    return false;
-  });
-
-
-  $('#aliasing1Link').click(function() {
-    $.get("example-code/aliasing/aliasing1.txt", setCodeMirrorVal);
-    return false;
-  });
-  $('#aliasing2Link').click(function() {
-    $.get("example-code/aliasing/aliasing2.txt", setCodeMirrorVal);
-    return false;
-  });
-  $('#aliasing3Link').click(function() {
-    $.get("example-code/aliasing/aliasing3.txt", setCodeMirrorVal);
-    return false;
-  });
-  $('#aliasing4Link').click(function() {
-    $.get("example-code/aliasing/aliasing4.txt", setCodeMirrorVal);
-    return false;
-  });
-  $('#aliasing5Link').click(function() {
-    $.get("example-code/aliasing/aliasing5.txt", setCodeMirrorVal);
-    return false;
-  });
-  $('#aliasing6Link').click(function() {
-    $.get("example-code/aliasing/aliasing6.txt", setCodeMirrorVal);
-    return false;
-  });
-  $('#aliasing7Link').click(function() {
-    $.get("example-code/aliasing/aliasing7.txt", setCodeMirrorVal);
-    return false;
-  });
-  $('#aliasing8Link').click(function() {
-    $.get("example-code/aliasing/aliasing8.txt", setCodeMirrorVal);
-    return false;
-  });
-
-
-  $('#ll1Link').click(function() {
-    $.get("example-code/linked-lists/ll1.txt", setCodeMirrorVal);
-    return false;
-  });
-  $('#ll2Link').click(function() {
-    $.get("example-code/linked-lists/ll2.txt", setCodeMirrorVal);
-    return false;
-  });
-
-
-  if (preseededCode) {
-    setCodeMirrorVal(preseededCode);
-
-    if ($.bbq.getState('mode') != 'edit') {
-      $("#executeBtn").trigger('click');
-    }
-  }
-  else {
-    // select a canned example on start-up:
-    $("#aliasExampleLink").trigger('click');
-  }
 
 
   // log a generic AJAX error handler
@@ -418,5 +196,8 @@ $(document).ready(function() {
                                   2);
     $('#urlOutput').val(urlStr);
   });
+
+
+  $.get("example-code/aliasing.txt", setCodeMirrorVal);
 });
 
