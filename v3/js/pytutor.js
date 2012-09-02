@@ -56,6 +56,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   hideOutput - hide "Program output" and "Generate URL" displays
 //   codeDivHeight - maximum height of #pyCodeOutputDiv (in pixels)
 //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code'
+//   embeddedMode - make the widget narrower horizontally and disable breakpoints
 function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
   this.curTrace = dat.trace;
@@ -159,9 +160,9 @@ ExecutionVisualizer.prototype.render = function() {
           <div id="executionSliderFooter"/>\
           <div id="vcrControls">\
             <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
-            <button id="jmpStepBack", type="button">&lt; Back</button>\
+            <button id="jmpStepBack", type="button">&lt; Prev</button>\
             <span id="curInstr">Step ? of ?</span>\
-            <button id="jmpStepFwd", type="button">Forward &gt;</button>\
+            <button id="jmpStepFwd", type="button">Next &gt;</button>\
             <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
           </div>\
           <div id="errorOutput"/>\
@@ -204,6 +205,23 @@ ExecutionVisualizer.prototype.render = function() {
   else {
     this.domRoot.find('#editBtn').attr('href', "#");
     this.domRoot.find('#editBtn').click(function(){return false;}); // DISABLE the link!
+  }
+
+
+  if (this.params.embeddedMode) {
+    this.params.hideOutput = true; // put this before hideOutput handler
+
+    this.domRoot.find('#executionSlider')
+      .css('width', '320px')
+      .css('margin', '6px auto');
+
+    this.domRoot.find('#executionSliderCaption').hide();
+    this.domRoot.find('#jmpFirstInstr').hide();
+    this.domRoot.find('#jmpLastInstr').hide();
+
+    this.domRoot.find('#pyCodeOutputDiv')
+      .css('max-width', '350px');
+
   }
 
 
@@ -648,7 +666,7 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
   myViz.domRoot.find('#pyCodeOutputDiv').empty();
 
   // maps this.codeOutputLines to both table columns
-  this.domRootD3.select('#pyCodeOutputDiv')
+  var codeOutputD3 = this.domRootD3.select('#pyCodeOutputDiv')
     .append('table')
     .attr('id', 'pyCodeOutput')
     .selectAll('tr')
@@ -658,10 +676,12 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
     .data(function(d, i){return [d, d] /* map full data item down both columns */;})
     .enter().append('td')
     .attr('class', function(d, i) {return (i == 0) ? 'lineNo' : 'cod';})
-    .style('cursor', function(d, i) {return 'pointer'})
     .html(function(d, i) {
       return (i == 0) ? d.lineNumber : htmlspecialchars(d.text);
-    })
+    });
+
+  if (!this.params.embeddedMode) {
+    codeOutputD3.style('cursor', function(d, i) {return 'pointer'})
     .on('mouseover', function() {
       setHoverBreakpoint(this);
     })
@@ -696,8 +716,9 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
       }
     });
 
+    renderSliderBreakpoints(); // renders breakpoints written in as code comments
+  }
 
-  renderSliderBreakpoints(); // renders breakpoints written in as code comments
 }
 
 
