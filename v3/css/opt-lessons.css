@@ -85,10 +85,10 @@ button.bigBtn {
 }
 
 #footer {
-  color: #666666;
+  color: #666;
   font-size: 9pt;
-  border-top: 1px solid #bbbbbb;
-  padding-top: 5px;
+  border-top: 1px solid #bbb;
+  padding-top: 12px;
   margin-top: 5px;
 }
 
