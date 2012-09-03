@@ -824,6 +824,15 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       }
     }
 
+    var funcCallSiteLine = null;
+
+    // highlight the call site for a 'call' instruction
+    if (curEntry.event == 'call' && myViz.curInstr > 0) {
+      var prevEntry = myViz.curTrace[myViz.curInstr - 1];
+      funcCallSiteLine = prevEntry.line;
+    }
+
+
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.lineNo')
       .attr('id', function(d) {return 'lineNo' + d.lineNumber;})
       .style('color', function(d)
@@ -839,7 +848,12 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
       .style('background-color', function(d) {
         if (d.lineNumber == curEntry.line) {
-          d.backgroundColor = hasError ? errorColor : highlightedLineColor;
+          d.backgroundColor = hasError ? errorColor :
+                                         (funcCallSiteLine ? funcCallLineColor :
+                                                             highlightedLineColor);
+        }
+        else if (d.lineNumber == funcCallSiteLine) {
+          d.backgroundColor = highlightedLineColor;
         }
         else {
           d.backgroundColor = null;
@@ -1973,7 +1987,7 @@ var highlightedLineBorderColor = '#005583';
 
 var visitedLineColor = highlightedLineBorderColor;
 
-var terminatedLineColor = '#a2eebd';
+var funcCallLineColor = '#a2eebd';
 
 var darkRed = '#d03939';
 
