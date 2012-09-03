@@ -408,13 +408,15 @@ div.ExecutionVisualizer div#heap {
 }
 
 div.ExecutionVisualizer td.toplevelHeapObject {
-  /* to make room for transition animations */
+  /* needed for d3 to do transitions */
   padding-left: 8px;
   padding-right: 8px;
   padding-top: 4px;
   padding-bottom: 4px;
+  /*
   border: 2px dotted white;
-  border-color: white; /* needed for d3 to do transitions */
+  border-color: white;
+  */
 }
 
 div.ExecutionVisualizer table.heapRow {
