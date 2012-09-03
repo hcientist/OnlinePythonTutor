@@ -57,6 +57,9 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   codeDivHeight - maximum height of #pyCodeOutputDiv (in pixels)
 //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code'
 //   embeddedMode - make the widget narrower horizontally and disable breakpoints
+//   updateOutputCallback - function to call (with 'this' as parameter)
+//                          whenever this.updateOutput() is called
+//                          (BEFORE rendering the output display)
 function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
   this.curTrace = dat.trace;
@@ -728,6 +731,13 @@ ExecutionVisualizer.prototype.updateOutput = function() {
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
   assert(this.curTrace);
+
+
+  // call the callback if necessary (BEFORE rendering)
+  if (this.params.updateOutputCallback) {
+    this.params.updateOutputCallback(this);
+  }
+
 
   var curEntry = this.curTrace[this.curInstr];
   var hasError = false;
