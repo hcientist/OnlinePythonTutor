@@ -812,6 +812,18 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     /* if instrLimitReached, then treat like a normal non-terminating line */
     var isTerminated = (!myViz.instrLimitReached && isLastInstr);
 
+    // the highlighted line can either have a 'top' border, 'bottom'
+    // border, or no border (null), depending on the value of 'borderType':
+    var borderType = null;
+    if (!hasError) {
+      if (curEntry.event == 'return' || isTerminated) {
+        borderType = 'bottom';
+      }
+      else {
+        borderType = 'top';
+      }
+    }
+
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.lineNo')
       .attr('id', function(d) {return 'lineNo' + d.lineNumber;})
       .style('color', function(d)
@@ -827,8 +839,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
       .style('background-color', function(d) {
         if (d.lineNumber == curEntry.line) {
-          d.backgroundColor = hasError ? errorColor :
-                                         (isTerminated ?  terminatedLineColor : highlightedLineColor);
+          d.backgroundColor = hasError ? errorColor : highlightedLineColor;
         }
         else {
           d.backgroundColor = null;
@@ -837,22 +848,21 @@ ExecutionVisualizer.prototype.updateOutput = function() {
         return d.backgroundColor;
       })
       .style('border-top', function(d) {
-        if ((d.lineNumber == curEntry.line) &&
-            (curEntry.event != 'return') &&
-            !hasError && !isTerminated) {
-          return '1px solid ' + highlightedLineTopBorderColor;
+        if ((d.lineNumber == curEntry.line) && (borderType == 'top')) {
+          return '1px solid ' + highlightedLineBorderColor;
         }
         else {
-          // put a default white top border to keep space usage consistent
+          // put a default white border to keep space usage consistent
           return '1px solid #ffffff';
         }
       })
       .style('border-bottom', function(d) {
-        // special case to render horizontal bar *BELOW* the highlighted line
-        if ((d.lineNumber == curEntry.line) &&
-            (curEntry.event == 'return') &&
-            !hasError && !isTerminated) {
-          return '1px solid ' + highlightedLineTopBorderColor;
+        if ((d.lineNumber == curEntry.line) && (borderType == 'bottom')) {
+          return '1px solid ' + highlightedLineBorderColor;
+        }
+        else {
+          // put a default white border to keep space usage consistent
+          return '1px solid #ffffff';
         }
       });
 
@@ -1959,9 +1969,9 @@ ExecutionVisualizer.prototype.redrawConnectors = function() {
 /* colors - see pytutor.css for more colors */
 
 var highlightedLineColor = '#e4faeb';
-var highlightedLineTopBorderColor = '#005583';
+var highlightedLineBorderColor = '#005583';
 
-var visitedLineColor = highlightedLineTopBorderColor;
+var visitedLineColor = highlightedLineBorderColor;
 
 var terminatedLineColor = '#a2eebd';
 
