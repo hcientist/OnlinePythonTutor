@@ -15,6 +15,7 @@ body {
 
 div#lessonHeader {
   margin-bottom: 15pt;
+  width: 800px;
 }
 
 div#lessonTitle {
@@ -30,8 +31,9 @@ div#lessonDescription {
 div#lessonNarration {
   font-size: 11pt;
   min-height: 25px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   line-height: 1.5em;
+  width: 800px;
 }
 
 
