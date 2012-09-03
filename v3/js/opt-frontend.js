@@ -308,6 +308,10 @@ $(document).ready(function() {
     return false;
   });
 
+  $("#genPrimesLink").click(function() {
+    $.get("example-code/gen_primes.txt", setCodeMirrorVal);
+    return false;
+  });
 
 
   $('#closure1Link').click(function() {
