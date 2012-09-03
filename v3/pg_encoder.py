@@ -163,9 +163,9 @@ class ObjectEncoder:
 
         printed_args = [e for e in argspec.args]
         if argspec.varargs:
-          printed_args.extend(['*' + e for e in argspec.varargs])
+          printed_args.append('*' + argspec.varargs)
         if argspec.keywords:
-          printed_args.extend(['**' + e for e in argspec.keywords])
+          printed_args.append('**' + argspec.keywords)
 
         func_name = get_name(dat)
         pretty_name = func_name + '(' + ', '.join(printed_args) + ')'

@@ -27,7 +27,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "parrot(mandatory, mandatory2, *a, *r, *g, *s, **k, **w, **a, **r, **g, **s)", 
+          "parrot(mandatory, mandatory2, *args, **kwargs)", 
           null
         ]
       }, 
@@ -78,7 +78,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "parrot(mandatory, mandatory2, *a, *r, *g, *s, **k, **w, **a, **r, **g, **s)", 
+          "parrot(mandatory, mandatory2, *args, **kwargs)", 
           null
         ], 
         "2": [
@@ -146,7 +146,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "parrot(mandatory, mandatory2, *a, *r, *g, *s, **k, **w, **a, **r, **g, **s)", 
+          "parrot(mandatory, mandatory2, *args, **kwargs)", 
           null
         ], 
         "2": [
@@ -216,7 +216,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "parrot(mandatory, mandatory2, *a, *r, *g, *s, **k, **w, **a, **r, **g, **s)", 
+          "parrot(mandatory, mandatory2, *args, **kwargs)", 
           null
         ], 
         "2": [
@@ -256,7 +256,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "parrot(mandatory, mandatory2, *a, *r, *g, *s, **k, **w, **a, **r, **g, **s)", 
+          "parrot(mandatory, mandatory2, *args, **kwargs)", 
           null
         ]
       }, 
