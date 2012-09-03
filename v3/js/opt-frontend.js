@@ -56,9 +56,9 @@ $(document).ready(function() {
   pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
     mode: 'python',
     lineNumbers: true,
-    tabSize: 2,
+    tabSize: 4,
     // convert tab into two spaces:
-    extraKeys: {Tab: function(cm) {cm.replaceSelection("  ", "end");}}
+    extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
   });
 
   pyInputCodeMirror.setSize(null, '450px');
