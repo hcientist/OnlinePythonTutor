@@ -2054,11 +2054,13 @@ String.prototype.rtrim = function() {
 // are NOT legal names for CSS ID's.
 // I also threw in '{', '}', '(', ')', '<', '>' as illegal characters.
 //
+// also some variable names are like '.0' (for generator expressions),
+// and '.' seems to be illegal.
 // TODO: what other characters are illegal???
 var lbRE = new RegExp('\\[|{|\\(|<', 'g');
 var rbRE = new RegExp('\\]|}|\\)|>', 'g');
 function varnameToCssID(varname) {
-  return varname.replace(lbRE, 'LeftB_').replace(rbRE, '_RightB');
+  return varname.replace(lbRE, 'LeftB_').replace(rbRE, '_RightB').replace('.', '_DOT_');
 }
 
 
