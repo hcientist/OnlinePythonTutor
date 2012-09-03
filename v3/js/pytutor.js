@@ -832,6 +832,12 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       funcCallSiteLine = prevEntry.line;
     }
 
+    var funcReturnSiteLine = null;
+    // highlight the return site for a 'return' instruction
+    if (curEntry.event == 'return' && myViz.curInstr < myViz.curTrace.length - 1) {
+      var nextEntry = myViz.curTrace[myViz.curInstr + 1];
+      funcReturnSiteLine = nextEntry.line;
+    }
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.lineNo')
       .attr('id', function(d) {return 'lineNo' + d.lineNumber;})
@@ -854,6 +860,9 @@ ExecutionVisualizer.prototype.updateOutput = function() {
         }
         else if (d.lineNumber == funcCallSiteLine) {
           d.backgroundColor = highlightedLineColor;
+        }
+        else if (d.lineNumber == funcReturnSiteLine) {
+          d.backgroundColor = highlightedLineLighterColor;
         }
         else {
           d.backgroundColor = null;
@@ -1984,6 +1993,8 @@ ExecutionVisualizer.prototype.redrawConnectors = function() {
 
 var highlightedLineColor = '#e4faeb';
 var highlightedLineBorderColor = '#005583';
+
+var highlightedLineLighterColor = '#effff4';
 
 var visitedLineColor = highlightedLineBorderColor;
 
