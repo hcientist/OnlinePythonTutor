@@ -101,7 +101,8 @@ function updateLessonNarration(myViz) {
 $(document).ready(function() {
 
   //$.get("lessons/aliasing.txt", parseLessonFile);
-  $.get("lessons/dive-into-python-311.txt", parseLessonFile);
+  //$.get("lessons/dive-into-python-311.txt", parseLessonFile);
+  $.get("lessons/for-else.txt", parseLessonFile);
 
   // log a generic AJAX error handler
   $(document).ajaxError(function() {
