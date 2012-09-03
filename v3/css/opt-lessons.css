@@ -23,7 +23,9 @@ h2 {
 
 body {
   background-color: white;
+
   font-family: verdana, arial, helvetica, sans-serif;
+
   font-size: 10pt;
 
   max-width: 900px;
@@ -38,12 +40,21 @@ div#lessonHeader {
 
 div#lessonTitle {
   font-size: 16pt;
-  margin-bottom: 10pt;
+  margin-bottom: 15pt;
 }
 
-div#lessonExposition {
-  font-size: 12pt;
+div#lessonDescription {
+  font-size: 11pt;
+  line-height: 1.5em;
 }
+
+div#lessonNarration {
+  font-size: 11pt;
+  min-height: 25px;
+  margin-bottom: 8px;
+  line-height: 1.5em;
+}
+
 
 a,
 a:visited,
@@ -91,4 +102,3 @@ button.bigBtn {
   padding-top: 12px;
   margin-top: 5px;
 }
-

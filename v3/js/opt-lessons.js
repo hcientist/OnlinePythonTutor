@@ -33,12 +33,20 @@ var backend_script = 'exec'; // URL of backend script, which must eventually cal
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 
+var lessonScript = null;
+var metadataJSON = null;
+
 function parseLessonFile(dat) {
   var toks = dat.split('======');
-  var lessonScript = toks[0].rtrim();
-  var metadataJSON = $.parseJSON(toks[1]);
-  console.log(lessonScript);
-  console.log(metadataJSON);
+
+  // globals
+  lessonScript = toks[0].rtrim();
+  metadataJSON = $.parseJSON(toks[1]);
+
+  $('#lessonTitle').html(metadataJSON.title);
+  $('#lessonDescription').html(metadataJSON.description);
+
+  document.title = metadataJSON.title + ' - Online Python Tutor (v3)';
 
   $.get(backend_script,
         {user_script : lessonScript},
@@ -60,7 +68,8 @@ function parseLessonFile(dat) {
           else {
             myVisualizer = new ExecutionVisualizer('pyOutputPane',
                                                    dataFromBackend,
-                                                   {embeddedMode: true});
+                                                   {embeddedMode: true,
+                                                    updateOutputCallback: updateLessonNarration});
 
             myVisualizer.updateOutput();
 
@@ -71,9 +80,28 @@ function parseLessonFile(dat) {
         "json");
 }
 
+function updateLessonNarration(myViz) {
+  var curInstr = myViz.curInstr;
+
+  assert(metadataJSON);
+
+  var annotation = metadataJSON[curInstr + 1]; // adjust for indexing diffs
+  if (annotation) {
+    $('#lessonNarration').html(annotation);
+  }
+  else {
+    $('#lessonNarration').html('');
+  }
+
+  // hack from John DeNero to ensure that once a div grows it height, it
+  // never shrinks again
+  $('#lessonNarration').css('min-height', $('#lessonNarration').css('height'));
+}
+
 $(document).ready(function() {
 
-  $.get("lessons/aliasing.txt", parseLessonFile);
+  //$.get("lessons/aliasing.txt", parseLessonFile);
+  $.get("lessons/dive-into-python-311.txt", parseLessonFile);
 
   // log a generic AJAX error handler
   $(document).ajaxError(function() {
