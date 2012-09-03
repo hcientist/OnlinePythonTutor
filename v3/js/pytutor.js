@@ -812,20 +812,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     /* if instrLimitReached, then treat like a normal non-terminating line */
     var isTerminated = (!myViz.instrLimitReached && isLastInstr);
 
-    // the highlighted line can either have a 'top' border, 'bottom'
-    // border, or no border (null), depending on the value of 'borderType':
-    var borderType = null;
-    if (!hasError) {
-      if (curEntry.event == 'return' || isTerminated) {
-        borderType = 'bottom';
-      }
-      else {
-        borderType = 'top';
-      }
-    }
-
     var funcCallSiteLine = null;
-
     // highlight the call site for a 'call' instruction
     if (curEntry.event == 'call' && myViz.curInstr > 0) {
       var prevEntry = myViz.curTrace[myViz.curInstr - 1];
@@ -838,6 +825,21 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       var nextEntry = myViz.curTrace[myViz.curInstr + 1];
       funcReturnSiteLine = nextEntry.line;
     }
+
+
+    // the highlighted line can either have a 'top' border, 'bottom'
+    // border, or no border (null), depending on the value of 'borderType':
+    var borderType = null;
+    if (!hasError && !funcCallSiteLine) {
+      if (curEntry.event == 'return' || isTerminated) {
+        borderType = 'bottom';
+      }
+      else {
+        borderType = 'top';
+      }
+    }
+
+
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.lineNo')
       .attr('id', function(d) {return 'lineNo' + d.lineNumber;})
