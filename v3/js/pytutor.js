@@ -1793,7 +1793,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       // (might contain '<' or '>' for weird names like <genexpr>)
       var funcName = htmlspecialchars(frame.func_name).replace('&lt;lambda&gt;', '\u03bb');
 
-      var headerLabel = funcName + '()';
+      var headerLabel = funcName;
 
       // only display if you're someone's parent
       if (frame.is_parent) {
