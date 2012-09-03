@@ -282,7 +282,11 @@ class PGLogger(bdb.Bdb):
                                   # or else we won't properly capture heap object mutations in the trace!
 
         if event_type == 'call':
-          assert top_frame not in self.frame_ordered_ids
+          # Don't be so strict about this assertion because it FAILS
+          # when you're calling a generator (not for the first time),
+          # since that frame has already previously been on the stack ...
+          #assert top_frame not in self.frame_ordered_ids
+
           self.frame_ordered_ids[top_frame] = self.cur_frame_id
           self.cur_frame_id += 1
 
