@@ -79,3 +79,6 @@ button.bigBtn {
   margin-right: auto;
 }
 
+
+/* necessary for CodeMirror error line highlighting to work! */
+.CodeMirror .errorLine { background: #F89D99 !important; }

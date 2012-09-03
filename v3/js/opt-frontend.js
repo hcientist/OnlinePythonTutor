@@ -57,7 +57,8 @@ $(document).ready(function() {
     mode: 'python',
     lineNumbers: true,
     tabSize: 4,
-    // convert tab into two spaces:
+    indentUnit: 4,
+    // convert tab into four spaces:
     extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
   });
 
