@@ -179,6 +179,7 @@ div.ExecutionVisualizer .funcObj {
 
 div.ExecutionVisualizer .retval {
   font-size: 9pt;
+  color: #d03939; /* dark red */
 }
 
 
