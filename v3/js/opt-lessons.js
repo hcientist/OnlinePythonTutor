@@ -102,7 +102,8 @@ $(document).ready(function() {
 
   //$.get("lessons/aliasing.txt", parseLessonFile);
   //$.get("lessons/dive-into-python-311.txt", parseLessonFile);
-  $.get("lessons/for-else.txt", parseLessonFile);
+  //$.get("lessons/for-else.txt", parseLessonFile);
+  $.get("lessons/varargs.txt", parseLessonFile);
 
   // log a generic AJAX error handler
   $(document).ajaxError(function() {
