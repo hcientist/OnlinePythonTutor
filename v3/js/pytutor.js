@@ -830,8 +830,8 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     // the highlighted line can either have a 'top' border, 'bottom'
     // border, or no border (null), depending on the value of 'borderType':
     var borderType = null;
-    if (!hasError && !funcCallSiteLine) {
-      if (curEntry.event == 'return' || isTerminated) {
+    if (!hasError) {
+      if (curEntry.event == 'call' || curEntry.event == 'return' || isTerminated) {
         borderType = 'bottom';
       }
       else {
@@ -1996,7 +1996,8 @@ ExecutionVisualizer.prototype.redrawConnectors = function() {
 var highlightedLineColor = '#e4faeb';
 var highlightedLineBorderColor = '#005583';
 
-var highlightedLineLighterColor = '#effff3';
+//var highlightedLineLighterColor = '#effff3';
+var highlightedLineLighterColor = '#f2fff5';
 
 var visitedLineColor = highlightedLineBorderColor;
 

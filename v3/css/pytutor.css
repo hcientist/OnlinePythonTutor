@@ -120,7 +120,7 @@ div.ExecutionVisualizer div#editCodeLinkDiv {
   margin-top: 12px;
   margin-bottom: 4px;
   */
-  margin: 12px auto;
+  margin: 6px auto;
 }
 
 div.ExecutionVisualizer #errorOutput {
