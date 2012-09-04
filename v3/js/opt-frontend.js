@@ -357,6 +357,11 @@ $(document).ready(function() {
     return false;
   });
 
+  $("#genExprLink").click(function() {
+    $.get("example-code/genexpr.txt", setCodeMirrorVal);
+    return false;
+  });
+
 
   $('#closure1Link').click(function() {
     $.get("example-code/closures/closure1.txt", setCodeMirrorVal);
