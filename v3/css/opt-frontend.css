@@ -54,6 +54,7 @@ table#pyOutputPane {
 #codeInputPane {
   margin-top: 5px;
   font-size: 12pt;
+  border: 1px solid #ddd;
 }
 
 button.smallBtn {
