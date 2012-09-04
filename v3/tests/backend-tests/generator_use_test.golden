@@ -284,7 +284,6 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": 1, 
             "x": 1
           }, 
           "is_highlighted": true, 
@@ -294,8 +293,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f2", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -327,7 +325,6 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": 1, 
             "x": 1
           }, 
           "is_highlighted": true, 
@@ -337,8 +334,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f2", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -370,7 +366,6 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": 1, 
             "x": 3
           }, 
           "is_highlighted": true, 
@@ -380,8 +375,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f2", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -413,7 +407,6 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": 1, 
             "x": 3
           }, 
           "is_highlighted": true, 
@@ -423,8 +416,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f2", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -549,7 +541,6 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "__return__": 3, 
             "x": 3
           }, 
           "is_highlighted": true, 
@@ -559,8 +550,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f3", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -592,7 +582,6 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "__return__": 3, 
             "x": 3
           }, 
           "is_highlighted": true, 
@@ -602,8 +591,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f3", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -635,7 +623,6 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "__return__": 3, 
             "x": 5
           }, 
           "is_highlighted": true, 
@@ -645,8 +632,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f3", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -678,7 +664,6 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "__return__": 3, 
             "x": 5
           }, 
           "is_highlighted": true, 
@@ -688,8 +673,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f3", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -814,7 +798,6 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "__return__": 5, 
             "x": 5
           }, 
           "is_highlighted": true, 
@@ -824,8 +807,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f4", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -857,7 +839,6 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "__return__": 5, 
             "x": 5
           }, 
           "is_highlighted": true, 
@@ -867,8 +848,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f4", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -900,7 +880,6 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "__return__": 5, 
             "x": 7
           }, 
           "is_highlighted": true, 
@@ -910,8 +889,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f4", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -943,7 +921,6 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "__return__": 5, 
             "x": 7
           }, 
           "is_highlighted": true, 
@@ -953,8 +930,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f4", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1079,7 +1055,6 @@
         {
           "frame_id": 5, 
           "encoded_locals": {
-            "__return__": 7, 
             "x": 7
           }, 
           "is_highlighted": true, 
@@ -1089,8 +1064,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f5", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1122,7 +1096,6 @@
         {
           "frame_id": 5, 
           "encoded_locals": {
-            "__return__": 7, 
             "x": 7
           }, 
           "is_highlighted": true, 
@@ -1132,8 +1105,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f5", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1165,7 +1137,6 @@
         {
           "frame_id": 5, 
           "encoded_locals": {
-            "__return__": 7, 
             "x": 9
           }, 
           "is_highlighted": true, 
@@ -1175,8 +1146,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f5", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1208,7 +1178,6 @@
         {
           "frame_id": 5, 
           "encoded_locals": {
-            "__return__": 7, 
             "x": 9
           }, 
           "is_highlighted": true, 
@@ -1218,8 +1187,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f5", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1344,7 +1312,6 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "__return__": 9, 
             "x": 9
           }, 
           "is_highlighted": true, 
@@ -1354,8 +1321,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f6", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1387,7 +1353,6 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "__return__": 9, 
             "x": 9
           }, 
           "is_highlighted": true, 
@@ -1397,8 +1362,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f6", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1430,7 +1394,6 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "__return__": 9, 
             "x": 11
           }, 
           "is_highlighted": true, 
@@ -1440,8 +1403,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f6", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1473,7 +1435,6 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "__return__": 9, 
             "x": 11
           }, 
           "is_highlighted": true, 
@@ -1483,8 +1444,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f6", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1609,7 +1569,6 @@
         {
           "frame_id": 7, 
           "encoded_locals": {
-            "__return__": 11, 
             "x": 11
           }, 
           "is_highlighted": true, 
@@ -1619,8 +1578,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f7", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1652,7 +1610,6 @@
         {
           "frame_id": 7, 
           "encoded_locals": {
-            "__return__": 11, 
             "x": 11
           }, 
           "is_highlighted": true, 
@@ -1662,8 +1619,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f7", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1695,7 +1651,6 @@
         {
           "frame_id": 7, 
           "encoded_locals": {
-            "__return__": 11, 
             "x": 13
           }, 
           "is_highlighted": true, 
@@ -1705,8 +1660,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f7", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1738,7 +1692,6 @@
         {
           "frame_id": 7, 
           "encoded_locals": {
-            "__return__": 11, 
             "x": 13
           }, 
           "is_highlighted": true, 
@@ -1748,8 +1701,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f7", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1874,7 +1826,6 @@
         {
           "frame_id": 8, 
           "encoded_locals": {
-            "__return__": 13, 
             "x": 13
           }, 
           "is_highlighted": true, 
@@ -1884,8 +1835,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f8", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1917,7 +1867,6 @@
         {
           "frame_id": 8, 
           "encoded_locals": {
-            "__return__": 13, 
             "x": 13
           }, 
           "is_highlighted": true, 
@@ -1927,8 +1876,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f8", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -1960,7 +1908,6 @@
         {
           "frame_id": 8, 
           "encoded_locals": {
-            "__return__": 13, 
             "x": 15
           }, 
           "is_highlighted": true, 
@@ -1970,8 +1917,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f8", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2003,7 +1949,6 @@
         {
           "frame_id": 8, 
           "encoded_locals": {
-            "__return__": 13, 
             "x": 15
           }, 
           "is_highlighted": true, 
@@ -2013,8 +1958,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f8", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2139,7 +2083,6 @@
         {
           "frame_id": 9, 
           "encoded_locals": {
-            "__return__": 15, 
             "x": 15
           }, 
           "is_highlighted": true, 
@@ -2149,8 +2092,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f9", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2182,7 +2124,6 @@
         {
           "frame_id": 9, 
           "encoded_locals": {
-            "__return__": 15, 
             "x": 15
           }, 
           "is_highlighted": true, 
@@ -2192,8 +2133,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f9", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2225,7 +2165,6 @@
         {
           "frame_id": 9, 
           "encoded_locals": {
-            "__return__": 15, 
             "x": 17
           }, 
           "is_highlighted": true, 
@@ -2235,8 +2174,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f9", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2268,7 +2206,6 @@
         {
           "frame_id": 9, 
           "encoded_locals": {
-            "__return__": 15, 
             "x": 17
           }, 
           "is_highlighted": true, 
@@ -2278,8 +2215,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f9", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2404,7 +2340,6 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "__return__": 17, 
             "x": 17
           }, 
           "is_highlighted": true, 
@@ -2414,8 +2349,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f10", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2447,7 +2381,6 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "__return__": 17, 
             "x": 17
           }, 
           "is_highlighted": true, 
@@ -2457,8 +2390,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f10", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2490,7 +2422,6 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "__return__": 17, 
             "x": 19
           }, 
           "is_highlighted": true, 
@@ -2500,8 +2431,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f10", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2533,7 +2463,6 @@
         {
           "frame_id": 10, 
           "encoded_locals": {
-            "__return__": 17, 
             "x": 19
           }, 
           "is_highlighted": true, 
@@ -2543,8 +2472,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f10", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2669,7 +2597,6 @@
         {
           "frame_id": 11, 
           "encoded_locals": {
-            "__return__": 19, 
             "x": 19
           }, 
           "is_highlighted": true, 
@@ -2679,8 +2606,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f11", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2712,7 +2638,6 @@
         {
           "frame_id": 11, 
           "encoded_locals": {
-            "__return__": 19, 
             "x": 19
           }, 
           "is_highlighted": true, 
@@ -2722,8 +2647,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f11", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2755,7 +2679,6 @@
         {
           "frame_id": 11, 
           "encoded_locals": {
-            "__return__": 19, 
             "x": 21
           }, 
           "is_highlighted": true, 
@@ -2765,8 +2688,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f11", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2798,7 +2720,6 @@
         {
           "frame_id": 11, 
           "encoded_locals": {
-            "__return__": 19, 
             "x": 21
           }, 
           "is_highlighted": true, 
@@ -2808,8 +2729,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f11", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2934,7 +2854,6 @@
         {
           "frame_id": 12, 
           "encoded_locals": {
-            "__return__": 21, 
             "x": 21
           }, 
           "is_highlighted": true, 
@@ -2944,8 +2863,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f12", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -2977,7 +2895,6 @@
         {
           "frame_id": 12, 
           "encoded_locals": {
-            "__return__": 21, 
             "x": 21
           }, 
           "is_highlighted": true, 
@@ -2987,8 +2904,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f12", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3020,7 +2936,6 @@
         {
           "frame_id": 12, 
           "encoded_locals": {
-            "__return__": 21, 
             "x": 23
           }, 
           "is_highlighted": true, 
@@ -3030,8 +2945,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f12", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3063,7 +2977,6 @@
         {
           "frame_id": 12, 
           "encoded_locals": {
-            "__return__": 21, 
             "x": 23
           }, 
           "is_highlighted": true, 
@@ -3073,8 +2986,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f12", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3199,7 +3111,6 @@
         {
           "frame_id": 13, 
           "encoded_locals": {
-            "__return__": 23, 
             "x": 23
           }, 
           "is_highlighted": true, 
@@ -3209,8 +3120,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f13", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3242,7 +3152,6 @@
         {
           "frame_id": 13, 
           "encoded_locals": {
-            "__return__": 23, 
             "x": 23
           }, 
           "is_highlighted": true, 
@@ -3252,8 +3161,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f13", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3285,7 +3193,6 @@
         {
           "frame_id": 13, 
           "encoded_locals": {
-            "__return__": 23, 
             "x": 25
           }, 
           "is_highlighted": true, 
@@ -3295,8 +3202,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f13", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3328,7 +3234,6 @@
         {
           "frame_id": 13, 
           "encoded_locals": {
-            "__return__": 23, 
             "x": 25
           }, 
           "is_highlighted": true, 
@@ -3338,8 +3243,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f13", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3464,7 +3368,6 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "__return__": 25, 
             "x": 25
           }, 
           "is_highlighted": true, 
@@ -3474,8 +3377,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f14", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3507,7 +3409,6 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "__return__": 25, 
             "x": 25
           }, 
           "is_highlighted": true, 
@@ -3517,8 +3418,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f14", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3550,7 +3450,6 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "__return__": 25, 
             "x": 27
           }, 
           "is_highlighted": true, 
@@ -3560,8 +3459,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f14", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3593,7 +3491,6 @@
         {
           "frame_id": 14, 
           "encoded_locals": {
-            "__return__": 25, 
             "x": 27
           }, 
           "is_highlighted": true, 
@@ -3603,8 +3500,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f14", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3729,7 +3625,6 @@
         {
           "frame_id": 15, 
           "encoded_locals": {
-            "__return__": 27, 
             "x": 27
           }, 
           "is_highlighted": true, 
@@ -3739,8 +3634,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f15", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3772,7 +3666,6 @@
         {
           "frame_id": 15, 
           "encoded_locals": {
-            "__return__": 27, 
             "x": 27
           }, 
           "is_highlighted": true, 
@@ -3782,8 +3675,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f15", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3815,7 +3707,6 @@
         {
           "frame_id": 15, 
           "encoded_locals": {
-            "__return__": 27, 
             "x": 29
           }, 
           "is_highlighted": true, 
@@ -3825,8 +3716,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f15", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3858,7 +3748,6 @@
         {
           "frame_id": 15, 
           "encoded_locals": {
-            "__return__": 27, 
             "x": 29
           }, 
           "is_highlighted": true, 
@@ -3868,8 +3757,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f15", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -3994,7 +3882,6 @@
         {
           "frame_id": 16, 
           "encoded_locals": {
-            "__return__": 29, 
             "x": 29
           }, 
           "is_highlighted": true, 
@@ -4004,8 +3891,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f16", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4037,7 +3923,6 @@
         {
           "frame_id": 16, 
           "encoded_locals": {
-            "__return__": 29, 
             "x": 29
           }, 
           "is_highlighted": true, 
@@ -4047,8 +3932,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f16", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4080,7 +3964,6 @@
         {
           "frame_id": 16, 
           "encoded_locals": {
-            "__return__": 29, 
             "x": 31
           }, 
           "is_highlighted": true, 
@@ -4090,8 +3973,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f16", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4123,7 +4005,6 @@
         {
           "frame_id": 16, 
           "encoded_locals": {
-            "__return__": 29, 
             "x": 31
           }, 
           "is_highlighted": true, 
@@ -4133,8 +4014,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f16", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4259,7 +4139,6 @@
         {
           "frame_id": 17, 
           "encoded_locals": {
-            "__return__": 31, 
             "x": 31
           }, 
           "is_highlighted": true, 
@@ -4269,8 +4148,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f17", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4302,7 +4180,6 @@
         {
           "frame_id": 17, 
           "encoded_locals": {
-            "__return__": 31, 
             "x": 31
           }, 
           "is_highlighted": true, 
@@ -4312,8 +4189,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f17", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4345,7 +4221,6 @@
         {
           "frame_id": 17, 
           "encoded_locals": {
-            "__return__": 31, 
             "x": 33
           }, 
           "is_highlighted": true, 
@@ -4355,8 +4230,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f17", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4388,7 +4262,6 @@
         {
           "frame_id": 17, 
           "encoded_locals": {
-            "__return__": 31, 
             "x": 33
           }, 
           "is_highlighted": true, 
@@ -4398,8 +4271,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f17", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4524,7 +4396,6 @@
         {
           "frame_id": 18, 
           "encoded_locals": {
-            "__return__": 33, 
             "x": 33
           }, 
           "is_highlighted": true, 
@@ -4534,8 +4405,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f18", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4567,7 +4437,6 @@
         {
           "frame_id": 18, 
           "encoded_locals": {
-            "__return__": 33, 
             "x": 33
           }, 
           "is_highlighted": true, 
@@ -4577,8 +4446,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f18", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4610,7 +4478,6 @@
         {
           "frame_id": 18, 
           "encoded_locals": {
-            "__return__": 33, 
             "x": 35
           }, 
           "is_highlighted": true, 
@@ -4620,8 +4487,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f18", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4653,7 +4519,6 @@
         {
           "frame_id": 18, 
           "encoded_locals": {
-            "__return__": 33, 
             "x": 35
           }, 
           "is_highlighted": true, 
@@ -4663,8 +4528,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f18", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4789,7 +4653,6 @@
         {
           "frame_id": 19, 
           "encoded_locals": {
-            "__return__": 35, 
             "x": 35
           }, 
           "is_highlighted": true, 
@@ -4799,8 +4662,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f19", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4832,7 +4694,6 @@
         {
           "frame_id": 19, 
           "encoded_locals": {
-            "__return__": 35, 
             "x": 35
           }, 
           "is_highlighted": true, 
@@ -4842,8 +4703,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f19", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4875,7 +4735,6 @@
         {
           "frame_id": 19, 
           "encoded_locals": {
-            "__return__": 35, 
             "x": 37
           }, 
           "is_highlighted": true, 
@@ -4885,8 +4744,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f19", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -4918,7 +4776,6 @@
         {
           "frame_id": 19, 
           "encoded_locals": {
-            "__return__": 35, 
             "x": 37
           }, 
           "is_highlighted": true, 
@@ -4928,8 +4785,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f19", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5054,7 +4910,6 @@
         {
           "frame_id": 20, 
           "encoded_locals": {
-            "__return__": 37, 
             "x": 37
           }, 
           "is_highlighted": true, 
@@ -5064,8 +4919,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f20", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5097,7 +4951,6 @@
         {
           "frame_id": 20, 
           "encoded_locals": {
-            "__return__": 37, 
             "x": 37
           }, 
           "is_highlighted": true, 
@@ -5107,8 +4960,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f20", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5140,7 +4992,6 @@
         {
           "frame_id": 20, 
           "encoded_locals": {
-            "__return__": 37, 
             "x": 39
           }, 
           "is_highlighted": true, 
@@ -5150,8 +5001,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f20", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5183,7 +5033,6 @@
         {
           "frame_id": 20, 
           "encoded_locals": {
-            "__return__": 37, 
             "x": 39
           }, 
           "is_highlighted": true, 
@@ -5193,8 +5042,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f20", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5319,7 +5167,6 @@
         {
           "frame_id": 21, 
           "encoded_locals": {
-            "__return__": 39, 
             "x": 39
           }, 
           "is_highlighted": true, 
@@ -5329,8 +5176,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f21", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5362,7 +5208,6 @@
         {
           "frame_id": 21, 
           "encoded_locals": {
-            "__return__": 39, 
             "x": 39
           }, 
           "is_highlighted": true, 
@@ -5372,8 +5217,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f21", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5405,7 +5249,6 @@
         {
           "frame_id": 21, 
           "encoded_locals": {
-            "__return__": 39, 
             "x": 41
           }, 
           "is_highlighted": true, 
@@ -5415,8 +5258,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f21", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5448,7 +5290,6 @@
         {
           "frame_id": 21, 
           "encoded_locals": {
-            "__return__": 39, 
             "x": 41
           }, 
           "is_highlighted": true, 
@@ -5458,8 +5299,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f21", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5584,7 +5424,6 @@
         {
           "frame_id": 22, 
           "encoded_locals": {
-            "__return__": 41, 
             "x": 41
           }, 
           "is_highlighted": true, 
@@ -5594,8 +5433,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f22", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5627,7 +5465,6 @@
         {
           "frame_id": 22, 
           "encoded_locals": {
-            "__return__": 41, 
             "x": 41
           }, 
           "is_highlighted": true, 
@@ -5637,8 +5474,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f22", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5670,7 +5506,6 @@
         {
           "frame_id": 22, 
           "encoded_locals": {
-            "__return__": 41, 
             "x": 43
           }, 
           "is_highlighted": true, 
@@ -5680,8 +5515,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f22", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5713,7 +5547,6 @@
         {
           "frame_id": 22, 
           "encoded_locals": {
-            "__return__": 41, 
             "x": 43
           }, 
           "is_highlighted": true, 
@@ -5723,8 +5556,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f22", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5849,7 +5681,6 @@
         {
           "frame_id": 23, 
           "encoded_locals": {
-            "__return__": 43, 
             "x": 43
           }, 
           "is_highlighted": true, 
@@ -5859,8 +5690,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f23", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5892,7 +5722,6 @@
         {
           "frame_id": 23, 
           "encoded_locals": {
-            "__return__": 43, 
             "x": 43
           }, 
           "is_highlighted": true, 
@@ -5902,8 +5731,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f23", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5935,7 +5763,6 @@
         {
           "frame_id": 23, 
           "encoded_locals": {
-            "__return__": 43, 
             "x": 45
           }, 
           "is_highlighted": true, 
@@ -5945,8 +5772,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f23", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -5978,7 +5804,6 @@
         {
           "frame_id": 23, 
           "encoded_locals": {
-            "__return__": 43, 
             "x": 45
           }, 
           "is_highlighted": true, 
@@ -5988,8 +5813,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f23", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6114,7 +5938,6 @@
         {
           "frame_id": 24, 
           "encoded_locals": {
-            "__return__": 45, 
             "x": 45
           }, 
           "is_highlighted": true, 
@@ -6124,8 +5947,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f24", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6157,7 +5979,6 @@
         {
           "frame_id": 24, 
           "encoded_locals": {
-            "__return__": 45, 
             "x": 45
           }, 
           "is_highlighted": true, 
@@ -6167,8 +5988,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f24", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6200,7 +6020,6 @@
         {
           "frame_id": 24, 
           "encoded_locals": {
-            "__return__": 45, 
             "x": 47
           }, 
           "is_highlighted": true, 
@@ -6210,8 +6029,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f24", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6243,7 +6061,6 @@
         {
           "frame_id": 24, 
           "encoded_locals": {
-            "__return__": 45, 
             "x": 47
           }, 
           "is_highlighted": true, 
@@ -6253,8 +6070,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f24", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6379,7 +6195,6 @@
         {
           "frame_id": 25, 
           "encoded_locals": {
-            "__return__": 47, 
             "x": 47
           }, 
           "is_highlighted": true, 
@@ -6389,8 +6204,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f25", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6422,7 +6236,6 @@
         {
           "frame_id": 25, 
           "encoded_locals": {
-            "__return__": 47, 
             "x": 47
           }, 
           "is_highlighted": true, 
@@ -6432,8 +6245,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f25", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6465,7 +6277,6 @@
         {
           "frame_id": 25, 
           "encoded_locals": {
-            "__return__": 47, 
             "x": 49
           }, 
           "is_highlighted": true, 
@@ -6475,8 +6286,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f25", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6508,7 +6318,6 @@
         {
           "frame_id": 25, 
           "encoded_locals": {
-            "__return__": 47, 
             "x": 49
           }, 
           "is_highlighted": true, 
@@ -6518,8 +6327,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f25", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6644,7 +6452,6 @@
         {
           "frame_id": 26, 
           "encoded_locals": {
-            "__return__": 49, 
             "x": 49
           }, 
           "is_highlighted": true, 
@@ -6654,8 +6461,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f26", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6687,7 +6493,6 @@
         {
           "frame_id": 26, 
           "encoded_locals": {
-            "__return__": 49, 
             "x": 49
           }, 
           "is_highlighted": true, 
@@ -6697,8 +6502,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f26", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6730,7 +6534,6 @@
         {
           "frame_id": 26, 
           "encoded_locals": {
-            "__return__": 49, 
             "x": 51
           }, 
           "is_highlighted": true, 
@@ -6740,8 +6543,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f26", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6773,7 +6575,6 @@
         {
           "frame_id": 26, 
           "encoded_locals": {
-            "__return__": 49, 
             "x": 51
           }, 
           "is_highlighted": true, 
@@ -6783,8 +6584,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f26", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6909,7 +6709,6 @@
         {
           "frame_id": 27, 
           "encoded_locals": {
-            "__return__": 51, 
             "x": 51
           }, 
           "is_highlighted": true, 
@@ -6919,8 +6718,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f27", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6952,7 +6750,6 @@
         {
           "frame_id": 27, 
           "encoded_locals": {
-            "__return__": 51, 
             "x": 51
           }, 
           "is_highlighted": true, 
@@ -6962,8 +6759,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f27", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -6995,7 +6791,6 @@
         {
           "frame_id": 27, 
           "encoded_locals": {
-            "__return__": 51, 
             "x": 53
           }, 
           "is_highlighted": true, 
@@ -7005,8 +6800,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f27", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -7038,7 +6832,6 @@
         {
           "frame_id": 27, 
           "encoded_locals": {
-            "__return__": 51, 
             "x": 53
           }, 
           "is_highlighted": true, 
@@ -7048,8 +6841,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f27", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -7174,7 +6966,6 @@
         {
           "frame_id": 28, 
           "encoded_locals": {
-            "__return__": 53, 
             "x": 53
           }, 
           "is_highlighted": true, 
@@ -7184,8 +6975,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f28", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -7217,7 +7007,6 @@
         {
           "frame_id": 28, 
           "encoded_locals": {
-            "__return__": 53, 
             "x": 53
           }, 
           "is_highlighted": true, 
@@ -7227,8 +7016,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f28", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -7260,7 +7048,6 @@
         {
           "frame_id": 28, 
           "encoded_locals": {
-            "__return__": 53, 
             "x": 55
           }, 
           "is_highlighted": true, 
@@ -7270,8 +7057,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f28", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -7303,7 +7089,6 @@
         {
           "frame_id": 28, 
           "encoded_locals": {
-            "__return__": 53, 
             "x": 55
           }, 
           "is_highlighted": true, 
@@ -7313,8 +7098,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f28", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -7439,7 +7223,6 @@
         {
           "frame_id": 29, 
           "encoded_locals": {
-            "__return__": 55, 
             "x": 55
           }, 
           "is_highlighted": true, 
@@ -7449,8 +7232,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f29", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -7482,7 +7264,6 @@
         {
           "frame_id": 29, 
           "encoded_locals": {
-            "__return__": 55, 
             "x": 55
           }, 
           "is_highlighted": true, 
@@ -7492,8 +7273,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f29", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -7525,7 +7305,6 @@
         {
           "frame_id": 29, 
           "encoded_locals": {
-            "__return__": 55, 
             "x": 57
           }, 
           "is_highlighted": true, 
@@ -7535,8 +7314,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f29", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -7568,7 +7346,6 @@
         {
           "frame_id": 29, 
           "encoded_locals": {
-            "__return__": 55, 
             "x": 57
           }, 
           "is_highlighted": true, 
@@ -7578,8 +7355,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f29", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -7704,7 +7480,6 @@
         {
           "frame_id": 30, 
           "encoded_locals": {
-            "__return__": 57, 
             "x": 57
           }, 
           "is_highlighted": true, 
@@ -7714,8 +7489,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f30", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -7747,7 +7521,6 @@
         {
           "frame_id": 30, 
           "encoded_locals": {
-            "__return__": 57, 
             "x": 57
           }, 
           "is_highlighted": true, 
@@ -7757,8 +7530,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f30", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -7790,7 +7562,6 @@
         {
           "frame_id": 30, 
           "encoded_locals": {
-            "__return__": 57, 
             "x": 59
           }, 
           "is_highlighted": true, 
@@ -7800,8 +7571,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f30", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -7833,7 +7603,6 @@
         {
           "frame_id": 30, 
           "encoded_locals": {
-            "__return__": 57, 
             "x": 59
           }, 
           "is_highlighted": true, 
@@ -7843,8 +7612,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f30", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -7969,7 +7737,6 @@
         {
           "frame_id": 31, 
           "encoded_locals": {
-            "__return__": 59, 
             "x": 59
           }, 
           "is_highlighted": true, 
@@ -7979,8 +7746,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f31", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8012,7 +7778,6 @@
         {
           "frame_id": 31, 
           "encoded_locals": {
-            "__return__": 59, 
             "x": 59
           }, 
           "is_highlighted": true, 
@@ -8022,8 +7787,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f31", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8055,7 +7819,6 @@
         {
           "frame_id": 31, 
           "encoded_locals": {
-            "__return__": 59, 
             "x": 61
           }, 
           "is_highlighted": true, 
@@ -8065,8 +7828,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f31", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8098,7 +7860,6 @@
         {
           "frame_id": 31, 
           "encoded_locals": {
-            "__return__": 59, 
             "x": 61
           }, 
           "is_highlighted": true, 
@@ -8108,8 +7869,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f31", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8234,7 +7994,6 @@
         {
           "frame_id": 32, 
           "encoded_locals": {
-            "__return__": 61, 
             "x": 61
           }, 
           "is_highlighted": true, 
@@ -8244,8 +8003,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f32", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8277,7 +8035,6 @@
         {
           "frame_id": 32, 
           "encoded_locals": {
-            "__return__": 61, 
             "x": 61
           }, 
           "is_highlighted": true, 
@@ -8287,8 +8044,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f32", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8320,7 +8076,6 @@
         {
           "frame_id": 32, 
           "encoded_locals": {
-            "__return__": 61, 
             "x": 63
           }, 
           "is_highlighted": true, 
@@ -8330,8 +8085,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f32", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8363,7 +8117,6 @@
         {
           "frame_id": 32, 
           "encoded_locals": {
-            "__return__": 61, 
             "x": 63
           }, 
           "is_highlighted": true, 
@@ -8373,8 +8126,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f32", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8499,7 +8251,6 @@
         {
           "frame_id": 33, 
           "encoded_locals": {
-            "__return__": 63, 
             "x": 63
           }, 
           "is_highlighted": true, 
@@ -8509,8 +8260,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f33", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8542,7 +8292,6 @@
         {
           "frame_id": 33, 
           "encoded_locals": {
-            "__return__": 63, 
             "x": 63
           }, 
           "is_highlighted": true, 
@@ -8552,8 +8301,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f33", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8585,7 +8333,6 @@
         {
           "frame_id": 33, 
           "encoded_locals": {
-            "__return__": 63, 
             "x": 65
           }, 
           "is_highlighted": true, 
@@ -8595,8 +8342,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f33", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8628,7 +8374,6 @@
         {
           "frame_id": 33, 
           "encoded_locals": {
-            "__return__": 63, 
             "x": 65
           }, 
           "is_highlighted": true, 
@@ -8638,8 +8383,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f33", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8764,7 +8508,6 @@
         {
           "frame_id": 34, 
           "encoded_locals": {
-            "__return__": 65, 
             "x": 65
           }, 
           "is_highlighted": true, 
@@ -8774,8 +8517,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f34", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8807,7 +8549,6 @@
         {
           "frame_id": 34, 
           "encoded_locals": {
-            "__return__": 65, 
             "x": 65
           }, 
           "is_highlighted": true, 
@@ -8817,8 +8558,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f34", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8850,7 +8590,6 @@
         {
           "frame_id": 34, 
           "encoded_locals": {
-            "__return__": 65, 
             "x": 67
           }, 
           "is_highlighted": true, 
@@ -8860,8 +8599,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f34", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -8893,7 +8631,6 @@
         {
           "frame_id": 34, 
           "encoded_locals": {
-            "__return__": 65, 
             "x": 67
           }, 
           "is_highlighted": true, 
@@ -8903,8 +8640,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f34", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9029,7 +8765,6 @@
         {
           "frame_id": 35, 
           "encoded_locals": {
-            "__return__": 67, 
             "x": 67
           }, 
           "is_highlighted": true, 
@@ -9039,8 +8774,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f35", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9072,7 +8806,6 @@
         {
           "frame_id": 35, 
           "encoded_locals": {
-            "__return__": 67, 
             "x": 67
           }, 
           "is_highlighted": true, 
@@ -9082,8 +8815,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f35", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9115,7 +8847,6 @@
         {
           "frame_id": 35, 
           "encoded_locals": {
-            "__return__": 67, 
             "x": 69
           }, 
           "is_highlighted": true, 
@@ -9125,8 +8856,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f35", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9158,7 +8888,6 @@
         {
           "frame_id": 35, 
           "encoded_locals": {
-            "__return__": 67, 
             "x": 69
           }, 
           "is_highlighted": true, 
@@ -9168,8 +8897,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f35", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9294,7 +9022,6 @@
         {
           "frame_id": 36, 
           "encoded_locals": {
-            "__return__": 69, 
             "x": 69
           }, 
           "is_highlighted": true, 
@@ -9304,8 +9031,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f36", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9337,7 +9063,6 @@
         {
           "frame_id": 36, 
           "encoded_locals": {
-            "__return__": 69, 
             "x": 69
           }, 
           "is_highlighted": true, 
@@ -9347,8 +9072,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f36", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9380,7 +9104,6 @@
         {
           "frame_id": 36, 
           "encoded_locals": {
-            "__return__": 69, 
             "x": 71
           }, 
           "is_highlighted": true, 
@@ -9390,8 +9113,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f36", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9423,7 +9145,6 @@
         {
           "frame_id": 36, 
           "encoded_locals": {
-            "__return__": 69, 
             "x": 71
           }, 
           "is_highlighted": true, 
@@ -9433,8 +9154,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f36", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9559,7 +9279,6 @@
         {
           "frame_id": 37, 
           "encoded_locals": {
-            "__return__": 71, 
             "x": 71
           }, 
           "is_highlighted": true, 
@@ -9569,8 +9288,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f37", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9602,7 +9320,6 @@
         {
           "frame_id": 37, 
           "encoded_locals": {
-            "__return__": 71, 
             "x": 71
           }, 
           "is_highlighted": true, 
@@ -9612,8 +9329,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f37", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9645,7 +9361,6 @@
         {
           "frame_id": 37, 
           "encoded_locals": {
-            "__return__": 71, 
             "x": 73
           }, 
           "is_highlighted": true, 
@@ -9655,8 +9370,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f37", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9688,7 +9402,6 @@
         {
           "frame_id": 37, 
           "encoded_locals": {
-            "__return__": 71, 
             "x": 73
           }, 
           "is_highlighted": true, 
@@ -9698,8 +9411,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f37", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9824,7 +9536,6 @@
         {
           "frame_id": 38, 
           "encoded_locals": {
-            "__return__": 73, 
             "x": 73
           }, 
           "is_highlighted": true, 
@@ -9834,8 +9545,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f38", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9867,7 +9577,6 @@
         {
           "frame_id": 38, 
           "encoded_locals": {
-            "__return__": 73, 
             "x": 73
           }, 
           "is_highlighted": true, 
@@ -9877,8 +9586,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f38", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9910,7 +9618,6 @@
         {
           "frame_id": 38, 
           "encoded_locals": {
-            "__return__": 73, 
             "x": 75
           }, 
           "is_highlighted": true, 
@@ -9920,8 +9627,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f38", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -9953,7 +9659,6 @@
         {
           "frame_id": 38, 
           "encoded_locals": {
-            "__return__": 73, 
             "x": 75
           }, 
           "is_highlighted": true, 
@@ -9963,8 +9668,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f38", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10089,7 +9793,6 @@
         {
           "frame_id": 39, 
           "encoded_locals": {
-            "__return__": 75, 
             "x": 75
           }, 
           "is_highlighted": true, 
@@ -10099,8 +9802,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f39", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10132,7 +9834,6 @@
         {
           "frame_id": 39, 
           "encoded_locals": {
-            "__return__": 75, 
             "x": 75
           }, 
           "is_highlighted": true, 
@@ -10142,8 +9843,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f39", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10175,7 +9875,6 @@
         {
           "frame_id": 39, 
           "encoded_locals": {
-            "__return__": 75, 
             "x": 77
           }, 
           "is_highlighted": true, 
@@ -10185,8 +9884,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f39", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10218,7 +9916,6 @@
         {
           "frame_id": 39, 
           "encoded_locals": {
-            "__return__": 75, 
             "x": 77
           }, 
           "is_highlighted": true, 
@@ -10228,8 +9925,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f39", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10354,7 +10050,6 @@
         {
           "frame_id": 40, 
           "encoded_locals": {
-            "__return__": 77, 
             "x": 77
           }, 
           "is_highlighted": true, 
@@ -10364,8 +10059,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f40", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10397,7 +10091,6 @@
         {
           "frame_id": 40, 
           "encoded_locals": {
-            "__return__": 77, 
             "x": 77
           }, 
           "is_highlighted": true, 
@@ -10407,8 +10100,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f40", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10440,7 +10132,6 @@
         {
           "frame_id": 40, 
           "encoded_locals": {
-            "__return__": 77, 
             "x": 79
           }, 
           "is_highlighted": true, 
@@ -10450,8 +10141,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f40", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10483,7 +10173,6 @@
         {
           "frame_id": 40, 
           "encoded_locals": {
-            "__return__": 77, 
             "x": 79
           }, 
           "is_highlighted": true, 
@@ -10493,8 +10182,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f40", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10619,7 +10307,6 @@
         {
           "frame_id": 41, 
           "encoded_locals": {
-            "__return__": 79, 
             "x": 79
           }, 
           "is_highlighted": true, 
@@ -10629,8 +10316,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f41", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10662,7 +10348,6 @@
         {
           "frame_id": 41, 
           "encoded_locals": {
-            "__return__": 79, 
             "x": 79
           }, 
           "is_highlighted": true, 
@@ -10672,8 +10357,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f41", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10705,7 +10389,6 @@
         {
           "frame_id": 41, 
           "encoded_locals": {
-            "__return__": 79, 
             "x": 81
           }, 
           "is_highlighted": true, 
@@ -10715,8 +10398,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f41", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10748,7 +10430,6 @@
         {
           "frame_id": 41, 
           "encoded_locals": {
-            "__return__": 79, 
             "x": 81
           }, 
           "is_highlighted": true, 
@@ -10758,8 +10439,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f41", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10884,7 +10564,6 @@
         {
           "frame_id": 42, 
           "encoded_locals": {
-            "__return__": 81, 
             "x": 81
           }, 
           "is_highlighted": true, 
@@ -10894,8 +10573,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f42", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10927,7 +10605,6 @@
         {
           "frame_id": 42, 
           "encoded_locals": {
-            "__return__": 81, 
             "x": 81
           }, 
           "is_highlighted": true, 
@@ -10937,8 +10614,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f42", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -10970,7 +10646,6 @@
         {
           "frame_id": 42, 
           "encoded_locals": {
-            "__return__": 81, 
             "x": 83
           }, 
           "is_highlighted": true, 
@@ -10980,8 +10655,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f42", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -11013,7 +10687,6 @@
         {
           "frame_id": 42, 
           "encoded_locals": {
-            "__return__": 81, 
             "x": 83
           }, 
           "is_highlighted": true, 
@@ -11023,8 +10696,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f42", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -11149,7 +10821,6 @@
         {
           "frame_id": 43, 
           "encoded_locals": {
-            "__return__": 83, 
             "x": 83
           }, 
           "is_highlighted": true, 
@@ -11159,8 +10830,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f43", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -11192,7 +10862,6 @@
         {
           "frame_id": 43, 
           "encoded_locals": {
-            "__return__": 83, 
             "x": 83
           }, 
           "is_highlighted": true, 
@@ -11202,8 +10871,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f43", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -11235,7 +10903,6 @@
         {
           "frame_id": 43, 
           "encoded_locals": {
-            "__return__": 83, 
             "x": 85
           }, 
           "is_highlighted": true, 
@@ -11245,8 +10912,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f43", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 
@@ -11278,7 +10944,6 @@
         {
           "frame_id": 43, 
           "encoded_locals": {
-            "__return__": 83, 
             "x": 85
           }, 
           "is_highlighted": true, 
@@ -11288,8 +10953,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "gen_odds_f43", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 

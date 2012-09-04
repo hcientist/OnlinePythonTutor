@@ -1324,10 +1324,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -1340,8 +1336,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -1435,20 +1430,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -1486,10 +1467,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -1502,8 +1479,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -1601,20 +1577,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -1649,10 +1611,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -1665,8 +1623,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -1764,20 +1721,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -1812,10 +1755,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -1828,8 +1767,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -1948,20 +1886,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -2003,10 +1927,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -2019,8 +1939,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -2139,20 +2058,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -2194,10 +2099,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -2210,8 +2111,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -2330,20 +2230,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -2389,10 +2275,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -2405,8 +2287,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -2530,20 +2411,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -2590,10 +2457,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -2606,8 +2469,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -2708,20 +2570,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -2768,10 +2616,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -2784,8 +2628,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -2886,20 +2729,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -2946,10 +2775,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -2962,8 +2787,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -3088,20 +2912,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -3155,10 +2965,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -3171,8 +2977,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -3297,20 +3102,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -3364,10 +3155,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -3380,8 +3167,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -3506,20 +3292,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -3577,10 +3349,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -3593,8 +3361,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -3724,20 +3491,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -3799,10 +3552,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -3815,8 +3564,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -3917,20 +3665,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -3992,10 +3726,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -4008,8 +3738,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -4110,20 +3839,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -4185,10 +3900,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -4201,8 +3912,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -4327,20 +4037,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -4409,10 +4105,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -4425,8 +4117,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -4551,20 +4242,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -4633,10 +4310,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -4649,8 +4322,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -4775,20 +4447,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -4861,10 +4519,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -4877,8 +4531,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -5008,20 +4661,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -5098,10 +4737,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -5114,8 +4749,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -5216,20 +4850,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -5306,10 +4926,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -5322,8 +4938,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -5424,20 +5039,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -5514,10 +5115,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -5530,8 +5127,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -5656,20 +5252,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -5753,10 +5335,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -5769,8 +5347,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -5895,20 +5472,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -5992,10 +5555,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -6008,8 +5567,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -6134,20 +5692,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -6235,10 +5779,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -6251,8 +5791,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -6382,20 +5921,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -6487,10 +6012,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -6503,8 +6024,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -6605,20 +6125,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -6710,10 +6216,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -6726,8 +6228,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -6828,20 +6329,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -6933,10 +6420,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -6949,8 +6432,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -7075,20 +6557,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -7187,10 +6655,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -7203,8 +6667,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -7329,20 +6792,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -7441,10 +6890,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -7457,8 +6902,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -7583,20 +7027,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -7699,10 +7129,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -7715,8 +7141,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -7846,20 +7271,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -7966,10 +7377,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -7982,8 +7389,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -8081,20 +7487,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -8204,10 +7596,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -8220,8 +7608,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -8319,20 +7706,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -8442,10 +7815,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -8458,8 +7827,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -8584,20 +7952,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -8711,10 +8065,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -8727,8 +8077,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -8853,20 +8202,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -8980,10 +8315,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -8996,8 +8327,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -9122,20 +8452,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 
@@ -9253,10 +8569,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -9269,8 +8581,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }, 
         {
@@ -9400,20 +8711,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -9535,10 +8832,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -9551,8 +8844,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -9653,20 +8945,6 @@
             ]
           ]
         ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
@@ -9788,10 +9066,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
             "__init__": [
               "REF", 
               8
@@ -9804,8 +9078,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "Node_f1_p_z", 
           "ordered_varnames": [
-            "__init__", 
-            "__return__"
+            "__init__"
           ]
         }
       ], 
@@ -9903,20 +9176,6 @@
             [
               "REF", 
               5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
             ]
           ]
         ], 

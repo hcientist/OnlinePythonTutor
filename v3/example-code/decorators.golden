@@ -292,10 +292,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              4
-            ], 
             "fn": [
               "REF", 
               3
@@ -308,8 +304,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_italic_f1_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
@@ -377,10 +372,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              4
-            ], 
             "fn": [
               "REF", 
               3
@@ -393,8 +384,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_italic_f1_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
@@ -462,10 +452,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              4
-            ], 
             "fn": [
               "REF", 
               3
@@ -478,8 +464,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_italic_f1_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
@@ -558,10 +543,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              4
-            ], 
             "fn": [
               "REF", 
               3
@@ -574,17 +555,12 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_italic_f1_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              5
-            ], 
             "fn": [
               "REF", 
               4
@@ -597,8 +573,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_bold_f2_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }
       ], 
@@ -658,10 +633,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              4
-            ], 
             "fn": [
               "REF", 
               3
@@ -674,17 +645,12 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_italic_f1_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              5
-            ], 
             "fn": [
               "REF", 
               4
@@ -697,8 +663,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_bold_f2_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
@@ -771,10 +736,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              4
-            ], 
             "fn": [
               "REF", 
               3
@@ -787,17 +748,12 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_italic_f1_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              5
-            ], 
             "fn": [
               "REF", 
               4
@@ -810,8 +766,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_bold_f2_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
@@ -884,10 +839,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              4
-            ], 
             "fn": [
               "REF", 
               3
@@ -900,17 +851,12 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_italic_f1_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              5
-            ], 
             "fn": [
               "REF", 
               4
@@ -923,8 +869,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_bold_f2_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
@@ -1010,10 +955,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              4
-            ], 
             "fn": [
               "REF", 
               3
@@ -1026,17 +967,12 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_italic_f1_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              5
-            ], 
             "fn": [
               "REF", 
               4
@@ -1049,8 +985,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_bold_f2_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
@@ -1136,10 +1071,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              4
-            ], 
             "fn": [
               "REF", 
               3
@@ -1152,17 +1083,12 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_italic_f1_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              5
-            ], 
             "fn": [
               "REF", 
               4
@@ -1175,8 +1101,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_bold_f2_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
@@ -1273,10 +1198,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              4
-            ], 
             "fn": [
               "REF", 
               3
@@ -1289,17 +1210,12 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_italic_f1_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              5
-            ], 
             "fn": [
               "REF", 
               4
@@ -1312,8 +1228,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_bold_f2_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
@@ -1410,10 +1325,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              4
-            ], 
             "fn": [
               "REF", 
               3
@@ -1426,17 +1337,12 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_italic_f1_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              5
-            ], 
             "fn": [
               "REF", 
               4
@@ -1449,8 +1355,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_bold_f2_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
@@ -1551,10 +1456,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              4
-            ], 
             "fn": [
               "REF", 
               3
@@ -1567,17 +1468,12 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_italic_f1_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              5
-            ], 
             "fn": [
               "REF", 
               4
@@ -1590,8 +1486,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_bold_f2_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
@@ -1681,10 +1576,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              4
-            ], 
             "fn": [
               "REF", 
               3
@@ -1697,17 +1588,12 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_italic_f1_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              5
-            ], 
             "fn": [
               "REF", 
               4
@@ -1720,8 +1606,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_bold_f2_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
@@ -1799,10 +1684,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              4
-            ], 
             "fn": [
               "REF", 
               3
@@ -1815,17 +1696,12 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_italic_f1_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              5
-            ], 
             "fn": [
               "REF", 
               4
@@ -1838,8 +1714,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "make_bold_f2_p_z", 
           "ordered_varnames": [
-            "fn", 
-            "__return__"
+            "fn"
           ]
         }
       ], 

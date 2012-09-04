@@ -227,10 +227,6 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "bar": [
               "REF", 
               2
@@ -244,8 +240,7 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar", 
-            "__return__"
+            "bar"
           ]
         }
       ], 
@@ -286,10 +281,6 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "bar": [
               "REF", 
               2
@@ -303,8 +294,7 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar", 
-            "__return__"
+            "bar"
           ]
         }, 
         {
@@ -362,10 +352,6 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "bar": [
               "REF", 
               2
@@ -379,8 +365,7 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar", 
-            "__return__"
+            "bar"
           ]
         }, 
         {
@@ -438,10 +423,6 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "bar": [
               "REF", 
               2
@@ -455,8 +436,7 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar", 
-            "__return__"
+            "bar"
           ]
         }, 
         {
@@ -516,10 +496,6 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "bar": [
               "REF", 
               2
@@ -533,8 +509,7 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar", 
-            "__return__"
+            "bar"
           ]
         }
       ], 

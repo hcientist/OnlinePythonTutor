@@ -714,7 +714,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": null, 
             "x": 10
           }, 
           "is_highlighted": false, 
@@ -724,8 +723,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
-            "x", 
-            "__return__"
+            "x"
           ]
         }
       ], 

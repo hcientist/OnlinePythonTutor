@@ -6879,10 +6879,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              15
-            ], 
             "lst": [
               "REF", 
               3
@@ -6895,8 +6891,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "halveElements_f1_p_z", 
           "ordered_varnames": [
-            "lst", 
-            "__return__"
+            "lst"
           ]
         }
       ], 

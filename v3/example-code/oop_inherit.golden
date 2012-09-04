@@ -241,10 +241,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -261,8 +257,7 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }
       ], 
@@ -277,32 +272,6 @@
           "FUNCTION", 
           "giveRaise(self, percentage)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -344,10 +313,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -364,8 +329,7 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
@@ -391,32 +355,6 @@
           "FUNCTION", 
           "giveRaise(self, percentage)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -458,10 +396,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -478,8 +412,7 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
@@ -505,32 +438,6 @@
           "FUNCTION", 
           "giveRaise(self, percentage)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -572,10 +479,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -592,8 +495,7 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
@@ -619,32 +521,6 @@
           "FUNCTION", 
           "giveRaise(self, percentage)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -686,10 +562,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -706,8 +578,7 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
@@ -737,32 +608,6 @@
           "FUNCTION", 
           "giveRaise(self, percentage)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -804,10 +649,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -824,8 +665,7 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
@@ -860,32 +700,6 @@
           "FUNCTION", 
           "giveRaise(self, percentage)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -932,10 +746,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -952,8 +762,7 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
@@ -998,32 +807,6 @@
           "FUNCTION", 
           "giveRaise(self, percentage)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -1097,10 +880,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -1117,18 +896,13 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "salary": 100000, 
-            "__return__": [
-              "REF", 
-              6
-            ], 
             "salutation": [
               "REF", 
               5
@@ -1147,8 +921,7 @@
           "ordered_varnames": [
             "__init__", 
             "salary", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -1167,32 +940,6 @@
           "FUNCTION", 
           "giveRaise(self, percentage)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -1227,31 +974,6 @@
           "FUNCTION", 
           "salutation(self)", 
           2
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "salary", 
-            100000
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              4
-            ]
-          ]
         ], 
         "7": [
           "CLASS", 
@@ -1295,10 +1017,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -1315,18 +1033,13 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "salary": 100000, 
-            "__return__": [
-              "REF", 
-              6
-            ], 
             "salutation": [
               "REF", 
               5
@@ -1345,8 +1058,7 @@
           "ordered_varnames": [
             "__init__", 
             "salary", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -1390,32 +1102,6 @@
           "giveRaise(self, percentage)", 
           1
         ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "3": [
           "CLASS", 
           "Staff601", 
@@ -1449,31 +1135,6 @@
           "FUNCTION", 
           "salutation(self)", 
           2
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "salary", 
-            100000
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              4
-            ]
-          ]
         ], 
         "7": [
           "CLASS", 
@@ -1521,10 +1182,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -1541,18 +1198,13 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "salary": 100000, 
-            "__return__": [
-              "REF", 
-              6
-            ], 
             "salutation": [
               "REF", 
               5
@@ -1571,8 +1223,7 @@
           "ordered_varnames": [
             "__init__", 
             "salary", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -1616,32 +1267,6 @@
           "giveRaise(self, percentage)", 
           1
         ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "3": [
           "CLASS", 
           "Staff601", 
@@ -1675,31 +1300,6 @@
           "FUNCTION", 
           "salutation(self)", 
           2
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "salary", 
-            100000
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              4
-            ]
-          ]
         ], 
         "7": [
           "CLASS", 
@@ -1747,10 +1347,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -1767,18 +1363,13 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "salary": 100000, 
-            "__return__": [
-              "REF", 
-              6
-            ], 
             "salutation": [
               "REF", 
               5
@@ -1797,8 +1388,7 @@
           "ordered_varnames": [
             "__init__", 
             "salary", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -1842,32 +1432,6 @@
           "giveRaise(self, percentage)", 
           1
         ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "3": [
           "CLASS", 
           "Staff601", 
@@ -1901,31 +1465,6 @@
           "FUNCTION", 
           "salutation(self)", 
           2
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "salary", 
-            100000
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              4
-            ]
-          ]
         ], 
         "7": [
           "CLASS", 
@@ -1977,10 +1516,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -1997,18 +1532,13 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "salary": 100000, 
-            "__return__": [
-              "REF", 
-              6
-            ], 
             "salutation": [
               "REF", 
               5
@@ -2027,8 +1557,7 @@
           "ordered_varnames": [
             "__init__", 
             "salary", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -2094,32 +1623,6 @@
           "giveRaise(self, percentage)", 
           1
         ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "3": [
           "CLASS", 
           "Staff601", 
@@ -2153,31 +1656,6 @@
           "FUNCTION", 
           "salutation(self)", 
           2
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "salary", 
-            100000
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              4
-            ]
-          ]
         ], 
         "7": [
           "CLASS", 
@@ -2229,10 +1707,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -2249,18 +1723,13 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "salary": 100000, 
-            "__return__": [
-              "REF", 
-              6
-            ], 
             "salutation": [
               "REF", 
               5
@@ -2279,8 +1748,7 @@
           "ordered_varnames": [
             "__init__", 
             "salary", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -2346,32 +1814,6 @@
           "giveRaise(self, percentage)", 
           1
         ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "3": [
           "CLASS", 
           "Staff601", 
@@ -2405,31 +1847,6 @@
           "FUNCTION", 
           "salutation(self)", 
           2
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "salary", 
-            100000
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              4
-            ]
-          ]
         ], 
         "7": [
           "CLASS", 
@@ -2481,10 +1898,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -2501,18 +1914,13 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "salary": 100000, 
-            "__return__": [
-              "REF", 
-              6
-            ], 
             "salutation": [
               "REF", 
               5
@@ -2531,8 +1939,7 @@
           "ordered_varnames": [
             "__init__", 
             "salary", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -2600,32 +2007,6 @@
           "giveRaise(self, percentage)", 
           1
         ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "3": [
           "CLASS", 
           "Staff601", 
@@ -2659,31 +2040,6 @@
           "FUNCTION", 
           "salutation(self)", 
           2
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "salary", 
-            100000
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              4
-            ]
-          ]
         ], 
         "7": [
           "CLASS", 
@@ -2739,10 +2095,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -2759,18 +2111,13 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "salary": 100000, 
-            "__return__": [
-              "REF", 
-              6
-            ], 
             "salutation": [
               "REF", 
               5
@@ -2789,8 +2136,7 @@
           "ordered_varnames": [
             "__init__", 
             "salary", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -2836,32 +2182,6 @@
           "giveRaise(self, percentage)", 
           1
         ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "3": [
           "CLASS", 
           "Staff601", 
@@ -2895,31 +2215,6 @@
           "FUNCTION", 
           "salutation(self)", 
           2
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "salary", 
-            100000
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              4
-            ]
-          ]
         ], 
         "7": [
           "CLASS", 
@@ -2976,10 +2271,6 @@
           "encoded_locals": {
             "building": 34, 
             "course": "6.01", 
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "giveRaise": [
               "REF", 
               1
@@ -2996,18 +2287,13 @@
             "building", 
             "course", 
             "giveRaise", 
-            "room", 
-            "__return__"
+            "room"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "salary": 100000, 
-            "__return__": [
-              "REF", 
-              6
-            ], 
             "salutation": [
               "REF", 
               5
@@ -3026,8 +2312,7 @@
           "ordered_varnames": [
             "__init__", 
             "salary", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -3050,32 +2335,6 @@
           "FUNCTION", 
           "giveRaise(self, percentage)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "giveRaise", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -3110,31 +2369,6 @@
           "FUNCTION", 
           "salutation(self)", 
           2
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "salary", 
-            100000
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              4
-            ]
-          ]
         ], 
         "7": [
           "CLASS", 

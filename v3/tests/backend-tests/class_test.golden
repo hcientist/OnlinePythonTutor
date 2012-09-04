@@ -189,10 +189,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -210,8 +206,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }
       ], 
@@ -226,27 +221,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -286,10 +260,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -307,8 +277,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }, 
         {
@@ -347,27 +316,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -411,10 +359,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -432,8 +376,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }, 
         {
@@ -472,27 +415,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -536,10 +458,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -557,8 +475,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }, 
         {
@@ -597,27 +514,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -665,10 +561,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -686,8 +578,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }, 
         {
@@ -728,27 +619,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -801,10 +671,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -822,8 +688,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }
       ], 
@@ -842,27 +707,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -915,10 +759,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -936,8 +776,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }, 
         {
@@ -976,27 +815,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -1049,10 +867,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -1070,8 +884,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }, 
         {
@@ -1110,27 +923,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -1183,10 +975,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -1204,8 +992,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }, 
         {
@@ -1246,27 +1033,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -1319,10 +1085,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -1340,8 +1102,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }
       ], 
@@ -1360,27 +1121,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -1433,10 +1173,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -1454,8 +1190,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }, 
         {
@@ -1498,27 +1233,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -1575,10 +1289,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -1596,8 +1306,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }, 
         {
@@ -1640,27 +1349,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -1717,10 +1405,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -1738,8 +1422,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }, 
         {
@@ -1782,27 +1465,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -1863,10 +1525,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -1884,8 +1542,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }, 
         {
@@ -1930,27 +1587,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -2016,10 +1652,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -2037,8 +1669,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }
       ], 
@@ -2061,27 +1692,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -2147,10 +1757,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -2168,8 +1774,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }, 
         {
@@ -2212,27 +1817,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -2298,10 +1882,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -2319,8 +1899,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }, 
         {
@@ -2363,27 +1942,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -2449,10 +2007,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -2470,8 +2024,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }, 
         {
@@ -2516,27 +2069,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 
@@ -2602,10 +2134,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              2
-            ], 
             "__str__": [
               "REF", 
               3
@@ -2623,8 +2151,7 @@
           "unique_hash": "Point_f1_p_z", 
           "ordered_varnames": [
             "__init__", 
-            "__str__", 
-            "__return__"
+            "__str__"
           ]
         }
       ], 
@@ -2647,27 +2174,6 @@
           "FUNCTION", 
           "__init__(self, x, y)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "FUNCTION", 

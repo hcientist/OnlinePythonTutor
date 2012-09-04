@@ -682,10 +682,6 @@
             "salutation": [
               "REF", 
               5
-            ], 
-            "__return__": [
-              "REF", 
-              6
             ]
           }, 
           "is_highlighted": false, 
@@ -695,8 +691,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "C_f3_p_z", 
           "ordered_varnames": [
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -741,20 +736,6 @@
           "FUNCTION", 
           "salutation(self)", 
           3
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "7": [
           "CLASS", 
@@ -791,10 +772,6 @@
             "salutation": [
               "REF", 
               5
-            ], 
-            "__return__": [
-              "REF", 
-              6
             ]
           }, 
           "is_highlighted": false, 
@@ -804,8 +781,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "C_f3_p_z", 
           "ordered_varnames": [
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -828,6 +804,10 @@
         ]
       }, 
       "heap": {
+        "8": [
+          "INSTANCE", 
+          "C"
+        ], 
         "2": [
           "CLASS", 
           "A", 
@@ -855,20 +835,6 @@
           "salutation(self)", 
           3
         ], 
-        "6": [
-          "DICT", 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "7": [
           "CLASS", 
           "C", 
@@ -883,10 +849,6 @@
               5
             ]
           ]
-        ], 
-        "8": [
-          "INSTANCE", 
-          "C"
         ]
       }, 
       "line": 13, 
@@ -908,10 +870,6 @@
             "salutation": [
               "REF", 
               5
-            ], 
-            "__return__": [
-              "REF", 
-              6
             ]
           }, 
           "is_highlighted": false, 
@@ -921,8 +879,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "C_f3_p_z", 
           "ordered_varnames": [
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -965,6 +922,10 @@
         ]
       }, 
       "heap": {
+        "8": [
+          "INSTANCE", 
+          "C"
+        ], 
         "2": [
           "CLASS", 
           "A", 
@@ -992,20 +953,6 @@
           "salutation(self)", 
           3
         ], 
-        "6": [
-          "DICT", 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "7": [
           "CLASS", 
           "C", 
@@ -1020,10 +967,6 @@
               5
             ]
           ]
-        ], 
-        "8": [
-          "INSTANCE", 
-          "C"
         ]
       }, 
       "line": 9, 
@@ -1045,10 +988,6 @@
             "salutation": [
               "REF", 
               5
-            ], 
-            "__return__": [
-              "REF", 
-              6
             ]
           }, 
           "is_highlighted": false, 
@@ -1058,8 +997,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "C_f3_p_z", 
           "ordered_varnames": [
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -1102,6 +1040,10 @@
         ]
       }, 
       "heap": {
+        "8": [
+          "INSTANCE", 
+          "C"
+        ], 
         "2": [
           "CLASS", 
           "A", 
@@ -1129,20 +1071,6 @@
           "salutation(self)", 
           3
         ], 
-        "6": [
-          "DICT", 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "7": [
           "CLASS", 
           "C", 
@@ -1157,10 +1085,6 @@
               5
             ]
           ]
-        ], 
-        "8": [
-          "INSTANCE", 
-          "C"
         ]
       }, 
       "line": 10, 
@@ -1182,10 +1106,6 @@
             "salutation": [
               "REF", 
               5
-            ], 
-            "__return__": [
-              "REF", 
-              6
             ]
           }, 
           "is_highlighted": false, 
@@ -1195,8 +1115,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "C_f3_p_z", 
           "ordered_varnames": [
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -1241,6 +1160,10 @@
         ]
       }, 
       "heap": {
+        "8": [
+          "INSTANCE", 
+          "C"
+        ], 
         "2": [
           "CLASS", 
           "A", 
@@ -1268,20 +1191,6 @@
           "salutation(self)", 
           3
         ], 
-        "6": [
-          "DICT", 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "7": [
           "CLASS", 
           "C", 
@@ -1296,10 +1205,6 @@
               5
             ]
           ]
-        ], 
-        "8": [
-          "INSTANCE", 
-          "C"
         ]
       }, 
       "line": 10, 
@@ -1321,10 +1226,6 @@
             "salutation": [
               "REF", 
               5
-            ], 
-            "__return__": [
-              "REF", 
-              6
             ]
           }, 
           "is_highlighted": false, 
@@ -1334,8 +1235,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "C_f3_p_z", 
           "ordered_varnames": [
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -1358,6 +1258,10 @@
         ]
       }, 
       "heap": {
+        "8": [
+          "INSTANCE", 
+          "C"
+        ], 
         "2": [
           "CLASS", 
           "A", 
@@ -1385,20 +1289,6 @@
           "salutation(self)", 
           3
         ], 
-        "6": [
-          "DICT", 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "7": [
           "CLASS", 
           "C", 
@@ -1413,10 +1303,6 @@
               5
             ]
           ]
-        ], 
-        "8": [
-          "INSTANCE", 
-          "C"
         ]
       }, 
       "line": 14, 
@@ -1438,10 +1324,6 @@
             "salutation": [
               "REF", 
               5
-            ], 
-            "__return__": [
-              "REF", 
-              6
             ]
           }, 
           "is_highlighted": false, 
@@ -1451,8 +1333,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "C_f3_p_z", 
           "ordered_varnames": [
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -1475,6 +1356,14 @@
         ]
       }, 
       "heap": {
+        "8": [
+          "INSTANCE", 
+          "C", 
+          [
+            "x", 
+            100
+          ]
+        ], 
         "2": [
           "CLASS", 
           "A", 
@@ -1502,20 +1391,6 @@
           "salutation(self)", 
           3
         ], 
-        "6": [
-          "DICT", 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "7": [
           "CLASS", 
           "C", 
@@ -1529,14 +1404,6 @@
               "REF", 
               5
             ]
-          ]
-        ], 
-        "8": [
-          "INSTANCE", 
-          "C", 
-          [
-            "x", 
-            100
           ]
         ]
       }, 
@@ -1559,10 +1426,6 @@
             "salutation": [
               "REF", 
               5
-            ], 
-            "__return__": [
-              "REF", 
-              6
             ]
           }, 
           "is_highlighted": false, 
@@ -1572,8 +1435,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "C_f3_p_z", 
           "ordered_varnames": [
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -1616,6 +1478,14 @@
         ]
       }, 
       "heap": {
+        "8": [
+          "INSTANCE", 
+          "C", 
+          [
+            "x", 
+            100
+          ]
+        ], 
         "2": [
           "CLASS", 
           "A", 
@@ -1643,20 +1513,6 @@
           "salutation(self)", 
           3
         ], 
-        "6": [
-          "DICT", 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "7": [
           "CLASS", 
           "C", 
@@ -1670,14 +1526,6 @@
               "REF", 
               5
             ]
-          ]
-        ], 
-        "8": [
-          "INSTANCE", 
-          "C", 
-          [
-            "x", 
-            100
           ]
         ]
       }, 
@@ -1700,10 +1548,6 @@
             "salutation": [
               "REF", 
               5
-            ], 
-            "__return__": [
-              "REF", 
-              6
             ]
           }, 
           "is_highlighted": false, 
@@ -1713,8 +1557,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "C_f3_p_z", 
           "ordered_varnames": [
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -1757,6 +1600,14 @@
         ]
       }, 
       "heap": {
+        "8": [
+          "INSTANCE", 
+          "C", 
+          [
+            "x", 
+            100
+          ]
+        ], 
         "2": [
           "CLASS", 
           "A", 
@@ -1784,20 +1635,6 @@
           "salutation(self)", 
           3
         ], 
-        "6": [
-          "DICT", 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "7": [
           "CLASS", 
           "C", 
@@ -1811,14 +1648,6 @@
               "REF", 
               5
             ]
-          ]
-        ], 
-        "8": [
-          "INSTANCE", 
-          "C", 
-          [
-            "x", 
-            100
           ]
         ]
       }, 
@@ -1841,10 +1670,6 @@
             "salutation": [
               "REF", 
               5
-            ], 
-            "__return__": [
-              "REF", 
-              6
             ]
           }, 
           "is_highlighted": false, 
@@ -1854,8 +1679,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "C_f3_p_z", 
           "ordered_varnames": [
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -1900,6 +1724,14 @@
         ]
       }, 
       "heap": {
+        "8": [
+          "INSTANCE", 
+          "C", 
+          [
+            "x", 
+            100
+          ]
+        ], 
         "2": [
           "CLASS", 
           "A", 
@@ -1927,20 +1759,6 @@
           "salutation(self)", 
           3
         ], 
-        "6": [
-          "DICT", 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "7": [
           "CLASS", 
           "C", 
@@ -1954,14 +1772,6 @@
               "REF", 
               5
             ]
-          ]
-        ], 
-        "8": [
-          "INSTANCE", 
-          "C", 
-          [
-            "x", 
-            100
           ]
         ]
       }, 
@@ -1984,10 +1794,6 @@
             "salutation": [
               "REF", 
               5
-            ], 
-            "__return__": [
-              "REF", 
-              6
             ]
           }, 
           "is_highlighted": false, 
@@ -1997,8 +1803,7 @@
           "parent_frame_id_list": [], 
           "unique_hash": "C_f3_p_z", 
           "ordered_varnames": [
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -2021,6 +1826,14 @@
         ]
       }, 
       "heap": {
+        "8": [
+          "INSTANCE", 
+          "C", 
+          [
+            "x", 
+            100
+          ]
+        ], 
         "2": [
           "CLASS", 
           "A", 
@@ -2048,20 +1861,6 @@
           "salutation(self)", 
           3
         ], 
-        "6": [
-          "DICT", 
-          [
-            "salutation", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
         "7": [
           "CLASS", 
           "C", 
@@ -2075,14 +1874,6 @@
               "REF", 
               5
             ]
-          ]
-        ], 
-        "8": [
-          "INSTANCE", 
-          "C", 
-          [
-            "x", 
-            100
           ]
         ]
       }, 

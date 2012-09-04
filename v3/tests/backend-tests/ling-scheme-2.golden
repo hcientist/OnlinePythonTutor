@@ -3728,10 +3728,6 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              9
-            ], 
             "loop": [
               "REF", 
               2
@@ -3746,8 +3742,7 @@
           "unique_hash": "iota_f1_p_z", 
           "ordered_varnames": [
             "n", 
-            "loop", 
-            "__return__"
+            "loop"
           ]
         }
       ], 

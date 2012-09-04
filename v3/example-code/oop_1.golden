@@ -245,11 +245,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -261,8 +257,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -277,32 +272,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -349,11 +318,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -365,8 +330,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -385,32 +349,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -461,11 +399,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -477,8 +411,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -497,32 +430,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -573,11 +480,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -589,8 +492,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -609,32 +511,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -689,11 +565,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -705,8 +577,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -725,32 +596,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -809,11 +654,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -825,8 +666,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -845,32 +685,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -933,11 +747,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -949,8 +759,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -969,32 +778,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -1057,11 +840,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -1073,8 +852,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -1093,32 +871,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -1185,11 +937,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -1201,8 +949,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -1221,32 +968,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -1313,11 +1034,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -1329,8 +1046,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -1369,32 +1085,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -1461,11 +1151,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -1477,8 +1163,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -1517,32 +1202,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -1609,11 +1268,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -1625,8 +1280,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -1667,32 +1321,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -1759,11 +1387,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -1775,8 +1399,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -1795,32 +1418,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -1887,11 +1484,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -1903,8 +1496,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -1943,32 +1535,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -2035,11 +1601,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -2051,8 +1613,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -2091,32 +1652,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -2183,11 +1718,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -2199,8 +1730,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }, 
         {
@@ -2241,32 +1771,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
@@ -2333,11 +1837,7 @@
               "REF", 
               1
             ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
+            "room": 501
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
@@ -2349,8 +1849,7 @@
             "building", 
             "course", 
             "room", 
-            "salutation", 
-            "__return__"
+            "salutation"
           ]
         }
       ], 
@@ -2369,32 +1868,6 @@
           "FUNCTION", 
           "salutation(self)", 
           1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
         ], 
         "3": [
           "CLASS", 
