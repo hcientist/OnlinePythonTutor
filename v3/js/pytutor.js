@@ -1996,7 +1996,7 @@ ExecutionVisualizer.prototype.redrawConnectors = function() {
 var highlightedLineColor = '#e4faeb';
 var highlightedLineBorderColor = '#005583';
 
-var highlightedLineLighterColor = '#edfff2';
+var highlightedLineLighterColor = '#effff3';
 
 var visitedLineColor = highlightedLineBorderColor;
 
