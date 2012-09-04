@@ -62,7 +62,7 @@ $(document).ready(function() {
     extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
   });
 
-  pyInputCodeMirror.setSize(null, '450px');
+  pyInputCodeMirror.setSize(null, '420px');
 
 
 
@@ -380,6 +380,16 @@ $(document).ready(function() {
   });
   $('#ll2Link').click(function() {
     $.get("example-code/linked-lists/ll2.txt", setCodeMirrorVal);
+    return false;
+  });
+
+  $('#varargsLink').click(function() {
+    $.get("example-code/varargs.txt", setCodeMirrorVal);
+    return false;
+  });
+
+  $('#forElseLink').click(function() {
+    $.get("example-code/for-else.txt", setCodeMirrorVal);
     return false;
   });
 

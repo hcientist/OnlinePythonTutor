@@ -1,5 +1,5 @@
 {
-  "code": "def make_bold(fn):\n  return lambda : \"<b>\" + fn() + \"</b>\"\n\ndef make_italic(fn):\n  return lambda : \"<i>\" + fn() + \"</i>\"\n\n@make_bold\n@make_italic\ndef hello():\n  return \"hello world\"\n  \nhelloHTML = hello()\n", 
+  "code": "def make_bold(fn):\n    return lambda : \"<b>\" + fn() + \"</b>\"\n\ndef make_italic(fn):\n    return lambda : \"<i>\" + fn() + \"</i>\"\n\n@make_bold\n@make_italic\ndef hello():\n  return \"hello world\"\n  \nhelloHTML = hello()\n", 
   "trace": [
     {
       "ordered_globals": [], 
