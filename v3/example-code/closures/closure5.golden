@@ -1,5 +1,5 @@
 {
-  "code": "def f(x):\n  def g(y, z):\n    if z == 0:\n      return y\n    return g(x+y+z, z-1)\n  return lambda: g(0, x)\n\nfoo = f(3)\nbar = f(4)\nbaz = foo() + bar()\n", 
+  "code": "def f(x):\n    def g(y, z):\n        if z == 0:\n            return y\n        return g(x+y+z, z-1)\n    return lambda: g(0, x)\n\nfoo = f(3)\nbar = f(4)\nbaz = foo() + bar()\n", 
   "trace": [
     {
       "ordered_globals": [], 

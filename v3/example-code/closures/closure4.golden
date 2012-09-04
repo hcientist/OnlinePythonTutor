@@ -1,5 +1,5 @@
 {
-  "code": "def f(x):\n  def g(y):\n    return x + y\n  return g\n\ng1 = f(1)\ng2 = f(2)\ng1(3) + g2(4)\n", 
+  "code": "def f(x):\n    def g(y):\n        return x + y\n    return g\n\ng1 = f(1)\ng2 = f(2)\ng1(3) + g2(4)\n", 
   "trace": [
     {
       "ordered_globals": [], 

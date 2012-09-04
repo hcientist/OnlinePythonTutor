@@ -1,5 +1,5 @@
 {
-  "code": "def foo(y):\n def bar(x):\n   return x + y\n return bar\n\nb = foo(1)\nb(2)\n", 
+  "code": "def foo(y):\n    def bar(x):\n        return x + y\n    return bar\n\nb = foo(1)\nb(2)\n", 
   "trace": [
     {
       "ordered_globals": [], 

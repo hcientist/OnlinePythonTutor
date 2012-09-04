@@ -1,7 +1,7 @@
 def f(x):
-  def g(y):
-    return x + y
-  return g
+    def g(y):
+        return x + y
+    return g
 
 g1 = f(1)
 g2 = f(2)

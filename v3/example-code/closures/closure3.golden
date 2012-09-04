@@ -1,5 +1,5 @@
 {
-  "code": "def foo(x):\n def bar(y):\n   def baz(z):\n     return len(x) + len(y) + len(z)\n   return baz\n return bar([4,5,6,7])\n\nl = [1,2,3]\nx = foo(l)\nx([8,9,10,11,12])\n", 
+  "code": "def foo(x):\n    def bar(y):\n        def baz(z):\n            return len(x) + len(y) + len(z)\n        return baz\n    return bar([4,5,6,7])\n\nl = [1,2,3]\nx = foo(l)\nx([8,9,10,11,12])\n", 
   "trace": [
     {
       "ordered_globals": [], 
