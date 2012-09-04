@@ -19,7 +19,7 @@ import sys
 
 
 # set to true if you want to log queries in DB_FILE 
-LOG_QUERIES = True
+LOG_QUERIES = False
 
 if LOG_QUERIES:
   import os, datetime, create_log_db, sqlite3

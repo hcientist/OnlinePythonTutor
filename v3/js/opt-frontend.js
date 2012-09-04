@@ -29,7 +29,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // Pre-reqs: pytutor.js and jquery.ba-bbq.min.js should be imported BEFORE this file
 
-var backend_script = 'exec'; // URL of backend script, which must eventually call pg_logger.py
+
+// backend scripts to execute (Python 2 and 3 variants, if available)
+var python2_backend_script = 'web_exec_py2.py';
+var python3_backend_script = 'web_exec_py3.py';
+
+// uncomment below if you're running on Google App Engine using the built-in app.yaml
+//var python2_backend_script = 'exec';
+//var python3_backend_script = null;
 
 var appMode = 'edit'; // 'edit' or 'visualize'
 
@@ -157,6 +164,20 @@ $(document).ready(function() {
 
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(function() {
+
+    var backend_script = null;
+    if ($('#pythonVersionSelector').val() == '2') {
+        backend_script = python2_backend_script;
+    }
+    else if ($('#pythonVersionSelector').val() == '3') {
+        backend_script = python3_backend_script;
+    }
+
+    if (!backend_script) {
+      alert('Error: This server is not configured to run Python ' + $('#pythonVersionSelector').val());
+      return;
+    }
+
     $('#executeBtn').html("Please wait ... processing your code");
     $('#executeBtn').attr('disabled', true);
     $("#pyOutputPane").hide();
