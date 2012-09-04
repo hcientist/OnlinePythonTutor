@@ -48,6 +48,7 @@ var pyInputCodeMirror; // CodeMirror object that contains the input text
 
 function setCodeMirrorVal(dat) {
   pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
+  $('#urlOutput').val('');
 }
 
 
@@ -191,7 +192,9 @@ $(document).ready(function() {
 
               myVisualizer = new ExecutionVisualizer('pyOutputPane',
                                                      dataFromBackend,
-                                                     {startingInstruction: startingInstruction});
+                                                     {startingInstruction:  startingInstruction,
+                                                      updateOutputCallback: function() {$('#urlOutput').val('');}
+                                                     });
 
               $.bbq.pushState({ mode: 'visualize' }, 2 /* completely override other hash strings to keep URL clean */);
             }
