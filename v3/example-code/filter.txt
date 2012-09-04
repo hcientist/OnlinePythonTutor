@@ -6,6 +6,6 @@ for (person, age) in input:
     if age < 30:
         youngPeople.append(person)
     else:
-        print "HAHA", person, "is too old!"
+        print("HAHA " + person + " is too old!")
 
-print "There are", len(youngPeople), "young people"
+print("There are " + str(len(youngPeople)) + " young people")

@@ -1,5 +1,5 @@
 {
-  "code": "input = 'John,Doe,1984,4,1,male'\n\ntokens = input.split(',')\nfirstName = tokens[0]\nlastName = tokens[1]\nbirthdate = (int(tokens[2]), int(tokens[3]), int(tokens[4]))\nisMale = (tokens[5] == 'male')\n\nprint 'Hi', firstName, lastName\n", 
+  "code": "input = 'John,Doe,1984,4,1,male'\n\ntokens = input.split(',')\nfirstName = tokens[0]\nlastName = tokens[1]\nbirthdate = (int(tokens[2]), int(tokens[3]), int(tokens[4]))\nisMale = (tokens[5] == 'male')\n\nprint('Hi ' + firstName + ' ' + lastName)\n", 
   "trace": [
     {
       "ordered_globals": [], 

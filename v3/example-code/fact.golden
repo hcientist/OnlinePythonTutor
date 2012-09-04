@@ -1,5 +1,5 @@
 {
-  "code": "# dumb recursive factorial\ndef fact(n):\n    if (n <= 1):\n        return 1\n    else:\n        return n * fact(n - 1)\n\nprint fact(6)\n", 
+  "code": "# dumb recursive factorial\ndef fact(n):\n    if (n <= 1):\n        return 1\n    else:\n        return n * fact(n - 1)\n\nprint(fact(6))\n", 
   "trace": [
     {
       "ordered_globals": [], 

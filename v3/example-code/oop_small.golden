@@ -1,5 +1,5 @@
 {
-  "code": "class A:\n    x = 1\n    y = 'hello'\n\nclass B:\n    z = 'bye'\n\nclass C(A,B):\n    def salutation(self):\n        return '%d %s %s' % (self.x, self.y, self.z)\n\ninst = C()\nprint inst.salutation()\ninst.x = 100\nprint inst.salutation()\n", 
+  "code": "class A:\n    x = 1\n    y = 'hello'\n\nclass B:\n    z = 'bye'\n\nclass C(A,B):\n    def salutation(self):\n        return '%d %s %s' % (self.x, self.y, self.z)\n\ninst = C()\nprint(inst.salutation())\ninst.x = 100\nprint(inst.salutation())\n", 
   "trace": [
     {
       "ordered_globals": [], 

@@ -1,5 +1,5 @@
 {
-  "code": "# Object-oriented programming intro\n# Adapted from MIT 6.01 course notes (Section 3.5)\n# http://mit.edu/6.01/mercurial/spring10/www/handouts/readings.pdf\n\nclass Staff601:\n    course = '6.01'\n    building = 34\n    room = 501\n\n    def salutation(self):\n        return self.role + ' ' + self.name\n\npat = Staff601()\nprint pat.course\n\npat.name = 'Pat'\npat.age = 60\npat.role = 'Professor'\n\nprint pat.building\npat.building = 32\nprint pat.building\n\nprint pat.salutation()\nprint Staff601.salutation(pat)\n", 
+  "code": "# Object-oriented programming intro\n# Adapted from MIT 6.01 course notes (Section 3.5)\n# http://mit.edu/6.01/mercurial/spring10/www/handouts/readings.pdf\n\nclass Staff601:\n    course = '6.01'\n    building = 34\n    room = 501\n\n    def salutation(self):\n        return self.role + ' ' + self.name\n\npat = Staff601()\nprint(pat.course)\n\npat.name = 'Pat'\npat.age = 60\npat.role = 'Professor'\n\nprint(pat.building)\npat.building = 32\nprint(pat.building)\n\nprint(pat.salutation())\nprint(Staff601.salutation(pat))\n", 
   "trace": [
     {
       "ordered_globals": [], 

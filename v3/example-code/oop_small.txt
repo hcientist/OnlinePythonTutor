@@ -10,6 +10,6 @@ class C(A,B):
         return '%d %s %s' % (self.x, self.y, self.z)
 
 inst = C()
-print inst.salutation()
+print(inst.salutation())
 inst.x = 100
-print inst.salutation()
+print(inst.salutation())

@@ -1,5 +1,5 @@
 {
-  "code": "# Higher-order functions\n# Adapted from MIT 6.01 course notes (Section A.2.2)\n# http://mit.edu/6.01/mercurial/spring10/www/handouts/readings.pdf\n\ndef summation(low, high, f, next):\n    s = 0\n    x = low\n    while x <= high:\n        s = s + f(x)\n        x = next(x)\n    return s\n\ndef sumsquares(low, high):\n    return summation(low, high, lambda x: x**2, lambda x: x+1)\n\nprint sumsquares(1, 10)\n", 
+  "code": "# Higher-order functions\n# Adapted from MIT 6.01 course notes (Section A.2.2)\n# http://mit.edu/6.01/mercurial/spring10/www/handouts/readings.pdf\n\ndef summation(low, high, f, next):\n    s = 0\n    x = low\n    while x <= high:\n        s = s + f(x)\n        x = next(x)\n    return s\n\ndef sumsquares(low, high):\n    return summation(low, high, lambda x: x**2, lambda x: x+1)\n\nprint(sumsquares(1, 10))\n", 
   "trace": [
     {
       "ordered_globals": [], 

@@ -11,15 +11,15 @@ class Staff601:
         return self.role + ' ' + self.name
 
 pat = Staff601()
-print pat.course
+print(pat.course)
 
 pat.name = 'Pat'
 pat.age = 60
 pat.role = 'Professor'
 
-print pat.building
+print(pat.building)
 pat.building = 32
-print pat.building
+print(pat.building)
 
-print pat.salutation()
-print Staff601.salutation(pat)
+print(pat.salutation())
+print(Staff601.salutation(pat))

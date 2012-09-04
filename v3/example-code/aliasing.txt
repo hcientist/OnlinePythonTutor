@@ -19,7 +19,7 @@ def foo(lst):
     bar(lst)
 
 def bar(myLst):
-    print myLst
+    print(myLst)
 
 foo(x)
 foo(z)

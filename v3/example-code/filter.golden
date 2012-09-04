@@ -1,5 +1,5 @@
 {
-  "code": "input = [(\"Mary\", 27), (\"Joe\", 30), (\"Ruth\", 43), (\"Bob\", 17), (\"Jenny\", 22)]\n\nyoungPeople = []\n\nfor (person, age) in input:\n    if age < 30:\n        youngPeople.append(person)\n    else:\n        print \"HAHA\", person, \"is too old!\"\n\nprint \"There are\", len(youngPeople), \"young people\"\n", 
+  "code": "input = [(\"Mary\", 27), (\"Joe\", 30), (\"Ruth\", 43), (\"Bob\", 17), (\"Jenny\", 22)]\n\nyoungPeople = []\n\nfor (person, age) in input:\n    if age < 30:\n        youngPeople.append(person)\n    else:\n        print(\"HAHA \" + person + \" is too old!\")\n\nprint(\"There are \" + str(len(youngPeople)) + \" young people\")\n", 
   "trace": [
     {
       "ordered_globals": [], 

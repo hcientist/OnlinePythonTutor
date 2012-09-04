@@ -1,5 +1,5 @@
 {
-  "code": "# Use generator to generate a stream of primes\ndef gen_primes():\n    n = 2\n    while True:\n        for x in range(2, n):\n            if n % x == 0:\n                break\n        else:\n            yield n\n        n += 1\n\nfor p in gen_primes():\n    print p\n\n", 
+  "code": "# Use generator to generate a stream of primes\ndef gen_primes():\n    n = 2\n    while True:\n        for x in range(2, n):\n            if n % x == 0:\n                break\n        else:\n            yield n\n        n += 1\n\nfor p in gen_primes():\n    print(p)\n\n", 
   "trace": [
     {
       "ordered_globals": [], 

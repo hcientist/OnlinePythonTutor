@@ -1,5 +1,5 @@
 {
-  "code": "# Tutorial code from Prof. Peter Wentworth\n# Rhodes University, South Africa (http://www.ru.ac.za/)\n\n# Demonstrate recursion that throws an exception\n# at its base case, and the tracing of try ... finally.\n#\n# How many \"survived!\" messages will be printed???\n\ndef f(n):\n    try:\n        x = 10 / n\n        print \"x is\", x\n        f(n-1)\n        print \"survived!\"\n    finally:\n        print \"Bye from f where n =\", n\n\nf(4)\n", 
+  "code": "# Tutorial code from Prof. Peter Wentworth\n# Rhodes University, South Africa (http://www.ru.ac.za/)\n\n# Demonstrate recursion that throws an exception\n# at its base case, and the tracing of try ... finally.\n#\n# How many \"survived!\" messages will be printed???\n\ndef f(n):\n    try:\n        x = 10 / n\n        print(\"x is \" + str(x))\n        f(n-1)\n        print(\"survived!\")\n    finally:\n        print(\"Bye from f where n = \" + str(n))\n\nf(4)\n", 
   "trace": [
     {
       "ordered_globals": [], 

@@ -1,5 +1,5 @@
 {
-  "code": "# from: http://www.ece.uci.edu/~chou/py02/python.html\ndef InsertionSort(A):\n    for j in range(1, len(A)):\n        key = A[j]\n        i = j - 1\n        while (i >= 0) and (A[i] > key):\n            A[i+1] = A[i]\n            i = i - 1\n        A[i+1] = key\n\ninput = [8, 3, 9, 15, 29, 7, 10]\nInsertionSort(input)\nprint input\n", 
+  "code": "# from: http://www.ece.uci.edu/~chou/py02/python.html\ndef InsertionSort(A):\n    for j in range(1, len(A)):\n        key = A[j]\n        i = j - 1\n        while (i >= 0) and (A[i] > key):\n            A[i+1] = A[i]\n            i = i - 1\n        A[i+1] = key\n\ninput = [8, 3, 9, 15, 29, 7, 10]\nInsertionSort(input)\nprint(input)\n", 
   "trace": [
     {
       "ordered_globals": [], 

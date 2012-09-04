@@ -1,5 +1,5 @@
 {
-  "code": "x = [1, 2, 3]\ny = [4, 5, 6]\nz = y\ny = x\nx = z\n\nx = [1, 2, 3] # a different [1, 2, 3] list!\ny = x\nx.append(4)\ny.append(5)\nz = [1, 2, 3, 4, 5] # a different list!\nx.append(6)\ny.append(7)\ny = \"hello\"\n\n\ndef foo(lst):\n    lst.append(\"hello\")\n    bar(lst)\n\ndef bar(myLst):\n    print myLst\n\nfoo(x)\nfoo(z)\n", 
+  "code": "x = [1, 2, 3]\ny = [4, 5, 6]\nz = y\ny = x\nx = z\n\nx = [1, 2, 3] # a different [1, 2, 3] list!\ny = x\nx.append(4)\ny.append(5)\nz = [1, 2, 3, 4, 5] # a different list!\nx.append(6)\ny.append(7)\ny = \"hello\"\n\n\ndef foo(lst):\n    lst.append(\"hello\")\n    bar(lst)\n\ndef bar(myLst):\n    print(myLst)\n\nfoo(x)\nfoo(z)\n", 
   "trace": [
     {
       "ordered_globals": [], 

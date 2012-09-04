@@ -6,4 +6,4 @@ lastName = tokens[1]
 birthdate = (int(tokens[2]), int(tokens[3]), int(tokens[4]))
 isMale = (tokens[5] == 'male')
 
-print 'Hi', firstName, lastName
+print('Hi ' + firstName + ' ' + lastName)

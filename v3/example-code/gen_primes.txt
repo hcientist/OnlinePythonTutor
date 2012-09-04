@@ -10,5 +10,5 @@ def gen_primes():
         n += 1
 
 for p in gen_primes():
-    print p
+    print(p)
 

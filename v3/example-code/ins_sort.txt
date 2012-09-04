@@ -10,4 +10,4 @@ def InsertionSort(A):
 
 input = [8, 3, 9, 15, 29, 7, 10]
 InsertionSort(input)
-print input
+print(input)
