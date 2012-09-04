@@ -74,7 +74,7 @@ div.ExecutionVisualizer table.frameDataViz td.val {
 
 div.ExecutionVisualizer div#pyCodeOutputDiv {
   max-width: 550px;
-  max-height: 450px;
+  max-height: 400px;
   /*max-height: 620px;*/
   overflow: auto;
   /*margin-bottom: 4px;*/
