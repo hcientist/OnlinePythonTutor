@@ -75,9 +75,24 @@ $(document).ready(function() {
     preseededCode = $.bbq.getState('code'); // yuck, global!
     var preseededMode = $.bbq.getState('mode');
 
+
+    // ugh, ugly tristate due to the possibility of being undefined :)
     if ($.bbq.getState('cumulative_mode') == 'true') {
-      $('#cumulativeMode').prop('checked', true);
+      $('#cumulativeModeSelector').val('yes');
     }
+    else if ($.bbq.getState('cumulative_mode') == 'false') {
+      $('#cumulativeModeSelector').val('no');
+    }
+    // else if it's undefined, don't do anything ...
+
+    if ($.bbq.getState('python_version') == '3') {
+      $('#pythonVersionSelector').val('3');
+    }
+    else if ($.bbq.getState('python_version') == '2') {
+      $('#pythonVersionSelector').val('2');
+    }
+    // else if it's undefined, don't do anything ...
+
 
     // only bother with curInstr when we're visualizing ...
     if (!preseededCurInstr && preseededMode == 'visualize') { // TODO: kinda gross hack
@@ -149,7 +164,7 @@ $(document).ready(function() {
 
     $.get(backend_script,
           {user_script : pyInputCodeMirror.getValue(),
-           cumulative_mode: $('#cumulativeMode').prop('checked')},
+           cumulative_mode: ($('#cumulativeModeSelector').val() == 'yes')},
           function(dataFromBackend) {
             var trace = dataFromBackend.trace;
             
@@ -436,7 +451,8 @@ $(document).ready(function() {
                                   {code: pyInputCodeMirror.getValue(),
                                    curInstr: (appMode == 'visualize') ? myVisualizer.curInstr : 0,
                                    mode: appMode,
-                                   cumulative_mode: $('#cumulativeMode').prop('checked')
+                                   cumulative_mode: ($('#cumulativeModeSelector').val() == 'yes'),
+                                   python_version: $('#pythonVersionSelector').val()
                                   },
                                   2);
     $('#urlOutput').val(urlStr);

@@ -65,11 +65,22 @@ Write your Python code here:
 
 <div id="codeInputPane"></div> <!-- populate with a CodeMirror instance -->
 
+<p style="margin-top: 15px;">
+Execute code using
+  <select id="pythonVersionSelector">
+    <option value="2">Python 2.7</option>
+    <option value="3">Python 3.2</option>
+  </select>
+and
+  <select id="cumulativeModeSelector">
+    <option value="no">don't display exited functions (default).</option>
+    <option value="yes">display frames of exited functions.</option>
+  </select>
+</p>
+
 <p>
 <button id="executeBtn" class="bigBtn" type="button">Visualize execution</button>
 </p>
-
-<p><input type="checkbox" id="cumulativeMode"/>Display exited functions</p>
 
 
 <p style="margin-top: 25px;">Basic Examples:<br/>
@@ -159,7 +170,7 @@ philip@pgbovine.net</p>
 
 <p>
 
-This version of Online Python Tutor runs <a
+Online Python Tutor supports <a
 href="http://www.python.org/doc/2.7/">Python 2.7</a> and <a
 href="http://www.python.org/doc/3.2/">Python 3.2</a> with limited module
 imports and no file I/O. It is designed for teaching programming, not
