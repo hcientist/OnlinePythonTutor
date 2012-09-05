@@ -207,7 +207,11 @@ class ObjectEncoder:
   def encode_class_or_instance(self, dat, new_obj):
     """Encode dat as a class or instance."""
     if self.is_instance(dat):
-      new_obj.extend(['INSTANCE', get_name(dat.__class__)])
+      class_name = get_name(dat.__class__)
+      new_obj.extend(['INSTANCE', class_name])
+      # don't traverse inside modules, or else risk EXPLODING the visualization
+      if class_name == 'module':
+        return
     else:
       superclass_names = [e.__name__ for e in dat.__bases__ if e is not object]
       new_obj.extend(['CLASS', get_name(dat), superclass_names])
