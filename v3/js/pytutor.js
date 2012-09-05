@@ -110,8 +110,6 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.domRoot = this.domRoot.find('div.ExecutionVisualizer');
   this.domRootD3 = this.domRootD3.select('div.ExecutionVisualizer');
 
-  this.keyStuckDown = false;
-
 
   // initialize in renderPyCodeOutput()
   this.codeOutputLines = null;
@@ -154,10 +152,6 @@ ExecutionVisualizer.prototype.render = function() {
           <div id="pyCodeOutputDiv"/>\
           <div id="editCodeLinkDiv">\
             <a id="editBtn">Edit code</a>\
-          </div>\
-          <div id="executionSliderCaption">\
-            Click here to focus and then use the left and right arrow keys to<br/>\
-            step through execution. Click on lines of code to set/unset breakpoints.\
           </div>\
           <div id="executionSlider"/>\
           <div id="executionSliderFooter"/>\
@@ -215,10 +209,8 @@ ExecutionVisualizer.prototype.render = function() {
     this.params.hideOutput = true; // put this before hideOutput handler
 
     this.domRoot.find('#executionSlider')
-      .css('width', '330px')
-      .css('margin', '6px auto');
+      .css('width', '330px');
 
-    this.domRoot.find('#executionSliderCaption').hide();
     this.domRoot.find('#jmpFirstInstr').hide();
     this.domRoot.find('#jmpLastInstr').hide();
 
@@ -323,8 +315,6 @@ ExecutionVisualizer.prototype.render = function() {
     this.curInstr = this.curTrace.length - 1;
   }
 
-
-  this.setKeyboardBindings();
 
   this.precomputeCurTraceLayouts();
 
@@ -435,45 +425,6 @@ ExecutionVisualizer.prototype.stepBack = function() {
   }
 
   return false;
-}
-
-ExecutionVisualizer.prototype.setKeyboardBindings = function() {
-  var myViz = this; // to prevent confusion of 'this' inside of nested functions
-
-
-  // Set keyboard event listeners for td#left_pane. Note that it must
-  // have a 'tabindex="0"' attribute set before it can receive focus and
-  // thus receive keyboard events. Set it here:
-  var leftTablePane = this.domRoot.find('td#left_pane');
-
-  leftTablePane.attr('tabindex', '0');
-  leftTablePane.css('outline', 'none'); // don't display a tacky border when focused
- 
-  leftTablePane.keydown(function(k) {
-    if (!myViz.keyStuckDown) {
-      if (k.keyCode == 37) { // left arrow
-        if (myViz.stepBack()) {
-          k.preventDefault(); // don't horizontally scroll the display
-          myViz.keyStuckDown = true;
-        }
-      }
-      else if (k.keyCode == 39) { // right arrow
-        if (myViz.stepForward()) {
-          k.preventDefault(); // don't horizontally scroll the display
-          myViz.keyStuckDown = true;
-        }
-      }
-    }
-  });
-
-  leftTablePane.keyup(function(k) {
-    myViz.keyStuckDown = false;
-  });
-}
-
-
-ExecutionVisualizer.prototype.grabKeyboardFocus = function() {
-  this.domRoot.find('td#left_pane').focus();
 }
 
 

@@ -72,9 +72,6 @@ function parseLessonFile(dat) {
                                                     updateOutputCallback: updateLessonNarration});
 
             myVisualizer.updateOutput();
-
-            // grab focus so that keyboard events work
-            myVisualizer.grabKeyboardFocus();
           }
         },
         "json");

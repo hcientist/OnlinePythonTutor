@@ -31,12 +31,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 // backend scripts to execute (Python 2 and 3 variants, if available)
-var python2_backend_script = 'web_exec_py2.py';
-var python3_backend_script = 'web_exec_py3.py';
+//var python2_backend_script = 'web_exec_py2.py';
+//var python3_backend_script = 'web_exec_py3.py';
 
 // uncomment below if you're running on Google App Engine using the built-in app.yaml
-//var python2_backend_script = 'exec';
-//var python3_backend_script = null;
+var python2_backend_script = 'exec';
+var python3_backend_script = null;
 
 var appMode = 'edit'; // 'edit' or 'visualize'
 
@@ -45,6 +45,8 @@ var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the U
 
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
+
+var keyStuckDown = false;
 
 function enterEditMode() {
   $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
@@ -141,9 +143,6 @@ $(document).ready(function() {
       // jsPlumb connectors won't render properly
       myVisualizer.updateOutput();
 
-      // grab focus so that keyboard events work
-      myVisualizer.grabKeyboardFocus();
-
       // customize edit button click functionality AFTER rendering (TODO: awkward!)
       $('#pyOutputPane #editBtn').click(function() {
         enterEditMode();
@@ -231,6 +230,30 @@ $(document).ready(function() {
                                                      {startingInstruction:  startingInstruction,
                                                       updateOutputCallback: function() {$('#urlOutput').val('');}
                                                      });
+
+
+              // set keyboard bindings
+              $(document).keydown(function(k) {
+                if (!keyStuckDown) {
+                  if (k.keyCode == 37) { // left arrow
+                    if (myVisualizer.stepBack()) {
+                      k.preventDefault(); // don't horizontally scroll the display
+                      keyStuckDown = true;
+                    }
+                  }
+                  else if (k.keyCode == 39) { // right arrow
+                    if (myVisualizer.stepForward()) {
+                      k.preventDefault(); // don't horizontally scroll the display
+                      keyStuckDown = true;
+                    }
+                  }
+                }
+              });
+
+              $(document).keyup(function(k) {
+                keyStuckDown = false;
+              });
+
 
               $.bbq.pushState({ mode: 'visualize' }, 2 /* completely override other hash strings to keep URL clean */);
             }
