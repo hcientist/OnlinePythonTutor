@@ -622,11 +622,29 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
     .data(this.codeOutputLines)
     .enter().append('tr')
     .selectAll('td')
-    .data(function(d, i){return [d, d] /* map full data item down both columns */;})
+    .data(function(d, i){return [d, d, d] /* map full data item down all three columns */;})
     .enter().append('td')
-    .attr('class', function(d, i) {return (i == 0) ? 'lineNo' : 'cod';})
+    .attr('class', function(d, i) {
+      if (i == 0) {
+        return 'gutter';
+      }
+      else if (i == 1) {
+        return 'lineNo';
+      }
+      else {
+        return 'cod';
+      }
+    })
     .html(function(d, i) {
-      return (i == 0) ? d.lineNumber : htmlspecialchars(d.text);
+      if (i == 0) {
+        return '';
+      }
+      else if (i == 1) {
+        return d.lineNumber;
+      }
+      else {
+        return htmlspecialchars(d.text);
+      }
     });
 
   // 2012-09-05: Disable breakpoints for now to simplify UX
@@ -760,74 +778,55 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     /* if instrLimitReached, then treat like a normal non-terminating line */
     var isTerminated = (!myViz.instrLimitReached && isLastInstr);
 
-    var funcCallSiteLine = null;
-    // highlight the call site for a 'call' instruction
-    if (curEntry.event == 'call' && myViz.curInstr > 0) {
-      var prevEntry = myViz.curTrace[myViz.curInstr - 1];
-      funcCallSiteLine = prevEntry.line;
+    // rules for highlighting lines:
+    // 1.) If there's an error, then highlight current line
+    // 2.) If the program has terminated, then highlight current line
+    // 3.) Otherwise highlight the previously-executed line
+    var highlightColor = highlightedLineColor;
+    var highlightLineNumber = null;
+
+    if (myViz.curInstr > 0) {
+      highlightLineNumber = myViz.curTrace[myViz.curInstr - 1].line;
+    }
+    else {
+      highlightLineNumber = null; // at first instruction, don't highlight
+                                  // anything (unless hasError or isTerminated)
     }
 
-    var funcReturnSiteLine = null;
-    // highlight the return site for a 'return' instruction
-    if (curEntry.event == 'return' && myViz.curInstr < myViz.curTrace.length - 1) {
-      var nextEntry = myViz.curTrace[myViz.curInstr + 1];
-      funcReturnSiteLine = nextEntry.line;
+    if (hasError || isTerminated) {
+      highlightLineNumber = curEntry.line;
     }
 
-
-    // the highlighted line can either have a 'top' border, 'bottom'
-    // border, or no border (null), depending on the value of 'borderType':
-    var borderType = null;
-    if (!hasError) {
-      if (curEntry.event == 'call' || curEntry.event == 'return' || isTerminated) {
-        borderType = 'bottom';
-      }
-      else {
-        borderType = 'top';
-      }
+    if (hasError) {
+      highlightColor = errorColor;
     }
 
 
+    var arrowLineNumber = null;
+    if (!isTerminated) {
+      arrowLineNumber = curEntry.line;
+    }
+
+
+    myViz.domRootD3.selectAll('#pyCodeOutputDiv td.gutter')
+      .html(function (d) {
+        // arrow types: '\u21d2', '\u21f0', '\u2907'
+        return (d.lineNumber == arrowLineNumber) ? '\u21d2' : '';
+      });
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.lineNo')
       .attr('id', function(d) {return 'lineNo' + d.lineNumber;});
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
       .style('background-color', function(d) {
-        if (d.lineNumber == curEntry.line) {
-          d.backgroundColor = hasError ? errorColor :
-                                         (funcCallSiteLine ? funcCallLineColor :
-                                                             highlightedLineColor);
-        }
-        else if (d.lineNumber == funcCallSiteLine) {
-          d.backgroundColor = highlightedLineColor;
-        }
-        else if (d.lineNumber == funcReturnSiteLine) {
-          d.backgroundColor = highlightedLineLighterColor;
+        if (d.lineNumber == highlightLineNumber) {
+          d.backgroundColor = highlightColor;
         }
         else {
           d.backgroundColor = null;
         }
 
         return d.backgroundColor;
-      })
-      .style('border-top', function(d) {
-        if ((d.lineNumber == curEntry.line) && (borderType == 'top')) {
-          return '1px solid ' + highlightedLineBorderColor;
-        }
-        else {
-          // put a default white border to keep space usage consistent
-          return '1px solid #ffffff';
-        }
-      })
-      .style('border-bottom', function(d) {
-        if ((d.lineNumber == curEntry.line) && (borderType == 'bottom')) {
-          return '1px solid ' + highlightedLineBorderColor;
-        }
-        else {
-          // put a default white border to keep space usage consistent
-          return '1px solid #ffffff';
-        }
       });
 
 
@@ -842,7 +841,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       var H = codeOutputDiv.height();
 
       // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
-      return (PO <= LO) && (LO < (PO + H - 15));
+      return (PO <= LO) && (LO < (PO + H - 25));
     }
 
 
@@ -1925,7 +1924,6 @@ ExecutionVisualizer.prototype.redrawConnectors = function() {
 var highlightedLineColor = '#e4faeb';
 var highlightedLineBorderColor = '#005583';
 
-//var highlightedLineLighterColor = '#effff3';
 var highlightedLineLighterColor = '#f2fff5';
 
 var funcCallLineColor = '#a2eebd';

@@ -97,14 +97,18 @@ div.ExecutionVisualizer table#pyCodeOutput td {
   white-space: nowrap;
 }
 
+div.ExecutionVisualizer table#pyCodeOutput .gutter {
+  width: 1.2em;
+  color: #d03939; /* darkRed in ../js/pytutor.js */
+  font-size: 16pt;
+  text-align: right;
+}
+
 div.ExecutionVisualizer table#pyCodeOutput .lineNo {
-  background-color:#FFFFFF;
-  color:#AAAAAA;
-  margin:0;
-  padding:0.2em;
-  padding-right:0.5em;
-  text-align:right;
-  width:2.1em;
+  color: #aaa;
+  padding: 0.2em;
+  padding-right: 0.5em;
+  text-align: right;
 }
 
 div.ExecutionVisualizer table#pyCodeOutput .cod {
