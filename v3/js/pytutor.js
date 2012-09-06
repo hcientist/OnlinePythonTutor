@@ -635,6 +635,8 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
       return (i == 0) ? d.lineNumber : htmlspecialchars(d.text);
     });
 
+  // 2012-09-05: Disable breakpoints for now to simplify UX
+  /*
   if (!this.params.embeddedMode) {
     codeOutputD3.style('cursor', function(d, i) {return 'pointer'})
     .on('mouseover', function() {
@@ -673,6 +675,7 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
 
     renderSliderBreakpoints(); // renders breakpoints written in as code comments
   }
+  */
 
 }
 
