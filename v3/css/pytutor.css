@@ -107,6 +107,7 @@ div.ExecutionVisualizer table#pyCodeOutput .gutter {
 div.ExecutionVisualizer table#pyCodeOutput .lineNo {
   color: #aaa;
   padding: 0.2em;
+  padding-left: 0.3em;
   padding-right: 0.5em;
   text-align: right;
 }

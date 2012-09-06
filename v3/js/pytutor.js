@@ -70,7 +70,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
   // because each one contains IDENTICAL state information as the
   // 'step_line' entry immediately following it. this filtering allows the
   // visualization to not show as much redundancy.
-  //this.curTrace = this.curTrace.filter(function(e) {return e.event != 'call';});
+  this.curTrace = this.curTrace.filter(function(e) {return e.event != 'call';});
 
   this.curInstr = 0;
 
@@ -159,7 +159,6 @@ ExecutionVisualizer.prototype.render = function() {
             <a id="editBtn">Edit code</a>\
           </div>\
           <div id="executionSlider"/>\
-          <div id="executionSliderFooter"/>\
           <div id="vcrControls">\
             <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
             <button id="jmpStepBack", type="button">&lt; Back</button>\
@@ -784,7 +783,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     // 1.) If there's an error, then highlight current line
     // 2.) If the program has terminated, then highlight current line
     // 3.) Otherwise highlight the previously-executed line
-    var highlightColor = highlightedLineColor;
+    var highlightColor = highlightedLineLighterColor;
     var highlightLineNumber = null;
 
     if (myViz.curInstr > 0) {
@@ -1926,7 +1925,7 @@ ExecutionVisualizer.prototype.redrawConnectors = function() {
 var highlightedLineColor = '#e4faeb';
 var highlightedLineBorderColor = '#005583';
 
-var highlightedLineLighterColor = '#f2fff5';
+var highlightedLineLighterColor = '#e8fff0';
 
 var funcCallLineColor = '#a2eebd';
 
