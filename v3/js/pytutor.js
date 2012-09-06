@@ -200,7 +200,7 @@ ExecutionVisualizer.prototype.render = function() {
   </table>');
 
   this.domRoot.find('#legendDiv')
-    .append(lightArrowHTML + ' line that has just executed<p style="margin-top:-12px">' + darkArrowHTML + ' next line to be executed</p>')
+    .append(lightArrowHTML + ' line that has just executed<p style="margin-top:-6px">' + darkArrowHTML + ' next line to be executed</p>')
 
 
   if (this.params.editCodeBaseURL) {
