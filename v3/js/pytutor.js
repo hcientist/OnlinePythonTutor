@@ -717,7 +717,6 @@ ExecutionVisualizer.prototype.updateOutput = function() {
   var vcrControls = myViz.domRoot.find("#vcrControls");
 
   // to be user-friendly, if we're on the LAST instruction, print "Program has terminated"
-  // and DON'T highlight any lines of code in the code display
   if (isLastInstr) {
     if (this.instrLimitReached) {
       vcrControls.find("#curInstr").html("Instruction limit reached");
@@ -783,11 +782,19 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     // 1.) If there's an error, then highlight current line
     // 2.) If the program has terminated, then highlight current line
     // 3.) Otherwise highlight the previously-executed line
+    //     (or the previous-previous line for most 'return' events)
     var highlightColor = highlightedLineLighterColor;
     var highlightLineNumber = null;
 
     if (myViz.curInstr > 0) {
       highlightLineNumber = myViz.curTrace[myViz.curInstr - 1].line;
+      // special-case for most 'return' events to prevent highlighting
+      // and arrow on the same line ...
+      if ((curEntry.event == 'return') && 
+          (highlightLineNumber == curEntry.line) &&
+          (myViz.curInstr > 1)) {
+        highlightLineNumber = myViz.curTrace[myViz.curInstr - 2].line;
+      }
     }
     else {
       highlightLineNumber = null; // at first instruction, don't highlight
