@@ -92,9 +92,6 @@ function ExecutionVisualizer(domRootID, dat, params) {
   });
 
 
-  this.visitedLinesSet = null; // will change at every execution point
-
-
   // true iff trace ended prematurely since maximum instruction limit has
   // been reached
   var instrLimitReached = false;
@@ -568,15 +565,6 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
 
     var lineNo = d3.select(t).datum().lineNumber;
 
-    if (myViz.visitedLinesSet.has(lineNo)) {
-      d3.select(t.parentNode).select('td.lineNo').style('color', visitedLineColor);
-      d3.select(t.parentNode).select('td.lineNo').style('font-weight', 'bold');
-    }
-    else {
-      d3.select(t.parentNode).select('td.lineNo').style('color', '');
-      d3.select(t.parentNode).select('td.lineNo').style('font-weight', '');
-    }
-
     renderSliderBreakpoints();
   }
 
@@ -796,16 +784,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.lineNo')
-      .attr('id', function(d) {return 'lineNo' + d.lineNumber;})
-      .style('color', function(d)
-        {return d.breakpointHere ? breakpointColor :
-                                   (myViz.visitedLinesSet.has(d.lineNumber) ? visitedLineColor : null);
-       })
-      .style('font-weight', function(d)
-        {return d.breakpointHere ? 'bold' :
-                                   (myViz.visitedLinesSet.has(d.lineNumber) ? 'bold' : null);
-       });
-
+      .attr('id', function(d) {return 'lineNo' + d.lineNumber;});
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
       .style('background-color', function(d) {
@@ -879,16 +858,6 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     // smoothly scroll code display
     if (!isOutputLineVisible(curEntry.line)) {
       scrollCodeOutputToLine(curEntry.line);
-    }
-  }
-
-
-  // calculate all lines that have been 'visited' (executed)
-  // by execution up to (but NOT INCLUDING) this.curInstr:
-  this.visitedLinesSet = d3.map();
-  for (var i = 0; i < this.curInstr; i++) {
-    if (this.curTrace[i].line) {
-      this.visitedLinesSet.set(this.curTrace[i].line, 1);
     }
   }
 
@@ -1952,8 +1921,6 @@ var highlightedLineBorderColor = '#005583';
 
 //var highlightedLineLighterColor = '#effff3';
 var highlightedLineLighterColor = '#f2fff5';
-
-var visitedLineColor = highlightedLineBorderColor;
 
 var funcCallLineColor = '#a2eebd';
 
