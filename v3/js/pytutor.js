@@ -64,11 +64,13 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
   this.curTrace = dat.trace;
 
+  
+  // optional filtering to remove redundancy ...
   // ok, we're gonna filter out all trace entries of 'call' events,
   // because each one contains IDENTICAL state information as the
   // 'step_line' entry immediately following it. this filtering allows the
   // visualization to not show as much redundancy.
-  this.curTrace = this.curTrace.filter(function(e) {return e.event != 'call';});
+  //this.curTrace = this.curTrace.filter(function(e) {return e.event != 'call';});
 
   this.curInstr = 0;
 
