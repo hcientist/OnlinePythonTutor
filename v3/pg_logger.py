@@ -578,6 +578,22 @@ class PGLogger(bdb.Bdb):
 
         self.trace.append(trace_entry)
 
+
+        # sanity check to make sure the state of the world at a 'call' instruction
+        # is identical to that at the instruction immediately following it ...
+        '''
+        if len(self.trace) > 1:
+          cur = self.trace[-1]
+          prev = self.trace[-2]
+          if prev['event'] == 'call':
+            assert cur['globals'] == prev['globals']
+            for (s1, s2) in zip(cur['stack_to_render'], prev['stack_to_render']):
+              assert s1 == s2
+            assert cur['heap'] == prev['heap']
+            assert cur['stdout'] == prev['stdout']
+        '''
+
+
         if len(self.trace) >= MAX_EXECUTED_LINES:
           self.trace.append(dict(event='instruction_limit_reached', exception_msg='(stopped after ' + str(MAX_EXECUTED_LINES) + ' steps to prevent possible infinite loop)'))
           self.force_terminate()
