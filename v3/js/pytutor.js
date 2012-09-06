@@ -784,51 +784,39 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     /* if instrLimitReached, then treat like a normal non-terminating line */
     var isTerminated = (!myViz.instrLimitReached && isLastInstr);
 
-    // rules for highlighting lines:
-    // 1.) If there's an error, then highlight current line
-    // 2.) If the program has terminated, then highlight current line
-    // 3.) Otherwise highlight the previously-executed line
-    //     (or the previous-previous line for most 'return' events)
-    var highlightColor = highlightedLineLighterColor;
-    var highlightLineNumber = null;
+
+    var curLineNumber = null;
+    var prevLineNumber = null;
 
     if (myViz.curInstr > 0) {
-      highlightLineNumber = myViz.curTrace[myViz.curInstr - 1].line;
+      prevLineNumber = myViz.curTrace[myViz.curInstr - 1].line;
       // special-case for most 'return' events to prevent highlighting
       // and arrow on the same line ...
       if ((curEntry.event == 'return') && 
-          (highlightLineNumber == curEntry.line) &&
+          (prevLineNumber == curEntry.line) &&
           (myViz.curInstr > 1)) {
-        highlightLineNumber = myViz.curTrace[myViz.curInstr - 2].line;
+        prevLineNumber = myViz.curTrace[myViz.curInstr - 2].line;
       }
     }
+
+    if (isTerminated) {
+      // must do this AFTER the assignment to prevLineNumber above (order matters!)
+      prevLineNumber = curEntry.line;
+    }
     else {
-      highlightLineNumber = null; // at first instruction, don't highlight
-                                  // anything (unless hasError or isTerminated)
-    }
-
-    if (hasError || isTerminated) {
-      highlightLineNumber = curEntry.line;
-    }
-
-    if (hasError) {
-      highlightColor = errorColor;
-    }
-
-
-    var arrowLineNumber = null;
-    if (!isTerminated) {
-      arrowLineNumber = curEntry.line;
+      curLineNumber = curEntry.line;
     }
 
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.gutter')
       .html(function (d) {
-      // arrow types: '\u21d2', '\u21f0', '\u2907'
-      if (d.lineNumber == arrowLineNumber) {
+        // arrow types: '\u21d2', '\u21f0', '\u2907'
+
+        // give curLineNumber priority over prevLineNumber ...
+        if (d.lineNumber == curLineNumber) {
           return darkArrowHTML;
         }
-        else if (d.lineNumber == highlightLineNumber) {
+        else if (d.lineNumber == prevLineNumber) {
           return lightArrowHTML;
         }
         else {
@@ -839,12 +827,11 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.lineNo')
       .attr('id', function(d) {return 'lineNo' + d.lineNumber;});
 
-    // optionally highlight previously-executed line ...
-    /*
+
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
       .style('background-color', function(d) {
-        if (d.lineNumber == highlightLineNumber) {
-          d.backgroundColor = highlightColor;
+        if (hasError && (d.lineNumber == curEntry.line)) {
+          d.backgroundColor = errorColor;
         }
         else {
           d.backgroundColor = null;
@@ -852,7 +839,6 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
         return d.backgroundColor;
       });
-    */
 
 
     // returns True iff lineNo is visible in pyCodeOutputDiv
