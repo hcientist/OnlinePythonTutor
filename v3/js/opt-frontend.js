@@ -454,6 +454,10 @@ $(document).ready(function() {
     $.get("example-code/linked-lists/ll2.txt", setCodeMirrorVal);
     return false;
   });
+  $('#sumListLink').click(function() {
+    $.get("example-code/sum-list.txt", setCodeMirrorVal);
+    return false;
+  });
 
   $('#varargsLink').click(function() {
     $.get("example-code/varargs.txt", setCodeMirrorVal);
