@@ -99,9 +99,17 @@ div.ExecutionVisualizer table#pyCodeOutput td {
 
 div.ExecutionVisualizer table#pyCodeOutput .gutter {
   width: 1.2em;
+  text-align: right;
+}
+
+div.ExecutionVisualizer .darkArrow {
   color: #d03939; /* darkRed in ../js/pytutor.js */
   font-size: 16pt;
-  text-align: right;
+}
+
+div.ExecutionVisualizer .lightArrow {
+  color: #bbb;
+  font-size: 16pt;
 }
 
 div.ExecutionVisualizer table#pyCodeOutput .lineNo {
@@ -117,6 +125,12 @@ div.ExecutionVisualizer table#pyCodeOutput .cod {
   margin-left: 3px;
   padding-left: 7px;
   text-align: left; /* necessary or else doesn't work properly in IE */
+}
+
+div.ExecutionVisualizer div#legendDiv {
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
 }
 
 div.ExecutionVisualizer div#editCodeLinkDiv {

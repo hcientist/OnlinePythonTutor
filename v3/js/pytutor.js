@@ -42,6 +42,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
+var darkArrowHTML = '<span class="darkArrow">\u21d2</span>';
+var lightArrowHTML = '<span class="lightArrow">\u21d2</span>';
 
 
 var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer instance
@@ -70,7 +72,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
   // because each one contains IDENTICAL state information as the
   // 'step_line' entry immediately following it. this filtering allows the
   // visualization to not show as much redundancy.
-  this.curTrace = this.curTrace.filter(function(e) {return e.event != 'call';});
+  //this.curTrace = this.curTrace.filter(function(e) {return e.event != 'call';});
 
   this.curInstr = 0;
 
@@ -168,6 +170,7 @@ ExecutionVisualizer.prototype.render = function() {
           </div>\
           <div id="errorOutput"/>\
         </center>\
+        <div id="legendDiv"/>\
         <div id="progOutputs">\
         Program output:<br/>\
         <textarea id="pyStdout" cols="50" rows="13" wrap="off" readonly></textarea>\
@@ -195,6 +198,9 @@ ExecutionVisualizer.prototype.render = function() {
       </td>\
     </tr>\
   </table>');
+
+  this.domRoot.find('#legendDiv')
+    .append(lightArrowHTML + ' line that has just executed<p style="margin-top:-12px">' + darkArrowHTML + ' next line to be executed</p>')
 
 
   if (this.params.editCodeBaseURL) {
@@ -818,13 +824,23 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.gutter')
       .html(function (d) {
-        // arrow types: '\u21d2', '\u21f0', '\u2907'
-        return (d.lineNumber == arrowLineNumber) ? '\u21d2' : '';
+      // arrow types: '\u21d2', '\u21f0', '\u2907'
+      if (d.lineNumber == arrowLineNumber) {
+          return darkArrowHTML;
+        }
+        else if (d.lineNumber == highlightLineNumber) {
+          return lightArrowHTML;
+        }
+        else {
+          return '';
+        }
       });
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.lineNo')
       .attr('id', function(d) {return 'lineNo' + d.lineNumber;});
 
+    // optionally highlight previously-executed line ...
+    /*
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
       .style('background-color', function(d) {
         if (d.lineNumber == highlightLineNumber) {
@@ -836,6 +852,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
         return d.backgroundColor;
       });
+    */
 
 
     // returns True iff lineNo is visible in pyCodeOutputDiv
