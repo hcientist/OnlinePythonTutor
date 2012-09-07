@@ -100,15 +100,11 @@ div.ExecutionVisualizer table#pyCodeOutput td {
 div.ExecutionVisualizer table#pyCodeOutput .gutter {
   width: 1.2em;
   text-align: right;
-}
-
-div.ExecutionVisualizer .darkArrow {
-  color: #d03939; /* darkRed in ../js/pytutor.js */
   font-size: 16pt;
+  color: white; /* start white by default and then fade into color as needed */
 }
 
-div.ExecutionVisualizer .lightArrow {
-  color: #bbb;
+div.ExecutionVisualizer .arrow {
   font-size: 16pt;
 }
 

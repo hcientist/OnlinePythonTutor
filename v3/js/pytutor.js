@@ -42,9 +42,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
-var darkArrowHTML = '<span class="darkArrow">\u21d2</span>';
-var lightArrowHTML = '<span class="lightArrow">\u21d2</span>';
-
 
 var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer instance
 
@@ -72,7 +69,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
   // because each one contains IDENTICAL state information as the
   // 'step_line' entry immediately following it. this filtering allows the
   // visualization to not show as much redundancy.
-  //this.curTrace = this.curTrace.filter(function(e) {return e.event != 'call';});
+  this.curTrace = this.curTrace.filter(function(e) {return e.event != 'call';});
 
   this.curInstr = 0;
 
@@ -199,8 +196,16 @@ ExecutionVisualizer.prototype.render = function() {
     </tr>\
   </table>');
 
-  this.domRoot.find('#legendDiv')
-    .append(lightArrowHTML + ' line that has just executed<p style="margin-top:-6px">' + darkArrowHTML + ' next line to be executed</p>')
+
+  this.domRoot
+    .find('#legendDiv')
+      .append(arrowHTML + ' line that has just executed')
+      .find('.arrow:last')
+        .css('color', lightArrowColor)
+        .end()
+      .append('<p style="margin-top:-6px">' + arrowHTML + ' next line to be executed</p>')
+      .find('.arrow:last')
+        .css('color', darkArrowColor);
 
 
   if (this.params.editCodeBaseURL) {
@@ -642,9 +647,14 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
         return 'cod';
       }
     })
+    .attr('id', function(d, i) {
+      if (i == 1) {
+        return 'lineNo' + d.lineNumber;
+      }
+    })
     .html(function(d, i) {
       if (i == 0) {
-        return '';
+        return '\u21d2';
       }
       else if (i == 1) {
         return d.lineNumber;
@@ -809,23 +819,20 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.gutter')
-      .html(function (d) {
-        // arrow types: '\u21d2', '\u21f0', '\u2907'
-
+      .transition()
+      .duration(300)
+      .style('color', function (d) {
         // give curLineNumber priority over prevLineNumber ...
         if (d.lineNumber == curLineNumber) {
-          return darkArrowHTML;
+          return darkArrowColor;
         }
         else if (d.lineNumber == prevLineNumber) {
-          return lightArrowHTML;
+          return lightArrowColor;
         }
         else {
-          return '';
+          return 'white';
         }
       });
-
-    myViz.domRootD3.selectAll('#pyCodeOutputDiv td.lineNo')
-      .attr('id', function(d) {return 'lineNo' + d.lineNumber;});
 
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
@@ -852,7 +859,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       var H = codeOutputDiv.height();
 
       // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
-      return (PO <= LO) && (LO < (PO + H - 25));
+      return (PO <= LO) && (LO < (PO + H - 30));
     }
 
 
@@ -1949,6 +1956,13 @@ var errorColor = darkRed;
 
 var breakpointColor = darkRed;
 var hoverBreakpointColor = connectorBaseColor;
+
+
+// Unicode arrow types: '\u21d2', '\u21f0', '\u2907'
+var darkArrowColor = darkRed;
+var lightArrowColor = '#bbb';
+
+var arrowHTML = '<span class="arrow">\u21d2</span>';
 
 
 function assert(cond) {
