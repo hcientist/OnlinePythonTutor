@@ -838,6 +838,15 @@ ExecutionVisualizer.prototype.updateOutput = function() {
         }
       });
 
+    myViz.domRootD3.selectAll('#pyCodeOutputDiv td.lineNo')
+      .style('border-bottom', function(d) {
+        if (isReturn && (d.lineNumber == curEntry.line)) {
+          return '2px solid ' + darkArrowColor;
+        }
+        else {
+          return '';
+        }
+      });
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
       .style('background-color', function(d) {
@@ -884,25 +893,6 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     if (!isOutputLineVisible(curEntry.line)) {
       scrollCodeOutputToLine(curEntry.line);
     }
-
-
-    // do this AFTER scrolling is done, since we want the position to be final ...
-
-    // for a return instruction that's about to be executed,
-    // render a "floating" arrow a half-line down to signify
-    // pointing slightly below a line ...
-    if (isReturn && !isTerminated) {
-      // position() returns the position relative to its parent,
-      // which is HOPEFULLY pcod
-      var curLinePos = pcod.find('#gutterNo' + curEntry.line).position();
-      console.log(curLinePos.top, curLinePos.left);
-
-      pcod.append('<div class="arrowFloater">' + arrowHTML + '</div>');
-      pcod.find('.arrowFloater')
-        .css('color', darkArrowColor)
-        .offset({top: curLinePos.top + 4, left: curLinePos.left + 1, at: pcod});
-    }
-
   }
 
 
