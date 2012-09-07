@@ -900,7 +900,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       pcod.append('<div class="arrowFloater">' + arrowHTML + '</div>');
       pcod.find('.arrowFloater')
         .css('color', darkArrowColor)
-        .offset({top: curLinePos.top + 5, left: curLinePos.left + 1, at: pcod});
+        .offset({top: curLinePos.top + 4, left: curLinePos.left + 1, at: pcod});
     }
 
   }
