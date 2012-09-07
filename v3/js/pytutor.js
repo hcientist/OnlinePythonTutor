@@ -648,7 +648,10 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
       }
     })
     .attr('id', function(d, i) {
-      if (i == 1) {
+      if (i == 0) {
+        return 'gutterNo' + d.lineNumber;
+      }
+      else if (i == 1) {
         return 'lineNo' + d.lineNumber;
       }
     })
@@ -793,6 +796,11 @@ ExecutionVisualizer.prototype.updateOutput = function() {
   function highlightCodeLine() {
     /* if instrLimitReached, then treat like a normal non-terminating line */
     var isTerminated = (!myViz.instrLimitReached && isLastInstr);
+    var isReturn = (curEntry.event == 'return');
+
+    var pcod = myViz.domRoot.find('#pyCodeOutputDiv');
+    // reset first
+    pcod.find('.arrowFloater').remove();
 
 
     var curLineNumber = null;
@@ -800,13 +808,6 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
     if (myViz.curInstr > 0) {
       prevLineNumber = myViz.curTrace[myViz.curInstr - 1].line;
-      // special-case for most 'return' events to prevent highlighting
-      // and arrow on the same line ...
-      if ((curEntry.event == 'return') && 
-          (prevLineNumber == curEntry.line) &&
-          (myViz.curInstr > 1)) {
-        prevLineNumber = myViz.curTrace[myViz.curInstr - 2].line;
-      }
     }
 
     if (isTerminated) {
@@ -817,12 +818,15 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       curLineNumber = curEntry.line;
     }
 
+    // special-case rendering of floating arrow for returns
+    if (isReturn) {
+      curLineNumber = null;
+    }
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.gutter')
       .transition()
       .duration(300)
       .style('color', function (d) {
-        // give curLineNumber priority over prevLineNumber ...
         if (d.lineNumber == curLineNumber) {
           return darkArrowColor;
         }
@@ -853,10 +857,9 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       var lineNoTd = myViz.domRoot.find('#lineNo' + lineNo);
       var LO = lineNoTd.offset().top;
 
-      var codeOutputDiv = myViz.domRoot.find('#pyCodeOutputDiv');
-      var PO = codeOutputDiv.offset().top;
-      var ST = codeOutputDiv.scrollTop();
-      var H = codeOutputDiv.height();
+      var PO = pcod.offset().top;
+      var ST = pcod.scrollTop();
+      var H = pcod.height();
 
       // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
       return (PO <= LO) && (LO < (PO + H - 30));
@@ -868,13 +871,12 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       var lineNoTd = myViz.domRoot.find('#lineNo' + lineNo);
       var LO = lineNoTd.offset().top;
 
-      var codeOutputDiv = myViz.domRoot.find('#pyCodeOutputDiv');
-      var PO = codeOutputDiv.offset().top;
-      var ST = codeOutputDiv.scrollTop();
-      var H = codeOutputDiv.height();
+      var PO = pcod.offset().top;
+      var ST = pcod.scrollTop();
+      var H = pcod.height();
 
-      codeOutputDiv.stop(); // first stop all previously-queued animations
-      codeOutputDiv.animate({scrollTop: (ST + (LO - PO - (Math.round(H / 2))))}, 300);
+      pcod.stop(); // first stop all previously-queued animations
+      pcod.animate({scrollTop: (ST + (LO - PO - (Math.round(H / 2))))}, 300);
     }
 
 
@@ -882,6 +884,25 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     if (!isOutputLineVisible(curEntry.line)) {
       scrollCodeOutputToLine(curEntry.line);
     }
+
+
+    // do this AFTER scrolling is done, since we want the position to be final ...
+
+    // for a return instruction that's about to be executed,
+    // render a "floating" arrow a half-line down to signify
+    // pointing slightly below a line ...
+    if (isReturn && !isTerminated) {
+      // position() returns the position relative to its parent,
+      // which is HOPEFULLY pcod
+      var curLinePos = pcod.find('#gutterNo' + curEntry.line).position();
+      console.log(curLinePos.top, curLinePos.left);
+
+      pcod.append('<div class="arrowFloater">' + arrowHTML + '</div>');
+      pcod.find('.arrowFloater')
+        .css('color', darkArrowColor)
+        .offset({top: curLinePos.top + 5, left: curLinePos.left + 1, at: pcod});
+    }
+
   }
 
 

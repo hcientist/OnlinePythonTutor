@@ -108,6 +108,13 @@ div.ExecutionVisualizer .arrow {
   font-size: 16pt;
 }
 
+div.ExecutionVisualizer .arrowFloater {
+  width: 1.2em;
+  text-align: right;
+  font-size: 16pt;
+  position: absolute;
+}
+
 div.ExecutionVisualizer table#pyCodeOutput .lineNo {
   color: #aaa;
   padding: 0.2em;

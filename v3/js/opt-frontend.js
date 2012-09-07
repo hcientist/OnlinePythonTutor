@@ -310,6 +310,11 @@ $(document).ready(function() {
     return false;
   });
 
+  $("#happyExampleLink").click(function() {
+    $.get("example-code/happy.txt", setCodeMirrorVal);
+    return false;
+  });
+
   $("#newtonExampleLink").click(function() {
     $.get("example-code/sqrt.txt", setCodeMirrorVal);
     return false;
