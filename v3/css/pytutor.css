@@ -99,6 +99,8 @@ div.ExecutionVisualizer table#pyCodeOutput td {
 
 div.ExecutionVisualizer #leftCodeGutterSVG {
   width: 18px;
+  height: 0px; /* programmatically set this later ... IE needs this to
+                  be 0 or it defaults to something arbitrary and gross */
 }
 
 div.ExecutionVisualizer .arrow {

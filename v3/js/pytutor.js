@@ -736,6 +736,10 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
   assert(this.curTrace);
 
+  // there's no point in re-rendering if this pane isn't even visible in the first place!
+  if (!myViz.domRoot.is(':visible')) {
+    return;
+  }
 
   // set the gutter's height to match that of its parent
   // (we often can't do this earlier since the entire pane
@@ -749,7 +753,10 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
   // this weird contortion is necessary to get the accurate row height on Internet Explorer
   // (simpler methods work on all other major browsers, erghhhhhh!!!)
-  var rowHeight = 0;
+  
+  // first take care of edge case when there's only one line ...
+  var rowHeight = myViz.domRoot.find('table#pyCodeOutput td.cod:first').height();
+  // ... then handle the (much more common) multi-line case ...
   if (this.codeOutputLines && this.codeOutputLines.length > 1) {
     rowHeight = (myViz.domRoot.find('table#pyCodeOutput tr:nth-child(2)').offset().top - 
                  myViz.domRoot.find('table#pyCodeOutput tr:first').offset().top);
