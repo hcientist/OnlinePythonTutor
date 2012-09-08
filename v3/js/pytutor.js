@@ -673,8 +673,9 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
     });
 
   // create a left-most gutter td that spans ALL rows ...
+  // (NB: valign="top" is CRUCIAL for this to work in IE)
   myViz.domRoot.find('#pyCodeOutput tr:first')
-    .prepend('<td id="gutterTD" rowspan="' + this.codeOutputLines.length + '"><svg id="leftCodeGutterSVG"/></td>');
+    .prepend('<td id="gutterTD" valign="top" rowspan="' + this.codeOutputLines.length + '"><svg id="leftCodeGutterSVG"/></td>');
 
   // create prevLineArrow and curLineArrow, but don't fill them in with colors just yet ...
   myViz.domRootD3.select('svg#leftCodeGutterSVG')
