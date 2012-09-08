@@ -129,12 +129,12 @@ div.ExecutionVisualizer table#pyCodeOutput .cod {
 }
 
 div.ExecutionVisualizer div#legendDiv {
-  margin: 0px;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin-top: 25px;
+  margin-bottom: 20px;
   padding: 0px;
   text-align: left;
-  color: #888;
+  color: #666;
+  font-size: 9pt;
 }
 
 div.ExecutionVisualizer div#editCodeLinkDiv {
