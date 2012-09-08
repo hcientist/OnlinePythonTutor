@@ -304,12 +304,6 @@ ExecutionVisualizer.prototype.render = function() {
     myViz.domRoot.find("#errorOutput").html(htmlspecialchars(warningMsg));
     myViz.domRoot.find("#errorOutput").show();
   }
-  // as imran suggests, for a (non-error) one-liner, SNIP off the
-  // first instruction so that we start after the FIRST instruction
-  // has been executed ...
-  else if (this.curTrace.length == 2) {
-    this.curTrace.shift();
-  }
 
   // set up slider after postprocessing curTrace
 
