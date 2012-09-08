@@ -129,8 +129,7 @@ div.ExecutionVisualizer table#pyCodeOutput .cod {
 }
 
 div.ExecutionVisualizer div#legendDiv {
-  margin-top: 25px;
-  margin-bottom: 20px;
+  margin-top: 20px;
   padding: 0px;
   text-align: left;
   color: #666;

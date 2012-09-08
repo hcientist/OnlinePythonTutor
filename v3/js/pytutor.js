@@ -215,7 +215,7 @@ ExecutionVisualizer.prototype.render = function() {
 
   this.domRoot.find('#legendDiv')
     .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
-    .append('<p style="margin-top: 3px"><svg id="curLegendArrowSVG"/> next line to be executed</p>');
+    .append('<p style="margin-top: 4px"><svg id="curLegendArrowSVG"/> next line to be executed</p>');
 
   myViz.domRootD3.select('svg#prevLegendArrowSVG')
     .append('polygon')
