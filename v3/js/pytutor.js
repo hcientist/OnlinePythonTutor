@@ -752,8 +752,14 @@ ExecutionVisualizer.prototype.updateOutput = function() {
   }
 
   var tableTop = 6; // manually adjust this so that it looks good :)
-  var rowHeight = myViz.domRoot.find('table#pyCodeOutput tr').first().height();
 
+  // this weird contortion is necessary to get the accurate row height on Internet Explorer
+  // (simpler methods work on all other major browsers, erghhhhhh!!!)
+  var rowHeight = 0;
+  if (this.codeOutputLines && this.codeOutputLines.length > 1) {
+    rowHeight = (myViz.domRoot.find('table#pyCodeOutput tr:nth-child(2)').offset().top - 
+                 myViz.domRoot.find('table#pyCodeOutput tr:first').offset().top);
+  }
 
   // call the callback if necessary (BEFORE rendering)
   if (this.params.updateOutputCallback) {
