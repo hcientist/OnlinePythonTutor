@@ -159,8 +159,8 @@ div.ExecutionVisualizer #vcrControls {
 }
 
 div.ExecutionVisualizer #vcrControls button {
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 div.ExecutionVisualizer #pyStdout {
