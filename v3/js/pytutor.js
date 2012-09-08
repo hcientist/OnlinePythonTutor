@@ -55,6 +55,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
+var svgArrowPolygon = '0,3 12,3 12,0 18,5 12,10 12,7 0,7';
+
 var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer instance
 
 // domRootID is the string ID of the root element where to render this instance
@@ -211,15 +213,19 @@ ExecutionVisualizer.prototype.render = function() {
   </table>');
 
 
-  this.domRoot
-    .find('#legendDiv')
-      .append(arrowHTML + ' line that has just executed')
-      .find('.arrow:last')
-        .css('color', lightArrowColor)
-        .end()
-      .append('<p style="margin-top:-6px">' + arrowHTML + ' next line to be executed</p>')
-      .find('.arrow:last')
-        .css('color', darkArrowColor);
+  this.domRoot.find('#legendDiv')
+    .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
+    .append('<p style="margin-top: 3px"><svg id="curLegendArrowSVG"/> next line to be executed</p>');
+
+  myViz.domRootD3.select('svg#prevLegendArrowSVG')
+    .append('polygon')
+    .attr('points', svgArrowPolygon)
+    .attr('fill', lightArrowColor);
+
+  myViz.domRootD3.select('svg#curLegendArrowSVG')
+    .append('polygon')
+    .attr('points', svgArrowPolygon)
+    .attr('fill', darkArrowColor);
 
 
   if (this.params.editCodeBaseURL) {
@@ -675,13 +681,13 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
   myViz.domRootD3.select('svg#leftCodeGutterSVG')
     .append('polygon')
     .attr('id', 'prevLineArrow')
-    .attr('points', '0,3 12,3 12,0 18,5 12,10 12,7 0,7')
+    .attr('points', svgArrowPolygon)
     .attr('fill', 'white');
 
   myViz.domRootD3.select('svg#leftCodeGutterSVG')
     .append('polygon')
     .attr('id', 'curLineArrow')
-    .attr('points', '0,3 12,3 12,0 18,5 12,10 12,7 0,7')
+    .attr('points', svgArrowPolygon)
     .attr('fill', 'white');
 
 

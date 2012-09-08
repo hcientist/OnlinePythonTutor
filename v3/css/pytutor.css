@@ -103,6 +103,12 @@ div.ExecutionVisualizer #leftCodeGutterSVG {
                   be 0 or it defaults to something arbitrary and gross */
 }
 
+div.ExecutionVisualizer #prevLegendArrowSVG,
+div.ExecutionVisualizer #curLegendArrowSVG {
+  width: 18px;
+  height: 10px;
+}
+
 div.ExecutionVisualizer .arrow {
   font-size: 16pt;
 }
@@ -124,8 +130,11 @@ div.ExecutionVisualizer table#pyCodeOutput .cod {
 
 div.ExecutionVisualizer div#legendDiv {
   margin: 0px;
+  margin-top: 10px;
+  margin-bottom: 5px;
   padding: 0px;
   text-align: left;
+  color: #888;
 }
 
 div.ExecutionVisualizer div#editCodeLinkDiv {
