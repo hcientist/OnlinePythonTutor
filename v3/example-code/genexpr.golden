@@ -1,5 +1,5 @@
 {
-  "code": "x = (i for i in range(10))\n\nfor e in x:\n    print(e)\n", 
+  "code": "# NB: there's a known bug when frames of exited functions are displayed\nx = (i for i in range(10))\n\nfor e in x:\n    print(e)\n", 
   "trace": [
     {
       "ordered_globals": [], 
@@ -8,7 +8,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -30,7 +30,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 3, 
+      "line": 4, 
       "event": "step_line"
     }, 
     {
@@ -75,7 +75,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "call"
     }, 
     {
@@ -120,7 +120,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -169,7 +169,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "return"
     }, 
     {
@@ -193,7 +193,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 4, 
+      "line": 5, 
       "event": "step_line"
     }, 
     {
@@ -217,7 +217,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 3, 
+      "line": 4, 
       "event": "step_line"
     }, 
     {
@@ -266,7 +266,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "call"
     }, 
     {
@@ -315,7 +315,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -366,7 +366,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "return"
     }, 
     {
@@ -390,7 +390,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 4, 
+      "line": 5, 
       "event": "step_line"
     }, 
     {
@@ -414,7 +414,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 3, 
+      "line": 4, 
       "event": "step_line"
     }, 
     {
@@ -463,7 +463,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "call"
     }, 
     {
@@ -512,7 +512,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -563,7 +563,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "return"
     }, 
     {
@@ -587,7 +587,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 4, 
+      "line": 5, 
       "event": "step_line"
     }, 
     {
@@ -611,7 +611,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 3, 
+      "line": 4, 
       "event": "step_line"
     }, 
     {
@@ -660,7 +660,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "call"
     }, 
     {
@@ -709,7 +709,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -760,7 +760,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "return"
     }, 
     {
@@ -784,7 +784,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 4, 
+      "line": 5, 
       "event": "step_line"
     }, 
     {
@@ -808,7 +808,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 3, 
+      "line": 4, 
       "event": "step_line"
     }, 
     {
@@ -857,7 +857,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "call"
     }, 
     {
@@ -906,7 +906,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -957,7 +957,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "return"
     }, 
     {
@@ -981,7 +981,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 4, 
+      "line": 5, 
       "event": "step_line"
     }, 
     {
@@ -1005,7 +1005,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 3, 
+      "line": 4, 
       "event": "step_line"
     }, 
     {
@@ -1054,7 +1054,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "call"
     }, 
     {
@@ -1103,7 +1103,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1154,7 +1154,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "return"
     }, 
     {
@@ -1178,7 +1178,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 4, 
+      "line": 5, 
       "event": "step_line"
     }, 
     {
@@ -1202,7 +1202,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 3, 
+      "line": 4, 
       "event": "step_line"
     }, 
     {
@@ -1251,7 +1251,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "call"
     }, 
     {
@@ -1300,7 +1300,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1351,7 +1351,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "return"
     }, 
     {
@@ -1375,7 +1375,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 4, 
+      "line": 5, 
       "event": "step_line"
     }, 
     {
@@ -1399,7 +1399,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 3, 
+      "line": 4, 
       "event": "step_line"
     }, 
     {
@@ -1448,7 +1448,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "call"
     }, 
     {
@@ -1497,7 +1497,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1548,7 +1548,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "return"
     }, 
     {
@@ -1572,7 +1572,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 4, 
+      "line": 5, 
       "event": "step_line"
     }, 
     {
@@ -1596,7 +1596,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 3, 
+      "line": 4, 
       "event": "step_line"
     }, 
     {
@@ -1645,7 +1645,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "call"
     }, 
     {
@@ -1694,7 +1694,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1745,7 +1745,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "return"
     }, 
     {
@@ -1769,7 +1769,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 4, 
+      "line": 5, 
       "event": "step_line"
     }, 
     {
@@ -1793,7 +1793,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 3, 
+      "line": 4, 
       "event": "step_line"
     }, 
     {
@@ -1842,7 +1842,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "call"
     }, 
     {
@@ -1891,7 +1891,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1942,7 +1942,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "return"
     }, 
     {
@@ -1966,7 +1966,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 4, 
+      "line": 5, 
       "event": "step_line"
     }, 
     {
@@ -1990,7 +1990,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 3, 
+      "line": 4, 
       "event": "step_line"
     }, 
     {
@@ -2039,7 +2039,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "call"
     }, 
     {
@@ -2088,7 +2088,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2139,7 +2139,7 @@
           "<listiterator object at 0xADDR>"
         ]
       }, 
-      "line": 1, 
+      "line": 2, 
       "event": "return"
     }, 
     {
@@ -2163,7 +2163,7 @@
           "<generator object <genexpr> at 0xADDR>"
         ]
       }, 
-      "line": 3, 
+      "line": 4, 
       "event": "return"
     }
   ]

@@ -8853,6 +8853,15 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "sqrt_iter": [
+              "REF", 
+              5
+            ], 
+            "is_good_enough": [
+              "REF", 
+              3
+            ], 
+            "__return__": 3.0001, 
             "x": 9, 
             "average": [
               "REF", 
@@ -8861,14 +8870,6 @@
             "improve": [
               "REF", 
               4
-            ], 
-            "sqrt_iter": [
-              "REF", 
-              5
-            ], 
-            "is_good_enough": [
-              "REF", 
-              3
             ]
           }, 
           "is_highlighted": false, 
@@ -8882,7 +8883,8 @@
             "average", 
             "improve", 
             "is_good_enough", 
-            "sqrt_iter"
+            "sqrt_iter", 
+            "__return__"
           ]
         }
       ], 

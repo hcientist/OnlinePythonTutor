@@ -665,6 +665,10 @@
               "REF", 
               4
             ], 
+            "__return__": [
+              "REF", 
+              5
+            ], 
             "baz": [
               "REF", 
               5
@@ -680,7 +684,8 @@
           "unique_hash": "bar_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "baz"
+            "baz", 
+            "__return__"
           ]
         }
       ], 
@@ -739,6 +744,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              5
+            ], 
             "x": [
               "REF", 
               2
@@ -756,7 +765,8 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "x", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
@@ -765,6 +775,10 @@
             "y": [
               "REF", 
               4
+            ], 
+            "__return__": [
+              "REF", 
+              5
             ], 
             "baz": [
               "REF", 
@@ -781,7 +795,8 @@
           "unique_hash": "bar_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "baz"
+            "baz", 
+            "__return__"
           ]
         }
       ], 
@@ -844,6 +859,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              5
+            ], 
             "x": [
               "REF", 
               2
@@ -861,7 +880,8 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "x", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
@@ -870,6 +890,10 @@
             "y": [
               "REF", 
               4
+            ], 
+            "__return__": [
+              "REF", 
+              5
             ], 
             "baz": [
               "REF", 
@@ -886,7 +910,8 @@
           "unique_hash": "bar_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "baz"
+            "baz", 
+            "__return__"
           ]
         }, 
         {
@@ -978,6 +1003,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              5
+            ], 
             "x": [
               "REF", 
               2
@@ -995,7 +1024,8 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "x", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
@@ -1004,6 +1034,10 @@
             "y": [
               "REF", 
               4
+            ], 
+            "__return__": [
+              "REF", 
+              5
             ], 
             "baz": [
               "REF", 
@@ -1020,7 +1054,8 @@
           "unique_hash": "bar_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "baz"
+            "baz", 
+            "__return__"
           ]
         }, 
         {
@@ -1112,6 +1147,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              5
+            ], 
             "x": [
               "REF", 
               2
@@ -1129,7 +1168,8 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "x", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
@@ -1138,6 +1178,10 @@
             "y": [
               "REF", 
               4
+            ], 
+            "__return__": [
+              "REF", 
+              5
             ], 
             "baz": [
               "REF", 
@@ -1154,7 +1198,8 @@
           "unique_hash": "bar_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "baz"
+            "baz", 
+            "__return__"
           ]
         }, 
         {
@@ -1248,6 +1293,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              5
+            ], 
             "x": [
               "REF", 
               2
@@ -1265,7 +1314,8 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "x", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
@@ -1274,6 +1324,10 @@
             "y": [
               "REF", 
               4
+            ], 
+            "__return__": [
+              "REF", 
+              5
             ], 
             "baz": [
               "REF", 
@@ -1290,7 +1344,8 @@
           "unique_hash": "bar_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "baz"
+            "baz", 
+            "__return__"
           ]
         }
       ], 

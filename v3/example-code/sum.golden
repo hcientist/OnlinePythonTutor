@@ -10118,6 +10118,7 @@
           "frame_id": 1, 
           "encoded_locals": {
             "high": 10, 
+            "__return__": 385, 
             "low": 1
           }, 
           "is_highlighted": false, 
@@ -10128,7 +10129,8 @@
           "unique_hash": "sumsquares_f1_p_z", 
           "ordered_varnames": [
             "low", 
-            "high"
+            "high", 
+            "__return__"
           ]
         }
       ], 

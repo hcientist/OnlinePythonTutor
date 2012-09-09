@@ -226,6 +226,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "g": [
               "REF", 
               2
@@ -243,7 +247,8 @@
           "unique_hash": "compose1_f1_p_z", 
           "ordered_varnames": [
             "f", 
-            "g"
+            "g", 
+            "__return__"
           ]
         }
       ], 
@@ -293,6 +298,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "g": [
               "REF", 
               2
@@ -310,7 +319,8 @@
           "unique_hash": "compose1_f1_p_z", 
           "ordered_varnames": [
             "f", 
-            "g"
+            "g", 
+            "__return__"
           ]
         }, 
         {
@@ -377,6 +387,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "g": [
               "REF", 
               2
@@ -394,7 +408,8 @@
           "unique_hash": "compose1_f1_p_z", 
           "ordered_varnames": [
             "f", 
-            "g"
+            "g", 
+            "__return__"
           ]
         }, 
         {
@@ -461,6 +476,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "g": [
               "REF", 
               2
@@ -478,7 +497,8 @@
           "unique_hash": "compose1_f1_p_z", 
           "ordered_varnames": [
             "f", 
-            "g"
+            "g", 
+            "__return__"
           ]
         }, 
         {
@@ -560,6 +580,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "g": [
               "REF", 
               2
@@ -577,7 +601,8 @@
           "unique_hash": "compose1_f1_p_z", 
           "ordered_varnames": [
             "f", 
-            "g"
+            "g", 
+            "__return__"
           ]
         }, 
         {
@@ -659,6 +684,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "g": [
               "REF", 
               2
@@ -676,7 +705,8 @@
           "unique_hash": "compose1_f1_p_z", 
           "ordered_varnames": [
             "f", 
-            "g"
+            "g", 
+            "__return__"
           ]
         }, 
         {
@@ -760,6 +790,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "g": [
               "REF", 
               2
@@ -777,7 +811,8 @@
           "unique_hash": "compose1_f1_p_z", 
           "ordered_varnames": [
             "f", 
-            "g"
+            "g", 
+            "__return__"
           ]
         }, 
         {
@@ -859,6 +894,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "g": [
               "REF", 
               2
@@ -876,7 +915,8 @@
           "unique_hash": "compose1_f1_p_z", 
           "ordered_varnames": [
             "f", 
-            "g"
+            "g", 
+            "__return__"
           ]
         }, 
         {
@@ -958,6 +998,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "g": [
               "REF", 
               2
@@ -975,7 +1019,8 @@
           "unique_hash": "compose1_f1_p_z", 
           "ordered_varnames": [
             "f", 
-            "g"
+            "g", 
+            "__return__"
           ]
         }, 
         {
@@ -1059,6 +1104,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "g": [
               "REF", 
               2
@@ -1076,7 +1125,8 @@
           "unique_hash": "compose1_f1_p_z", 
           "ordered_varnames": [
             "f", 
-            "g"
+            "g", 
+            "__return__"
           ]
         }, 
         {
@@ -1146,6 +1196,10 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "g": [
               "REF", 
               2
@@ -1163,7 +1217,8 @@
           "unique_hash": "compose1_f1_p_z", 
           "ordered_varnames": [
             "f", 
-            "g"
+            "g", 
+            "__return__"
           ]
         }
       ], 

@@ -301,6 +301,10 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
+            "__return__": [
+              "REF", 
+              3
+            ], 
             "bar": [
               "REF", 
               3
@@ -314,7 +318,8 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }
       ], 
@@ -365,6 +370,10 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
+            "__return__": [
+              "REF", 
+              3
+            ], 
             "bar": [
               "REF", 
               3
@@ -378,7 +387,8 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
@@ -444,6 +454,10 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
+            "__return__": [
+              "REF", 
+              3
+            ], 
             "bar": [
               "REF", 
               3
@@ -457,7 +471,8 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
@@ -523,6 +538,10 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
+            "__return__": [
+              "REF", 
+              3
+            ], 
             "bar": [
               "REF", 
               3
@@ -536,7 +555,8 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
@@ -612,6 +632,10 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
+            "__return__": [
+              "REF", 
+              3
+            ], 
             "bar": [
               "REF", 
               3
@@ -625,7 +649,8 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
@@ -707,6 +732,10 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
+            "__return__": [
+              "REF", 
+              3
+            ], 
             "bar": [
               "REF", 
               3
@@ -720,13 +749,18 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "y": 1000, 
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "bar_deux": [
               "REF", 
               4
@@ -740,7 +774,8 @@
           "unique_hash": "foo_deux_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar_deux"
+            "bar_deux", 
+            "__return__"
           ]
         }
       ], 
@@ -801,6 +836,10 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
+            "__return__": [
+              "REF", 
+              3
+            ], 
             "bar": [
               "REF", 
               3
@@ -814,13 +853,18 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "y": 1000, 
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "bar_deux": [
               "REF", 
               4
@@ -834,7 +878,8 @@
           "unique_hash": "foo_deux_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar_deux"
+            "bar_deux", 
+            "__return__"
           ]
         }, 
         {
@@ -912,6 +957,10 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
+            "__return__": [
+              "REF", 
+              3
+            ], 
             "bar": [
               "REF", 
               3
@@ -925,13 +974,18 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "y": 1000, 
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "bar_deux": [
               "REF", 
               4
@@ -945,7 +999,8 @@
           "unique_hash": "foo_deux_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar_deux"
+            "bar_deux", 
+            "__return__"
           ]
         }, 
         {
@@ -1023,6 +1078,10 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
+            "__return__": [
+              "REF", 
+              3
+            ], 
             "bar": [
               "REF", 
               3
@@ -1036,13 +1095,18 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "y": 1000, 
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "bar_deux": [
               "REF", 
               4
@@ -1056,7 +1120,8 @@
           "unique_hash": "foo_deux_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar_deux"
+            "bar_deux", 
+            "__return__"
           ]
         }, 
         {
@@ -1136,6 +1201,10 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
+            "__return__": [
+              "REF", 
+              3
+            ], 
             "bar": [
               "REF", 
               3
@@ -1149,13 +1218,18 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "y": 1000, 
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "bar_deux": [
               "REF", 
               4
@@ -1169,7 +1243,8 @@
           "unique_hash": "foo_deux_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar_deux"
+            "bar_deux", 
+            "__return__"
           ]
         }
       ], 
@@ -1230,6 +1305,10 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
+            "__return__": [
+              "REF", 
+              3
+            ], 
             "bar": [
               "REF", 
               3
@@ -1243,13 +1322,18 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "y": 1000, 
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "bar_deux": [
               "REF", 
               4
@@ -1263,7 +1347,8 @@
           "unique_hash": "foo_deux_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar_deux"
+            "bar_deux", 
+            "__return__"
           ]
         }, 
         {
@@ -1341,6 +1426,10 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
+            "__return__": [
+              "REF", 
+              3
+            ], 
             "bar": [
               "REF", 
               3
@@ -1354,13 +1443,18 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "y": 1000, 
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "bar_deux": [
               "REF", 
               4
@@ -1374,7 +1468,8 @@
           "unique_hash": "foo_deux_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar_deux"
+            "bar_deux", 
+            "__return__"
           ]
         }, 
         {
@@ -1452,6 +1547,10 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
+            "__return__": [
+              "REF", 
+              3
+            ], 
             "bar": [
               "REF", 
               3
@@ -1465,13 +1564,18 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "y": 1000, 
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "bar_deux": [
               "REF", 
               4
@@ -1485,7 +1589,8 @@
           "unique_hash": "foo_deux_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar_deux"
+            "bar_deux", 
+            "__return__"
           ]
         }, 
         {
@@ -1565,6 +1670,10 @@
           "frame_id": 1, 
           "encoded_locals": {
             "y": 1, 
+            "__return__": [
+              "REF", 
+              3
+            ], 
             "bar": [
               "REF", 
               3
@@ -1578,13 +1687,18 @@
           "unique_hash": "foo_f1_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar"
+            "bar", 
+            "__return__"
           ]
         }, 
         {
           "frame_id": 2, 
           "encoded_locals": {
             "y": 1000, 
+            "__return__": [
+              "REF", 
+              4
+            ], 
             "bar_deux": [
               "REF", 
               4
@@ -1598,7 +1712,8 @@
           "unique_hash": "foo_deux_f2_p_z", 
           "ordered_varnames": [
             "y", 
-            "bar_deux"
+            "bar_deux", 
+            "__return__"
           ]
         }
       ], 
