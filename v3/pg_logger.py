@@ -239,6 +239,14 @@ class PGLogger(bdb.Bdb):
         if self._wait_for_mainpyfile:
             return
         if self.stop_here(frame):
+            # delete __return__ so that on subsequent calls to
+            # a generator function, the OLD yielded (returned)
+            # value gets deleted from the frame ...
+            try:
+              del frame.f_locals['__return__']
+            except KeyError:
+              pass
+
             self.interaction(frame, None, 'call')
 
     def user_line(self, frame):
@@ -254,12 +262,6 @@ class PGLogger(bdb.Bdb):
         """This function is called when a return trap is set here."""
         frame.f_locals['__return__'] = return_value
         self.interaction(frame, None, 'return')
-        # delete __return__ so that on subsequent calls to
-        # a generator function, the OLD yielded (returned)
-        # value gets deleted from the frame ...
-        # (this also clears away crufty obsolete return values in other
-        # kinds of examples as well, most notably those involving closures)
-        del frame.f_locals['__return__']
 
     def user_exception(self, frame, exc_info):
         exc_type, exc_value, exc_traceback = exc_info
