@@ -48,30 +48,6 @@ div.ExecutionVisualizer #dataViz {
   margin-left: 30px;
 }
 
-div.ExecutionVisualizer table.frameDataViz {
-  border-spacing: 0px;
-  font-size: 12pt;
-  margin-top: 5px;
-  margin-left: 15px;
-  background-color: #dddddd;
-  padding: 5px;
-}
-
-div.ExecutionVisualizer table.frameDataViz td.varname {
-  text-align: right;
-  padding: 5px;
-  padding-right: 8px;
-  border-right: 1px dashed #888888;
-}
-
-div.ExecutionVisualizer table.frameDataViz td.val {
-  padding-left: 8px;
-  padding-right: 5px;
-
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-
 div.ExecutionVisualizer div#pyCodeOutputDiv {
   max-width: 550px;
   max-height: 450px;
@@ -146,8 +122,7 @@ div.ExecutionVisualizer div#editCodeLinkDiv {
 }
 
 div.ExecutionVisualizer #errorOutput {
-  color: #d03939;
-  /*background-color: #F87D76;*/
+  color: #e93f34; /* should match brightRed JavaScript variable */
   font-size: 12pt;
   padding: 2px;
   line-height: 1.5em;
@@ -157,10 +132,6 @@ div.ExecutionVisualizer #errorOutput {
 /* VCR control buttons for stepping through execution */
 
 div.ExecutionVisualizer #vcrControls {
-  /*
-  margin-top: 15px;
-  margin-bottom: 15px;
-  */
   margin: 15px auto;
   width: 100%;
   text-align: center;
@@ -379,6 +350,7 @@ div.ExecutionVisualizer div.zombieStackFrame {
 
 div.ExecutionVisualizer div.highlightedStackFrame {
   background-color: #d7e7fb;
+
   /*background-color: #c0daf8;*/
   /*background-color: #9eeaff #c5dfea;*/
 }
