@@ -940,7 +940,7 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
         cla 
           .transition()
           .delay(200)
-          .duration(300)
+          .duration(250)
           .attr('transform', translateCurCmd);
       }
       else {
