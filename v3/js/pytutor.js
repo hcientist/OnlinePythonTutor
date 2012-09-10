@@ -432,7 +432,7 @@ ExecutionVisualizer.prototype.stepForward = function() {
     else {
       myViz.curInstr += 1;
     }
-    myViz.updateOutput();
+    myViz.updateOutput(true);
     return true;
   }
 
@@ -741,7 +741,8 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
 
 
 // This function is called every time the display needs to be updated
-ExecutionVisualizer.prototype.updateOutput = function() {
+// smoothTransition is OPTIONAL!
+ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
   assert(this.curTrace);
 
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
@@ -905,24 +906,47 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     }
 
     if (prevLineNumber) {
-      gutterSVG.find('#prevLineArrow').show();
+      var pla = myViz.domRootD3.select('#prevLineArrow');
+      var translatePrevCmd = 'translate(0, ' + (((prevLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + prevVerticalNudge) + ')';
 
-      myViz.domRootD3.select('#prevLineArrow')
-        .transition()
-        .duration(300)
-        .attr('transform', 'translate(0, ' + (((prevLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + prevVerticalNudge) + ')');
+      if (smoothTransition) {
+        pla 
+          .transition()
+          .duration(200)
+          .attr('fill', 'white')
+          .each('end', function() {
+            pla
+              .attr('transform', translatePrevCmd)
+              .attr('fill', lightArrowColor);
+
+          });
+      }
+      else {
+        pla.attr('transform', translatePrevCmd)
+      }
+
+      gutterSVG.find('#prevLineArrow').show();
     }
     else {
       gutterSVG.find('#prevLineArrow').hide();
     }
 
     if (curLineNumber) {
-      gutterSVG.find('#curLineArrow').show();
+      var cla = myViz.domRootD3.select('#curLineArrow');
+      var translateCurCmd = 'translate(0, ' + (((curLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + curVerticalNudge) + ')';
 
-      myViz.domRootD3.select('#curLineArrow')
-        .transition()
-        .duration(300)
-        .attr('transform', 'translate(0, ' + (((curLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + curVerticalNudge) + ')');
+      if (smoothTransition) {
+        cla 
+          .transition()
+          .delay(200)
+          .duration(300)
+          .attr('transform', translateCurCmd);
+      }
+      else {
+        cla.attr('transform', translateCurCmd);
+      }
+
+      gutterSVG.find('#curLineArrow').show();
     }
     else {
       gutterSVG.find('#curLineArrow').hide();
