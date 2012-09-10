@@ -55,7 +55,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
-var svgArrowPolygon = '0,3 12,3 12,0 18,5 12,10 12,7 0,7';
+var SVG_ARROW_POLYGON = '0,3 12,3 12,0 18,5 12,10 12,7 0,7';
+var SVG_ARROW_HEIGHT = 10; // must match height of SVG_ARROW_POLYGON
 
 var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer instance
 
@@ -92,6 +93,11 @@ function ExecutionVisualizer(domRootID, dat, params) {
   // needs to be unique!
   this.visualizerID = curVisualizerID;
   curVisualizerID++;
+
+
+  this.leftGutterSvgInitialized = false;
+  this.arrowOffsetY = undefined;
+  this.codeRowHeight = undefined;
 
 
   // cool, we can create a separate jsPlumb instance for each visualization:
@@ -219,12 +225,12 @@ ExecutionVisualizer.prototype.render = function() {
 
   myViz.domRootD3.select('svg#prevLegendArrowSVG')
     .append('polygon')
-    .attr('points', svgArrowPolygon)
+    .attr('points', SVG_ARROW_POLYGON)
     .attr('fill', lightArrowColor);
 
   myViz.domRootD3.select('svg#curLegendArrowSVG')
     .append('polygon')
-    .attr('points', svgArrowPolygon)
+    .attr('points', SVG_ARROW_POLYGON)
     .attr('fill', darkArrowColor);
 
 
@@ -679,13 +685,13 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
   myViz.domRootD3.select('svg#leftCodeGutterSVG')
     .append('polygon')
     .attr('id', 'prevLineArrow')
-    .attr('points', svgArrowPolygon)
+    .attr('points', SVG_ARROW_POLYGON)
     .attr('fill', 'white');
 
   myViz.domRootD3.select('svg#leftCodeGutterSVG')
     .append('polygon')
     .attr('id', 'curLineArrow')
-    .attr('points', svgArrowPolygon)
+    .attr('points', SVG_ARROW_POLYGON)
     .attr('fill', 'white');
 
 
@@ -736,34 +742,57 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
 
 // This function is called every time the display needs to be updated
 ExecutionVisualizer.prototype.updateOutput = function() {
-  var myViz = this; // to prevent confusion of 'this' inside of nested functions
-
   assert(this.curTrace);
+
+  var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
   // there's no point in re-rendering if this pane isn't even visible in the first place!
   if (!myViz.domRoot.is(':visible')) {
     return;
   }
 
-  // set the gutter's height to match that of its parent
-  // (we often can't do this earlier since the entire pane
-  //  might be invisible and hence returns a height of zero or NaN -- the exact format depends on browser)
+
   var gutterSVG = myViz.domRoot.find('svg#leftCodeGutterSVG');
-  gutterSVG.height(gutterSVG.parent().height());
 
+  // one-time initialization of the left gutter
+  // (we often can't do this earlier since the entire pane
+  //  might be invisible and hence returns a height of zero or NaN
+  //  -- the exact format depends on browser)
+  if (!myViz.leftGutterSvgInitialized) {
+    // set the gutter's height to match that of its parent
+    gutterSVG.height(gutterSVG.parent().height());
 
-  var tableTop = 5; // manually adjust this so that it looks good :)
+    var firstRowOffsetY  = myViz.domRoot.find('table#pyCodeOutput tr:first').offset().top;
+    
+    // first take care of edge case when there's only one line ...
+    myViz.codeRowHeight = myViz.domRoot.find('table#pyCodeOutput td.cod:first').height();
 
-  // this weird contortion is necessary to get the accurate row height on Internet Explorer
-  // (simpler methods work on all other major browsers, erghhhhhh!!!)
-  
-  // first take care of edge case when there's only one line ...
-  var rowHeight = myViz.domRoot.find('table#pyCodeOutput td.cod:first').height();
-  // ... then handle the (much more common) multi-line case ...
-  if (this.codeOutputLines && this.codeOutputLines.length > 1) {
-    rowHeight = (myViz.domRoot.find('table#pyCodeOutput tr:nth-child(2)').offset().top - 
-                 myViz.domRoot.find('table#pyCodeOutput tr:first').offset().top);
+    // ... then handle the (much more common) multi-line case ...
+    // this weird contortion is necessary to get the accurate row height on Internet Explorer
+    // (simpler methods work on all other major browsers, erghhhhhh!!!)
+    if (this.codeOutputLines && this.codeOutputLines.length > 1) {
+      var secondRowOffsetY = myViz.domRoot.find('table#pyCodeOutput tr:nth-child(2)').offset().top;
+      myViz.codeRowHeight = secondRowOffsetY - firstRowOffsetY;
+    }
+
+    assert(myViz.codeRowHeight > 0);
+
+    var gutterOffsetY = gutterSVG.offset().top;
+    var teenyAdjustment = gutterOffsetY - firstRowOffsetY;
+
+    // super-picky detail to adjust the vertical alignment of arrows so that they line up
+    // well with the pointed-to code text ...
+    // (if you want to manually adjust tableTop, then ~5 is a reasonable number)
+    myViz.arrowOffsetY = Math.floor((myViz.codeRowHeight / 2) - (SVG_ARROW_HEIGHT / 2)) - teenyAdjustment;
+
+    myViz.leftGutterSvgInitialized = true;
+
+    console.log(myViz.codeRowHeight);
   }
+
+  assert(myViz.arrowOffsetY !== undefined);
+  assert(myViz.codeRowHeight !== undefined);
+  assert(0 <= myViz.arrowOffsetY && myViz.arrowOffsetY <= myViz.codeRowHeight);
 
   // call the callback if necessary (BEFORE rendering)
   if (this.params.updateOutputCallback) {
@@ -861,8 +890,8 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
     // on 'return' events, give a bit more of a vertical nudge to show that
     // the arrow is aligned with the 'bottom' of the line ...
-    var prevVerticalNudge = prevIsReturn ? 10 : 0;
-    var curVerticalNudge = curIsReturn ? 10 : 0;
+    var prevVerticalNudge = prevIsReturn ? Math.floor(myViz.codeRowHeight / 2) : 0;
+    var curVerticalNudge  = curIsReturn  ? Math.floor(myViz.codeRowHeight / 2) : 0;
 
 
     // edge case for the final instruction :0
@@ -873,7 +902,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       }
       // otherwise have a smaller vertical nudge (to fit at bottom of display table)
       else {
-        curVerticalNudge = 8;
+        curVerticalNudge = curVerticalNudge - 2;
       }
     }
 
@@ -881,7 +910,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       gutterSVG.find('#prevLineArrow')
         .show()
         .attr('fill', lightArrowColor)
-        .attr('transform', 'translate(0, ' + (((prevLineNumber - 1) * rowHeight) + tableTop + prevVerticalNudge) + ')');
+        .attr('transform', 'translate(0, ' + (((prevLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + prevVerticalNudge) + ')');
     }
     else {
       gutterSVG.find('#prevLineArrow').hide();
@@ -891,7 +920,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
       gutterSVG.find('#curLineArrow')
         .show()
         .attr('fill', darkArrowColor)
-        .attr('transform', 'translate(0, ' + (((curLineNumber - 1) * rowHeight) + tableTop + curVerticalNudge) + ')');
+        .attr('transform', 'translate(0, ' + (((curLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + curVerticalNudge) + ')');
     }
     else {
       gutterSVG.find('#curLineArrow').hide();
