@@ -681,18 +681,18 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
   myViz.domRoot.find('#pyCodeOutput tr:first')
     .prepend('<td id="gutterTD" valign="top" rowspan="' + this.codeOutputLines.length + '"><svg id="leftCodeGutterSVG"/></td>');
 
-  // create prevLineArrow and curLineArrow, but don't fill them in with colors just yet ...
+  // create prevLineArrow and curLineArrow
   myViz.domRootD3.select('svg#leftCodeGutterSVG')
     .append('polygon')
     .attr('id', 'prevLineArrow')
     .attr('points', SVG_ARROW_POLYGON)
-    .attr('fill', 'white');
+    .attr('fill', lightArrowColor);
 
   myViz.domRootD3.select('svg#leftCodeGutterSVG')
     .append('polygon')
     .attr('id', 'curLineArrow')
     .attr('points', SVG_ARROW_POLYGON)
-    .attr('fill', 'white');
+    .attr('fill', darkArrowColor);
 
 
   // 2012-09-05: Disable breakpoints for now to simplify UX
@@ -786,8 +786,6 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     myViz.arrowOffsetY = Math.floor((myViz.codeRowHeight / 2) - (SVG_ARROW_HEIGHT / 2)) - teenyAdjustment;
 
     myViz.leftGutterSvgInitialized = true;
-
-    console.log(myViz.codeRowHeight);
   }
 
   assert(myViz.arrowOffsetY !== undefined);
@@ -907,9 +905,11 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     }
 
     if (prevLineNumber) {
-      gutterSVG.find('#prevLineArrow')
-        .show()
-        .attr('fill', lightArrowColor)
+      gutterSVG.find('#prevLineArrow').show();
+
+      myViz.domRootD3.select('#prevLineArrow')
+        .transition()
+        .duration(300)
         .attr('transform', 'translate(0, ' + (((prevLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + prevVerticalNudge) + ')');
     }
     else {
@@ -917,9 +917,11 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     }
 
     if (curLineNumber) {
-      gutterSVG.find('#curLineArrow')
-        .show()
-        .attr('fill', darkArrowColor)
+      gutterSVG.find('#curLineArrow').show();
+
+      myViz.domRootD3.select('#curLineArrow')
+        .transition()
+        .duration(300)
         .attr('transform', 'translate(0, ' + (((curLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + curVerticalNudge) + ')');
     }
     else {
