@@ -60,7 +60,7 @@ function setCodeMirrorVal(dat) {
   $('#urlOutput').val('');
 
   // also scroll to top to make the UI more usable on smaller monitors
-  $('body').scrollTop(0);
+  $('html').scrollTop(0);
 }
 
 
@@ -259,7 +259,7 @@ $(document).ready(function() {
 
 
               // also scroll to top to make the UI more usable on smaller monitors
-              $('body').scrollTop(0);
+              $('html').scrollTop(0);
 
               $.bbq.pushState({ mode: 'visualize' }, 2 /* completely override other hash strings to keep URL clean */);
             }
