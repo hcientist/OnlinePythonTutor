@@ -919,13 +919,14 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
               .attr('transform', translatePrevCmd)
               .attr('fill', lightArrowColor);
 
+            gutterSVG.find('#prevLineArrow').show(); // show at the end to avoid flickering
           });
       }
       else {
         pla.attr('transform', translatePrevCmd)
+        gutterSVG.find('#prevLineArrow').show();
       }
 
-      gutterSVG.find('#prevLineArrow').show();
     }
     else {
       gutterSVG.find('#prevLineArrow').hide();
