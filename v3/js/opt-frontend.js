@@ -480,6 +480,11 @@ $(document).ready(function() {
     return false;
   });
 
+  $('#nonlocalLink').click(function() {
+    $.get("example-code/nonlocal.txt", setCodeMirrorVal);
+    return false;
+  });
+
 
   if (preseededCode) {
     setCodeMirrorVal(preseededCode);
