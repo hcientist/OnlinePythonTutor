@@ -4,7 +4,8 @@ def outer():
     def inner():
         nonlocal x
         x = 2
-        print("inner:", x)
+        y = x
+        print("inner:", x, y)
     inner()
     print("outer:", x)
 
