@@ -470,7 +470,6 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
   //   'text' - the text of the line of code
   //   'lineNumber' - one-indexed (always the array index + 1)
   //   'executionPoints' - an ordered array of zero-indexed execution points where this line was executed
-  //   'backgroundColor' - current code output line background color
   //   'breakpointHere' - has a breakpoint been set here?
   this.codeOutputLines = [];
 
@@ -609,7 +608,6 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
     n.text = cod;
     n.lineNumber = i + 1;
     n.executionPoints = [];
-    n.backgroundColor = null;
     n.breakpointHere = false;
 
     $.each(this.curTrace, function(j, elt) {
@@ -869,7 +867,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
 
     // edge case for the final instruction :0
-    if (isTerminated) {
+    if (isTerminated && !hasError) {
       // don't show redundant arrows on the same line when terminated ...
       if (prevLineNumber == curLineNumber) {
         curLineNumber = null;
@@ -902,17 +900,23 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
-      .style('background-color', function(d) {
+      .style('border-top', function(d) {
         if (hasError && (d.lineNumber == curEntry.line)) {
-          d.backgroundColor = errorColor;
+          return '1px solid ' + errorColor;
         }
         else {
-          d.backgroundColor = null;
+          return '';
         }
-
-        return d.backgroundColor;
+      })
+      .style('border-bottom', function(d) {
+        // COPY AND PASTE ALERT!
+        if (hasError && (d.lineNumber == curEntry.line)) {
+          return '1px solid ' + errorColor;
+        }
+        else {
+          return '';
+        }
       });
-
 
     // returns True iff lineNo is visible in pyCodeOutputDiv
     function isOutputLineVisible(lineNo) {
@@ -2010,23 +2014,21 @@ var highlightedLineLighterColor = '#e8fff0';
 
 var funcCallLineColor = '#a2eebd';
 
-var darkRed = '#d03939';
+var brightRed = '#e93f34';
 
 var connectorBaseColor = '#005583';
-var connectorHighlightColor = darkRed;
+var connectorHighlightColor = brightRed;
 var connectorInactiveColor = '#cccccc';
 
-var errorColor = darkRed;
+var errorColor = brightRed;
 
-var breakpointColor = darkRed;
+var breakpointColor = brightRed;
 var hoverBreakpointColor = connectorBaseColor;
 
 
 // Unicode arrow types: '\u21d2', '\u21f0', '\u2907'
-var darkArrowColor = darkRed;
-var lightArrowColor = '#ccc';
-
-var arrowHTML = '<span class="arrow">\u21d2</span>';
+var darkArrowColor = brightRed;
+var lightArrowColor = '#c9e6ca';
 
 
 function assert(cond) {

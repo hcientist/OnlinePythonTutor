@@ -201,7 +201,7 @@ div.ExecutionVisualizer .funcObj {
 
 div.ExecutionVisualizer .retval {
   font-size: 9pt;
-  color: #d03939; /* dark red */
+  color: #e93f34; /* should match brightRed JavaScript variable */
 }
 
 

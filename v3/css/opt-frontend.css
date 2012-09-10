@@ -82,4 +82,4 @@ button.bigBtn {
 
 
 /* necessary for CodeMirror error line highlighting to work! */
-.CodeMirror .errorLine { background: #F89D99 !important; }
+.CodeMirror .errorLine { background: #ffff3f !important; }
