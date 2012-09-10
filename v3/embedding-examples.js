@@ -17,9 +17,9 @@ var aliasing5Viz = null;
 var hanoiViz = null;
 
 $(document).ready(function() {
-  stuffViz = new ExecutionVisualizer('stuffDiv', stuff, {hideOutput: true, jumpToEnd: true, editCodeBaseURL: 'http://localhost:8080/'});
-  aliasing5Viz = new ExecutionVisualizer('aliasing5Div', aliasing5, {hideOutput: true, jumpToEnd: true, editCodeBaseURL: 'http://localhost:8080/'});
-  hanoiViz = new ExecutionVisualizer('hanoiDiv', hanoi, {startingInstruction: 45, hideOutput: true, editCodeBaseURL: 'http://localhost:8080/'});
+  stuffViz = new ExecutionVisualizer('stuffDiv', stuff, {embeddedMode: true, jumpToEnd: true, editCodeBaseURL: 'http://localhost:8080/'});
+  aliasing5Viz = new ExecutionVisualizer('aliasing5Div', aliasing5, {embeddedMode: true, jumpToEnd: true, editCodeBaseURL: 'http://localhost:8080/'});
+  hanoiViz = new ExecutionVisualizer('hanoiDiv', hanoi, {startingInstruction: 45, embeddedMode: true, editCodeBaseURL: 'http://localhost:8080/'});
 
   // redraw connector arrows on window resize
   $(window).resize(function() {
