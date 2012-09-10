@@ -378,7 +378,9 @@ div.ExecutionVisualizer div.zombieStackFrame {
 }
 
 div.ExecutionVisualizer div.highlightedStackFrame {
-  background-color: #c5dfea;
+  background-color: #d7e7fb;
+  /*background-color: #c0daf8;*/
+  /*background-color: #9eeaff #c5dfea;*/
 }
 
 div.ExecutionVisualizer div.stackFrame,
