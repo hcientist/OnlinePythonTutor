@@ -747,11 +747,10 @@ ExecutionVisualizer.prototype.updateOutput = function() {
 
   // set the gutter's height to match that of its parent
   // (we often can't do this earlier since the entire pane
-  //  might be invisible and hence return a height of zero)
+  //  might be invisible and hence returns a height of zero or NaN -- the exact format depends on browser)
   var gutterSVG = myViz.domRoot.find('svg#leftCodeGutterSVG');
-  if (!gutterSVG.height()) {
-    gutterSVG.height(gutterSVG.parent().height());
-  }
+  gutterSVG.height(gutterSVG.parent().height());
+
 
   var tableTop = 5; // manually adjust this so that it looks good :)
 
