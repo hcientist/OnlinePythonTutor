@@ -753,7 +753,7 @@ ExecutionVisualizer.prototype.updateOutput = function() {
     gutterSVG.height(gutterSVG.parent().height());
   }
 
-  var tableTop = 6; // manually adjust this so that it looks good :)
+  var tableTop = 5; // manually adjust this so that it looks good :)
 
   // this weird contortion is necessary to get the accurate row height on Internet Explorer
   // (simpler methods work on all other major browsers, erghhhhhh!!!)
