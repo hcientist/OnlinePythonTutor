@@ -126,6 +126,15 @@ table#embedShareTable td {
   vertical-align: top;
 }
 
+table#embedShareTable td#embedPaneTd {
+  width: 60%;
+}
+
+table#embedShareTable td#sharePaneTd {
+  width: 40%;
+}
+
+
 #footer {
   color: #666666;
   font-size: 9pt;
