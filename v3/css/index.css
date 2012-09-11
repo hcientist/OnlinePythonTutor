@@ -100,6 +100,10 @@ div#learnPane h3 {
   margin-bottom: 8px;
 }
 
+tt {
+  font-size: 85%;
+}
+
 div#embedPane {
   margin-right: 5px;
 }
@@ -126,9 +130,9 @@ table#embedShareTable td {
 #footer {
   color: #666666;
   font-size: 9pt;
-  /*border-top: 1px solid #bbbbbb;*/
-  padding-top: 5px;
-  margin-top: 10px;
+  border-top: 1px solid #bbbbbb;
+  padding-top: 0px;
+  margin-top: 15px;
 
   max-width: 100%;
   /* center align */
