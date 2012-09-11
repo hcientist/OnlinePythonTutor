@@ -73,14 +73,9 @@ total = sumList(myList)
 
 <script type="text/javascript" src="js/jquery.corner.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function() {
-  // for rounded corners
-  $(".activityPane").corner('15px');
-});
-</script>
+<script type="text/javascript" src="js/index.js"></script>
 
-<link rel="stylesheet" href="css/pytutor-title.css"/>
+<link rel="stylesheet" href="css/index.css"/>
 
 </head>
 
@@ -109,15 +104,8 @@ the run-time state of all data structures.</p>
 Tutor provides a rich visualization of variables, heap objects, and
 stack frames.  For example, the following code:</p>
 
-<pre>
-x = ["Alice", "Bob", "Charlie"]
-y = x
-z = ["Alice", "Bob", "Charlie"]
-</pre>
 
-<p>will be visualized as the following HTML diagram, which properly shows
-aliasing relationships:</p>
-
+<div id="demoViz"/>
 
 <h3><a href="tutor.html">Go play with the Online Python Tutor!</a></h3>
 
@@ -184,6 +172,8 @@ some sample debugging problems:</p>
 <p>Source code and documentation are in this <a
 href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub
 repository</a>.</p>
+
+<p>Join ___ (low-traffic) Google Group to receive project announcements.</p>
 
 <p>
 Copyright &copy; 2010-2012 <a href="http://www.pgbovine.net/">Philip
