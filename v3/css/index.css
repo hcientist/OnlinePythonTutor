@@ -109,8 +109,9 @@ div#sharePane {
 }
 
 div#detailsPane {
-  margin-top: 15px;
+  margin-top: 0px;
   margin-left: 5px;
+  border: 0px; /* NO BORDER! */
 }
 
 table#embedShareTable {
