@@ -29,35 +29,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
  -->
 
-<!--
-
-myList = (1, (2, (3, None)))
-
-def sumList(n, sub):
-  if not n:
-    return sub
-  else:
-    return sumList(n[1], sub + n[0])
-
-total = sumList(myList, 0)
-
----
-
-myList = (1, (2, (3, None)))
-
-def sumList(n):
-  if not n:
-    return 0
-  else:
-    return n[0] + sumList(n[1])
-
-total = sumList(myList)
-
- -->
-
 <head>
 
-<title>Online Python Tutor: Learn and practice Python programming in your web browser</title>
+<title>Online Python Tutor: Visually learn Python programming</title>
 
 
 <!-- requirements for pytutor.js -->
@@ -84,105 +58,158 @@ total = sumList(myList)
 <div class="titlePane">
 
 <h1>Online Python Tutor</h1>
-<h2>Learn and practice Python programming in your web browser</h2>
+<h2>Visually learn Python programming</h2>
 
 </div>
+
 
 <div class="mainBodyPane">
 
+<table id='embedShareTable'>
+  <tr>
+    <td colspan="2">
+
 <div class="activityPane" id="learnPane">
 
-<h1>Learn</h1>
-<h2>Python by writing code and visualizing execution</h2>
+<h1>Learn <span class="smallH1">to program in Python by writing code and visualizing execution</span></h1>
 
-<p>This free educational application allows teachers and students to
-write Python scripts directly in the web browser, execute those scripts,
-single-step <b>forwards and backwards</b> through execution, and view
-the run-time state of all data structures.</p>
+<p>Online Python Tutor allows teachers and students to write <a href="http://www.python.org/">Python</a>
+programs directly in the web browser, execute those programs, step
+<b>forwards and backwards</b> through execution to view the run-time
+state of data structures, and share their visualizations on the web.</p>
 
-<p>Rather than displaying a bland text-based console, the Online Python
-Tutor provides a rich visualization of variables, heap objects, and
-stack frames.  For example, the following code:</p>
+<p>Rather than simply displaying a text-based console, Online Python
+Tutor visualizes stack frames, variables, and heap objects. For example,
+here is a recursive function that sums linked list elements:</p>
 
+<div id="demoViz"></div>
 
-<div id="demoViz"/>
+<p>Since its inception in January 2010, over 100,000 people have used
+Online Python Tutor to understand and debug their programs. In addition,
+instructors in over a dozen universities including MIT, UC Berkeley, UC
+Davis, Sonoma State University, the University of Washington, the
+University of Waterloo, the University of Toronto, Luther College, and
+Swarthmore College have adopted it for teaching introductory computer
+science courses.</p>
 
-<h3><a href="tutor.html">Go play with the Online Python Tutor!</a></h3>
+</p>
 
-</div>
-
-<div class="activityPane" id="solvePane">
-
-<h1>Solve</h1>
-<h2>programming problems by writing Python code</h2>
-
-<p>The Online Python Tutor also allows students to practice solving
-programming problems like those they would receive for class assignments
-or technical job interviews.</p>
-
-<p>It provides web-based interfaces for writing solution and test code,
-executing on a series of graded test inputs, and showing what tests
-passed and failed.</p>
-
-<p>The above screenshot shows passed and failed tests.  The user can
-click on the "Debug me" button besides one of the sad faces to debug why
-the program failed on a particular test.</p>
-
-<p>Here are some sample practice problems:</p>
-
-<ul>
-
-<li><a href="question.html?two-sum">Two-sum</a></li>
-<li><a href="question.html?reverse">Reverse list</a></li>
-<li><a href="question.html?remove-dups">Remove duplicate characters</a></li>
-
-</ul>
+<h3><a href="tutor.html">Start using Online Python Tutor now</a></h3>
 
 </div>
 
-<div class="activityPane" id="debugPane">
 
-<h1>Debug</h1>
-<h2>existing programs that almost work properly</h2>
 
-<p>Using the Online Python Tutor's bidirectional single-stepping and
-data structure visualization capabilities, students can practice
-debugging, an important skill which is rarely covered in web-based
-programming problems.</p>
+    </td>
+  </tr>
 
-<p>They can work on problems like, <i>"Change at most 2 lines of code to
-make this almost-correct Python program work properly."</i> Here are
-some sample debugging problems:</p>
+  <tr>
+    <td width="60%">
 
-<ul>
+<div class="activityPane" id="embedPane">
 
-<li><a href="question.html?debug-ireverse">In-place reverse</a></li>
-<li><a href="question.html?debug-bsearch">Binary search</a></li>
-<li><a href="question.html?debug-mergesort">Mergesort</a></li>
+<h1>Embed <span class="smallH1">visualizations in digital textbooks and course lessons</span></h1>
 
-</ul>
+<p>Using just one line of JavaScript code, you can embed an Online
+Python Tutor visualization within your web page. For example, the
+HTML textbook for the introductory CS course at UC Berkeley (<a
+href="http://www-inst.eecs.berkeley.edu/~cs61a/">CS61A</a>) contains
+dozens of embedded visualizations:
 
-</div>
+</p>
+
+<a href="http://inst.eecs.berkeley.edu/~cs61A-tz/book/chapters/objects.html#nested-pairs">
+<img src="opt-v3-cs61a-embed.png" style="border: 1px solid #aaa"/>
+</a>
+<p>
+
+These visualizations have also been embedded within two other web-based
+digital Python textbook projects: <a
+href="http://interactivepython.org/courselib/static/thinkcspy/index.html">How
+to Think Like a Computer Scientist: Interactive Edition</a> and <a
+href="http://cscircles.cemc.uwaterloo.ca/">Computer Science Circles</a>.
+These textbooks collectively attract around 16,000 unique viewers per
+month and are being used in at least 25 universities around the world.
+
+</p>
 
 </div>
 
 
 <div id="footer">
 
-<p>Source code and documentation are in this <a
-href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub
-repository</a>.</p>
-
-<p>Join ___ (low-traffic) Google Group to receive project announcements.</p>
-
-<p>
-Copyright &copy; 2010-2012 <a href="http://www.pgbovine.net/">Philip
-Guo</a> (philip@pgbovine.net).  All rights reserved.
-</p>
-
-<p>Special thanks to ___</p>
+<p>Copyright &copy; 2010-2012 <a href="http://www.pgbovine.net/">Philip Guo</a>. All rights reserved.</p>
 
 </div>
+
+
+    </td>
+    <td width="40%">
+
+<div class="activityPane" id="sharePane">
+
+<h1>Share <span class="smallH1">visualizations online</span></h1>
+
+<p>To share your current visualization, click the &ldquo;Generate
+URL&rdquo; button and send that URL link in an email, social networking
+post, or forum thread. When recipients click on that link, they will see
+exactly what you are looking at. This is a more effective way for
+students to seek assistance than simply copying-and-pasting code.</p>
+
+<p> For example, clicking <a
+href="http://www.pythontutor.com/tutor.html#code=%23+find+primes+using+a+for-else+construct%0Afor+n+in+range(2,+10)%3A%0A++++x_range+%3D+range(2,+n)%0A++++for+x+in+x_range%3A%0A++++++++if+n+%25+x+%3D%3D+0%3A%0A++++++++++++break%0A++++else%3A%0A++++++++%23+loop+fell+through+without+finding+a+factor%0A++++++++print(n)&curInstr=43&mode=visualize&cumulative_mode=false&python_version=2">this
+link</a> brings you directly to step 44 of 57 in a program to find prime
+numbers using the Python <tt>for-else</tt> construct.</p>
+
+<p>In the future, we plan to create an authoring environment where you
+can add annotations, discussion threads, and even interactive activities
+on top of your visualizations.</p>
+
+</div>
+
+
+<div class="activityPane" id="detailsPane">
+
+<h2>More Details</h2>
+
+<p>
+
+<ul>
+
+  <li/>Supports Python <a href="http://www.python.org/doc/2.7/">2.7</a>
+  and <a href="http://www.python.org/doc/3.2/">3.2</a> with limited
+  module imports and no file I/O
+
+  <li/>BSD-licensed source code available in this <a
+  href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub
+  repository</a>
+
+  <li/>Main technologies: Python <tt><a
+  href="http://docs.python.org/library/bdb.html">bdb</a></tt> debugger
+  framework for backend execution trace generation, <a
+  href="http://www.d3js.org/">D3.js</a> for frontend data management and
+  visualization, <a href="http://www.jsplumb.org/">jsPlumb</a> for
+  graphical arrow rendering, and <a
+  href="http://codemirror.net/">CodeMirror</a> for syntax highlighting.
+ 
+  <li/>Join our low-traffic Google Group to receive project announcements.
+
+  <li/>To report bugs, email bugs@pythontutor.com
+
+</ul>
+
+</p>
+
+</div>
+
+
+    </td>
+
+  </tr>
+</table>
+
+</div>
+
 
 </body>
 </html>

@@ -9,6 +9,10 @@ $(document).ready(function() {
                                                                embeddedMode: true,
                                                                editCodeBaseURL: 'http://pythontutor.com/'});
 
+  // customize size a bit:
+  demoViz.domRoot.find('#pyCodeOutputDiv').css('max-width', '400px');
+  demoViz.redrawConnectors(); // don't forget to redraw after resize!
+
   // redraw connector arrows on window resize
   $(window).resize(function() {
     demoViz.redrawConnectors();

@@ -7,7 +7,7 @@ body {
   font-family: Georgia, Palatino, Times, serif;
 
   font-size: 12pt;
-  max-width: 900px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -23,18 +23,27 @@ h1 {
 }
 
 h2 {
-  font-size: 12pt;
+  font-size: 14pt;
   font-weight: normal;
 
   margin-top: 2px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
+
+.smallH1 {
+  font-size: 14pt;
+}
+
 
 .titlePane {
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   text-align: center;
+}
+
+.titlePane h1 {
+  font-size: 24pt;
 }
 
 .titlePane h2 {
@@ -49,11 +58,16 @@ div.mainBodyPane {
 
 div.activityPane {
   /* TOP RIGHT BOTTOM LEFT */
-  padding: 15px 20px 5px 20px;
-  margin-top: 30px;
+  padding: 15px 25px 5px 20px;
   text-align: left;
   border: 3px solid #005583;
 }
+
+div.activityPane h1 {
+  font-size: 22pt;
+  margin-bottom: 20pt;
+}
+
 
 
 ul {
@@ -71,12 +85,49 @@ a:hover {
   color: #3D58A2;
 }
 
+div#learnPane {
+  margin-bottom: 10pt;
+}
+
+div#learnPane p {
+  padding-right: 80px;
+}
+
+div#learnPane h3 {
+  font-size: 16pt;
+  font-weight: normal;
+  margin-top: 3px;
+  margin-bottom: 8px;
+}
+
+div#embedPane {
+  margin-right: 5px;
+}
+
+div#sharePane {
+  margin-left: 5px;
+}
+
+div#detailsPane {
+  margin-top: 15px;
+  margin-left: 5px;
+}
+
+table#embedShareTable {
+  border: 0px;
+  width: 100%;
+}
+
+table#embedShareTable td {
+  vertical-align: top;
+}
+
 #footer {
   color: #666666;
   font-size: 9pt;
-  border-top: 1px solid #bbbbbb;
+  /*border-top: 1px solid #bbbbbb;*/
   padding-top: 5px;
-  margin-top: 15px;
+  margin-top: 10px;
 
   max-width: 100%;
   /* center align */
