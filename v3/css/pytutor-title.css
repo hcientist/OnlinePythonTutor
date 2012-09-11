@@ -1,0 +1,91 @@
+/* CSS accompanying ../index.html */
+
+body {
+  background-color: white;
+
+  line-height: 1.5;  /* slightly more than single spacing, for prose text */
+  font-family: Georgia, Palatino, Times, serif;
+
+  font-size: 12pt;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+h1 {
+  font-weight: normal;
+  font-size: 20pt;
+  line-height: 1em;  /* enforce single spacing so that Georgia works */
+
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-size: 12pt;
+  font-weight: normal;
+
+  margin-top: 2px;
+  margin-bottom: 20px;
+}
+
+.titlePane {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.titlePane h2 {
+  margin-top: 8px;
+}
+
+div.mainBodyPane {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.activityPane {
+  /* TOP RIGHT BOTTOM LEFT */
+  padding: 15px 20px 5px 20px;
+  margin-top: 30px;
+  text-align: left;
+  border: 3px solid #005583;
+}
+
+
+ul {
+  padding-left: 18px;
+}
+
+li {
+  margin-bottom: 6px;
+  font-size: 11pt;
+}
+
+a,
+a:visited,
+a:hover {
+  color: #3D58A2;
+}
+
+#footer {
+  color: #666666;
+  font-size: 9pt;
+  border-top: 1px solid #bbbbbb;
+  padding-top: 5px;
+  margin-top: 15px;
+
+  max-width: 100%;
+  /* center align */
+  margin-left: auto;
+  margin-right: auto;
+
+  font-family: verdana, arial, helvetica, sans-serif;
+}
+
+
+/* necessary for CodeMirror error line highlighting to work! */
+.CodeMirror .errorLine { background: #ffff3f !important; }
