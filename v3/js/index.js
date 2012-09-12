@@ -6,7 +6,7 @@ $(document).ready(function() {
   $(".activityPane").corner('15px');
 
   var demoViz = new ExecutionVisualizer('demoViz', demoTrace, {embeddedMode: true,
-                                                               editCodeBaseURL: 'http://pythontutor.com/'});
+                                                               editCodeBaseURL: ''});
 
   // redraw connector arrows on window resize
   $(window).resize(function() {
