@@ -171,16 +171,14 @@ table.layoutTbl {
   max-width: 900px;
 }
 
-table.layoutTbl td {
-  vertical-align: top;
-}
-
 table.layoutTbl td#embedPaneTd {
   width: 60%;
+  vertical-align: top;
 }
 
 table.layoutTbl td#sharePaneTd {
   width: 40%;
+  vertical-align: top;
 }
 
 
