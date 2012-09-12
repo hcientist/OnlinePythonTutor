@@ -33,16 +33,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
-/* reset style to nullify effects of existing stylesheets
+/* reset some styles to nullify effects of existing stylesheets
    e.g., http://meyerweb.com/eric/tools/css/reset/
 */
 div.ExecutionVisualizer {
-  background-color: white;
-  line-height: 1;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
+  /* none for now */
 }
 
 div.ExecutionVisualizer table.visualizer {

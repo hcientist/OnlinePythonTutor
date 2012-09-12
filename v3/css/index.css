@@ -3,7 +3,6 @@
 body {
   background-color: white;
 
-  line-height: 1.5;  /* slightly more than single spacing, for prose text */
   font-family: Georgia, Palatino, Times, serif;
 
   font-size: 12pt;
@@ -13,6 +12,10 @@ body {
   margin-right: auto;
 }
 
+/* for prose text only */
+p, li {
+  line-height: 1.5;
+}
 
 h1 {
   font-weight: normal;
