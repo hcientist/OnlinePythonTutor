@@ -33,6 +33,18 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
+/* reset style to nullify effects of existing stylesheets
+   e.g., http://meyerweb.com/eric/tools/css/reset/
+*/
+div.ExecutionVisualizer {
+  background-color: white;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+}
+
 div.ExecutionVisualizer table.visualizer {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 10pt;
