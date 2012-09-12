@@ -78,6 +78,7 @@ div.ExecutionVisualizer table#pyCodeOutput {
 /* don't wrap lines within code output ... FORCE scrollbars to appear */
 div.ExecutionVisualizer table#pyCodeOutput td {
   white-space: nowrap;
+  vertical-align: middle; /* explicitly force, to override external CSS conflicts */
 }
 
 div.ExecutionVisualizer #leftCodeGutterSVG {
