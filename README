@@ -23,7 +23,23 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ======
+
+Summary:
+ 
+  Online Python Tutor (located at pythontutor.com) enables teachers and
+  students to write Python programs directly in the web browser, execute
+  those programs, and then step forwards and backwards through execution
+  to view the run-time state of data structures.
+
+  Over 100,000 people have used Online Python Tutor to understand and
+  debug their programs, often as a supplement to textbooks, lecture
+  notes, and online programming tutorials.
+
+---
+
 Repository contents:
+
+  tl;dr: the v3/ sub-directory contains the latest version of the code.
 
 v1-v2/
 
@@ -81,6 +97,8 @@ v3/
 
   Version 3 - Released on September ??, 2012
 
+
+---
 
 Acknowledgments:
   TODO
