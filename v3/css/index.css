@@ -22,8 +22,20 @@ h1 {
 
 .smallH1 {
   font-size: 14pt;
+  margin-left: -2px;
 }
 
+#optLink {
+  font-size: 14pt;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+#optLink:hover {
+  color: #3D58A2;
+  text-decoration: underline;
+}
 
 .titlePane {
   margin-left: auto;
@@ -74,19 +86,38 @@ a:hover {
   color: #3D58A2;
 }
 
+#learnHeading, #embedHeading, #shareHeading {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 24pt;
+}
+
+#learnHeading {
+  color: #062270;
+}
+
 div#learnPane {
-  margin-bottom: 10pt;
+  margin-top: 6pt;
+  margin-bottom: 8pt;
+  border: 5px solid #062270;
 }
 
 div#learnPane p {
   padding-right: 100px;
 }
 
-div#learnPane h3 {
-  font-size: 17pt;
+div#learnPane #startLink {
+  font-size: 16pt;
   font-weight: normal;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-family: verdana, arial, helvetica, sans-serif;
+}
+
+div#learnPane #startLink a {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  text-decoration: none;
 }
 
 tt {
@@ -95,16 +126,40 @@ tt {
 
 div#embedPane {
   margin-right: 5px;
+  border: 5px solid #5a7973;
+}
+
+
+#embedHeading {
+  color: #5a7973;
 }
 
 div#sharePane {
   margin-left: 5px;
+  border: 5px solid #4284d3;
+}
+
+#shareHeading {
+  color: #4284d3;
 }
 
 div#detailsPane {
   margin-top: 0px;
   margin-left: 5px;
   border: 0px; /* NO BORDER! */
+}
+
+#partnershipDiv {
+  /*background-color: #d8e1e3;*/
+  background-color: #d9cdb6;
+  width: 60%;
+  padding: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+  font-size: 10pt;
+  font-family: Monaco, arial, sans-serif;
 }
 
 table.layoutTbl {
@@ -130,7 +185,7 @@ table.layoutTbl td#sharePaneTd {
   font-size: 9pt;
   border-top: 1px solid #bbbbbb;
   padding-top: 0px;
-  margin-top: 10px;
+  margin-top: 30px;
 
   /* center align */
   margin-left: auto;

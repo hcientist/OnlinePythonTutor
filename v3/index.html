@@ -53,9 +53,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <body>
 
+<!--
 <div class="titlePane">
   <h1>Online Python Tutor</h1>
 </div>
+ -->
 
 <div class="mainBodyPane">
 
@@ -65,9 +67,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <div class="activityPane" id="learnPane">
 
-<h1>Learn <span class="smallH1">to program in Python by writing code and visualizing execution</span></h1>
+<h1><span id="learnHeading">LEARN</span> <span class="smallH1">to program in Python by writing code and visualizing execution</span></h1>
 
-<p>Online Python Tutor allows teachers and students to write <a
+<p><a id="optLink" href="tutor.html">Online Python Tutor</a>
+enables teachers and students to write <a
 href="http://www.python.org/">Python</a> programs directly in the web
 browser, execute those programs, and then step forwards and backwards
 through execution to view the run-time state of data structures.</p>
@@ -86,13 +89,19 @@ lecture notes, and online tutorials.</p>
 Davis, Sonoma State University, the University of Washington, the
 University of Waterloo, the University of Toronto, Luther College, and
 Swarthmore College have adopted it for teaching introductory computer
-science courses. <span style="color: #e93f34;">We are seeking
-partnerships with educators at all grade levels; email
-<tt>philip@pythontutor.com</tt> if you are interested.</span></p>
+science courses.
+</p>
+
+<p>
+We are <b>seeking partnerships</b> with educators at all grade levels.
+Please email philip@pythontutor.com if you are interested.
+</p>
 
 </p>
 
-<h3><a href="tutor.html">Start using Online Python Tutor now</a></h3>
+<div id="startLink">
+  <a href="tutor.html">Start using Online Python Tutor now</a>
+</div>
 
 </div>
 
@@ -106,7 +115,7 @@ partnerships with educators at all grade levels; email
 
 <div class="activityPane" id="embedPane">
 
-<h1>Embed <span class="smallH1">visualizations in digital textbooks</span></h1>
+<h1><span id="embedHeading">EMBED</span> <span class="smallH1">visualizations in digital textbooks</span></h1>
 
 <p>Using just one line of JavaScript code, you can embed an Online
 Python Tutor visualization within your web page. For example, the
@@ -138,7 +147,7 @@ month and are being used in at least 25 universities around the world.
 
 <div class="activityPane" id="sharePane">
 
-<h1>Share <span class="smallH1">visualizations online</span></h1>
+<h1><span id="shareHeading">SHARE</span> <span class="smallH1">visualizations online</span></h1>
 
 <p>To share your current visualization, click the &ldquo;Generate
 URL&rdquo; button and send that URL link in an email, social networking
@@ -167,8 +176,9 @@ More Details:
   <li/>Online Python Tutor supports Python <a
   href="http://www.python.org/doc/2.7/">2.7</a> and <a
   href="http://www.python.org/doc/3.2/">3.2</a> with limited module
-  imports and no file I/O, hosted on either a CGI-capable web server or
-  on <a href="https://developers.google.com/appengine/">Google App Engine</a>
+  imports and no file I/O, hosted on either a CGI-capable server or on
+  <a href="https://developers.google.com/appengine/">Google App
+  Engine</a>
 
   <li/>BSD-licensed source code available in this <a
   href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub
