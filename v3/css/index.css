@@ -21,6 +21,7 @@ h1 {
   font-weight: normal;
   margin-top: 0px;
   margin-bottom: 8px;
+  line-height: 1.5;
 }
 
 .smallH1 {
@@ -112,7 +113,7 @@ div#learnPane p {
 div#learnPane #startLink {
   font-size: 16pt;
   font-weight: normal;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 20px;
   font-family: verdana, arial, helvetica, sans-serif;
 }
