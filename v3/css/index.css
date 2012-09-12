@@ -15,7 +15,6 @@ body {
 
 h1 {
   font-weight: normal;
-  font-size: 20pt;
   line-height: 1em;  /* enforce single spacing so that Georgia works */
 
   margin-top: 0px;
@@ -23,7 +22,7 @@ h1 {
 }
 
 h2 {
-  font-size: 14pt;
+  font-size: 16pt;
   font-weight: normal;
 
   margin-top: 2px;
