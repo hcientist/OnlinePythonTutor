@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <head>
 
-<title>Online Python Tutor: Learn programming visually</title>
+<title>Online Python Tutor: Learn Python programming in your web browser</title>
 
 
 <!-- requirements for pytutor.js -->
@@ -46,9 +46,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <link rel="stylesheet" href="css/pytutor.css"/>
 
 <script type="text/javascript" src="js/jquery.corner.js"></script>
-
 <script type="text/javascript" src="js/index.js"></script>
-
 <link rel="stylesheet" href="css/index.css"/>
 
 </head>
@@ -56,18 +54,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <body>
 
 <div class="titlePane">
-
-<h1>Online Python Tutor</h1>
-<h2>Learn programming visually</h2>
-
+  <h1>Online Python Tutor</h1>
 </div>
-
 
 <div class="mainBodyPane">
 
-<table id='embedShareTable'>
+<table class='layoutTbl'>
   <tr>
-    <td colspan="2">
+    <td>
 
 <div class="activityPane" id="learnPane">
 
@@ -76,9 +70,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <p>Online Python Tutor allows teachers and students to write <a
 href="http://www.python.org/">Python</a> programs directly in the web
 browser, execute those programs, and then step forwards and backwards
-through execution to view the run-time state of data structures. For
-example, here is a recursive function that sums linked list
-elements:</p>
+through execution to view the run-time state of data structures.</p>
+
+<p>For example, here is a recursive function that finds the sum of
+linked list elements. Click the &ldquo;Forward&rdquo; button to start
+stepping through execution.</p>
 
 <div id="demoViz"></div>
 
@@ -86,12 +82,12 @@ elements:</p>
 understand and debug their programs, often as a supplement to textbooks,
 lecture notes, and online tutorials.</p>
 
-<p>In addition, instructors in over a dozen universities including MIT,
-UC Berkeley, UC Davis, Sonoma State University, the University of
-Washington, the University of Waterloo, the University of Toronto,
-Luther College, and Swarthmore College have adopted it for teaching
-introductory computer science courses. <span style="color: #e93f34;">We
-are seeking partnerships with educators at all grade levels; email
+<p>Instructors in over a dozen universities such as MIT, UC Berkeley, UC
+Davis, Sonoma State University, the University of Washington, the
+University of Waterloo, the University of Toronto, Luther College, and
+Swarthmore College have adopted it for teaching introductory computer
+science courses. <span style="color: #e93f34;">We are seeking
+partnerships with educators at all grade levels; email
 <tt>philip@pythontutor.com</tt> if you are interested.</span></p>
 
 </p>
@@ -100,11 +96,11 @@ are seeking partnerships with educators at all grade levels; email
 
 </div>
 
-
-
     </td>
   </tr>
+</table>
 
+<table class='layoutTbl'>
   <tr>
     <td id="embedPaneTd">
 
@@ -137,7 +133,6 @@ month and are being used in at least 25 universities around the world.
 
 </div>
 
-
     </td>
     <td id="sharePaneTd">
 
@@ -165,7 +160,6 @@ activities on top of your visualizations.</p>
 
 <div class="activityPane" id="detailsPane">
 
-
 <p>
 More Details:
 <ul>
@@ -190,8 +184,6 @@ More Details:
 
 </ul>
 </p>
-
- 
 
 </div>
 
@@ -218,7 +210,5 @@ to receive occasional announcements.</p>
 </div>
 
 
-
 </body>
 </html>
-

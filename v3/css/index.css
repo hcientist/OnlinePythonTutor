@@ -7,6 +7,7 @@ body {
   font-family: Georgia, Palatino, Times, serif;
 
   font-size: 12pt;
+
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
@@ -15,18 +16,8 @@ body {
 
 h1 {
   font-weight: normal;
-  line-height: 1em;  /* enforce single spacing so that Georgia works */
-
   margin-top: 0px;
   margin-bottom: 8px;
-}
-
-h2 {
-  font-size: 16pt;
-  font-weight: normal;
-
-  margin-top: 2px;
-  margin-bottom: 0px;
 }
 
 .smallH1 {
@@ -37,16 +28,13 @@ h2 {
 .titlePane {
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   text-align: center;
 }
 
 .titlePane h1 {
-  font-size: 24pt;
-}
-
-.titlePane h2 {
-  margin-top: 8px;
+  font-size: 22pt;
+  margin-bottom: 5px;
 }
 
 div.mainBodyPane {
@@ -56,9 +44,13 @@ div.mainBodyPane {
 
 div.activityPane {
   /* TOP RIGHT BOTTOM LEFT */
-  padding: 15px 25px 5px 20px;
+  padding: 15px 0px /* make right padding ZERO and just right-pad 'p' */ 5px 20px;
   text-align: left;
   border: 3px solid #005583;
+}
+
+div.activityPane p {
+  padding-right: 30px;
 }
 
 div.activityPane h1 {
@@ -67,14 +59,13 @@ div.activityPane h1 {
 }
 
 
-
 ul {
   padding-left: 18px;
 }
 
 li {
-  margin-bottom: 6px;
-  font-size: 11pt;
+  margin-bottom: 8px;
+  font-size: 10pt;
 }
 
 a,
@@ -88,18 +79,18 @@ div#learnPane {
 }
 
 div#learnPane p {
-  padding-right: 80px;
+  padding-right: 100px;
 }
 
 div#learnPane h3 {
-  font-size: 16pt;
+  font-size: 17pt;
   font-weight: normal;
-  margin-top: 3px;
-  margin-bottom: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 tt {
-  font-size: 85%;
+  /*font-size: 85%;*/
 }
 
 div#embedPane {
@@ -116,20 +107,20 @@ div#detailsPane {
   border: 0px; /* NO BORDER! */
 }
 
-table#embedShareTable {
+table.layoutTbl {
   border: 0px;
-  width: 100%;
+  max-width: 900px;
 }
 
-table#embedShareTable td {
+table.layoutTbl td {
   vertical-align: top;
 }
 
-table#embedShareTable td#embedPaneTd {
+table.layoutTbl td#embedPaneTd {
   width: 60%;
 }
 
-table#embedShareTable td#sharePaneTd {
+table.layoutTbl td#sharePaneTd {
   width: 40%;
 }
 
@@ -139,16 +130,11 @@ table#embedShareTable td#sharePaneTd {
   font-size: 9pt;
   border-top: 1px solid #bbbbbb;
   padding-top: 0px;
-  margin-top: 15px;
+  margin-top: 10px;
 
-  max-width: 100%;
   /* center align */
   margin-left: auto;
   margin-right: auto;
 
   font-family: verdana, arial, helvetica, sans-serif;
 }
-
-
-/* necessary for CodeMirror error line highlighting to work! */
-.CodeMirror .errorLine { background: #ffff3f !important; }
