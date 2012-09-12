@@ -119,6 +119,7 @@ div#detailsPane {
 table#embedShareTable {
   border: 0px;
   width: 100%;
+  table-layout: fixed; /* to get IE to work */
 }
 
 table#embedShareTable td {
