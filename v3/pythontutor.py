@@ -44,7 +44,7 @@ class TutorPage(webapp2.RequestHandler):
 
   def get(self):
     self.response.headers['Content-Type'] = 'text/html'
-    template = JINJA_ENVIRONMENT.get_template('tutor.html')
+    template = JINJA_ENVIRONMENT.get_template('visualize.html')
     self.response.out.write(template.render())
 
 
