@@ -819,7 +819,7 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
     }
   }
   else {
-    vcrControls.find("#curInstr").html("About to run step " +
+    vcrControls.find("#curInstr").html("Step " +
                                        String(this.curInstr + 1) +
                                        " of " + String(totalInstrs-1));
   }
