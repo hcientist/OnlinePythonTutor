@@ -146,6 +146,11 @@ div.ExecutionVisualizer #vcrControls {
 }
 
 div.ExecutionVisualizer #vcrControls button {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+div.ExecutionVisualizer #vcrControls #curInstr {
   margin-left: 4px;
   margin-right: 4px;
 }
