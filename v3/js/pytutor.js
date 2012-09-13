@@ -1693,6 +1693,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // Render globals and then stack frames using d3:
 
 
+  // TODO: this sometimes seems buggy on Safari, so nix it for now:
   function highlightAliasedConnectors(d, i) {
     // if this row contains a stack pointer, then highlight its arrow and
     // ALL aliases that also point to the same heap object
@@ -1752,8 +1753,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // ENTER
   globalsD3.enter()
     .append('tr')
-    .on('mouseover', highlightAliasedConnectors)
-    .on('mouseout',  unhighlightAllConnectors)
     .selectAll('td.stackFrameVar,td.stackFrameValue')
     .data(function(d, i){return d;}) /* map varname down both columns */
     .enter()
@@ -1898,9 +1897,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   stackVarTable
     .enter()
-    .append('tr')
-    .on('mouseover', highlightAliasedConnectors)
-    .on('mouseout',  unhighlightAllConnectors);
+    .append('tr');
  
 
   var stackVarTableCells = stackVarTable
