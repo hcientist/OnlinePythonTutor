@@ -38,7 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 var python2_backend_script = 'exec';
 var python3_backend_script = null;
 
-var appMode = 'edit'; // 'edit' or 'visualize'
+var appMode = 'edit'; // 'edit' or 'display'
 
 var preseededCode = null;     // if you passed in a 'code=<code string>' in the URL, then set this var
 var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
@@ -89,25 +89,25 @@ $(document).ready(function() {
 
 
     // ugh, ugly tristate due to the possibility of being undefined :)
-    if ($.bbq.getState('cumulative_mode') == 'true') {
+    if ($.bbq.getState('cumulative') == 'true') {
       $('#cumulativeModeSelector').val('yes');
     }
-    else if ($.bbq.getState('cumulative_mode') == 'false') {
+    else if ($.bbq.getState('cumulative') == 'false') {
       $('#cumulativeModeSelector').val('no');
     }
     // else if it's undefined, don't do anything ...
 
-    if ($.bbq.getState('python_version') == '3') {
+    if ($.bbq.getState('py') == '3') {
       $('#pythonVersionSelector').val('3');
     }
-    else if ($.bbq.getState('python_version') == '2') {
+    else if ($.bbq.getState('py') == '2') {
       $('#pythonVersionSelector').val('2');
     }
     // else if it's undefined, don't do anything ...
 
 
     // only bother with curInstr when we're visualizing ...
-    if (!preseededCurInstr && preseededMode == 'visualize') { // TODO: kinda gross hack
+    if (!preseededCurInstr && preseededMode == 'display') { // TODO: kinda gross hack
       preseededCurInstr = Number($.bbq.getState('curInstr'));
     }
 
@@ -121,11 +121,11 @@ $(document).ready(function() {
     if (!myVisualizer) {
       appMode = 'edit';
 
-      if (preseededCode && preseededMode == 'visualize') {
+      if (preseededCode && preseededMode == 'display') {
         // punt for now ...
       }
       else {
-        $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
+        //$.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
       }
     }
 
@@ -134,7 +134,7 @@ $(document).ready(function() {
       $("#pyInputPane").show();
       $("#pyOutputPane").hide();
     }
-    else if (appMode == 'visualize') {
+    else if (appMode == 'display') {
       $("#pyInputPane").hide();
       $("#pyOutputPane").show();
 
@@ -261,7 +261,7 @@ $(document).ready(function() {
               // also scroll to top to make the UI more usable on smaller monitors
               $(document).scrollTop(0);
 
-              $.bbq.pushState({ mode: 'visualize' }, 2 /* completely override other hash strings to keep URL clean */);
+              $.bbq.pushState({ mode: 'display' });
             }
           },
           "json");
@@ -510,7 +510,7 @@ $(document).ready(function() {
 
   // redraw connector arrows on window resize
   $(window).resize(function() {
-    if (appMode == 'visualize') {
+    if (appMode == 'display') {
       myVisualizer.redrawConnectors();
     }
   });
@@ -518,12 +518,12 @@ $(document).ready(function() {
   $('#genUrlBtn').bind('click', function() {
     var urlStr = $.param.fragment(window.location.href,
                                   {code: pyInputCodeMirror.getValue(),
-                                   curInstr: (appMode == 'visualize') ? myVisualizer.curInstr : 0,
+                                   curInstr: (appMode == 'display') ? myVisualizer.curInstr : 0,
                                    mode: appMode,
-                                   cumulative_mode: ($('#cumulativeModeSelector').val() == 'yes'),
-                                   python_version: $('#pythonVersionSelector').val()
+                                   cumulative: ($('#cumulativeModeSelector').val() == 'yes'),
+                                   py: $('#pythonVersionSelector').val()
                                   },
-                                  2);
+                                  2 /* clobber all */);
     $('#urlOutput').val(urlStr);
   });
 });
