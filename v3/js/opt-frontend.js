@@ -108,7 +108,7 @@ $(document).ready(function() {
     }
 
     // default mode is 'edit'
-    if (appMode == undefined) {
+    if (appMode === undefined) {
       appMode = 'edit';
     }
 
@@ -144,6 +144,8 @@ $(document).ready(function() {
     else {
       assert(false);
     }
+
+    $('#urlOutput').val(''); // clear to avoid stale values
   });
 
   // From: http://benalman.com/projects/jquery-bbq-plugin/
