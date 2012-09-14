@@ -478,7 +478,7 @@ $(document).ready(function() {
   if (preseededCode) {
     setCodeMirrorVal(preseededCode);
 
-    if ($.bbq.getState('mode') != 'edit') {
+    if ($.bbq.getState('mode') == 'display') {
       $("#executeBtn").trigger('click');
     }
   }
