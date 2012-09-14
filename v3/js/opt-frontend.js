@@ -84,7 +84,7 @@ $(document).ready(function() {
   $(window).bind("hashchange", function(e) {
     appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
 
-    console.log('hashchange:', appMode);
+    //console.log('hashchange:', appMode);
 
     preseededCode = $.bbq.getState('code'); // yuck, global!
     var preseededMode = $.bbq.getState('mode');
@@ -113,16 +113,9 @@ $(document).ready(function() {
     }
 
     // if there's no myVisualizer, then default to edit mode since there's
-    // nothing to visualize:
+    // nothing to visualize yet:
     if (!myVisualizer) {
       appMode = 'edit';
-
-      if (preseededCode && preseededMode == 'display') {
-        // punt for now ...
-      }
-      else {
-        $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
-      }
     }
 
 
@@ -257,7 +250,7 @@ $(document).ready(function() {
               // also scroll to top to make the UI more usable on smaller monitors
               $(document).scrollTop(0);
 
-              $.bbq.pushState({ mode: 'display' });
+              $.bbq.pushState({ mode: 'display' }, 2 /* completely override other hash strings to keep URL clean */);
             }
           },
           "json");
