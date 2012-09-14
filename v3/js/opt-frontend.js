@@ -84,26 +84,22 @@ $(document).ready(function() {
   $(window).bind("hashchange", function(e) {
     appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
 
+    console.log('hashchange:', appMode);
+
     preseededCode = $.bbq.getState('code'); // yuck, global!
     var preseededMode = $.bbq.getState('mode');
 
 
     // ugh, ugly tristate due to the possibility of being undefined :)
-    if ($.bbq.getState('cumulative') == 'true') {
-      $('#cumulativeModeSelector').val('true');
+    var cumulativeState = $.bbq.getState('cumulative');
+    if (cumulativeState !== undefined) {
+      $('#cumulativeModeSelector').val(cumulativeState);
     }
-    else if ($.bbq.getState('cumulative') == 'false') {
-      $('#cumulativeModeSelector').val('false');
-    }
-    // else if it's undefined, don't do anything ...
 
-    if ($.bbq.getState('py') == '3') {
-      $('#pythonVersionSelector').val('3');
+    var pyState = $.bbq.getState('py');
+    if (pyState !== undefined) {
+      $('#pythonVersionSelector').val(pyState);
     }
-    else if ($.bbq.getState('py') == '2') {
-      $('#pythonVersionSelector').val('2');
-    }
-    // else if it's undefined, don't do anything ...
 
 
     // only bother with curInstr when we're visualizing ...
@@ -187,7 +183,7 @@ $(document).ready(function() {
 
     $.get(backend_script,
           {user_script : pyInputCodeMirror.getValue(),
-           cumulative_mode: ($('#cumulativeModeSelector').val() == 'true') /* ugh types! */},
+           cumulative_mode: $('#cumulativeModeSelector').val()},
           function(dataFromBackend) {
             var trace = dataFromBackend.trace;
             
