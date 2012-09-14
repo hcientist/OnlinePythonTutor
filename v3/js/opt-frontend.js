@@ -90,10 +90,10 @@ $(document).ready(function() {
 
     // ugh, ugly tristate due to the possibility of being undefined :)
     if ($.bbq.getState('cumulative') == 'true') {
-      $('#cumulativeModeSelector').val('yes');
+      $('#cumulativeModeSelector').val('true');
     }
     else if ($.bbq.getState('cumulative') == 'false') {
-      $('#cumulativeModeSelector').val('no');
+      $('#cumulativeModeSelector').val('false');
     }
     // else if it's undefined, don't do anything ...
 
@@ -125,7 +125,7 @@ $(document).ready(function() {
         // punt for now ...
       }
       else {
-        //$.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
+        $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
       }
     }
 
@@ -187,7 +187,7 @@ $(document).ready(function() {
 
     $.get(backend_script,
           {user_script : pyInputCodeMirror.getValue(),
-           cumulative_mode: ($('#cumulativeModeSelector').val() == 'yes')},
+           cumulative_mode: ($('#cumulativeModeSelector').val() == 'true') /* ugh types! */},
           function(dataFromBackend) {
             var trace = dataFromBackend.trace;
             
@@ -516,14 +516,16 @@ $(document).ready(function() {
   });
 
   $('#genUrlBtn').bind('click', function() {
-    var urlStr = $.param.fragment(window.location.href,
-                                  {code: pyInputCodeMirror.getValue(),
-                                   curInstr: (appMode == 'display') ? myVisualizer.curInstr : 0,
-                                   mode: appMode,
-                                   cumulative: ($('#cumulativeModeSelector').val() == 'yes'),
-                                   py: $('#pythonVersionSelector').val()
-                                  },
-                                  2 /* clobber all */);
+    var myArgs = {code: pyInputCodeMirror.getValue(),
+                  mode: appMode,
+                  cumulative: $('#cumulativeModeSelector').val(),
+                  py: $('#pythonVersionSelector').val()};
+
+    if (appMode == 'display') {
+      myArgs.curInstr = myVisualizer.curInstr;
+    }
+
+    var urlStr = $.param.fragment(window.location.href, myArgs, 2 /* clobber all */);
     $('#urlOutput').val(urlStr);
   });
 });
