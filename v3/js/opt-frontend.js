@@ -441,6 +441,10 @@ $(document).ready(function() {
   if (preseededCode) {
     setCodeMirrorVal(preseededCode);
   }
+  else {
+    // select a canned example on start-up:
+    $("#aliasExampleLink").trigger('click');
+  }
 
   // ugh, ugly tristate due to the possibility of them being undefined
   var cumulativeState = $.bbq.getState('cumulative');
@@ -453,13 +457,10 @@ $(document).ready(function() {
   }
 
   appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
-  if ((appMode == "display") && preseededCode) {
+  if ((appMode == "display") && preseededCode /* ONLY jump to display when there's pre-seeded code */) {
     $("#executeBtn").trigger('click');
   }
   else {
-    // select a canned example on start-up:
-    $("#aliasExampleLink").trigger('click');
-
     if (appMode === undefined) {
       // default mode is 'edit', don't trigger a "hashchange" event
       appMode = 'edit';
