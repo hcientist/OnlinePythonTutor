@@ -436,7 +436,6 @@ $(document).ready(function() {
 
 
   // handle hash parameters passed in when loading the page
-  preseededCurInstr = Number($.bbq.getState('curInstr'));
   preseededCode = $.bbq.getState('code');
   if (preseededCode) {
     setCodeMirrorVal(preseededCode);
@@ -457,7 +456,8 @@ $(document).ready(function() {
   }
 
   appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
-  if ((appMode == "display") && preseededCode /* ONLY jump to display when there's pre-seeded code */) {
+  if ((appMode == "display") && preseededCode /* jump to display only with pre-seeded code */) {
+    preseededCurInstr = Number($.bbq.getState('curInstr'));
     $("#executeBtn").trigger('click');
   }
   else {
