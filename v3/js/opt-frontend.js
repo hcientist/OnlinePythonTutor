@@ -436,8 +436,11 @@ $(document).ready(function() {
 
 
   // handle hash parameters passed in when loading the page
-  preseededCode = $.bbq.getState('code');
   preseededCurInstr = Number($.bbq.getState('curInstr'));
+  preseededCode = $.bbq.getState('code');
+  if (preseededCode) {
+    setCodeMirrorVal(preseededCode);
+  }
 
   // ugh, ugly tristate due to the possibility of them being undefined
   var cumulativeState = $.bbq.getState('cumulative');
@@ -451,7 +454,6 @@ $(document).ready(function() {
 
   appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
   if ((appMode == "display") && preseededCode) {
-    setCodeMirrorVal(preseededCode);
     $("#executeBtn").trigger('click');
   }
   else {
