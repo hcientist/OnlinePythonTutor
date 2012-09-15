@@ -18,14 +18,14 @@ import pg_logger
 import sys
 
 
-# set ~300MB limit on virtual memory AND a 10-second CPU time limit
-# to protect against memory bombs such as:
+# set ~200MB virtual memory limit AND a 5-second CPU time limit
+# (tuned for Webfaction shared hosting) to protect against memory bombs such as:
 #
 #   x = 2
 #   while True: x = x*x
 import resource
-resource.setrlimit(resource.RLIMIT_AS, (300000000, 300000000))
-resource.setrlimit(resource.RLIMIT_CPU, (10, 10))
+resource.setrlimit(resource.RLIMIT_AS, (200000000, 200000000))
+resource.setrlimit(resource.RLIMIT_CPU, (5, 5))
 
 
 # set to true if you want to log queries in DB_FILE 
