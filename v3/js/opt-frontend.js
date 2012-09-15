@@ -84,42 +84,7 @@ $(document).ready(function() {
   $(window).bind("hashchange", function(e) {
     appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
 
-    //console.log('hashchange:', appMode);
-
-    preseededCode = $.bbq.getState('code'); // yuck, global!
-    var preseededMode = $.bbq.getState('mode');
-
-
-    // ugh, ugly tristate due to the possibility of being undefined :)
-    var cumulativeState = $.bbq.getState('cumulative');
-    if (cumulativeState !== undefined) {
-      $('#cumulativeModeSelector').val(cumulativeState);
-    }
-
-    var pyState = $.bbq.getState('py');
-    if (pyState !== undefined) {
-      $('#pythonVersionSelector').val(pyState);
-    }
-
-
-    // only bother with curInstr when we're visualizing ...
-    if (!preseededCurInstr && preseededMode == 'display') { // TODO: kinda gross hack
-      preseededCurInstr = Number($.bbq.getState('curInstr'));
-    }
-
-    // default mode is 'edit'
-    if (appMode === undefined) {
-      appMode = 'edit';
-    }
-
-    // if there's no myVisualizer, then default to edit mode since there's
-    // nothing to visualize yet:
-    if (!myVisualizer) {
-      appMode = 'edit';
-    }
-
-
-    if (appMode == 'edit') {
+    if (appMode === undefined || appMode == 'edit') {
       $("#pyInputPane").show();
       $("#pyOutputPane").hide();
     }
@@ -139,7 +104,6 @@ $(document).ready(function() {
       $('#pyOutputPane #editBtn').click(function() {
         enterEditMode();
       });
-
     }
     else {
       assert(false);
@@ -147,12 +111,6 @@ $(document).ready(function() {
 
     $('#urlOutput').val(''); // clear to avoid stale values
   });
-
-  // From: http://benalman.com/projects/jquery-bbq-plugin/
-  //   Since the event is only triggered when the hash changes, we need
-  //   to trigger the event now, to handle the hash the page may have
-  //   loaded with.
-  $(window).trigger( "hashchange" );
 
 
   $("#executeBtn").attr('disabled', false);
@@ -477,19 +435,41 @@ $(document).ready(function() {
   });
 
 
-  if (preseededCode) {
-    setCodeMirrorVal(preseededCode);
+  // handle hash parameters passed in when loading the page
+  preseededCode = $.bbq.getState('code');
+  preseededCurInstr = Number($.bbq.getState('curInstr'));
 
-    if ($.bbq.getState('mode') == 'display') {
-      $("#executeBtn").trigger('click');
-    }
+  // ugh, ugly tristate due to the possibility of them being undefined
+  var cumulativeState = $.bbq.getState('cumulative');
+  if (cumulativeState !== undefined) {
+    $('#cumulativeModeSelector').val(cumulativeState);
+  }
+  var pyState = $.bbq.getState('py');
+  if (pyState !== undefined) {
+    $('#pythonVersionSelector').val(pyState);
+  }
+
+  appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
+  if ((appMode == "display") && preseededCode) {
+    setCodeMirrorVal(preseededCode);
+    $("#executeBtn").trigger('click');
   }
   else {
     // select a canned example on start-up:
     $("#aliasExampleLink").trigger('click');
+
+    if (appMode === undefined) {
+      // default mode is 'edit', don't trigger a "hashchange" event
+      appMode = 'edit';
+    }
+    else {
+      // fail-soft by killing all passed-in hashes and triggering a "hashchange"
+      // event, which will then go to 'edit' mode
+      $.bbq.removeState();
+    }
   }
 
-
+  
   // log a generic AJAX error handler
   $(document).ajaxError(function() {
     alert("Server error (possibly due to memory/resource overload).");
