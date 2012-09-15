@@ -10,6 +10,13 @@ However, note that since primitives are **immutable** and thus behave identicall
 it doesn't matter whether they're rendered in the stack or heap.
 
 
+#### Visualizations of object-oriented programs are confusing; why are there grayed-out frames everywhere?
+
+We haven't "cleaned-up" the visualizations to look better for OOP code examples;
+they are simply displaying what Python is doing step-by-step as those programs execute.
+Please email if you have suggestions for more aesthetically-pleasing yet accurate visualizations.
+
+
 #### Did you know that stepping through code with generators looks weird when "display frames of exited functions" is selected?
 
-Yes, this is a known bug, but the fix isn't straightforward at the moment.
+Yes, this is a known bug, but sadly the fix isn't straightforward at the moment.
