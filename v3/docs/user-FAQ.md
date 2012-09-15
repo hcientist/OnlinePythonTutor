@@ -2,7 +2,7 @@
 
 Email philip@pgbovine.net if you have a question that isn't addressed here.
 
-#### I thought all objects in Python are on the heap; why does Online Python Tutor render primitive values (e.g., numbers, strings) inside of stack frames?
+#### I thought all objects in Python are (conceptually) on the heap; why does Online Python Tutor render primitive values (e.g., numbers, strings) inside of stack frames?
 
 This was a design decision made to keep the display less cluttered;
 if we were truly faithful to Python's semantics, that would result in far too many arrows (pointers) being drawn.
