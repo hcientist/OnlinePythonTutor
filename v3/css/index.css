@@ -7,7 +7,11 @@ body {
 
   font-size: 12pt;
 
+  /* use fixed width for simplicity */
   max-width: 900px;
+  min-width: 900px;
+  width: 900px;
+
   margin-left: auto;
   margin-right: auto;
 }
