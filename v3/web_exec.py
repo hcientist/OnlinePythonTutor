@@ -18,12 +18,14 @@ import pg_logger
 import sys
 
 
-# set ~50MB limit on virtual memory to protect against memory bombs such as:
+# set ~300MB limit on virtual memory AND a 10-second CPU time limit
+# to protect against memory bombs such as:
 #
 #   x = 2
 #   while True: x = x*x
 import resource
-resource.setrlimit(resource.RLIMIT_AS, (50000000,50000000)) 
+resource.setrlimit(resource.RLIMIT_AS, (300000000, 300000000))
+resource.setrlimit(resource.RLIMIT_CPU, (10, 10))
 
 
 # set to true if you want to log queries in DB_FILE 
