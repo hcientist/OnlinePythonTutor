@@ -1,7 +1,9 @@
-# Overview for Developers of Online Python Tutor
+# Developer's Guide Overview
 
 This document is a starting point for anyone who wants to hack on
-Online Python Tutor (thereafter abbreviated as OPT).
+Online Python Tutor (thereafter abbreviated as OPT). View it online at:
+
+https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/developer-overview.md
 
 Look at the Git history to see when this document was last updated; the more time
 elapsed since that date, the more likely things are out-of-date. Please email
@@ -73,5 +75,33 @@ The backend consists of:
         pg_encoder.py : encodes the trace format into JSON to send to frontend
         generate_json_trace.py : script to test the backend independent of the frontend
         app.yaml and pythontutor.py : config files for Google App Engine
-        web_exec.py : example CGI script for deploying on CGI-enabled webservers
+        web_exec.py : example CGI script for deploying backend on CGI-enabled webservers
         
+
+## Hacking on the backend
+
+To modify the backend, you will mainly need to understand `pg_logger.py` and `pg_encoder.py`.
+
+### Two quick tips for starters
+
+First, run `generate_json_trace.py` to see the trace that the backend generates for a given input Python program.
+This is the main way to do an "end-to-end" test on your backend modifications. For example, if you wrote a Python
+program stored in `example.py`, then running:
+
+        python generate_json_trace.py example.py
+        
+will print a JSON-formatted execution trace to stdout. This is exactly what the backend sends to the frontend.
+(Actually not quite: the sent trace is actually compressed to eliminate all extraneous spaces and newlines.
+But for testing, I've made the trace more human-readable.)
+
+Second, when you're "print debugging" in the backend, you can't simply print to stdout, since `pg_logger.py`
+*redirects* stdout to a buffer. Instead, you need to write all of your print statements as:
+
+        print >> sys.stderr, <debug message to print>
+        
+so that the output goes to stderr.
+
+The easiest way to debug is to insert in print statements (to stderr) and then run `generate_json_trace.py` on
+small code examples.
+
+### 
