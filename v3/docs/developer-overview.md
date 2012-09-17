@@ -24,7 +24,13 @@ Now if you visit http://localhost:8080/ on your browser, you should see the main
 Congrats! Now you can edit any code in `OnlinePythonTutor/v3/` and reload the page to test your changes.
 You don't need to shut down and restart the local webserver after every edit.
 
-The main caveat here is that Google App Engine runs Python 2.7, so you won't be able to test Python 3 locally this way.
+btw, using the default configuration, http://localhost:8080/ is actually loading the `v3/visualize.html` HTML file.
+(See `v3/pythontutor.py` for details.)
+
+The benefit of running OPT locally is that you can test all changes without going online. So even
+if you're eventually going to deploy NOT on Google App Engine, it makes good sense to install locally
+for development and testing. The main caveat here is that Google App Engine currently runs Python 2.7,
+so you won't be able to test Python 3 locally this way.
 
 
 ## Overall system architecture
@@ -47,10 +53,18 @@ The frontend consists of:
         js/opt-frontend.js
         css/pytutor.css
         js/pytutor.js
-        <a bunch of auxiliary css and js files such as libraries, etc.>
+        <a bunch of auxiliary css and js files such as libraries>
 
-`pytutor.[js|css]` contains the bulk of the OPT frontend code.
-`opt-frontend.[js|css]` contains code that is specific to `visualize.html` and doesn't make sense for, say,
+`pytutor.[js|css]` contain the bulk of the OPT frontend code. In theory, if you set things up correctly,
+you should be able to **embed** an OPT visualization into any webpage with one line of JavaScript that looks like:
+
+        var v = new ExecutionVisualizer(domRoot, traceFromBackend, optionalParams);
+
+Thus, the design of `pytutor.[js|css]` is meant to be as modular as possible, which means abstracting
+everything in an `ExecutionVisualizer` object. This way, you can create multiple visualizer objects
+to embed on the same webpage and not have them interfere with one another.
+
+`opt-frontend.[js|css]` contain code that is specific to the `visualize.html` page and doesn't make sense for, say,
 embedding OPT visualizations into other types of webpages.
 
 The backend consists of:
@@ -61,4 +75,3 @@ The backend consists of:
         app.yaml and pythontutor.py : config files for Google App Engine
         web_exec.py : example CGI script for deploying on CGI-enabled webservers
         
-bah
