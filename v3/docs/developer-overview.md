@@ -170,3 +170,23 @@ def exec_script_str(script_str, cumulative_mode, finalizer_func):
 This code creates a `PGLogger` object then calls its `_runscript` method to run the script passed in as `script_str`.
 After execution finishes (possibly due to a bdb-related exception), the `finalize` method is run. This method
 does some postprocessing of the trace (`self.trace`) and then calls the user-supplied `finalizer_func`.
+
+`PGLogger` is a subclass of [bdb.Bdb](http://docs.python.org/library/bdb.html#bdb.Bdb),
+which is the Python standard debugger module. It stores a ton of fields to record what
+is going on as the target program (that the user passed in) executes. Its `_runscript` method
+is where the action starts. This method first sets up a sandboxed environment containing a restricted
+set of builtins (`user_builtins`) and redirection for stdout (`user_stdout`), and then executes:
+
+```python
+        try:
+          self.run(script_str, user_globals, user_globals)
+        except SystemExit:
+          raise bdb.BdbQuit
+```
+
+The `run` method is actually [inherited from bdb.Bdb](http://docs.python.org/library/bdb.html#bdb.Bdb.run).
+It executes the script in a modified global environment (`user_globals`).
+
+Ok, the debugger has just started executing the script that the user has passed in (from `example.py` in our example).
+What happens now?
+
