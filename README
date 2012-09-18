@@ -39,7 +39,10 @@ Summary:
   textbooks, lecture notes, and online programming tutorials.
 
 ---
+All documentation is viewable online at:
+  https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3/docs
 
+---
 Repository contents:
 
   tl;dr: the v3/ sub-directory contains the latest version of the code.
@@ -71,6 +74,7 @@ v1-v2/
   pg
   '''
 
+
   Online Python Tutor version 2 - released on October 4, 2011
   "Release" email to 13 friends:
 
@@ -98,8 +102,54 @@ v1-v2/
 
 v3/
 
-  Version 3 - Released on September ??, 2012
+  Online Python Tutor version 3 - Released on September 18 2012 to
+  153,000+ people on Google+:
+    https://plus.google.com/+ResearchatGoogle/posts/cseo9qi7LWq
 
+  "Release" announcement from the Research @ Google G+ account:
+  '''
+  Online Python Tutor: Web-Based Program Visualization for CS Education
+
+  As part of his CS education work at Google, +Philip Guo has been
+  developing an open-source educational tool called Online Python Tutor
+  (http://www.pythontutor.com). This tool enables teachers and students
+  to write Python programs directly in the web browser and then
+  single-step forwards and backwards to visualize what the computer is
+  doing as it executes those programs.
+
+  Program visualization for CS education is nothing new -- researchers
+  have been developing these sorts of tools for decades. However, most
+  of these tools never reach far beyond the confines of the researchers'
+  home universities due to the difficulty of installing and configuring
+  the visualization software. What makes Online Python Tutor unique and
+  effective is that it's the first known tool to adapt time-tested ideas
+  from the research literature (e.g., rendering of box-and-pointer
+  diagrams) for a web-based environment. Now anyone with a modern
+  browser can create, explore, and share their program visualizations by
+  simply visiting a web URL.
+
+  This ease of access has been a major contributor to adoption: So far,
+  over 100,000 people have used Online Python Tutor to understand and
+  debug their programs, often as a supplement to learning from
+  textbooks, lecture notes, and online programming tutorials. In
+  addition, instructors in over a dozen universities such as MIT, UC
+  Berkeley, and the University of Washington have used it for teaching
+  introductory computer science courses.
+
+  But this is just the beginning. Philip and his colleagues are now
+  building an online authoring environment so that, within the next few
+  months, teachers and students will be able to save their code snippets
+  and add annotations, discussion threads, lessons, and interactive
+  exercises on top of the associated visualizations.
+
+  They are also actively seeking partnerships with educators at all
+  grade levels to deploy and improve Online Python Tutor. Please contact
+  Philip directly or re-share this post with educators who might be
+  interested in working with this tool in any capacity.
+
+  Visit www.pythontutor.com to learn more and to start visualizing your
+  Python programs now!
+  '''
 
 ---
 
