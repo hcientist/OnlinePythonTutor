@@ -1,4 +1,4 @@
-# Developer's Guide Overview
+# Overview for Developers
 
 This document is a starting point for anyone who wants to hack on
 Online Python Tutor (thereafter abbreviated as OPT). View it online at:
@@ -11,7 +11,7 @@ elapsed since that date, the more likely things are out-of-date.
 I'm assuming that you're competent in Python, JavaScript, command-line-fu, and Google-fu,
 so I won't do much hand-holding in these directions.
 
-This guy isn't meant to be comprehensive; rather, it's just a starting point for learning about the code
+This guide isn't meant to be comprehensive; rather, it's just a starting point for learning about the code
 and development workflow. You will undoubtedly still be confused about details after reading it, so
 feel free to email philip@pgbovine.net if you have questions.
 
