@@ -219,6 +219,9 @@ render `x` and then `y`, and at the next execution point, it might render `y` an
 causing the visualization to "jitter" unnecessarily. And I've found that it looks aesthetically pleasing
 when variables are sorted in their order of appearance as you step forwards through execution.
 
+Still with me? Ok, let's get to the final execution point, which corresponds to the frontend displaying
+"Program terminated" ([click here](http://pythontutor.com/visualize.html#code=x+%3D+5%0Ay+%3D+10%0Az+%3D+x+%2B+y&mode=display&cumulative=false&py=2&curInstr=3)
+to jump directly there).
 
 ```javascript
     {
@@ -240,3 +243,13 @@ when variables are sorted in their order of appearance as you step forwards thro
       "event": "return"
     }
 ```
+
+This time, the event is a `return`, which signifies "returning" from the top-level module code (meaning the program
+has terminated). Note that now there is another new variable `z`, which is bound to `15` since `z = x + y` just executed.
+Note that, again, `ordered_globals` shows all three variables in their order of appearance.
+
+Ok, that's it for the basic tour!
+
+## Heap Objects
+
+## Function Stack Frames
