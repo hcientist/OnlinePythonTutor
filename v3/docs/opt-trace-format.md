@@ -585,7 +585,8 @@ when the program is about to return from the call to `baz`.
 
 Study the visualization for a bit. Note that there are four frames currently on the stack: globals, `foo`, `bar`, and `baz`.
 Each frame consists of a name and a mapping between constituent variable names and values. There is a special
-variable called `Return value`, which represents the value that this function is about to return to its caller.
+variable called `Return value` (stored in the trace as `__return__`),
+which represents the value that `baz` is about to return to its caller.
 
 Let's now look at the execution point object corresponding to this visualization:
 
@@ -745,5 +746,5 @@ Finally, ignore `is_parent`, `is_zombie`, and `parent_frame_id_list` for now. We
 
 (TODO: WRITE ME!)
 
-(TODO: talk about needing to append a '_p' and '_z' onto `unique_hash` when a frame becomes a parent or zombie,
+(TODO: talk about needing to append `_p` and `_z` onto `unique_hash` when a frame becomes a parent or zombie,
 respectively, since the frontend needs to know when to refresh the display.)
