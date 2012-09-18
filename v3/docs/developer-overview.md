@@ -113,21 +113,21 @@ python generate_json_trace.py example.py
 
 Doing so will print a JSON-formatted execution trace to stdout.
 This data is exactly what the backend sends to the frontend.
-(Actually not quite: the sent trace is actually compressed to eliminate all extraneous spaces and newlines.
+(Actually not quite: The sent trace is actually compressed to eliminate all extraneous spaces and newlines.
 But for testing purposes, I've made the trace more human-readable.)
 
 Second, when you're "print debugging" in the backend, you can't simply print to stdout, since `pg_logger.py`
 *redirects* stdout to a buffer. Instead, you need to write all of your print statements as:
 
 ```python
-print >> sys.stderr, <debug message to print>
+print >> sys.stderr, <your debug message>
 ```
         
 so that the output goes to stderr.
 
 The easiest way to debug or investigate how some part of the code works is to **insert in print statements (to stderr)
 and then run `generate_json_trace.py` on small code examples**. Trust me -- being able to do this is way more
-effective than memorizing detailed documentation (which could be outdated by the time you read it!)
+effective than memorizing detailed documentation (which could be outdated by the time you read it).
 
 
 ### Backend control flow
