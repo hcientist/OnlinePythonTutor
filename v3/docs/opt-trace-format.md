@@ -22,4 +22,7 @@ And please excuse the sloppy writing; I'm not trying to win any style awards her
 
 ## Trace Overview
 
+Before you continue reading, I suggest for you to first skim the Overview for Developers doc:
+https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/developer-overview.md
+
 (TODO: write me sometime!)
