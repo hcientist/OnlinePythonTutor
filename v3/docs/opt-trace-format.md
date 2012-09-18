@@ -269,9 +269,9 @@ You should know how to generate a trace by now. The trace again contains **four*
 four execution steps (one for the very beginning of execution plus three executed lines).
 
 "Step 1 of 3" is boring since nothing is displayed. Let's jump to "Step 2 of 3"
-([click here](http://pythontutor.com/visualize.html#code=x+%3D+%5B1,+2,+3%5D%0Ay+%3D+('Alice',+'Bob',+'Cindy')%0Az+%3D+%7B'carrot'%3A+'vegetable',+'mouse'%3A+'animal',+'rock'%3A+'mineral'%7D%0A&mode=display&cumulative=false&py=2&curInstr=1))
+(<a href="http://pythontutor.com/visualize.html#code=x+%3D+%5B1,+2,+3%5D%0Ay+%3D+('Alice',+'Bob',+'Cindy')%0Az+%3D+%7B'carrot'%3A+'vegetable',+'mouse'%3A+'animal',+'rock'%3A+'mineral'%7D%0A&mode=display&cumulative=false&py=2&curInstr=1">click here</a>)
 
-The visualization shows that `x` points to a list containing `[1, 2, 3]`. This is the corresponding execution
+The visualization now shows `x` pointing to a list containing `[1, 2, 3]`. This is the corresponding execution
 point object:
 
 ```javascript
@@ -301,5 +301,78 @@ point object:
     }
 ```
 
+Note that in `globals`, `x` now refers to a `["REF", 1]` object, which means a *reference* (pointer) to a heap
+object with an ID of 1.
+
+Let's now look at `heap`, which is a mapping of heap object IDs to their contents. The current heap has one
+object with an ID of 1. That object is a list of [1, 2, 3], which is represented as:
+
+```javascript
+["LIST", 1, 2, 3]
+```
+
+Let's skip forward to the end of execution ("Program terminated"):
+(<a href="http://pythontutor.com/visualize.html#code=x+%3D+%5B1,+2,+3%5D%0Ay+%3D+('Alice',+'Bob',+'Cindy')%0Az+%3D+%7B'carrot'%3A+'vegetable',+'mouse'%3A+'animal',+'rock'%3A+'mineral'%7D%0A&mode=display&cumulative=false&py=2&curInstr=3">click here</a>)
+
+Now there are three variables -- `x` points to a list, `y` points to a tuple, and `z` points to a dict.
+This execution point object is getting kinda big:
+
+```javascript
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "z"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "y": [
+          "REF", 
+          2
+        ], 
+        "x": [
+          "REF", 
+          1
+        ], 
+        "z": [
+          "REF", 
+          3
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "LIST", 
+          1, 
+          2, 
+          3
+        ], 
+        "2": [
+          "TUPLE", 
+          "Alice", 
+          "Bob", 
+          "Cindy"
+        ], 
+        "3": [
+          "DICT", 
+          [
+            "carrot", 
+            "vegetable"
+          ], 
+          [
+            "mouse", 
+            "animal"
+          ], 
+          [
+            "rock", 
+            "mineral"
+          ]
+        ]
+      }, 
+      "line": 3, 
+      "event": "return"
+    }
+```
 
 ## Function Stack Frames
