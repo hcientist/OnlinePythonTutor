@@ -147,6 +147,7 @@ after the backend is done generating a trace.
 Let's look at how `generate_json_trace.py` calls `exec_script_str` (using a simplified version of its code):
 
 ```python
+# simplified version of generate_json_trace.py
 import pg_logger, json
 
 def json_finalizer(input_code, output_trace):
