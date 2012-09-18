@@ -483,7 +483,89 @@ which corresponds to the Python object `(1, c)`.
 The ability to put "REF" objects inside of heap objects enables an arbitrary object graph to be
 represented in the execution trace.
 
+## stdout output
+
+The `stdout` field in an execution point object represents the sum total of all output sent to stdout
+so far during execution. For example, given this program:
+
+```python
+print 1
+print "two"
+print (3, 4, 5)
+```
+
+The complete trace object is:
+
+```javascript
+{
+  "code": "print 1\nprint \"two\"\nprint (3, 4, 5)\n\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [], 
+      "stdout": "1\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [], 
+      "stdout": "1\ntwo\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 3, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [], 
+      "stdout": "1\ntwo\n(3, 4, 5)\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 3, 
+      "event": "return"
+    }
+  ]
+}
+```
+
+By now you should be getting pretty good at reading these objects :)
+
+Let's just focus on the `stdout` field at each execution point. Note that its contents start as an empty string
+at the beginning of execution and then grow incrementally as more stuff is printed to stdout at each
+subsequent execution point. If we grep for `stdout` in the trace, we see the following progression:
+
+```javascript
+      "stdout": "", 
+      "stdout": "1\n", 
+      "stdout": "1\ntwo\n", 
+      "stdout": "1\ntwo\n(3, 4, 5)\n", 
+```
+
+This isn't rocket science; but just be aware that `stdout` contains the cumulative contents of the stdout
+buffer up to that execution point, not only what's just been printed by the last executed line.
+
 
 ## Function Stack Frames
+
+(TODO: WRITE ME!)
+
+
+## Closures and Zombie Frames (advanced)
 
 (TODO: WRITE ME!)
