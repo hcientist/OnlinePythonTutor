@@ -202,6 +202,26 @@ except SystemExit:
 The `run` method is actually [inherited from bdb.Bdb](http://docs.python.org/library/bdb.html#bdb.Bdb.run).
 It executes the contents of `script_str` in a modified global environment (`user_globals`).
 
-Ok, the debugger has just started executing the script that the user passed in (from `example.py` in our example).
-What happens now?
+Ok, the debugger has just started executing the program that the user passed in (from `example.py` in our example).
+What happens now? Here's where the magic happens. Look at the methods called
+`user_call`, `user_return`, `user_exception`, and `user_line`. Again, those are all
+[inherited from bdb.Bdb](http://docs.python.org/library/bdb.html#bdb). As the user's program is running, bdb
+will pause execution at every function call, return, exception, and single-step and transfer control
+over to the respective handler methods. Since `PGLogger` overrides those methods, it can hijack control at
+crucial points during program execution to do what it needs to do.
+
+Since `PGLogger` does similar things regardless of why execution was paused (function call, return, exception, or single-step),
+all handlers dispatch to a giant method called `interaction`.
+
+During a call to `interaction`, the backend collects the state of the stack and all run-time data and then creates a
+trace entry (`trace_entry` dict). Then it appends `trace_entry` onto `self.trace`:
+
+```python
+self.trace.append(trace_entry)
+```
+
+Every time bdb pauses the user's program's execution and dispatches to `interaction` in `PGLogger`, one new trace
+entry is created. At the end of execution, `self.trace` contains as many trace entries as there were "steps"
+in the user's program execution.
+(To guard against infinite loops, `PGLogger` terminates execution when `MAX_EXECUTED_LINES` steps have been executed.)
 
