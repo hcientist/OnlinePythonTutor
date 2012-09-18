@@ -236,6 +236,12 @@ it into an execution trace entry. I've written up a separate document describing
 https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-format.md
 
 
+### Backend regression tests
+
+If you're paranoid about your backend changes breaking stuff, please bug me, and I'll write up docs
+on how to run the regression test suite.
+
+
 ## Hacking the frontend
 
 (TODO: write me sometime!)
