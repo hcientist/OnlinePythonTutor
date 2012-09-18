@@ -20,9 +20,9 @@ function calls** in external modules will lead to an unknown error.
 
 We haven't "cleaned-up" the visualizations to look better for OOP code examples;
 they are simply displaying what Python is doing step-by-step as those programs execute.
-Please email if you have suggestions for more aesthetically-pleasing yet accurate visualizations.
+Please email if you have suggestions for more aesthetically-pleasing yet accurate OOP visualizations.
 
 
 #### Did you know that stepping through code with generators looks weird when "display frames of exited functions" is selected?
 
-Yes, this is a known bug, but sadly the fix isn't straightforward at the moment.
+Yep, this is a known bug, but sadly the fix isn't straightforward at the moment.
