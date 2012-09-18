@@ -93,7 +93,7 @@ web_exec.py - example CGI script for deploying backend on CGI-enabled webservers
 
 The backend works with both Python 2 and 3.
 
-## Hacking on the backend
+## Hacking the backend
 
 To modify the backend, you will mainly need to understand `pg_logger.py` and `pg_encoder.py`.
 
@@ -205,7 +205,10 @@ It executes the contents of `script_str` in a modified global environment (`user
 Ok, the debugger has just started executing the program that the user passed in (from `example.py` in our example).
 What happens now? Here's where the magic happens. Look at the methods called
 `user_call`, `user_return`, `user_exception`, and `user_line`. Again, those are all
-[inherited from bdb.Bdb](http://docs.python.org/library/bdb.html#bdb). As the user's program is running, bdb
+[inherited from bdb.Bdb](http://docs.python.org/library/bdb.html#bdb.Bdb);
+take a minute to read up on what they're supposed to do.
+
+As the user's program is running, bdb
 will pause execution at every function call, return, exception, and single-step and transfer control
 over to the respective handler methods. Since `PGLogger` overrides those methods, it can hijack control at
 crucial points during program execution to do what it needs to do.
@@ -225,3 +228,12 @@ entry is created. At the end of execution, `self.trace` contains as many trace e
 in the user's program execution.
 (To guard against infinite loops, `PGLogger` terminates execution when `MAX_EXECUTED_LINES` steps have been executed.)
 
+### Execution Trace Format
+
+A lot of complicated stuff happens within `interaction` to grab a snapshot of the execution state and encode
+it into an execution trace entry. I've written up a separate document describing the exact format of an execution trace:
+
+
+## Hacking the frontend
+
+(TODO: write me sometime!)
