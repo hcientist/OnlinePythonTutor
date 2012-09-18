@@ -564,8 +564,24 @@ buffer up to that execution point, not only what's been printed by the most rece
 
 ## Function Stack Frames
 
-(TODO: WRITE ME!)
+So far our example programs contained no function calls. Let's now kick it up a notch and see an example
+with function calls:
 
+```python
+def foo(x, y, z):
+  return bar(x, y)
+  
+def bar(a, b):
+  return baz(a)
+  
+def baz(c):
+  return c
+  
+result = foo(1, 2, 3)
+```
+
+Let's jump straight to [Step 8 of 10](http://pythontutor.com/visualize.html#code=def+foo(x,+y,+z)%3A%0A++return+bar(x,+y)%0A++%0Adef+bar(a,+b)%3A%0A++return+baz(a)%0A++%0Adef+baz(c)%3A%0A++return+c%0A++%0Aresult+%3D+foo(1,+2,+3)%0A&mode=display&cumulative=false&py=2&curInstr=7)
+when the program is about to return from the call to `baz`.
 
 ## Closures and Zombie Frames (advanced)
 
