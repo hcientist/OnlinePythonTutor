@@ -200,7 +200,7 @@ except SystemExit:
   raise bdb.BdbQuit
 ```
 
-The `run` method is actually [inherited from bdb.Bdb](http://docs.python.org/library/bdb.html#bdb.Bdb.run).
+The `self.run` method is actually [inherited from bdb.Bdb](http://docs.python.org/library/bdb.html#bdb.Bdb.run).
 It executes the contents of `script_str` in a modified global environment (`user_globals`).
 
 Ok, the debugger has just started executing the program that the user passed in (from `example.py` in our example).
@@ -210,11 +210,12 @@ What happens now? Here's where the magic happens. Look at the methods called
 take a minute to read up on what they're supposed to do.
 
 As the user's program is running, bdb
-will pause execution at every function call, return, exception, and single-step and transfer control
-over to the respective handler methods. Since `PGLogger` overrides those methods, it can hijack control at
+will pause execution at every function call, return, exception, and single-line step (most common).
+It then transfers control over to the respective handler method.
+Since `PGLogger` overrides those handler methods, it can hijack control at
 crucial points during program execution to do what it needs to do.
 
-Since `PGLogger` does similar things regardless of why execution was paused (function call, return, exception, or single-step),
+Since `PGLogger` does similar things regardless of why execution was paused (function call, return, exception, or single-line step),
 all handlers dispatch to a giant method called `interaction`.
 
 During a call to `interaction`, the backend collects the state of the stack and all run-time data and then creates a
@@ -226,13 +227,15 @@ self.trace.append(trace_entry)
 
 Every time bdb pauses the user's program's execution and dispatches to `interaction` in `PGLogger`, one new trace
 entry is created. At the end of execution, `self.trace` contains as many trace entries as there were "steps"
-in the user's program execution.
+in the user's program execution. Each step more-or-less corresponds to one line being executed.
 (To guard against infinite loops, `PGLogger` terminates execution when `MAX_EXECUTED_LINES` steps have been executed.)
 
 ### Execution Trace Format
 
 A lot of complicated stuff happens within `interaction` to grab a snapshot of the execution state and encode
-it into an execution trace entry. I've written up a separate document describing the exact format of an execution trace:
+it into an execution trace entry. Insert a bunch of print statements (remember, to stderr) to get a sense of what's going on.
+
+In addition, I've written up a separate document describing the exact format of an execution trace:
 
 https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-format.md
 
