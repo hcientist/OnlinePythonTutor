@@ -483,7 +483,8 @@ which corresponds to the Python object `(1, c)`.
 The ability to put "REF" objects inside of heap objects enables an arbitrary object graph to be
 represented in the execution trace.
 
-## stdout output
+
+## Capturing `stdout` Output
 
 The `stdout` field in an execution point object represents the sum total of all output sent to stdout
 so far during execution. For example, given this program:
@@ -558,7 +559,7 @@ subsequent execution point. If we grep for `stdout` in the trace, we see the fol
 ```
 
 This isn't rocket science; but just be aware that `stdout` contains the cumulative contents of the stdout
-buffer up to that execution point, not only what's just been printed by the last executed line.
+buffer up to that execution point, not only what's been printed by the most recently executed line.
 
 
 ## Function Stack Frames
