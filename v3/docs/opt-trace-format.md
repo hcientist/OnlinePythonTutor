@@ -177,6 +177,12 @@ Ok now let's look at the second point, which corresponds to the frontend visuali
     }
 ```
 
+Ok note that `line` is now 2, which means that line 2 is *about* to execute (yes, this convention is a bit confusing,
+but it's what the bdb debugger gives us). `globals` is now populated with one key-value pair: the global variable
+`x` has a value of `5`. That makes sense since we just executed line 1 (from the previous execution point),
+which was the code `x = 5`. If you look at the
+[visualization at this step](http://pythontutor.com/visualize.html#code=x+%3D+5%0Ay+%3D+10%0Az+%3D+x+%2B+y&mode=display&cumulative=false&py=2&curInstr=1),
+you'll see that `x` has been assigned to `5`.
 
 
 ```javascript
