@@ -305,14 +305,14 @@ Note that in `globals`, `x` now refers to a `["REF", 1]` object, which means a *
 object with an ID of 1.
 
 Let's now look at `heap`, which is a mapping of heap object IDs to their contents. The current heap has one
-object with an ID of 1. That object is a list of [1, 2, 3], which is represented as:
+object with an ID of 1. That object is a list of [1, 2, 3], which is encoded in JSON as:
 
 ```javascript
 ["LIST", 1, 2, 3]
 ```
 
 Let's skip forward to the end of execution ("Program terminated"):
-(<a href="http://pythontutor.com/visualize.html#code=x+%3D+%5B1,+2,+3%5D%0Ay+%3D+('Alice',+'Bob',+'Cindy')%0Az+%3D+%7B'carrot'%3A+'vegetable',+'mouse'%3A+'animal',+'rock'%3A+'mineral'%7D%0A&mode=display&cumulative=false&py=2&curInstr=3">click here</a>)
+<a href="http://pythontutor.com/visualize.html#code=x+%3D+%5B1,+2,+3%5D%0Ay+%3D+('Alice',+'Bob',+'Cindy')%0Az+%3D+%7B'carrot'%3A+'vegetable',+'mouse'%3A+'animal',+'rock'%3A+'mineral'%7D%0A&mode=display&cumulative=false&py=2&curInstr=3">click here</a>
 
 Now there are three variables -- `x` points to a list, `y` points to a tuple, and `z` points to a dict.
 This execution point object is getting kinda big:
@@ -378,9 +378,12 @@ This execution point object is getting kinda big:
 Note that in `globals`, `x` refers to heap object 1, `y` to heap object 2, and `z` to 3. If you then look at `heap`,
 you'll see that objects 1, 2, and 3 map to the corresponding list, tuple, and dict, respectively.
 
-Look at the comments at the top of `pg_encoder.py` to learn the encoding format for various Python data types:
+Look at the comments at the top of `pg_encoder.py` to learn the JSON encoding formats for various Python data types:
 
 https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/pg_encoder.py
+
+The basic idea behind the encoding format is that each compound object is encoded as a JSON list
+where the first element is a string "tag" identifying its type (e.g., "LIST", "TUPLE", "DICT").
 
 ## Heap-to-Heap References
 
