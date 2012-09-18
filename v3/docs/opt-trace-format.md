@@ -375,4 +375,112 @@ This execution point object is getting kinda big:
     }
 ```
 
+Note that in `globals`, `x` refers to heap object 1, `y` to heap object 2, and `z` to 3. If you then look at `heap`,
+you'll see that objects 1, 2, and 3 map to the corresponding list, tuple, and dict, respectively.
+
+Look at the comments at the top of `pg_encoder.py` to learn the encoding format for various Python data types:
+
+https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/pg_encoder.py
+
+## Heap-to-Heap References
+
+In the above example, the heap objects contained only primitives (numbers and strings), which can be directly
+encoded within those objects' representations in `heap`.
+
+But heap objects can themselves point to other heap objects. Let's look at the following example:
+
+```python
+c = (1, (2, None))
+d = (1, c)
+```
+
+<a href="http://pythontutor.com/visualize.html#code=c+%3D+(1,+(2,+None))%0Ad+%3D+(1,+c)&mode=display&cumulative=false&py=2&curInstr=2">Jump to the end</a> of execution and notice that:
+
+- `c` points to a tuple
+- the second element of that tuple points to another tuple
+- `d` points to a tuple whose second element points to what `c` points to
+
+Let's look at the execution point object that corresponds to this visualization:
+
+```javascript
+    {
+      "ordered_globals": [
+        "c", 
+        "d"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "c": [
+          "REF", 
+          1
+        ], 
+        "d": [
+          "REF", 
+          3
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "TUPLE", 
+          1, 
+          [
+            "REF", 
+            2
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          2, 
+          null
+        ], 
+        "3": [
+          "TUPLE", 
+          1, 
+          [
+            "REF", 
+            1
+          ]
+        ]
+      }, 
+      "line": 2, 
+      "event": "return"
+    }
+```
+
+What's going on here? Let's start with `globals` again. `c` points to heap object 1 (`["REF", 1]`), and `d` points
+to heap object 3 (`["REF", 3]`).
+
+Let's now look at `heap`. Heap object 1 is:
+
+```javascript
+["TUPLE", 1, ["REF", 2]]
+```
+
+What does this mean? It means that it represents a tuple whose first element is the number `1` and whose
+second element is a reference (pointer) to heap object 2.
+
+Ok let's look at heap object 2:
+
+```javascript
+["TUPLE", 2, null]
+```
+
+which corresponds to the Python tuple object `(2, None)`.
+
+Finally, heap object 3 (which `d` points to) is:
+
+```javascript
+["TUPLE", 1, ["REF", 1]]
+```
+
+which corresponds to the Python object `(1, c)`.
+
+The ability to put "REF" objects inside of heap objects enables an arbitrary object graph to be
+represented in the execution trace.
+
+
 ## Function Stack Frames
+
+(TODO: WRITE ME!)
