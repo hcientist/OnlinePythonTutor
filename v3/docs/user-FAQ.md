@@ -9,6 +9,12 @@ if we were truly faithful to Python's semantics, that would result in far too ma
 However, note that since primitives are **immutable** and thus behave identically regardless of aliasing,
 it doesn't matter whether they're rendered in the stack or heap.
 
+#### Whoa, I get an unknown error when I try to use the `re` module (or other modules)
+
+Yep, I currently have limited support for external modules. The only module functions that work
+are those involving native C function calls (e.g., "import math; x = math.sqrt(9)"). Making pure-Python
+function calls in modules will lead to an unknown error.
+
 
 #### Visualizations of object-oriented programs are confusing; why are there grayed-out frames everywhere?
 
