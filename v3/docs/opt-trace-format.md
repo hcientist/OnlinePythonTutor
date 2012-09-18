@@ -729,9 +729,16 @@ provides a mapping from global variable names to their values.
 during execution. The global analogue for this field is `ordered_globals`. (I suppose this field should be named
 `ordered_locals`, but I haven't gotten around to renaming yet.)
 
+`frame_id` is a unique integer that identifies this frame; the first executed function gets an ID of 1, and then
+subsequent calls get successively increasing IDs.
 
-(Ignore `is_parent`, `is_zombie`, and `parent_frame_id_list` for now. We'll cover those in the more advanced
-"Closures and Zombie Frames" section below.)
+`unique_hash` is a unique string that identifies this frame. At this point, I don't remember clearly why
+this field is required in addition to `frame_id`, but nonetheless the frontend depends on it. A simple way
+to construct `unique_hash` is by concatenating the frame's function name with `frame_id`.
+(There's probably some subtle thing I'm forgetting at the moment, though ...)
+
+Finally, ignore `is_parent`, `is_zombie`, and `parent_frame_id_list` for now. We'll cover those in the more advanced
+"Closures and Zombie Frames" section below.
 
 
 ## Closures and Zombie Frames (advanced)
