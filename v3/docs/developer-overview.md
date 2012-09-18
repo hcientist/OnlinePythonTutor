@@ -51,10 +51,10 @@ Here is a typical user interaction sequence:
 
 1. The user visits [visualize.html](http://pythontutor.com/visualize.html) and types in Python code in the web-based text editor.
 2. The user hits the "Visualize execution" button.
-3. The OPT frontend sends the user's Python code as a string to the backend by making an AJAX GET request.
-4. The backend executes the Python code under the supervision of the Python [bdb](http://docs.python.org/library/bdb.html) debugger, produces an execution trace, and send that trace back to the frontend in JSON format.
+3. The OPT frontend sends the user's Python code as a string to the backend by making an Ajax GET request.
+4. The backend executes the Python code under the supervision of the Python [bdb](http://docs.python.org/library/bdb.html) debugger, produces an execution trace, and sends that trace back to the frontend in JSON format.
 5. The frontend switches to a visualization display, parses the execution trace, and renders the appropriate stack frames, heap objects, and pointers.
-6. When the user interacts with the frontend by stepping through execution points (forwards and backwards), the frontend renders the proper data structures **without** making another subsequent call to the backend.
+6. When the user interacts with the frontend by stepping through execution points, the frontend renders the proper data structures **without** making another subsequent call to the backend.
 
 All relevant files are located in `OnlinePythonTutor/v3/`, since v3 is the currently-active version.
 
