@@ -732,10 +732,10 @@ during execution. The global analogue for this field is `ordered_globals`. (I su
 `frame_id` is a unique integer that identifies this frame; the first executed function gets an ID of 1, and then
 subsequent calls get successively increasing IDs.
 
-`unique_hash` is a unique string that identifies this frame. At this point, I don't remember clearly why
-this field is required in addition to `frame_id`, but nonetheless the frontend depends on it. A simple way
+`unique_hash` is a unique string that identifies this frame. For now, a simple way
 to construct `unique_hash` is by concatenating the frame's function name with `frame_id`.
-(There's probably some subtle thing I'm forgetting at the moment, though ...)
+Note that `unique_hash` seems redundant with `frame_id`, since the latter is already unique.
+However, you'll see in the "Closures and Zombie Frames" section why `unique_hash` is required.
 
 Finally, ignore `is_parent`, `is_zombie`, and `parent_frame_id_list` for now. We'll cover those in the more advanced
 "Closures and Zombie Frames" section below.
@@ -744,3 +744,6 @@ Finally, ignore `is_parent`, `is_zombie`, and `parent_frame_id_list` for now. We
 ## Closures and Zombie Frames (advanced)
 
 (TODO: WRITE ME!)
+
+(TODO: talk about needing to append a '_p' and '_z' onto `unique_hash` when a frame becomes a parent or zombie,
+respectively, since the frontend needs to know when to refresh the display.)
