@@ -184,6 +184,8 @@ which was the code `x = 5`. If you look at the
 [visualization at this step](http://pythontutor.com/visualize.html#code=x+%3D+5%0Ay+%3D+10%0Az+%3D+x+%2B+y&mode=display&cumulative=false&py=2&curInstr=1),
 you'll see that `x` has been assigned to `5`.
 
+Ok let's keep marching to the next execution point, which is the one that corresponds to "Step 3 of 3"
+in the frontend:
 
 ```javascript
     {
@@ -203,6 +205,20 @@ you'll see that `x` has been assigned to `5`.
       "event": "step_line"
     }
 ```
+
+Now `line` is 3, because we're about to execute line 3 (we just executed lines 1 and 2). Notice that there is a
+new key-value pair in`globals` showing that `y` has been assigned to `10`. No surprises here, since we just
+executed the line `y = 10`.
+
+Ok now this is where I want to talk about `ordered_globals`, which is a list of global variables (i.e.,
+keys in `globals`) in the order that the frontend should visualize them. The backend appends variable
+names in their order of appearance throughout execution. Why is this list necessary? Because `globals`
+is an object whose keys are unsorted, so if you don't also keep an `ordered_globals` sorted list,
+then the visualization might end up being jarring. For instance, at one execution point, it might
+render `x` and then `y`, and at the next execution point, it might render `y` and then `x`, thereby
+causing the visualization to "jitter" unnecessarily. And I've found that it looks aesthetically pleasing
+when variables are sorted in their order of appearance as you step forwards through execution.
+
 
 ```javascript
     {
