@@ -580,8 +580,159 @@ def baz(c):
 result = foo(1, 2, 3)
 ```
 
-Let's jump straight to [Step 8 of 10](http://pythontutor.com/visualize.html#code=def+foo(x,+y,+z)%3A%0A++return+bar(x,+y)%0A++%0Adef+bar(a,+b)%3A%0A++return+baz(a)%0A++%0Adef+baz(c)%3A%0A++return+c%0A++%0Aresult+%3D+foo(1,+2,+3)%0A&mode=display&cumulative=false&py=2&curInstr=7)
+Let's jump straight to <a href="http://pythontutor.com/visualize.html#code=def+foo(x,+y,+z)%3A%0A++return+bar(x,+y)%0A++%0Adef+bar(a,+b)%3A%0A++return+baz(a)%0A++%0Adef+baz(c)%3A%0A++return+c%0A++%0Aresult+%3D+foo(1,+2,+3)%0A&mode=display&cumulative=false&py=2&curInstr=7">Step 8 of 10</a>,
 when the program is about to return from the call to `baz`.
+
+Study the visualization for a bit. Note that there are four frames currently on the stack: globals, `foo`, `bar`, and `baz`.
+Each frame consists of a name and a mapping between constituent variable names and values. There is a special
+variable called `Return value`, which represents the value that this function is about to return to its caller.
+
+Let's now look at the execution point object corresponding to this visualization:
+
+```javascript
+    {
+      "ordered_globals": [
+        "foo", 
+        "bar", 
+        "baz"
+      ], 
+      "stdout": "", 
+      "func_name": "baz", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "y": 2, 
+            "x": 1, 
+            "z": 3
+          }, 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "func_name": "foo", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "foo_f1", 
+          "ordered_varnames": [
+            "x", 
+            "y", 
+            "z"
+          ]
+        }, 
+        {
+          "frame_id": 2, 
+          "encoded_locals": {
+            "a": 1, 
+            "b": 2
+          }, 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "func_name": "bar", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "bar_f2", 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ]
+        }, 
+        {
+          "frame_id": 3, 
+          "encoded_locals": {
+            "__return__": 1, 
+            "c": 1
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "baz", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "baz_f3", 
+          "ordered_varnames": [
+            "c", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "bar": [
+          "REF", 
+          2
+        ], 
+        "foo": [
+          "REF", 
+          1
+        ], 
+        "baz": [
+          "REF", 
+          3
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "foo(x, y, z)", 
+          null
+        ], 
+        "2": [
+          "FUNCTION", 
+          "bar(a, b)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "baz(c)", 
+          null
+        ]
+      }, 
+      "line": 8, 
+      "event": "return"
+    }, 
+```
+
+First things first: This is a `return` event occurring on line 8 (the `return c` line in `baz`). The currently-active
+function is `baz`. There are three global variables: `foo`, `bar`, and `baz`, which all point to function objects
+on the heap.
+
+The only new kind of field is `stack_to_render`, which is (unsurprisingly) a list of stack frames to render.
+In this case, `stack_to_render` contains three elements -- the frames for `foo`, `bar`, and `baz`, in that exact order.
+The frontend simply walks down `stack_to_render` and renders each frame in a similar way that it renders global variables.
+
+Let's now zoom in on one particular frame in `stack_to_render`. Here is the frame for `bar`:
+
+```javascript
+        {
+          "frame_id": 2, 
+          "encoded_locals": {
+            "a": 1, 
+            "b": 2
+          }, 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "func_name": "bar", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "bar_f2", 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ]
+        }, 
+```
+
+For starters, `func_name` is the name of the function, and `is_highlighted` is true only if the current
+frame is the "top-most" one (telling the frontend to highlight it in a brighter color).
+
+`encoded_locals` is a mapping from local variable names to their values, similar to how `globals`
+provides a mapping from global variable names to their values.
+
+`ordered_varnames` is an ordered list of keys from `encoded_locals`, usually sorted by order of appearance
+during execution. The global analogue for this field is `ordered_globals`. (I suppose this field should be named
+`ordered_locals`, but I haven't gotten around to renaming yet.)
+
+
+(Ignore `is_parent`, `is_zombie`, and `parent_frame_id_list` for now. We'll cover those in the more advanced
+"Closures and Zombie Frames" section below.)
+
 
 ## Closures and Zombie Frames (advanced)
 
