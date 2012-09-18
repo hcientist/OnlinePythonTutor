@@ -233,6 +233,8 @@ in the user's program execution.
 A lot of complicated stuff happens within `interaction` to grab a snapshot of the execution state and encode
 it into an execution trace entry. I've written up a separate document describing the exact format of an execution trace:
 
+https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-format.md
+
 
 ## Hacking the frontend
 
