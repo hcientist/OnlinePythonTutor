@@ -248,8 +248,58 @@ This time, the event is a `return`, which signifies "returning" from the top-lev
 has terminated). Note that now there is another new variable `z`, which is bound to `15` since `z = x + y` just executed.
 Note that, again, `ordered_globals` shows all three variables in their order of appearance.
 
-Ok, that's it for the basic tour!
+Ok, that's it for the basic tour. Next let's talk about what happens when the `heap` field isn't empty.
+
 
 ## Heap Objects
+
+The previous example contained only primitive values that JSON could encode directly within the `globals` object.
+JSON natively supports numbers, strings, and boolean values (which map well to Python's "primitive" data types).
+But what happens when the user's program contains compound
+Python data types such as lists, tuples, dicts, sets, etc.?
+
+Create an `example.py` file with the following contents:
+```python
+x = [1, 2, 3]
+y = ('Alice', 'Bob', 'Cindy')
+z = {'carrot': 'vegetable', 'mouse': 'animal', 'rock': 'mineral'}
+```
+
+You should know how to generate a trace by now. The trace again contains **four** elements since there are
+four execution steps (one for the very beginning of execution plus three executed lines).
+
+"Step 1 of 3" is boring since nothing is displayed. Let's jump to "Step 2 of 3"
+([click here](http://pythontutor.com/visualize.html#code=x+%3D+%5B1,+2,+3%5D%0Ay+%3D+('Alice',+'Bob',+'Cindy')%0Az+%3D+%7B'carrot'%3A+'vegetable',+'mouse'%3A+'animal',+'rock'%3A+'mineral'%7D%0A&mode=display&cumulative=false&py=2&curInstr=1))
+
+The visualization shows that `x` points to a list containing `[1, 2, 3]`. This is the corresponding execution
+point object:
+
+```javascript
+    {
+      "ordered_globals": [
+        "x"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "x": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "LIST", 
+          1, 
+          2, 
+          3
+        ]
+      }, 
+      "line": 2, 
+      "event": "step_line"
+    }
+```
+
 
 ## Function Stack Frames
