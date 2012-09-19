@@ -9,6 +9,12 @@ if we were truly faithful to Python's semantics, that would result in far too ma
 However, note that since primitives are **immutable** and thus behave identically regardless of aliasing,
 it doesn't matter whether they're rendered in the stack or heap.
 
+
+#### Unicode strings look weird or broken
+
+Yep, that's a known bug; Online Python Tutor currently doesn't have much support for Unicode.
+
+
 #### Whoa, I get an unknown error when I try to use the `re` module (or other modules)
 
 Yep, Online Python Tutor currently has very limited support for external modules. The only module functions that work
