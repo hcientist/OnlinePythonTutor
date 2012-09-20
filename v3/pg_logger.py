@@ -56,6 +56,14 @@ DEBUG = True
 
 
 # simple sandboxing scheme:
+#
+# - use resource.setrlimit to deprive this process of ANY file descriptors
+#   (which will cause file read/write and subprocess shell launches to fail)
+# - restrict user builtins and module imports
+#   (beware that this is NOT foolproof at all ... there are known flaws!)
+#
+# ALWAYS use defense-in-depth and don't just rely on these simple mechanisms
+import resource
 
 
 # ugh, I can't figure out why in Python 2, __builtins__ seems to
@@ -646,6 +654,19 @@ class PGLogger(bdb.Bdb):
                         "__user_stdout__" : user_stdout}
 
         try:
+          # enforce resource limits RIGHT BEFORE running script_str
+
+          # set ~200MB virtual memory limit AND a 5-second CPU time
+          # limit (tuned for Webfaction shared hosting) to protect against
+          # memory bombs such as:
+          #   x = 2
+          #   while True: x = x*x
+          resource.setrlimit(resource.RLIMIT_AS, (200000000, 200000000))
+          resource.setrlimit(resource.RLIMIT_CPU, (5, 5))
+
+          # protect against unauthorized filesystem accesses ...
+          resource.setrlimit(resource.RLIMIT_NOFILE, (0, 0)) # no opened files allowed
+          resource.setrlimit(resource.RLIMIT_FSIZE, (0, 0))  # (redundancy for paranoia)
           self.run(script_str, user_globals, user_globals)
         # sys.exit ...
         except SystemExit:
