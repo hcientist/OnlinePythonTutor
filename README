@@ -152,11 +152,16 @@ v3/
   '''
 
 ---
+Acknowledgments
 
-Special thanks to ...
+John DeNero - for helping with the official Python 3 port and lots of code patches
+Chris Horne - https://github.com/lahwran - for security tips
+Peter Wentworth and his students - for working on the original Python 3 fork
+
+
+For advice and feedback from an instructor's perspective:
 
 John Dalbey
-John DeNero
 Michael Ernst
 David Evans
 Paul Gries
@@ -169,6 +174,4 @@ Peter Norvig
 Andrew Petersen
 David Pritchard
 Suzanne Rivoire
-Peter Wentworth
 David Wilkins
-
