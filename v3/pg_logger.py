@@ -63,7 +63,12 @@ DEBUG = True
 #   (beware that this is NOT foolproof at all ... there are known flaws!)
 #
 # ALWAYS use defense-in-depth and don't just rely on these simple mechanisms
-import resource
+try:
+  import resource
+  resource_module_loaded = True
+except ImportError:
+  # Google App Engine doesn't seem to have the 'resource' module
+  resource_module_loaded = False
 
 
 # ugh, I can't figure out why in Python 2, __builtins__ seems to
@@ -671,12 +676,14 @@ class PGLogger(bdb.Bdb):
           # memory bombs such as:
           #   x = 2
           #   while True: x = x*x
-          resource.setrlimit(resource.RLIMIT_AS, (200000000, 200000000))
-          resource.setrlimit(resource.RLIMIT_CPU, (5, 5))
+          if resource_module_loaded:
+            resource.setrlimit(resource.RLIMIT_AS, (200000000, 200000000))
+            resource.setrlimit(resource.RLIMIT_CPU, (5, 5))
 
-          # protect against unauthorized filesystem accesses ...
-          resource.setrlimit(resource.RLIMIT_NOFILE, (0, 0)) # no opened files allowed
-          resource.setrlimit(resource.RLIMIT_FSIZE, (0, 0))  # (redundancy for paranoia)
+            # protect against unauthorized filesystem accesses ...
+            resource.setrlimit(resource.RLIMIT_NOFILE, (0, 0)) # no opened files allowed
+            resource.setrlimit(resource.RLIMIT_FSIZE, (0, 0))  # (redundancy for paranoia)
+
           self.run(script_str, user_globals, user_globals)
         # sys.exit ...
         except SystemExit:
