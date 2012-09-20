@@ -1,5 +1,5 @@
 {
-  "code": "# some of the params in f and g have identical names\n# so make sure they're all displayed properly\ndef f(x, y, z):\n  def g(x, y):\n    return x\n  return g(x*10, y*10)\n\nf(1, 2, 3)\n", 
+  "code": "# some of the params in f and g have identical names AND values,\n# so make sure they're all displayed properly\ndef f(x, y, z):\n  def g(x, y):\n    return x\n  return g(x, y)\n\nf(1, 2, 3)\n", 
   "trace": [
     {
       "ordered_globals": [], 
@@ -207,14 +207,16 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "y": 20, 
-            "x": 10
+            "y": 2, 
+            "x": 1
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "g", 
           "is_zombie": false, 
-          "parent_frame_id_list": [], 
+          "parent_frame_id_list": [
+            1
+          ], 
           "unique_hash": "g_f2", 
           "ordered_varnames": [
             "x", 
@@ -277,14 +279,16 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "y": 20, 
-            "x": 10
+            "y": 2, 
+            "x": 1
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "g", 
           "is_zombie": false, 
-          "parent_frame_id_list": [], 
+          "parent_frame_id_list": [
+            1
+          ], 
           "unique_hash": "g_f2", 
           "ordered_varnames": [
             "x", 
@@ -347,15 +351,17 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "y": 20, 
-            "x": 10, 
-            "__return__": 10
+            "y": 2, 
+            "x": 1, 
+            "__return__": 1
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "g", 
           "is_zombie": false, 
-          "parent_frame_id_list": [], 
+          "parent_frame_id_list": [
+            1
+          ], 
           "unique_hash": "g_f2", 
           "ordered_varnames": [
             "x", 
@@ -397,7 +403,7 @@
           "encoded_locals": {
             "y": 2, 
             "x": 1, 
-            "__return__": 10, 
+            "__return__": 1, 
             "z": 3, 
             "g": [
               "REF", 
@@ -452,7 +458,7 @@
           "encoded_locals": {
             "y": 2, 
             "x": 1, 
-            "__return__": 10, 
+            "__return__": 1, 
             "z": 3, 
             "g": [
               "REF", 
