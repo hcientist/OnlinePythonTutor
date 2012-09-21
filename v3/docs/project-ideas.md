@@ -10,21 +10,27 @@ These projects are listed roughly in order of difficulty.
 Email philip@pgbovine.net if you're interested in working on anything here, or if you have other
 project ideas.
 
+
 ## Enable beautiful print-outs of OPT visualizations (easy)
 
 A lot of instructors want to print out their OPT visualizations to make handouts or lecture notes
-for their students.
+for students.
 However, the default CSS stylesheet is optimized for on-screen viewing and not for printing,
 so when you try to print the diagrams, they look ugly and unreadable.
 
 The project involves creating a custom CSS optimized for printing, especially on black-and-white printers.
-Here is an example how-to guide to get started ...
+Here is an example how-to guide to get started creating a CSS print style sheet ...
 http://coding.smashingmagazine.com/2011/11/24/how-to-set-up-a-print-style-sheet/
 
 
-## Add better Unicode support (easy/medium)
+## Add better Unicode support (medium)
 
-Right now, OPT has poor-to-nonexistent Unicode support. Here is one bug report that inspired this project idea:
+This project is a great fit for someone familiar with coding in non-English languages.
+
+Right now, OPT has poor-to-nonexistent Unicode support, so adding it is important for making it friendlier to
+non-English audiences.
+
+Here is one bug report that inspired this project idea:
 
 """
 I’m having some fun with your nifty Python visualiser.
@@ -53,9 +59,5 @@ s = u'—'
 
 (Note that Unicode support in Python 2 and 3 involve different subtleties.)
 
-This project is a great fit for someone familiar with coding in non-English languages.
-
-
-##
 
 ## Migrate OPT backend to Skulpt (very hard)
