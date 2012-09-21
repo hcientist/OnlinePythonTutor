@@ -13,7 +13,7 @@
 #
 # The above copyright notice and this permission notice shall be included
 # in all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
 # OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -216,8 +216,11 @@ class PGLogger(bdb.Bdb):
         # variables from its (lexical) parent frame.
         if func_obj.__code__ == frame.f_code:
           all_matched = True
-          for k in parent_frame.f_locals:
-            if k != '__return__' and k in frame.f_locals:
+          for k in frame.f_locals:
+            # Do not try to match local names
+            if k in frame.f_code.co_varnames:
+              continue
+            if k != '__return__' and k in parent_frame.f_locals:
               if parent_frame.f_locals[k] != frame.f_locals[k]:
                 all_matched = False
                 break
@@ -374,8 +377,8 @@ class PGLogger(bdb.Bdb):
                 if k != '__return__':
                   # these values SHOULD BE ALIASES
                   # (don't do an 'is' check since it might not fire for primitives)
-                  assert parent_frame.f_locals[k] == v
-                  is_in_parent_frame = True
+                  if parent_frame.f_locals[k] == v:
+                      is_in_parent_frame = True
 
             if is_in_parent_frame and k not in cur_frame.f_code.co_varnames:
               continue
