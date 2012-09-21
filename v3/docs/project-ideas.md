@@ -11,7 +11,7 @@ Email philip@pgbovine.net if you're interested in working on anything here, or i
 project ideas.
 
 
-## Enable beautiful print-outs of OPT visualizations (easy)
+## Enable beautiful printouts of OPT visualizations (easy)
 
 A lot of instructors want to print out their OPT visualizations to make handouts or lecture notes
 for students.
@@ -23,9 +23,9 @@ Here is an example how-to guide to get started creating a CSS print style sheet 
 http://coding.smashingmagazine.com/2011/11/24/how-to-set-up-a-print-style-sheet/
 
 
-## Responsive UI for different resolution displays (easy/medium)
+## Implement responsive web UI design for OPT frontend (easy/medium)
 
-This project is good for someone interested in visual design.
+This is a good project for someone interested in visual and web design.
 
 Implement the principles of [responsive web design](http://en.wikipedia.org/wiki/Responsive_Web_Design)
 so that OPT visualizations (and the surrounding user interface) look good on displays of many different sizes
@@ -98,7 +98,8 @@ https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-form
 
 ## Migrate OPT backend to Skulpt (very hard but super cool!)
 
-This project is appropriate for someone with advanced knowledge of hacking a Python interpreter.
+This project is appropriate for someone with advanced knowledge of hacking a Python interpreter
+who is willing to make a substantive time commitment.
 
 Right now the OPT backend runs Python code on the server, but it would be super-cool to create a "backend"
 that runs entirely in the browser. Modifying Skulpt -- http://www.skulpt.org/ -- is the leading contender here,
