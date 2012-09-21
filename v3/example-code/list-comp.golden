@@ -39,12 +39,17 @@
     {
       "ordered_globals": [
         "ppl", 
+        "_[1]", 
         "e"
       ], 
       "stdout": "", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {
+        "_[1]": [
+          "REF", 
+          2
+        ], 
         "e": "Alice", 
         "ppl": [
           "REF", 
@@ -58,6 +63,10 @@
           "Bob", 
           "Carol", 
           "Doug"
+        ], 
+        "2": [
+          "LIST", 
+          "Alice!!"
         ]
       }, 
       "line": 2, 
@@ -66,12 +75,17 @@
     {
       "ordered_globals": [
         "ppl", 
+        "_[1]", 
         "e"
       ], 
       "stdout": "", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {
+        "_[1]": [
+          "REF", 
+          2
+        ], 
         "e": "Bob", 
         "ppl": [
           "REF", 
@@ -85,6 +99,11 @@
           "Bob", 
           "Carol", 
           "Doug"
+        ], 
+        "2": [
+          "LIST", 
+          "Alice!!", 
+          "Bob!!"
         ]
       }, 
       "line": 2, 
@@ -93,12 +112,17 @@
     {
       "ordered_globals": [
         "ppl", 
+        "_[1]", 
         "e"
       ], 
       "stdout": "", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {
+        "_[1]": [
+          "REF", 
+          2
+        ], 
         "e": "Carol", 
         "ppl": [
           "REF", 
@@ -112,6 +136,12 @@
           "Bob", 
           "Carol", 
           "Doug"
+        ], 
+        "2": [
+          "LIST", 
+          "Alice!!", 
+          "Bob!!", 
+          "Carol!!"
         ]
       }, 
       "line": 2, 
@@ -120,12 +150,17 @@
     {
       "ordered_globals": [
         "ppl", 
+        "_[1]", 
         "e"
       ], 
       "stdout": "", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {
+        "_[1]": [
+          "REF", 
+          2
+        ], 
         "e": "Doug", 
         "ppl": [
           "REF", 
@@ -139,6 +174,13 @@
           "Bob", 
           "Carol", 
           "Doug"
+        ], 
+        "2": [
+          "LIST", 
+          "Alice!!", 
+          "Bob!!", 
+          "Carol!!", 
+          "Doug!!"
         ]
       }, 
       "line": 2, 
@@ -188,22 +230,27 @@
         "ppl", 
         "e", 
         "excited_ppl", 
-        "x"
+        "x", 
+        "_[2]"
       ], 
       "stdout": "", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {
-        "e": "Doug", 
+        "x": "Alice", 
         "ppl": [
           "REF", 
           1
         ], 
+        "e": "Doug", 
         "excited_ppl": [
           "REF", 
           2
         ], 
-        "x": "Alice"
+        "_[2]": [
+          "REF", 
+          3
+        ]
       }, 
       "heap": {
         "1": [
@@ -219,6 +266,10 @@
           "Bob!!", 
           "Carol!!", 
           "Doug!!"
+        ], 
+        "3": [
+          "LIST", 
+          5
         ]
       }, 
       "line": 3, 
@@ -229,22 +280,27 @@
         "ppl", 
         "e", 
         "excited_ppl", 
-        "x"
+        "x", 
+        "_[2]"
       ], 
       "stdout": "", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {
-        "e": "Doug", 
+        "x": "Bob", 
         "ppl": [
           "REF", 
           1
         ], 
+        "e": "Doug", 
         "excited_ppl": [
           "REF", 
           2
         ], 
-        "x": "Bob"
+        "_[2]": [
+          "REF", 
+          3
+        ]
       }, 
       "heap": {
         "1": [
@@ -260,6 +316,11 @@
           "Bob!!", 
           "Carol!!", 
           "Doug!!"
+        ], 
+        "3": [
+          "LIST", 
+          5, 
+          3
         ]
       }, 
       "line": 3, 
@@ -270,22 +331,27 @@
         "ppl", 
         "e", 
         "excited_ppl", 
-        "x"
+        "x", 
+        "_[2]"
       ], 
       "stdout": "", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {
-        "e": "Doug", 
+        "x": "Carol", 
         "ppl": [
           "REF", 
           1
         ], 
+        "e": "Doug", 
         "excited_ppl": [
           "REF", 
           2
         ], 
-        "x": "Carol"
+        "_[2]": [
+          "REF", 
+          3
+        ]
       }, 
       "heap": {
         "1": [
@@ -301,6 +367,12 @@
           "Bob!!", 
           "Carol!!", 
           "Doug!!"
+        ], 
+        "3": [
+          "LIST", 
+          5, 
+          3, 
+          5
         ]
       }, 
       "line": 3, 
@@ -311,22 +383,27 @@
         "ppl", 
         "e", 
         "excited_ppl", 
-        "x"
+        "x", 
+        "_[2]"
       ], 
       "stdout": "", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {
-        "e": "Doug", 
+        "x": "Doug", 
         "ppl": [
           "REF", 
           1
         ], 
+        "e": "Doug", 
         "excited_ppl": [
           "REF", 
           2
         ], 
-        "x": "Doug"
+        "_[2]": [
+          "REF", 
+          3
+        ]
       }, 
       "heap": {
         "1": [
@@ -342,6 +419,13 @@
           "Bob!!", 
           "Carol!!", 
           "Doug!!"
+        ], 
+        "3": [
+          "LIST", 
+          5, 
+          3, 
+          5, 
+          4
         ]
       }, 
       "line": 3, 

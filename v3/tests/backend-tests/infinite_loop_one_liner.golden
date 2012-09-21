@@ -1,5 +1,5 @@
 {
-  "code": "while 1: print \"hahahaha\"\n", 
+  "code": "while 1:\n  print \"hahahaha\"\n", 
   "trace": [
     {
       "ordered_globals": [], 
@@ -13,12 +13,22 @@
     }, 
     {
       "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [], 
       "stdout": "hahahaha\n", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -28,7 +38,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -38,7 +48,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -48,7 +58,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -58,7 +68,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -68,7 +78,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -78,7 +88,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -88,7 +98,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -98,7 +108,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -108,7 +118,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -118,7 +128,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -128,7 +138,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -138,7 +148,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -148,7 +158,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -158,7 +168,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -168,7 +178,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -178,7 +188,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -188,7 +198,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -198,7 +208,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -208,7 +218,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -218,7 +228,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -228,7 +238,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -238,7 +248,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -248,7 +258,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -258,7 +268,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -268,7 +278,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -278,7 +288,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -288,7 +298,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -298,7 +308,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -308,7 +318,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -318,7 +328,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -328,7 +338,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -338,7 +348,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -348,7 +358,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -358,7 +368,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -368,7 +378,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -378,7 +388,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -388,7 +398,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -398,7 +408,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -408,7 +418,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -418,7 +428,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -428,7 +438,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -438,7 +448,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -448,7 +458,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -458,7 +468,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -468,7 +478,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -478,7 +488,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -488,7 +498,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -498,7 +508,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -508,7 +518,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -518,7 +528,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -528,7 +538,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -538,7 +548,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -548,7 +558,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -558,7 +568,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -568,7 +578,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -578,7 +588,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -588,7 +598,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -598,7 +608,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -608,7 +618,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -618,7 +628,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -628,7 +638,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -638,7 +648,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -648,7 +658,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -658,7 +668,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -668,7 +678,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -678,7 +688,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -688,7 +698,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -698,7 +708,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -708,7 +718,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -718,7 +728,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -728,7 +738,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -738,7 +748,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -748,7 +758,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -758,7 +768,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -768,7 +778,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -778,7 +788,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -788,7 +798,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -798,7 +808,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -808,7 +818,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -818,7 +828,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -828,7 +838,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -838,7 +848,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -848,7 +858,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -858,7 +868,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -868,7 +878,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -878,7 +888,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -888,7 +898,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -898,7 +908,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -908,7 +918,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -918,7 +928,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -928,7 +938,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -938,7 +948,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -948,7 +958,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -958,7 +968,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -968,7 +978,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -978,7 +988,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -988,7 +998,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -998,7 +1008,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1008,7 +1018,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1018,7 +1028,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1028,7 +1038,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1038,7 +1048,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1048,7 +1058,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1058,7 +1068,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1068,7 +1078,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1078,7 +1088,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1088,7 +1098,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1098,7 +1108,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1108,7 +1118,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1118,7 +1128,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1128,7 +1138,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1138,7 +1148,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1148,7 +1158,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1158,7 +1168,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1168,7 +1178,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1178,7 +1188,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1188,7 +1198,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1198,7 +1208,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1208,7 +1218,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1218,7 +1228,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1228,7 +1238,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1238,7 +1248,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1248,7 +1258,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1258,7 +1268,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1268,7 +1278,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1278,7 +1288,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1288,7 +1298,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1298,7 +1308,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1308,7 +1318,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1318,7 +1328,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1328,7 +1338,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1338,7 +1348,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1348,7 +1358,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1358,7 +1368,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1368,7 +1378,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1378,7 +1388,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1388,7 +1398,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1398,7 +1408,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1408,7 +1418,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1418,7 +1428,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1428,7 +1438,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1438,7 +1448,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1448,7 +1458,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1458,7 +1468,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1468,7 +1478,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1478,7 +1488,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1488,7 +1498,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1498,7 +1508,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1508,7 +1518,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1518,7 +1528,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1528,7 +1538,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1538,7 +1548,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1548,7 +1558,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1558,7 +1568,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1568,7 +1578,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1578,7 +1588,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1588,7 +1598,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1598,7 +1608,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1608,7 +1618,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1618,7 +1628,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1628,7 +1638,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1638,7 +1648,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1648,7 +1658,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1658,7 +1668,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1668,7 +1678,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1678,7 +1688,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1688,7 +1698,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1698,7 +1708,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1708,7 +1718,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1718,7 +1728,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1728,7 +1738,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1738,7 +1748,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1748,7 +1758,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1758,7 +1768,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1768,7 +1778,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1778,7 +1788,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1788,7 +1798,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1798,7 +1808,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1808,7 +1818,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1818,7 +1828,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1828,7 +1838,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1838,7 +1848,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1848,7 +1858,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1858,7 +1868,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1868,7 +1878,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1878,7 +1888,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1888,7 +1898,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1898,7 +1908,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1908,7 +1918,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1918,7 +1928,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1928,7 +1938,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1938,7 +1948,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1948,7 +1958,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1958,7 +1968,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1968,7 +1978,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1978,7 +1988,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1988,7 +1998,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -1998,7 +2008,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2008,7 +2018,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2018,7 +2028,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2028,7 +2038,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2038,7 +2048,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2048,7 +2058,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2058,7 +2068,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2068,7 +2078,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2078,7 +2088,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2088,7 +2098,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2098,7 +2108,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2108,7 +2118,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2118,7 +2128,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2128,7 +2138,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2138,7 +2148,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2148,7 +2158,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2158,7 +2168,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2168,7 +2178,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2178,7 +2188,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2188,7 +2198,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2198,7 +2208,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2208,7 +2218,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2218,7 +2228,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2228,7 +2238,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2238,7 +2248,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2248,7 +2258,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2258,7 +2268,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2268,7 +2278,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2278,7 +2288,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2288,7 +2298,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2298,7 +2308,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2308,7 +2318,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2318,7 +2328,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2328,7 +2338,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2338,7 +2348,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2348,7 +2358,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2358,7 +2368,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2368,7 +2378,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2378,7 +2388,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2388,7 +2398,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2398,7 +2408,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2408,7 +2418,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2418,7 +2428,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2428,7 +2438,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2438,7 +2448,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2448,7 +2458,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2458,7 +2468,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2468,7 +2478,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2478,7 +2488,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2488,7 +2498,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2498,7 +2508,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2508,7 +2518,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2518,7 +2528,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2528,7 +2538,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2538,7 +2548,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2548,7 +2558,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2558,7 +2568,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2568,7 +2578,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2578,7 +2588,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2588,7 +2598,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2598,7 +2608,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2608,7 +2618,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2618,7 +2628,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2628,7 +2638,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2638,7 +2648,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2648,7 +2658,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2658,7 +2668,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2668,7 +2678,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2678,7 +2688,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2688,7 +2698,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2698,7 +2708,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2708,7 +2718,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2718,7 +2728,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2728,7 +2738,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2738,7 +2748,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2748,7 +2758,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2758,7 +2768,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2768,7 +2778,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2778,7 +2788,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2788,7 +2798,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2798,7 +2808,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2808,7 +2818,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2818,7 +2828,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2828,7 +2838,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2838,7 +2848,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2848,7 +2858,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2858,7 +2868,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2868,7 +2878,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2878,7 +2888,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2888,7 +2898,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2898,7 +2908,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2908,7 +2918,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2918,7 +2928,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2928,7 +2938,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2938,7 +2948,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2948,7 +2958,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2958,7 +2968,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2968,7 +2978,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2978,7 +2988,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {
@@ -2988,17 +2998,7 @@
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
-      "line": 1, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "hahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\nhahahaha\n", 
-      "func_name": "<module>", 
-      "stack_to_render": [], 
-      "globals": {}, 
-      "heap": {}, 
-      "line": 1, 
+      "line": 2, 
       "event": "step_line"
     }, 
     {

@@ -12,6 +12,14 @@ else:
 import sys, pg_logger, json
 
 
+# To make regression tests work consistently across platforms,
+# standardize display of floats to 3 significant figures
+#
+# Trick from:
+# http://stackoverflow.com/questions/1447287/format-floats-with-standard-json-module
+json.encoder.FLOAT_REPR = lambda f: ('%.3f' % f)
+
+
 def json_finalizer(input_code, output_trace):
   ret = dict(code=input_code, trace=output_trace)
   json_output = json.dumps(ret, indent=INDENT_LEVEL)

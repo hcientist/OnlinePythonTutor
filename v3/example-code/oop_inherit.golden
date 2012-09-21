@@ -2058,7 +2058,7 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "percentage": 1.26, 
+            "percentage": 1.260, 
             "self": [
               "REF", 
               8
@@ -2310,7 +2310,7 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "percentage": 1.26, 
+            "percentage": 1.260, 
             "self": [
               "REF", 
               8
@@ -2563,7 +2563,7 @@
           "frame_id": 4, 
           "encoded_locals": {
             "__return__": null, 
-            "percentage": 1.26, 
+            "percentage": 1.260, 
             "self": [
               "REF", 
               8
@@ -2719,7 +2719,7 @@
           ], 
           [
             "salary", 
-            226000.0
+            226000.000
           ]
         ]
       }, 
@@ -2955,7 +2955,7 @@
           ], 
           [
             "salary", 
-            226000.0
+            226000.000
           ]
         ]
       }, 
@@ -3170,7 +3170,7 @@
           ], 
           [
             "salary", 
-            226000.0
+            226000.000
           ]
         ]
       }, 
