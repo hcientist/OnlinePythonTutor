@@ -15,12 +15,35 @@ project ideas.
 
 A lot of instructors want to print out their OPT visualizations to make handouts or lecture notes
 for students.
-However, the default CSS stylesheet is optimized for on-screen viewing and not for printing,
+However, the default CSS is optimized for on-screen viewing and not for printing,
 so when you try to print the diagrams, they look ugly and unreadable.
 
 The project involves creating a custom CSS optimized for printing, especially on black-and-white printers.
 Here is an example how-to guide to get started creating a CSS print style sheet ...
 http://coding.smashingmagazine.com/2011/11/24/how-to-set-up-a-print-style-sheet/
+
+
+## Responsive UI for different resolution displays (easy/medium)
+
+This project is good for someone interested in visual design.
+
+Implement the principles of [responsive web design](http://en.wikipedia.org/wiki/Responsive_Web_Design)
+so that OPT visualizations (and the surrounding user interface) look good on displays of many different sizes
+ranging from smartphones to tablets to laptops to giant desktop monitors.
+
+
+## Optimize display of object-oriented programs (medium)
+
+This is a good project for an object-oriented programming enthusiast.
+
+Right now OPT naively visualizes all the steps that the Python interpreter takes when executing an
+object-oriented program, which leads to all sorts of extraneous variables, frames, and pointers
+lying around.
+
+<a href="http://pythontutor.com/visualize.html#code=%23+Inheritance+-+object-oriented+programming+intro%0A%23+Adapted+from+MIT+6.01+course+notes+(Section+3.5)%0A%23+http%3A//mit.edu/6.01/mercurial/spring10/www/handouts/readings.pdf%0A%0Aclass+Staff601%3A%0A++++course+%3D+'6.01'%0A++++building+%3D+34%0A++++room+%3D+501%0A%0A++++def+giveRaise(self,+percentage)%3A%0A++++++++self.salary+%3D+self.salary+%2B+self.salary+*+percentage%0A%0Aclass+Prof601(Staff601)%3A%0A++++salary+%3D+100000%0A%0A++++def+__init__(self,+name,+age)%3A%0A++++++++self.name+%3D+name%0A++++++++self.giveRaise((age+-+18)+*+0.03)%0A%0A++++def+salutation(self)%3A%0A++++++++return+self.role+%2B+'+'+%2B+self.name%0A%0Apat+%3D+Prof601('Pat',+60)&mode=display&cumulative=false&py=2&curInstr=16">Click here for an example.</a>
+
+This project involves cleaning up the execution trace so that object-oriented programs look
+sensible when visualized.
 
 
 ## Add better Unicode support (medium)
@@ -65,9 +88,8 @@ s = u'—'
 This project is great for someone who likes to hack on language implementations and runtimes.
 
 The OPT frontend can visualize programs written in any mainstream language, not just Python.
-This project involves creating a backend for another language (e.g., Ruby, Java, JavaScript, C++, Scheme,
-whatever you want!). All the backend needs to do is to generate an execution trace
-in the following format ...
+This project involves creating a backend for another language (e.g., Ruby, Java, JavaScript, C, C++, Scheme).
+All the backend needs to do is to generate an execution trace in the following format ...
 
 https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-format.md
 
