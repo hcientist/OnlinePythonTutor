@@ -76,18 +76,19 @@ https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-form
 
 ## Migrate OPT backend to Skulpt (very hard but super cool!)
 
-Right now the OPT backend runs on the server, but it would be super-cool to create a "backend"
-that runs purely in the browser. Skulpt - http://www.skulpt.org/ - is the leading contender here,
+This project is appropriate for someone with advanced knowledge of hacking a Python interpreter.
+
+Right now the OPT backend runs Python code on the server, but it would be super-cool to create a "backend"
+that runs entirely in the browser. Modifying Skulpt -- http://www.skulpt.org/ -- is the leading contender here,
 since I am in touch with its main developers.
 
 Main Advantages:
-  - supports fine-grained tracing of expression and sub-expression evaluation (right now OPT can only single-step over one line at a time since it relies on the Python bdb debugger)
-  - enables the creation of an interactive REPL that incrementally takes in user inputs, rather than just executing batch programs. leads to better interactivity and responsiveness.
-  - supports on-demand evaluation and in-memory storage of (relatively) large and persistent data structures such as a 100,000-element dictionary, since there is no need to send a giant trace from the server.
-  - works in offline mode for students without reliable Internet access
+  - Enables fine-grained tracing of expression and sub-expression evaluation, which has clear pedagogical benefits; right now OPT can only single-step over one line at a time since it relies on the Python bdb debugger.
+  - Enables an interactive REPL that incrementally takes in user inputs rather than just executing batch programs; this can lead to better interactivity and responsiveness.
+  - Supports on-demand evaluation and in-memory storage of (relatively) large data structures such as a 100,000-element dictionary for a spell checker program; right now OPT must send that giant dictionary in a trace (encoded in an inefficient format).
+  - Works in "offline mode" for students in regions without reliable Internet access
 
 
 Tips & Tricks:
-  - http://blog.bonelakesoftware.com/2011/03/adding-module-to-skulpt.html
-  - http://blog.bonelakesoftware.com/2011/02/python-in-your-browser-in-javascript.html
+  - From Brad Miller: http://blog.bonelakesoftware.com/2011/03/adding-module-to-skulpt.html and http://blog.bonelakesoftware.com/2011/02/python-in-your-browser-in-javascript.html
   - From Scott Graham, when I asked him whether Skulpt implements Python 2 or 3: “Mostly 2-ish. Some object hierarchy things take after 3's simplified semantics.”
