@@ -60,4 +60,34 @@ s = u'—'
 (Note that Unicode support in Python 2 and 3 involve different subtleties.)
 
 
-## Migrate OPT backend to Skulpt (very hard)
+## Create an OPT backend for a different programming language (hard)
+
+This project is great for someone who likes to hack on language implementations and runtimes.
+
+The OPT frontend can visualize programs written in any mainstream language, not just Python.
+This project involves creating a backend for another language (e.g., Ruby, Java, JavaScript, C++, Scheme,
+whatever you want!). All the backend needs to do is to generate an execution trace
+in the following format ...
+
+https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-format.md
+
+... and the frontend should be able to visualize it!
+
+
+## Migrate OPT backend to Skulpt (very hard but super cool!)
+
+Right now the OPT backend runs on the server, but it would be super-cool to create a "backend"
+that runs purely in the browser. Skulpt - http://www.skulpt.org/ - is the leading contender here,
+since I am in touch with its main developers.
+
+Main Advantages:
+  - supports fine-grained tracing of expression and sub-expression evaluation (right now OPT can only single-step over one line at a time since it relies on the Python bdb debugger)
+  - enables the creation of an interactive REPL that incrementally takes in user inputs, rather than just executing batch programs. leads to better interactivity and responsiveness.
+  - supports on-demand evaluation and in-memory storage of (relatively) large and persistent data structures such as a 100,000-element dictionary, since there is no need to send a giant trace from the server.
+  - works in offline mode for students without reliable Internet access
+
+
+Tips & Tricks:
+  - http://blog.bonelakesoftware.com/2011/03/adding-module-to-skulpt.html
+  - http://blog.bonelakesoftware.com/2011/02/python-in-your-browser-in-javascript.html
+  - From Scott Graham, when I asked him whether Skulpt implements Python 2 or 3: “Mostly 2-ish. Some object hierarchy things take after 3's simplified semantics.”
