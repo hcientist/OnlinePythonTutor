@@ -308,9 +308,19 @@ class PGLogger(bdb.Bdb):
         top_frame = tos[0]
         lineno = tos[1]
 
-        # don't trace inside of our __restricted_import__ helper function
-        if top_frame.f_code.co_name == '__restricted_import__':
+        # don't trace inside of ANY functions that aren't user-written code
+        # (e.g., those from imported modules -- e.g., random, re -- or the
+        # __restricted_import__ function in this file)
+        #
+        # it seems like user-written code has a filename of '<string>',
+        # but maybe there are false positives too?
+        if self.canonic(frame.f_code.co_filename) != '<string>':
           return
+
+        # don't trace inside of our __restricted_import__ helper function
+        # (this check is now subsumed by the above check)
+        #if top_frame.f_code.co_name == '__restricted_import__':
+        #  return
 
         self.encoder.reset_heap() # VERY VERY VERY IMPORTANT,
                                   # or else we won't properly capture heap object mutations in the trace!
