@@ -710,6 +710,19 @@ class PGLogger(bdb.Bdb):
             # (at least on my Webfaction hosting with Python 2.7)
             #resource.setrlimit(resource.RLIMIT_FSIZE, (0, 0))  # (redundancy for paranoia)
 
+            # sys.modules contains an in-memory cache of already-loaded
+            # modules, so if you delete modules from here, they will
+            # need to be re-loaded from the filesystem.
+            #
+            # Thus, as an extra precaution, remove these modules so that
+            # they can't be re-imported without opening a new file,
+            # which is disallowed by resource.RLIMIT_NOFILE
+            #
+            # Of course, this isn't a foolproof solution by any means,
+            # and it might lead to UNEXPECTED FAILURES later in execution.
+            del sys.modules['os']
+            del sys.modules['sys']
+
           self.run(script_str, user_globals, user_globals)
         # sys.exit ...
         except SystemExit:
