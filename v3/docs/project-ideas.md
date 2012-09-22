@@ -95,6 +95,12 @@ https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-form
 
 ... and the frontend should be able to visualize it!
 
+My
+[master's thesis](http://pgbovine.net/projects/pubs/guo-mixedlevel-mengthesis.pdf) from 2006
+describes one possible technique for building a C-language backend based upon the [Valgrind](http://www.valgrind.org)
+tool. More importantly, it describes the difficulties involved in creating a robust execution
+trace generator for C and C++. It should be much easier to build a backend for a memory- and type-safe language, though :)
+
 
 ## Migrate OPT backend to Skulpt (very hard but super cool!)
 
