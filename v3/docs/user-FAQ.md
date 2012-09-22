@@ -15,13 +15,6 @@ it doesn't matter whether they're rendered in the stack or heap.
 Yep, that's a known bug; Online Python Tutor currently doesn't have much support for Unicode.
 
 
-#### Whoa, I get an unknown error when I try to use the `re` module (or other modules)
-
-Yep, Online Python Tutor currently has very limited support for external modules. The only module functions that work
-are those involving native C function calls (e.g., "import math; x = math.sqrt(9)"). Making **pure-Python
-function calls** in external modules will lead to an unknown error.
-
-
 #### Visualizations of object-oriented programs are confusing; why are there grayed-out frames everywhere?
 
 We haven't "cleaned-up" the visualizations to look better for OOP code examples;
