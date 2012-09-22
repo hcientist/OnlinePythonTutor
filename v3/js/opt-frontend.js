@@ -161,6 +161,9 @@ $(document).ready(function() {
 
                 alert(trace[0].exception_msg);
               }
+              else if (trace[trace.length - 1].exception_msg) {
+                alert(trace[trace.length - 1].exception_msg);
+              }
               else {
                 alert("Whoa, unknown error! Reload to try again, or report a bug to philip@pgbovine.net\n\n(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
               }

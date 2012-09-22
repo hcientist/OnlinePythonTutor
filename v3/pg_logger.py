@@ -312,10 +312,18 @@ class PGLogger(bdb.Bdb):
         # (e.g., those from imported modules -- e.g., random, re -- or the
         # __restricted_import__ function in this file)
         #
-        # it seems like user-written code has a filename of '<string>',
-        # but maybe there are false positives too?
-        if self.canonic(frame.f_code.co_filename) != '<string>':
-          return
+        # empirically, it seems like the FIRST entry in self.stack is
+        # the 'run' function from bdb.py, but everything else on the
+        # stack is the user program's "real stack"
+        for (cur_frame, cur_line) in self.stack[1:]:
+          # it seems like user-written code has a filename of '<string>',
+          # but maybe there are false positives too?
+          if self.canonic(cur_frame.f_code.co_filename) != '<string>':
+            return
+          # also don't trace inside of the magic "constructor" code
+          if cur_frame.f_code.co_name == '__new__':
+            return
+
 
         # don't trace inside of our __restricted_import__ helper function
         # (this check is now subsumed by the above check)
@@ -708,19 +716,26 @@ class PGLogger(bdb.Bdb):
 
           trace_entry = dict(event='uncaught_exception')
 
-          exc = sys.exc_info()[1]
-          if hasattr(exc, 'lineno'):
-            trace_entry['line'] = exc.lineno
-          if hasattr(exc, 'offset'):
-            trace_entry['offset'] = exc.offset
+          (exc_type, exc_val, exc_tb) = sys.exc_info()
+          if hasattr(exc_val, 'lineno'):
+            trace_entry['line'] = exc_val.lineno
+          if hasattr(exc_val, 'offset'):
+            trace_entry['offset'] = exc_val.offset
 
-          if hasattr(exc, 'msg'):
-            trace_entry['exception_msg'] = "Error: " + exc.msg
-          else:
-            trace_entry['exception_msg'] = "Unknown error"
+          trace_entry['exception_msg'] = type(exc_val).__name__ + ": " +  str(exc_val)
 
-          self.trace.append(trace_entry)
-          #self.finalize()
+          # SUPER SUBTLE! if this exact same exception has already been
+          # recorded by the program, then DON'T record it again as an
+          # uncaught_exception
+          already_caught = False
+          for e in self.trace:
+            if e['event'] == 'exception' and e['exception_msg'] == trace_entry['exception_msg']:
+              already_caught = True
+              break
+
+          if not already_caught:
+            self.trace.append(trace_entry)
+
           raise bdb.BdbQuit # need to forceably STOP execution
 
 
@@ -734,6 +749,8 @@ class PGLogger(bdb.Bdb):
 
       assert len(self.trace) <= (MAX_EXECUTED_LINES + 1)
 
+      # don't do this anymore ...
+      '''
       # filter all entries after 'return' from '<module>', since they
       # seem extraneous:
       res = []
@@ -741,8 +758,11 @@ class PGLogger(bdb.Bdb):
         res.append(e)
         if e['event'] == 'return' and e['func_name'] == '<module>':
           break
+      '''
 
-      # another hack: if the SECOND to last entry is an 'exception'
+      res = self.trace
+
+      # if the SECOND to last entry is an 'exception'
       # and the last entry is return from <module>, then axe the last
       # entry, for aesthetic reasons :)
       if len(res) >= 2 and \
@@ -751,8 +771,6 @@ class PGLogger(bdb.Bdb):
         res.pop()
 
       self.trace = res
-
-      #for e in self.trace: print >> sys.stderr, e
 
       self.finalizer_func(self.executed_script, self.trace)
 

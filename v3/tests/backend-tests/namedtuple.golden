@@ -1,0 +1,5813 @@
+{
+  "code": "from collections import namedtuple\n\nRestaurant = namedtuple('Restaurant', 'name cuisine phone dish price')\n\nR1 = Restaurant(\"Taillevent\", \"French\", \"343-3434\", \"Escargots\", 24.50)\nR2 = Restaurant(\"La Tour D'Argent\", \"French\", \"343-3344\", \"Ris de Veau\", 48.50)\nR3 = Restaurant(\"Pascal\", \"French\", \"333-4444\", \"Bouillabaisse\", 32.00)\nR4 = Restaurant(\"Thai Touch\", \"Thai\", \"444-3333\", \"Mee Krob\", 10.95)\nR5 = Restaurant(\"Thai Dishes\", \"Thai\", \"333-4433\", \"Paht Woon Sen\",  8.50)\nR6 = Restaurant(\"Thai Spoon\", \"Thai\", \"334-3344\", \"Mussamun\", 9.00)\nR7 = Restaurant(\"McDonald's\", \"Burgers\", \"333-4443\", \"Big Mac\", 3.95)\nR8 = Restaurant(\"Burger King\", \"Burgers\", \"444-3344\", \"Whopper\", 3.75)\nR9 = Restaurant(\"Wahoo's\", \"Fish Tacos\", \"443-4443\", \"Mahi Mahi Burrito\", 7.50)\nR10 = Restaurant(\"In-N-Out Burger\", \"Burgers\", \"434-3344\", \"Cheeseburger\", 2.50)\nR11 = Restaurant(\"The Shack\", \"Burgers\", \"333-3334\", \"Hot Link Burger\", 4.50)\nR12 = Restaurant(\"Gina's\", \"Pizza\", \"334-4433\", \"Combo Pizza\", 12.95)\nR13 = Restaurant(\"Peacock, Room\", \"Indian\", \"333-4443\", \"Rogan Josh\", 12.50)\nR14 = Restaurant(\"Gaylord\", \"Indian\", \"333-3433\", \"Tandoori Chicken\", 13.50)\nR15 = Restaurant(\"Mr. Chow\", \"Chinese\", \"222-3333\", \"Peking Duck\", 24.50)\nR16 = Restaurant(\"Chez Panisse\", \"California\", \"222-3322\", \"Grilled Duck Breast\", 25.00)\nR17 = Restaurant(\"Spago\", \"California\", \"333-2222\", \"Striped Bass\", 24.50)\nR18 = Restaurant(\"Sriped Bass\", \"Seafood\", \"333-2233\", \"Cedar Plank Salmon\", 21.50)\nR19 = Restaurant(\"Golden Pagoda\", \"Chinese\", \"232-3232\", \"Egg Foo Young\", 8.50)\nR20 = Restaurant(\"Langer's\", \"Delicatessen\", \"333-2223\", \"Pastrami Sandwich\", 11.50)\n\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "namedtuple": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ]
+      }, 
+      "line": 3, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ]
+      }, 
+      "line": 5, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 7, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 8, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 9, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 10, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 11, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6", 
+        "R7"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "R7": [
+          "REF", 
+          22
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 12, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6", 
+        "R7", 
+        "R8"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "R7": [
+          "REF", 
+          22
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R8": [
+          "REF", 
+          23
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 13, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6", 
+        "R7", 
+        "R8", 
+        "R9"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "R7": [
+          "REF", 
+          22
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R8": [
+          "REF", 
+          23
+        ], 
+        "R9": [
+          "REF", 
+          24
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 14, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6", 
+        "R7", 
+        "R8", 
+        "R9", 
+        "R10"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "R7": [
+          "REF", 
+          22
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R8": [
+          "REF", 
+          23
+        ], 
+        "R9": [
+          "REF", 
+          24
+        ], 
+        "R10": [
+          "REF", 
+          25
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "25": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 15, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6", 
+        "R7", 
+        "R8", 
+        "R9", 
+        "R10", 
+        "R11"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "R7": [
+          "REF", 
+          22
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R8": [
+          "REF", 
+          23
+        ], 
+        "R9": [
+          "REF", 
+          24
+        ], 
+        "R10": [
+          "REF", 
+          25
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ], 
+        "R11": [
+          "REF", 
+          26
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "25": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "26": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 16, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6", 
+        "R7", 
+        "R8", 
+        "R9", 
+        "R10", 
+        "R11", 
+        "R12"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "R7": [
+          "REF", 
+          22
+        ], 
+        "R12": [
+          "REF", 
+          27
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R8": [
+          "REF", 
+          23
+        ], 
+        "R9": [
+          "REF", 
+          24
+        ], 
+        "R10": [
+          "REF", 
+          25
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ], 
+        "R11": [
+          "REF", 
+          26
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "25": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "26": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "27": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 17, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6", 
+        "R7", 
+        "R8", 
+        "R9", 
+        "R10", 
+        "R11", 
+        "R12", 
+        "R13"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "R7": [
+          "REF", 
+          22
+        ], 
+        "R12": [
+          "REF", 
+          27
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R8": [
+          "REF", 
+          23
+        ], 
+        "R9": [
+          "REF", 
+          24
+        ], 
+        "R10": [
+          "REF", 
+          25
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ], 
+        "R11": [
+          "REF", 
+          26
+        ], 
+        "R13": [
+          "REF", 
+          28
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "25": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "26": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "27": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "28": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 18, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6", 
+        "R7", 
+        "R8", 
+        "R9", 
+        "R10", 
+        "R11", 
+        "R12", 
+        "R13", 
+        "R14"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "R7": [
+          "REF", 
+          22
+        ], 
+        "R12": [
+          "REF", 
+          27
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R8": [
+          "REF", 
+          23
+        ], 
+        "R9": [
+          "REF", 
+          24
+        ], 
+        "R10": [
+          "REF", 
+          25
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ], 
+        "R14": [
+          "REF", 
+          29
+        ], 
+        "R11": [
+          "REF", 
+          26
+        ], 
+        "R13": [
+          "REF", 
+          28
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "25": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "26": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "27": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "28": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "29": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 19, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6", 
+        "R7", 
+        "R8", 
+        "R9", 
+        "R10", 
+        "R11", 
+        "R12", 
+        "R13", 
+        "R14", 
+        "R15"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "R7": [
+          "REF", 
+          22
+        ], 
+        "R12": [
+          "REF", 
+          27
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R8": [
+          "REF", 
+          23
+        ], 
+        "R9": [
+          "REF", 
+          24
+        ], 
+        "R10": [
+          "REF", 
+          25
+        ], 
+        "R15": [
+          "REF", 
+          30
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ], 
+        "R14": [
+          "REF", 
+          29
+        ], 
+        "R11": [
+          "REF", 
+          26
+        ], 
+        "R13": [
+          "REF", 
+          28
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "25": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "26": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "27": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "28": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "29": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "30": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 20, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6", 
+        "R7", 
+        "R8", 
+        "R9", 
+        "R10", 
+        "R11", 
+        "R12", 
+        "R13", 
+        "R14", 
+        "R15", 
+        "R16"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R16": [
+          "REF", 
+          31
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ], 
+        "R14": [
+          "REF", 
+          29
+        ], 
+        "R15": [
+          "REF", 
+          30
+        ], 
+        "R12": [
+          "REF", 
+          27
+        ], 
+        "R13": [
+          "REF", 
+          28
+        ], 
+        "R10": [
+          "REF", 
+          25
+        ], 
+        "R11": [
+          "REF", 
+          26
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R8": [
+          "REF", 
+          23
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "R9": [
+          "REF", 
+          24
+        ], 
+        "R7": [
+          "REF", 
+          22
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "25": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "26": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "27": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "28": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "29": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "30": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "31": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 21, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6", 
+        "R7", 
+        "R8", 
+        "R9", 
+        "R10", 
+        "R11", 
+        "R12", 
+        "R13", 
+        "R14", 
+        "R15", 
+        "R16", 
+        "R17"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R16": [
+          "REF", 
+          31
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ], 
+        "R14": [
+          "REF", 
+          29
+        ], 
+        "R15": [
+          "REF", 
+          30
+        ], 
+        "R12": [
+          "REF", 
+          27
+        ], 
+        "R13": [
+          "REF", 
+          28
+        ], 
+        "R10": [
+          "REF", 
+          25
+        ], 
+        "R17": [
+          "REF", 
+          32
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R8": [
+          "REF", 
+          23
+        ], 
+        "R11": [
+          "REF", 
+          26
+        ], 
+        "R9": [
+          "REF", 
+          24
+        ], 
+        "R7": [
+          "REF", 
+          22
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "25": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "26": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "27": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "28": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "29": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "30": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "31": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "32": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 22, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6", 
+        "R7", 
+        "R8", 
+        "R9", 
+        "R10", 
+        "R11", 
+        "R12", 
+        "R13", 
+        "R14", 
+        "R15", 
+        "R16", 
+        "R17", 
+        "R18"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R16": [
+          "REF", 
+          31
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ], 
+        "R14": [
+          "REF", 
+          29
+        ], 
+        "R15": [
+          "REF", 
+          30
+        ], 
+        "R12": [
+          "REF", 
+          27
+        ], 
+        "R13": [
+          "REF", 
+          28
+        ], 
+        "R10": [
+          "REF", 
+          25
+        ], 
+        "R17": [
+          "REF", 
+          32
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R8": [
+          "REF", 
+          23
+        ], 
+        "R11": [
+          "REF", 
+          26
+        ], 
+        "R18": [
+          "REF", 
+          33
+        ], 
+        "R9": [
+          "REF", 
+          24
+        ], 
+        "R7": [
+          "REF", 
+          22
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "25": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "26": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "27": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "28": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "29": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "30": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "31": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "32": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "33": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 23, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6", 
+        "R7", 
+        "R8", 
+        "R9", 
+        "R10", 
+        "R11", 
+        "R12", 
+        "R13", 
+        "R14", 
+        "R15", 
+        "R16", 
+        "R17", 
+        "R18", 
+        "R19"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R16": [
+          "REF", 
+          31
+        ], 
+        "R5": [
+          "REF", 
+          20
+        ], 
+        "R14": [
+          "REF", 
+          29
+        ], 
+        "R15": [
+          "REF", 
+          30
+        ], 
+        "R12": [
+          "REF", 
+          27
+        ], 
+        "R13": [
+          "REF", 
+          28
+        ], 
+        "R10": [
+          "REF", 
+          25
+        ], 
+        "R17": [
+          "REF", 
+          32
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R8": [
+          "REF", 
+          23
+        ], 
+        "R11": [
+          "REF", 
+          26
+        ], 
+        "R18": [
+          "REF", 
+          33
+        ], 
+        "R19": [
+          "REF", 
+          34
+        ], 
+        "R7": [
+          "REF", 
+          22
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "R9": [
+          "REF", 
+          24
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "25": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "26": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "27": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "28": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "29": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "30": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "31": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "32": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "33": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "34": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 24, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2", 
+        "R3", 
+        "R4", 
+        "R5", 
+        "R6", 
+        "R7", 
+        "R8", 
+        "R9", 
+        "R10", 
+        "R11", 
+        "R12", 
+        "R13", 
+        "R14", 
+        "R15", 
+        "R16", 
+        "R17", 
+        "R18", 
+        "R19", 
+        "R20"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "R5": [
+          "REF", 
+          20
+        ], 
+        "R16": [
+          "REF", 
+          31
+        ], 
+        "R17": [
+          "REF", 
+          32
+        ], 
+        "R14": [
+          "REF", 
+          29
+        ], 
+        "R15": [
+          "REF", 
+          30
+        ], 
+        "R12": [
+          "REF", 
+          27
+        ], 
+        "R13": [
+          "REF", 
+          28
+        ], 
+        "R10": [
+          "REF", 
+          25
+        ], 
+        "R11": [
+          "REF", 
+          26
+        ], 
+        "R3": [
+          "REF", 
+          18
+        ], 
+        "R18": [
+          "REF", 
+          33
+        ], 
+        "R19": [
+          "REF", 
+          34
+        ], 
+        "R4": [
+          "REF", 
+          19
+        ], 
+        "namedtuple": [
+          "REF", 
+          1
+        ], 
+        "R6": [
+          "REF", 
+          21
+        ], 
+        "R7": [
+          "REF", 
+          22
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          2
+        ], 
+        "R8": [
+          "REF", 
+          23
+        ], 
+        "R9": [
+          "REF", 
+          24
+        ], 
+        "R20": [
+          "REF", 
+          35
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "namedtuple(typename, field_names, verbose)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(t)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "classmethod", 
+          "<classmethod object at 0xADDR>"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "12": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "13": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "14": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "15": [
+          "property", 
+          "<property object at 0xADDR>"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "25": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "26": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "27": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "28": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "29": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "30": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "31": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "32": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "33": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "34": [
+          "INSTANCE", 
+          "Restaurant"
+        ], 
+        "35": [
+          "INSTANCE", 
+          "Restaurant"
+        ]
+      }, 
+      "line": 24, 
+      "event": "return"
+    }
+  ]
+}

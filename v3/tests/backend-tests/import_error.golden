@@ -14,13 +14,16 @@
     {
       "ordered_globals": [], 
       "stdout": "", 
-      "exception_msg": "ImportError: os not supported", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {}, 
       "heap": {}, 
       "line": 2, 
-      "event": "exception"
+      "event": "return"
+    }, 
+    {
+      "exception_msg": "ImportError: os not supported", 
+      "event": "uncaught_exception"
     }
   ]
 }
