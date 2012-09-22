@@ -703,7 +703,12 @@ class PGLogger(bdb.Bdb):
 
             # protect against unauthorized filesystem accesses ...
             resource.setrlimit(resource.RLIMIT_NOFILE, (0, 0)) # no opened files allowed
-            resource.setrlimit(resource.RLIMIT_FSIZE, (0, 0))  # (redundancy for paranoia)
+
+            # VERY WEIRD. If you activate this resource limitation, it
+            # ends up generating an EMPTY trace for the following program:
+            #   "x = 0\nfor i in range(10):\n  x += 1\n   print x\n  x += 1\n"
+            # (at least on my Webfaction hosting with Python 2.7)
+            #resource.setrlimit(resource.RLIMIT_FSIZE, (0, 0))  # (redundancy for paranoia)
 
           self.run(script_str, user_globals, user_globals)
         # sys.exit ...
