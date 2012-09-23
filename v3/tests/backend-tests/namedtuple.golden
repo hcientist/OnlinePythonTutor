@@ -27,7 +27,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ]
       }, 
@@ -55,7 +55,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -175,7 +175,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -245,7 +245,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -365,7 +365,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -407,7 +407,27 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ]
       }, 
       "line": 6, 
@@ -444,7 +464,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -564,7 +584,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -606,11 +626,51 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ]
       }, 
       "line": 7, 
@@ -652,7 +712,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -772,7 +832,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -814,15 +874,75 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ]
       }, 
       "line": 8, 
@@ -869,7 +989,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -989,7 +1109,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -1031,19 +1151,99 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ]
       }, 
       "line": 9, 
@@ -1095,7 +1295,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -1215,7 +1415,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -1257,23 +1457,123 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ]
       }, 
       "line": 10, 
@@ -1330,7 +1630,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -1450,7 +1750,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -1492,27 +1792,147 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ]
       }, 
       "line": 11, 
@@ -1574,7 +1994,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -1694,7 +2114,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -1736,31 +2156,171 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ], 
         "22": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Big Mac"
+          ], 
+          [
+            "name", 
+            "McDonald's"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            3.950
+          ]
         ]
       }, 
       "line": 12, 
@@ -1827,7 +2387,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -1947,7 +2507,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -1989,35 +2549,195 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ], 
         "22": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Big Mac"
+          ], 
+          [
+            "name", 
+            "McDonald's"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            3.950
+          ]
         ], 
         "23": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Whopper"
+          ], 
+          [
+            "name", 
+            "Burger King"
+          ], 
+          [
+            "phone", 
+            "444-3344"
+          ], 
+          [
+            "price", 
+            3.750
+          ]
         ]
       }, 
       "line": 13, 
@@ -2089,7 +2809,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -2209,7 +2929,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -2251,39 +2971,219 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ], 
         "22": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Big Mac"
+          ], 
+          [
+            "name", 
+            "McDonald's"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            3.950
+          ]
         ], 
         "23": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Whopper"
+          ], 
+          [
+            "name", 
+            "Burger King"
+          ], 
+          [
+            "phone", 
+            "444-3344"
+          ], 
+          [
+            "price", 
+            3.750
+          ]
         ], 
         "24": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Fish Tacos"
+          ], 
+          [
+            "dish", 
+            "Mahi Mahi Burrito"
+          ], 
+          [
+            "name", 
+            "Wahoo's"
+          ], 
+          [
+            "phone", 
+            "443-4443"
+          ], 
+          [
+            "price", 
+            7.500
+          ]
         ]
       }, 
       "line": 14, 
@@ -2360,7 +3260,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -2480,7 +3380,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -2522,43 +3422,243 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ], 
         "22": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Big Mac"
+          ], 
+          [
+            "name", 
+            "McDonald's"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            3.950
+          ]
         ], 
         "23": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Whopper"
+          ], 
+          [
+            "name", 
+            "Burger King"
+          ], 
+          [
+            "phone", 
+            "444-3344"
+          ], 
+          [
+            "price", 
+            3.750
+          ]
         ], 
         "24": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Fish Tacos"
+          ], 
+          [
+            "dish", 
+            "Mahi Mahi Burrito"
+          ], 
+          [
+            "name", 
+            "Wahoo's"
+          ], 
+          [
+            "phone", 
+            "443-4443"
+          ], 
+          [
+            "price", 
+            7.500
+          ]
         ], 
         "25": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Cheeseburger"
+          ], 
+          [
+            "name", 
+            "In-N-Out Burger"
+          ], 
+          [
+            "phone", 
+            "434-3344"
+          ], 
+          [
+            "price", 
+            2.500
+          ]
         ]
       }, 
       "line": 15, 
@@ -2640,7 +3740,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -2760,7 +3860,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -2802,47 +3902,267 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ], 
         "22": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Big Mac"
+          ], 
+          [
+            "name", 
+            "McDonald's"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            3.950
+          ]
         ], 
         "23": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Whopper"
+          ], 
+          [
+            "name", 
+            "Burger King"
+          ], 
+          [
+            "phone", 
+            "444-3344"
+          ], 
+          [
+            "price", 
+            3.750
+          ]
         ], 
         "24": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Fish Tacos"
+          ], 
+          [
+            "dish", 
+            "Mahi Mahi Burrito"
+          ], 
+          [
+            "name", 
+            "Wahoo's"
+          ], 
+          [
+            "phone", 
+            "443-4443"
+          ], 
+          [
+            "price", 
+            7.500
+          ]
         ], 
         "25": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Cheeseburger"
+          ], 
+          [
+            "name", 
+            "In-N-Out Burger"
+          ], 
+          [
+            "phone", 
+            "434-3344"
+          ], 
+          [
+            "price", 
+            2.500
+          ]
         ], 
         "26": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Hot Link Burger"
+          ], 
+          [
+            "name", 
+            "The Shack"
+          ], 
+          [
+            "phone", 
+            "333-3334"
+          ], 
+          [
+            "price", 
+            4.500
+          ]
         ]
       }, 
       "line": 16, 
@@ -2929,7 +4249,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -3049,7 +4369,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -3091,51 +4411,291 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ], 
         "22": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Big Mac"
+          ], 
+          [
+            "name", 
+            "McDonald's"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            3.950
+          ]
         ], 
         "23": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Whopper"
+          ], 
+          [
+            "name", 
+            "Burger King"
+          ], 
+          [
+            "phone", 
+            "444-3344"
+          ], 
+          [
+            "price", 
+            3.750
+          ]
         ], 
         "24": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Fish Tacos"
+          ], 
+          [
+            "dish", 
+            "Mahi Mahi Burrito"
+          ], 
+          [
+            "name", 
+            "Wahoo's"
+          ], 
+          [
+            "phone", 
+            "443-4443"
+          ], 
+          [
+            "price", 
+            7.500
+          ]
         ], 
         "25": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Cheeseburger"
+          ], 
+          [
+            "name", 
+            "In-N-Out Burger"
+          ], 
+          [
+            "phone", 
+            "434-3344"
+          ], 
+          [
+            "price", 
+            2.500
+          ]
         ], 
         "26": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Hot Link Burger"
+          ], 
+          [
+            "name", 
+            "The Shack"
+          ], 
+          [
+            "phone", 
+            "333-3334"
+          ], 
+          [
+            "price", 
+            4.500
+          ]
         ], 
         "27": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Pizza"
+          ], 
+          [
+            "dish", 
+            "Combo Pizza"
+          ], 
+          [
+            "name", 
+            "Gina's"
+          ], 
+          [
+            "phone", 
+            "334-4433"
+          ], 
+          [
+            "price", 
+            12.950
+          ]
         ]
       }, 
       "line": 17, 
@@ -3227,7 +4787,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -3347,7 +4907,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -3389,55 +4949,315 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ], 
         "22": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Big Mac"
+          ], 
+          [
+            "name", 
+            "McDonald's"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            3.950
+          ]
         ], 
         "23": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Whopper"
+          ], 
+          [
+            "name", 
+            "Burger King"
+          ], 
+          [
+            "phone", 
+            "444-3344"
+          ], 
+          [
+            "price", 
+            3.750
+          ]
         ], 
         "24": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Fish Tacos"
+          ], 
+          [
+            "dish", 
+            "Mahi Mahi Burrito"
+          ], 
+          [
+            "name", 
+            "Wahoo's"
+          ], 
+          [
+            "phone", 
+            "443-4443"
+          ], 
+          [
+            "price", 
+            7.500
+          ]
         ], 
         "25": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Cheeseburger"
+          ], 
+          [
+            "name", 
+            "In-N-Out Burger"
+          ], 
+          [
+            "phone", 
+            "434-3344"
+          ], 
+          [
+            "price", 
+            2.500
+          ]
         ], 
         "26": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Hot Link Burger"
+          ], 
+          [
+            "name", 
+            "The Shack"
+          ], 
+          [
+            "phone", 
+            "333-3334"
+          ], 
+          [
+            "price", 
+            4.500
+          ]
         ], 
         "27": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Pizza"
+          ], 
+          [
+            "dish", 
+            "Combo Pizza"
+          ], 
+          [
+            "name", 
+            "Gina's"
+          ], 
+          [
+            "phone", 
+            "334-4433"
+          ], 
+          [
+            "price", 
+            12.950
+          ]
         ], 
         "28": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Rogan Josh"
+          ], 
+          [
+            "name", 
+            "Peacock, Room"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            12.500
+          ]
         ]
       }, 
       "line": 18, 
@@ -3534,7 +5354,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -3654,7 +5474,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -3696,59 +5516,339 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ], 
         "22": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Big Mac"
+          ], 
+          [
+            "name", 
+            "McDonald's"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            3.950
+          ]
         ], 
         "23": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Whopper"
+          ], 
+          [
+            "name", 
+            "Burger King"
+          ], 
+          [
+            "phone", 
+            "444-3344"
+          ], 
+          [
+            "price", 
+            3.750
+          ]
         ], 
         "24": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Fish Tacos"
+          ], 
+          [
+            "dish", 
+            "Mahi Mahi Burrito"
+          ], 
+          [
+            "name", 
+            "Wahoo's"
+          ], 
+          [
+            "phone", 
+            "443-4443"
+          ], 
+          [
+            "price", 
+            7.500
+          ]
         ], 
         "25": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Cheeseburger"
+          ], 
+          [
+            "name", 
+            "In-N-Out Burger"
+          ], 
+          [
+            "phone", 
+            "434-3344"
+          ], 
+          [
+            "price", 
+            2.500
+          ]
         ], 
         "26": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Hot Link Burger"
+          ], 
+          [
+            "name", 
+            "The Shack"
+          ], 
+          [
+            "phone", 
+            "333-3334"
+          ], 
+          [
+            "price", 
+            4.500
+          ]
         ], 
         "27": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Pizza"
+          ], 
+          [
+            "dish", 
+            "Combo Pizza"
+          ], 
+          [
+            "name", 
+            "Gina's"
+          ], 
+          [
+            "phone", 
+            "334-4433"
+          ], 
+          [
+            "price", 
+            12.950
+          ]
         ], 
         "28": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Rogan Josh"
+          ], 
+          [
+            "name", 
+            "Peacock, Room"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            12.500
+          ]
         ], 
         "29": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Tandoori Chicken"
+          ], 
+          [
+            "name", 
+            "Gaylord"
+          ], 
+          [
+            "phone", 
+            "333-3433"
+          ], 
+          [
+            "price", 
+            13.500
+          ]
         ]
       }, 
       "line": 19, 
@@ -3850,7 +5950,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -3970,7 +6070,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -4012,63 +6112,363 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ], 
         "22": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Big Mac"
+          ], 
+          [
+            "name", 
+            "McDonald's"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            3.950
+          ]
         ], 
         "23": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Whopper"
+          ], 
+          [
+            "name", 
+            "Burger King"
+          ], 
+          [
+            "phone", 
+            "444-3344"
+          ], 
+          [
+            "price", 
+            3.750
+          ]
         ], 
         "24": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Fish Tacos"
+          ], 
+          [
+            "dish", 
+            "Mahi Mahi Burrito"
+          ], 
+          [
+            "name", 
+            "Wahoo's"
+          ], 
+          [
+            "phone", 
+            "443-4443"
+          ], 
+          [
+            "price", 
+            7.500
+          ]
         ], 
         "25": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Cheeseburger"
+          ], 
+          [
+            "name", 
+            "In-N-Out Burger"
+          ], 
+          [
+            "phone", 
+            "434-3344"
+          ], 
+          [
+            "price", 
+            2.500
+          ]
         ], 
         "26": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Hot Link Burger"
+          ], 
+          [
+            "name", 
+            "The Shack"
+          ], 
+          [
+            "phone", 
+            "333-3334"
+          ], 
+          [
+            "price", 
+            4.500
+          ]
         ], 
         "27": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Pizza"
+          ], 
+          [
+            "dish", 
+            "Combo Pizza"
+          ], 
+          [
+            "name", 
+            "Gina's"
+          ], 
+          [
+            "phone", 
+            "334-4433"
+          ], 
+          [
+            "price", 
+            12.950
+          ]
         ], 
         "28": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Rogan Josh"
+          ], 
+          [
+            "name", 
+            "Peacock, Room"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            12.500
+          ]
         ], 
         "29": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Tandoori Chicken"
+          ], 
+          [
+            "name", 
+            "Gaylord"
+          ], 
+          [
+            "phone", 
+            "333-3433"
+          ], 
+          [
+            "price", 
+            13.500
+          ]
         ], 
         "30": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Chinese"
+          ], 
+          [
+            "dish", 
+            "Peking Duck"
+          ], 
+          [
+            "name", 
+            "Mr. Chow"
+          ], 
+          [
+            "phone", 
+            "222-3333"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ]
       }, 
       "line": 20, 
@@ -4175,7 +6575,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -4295,7 +6695,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -4337,67 +6737,387 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ], 
         "22": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Big Mac"
+          ], 
+          [
+            "name", 
+            "McDonald's"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            3.950
+          ]
         ], 
         "23": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Whopper"
+          ], 
+          [
+            "name", 
+            "Burger King"
+          ], 
+          [
+            "phone", 
+            "444-3344"
+          ], 
+          [
+            "price", 
+            3.750
+          ]
         ], 
         "24": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Fish Tacos"
+          ], 
+          [
+            "dish", 
+            "Mahi Mahi Burrito"
+          ], 
+          [
+            "name", 
+            "Wahoo's"
+          ], 
+          [
+            "phone", 
+            "443-4443"
+          ], 
+          [
+            "price", 
+            7.500
+          ]
         ], 
         "25": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Cheeseburger"
+          ], 
+          [
+            "name", 
+            "In-N-Out Burger"
+          ], 
+          [
+            "phone", 
+            "434-3344"
+          ], 
+          [
+            "price", 
+            2.500
+          ]
         ], 
         "26": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Hot Link Burger"
+          ], 
+          [
+            "name", 
+            "The Shack"
+          ], 
+          [
+            "phone", 
+            "333-3334"
+          ], 
+          [
+            "price", 
+            4.500
+          ]
         ], 
         "27": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Pizza"
+          ], 
+          [
+            "dish", 
+            "Combo Pizza"
+          ], 
+          [
+            "name", 
+            "Gina's"
+          ], 
+          [
+            "phone", 
+            "334-4433"
+          ], 
+          [
+            "price", 
+            12.950
+          ]
         ], 
         "28": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Rogan Josh"
+          ], 
+          [
+            "name", 
+            "Peacock, Room"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            12.500
+          ]
         ], 
         "29": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Tandoori Chicken"
+          ], 
+          [
+            "name", 
+            "Gaylord"
+          ], 
+          [
+            "phone", 
+            "333-3433"
+          ], 
+          [
+            "price", 
+            13.500
+          ]
         ], 
         "30": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Chinese"
+          ], 
+          [
+            "dish", 
+            "Peking Duck"
+          ], 
+          [
+            "name", 
+            "Mr. Chow"
+          ], 
+          [
+            "phone", 
+            "222-3333"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "31": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "California"
+          ], 
+          [
+            "dish", 
+            "Grilled Duck Breast"
+          ], 
+          [
+            "name", 
+            "Chez Panisse"
+          ], 
+          [
+            "phone", 
+            "222-3322"
+          ], 
+          [
+            "price", 
+            25.000
+          ]
         ]
       }, 
       "line": 21, 
@@ -4509,7 +7229,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -4629,7 +7349,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -4671,71 +7391,411 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ], 
         "22": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Big Mac"
+          ], 
+          [
+            "name", 
+            "McDonald's"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            3.950
+          ]
         ], 
         "23": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Whopper"
+          ], 
+          [
+            "name", 
+            "Burger King"
+          ], 
+          [
+            "phone", 
+            "444-3344"
+          ], 
+          [
+            "price", 
+            3.750
+          ]
         ], 
         "24": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Fish Tacos"
+          ], 
+          [
+            "dish", 
+            "Mahi Mahi Burrito"
+          ], 
+          [
+            "name", 
+            "Wahoo's"
+          ], 
+          [
+            "phone", 
+            "443-4443"
+          ], 
+          [
+            "price", 
+            7.500
+          ]
         ], 
         "25": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Cheeseburger"
+          ], 
+          [
+            "name", 
+            "In-N-Out Burger"
+          ], 
+          [
+            "phone", 
+            "434-3344"
+          ], 
+          [
+            "price", 
+            2.500
+          ]
         ], 
         "26": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Hot Link Burger"
+          ], 
+          [
+            "name", 
+            "The Shack"
+          ], 
+          [
+            "phone", 
+            "333-3334"
+          ], 
+          [
+            "price", 
+            4.500
+          ]
         ], 
         "27": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Pizza"
+          ], 
+          [
+            "dish", 
+            "Combo Pizza"
+          ], 
+          [
+            "name", 
+            "Gina's"
+          ], 
+          [
+            "phone", 
+            "334-4433"
+          ], 
+          [
+            "price", 
+            12.950
+          ]
         ], 
         "28": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Rogan Josh"
+          ], 
+          [
+            "name", 
+            "Peacock, Room"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            12.500
+          ]
         ], 
         "29": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Tandoori Chicken"
+          ], 
+          [
+            "name", 
+            "Gaylord"
+          ], 
+          [
+            "phone", 
+            "333-3433"
+          ], 
+          [
+            "price", 
+            13.500
+          ]
         ], 
         "30": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Chinese"
+          ], 
+          [
+            "dish", 
+            "Peking Duck"
+          ], 
+          [
+            "name", 
+            "Mr. Chow"
+          ], 
+          [
+            "phone", 
+            "222-3333"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "31": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "California"
+          ], 
+          [
+            "dish", 
+            "Grilled Duck Breast"
+          ], 
+          [
+            "name", 
+            "Chez Panisse"
+          ], 
+          [
+            "phone", 
+            "222-3322"
+          ], 
+          [
+            "price", 
+            25.000
+          ]
         ], 
         "32": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "California"
+          ], 
+          [
+            "dish", 
+            "Striped Bass"
+          ], 
+          [
+            "name", 
+            "Spago"
+          ], 
+          [
+            "phone", 
+            "333-2222"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ]
       }, 
       "line": 22, 
@@ -4852,7 +7912,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -4972,7 +8032,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -5014,75 +8074,435 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ], 
         "22": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Big Mac"
+          ], 
+          [
+            "name", 
+            "McDonald's"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            3.950
+          ]
         ], 
         "23": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Whopper"
+          ], 
+          [
+            "name", 
+            "Burger King"
+          ], 
+          [
+            "phone", 
+            "444-3344"
+          ], 
+          [
+            "price", 
+            3.750
+          ]
         ], 
         "24": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Fish Tacos"
+          ], 
+          [
+            "dish", 
+            "Mahi Mahi Burrito"
+          ], 
+          [
+            "name", 
+            "Wahoo's"
+          ], 
+          [
+            "phone", 
+            "443-4443"
+          ], 
+          [
+            "price", 
+            7.500
+          ]
         ], 
         "25": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Cheeseburger"
+          ], 
+          [
+            "name", 
+            "In-N-Out Burger"
+          ], 
+          [
+            "phone", 
+            "434-3344"
+          ], 
+          [
+            "price", 
+            2.500
+          ]
         ], 
         "26": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Hot Link Burger"
+          ], 
+          [
+            "name", 
+            "The Shack"
+          ], 
+          [
+            "phone", 
+            "333-3334"
+          ], 
+          [
+            "price", 
+            4.500
+          ]
         ], 
         "27": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Pizza"
+          ], 
+          [
+            "dish", 
+            "Combo Pizza"
+          ], 
+          [
+            "name", 
+            "Gina's"
+          ], 
+          [
+            "phone", 
+            "334-4433"
+          ], 
+          [
+            "price", 
+            12.950
+          ]
         ], 
         "28": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Rogan Josh"
+          ], 
+          [
+            "name", 
+            "Peacock, Room"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            12.500
+          ]
         ], 
         "29": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Tandoori Chicken"
+          ], 
+          [
+            "name", 
+            "Gaylord"
+          ], 
+          [
+            "phone", 
+            "333-3433"
+          ], 
+          [
+            "price", 
+            13.500
+          ]
         ], 
         "30": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Chinese"
+          ], 
+          [
+            "dish", 
+            "Peking Duck"
+          ], 
+          [
+            "name", 
+            "Mr. Chow"
+          ], 
+          [
+            "phone", 
+            "222-3333"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "31": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "California"
+          ], 
+          [
+            "dish", 
+            "Grilled Duck Breast"
+          ], 
+          [
+            "name", 
+            "Chez Panisse"
+          ], 
+          [
+            "phone", 
+            "222-3322"
+          ], 
+          [
+            "price", 
+            25.000
+          ]
         ], 
         "32": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "California"
+          ], 
+          [
+            "dish", 
+            "Striped Bass"
+          ], 
+          [
+            "name", 
+            "Spago"
+          ], 
+          [
+            "phone", 
+            "333-2222"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "33": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Seafood"
+          ], 
+          [
+            "dish", 
+            "Cedar Plank Salmon"
+          ], 
+          [
+            "name", 
+            "Sriped Bass"
+          ], 
+          [
+            "phone", 
+            "333-2233"
+          ], 
+          [
+            "price", 
+            21.500
+          ]
         ]
       }, 
       "line": 23, 
@@ -5204,7 +8624,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -5324,7 +8744,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -5366,79 +8786,459 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ], 
         "22": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Big Mac"
+          ], 
+          [
+            "name", 
+            "McDonald's"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            3.950
+          ]
         ], 
         "23": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Whopper"
+          ], 
+          [
+            "name", 
+            "Burger King"
+          ], 
+          [
+            "phone", 
+            "444-3344"
+          ], 
+          [
+            "price", 
+            3.750
+          ]
         ], 
         "24": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Fish Tacos"
+          ], 
+          [
+            "dish", 
+            "Mahi Mahi Burrito"
+          ], 
+          [
+            "name", 
+            "Wahoo's"
+          ], 
+          [
+            "phone", 
+            "443-4443"
+          ], 
+          [
+            "price", 
+            7.500
+          ]
         ], 
         "25": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Cheeseburger"
+          ], 
+          [
+            "name", 
+            "In-N-Out Burger"
+          ], 
+          [
+            "phone", 
+            "434-3344"
+          ], 
+          [
+            "price", 
+            2.500
+          ]
         ], 
         "26": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Hot Link Burger"
+          ], 
+          [
+            "name", 
+            "The Shack"
+          ], 
+          [
+            "phone", 
+            "333-3334"
+          ], 
+          [
+            "price", 
+            4.500
+          ]
         ], 
         "27": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Pizza"
+          ], 
+          [
+            "dish", 
+            "Combo Pizza"
+          ], 
+          [
+            "name", 
+            "Gina's"
+          ], 
+          [
+            "phone", 
+            "334-4433"
+          ], 
+          [
+            "price", 
+            12.950
+          ]
         ], 
         "28": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Rogan Josh"
+          ], 
+          [
+            "name", 
+            "Peacock, Room"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            12.500
+          ]
         ], 
         "29": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Tandoori Chicken"
+          ], 
+          [
+            "name", 
+            "Gaylord"
+          ], 
+          [
+            "phone", 
+            "333-3433"
+          ], 
+          [
+            "price", 
+            13.500
+          ]
         ], 
         "30": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Chinese"
+          ], 
+          [
+            "dish", 
+            "Peking Duck"
+          ], 
+          [
+            "name", 
+            "Mr. Chow"
+          ], 
+          [
+            "phone", 
+            "222-3333"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "31": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "California"
+          ], 
+          [
+            "dish", 
+            "Grilled Duck Breast"
+          ], 
+          [
+            "name", 
+            "Chez Panisse"
+          ], 
+          [
+            "phone", 
+            "222-3322"
+          ], 
+          [
+            "price", 
+            25.000
+          ]
         ], 
         "32": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "California"
+          ], 
+          [
+            "dish", 
+            "Striped Bass"
+          ], 
+          [
+            "name", 
+            "Spago"
+          ], 
+          [
+            "phone", 
+            "333-2222"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "33": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Seafood"
+          ], 
+          [
+            "dish", 
+            "Cedar Plank Salmon"
+          ], 
+          [
+            "name", 
+            "Sriped Bass"
+          ], 
+          [
+            "phone", 
+            "333-2233"
+          ], 
+          [
+            "price", 
+            21.500
+          ]
         ], 
         "34": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Chinese"
+          ], 
+          [
+            "dish", 
+            "Egg Foo Young"
+          ], 
+          [
+            "name", 
+            "Golden Pagoda"
+          ], 
+          [
+            "phone", 
+            "232-3232"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ]
       }, 
       "line": 24, 
@@ -5565,7 +9365,7 @@
       "heap": {
         "1": [
           "FUNCTION", 
-          "namedtuple(typename, field_names, verbose)", 
+          "namedtuple(typename, field_names, verbose, rename)", 
           null
         ], 
         "2": [
@@ -5685,7 +9485,7 @@
         ], 
         "7": [
           "FUNCTION", 
-          "_asdict(t)", 
+          "_asdict(self)", 
           null
         ], 
         "8": [
@@ -5727,83 +9527,483 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Bouillabaisse"
+          ], 
+          [
+            "name", 
+            "Pascal"
+          ], 
+          [
+            "phone", 
+            "333-4444"
+          ], 
+          [
+            "price", 
+            32.000
+          ]
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mee Krob"
+          ], 
+          [
+            "name", 
+            "Thai Touch"
+          ], 
+          [
+            "phone", 
+            "444-3333"
+          ], 
+          [
+            "price", 
+            10.950
+          ]
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Paht Woon Sen"
+          ], 
+          [
+            "name", 
+            "Thai Dishes"
+          ], 
+          [
+            "phone", 
+            "333-4433"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Thai"
+          ], 
+          [
+            "dish", 
+            "Mussamun"
+          ], 
+          [
+            "name", 
+            "Thai Spoon"
+          ], 
+          [
+            "phone", 
+            "334-3344"
+          ], 
+          [
+            "price", 
+            9.000
+          ]
         ], 
         "22": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Big Mac"
+          ], 
+          [
+            "name", 
+            "McDonald's"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            3.950
+          ]
         ], 
         "23": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Whopper"
+          ], 
+          [
+            "name", 
+            "Burger King"
+          ], 
+          [
+            "phone", 
+            "444-3344"
+          ], 
+          [
+            "price", 
+            3.750
+          ]
         ], 
         "24": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Fish Tacos"
+          ], 
+          [
+            "dish", 
+            "Mahi Mahi Burrito"
+          ], 
+          [
+            "name", 
+            "Wahoo's"
+          ], 
+          [
+            "phone", 
+            "443-4443"
+          ], 
+          [
+            "price", 
+            7.500
+          ]
         ], 
         "25": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Cheeseburger"
+          ], 
+          [
+            "name", 
+            "In-N-Out Burger"
+          ], 
+          [
+            "phone", 
+            "434-3344"
+          ], 
+          [
+            "price", 
+            2.500
+          ]
         ], 
         "26": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Burgers"
+          ], 
+          [
+            "dish", 
+            "Hot Link Burger"
+          ], 
+          [
+            "name", 
+            "The Shack"
+          ], 
+          [
+            "phone", 
+            "333-3334"
+          ], 
+          [
+            "price", 
+            4.500
+          ]
         ], 
         "27": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Pizza"
+          ], 
+          [
+            "dish", 
+            "Combo Pizza"
+          ], 
+          [
+            "name", 
+            "Gina's"
+          ], 
+          [
+            "phone", 
+            "334-4433"
+          ], 
+          [
+            "price", 
+            12.950
+          ]
         ], 
         "28": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Rogan Josh"
+          ], 
+          [
+            "name", 
+            "Peacock, Room"
+          ], 
+          [
+            "phone", 
+            "333-4443"
+          ], 
+          [
+            "price", 
+            12.500
+          ]
         ], 
         "29": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Indian"
+          ], 
+          [
+            "dish", 
+            "Tandoori Chicken"
+          ], 
+          [
+            "name", 
+            "Gaylord"
+          ], 
+          [
+            "phone", 
+            "333-3433"
+          ], 
+          [
+            "price", 
+            13.500
+          ]
         ], 
         "30": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Chinese"
+          ], 
+          [
+            "dish", 
+            "Peking Duck"
+          ], 
+          [
+            "name", 
+            "Mr. Chow"
+          ], 
+          [
+            "phone", 
+            "222-3333"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "31": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "California"
+          ], 
+          [
+            "dish", 
+            "Grilled Duck Breast"
+          ], 
+          [
+            "name", 
+            "Chez Panisse"
+          ], 
+          [
+            "phone", 
+            "222-3322"
+          ], 
+          [
+            "price", 
+            25.000
+          ]
         ], 
         "32": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "California"
+          ], 
+          [
+            "dish", 
+            "Striped Bass"
+          ], 
+          [
+            "name", 
+            "Spago"
+          ], 
+          [
+            "phone", 
+            "333-2222"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
         ], 
         "33": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Seafood"
+          ], 
+          [
+            "dish", 
+            "Cedar Plank Salmon"
+          ], 
+          [
+            "name", 
+            "Sriped Bass"
+          ], 
+          [
+            "phone", 
+            "333-2233"
+          ], 
+          [
+            "price", 
+            21.500
+          ]
         ], 
         "34": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Chinese"
+          ], 
+          [
+            "dish", 
+            "Egg Foo Young"
+          ], 
+          [
+            "name", 
+            "Golden Pagoda"
+          ], 
+          [
+            "phone", 
+            "232-3232"
+          ], 
+          [
+            "price", 
+            8.500
+          ]
         ], 
         "35": [
           "INSTANCE", 
-          "Restaurant"
+          "Restaurant", 
+          [
+            "cuisine", 
+            "Delicatessen"
+          ], 
+          [
+            "dish", 
+            "Pastrami Sandwich"
+          ], 
+          [
+            "name", 
+            "Langer's"
+          ], 
+          [
+            "phone", 
+            "333-2223"
+          ], 
+          [
+            "price", 
+            11.500
+          ]
         ]
       }, 
       "line": 24, 

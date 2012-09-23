@@ -10,6 +10,6 @@ a = A()
 
 a.x()
 
-print a.bla
-print A.bla
+print(a.bla)
+print(A.bla)
 

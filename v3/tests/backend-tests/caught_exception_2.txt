@@ -2,11 +2,11 @@
 try:
   x = 1 / 0
 except:
-  print "DIVIDE BY ZERO"
+  print("DIVIDE BY ZERO")
 
 
 # uncaught:
-print y
+print(y)
 
-print "should not reach here"
+print("should not reach here")
 

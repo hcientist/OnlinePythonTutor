@@ -1,5 +1,5 @@
 {
-  "code": "for line in open(\"/etc/passwd\"):\n    print line\n\n", 
+  "code": "for line in open(\"/etc/passwd\"):\n    print(line)\n\n", 
   "trace": [
     {
       "ordered_globals": [], 

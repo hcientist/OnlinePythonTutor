@@ -5,5 +5,5 @@ def gen_odds():
     x += 2
 
 for i in gen_odds():
-  print i
+  print(i)
 

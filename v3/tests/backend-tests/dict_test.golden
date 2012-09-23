@@ -1,5 +1,5 @@
 {
-  "code": "x = {1 : 2}\nx[('tup', 'le')] = set([1, 2, 3])\n\ndef foo():\n  local_x = {1 : 2}\n  local_y = {}\n  local_y[('tup', 'le')] = set([1, 2, 3])\n  print \"hello\", local_y.values()\n\nfoo()\n", 
+  "code": "x = {1 : 2}\nx[('tup', 'le')] = set([1, 2, 3])\n\ndef foo():\n  local_x = {1 : 2}\n  local_y = {}\n  local_y[('tup', 'le')] = set([1, 2, 3])\n  print(\"hello\", list(local_y.values()))\n\nfoo()\n", 
   "trace": [
     {
       "ordered_globals": [], 
@@ -562,7 +562,7 @@
         "x", 
         "foo"
       ], 
-      "stdout": "hello [set([1, 2, 3])]\n", 
+      "stdout": "('hello', [set([1, 2, 3])])\n", 
       "func_name": "foo", 
       "stack_to_render": [
         {
@@ -675,7 +675,7 @@
         "x", 
         "foo"
       ], 
-      "stdout": "hello [set([1, 2, 3])]\n", 
+      "stdout": "('hello', [set([1, 2, 3])])\n", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {

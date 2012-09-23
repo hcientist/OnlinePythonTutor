@@ -4,13 +4,13 @@ class Staff601:
     room = 501
 
 pat = Staff601()
-print pat.course
+print(pat.course)
 
 pat.name = 'Pat'
 pat.age = 60
 pat.role = 'Professor'
 
-print pat.building
+print(pat.building)
 pat.building = 32
-print pat.building
+print(pat.building)
 

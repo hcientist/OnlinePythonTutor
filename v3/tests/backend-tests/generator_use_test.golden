@@ -1,5 +1,5 @@
 {
-  "code": "def gen_odds():\n  x = 1\n  while True:\n    yield x\n    x += 2\n\nfor i in gen_odds():\n  print i\n\n", 
+  "code": "def gen_odds():\n  x = 1\n  while True:\n    yield x\n    x += 2\n\nfor i in gen_odds():\n  print(i)\n\n", 
   "trace": [
     {
       "ordered_globals": [], 

@@ -1,5 +1,5 @@
 {
-  "code": "# caught exception:\ntry:\n  x = 1 / 0\nexcept:\n  print \"DIVIDE BY ZERO\"\n\n\n# uncaught:\nprint y\n\nprint \"should not reach here\"\n\n", 
+  "code": "# caught exception:\ntry:\n  x = 1 / 0\nexcept:\n  print(\"DIVIDE BY ZERO\")\n\n\n# uncaught:\nprint(y)\n\nprint(\"should not reach here\")\n\n", 
   "trace": [
     {
       "ordered_globals": [], 

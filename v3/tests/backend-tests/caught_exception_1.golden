@@ -1,5 +1,5 @@
 {
-  "code": "try:\n  x = 1 / 0\nexcept:\n  print \"DIVIDE BY ZERO\"\n\n", 
+  "code": "try:\n  x = 1 / 0\nexcept:\n  print(\"DIVIDE BY ZERO\")\n\n", 
   "trace": [
     {
       "ordered_globals": [], 

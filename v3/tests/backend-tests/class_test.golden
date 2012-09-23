@@ -1,5 +1,5 @@
 {
-  "code": "class Point:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n    \n    def __str__(self):\n        return \"(%d, %d)\" % (self.x, self.y)\n\np = Point(1, 2)\nprint p\np2 = Point(3, -4)\nprint p2\n\n", 
+  "code": "class Point:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n    \n    def __str__(self):\n        return \"(%d, %d)\" % (self.x, self.y)\n\np = Point(1, 2)\nprint(p)\np2 = Point(3, -4)\nprint(p2)\n\n", 
   "trace": [
     {
       "ordered_globals": [], 

@@ -1,5 +1,5 @@
 {
-  "code": "x = 5\ny = 10\nz = x * y\nprint \"HELLO WORLD\"\nfor i in range(10):\n  print z * i\n\n", 
+  "code": "x = 5\ny = 10\nz = x * y\nprint(\"HELLO WORLD\")\nfor i in range(10):\n  print(z * i)\n\n", 
   "trace": [
     {
       "ordered_globals": [], 

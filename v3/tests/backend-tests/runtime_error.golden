@@ -1,5 +1,5 @@
 {
-  "code": "x = 5\nfor i in range(10):\n  if i == x:\n    z = x + y # ERROR!\n  else:\n    z = i\n  print z\n\n", 
+  "code": "x = 5\nfor i in range(10):\n  if i == x:\n    z = x + y # ERROR!\n  else:\n    z = i\n  print(z)\n\n", 
   "trace": [
     {
       "ordered_globals": [], 

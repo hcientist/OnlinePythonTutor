@@ -1,5 +1,5 @@
 {
-  "code": "class A(object):\n  bla = \"A\"\n  def __init__(self):\n    self.blb = \"B\"\n\n  def x(self):\n    self.bla = self.blb\n\na = A()\n\na.x()\n\nprint a.bla\nprint A.bla\n\n", 
+  "code": "class A(object):\n  bla = \"A\"\n  def __init__(self):\n    self.blb = \"B\"\n\n  def x(self):\n    self.bla = self.blb\n\na = A()\n\na.x()\n\nprint(a.bla)\nprint(A.bla)\n\n", 
   "trace": [
     {
       "ordered_globals": [], 

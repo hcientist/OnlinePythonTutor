@@ -1,5 +1,5 @@
 {
-  "code": "class Staff601:\n    course = '6.01'\n    building = 34\n    room = 501\n\npat = Staff601()\nprint pat.course\n\npat.name = 'Pat'\npat.age = 60\npat.role = 'Professor'\n\nprint pat.building\npat.building = 32\nprint pat.building\n\n", 
+  "code": "class Staff601:\n    course = '6.01'\n    building = 34\n    room = 501\n\npat = Staff601()\nprint(pat.course)\n\npat.name = 'Pat'\npat.age = 60\npat.role = 'Professor'\n\nprint(pat.building)\npat.building = 32\nprint(pat.building)\n\n", 
   "trace": [
     {
       "ordered_globals": [], 

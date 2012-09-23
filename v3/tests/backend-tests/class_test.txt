@@ -7,7 +7,7 @@ class Point:
         return "(%d, %d)" % (self.x, self.y)
 
 p = Point(1, 2)
-print p
+print(p)
 p2 = Point(3, -4)
-print p2
+print(p2)
 

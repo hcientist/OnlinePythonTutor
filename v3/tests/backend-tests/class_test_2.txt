@@ -4,5 +4,5 @@ class Outer():
 o = Outer()
 o.a = 5
 o.b = "Hi"
-print o
+print(o)
 

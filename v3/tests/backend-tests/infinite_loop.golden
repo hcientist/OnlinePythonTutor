@@ -1,5 +1,5 @@
 {
-  "code": "# Fibonacci!!!\n\narr = [1, 1]\n\nprint arr[0]\n\nwhile True:\n  print arr[-1]\n  tmp = sum(arr)\n  arr.append(tmp)\n  del arr[0]\n\n", 
+  "code": "# Fibonacci!!!\n\narr = [1, 1]\n\nprint(arr[0])\n\nwhile True:\n  print(arr[-1])\n  tmp = sum(arr)\n  arr.append(tmp)\n  del arr[0]\n\n", 
   "trace": [
     {
       "ordered_globals": [], 

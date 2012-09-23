@@ -4,5 +4,5 @@ for i in range(10):
     z = x + y # ERROR!
   else:
     z = i
-  print z
+  print(z)
 

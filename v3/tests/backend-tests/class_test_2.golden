@@ -1,5 +1,5 @@
 {
-  "code": "class Outer():\n   pass\n\no = Outer()\no.a = 5\no.b = \"Hi\"\nprint o\n\n", 
+  "code": "class Outer():\n   pass\n\no = Outer()\no.a = 5\no.b = \"Hi\"\nprint(o)\n\n", 
   "trace": [
     {
       "ordered_globals": [], 

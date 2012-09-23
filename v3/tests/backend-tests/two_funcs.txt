@@ -10,5 +10,5 @@ def double_add(a, b, c):
 x = 5
 y = 10
 z = x * y
-print add(x, y, z)
-print double_add(x, y, z)
+print(add(x, y, z))
+print(double_add(x, y, z))

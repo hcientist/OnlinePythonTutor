@@ -1,5 +1,5 @@
 {
-  "code": "x = {}\nl = ['hello', \"world\", 'goodbye']\nfor (i, e) in enumerate(l):\n    x[e] = i\nprint x\n\n", 
+  "code": "x = {}\nl = ['hello', \"world\", 'goodbye']\nfor (i, e) in enumerate(l):\n    x[e] = i\nprint(x)\n\n", 
   "trace": [
     {
       "ordered_globals": [], 

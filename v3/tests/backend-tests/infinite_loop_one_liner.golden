@@ -1,5 +1,5 @@
 {
-  "code": "while 1:\n  print \"hahahaha\"\n", 
+  "code": "while 1:\n  print(\"hahahaha\")\n", 
   "trace": [
     {
       "ordered_globals": [], 

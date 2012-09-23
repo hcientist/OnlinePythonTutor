@@ -1,5 +1,5 @@
 {
-  "code": "def add(a, b, c):\n  d = a + b\n  return c + d\n\ndef double_add(a, b, c):\n  x = add(a, b, c)\n  y = add(a, b, c)\n  return x + y\n\nx = 5\ny = 10\nz = x * y\nprint add(x, y, z)\nprint double_add(x, y, z)\n", 
+  "code": "def add(a, b, c):\n  d = a + b\n  return c + d\n\ndef double_add(a, b, c):\n  x = add(a, b, c)\n  y = add(a, b, c)\n  return x + y\n\nx = 5\ny = 10\nz = x * y\nprint(add(x, y, z))\nprint(double_add(x, y, z))\n", 
   "trace": [
     {
       "ordered_globals": [], 

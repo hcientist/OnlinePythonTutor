@@ -5,4 +5,4 @@ def add(a, b, c):
 x = 5
 y = 10
 z = x * y
-print add(x, y, z)
+print(add(x, y, z))

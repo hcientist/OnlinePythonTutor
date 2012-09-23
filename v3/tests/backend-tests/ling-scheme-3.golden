@@ -1,5 +1,5 @@
 {
-  "code": "def map(f, xs):\n  if xs == []:\n    return []\n  else:\n    return [f(xs[0])] + map(f, xs[1:])\n\ndef append(xs, ys):\n  if xs == []:\n    return ys\n  else:\n    return [xs[0]] + append(xs[1:], ys)\n\ndef pairs(xs):\n  if xs == []:\n    return []\n  elif xs[1:] == []:\n    return []\n  else:\n    return append(map(lambda x: [xs[0], x], xs[1:]), pairs(xs[1:]))\n\nresult = pairs([1, 2, 3])\n", 
+  "code": "def map(f, xs):\n  if xs == []:\n    return []\n  else:\n    return [f(xs[0])] + list(map(f, xs[1:]))\n\ndef append(xs, ys):\n  if xs == []:\n    return ys\n  else:\n    return [xs[0]] + append(xs[1:], ys)\n\ndef pairs(xs):\n  if xs == []:\n    return []\n  elif xs[1:] == []:\n    return []\n  else:\n    return append(map(lambda x: [xs[0], x], xs[1:]), pairs(xs[1:]))\n\nresult = pairs([1, 2, 3])\n", 
   "trace": [
     {
       "ordered_globals": [], 

@@ -1,5 +1,5 @@
 {
-  "code": "exec \"import os; os.system('echo security breach')\"\n", 
+  "code": "exec(\"import os; os.system('echo security breach')\")\n", 
   "trace": [
     {
       "ordered_globals": [], 
