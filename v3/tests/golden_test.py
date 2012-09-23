@@ -9,21 +9,6 @@ import os, re, shutil, optparse, difflib
 from subprocess import *
 
 
-PROGRAM = ['python', '../generate_json_trace.py']
-
-INPUT_FILE_EXTENSION = '.txt' # input test files are .txt, NOT .py
-
-
-ALL_TESTS = []
-
-for (pwd, subdirs, files) in os.walk('.', followlinks=True): # need to follow example-code symlink
-  for f in files:
-    (base, ext) = os.path.splitext(f)
-    if ext == INPUT_FILE_EXTENSION:
-      fullpath = os.path.join(pwd, f)
-      ALL_TESTS.append(fullpath)
-
-
 def filter_output(s):
   return s
 
@@ -41,7 +26,7 @@ def execute(input_filename):
   #  print stderr, '}'
 
   # capture stdout into outfile, filtering out machine-specific addresses
-  outfile = base + '.out'
+  outfile = base + OUTPUT_FILE_EXTENSION
   outf = open(outfile, 'w')
 
   for line in stdout.splitlines():
@@ -53,7 +38,7 @@ def execute(input_filename):
 
 def clobber_golden_file(golden_file):
   (base, ext) = os.path.splitext(golden_file)
-  outfile = base + '.out'
+  outfile = base + OUTPUT_FILE_EXTENSION
   assert os.path.isfile(outfile)
   print '  Clobber %s => %s' % (outfile, golden_file)
   shutil.copy(outfile, golden_file)
@@ -62,7 +47,7 @@ def clobber_golden_file(golden_file):
 # returns True if there is a diff, False otherwise
 def golden_differs_from_out(golden_file):
   (base, ext) = os.path.splitext(golden_file)
-  outfile = base + '.out'
+  outfile = base + OUTPUT_FILE_EXTENSION
   assert os.path.isfile(outfile)
   assert os.path.isfile(golden_file)
 
@@ -78,9 +63,9 @@ def golden_differs_from_out(golden_file):
 def diff_test_output(test_name):
   (base, ext) = os.path.splitext(test_name)
 
-  golden_file = base + '.golden'
+  golden_file = base + GOLDEN_FILE_EXTENSION
   assert os.path.isfile(golden_file)
-  outfile = base + '.out'
+  outfile = base + OUTPUT_FILE_EXTENSION
   assert os.path.isfile(outfile)
 
   golden_s = open(golden_file).readlines()
@@ -105,14 +90,14 @@ def run_test(input_filename, clobber_golden=False):
   assert ext == INPUT_FILE_EXTENSION
 
   # to eliminate possibility of using stale output:
-  outfile = base + '.out'
+  outfile = base + OUTPUT_FILE_EXTENSION
   if os.path.isfile(outfile):
     os.remove(outfile)
 
   input_fullpath = input_filename
   execute(input_fullpath)
 
-  golden_file = base + '.golden'
+  golden_file = base + GOLDEN_FILE_EXTENSION
   if os.path.isfile(golden_file):
     if golden_differs_from_out(golden_file):
       print "  FAILED!!!"
@@ -142,10 +127,35 @@ if __name__ == "__main__":
   parser.add_option("--test", dest="test_name",
                     help="Run one test")
   parser.add_option("--difftest", dest="diff_test_name",
-                    help="Diff against .golden for one test")
+                    help="Diff against golden file for one test")
   parser.add_option("--diffall", action="store_true", dest="diff_all",
-                    help="Diff against .golden for all tests")
+                    help="Diff against golden file for all tests")
+  parser.add_option("--py3", action="store_true", dest="py3",
+                    help="Run Python 3 tests (rather than Python 2)")
   (options, args) = parser.parse_args()
+
+
+  INPUT_FILE_EXTENSION = '.txt' # input test files are .txt, NOT .py
+
+  if options.py3:
+    PROGRAM = ['python3', '../generate_json_trace.py']
+    OUTPUT_FILE_EXTENSION = '.out_py3'
+    GOLDEN_FILE_EXTENSION = '.golden_py3'
+  else:
+    PROGRAM = ['python2', '../generate_json_trace.py']
+    OUTPUT_FILE_EXTENSION = '.out'
+    GOLDEN_FILE_EXTENSION = '.golden'
+
+  ALL_TESTS = []
+
+  for (pwd, subdirs, files) in os.walk('.', followlinks=True): # need to follow example-code symlink
+    for f in files:
+      (base, ext) = os.path.splitext(f)
+      if ext == INPUT_FILE_EXTENSION:
+        fullpath = os.path.join(pwd, f)
+        ALL_TESTS.append(fullpath)
+
+
   if options.run_all:
     if options.clobber:
       print 'Running all tests and clobbering results ...'
@@ -164,7 +174,7 @@ if __name__ == "__main__":
   elif options.only_clobber:
     for t in ALL_TESTS:
       (base, ext) = os.path.splitext(t)
-      golden_file = base + '.golden'
+      golden_file = base + GOLDEN_FILE_EXTENSION
       clobber_golden_file(golden_file)
   else:
     parser.print_help()
