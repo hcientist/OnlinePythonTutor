@@ -323,6 +323,16 @@ class PGLogger(bdb.Bdb):
           # also don't trace inside of the magic "constructor" code
           if cur_frame.f_code.co_name == '__new__':
             return
+          # or __repr__, which is often called when running print statements
+          if cur_frame.f_code.co_name == '__repr__':
+            return
+
+
+        # debug ...
+        #print('===', file=sys.stderr)
+        #for (e,ln) in self.stack:
+        #  print(e.f_code.co_name + ' ' + e.f_code.co_filename + ' ' + str(ln), file=sys.stderr)
+        #print('', file=sys.stderr)
 
 
         # don't trace inside of our __restricted_import__ helper function
