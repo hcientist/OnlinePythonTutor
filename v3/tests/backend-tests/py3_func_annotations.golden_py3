@@ -1,0 +1,19 @@
+{
+  "code": "# test case of Python 3 function annotations inspired by David G. Kay\ndef remove_by_name(L: 'list of Restaurant', name: str) -> 'list of Restaurant':\n    \"\"\" Given name, remove all Restaurants with that name from collection.\n    \"\"\"\n    result = []\n    for r in L:\n        if r.name != name:\n            result.append(r)\n    return result\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "exception_msg": "ValueError: Function has keyword-only arguments or annotations, use getfullargspec() API which can support them", 
+      "event": "uncaught_exception"
+    }
+  ]
+}

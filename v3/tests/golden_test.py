@@ -24,6 +24,8 @@ def execute(input_filename):
     print '(has stderr)'
   #  print '  stderr {'
   #  print stderr, '}'
+  else:
+    print
 
   # capture stdout into outfile, filtering out machine-specific addresses
   outfile = base + OUTPUT_FILE_EXTENSION
@@ -84,7 +86,7 @@ def diff_test_output(test_name):
 
 
 def run_test(input_filename, clobber_golden=False):
-  print 'Testing', input_filename
+  print 'Testing', input_filename,
 
   (base, ext) = os.path.splitext(input_filename)
   assert ext == INPUT_FILE_EXTENSION
@@ -131,18 +133,18 @@ if __name__ == "__main__":
   parser.add_option("--diffall", action="store_true", dest="diff_all",
                     help="Diff against golden file for all tests")
   parser.add_option("--py3", action="store_true", dest="py3",
-                    help="Run Python 3 tests (rather than Python 2)")
+                    help="Run tests using Python 3.2 (rather than Python 2.7)")
   (options, args) = parser.parse_args()
 
 
   INPUT_FILE_EXTENSION = '.txt' # input test files are .txt, NOT .py
 
   if options.py3:
-    PROGRAM = ['python3', '../generate_json_trace.py']
+    PROGRAM = ['python3.2', '../generate_json_trace.py']
     OUTPUT_FILE_EXTENSION = '.out_py3'
     GOLDEN_FILE_EXTENSION = '.golden_py3'
   else:
-    PROGRAM = ['python2', '../generate_json_trace.py']
+    PROGRAM = ['python2.7', '../generate_json_trace.py']
     OUTPUT_FILE_EXTENSION = '.out'
     GOLDEN_FILE_EXTENSION = '.golden'
 
