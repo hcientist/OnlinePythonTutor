@@ -158,14 +158,23 @@ class ObjectEncoder:
           if k not in ('__module__', '__return__', '__locals__'):
             new_obj.append([self.encode(k), self.encode(v)])
       elif typ in (types.FunctionType, types.MethodType):
-        # NB: In Python 3.0, getargspec is deprecated in favor of getfullargspec
-        argspec = inspect.getargspec(dat)
+        if is_python3:
+          argspec = inspect.getfullargspec(dat)
+        else:
+          argspec = inspect.getargspec(dat)
 
         printed_args = [e for e in argspec.args]
         if argspec.varargs:
           printed_args.append('*' + argspec.varargs)
-        if argspec.keywords:
-          printed_args.append('**' + argspec.keywords)
+
+        if is_python3:
+          if argspec.varkw:
+            printed_args.append('**' + argspec.varkw)
+          if argspec.kwonlyargs:
+            printed_args.extend(argspec.kwonlyargs)
+        else:
+          if argspec.keywords:
+            printed_args.append('**' + argspec.keywords)
 
         func_name = get_name(dat)
         pretty_name = func_name + '(' + ', '.join(printed_args) + ')'
