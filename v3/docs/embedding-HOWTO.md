@@ -32,3 +32,13 @@ by stepping forward and backward, but they cannot edit the code.
 
 If the user wants to click the 'Edit code' button to edit the code, then they are
 brought to the [code editor page](http://pythontutor.com/visualize.html).
+
+
+## The Nitty-Gritty
+
+Let's attempt to go [literate programming](http://en.wikipedia.org/wiki/Literate_programming) style now ... load up
+[v3/embedding-demo.html](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/embedding-demo.html) in
+your browser to see a demo. And then view its source code and follow the instructions there, which should
+lead you to [v3/embedding-demo.js](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/embedding-demo.js).
+
+Everything you need to know should be in the demo code!
