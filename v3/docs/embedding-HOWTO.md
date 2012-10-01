@@ -3,7 +3,7 @@
 This document is a starting point for anyone who wants to embed
 Online Python Tutor (OPT) visualizations in their webpage. View it online at:
 
-https://github.com/pgbovine/OnlinePythonTutor/edit/master/v3/docs/embedding-HOWTO.md
+https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/embedding-HOWTO.md
 
 Look at the Git history to see when this document was last updated; the more time
 elapsed since that date, the more likely things are out-of-date.
