@@ -29,7 +29,6 @@ string representing a JavaScript (JSON) object.
 
 Note that the embedded visualization is **read-only** -- that is, the user can interact with the visualization
 by stepping forward and backward, but they cannot edit the code.
-
 If the user wants to click the 'Edit code' button to edit the code, then they are
 brought to the [code editor page](http://pythontutor.com/visualize.html).
 
@@ -38,7 +37,7 @@ brought to the [code editor page](http://pythontutor.com/visualize.html).
 
 Let's attempt to go [literate programming](http://en.wikipedia.org/wiki/Literate_programming) style now ... load up
 [embedding-demo.html](http://pythontutor.com/embedding-demo.html) in
-your browser to see a demo. And then view its [source code](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/embedding-demo.html) and follow the instructions there, which should
-lead you to [v3/embedding-demo.js](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/embedding-demo.js).
+your browser to see a demo. And then view its [source code](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/embedding-demo.html) and follow the instructions there,
+which should then lead you to `v3/embedding-demo.js`.
 
 Everything you need to know should be in the demo code!
