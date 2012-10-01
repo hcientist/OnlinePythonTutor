@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-  <title>Online Python Tutor embedding test</title>
+  <title>Online Python Tutor embedding demo</title>
 
-<!-- requirements for pytutor.js -->
+<!-- dependencies for pytutor.js -->
 <script type="text/javascript" src="js/d3.v2.min.js"></script>
 <script type="text/javascript" src="js/jquery-1.6.min.js"></script>
 <script type="text/javascript" src="js/jquery.ba-bbq.min.js"></script> <!-- for handling back button and URL hashes -->
@@ -12,29 +12,42 @@
 <script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script> <!-- for sliders and other UI elements -->
 <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
 
+
+<!-- Python Tutor frontend code and styles -->
 <script type="text/javascript" src="js/pytutor.js"></script>
 <link rel="stylesheet" href="css/pytutor.css"/>
 
 
-<script type="text/javascript" src="embedding-examples.js"></script>
+<!-- Include this file AFTER all of its dependencies.
 
+This JavaScript file contains the demo code - READ IT!!!
+
+-->
+<script type="text/javascript" src="embedding-demo.js"></script>
 
 </head>
 
 <body>
 
-<p>Stuff:</p>
+<!--
 
-<div id="stuffDiv"></div>
+This demo shows three visualizations, each embedded within a div ...
 
-<p>Aliasing 5:</p>
+-->
 
-<div id="aliasing5Div"></div>
+  <p>Recursive list sum (from <a href="http://pythontutor.com">pythontutor.com</a> home page):</p>
 
-<p>Towers of Hanoi:</p>
+  <div id="listSumDiv"></div>
 
-<div id="hanoiDiv"></div>
+
+  <p>Towers of Hanoi:</p>
+
+  <div id="hanoiDiv"></div>
+
+
+  <p>Happy Birthday:</p>
+
+  <div id="happyDiv"></div>
 
 </body>
 </html>
-

@@ -1,5 +1,7 @@
 # Generates a JSON trace that is compatible with the js/pytutor.js frontend
 
+import optparse
+
 CUMULATIVE_MODE = False
 
 COMPACT = False
@@ -26,6 +28,20 @@ def json_finalizer(input_code, output_trace):
   print(json_output)
 
 
-for f in sys.argv[1:]:
-  pg_logger.exec_script_str(open(f).read(), CUMULATIVE_MODE, json_finalizer)
+def js_var_finalizer(input_code, output_trace):
+  global JS_VARNAME
+  ret = dict(code=input_code, trace=output_trace)
+  json_output = json.dumps(ret, indent=None)
+  print("var %s = %s;" % (JS_VARNAME, json_output))
 
+
+parser = optparse.OptionParser()
+parser.add_option("--create_jsvar", dest="js_varname",
+                  help="Create a JavaScript variable out of the trace")
+(options, args) = parser.parse_args()
+
+if options.js_varname:
+  JS_VARNAME = options.js_varname
+  pg_logger.exec_script_str(open(args[0]).read(), CUMULATIVE_MODE, js_var_finalizer)
+else:
+  pg_logger.exec_script_str(open(args[0]).read(), CUMULATIVE_MODE, json_finalizer)
