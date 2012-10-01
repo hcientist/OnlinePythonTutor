@@ -32,6 +32,11 @@ by stepping forward and backward, but they cannot edit the code.
 If the user wants to click the 'Edit code' button to edit the code, then they are
 brought to the [code editor page](http://pythontutor.com/visualize.html).
 
+Also, note that the visualization is run client-side; thus, after the user loads the webpage (from the Internet
+or, say, a USB drive), they can play with the visualization without an Internet connection.
+
+Finally, multiple visualizations can be embedded in a single HTML webpage, although you need to be careful
+to redraw the SVG arrows when page elements are resized or moved.
 
 ## The Nitty-Gritty
 
