@@ -21,25 +21,69 @@ var happyTrace = {"code": "# From \"Teaching with Python\" by John Zelle\ndef ha
 //    corresponding to the respective traces.
 $(document).ready(function() {
 
+  // 3. Create a new ExecutionVisualizer object for each visualization.
+  //    (See js/pytutor.js for the full specs of ExecutionVisualizer.)
+  //
+  //    The basic idea is that the parent div name is passed as the first argument,
+  //    and the trace object is passed as the second argument.
+  //
+  //    The third argument contains optional parameters.
 
-  // see js/pytutor.js for the specs for ExecutionVisualizer
+  // Note that "embeddedMode: true" makes the visualizer appear more compact on-screen.
+  // editCodeBaseURL is the base URL to prepend onto the 'Edit code' link.
+
+  // Render listSumTrace inside of listSumDiv
   var listSumVisualizer = new ExecutionVisualizer('listSumDiv', listSumTrace,
-                                                  {embeddedMode: true, jumpToEnd: true, editCodeBaseURL: 'http://pythontutor.com/'});
+                                                  {embeddedMode: true,
+                                                   editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
 
+  // The "startingInstruction: 15" optional parameter means to jump to step 15
+  // in the visualization when it loads. (The HTML webpage will actually display
+  // "Step 16 of 64" since indices are zero-indexed.)
   var hanoiVisualizer   = new ExecutionVisualizer('hanoiDiv', hanoiTrace,
-                                                  {embeddedMode: true, startingInstruction: 45, editCodeBaseURL: 'http://pythontutor.com/'});
+                                                  {embeddedMode: true,
+                                                   startingInstruction: 15,
+                                                   editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
 
+  // "embeddedMode: false" displays the full visualizer widget with the "Program Output" pane
+  // "jumpToEnd: true" means to jump to the end of execution upon loading.
   var happyVisualizer   = new ExecutionVisualizer('happyDiv', happyTrace,
-                                                  {embeddedMode: true, editCodeBaseURL: 'http://pythontutor.com/'});
+                                                  {embeddedMode: false,
+                                                   jumpToEnd: true,
+                                                   editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
 
 
-  // TODO: implement the div trick where the divs don't get shorter after they get taller ...
+  // The redrawConnectors() method needs to be called whenever
+  // HTML elements move around on-screen. This is because the SVG
+  // arrows rendered by jsPlumb don't automatically get redrawn
+  // in their new positions unless redrawConnectors() is called.
 
-  // redraw connector arrows on window resize
+  // Call redrawConnectors() whenever the window is resized,
+  // since HTML elements might have moved during a resize.
   $(window).resize(function() {
     listSumVisualizer.redrawConnectors();
     hanoiVisualizer.redrawConnectors();
     happyVisualizer.redrawConnectors();
   });
-});
 
+
+  // A more subtle point is that when some div in your HTML webpage
+  // (such as a visualizer div) expands in height, it will "push down"
+  // all divs below it, but the SVG arrows rendered by jsPlumb
+  // WILL NOT MOVE. Thus, they will be in the incorrect location,
+  // unless you call redrawConnectors(). Here is one jQuery plugin
+  // that you can use to detect div height changes:
+  //
+  // http://benalman.com/projects/jquery-resize-plugin/
+  //
+  // As a concrete example, drag around the execution slider in
+  // "Towers of Hanoi" and notice how the arrows in "Happy Birthday"
+  // end up not properly aligned with the other elements.
+  //
+  // A related trick you can implement is to make a div never shrink
+  // in height once it's grown; that way, you can avoid lots of jarring
+  // jumps and redraws.
+  //
+  // Please email me if you want me to add more official support
+  // for this behavior.
+});
