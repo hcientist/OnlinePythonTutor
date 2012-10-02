@@ -470,6 +470,10 @@ class PGLogger(bdb.Bdb):
             encoded_val = self.encoder.encode(v)
 
             # UGH, this is SUPER ugly but needed for nested function defs
+            #
+            # NB: Known limitation -- this will work only for functions
+            # defined on the top level, not those that are nested within,
+            # say, tuples or lists
             if type(v) in (types.FunctionType, types.MethodType):
               try:
                 enclosing_frame = self.closures[v]
@@ -589,6 +593,10 @@ class PGLogger(bdb.Bdb):
           encoded_val = self.encoder.encode(v)
 
           # UGH, this is SUPER ugly but needed for nested function defs
+          #
+          # NB: Known limitation -- this will work only for functions
+          # defined on the top level, not those that are nested within,
+          # say, tuples or lists
           if type(v) in (types.FunctionType, types.MethodType):
             try:
               enclosing_frame = self.closures[v]
