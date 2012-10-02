@@ -219,7 +219,16 @@ class ObjectEncoder:
   def encode_class_or_instance(self, dat, new_obj):
     """Encode dat as a class or instance."""
     if is_instance(dat):
-      class_name = get_name(dat.__class__)
+      if hasattr(dat, '__class__'):
+        # common case ...
+        class_name = get_name(dat.__class__)
+      else:
+        # super special case for something like
+        # "from datetime import datetime_CAPI" in Python 3.2,
+        # which is some weird 'PyCapsule' type ...
+        # http://docs.python.org/release/3.1.5/c-api/capsule.html
+        class_name = get_name(type(dat))
+
       new_obj.extend(['INSTANCE', class_name])
       # don't traverse inside modules, or else risk EXPLODING the visualization
       if class_name == 'module':
