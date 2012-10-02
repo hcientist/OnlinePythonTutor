@@ -68,6 +68,23 @@ if is_python3:
   long = None # Avoid NameError when evaluating "long"
 
 
+def is_class(dat):
+  """Return whether dat is a class."""
+  if is_python3:
+    return isinstance(dat, type)
+  else:
+    return type(dat) in (types.ClassType, types.TypeType)
+
+
+def is_instance(dat):
+  """Return whether dat is an instance of a class."""
+  if is_python3:
+    return isinstance(type(dat), type) and not isinstance(dat, type)
+  else:
+    # ugh, classRE match is a bit of a hack :(
+    return type(dat) == types.InstanceType or classRE.match(str(type(dat)))
+
+
 def get_name(obj):
   """Return the name of an object."""
   return obj.__name__ if hasattr(obj, '__name__') else get_name(type(obj))
@@ -182,7 +199,7 @@ class ObjectEncoder:
       elif typ is types.BuiltinFunctionType:
         pretty_name = get_name(dat) + '(...)'
         new_obj.extend(['FUNCTION', pretty_name, None])
-      elif self.is_class(dat) or self.is_instance(dat):
+      elif is_class(dat) or is_instance(dat):
         self.encode_class_or_instance(dat, new_obj)
       elif typ is types.ModuleType:
         new_obj.extend(['module', dat.__name__])
@@ -199,26 +216,9 @@ class ObjectEncoder:
       return ret
 
 
-  def is_class(self, dat):
-    """Return whether dat is a class."""
-    if is_python3:
-      return isinstance(dat, type)
-    else:
-      return type(dat) in (types.ClassType, types.TypeType)
-
-
-  def is_instance(self, dat):
-    """Return whether dat is an instance of a class."""
-    if is_python3:
-      return isinstance(type(dat), type) and not isinstance(dat, type)
-    else:
-      # ugh, classRE match is a bit of a hack :(
-      return type(dat) == types.InstanceType or classRE.match(str(type(dat)))
-
-
   def encode_class_or_instance(self, dat, new_obj):
     """Encode dat as a class or instance."""
-    if self.is_instance(dat):
+    if is_instance(dat):
       class_name = get_name(dat.__class__)
       new_obj.extend(['INSTANCE', class_name])
       # don't traverse inside modules, or else risk EXPLODING the visualization

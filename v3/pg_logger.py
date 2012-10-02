@@ -134,6 +134,58 @@ def filter_var_dict(d):
   return ret
 
 
+# yield all function objects locally-reachable from frame,
+# making sure to traverse inside all compound objects ...
+def visit_all_locally_reachable_function_objs(frame):
+  for (k, v) in get_user_locals(frame).items():
+    for e in visit_function_obj(v, set()):
+      if e: # only non-null if it's a function object
+        assert type(e) in (types.FunctionType, types.MethodType)
+        yield e
+
+
+# TODO: this might be slow if we're traversing inside lots of objects:
+def visit_function_obj(v, ids_seen_set):
+  v_id = id(v)
+
+  # to prevent infinite loop
+  if v_id in ids_seen_set:
+    yield None
+  else:
+    ids_seen_set.add(v_id)
+
+    typ = type(v)
+    
+    # simple base case
+    if typ in (types.FunctionType, types.MethodType):
+      yield v
+
+    # recursive cases
+    elif typ in (list, tuple, set):
+      for child in v:
+        for child_res in visit_function_obj(child, ids_seen_set):
+          yield child_res
+
+    elif typ == dict or pg_encoder.is_class(v) or pg_encoder.is_instance(v):
+      contents_dict = None
+
+      if typ == dict:
+        contents_dict = v
+      # warning: some classes or instances don't have __dict__ attributes
+      elif hasattr(v, '__dict__'):
+        contents_dict = v.__dict__
+
+      if contents_dict:
+        for (key_child, val_child) in contents_dict.items():
+          for key_child_res in visit_function_obj(key_child, ids_seen_set):
+            yield key_child_res
+          for val_child_res in visit_function_obj(val_child, ids_seen_set):
+            yield val_child_res
+
+    # degenerate base case
+    yield None
+
+
 class PGLogger(bdb.Bdb):
 
     def __init__(self, cumulative_mode, finalizer_func):
@@ -474,9 +526,8 @@ class PGLogger(bdb.Bdb):
         # look for whether a nested function has been defined during
         # this particular call:
         if i > 1: # i == 1 implies that there's only a global scope visible
-          for (k, v) in get_user_locals(top_frame).items():
-            if (type(v) in (types.FunctionType, types.MethodType) and \
-                v not in self.closures and \
+          for v in visit_all_locally_reachable_function_objs(top_frame):
+            if (v not in self.closures and \
                 v not in self.globally_defined_funcs):
 
               # Look for the presence of the code object (v.func_code
