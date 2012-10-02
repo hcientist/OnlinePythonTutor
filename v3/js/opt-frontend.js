@@ -373,6 +373,11 @@ $(document).ready(function() {
     $.get("example-code/closures/lambda-param.txt", setCodeMirrorVal);
     return false;
   });
+  $('#tortureLink').click(function() {
+    $.get("example-code/closures/student-torture.txt", setCodeMirrorVal);
+    return false;
+  });
+
 
 
   $('#aliasing1Link').click(function() {
