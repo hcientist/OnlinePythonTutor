@@ -247,6 +247,12 @@ class PGLogger(bdb.Bdb):
     def get_frame_id(self, cur_frame):
       return self.frame_ordered_ids[cur_frame]
 
+    # Returns the (lexical) parent of a function value.
+    def get_parent_of_function(self, val):
+      if val not in self.closures:
+        return None
+      return self.get_frame_id(self.closures[val])
+
 
     # Returns the (lexical) parent frame of the function that was called
     # to create the stack frame 'frame'.
@@ -467,20 +473,7 @@ class PGLogger(bdb.Bdb):
             if k == '__module__':
               continue
 
-            encoded_val = self.encoder.encode(v)
-
-            # UGH, this is SUPER ugly but needed for nested function defs
-            #
-            # NB: Known limitation -- this will work only for functions
-            # defined on the top level, not those that are nested within,
-            # say, tuples or lists
-            if type(v) in (types.FunctionType, types.MethodType):
-              try:
-                enclosing_frame = self.closures[v]
-                enclosing_frame_id = self.get_frame_id(enclosing_frame)
-                self.encoder.set_function_parent_frame_ID(encoded_val, enclosing_frame_id)
-              except KeyError:
-                pass
+            encoded_val = self.encoder.encode(v, self.get_parent_of_function)
             encoded_locals[k] = encoded_val
 
 
@@ -590,20 +583,7 @@ class PGLogger(bdb.Bdb):
         # effects of aliasing later down the line ...
         encoded_globals = {}
         for (k, v) in get_user_globals(tos[0]).items():
-          encoded_val = self.encoder.encode(v)
-
-          # UGH, this is SUPER ugly but needed for nested function defs
-          #
-          # NB: Known limitation -- this will work only for functions
-          # defined on the top level, not those that are nested within,
-          # say, tuples or lists
-          if type(v) in (types.FunctionType, types.MethodType):
-            try:
-              enclosing_frame = self.closures[v]
-              enclosing_frame_id = self.get_frame_id(enclosing_frame)
-              self.encoder.set_function_parent_frame_ID(encoded_val, enclosing_frame_id)
-            except KeyError:
-              pass
+          encoded_val = self.encoder.encode(v, self.get_parent_of_function)
           encoded_globals[k] = encoded_val
 
           if k not in self.all_globals_in_order:
