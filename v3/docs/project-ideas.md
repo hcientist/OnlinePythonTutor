@@ -32,6 +32,14 @@ so that OPT visualizations (and the surrounding user interface) look good on dis
 ranging from smartphones to tablets to laptops to giant desktop monitors.
 
 
+## Offline mode for use as a production debugger (medium)
+
+From a reader comment: "As a teaching tool it is invaluable, not only for teaching python, but for programming in general (what is going on in memory...).
+I've actively used it to debug / trace short pieces of code. Any chance of having it offline (and without the limitations of an online tool like the inability to load all modules)? That would make a perfect pdb visualization tool."
+
+You could imagine running a webserver on localhost and using OPT as a graphical frontend for pdb; interesting idea!
+
+
 ## Optimize display of object-oriented programs (medium)
 
 This is a good project for an object-oriented programming enthusiast.
