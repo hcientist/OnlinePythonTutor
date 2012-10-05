@@ -668,7 +668,7 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
         return 'lineNo' + d.lineNumber;
       }
       else {
-        return 'cod' + d.lineNumber;
+        return myViz.generateID('cod' + d.lineNumber); // make globally unique (within the page)
       }
     })
     .html(function(d, i) {
@@ -1755,7 +1755,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   globalVarTable
     .enter()
-    .append('tr');
+    .append('tr')
+    .attr('id', function(d, i) {
+        return myViz.generateID(varnameToCssID('globals__' + d)); // make globally unique (within the page)
+    });
 
 
   var globalVarTableCells = globalVarTable
@@ -1914,7 +1917,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   stackVarTable
     .enter()
-    .append('tr');
+    .append('tr')
+    .attr('id', function(d, i) {
+        return myViz.generateID(varnameToCssID(d.frame.unique_hash + '__' + d.varname)); // make globally unique (within the page)
+    });
  
 
   var stackVarTableCells = stackVarTable
