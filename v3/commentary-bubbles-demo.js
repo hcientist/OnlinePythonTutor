@@ -71,5 +71,13 @@ $(document).ready(function() {
   createSpeechBubble('v1__stack2', 'right center', 'left center',
                      "Another recursive call.");
 
+  createSpeechBubble('cod4', 'left center', 'right center',
+                     "line four, booooooooooooo ...");
+
+  createSpeechBubble('cod5', 'left center', 'right center',
+                     "line five, yay!!!");
+
+  createSpeechBubble('cod9', 'left center', 'right center',
+                     "line nine, yay!!!");
 
 });

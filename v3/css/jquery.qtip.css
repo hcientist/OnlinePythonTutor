@@ -564,6 +564,11 @@
 		background-color: transparent;
 	}
 
+	.ui-tooltip-pgbootstrap .ui-tooltip-content{
+		padding: 5px /* 5px is minimum or else it might look ugly */ 7px;
+	}
+	
+
 		.ui-tooltip-pgbootstrap .ui-tooltip-titlebar .ui-state-default{
 			right: 9px; top: 49%;
 			border-style: none;
