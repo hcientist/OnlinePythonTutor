@@ -667,6 +667,9 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
       if (i == 0) {
         return 'lineNo' + d.lineNumber;
       }
+      else {
+        return 'cod' + d.lineNumber;
+      }
     })
     .html(function(d, i) {
       if (i == 0) {
@@ -1780,6 +1783,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         var valStringRepr = String(typeof val) + ':' + String(val);
 
         // SUPER HACK - retrieve previous value as a hidden attribute
+        // TODO: use the jQuery .data() method to store arbitrary data
+        // inside of a DOM element, so that we can avoid munging strings:
+        //   http://api.jquery.com/data/
         var prevValStringRepr = $(this).attr('data-curvalue');
 
         // IMPORTANT! only clear the div and render a new element if the
