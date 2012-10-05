@@ -71,13 +71,18 @@ $(document).ready(function() {
   createSpeechBubble('v1__stack2', 'right center', 'left center',
                      "Another recursive call.");
 
-  createSpeechBubble('cod4', 'left center', 'right center',
+  createSpeechBubble('v1__cod4', 'left center', 'right center',
                      "line four, booooooooooooo ...");
 
-  createSpeechBubble('cod5', 'left center', 'right center',
+  createSpeechBubble('v1__cod5', 'left center', 'right center',
                      "line five, yay!!!");
 
-  createSpeechBubble('cod9', 'left center', 'right center',
+  createSpeechBubble('v1__cod9', 'left center', 'right center',
                      "line nine, yay!!!");
 
+  createSpeechBubble('v1__listSum_f2__numbers', 'right center', 'left center',
+                     "this is a variable, of course!");
+
+  createSpeechBubble('v1__listSum_f2__rest', 'right center', 'left center',
+                     "this is another variable, of course; what else would it be?!?");
 });
