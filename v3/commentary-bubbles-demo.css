@@ -8,17 +8,16 @@ textarea.bubbleInputText {
   resize: none;
   width: 200px;
   max-width: 200px;
-  height: 60px;
-  max-height: 60px;
+  height: 45px;
+  max-height: 45px;
 }
 
 
 .ui-tooltip-pgbootstrap,
 textarea.bubbleInputText {
+  font-family: verdana, arial, helvetica, sans-serif;
 	font-size: 9pt;
 	line-height: 1.3em;
-
-  font-family: verdana, arial, helvetica, sans-serif;
 }
 
 

@@ -100,6 +100,8 @@ AnnotationBubble.prototype.showStub = function() {
   assert(this.state == 'hidden' || this.state == 'edit');
   assert(this.text == '');
 
+  var myBubble = this; // to avoid name clashes with 'this' in inner scopes
+
   // destroy then create a new tip:
   this.destroyQTip();
   $(this.hashID).qtip($.extend({}, qtipShared, {
@@ -115,11 +117,20 @@ AnnotationBubble.prototype.showStub = function() {
     }
   }));
 
+
+  $(this.qTipID())
+    .unbind('click') // unbind all old handlers
+    .click(function() {
+      myBubble.showEditor();
+    });
+
   this.state = 'stub';
 }
 
 AnnotationBubble.prototype.showEditor = function() {
   assert(this.state == 'stub' || this.state == 'view');
+
+  var myBubble = this; // to avoid name clashes with 'this' in inner scopes
 
   var ta = '<textarea class="bubbleInputText">' + this.text + '</textarea>';
 
@@ -134,6 +145,20 @@ AnnotationBubble.prototype.showEditor = function() {
       effect: null, // disable all cutesy animations
     }
   }));
+
+  
+  $(this.qTipContentID()).find('textarea.bubbleInputText')
+    .blur(function() { // set handler when the textarea loses focus
+      myBubble.text = $(this).val().trim(); // strip all leading and trailing spaces
+
+      if (myBubble.text) {
+        myBubble.showViewer();
+      }
+      else {
+        myBubble.showStub();
+      }
+    })
+    .focus(); // grab focus so that the user can start typing right away!
 
   this.state = 'edit';
 }
@@ -169,6 +194,19 @@ AnnotationBubble.prototype.restoreViewer = function() {
   this.state = 'view';
 }
 
+AnnotationBubble.prototype.enterHiddenMode = function() {
+  assert(this.state == 'stub' || this.state == 'edit');
+  this.destroyQTip();
+  this.state = 'hidden';
+}
+
+AnnotationBubble.prototype.qTipContentID = function() {
+  return '#ui-tooltip-' + this.domID + '-content';
+}
+
+AnnotationBubble.prototype.qTipID = function() {
+  return '#ui-tooltip-' + this.domID;
+}
 
 AnnotationBubble.prototype.destroyQTip = function() {
   $(this.hashID).qtip('destroy');
@@ -222,4 +260,5 @@ $(document).ready(function() {
   */
 
   x = new AnnotationBubble('frame', 'v1__stack2');
+  x.showStub();
 });
