@@ -164,6 +164,25 @@ AnnotationBubble.prototype.showEditor = function() {
   this.state = 'edit';
 }
 
+
+AnnotationBubble.prototype.bindViewerClickHandler = function() {
+  var myBubble = this;
+
+  $(this.qTipID())
+    .unbind('click') // unbind all old handlers
+    .click(function() {
+      if (globalAnnotationMode == 'edit') {
+        myBubble.showEditor();
+      }
+      else if (globalAnnotationMode == 'view') {
+        myBubble.minimizeViewer();
+      }
+      else {
+        assert(false);
+      }
+    });
+}
+
 AnnotationBubble.prototype.showViewer = function() {
   assert(this.state == 'edit');
   assert(this.text); // must be non-empty!
@@ -180,18 +199,32 @@ AnnotationBubble.prototype.showViewer = function() {
     }
   }));
 
+  this.bindViewerClickHandler();
   this.state = 'view';
 }
 
+
 AnnotationBubble.prototype.minimizeViewer = function() {
   assert(this.state == 'view');
-  $(this.hashID).qtip('option', 'content.text', ' ');
+
+  var myBubble = this;
+
+  $(this.hashID).qtip('option', 'content.text', ' '); //hack to "minimize" its size
+
+  $(this.qTipID())
+    .unbind('click') // unbind all old handlers
+    .click(function() {
+      assert(globalAnnotationMode == 'view');
+      myBubble.restoreViewer();
+    });
+
   this.state = 'minimized';
 }
 
 AnnotationBubble.prototype.restoreViewer = function() {
   assert(this.state == 'minimized');
   $(this.hashID).qtip('option', 'content.text', this.text);
+  this.bindViewerClickHandler();
   this.state = 'view';
 }
 
@@ -199,6 +232,11 @@ AnnotationBubble.prototype.hide = function() {
   assert(this.state == 'stub' || this.state == 'edit');
   this.destroyQTip();
   this.state = 'hidden';
+}
+
+
+AnnotationBubble.prototype.destroyQTip = function() {
+  $(this.hashID).qtip('destroy');
 }
 
 AnnotationBubble.prototype.qTipContentID = function() {
@@ -209,9 +247,6 @@ AnnotationBubble.prototype.qTipID = function() {
   return '#ui-tooltip-' + this.domID;
 }
 
-AnnotationBubble.prototype.destroyQTip = function() {
-  $(this.hashID).qtip('destroy');
-}
 
 AnnotationBubble.prototype.enterEditMode = function() {
   assert(globalAnnotationMode == 'edit');
@@ -291,7 +326,48 @@ $(document).ready(function() {
                      inputTextarea, true);
   */
 
+
+  allBubbles.push(new AnnotationBubble('frame', 'v1__globals'));
+  allBubbles.push(new AnnotationBubble('frame', 'v1__stack0'));
+  allBubbles.push(new AnnotationBubble('frame', 'v1__stack1'));
   allBubbles.push(new AnnotationBubble('frame', 'v1__stack2'));
+  allBubbles.push(new AnnotationBubble('frame', 'v1__stack3'));
+
+  allBubbles.push(new AnnotationBubble('object', 'v1__heap_object_1'));
+  allBubbles.push(new AnnotationBubble('object', 'v1__heap_object_2'));
+  allBubbles.push(new AnnotationBubble('object', 'v1__heap_object_3'));
+  allBubbles.push(new AnnotationBubble('object', 'v1__heap_object_4'));
+
+  allBubbles.push(new AnnotationBubble('codeline', 'v1__cod1'));
+  allBubbles.push(new AnnotationBubble('codeline', 'v1__cod2'));
+  allBubbles.push(new AnnotationBubble('codeline', 'v1__cod3'));
+  allBubbles.push(new AnnotationBubble('codeline', 'v1__cod4'));
+  allBubbles.push(new AnnotationBubble('codeline', 'v1__cod5'));
+  allBubbles.push(new AnnotationBubble('codeline', 'v1__cod6'));
+  allBubbles.push(new AnnotationBubble('codeline', 'v1__cod7'));
+  allBubbles.push(new AnnotationBubble('codeline', 'v1__cod8'));
+  allBubbles.push(new AnnotationBubble('codeline', 'v1__cod9'));
+
+  allBubbles.push(new AnnotationBubble('variable', 'v1__globals__listSum'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__globals__myList'));
+
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f1__numbers'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f1__f'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f1__rest'));
+
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f2__numbers'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f2__f'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f2__rest'));
+
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f3__numbers'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f3__f'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f3__rest'));
+
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f4__numbers'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f4____return__'));
+
+
+
 
   $('#modeToggleBtn').click(function() {
     if (globalAnnotationMode == 'view') {
