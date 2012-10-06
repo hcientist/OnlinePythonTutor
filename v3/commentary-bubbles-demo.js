@@ -148,7 +148,8 @@ AnnotationBubble.prototype.showEditor = function() {
 
   
   $(this.qTipContentID()).find('textarea.bubbleInputText')
-    .blur(function() { // set handler when the textarea loses focus
+    // set handler when the textarea loses focus
+    .blur(function() {
       myBubble.text = $(this).val().trim(); // strip all leading and trailing spaces
 
       if (myBubble.text) {
@@ -194,7 +195,7 @@ AnnotationBubble.prototype.restoreViewer = function() {
   this.state = 'view';
 }
 
-AnnotationBubble.prototype.enterHiddenMode = function() {
+AnnotationBubble.prototype.hide = function() {
   assert(this.state == 'stub' || this.state == 'edit');
   this.destroyQTip();
   this.state = 'hidden';
@@ -212,8 +213,39 @@ AnnotationBubble.prototype.destroyQTip = function() {
   $(this.hashID).qtip('destroy');
 }
 
+AnnotationBubble.prototype.enterEditMode = function() {
+  assert(globalAnnotationMode == 'edit');
+  if (this.state == 'minimized') {
+    this.restoreViewer();
+  }
+  else if (this.state == 'hidden') {
+    this.showStub();
+  }
+}
+
+AnnotationBubble.prototype.enterViewMode = function() {
+  assert(globalAnnotationMode == 'view');
+  if (this.state == 'stub') {
+    this.hide();
+  }
+  else if (this.state == 'edit') {
+    this.text = $(this.qTipContentID()).find('textarea.bubbleInputText').val().trim(); // strip all leading and trailing spaces
+
+    if (this.text) {
+      this.showViewer();
+    }
+    else {
+      this.hide();
+    }
+  }
+}
+
 
 inputTextarea = '<textarea class="bubbleInputText"></textarea>'
+
+globalAnnotationMode = 'view';
+
+allBubbles = [];
 
 $(document).ready(function() {
   $.fn.qtip.styles = {};
@@ -259,6 +291,25 @@ $(document).ready(function() {
                      inputTextarea, true);
   */
 
-  x = new AnnotationBubble('frame', 'v1__stack2');
-  x.showStub();
+  allBubbles.push(new AnnotationBubble('frame', 'v1__stack2'));
+
+  $('#modeToggleBtn').click(function() {
+    if (globalAnnotationMode == 'view') {
+      $('#modeToggleBtn').html('Enter View Mode');
+      globalAnnotationMode = 'edit';
+      $.each(allBubbles, function(i, e) {
+        e.enterEditMode();
+      });
+    }
+    else if (globalAnnotationMode == 'edit') {
+      $('#modeToggleBtn').html('Enter Edit Mode');
+      globalAnnotationMode = 'view';
+      $.each(allBubbles, function(i, e) {
+        e.enterViewMode();
+      });
+    }
+    else {
+      assert(false);
+    }
+  });
 });
