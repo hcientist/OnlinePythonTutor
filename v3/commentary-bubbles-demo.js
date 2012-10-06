@@ -15,7 +15,7 @@ var qtipShared = {
     event: null,
   },
   style: {
-    classes: 'ui-tooltip-pgbootstrap', // my own customized version of the bootstrap style - see css/jquery.qtip.css
+    classes: 'ui-tooltip-pgbootstrap', // my own customized version of the bootstrap style
   },
 };
 
@@ -53,15 +53,142 @@ function createSpeechBubble(domID, my, at, htmlContent, isInput) {
 }
 
 
+// a speech bubble annotation to attach to:
+//   'codeline' - a line of code
+//   'frame'    - a stack frame
+//   'variable' - a variable within a stack frame
+//   'object'   - an object on the heap
+// (as determined by the 'type' param)
+//
+// domID is the ID of the element to attach to (without the leading '#' sign)
+function AnnotationBubble(type, domID) {
+  this.domID = domID;
+  this.hashID = '#' + domID;
+
+  if (type == 'codeline') {
+    this.my = 'left center';
+    this.at = 'right center';
+  }
+  else if (type == 'frame') {
+    this.my = 'right center';
+    this.at = 'left center';
+  }
+  else if (type == 'variable') {
+    this.my = 'right center';
+    this.at = 'left center';
+  }
+  else if (type == 'object') {
+    this.my = 'bottom left';
+    this.at = 'top center';
+  }
+  else {
+    assert(false);
+  }
+
+  // possible states:
+  //   'hidden'
+  //   'edit'
+  //   'view'
+  //   'minimized'
+  //   'stub'
+  this.state = 'hidden';
+
+  this.text = ''; // the actual contents of the annotation bubble
+}
+
+AnnotationBubble.prototype.showStub = function() {
+  assert(this.state == 'hidden' || this.state == 'edit');
+  assert(this.text == '');
+
+  // destroy then create a new tip:
+  this.destroyQTip();
+  $(this.hashID).qtip($.extend({}, qtipShared, {
+    content: ' ',
+    id: this.domID,
+    position: {
+      my: this.my,
+      at: this.at,
+      effect: null, // disable all cutesy animations
+    },
+    style: {
+      classes: 'ui-tooltip-pgbootstrap ui-tooltip-pgbootstrap-stub'
+    }
+  }));
+
+  this.state = 'stub';
+}
+
+AnnotationBubble.prototype.showEditor = function() {
+  assert(this.state == 'stub' || this.state == 'view');
+
+  var ta = '<textarea class="bubbleInputText">' + this.text + '</textarea>';
+
+  // destroy then create a new tip:
+  this.destroyQTip();
+  $(this.hashID).qtip($.extend({}, qtipShared, {
+    content: ta,
+    id: this.domID,
+    position: {
+      my: this.my,
+      at: this.at,
+      effect: null, // disable all cutesy animations
+    }
+  }));
+
+  this.state = 'edit';
+}
+
+AnnotationBubble.prototype.showViewer = function() {
+  assert(this.state == 'edit');
+  assert(this.text); // must be non-empty!
+
+  // destroy then create a new tip:
+  this.destroyQTip();
+  $(this.hashID).qtip($.extend({}, qtipShared, {
+    content: this.text,
+    id: this.domID,
+    position: {
+      my: this.my,
+      at: this.at,
+      effect: null, // disable all cutesy animations
+    }
+  }));
+
+  this.state = 'view';
+}
+
+AnnotationBubble.prototype.minimizeViewer = function() {
+  assert(this.state == 'view');
+  $(this.hashID).qtip('option', 'content.text', ' ');
+  this.state = 'minimized';
+}
+
+AnnotationBubble.prototype.restoreViewer = function() {
+  assert(this.state == 'minimized');
+  $(this.hashID).qtip('option', 'content.text', this.text);
+  this.state = 'view';
+}
+
+
+AnnotationBubble.prototype.destroyQTip = function() {
+  $(this.hashID).qtip('destroy');
+}
+
+
 inputTextarea = '<textarea class="bubbleInputText"></textarea>'
 
 $(document).ready(function() {
+  $.fn.qtip.styles = {};
+  $.fn.qtip.styles.stubStyle = {border: {color: '#999'}};
+
+
   /*
   var listSumVisualizer = new ExecutionVisualizer('listSumDiv', listSumTrace,
                                                   {embeddedMode: false,
                                                    editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
   */
 
+  /*
   createSpeechBubble('v1__heap_object_1', 'bottom left', 'top center',
                      "Here's a function!");
 
@@ -74,9 +201,6 @@ $(document).ready(function() {
 
   createSpeechBubble('v1__stack0', 'right center', 'left center',
                      "The first of several recursive calls.");
-
-  //createSpeechBubble('v1__stack2', 'right center', 'left center',
-  //                   "Another recursive call.");
 
   createSpeechBubble('v1__cod4', 'left center', 'right center',
                      "line four, booooooooooooo ...");
@@ -95,4 +219,7 @@ $(document).ready(function() {
 
   createSpeechBubble('v1__stack2', 'right center', 'left center',
                      inputTextarea, true);
+  */
+
+  x = new AnnotationBubble('frame', 'v1__stack2');
 });

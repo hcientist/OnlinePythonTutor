@@ -107,3 +107,7 @@ textarea.bubbleInputText {
 	border-radius: 5px;
 }
 
+
+.ui-tooltip-pgbootstrap-stub{
+	border: 2px solid #999;
+}
