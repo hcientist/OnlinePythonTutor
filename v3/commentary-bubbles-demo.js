@@ -20,7 +20,7 @@ var qtipShared = {
 };
 
 
-function createSpeechBubble(domID, my, at, htmlContent) {
+function createSpeechBubble(domID, my, at, htmlContent, isInput) {
   var hashID = '#' + domID;
   $(hashID).qtip($.extend({}, qtipShared, {
     content: htmlContent,
@@ -33,20 +33,27 @@ function createSpeechBubble(domID, my, at, htmlContent) {
   }));
 
 
-  $('#ui-tooltip-' + domID + '-content').click(function() {
-    if (!$(hashID).data('qtip-minimized')) {
-      $(hashID)
-        .data('qtip-minimized', true)
-        .qtip('option', 'content.text', ' ');
-    }
-    else {
-      $(hashID)
-        .data('qtip-minimized', false)
-        .qtip('option', 'content.text', htmlContent);
-    }
-  });
+  if (isInput) {
+
+  }
+  else {
+    $('#ui-tooltip-' + domID + '-content').click(function() {
+      if (!$(hashID).data('qtip-minimized')) {
+        $(hashID)
+          .data('qtip-minimized', true)
+          .qtip('option', 'content.text', ' ');
+      }
+      else {
+        $(hashID)
+          .data('qtip-minimized', false)
+          .qtip('option', 'content.text', htmlContent);
+      }
+    });
+  }
 }
 
+
+inputTextarea = '<textarea class="bubbleInputText"></textarea>'
 
 $(document).ready(function() {
   /*
@@ -68,8 +75,8 @@ $(document).ready(function() {
   createSpeechBubble('v1__stack0', 'right center', 'left center',
                      "The first of several recursive calls.");
 
-  createSpeechBubble('v1__stack2', 'right center', 'left center',
-                     "Another recursive call.");
+  //createSpeechBubble('v1__stack2', 'right center', 'left center',
+  //                   "Another recursive call.");
 
   createSpeechBubble('v1__cod4', 'left center', 'right center',
                      "line four, booooooooooooo ...");
@@ -85,4 +92,7 @@ $(document).ready(function() {
 
   createSpeechBubble('v1__listSum_f2__rest', 'right center', 'left center',
                      "this is another variable, of course; what else would it be?!?");
+
+  createSpeechBubble('v1__stack2', 'right center', 'left center',
+                     inputTextarea, true);
 });

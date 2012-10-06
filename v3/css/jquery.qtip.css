@@ -2,8 +2,6 @@
 * http://craigsworks.com/projects/qtip2/
 * Copyright (c) 2012 Craig Michael Thompson; Licensed MIT, GPL */
 
-/* Modified by Philip Guo */
-
 /* Fluid class for determining actual width in IE */
 #qtip-rcontainer{
 	position: absolute;
@@ -245,8 +243,7 @@
 /* Add rounded corners to your tooltips in: FF3+, Chrome 2+, Opera 10.6+, IE9+, Safari 2+ */
 .ui-tooltip-rounded,
 .ui-tooltip-tipsy,
-.ui-tooltip-bootstrap,
-.ui-tooltip-pgbootstrap{
+.ui-tooltip-bootstrap{
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
@@ -515,91 +512,6 @@
 			opacity: 0.4;
 			filter: alpha(opacity=40);
 		}
-
-
-/* modified version of Twitter bootstrap style by Philip Guo */
-.ui-tooltip-pgbootstrap{
-	font-size: 9pt;
-	line-height: 1.3em;
-
-  font-family: verdana, arial, helvetica, sans-serif;
-
-	color: #333;
-	background-color: #ffffff;
-
-	max-width: 350px;
-	min-width: 10px;
-
-	border: 2px solid #4284D3;
-
-  cursor: pointer;
-
-	*border-right-width: 2px;
-	*border-bottom-width: 2px;
-
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-
-  /* way too poofy ...
-	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  */
-
-	-webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
-	box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
-
-	-webkit-background-clip: padding-box;
-	-moz-background-clip: padding;
-	background-clip: padding-box;
-}
-
-	.ui-tooltip-pgbootstrap .ui-tooltip-titlebar{
-		font-size: 18px;
-		line-height: 22px;
-
-		border-bottom: 1px solid #ccc;
-		background-color: transparent;
-	}
-
-	.ui-tooltip-pgbootstrap .ui-tooltip-content{
-		padding: 5px /* 5px is minimum or else it might look ugly */ 7px;
-	}
-	
-
-		.ui-tooltip-pgbootstrap .ui-tooltip-titlebar .ui-state-default{
-			right: 9px; top: 49%;
-			border-style: none;
-		}
-
-	.ui-tooltip-pgbootstrap .ui-tooltip-icon{
-		background: white;
-	}
-
-		.ui-tooltip-pgbootstrap .ui-tooltip-icon .ui-icon{
-			width: auto;
-			height: auto;
-			float: right;
-			font-size: 20px;
-			font-weight: bold;
-			line-height: 18px;
-			color: #000000;
-			text-shadow: 0 1px 0 #ffffff;
-			opacity: 0.2;
-			filter: alpha(opacity=20);
-		}
-
-		.ui-tooltip-pgbootstrap .ui-tooltip-icon .ui-icon:hover{
-			color: #000000;
-			text-decoration: none;
-			cursor: pointer;
-			opacity: 0.4;
-			filter: alpha(opacity=40);
-		}
-
-
 
 
 /* IE9 fix - removes all filters */
