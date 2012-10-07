@@ -6,8 +6,8 @@ textarea.bubbleInputText {
 
   /* make sure textarea doesn't grow and stretch the enclosing bubble */
   resize: none;
-  width: 230px;
-  max-width: 230px;
+  width: 225px;
+  max-width: 225px;
   height: 35px;
   max-height: 35px;
 }
@@ -64,7 +64,7 @@ textarea.bubbleInputText {
 	}
 
 	.ui-tooltip-pgbootstrap .ui-tooltip-content{
-		padding: 5px /* 5px is minimum or else it might look ugly */ 7px;
+		padding: 5px /* 5px is minimum or else it might look ugly */ 8px;
 	}
 	
 
@@ -108,7 +108,7 @@ textarea.bubbleInputText {
 
 
 .ui-tooltip-pgbootstrap-stub{
-	border: 2px solid #999;
+	border: 1px solid #888;
 
   /*
 	-webkit-box-shadow: none;
@@ -116,3 +116,8 @@ textarea.bubbleInputText {
 	box-shadow: none;
   */
 }
+
+	.ui-tooltip-pgbootstrap-stub .ui-tooltip-content{
+		padding: 6px 9px;
+	}
+	

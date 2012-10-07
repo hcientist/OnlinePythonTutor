@@ -128,7 +128,7 @@ AnnotationBubble.prototype.showStub = function() {
 }
 
 AnnotationBubble.prototype.showEditor = function() {
-  assert(this.state == 'stub' || this.state == 'view');
+  assert(this.state == 'stub' || this.state == 'view' || this.state == 'minimized');
 
   var myBubble = this; // to avoid name clashes with 'this' in inner scopes
 
@@ -214,8 +214,15 @@ AnnotationBubble.prototype.minimizeViewer = function() {
   $(this.qTipID())
     .unbind('click') // unbind all old handlers
     .click(function() {
-      assert(globalAnnotationMode == 'view');
-      myBubble.restoreViewer();
+      if (globalAnnotationMode == 'edit') {
+        myBubble.showEditor();
+      }
+      else if (globalAnnotationMode == 'view') {
+        myBubble.restoreViewer();
+      }
+      else {
+        assert(false);
+      }
     });
 
   this.state = 'minimized';
@@ -250,10 +257,7 @@ AnnotationBubble.prototype.qTipID = function() {
 
 AnnotationBubble.prototype.enterEditMode = function() {
   assert(globalAnnotationMode == 'edit');
-  if (this.state == 'minimized') {
-    this.restoreViewer();
-  }
-  else if (this.state == 'hidden') {
+  if (this.state == 'hidden') {
     this.showStub();
   }
 }
