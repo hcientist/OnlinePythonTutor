@@ -371,14 +371,14 @@ $(document).ready(function() {
 
   $('#modeToggleBtn').click(function() {
     if (globalAnnotationMode == 'view') {
-      $('#modeToggleBtn').html('Enter View Mode');
+      $('#modeToggleBtn').html('View Annotations');
       globalAnnotationMode = 'edit';
       $.each(allBubbles, function(i, e) {
         e.enterEditMode();
       });
     }
     else if (globalAnnotationMode == 'edit') {
-      $('#modeToggleBtn').html('Enter Edit Mode');
+      $('#modeToggleBtn').html('Add/Edit Annotations');
       globalAnnotationMode = 'view';
       $.each(allBubbles, function(i, e) {
         e.enterViewMode();

@@ -6,10 +6,10 @@ textarea.bubbleInputText {
 
   /* make sure textarea doesn't grow and stretch the enclosing bubble */
   resize: none;
-  width: 200px;
-  max-width: 200px;
-  height: 48px;
-  max-height: 48px;
+  width: 230px;
+  max-width: 230px;
+  height: 35px;
+  max-height: 35px;
 }
 
 
