@@ -65,6 +65,8 @@ function AnnotationBubble(type, domID) {
   this.domID = domID;
   this.hashID = '#' + domID;
 
+  this.type = type;
+
   if (type == 'codeline') {
     this.my = 'left center';
     this.at = 'right center';
@@ -256,6 +258,11 @@ AnnotationBubble.prototype.qTipID = function() {
 
 
 AnnotationBubble.prototype.enterEditMode = function() {
+  // punt if you're a codeline annotation and your line of code is hidden
+  if (this.type == 'codeline' && !isOutputLineVisible(this.domID)) {
+    return;
+  }
+
   assert(globalAnnotationMode == 'edit');
   if (this.state == 'hidden') {
     this.showStub();
@@ -263,6 +270,11 @@ AnnotationBubble.prototype.enterEditMode = function() {
 }
 
 AnnotationBubble.prototype.enterViewMode = function() {
+  // punt if you're a codeline annotation and your line of code is hidden
+  if (this.type == 'codeline' && !isOutputLineVisible(this.domID)) {
+    return;
+  }
+
   assert(globalAnnotationMode == 'view');
   if (this.state == 'stub') {
     this.hide();
@@ -286,10 +298,27 @@ globalAnnotationMode = 'view';
 
 allBubbles = [];
 
-$(document).ready(function() {
-  $.fn.qtip.styles = {};
-  $.fn.qtip.styles.stubStyle = {border: {color: '#999'}};
 
+// returns True iff lineNo is visible in pyCodeOutputDiv
+// NB: copied, pasted, and modified from isOutputLineVisible in js/pytutor.js
+function isOutputLineVisible(lineDivID) {
+  var pcod = $('#pyCodeOutputDiv');
+
+  var lineNoTd = $('#' + lineDivID);
+  var LO = lineNoTd.offset().top;
+
+  var PO = pcod.offset().top;
+  var ST = pcod.scrollTop();
+  var H = pcod.height();
+
+  // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
+  return (PO <= LO) && (LO < (PO + H - 30));
+}
+
+
+$(document).ready(function() {
+  // force vertical code scrolling
+  $('#pyCodeOutputDiv').css('max-height', '120px');
 
   /*
   var listSumVisualizer = new ExecutionVisualizer('listSumDiv', listSumTrace,
