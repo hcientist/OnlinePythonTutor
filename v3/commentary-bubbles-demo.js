@@ -9,10 +9,12 @@ var qtipShared = {
     ready: true, // show on document.ready instead of on mouseenter
     delay: 0,
     event: null,
+    effect: function() {$(this).show();}, // don't do any fancy fading because it screws up with scrolling
   },
   hide: {
     fixed: true,
     event: null,
+    effect: function() {$(this).hide();}, // don't do any fancy fading because it screws up with scrolling
   },
   style: {
     classes: 'ui-tooltip-pgbootstrap', // my own customized version of the bootstrap style
@@ -88,18 +90,20 @@ function AnnotationBubble(type, domID) {
   }
 
   // possible states:
-  //   'hidden'
+  //   'invisible'
   //   'edit'
   //   'view'
   //   'minimized'
   //   'stub'
-  this.state = 'hidden';
+  this.state = 'invisible';
 
   this.text = ''; // the actual contents of the annotation bubble
+
+  this.qtipHidden = false; // is there a qtip object present but hidden? (TODO: kinda confusing)
 }
 
 AnnotationBubble.prototype.showStub = function() {
-  assert(this.state == 'hidden' || this.state == 'edit');
+  assert(this.state == 'invisible' || this.state == 'edit');
   assert(this.text == '');
 
   var myBubble = this; // to avoid name clashes with 'this' in inner scopes
@@ -237,10 +241,11 @@ AnnotationBubble.prototype.restoreViewer = function() {
   this.state = 'view';
 }
 
-AnnotationBubble.prototype.hide = function() {
+// NB: actually DESTROYS the QTip object
+AnnotationBubble.prototype.makeInvisible = function() {
   assert(this.state == 'stub' || this.state == 'edit');
   this.destroyQTip();
-  this.state = 'hidden';
+  this.state = 'invisible';
 }
 
 
@@ -258,44 +263,58 @@ AnnotationBubble.prototype.qTipID = function() {
 
 
 AnnotationBubble.prototype.enterEditMode = function() {
-  // punt if you're a codeline annotation and your line of code is hidden
-  if (this.type == 'codeline' && !isOutputLineVisible(this.domID)) {
-    return;
-  }
-
   assert(globalAnnotationMode == 'edit');
-  if (this.state == 'hidden') {
+  if (this.state == 'invisible') {
     this.showStub();
+
+    if (this.type == 'codeline') {
+      this.redrawCodelineBubble();
+    }
   }
 }
 
 AnnotationBubble.prototype.enterViewMode = function() {
-  // punt if you're a codeline annotation and your line of code is hidden
-  if (this.type == 'codeline' && !isOutputLineVisible(this.domID)) {
-    return;
-  }
-
   assert(globalAnnotationMode == 'view');
   if (this.state == 'stub') {
-    this.hide();
+    this.makeInvisible();
   }
   else if (this.state == 'edit') {
     this.text = $(this.qTipContentID()).find('textarea.bubbleInputText').val().trim(); // strip all leading and trailing spaces
 
     if (this.text) {
       this.showViewer();
+
+      if (this.type == 'codeline') {
+        this.redrawCodelineBubble();
+      }
     }
     else {
-      this.hide();
+      this.makeInvisible();
     }
   }
 }
 
+AnnotationBubble.prototype.redrawCodelineBubble = function() {
+  assert(this.type == 'codeline');
 
-inputTextarea = '<textarea class="bubbleInputText"></textarea>'
+  if (isOutputLineVisible(this.domID)) {
+    if (this.qtipHidden) {
+      $(this.hashID).qtip('show');
+    }
+    else {
+      $(this.hashID).qtip('reposition');
+    }
+
+    this.qtipHidden = false;
+  }
+  else {
+    $(this.hashID).qtip('hide');
+    this.qtipHidden = true;
+  }
+}
+
 
 globalAnnotationMode = 'view';
-
 allBubbles = [];
 
 
@@ -312,53 +331,13 @@ function isOutputLineVisible(lineDivID) {
   var H = pcod.height();
 
   // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
-  return (PO <= LO) && (LO < (PO + H - 30));
+  return (PO <= LO) && (LO < (PO + H - 25));
 }
 
 
 $(document).ready(function() {
   // force vertical code scrolling
   $('#pyCodeOutputDiv').css('max-height', '120px');
-
-  /*
-  var listSumVisualizer = new ExecutionVisualizer('listSumDiv', listSumTrace,
-                                                  {embeddedMode: false,
-                                                   editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
-  */
-
-  /*
-  createSpeechBubble('v1__heap_object_1', 'bottom left', 'top center',
-                     "Here's a function!");
-
-  createSpeechBubble('v1__heap_object_2', 'bottom left', 'top center',
-                     'This is the head of our linked list.');
-
-  createSpeechBubble('v1__heap_object_4', 'bottom left', 'top center',
-                     'This is the final element of our linked list. Its car is 3 and cdr is <tt>None</tt>');
-
-
-  createSpeechBubble('v1__stack0', 'right center', 'left center',
-                     "The first of several recursive calls.");
-
-  createSpeechBubble('v1__cod4', 'left center', 'right center',
-                     "line four, booooooooooooo ...");
-
-  createSpeechBubble('v1__cod5', 'left center', 'right center',
-                     "line five, yay!!!");
-
-  createSpeechBubble('v1__cod9', 'left center', 'right center',
-                     "line nine, yay!!!");
-
-  createSpeechBubble('v1__listSum_f2__numbers', 'right center', 'left center',
-                     "this is a variable, of course!");
-
-  createSpeechBubble('v1__listSum_f2__rest', 'right center', 'left center',
-                     "this is another variable, of course; what else would it be?!?");
-
-  createSpeechBubble('v1__stack2', 'right center', 'left center',
-                     inputTextarea, true);
-  */
-
 
   allBubbles.push(new AnnotationBubble('frame', 'v1__globals'));
   allBubbles.push(new AnnotationBubble('frame', 'v1__stack0'));
@@ -401,7 +380,11 @@ $(document).ready(function() {
 
 
   $('#pyCodeOutputDiv').scroll(function() {
-    console.log('scrolled!!!');
+    $.each(allBubbles, function(i, e) {
+      if (e.type == 'codeline') {
+        e.redrawCodelineBubble();
+      }
+    });
   });
 
 
