@@ -336,6 +336,14 @@ function isOutputLineVisible(lineDivID) {
 
 
 $(document).ready(function() {
+  /*
+  var listSumVisualizer = new ExecutionVisualizer('listSumDiv', listSumTrace,
+                                                  {embeddedMode: false,
+                                                   editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
+
+  return;
+  */
+
   // force vertical code scrolling
   $('#pyCodeOutputDiv').css('max-height', '120px');
 
