@@ -368,23 +368,23 @@ $(document).ready(function() {
   allBubbles.push(new AnnotationBubble('codeline', 'v1__cod8'));
   allBubbles.push(new AnnotationBubble('codeline', 'v1__cod9'));
 
-  allBubbles.push(new AnnotationBubble('variable', 'v1__globals__listSum'));
-  allBubbles.push(new AnnotationBubble('variable', 'v1__globals__myList'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__global__listSum_tr'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__global__myList_tr'));
 
-  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f1__numbers'));
-  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f1__f'));
-  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f1__rest'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f1__numbers_tr'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f1__f_tr'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f1__rest_tr'));
 
-  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f2__numbers'));
-  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f2__f'));
-  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f2__rest'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f2__numbers_tr'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f2__f_tr'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f2__rest_tr'));
 
-  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f3__numbers'));
-  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f3__f'));
-  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f3__rest'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f3__numbers_tr'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f3__f_tr'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f3__rest_tr'));
 
-  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f4__numbers'));
-  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f4____return__'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f4__numbers_tr'));
+  allBubbles.push(new AnnotationBubble('variable', 'v1__listSum_f4____return___tr'));
 
 
   $('#pyCodeOutputDiv').scroll(function() {
