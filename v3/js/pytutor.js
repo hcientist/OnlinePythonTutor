@@ -68,13 +68,16 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 // params contains optional parameters, such as:
 //   jumpToEnd - if non-null, jump to the very end of execution
 //   startingInstruction - the (zero-indexed) execution point to display upon rendering
-//   hideOutput - hide "Program output" and "Generate URL" displays
-//   codeDivHeight - maximum height of #pyCodeOutputDiv (in pixels)
+//   hideOutput - hide "Program output" display
+//   codeDivHeight - maximum height of #pyCodeOutputDiv (in integer pixels)
+//   codeDivWidth  - maximum width  of #pyCodeOutputDiv (in integer pixels)
 //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code'
 //   embeddedMode - make the widget narrower horizontally and disable breakpoints
 //   updateOutputCallback - function to call (with 'this' as parameter)
 //                          whenever this.updateOutput() is called
 //                          (BEFORE rendering the output display)
+//   verticalStack - if true, then stack code display ON TOP of visualization
+//                   (else place side-by-side)
 function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
   this.curTrace = dat.trace;
@@ -90,6 +93,9 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.curInstr = 0;
 
   this.params = params;
+  if (!this.params) {
+    this.params = {}; // make it an empty object by default
+  }
 
   // needs to be unique!
   this.visualizerID = curVisualizerID;
@@ -170,54 +176,56 @@ ExecutionVisualizer.prototype.render = function() {
 
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
-  // TODO: make less gross!
-  this.domRoot.html(
-  '<table border="0" class="visualizer">\
-    <tr>\
-      <td valign="top" id="left_pane">\
-        <center>\
-          <div id="pyCodeOutputDiv"/>\
-          <div id="editCodeLinkDiv">\
-            <a id="editBtn">Edit code</a>\
-          </div>\
-          <div id="executionSlider"/>\
-          <div id="vcrControls">\
-            <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
-            <button id="jmpStepBack", type="button">&lt; Back</button>\
-            <span id="curInstr">Step ? of ?</span>\
-            <button id="jmpStepFwd", type="button">Forward &gt;</button>\
-            <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
-          </div>\
-          <div id="errorOutput"/>\
-        </center>\
-        <div id="legendDiv"/>\
-        <div id="progOutputs">\
-        Program output:<br/>\
-        <textarea id="pyStdout" cols="50" rows="13" wrap="off" readonly></textarea>\
-        </div>\
-      </td>\
-      <td valign="top">\
-        <div id="dataViz">\
-          <table id="stackHeapTable">\
-            <tr>\
-              <td id="stack_td">\
-                <div id="globals_area">\
-                  <div id="stackHeader">Frames</div>\
-                </div>\
-                <div id="stack">\
-                </div>\
-              </td>\
-              <td id="heap_td">\
-                <div id="heap">\
-                  <div id="heapHeader">Objects</div>\
-                </div>\
-              </td>\
-            </tr>\
-          </table>\
-        </div>\
-      </td>\
-    </tr>\
-  </table>');
+  var codeDisplayHTML = 
+    '<div id="codeDisplayDiv">\
+       <div id="pyCodeOutputDiv"/>\
+       <div id="editCodeLinkDiv"><a id="editBtn">Edit code</a></div>\
+       <div id="executionSlider"/>\
+       <div id="vcrControls">\
+         <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
+         <button id="jmpStepBack", type="button">&lt; Back</button>\
+         <span id="curInstr">Step ? of ?</span>\
+         <button id="jmpStepFwd", type="button">Forward &gt;</button>\
+         <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
+       </div>\
+       <div id="errorOutput"/>\
+       <div id="legendDiv"/>\
+       <div id="progOutputs">\
+         Program output:<br/>\
+         <textarea id="pyStdout" cols="50" rows="10" wrap="off" readonly></textarea>\
+       </div>\
+     </div>';
+
+  var codeVizHTML =
+    '<div id="dataViz">\
+       <table id="stackHeapTable">\
+         <tr>\
+           <td id="stack_td">\
+             <div id="globals_area">\
+               <div id="stackHeader">Frames</div>\
+             </div>\
+             <div id="stack"></div>\
+           </td>\
+           <td id="heap_td">\
+             <div id="heap">\
+               <div id="heapHeader">Objects</div>\
+             </div>\
+           </td>\
+         </tr>\
+       </table>\
+     </div>';
+
+
+  if (this.params.verticalStack) {
+    this.domRoot.html('<table border="0" class="visualizer"><tr><td valign="top">' +
+                      codeDisplayHTML + '</td></tr><tr><td valign="top">' +
+                      codeVizHTML + '</td></tr></table>');
+  }
+  else {
+    this.domRoot.html('<table border="0" class="visualizer"><tr><td valign="top">' +
+                      codeDisplayHTML + '</td><td valign="top">' +
+                      codeVizHTML + '</td></tr></table>');
+  }
 
 
   this.domRoot.find('#legendDiv')
@@ -250,16 +258,30 @@ ExecutionVisualizer.prototype.render = function() {
   if (this.params.embeddedMode) {
     this.params.hideOutput = true; // put this before hideOutput handler
 
-    this.domRoot.find('#executionSlider')
-      .css('width', '330px');
+    this.params.codeDivWidth = 350;
+    this.params.codeDivHeight = 400;
+  }
 
+  
+  // not enough room for these extra buttons ...
+  if (this.params.codeDivWidth &&
+      this.params.codeDivWidth < 470) {
     this.domRoot.find('#jmpFirstInstr').hide();
     this.domRoot.find('#jmpLastInstr').hide();
+  }
 
+
+  if (this.params.codeDivWidth) {
+    this.domRoot.find('#pyCodeOutputDiv,#codeDisplayDiv,#pyStdout')
+      .css('max-width', this.params.codeDivWidth + 'px');
+
+    this.domRoot.find('#executionSlider')
+      .css('width', (this.params.codeDivWidth - 20) + 'px');
+  }
+
+  if (this.params.codeDivHeight) {
     this.domRoot.find('#pyCodeOutputDiv')
-      .css('max-width', '350px')
-      .css('max-height', '400px');
-
+      .css('max-height', this.params.codeDivHeight + 'px');
   }
 
 
@@ -271,12 +293,7 @@ ExecutionVisualizer.prototype.render = function() {
     + myViz.generateID('global_table') + '"></table></div>');
 
 
-  if (this.params && this.params.codeDivHeight) {
-    this.domRoot.find('#pyCodeOutputDiv').css('max-height', this.params.codeDivHeight);
-  }
-
-
-  if (this.params && this.params.hideOutput) {
+  if (this.params.hideOutput) {
     this.domRoot.find('#progOutputs').hide();
   }
 
@@ -341,7 +358,7 @@ ExecutionVisualizer.prototype.render = function() {
   });
 
 
-  if (this.params && this.params.startingInstruction) {
+  if (this.params.startingInstruction) {
     assert(0 <= this.params.startingInstruction &&
            this.params.startingInstruction < this.curTrace.length);
     this.curInstr = this.params.startingInstruction;

@@ -40,9 +40,13 @@ $(document).ready(function() {
   // The "startingInstruction: 15" optional parameter means to jump to step 15
   // in the visualization when it loads. (The HTML webpage will actually display
   // "Step 16 of 64" since indices are zero-indexed.)
+  //
+  // verticalStack means to stack the code and visualizations vertically atop one another
+  // (rather than side-by-side)
   var hanoiVisualizer   = new ExecutionVisualizer('hanoiDiv', hanoiTrace,
                                                   {embeddedMode: true,
                                                    startingInstruction: 15,
+                                                   verticalStack: true,
                                                    editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
 
   // "embeddedMode: false" displays the full visualizer widget with the "Program Output" pane
@@ -50,6 +54,8 @@ $(document).ready(function() {
   var happyVisualizer   = new ExecutionVisualizer('happyDiv', happyTrace,
                                                   {embeddedMode: false,
                                                    jumpToEnd: true,
+                                                   codeDivWidth: 450,
+                                                   codeDivHeight: 150,
                                                    editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
 
 
