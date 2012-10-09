@@ -1774,7 +1774,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .enter()
     .append('tr')
     .attr('id', function(d, i) {
-        return myViz.generateID(varnameToCssID('globals__' + d)); // make globally unique (within the page)
+        return myViz.generateID(varnameToCssID('global__' + d + '_tr')); // make globally unique (within the page)
     });
 
 
@@ -1936,7 +1936,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .enter()
     .append('tr')
     .attr('id', function(d, i) {
-        return myViz.generateID(varnameToCssID(d.frame.unique_hash + '__' + d.varname)); // make globally unique (within the page)
+        return myViz.generateID(varnameToCssID(d.frame.unique_hash + '__' + d.varname + '_tr')); // make globally unique (within the page)
     });
  
 
