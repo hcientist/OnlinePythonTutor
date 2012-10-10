@@ -46,6 +46,10 @@ $(document).ready(function() {
 
   var preseededCode = $.bbq.getState('code');
   var cumulativeState = $.bbq.getState('cumulative');
+  if (!cumulativeState) {
+    cumulativeState = 'false'; // string!
+  }
+
   var pyState = $.bbq.getState('py');
   var verticalStackBool = ($.bbq.getState('verticalStack') == 'true'); // boolean
 
