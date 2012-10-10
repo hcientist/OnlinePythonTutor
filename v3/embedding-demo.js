@@ -39,9 +39,8 @@ $(document).ready(function() {
   // WILL NOT MOVE. Thus, they will be in the incorrect location
   // unless you call redrawAllConnectors().
   //
-  // We use the "heightChangeCallback: redrawAllConnectors" optional parameter
-  // to force redraw of all SVG arrows of visualizers BELOW the current one whenever
-  // its height changes.
+  // We use the "heightChangeCallback" optional parameter to force redraw of all SVG arrows
+  // of visualizers BELOW the current one, whenever its height changes.
   //
   // Alternatively, here is one jQuery plugin that you can use to detect div height changes:
   // http://benalman.com/projects/jquery-resize-plugin/
