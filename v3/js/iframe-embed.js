@@ -109,7 +109,6 @@ $(document).ready(function() {
                                                    {startingInstruction: preseededCurInstr,
                                                     embeddedMode: true,
                                                     verticalStack: verticalStackBool,
-                                                    editCodeBaseURL: 'http://pythontutor.com/visualize.html',
                                                    });
           }
         },
