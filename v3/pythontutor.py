@@ -48,6 +48,13 @@ class TutorPage(webapp2.RequestHandler):
     self.response.out.write(template.render())
 
 
+class IframeEmbedPage(webapp2.RequestHandler):
+  def get(self):
+    self.response.headers['Content-Type'] = 'text/html'
+    template = JINJA_ENVIRONMENT.get_template('iframe-embed.html')
+    self.response.out.write(template.render())
+
+
 class LessonPage(webapp2.RequestHandler):
 
   def get(self):
@@ -76,6 +83,7 @@ class ExecScript(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([('/', TutorPage),
+                               ('/iframe-embed.html', IframeEmbedPage),
                                ('/lesson.html', LessonPage),
                                ('/exec', ExecScript)],
                               debug=True)

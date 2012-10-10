@@ -66,6 +66,8 @@ function setCodeMirrorVal(dat) {
 
 $(document).ready(function() {
 
+  $("#embedLinkDiv").hide();
+
   pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
     mode: 'python',
     lineNumbers: true,
@@ -87,10 +89,13 @@ $(document).ready(function() {
     if (appMode === undefined || appMode == 'edit') {
       $("#pyInputPane").show();
       $("#pyOutputPane").hide();
+      $("#embedLinkDiv").hide();
     }
     else if (appMode == 'display') {
       $("#pyInputPane").hide();
       $("#pyOutputPane").show();
+
+      $("#embedLinkDiv").show();
 
       $('#executeBtn').html("Visualize execution");
       $('#executeBtn').attr('disabled', false);
@@ -132,6 +137,7 @@ $(document).ready(function() {
     $('#executeBtn').html("Please wait ... processing your code");
     $('#executeBtn').attr('disabled', true);
     $("#pyOutputPane").hide();
+    $("#embedLinkDiv").hide();
 
 
     $.get(backend_script,
@@ -483,7 +489,7 @@ $(document).ready(function() {
   
   // log a generic AJAX error handler
   $(document).ajaxError(function() {
-    alert("Server error (possibly due to memory/resource overload).");
+    alert("Server error (possibly due to memory/resource overload). Report a bug to philip@pgbovine.net\n\n(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
 
     $('#executeBtn').html("Visualize execution");
     $('#executeBtn').attr('disabled', false);
@@ -509,6 +515,20 @@ $(document).ready(function() {
 
     var urlStr = $.param.fragment(window.location.href, myArgs, 2 /* clobber all */);
     $('#urlOutput').val(urlStr);
+  });
+
+
+  $('#genEmbedBtn').bind('click', function() {
+    assert(appMode == 'display');
+    var myArgs = {code: pyInputCodeMirror.getValue(),
+                  cumulative: $('#cumulativeModeSelector').val(),
+                  py: $('#pythonVersionSelector').val(),
+                  curInstr: myVisualizer.curInstr,
+                 };
+
+    var embedUrlStr = $.param.fragment('http://pythontutor.com/iframe-embed.html', myArgs, 2 /* clobber all */);
+    var iframeStr = '<iframe width="800" height="400" frameborder="0" src="' + embedUrlStr + '"> </iframe>';
+    $('#embedCodeOutput').val(iframeStr);
   });
 });
 
