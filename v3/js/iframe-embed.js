@@ -47,7 +47,7 @@ $(document).ready(function() {
   var preseededCode = $.bbq.getState('code');
   var cumulativeState = $.bbq.getState('cumulative');
   var pyState = $.bbq.getState('py');
-  var verticalStack = $.bbq.getState('verticalStack');
+  var verticalStackBool = ($.bbq.getState('verticalStack') == 'true'); // boolean
 
   var preseededCurInstr = Number($.bbq.getState('curInstr'));
   if (!preseededCurInstr) {
@@ -104,7 +104,7 @@ $(document).ready(function() {
                                                    dataFromBackend,
                                                    {startingInstruction: preseededCurInstr,
                                                     embeddedMode: true,
-                                                    verticalStack: (verticalStack !== undefined),
+                                                    verticalStack: verticalStackBool,
                                                     editCodeBaseURL: 'http://pythontutor.com/visualize.html',
                                                    });
           }
