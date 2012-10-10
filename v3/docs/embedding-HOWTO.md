@@ -22,7 +22,7 @@ And please excuse the sloppy writing; I'm not trying to win any style awards her
 An easy (although somewhat limited) way to embed an OPT visualization on your website is to enclose it within an [iframe](http://www.w3schools.com/tags/tag_iframe.asp).
 
 If you generate a visualization (e.g., <a href="http://pythontutor.com/visualize.html#code=x+%3D+5%0Ay+%3D+10%0Az+%3D+x+%2B+y&mode=display&cumulative=false&py=2&curInstr=3">click here</a>)
-and then click on the "Generate embed code" link at the bottom of the page, the following code will be generated:
+and then click the "Generate embed code" button at the bottom of the page, the following code will be generated:
 
 ```html
 <iframe width="800" height="500" frameborder="0"
@@ -34,7 +34,18 @@ If you copy-and-paste the above code into your HTML webpage, then it will embed 
 
 See `v3/iframe-embed-demo.html` for a working demo showing several embedded iframes ([online here](http://pythontutor.com/iframe-embed-demo.html)).
 
+
 ### iframe embedding parameters
+
+You can customize the iframe's size by adjusting the `width` and `height` parameters. All other parameters are passed
+after the hash mark (`#` character) in the `src=` URL string. Note that OPT uses the hash mark rather than the usual
+question mark `?` query string. Here are the currently-supported parameters:
+
+- `code` - The Python code to visualize (URL encoded string)
+- `cumulative` - Should exited functions still be displayed? (mandatory string: `true` or `false`)
+- `py` - Python interpreter version (mandatory: `2` for Python 2.7 or `3` for Python 3.2)
+- `verticalStack` - Set to `true` if you want the code and visualization to stack atop one another (optional)
+- `curInstr` - A (zero-indexed) integer of the instruction to jump to in the visualization (optional)
 
 
 ## Direct embedding
