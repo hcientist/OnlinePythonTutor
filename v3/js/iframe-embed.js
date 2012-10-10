@@ -47,14 +47,15 @@ $(document).ready(function() {
   var preseededCode = $.bbq.getState('code');
   var cumulativeState = $.bbq.getState('cumulative');
   var pyState = $.bbq.getState('py');
+  var verticalStack = $.bbq.getState('verticalStack');
 
   var preseededCurInstr = Number($.bbq.getState('curInstr'));
   if (!preseededCurInstr) {
     preseededCurInstr = 0;
   }
 
-  // TODO: add more options
-  
+  // TODO: add more options as needed
+ 
 
 
   var backend_script = null;
@@ -103,6 +104,7 @@ $(document).ready(function() {
                                                    dataFromBackend,
                                                    {startingInstruction: preseededCurInstr,
                                                     embeddedMode: true,
+                                                    verticalStack: (verticalStack !== undefined),
                                                     editCodeBaseURL: 'http://pythontutor.com/visualize.html',
                                                    });
           }
