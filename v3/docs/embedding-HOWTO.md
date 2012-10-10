@@ -17,10 +17,35 @@ philip@pgbovine.net if you have questions.
 
 And please excuse the sloppy writing; I'm not trying to win any style awards here :)
 
+## iframe embedding
 
-## High-Level Overview
+An easy (although somewhat limited) way to embed an OPT visualization on your website is to enclose it within an [iframe](http://www.w3schools.com/tags/tag_iframe.asp).
 
-To embed a visualization, you:
+If you generate a visualization (e.g., <a href="http://pythontutor.com/visualize.html#code=x+%3D+5%0Ay+%3D+10%0Az+%3D+x+%2B+y&mode=display&cumulative=false&py=2&curInstr=3">click here</a>)
+and then click on the "Generate embed code" link at the bottom of the page, the following code will be generated:
+
+```html
+<iframe width="800" height="500" frameborder="0"
+        src="http://pythontutor.com/iframe-embed.html#code=x+%3D+5%0Ay+%3D+10%0Az+%3D+x+%2B+y&cumulative=false&py=2&curInstr=3">
+</iframe>
+```
+
+If you copy-and-paste the above code into your HTML webpage, then it will embed the given visualization as an iframe.
+
+See `v3/iframe-embed-demo.html` for a working demo showing several embedded iframes ([online here](http://pythontutor.com/iframe-embed-demo.html)).
+
+### iframe embedding parameters
+
+
+## Direct embedding
+
+The iframe-based approach has some limitations (e.g., hard to dynamically resize the enclosing iframe, cannot run while offline),
+so here are instructions for directly embedding visualizations into your webpage:
+
+
+### High-Level Overview
+
+To directly embed a visualization, you:
 
 1. Run the target Python program offline to generate an execution trace, which is one (really, really long)
 string representing a JavaScript (JSON) object.
@@ -38,7 +63,7 @@ or, say, a USB drive), they can play with the visualization without an Internet 
 Finally, multiple visualizations can be embedded in a single HTML webpage, although you need to be careful
 to redraw the SVG arrows when page elements are resized or moved.
 
-## The Nitty-Gritty
+### The Nitty-Gritty
 
 Let's attempt to go [literate programming](http://en.wikipedia.org/wiki/Literate_programming) style now ... load up
 [embedding-demo.html](http://pythontutor.com/embedding-demo.html) in
