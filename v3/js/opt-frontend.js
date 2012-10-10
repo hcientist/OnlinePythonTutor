@@ -57,7 +57,7 @@ var pyInputCodeMirror; // CodeMirror object that contains the input text
 
 function setCodeMirrorVal(dat) {
   pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
-  $('#urlOutput').val('');
+  $('#urlOutput,#embedCodeOutput').val('');
 
   // also scroll to top to make the UI more usable on smaller monitors
   $(document).scrollTop(0);
@@ -114,7 +114,7 @@ $(document).ready(function() {
       assert(false);
     }
 
-    $('#urlOutput').val(''); // clear to avoid stale values
+    $('#urlOutput,#embedCodeOutput').val(''); // clear to avoid stale values
   });
 
 
@@ -189,7 +189,7 @@ $(document).ready(function() {
               myVisualizer = new ExecutionVisualizer('pyOutputPane',
                                                      dataFromBackend,
                                                      {startingInstruction:  startingInstruction,
-                                                      updateOutputCallback: function() {$('#urlOutput').val('');}
+                                                      updateOutputCallback: function() {'#urlOutput,#embedCodeOutput').val('');}
                                                      });
 
 
