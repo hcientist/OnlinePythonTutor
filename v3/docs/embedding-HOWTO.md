@@ -41,17 +41,19 @@ You can customize the iframe's size by adjusting the `width` and `height` parame
 after the hash mark (`#` character) in the `src=` URL string. Note that OPT uses the hash mark rather than the usual
 question mark `?` query string. Here are the currently-supported parameters:
 
-- `code` - The Python code to visualize (URL encoded string)
-- `cumulative` - Should exited functions still be displayed? (mandatory string: `true` or `false`)
+- `code` - The Python code to visualize (mandatory: URL-encoded string)
 - `py` - Python interpreter version (mandatory: `2` for Python 2.7 or `3` for Python 3.2)
 - `verticalStack` - Set to `true` if you want the code and visualization to stack atop one another (optional)
-- `curInstr` - A (zero-indexed) integer of the instruction to jump to in the visualization (optional)
+- `curInstr` - A (zero-indexed) integer of the execution point to directly jump to in the visualization (optional)
+- `cumulative` - Set to `true` if you want exited functions to be displayed (optional)
+
 
 
 ## Direct embedding
 
-The iframe-based approach has some limitations (e.g., hard to dynamically resize the enclosing iframe, cannot run while offline),
-so here are instructions for directly embedding visualizations into your webpage:
+The iframe-based approach has some limitations (e.g., hard to dynamically resize the enclosing iframe,
+cannot run while offline, limited parameter choices).
+Here are instructions for a more powerful but harder-to-use alternative -- directly embedding visualizations.
 
 
 ### High-Level Overview
