@@ -13,13 +13,13 @@ json.encoder.FLOAT_REPR = lambda f: ('%.3f' % f)
 def json_finalizer(input_code, output_trace):
   ret = dict(code=input_code, trace=output_trace)
   json_output = json.dumps(ret, indent=INDENT_LEVEL)
-  print(json_output)
+  return json_output
 
 def js_var_finalizer(input_code, output_trace):
   global JS_VARNAME
   ret = dict(code=input_code, trace=output_trace)
   json_output = json.dumps(ret, indent=None)
-  print("var %s = %s;" % (JS_VARNAME, json_output))
+  return "var %s = %s;" % (JS_VARNAME, json_output)
 
 parser = OptionParser(usage="Generate JSON trace for pytutor")
 parser.add_option('-c', '--cumulative', default=False, action='store_true',
@@ -35,6 +35,6 @@ fin = sys.stdin if args[0] == "-" else open(args[0])
 
 if options.js_varname:
   JS_VARNAME = options.js_varname
-  pg_logger.exec_script_str(fin.read(), options.cumulative, js_var_finalizer)
+  print(pg_logger.exec_script_str_local(fin.read(), options.cumulative, js_var_finalizer))
 else:
-  pg_logger.exec_script_str(fin.read(), options.cumulative, json_finalizer)
+  print(pg_logger.exec_script_str_local(fin.read(), options.cumulative, json_finalizer))

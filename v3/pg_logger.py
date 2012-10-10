@@ -188,10 +188,12 @@ def visit_function_obj(v, ids_seen_set):
 
 class PGLogger(bdb.Bdb):
 
-    def __init__(self, cumulative_mode, finalizer_func):
+    def __init__(self, cumulative_mode, finalizer_func, disable_security_checks=False):
         bdb.Bdb.__init__(self)
         self.mainpyfile = ''
         self._wait_for_mainpyfile = 0
+
+        self.disable_security_checks = disable_security_checks
 
         # a function that takes the output trace as a parameter and
         # processes it
@@ -746,7 +748,7 @@ class PGLogger(bdb.Bdb):
           # memory bombs such as:
           #   x = 2
           #   while True: x = x*x
-          if resource_module_loaded:
+          if resource_module_loaded and (not self.disable_security_checks):
             resource.setrlimit(resource.RLIMIT_AS, (200000000, 200000000))
             resource.setrlimit(resource.RLIMIT_CPU, (5, 5))
 
@@ -839,7 +841,7 @@ class PGLogger(bdb.Bdb):
 
       self.trace = res
 
-      self.finalizer_func(self.executed_script, self.trace)
+      return self.finalizer_func(self.executed_script, self.trace)
 
 
 
@@ -853,4 +855,18 @@ def exec_script_str(script_str, cumulative_mode, finalizer_func):
     pass
   finally:
     logger.finalize()
+
+
+# disables security check and returns the result of finalizer_func
+# WARNING: ONLY RUN THIS LOCALLY and never over the web, since
+# security checks are disabled
+def exec_script_str_local(script_str, cumulative_mode, finalizer_func):
+  logger = PGLogger(cumulative_mode, finalizer_func, disable_security_checks=True)
+
+  try:
+    logger._runscript(script_str)
+  except bdb.BdbQuit:
+    pass
+  finally:
+    return logger.finalize()
 
