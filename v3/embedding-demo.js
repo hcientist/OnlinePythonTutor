@@ -32,9 +32,31 @@ $(document).ready(function() {
   // Note that "embeddedMode: true" makes the visualizer appear more compact on-screen.
   // editCodeBaseURL is the base URL to prepend onto the 'Edit code' link.
 
+
+  // A more subtle point is that when some div in your HTML webpage
+  // (such as a visualizer div) expands in height, it will "push down"
+  // all divs below it, but the SVG arrows rendered by jsPlumb
+  // WILL NOT MOVE. Thus, they will be in the incorrect location
+  // unless you call redrawAllConnectors().
+  //
+  // We use the "heightChangeCallback: redrawAllConnectors" optional parameter
+  // to force redraw of all SVG arrows of visualizers BELOW the current one whenever
+  // its height changes.
+  //
+  // Alternatively, here is one jQuery plugin that you can use to detect div height changes:
+  // http://benalman.com/projects/jquery-resize-plugin/
+  //
+  // A related trick you can implement is to make a div never shrink in height once it's grown;
+  // that way, you can avoid lots of jarring jumps and (inefficient) redraws.
+
   // Render listSumTrace inside of listSumDiv
   var listSumVisualizer = new ExecutionVisualizer('listSumDiv', listSumTrace,
                                                   {embeddedMode: true,
+                                                   heightChangeCallback: function() {
+                                                     // note that these might not exist during a callback ...
+                                                     if (hanoiVisualizer) {hanoiVisualizer.redrawConnectors();}
+                                                     if (happyVisualizer) {happyVisualizer.redrawConnectors();}
+                                                   },
                                                    editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
 
   // The "startingInstruction: 15" optional parameter means to jump to step 15
@@ -47,6 +69,9 @@ $(document).ready(function() {
                                                   {embeddedMode: true,
                                                    startingInstruction: 15,
                                                    verticalStack: true,
+                                                   heightChangeCallback: function() {
+                                                     if (happyVisualizer) {happyVisualizer.redrawConnectors();}
+                                                   },
                                                    editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
 
   // "embeddedMode: false" displays the full visualizer widget with the "Program Output" pane
@@ -59,37 +84,13 @@ $(document).ready(function() {
                                                    editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
 
 
-  // The redrawConnectors() method needs to be called whenever
-  // HTML elements move around on-screen. This is because the SVG
-  // arrows rendered by jsPlumb don't automatically get redrawn
-  // in their new positions unless redrawConnectors() is called.
-
-  // Call redrawConnectors() whenever the window is resized,
-  // since HTML elements might have moved during a resize.
+  // Call redrawConnectors() on all visualizers whenever the window is resized,
+  // since HTML elements might have moved during a resize. The SVG arrows rendered
+  // by jsPlumb don't automatically get re-drawn in their new positions unless
+  // redrawConnectors() is called.
   $(window).resize(function() {
     listSumVisualizer.redrawConnectors();
     hanoiVisualizer.redrawConnectors();
     happyVisualizer.redrawConnectors();
   });
-
-
-  // A more subtle point is that when some div in your HTML webpage
-  // (such as a visualizer div) expands in height, it will "push down"
-  // all divs below it, but the SVG arrows rendered by jsPlumb
-  // WILL NOT MOVE. Thus, they will be in the incorrect location,
-  // unless you call redrawConnectors(). Here is one jQuery plugin
-  // that you can use to detect div height changes:
-  //
-  // http://benalman.com/projects/jquery-resize-plugin/
-  //
-  // As a concrete example, drag around the execution slider in
-  // "Towers of Hanoi" and notice how the arrows in "Happy Birthday"
-  // end up not properly aligned with the other elements.
-  //
-  // A related trick you can implement is to make a div never shrink
-  // in height once it's grown; that way, you can avoid lots of jarring
-  // jumps and redraws.
-  //
-  // Please email me if you want me to add more official support
-  // for this behavior.
 });

@@ -76,6 +76,8 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   updateOutputCallback - function to call (with 'this' as parameter)
 //                          whenever this.updateOutput() is called
 //                          (BEFORE rendering the output display)
+//   heightChangeCallback - function to call (with 'this' as parameter)
+//                          whenever the HEIGHT of #dataViz changes
 //   verticalStack - if true, then stack code display ON TOP of visualization
 //                   (else place side-by-side)
 function ExecutionVisualizer(domRootID, dat, params) {
@@ -773,6 +775,8 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
     return;
   }
 
+  var prevDataVizHeight = myViz.domRoot.find('#dataViz').height();
+
 
   var gutterSVG = myViz.domRoot.find('svg#leftCodeGutterSVG');
 
@@ -1048,6 +1052,15 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
 
   // finally, render all of the data structures
   this.renderDataStructures();
+
+
+  // call the callback if necessary (BEFORE rendering)
+  if (this.params.heightChangeCallback) {
+    if (myViz.domRoot.find('#dataViz').height() != prevDataVizHeight) {
+      this.params.heightChangeCallback(this);
+    }
+  }
+
 }
 
 
