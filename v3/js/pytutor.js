@@ -71,7 +71,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   hideOutput - hide "Program output" display
 //   codeDivHeight - maximum height of #pyCodeOutputDiv (in integer pixels)
 //   codeDivWidth  - maximum width  of #pyCodeOutputDiv (in integer pixels)
-//   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code'
+//   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code' (if null, then 'Edit code' link hidden)
 //   embeddedMode - make the widget narrower horizontally and disable breakpoints
 //   updateOutputCallback - function to call (with 'this' as parameter)
 //                          whenever this.updateOutput() is called
@@ -252,6 +252,7 @@ ExecutionVisualizer.prototype.render = function() {
     this.domRoot.find('#editBtn').attr('href', urlStr);
   }
   else {
+    this.domRoot.find('#editCodeLinkDiv').hide(); // just hide for simplicity!
     this.domRoot.find('#editBtn').attr('href', "#");
     this.domRoot.find('#editBtn').click(function(){return false;}); // DISABLE the link!
   }

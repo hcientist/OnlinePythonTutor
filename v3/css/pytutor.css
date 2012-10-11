@@ -470,7 +470,7 @@ div.ExecutionVisualizer div#heapHeader {
 
 div.ExecutionVisualizer #executionSlider {
   width: 500px;
-  margin-top: 15px;
+  margin-top: 20px;
   margin-bottom: 5px;
 
   margin-left: auto;

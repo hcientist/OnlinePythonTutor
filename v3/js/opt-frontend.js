@@ -105,7 +105,8 @@ $(document).ready(function() {
       // jsPlumb connectors won't render properly
       myVisualizer.updateOutput();
 
-      // customize edit button click functionality AFTER rendering (TODO: awkward!)
+      // customize edit button click functionality AFTER rendering (NB: awkward!)
+      $('#pyOutputPane #editCodeLinkDiv').show();
       $('#pyOutputPane #editBtn').click(function() {
         enterEditMode();
       });
