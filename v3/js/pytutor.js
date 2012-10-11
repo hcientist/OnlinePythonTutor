@@ -72,7 +72,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   codeDivHeight - maximum height of #pyCodeOutputDiv (in integer pixels)
 //   codeDivWidth  - maximum width  of #pyCodeOutputDiv (in integer pixels)
 //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code' (if null, then 'Edit code' link hidden)
-//   embeddedMode - make the widget narrower horizontally and disable breakpoints
+//   embeddedMode    - shortcut for hideOutput=true, codeDivWidth=350, codeDivHeight=400
 //   updateOutputCallback - function to call (with 'this' as parameter)
 //                          whenever this.updateOutput() is called
 //                          (BEFORE rendering the output display)
@@ -261,8 +261,14 @@ ExecutionVisualizer.prototype.render = function() {
   if (this.params.embeddedMode) {
     this.params.hideOutput = true; // put this before hideOutput handler
 
-    this.params.codeDivWidth = 350;
-    this.params.codeDivHeight = 400;
+    // don't override if they've already been set!
+    if (this.params.codeDivWidth === undefined) {
+      this.params.codeDivWidth = 350;
+    }
+
+    if (this.params.codeDivHeight === undefined) {
+      this.params.codeDivHeight = 400;
+    }
   }
 
   
