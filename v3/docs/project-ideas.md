@@ -103,7 +103,10 @@ https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-form
 
 ... and the frontend should be able to visualize it!
 
-My
+For instance, the [Chicory Java trace generator for Daikon](http://groups.csail.mit.edu/pag/daikon/download/doc/daikon_manual_html/daikon_7.html#SEC69)
+might be a good basis for writing a Java backend for OPT.
+
+Also, my
 [master's thesis](http://pgbovine.net/projects/pubs/guo-mixedlevel-mengthesis.pdf) from 2006
 describes one possible technique for building a C-language backend based upon the [Valgrind](http://www.valgrind.org)
 tool. More importantly, it describes the difficulties involved in creating a robust execution
