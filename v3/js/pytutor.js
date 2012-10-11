@@ -55,6 +55,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
+var allVisualizers = []; // global array of ALL visualizers ever on the page
+
 
 var SVG_ARROW_POLYGON = '0,3 12,3 12,0 18,5 12,10 12,7 0,7';
 var SVG_ARROW_HEIGHT = 10; // must match height of SVG_ARROW_POLYGON
@@ -78,6 +80,9 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //                          (BEFORE rendering the output display)
 //   heightChangeCallback - function to call (with 'this' as parameter)
 //                          whenever the HEIGHT of #dataViz changes
+//   redrawAllConnectorsOnHeightChange - if this is non-null, then call redrawConnectors() in ALL ExecutionVisualizer
+//                                       objects on this page whenever the height of ANY of them changes.
+//                                       (NB: This might be inefficient and overkill; use at your own discretion.)
 //   verticalStack - if true, then stack code display ON TOP of visualization
 //                   (else place side-by-side)
 function ExecutionVisualizer(domRootID, dat, params) {
@@ -158,6 +163,8 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.hasRendered = false;
 
   this.render(); // go for it!
+
+  allVisualizers.push(this);
 }
 
 
@@ -1062,9 +1069,15 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
 
 
   // call the callback if necessary (BEFORE rendering)
-  if (this.params.heightChangeCallback) {
-    if (myViz.domRoot.find('#dataViz').height() != prevDataVizHeight) {
+  if (myViz.domRoot.find('#dataViz').height() != prevDataVizHeight) {
+    if (this.params.heightChangeCallback) {
       this.params.heightChangeCallback(this);
+    }
+
+    if (this.params.redrawAllConnectorsOnHeightChange) {
+      $.each(allVisualizers, function(i, e) {
+        e.redrawConnectors();
+      });
     }
   }
 

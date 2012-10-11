@@ -39,8 +39,8 @@ $(document).ready(function() {
   // WILL NOT MOVE. Thus, they will be in the incorrect location
   // unless you call redrawAllConnectors().
   //
-  // We use the "heightChangeCallback" optional parameter to force redraw of all SVG arrows
-  // of visualizers BELOW the current one, whenever its height changes.
+  // We use the "redrawAllConnectorsOnHeightChange" optional parameter to force redraw
+  // of all SVG arrows of ALL visualizers, whenever the height of one changes.
   //
   // Alternatively, here is one jQuery plugin that you can use to detect div height changes:
   // http://benalman.com/projects/jquery-resize-plugin/
@@ -51,11 +51,7 @@ $(document).ready(function() {
   // Render listSumTrace inside of listSumDiv
   var listSumVisualizer = new ExecutionVisualizer('listSumDiv', listSumTrace,
                                                   {embeddedMode: true,
-                                                   heightChangeCallback: function() {
-                                                     // note that these might not exist during a callback ...
-                                                     if (hanoiVisualizer) {hanoiVisualizer.redrawConnectors();}
-                                                     if (happyVisualizer) {happyVisualizer.redrawConnectors();}
-                                                   },
+                                                   redrawAllConnectorsOnHeightChange: true,
                                                    editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
 
   // The "startingInstruction: 15" optional parameter means to jump to step 15
@@ -68,9 +64,7 @@ $(document).ready(function() {
                                                   {embeddedMode: true,
                                                    startingInstruction: 15,
                                                    verticalStack: true,
-                                                   heightChangeCallback: function() {
-                                                     if (happyVisualizer) {happyVisualizer.redrawConnectors();}
-                                                   },
+                                                   redrawAllConnectorsOnHeightChange: true,
                                                    editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
 
   // "embeddedMode: false" displays the full visualizer widget with the "Program Output" pane
