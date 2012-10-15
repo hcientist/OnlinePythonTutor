@@ -43,6 +43,9 @@ if you're eventually going to deploy on something other than Google App Engine, 
 for development and testing. The main caveat here is that Google App Engine currently runs Python 2.7,
 so you won't be able to test Python 3 locally this way.
 
+Here is a [blog post by a Hacker School student](http://theworldsoldestintern.wordpress.com/2012/10/15/installing-online-python-tutor-on-your-laptop-localhost8080/)
+who set up OPT on his Ubuntu laptop. (btw [Hacker School](http://www.hackerschool.com/) is worth checking out!)
+
 
 ## Overall system architecture
 
