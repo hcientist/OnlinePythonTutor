@@ -122,6 +122,12 @@ Right now the OPT backend runs Python code on the server, but it would be super-
 that runs entirely in the browser. Modifying Skulpt -- http://www.skulpt.org/ -- is the leading contender here,
 since I am in touch with its main developers.
 
+The basic idea is to use Skulpt to generate a JavaScript trace object (all within the web browser without
+a server call) and then construct a new ExecutionVisualizer with that trace object as a parameter.
+Read "Direct embedding" and the associated code for more detailed info:
+https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/embedding-HOWTO.md#direct-embedding
+
+
 Main Advantages:
   - Enables fine-grained tracing of expression and sub-expression evaluation, which has clear pedagogical benefits; right now OPT can only single-step over one line at a time since it relies on the Python bdb debugger.
   - Enables an interactive REPL that incrementally takes in user inputs rather than just executing batch programs; this can lead to better interactivity and responsiveness.
