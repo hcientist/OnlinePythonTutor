@@ -4,30 +4,25 @@
 <head>
   <title>OPT embedding demo - for bgranger</title>
 
-<!-- mimic all js dependencies in bgranger's fork of IPython notebook for OPT -->
-<!-- note that bgranger loads these script files within body and not head ... hmmm -->
-
-<script src="jquery-1.7.1.min.js?v=ddb84" type="text/javascript" charset="utf-8"></script>
-<script src="jquery-ui.min.js?v=9fc86" type="text/javascript" charset="utf-8"></script>
-
-<script type="text/javascript" src="jquery.ba-bbq.min.js"></script> <!-- for handling back button and URL hashes -->
-
-<script type="text/javascript" src="pytutor.js"></script>
-<script src="http://d3js.org/d3.v2.js" charset="utf-8"></script> <!-- whoa, wtf?!? ordering -->
-<script type="text/javascript" src="jquery.jsPlumb-1.3.10-all-min.js?v=4a3ff"></script>
-
 <link type="text/css" href="jquery-ui.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="pytutor.css"/>
-
-<script type="text/javascript" src="embedding-demo.js"></script>
 
 </head>
 
 <body>
+  
+  <div id="someParentDiv"></div>
 
-  <p>Recursive list sum (from <a href="http://pythontutor.com">pythontutor.com</a> home page):</p>
+<!-- mimic all js dependencies in the order present in bgranger's fork of IPython notebook for OPT
+     (note that bgranger loads these script files within body and not head ... hmmm) -->
+<script src="jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 
-  <div id="listSumDiv"></div>
+<script type="text/javascript" src="pytutor.js"></script>
+<script src="http://d3js.org/d3.v2.js" charset="utf-8"></script>
+<script type="text/javascript" src="jquery.jsPlumb-1.3.10-all-min.js"></script>
+
+<script type="text/javascript" src="embedding-demo.js"></script>
 
 </body>
 </html>
