@@ -1915,7 +1915,7 @@ $(document).ready(function() {
 
         console.log(json);
         var toinsert = $("<div/>").attr('id','optviz');
-        $('#someParentDiv').append(toinsert);
+        $('.output_area').append(toinsert);
         var viz = new ExecutionVisualizer(toinsert, json, {embeddedMode: true});
         console.log(viz);
         $(window).resize(function() {
