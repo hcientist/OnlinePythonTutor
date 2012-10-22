@@ -74,7 +74,7 @@ span#notebook_name {
 
 div#main_app {
     width: 100%;
-    position: relative;
+    /*position: relative;*/ /* pgbovine - makes OPT arrow display work */
 }
 
 span#quick_help_area {
@@ -174,7 +174,7 @@ div.output_wrapper {
     margin-top: 5px;
     margin-left: 5px;
     width: 100%;
-    position: relative;
+    /*position: relative;*/ /* pgbovine - makes OPT arrow display work */
 }
 
 div.output_scroll {
