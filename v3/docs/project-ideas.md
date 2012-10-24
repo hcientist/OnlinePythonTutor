@@ -39,6 +39,29 @@ I've actively used it to debug / trace short pieces of code. Any chance of havin
 
 You could imagine running a webserver on localhost and using OPT as a graphical frontend for pdb; interesting idea!
 
+Notes from an email I sent on 2012-10-24: {
+
+One possible offline application is to use OPT as a visual debugger for pdb (http://docs.python.org/library/pdb.html). The use case here would be:
+
+1.) The user launches a special version of pdb augmented with OPT.
+2.) The user types in some Python command to visualize.
+3.) pdb starts a local webserver and pops up a web browser window.
+4.) The visualization appears in the web browser window, and the user can interact with it.
+
+Actually, now that I think about it, you can start even simpler without pdb. Here is an even simpler starting point:
+
+1.) The user writes some code to visualize in a file on his/her computer.
+2.) The user runs a special Python script that runs OPT on that file, launches a local webserver, and pops open a web browser window.
+3.) The visualization appears in the web browser window.
+
+Ok, that seems simpler as a starting point, and it will still teach you about local webservers and interfacing between the OPT backend and frontend.
+
+Then comes the question of why this offline mode might be useful (beyond being a good learning exercise). After all, just by following the directions in the developer overview docs, you've essentially set up OPT to run offline without an Internet connection. So my plan above doesn't give you any extra functionality. However, I think the potential lies in integrating with a real debugger such as pdb, so that you can run large Python programs, pause execution, and then visualize selected data structures (rather than all data structures in the program, which can get overwhelming).
+
+Ok sorry that was mostly me thinking out loud.
+
+}
+
 
 ## Optimize display of object-oriented programs (medium)
 
