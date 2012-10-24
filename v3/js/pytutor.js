@@ -1376,21 +1376,30 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   var curEntry = this.curTrace[this.curInstr];
   var curToplevelLayout = this.curTraceLayouts[this.curInstr];
 
+  // for simplicity (but sacrificing some performance), delete all
+  // connectors and redraw them from scratch. doing so avoids mysterious
+  // jsPlumb connector alignment issues when the visualizer's enclosing
+  // div contains, say, a "position: relative;" CSS tag
+  var existingConnectionEndpointIDs = d3.map();
 
-  // Heap object rendering phase:
-
-
-  // This is VERY crude, but to prevent multiple redundant HEAP->HEAP
-  // connectors from being drawn with the same source and origin, we need to first
-  // DELETE ALL existing HEAP->HEAP connections, and then re-render all of
-  // them in each call to this function. The reason why we can't safely
-  // hold onto them is because there's no way to guarantee that the
-  // *__heap_pointer_src_<src id> IDs are consistent across execution points.
   myViz.jsPlumbInstance.select().each(function(c) {
-    if (c.sourceId.match(heapPtrSrcRE)) {
-      myViz.jsPlumbInstance.detachAllConnections(c.sourceId);
+    // This is VERY crude, but to prevent multiple redundant HEAP->HEAP
+    // connectors from being drawn with the same source and origin, we need to first
+    // DELETE ALL existing HEAP->HEAP connections, and then re-render all of
+    // them in each call to this function. The reason why we can't safely
+    // hold onto them is because there's no way to guarantee that the
+    // *__heap_pointer_src_<src id> IDs are consistent across execution points.
+    //
+    // thus, only add to existingConnectionEndpointIDs if this is NOT heap->heap
+    if (!c.sourceId.match(heapPtrSrcRE)) {
+      existingConnectionEndpointIDs.set(c.sourceId, c.targetId);
     }
   });
+
+  myViz.jsPlumbInstance.reset(); // delete all connectors and state!!!
+
+
+  // Heap object rendering phase:
 
 
   // Key:   CSS ID of the div element representing the stack frame variable
@@ -1868,7 +1877,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
             // GARBAGE COLLECTION GOTCHA! we need to get rid of the old
             // connector in preparation for rendering a new one:
-            myViz.jsPlumbInstance.detachAllConnections(varDivID);
+            existingConnectionEndpointIDs.remove(varDivID);
           }
 
           //console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
@@ -1887,7 +1896,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .each(function(d, i) {
       // detach all stack_pointer connectors for divs that are being removed
       $(this).find('.stack_pointer').each(function(i, sp) {
-        myViz.jsPlumbInstance.detachAllConnections($(sp).attr('id'));
+        existingConnectionEndpointIDs.remove($(sp).attr('id'));
       });
     })
     .remove();
@@ -2030,7 +2039,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
             // GARBAGE COLLECTION GOTCHA! we need to get rid of the old
             // connector in preparation for rendering a new one:
-            myViz.jsPlumbInstance.detachAllConnections(varDivID);
+            existingConnectionEndpointIDs.remove(varDivID);
           }
 
           //console.log('CHANGED', frame.unique_hash, varname, prevValStringRepr, valStringRepr);
@@ -2048,7 +2057,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .each(function(d, i) {
       $(this).find('.stack_pointer').each(function(i, sp) {
         // detach all stack_pointer connectors for divs that are being removed
-        myViz.jsPlumbInstance.detachAllConnections($(sp).attr('id'));
+        existingConnectionEndpointIDs.remove($(sp).attr('id'));
       });
     })
     .remove();
@@ -2057,15 +2066,16 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .each(function(frame, i) {
       $(this).find('.stack_pointer').each(function(i, sp) {
         // detach all stack_pointer connectors for divs that are being removed
-        myViz.jsPlumbInstance.detachAllConnections($(sp).attr('id'));
+        existingConnectionEndpointIDs.remove($(sp).attr('id'));
       });
     })
     .remove();
 
 
-  // crap, we need to repaint all of the existing connectors in case their endpoints have shifted
-  // due to page elements shifting around :(
-  myViz.jsPlumbInstance.repaintEverything();
+  // re-render existing connectors ...
+  existingConnectionEndpointIDs.forEach(function(varID, valueID) {
+    myViz.jsPlumbInstance.connect({source: varID, target: valueID});
+  });
 
   // finally add all the NEW connectors that have arisen in this call to renderDataStructures
   connectionEndpointIDs.forEach(function(varID, valueID) {
