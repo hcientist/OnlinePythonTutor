@@ -45,6 +45,16 @@ div.ExecutionVisualizer table.visualizer {
   font-size: 10pt;
 }
 
+div.ExecutionVisualizer table.visualizer td {
+  vertical-align: top;
+}
+
+div.ExecutionVisualizer td {
+  /* explicity add padding to override defaults from existing enclosing stylesheets */
+  padding: 1px;
+}
+
+
 div.ExecutionVisualizer td#stack_td,
 div.ExecutionVisualizer td#heap_td {
   vertical-align:top;
