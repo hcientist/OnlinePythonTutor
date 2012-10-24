@@ -45,15 +45,9 @@ div.ExecutionVisualizer table.visualizer {
   font-size: 10pt;
 }
 
-div.ExecutionVisualizer table.visualizer td {
+div.ExecutionVisualizer table.visualizer td.vizLayoutTd {
   vertical-align: top;
 }
-
-div.ExecutionVisualizer td {
-  /* explicity add padding to override defaults from existing enclosing stylesheets */
-  padding: 1px;
-}
-
 
 div.ExecutionVisualizer td#stack_td,
 div.ExecutionVisualizer td#heap_td {
@@ -418,6 +412,8 @@ div.ExecutionVisualizer td.stackFrameValue {
   border-bottom: 1px solid #aaaaaa;
   border-left: 1px solid #aaaaaa;
 
+  vertical-align: middle;
+
   padding-top: 3px;
   padding-left: 3px;
   padding-bottom: 3px;
@@ -434,6 +430,10 @@ div.ExecutionVisualizer .stackFrameVarTable {
   /* right-align the table */
   margin-left: auto;
   margin-right: 0px;
+
+  /* hack to counteract possible nasty CSS reset styles from parent divs */
+  border-collapse: separate;
+  border-spacing: 2px;
 }
 
 div.ExecutionVisualizer div#heap {

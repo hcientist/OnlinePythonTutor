@@ -55,6 +55,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
+// TODO: this can lead to HUGE memory usage if a lot of visualizers are being created
+// and then deleted, since we don't currently remove visualizers from this list ...
 var allVisualizers = []; // global array of ALL visualizers ever on the page
 
 
@@ -226,13 +228,13 @@ ExecutionVisualizer.prototype.render = function() {
 
 
   if (this.params.verticalStack) {
-    this.domRoot.html('<table border="0" class="visualizer"><tr><td valign="top">' +
-                      codeDisplayHTML + '</td></tr><tr><td valign="top">' +
+    this.domRoot.html('<table border="0" class="visualizer"><tr><td class="vizLayoutTd">' +
+                      codeDisplayHTML + '</td></tr><tr><td class="vizLayoutTd">' +
                       codeVizHTML + '</td></tr></table>');
   }
   else {
-    this.domRoot.html('<table border="0" class="visualizer"><tr><td valign="top">' +
-                      codeDisplayHTML + '</td><td valign="top">' +
+    this.domRoot.html('<table border="0" class="visualizer"><tr><td class="vizLayoutTd">' +
+                      codeDisplayHTML + '</td><td class="vizLayoutTd">' +
                       codeVizHTML + '</td></tr></table>');
   }
 
