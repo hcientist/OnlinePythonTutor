@@ -78,6 +78,10 @@ div.ExecutionVisualizer table#pyCodeOutput {
   font-family: Andale mono, monospace;
   font-size:12pt;
   line-height:1.1em;
+
+  border-collapse: separate; /* some crazy CSS voodoo that needs to be
+                                there so that SVG arrows to the left
+                                of the code line up vertically in Chrome */
   border-spacing: 0px;
   border-top: 1px solid #bbb;
   padding-top: 3px;
