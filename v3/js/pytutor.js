@@ -1401,6 +1401,14 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   myViz.jsPlumbInstance.reset(); // delete all connectors and state!!!
 
 
+  /*
+  existingConnectionEndpointIDs.forEach(function(varID, valueID) {
+    console.log('existingConnectionEndpointIDs:', varID, valueID);
+  });
+  console.log('---');
+  */
+
+
   // Heap object rendering phase:
 
 
@@ -1788,6 +1796,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
 
 
+  // TODO: coalesce code for rendering globals and stack frames,
+  // since there's so much copy-and-paste grossness right now
+
   // render all global variables IN THE ORDER they were created by the program,
   // in order to ensure continuity:
 
@@ -1859,6 +1870,13 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
           $(this).empty(); // crude but effective for now
 
+          // make sure varname doesn't contain any weird
+          // characters that are illegal for CSS ID's ...
+          var varDivID = myViz.generateID('global__' + varnameToCssID(varname));
+
+          // need to get rid of the old connector in preparation for rendering a new one:
+          existingConnectionEndpointIDs.remove(varDivID);
+
           if (isPrimitiveType(val)) {
             renderPrimitiveObject(val, $(this));
           }
@@ -1866,20 +1884,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             // add a stub so that we can connect it with a connector later.
             // IE needs this div to be NON-EMPTY in order to properly
             // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
-
-            // make sure varname doesn't contain any weird
-            // characters that are illegal for CSS ID's ...
-            var varDivID = myViz.generateID('global__' + varnameToCssID(varname));
             $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
 
             assert(!connectionEndpointIDs.has(varDivID));
             var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
             connectionEndpointIDs.set(varDivID, heapObjID);
             //console.log('STACK->HEAP', varDivID, heapObjID);
-
-            // GARBAGE COLLECTION GOTCHA! we need to get rid of the old
-            // connector in preparation for rendering a new one:
-            existingConnectionEndpointIDs.remove(varDivID);
           }
 
           //console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
@@ -2020,6 +2030,14 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
           $(this).empty(); // crude but effective for now
 
+
+          // make sure varname and frame.unique_hash don't contain any weird
+          // characters that are illegal for CSS ID's ...
+          var varDivID = myViz.generateID(varnameToCssID(frame.unique_hash + '__' + varname));
+
+          // need to get rid of the old connector in preparation for rendering a new one:
+          existingConnectionEndpointIDs.remove(varDivID);
+
           if (isPrimitiveType(val)) {
             renderPrimitiveObject(val, $(this));
           }
@@ -2027,21 +2045,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             // add a stub so that we can connect it with a connector later.
             // IE needs this div to be NON-EMPTY in order to properly
             // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
-
-            // make sure varname and frame.unique_hash don't contain any weird
-            // characters that are illegal for CSS ID's ...
-            var varDivID = myViz.generateID(varnameToCssID(frame.unique_hash + '__' + varname));
-
             $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
 
             assert(!connectionEndpointIDs.has(varDivID));
             var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
             connectionEndpointIDs.set(varDivID, heapObjID);
             //console.log('STACK->HEAP', varDivID, heapObjID);
-
-            // GARBAGE COLLECTION GOTCHA! we need to get rid of the old
-            // connector in preparation for rendering a new one:
-            existingConnectionEndpointIDs.remove(varDivID);
           }
 
           //console.log('CHANGED', frame.unique_hash, varname, prevValStringRepr, valStringRepr);
