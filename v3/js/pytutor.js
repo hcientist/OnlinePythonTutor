@@ -38,6 +38,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script> <!-- for sliders and other UI elements -->
 <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.24.custom.css" rel="stylesheet" />
 
+<!-- for annotation bubbles -->
+<script type="text/javascript" src="js/jquery.qtip.min.js"></script>
+<link type="text/css" href="css/jquery.qtip.css" rel="stylesheet" />
+
 <script type="text/javascript" src="js/pytutor.js"></script>
 <link rel="stylesheet" href="css/pytutor.css"/>
 
@@ -284,16 +288,27 @@ ExecutionVisualizer.prototype.render = function() {
   }
 
   myViz.editAnnotationMode = false;
+  myViz.allAnnotationBubbles = [];
 
   if (this.allowEditAnnotations) {
     var ab = this.domRoot.find('#annotateBtn');
 
     ab.click(function() {
       if (myViz.editAnnotationMode) {
+        ab.html('(rendering ...)');
+        $.each(myViz.allAnnotationBubbles, function(i, e) {
+          e.enterViewMode();
+        });
+
         myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider").show();
         ab.html('Annotate this step');
       }
       else {
+        ab.html('(rendering ...)');
+        $.each(myViz.allAnnotationBubbles, function(i, e) {
+          e.enterEditMode();
+        });
+
         myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider").hide();
         ab.html('Done annotating');
       }
@@ -2317,5 +2332,327 @@ function isPrimitiveType(obj) {
 function getRefID(obj) {
   assert(obj[0] == 'REF');
   return obj[1];
+}
+
+
+// Annotation bubbles
+
+var qtipShared = {
+  show: {
+    ready: true, // show on document.ready instead of on mouseenter
+    delay: 0,
+    event: null,
+    effect: function() {$(this).show();}, // don't do any fancy fading because it screws up with scrolling
+  },
+  hide: {
+    fixed: true,
+    event: null,
+    effect: function() {$(this).hide();}, // don't do any fancy fading because it screws up with scrolling
+  },
+  style: {
+    classes: 'ui-tooltip-pgbootstrap', // my own customized version of the bootstrap style
+  },
+};
+
+
+function createSpeechBubble(domID, my, at, htmlContent, isInput) {
+  var hashID = '#' + domID;
+  $(hashID).qtip($.extend({}, qtipShared, {
+    content: htmlContent,
+    id: domID,
+    position: {
+      my: my,
+      at: at,
+      effect: null, // disable all cutesy animations
+    },
+  }));
+
+
+  if (isInput) {
+
+  }
+  else {
+    $('#ui-tooltip-' + domID + '-content').click(function() {
+      if (!$(hashID).data('qtip-minimized')) {
+        $(hashID)
+          .data('qtip-minimized', true)
+          .qtip('option', 'content.text', ' ');
+      }
+      else {
+        $(hashID)
+          .data('qtip-minimized', false)
+          .qtip('option', 'content.text', htmlContent);
+      }
+    });
+  }
+}
+
+
+// a speech bubble annotation to attach to:
+//   'codeline' - a line of code
+//   'frame'    - a stack frame
+//   'variable' - a variable within a stack frame
+//   'object'   - an object on the heap
+// (as determined by the 'type' param)
+//
+// domID is the ID of the element to attach to (without the leading '#' sign)
+function AnnotationBubble(type, domID) {
+  this.domID = domID;
+  this.hashID = '#' + domID;
+
+  this.type = type;
+
+  if (type == 'codeline') {
+    this.my = 'left center';
+    this.at = 'right center';
+  }
+  else if (type == 'frame') {
+    this.my = 'right center';
+    this.at = 'left center';
+  }
+  else if (type == 'variable') {
+    this.my = 'right center';
+    this.at = 'left center';
+  }
+  else if (type == 'object') {
+    this.my = 'bottom left';
+    this.at = 'top center';
+  }
+  else {
+    assert(false);
+  }
+
+  // possible states:
+  //   'invisible'
+  //   'edit'
+  //   'view'
+  //   'minimized'
+  //   'stub'
+  this.state = 'invisible';
+
+  this.text = ''; // the actual contents of the annotation bubble
+
+  this.qtipHidden = false; // is there a qtip object present but hidden? (TODO: kinda confusing)
+}
+
+AnnotationBubble.prototype.showStub = function() {
+  assert(this.state == 'invisible' || this.state == 'edit');
+  assert(this.text == '');
+
+  var myBubble = this; // to avoid name clashes with 'this' in inner scopes
+
+  // destroy then create a new tip:
+  this.destroyQTip();
+  $(this.hashID).qtip($.extend({}, qtipShared, {
+    content: ' ',
+    id: this.domID,
+    position: {
+      my: this.my,
+      at: this.at,
+      effect: null, // disable all cutesy animations
+    },
+    style: {
+      classes: 'ui-tooltip-pgbootstrap ui-tooltip-pgbootstrap-stub'
+    }
+  }));
+
+
+  $(this.qTipID())
+    .unbind('click') // unbind all old handlers
+    .click(function() {
+      myBubble.showEditor();
+    });
+
+  this.state = 'stub';
+}
+
+AnnotationBubble.prototype.showEditor = function() {
+  assert(this.state == 'stub' || this.state == 'view' || this.state == 'minimized');
+
+  var myBubble = this; // to avoid name clashes with 'this' in inner scopes
+
+  var ta = '<textarea class="bubbleInputText">' + this.text + '</textarea>';
+
+  // destroy then create a new tip:
+  this.destroyQTip();
+  $(this.hashID).qtip($.extend({}, qtipShared, {
+    content: ta,
+    id: this.domID,
+    position: {
+      my: this.my,
+      at: this.at,
+      effect: null, // disable all cutesy animations
+    }
+  }));
+
+  
+  $(this.qTipContentID()).find('textarea.bubbleInputText')
+    // set handler when the textarea loses focus
+    .blur(function() {
+      myBubble.text = $(this).val().trim(); // strip all leading and trailing spaces
+
+      if (myBubble.text) {
+        myBubble.showViewer();
+      }
+      else {
+        myBubble.showStub();
+      }
+    })
+    .focus(); // grab focus so that the user can start typing right away!
+
+  this.state = 'edit';
+}
+
+
+AnnotationBubble.prototype.bindViewerClickHandler = function() {
+  var myBubble = this;
+
+  $(this.qTipID())
+    .unbind('click') // unbind all old handlers
+    .click(function() {
+      if (myBubble.parentViz.editAnnotationMode) {
+        myBubble.showEditor();
+      }
+      else {
+        myBubble.minimizeViewer();
+      }
+    });
+}
+
+AnnotationBubble.prototype.showViewer = function() {
+  assert(this.state == 'edit');
+  assert(this.text); // must be non-empty!
+
+  // destroy then create a new tip:
+  this.destroyQTip();
+  $(this.hashID).qtip($.extend({}, qtipShared, {
+    content: this.text,
+    id: this.domID,
+    position: {
+      my: this.my,
+      at: this.at,
+      effect: null, // disable all cutesy animations
+    }
+  }));
+
+  this.bindViewerClickHandler();
+  this.state = 'view';
+}
+
+
+AnnotationBubble.prototype.minimizeViewer = function() {
+  assert(this.state == 'view');
+
+  var myBubble = this;
+
+  $(this.hashID).qtip('option', 'content.text', ' '); //hack to "minimize" its size
+
+  $(this.qTipID())
+    .unbind('click') // unbind all old handlers
+    .click(function() {
+      if (myBubble.parentViz.editAnnotationMode) {
+        myBubble.showEditor();
+      }
+      else {
+        myBubble.restoreViewer();
+      }
+    });
+
+  this.state = 'minimized';
+}
+
+AnnotationBubble.prototype.restoreViewer = function() {
+  assert(this.state == 'minimized');
+  $(this.hashID).qtip('option', 'content.text', this.text);
+  this.bindViewerClickHandler();
+  this.state = 'view';
+}
+
+// NB: actually DESTROYS the QTip object
+AnnotationBubble.prototype.makeInvisible = function() {
+  assert(this.state == 'stub' || this.state == 'edit');
+  this.destroyQTip();
+  this.state = 'invisible';
+}
+
+
+AnnotationBubble.prototype.destroyQTip = function() {
+  $(this.hashID).qtip('destroy');
+}
+
+AnnotationBubble.prototype.qTipContentID = function() {
+  return '#ui-tooltip-' + this.domID + '-content';
+}
+
+AnnotationBubble.prototype.qTipID = function() {
+  return '#ui-tooltip-' + this.domID;
+}
+
+
+AnnotationBubble.prototype.enterEditMode = function() {
+  assert(this.parentViz.editAnnotationMode);
+  if (this.state == 'invisible') {
+    this.showStub();
+
+    if (this.type == 'codeline') {
+      this.redrawCodelineBubble();
+    }
+  }
+}
+
+AnnotationBubble.prototype.enterViewMode = function() {
+  assert(!this.parentViz.editAnnotationMode);
+  if (this.state == 'stub') {
+    this.makeInvisible();
+  }
+  else if (this.state == 'edit') {
+    this.text = $(this.qTipContentID()).find('textarea.bubbleInputText').val().trim(); // strip all leading and trailing spaces
+
+    if (this.text) {
+      this.showViewer();
+
+      if (this.type == 'codeline') {
+        this.redrawCodelineBubble();
+      }
+    }
+    else {
+      this.makeInvisible();
+    }
+  }
+}
+
+AnnotationBubble.prototype.redrawCodelineBubble = function() {
+  assert(this.type == 'codeline');
+
+  if (isOutputLineVisibleForBubbles(this.domID)) {
+    if (this.qtipHidden) {
+      $(this.hashID).qtip('show');
+    }
+    else {
+      $(this.hashID).qtip('reposition');
+    }
+
+    this.qtipHidden = false;
+  }
+  else {
+    $(this.hashID).qtip('hide');
+    this.qtipHidden = true;
+  }
+}
+
+
+// NB: copy-and-paste from isOutputLineVisible with some minor tweaks
+function isOutputLineVisibleForBubbles(lineDivID) {
+  var pcod = $('#pyCodeOutputDiv');
+
+  var lineNoTd = $('#' + lineDivID);
+  var LO = lineNoTd.offset().top;
+
+  var PO = pcod.offset().top;
+  var ST = pcod.scrollTop();
+  var H = pcod.height();
+
+  // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
+  return (PO <= LO) && (LO < (PO + H - 25));
 }
 
