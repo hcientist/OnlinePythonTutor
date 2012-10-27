@@ -72,7 +72,9 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   codeDivHeight - maximum height of #pyCodeOutputDiv (in integer pixels)
 //   codeDivWidth  - maximum width  of #pyCodeOutputDiv (in integer pixels)
 //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code' (if null, then 'Edit code' link hidden)
-//   embeddedMode    - shortcut for hideOutput=true, codeDivWidth=350, codeDivHeight=400
+//   allowEditAnnotations - allow user to edit per-step annotations (default: true)
+//   embeddedMode         - shortcut for hideOutput=true, allowEditAnnotations=false
+//                          codeDivWidth=350, codeDivHeight=400
 //   updateOutputCallback - function to call (with 'this' as parameter)
 //                          whenever this.updateOutput() is called
 //                          (BEFORE rendering the output display)
@@ -182,6 +184,7 @@ ExecutionVisualizer.prototype.render = function() {
     '<div id="codeDisplayDiv">\
        <div id="pyCodeOutputDiv"/>\
        <div id="editCodeLinkDiv"><a id="editBtn">Edit code</a></div>\
+       <div id="annotateLinkDiv"><a id="annotateBtn" href="javascript:void(0);">Annotate this step</a></div>\
        <div id="executionSlider"/>\
        <div id="vcrControls">\
          <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
@@ -257,6 +260,13 @@ ExecutionVisualizer.prototype.render = function() {
     this.domRoot.find('#editBtn').click(function(){return false;}); // DISABLE the link!
   }
 
+  if (this.params.allowEditAnnotations !== undefined) {
+    this.allowEditAnnotations = this.params.allowEditAnnotations;
+  }
+  else {
+    this.allowEditAnnotations = true;
+  }
+
 
   if (this.params.embeddedMode) {
     this.params.hideOutput = true; // put this before hideOutput handler
@@ -269,6 +279,29 @@ ExecutionVisualizer.prototype.render = function() {
     if (this.params.codeDivHeight === undefined) {
       this.params.codeDivHeight = 400;
     }
+    
+    this.allowEditAnnotations = false;
+  }
+
+  myViz.editAnnotationMode = false;
+
+  if (this.allowEditAnnotations) {
+    var ab = this.domRoot.find('#annotateBtn');
+
+    ab.click(function() {
+      if (myViz.editAnnotationMode) {
+        myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider").show();
+        ab.html('Annotate this step');
+      }
+      else {
+        myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider").hide();
+        ab.html('Done annotating');
+      }
+      myViz.editAnnotationMode = !myViz.editAnnotationMode;
+    });
+  }
+  else {
+    this.domRoot.find('#annotateBtn').hide();
   }
 
   

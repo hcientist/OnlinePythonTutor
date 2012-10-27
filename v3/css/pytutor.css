@@ -128,7 +128,7 @@ div.ExecutionVisualizer table#pyCodeOutput .cod {
 }
 
 div.ExecutionVisualizer div#legendDiv {
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 0px;
   text-align: left;
   color: #666;
@@ -142,6 +142,13 @@ div.ExecutionVisualizer div#editCodeLinkDiv {
   margin-bottom: 4px;
   */
   margin: 8px auto;
+}
+
+div.ExecutionVisualizer div#annotateLinkDiv {
+  text-align: center;
+  margin-top: 12px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 div.ExecutionVisualizer #errorOutput {
@@ -484,7 +491,7 @@ div.ExecutionVisualizer div#heapHeader {
 
 div.ExecutionVisualizer #executionSlider {
   width: 500px;
-  margin-top: 20px;
+  margin-top: 15px;
   margin-bottom: 5px;
 
   margin-left: auto;
