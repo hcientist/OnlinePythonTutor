@@ -39,7 +39,7 @@ $(document).ready(function() {
   // WILL NOT MOVE. Thus, they will be in the incorrect location
   // unless you call redrawAllConnectors().
   //
-  // We use the "redrawAllConnectorsOnHeightChange" optional parameter to force redraw
+  // We use the "heightChangeCallback" optional parameter to force redraw
   // of all SVG arrows of ALL visualizers, whenever the height of one changes.
   //
   // Alternatively, here is one jQuery plugin that you can use to detect div height changes:
@@ -51,7 +51,7 @@ $(document).ready(function() {
   // Render listSumTrace inside of listSumDiv
   var listSumVisualizer = new ExecutionVisualizer('listSumDiv', listSumTrace,
                                                   {embeddedMode: true,
-                                                   redrawAllConnectorsOnHeightChange: true,
+                                                   heightChangeCallback: redrawAllVisualizerArrows,
                                                    editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
 
   // The "startingInstruction: 15" optional parameter means to jump to step 15
@@ -64,7 +64,7 @@ $(document).ready(function() {
                                                   {embeddedMode: true,
                                                    startingInstruction: 15,
                                                    verticalStack: true,
-                                                   redrawAllConnectorsOnHeightChange: true,
+                                                   heightChangeCallback: redrawAllVisualizerArrows,
                                                    editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
 
   // "embeddedMode: false" displays the full visualizer widget with the "Program Output" pane
@@ -74,16 +74,21 @@ $(document).ready(function() {
                                                    jumpToEnd: true,
                                                    codeDivWidth: 450,
                                                    codeDivHeight: 150,
+                                                   // no need for heightChangeCallback since
+                                                   // this is the "bottom-most" visualizer,
+                                                   // so no arrows appear below it
                                                    editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
+
+  function redrawAllVisualizerArrows() {
+    if (listSumVisualizer) listSumVisualizer.redrawConnectors();
+    if (hanoiVisualizer) hanoiVisualizer.redrawConnectors();
+    if (happyVisualizer) happyVisualizer.redrawConnectors();
+  }
 
 
   // Call redrawConnectors() on all visualizers whenever the window is resized,
   // since HTML elements might have moved during a resize. The SVG arrows rendered
   // by jsPlumb don't automatically get re-drawn in their new positions unless
   // redrawConnectors() is called.
-  $(window).resize(function() {
-    listSumVisualizer.redrawConnectors();
-    hanoiVisualizer.redrawConnectors();
-    happyVisualizer.redrawConnectors();
-  });
+  $(window).resize(redrawAllVisualizerArrows);
 });
