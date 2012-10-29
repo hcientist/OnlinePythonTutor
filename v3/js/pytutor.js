@@ -188,7 +188,6 @@ ExecutionVisualizer.prototype.render = function() {
     '<div id="codeDisplayDiv">\
        <div id="pyCodeOutputDiv"/>\
        <div id="editCodeLinkDiv"><a id="editBtn">Edit code</a></div>\
-       <div id="annotateLinkDiv"><a id="annotateBtn" href="javascript:void(0);">Annotate this step</a></div>\
        <div id="executionSlider"/>\
        <div id="vcrControls">\
          <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
@@ -199,6 +198,8 @@ ExecutionVisualizer.prototype.render = function() {
        </div>\
        <div id="errorOutput"/>\
        <div id="legendDiv"/>\
+       <div id="annotateLinkDiv"><button id="annotateBtn" type="button">Annotate this step</button></div>\
+       <div id="stepAnnotationDiv"><textarea id="stepAnnotation" cols="50" rows="3" wrap="off"></textarea></div>\
        <div id="progOutputs">\
          Program output:<br/>\
          <textarea id="pyStdout" cols="50" rows="10" wrap="off" readonly></textarea>\
@@ -271,6 +272,8 @@ ExecutionVisualizer.prototype.render = function() {
     this.allowEditAnnotations = false;
   }
 
+  this.domRoot.find('#stepAnnotationDiv').hide();
+
 
   if (this.params.embeddedMode) {
     this.params.hideOutput = true; // put this before hideOutput handler
@@ -294,17 +297,17 @@ ExecutionVisualizer.prototype.render = function() {
 
     ab.click(function() {
       if (myViz.editAnnotationMode) {
-        ab.html('(rendering ...)');
         myViz.enterViewAnnotationsMode();
 
-        myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider").show();
+        myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider,#editCodeLinkDiv").show();
+        myViz.domRoot.find('#stepAnnotationDiv').hide();
         ab.html('Annotate this step');
       }
       else {
-        ab.html('(rendering ...)');
         myViz.enterEditAnnotationsMode();
 
-        myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider").hide();
+        myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider,#editCodeLinkDiv").hide();
+        myViz.domRoot.find('#stepAnnotationDiv').show();
         ab.html('Done annotating');
       }
     });
@@ -429,25 +432,30 @@ ExecutionVisualizer.prototype.render = function() {
   this.hasRendered = true;
 }
 
-ExecutionVisualizer.prototype.enterViewAnnotationsMode = function() {
-  this.editAnnotationMode = false;
 
-  // TODO: check for memory leaks!!!
+ExecutionVisualizer.prototype.destroyAllAnnotationBubbles = function() {
   var myViz = this;
 
-  $.each(myViz.allAnnotationBubbles, function(i, e) {
-    e.enterViewMode();
-  });
+  // hopefully destroys all old bubbles and reclaims their memory
+  if (myViz.allAnnotationBubbles) {
+    $.each(myViz.allAnnotationBubbles, function(i, e) {
+      e.destroyQTip();
+    });
+  }
 
-  // TODO: "save" annotations into the trace as direct mappings of
-  // id -> annotation text
+  // remove this handler as well!
+  this.domRoot.find('#pyCodeOutputDiv').unbind('scroll');
+
+  myViz.allAnnotationBubbles = null;
 }
 
-ExecutionVisualizer.prototype.enterEditAnnotationsMode = function() {
-  this.editAnnotationMode = true;
-
-  // TODO: check for memory leaks!!!
+ExecutionVisualizer.prototype.initAllAnnotationBubbles = function() {
   var myViz = this;
+
+  // TODO: check for memory leaks
+  //console.log('initAllAnnotationBubbles');
+
+  myViz.destroyAllAnnotationBubbles();
 
   var codelineIDs = [];
   $.each(this.domRoot.find('#pyCodeOutput .cod'), function(i, e) {
@@ -469,26 +477,14 @@ ExecutionVisualizer.prototype.enterEditAnnotationsMode = function() {
     frameIDs.push($(e).attr('id'));
   });
 
-
   myViz.allAnnotationBubbles = [];
 
-  $.each(codelineIDs, function(i, e) {
-    myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'codeline', e));
-  });
+  $.each(codelineIDs, function(i,e) {myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'codeline', e));});
+  $.each(heapObjectIDs, function(i,e) {myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'object', e));});
+  $.each(variableIDs, function(i,e) {myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'variable', e));});
+  $.each(frameIDs, function(i,e) {myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'frame', e));});
 
-  $.each(heapObjectIDs, function(i, e) {
-    myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'object', e));
-  });
 
-  $.each(variableIDs, function(i, e) {
-    myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'variable', e));
-  });
-
-  $.each(frameIDs, function(i, e) {
-    myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'frame', e));
-  });
-
-  // TODO: this is badly placed ...
   this.domRoot.find('#pyCodeOutputDiv').scroll(function() {
     $.each(myViz.allAnnotationBubbles, function(i, e) {
       if (e.type == 'codeline') {
@@ -496,10 +492,63 @@ ExecutionVisualizer.prototype.enterEditAnnotationsMode = function() {
       }
     });
   });
+}
+
+
+ExecutionVisualizer.prototype.enterViewAnnotationsMode = function() {
+  this.editAnnotationMode = false;
+  var curEntry = this.curTrace[this.curInstr];
+
+  // TODO: check for memory leaks!!!
+  var myViz = this;
+
+  if (!myViz.allAnnotationBubbles) {
+    if (curEntry.annotations) {
+      // If there is an existing annotations object, then initiate all annotations bubbles
+      // and display them in 'View' mode
+      myViz.initAllAnnotationBubbles();
+
+      // TODO: set text of those bubbles from curEntry.annotations
+    }
+  }
+
+
+  if (myViz.allAnnotationBubbles) {
+    var curAnnotations = {};
+
+    $.each(myViz.allAnnotationBubbles, function(i, e) {
+      e.enterViewMode();
+
+      if (e.text) {
+        curAnnotations[e.domID] = e.text;
+      }
+    });
+
+    // Save annotations directly into the current trace entry as an 'annotations' object
+    // directly mapping domID -> text.
+    //
+    // NB: This scheme can break if the functions for generating domIDs are altered.
+    curEntry.annotations = curAnnotations;
+  }
+
+}
+
+ExecutionVisualizer.prototype.enterEditAnnotationsMode = function() {
+  this.editAnnotationMode = true;
+
+  // TODO: check for memory leaks!!!
+  var myViz = this;
+
+  if (!myViz.allAnnotationBubbles) {
+    myViz.initAllAnnotationBubbles();
+  }
 
   $.each(myViz.allAnnotationBubbles, function(i, e) {
     e.enterEditMode();
   });
+
+
+  //myViz.domRoot.find("#stepAnnotation").val(<TODO: handle me>);
 }
 
 
@@ -897,6 +946,9 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
     return;
   }
 
+  myViz.destroyAllAnnotationBubbles(); // TODO: is this a good place to put this function call?
+
+
   var prevDataVizHeight = myViz.domRoot.find('#dataViz').height();
 
 
@@ -1174,6 +1226,8 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
 
   // finally, render all of the data structures
   this.renderDataStructures();
+
+  this.enterViewAnnotationsMode(); // ... and render optional annotations (if any exist)
 
 
   // call the callback if necessary (BEFORE rendering)
@@ -2428,39 +2482,6 @@ var qtipShared = {
 };
 
 
-function createSpeechBubble(domID, my, at, htmlContent, isInput) {
-  var hashID = '#' + domID;
-  $(hashID).qtip($.extend({}, qtipShared, {
-    content: htmlContent,
-    id: domID,
-    position: {
-      my: my,
-      at: at,
-      effect: null, // disable all cutesy animations
-    },
-  }));
-
-
-  if (isInput) {
-
-  }
-  else {
-    $('#ui-tooltip-' + domID + '-content').click(function() {
-      if (!$(hashID).data('qtip-minimized')) {
-        $(hashID)
-          .data('qtip-minimized', true)
-          .qtip('option', 'content.text', ' ');
-      }
-      else {
-        $(hashID)
-          .data('qtip-minimized', false)
-          .qtip('option', 'content.text', htmlContent);
-      }
-    });
-  }
-}
-
-
 // a speech bubble annotation to attach to:
 //   'codeline' - a line of code
 //   'frame'    - a stack frame
@@ -2524,6 +2545,9 @@ AnnotationBubble.prototype.showStub = function() {
     position: {
       my: this.my,
       at: this.at,
+      adjust: {
+        x: (myBubble.type == 'codeline' ? -6 : 0), // shift codeline tips over a bit for aesthetics
+      },
       effect: null, // disable all cutesy animations
     },
     style: {

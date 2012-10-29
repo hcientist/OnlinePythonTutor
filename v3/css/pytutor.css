@@ -146,10 +146,27 @@ div.ExecutionVisualizer div#editCodeLinkDiv {
 
 div.ExecutionVisualizer div#annotateLinkDiv {
   text-align: center;
-  margin-top: 12px;
+  margin-top: 0px;
+  margin-bottom: 5px;
   margin-left: auto;
   margin-right: auto;
 }
+
+div.ExecutionVisualizer div#stepAnnotationDiv {
+  margin-bottom: 20px;
+}
+
+div.ExecutionVisualizer textarea#stepAnnotation {
+  border: 1px solid #999999;
+  font-size: 12pt;
+  padding: 4px;
+  font-family: Andale mono, monospace;
+
+  overflow: auto; /* to look pretty on IE */
+  /* make sure textarea doesn't grow and stretch */
+  resize: none;
+}
+
 
 div.ExecutionVisualizer #errorOutput {
   color: #e93f34; /* should match brightRed JavaScript variable */
