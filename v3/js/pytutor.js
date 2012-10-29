@@ -288,7 +288,6 @@ ExecutionVisualizer.prototype.render = function() {
   }
 
   myViz.editAnnotationMode = false;
-  myViz.allAnnotationBubbles = [];
 
   if (this.allowEditAnnotations) {
     var ab = this.domRoot.find('#annotateBtn');
@@ -296,23 +295,18 @@ ExecutionVisualizer.prototype.render = function() {
     ab.click(function() {
       if (myViz.editAnnotationMode) {
         ab.html('(rendering ...)');
-        $.each(myViz.allAnnotationBubbles, function(i, e) {
-          e.enterViewMode();
-        });
+        myViz.enterViewAnnotationsMode();
 
         myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider").show();
         ab.html('Annotate this step');
       }
       else {
         ab.html('(rendering ...)');
-        $.each(myViz.allAnnotationBubbles, function(i, e) {
-          e.enterEditMode();
-        });
+        myViz.enterEditAnnotationsMode();
 
         myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider").hide();
         ab.html('Done annotating');
       }
-      myViz.editAnnotationMode = !myViz.editAnnotationMode;
     });
   }
   else {
@@ -433,6 +427,79 @@ ExecutionVisualizer.prototype.render = function() {
   this.updateOutput();
 
   this.hasRendered = true;
+}
+
+ExecutionVisualizer.prototype.enterViewAnnotationsMode = function() {
+  this.editAnnotationMode = false;
+
+  // TODO: grab all annotations bubbles from current trace entry
+  /*
+  $.each(myViz.allAnnotationBubbles, function(i, e) {
+    e.enterViewMode();
+  });
+  */
+}
+
+ExecutionVisualizer.prototype.enterEditAnnotationsMode = function() {
+  // TODO: check for memory leaks!!!
+
+  this.editAnnotationMode = true;
+
+  var myViz = this;
+
+  var codelineIDs = [];
+  $.each(this.domRoot.find('#pyCodeOutput .cod'), function(i, e) {
+    codelineIDs.push($(e).attr('id'));
+  });
+
+  var heapObjectIDs = [];
+  $.each(this.domRoot.find('.heapObject'), function(i, e) {
+    heapObjectIDs.push($(e).attr('id'));
+  });
+
+  var variableIDs = [];
+  $.each(this.domRoot.find('.variableTr'), function(i, e) {
+    variableIDs.push($(e).attr('id'));
+  });
+
+  var frameIDs = [];
+  $.each(this.domRoot.find('.stackFrame'), function(i, e) {
+    frameIDs.push($(e).attr('id'));
+  });
+
+
+  var allAnnotationBubbles = [];
+
+  $.each(codelineIDs, function(i, e) {
+    allAnnotationBubbles.push(new AnnotationBubble(myViz, 'codeline', e));
+  });
+
+  $.each(heapObjectIDs, function(i, e) {
+    allAnnotationBubbles.push(new AnnotationBubble(myViz, 'object', e));
+  });
+
+  $.each(variableIDs, function(i, e) {
+    allAnnotationBubbles.push(new AnnotationBubble(myViz, 'variable', e));
+  });
+
+  $.each(frameIDs, function(i, e) {
+    allAnnotationBubbles.push(new AnnotationBubble(myViz, 'frame', e));
+  });
+
+  //this.allAnnotationBubbles = allAnnotationBubbles;
+
+  // TODO: this is badly placed ...
+  this.domRoot.find('#pyCodeOutputDiv').scroll(function() {
+    $.each(allAnnotationBubbles, function(i, e) {
+      if (e.type == 'codeline') {
+        e.redrawCodelineBubble();
+      }
+    });
+  });
+
+  $.each(allAnnotationBubbles, function(i, e) {
+    e.enterEditMode();
+  });
 }
 
 
@@ -1875,6 +1942,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   globalVarTable
     .enter()
     .append('tr')
+    .attr('class', 'variableTr')
     .attr('id', function(d, i) {
         return myViz.generateID(varnameToCssID('global__' + d + '_tr')); // make globally unique (within the page)
     });
@@ -2025,6 +2093,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   stackVarTable
     .enter()
     .append('tr')
+    .attr('class', 'variableTr')
     .attr('id', function(d, i) {
         return myViz.generateID(varnameToCssID(d.frame.unique_hash + '__' + d.varname + '_tr')); // make globally unique (within the page)
     });
@@ -2400,7 +2469,9 @@ function createSpeechBubble(domID, my, at, htmlContent, isInput) {
 // (as determined by the 'type' param)
 //
 // domID is the ID of the element to attach to (without the leading '#' sign)
-function AnnotationBubble(type, domID) {
+function AnnotationBubble(parentViz, type, domID) {
+  this.parentViz = parentViz;
+
   this.domID = domID;
   this.hashID = '#' + domID;
 

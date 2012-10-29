@@ -190,7 +190,8 @@ $(document).ready(function() {
               myVisualizer = new ExecutionVisualizer('pyOutputPane',
                                                      dataFromBackend,
                                                      {startingInstruction:  startingInstruction,
-                                                      updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');}
+                                                      updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
+                                                      allowEditAnnotations: true,
                                                      });
 
 
