@@ -432,19 +432,21 @@ ExecutionVisualizer.prototype.render = function() {
 ExecutionVisualizer.prototype.enterViewAnnotationsMode = function() {
   this.editAnnotationMode = false;
 
-  // TODO: grab all annotations bubbles from current trace entry
-  /*
+  // TODO: check for memory leaks!!!
+  var myViz = this;
+
   $.each(myViz.allAnnotationBubbles, function(i, e) {
     e.enterViewMode();
   });
-  */
+
+  // TODO: "save" annotations into the trace as direct mappings of
+  // id -> annotation text
 }
 
 ExecutionVisualizer.prototype.enterEditAnnotationsMode = function() {
-  // TODO: check for memory leaks!!!
-
   this.editAnnotationMode = true;
 
+  // TODO: check for memory leaks!!!
   var myViz = this;
 
   var codelineIDs = [];
@@ -468,36 +470,34 @@ ExecutionVisualizer.prototype.enterEditAnnotationsMode = function() {
   });
 
 
-  var allAnnotationBubbles = [];
+  myViz.allAnnotationBubbles = [];
 
   $.each(codelineIDs, function(i, e) {
-    allAnnotationBubbles.push(new AnnotationBubble(myViz, 'codeline', e));
+    myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'codeline', e));
   });
 
   $.each(heapObjectIDs, function(i, e) {
-    allAnnotationBubbles.push(new AnnotationBubble(myViz, 'object', e));
+    myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'object', e));
   });
 
   $.each(variableIDs, function(i, e) {
-    allAnnotationBubbles.push(new AnnotationBubble(myViz, 'variable', e));
+    myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'variable', e));
   });
 
   $.each(frameIDs, function(i, e) {
-    allAnnotationBubbles.push(new AnnotationBubble(myViz, 'frame', e));
+    myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'frame', e));
   });
-
-  //this.allAnnotationBubbles = allAnnotationBubbles;
 
   // TODO: this is badly placed ...
   this.domRoot.find('#pyCodeOutputDiv').scroll(function() {
-    $.each(allAnnotationBubbles, function(i, e) {
+    $.each(myViz.allAnnotationBubbles, function(i, e) {
       if (e.type == 'codeline') {
         e.redrawCodelineBubble();
       }
     });
   });
 
-  $.each(allAnnotationBubbles, function(i, e) {
+  $.each(myViz.allAnnotationBubbles, function(i, e) {
     e.enterEditMode();
   });
 }
