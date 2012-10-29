@@ -76,7 +76,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   codeDivHeight - maximum height of #pyCodeOutputDiv (in integer pixels)
 //   codeDivWidth  - maximum width  of #pyCodeOutputDiv (in integer pixels)
 //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code' (if null, then 'Edit code' link hidden)
-//   allowEditAnnotations - allow user to edit per-step annotations (default: true)
+//   allowEditAnnotations - allow user to edit per-step annotations (default: false)
 //   embeddedMode         - shortcut for hideOutput=true, allowEditAnnotations=false
 //                          codeDivWidth=350, codeDivHeight=400
 //   updateOutputCallback - function to call (with 'this' as parameter)
@@ -268,7 +268,7 @@ ExecutionVisualizer.prototype.render = function() {
     this.allowEditAnnotations = this.params.allowEditAnnotations;
   }
   else {
-    this.allowEditAnnotations = true;
+    this.allowEditAnnotations = false;
   }
 
 
