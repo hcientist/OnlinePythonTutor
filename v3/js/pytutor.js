@@ -1415,6 +1415,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // connectors and redraw them from scratch. doing so avoids mysterious
   // jsPlumb connector alignment issues when the visualizer's enclosing
   // div contains, say, a "position: relative;" CSS tag
+  // (which happens in the IPython Notebook)
   var existingConnectionEndpointIDs = d3.map();
 
   myViz.jsPlumbInstance.select().each(function(c) {
@@ -1430,9 +1431,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       existingConnectionEndpointIDs.set(c.sourceId, c.targetId);
     }
   });
-
-  myViz.jsPlumbInstance.reset(); // delete all connectors and state!!!
-
 
   /*
   existingConnectionEndpointIDs.forEach(function(varID, valueID) {
@@ -1499,12 +1497,20 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       .style('opacity', '0')
       .duration(500)
       .each('end', function() {
-        hrExit.remove();
+        hrExit
+          .each(function(d, idx) {
+            $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
+          })
+          .remove();
         myViz.redrawConnectors();
       });
   }
   else {
-    hrExit.remove();
+    hrExit
+      .each(function(d, idx) {
+        $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
+      })
+      .remove();
   }
 
 
@@ -1557,12 +1563,20 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       .style('opacity', '0') /* fade out */
       .duration(500)
       .each('end', function() {
-        tlhExit.remove();
+        tlhExit
+          .each(function(d, idx) {
+            $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
+          })
+          .remove();
         myViz.redrawConnectors();
       });
   }
   else {
-    tlhExit.remove();
+    tlhExit
+      .each(function(d, idx) {
+        $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
+      })
+      .remove();
   }
 
 
@@ -1885,57 +1899,44 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         $(this).html(varname);
       }
       else {
+        // always delete and re-render the global var ...
+        // NB: trying to cache and compare the old value using,
+        // say -- $(this).attr('data-curvalue', valStringRepr) -- leads to
+        // a mysterious and killer memory leak that I can't figure out yet 
+        $(this).empty();
+
+        // make sure varname doesn't contain any weird
+        // characters that are illegal for CSS ID's ...
+        var varDivID = myViz.generateID('global__' + varnameToCssID(varname));
+
+        // need to get rid of the old connector in preparation for rendering a new one:
+        existingConnectionEndpointIDs.remove(varDivID);
+
         var val = curEntry.globals[varname];
-
-        // include type in repr to prevent conflating integer 5 with string "5"
-        var valStringRepr = String(typeof val) + ':' + String(val);
-
-        // SUPER HACK - retrieve previous value as a hidden attribute
-        // TODO: use the jQuery .data() method to store arbitrary data
-        // inside of a DOM element, so that we can avoid munging strings:
-        //   http://api.jquery.com/data/
-        var prevValStringRepr = $(this).attr('data-curvalue');
-
-        // IMPORTANT! only clear the div and render a new element if the
-        // value has changed
-        if (valStringRepr != prevValStringRepr) {
-          // TODO: render a transition
-
-          $(this).empty(); // crude but effective for now
-
-          // make sure varname doesn't contain any weird
-          // characters that are illegal for CSS ID's ...
-          var varDivID = myViz.generateID('global__' + varnameToCssID(varname));
-
-          // need to get rid of the old connector in preparation for rendering a new one:
-          existingConnectionEndpointIDs.remove(varDivID);
-
-          if (isPrimitiveType(val)) {
-            renderPrimitiveObject(val, $(this));
-          }
-          else {
-            // add a stub so that we can connect it with a connector later.
-            // IE needs this div to be NON-EMPTY in order to properly
-            // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
-            $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
-
-            assert(!connectionEndpointIDs.has(varDivID));
-            var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
-            connectionEndpointIDs.set(varDivID, heapObjID);
-            //console.log('STACK->HEAP', varDivID, heapObjID);
-          }
-
-          //console.log('CHANGED', varname, prevValStringRepr, valStringRepr);
+        if (isPrimitiveType(val)) {
+          renderPrimitiveObject(val, $(this));
         }
+        else {
+          // add a stub so that we can connect it with a connector later.
+          // IE needs this div to be NON-EMPTY in order to properly
+          // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
+          $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
 
-        // SUPER HACK - set current value as a hidden string attribute
-        $(this).attr('data-curvalue', valStringRepr);
+          assert(!connectionEndpointIDs.has(varDivID));
+          var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
+          connectionEndpointIDs.set(varDivID, heapObjID);
+          //console.log('STACK->HEAP', varDivID, heapObjID);
+        }
       }
-
     });
 
 
-  globalVarTableCells.exit().remove();
+
+  globalVarTableCells.exit()
+    .each(function(d, idx) {
+      $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
+    })
+    .remove();
 
   globalVarTable.exit()
     .each(function(d, i) {
@@ -1943,6 +1944,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       $(this).find('.stack_pointer').each(function(i, sp) {
         existingConnectionEndpointIDs.remove($(sp).attr('id'));
       });
+
+      $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
     })
     .remove();
 
@@ -2048,54 +2051,43 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
           $(this).html(varname);
       }
       else {
+        // always delete and re-render the stack var ...
+        // NB: trying to cache and compare the old value using,
+        // say -- $(this).attr('data-curvalue', valStringRepr) -- leads to
+        // a mysterious and killer memory leak that I can't figure out yet 
+        $(this).empty();
+
+        // make sure varname and frame.unique_hash don't contain any weird
+        // characters that are illegal for CSS ID's ...
+        var varDivID = myViz.generateID(varnameToCssID(frame.unique_hash + '__' + varname));
+
+        // need to get rid of the old connector in preparation for rendering a new one:
+        existingConnectionEndpointIDs.remove(varDivID);
+
         var val = frame.encoded_locals[varname];
-
-        // include type in repr to prevent conflating integer 5 with string "5"
-        var valStringRepr = String(typeof val) + ':' + String(val);
-
-        // SUPER HACK - retrieve previous value as a hidden attribute
-        var prevValStringRepr = $(this).attr('data-curvalue');
-
-        // IMPORTANT! only clear the div and render a new element if the
-        // value has changed
-        if (valStringRepr != prevValStringRepr) {
-          // TODO: render a transition
-
-          $(this).empty(); // crude but effective for now
-
-
-          // make sure varname and frame.unique_hash don't contain any weird
-          // characters that are illegal for CSS ID's ...
-          var varDivID = myViz.generateID(varnameToCssID(frame.unique_hash + '__' + varname));
-
-          // need to get rid of the old connector in preparation for rendering a new one:
-          existingConnectionEndpointIDs.remove(varDivID);
-
-          if (isPrimitiveType(val)) {
-            renderPrimitiveObject(val, $(this));
-          }
-          else {
-            // add a stub so that we can connect it with a connector later.
-            // IE needs this div to be NON-EMPTY in order to properly
-            // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
-            $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
-
-            assert(!connectionEndpointIDs.has(varDivID));
-            var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
-            connectionEndpointIDs.set(varDivID, heapObjID);
-            //console.log('STACK->HEAP', varDivID, heapObjID);
-          }
-
-          //console.log('CHANGED', frame.unique_hash, varname, prevValStringRepr, valStringRepr);
+        if (isPrimitiveType(val)) {
+          renderPrimitiveObject(val, $(this));
         }
+        else {
+          // add a stub so that we can connect it with a connector later.
+          // IE needs this div to be NON-EMPTY in order to properly
+          // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
+          $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
 
-        // SUPER HACK - set current value as a hidden string attribute
-        $(this).attr('data-curvalue', valStringRepr);
+          assert(!connectionEndpointIDs.has(varDivID));
+          var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
+          connectionEndpointIDs.set(varDivID, heapObjID);
+          //console.log('STACK->HEAP', varDivID, heapObjID);
+        }
       }
     });
 
 
-  stackVarTableCells.exit().remove();
+  stackVarTableCells.exit()
+    .each(function(d, idx) {
+      $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
+    })
+   .remove();
 
   stackVarTable.exit()
     .each(function(d, i) {
@@ -2103,6 +2095,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         // detach all stack_pointer connectors for divs that are being removed
         existingConnectionEndpointIDs.remove($(sp).attr('id'));
       });
+
+      $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
     })
     .remove();
 
@@ -2112,9 +2106,19 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         // detach all stack_pointer connectors for divs that are being removed
         existingConnectionEndpointIDs.remove($(sp).attr('id'));
       });
+
+      $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
     })
     .remove();
 
+
+  // NB: ugh, I'm not very happy about this hack, but it seems necessary
+  // for embedding within sophisticated webpages such as IPython Notebook
+
+  // delete all connectors. do this AS LATE AS POSSIBLE so that
+  // (presumably) the calls to $(this).empty() earlier in this function
+  // will properly garbage collect the connectors
+  myViz.jsPlumbInstance.reset();
 
   // re-render existing connectors ...
   existingConnectionEndpointIDs.forEach(function(varID, valueID) {
