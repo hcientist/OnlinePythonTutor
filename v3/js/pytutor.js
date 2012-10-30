@@ -492,6 +492,8 @@ ExecutionVisualizer.prototype.initAllAnnotationBubbles = function() {
       }
     });
   });
+
+  //console.log('initAllAnnotationBubbles', myViz.allAnnotationBubbles.length);
 }
 
 
@@ -508,7 +510,12 @@ ExecutionVisualizer.prototype.enterViewAnnotationsMode = function() {
       // and display them in 'View' mode
       myViz.initAllAnnotationBubbles();
 
-      // TODO: set text of those bubbles from curEntry.annotations
+      $.each(myViz.allAnnotationBubbles, function(i, e) {
+        var txt = curEntry.annotations[e.domID];
+        if (txt) {
+          e.preseedText(txt);
+        }
+      });
     }
   }
 
@@ -611,6 +618,10 @@ ExecutionVisualizer.prototype.findNextBreakpoint = function() {
 ExecutionVisualizer.prototype.stepForward = function() {
   var myViz = this;
 
+  if (myViz.editAnnotationMode) {
+    return;
+  }
+
   if (myViz.curInstr < myViz.curTrace.length - 1) {
     // if there is a next breakpoint, then jump to it ...
     if (myViz.sortedBreakpointsList.length > 0) {
@@ -633,6 +644,10 @@ ExecutionVisualizer.prototype.stepForward = function() {
 // returns true if action successfully taken
 ExecutionVisualizer.prototype.stepBack = function() {
   var myViz = this;
+
+  if (myViz.editAnnotationMode) {
+    return;
+  }
 
   if (myViz.curInstr > 0) {
     // if there is a prev breakpoint, then jump to it ...
@@ -2619,7 +2634,7 @@ AnnotationBubble.prototype.bindViewerClickHandler = function() {
 }
 
 AnnotationBubble.prototype.showViewer = function() {
-  assert(this.state == 'edit');
+  assert(this.state == 'edit' || this.state == 'invisible');
   assert(this.text); // must be non-empty!
 
   // destroy then create a new tip:
@@ -2718,6 +2733,21 @@ AnnotationBubble.prototype.enterViewMode = function() {
       this.makeInvisible();
     }
   }
+  else if (this.state == 'invisible') {
+    // this happens when, say, you first enter View Mode
+    if (this.text) {
+      this.showViewer();
+
+      if (this.type == 'codeline') {
+        this.redrawCodelineBubble();
+      }
+    }
+  }
+}
+
+AnnotationBubble.prototype.preseedText = function(txt) {
+  assert(this.state == 'invisible');
+  this.text = txt;
 }
 
 AnnotationBubble.prototype.redrawCodelineBubble = function() {
