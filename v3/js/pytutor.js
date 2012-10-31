@@ -455,7 +455,7 @@ ExecutionVisualizer.prototype.destroyAllAnnotationBubbles = function() {
 ExecutionVisualizer.prototype.initStepAnnotation = function() {
   var curEntry = this.curTrace[this.curInstr];
   if (curEntry.stepAnnotation) {
-    this.domRoot.find("#stepAnnotationViewer").html(curEntry.stepAnnotation);
+    this.domRoot.find("#stepAnnotationViewer").html(htmlspecialchars(curEntry.stepAnnotation)); // help prevent HTML/JS injection attacks
     this.domRoot.find("#stepAnnotationEditor").val(curEntry.stepAnnotation);
   }
   else {
@@ -2673,7 +2673,7 @@ AnnotationBubble.prototype.showViewer = function() {
   // destroy then create a new tip:
   this.destroyQTip();
   $(this.hashID).qtip($.extend({}, qtipShared, {
-    content: this.text,
+    content: htmlspecialchars(this.text), // help prevent HTML/JS injection attacks
     id: this.domID,
     position: {
       my: this.my,
