@@ -198,8 +198,11 @@ ExecutionVisualizer.prototype.render = function() {
        </div>\
        <div id="errorOutput"/>\
        <div id="legendDiv"/>\
+       <div id="stepAnnotationDiv">\
+         <textarea class="annotationText" id="stepAnnotationEditor" cols="60" rows="3"></textarea>\
+         <div class="annotationText" id="stepAnnotationViewer"></div>\
+       </div>\
        <div id="annotateLinkDiv"><button id="annotateBtn" type="button">Annotate this step</button></div>\
-       <div id="stepAnnotationDiv"><textarea id="stepAnnotation" cols="50" rows="3" wrap="off"></textarea></div>\
        <div id="progOutputs">\
          Program output:<br/>\
          <textarea id="pyStdout" cols="50" rows="10" wrap="off" readonly></textarea>\
@@ -272,7 +275,7 @@ ExecutionVisualizer.prototype.render = function() {
     this.allowEditAnnotations = false;
   }
 
-  this.domRoot.find('#stepAnnotationDiv').hide();
+  this.domRoot.find('#stepAnnotationEditor').hide();
 
 
   if (this.params.embeddedMode) {
@@ -299,15 +302,15 @@ ExecutionVisualizer.prototype.render = function() {
       if (myViz.editAnnotationMode) {
         myViz.enterViewAnnotationsMode();
 
-        myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider,#editCodeLinkDiv").show();
-        myViz.domRoot.find('#stepAnnotationDiv').hide();
+        myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider,#editCodeLinkDiv,#stepAnnotationViewer").show();
+        myViz.domRoot.find('#stepAnnotationEditor').hide();
         ab.html('Annotate this step');
       }
       else {
         myViz.enterEditAnnotationsMode();
 
-        myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider,#editCodeLinkDiv").hide();
-        myViz.domRoot.find('#stepAnnotationDiv').show();
+        myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider,#editCodeLinkDiv,#stepAnnotationViewer").hide();
+        myViz.domRoot.find('#stepAnnotationEditor').show();
         ab.html('Done annotating');
       }
     });
@@ -449,6 +452,18 @@ ExecutionVisualizer.prototype.destroyAllAnnotationBubbles = function() {
   myViz.allAnnotationBubbles = null;
 }
 
+ExecutionVisualizer.prototype.initStepAnnotation = function() {
+  var curEntry = this.curTrace[this.curInstr];
+  if (curEntry.stepAnnotation) {
+    this.domRoot.find("#stepAnnotationViewer").html(curEntry.stepAnnotation);
+    this.domRoot.find("#stepAnnotationEditor").val(curEntry.stepAnnotation);
+  }
+  else {
+    this.domRoot.find("#stepAnnotationViewer").html('');
+    this.domRoot.find("#stepAnnotationEditor").val('');
+  }
+}
+
 ExecutionVisualizer.prototype.initAllAnnotationBubbles = function() {
   var myViz = this;
 
@@ -505,13 +520,13 @@ ExecutionVisualizer.prototype.enterViewAnnotationsMode = function() {
   var myViz = this;
 
   if (!myViz.allAnnotationBubbles) {
-    if (curEntry.annotations) {
+    if (curEntry.bubbleAnnotations) {
       // If there is an existing annotations object, then initiate all annotations bubbles
       // and display them in 'View' mode
       myViz.initAllAnnotationBubbles();
 
       $.each(myViz.allAnnotationBubbles, function(i, e) {
-        var txt = curEntry.annotations[e.domID];
+        var txt = curEntry.bubbleAnnotations[e.domID];
         if (txt) {
           e.preseedText(txt);
         }
@@ -535,9 +550,18 @@ ExecutionVisualizer.prototype.enterViewAnnotationsMode = function() {
     // directly mapping domID -> text.
     //
     // NB: This scheme can break if the functions for generating domIDs are altered.
-    curEntry.annotations = curAnnotations;
+    curEntry.bubbleAnnotations = curAnnotations;
   }
 
+  var stepAnnotationEditorVal = myViz.domRoot.find("#stepAnnotationEditor").val().trim();
+  if (stepAnnotationEditorVal) {
+    curEntry.stepAnnotation = stepAnnotationEditorVal;
+  }
+  else {
+    delete curEntry.stepAnnotation; // go as far as to DELETE this field entirely
+  }
+
+  myViz.initStepAnnotation();
 }
 
 ExecutionVisualizer.prototype.enterEditAnnotationsMode = function() {
@@ -545,6 +569,8 @@ ExecutionVisualizer.prototype.enterEditAnnotationsMode = function() {
 
   // TODO: check for memory leaks!!!
   var myViz = this;
+
+  var curEntry = this.curTrace[this.curInstr];
 
   if (!myViz.allAnnotationBubbles) {
     myViz.initAllAnnotationBubbles();
@@ -555,7 +581,12 @@ ExecutionVisualizer.prototype.enterEditAnnotationsMode = function() {
   });
 
 
-  //myViz.domRoot.find("#stepAnnotation").val(<TODO: handle me>);
+  if (curEntry.stepAnnotation) {
+    myViz.domRoot.find("#stepAnnotationEditor").val(curEntry.stepAnnotation);
+  }
+  else {
+    myViz.domRoot.find("#stepAnnotationEditor").val('');
+  }
 }
 
 
@@ -961,7 +992,9 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
     return;
   }
 
-  myViz.destroyAllAnnotationBubbles(); // TODO: is this a good place to put this function call?
+  // crucial resets for annotations (TODO: kludgy)
+  myViz.destroyAllAnnotationBubbles();
+  myViz.initStepAnnotation();
 
 
   var prevDataVizHeight = myViz.domRoot.find('#dataViz').height();

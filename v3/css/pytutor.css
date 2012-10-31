@@ -155,14 +155,12 @@ div.ExecutionVisualizer div#annotateLinkDiv {
 }
 
 div.ExecutionVisualizer div#stepAnnotationDiv {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
-div.ExecutionVisualizer textarea#stepAnnotation {
+div.ExecutionVisualizer textarea#stepAnnotationEditor {
   border: 1px solid #999999;
-  font-size: 12pt;
   padding: 4px;
-  font-family: Andale mono, monospace;
 
   overflow: auto; /* to look pretty on IE */
   /* make sure textarea doesn't grow and stretch */
@@ -659,3 +657,10 @@ textarea.bubbleInputText {
 		padding: 6px 9px;
 	}
 	
+
+.annotationText {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 11pt;
+  line-height: 1.5em;
+}
+
