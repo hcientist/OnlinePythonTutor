@@ -2710,7 +2710,7 @@ AnnotationBubble.prototype.minimizeViewer = function() {
 
 AnnotationBubble.prototype.restoreViewer = function() {
   assert(this.state == 'minimized');
-  $(this.hashID).qtip('option', 'content.text', this.text);
+  $(this.hashID).qtip('option', 'content.text', htmlspecialchars(this.text)); // help prevent HTML/JS injection attacks
   this.bindViewerClickHandler();
   this.state = 'view';
 }

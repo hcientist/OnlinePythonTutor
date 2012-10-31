@@ -147,7 +147,7 @@ div.ExecutionVisualizer div#editCodeLinkDiv {
 div.ExecutionVisualizer div#annotateLinkDiv {
   /*text-align: left;*/
   margin-top: 0px;
-  margin-bottom: 5px;
+  margin-bottom: 12px;
   /*
   margin-left: auto;
   margin-right: auto;
@@ -155,7 +155,7 @@ div.ExecutionVisualizer div#annotateLinkDiv {
 }
 
 div.ExecutionVisualizer div#stepAnnotationDiv {
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 div.ExecutionVisualizer textarea#stepAnnotationEditor {
