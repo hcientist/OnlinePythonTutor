@@ -90,6 +90,11 @@ $(document).ready(function() {
       $("#pyInputPane").show();
       $("#pyOutputPane").hide();
       $("#embedLinkDiv").hide();
+
+      // destroy all annotation bubbles (NB: kludgy)
+      if (myVisualizer) {
+        myVisualizer.destroyAllAnnotationBubbles();
+      }
     }
     else if (appMode == 'display') {
       $("#pyInputPane").hide();

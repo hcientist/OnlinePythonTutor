@@ -992,6 +992,16 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
     return;
   }
 
+
+  // really nitpicky!!! gets the difference in width between the code display
+  // and the maximum width of its enclosing div
+  myViz.codeHorizontalOverflow = myViz.domRoot.find('#pyCodeOutput').width() - myViz.domRoot.find('#pyCodeOutputDiv').width();
+  // should always be positive
+  if (myViz.codeHorizontalOverflow < 0) {
+    myViz.codeHorizontalOverflow = 0;
+  }
+
+
   // crucial resets for annotations (TODO: kludgy)
   myViz.destroyAllAnnotationBubbles();
   myViz.initStepAnnotation();
@@ -2628,6 +2638,9 @@ AnnotationBubble.prototype.showEditor = function() {
     position: {
       my: this.my,
       at: this.at,
+      adjust: {
+        x: (myBubble.type == 'codeline' ? -6 : 0), // shift codeline tips over a bit for aesthetics
+      },
       effect: null, // disable all cutesy animations
     }
   }));
@@ -2670,6 +2683,7 @@ AnnotationBubble.prototype.showViewer = function() {
   assert(this.state == 'edit' || this.state == 'invisible');
   assert(this.text); // must be non-empty!
 
+  var myBubble = this;
   // destroy then create a new tip:
   this.destroyQTip();
   $(this.hashID).qtip($.extend({}, qtipShared, {
@@ -2678,6 +2692,9 @@ AnnotationBubble.prototype.showViewer = function() {
     position: {
       my: this.my,
       at: this.at,
+      adjust: {
+        x: (myBubble.type == 'codeline' ? -6 : 0), // shift codeline tips over a bit for aesthetics
+      },
       effect: null, // disable all cutesy animations
     }
   }));
