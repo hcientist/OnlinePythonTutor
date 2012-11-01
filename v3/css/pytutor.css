@@ -155,10 +155,12 @@ div.ExecutionVisualizer div#annotateLinkDiv {
 }
 
 div.ExecutionVisualizer div#stepAnnotationDiv {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
-div.ExecutionVisualizer textarea#stepAnnotationEditor {
+div.ExecutionVisualizer textarea#stepAnnotationEditor,
+div.ExecutionVisualizer textarea#vizTitleEditor,
+div.ExecutionVisualizer textarea#vizDescriptionEditor {
   border: 1px solid #999999;
   padding: 4px;
 
@@ -658,9 +660,22 @@ textarea.bubbleInputText {
 	}
 	
 
-.annotationText {
+div.ExecutionVisualizer .annotationText,
+div.ExecutionVisualizer .vizDescriptionText {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 11pt;
   line-height: 1.5em;
+}
+
+div.ExecutionVisualizer .vizTitleText {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 16pt;
+  margin-bottom: 12pt;
+}
+
+div.ExecutionVisualizer div#vizHeader {
+  margin-bottom: 10px;
+  width: 800px;
+  max-width: 800px;
 }
 

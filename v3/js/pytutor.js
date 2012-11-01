@@ -228,14 +228,21 @@ ExecutionVisualizer.prototype.render = function() {
        </table>\
      </div>';
 
+  var vizHeaderHTML =
+    '<div id="vizHeader">\
+       <textarea class="vizTitleText" id="vizTitleEditor" cols="60" rows="1"></textarea>\
+       <div class="vizTitleText" id="vizTitleViewer"></div>\
+       <textarea class="vizDescriptionText" id="vizDescriptionEditor" cols="75" rows="2"></textarea>\
+       <div class="vizDescriptionText" id="vizDescriptionViewer"></div>\
+    </div>';
 
   if (this.params.verticalStack) {
-    this.domRoot.html('<table border="0" class="visualizer"><tr><td class="vizLayoutTd">' +
+    this.domRoot.html(vizHeaderHTML + '<table border="0" class="visualizer"><tr><td class="vizLayoutTd">' +
                       codeDisplayHTML + '</td></tr><tr><td class="vizLayoutTd">' +
                       codeVizHTML + '</td></tr></table>');
   }
   else {
-    this.domRoot.html('<table border="0" class="visualizer"><tr><td class="vizLayoutTd">' +
+    this.domRoot.html(vizHeaderHTML + '<table border="0" class="visualizer"><tr><td class="vizLayoutTd">' +
                       codeDisplayHTML + '</td><td class="vizLayoutTd">' +
                       codeVizHTML + '</td></tr></table>');
   }
@@ -276,7 +283,6 @@ ExecutionVisualizer.prototype.render = function() {
   }
 
   this.domRoot.find('#stepAnnotationEditor').hide();
-
 
   if (this.params.embeddedMode) {
     this.params.hideOutput = true; // put this before hideOutput handler
@@ -436,6 +442,35 @@ ExecutionVisualizer.prototype.render = function() {
 }
 
 
+ExecutionVisualizer.prototype.showVizHeaderViewMode = function() {
+  var titleVal = this.domRoot.find('#vizTitleEditor').val().trim();
+  var  descVal = this.domRoot.find('#vizDescriptionEditor').val().trim();
+
+  this.domRoot.find('#vizTitleEditor,#vizDescriptionEditor').hide();
+
+  if (!titleVal && !descVal) {
+    this.domRoot.find('#vizHeader').hide();
+  }
+  else {
+    this.domRoot.find('#vizHeader,#vizTitleViewer,#vizDescriptionViewer').show();
+    if (titleVal) {
+      this.domRoot.find('#vizTitleViewer').html(htmlspecialchars(titleVal));
+    }
+
+    if (descVal) {
+      this.domRoot.find('#vizDescriptionViewer').html(htmlspecialchars(descVal));
+    }
+  }
+}
+
+ExecutionVisualizer.prototype.showVizHeaderEditMode = function() {
+  this.domRoot.find('#vizHeader').show();
+
+  this.domRoot.find('#vizTitleViewer,#vizDescriptionViewer').hide();
+  this.domRoot.find('#vizTitleEditor,#vizDescriptionEditor').show();
+}
+
+
 ExecutionVisualizer.prototype.destroyAllAnnotationBubbles = function() {
   var myViz = this;
 
@@ -562,6 +597,12 @@ ExecutionVisualizer.prototype.enterViewAnnotationsMode = function() {
   }
 
   myViz.initStepAnnotation();
+
+  myViz.showVizHeaderViewMode();
+
+  // redraw all connectors and bubbles in new vertical position ..
+  myViz.redrawConnectors();
+  myViz.redrawAllAnnotationBubbles();
 }
 
 ExecutionVisualizer.prototype.enterEditAnnotationsMode = function() {
@@ -586,6 +627,22 @@ ExecutionVisualizer.prototype.enterEditAnnotationsMode = function() {
   }
   else {
     myViz.domRoot.find("#stepAnnotationEditor").val('');
+  }
+
+
+  myViz.showVizHeaderEditMode();
+
+  // redraw all connectors and bubbles in new vertical position ..
+  myViz.redrawConnectors();
+  myViz.redrawAllAnnotationBubbles();
+}
+
+
+ExecutionVisualizer.prototype.redrawAllAnnotationBubbles = function() {
+  if (this.allAnnotationBubbles) {
+    $.each(this.allAnnotationBubbles, function(i, e) {
+      e.redrawBubble();
+    });
   }
 }
 
@@ -2817,6 +2874,10 @@ AnnotationBubble.prototype.redrawCodelineBubble = function() {
     $(this.hashID).qtip('hide');
     this.qtipHidden = true;
   }
+}
+
+AnnotationBubble.prototype.redrawBubble = function() {
+  $(this.hashID).qtip('reposition');
 }
 
 
