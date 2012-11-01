@@ -454,11 +454,11 @@ ExecutionVisualizer.prototype.showVizHeaderViewMode = function() {
   else {
     this.domRoot.find('#vizHeader,#vizTitleViewer,#vizDescriptionViewer').show();
     if (titleVal) {
-      this.domRoot.find('#vizTitleViewer').html(htmlspecialchars(titleVal));
+      this.domRoot.find('#vizTitleViewer').html(htmlsanitize(titleVal)); // help prevent HTML/JS injection attacks
     }
 
     if (descVal) {
-      this.domRoot.find('#vizDescriptionViewer').html(htmlspecialchars(descVal));
+      this.domRoot.find('#vizDescriptionViewer').html(htmlsanitize(descVal)); // help prevent HTML/JS injection attacks
     }
   }
 }
@@ -490,7 +490,7 @@ ExecutionVisualizer.prototype.destroyAllAnnotationBubbles = function() {
 ExecutionVisualizer.prototype.initStepAnnotation = function() {
   var curEntry = this.curTrace[this.curInstr];
   if (curEntry.stepAnnotation) {
-    this.domRoot.find("#stepAnnotationViewer").html(htmlspecialchars(curEntry.stepAnnotation)); // help prevent HTML/JS injection attacks
+    this.domRoot.find("#stepAnnotationViewer").html(htmlsanitize(curEntry.stepAnnotation)); // help prevent HTML/JS injection attacks
     this.domRoot.find("#stepAnnotationEditor").val(curEntry.stepAnnotation);
   }
   else {
@@ -2492,6 +2492,20 @@ function htmlspecialchars(str) {
   return str;
 }
 
+
+// same as htmlspecialchars except don't worry about expanding spaces or
+// tabs since we want proper word wrapping in divs.
+function htmlsanitize(str) {
+  if (typeof(str) == "string") {
+    str = str.replace(/&/g, "&amp;"); /* must do &amp; first */
+
+    str = str.replace(/</g, "&lt;");
+    str = str.replace(/>/g, "&gt;");
+  }
+  return str;
+}
+
+
 String.prototype.rtrim = function() {
   return this.replace(/\s*$/g, "");
 }
@@ -2744,7 +2758,7 @@ AnnotationBubble.prototype.showViewer = function() {
   // destroy then create a new tip:
   this.destroyQTip();
   $(this.hashID).qtip($.extend({}, qtipShared, {
-    content: htmlspecialchars(this.text), // help prevent HTML/JS injection attacks
+    content: htmlsanitize(this.text), // help prevent HTML/JS injection attacks
     id: this.domID,
     position: {
       my: this.my,
@@ -2784,7 +2798,7 @@ AnnotationBubble.prototype.minimizeViewer = function() {
 
 AnnotationBubble.prototype.restoreViewer = function() {
   assert(this.state == 'minimized');
-  $(this.hashID).qtip('option', 'content.text', htmlspecialchars(this.text)); // help prevent HTML/JS injection attacks
+  $(this.hashID).qtip('option', 'content.text', htmlsanitize(this.text)); // help prevent HTML/JS injection attacks
   this.bindViewerClickHandler();
   this.state = 'view';
 }
