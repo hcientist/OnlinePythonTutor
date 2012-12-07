@@ -62,6 +62,7 @@ Ok sorry that was mostly me thinking out loud.
 
 }
 
+Ha, I guess you can call this "Offline Python Tutor"!
 
 ## Optimize display of object-oriented programs (medium)
 
