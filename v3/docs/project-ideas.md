@@ -166,3 +166,5 @@ From an OPT user:
 Tips & Tricks:
   - From Brad Miller: http://blog.bonelakesoftware.com/2011/03/adding-module-to-skulpt.html and http://blog.bonelakesoftware.com/2011/02/python-in-your-browser-in-javascript.html
   - From Scott Graham, when I asked him whether Skulpt implements Python 2 or 3: “Mostly 2-ish. Some object hierarchy things take after 3's simplified semantics.”
+
+Dec 2012: Brython -- http://www.brython.info/index_en.html -- might also be a contendor here, since it supports lots of Python 3 (except for OOP, lambdas, exceptions, and generators, afaik).
