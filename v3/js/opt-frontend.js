@@ -148,10 +148,12 @@ $(document).ready(function() {
 
     $.get(backend_script,
           {user_script : pyInputCodeMirror.getValue(),
-           cumulative_mode: $('#cumulativeModeSelector').val()},
+           cumulative_mode: $('#cumulativeModeSelector').val(),
+           render_heap_primitives: $('#heapPrimitivesSelector').val(),
+          },
           function(dataFromBackend) {
             var trace = dataFromBackend.trace;
-            
+
             // don't enter visualize mode if there are killer errors:
             if (!trace ||
                 (trace.length == 0) ||
@@ -471,6 +473,10 @@ $(document).ready(function() {
   if (cumulativeState !== undefined) {
     $('#cumulativeModeSelector').val(cumulativeState);
   }
+  var heapPrimitivesState = $.bbq.getState('heapPrimitives');
+  if (heapPrimitivesState !== undefined) {
+    $('#heapPrimitivesSelector').val(heapPrimitivesState);
+  }
   var pyState = $.bbq.getState('py');
   if (pyState !== undefined) {
     $('#pythonVersionSelector').val(pyState);
@@ -493,7 +499,7 @@ $(document).ready(function() {
     }
   }
 
-  
+
   // log a generic AJAX error handler
   $(document).ajaxError(function() {
     alert("Server error (possibly due to memory/resource overload). Report a bug to philip@pgbovine.net\n\n(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
@@ -514,6 +520,7 @@ $(document).ready(function() {
     var myArgs = {code: pyInputCodeMirror.getValue(),
                   mode: appMode,
                   cumulative: $('#cumulativeModeSelector').val(),
+                  heapPrimitives: $('#heapPrimitivesSelector').val(),
                   py: $('#pythonVersionSelector').val()};
 
     if (appMode == 'display') {
@@ -529,6 +536,7 @@ $(document).ready(function() {
     assert(appMode == 'display');
     var myArgs = {code: pyInputCodeMirror.getValue(),
                   cumulative: $('#cumulativeModeSelector').val(),
+                  heapPrimitives: $('#heapPrimitivesSelector').val(),
                   py: $('#pythonVersionSelector').val(),
                   curInstr: myVisualizer.curInstr,
                  };

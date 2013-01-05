@@ -53,7 +53,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 - NEVER use naked $(__) or d3.select(__) statements to select DOM elements.
 
   ALWAYS use myViz.domRoot or myViz.domRootD3 for jQuery and D3, respectively.
- 
+
   Otherwise things will break in weird ways when you have more than one visualization
   embedded within a webpage, due to multiple matches in the global namespace.
 
@@ -90,7 +90,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
   this.curTrace = dat.trace;
 
-  
+
   // optional filtering to remove redundancy ...
   // ok, we're gonna filter out all trace entries of 'call' events,
   // because each one contains IDENTICAL state information as the

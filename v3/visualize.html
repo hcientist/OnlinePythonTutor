@@ -71,16 +71,19 @@ Write your Python code here:
 <div id="codeInputPane"></div> <!-- populate with a CodeMirror instance -->
 
 <p style="margin-top: 10px;">
-Execute code using
+Execute using
   <select id="pythonVersionSelector">
     <option value="2">Python 2.7</option>
     <option value="3">Python 3.2</option>
-  </select>
-and
+  </select>,
   <select id="cumulativeModeSelector">
-    <option value="false">don't display exited functions (default).</option>
-    <option value="true">display frames of exited functions.</option>
-  </select>
+    <option value="false">hide frames of exited functions</option>
+    <option value="true">display frames of exited functions</option>
+  </select>, and
+  <select id="heapPrimitivesSelector">
+    <option value="false">render primitives in stack</option>
+    <option value="true">render primitives on heap</option>
+  </select>.
 </p>
 
 <p>
