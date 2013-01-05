@@ -148,9 +148,7 @@ $(document).ready(function() {
 
     $.get(backend_script,
           {user_script : pyInputCodeMirror.getValue(),
-           cumulative_mode: $('#cumulativeModeSelector').val(),
-           render_heap_primitives: $('#heapPrimitivesSelector').val(),
-          },
+           cumulative_mode: $('#cumulativeModeSelector').val()},
           function(dataFromBackend) {
             var trace = dataFromBackend.trace;
 
