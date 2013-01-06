@@ -82,7 +82,9 @@ def is_class(dat):
 def is_instance(dat):
   """Return whether dat is an instance of a class."""
   if is_python3:
-    return isinstance(type(dat), type) and not isinstance(dat, type)
+    return type(dat) not in PRIMITIVE_TYPES and \
+           isinstance(type(dat), type) and \
+           not isinstance(dat, type)
   else:
     # ugh, classRE match is a bit of a hack :(
     return type(dat) == types.InstanceType or classRE.match(str(type(dat)))
