@@ -78,6 +78,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code' (if null, then 'Edit code' link hidden)
 //   allowEditAnnotations - allow user to edit per-step annotations (default: false)
 //   embeddedMode         - shortcut for hideOutput=true, allowEditAnnotations=false
+//   disableHeapNesting   - if true, then render all heap objects at the top level (i.e., no nested objects)
 //                          codeDivWidth=350, codeDivHeight=400
 //   updateOutputCallback - function to call (with 'this' as parameter)
 //                          whenever this.updateOutput() is called
@@ -114,6 +115,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.arrowOffsetY = undefined;
   this.codeRowHeight = undefined;
 
+  this.disableHeapNesting = (this.params.disableHeapNesting == true); // avoid 'undefined' state
 
   // cool, we can create a separate jsPlumb instance for each visualization:
   this.jsPlumbInstance = jsPlumb.getInstance({

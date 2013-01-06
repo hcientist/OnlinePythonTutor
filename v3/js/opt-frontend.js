@@ -197,6 +197,7 @@ $(document).ready(function() {
                                                      dataFromBackend,
                                                      {startingInstruction:  startingInstruction,
                                                       updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
+                                                      disableHeapNesting: $('#heapPrimitivesSelector').val(),
                                                       //allowEditAnnotations: true,
                                                      });
 
