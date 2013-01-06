@@ -58,6 +58,7 @@ def cgi_finalizer(input_code, output_trace):
 
 
 cumulative_mode = False
+heap_primitives = False
 
 # If you pass in a filename as an argument, then process script from that file ...
 if len(sys.argv) > 1:
@@ -72,5 +73,8 @@ else:
   if 'cumulative_mode' in form:
     # convert from string to a Python boolean ...
     cumulative_mode = (form['cumulative_mode'].value == 'true')
+  if 'heap_primitives' in form:
+    heap_primitives = (form['heap_primitives'].value == 'true')
 
-pg_logger.exec_script_str(user_script, cumulative_mode, cgi_finalizer)
+
+pg_logger.exec_script_str(user_script, cumulative_mode, heap_primitives, cgi_finalizer)

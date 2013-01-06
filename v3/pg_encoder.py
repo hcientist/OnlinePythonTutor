@@ -37,6 +37,9 @@
 #   * None, int, long, float, str, bool - unchanged
 #     (json.dumps encodes these fine verbatim)
 #
+#   If render_heap_primitives is True, then primitive values are rendered
+#   on the heap as ['HEAP_PRIMITIVE', <value>]
+#
 #   Compound objects:
 #   * list     - ['LIST', elt1, elt2, elt3, ..., eltN]
 #   * tuple    - ['TUPLE', elt1, elt2, elt3, ..., eltN]
@@ -90,14 +93,18 @@ def get_name(obj):
   return obj.__name__ if hasattr(obj, '__name__') else get_name(type(obj))
 
 
+PRIMITIVE_TYPES = (int, long, float, str, bool, type(None))
+
 # Note that this might BLOAT MEMORY CONSUMPTION since we're holding on
 # to every reference ever created by the program without ever releasing
 # anything!
 class ObjectEncoder:
-  def __init__(self):
+  def __init__(self, render_heap_primitives):
     # Key: canonicalized small ID
     # Value: encoded (compound) heap object
     self.encoded_heap_objects = {}
+
+    self.render_heap_primitives = render_heap_primitives
 
     self.id_to_small_IDs = {}
     self.cur_small_ID = 1
@@ -125,7 +132,7 @@ class ObjectEncoder:
   def encode(self, dat, get_parent):
     """Encode a data value DAT using the GET_PARENT function for parent ids."""
     # primitive type
-    if type(dat) in (int, long, float, str, bool, type(None)):
+    if not self.render_heap_primitives and type(dat) in PRIMITIVE_TYPES:
       if type(dat) is float:
         return round(dat, FLOAT_PRECISION)
       else:
@@ -208,6 +215,9 @@ class ObjectEncoder:
         self.encode_class_or_instance(dat, new_obj)
       elif typ is types.ModuleType:
         new_obj.extend(['module', dat.__name__])
+      elif typ in PRIMITIVE_TYPES:
+        assert self.render_heap_primitives
+        new_obj.extend(['HEAP_PRIMITIVE', dat])
       else:
         typeStr = str(typ)
         m = typeRE.match(typeStr)

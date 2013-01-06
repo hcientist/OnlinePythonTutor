@@ -76,9 +76,11 @@ class ExecScript(webapp2.RequestHandler):
 
     # convert from string to a Python boolean ...
     cumulative_mode = (self.request.get('cumulative_mode') == 'true')
-    
+    heap_primitives = (self.request.get('heap_primitives') == 'true')
+
     pg_logger.exec_script_str(self.request.get('user_script'),
                               cumulative_mode,
+                              heap_primitives,
                               self.json_finalizer)
 
 

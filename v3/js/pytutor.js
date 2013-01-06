@@ -1397,7 +1397,7 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
- 
+
   $.each(this.curTrace, function(i, curEntry) {
     var prevLayout = myViz.curTraceLayouts[myViz.curTraceLayouts.length - 1];
 
@@ -2030,6 +2030,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       else {
         d3DomElement.append('<div class="funcObj">function ' + funcName + '</div>');
       }
+    }
+    else if (obj[0] == 'HEAP_PRIMITIVE') {
+      assert(obj.length == 2);
+
+      var primitiveVal = obj[1];
+      renderPrimitiveObject(primitiveVal, d3DomElement);
     }
     else {
       // render custom data type

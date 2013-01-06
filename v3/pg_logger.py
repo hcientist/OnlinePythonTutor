@@ -188,21 +188,24 @@ def visit_function_obj(v, ids_seen_set):
 
 class PGLogger(bdb.Bdb):
 
-    def __init__(self, cumulative_mode, finalizer_func, disable_security_checks=False):
+    def __init__(self, cumulative_mode, heap_primitives, finalizer_func, disable_security_checks=False):
         bdb.Bdb.__init__(self)
         self.mainpyfile = ''
         self._wait_for_mainpyfile = 0
 
         self.disable_security_checks = disable_security_checks
 
-        # a function that takes the output trace as a parameter and
-        # processes it
-        self.finalizer_func = finalizer_func
-
         # if True, then displays ALL stack frames that have ever existed
         # rather than only those currently on the stack (and their
         # lexical parents)
         self.cumulative_mode = cumulative_mode
+
+        # if True, then render certain primitive objects as heap objects
+        self.render_heap_primitives = heap_primitives
+
+        # a function that takes the output trace as a parameter and
+        # processes it
+        self.finalizer_func = finalizer_func
 
         # each entry contains a dict with the information for a single
         # executed line
@@ -241,7 +244,7 @@ class PGLogger(bdb.Bdb):
 
         # very important for this single object to persist throughout
         # execution, or else canonical small IDs won't be consistent.
-        self.encoder = pg_encoder.ObjectEncoder()
+        self.encoder = pg_encoder.ObjectEncoder(self.render_heap_primitives)
 
         self.executed_script = None # Python script to be executed!
 
@@ -846,8 +849,8 @@ class PGLogger(bdb.Bdb):
 
 
 # the MAIN meaty function!!!
-def exec_script_str(script_str, cumulative_mode, finalizer_func):
-  logger = PGLogger(cumulative_mode, finalizer_func)
+def exec_script_str(script_str, cumulative_mode, heap_primitives, finalizer_func):
+  logger = PGLogger(cumulative_mode, heap_primitives, finalizer_func)
 
   try:
     logger._runscript(script_str)
@@ -860,8 +863,8 @@ def exec_script_str(script_str, cumulative_mode, finalizer_func):
 # disables security check and returns the result of finalizer_func
 # WARNING: ONLY RUN THIS LOCALLY and never over the web, since
 # security checks are disabled
-def exec_script_str_local(script_str, cumulative_mode, finalizer_func):
-  logger = PGLogger(cumulative_mode, finalizer_func, disable_security_checks=True)
+def exec_script_str_local(script_str, cumulative_mode, heap_primitives, finalizer_func):
+  logger = PGLogger(cumulative_mode, heap_primitives, finalizer_func, disable_security_checks=True)
 
   try:
     logger._runscript(script_str)

@@ -24,6 +24,8 @@ def js_var_finalizer(input_code, output_trace):
 parser = OptionParser(usage="Generate JSON trace for pytutor")
 parser.add_option('-c', '--cumulative', default=False, action='store_true',
         help='output cumulative trace.')
+parser.add_option('-p', '--heapPrimitives', default=False, action='store_true',
+        help='render primitives as heap objects.')
 parser.add_option('-o', '--compact', default=False, action='store_true',
         help='output compact trace.')
 parser.add_option("--create_jsvar", dest="js_varname",
@@ -35,6 +37,6 @@ fin = sys.stdin if args[0] == "-" else open(args[0])
 
 if options.js_varname:
   JS_VARNAME = options.js_varname
-  print(pg_logger.exec_script_str_local(fin.read(), options.cumulative, js_var_finalizer))
+  print(pg_logger.exec_script_str_local(fin.read(), options.cumulative, options.heapPrimitives, js_var_finalizer))
 else:
-  print(pg_logger.exec_script_str_local(fin.read(), options.cumulative, json_finalizer))
+  print(pg_logger.exec_script_str_local(fin.read(), options.cumulative, options.heapPrimitives, json_finalizer))
