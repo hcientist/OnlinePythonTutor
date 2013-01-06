@@ -57,6 +57,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   Otherwise things will break in weird ways when you have more than one visualization
   embedded within a webpage, due to multiple matches in the global namespace.
 
+
+- always use generateID to generate unique CSS IDs, or else things will break
+  when multiple ExecutionVisualizer instances are displayed on a webpage
+
 */
 
 
@@ -80,6 +84,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   embeddedMode         - shortcut for hideOutput=true, allowEditAnnotations=false
 //   disableHeapNesting   - if true, then render all heap objects at the top level (i.e., no nested objects)
 //                          codeDivWidth=350, codeDivHeight=400
+//   drawParentPointers   - if true, then draw environment diagram parent pointers for all frames
 //   updateOutputCallback - function to call (with 'this' as parameter)
 //                          whenever this.updateOutput() is called
 //                          (BEFORE rendering the output display)
@@ -116,6 +121,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.codeRowHeight = undefined;
 
   this.disableHeapNesting = (this.params.disableHeapNesting == true); // avoid 'undefined' state
+  this.drawParentPointers = (this.params.drawParentPointers == true); // avoid 'undefined' state
 
   // cool, we can create a separate jsPlumb instance for each visualization:
   this.jsPlumbInstance = jsPlumb.getInstance({
@@ -186,7 +192,7 @@ ExecutionVisualizer.prototype.render = function() {
 
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
-  var codeDisplayHTML = 
+  var codeDisplayHTML =
     '<div id="codeDisplayDiv">\
        <div id="pyCodeOutputDiv"/>\
        <div id="editCodeLinkDiv"><a id="editBtn">Edit code</a></div>\
@@ -1079,8 +1085,8 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
     // set the gutter's height to match that of its parent
     gutterSVG.height(gutterSVG.parent().height());
 
-    var firstRowOffsetY  = myViz.domRoot.find('table#pyCodeOutput tr:first').offset().top;
-    
+    var firstRowOffsetY = myViz.domRoot.find('table#pyCodeOutput tr:first').offset().top;
+
     // first take care of edge case when there's only one line ...
     myViz.codeRowHeight = myViz.domRoot.find('table#pyCodeOutput td.cod:first').height();
 
@@ -1328,7 +1334,6 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
   if (curEntry.line) {
     highlightCodeLine();
   }
-
 
   // render stdout:
 
@@ -2182,7 +2187,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         // always delete and re-render the global var ...
         // NB: trying to cache and compare the old value using,
         // say -- $(this).attr('data-curvalue', valStringRepr) -- leads to
-        // a mysterious and killer memory leak that I can't figure out yet 
+        // a mysterious and killer memory leak that I can't figure out yet
         $(this).empty();
 
         // make sure varname doesn't contain any weird
@@ -2257,6 +2262,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .attr('id', function(d, i) {return d.is_zombie ? myViz.generateID("zombie_stack" + i)
                                                    : myViz.generateID("stack" + i);
     })
+    // HTML5 custom data attributes
+    .attr('data-frame_id', function(frame, i) {return frame.frame_id;})
+    .attr('data-parent_frame_id', function(frame, i) {
+        return (frame.parent_frame_id_list.length > 0) ? frame.parent_frame_id_list[0] : null;
+    });
     //.each(function(frame, i) {console.log('NEW STACK FRAME', frame.unique_hash);})
 
   sfdEnter
@@ -2282,7 +2292,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       }
 
       return headerLabel;
-    })
+    });
 
   sfdEnter
     .append('table')
