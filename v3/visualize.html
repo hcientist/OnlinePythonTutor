@@ -71,7 +71,7 @@ Write your Python code here:
 <div id="codeInputPane"></div> <!-- populate with a CodeMirror instance -->
 
 <p style="margin-top: 10px;">
-Execute using
+Execute code using
   <select id="pythonVersionSelector">
     <option value="2">Python 2.7</option>
     <option value="3">Python 3.2</option>
@@ -79,15 +79,19 @@ Execute using
   <select id="cumulativeModeSelector">
     <option value="false">hide frames of exited functions</option>
     <option value="true">show frames of exited functions</option>
-  </select>, and
+  </select>,
   <select id="heapPrimitivesSelector">
     <option value="false">inline primitives and nested objects</option>
     <option value="true">render all objects on the heap</option>
+  </select>, and
+  <select id="drawParentPointerSelector">
+    <option value="false">hide environment parent pointers</option>
+    <option value="true">show environment parent pointers</option>
   </select>.
 </p>
 
 <p>
-<button id="executeBtn" class="bigBtn" type="button">Visualize execution</button>
+<button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
 </p>
 
 

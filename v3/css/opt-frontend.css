@@ -63,8 +63,9 @@ button.smallBtn {
 }
 
 button.bigBtn {
-  font-size: 12pt;
-  padding: 5px;
+  font-size: 13pt;
+  padding: 6px;
+  margin-top: 6px;
 }
 
 #footer {
