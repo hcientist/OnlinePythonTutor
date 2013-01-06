@@ -1430,13 +1430,16 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 
 
     function recurseIntoObject(id, curRow, newRow) {
+      //console.log('recurseIntoObject', id,
+      //            $.extend(true /* make a deep copy */ , [], curRow),
+      //            $.extend(true /* make a deep copy */ , [], newRow));
 
       // heuristic for laying out 1-D linked data structures: check for enclosing elements that are
       // structurally identical and then lay them out as siblings in the same "row"
       var heapObj = curEntry.heap[id];
       assert(heapObj);
 
-      if (heapObj[0] == 'LIST' || heapObj[0] == 'TUPLE') {
+      if (heapObj[0] == 'LIST' || heapObj[0] == 'TUPLE' || heapObj[0] == 'SET') {
         $.each(heapObj, function(ind, child) {
           if (ind < 1) return; // skip type tag
 
@@ -1445,6 +1448,9 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
             if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
               updateCurLayout(childID, curRow, newRow);
             }
+            else if (myViz.disableHeapNesting) {
+              updateCurLayout(childID, curRow, []);
+            }
           }
         });
       }
@@ -1452,21 +1458,38 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
         $.each(heapObj, function(ind, child) {
           if (ind < 1) return; // skip type tag
 
+          if (myViz.disableHeapNesting) {
+            var dictKey = child[0];
+            if (!isPrimitiveType(dictKey)) {
+              var keyChildID = getRefID(dictKey);
+              updateCurLayout(keyChildID, curRow, []);
+            }
+          }
+
           var dictVal = child[1];
           if (!isPrimitiveType(dictVal)) {
             var childID = getRefID(dictVal);
             if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
               updateCurLayout(childID, curRow, newRow);
             }
+            else if (myViz.disableHeapNesting) {
+              updateCurLayout(childID, curRow, []);
+            }
           }
         });
       }
-      else if (heapObj[0] == 'INSTANCE') {
+      else if (heapObj[0] == 'INSTANCE' || heapObj[0] == 'CLASS') {
         jQuery.each(heapObj, function(ind, child) {
-          if (ind < 2) return; // skip type tag and class name
+          var headerLength = (heapObj[0] == 'INSTANCE') ? 2 : 3;
+          if (ind < headerLength) return;
 
-          // instance keys are always strings, so no need to recurse
-          assert(typeof child[0] == "string");
+          if (myViz.disableHeapNesting) {
+            var instKey = child[0];
+            if (!isPrimitiveType(instKey)) {
+              var keyChildID = getRefID(instKey);
+              updateCurLayout(keyChildID, curRow, []);
+            }
+          }
 
           var instVal = child[1];
           if (!isPrimitiveType(instVal)) {
@@ -2010,9 +2033,16 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
           var valTd = newRow.find('td:last');
 
           // the keys should always be strings, so render them directly (and without quotes):
-          assert(typeof kvPair[0] == "string");
-          var attrnameStr = htmlspecialchars(kvPair[0]);
-          keyTd.append('<span class="keyObj">' + attrnameStr + '</span>');
+          // (actually this isn't the case when strings are rendered on the heap)
+          if (typeof kvPair[0] == "string") {
+            // common case ...
+            var attrnameStr = htmlspecialchars(kvPair[0]);
+            keyTd.append('<span class="keyObj">' + attrnameStr + '</span>');
+          }
+          else {
+            // when strings are rendered as heap objects ...
+            renderNestedObject(kvPair[0], keyTd);
+          }
 
           // values can be arbitrary objects, so recurse:
           renderNestedObject(kvPair[1], valTd);
@@ -2567,7 +2597,7 @@ function structurallyEquivalent(obj1, obj2) {
       startingInd = 3;
     }
     else {
-      return false;
+      return false; // punt on all other types
     }
 
     var obj1fields = d3.map();

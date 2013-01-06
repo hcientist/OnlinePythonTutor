@@ -197,7 +197,8 @@ $(document).ready(function() {
                                                      dataFromBackend,
                                                      {startingInstruction:  startingInstruction,
                                                       updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
-                                                      disableHeapNesting: $('#heapPrimitivesSelector').val(),
+                                                      // tricky: it's a string!
+                                                      disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
                                                       //allowEditAnnotations: true,
                                                      });
 
