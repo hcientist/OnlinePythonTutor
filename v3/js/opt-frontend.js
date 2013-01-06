@@ -197,8 +197,9 @@ $(document).ready(function() {
                                                      dataFromBackend,
                                                      {startingInstruction:  startingInstruction,
                                                       updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
-                                                      // tricky: it's a string!
+                                                      // tricky: selector 'true' and 'false' values are strings!
                                                       disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
+                                                      drawParentPointers: ($('#drawParentPointerSelector').val() == 'true'),
                                                       //allowEditAnnotations: true,
                                                      });
 
@@ -469,6 +470,7 @@ $(document).ready(function() {
     $("#aliasExampleLink").trigger('click');
   }
 
+  // parse query string options ...
   // ugh, ugly tristate due to the possibility of them being undefined
   var cumulativeState = $.bbq.getState('cumulative');
   if (cumulativeState !== undefined) {
@@ -477,6 +479,10 @@ $(document).ready(function() {
   var heapPrimitivesState = $.bbq.getState('heapPrimitives');
   if (heapPrimitivesState !== undefined) {
     $('#heapPrimitivesSelector').val(heapPrimitivesState);
+  }
+  var drawParentPointerState = $.bbq.getState('drawParentPointers');
+  if (drawParentPointerState !== undefined) {
+    $('#drawParentPointerSelector').val(drawParentPointerState);
   }
   var pyState = $.bbq.getState('py');
   if (pyState !== undefined) {
@@ -522,6 +528,7 @@ $(document).ready(function() {
                   mode: appMode,
                   cumulative: $('#cumulativeModeSelector').val(),
                   heapPrimitives: $('#heapPrimitivesSelector').val(),
+                  drawParentPointers: $('#drawParentPointerSelector').val(),
                   py: $('#pythonVersionSelector').val()};
 
     if (appMode == 'display') {
@@ -538,6 +545,7 @@ $(document).ready(function() {
     var myArgs = {code: pyInputCodeMirror.getValue(),
                   cumulative: $('#cumulativeModeSelector').val(),
                   heapPrimitives: $('#heapPrimitivesSelector').val(),
+                  drawParentPointers: $('#drawParentPointerSelector').val(),
                   py: $('#pythonVersionSelector').val(),
                   curInstr: myVisualizer.curInstr,
                  };
