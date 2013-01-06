@@ -491,6 +491,10 @@ div.ExecutionVisualizer div.heapObject {
   padding-left: 2px; /* leave a TINY amount of room for connector endpoints */
 }
 
+div.ExecutionVisualizer div.heapPrimitive {
+  padding-left: 4px; /* leave some more room for connector endpoints */
+}
+
 div.ExecutionVisualizer div#stackHeader {
   margin-bottom: 15px;
   text-align: right;

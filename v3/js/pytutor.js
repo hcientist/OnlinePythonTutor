@@ -2067,7 +2067,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       assert(obj.length == 2);
 
       var primitiveVal = obj[1];
-      renderPrimitiveObject(primitiveVal, d3DomElement);
+      // add a bit of padding to heap primitives, for aesthetics
+      d3DomElement.append('<div class="heapPrimitive"></div>');
+      renderPrimitiveObject(primitiveVal, d3DomElement.find('div.heapPrimitive'));
     }
     else {
       // render custom data type
