@@ -1449,7 +1449,7 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
               updateCurLayout(childID, curRow, newRow);
             }
             else if (myViz.disableHeapNesting) {
-              updateCurLayout(childID, curRow, []);
+              updateCurLayout(childID, [], []);
             }
           }
         });
@@ -1462,7 +1462,7 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
             var dictKey = child[0];
             if (!isPrimitiveType(dictKey)) {
               var keyChildID = getRefID(dictKey);
-              updateCurLayout(keyChildID, curRow, []);
+              updateCurLayout(keyChildID, [], []);
             }
           }
 
@@ -1473,7 +1473,7 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
               updateCurLayout(childID, curRow, newRow);
             }
             else if (myViz.disableHeapNesting) {
-              updateCurLayout(childID, curRow, []);
+              updateCurLayout(childID, [], []);
             }
           }
         });
@@ -1487,7 +1487,7 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
             var instKey = child[0];
             if (!isPrimitiveType(instKey)) {
               var keyChildID = getRefID(instKey);
-              updateCurLayout(keyChildID, curRow, []);
+              updateCurLayout(keyChildID, [], []);
             }
           }
 
@@ -1496,6 +1496,9 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
             var childID = getRefID(instVal);
             if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
               updateCurLayout(childID, curRow, newRow);
+            }
+            else if (myViz.disableHeapNesting) {
+              updateCurLayout(childID, [], []);
             }
           }
         });
