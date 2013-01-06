@@ -85,6 +85,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   disableHeapNesting   - if true, then render all heap objects at the top level (i.e., no nested objects)
 //                          codeDivWidth=350, codeDivHeight=400
 //   drawParentPointers   - if true, then draw environment diagram parent pointers for all frames
+//                          WARNING: there are hard-to-debug MEMORY LEAKS associated with activating this option
 //   updateOutputCallback - function to call (with 'this' as parameter)
 //                          whenever this.updateOutput() is called
 //                          (BEFORE rendering the output display)
@@ -1686,8 +1687,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // div contains, say, a "position: relative;" CSS tag
   // (which happens in the IPython Notebook)
   var existingConnectionEndpointIDs = d3.map();
-
-  myViz.jsPlumbInstance.select().each(function(c) {
+  myViz.jsPlumbInstance.select({scope: 'varValuePointer'}).each(function(c) {
     // This is VERY crude, but to prevent multiple redundant HEAP->HEAP
     // connectors from being drawn with the same source and origin, we need to first
     // DELETE ALL existing HEAP->HEAP connections, and then re-render all of
@@ -1701,12 +1701,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     }
   });
 
-  /*
-  existingConnectionEndpointIDs.forEach(function(varID, valueID) {
-    console.log('existingConnectionEndpointIDs:', varID, valueID);
+  var existingParentPointerConnectionEndpointIDs = d3.map();
+  myViz.jsPlumbInstance.select({scope: 'frameParentPointer'}).each(function(c) {
+    existingParentPointerConnectionEndpointIDs.set(c.sourceId, c.targetId);
   });
-  console.log('---');
-  */
 
 
   // Heap object rendering phase:
@@ -1725,6 +1723,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // particular call to renderDataStructures.
   var connectionEndpointIDs = d3.map();
   var heapConnectionEndpointIDs = d3.map(); // subset of connectionEndpointIDs for heap->heap connections
+
+  // analogous to connectionEndpointIDs, except for environment parent pointers
+  var parentPointerConnectionEndpointIDs = d3.map();
 
   var heap_pointer_src_id = 1; // increment this to be unique for each heap_pointer_src_*
 
@@ -2265,9 +2266,53 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     // HTML5 custom data attributes
     .attr('data-frame_id', function(frame, i) {return frame.frame_id;})
     .attr('data-parent_frame_id', function(frame, i) {
-        return (frame.parent_frame_id_list.length > 0) ? frame.parent_frame_id_list[0] : null;
+      return (frame.parent_frame_id_list.length > 0) ? frame.parent_frame_id_list[0] : null;
+    })
+    .each(function(frame, i) {
+      if (!myViz.drawParentPointers) {
+        return;
+      }
+      // only run if myViz.drawParentPointers is true ...
+
+      var my_CSS_id = $(this).attr('id');
+
+      //console.log(my_CSS_id, 'ENTER');
+
+      // render a parent pointer whose SOURCE node is this frame
+      // i.e., connect this frame to p, where this.parent_frame_id == p.frame_id
+      // (if this.parent_frame_id is null, then p is the global frame)
+      if (frame.parent_frame_id_list.length > 0) {
+        var parent_frame_id = frame.parent_frame_id_list[0];
+        // tricky turkey!
+        // ok this hack just HAPPENS to work by luck ... usually there will only be ONE frame
+        // that matches this selector, but sometimes multiple frames match, in which case the
+        // FINAL frame wins out (since parentPointerConnectionEndpointIDs is a map where each
+        // key can be mapped to only ONE value). it so happens that the final frame winning
+        // out looks "desirable" for some of the closure test cases that I've tried. but
+        // this code is quite brittle :(
+        myViz.domRoot.find('div#stack [data-frame_id=' + parent_frame_id + ']').each(function(i, e) {
+          var parent_CSS_id = $(this).attr('id');
+          //console.log('connect', my_CSS_id, parent_CSS_id);
+          parentPointerConnectionEndpointIDs.set(my_CSS_id, parent_CSS_id);
+        });
+      }
+      else {
+        // render a parent pointer to the global frame
+        //console.log('connect', my_CSS_id, globalsID);
+        parentPointerConnectionEndpointIDs.set(my_CSS_id, globalsID);
+      }
+
+      // tricky turkey: render parent pointers whose TARGET node is this frame.
+      // i.e., for all frames f such that f.parent_frame_id == my_frame_id,
+      // connect f to this frame.
+      // (make sure not to confuse frame IDs with CSS IDs!!!)
+      var my_frame_id = frame.frame_id;
+      myViz.domRoot.find('div#stack [data-parent_frame_id=' + my_frame_id + ']').each(function(i, e) {
+        var child_CSS_id = $(this).attr('id');
+        //console.log('connect', child_CSS_id, my_CSS_id);
+        parentPointerConnectionEndpointIDs.set(child_CSS_id, my_CSS_id);
+      });
     });
-    //.each(function(frame, i) {console.log('NEW STACK FRAME', frame.unique_hash);})
 
   sfdEnter
     .append('div')
@@ -2319,7 +2364,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     .attr('id', function(d, i) {
         return myViz.generateID(varnameToCssID(d.frame.unique_hash + '__' + d.varname + '_tr')); // make globally unique (within the page)
     });
- 
+
 
   var stackVarTableCells = stackVarTable
     .selectAll('td.stackFrameVar,td.stackFrameValue')
@@ -2345,7 +2390,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         // always delete and re-render the stack var ...
         // NB: trying to cache and compare the old value using,
         // say -- $(this).attr('data-curvalue', valStringRepr) -- leads to
-        // a mysterious and killer memory leak that I can't figure out yet 
+        // a mysterious and killer memory leak that I can't figure out yet
         $(this).empty();
 
         // make sure varname and frame.unique_hash don't contain any weird
@@ -2398,6 +2443,18 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         existingConnectionEndpointIDs.remove($(sp).attr('id'));
       });
 
+      var my_CSS_id = $(this).attr('id');
+
+      //console.log(my_CSS_id, 'EXIT');
+
+      // Remove all pointers where either the source or destination end is my_CSS_id
+      existingParentPointerConnectionEndpointIDs.forEach(function(k, v) {
+        if (k == my_CSS_id || v == my_CSS_id) {
+          //console.log('remove EPP', k, v);
+          existingParentPointerConnectionEndpointIDs.remove(k);
+        }
+      });
+
       $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
     })
     .remove();
@@ -2411,15 +2468,54 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // will properly garbage collect the connectors
   myViz.jsPlumbInstance.reset();
 
+
+  // use jsPlumb scopes to keep the different kinds of pointers separated
+  function renderVarValueConnector(varID, valueID) {
+    myViz.jsPlumbInstance.connect({source: varID, target: valueID, scope: 'varValuePointer'});
+  }
+
+
+  var totalParentPointersRendered = 0;
+
+  function renderParentPointerConnector(srcID, dstID) {
+    // SUPER-DUPER-ugly hack since I can't figure out a cleaner solution for now:
+    // if either srcID or dstID no longer exists, then SKIP rendering ...
+    //
+    // Note that until we solve this problem once and for all and no longer need this
+    // hacky guard, there will likely be MEMORY LEAKS associated with rendering parent pointers
+    if ((myViz.domRoot.find('#' + srcID).length == 0) ||
+        (myViz.domRoot.find('#' + dstID).length == 0)) {
+      return;
+    }
+
+    //console.log('renderParentPointerConnector:', srcID, dstID);
+
+    myViz.jsPlumbInstance.connect({source: srcID, target: dstID,
+                                   anchors: ["LeftMiddle", "LeftMiddle"],
+
+                                   // 'horizontally offset' the parent pointers up so that they don't look as ugly ...
+                                   //connector: ["Flowchart", { stub: 9 + (6 * (totalParentPointersRendered + 1)) }],
+
+                                   // actually let's try a bezier curve ...
+                                   connector: [ "Bezier", { curviness: 45 }],
+
+                                   endpoint: ["Dot", {radius: 4}],
+                                   //hoverPaintStyle: {lineWidth: 1, strokeStyle: connectorInactiveColor}, // no hover colors
+                                   scope: 'frameParentPointer'});
+    totalParentPointersRendered++;
+  }
+
   // re-render existing connectors ...
-  existingConnectionEndpointIDs.forEach(function(varID, valueID) {
-    myViz.jsPlumbInstance.connect({source: varID, target: valueID});
-  });
+  existingConnectionEndpointIDs.forEach(renderVarValueConnector);
+  if (myViz.drawParentPointers) {
+    existingParentPointerConnectionEndpointIDs.forEach(renderParentPointerConnector);
+  }
 
   // finally add all the NEW connectors that have arisen in this call to renderDataStructures
-  connectionEndpointIDs.forEach(function(varID, valueID) {
-    myViz.jsPlumbInstance.connect({source: varID, target: valueID});
-  });
+  connectionEndpointIDs.forEach(renderVarValueConnector);
+  if (myViz.drawParentPointers) {
+    parentPointerConnectionEndpointIDs.forEach(renderParentPointerConnector);
+  }
 
   /*
   myViz.jsPlumbInstance.select().each(function(c) {
