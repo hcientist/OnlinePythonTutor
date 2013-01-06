@@ -2466,6 +2466,13 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   // delete all connectors. do this AS LATE AS POSSIBLE so that
   // (presumably) the calls to $(this).empty() earlier in this function
   // will properly garbage collect the connectors
+  //
+  // WARNING: for environment parent pointers, garbage collection doesn't seem to
+  // be working as intended :(
+  //
+  // I suspect that this is due to the fact that parent pointers are SIBLINGS
+  // of stackFrame divs and not children, so when stackFrame divs get destroyed,
+  // their associated parent pointers do NOT.)
   myViz.jsPlumbInstance.reset();
 
 
@@ -2480,9 +2487,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
   function renderParentPointerConnector(srcID, dstID) {
     // SUPER-DUPER-ugly hack since I can't figure out a cleaner solution for now:
     // if either srcID or dstID no longer exists, then SKIP rendering ...
-    //
-    // Note that until we solve this problem once and for all and no longer need this
-    // hacky guard, there will likely be MEMORY LEAKS associated with rendering parent pointers
     if ((myViz.domRoot.find('#' + srcID).length == 0) ||
         (myViz.domRoot.find('#' + dstID).length == 0)) {
       return;
