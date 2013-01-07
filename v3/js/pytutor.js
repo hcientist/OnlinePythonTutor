@@ -1900,25 +1900,30 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   function renderCompoundObject(objID, d3DomElement, isTopLevel) {
     if (!isTopLevel && renderedObjectIDs.has(objID)) {
-      // render jsPlumb arrow source since this heap object has already been rendered
-      // (or will be rendered soon)
+      if (myViz.textualMemoryLabels) {
+        d3DomElement.append('<div class="objectIdLabel">id' + objID + '</div>');
+      }
+      else {
+        // render jsPlumb arrow source since this heap object has already been rendered
+        // (or will be rendered soon)
 
-      // add a stub so that we can connect it with a connector later.
-      // IE needs this div to be NON-EMPTY in order to properly
-      // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
+        // add a stub so that we can connect it with a connector later.
+        // IE needs this div to be NON-EMPTY in order to properly
+        // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
 
-      var srcDivID = myViz.generateID('heap_pointer_src_' + heap_pointer_src_id);
-      heap_pointer_src_id++; // just make sure each source has a UNIQUE ID
-      d3DomElement.append('<div id="' + srcDivID + '">&nbsp;</div>');
+        var srcDivID = myViz.generateID('heap_pointer_src_' + heap_pointer_src_id);
+        heap_pointer_src_id++; // just make sure each source has a UNIQUE ID
+        d3DomElement.append('<div id="' + srcDivID + '">&nbsp;</div>');
 
-      var dstDivID = myViz.generateID('heap_object_' + objID);
+        var dstDivID = myViz.generateID('heap_object_' + objID);
 
-      assert(!connectionEndpointIDs.has(srcDivID));
-      connectionEndpointIDs.set(srcDivID, dstDivID);
-      //console.log('HEAP->HEAP', srcDivID, dstDivID);
+        assert(!connectionEndpointIDs.has(srcDivID));
+        connectionEndpointIDs.set(srcDivID, dstDivID);
+        //console.log('HEAP->HEAP', srcDivID, dstDivID);
 
-      assert(!heapConnectionEndpointIDs.has(srcDivID));
-      heapConnectionEndpointIDs.set(srcDivID, dstDivID);
+        assert(!heapConnectionEndpointIDs.has(srcDivID));
+        heapConnectionEndpointIDs.set(srcDivID, dstDivID);
+      }
 
       return; // early return!
     }
@@ -1932,6 +1937,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     d3DomElement.append('<div class="heapObject" id="' + heapObjID + '"></div>');
     d3DomElement = myViz.domRoot.find('#' + heapObjID);
 
+    if (myViz.textualMemoryLabels) {
+      d3DomElement.append('<div class="objectIdLabel">id' + objID + '</div>');
+    }
 
     renderedObjectIDs.set(objID, 1);
 
@@ -2208,15 +2216,20 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
           renderPrimitiveObject(val, $(this));
         }
         else {
-          // add a stub so that we can connect it with a connector later.
-          // IE needs this div to be NON-EMPTY in order to properly
-          // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
-          $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
+          if (myViz.textualMemoryLabels) {
+            $(this).append('<div class="objectIdLabel">id' + getRefID(val) + '</div>');
+          }
+          else {
+            // add a stub so that we can connect it with a connector later.
+            // IE needs this div to be NON-EMPTY in order to properly
+            // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
+            $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
 
-          assert(!connectionEndpointIDs.has(varDivID));
-          var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
-          connectionEndpointIDs.set(varDivID, heapObjID);
-          //console.log('STACK->HEAP', varDivID, heapObjID);
+            assert(!connectionEndpointIDs.has(varDivID));
+            var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
+            connectionEndpointIDs.set(varDivID, heapObjID);
+            //console.log('STACK->HEAP', varDivID, heapObjID);
+          }
         }
       }
     });
@@ -2410,15 +2423,20 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
           renderPrimitiveObject(val, $(this));
         }
         else {
-          // add a stub so that we can connect it with a connector later.
-          // IE needs this div to be NON-EMPTY in order to properly
-          // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
-          $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
+          if (myViz.textualMemoryLabels) {
+            $(this).append('<div class="objectIdLabel">id' + getRefID(val) + '</div>');
+          }
+          else {
+            // add a stub so that we can connect it with a connector later.
+            // IE needs this div to be NON-EMPTY in order to properly
+            // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
+            $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
 
-          assert(!connectionEndpointIDs.has(varDivID));
-          var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
-          connectionEndpointIDs.set(varDivID, heapObjID);
-          //console.log('STACK->HEAP', varDivID, heapObjID);
+            assert(!connectionEndpointIDs.has(varDivID));
+            var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
+            connectionEndpointIDs.set(varDivID, heapObjID);
+            //console.log('STACK->HEAP', varDivID, heapObjID);
+          }
         }
       }
     });
@@ -2514,15 +2532,15 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     totalParentPointersRendered++;
   }
 
-  // re-render existing connectors ...
-  existingConnectionEndpointIDs.forEach(renderVarValueConnector);
+  if (!myViz.textualMemoryLabels) {
+    // re-render existing connectors and then ...
+    existingConnectionEndpointIDs.forEach(renderVarValueConnector);
+    // add all the NEW connectors that have arisen in this call to renderDataStructures
+    connectionEndpointIDs.forEach(renderVarValueConnector);
+  }
+  // do the same for environment parent pointers
   if (myViz.drawParentPointers) {
     existingParentPointerConnectionEndpointIDs.forEach(renderParentPointerConnector);
-  }
-
-  // finally add all the NEW connectors that have arisen in this call to renderDataStructures
-  connectionEndpointIDs.forEach(renderVarValueConnector);
-  if (myViz.drawParentPointers) {
     parentPointerConnectionEndpointIDs.forEach(renderParentPointerConnector);
   }
 
