@@ -9,6 +9,12 @@ if we were truly faithful to Python's semantics, that would result in far too ma
 However, note that since primitives are **immutable** and thus behave identically regardless of aliasing,
 it doesn't matter whether they're rendered in the stack or heap.
 
+Update on 2013-01-06: I've just added a drop-down menu option with two choices:
+"inline primitives and nested objects" versus "render all objects on the heap".
+If you want to render all objects on the heap, select the latter option.
+To avoid too many arrows being drawn, also toggle the "draw references using arrows" option
+to "use text labels for references".
+
 
 #### Unicode strings look weird or broken
 
