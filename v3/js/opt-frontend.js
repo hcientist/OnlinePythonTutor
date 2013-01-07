@@ -200,6 +200,7 @@ $(document).ready(function() {
                                                       // tricky: selector 'true' and 'false' values are strings!
                                                       disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
                                                       drawParentPointers: ($('#drawParentPointerSelector').val() == 'true'),
+                                                      textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
                                                       //allowEditAnnotations: true,
                                                      });
 
@@ -484,6 +485,10 @@ $(document).ready(function() {
   if (drawParentPointerState !== undefined) {
     $('#drawParentPointerSelector').val(drawParentPointerState);
   }
+  var textRefsState = $.bbq.getState('textReferences');
+  if (textRefsState !== undefined) {
+    $('#textualMemoryLabelsSelector').val(textRefsState);
+  }
   var pyState = $.bbq.getState('py');
   if (pyState !== undefined) {
     $('#pythonVersionSelector').val(pyState);
@@ -529,6 +534,7 @@ $(document).ready(function() {
                   cumulative: $('#cumulativeModeSelector').val(),
                   heapPrimitives: $('#heapPrimitivesSelector').val(),
                   drawParentPointers: $('#drawParentPointerSelector').val(),
+                  textReferences: $('#textualMemoryLabelsSelector').val(),
                   py: $('#pythonVersionSelector').val()};
 
     if (appMode == 'display') {
@@ -546,6 +552,7 @@ $(document).ready(function() {
                   cumulative: $('#cumulativeModeSelector').val(),
                   heapPrimitives: $('#heapPrimitivesSelector').val(),
                   drawParentPointers: $('#drawParentPointerSelector').val(),
+                  textReferences: $('#textualMemoryLabelsSelector').val(),
                   py: $('#pythonVersionSelector').val(),
                   curInstr: myVisualizer.curInstr,
                  };

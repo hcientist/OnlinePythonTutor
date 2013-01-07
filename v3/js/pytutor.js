@@ -86,6 +86,9 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //                          codeDivWidth=350, codeDivHeight=400
 //   drawParentPointers   - if true, then draw environment diagram parent pointers for all frames
 //                          WARNING: there are hard-to-debug MEMORY LEAKS associated with activating this option
+//   textualMemoryLabels  - render references using textual memory labels rather than as jsPlumb arrows.
+//                          this is good for slow browsers or when used with disableHeapNesting
+//                          to prevent "arrow overload"
 //   updateOutputCallback - function to call (with 'this' as parameter)
 //                          whenever this.updateOutput() is called
 //                          (BEFORE rendering the output display)
@@ -121,8 +124,10 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.arrowOffsetY = undefined;
   this.codeRowHeight = undefined;
 
-  this.disableHeapNesting = (this.params.disableHeapNesting == true); // avoid 'undefined' state
-  this.drawParentPointers = (this.params.drawParentPointers == true); // avoid 'undefined' state
+  // avoid 'undefined' state
+  this.disableHeapNesting = (this.params.disableHeapNesting == true);
+  this.drawParentPointers = (this.params.drawParentPointers == true);
+  this.textualMemoryLabels = (this.params.textualMemoryLabels == true);
 
   // cool, we can create a separate jsPlumb instance for each visualization:
   this.jsPlumbInstance = jsPlumb.getInstance({
