@@ -1900,8 +1900,23 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
   function renderCompoundObject(objID, d3DomElement, isTopLevel) {
     if (!isTopLevel && renderedObjectIDs.has(objID)) {
+      var srcDivID = myViz.generateID('heap_pointer_src_' + heap_pointer_src_id);
+      heap_pointer_src_id++; // just make sure each source has a UNIQUE ID
+
+      var dstDivID = myViz.generateID('heap_object_' + objID);
+
       if (myViz.textualMemoryLabels) {
-        d3DomElement.append('<div class="objectIdLabel">id' + objID + '</div>');
+        var labelID = srcDivID + '_text_label';
+        d3DomElement.append('<div class="objectIdLabel" id="' + labelID + '">id' + objID + '</div>');
+
+        myViz.domRoot.find('div#' + labelID).hover(
+          function() {
+            myViz.jsPlumbInstance.connect({source: labelID, target: dstDivID,
+                                           scope: 'varValuePointer'});
+          },
+          function() {
+            myViz.jsPlumbInstance.reset(); // kill 'em all!
+          });
       }
       else {
         // render jsPlumb arrow source since this heap object has already been rendered
@@ -1910,12 +1925,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         // add a stub so that we can connect it with a connector later.
         // IE needs this div to be NON-EMPTY in order to properly
         // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
-
-        var srcDivID = myViz.generateID('heap_pointer_src_' + heap_pointer_src_id);
-        heap_pointer_src_id++; // just make sure each source has a UNIQUE ID
         d3DomElement.append('<div id="' + srcDivID + '">&nbsp;</div>');
-
-        var dstDivID = myViz.generateID('heap_object_' + objID);
 
         assert(!connectionEndpointIDs.has(srcDivID));
         connectionEndpointIDs.set(srcDivID, dstDivID);
@@ -2216,8 +2226,19 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
           renderPrimitiveObject(val, $(this));
         }
         else {
+          var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
+
           if (myViz.textualMemoryLabels) {
-            $(this).append('<div class="objectIdLabel">id' + getRefID(val) + '</div>');
+            var labelID = varDivID + '_text_label';
+            $(this).append('<div class="objectIdLabel" id="' + labelID + '">id' + getRefID(val) + '</div>');
+            $(this).find('div#' + labelID).hover(
+              function() {
+                myViz.jsPlumbInstance.connect({source: labelID, target: heapObjID,
+                                               scope: 'varValuePointer'});
+              },
+              function() {
+                myViz.jsPlumbInstance.reset(); // kill 'em all!
+              });
           }
           else {
             // add a stub so that we can connect it with a connector later.
@@ -2226,7 +2247,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
 
             assert(!connectionEndpointIDs.has(varDivID));
-            var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
             connectionEndpointIDs.set(varDivID, heapObjID);
             //console.log('STACK->HEAP', varDivID, heapObjID);
           }
@@ -2423,8 +2443,18 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
           renderPrimitiveObject(val, $(this));
         }
         else {
+          var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
           if (myViz.textualMemoryLabels) {
-            $(this).append('<div class="objectIdLabel">id' + getRefID(val) + '</div>');
+            var labelID = varDivID + '_text_label';
+            $(this).append('<div class="objectIdLabel" id="' + labelID + '">id' + getRefID(val) + '</div>');
+            $(this).find('div#' + labelID).hover(
+              function() {
+                myViz.jsPlumbInstance.connect({source: labelID, target: heapObjID,
+                                               scope: 'varValuePointer'});
+              },
+              function() {
+                myViz.jsPlumbInstance.reset(); // kill 'em all!
+              });
           }
           else {
             // add a stub so that we can connect it with a connector later.
@@ -2433,7 +2463,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
             $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
 
             assert(!connectionEndpointIDs.has(varDivID));
-            var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
             connectionEndpointIDs.set(varDivID, heapObjID);
             //console.log('STACK->HEAP', varDivID, heapObjID);
           }
