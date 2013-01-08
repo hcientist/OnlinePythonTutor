@@ -38,7 +38,7 @@
 #     (json.dumps encodes these fine verbatim)
 #
 #   If render_heap_primitives is True, then primitive values are rendered
-#   on the heap as ['HEAP_PRIMITIVE', <value>]
+#   on the heap as ['HEAP_PRIMITIVE', <type name>, <value>]
 #
 #   Compound objects:
 #   * list     - ['LIST', elt1, elt2, elt3, ..., eltN]
@@ -219,7 +219,7 @@ class ObjectEncoder:
         new_obj.extend(['module', dat.__name__])
       elif typ in PRIMITIVE_TYPES:
         assert self.render_heap_primitives
-        new_obj.extend(['HEAP_PRIMITIVE', dat])
+        new_obj.extend(['HEAP_PRIMITIVE', type(dat).__name__, dat])
       else:
         typeStr = str(typ)
         m = typeRE.match(typeStr)

@@ -1947,10 +1947,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     d3DomElement.append('<div class="heapObject" id="' + heapObjID + '"></div>');
     d3DomElement = myViz.domRoot.find('#' + heapObjID);
 
-    if (myViz.textualMemoryLabels) {
-      d3DomElement.append('<div class="objectIdLabel">id' + objID + '</div>');
-    }
-
     renderedObjectIDs.set(objID, 1);
 
     var obj = curEntry.heap[objID];
@@ -2088,19 +2084,24 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       var funcName = htmlspecialchars(obj[1]).replace('&lt;lambda&gt;', '\u03bb');
       var parentFrameID = obj[2]; // optional
 
+      d3DomElement.append('<div class="typeLabel">function</div>');
+
       if (parentFrameID) {
-        d3DomElement.append('<div class="funcObj">function ' + funcName + ' [parent=f'+ parentFrameID + ']</div>');
+        d3DomElement.append('<div class="funcObj">' + funcName + ' [parent=f'+ parentFrameID + ']</div>');
       }
       else {
-        d3DomElement.append('<div class="funcObj">function ' + funcName + '</div>');
+        d3DomElement.append('<div class="funcObj">' + funcName + '</div>');
       }
     }
     else if (obj[0] == 'HEAP_PRIMITIVE') {
-      assert(obj.length == 2);
+      assert(obj.length == 3);
 
-      var primitiveVal = obj[1];
+      var typeName = obj[1];
+      var primitiveVal = obj[2];
+
       // add a bit of padding to heap primitives, for aesthetics
       d3DomElement.append('<div class="heapPrimitive"></div>');
+      d3DomElement.find('div.heapPrimitive').append('<div class="typeLabel">' + typeName + '</div>');
       renderPrimitiveObject(primitiveVal, d3DomElement.find('div.heapPrimitive'));
     }
     else {
@@ -2114,6 +2115,15 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
       d3DomElement.append('<div class="typeLabel">' + typeName + '</div>');
       d3DomElement.append('<table class="customObjTbl"><tr><td class="customObjElt">' + strRepr + '</td></tr></table>');
+    }
+
+    // prepend the type label with a memory address label
+    if (myViz.textualMemoryLabels) {
+      var typeLabelPrefix = 'id' + objID + ':';
+
+      var labelD3 = d3DomElement.find('div.typeLabel');
+      assert(labelD3.length == 1); // everything should have exactly ONE type label
+      labelD3.html(typeLabelPrefix + labelD3.html());
     }
   }
 

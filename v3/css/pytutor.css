@@ -218,7 +218,7 @@ div.ExecutionVisualizer .vizFrame {
 /* Rendering of primitive types */
 
 div.ExecutionVisualizer .nullObj {
-  font-size: 8pt;
+//  font-size: 8pt;
 }
 
 div.ExecutionVisualizer .stringObj,
@@ -383,8 +383,8 @@ div.ExecutionVisualizer .objectIdLabel {
 
 div.ExecutionVisualizer .typeLabel {
   font-size: 8pt;
-  color: #222222;
-  margin-bottom: 1px;
+  color: #555;
+  margin-bottom: 2px;
 }
 
 div.ExecutionVisualizer div#stack,
