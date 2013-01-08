@@ -16,6 +16,20 @@ To avoid too many arrows being drawn, also toggle the "draw references using arr
 to "use text labels for references".
 
 
+#### I don't like your default toggle options. Can I set different defaults?
+
+Of course! Toggle options are customizable via the query string. Here are the default settings:
+
+http://pythontutor.com/visualize.html#cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2
+
+For example, if you want to default to Python 3, visit:
+http://pythontutor.com/visualize.html#&py=3
+
+Or if you want to render all objects on the heap and use text label references, visit:
+http://pythontutor.com/visualize.html#heapPrimitives=true&textReferences=true
+
+The possibilities are endless! (or 2^5 or something.)
+
 #### Unicode strings look weird or broken
 
 Yep, that's a known bug; Online Python Tutor currently doesn't have much support for Unicode.
