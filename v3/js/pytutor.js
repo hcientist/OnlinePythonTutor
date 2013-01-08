@@ -1952,16 +1952,21 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     var obj = curEntry.heap[objID];
     assert($.isArray(obj));
 
+    // prepend the type label with a memory address label
+    var typeLabelPrefix = '';
+    if (myViz.textualMemoryLabels) {
+      typeLabelPrefix = 'id' + objID + ':';
+    }
 
     if (obj[0] == 'LIST' || obj[0] == 'TUPLE' || obj[0] == 'SET' || obj[0] == 'DICT') {
       var label = obj[0].toLowerCase();
 
       assert(obj.length >= 1);
       if (obj.length == 1) {
-        d3DomElement.append('<div class="typeLabel">empty ' + label + '</div>');
+        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + 'empty ' + label + '</div>');
       }
       else {
-        d3DomElement.append('<div class="typeLabel">' + label + '</div>');
+        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + label + '</div>');
         d3DomElement.append('<table class="' + label + 'Tbl"></table>');
         var tbl = d3DomElement.children('table');
 
@@ -2035,14 +2040,14 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       assert(obj.length >= headerLength);
 
       if (isInstance) {
-        d3DomElement.append('<div class="typeLabel">' + obj[1] + ' instance</div>');
+        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' instance</div>');
       }
       else {
         var superclassStr = '';
         if (obj[2].length > 0) {
           superclassStr += ('[extends ' + obj[2].join(', ') + '] ');
         }
-        d3DomElement.append('<div class="typeLabel">' + obj[1] + ' class ' + superclassStr + '</div>');
+        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' class ' + superclassStr + '</div>');
       }
 
       if (obj.length > headerLength) {
@@ -2084,7 +2089,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       var funcName = htmlspecialchars(obj[1]).replace('&lt;lambda&gt;', '\u03bb');
       var parentFrameID = obj[2]; // optional
 
-      d3DomElement.append('<div class="typeLabel">function</div>');
+      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + 'function</div>');
 
       if (parentFrameID) {
         d3DomElement.append('<div class="funcObj">' + funcName + ' [parent=f'+ parentFrameID + ']</div>');
@@ -2101,7 +2106,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
       // add a bit of padding to heap primitives, for aesthetics
       d3DomElement.append('<div class="heapPrimitive"></div>');
-      d3DomElement.find('div.heapPrimitive').append('<div class="typeLabel">' + typeName + '</div>');
+      d3DomElement.find('div.heapPrimitive').append('<div class="typeLabel">' + typeLabelPrefix + typeName + '</div>');
       renderPrimitiveObject(primitiveVal, d3DomElement.find('div.heapPrimitive'));
     }
     else {
@@ -2113,18 +2118,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
       strRepr = htmlspecialchars(strRepr); // escape strings!
 
-      d3DomElement.append('<div class="typeLabel">' + typeName + '</div>');
+      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + typeName + '</div>');
       d3DomElement.append('<table class="customObjTbl"><tr><td class="customObjElt">' + strRepr + '</td></tr></table>');
-    }
-
-    // prepend the type label with a memory address label
-    if (myViz.textualMemoryLabels) {
-      var typeLabelPrefix = 'id' + objID + ':';
-
-      var labelD3 = d3DomElement.find('div.typeLabel');
-      if (labelD3.length > 0) {
-        labelD3.html(typeLabelPrefix + labelD3.html());
-      }
     }
   }
 
