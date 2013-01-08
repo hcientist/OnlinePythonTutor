@@ -2122,8 +2122,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       var typeLabelPrefix = 'id' + objID + ':';
 
       var labelD3 = d3DomElement.find('div.typeLabel');
-      assert(labelD3.length == 1); // everything should have exactly ONE type label
-      labelD3.html(typeLabelPrefix + labelD3.html());
+      if (labelD3.length > 0) {
+        labelD3.html(typeLabelPrefix + labelD3.html());
+      }
     }
   }
 
