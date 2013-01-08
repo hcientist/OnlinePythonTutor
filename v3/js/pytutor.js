@@ -1915,7 +1915,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
                                            scope: 'varValuePointer'});
           },
           function() {
-            myViz.jsPlumbInstance.reset(); // kill 'em all!
+            myViz.jsPlumbInstance.select({source: labelID}).detach();
           });
       }
       else {
@@ -2243,7 +2243,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
                                                scope: 'varValuePointer'});
               },
               function() {
-                myViz.jsPlumbInstance.reset(); // kill 'em all!
+                myViz.jsPlumbInstance.select({source: labelID}).detach();
               });
           }
           else {
@@ -2459,7 +2459,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
                                                scope: 'varValuePointer'});
               },
               function() {
-                myViz.jsPlumbInstance.reset(); // kill 'em all!
+                myViz.jsPlumbInstance.select({source: labelID}).detach();
               });
           }
           else {
