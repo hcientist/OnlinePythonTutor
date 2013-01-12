@@ -43,7 +43,6 @@ var myVisualizer = null; // singleton ExecutionVisualizer instance
 
 
 $(document).ready(function() {
-
   var preseededCode = $.bbq.getState('code');
   var cumulativeState = $.bbq.getState('cumulative');
   if (!cumulativeState) {
@@ -52,15 +51,14 @@ $(document).ready(function() {
 
   var pyState = $.bbq.getState('py');
   var verticalStackBool = ($.bbq.getState('verticalStack') == 'true'); // boolean
+  var heapPrimitivesBool = ($.bbq.getState('heapPrimitives') == 'true');
+  var drawParentPointerBool = ($.bbq.getState('drawParentPointers') == 'true');
+  var textRefsBool = ($.bbq.getState('textReferences') == 'true');
 
   var preseededCurInstr = Number($.bbq.getState('curInstr'));
   if (!preseededCurInstr) {
     preseededCurInstr = 0;
   }
-
-  // TODO: add more options as needed
- 
-
 
   var backend_script = null;
   if (pyState == '2') {
@@ -77,10 +75,10 @@ $(document).ready(function() {
 
 
   $.get(backend_script,
-        {user_script : preseededCode, cumulative_mode: cumulativeState},
+        {user_script : preseededCode, cumulative_mode: cumulativeState, heap_primitives: heapPrimitivesBool},
         function(dataFromBackend) {
           var trace = dataFromBackend.trace;
-          
+
           // don't enter visualize mode if there are killer errors:
           if (!trace ||
               (trace.length == 0) ||
@@ -109,6 +107,9 @@ $(document).ready(function() {
                                                    {startingInstruction: preseededCurInstr,
                                                     embeddedMode: true,
                                                     verticalStack: verticalStackBool,
+                                                    disableHeapNesting: heapPrimitivesBool,
+                                                    drawParentPointers: drawParentPointerBool,
+                                                    textualMemoryLabels: textRefsBool,
                                                    });
           }
         },
