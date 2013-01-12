@@ -2343,7 +2343,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       else {
         // render a parent pointer to the global frame
         //console.log('connect', my_CSS_id, globalsID);
-        parentPointerConnectionEndpointIDs.set(my_CSS_id, globalsID);
+        // only do this if there are actually some global variables to display ...
+        if (curEntry.ordered_globals.length > 0) {
+          parentPointerConnectionEndpointIDs.set(my_CSS_id, globalsID);
+        }
       }
 
       // tricky turkey: render parent pointers whose TARGET node is this frame.
