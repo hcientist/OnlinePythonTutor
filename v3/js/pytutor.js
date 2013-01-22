@@ -1120,7 +1120,8 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
   // bnm  Render a question
   if (curEntry.question) {
       //alert(curEntry.question.text);
-      $('#basic-modal-content').modal();
+      
+      $('#'+curEntry.question.div).modal();
   }
 
   // render VCR controls:
@@ -2934,11 +2935,11 @@ function checkMe(inputId, divId, answer) {
    for (j in attrs) {
        correctAns = correctAns[attrs[j]]
    }
-   feedbackElement = $("#basic-modal-content .feedbacktext")
+   feedbackElement = $(".basic-modal-content .feedbacktext")
    if (ans == correctAns) {
        feedbackElement.html('Correct')
    } else {
-       feedbackElement.html('In-Correct')
+       feedbackElement.html('Incorrect')
    }
 
 }

@@ -59,6 +59,7 @@ var bradstrace = {
       "line": 3,
       "question": {"text":"what is the value of a after this line?",
                     "correct":"globals.a",
+                    "div":"bradsDiv_modal"
                     },
       "event": "step_line"
     },
