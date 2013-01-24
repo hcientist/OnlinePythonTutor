@@ -1121,7 +1121,7 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
   if (curEntry.question) {
       //alert(curEntry.question.text);
       
-      $('#'+curEntry.question.div).modal();
+      $('#'+curEntry.question.div).modal({position:["25%","50%"]});
   }
 
   // render VCR controls:
@@ -2939,7 +2939,7 @@ function traceQCheckMe(inputId, divId, answer) {
    if (ans == correctAns) {
        feedbackElement.html('Correct')
    } else {
-       feedbackElement.html('Incorrect')
+       feedbackElement.html(vis.curTrace[i].question.feedback)
    }
 
 }
