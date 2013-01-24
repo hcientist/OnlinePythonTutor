@@ -59,7 +59,8 @@ var bradstrace = {
       "line": 3,
       "question": {"text":"what is the value of a after this line?",
                     "correct":"globals.a",
-                    "div":"bradsDiv_modal"
+                    "div":"bradsDiv_modal",
+                    "feedback":"First look at the current value of a.  How much are we adding to that?"
                     },
       "event": "step_line"
     },
