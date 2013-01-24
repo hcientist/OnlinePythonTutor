@@ -2925,7 +2925,7 @@ function isOutputLineVisibleForBubbles(lineDivID) {
 // So if we want to ask for the value of a global variable we would say 'globals.a'
 // this allows us do do curTrace[i].globals.a  But we do it in the loop below using the
 // [] operator.
-function checkMe(inputId, divId, answer) {
+function traceQCheckMe(inputId, divId, answer) {
    var vis = $("#"+divId).data("vis")
    var i = vis.curInstr
    var curEntry = vis.curTrace[i+1];
