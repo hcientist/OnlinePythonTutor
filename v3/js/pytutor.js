@@ -156,6 +156,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
   // the root elements for jQuery and D3 selections, respectively.
   // ALWAYS use these and never use naked $(__) or d3.select(__)
   this.domRoot = $('#' + domRootID);
+  this.domRoot.data("vis",this);  // bnm store a reference to this as div data for use later.
   this.domRootD3 = d3.select('#' + domRootID);
 
   // stick a new div.ExecutionVisualizer within domRoot and make that
@@ -178,6 +179,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.hasRendered = false;
 
   this.render(); // go for it!
+  
 }
 
 
@@ -1129,6 +1131,12 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
 
   var curEntry = this.curTrace[this.curInstr];
   var hasError = false;
+  // bnm  Render a question
+  if (curEntry.question) {
+      //alert(curEntry.question.text);
+      
+      $('#'+curEntry.question.div).modal({position:["25%","50%"]});
+  }
 
   // render VCR controls:
   var totalInstrs = this.curTrace.length;
@@ -3124,3 +3132,33 @@ function isOutputLineVisibleForBubbles(lineDivID) {
   return (PO <= LO) && (LO < (PO + H - 25));
 }
 
+
+// inputId is the ID of the input element
+// divId is the div that containsthe visualizer
+// answer is a dotted form of an attribute that lives in the curEntry of the trace
+// So if we want to ask for the value of a global variable we would say 'globals.a'
+// this allows us do do curTrace[i].globals.a  But we do it in the loop below using the
+// [] operator.
+function traceQCheckMe(inputId, divId, answer) {
+   var vis = $("#"+divId).data("vis")
+   var i = vis.curInstr
+   var curEntry = vis.curTrace[i+1];
+   var ans = $('#'+inputId).val()
+   var attrs = answer.split(".")
+   var correctAns = curEntry;
+   for (j in attrs) {
+       correctAns = correctAns[attrs[j]]
+   }
+   feedbackElement = $(".basic-modal-content .feedbacktext")
+   if (ans == correctAns) {
+       feedbackElement.html('Correct')
+   } else {
+       feedbackElement.html(vis.curTrace[i].question.feedback)
+   }
+
+}
+
+function closeModal(divId) {
+    $.modal.close()
+    $("#"+divId).data("vis").stepForward();
+}
