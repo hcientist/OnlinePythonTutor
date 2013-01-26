@@ -3133,6 +3133,8 @@ function isOutputLineVisibleForBubbles(lineDivID) {
 }
 
 
+// popup question dialog code from Brad Miller
+
 // inputId is the ID of the input element
 // divId is the div that containsthe visualizer
 // answer is a dotted form of an attribute that lives in the curEntry of the trace
