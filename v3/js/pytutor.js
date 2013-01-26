@@ -3151,7 +3151,7 @@ function traceQCheckMe(inputId, divId, answer) {
    for (j in attrs) {
        correctAns = correctAns[attrs[j]]
    }
-   feedbackElement = $(".basic-modal-content .feedbacktext")
+   feedbackElement = $("#" + divId + "_feedbacktext")
    if (ans == correctAns) {
        feedbackElement.html('Correct')
    } else {
