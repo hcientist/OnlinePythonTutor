@@ -128,7 +128,8 @@ https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-form
 ... and the frontend should be able to visualize it!
 
 For instance, the [Chicory Java trace generator for Daikon](http://groups.csail.mit.edu/pag/daikon/download/doc/daikon_manual_html/daikon_7.html#SEC69)
-might be a good basis for writing a Java backend for OPT.
+might be a good basis for writing a Java backend for OPT. Or take a look at [jdb](http://docs.oracle.com/javase/1.3/docs/tooldocs/solaris/jdb.html), which
+should be similar to how Online Python Tutor uses Python's pdb module to generate traces.
 
 Also, my
 [master's thesis](http://pgbovine.net/projects/pubs/guo-mixedlevel-mengthesis.pdf) from 2006
