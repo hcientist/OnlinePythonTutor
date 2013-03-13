@@ -37,6 +37,10 @@ ranging from smartphones to tablets to laptops to giant desktop monitors.
 Right now Online Python Tutor can render only basic Python data structures. While this is sufficient for teaching introductory CS courses, intermediate and advanced CS students must learn algorithms involving more sophisticated data structures such as binary trees and graphs. The goal of this project is to create a set of effective custom renderers for data structures such as trees, graphs, numerical matrices, and even simple 2D graphical worlds (e.g., for Pac-Man or Conway’s Game of Life). These renderers will make Online Python Tutor useful in a far larger variety of CS courses and online textbooks.
 
 
+## Custom Rendering API and Lightweight Plug-In System (medium)
+
+Right now Online Python Tutor renders Python data structures in a single, fixed way. However, different instructors have different preferences for how they want certain objects to render on-screen (and argue passionately for their specific tastes). There is currently no way for them to specify these custom rendering schemes without mucking around with intricate JavaScript code in the frontend. The goal of this project is to create a clean API and plugin architecture so that JavaScript-savvy instructors can easily create custom renderers.
+
 
 ## Offline mode for use as a production debugger (medium)
 
