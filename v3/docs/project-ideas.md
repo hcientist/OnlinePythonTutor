@@ -32,6 +32,20 @@ so that OPT visualizations (and the surrounding user interface) look good on dis
 ranging from smartphones to tablets to laptops to giant desktop monitors.
 
 
+## Rich user input widgets (medium)
+
+Right now Online Python Tutor takes only code as input. However, it would be great to create widgets that allow
+the user to input data into their code. That way, they can visualize the same code executing on different data
+without changing the code. Currently, the only way to do this is to "hard-code" the input data as global constants.
+
+Here are some example sorts of input widgets:
+
+- Text input widget to simulate stdin (e.g., for use with raw_input())
+- Interactive widget to draw mathematical graphs (e.g., nodes and edges); useful for visualizing graph/tree manipulation algorithms
+- A 2-D canvas where the user can draw points and lines in a coordinate system; useful for visualizing simple computational geometry algorithms
+- Drag and drop an image; useful for visualizing image manipulation algorithms
+
+
 ## Custom data structure visualizations (medium)
 
 Right now Online Python Tutor can render only basic Python data structures. While this is sufficient for teaching introductory CS courses, intermediate and advanced CS students must learn algorithms involving more sophisticated data structures such as binary trees and graphs. The goal of this project is to create a set of effective custom renderers for data structures such as trees, graphs, numerical matrices, and even simple 2D graphical worlds (e.g., for Pac-Man or Conway’s Game of Life). These renderers will make Online Python Tutor useful in a far larger variety of CS courses and online textbooks.
