@@ -43,6 +43,7 @@ Here are some example sorts of input widgets:
 - Text input widget to simulate stdin (e.g., for use with raw_input())
 - Interactive widget to draw mathematical graphs (e.g., nodes and edges); useful for visualizing graph/tree manipulation algorithms
 - A 2-D canvas where the user can draw points and lines in a coordinate system; useful for visualizing simple computational geometry algorithms
+- A 2-D matrix of numbers or colored blocks for, say, a PacMan world
 - Drag and drop an image; useful for visualizing image manipulation algorithms
 - A text box that represents a file on the filesystem. Imagine a web-based I/O simulator where there would be a text box simulating a file object, and then I/O calls such as open, readline, etc. would be intercepted and visualized as iterating (pointing) to the file object one line at a time, reading each line into a string, etc. Writing into a file can also be visualized in this way too. And seeking, overwriting, appending, etc.
 
