@@ -96,6 +96,8 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //                          whenever the HEIGHT of #dataViz changes
 //   verticalStack - if true, then stack code display ON TOP of visualization
 //                   (else place side-by-side)
+//   executeCodeWithRawInputFunc - function to call when you want to re-execute the given program
+//                                 with some new user input (somewhat hacky!)
 function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
   this.curTrace = dat.trace;
@@ -107,6 +109,19 @@ function ExecutionVisualizer(domRootID, dat, params) {
   // 'step_line' entry immediately following it. this filtering allows the
   // visualization to not show as much redundancy.
   this.curTrace = this.curTrace.filter(function(e) {return e.event != 'call';});
+
+  // if the final entry is raw_input, then trim it from the trace and
+  // set a flag to prompt for user input when execution advances to the
+  // end of the trace
+  if (this.curTrace.length > 0) {
+    var lastEntry = this.curTrace[this.curTrace.length - 1];
+    if (lastEntry.event == 'raw_input') {
+      this.promptForUserInput = true;
+      this.userInputPromptStr = lastEntry.prompt;
+
+      this.curTrace.pop() // kill last entry so that it doesn't get displayed
+    }
+  }
 
   this.curInstr = 0;
 
@@ -128,6 +143,8 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.disableHeapNesting = (this.params.disableHeapNesting == true);
   this.drawParentPointers = (this.params.drawParentPointers == true);
   this.textualMemoryLabels = (this.params.textualMemoryLabels == true);
+
+  this.executeCodeWithRawInputFunc = this.params.executeCodeWithRawInputFunc;
 
   // cool, we can create a separate jsPlumb instance for each visualization:
   this.jsPlumbInstance = jsPlumb.getInstance({
@@ -1145,9 +1162,15 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
 
   var vcrControls = myViz.domRoot.find("#vcrControls");
 
-  // to be user-friendly, if we're on the LAST instruction, print "Program terminated"
   if (isLastInstr) {
-    if (this.instrLimitReached) {
+    if (this.promptForUserInput) {
+      vcrControls.find("#curInstr").html('<b><font color="' + brightRed + '">Processing user input ...</font></b>');
+
+      // don't do smooth transition since prompt() is modal so it doesn't
+      // give the animation background thread time to run
+      smoothTransition = false;
+    }
+    else if (this.instrLimitReached) {
       vcrControls.find("#curInstr").html("Instruction limit reached");
     }
     else {
@@ -1373,6 +1396,17 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
     }
   }
 
+
+  if (isLastInstr && this.promptForUserInput) {
+    if (this.executeCodeWithRawInputFunc) {
+      // blocking prompt dialog!
+      var userInput = prompt(this.userInputPromptStr);
+
+      // after executing, jump back to this.curInstr to give the
+      // illusion of continuity
+      this.executeCodeWithRawInputFunc(userInput, this.curInstr);
+    }
+  }
 }
 
 
