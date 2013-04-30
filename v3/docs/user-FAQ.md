@@ -43,6 +43,9 @@ Please email if you have suggestions for more aesthetically-pleasing yet accurat
 
 #### Can Online Python Tutor visualize programs that accept user input via, say, raw_input()?
 
+*Update on 2013-04-29*: Yes, try raw_input() now!!!
+
+*Old lame answer*:
 No, sorry it can't currently do that; and chances are, it won't ever be able to unless I significantly rewrite the backend.
 
 #### Did you know that stepping through code with generators looks weird when "display frames of exited functions" is selected?
