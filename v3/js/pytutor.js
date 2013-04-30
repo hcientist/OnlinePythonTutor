@@ -1402,9 +1402,12 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
       // blocking prompt dialog!
       var userInput = prompt(this.userInputPromptStr);
 
-      // after executing, jump back to this.curInstr to give the
-      // illusion of continuity
-      this.executeCodeWithRawInputFunc(userInput, this.curInstr);
+      // if you hit 'Cancel' in prompt(), it returns null
+      if (userInput !== null) {
+        // after executing, jump back to this.curInstr to give the
+        // illusion of continuity
+        this.executeCodeWithRawInputFunc(userInput, this.curInstr);
+      }
     }
   }
 }

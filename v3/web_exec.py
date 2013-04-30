@@ -72,7 +72,9 @@ if len(sys.argv) > 1:
 else:
   form = cgi.FieldStorage()
   user_script = form['user_script'].value
-  raw_input_json = form['raw_input_json'].value
+  raw_input_json = ''
+  if 'raw_input_json' in form:
+    raw_input_json = form['raw_input_json'].value
   if 'cumulative_mode' in form:
     # convert from string to a Python boolean ...
     cumulative_mode = (form['cumulative_mode'].value == 'true')
