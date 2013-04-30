@@ -1,0 +1,2093 @@
+{
+  "code": "class A:\n    x = 1\n    y = 'hello'\n\nclass B:\n    z = 'bye'\n\nclass C(A,B):\n    def salutation(self):\n        return '%d %s %s' % (self.x, self.y, self.z)\n\ninst = C()\nprint(inst.salutation())\ninst.x = 100\nprint(inst.salutation())\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "A", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {}, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "A", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "A_f1", 
+          "ordered_varnames": []
+        }
+      ], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "call"
+    }, 
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "A", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {}, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "A", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "A_f1", 
+          "ordered_varnames": []
+        }
+      ], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "A", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {}, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "A", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "A_f1", 
+          "ordered_varnames": []
+        }
+      ], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "A", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "x": 1
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "A", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "A_f1", 
+          "ordered_varnames": [
+            "x"
+          ]
+        }
+      ], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 3, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "A", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "y": "hello", 
+            "x": 1, 
+            "__return__": [
+              "REF", 
+              1
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "A", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "A_f1", 
+          "ordered_varnames": [
+            "x", 
+            "y", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {}, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            "y", 
+            "hello"
+          ], 
+          [
+            "x", 
+            1
+          ]
+        ]
+      }, 
+      "line": 3, 
+      "event": "return"
+    }, 
+    {
+      "ordered_globals": [
+        "A"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ]
+      }, 
+      "line": 5, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "A"
+      ], 
+      "stdout": "", 
+      "func_name": "B", 
+      "stack_to_render": [
+        {
+          "frame_id": 2, 
+          "encoded_locals": {}, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "B", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "B_f2", 
+          "ordered_varnames": []
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ]
+      }, 
+      "line": 5, 
+      "event": "call"
+    }, 
+    {
+      "ordered_globals": [
+        "A"
+      ], 
+      "stdout": "", 
+      "func_name": "B", 
+      "stack_to_render": [
+        {
+          "frame_id": 2, 
+          "encoded_locals": {}, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "B", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "B_f2", 
+          "ordered_varnames": []
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ]
+      }, 
+      "line": 5, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "A"
+      ], 
+      "stdout": "", 
+      "func_name": "B", 
+      "stack_to_render": [
+        {
+          "frame_id": 2, 
+          "encoded_locals": {}, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "B", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "B_f2", 
+          "ordered_varnames": []
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ]
+      }, 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "A"
+      ], 
+      "stdout": "", 
+      "func_name": "B", 
+      "stack_to_render": [
+        {
+          "frame_id": 2, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              3
+            ], 
+            "z": "bye"
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "B", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "B_f2", 
+          "ordered_varnames": [
+            "z", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "3": [
+          "DICT", 
+          [
+            "z", 
+            "bye"
+          ]
+        ]
+      }, 
+      "line": 6, 
+      "event": "return"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "B": [
+          "REF", 
+          4
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ]
+      }, 
+      "line": 8, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B"
+      ], 
+      "stdout": "", 
+      "func_name": "C", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {}, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "C", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3", 
+          "ordered_varnames": []
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "B": [
+          "REF", 
+          4
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ]
+      }, 
+      "line": 8, 
+      "event": "call"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B"
+      ], 
+      "stdout": "", 
+      "func_name": "C", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {}, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "C", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3", 
+          "ordered_varnames": []
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "B": [
+          "REF", 
+          4
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ]
+      }, 
+      "line": 8, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B"
+      ], 
+      "stdout": "", 
+      "func_name": "C", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {}, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "C", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3", 
+          "ordered_varnames": []
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "B": [
+          "REF", 
+          4
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ]
+      }, 
+      "line": 9, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B"
+      ], 
+      "stdout": "", 
+      "func_name": "C", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {
+            "salutation": [
+              "REF", 
+              5
+            ], 
+            "__return__": [
+              "REF", 
+              6
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": true, 
+          "func_name": "C", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3_p", 
+          "ordered_varnames": [
+            "salutation", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "B": [
+          "REF", 
+          4
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "salutation(self)", 
+          3
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ]
+      }, 
+      "line": 9, 
+      "event": "return"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B", 
+        "C"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {
+            "salutation": [
+              "REF", 
+              5
+            ], 
+            "__return__": [
+              "REF", 
+              6
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "C", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3_p_z", 
+          "ordered_varnames": [
+            "salutation", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "C": [
+          "REF", 
+          7
+        ], 
+        "B": [
+          "REF", 
+          4
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "salutation(self)", 
+          3
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__doc__", 
+            null
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "C", 
+          [
+            "A", 
+            "B"
+          ], 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ]
+      }, 
+      "line": 12, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B", 
+        "C", 
+        "inst"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {
+            "salutation": [
+              "REF", 
+              5
+            ], 
+            "__return__": [
+              "REF", 
+              6
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "C", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3_p_z", 
+          "ordered_varnames": [
+            "salutation", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "C": [
+          "REF", 
+          7
+        ], 
+        "B": [
+          "REF", 
+          4
+        ], 
+        "inst": [
+          "REF", 
+          8
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "salutation(self)", 
+          3
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__doc__", 
+            null
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "C", 
+          [
+            "A", 
+            "B"
+          ], 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "8": [
+          "INSTANCE", 
+          "C"
+        ]
+      }, 
+      "line": 13, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B", 
+        "C", 
+        "inst"
+      ], 
+      "stdout": "", 
+      "func_name": "salutation", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {
+            "salutation": [
+              "REF", 
+              5
+            ], 
+            "__return__": [
+              "REF", 
+              6
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "C", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3_p_z", 
+          "ordered_varnames": [
+            "salutation", 
+            "__return__"
+          ]
+        }, 
+        {
+          "frame_id": 4, 
+          "encoded_locals": {
+            "self": [
+              "REF", 
+              8
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "salutation", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [
+            3
+          ], 
+          "unique_hash": "salutation_f4", 
+          "ordered_varnames": [
+            "self"
+          ]
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "C": [
+          "REF", 
+          7
+        ], 
+        "B": [
+          "REF", 
+          4
+        ], 
+        "inst": [
+          "REF", 
+          8
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "salutation(self)", 
+          3
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__doc__", 
+            null
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "C", 
+          [
+            "A", 
+            "B"
+          ], 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "8": [
+          "INSTANCE", 
+          "C"
+        ]
+      }, 
+      "line": 9, 
+      "event": "call"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B", 
+        "C", 
+        "inst"
+      ], 
+      "stdout": "", 
+      "func_name": "salutation", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {
+            "salutation": [
+              "REF", 
+              5
+            ], 
+            "__return__": [
+              "REF", 
+              6
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "C", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3_p_z", 
+          "ordered_varnames": [
+            "salutation", 
+            "__return__"
+          ]
+        }, 
+        {
+          "frame_id": 4, 
+          "encoded_locals": {
+            "self": [
+              "REF", 
+              8
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "salutation", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [
+            3
+          ], 
+          "unique_hash": "salutation_f4", 
+          "ordered_varnames": [
+            "self"
+          ]
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "C": [
+          "REF", 
+          7
+        ], 
+        "B": [
+          "REF", 
+          4
+        ], 
+        "inst": [
+          "REF", 
+          8
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "salutation(self)", 
+          3
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__doc__", 
+            null
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "C", 
+          [
+            "A", 
+            "B"
+          ], 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "8": [
+          "INSTANCE", 
+          "C"
+        ]
+      }, 
+      "line": 10, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B", 
+        "C", 
+        "inst"
+      ], 
+      "stdout": "", 
+      "func_name": "salutation", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {
+            "salutation": [
+              "REF", 
+              5
+            ], 
+            "__return__": [
+              "REF", 
+              6
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "C", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3_p_z", 
+          "ordered_varnames": [
+            "salutation", 
+            "__return__"
+          ]
+        }, 
+        {
+          "frame_id": 4, 
+          "encoded_locals": {
+            "__return__": "1 hello bye", 
+            "self": [
+              "REF", 
+              8
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "salutation", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [
+            3
+          ], 
+          "unique_hash": "salutation_f4", 
+          "ordered_varnames": [
+            "self", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "C": [
+          "REF", 
+          7
+        ], 
+        "B": [
+          "REF", 
+          4
+        ], 
+        "inst": [
+          "REF", 
+          8
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "salutation(self)", 
+          3
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__doc__", 
+            null
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "C", 
+          [
+            "A", 
+            "B"
+          ], 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "8": [
+          "INSTANCE", 
+          "C"
+        ]
+      }, 
+      "line": 10, 
+      "event": "return"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B", 
+        "C", 
+        "inst"
+      ], 
+      "stdout": "1 hello bye\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {
+            "salutation": [
+              "REF", 
+              5
+            ], 
+            "__return__": [
+              "REF", 
+              6
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "C", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3_p_z", 
+          "ordered_varnames": [
+            "salutation", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "C": [
+          "REF", 
+          7
+        ], 
+        "B": [
+          "REF", 
+          4
+        ], 
+        "inst": [
+          "REF", 
+          8
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "salutation(self)", 
+          3
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__doc__", 
+            null
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "C", 
+          [
+            "A", 
+            "B"
+          ], 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "8": [
+          "INSTANCE", 
+          "C"
+        ]
+      }, 
+      "line": 14, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B", 
+        "C", 
+        "inst"
+      ], 
+      "stdout": "1 hello bye\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {
+            "salutation": [
+              "REF", 
+              5
+            ], 
+            "__return__": [
+              "REF", 
+              6
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "C", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3_p_z", 
+          "ordered_varnames": [
+            "salutation", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "C": [
+          "REF", 
+          7
+        ], 
+        "B": [
+          "REF", 
+          4
+        ], 
+        "inst": [
+          "REF", 
+          8
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "salutation(self)", 
+          3
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__doc__", 
+            null
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "C", 
+          [
+            "A", 
+            "B"
+          ], 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "8": [
+          "INSTANCE", 
+          "C", 
+          [
+            "x", 
+            100
+          ]
+        ]
+      }, 
+      "line": 15, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B", 
+        "C", 
+        "inst"
+      ], 
+      "stdout": "1 hello bye\n", 
+      "func_name": "salutation", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {
+            "salutation": [
+              "REF", 
+              5
+            ], 
+            "__return__": [
+              "REF", 
+              6
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "C", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3_p_z", 
+          "ordered_varnames": [
+            "salutation", 
+            "__return__"
+          ]
+        }, 
+        {
+          "frame_id": 5, 
+          "encoded_locals": {
+            "self": [
+              "REF", 
+              8
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "salutation", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [
+            3
+          ], 
+          "unique_hash": "salutation_f5", 
+          "ordered_varnames": [
+            "self"
+          ]
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "C": [
+          "REF", 
+          7
+        ], 
+        "B": [
+          "REF", 
+          4
+        ], 
+        "inst": [
+          "REF", 
+          8
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "salutation(self)", 
+          3
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__doc__", 
+            null
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "C", 
+          [
+            "A", 
+            "B"
+          ], 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "8": [
+          "INSTANCE", 
+          "C", 
+          [
+            "x", 
+            100
+          ]
+        ]
+      }, 
+      "line": 9, 
+      "event": "call"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B", 
+        "C", 
+        "inst"
+      ], 
+      "stdout": "1 hello bye\n", 
+      "func_name": "salutation", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {
+            "salutation": [
+              "REF", 
+              5
+            ], 
+            "__return__": [
+              "REF", 
+              6
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "C", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3_p_z", 
+          "ordered_varnames": [
+            "salutation", 
+            "__return__"
+          ]
+        }, 
+        {
+          "frame_id": 5, 
+          "encoded_locals": {
+            "self": [
+              "REF", 
+              8
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "salutation", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [
+            3
+          ], 
+          "unique_hash": "salutation_f5", 
+          "ordered_varnames": [
+            "self"
+          ]
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "C": [
+          "REF", 
+          7
+        ], 
+        "B": [
+          "REF", 
+          4
+        ], 
+        "inst": [
+          "REF", 
+          8
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "salutation(self)", 
+          3
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__doc__", 
+            null
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "C", 
+          [
+            "A", 
+            "B"
+          ], 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "8": [
+          "INSTANCE", 
+          "C", 
+          [
+            "x", 
+            100
+          ]
+        ]
+      }, 
+      "line": 10, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B", 
+        "C", 
+        "inst"
+      ], 
+      "stdout": "1 hello bye\n", 
+      "func_name": "salutation", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {
+            "salutation": [
+              "REF", 
+              5
+            ], 
+            "__return__": [
+              "REF", 
+              6
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "C", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3_p_z", 
+          "ordered_varnames": [
+            "salutation", 
+            "__return__"
+          ]
+        }, 
+        {
+          "frame_id": 5, 
+          "encoded_locals": {
+            "__return__": "100 hello bye", 
+            "self": [
+              "REF", 
+              8
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "salutation", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [
+            3
+          ], 
+          "unique_hash": "salutation_f5", 
+          "ordered_varnames": [
+            "self", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "C": [
+          "REF", 
+          7
+        ], 
+        "B": [
+          "REF", 
+          4
+        ], 
+        "inst": [
+          "REF", 
+          8
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "salutation(self)", 
+          3
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__doc__", 
+            null
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "C", 
+          [
+            "A", 
+            "B"
+          ], 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "8": [
+          "INSTANCE", 
+          "C", 
+          [
+            "x", 
+            100
+          ]
+        ]
+      }, 
+      "line": 10, 
+      "event": "return"
+    }, 
+    {
+      "ordered_globals": [
+        "A", 
+        "B", 
+        "C", 
+        "inst"
+      ], 
+      "stdout": "1 hello bye\n100 hello bye\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [
+        {
+          "frame_id": 3, 
+          "encoded_locals": {
+            "salutation": [
+              "REF", 
+              5
+            ], 
+            "__return__": [
+              "REF", 
+              6
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "C", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "C_f3_p_z", 
+          "ordered_varnames": [
+            "salutation", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "A": [
+          "REF", 
+          2
+        ], 
+        "C": [
+          "REF", 
+          7
+        ], 
+        "B": [
+          "REF", 
+          4
+        ], 
+        "inst": [
+          "REF", 
+          8
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "CLASS", 
+          "A", 
+          [], 
+          [
+            "x", 
+            1
+          ], 
+          [
+            "y", 
+            "hello"
+          ]
+        ], 
+        "4": [
+          "CLASS", 
+          "B", 
+          [], 
+          [
+            "z", 
+            "bye"
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "salutation(self)", 
+          3
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__doc__", 
+            null
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "C", 
+          [
+            "A", 
+            "B"
+          ], 
+          [
+            "salutation", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "8": [
+          "INSTANCE", 
+          "C", 
+          [
+            "x", 
+            100
+          ]
+        ]
+      }, 
+      "line": 15, 
+      "event": "return"
+    }
+  ]
+}
