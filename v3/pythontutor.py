@@ -79,6 +79,7 @@ class ExecScript(webapp2.RequestHandler):
     heap_primitives = (self.request.get('heap_primitives') == 'true')
 
     pg_logger.exec_script_str(self.request.get('user_script'),
+                              self.request.get('raw_input_json'),
                               cumulative_mode,
                               heap_primitives,
                               self.json_finalizer)

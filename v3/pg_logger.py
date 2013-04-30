@@ -104,11 +104,42 @@ def __restricted_import__(*args):
     raise ImportError('{0} not supported'.format(args[0]))
 
 
+# Support interactive user input by:
+#
+# 1. running the entire program up to a call to raw_input (or input in py3),
+# 2. bailing and returning a trace ending in a special 'raw_input' event,
+# 3. letting the web frontend issue a prompt to the user to grab a string,
+# 4. RE-RUNNING the whole program with that string added to raw_input_queue,
+# 5. which should bring execution to the next raw_input call (if
+#    available), or to termination.
+# Repeat until no more raw_input calls are encountered.
+# Note that this is mad inefficient, but is simple to implement!
+#
+# TODO: To make this technique more deterministic,
+#       save away and restore the random seed.
+
+# queue of input strings passed from the outside
+raw_input_queue = []
+
+class RawInputException(Exception):
+  pass
+
+def raw_input_wrapper(prompt=''):
+  if raw_input_queue:
+    return raw_input_queue.pop(0)
+  raise RawInputException(prompt)
+
+
 # blacklist of builtins
-BANNED_BUILTINS = ('reload', 'input', 'apply', 'open', 'compile',
+BANNED_BUILTINS = ['reload', 'apply', 'open', 'compile',
                    'file', 'eval', 'exec', 'execfile',
-                   'exit', 'quit', 'raw_input', 'help',
-                   'dir', 'globals', 'locals', 'vars')
+                   'exit', 'quit', 'help',
+                   'dir', 'globals', 'locals', 'vars']
+
+# ban input() in Python 2 since it does an eval!
+# (Python 3 input is Python 2 raw_input, so we're okay)
+if not is_python3:
+  BANNED_BUILTINS.append('input')
 
 
 IGNORE_VARS = set(('__user_stdout__', '__builtins__', '__name__', '__exception__', '__doc__', '__package__'))
@@ -210,6 +241,9 @@ class PGLogger(bdb.Bdb):
         # each entry contains a dict with the information for a single
         # executed line
         self.trace = []
+
+        # if this is true, don't put any more stuff into self.trace
+        self.done = False
 
         #http://stackoverflow.com/questions/2112396/in-python-in-google-app-engine-how-do-you-capture-output-produced-by-the-print
         self.GAE_STDOUT = sys.stdout
@@ -323,6 +357,10 @@ class PGLogger(bdb.Bdb):
     # Override Bdb methods
 
     def user_call(self, frame, argument_list):
+        # TODO: figure out a way to move this down to 'def interaction'
+        # or right before self.trace.append ...
+        if self.done: return
+
         """This method is called when there is the remote possibility
         that we ever need to stop in this function."""
         if self._wait_for_mainpyfile:
@@ -339,6 +377,8 @@ class PGLogger(bdb.Bdb):
             self.interaction(frame, None, 'call')
 
     def user_line(self, frame):
+        if self.done: return
+
         """This function is called when we stop or break at this line."""
         if self._wait_for_mainpyfile:
             if (self.canonic(frame.f_code.co_filename) != "<string>" or
@@ -348,11 +388,15 @@ class PGLogger(bdb.Bdb):
         self.interaction(frame, None, 'step_line')
 
     def user_return(self, frame, return_value):
+        if self.done: return
+
         """This function is called when a return trap is set here."""
         frame.f_locals['__return__'] = return_value
         self.interaction(frame, None, 'return')
 
     def user_exception(self, frame, exc_info):
+        if self.done: return
+
         exc_type, exc_value, exc_traceback = exc_info
         """This function is called if an exception occurs,
         but only if we are to stop at or just below this level."""
@@ -360,7 +404,12 @@ class PGLogger(bdb.Bdb):
         if type(exc_type) == type(''):
             exc_type_name = exc_type
         else: exc_type_name = exc_type.__name__
-        self.interaction(frame, exc_traceback, 'exception')
+
+        if exc_type_name == 'RawInputException':
+          self.trace.append(dict(event='raw_input', prompt=exc_value.args[0]))
+          self.done = True
+        else:
+          self.interaction(frame, exc_traceback, 'exception')
 
 
     # General interaction function
@@ -392,10 +441,12 @@ class PGLogger(bdb.Bdb):
 
 
         # debug ...
-        #print('===', file=sys.stderr)
-        #for (e,ln) in self.stack:
-        #  print(e.f_code.co_name + ' ' + e.f_code.co_filename + ' ' + str(ln), file=sys.stderr)
-        #print('', file=sys.stderr)
+        '''
+        print >> sys.stderr, '==='
+        for (e,ln) in self.stack:
+          print >> sys.stderr, e.f_code.co_name + ' ' + e.f_code.co_filename + ' ' + str(ln)
+        print >> sys.stderr
+        '''
 
 
         # don't trace inside of our __restricted_import__ helper function
@@ -733,7 +784,13 @@ class PGLogger(bdb.Bdb):
           elif k == '__import__':
             user_builtins[k] = __restricted_import__
           else:
-            user_builtins[k] = v
+            if k == 'raw_input':
+              user_builtins[k] = raw_input_wrapper
+            elif k == 'input' and is_python3:
+              # Python 3 input() is Python 2 raw_input()
+              user_builtins[k] = raw_input_wrapper
+            else:
+              user_builtins[k] = v
 
 
         user_stdout = cStringIO.StringIO()
@@ -806,7 +863,8 @@ class PGLogger(bdb.Bdb):
               break
 
           if not already_caught:
-            self.trace.append(trace_entry)
+            if not self.done:
+              self.trace.append(trace_entry)
 
           raise bdb.BdbQuit # need to forceably STOP execution
 
@@ -847,10 +905,17 @@ class PGLogger(bdb.Bdb):
       return self.finalizer_func(self.executed_script, self.trace)
 
 
+import json
 
 # the MAIN meaty function!!!
-def exec_script_str(script_str, cumulative_mode, heap_primitives, finalizer_func):
+def exec_script_str(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func):
   logger = PGLogger(cumulative_mode, heap_primitives, finalizer_func)
+
+  global raw_input_queue
+  raw_input_queue = []
+  if raw_input_lst_json:
+    # TODO: if we want to support unicode, remove str() cast
+    raw_input_queue = [str(e) for e in json.loads(raw_input_lst_json)]
 
   try:
     logger._runscript(script_str)
@@ -863,8 +928,14 @@ def exec_script_str(script_str, cumulative_mode, heap_primitives, finalizer_func
 # disables security check and returns the result of finalizer_func
 # WARNING: ONLY RUN THIS LOCALLY and never over the web, since
 # security checks are disabled
-def exec_script_str_local(script_str, cumulative_mode, heap_primitives, finalizer_func):
+def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func):
   logger = PGLogger(cumulative_mode, heap_primitives, finalizer_func, disable_security_checks=True)
+
+  global raw_input_queue
+  raw_input_queue = []
+  if raw_input_lst_json:
+    # TODO: if we want to support unicode, remove str() cast
+    raw_input_queue = [str(e) for e in json.loads(raw_input_lst_json)]
 
   try:
     logger._runscript(script_str)
@@ -872,4 +943,3 @@ def exec_script_str_local(script_str, cumulative_mode, heap_primitives, finalize
     pass
   finally:
     return logger.finalize()
-

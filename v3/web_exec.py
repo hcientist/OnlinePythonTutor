@@ -66,10 +66,13 @@ if len(sys.argv) > 1:
 
 # Otherwise act like a CGI script with parameters:
 #   user_script
+#   raw_input_json
 #   cumulative_mode
+#   heap_primitives
 else:
   form = cgi.FieldStorage()
   user_script = form['user_script'].value
+  raw_input_json = form['raw_input_json'].value
   if 'cumulative_mode' in form:
     # convert from string to a Python boolean ...
     cumulative_mode = (form['cumulative_mode'].value == 'true')
@@ -77,4 +80,4 @@ else:
     heap_primitives = (form['heap_primitives'].value == 'true')
 
 
-pg_logger.exec_script_str(user_script, cumulative_mode, heap_primitives, cgi_finalizer)
+pg_logger.exec_script_str(user_script, raw_input_json, cumulative_mode, heap_primitives, cgi_finalizer)
