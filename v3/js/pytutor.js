@@ -1400,7 +1400,8 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
   if (isLastInstr && this.promptForUserInput) {
     if (this.executeCodeWithRawInputFunc) {
       // blocking prompt dialog!
-      var userInput = prompt(this.userInputPromptStr);
+      // put a default string of '' or else it looks ugly in IE
+      var userInput = prompt(this.userInputPromptStr, '');
 
       // if you hit 'Cancel' in prompt(), it returns null
       if (userInput !== null) {
