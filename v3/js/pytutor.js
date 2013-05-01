@@ -110,7 +110,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
   // visualization to not show as much redundancy.
   this.curTrace = this.curTrace.filter(function(e) {return e.event != 'call';});
 
-  // if the final entry is raw_input, then trim it from the trace and
+  // if the final entry is raw_input or mouse_input, then trim it from the trace and
   // set a flag to prompt for user input when execution advances to the
   // end of the trace
   if (this.curTrace.length > 0) {
@@ -118,7 +118,11 @@ function ExecutionVisualizer(domRootID, dat, params) {
     if (lastEntry.event == 'raw_input') {
       this.promptForUserInput = true;
       this.userInputPromptStr = lastEntry.prompt;
-
+      this.curTrace.pop() // kill last entry so that it doesn't get displayed
+    }
+    else if (lastEntry.event == 'mouse_input') {
+      this.promptForMouseInput = true;
+      this.userInputPromptStr = lastEntry.prompt;
       this.curTrace.pop() // kill last entry so that it doesn't get displayed
     }
   }
@@ -236,6 +240,7 @@ ExecutionVisualizer.prototype.render = function() {
          <div class="annotationText" id="stepAnnotationViewer"></div>\
        </div>\
        <div id="annotateLinkDiv"><button id="annotateBtn" type="button">Annotate this step</button></div>\
+       <div id="htmlOutputDiv"></div>\
        <div id="progOutputs">\
          Program output:<br/>\
          <textarea id="pyStdout" cols="50" rows="10" wrap="off" readonly></textarea>\
@@ -1163,8 +1168,8 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
   var vcrControls = myViz.domRoot.find("#vcrControls");
 
   if (isLastInstr) {
-    if (this.promptForUserInput) {
-      vcrControls.find("#curInstr").html('<b><font color="' + brightRed + '">Processing user input ...</font></b>');
+    if (this.promptForUserInput || this.promptForMouseInput) {
+      vcrControls.find("#curInstr").html('<b><font color="' + brightRed + '">' + this.userInputPromptStr + '</font></b>');
 
       // don't do smooth transition since prompt() is modal so it doesn't
       // give the animation background thread time to run
@@ -1374,13 +1379,41 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
 
   // render stdout:
 
-  // keep original horizontal scroll level:
-  var oldLeft = myViz.domRoot.find("#pyStdout").scrollLeft();
-  myViz.domRoot.find("#pyStdout").val(curEntry.stdout);
+  // if there isn't anything in curEntry.stdout, don't even bother
+  // displaying the pane
+  if (curEntry.stdout) {
+    this.domRoot.find('#progOutputs').show();
 
-  myViz.domRoot.find("#pyStdout").scrollLeft(oldLeft);
-  // scroll to bottom, though:
-  myViz.domRoot.find("#pyStdout").scrollTop(myViz.domRoot.find("#pyStdout")[0].scrollHeight);
+    // keep original horizontal scroll level:
+    var oldLeft = myViz.domRoot.find("#pyStdout").scrollLeft();
+    myViz.domRoot.find("#pyStdout").val(curEntry.stdout);
+
+    myViz.domRoot.find("#pyStdout").scrollLeft(oldLeft);
+    // scroll to bottom, though:
+    myViz.domRoot.find("#pyStdout").scrollTop(myViz.domRoot.find("#pyStdout")[0].scrollHeight);
+  }
+  else {
+    this.domRoot.find('#progOutputs').hide();
+  }
+
+
+  // inject user-specified HTML/CSS/JS output:
+  // YIKES -- HUGE CODE INJECTION VULNERABILITIES :O
+  myViz.domRoot.find("#htmlOutputDiv").empty();
+  if (curEntry.html_output) {
+    if (curEntry.css_output) {
+      myViz.domRoot.find("#htmlOutputDiv").append('<style type="text/css">' + curEntry.css_output + '</style>');
+    }
+    myViz.domRoot.find("#htmlOutputDiv").append(curEntry.html_output);
+
+    // inject and run JS *after* injecting HTML and CSS
+    if (curEntry.js_output) {
+      // NB: when jQuery injects JS, it executes the code immediately
+      // and then removes the entire <script> block from the DOM
+      // http://stackoverflow.com/questions/610995/jquery-cant-append-script-element
+      myViz.domRoot.find("#htmlOutputDiv").append('<script type="text/javascript">' + curEntry.js_output + '</script>');
+    }
+  }
 
 
   // finally, render all of the data structures
@@ -1397,8 +1430,8 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
   }
 
 
-  if (isLastInstr && this.promptForUserInput) {
-    if (this.executeCodeWithRawInputFunc) {
+  if (isLastInstr && this.executeCodeWithRawInputFunc) {
+    if (this.promptForUserInput) {
       // blocking prompt dialog!
       // put a default string of '' or else it looks ugly in IE
       var userInput = prompt(this.userInputPromptStr, '');

@@ -43,7 +43,7 @@ var appMode = 'edit'; // 'edit', 'display', or 'display_no_frills'
 var preseededCode = null;     // if you passed in a 'code=<code string>' in the URL, then set this var
 var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
 
-var rawInputLst = []; // a list of strings inputted by the user in calls to prompt()
+var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 

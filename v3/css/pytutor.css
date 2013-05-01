@@ -43,6 +43,7 @@ div.ExecutionVisualizer {
 div.ExecutionVisualizer table.visualizer {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 10pt;
+  margin-bottom: 10px;
 }
 
 div.ExecutionVisualizer table.visualizer td.vizLayoutTd {
@@ -125,6 +126,10 @@ div.ExecutionVisualizer table#pyCodeOutput .cod {
   margin-left: 3px;
   padding-left: 7px;
   text-align: left; /* necessary or else doesn't work properly in IE */
+}
+
+div.ExecutionVisualizer div#progOutputs {
+  margin-top: 8px;
 }
 
 div.ExecutionVisualizer div#legendDiv {
