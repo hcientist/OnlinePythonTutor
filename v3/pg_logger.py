@@ -71,6 +71,24 @@ except ImportError:
   resource_module_loaded = False
 
 
+
+# These could lead to XSS or other code injection attacks, so be careful:
+__html__ = None
+def setHTML(htmlStr):
+  global __html__
+  __html__ = htmlStr
+
+__css__ = None
+def setCSS(cssStr):
+  global __css__
+  __css__ = cssStr
+
+__js__ = None
+def setJS(jsStr):
+  global __js__
+  __js__ = jsStr
+
+
 # ugh, I can't figure out why in Python 2, __builtins__ seems to
 # be a dict, but in Python 3, __builtins__ seems to be a module,
 # so just handle both cases ... UGLY!
@@ -82,24 +100,43 @@ else:
 
 
 # whitelist of module imports
-ALLOWED_MODULE_IMPORTS = ('math', 'random', 'datetime',
+ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'datetime',
                           'functools', 'operator', 'string',
                           'collections', 're', 'json',
                           'heapq', 'bisect')
+
+# whitelist of custom modules to import into OPT
+# (TODO: support modules in a subdirectory, but there are various
+# logistical problems with doing so that I can't overcome at the moment,
+# especially getting setHTML, setCSS, and setJS to work in the imported
+# modules.)
+CUSTOM_MODULE_IMPORTS = ('callback_module', 'ttt_module')
+
 
 # PREEMPTIVELY import all of these modules, so that when the user's
 # script imports them, it won't try to do a file read (since they've
 # already been imported and cached in memory). Remember that when
 # the user's code runs, resource.setrlimit(resource.RLIMIT_NOFILE, (0, 0))
 # will already be in effect, so no more files can be opened.
-for m in ALLOWED_MODULE_IMPORTS:
+#
+# NB: All modules in CUSTOM_MODULE_IMPORTS will be imported, warts and
+# all, so they better work on Python 2 and 3!
+for m in ALLOWED_STDLIB_MODULE_IMPORTS + CUSTOM_MODULE_IMPORTS:
   __import__(m)
 
 
 # Restrict imports to a whitelist
 def __restricted_import__(*args):
-  if args[0] in ALLOWED_MODULE_IMPORTS:
-    return BUILTIN_IMPORT(*args)
+  if args[0] in ALLOWED_STDLIB_MODULE_IMPORTS + CUSTOM_MODULE_IMPORTS:
+    imported_mod = BUILTIN_IMPORT(*args)
+
+    if args[0] in CUSTOM_MODULE_IMPORTS:
+      # add special magical functions to custom imported modules
+      setattr(imported_mod, 'setHTML', setHTML)
+      setattr(imported_mod, 'setCSS', setCSS)
+      setattr(imported_mod, 'setJS', setJS)
+
+    return imported_mod
   else:
     raise ImportError('{0} not supported'.format(args[0]))
 
@@ -109,7 +146,7 @@ def __restricted_import__(*args):
 # 1. running the entire program up to a call to raw_input (or input in py3),
 # 2. bailing and returning a trace ending in a special 'raw_input' event,
 # 3. letting the web frontend issue a prompt to the user to grab a string,
-# 4. RE-RUNNING the whole program with that string added to raw_input_queue,
+# 4. RE-RUNNING the whole program with that string added to input_string_queue,
 # 5. which should bring execution to the next raw_input call (if
 #    available), or to termination.
 # Repeat until no more raw_input calls are encountered.
@@ -118,23 +155,33 @@ def __restricted_import__(*args):
 # TODO: To make this technique more deterministic,
 #       save away and restore the random seed.
 
-# queue of input strings passed from the outside
-raw_input_queue = []
+# queue of input strings passed from either raw_input or mouse_input
+input_string_queue = []
 
 class RawInputException(Exception):
   pass
 
 def raw_input_wrapper(prompt=''):
-  if raw_input_queue:
-    return raw_input_queue.pop(0)
+  if input_string_queue:
+    return input_string_queue.pop(0)
   raise RawInputException(prompt)
+
+class MouseInputException(Exception):
+  pass
+
+def mouse_input_wrapper(prompt=''):
+  if input_string_queue:
+    return input_string_queue.pop(0)
+  raise MouseInputException(prompt)
+
 
 
 # blacklist of builtins
-BANNED_BUILTINS = ['reload', 'apply', 'open', 'compile',
+BANNED_BUILTINS = ['reload', 'open', 'compile',
                    'file', 'eval', 'exec', 'execfile',
                    'exit', 'quit', 'help',
                    'dir', 'globals', 'locals', 'vars']
+# Peter says 'apply' isn't dangerous, so don't ban it
 
 # ban input() in Python 2 since it does an eval!
 # (Python 3 input is Python 2 raw_input, so we're okay)
@@ -408,6 +455,9 @@ class PGLogger(bdb.Bdb):
         if exc_type_name == 'RawInputException':
           self.trace.append(dict(event='raw_input', prompt=exc_value.args[0]))
           self.done = True
+        elif exc_type_name == 'MouseInputException':
+          self.trace.append(dict(event='mouse_input', prompt=exc_value.args[0]))
+          self.done = True
         else:
           self.interaction(frame, exc_traceback, 'exception')
 
@@ -420,6 +470,17 @@ class PGLogger(bdb.Bdb):
         top_frame = tos[0]
         lineno = tos[1]
 
+
+        # debug ...
+        '''
+        print >> sys.stderr, '=== STACK ==='
+        for (e,ln) in self.stack:
+          print >> sys.stderr, e.f_code.co_name + ' ' + e.f_code.co_filename + ' ' + str(ln)
+        print >> sys.stderr, "top_frame", top_frame.f_code.co_name
+        print >> sys.stderr
+        '''
+
+
         # don't trace inside of ANY functions that aren't user-written code
         # (e.g., those from imported modules -- e.g., random, re -- or the
         # __restricted_import__ function in this file)
@@ -427,6 +488,25 @@ class PGLogger(bdb.Bdb):
         # empirically, it seems like the FIRST entry in self.stack is
         # the 'run' function from bdb.py, but everything else on the
         # stack is the user program's "real stack"
+
+        # Look only at the "topmost" frame on the stack ...
+
+        # it seems like user-written code has a filename of '<string>',
+        # but maybe there are false positives too?
+        if self.canonic(top_frame.f_code.co_filename) != '<string>':
+          return
+        # also don't trace inside of the magic "constructor" code
+        if top_frame.f_code.co_name == '__new__':
+          return
+        # or __repr__, which is often called when running print statements
+        if top_frame.f_code.co_name == '__repr__':
+          return
+
+
+        # OLD CODE -- bail if any element on the stack matches these conditions
+        # note that the old code passes tests/backend-tests/namedtuple.txt
+        # but the new code above doesn't :/
+        '''
         for (cur_frame, cur_line) in self.stack[1:]:
           # it seems like user-written code has a filename of '<string>',
           # but maybe there are false positives too?
@@ -438,14 +518,6 @@ class PGLogger(bdb.Bdb):
           # or __repr__, which is often called when running print statements
           if cur_frame.f_code.co_name == '__repr__':
             return
-
-
-        # debug ...
-        '''
-        print >> sys.stderr, '==='
-        for (e,ln) in self.stack:
-          print >> sys.stderr, e.f_code.co_name + ' ' + e.f_code.co_filename + ' ' + str(ln)
-        print >> sys.stderr
         '''
 
 
@@ -629,7 +701,25 @@ class PGLogger(bdb.Bdb):
           if cur_name == '<module>':
             break
 
-          encoded_stack_locals.append(create_encoded_stack_entry(cur_frame))
+          # do this check because in some cases, certain frames on the
+          # stack might NOT be tracked, so don't push a stack entry for
+          # those frames. this happens when you have a callback function
+          # in an imported module. e.g., your code:
+          #     def foo():
+          #         bar(baz)
+          #
+          #     def baz(): pass
+          #
+          # imported module code:
+          #     def bar(callback_func):
+          #         callback_func()
+          #
+          # when baz is executing, the real stack is [foo, bar, baz] but
+          # bar is in imported module code, so pg_logger doesn't trace
+          # it, and it doesn't show up in frame_ordered_ids. thus, the
+          # stack to render should only be [foo, baz].
+          if cur_frame in self.frame_ordered_ids:
+            encoded_stack_locals.append(create_encoded_stack_entry(cur_frame))
           i -= 1
 
         zombie_encoded_stack_locals = [create_encoded_stack_entry(e) for e in zombie_frames_to_render]
@@ -721,6 +811,15 @@ class PGLogger(bdb.Bdb):
                            heap=self.encoder.get_heap(),
                            stdout=get_user_stdout(tos[0]))
 
+        # TODO: refactor into a non-global
+        global __html__, __css__, __js__
+        if __html__:
+          trace_entry['html_output'] = __html__
+        if __css__:
+          trace_entry['css_output'] = __css__
+        if __js__:
+          trace_entry['js_output'] = __js__
+
         # if there's an exception, then record its info:
         if event_type == 'exception':
           # always check in f_locals
@@ -792,6 +891,14 @@ class PGLogger(bdb.Bdb):
             else:
               user_builtins[k] = v
 
+        user_builtins['mouse_input'] = mouse_input_wrapper
+
+        # uncomment to ease debugging, but in production,
+        # don't expose these directly to user since it's more of a
+        # security risk. instead, expose them only to imported modules
+        #user_builtins['setHTML'] = setHTML
+        #user_builtins['setCSS'] = setCSS
+        #user_builtins['setJS'] = setJS
 
         user_stdout = cStringIO.StringIO()
 
@@ -911,11 +1018,15 @@ import json
 def exec_script_str(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func):
   logger = PGLogger(cumulative_mode, heap_primitives, finalizer_func)
 
-  global raw_input_queue
-  raw_input_queue = []
+  # TODO: refactor these NOT to be globals
+  global input_string_queue
+  input_string_queue = []
   if raw_input_lst_json:
     # TODO: if we want to support unicode, remove str() cast
-    raw_input_queue = [str(e) for e in json.loads(raw_input_lst_json)]
+    input_string_queue = [str(e) for e in json.loads(raw_input_lst_json)]
+
+  global __html__, __css__, __js__
+  __html__, __css__, __js__ = None, None, None
 
   try:
     logger._runscript(script_str)
@@ -931,11 +1042,15 @@ def exec_script_str(script_str, raw_input_lst_json, cumulative_mode, heap_primit
 def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func):
   logger = PGLogger(cumulative_mode, heap_primitives, finalizer_func, disable_security_checks=True)
 
-  global raw_input_queue
-  raw_input_queue = []
+  # TODO: refactor these NOT to be globals
+  global input_string_queue
+  input_string_queue = []
   if raw_input_lst_json:
     # TODO: if we want to support unicode, remove str() cast
-    raw_input_queue = [str(e) for e in json.loads(raw_input_lst_json)]
+    input_string_queue = [str(e) for e in json.loads(raw_input_lst_json)]
+
+  global __html__, __css__, __js__
+  __html__, __css__, __js__ = None, None, None
 
   try:
     logger._runscript(script_str)
