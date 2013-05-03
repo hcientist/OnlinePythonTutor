@@ -268,7 +268,7 @@ def visit_function_obj(v, ids_seen_set):
 
 class PGLogger(bdb.Bdb):
 
-    def __init__(self, cumulative_mode, heap_primitives, finalizer_func, disable_security_checks=False):
+    def __init__(self, cumulative_mode, heap_primitives, show_only_outputs, finalizer_func, disable_security_checks=False):
         bdb.Bdb.__init__(self)
         self.mainpyfile = ''
         self._wait_for_mainpyfile = 0
@@ -282,6 +282,10 @@ class PGLogger(bdb.Bdb):
 
         # if True, then render certain primitive objects as heap objects
         self.render_heap_primitives = heap_primitives
+
+        # if True, then don't render any data structures in the trace,
+        # and show only outputs
+        self.show_only_outputs = show_only_outputs
 
         # a function that takes the output trace as a parameter and
         # processes it
@@ -820,14 +824,24 @@ class PGLogger(bdb.Bdb):
           e['unique_hash'] = hash_str
 
 
-        trace_entry = dict(line=lineno,
-                           event=event_type,
-                           func_name=tos[0].f_code.co_name,
-                           globals=encoded_globals,
-                           ordered_globals=ordered_globals,
-                           stack_to_render=stack_to_render,
-                           heap=self.encoder.get_heap(),
-                           stdout=get_user_stdout(tos[0]))
+        if self.show_only_outputs:
+          trace_entry = dict(line=lineno,
+                             event=event_type,
+                             func_name=tos[0].f_code.co_name,
+                             globals={},
+                             ordered_globals=[],
+                             stack_to_render=[],
+                             heap={},
+                             stdout=get_user_stdout(tos[0]))
+        else:
+          trace_entry = dict(line=lineno,
+                             event=event_type,
+                             func_name=tos[0].f_code.co_name,
+                             globals=encoded_globals,
+                             ordered_globals=ordered_globals,
+                             stack_to_render=stack_to_render,
+                             heap=self.encoder.get_heap(),
+                             stdout=get_user_stdout(tos[0]))
 
         # TODO: refactor into a non-global
         global __html__, __css__, __js__
@@ -1042,7 +1056,7 @@ import json
 def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func):
   options = json.loads(options_json)
 
-  logger = PGLogger(options['cumulative_mode'], options['heap_primitives'], finalizer_func)
+  logger = PGLogger(options['cumulative_mode'], options['heap_primitives'], options['show_only_outputs'], finalizer_func)
 
   # TODO: refactor these NOT to be globals
   global input_string_queue
@@ -1066,7 +1080,7 @@ def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func
 # WARNING: ONLY RUN THIS LOCALLY and never over the web, since
 # security checks are disabled
 def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func):
-  logger = PGLogger(cumulative_mode, heap_primitives, finalizer_func, disable_security_checks=True)
+  logger = PGLogger(cumulative_mode, heap_primitives, False, finalizer_func, disable_security_checks=True)
 
   # TODO: refactor these NOT to be globals
   global input_string_queue
