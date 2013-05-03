@@ -153,11 +153,15 @@ $(document).ready(function() {
       $("#embedLinkDiv").hide();
 
 
+      // set up all options in a JS object
+      var options = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
+                     heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
+                     show_only_outputs: ($('#showOnlyOutputsSelector').val() == 'true')};
+
       $.get(backend_script,
             {user_script : pyInputCodeMirror.getValue(),
              raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
-             cumulative_mode: $('#cumulativeModeSelector').val(),
-             heap_primitives: $('#heapPrimitivesSelector').val()},
+             options_json: JSON.stringify(options)},
             function(dataFromBackend) {
               var trace = dataFromBackend.trace;
 
@@ -214,6 +218,7 @@ $(document).ready(function() {
                                                         disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
                                                         drawParentPointers: ($('#drawParentPointerSelector').val() == 'true'),
                                                         textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
+                                                        showOnlyOutputs: ($('#showOnlyOutputsSelector').val() == 'true'),
                                                         executeCodeWithRawInputFunc: executeCodeWithRawInput,
                                                         //allowEditAnnotations: true,
                                                        });
@@ -526,6 +531,11 @@ $(document).ready(function() {
   if (textRefsState !== undefined) {
     $('#textualMemoryLabelsSelector').val(textRefsState);
   }
+  var showOnlyOutputsState = $.bbq.getState('showOnlyOutputs');
+  if (showOnlyOutputsState !== undefined) {
+    $('#showOnlyOutputsSelector').val(showOnlyOutputsState);
+  }
+
   var pyState = $.bbq.getState('py');
   if (pyState !== undefined) {
     $('#pythonVersionSelector').val(pyState);
@@ -572,6 +582,7 @@ $(document).ready(function() {
                   heapPrimitives: $('#heapPrimitivesSelector').val(),
                   drawParentPointers: $('#drawParentPointerSelector').val(),
                   textReferences: $('#textualMemoryLabelsSelector').val(),
+                  showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
                   py: $('#pythonVersionSelector').val()};
 
     if (appMode == 'display') {
@@ -590,6 +601,7 @@ $(document).ready(function() {
                   heapPrimitives: $('#heapPrimitivesSelector').val(),
                   drawParentPointers: $('#drawParentPointerSelector').val(),
                   textReferences: $('#textualMemoryLabelsSelector').val(),
+                  showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
                   py: $('#pythonVersionSelector').val(),
                   curInstr: myVisualizer.curInstr,
                  };

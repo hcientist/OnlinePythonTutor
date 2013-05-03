@@ -70,7 +70,7 @@ Write your Python code here:
 
 <div id="codeInputPane"></div> <!-- populate with a CodeMirror instance -->
 
-<p style="margin-top: 10px;">
+<p style="margin-top: 10px; line-height: 200%;">
 Execute code using
   <select id="pythonVersionSelector">
     <option value="2">Python 2.7</option>
@@ -87,10 +87,14 @@ Execute code using
   <select id="drawParentPointerSelector">
     <option value="false">hide environment parent pointers</option>
     <option value="true">show environment parent pointers</option>
-  </select>, and
+  </select>,
   <select id="textualMemoryLabelsSelector">
     <option value="false">draw references using arrows</option>
     <option value="true">use text labels for references</option>
+  </select>, and
+  <select id="showOnlyOutputsSelector">
+    <option value="false">show everything</option>
+    <option value="true">show only outputs</option>
   </select>.
 </p>
 

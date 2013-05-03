@@ -74,14 +74,9 @@ class ExecScript(webapp2.RequestHandler):
     self.response.headers['Content-Type'] = 'application/json'
     self.response.headers['Cache-Control'] = 'no-cache'
 
-    # convert from string to a Python boolean ...
-    cumulative_mode = (self.request.get('cumulative_mode') == 'true')
-    heap_primitives = (self.request.get('heap_primitives') == 'true')
-
     pg_logger.exec_script_str(self.request.get('user_script'),
                               self.request.get('raw_input_json'),
-                              cumulative_mode,
-                              heap_primitives,
+                              self.request.get('options_json'),
                               self.json_finalizer)
 
 

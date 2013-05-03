@@ -1039,8 +1039,10 @@ class PGLogger(bdb.Bdb):
 import json
 
 # the MAIN meaty function!!!
-def exec_script_str(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func):
-  logger = PGLogger(cumulative_mode, heap_primitives, finalizer_func)
+def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func):
+  options = json.loads(options_json)
+
+  logger = PGLogger(options['cumulative_mode'], options['heap_primitives'], finalizer_func)
 
   # TODO: refactor these NOT to be globals
   global input_string_queue
