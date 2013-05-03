@@ -771,3 +771,12 @@ class Bubble(GChart):
         image = copy(self)
         image.data['chst'] = '%s_shadow'%self['chst']
         return image
+
+
+# added by pgbovine
+class GraphViz(GChart):
+    def render(self): pass
+    def __init__(self, dot_string):
+        GChart.__init__(self)
+        self['chl'] = dot_string
+        self['cht'] = 'gv'
