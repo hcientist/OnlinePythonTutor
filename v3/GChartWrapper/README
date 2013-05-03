@@ -1,0 +1,6 @@
+Downloaded from https://code.google.com/p/google-chartwrapper/
+
+and tweaked to remove dependency on utf-8 encoding, which seems to trip
+up parts of OPT
+
+See here for demos: http://justquick.github.io/google-chartwrapper-demos/
