@@ -89,6 +89,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   textualMemoryLabels  - render references using textual memory labels rather than as jsPlumb arrows.
 //                          this is good for slow browsers or when used with disableHeapNesting
 //                          to prevent "arrow overload"
+//   showOnlyOutputs      - show only program outputs and NOT internal data structures
 //   updateOutputCallback - function to call (with 'this' as parameter)
 //                          whenever this.updateOutput() is called
 //                          (BEFORE rendering the output display)
@@ -147,6 +148,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.disableHeapNesting = (this.params.disableHeapNesting == true);
   this.drawParentPointers = (this.params.drawParentPointers == true);
   this.textualMemoryLabels = (this.params.textualMemoryLabels == true);
+  this.showOnlyOutputs = (this.params.showOnlyOutputs == true);
 
   this.executeCodeWithRawInputFunc = this.params.executeCodeWithRawInputFunc;
 
@@ -240,11 +242,13 @@ ExecutionVisualizer.prototype.render = function() {
          <div class="annotationText" id="stepAnnotationViewer"></div>\
        </div>\
        <div id="annotateLinkDiv"><button id="annotateBtn" type="button">Annotate this step</button></div>\
-       <div id="htmlOutputDiv"></div>\
-       <div id="progOutputs">\
-         Program output:<br/>\
-         <textarea id="pyStdout" cols="50" rows="10" wrap="off" readonly></textarea>\
-       </div>\
+     </div>';
+
+  var outputsHTML =
+    '<div id="htmlOutputDiv"></div>\
+     <div id="progOutputs">\
+       Program output:<br/>\
+       <textarea id="pyStdout" cols="50" rows="10" wrap="off" readonly></textarea>\
      </div>';
 
   var codeVizHTML =
@@ -275,16 +279,30 @@ ExecutionVisualizer.prototype.render = function() {
     </div>';
 
   if (this.params.verticalStack) {
-    this.domRoot.html(vizHeaderHTML + '<table border="0" class="visualizer"><tr><td class="vizLayoutTd">' +
-                      codeDisplayHTML + '</td></tr><tr><td class="vizLayoutTd">' +
+    this.domRoot.html(vizHeaderHTML + '<table border="0" class="visualizer"><tr><td class="vizLayoutTd" id="vizLayoutTdFirst"">' +
+                      codeDisplayHTML + '</td></tr><tr><td class="vizLayoutTd" id="vizLayoutTdSecond">' +
                       codeVizHTML + '</td></tr></table>');
   }
   else {
-    this.domRoot.html(vizHeaderHTML + '<table border="0" class="visualizer"><tr><td class="vizLayoutTd">' +
-                      codeDisplayHTML + '</td><td class="vizLayoutTd">' +
+    this.domRoot.html(vizHeaderHTML + '<table border="0" class="visualizer"><tr><td class="vizLayoutTd" id="vizLayoutTdFirst">' +
+                      codeDisplayHTML + '</td><td class="vizLayoutTd" id="vizLayoutTdSecond">' +
                       codeVizHTML + '</td></tr></table>');
   }
 
+  if (this.showOnlyOutputs) {
+    myViz.domRoot.find('#dataViz').hide();
+    this.domRoot.find('#vizLayoutTdSecond').append(outputsHTML);
+
+    if (this.params.verticalStack) {
+      this.domRoot.find('#vizLayoutTdSecond').css('padding-top', '25px');
+    }
+    else {
+      this.domRoot.find('#vizLayoutTdSecond').css('padding-left', '25px');
+    }
+  }
+  else {
+    this.domRoot.find('#vizLayoutTdFirst').append(outputsHTML);
+  }
 
   this.domRoot.find('#legendDiv')
     .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
