@@ -54,6 +54,8 @@ MAX_EXECUTED_LINES = 300
 #DEBUG = False
 DEBUG = True
 
+BREAKPOINT_STR = '#break'
+
 
 # simple sandboxing scheme:
 #
@@ -329,6 +331,13 @@ class PGLogger(bdb.Bdb):
 
         self.executed_script = None # Python script to be executed!
 
+        # if there is at least one line that ends with BREAKPOINT_STR,
+        # then activate "breakpoint mode", where execution should stop
+        # ONLY at breakpoint lines.
+        self.breakpoints = []
+
+        self.prev_lineno = -1 # keep track of previous line just executed
+
 
     def get_frame_id(self, cur_frame):
       return self.frame_ordered_ids[cur_frame]
@@ -469,6 +478,15 @@ class PGLogger(bdb.Bdb):
         tos = self.stack[self.curindex]
         top_frame = tos[0]
         lineno = tos[1]
+
+        # stop at both the breakpoint line and the next executed line,
+        # so that if you set only ONE breakpoint, OPT shows the state
+        # before and after that line gets executed.
+        if self.breakpoints:
+          if not ((lineno in self.breakpoints) or (self.prev_lineno in self.breakpoints)):
+            return
+
+        self.prev_lineno = lineno
 
 
         # debug ...
@@ -853,6 +871,12 @@ class PGLogger(bdb.Bdb):
 
     def _runscript(self, script_str):
         self.executed_script = script_str
+
+        for (i, line) in enumerate(self.executed_script.splitlines()):
+          line_no = i + 1
+          if line.endswith(BREAKPOINT_STR):
+            self.breakpoints.append(line_no)
+
 
         # When bdb sets tracing, a number of call and line events happens
         # BEFORE debugger even reaches user's code (and the exact sequence of

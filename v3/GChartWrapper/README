@@ -1,6 +1,11 @@
 Downloaded from https://code.google.com/p/google-chartwrapper/
 
 and tweaked to remove dependency on utf-8 encoding, which seems to trip
-up parts of OPT
+up parts of OPT, and to remove unnecessary imports (for security and
+efficiency reasons)
 
 See here for demos: http://justquick.github.io/google-chartwrapper-demos/
+
+See here for the official API, which is now deprecated:
+  https://developers.google.com/chart/image/
+
