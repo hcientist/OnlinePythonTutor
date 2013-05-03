@@ -110,7 +110,7 @@ ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'datetime',
 # logistical problems with doing so that I can't overcome at the moment,
 # especially getting setHTML, setCSS, and setJS to work in the imported
 # modules.)
-CUSTOM_MODULE_IMPORTS = ('callback_module', 'ttt_module')
+CUSTOM_MODULE_IMPORTS = ('callback_module', 'ttt_module', 'html_module', 'GChartWrapper')
 
 
 # PREEMPTIVELY import all of these modules, so that when the user's
@@ -893,12 +893,12 @@ class PGLogger(bdb.Bdb):
 
         user_builtins['mouse_input'] = mouse_input_wrapper
 
-        # uncomment to ease debugging, but in production,
-        # don't expose these directly to user since it's more of a
-        # security risk. instead, expose them only to imported modules
-        #user_builtins['setHTML'] = setHTML
-        #user_builtins['setCSS'] = setCSS
-        #user_builtins['setJS'] = setJS
+        # TODO: we can disable these imports here, but a crafty user can
+        # always get a hold of them by importing one of the external
+        # modules, so there's no point in trying security by obscurity
+        user_builtins['setHTML'] = setHTML
+        user_builtins['setCSS'] = setCSS
+        user_builtins['setJS'] = setJS
 
         user_stdout = cStringIO.StringIO()
 
