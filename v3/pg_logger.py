@@ -483,15 +483,6 @@ class PGLogger(bdb.Bdb):
         top_frame = tos[0]
         lineno = tos[1]
 
-        # stop at both the breakpoint line and the next executed line,
-        # so that if you set only ONE breakpoint, OPT shows the state
-        # before and after that line gets executed.
-        if self.breakpoints:
-          if not ((lineno in self.breakpoints) or (self.prev_lineno in self.breakpoints)):
-            return
-
-        self.prev_lineno = lineno
-
 
         # debug ...
         '''
@@ -858,7 +849,18 @@ class PGLogger(bdb.Bdb):
           exc = frame.f_locals['__exception__']
           trace_entry['exception_msg'] = exc[0].__name__ + ': ' + str(exc[1])
 
-        self.trace.append(trace_entry)
+
+        # append to the trace only the breakpoint line and the next
+        # executed line, so that if you set only ONE breakpoint, OPT shows
+        # the state before and after that line gets executed.
+        append_to_trace = True
+        if self.breakpoints:
+          if not ((lineno in self.breakpoints) or (self.prev_lineno in self.breakpoints)):
+            append_to_trace = False
+        self.prev_lineno = lineno
+
+        if append_to_trace:
+          self.trace.append(trace_entry)
 
 
         # sanity check to make sure the state of the world at a 'call' instruction

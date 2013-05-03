@@ -3,8 +3,8 @@
   "trace": [
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z"
       ], 
       "stdout": "", 
@@ -13,11 +13,11 @@
       "globals": {
         "y": [
           "REF", 
-          1
+          3
         ], 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "z": [
           "REF", 
@@ -25,17 +25,17 @@
         ]
       }, 
       "heap": {
-        "1": [
-          "LIST", 
-          1, 
-          2, 
-          3
-        ], 
         "2": [
           "LIST", 
           4, 
           5, 
           6
+        ], 
+        "3": [
+          "LIST", 
+          1, 
+          2, 
+          3
         ]
       }, 
       "line": 11, 
@@ -43,8 +43,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z"
       ], 
       "stdout": "", 
@@ -53,11 +53,11 @@
       "globals": {
         "y": [
           "REF", 
-          1
+          3
         ], 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "z": [
           "REF", 
@@ -65,18 +65,18 @@
         ]
       }, 
       "heap": {
-        "1": [
-          "LIST", 
-          1, 
-          2, 
-          3, 
-          4
-        ], 
         "2": [
           "LIST", 
           4, 
           5, 
           6
+        ], 
+        "3": [
+          "LIST", 
+          1, 
+          2, 
+          3, 
+          4
         ]
       }, 
       "line": 12, 
@@ -84,8 +84,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z"
       ], 
       "stdout": "", 
@@ -94,11 +94,11 @@
       "globals": {
         "y": [
           "REF", 
-          1
+          3
         ], 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "z": [
           "REF", 
@@ -106,19 +106,19 @@
         ]
       }, 
       "heap": {
-        "1": [
+        "2": [
+          "LIST", 
+          4, 
+          5, 
+          6
+        ], 
+        "3": [
           "LIST", 
           1, 
           2, 
           3, 
           4, 
           5
-        ], 
-        "2": [
-          "LIST", 
-          4, 
-          5, 
-          6
         ]
       }, 
       "line": 13, 
@@ -126,8 +126,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z"
       ], 
       "stdout": "", 
@@ -136,19 +136,19 @@
       "globals": {
         "y": [
           "REF", 
-          1
+          3
         ], 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -156,7 +156,7 @@
           4, 
           5
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -170,8 +170,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z"
       ], 
       "stdout": "", 
@@ -180,19 +180,19 @@
       "globals": {
         "y": [
           "REF", 
-          1
+          3
         ], 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -202,7 +202,7 @@
           6, 
           7
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -216,8 +216,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z"
       ], 
       "stdout": "", 
@@ -227,15 +227,15 @@
         "y": "hello", 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -245,7 +245,7 @@
           6, 
           7
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -259,8 +259,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z", 
         "foo"
       ], 
@@ -271,19 +271,19 @@
         "y": "hello", 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "foo": [
           "REF", 
-          4
+          5
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -293,7 +293,7 @@
           6, 
           7
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -301,7 +301,7 @@
           4, 
           5
         ], 
-        "4": [
+        "5": [
           "FUNCTION", 
           "foo(lst)", 
           null
@@ -312,8 +312,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z", 
         "foo", 
         "bar"
@@ -326,7 +326,7 @@
           "encoded_locals": {
             "lst": [
               "REF", 
-              1
+              3
             ]
           }, 
           "is_highlighted": true, 
@@ -344,23 +344,23 @@
         "y": "hello", 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "foo": [
           "REF", 
-          4
+          5
         ], 
         "bar": [
           "REF", 
-          5
+          6
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -370,7 +370,7 @@
           6, 
           7
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -378,12 +378,12 @@
           4, 
           5
         ], 
-        "4": [
+        "5": [
           "FUNCTION", 
           "foo(lst)", 
           null
         ], 
-        "5": [
+        "6": [
           "FUNCTION", 
           "bar(myLst)", 
           null
@@ -394,8 +394,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z", 
         "foo", 
         "bar"
@@ -408,7 +408,7 @@
           "encoded_locals": {
             "lst": [
               "REF", 
-              1
+              3
             ]
           }, 
           "is_highlighted": true, 
@@ -426,23 +426,23 @@
         "y": "hello", 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "foo": [
           "REF", 
-          4
+          5
         ], 
         "bar": [
           "REF", 
-          5
+          6
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -452,7 +452,7 @@
           6, 
           7
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -460,12 +460,12 @@
           4, 
           5
         ], 
-        "4": [
+        "5": [
           "FUNCTION", 
           "foo(lst)", 
           null
         ], 
-        "5": [
+        "6": [
           "FUNCTION", 
           "bar(myLst)", 
           null
@@ -476,8 +476,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z", 
         "foo", 
         "bar"
@@ -490,7 +490,7 @@
           "encoded_locals": {
             "lst": [
               "REF", 
-              1
+              3
             ]
           }, 
           "is_highlighted": true, 
@@ -508,23 +508,23 @@
         "y": "hello", 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "foo": [
           "REF", 
-          4
+          5
         ], 
         "bar": [
           "REF", 
-          5
+          6
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -535,7 +535,7 @@
           7, 
           "hello"
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -543,12 +543,12 @@
           4, 
           5
         ], 
-        "4": [
+        "5": [
           "FUNCTION", 
           "foo(lst)", 
           null
         ], 
-        "5": [
+        "6": [
           "FUNCTION", 
           "bar(myLst)", 
           null
@@ -559,8 +559,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z", 
         "foo", 
         "bar"
@@ -573,10 +573,10 @@
           "encoded_locals": {
             "lst": [
               "REF", 
-              1
+              3
             ]
           }, 
-          "is_highlighted": true, 
+          "is_highlighted": false, 
           "is_parent": false, 
           "func_name": "foo", 
           "is_zombie": false, 
@@ -585,29 +585,47 @@
           "ordered_varnames": [
             "lst"
           ]
+        }, 
+        {
+          "frame_id": 2, 
+          "encoded_locals": {
+            "myLst": [
+              "REF", 
+              3
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "bar", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "bar_f2", 
+          "ordered_varnames": [
+            "myLst"
+          ]
         }
       ], 
       "globals": {
         "y": "hello", 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "foo": [
           "REF", 
-          4
+          5
         ], 
         "bar": [
           "REF", 
-          5
+          6
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -618,7 +636,7 @@
           7, 
           "hello"
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -626,12 +644,12 @@
           4, 
           5
         ], 
-        "4": [
+        "5": [
           "FUNCTION", 
           "foo(lst)", 
           null
         ], 
-        "5": [
+        "6": [
           "FUNCTION", 
           "bar(myLst)", 
           null
@@ -642,8 +660,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z", 
         "foo", 
         "bar"
@@ -656,10 +674,10 @@
           "encoded_locals": {
             "lst": [
               "REF", 
-              1
+              3
             ]
           }, 
-          "is_highlighted": true, 
+          "is_highlighted": false, 
           "is_parent": false, 
           "func_name": "foo", 
           "is_zombie": false, 
@@ -668,29 +686,49 @@
           "ordered_varnames": [
             "lst"
           ]
+        }, 
+        {
+          "frame_id": 2, 
+          "encoded_locals": {
+            "__return__": null, 
+            "myLst": [
+              "REF", 
+              3
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "bar", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "bar_f2", 
+          "ordered_varnames": [
+            "myLst", 
+            "__return__"
+          ]
         }
       ], 
       "globals": {
         "y": "hello", 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "foo": [
           "REF", 
-          4
+          5
         ], 
         "bar": [
           "REF", 
-          5
+          6
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -701,7 +739,7 @@
           7, 
           "hello"
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -709,12 +747,12 @@
           4, 
           5
         ], 
-        "4": [
+        "5": [
           "FUNCTION", 
           "foo(lst)", 
           null
         ], 
-        "5": [
+        "6": [
           "FUNCTION", 
           "bar(myLst)", 
           null
@@ -725,8 +763,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z", 
         "foo", 
         "bar"
@@ -740,7 +778,7 @@
             "__return__": null, 
             "lst": [
               "REF", 
-              1
+              3
             ]
           }, 
           "is_highlighted": true, 
@@ -759,23 +797,23 @@
         "y": "hello", 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "foo": [
           "REF", 
-          4
+          5
         ], 
         "bar": [
           "REF", 
-          5
+          6
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -786,7 +824,7 @@
           7, 
           "hello"
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -794,12 +832,12 @@
           4, 
           5
         ], 
-        "4": [
+        "5": [
           "FUNCTION", 
           "foo(lst)", 
           null
         ], 
-        "5": [
+        "6": [
           "FUNCTION", 
           "bar(myLst)", 
           null
@@ -810,8 +848,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z", 
         "foo", 
         "bar"
@@ -820,11 +858,11 @@
       "func_name": "foo", 
       "stack_to_render": [
         {
-          "frame_id": 2, 
+          "frame_id": 3, 
           "encoded_locals": {
             "lst": [
               "REF", 
-              3
+              4
             ]
           }, 
           "is_highlighted": true, 
@@ -832,7 +870,7 @@
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f2", 
+          "unique_hash": "foo_f3", 
           "ordered_varnames": [
             "lst"
           ]
@@ -842,23 +880,23 @@
         "y": "hello", 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "foo": [
           "REF", 
-          4
+          5
         ], 
         "bar": [
           "REF", 
-          5
+          6
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -869,7 +907,7 @@
           7, 
           "hello"
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -877,12 +915,12 @@
           4, 
           5
         ], 
-        "4": [
+        "5": [
           "FUNCTION", 
           "foo(lst)", 
           null
         ], 
-        "5": [
+        "6": [
           "FUNCTION", 
           "bar(myLst)", 
           null
@@ -893,8 +931,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z", 
         "foo", 
         "bar"
@@ -903,11 +941,11 @@
       "func_name": "foo", 
       "stack_to_render": [
         {
-          "frame_id": 2, 
+          "frame_id": 3, 
           "encoded_locals": {
             "lst": [
               "REF", 
-              3
+              4
             ]
           }, 
           "is_highlighted": true, 
@@ -915,7 +953,7 @@
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f2", 
+          "unique_hash": "foo_f3", 
           "ordered_varnames": [
             "lst"
           ]
@@ -925,23 +963,23 @@
         "y": "hello", 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "foo": [
           "REF", 
-          4
+          5
         ], 
         "bar": [
           "REF", 
-          5
+          6
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -952,7 +990,7 @@
           7, 
           "hello"
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -960,12 +998,12 @@
           4, 
           5
         ], 
-        "4": [
+        "5": [
           "FUNCTION", 
           "foo(lst)", 
           null
         ], 
-        "5": [
+        "6": [
           "FUNCTION", 
           "bar(myLst)", 
           null
@@ -976,8 +1014,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z", 
         "foo", 
         "bar"
@@ -986,11 +1024,11 @@
       "func_name": "foo", 
       "stack_to_render": [
         {
-          "frame_id": 2, 
+          "frame_id": 3, 
           "encoded_locals": {
             "lst": [
               "REF", 
-              3
+              4
             ]
           }, 
           "is_highlighted": true, 
@@ -998,7 +1036,7 @@
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f2", 
+          "unique_hash": "foo_f3", 
           "ordered_varnames": [
             "lst"
           ]
@@ -1008,23 +1046,23 @@
         "y": "hello", 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "foo": [
           "REF", 
-          4
+          5
         ], 
         "bar": [
           "REF", 
-          5
+          6
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -1035,7 +1073,7 @@
           7, 
           "hello"
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -1044,12 +1082,12 @@
           5, 
           "hello"
         ], 
-        "4": [
+        "5": [
           "FUNCTION", 
           "foo(lst)", 
           null
         ], 
-        "5": [
+        "6": [
           "FUNCTION", 
           "bar(myLst)", 
           null
@@ -1060,8 +1098,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z", 
         "foo", 
         "bar"
@@ -1070,21 +1108,39 @@
       "func_name": "bar", 
       "stack_to_render": [
         {
-          "frame_id": 2, 
+          "frame_id": 3, 
           "encoded_locals": {
             "lst": [
               "REF", 
-              3
+              4
             ]
           }, 
-          "is_highlighted": true, 
+          "is_highlighted": false, 
           "is_parent": false, 
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f2", 
+          "unique_hash": "foo_f3", 
           "ordered_varnames": [
             "lst"
+          ]
+        }, 
+        {
+          "frame_id": 4, 
+          "encoded_locals": {
+            "myLst": [
+              "REF", 
+              4
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "bar", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "bar_f4", 
+          "ordered_varnames": [
+            "myLst"
           ]
         }
       ], 
@@ -1092,23 +1148,23 @@
         "y": "hello", 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "foo": [
           "REF", 
-          4
+          5
         ], 
         "bar": [
           "REF", 
-          5
+          6
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -1119,7 +1175,7 @@
           7, 
           "hello"
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -1128,12 +1184,12 @@
           5, 
           "hello"
         ], 
-        "4": [
+        "5": [
           "FUNCTION", 
           "foo(lst)", 
           null
         ], 
-        "5": [
+        "6": [
           "FUNCTION", 
           "bar(myLst)", 
           null
@@ -1144,8 +1200,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z", 
         "foo", 
         "bar"
@@ -1154,21 +1210,41 @@
       "func_name": "bar", 
       "stack_to_render": [
         {
-          "frame_id": 2, 
+          "frame_id": 3, 
           "encoded_locals": {
             "lst": [
               "REF", 
-              3
+              4
             ]
           }, 
-          "is_highlighted": true, 
+          "is_highlighted": false, 
           "is_parent": false, 
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f2", 
+          "unique_hash": "foo_f3", 
           "ordered_varnames": [
             "lst"
+          ]
+        }, 
+        {
+          "frame_id": 4, 
+          "encoded_locals": {
+            "__return__": null, 
+            "myLst": [
+              "REF", 
+              4
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "bar", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "bar_f4", 
+          "ordered_varnames": [
+            "myLst", 
+            "__return__"
           ]
         }
       ], 
@@ -1176,23 +1252,23 @@
         "y": "hello", 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "foo": [
           "REF", 
-          4
+          5
         ], 
         "bar": [
           "REF", 
-          5
+          6
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -1203,7 +1279,7 @@
           7, 
           "hello"
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -1212,12 +1288,12 @@
           5, 
           "hello"
         ], 
-        "4": [
+        "5": [
           "FUNCTION", 
           "foo(lst)", 
           null
         ], 
-        "5": [
+        "6": [
           "FUNCTION", 
           "bar(myLst)", 
           null
@@ -1228,8 +1304,8 @@
     }, 
     {
       "ordered_globals": [
-        "y", 
         "x", 
+        "y", 
         "z", 
         "foo", 
         "bar"
@@ -1238,12 +1314,12 @@
       "func_name": "foo", 
       "stack_to_render": [
         {
-          "frame_id": 2, 
+          "frame_id": 3, 
           "encoded_locals": {
             "__return__": null, 
             "lst": [
               "REF", 
-              3
+              4
             ]
           }, 
           "is_highlighted": true, 
@@ -1251,7 +1327,7 @@
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f2", 
+          "unique_hash": "foo_f3", 
           "ordered_varnames": [
             "lst", 
             "__return__"
@@ -1262,23 +1338,23 @@
         "y": "hello", 
         "x": [
           "REF", 
-          1
+          3
         ], 
         "foo": [
           "REF", 
-          4
+          5
         ], 
         "bar": [
           "REF", 
-          5
+          6
         ], 
         "z": [
           "REF", 
-          3
+          4
         ]
       }, 
       "heap": {
-        "1": [
+        "3": [
           "LIST", 
           1, 
           2, 
@@ -1289,7 +1365,7 @@
           7, 
           "hello"
         ], 
-        "3": [
+        "4": [
           "LIST", 
           1, 
           2, 
@@ -1298,12 +1374,12 @@
           5, 
           "hello"
         ], 
-        "4": [
+        "5": [
           "FUNCTION", 
           "foo(lst)", 
           null
         ], 
-        "5": [
+        "6": [
           "FUNCTION", 
           "bar(myLst)", 
           null
