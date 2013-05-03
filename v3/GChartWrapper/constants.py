@@ -1,3 +1,4 @@
+# (modified by Philip Guo to remove utf-8 dependencies and unnecessary imports)
 import sys
 
 def _print(*args):
@@ -9,17 +10,17 @@ if sys.version.startswith('3'):
     PY_VER = '3.x'
     from urllib.parse import quote_plus,parse_qsl
     from urllib.request import Request, urlopen, urlretrieve
-    from hashlib import sha1
-    new_sha = lambda s: sha1(bytes(s,'utf-8'))
+    #from hashlib import sha1
+    #new_sha = lambda s: sha1(bytes(s,'utf-8'))
 else:
     PY_VER = '2.x'
     from urllib import quote_plus,urlretrieve
     from urllib2 import urlopen, Request, URLError, HTTPError
     from cgi import parse_qsl
-    try: # >= 2.5
-        from hashlib import sha1 as new_sha
-    except ImportError: # < 2.5
-        from sha import new as new_sha
+    #try: # >= 2.5
+    #    from hashlib import sha1 as new_sha
+    #except ImportError: # < 2.5
+    #    from sha import new as new_sha
 
 def quote(s):
     try:
@@ -32,8 +33,9 @@ def smart_str(s):
         s = quote(s)
     except:
         pass
-    if PY_VER == '2.x':
-        return unicode(s).encode('utf-8') # Py2K
+    # pgbovine - never use utf-8
+    #if PY_VER == '2.x':
+    #    return unicode(s).encode('utf-8') # Py2K
     return str(s)#.encode('utf-8') # Py3K
 
 APIPARAMS = ('chxtc', 'chxt', 'chxp', 'chxs', 'chxr', 'chco', 'chtm', 'chld',

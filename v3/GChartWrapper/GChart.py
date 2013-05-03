@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# (modified by Philip Guo to remove utf-8 dependencies and unnecessary imports)
+
 ################################################################################
 #  GChartWrapper - v0.8
 #  Copyright (C) 2009  Justin Quick <justquick@gmail.com>
@@ -552,6 +553,8 @@ class GChart(dict):
         return self._apiurl + '&'.join(self._parts()).replace(' ','+')
 
 
+    # pgbovine - disable this function
+    '''
     def show(self, *args, **kwargs):
         """
         Shows the chart URL in a webbrowser
@@ -560,6 +563,7 @@ class GChart(dict):
         """
         from webbrowser import open as webopen
         return webopen(str(self), *args, **kwargs)
+    '''
 
     def save(self, fname=None):
         """
@@ -637,6 +641,8 @@ class GChart(dict):
             except StopIteration:
                 return
 
+    # pgbovine - unnecessary
+    '''
     def checksum(self):
         """
         Returns the unique SHA1 hexdigest of the chart URL param parts
@@ -645,6 +651,7 @@ class GChart(dict):
         """
         self.render()
         return new_sha(''.join(sorted(self._parts()))).hexdigest()
+    '''
 
 # Now a whole mess of convenience classes
 # *for those of us who dont speak API*
