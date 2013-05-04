@@ -10,7 +10,7 @@ class watchedlist(list):
     """A class that wraps a list, and monitors sets and gets.  
     Optionally monitors local variables."""
     def __setitem__(self, i, val):
-        print 'setting A[{}] = {}'.format(i, val)
+        print('setting A[{}] = {}'.format(i, val))
         self.watchlocals()
         return list.__setitem__(self, i, val)
     def __getitem__(self, i):
