@@ -116,6 +116,7 @@ CUSTOM_MODULE_IMPORTS = ('callback_module',
                          'ttt_module',
                          'html_module',
                          'watch_module',
+                         'bintree_module',
                          'GChartWrapper')
 
 
