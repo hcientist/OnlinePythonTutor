@@ -44,16 +44,19 @@ var myVisualizer = null; // singleton ExecutionVisualizer instance
 
 $(document).ready(function() {
   var preseededCode = $.bbq.getState('code');
-  var cumulativeState = $.bbq.getState('cumulative');
-  if (!cumulativeState) {
-    cumulativeState = 'false'; // string!
-  }
 
   var pyState = $.bbq.getState('py');
   var verticalStackBool = ($.bbq.getState('verticalStack') == 'true'); // boolean
   var heapPrimitivesBool = ($.bbq.getState('heapPrimitives') == 'true');
   var drawParentPointerBool = ($.bbq.getState('drawParentPointers') == 'true');
   var textRefsBool = ($.bbq.getState('textReferences') == 'true');
+  var showOnlyOutputsBool = ($.bbq.getState('showOnlyOutputs') == 'true');
+
+  // set up all options in a JS object
+  var options = {cumulative_mode: ($.bbq.getState('cumulative') == 'true'),
+                 heap_primitives: ($.bbq.getState('heapPrimitives') == 'true'),
+                 show_only_outputs: showOnlyOutputsBool};
+
 
   var preseededCurInstr = Number($.bbq.getState('curInstr'));
   if (!preseededCurInstr) {
@@ -75,7 +78,8 @@ $(document).ready(function() {
 
 
   $.get(backend_script,
-        {user_script : preseededCode, cumulative_mode: cumulativeState, heap_primitives: heapPrimitivesBool},
+        {user_script : preseededCode,
+         options_json: JSON.stringify(options)},
         function(dataFromBackend) {
           var trace = dataFromBackend.trace;
 
@@ -110,6 +114,7 @@ $(document).ready(function() {
                                                     disableHeapNesting: heapPrimitivesBool,
                                                     drawParentPointers: drawParentPointerBool,
                                                     textualMemoryLabels: textRefsBool,
+                                                    showOnlyOutputs: showOnlyOutputsBool,
                                                    });
           }
         },
