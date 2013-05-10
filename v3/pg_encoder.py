@@ -46,6 +46,7 @@
 #   * set      - ['SET', elt1, elt2, elt3, ..., eltN]
 #   * dict     - ['DICT', [key1, value1], [key2, value2], ..., [keyN, valueN]]
 #   * instance - ['INSTANCE', class name, [attr1, value1], [attr2, value2], ..., [attrN, valueN]]
+#   * instance with __str__ defined - ['INSTANCE_PPRINT', class name, <__str__ value>]
 #   * class    - ['CLASS', class name, [list of superclass names], [attr1, value1], [attr2, value2], ..., [attrN, valueN]]
 #   * function - ['FUNCTION', function name, parent frame ID (for nested functions)]
 #   * module   - ['module', module name]
@@ -246,10 +247,22 @@ class ObjectEncoder:
         # http://docs.python.org/release/3.1.5/c-api/capsule.html
         class_name = get_name(type(dat))
 
-      new_obj.extend(['INSTANCE', class_name])
-      # don't traverse inside modules, or else risk EXPLODING the visualization
-      if class_name == 'module':
-        return
+      if hasattr(dat, '__str__') and \
+         (not dat.__class__.__str__ is object.__str__): # make sure it's not the lame default __str__
+        # N.B.: when objects are being constructed, this call
+        # might fail since not all fields have yet been populated
+        try:
+          pprint_str = str(dat)
+        except:
+          pprint_str = '<incomplete object>'
+
+        new_obj.extend(['INSTANCE_PPRINT', class_name, pprint_str])
+        return # bail early
+      else:
+        new_obj.extend(['INSTANCE', class_name])
+        # don't traverse inside modules, or else risk EXPLODING the visualization
+        if class_name == 'module':
+          return
     else:
       superclass_names = [e.__name__ for e in dat.__bases__ if e is not object]
       new_obj.extend(['CLASS', get_name(dat), superclass_names])

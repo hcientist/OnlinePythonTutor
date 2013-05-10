@@ -2179,6 +2179,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         });
       }
     }
+    else if (obj[0] == 'INSTANCE_PPRINT') {
+      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' instance</div>');
+
+      strRepr = htmlspecialchars(obj[2]); // escape strings!
+      d3DomElement.append('<table class="customObjTbl"><tr><td class="customObjElt">' + strRepr + '</td></tr></table>');
+    }
     else if (obj[0] == 'FUNCTION') {
       assert(obj.length == 3);
 
