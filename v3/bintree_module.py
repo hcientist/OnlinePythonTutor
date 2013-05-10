@@ -1,7 +1,5 @@
 # TODO: how do you set the BACKGROUND COLOR of a GraphViz node ... fill=?
 
-# TODO: make this work in both Python 2 and 3
-
 from collections import defaultdict
 
 import GChartWrapper
@@ -266,14 +264,16 @@ if __name__ == "__main__":
   #print(to_graphviz_string(a))
 
   t = BST()
-  print t
-
-  for i in range(4):
+  import random
+  nums = range(10)
+  random.shuffle(nums)
+  for i in nums:
     t.insert(i)
-  print t
 
-  t.delete_min()
-  print t
+  f = open('test.dot', 'w')
+  t.root.graphviz_render(f)
+  f.close()
+
 
 '''
 /* balanced tree hack from http://www.graphviz.org/content/FaqBalanceTree */
