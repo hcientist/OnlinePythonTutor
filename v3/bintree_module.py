@@ -4,6 +4,9 @@
 
 from collections import defaultdict
 
+import GChartWrapper
+import html_module
+
 import sys
 is_python3 = (sys.version_info[0] == 3)
 
@@ -14,12 +17,11 @@ else:
 
 ID = 0
 
-class TreeNode:
-  def __init__(self, dat):
-    self.data = str(dat) # convert to string for easy display in GraphViz
-    self.parent = None
-    self.left = None
-    self.right = None
+class TNode:
+  def __init__(self, dat, left=None, right=None):
+    self.data = dat
+    self.left = left
+    self.right = right
 
     self.__penwidth = 1 # thickness of node border
 
@@ -51,8 +53,11 @@ class TreeNode:
     self.__fill = None
     self.__penwidth = 1
 
-  def __str__(self):
-    ret = '%s[label="%s"' % (self.id, self.data)
+  def is_leaf(self):
+    return not (self.left or self.right)
+
+  def graphviz_str(self):
+    ret = '%s[label="%s"' % (self.id, str(self.data)) # convert to str() for display
     if self.__penwidth > 1:
       ret += ',penwidth=%d' % self.__penwidth
     if self.__color:
@@ -62,138 +67,109 @@ class TreeNode:
     ret += ']'
     return ret
 
-
-# render a binary tree of TreeNode objects starting at root in a pretty
-# GraphViz format using the balanced tree hack from
-# http://www.graphviz.org/content/FaqBalanceTree
-def graphviz_render(root, ios, compress=False):
-  separator = '\n'
-  if compress:
-    separator=','
-  ios.write('digraph G{')
-  
-  queue = [] # each element is (node, level #)
-
-  # Key: level number
-  # Value: sorted list of node IDs at that level (including phantom nodes)
-  nodes_by_level = defaultdict(list)
+  def __str__(self):
+    return 'TNode(%s)' % repr(self.data)
 
 
-  def render_phantom(parent_id, suffix):
-    phantom_id = parent_id + '_phantom_' + suffix
-    ios.write('%s [label="",width=.1,style=invis]%s' % (phantom_id, separator))
-    ios.write('%s->%s [style=invis]%s' % (parent_id, phantom_id, separator))
-    return phantom_id
+  # render a binary tree of TNode objects starting at self in a pretty
+  # GraphViz format using the balanced tree hack from
+  # http://www.graphviz.org/content/FaqBalanceTree
+  def graphviz_render(self, ios, compress=False):
+    separator = '\n'
+    if compress:
+      separator=','
+    ios.write('digraph G{')
 
-  def bfs_visit():
-    # base case
-    if not queue:
-      return
+    if not compress:
+      ios.write('\n')
+    
+    queue = [] # each element is (node, level #)
 
-    n, level = queue.pop(0)
+    # Key: level number
+    # Value: sorted list of node IDs at that level (including phantom nodes)
+    nodes_by_level = defaultdict(list)
 
-    ios.write(str(n) + separator) # current node
-    if n.left or n.right:
-      if n.left:
-        ios.write('%s->%s%s' % (n.id, n.left.id, separator))
-        queue.append((n.left, level+1))
-        nodes_by_level[level+1].append(n.left.id)
-      else:
-        # insert phantom to make tree look good
-        ph_id = render_phantom(n.id, 'L')
+
+    def render_phantom(parent_id, suffix):
+      phantom_id = parent_id + '_phantom_' + suffix
+      ios.write('%s [label="",width=.1,style=invis]%s' % (phantom_id, separator))
+      ios.write('%s->%s [style=invis]%s' % (parent_id, phantom_id, separator))
+      return phantom_id
+
+    def bfs_visit():
+      # base case
+      if not queue:
+        return
+
+      n, level = queue.pop(0)
+
+      ios.write(n.graphviz_str() + separator) # current node
+      if n.left or n.right:
+        if n.left:
+          ios.write('%s->%s%s' % (n.id, n.left.id, separator))
+          queue.append((n.left, level+1))
+          nodes_by_level[level+1].append(n.left.id)
+        else:
+          # insert phantom to make tree look good
+          ph_id = render_phantom(n.id, 'L')
+          nodes_by_level[level+1].append(ph_id)
+
+        # always insert invisible middle phantom
+        ph_id = render_phantom(n.id, 'M')
         nodes_by_level[level+1].append(ph_id)
 
-      # always insert invisible middle phantom
-      ph_id = render_phantom(n.id, 'M')
-      nodes_by_level[level+1].append(ph_id)
+        if n.right:
+          ios.write('%s->%s%s' % (n.id, n.right.id, separator))
+          queue.append((n.right, level+1))
+          nodes_by_level[level+1].append(n.right.id)
+        else:
+          # insert phantom to make tree look good
+          ph_id = render_phantom(n.id, 'R')
+          nodes_by_level[level+1].append(ph_id)
 
-      if n.right:
-        ios.write('%s->%s%s' % (n.id, n.right.id, separator))
-        queue.append((n.right, level+1))
-        nodes_by_level[level+1].append(n.right.id)
-      else:
-        # insert phantom to make tree look good
-        ph_id = render_phantom(n.id, 'R')
-        nodes_by_level[level+1].append(ph_id)
+      bfs_visit() # recurse!
 
-    bfs_visit() # recurse!
+    queue.append((self, 1))
+    bfs_visit()
 
-  queue.append((root, 1))
-  bfs_visit()
+    if not compress:
+      ios.write('\n')
 
-  if not compress:
-    ios.write('\n')
+    # make sure all nodes at the same level are vertically aligned
+    for level in nodes_by_level:
+      node_ids = nodes_by_level[level]
+      if len(node_ids) > 1:
+        ios.write(('{rank=same %s [style=invis]}' % '->'.join(node_ids)) + separator)
 
-  # make sure all nodes at the same level are vertically aligned
-  for level in nodes_by_level:
-    node_ids = nodes_by_level[level]
-    if len(node_ids) > 1:
-      ios.write(('{rank=same %s [style=invis]}' % '->'.join(node_ids)) + separator)
-
-  ios.write('}') # cap it off
+    ios.write('}') # cap it off
 
 
-def to_graphviz_string(root):
-  s = cStringIO.StringIO()
-  graphviz_render(root, s, True)
-  return s.getvalue()
+  def to_graphviz_string(self):
+    s = cStringIO.StringIO()
+    self.graphviz_render(s, True)
+    return s.getvalue()
 
-COUNT = 0
-def preorder_traversal(root, n):
-  if not n: return
+  def to_graphviz_img(self):
+    return GChartWrapper.GraphViz(self.to_graphviz_string())
 
-  global COUNT
-  f = open('preorder_' + str(COUNT) + '.dot', 'w')
-  n.highlight()
-  graphviz_render(root, f)
-  n.reset_style()
-  f.close()
-  COUNT += 1
-
-  preorder_traversal(root, n.left)
-  preorder_traversal(root, n.right)
-
-
-# TODO: add a function to create a tree from a nested list/tuple
 
 if __name__ == "__main__":
   # simple test tree
-  a = TreeNode('a')
+  r = TNode('a',
+            left=TNode('b0',
+                       left=TNode('c0',
+                                  right=TNode('d1')),
+                       right=TNode('c1',
+                                   left=TNode('d3'),
+                                   right=TNode('d4'))),
+            right=TNode('b1',
+                        left=TNode('c2',
+                                   left=TNode('d2'))))
 
-  b0 = TreeNode('b0')
-  a.left = b0
-
-  b1 = TreeNode('b1')
-  a.right = b1
-
-  c0 = TreeNode('c0')
-  b0.left = c0
-
-  c1 = TreeNode('c1')
-  b0.right = c1
-
-  c2 = TreeNode('c2')
-  b1.left = c2
-
-  d1 = TreeNode('d1')
-  c0.right = d1
-
-  d2 = TreeNode('d2')
-  c2.left = d2
-
-  d3 = TreeNode('d3')
-  c1.left = d3
-
-  d4 = TreeNode('d4')
-  c1.right = d4
-
-  #f = open('test.dot', 'w')
-  #graphviz_render(a, f, True)
-  #f.close()
-  print to_graphviz_string(a)
-
-  #preorder_traversal(a, a)
-
+  f = open('test.dot', 'w')
+  r.graphviz_render(f)
+  f.close()
+  #print(to_graphviz_string(a))
 
 '''
 /* balanced tree hack from http://www.graphviz.org/content/FaqBalanceTree */
@@ -218,23 +194,33 @@ digraph G {
 '''
 
 '''
-from bintree_module import TreeNode, to_graphviz_string
-import GChartWrapper
+from bintree_module import TNode
 import html_module
 
-a = TreeNode('a')
-b0 = TreeNode('b0')
-a.left = b0
-b1 = TreeNode('b1')
-a.right = b1
-c0 = TreeNode('c0')     
-b0.left = c0            
-c1 = TreeNode('c1')
-b0.right = c1
-c2 = TreeNode('c2')
-b1.left = c2
-d1 = TreeNode('d1')    
-c0.right = d1          
+r = TNode('a',
+          left=TNode('b0',
+                     left=TNode('c0',
+                                right=TNode('d1')),
+                     right=TNode('c1',
+                                 left=TNode('d3'),
+                                 right=TNode('d4'))),
+          right=TNode('b1',
+                      left=TNode('c2')))
 
-html_module.display_img(GChartWrapper.GraphViz(to_graphviz_string(a)))
+def highlight_and_display(root):
+    def f(node):
+        node.highlight()
+        html_module.display_img(root.to_graphviz_img()) #break
+        node.reset_style()
+    return f
+
+def preorder(t, visitfn):
+    if not t:
+        return
+    visitfn(t)
+    preorder(t.left, visitfn)
+    preorder(t.right, visitfn)
+
+preorder(r, highlight_and_display(r))
 '''
+
