@@ -394,8 +394,9 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
-          "Point"
+          "INSTANCE_PPRINT", 
+          "Point", 
+          "<incomplete object>"
         ]
       }, 
       "line": 2, 
@@ -519,8 +520,9 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
-          "Point"
+          "INSTANCE_PPRINT", 
+          "Point", 
+          "<incomplete object>"
         ]
       }, 
       "line": 3, 
@@ -644,12 +646,9 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ]
+          "<incomplete object>"
         ]
       }, 
       "line": 4, 
@@ -775,16 +774,9 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ]
       }, 
       "line": 4, 
@@ -889,16 +881,9 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ]
       }, 
       "line": 10, 
@@ -1023,16 +1008,9 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ]
       }, 
       "line": 6, 
@@ -1157,16 +1135,9 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ]
       }, 
       "line": 7, 
@@ -1293,16 +1264,9 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ]
       }, 
       "line": 7, 
@@ -1407,16 +1371,9 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ]
       }, 
       "line": 11, 
@@ -1545,20 +1502,14 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ], 
         "6": [
-          "INSTANCE", 
-          "Point"
+          "INSTANCE_PPRINT", 
+          "Point", 
+          "<incomplete object>"
         ]
       }, 
       "line": 2, 
@@ -1687,20 +1638,14 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ], 
         "6": [
-          "INSTANCE", 
-          "Point"
+          "INSTANCE_PPRINT", 
+          "Point", 
+          "<incomplete object>"
         ]
       }, 
       "line": 3, 
@@ -1829,24 +1774,14 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ], 
         "6": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            3
-          ]
+          "<incomplete object>"
         ]
       }, 
       "line": 4, 
@@ -1977,28 +1912,14 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ], 
         "6": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            3
-          ], 
-          [
-            "y", 
-            -4
-          ]
+          "(3, -4)"
         ]
       }, 
       "line": 4, 
@@ -2108,28 +2029,14 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ], 
         "6": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            3
-          ], 
-          [
-            "y", 
-            -4
-          ]
+          "(3, -4)"
         ]
       }, 
       "line": 12, 
@@ -2259,28 +2166,14 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ], 
         "6": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            3
-          ], 
-          [
-            "y", 
-            -4
-          ]
+          "(3, -4)"
         ]
       }, 
       "line": 6, 
@@ -2410,28 +2303,14 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ], 
         "6": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            3
-          ], 
-          [
-            "y", 
-            -4
-          ]
+          "(3, -4)"
         ]
       }, 
       "line": 7, 
@@ -2563,28 +2442,14 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ], 
         "6": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            3
-          ], 
-          [
-            "y", 
-            -4
-          ]
+          "(3, -4)"
         ]
       }, 
       "line": 7, 
@@ -2694,28 +2559,14 @@
           ]
         ], 
         "5": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            1
-          ], 
-          [
-            "y", 
-            2
-          ]
+          "(1, 2)"
         ], 
         "6": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Point", 
-          [
-            "x", 
-            3
-          ], 
-          [
-            "y", 
-            -4
-          ]
+          "(3, -4)"
         ]
       }, 
       "line": 12, 
