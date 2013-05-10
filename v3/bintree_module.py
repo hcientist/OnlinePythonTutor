@@ -258,11 +258,11 @@ if __name__ == "__main__":
                         left=TNode('c2',
                                    left=TNode('d2'))))
 
-  #f = open('test.dot', 'w')
-  #r.graphviz_render(f)
-  #f.close()
-  #print(to_graphviz_string(a))
+  f = open('test.dot', 'w')
+  r.graphviz_render(f)
+  f.close()
 
+  '''
   t = BST()
   import random
   nums = range(10)
@@ -273,6 +273,7 @@ if __name__ == "__main__":
   f = open('test.dot', 'w')
   t.root.graphviz_render(f)
   f.close()
+  '''
 
 
 '''
@@ -341,4 +342,66 @@ random.shuffle(nums)
 for i in nums:
   t.insert(i)
   html_module.display_img(t.to_graphviz_img())
+'''
+
+# insertion into a BST with each step animated
+#
+# TODO: think of a more elegant way to separate out algorithm from HTML
+# rendering code
+'''
+import html_module, GChartWrapper, random
+from bintree_module import TNode
+
+class BST:
+    def __init__(self):
+        self.root = None
+        
+    def to_graphviz_img(self):
+        if self.root:
+            return GChartWrapper.GraphViz(self.root.to_graphviz_string())
+        else:
+            return ''        
+        
+    def insert(self, t):
+        """Insert data t into this BST, modifying it in-place."""
+        new = TNode(t)
+        if self.root is None:
+            self.root = new
+        else:
+            node = self.root
+            while True:
+                node.highlight()
+                html_module.display_img(self.to_graphviz_img()) #break
+                node.reset_style()
+                if t < node.data:
+                    # Go left
+                    if node.left is None:
+                        node.left = new
+                        new.parent = node
+
+                        new.highlight()
+                        html_module.display_img(self.to_graphviz_img()) #break
+                        new.reset_style()
+
+                        break
+                    node = node.left
+                else:
+                    # Go right
+                    if node.right is None:
+                        node.right = new
+                        new.parent = node
+
+                        new.highlight()
+                        html_module.display_img(self.to_graphviz_img()) #break
+                        new.reset_style()
+
+                        break
+                    node = node.right
+        return new
+
+t = BST()
+nums = range(10)
+random.shuffle(nums)
+for i in nums:
+      t.insert(i)
 '''
