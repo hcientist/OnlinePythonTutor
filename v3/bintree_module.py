@@ -17,11 +17,19 @@ else:
 
 ID = 0
 
+# somewhat inspired by bst.py from MIT 6.006 OCW
+# http://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/search.htm
 class TNode:
   def __init__(self, dat, left=None, right=None):
     self.data = dat
+    self.parent = None
     self.left = left
     self.right = right
+
+    if self.left:
+      self.left.parent = self
+    if self.right:
+      self.right.parent = self
 
     self.__penwidth = 1 # thickness of node border
 
@@ -33,6 +41,11 @@ class TNode:
     global ID
     self.id = 'n' + str(ID)
     ID += 1
+
+  def disconnect(self):
+    self.left = None
+    self.right = None
+    self.parent = None
 
   def set_border_color(self, col):
     self.__color = col
@@ -153,6 +166,87 @@ class TNode:
     return GChartWrapper.GraphViz(self.to_graphviz_string())
 
 
+# from MIT 6.006 OCW
+# http://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/search.htm
+class BST(object):
+    """
+Simple binary search tree implementation.
+This BST supports insert, find, and delete-min operations.
+Each tree contains some (possibly 0) BSTnode objects, representing nodes,
+and a pointer to the root.
+"""
+
+    def __init__(self):
+        self.root = None
+
+    def to_graphviz_img(self):
+        if self.root:
+            return GChartWrapper.GraphViz(self.root.to_graphviz_string())
+        else:
+            return ''
+
+    def insert(self, t):
+        """Insert data t into this BST, modifying it in-place."""
+        new = TNode(t)
+        if self.root is None:
+            self.root = new
+        else:
+            node = self.root
+            while True:
+                if t < node.data:
+                    # Go left
+                    if node.left is None:
+                        node.left = new
+                        new.parent = node
+                        break
+                    node = node.left
+                else:
+                    # Go right
+                    if node.right is None:
+                        node.right = new
+                        new.parent = node
+                        break
+                    node = node.right
+        return new
+
+    def find(self, t):
+        """Return the node for data t if is in the tree, or None otherwise."""
+        node = self.root
+        while node is not None:
+            if t == node.data:
+                return node
+            elif t < node.data:
+                node = node.left
+            else:
+                node = node.right
+        return None
+
+    def delete_min(self):
+        """Delete the minimum data (and return the old node containing it)."""
+        if self.root is None:
+            return None, None
+        else:
+            # Walk to leftmost node.
+            node = self.root
+            while node.left is not None:
+                node = node.left
+            # Remove that node and promote its right subtree.
+            if node.parent is not None:
+                node.parent.left = node.right
+            else: # The root was smallest.
+                self.root = node.right
+            if node.right is not None:
+                node.right.parent = node.parent
+            parent = node.parent
+            node.disconnect()
+            return node, parent
+
+    def __str__(self):
+        if self.root is None:
+            return 'empty tree'
+        else:
+            return 'tree with root: %s' % str(self.root)
+
 if __name__ == "__main__":
   # simple test tree
   r = TNode('a',
@@ -166,10 +260,20 @@ if __name__ == "__main__":
                         left=TNode('c2',
                                    left=TNode('d2'))))
 
-  f = open('test.dot', 'w')
-  r.graphviz_render(f)
-  f.close()
+  #f = open('test.dot', 'w')
+  #r.graphviz_render(f)
+  #f.close()
   #print(to_graphviz_string(a))
+
+  t = BST()
+  print t
+
+  for i in range(4):
+    t.insert(i)
+  print t
+
+  t.delete_min()
+  print t
 
 '''
 /* balanced tree hack from http://www.graphviz.org/content/FaqBalanceTree */
@@ -224,3 +328,17 @@ def preorder(t, visitfn):
 preorder(r, highlight_and_display(r))
 '''
 
+'''
+from bintree_module import BST
+import html_module
+import random
+
+t = BST()
+html_module.display_img(t.to_graphviz_img())
+
+nums = range(10)
+random.shuffle(nums)
+for i in nums:
+  t.insert(i)
+  html_module.display_img(t.to_graphviz_img())
+'''
