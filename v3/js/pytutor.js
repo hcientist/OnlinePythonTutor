@@ -2147,6 +2147,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' class ' + superclassStr + '</div>');
       }
 
+      // right now, let's NOT display class members, since that clutters
+      // up the display too much. in the future, consider displaying
+      // class members in a pop-up pane on mouseover or mouseclick
+      if (!isInstance) return;
+
       if (obj.length > headerLength) {
         var lab = isInstance ? 'inst' : 'class';
         d3DomElement.append('<table class="' + lab + 'Tbl"></table>');
