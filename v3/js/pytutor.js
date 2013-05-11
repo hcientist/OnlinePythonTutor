@@ -2150,7 +2150,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       // right now, let's NOT display class members, since that clutters
       // up the display too much. in the future, consider displaying
       // class members in a pop-up pane on mouseover or mouseclick
-      if (!isInstance) return;
+      // actually nix what i just said above ...
+      //if (!isInstance) return;
 
       if (obj.length > headerLength) {
         var lab = isInstance ? 'inst' : 'class';
