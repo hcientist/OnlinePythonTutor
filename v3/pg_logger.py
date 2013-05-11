@@ -56,6 +56,8 @@ DEBUG = True
 
 BREAKPOINT_STR = '#break'
 
+CLASS_RE = re.compile('class\s+')
+
 
 # simple sandboxing scheme:
 #
@@ -303,6 +305,11 @@ class PGLogger(bdb.Bdb):
         # if this is true, don't put any more stuff into self.trace
         self.done = False
 
+        # if this is non-null, don't do any more tracing until a
+        # 'return' instruction with a stack gotten from
+        # get_stack_code_IDs() that matches wait_for_return_stack
+        self.wait_for_return_stack = None
+
         #http://stackoverflow.com/questions/2112396/in-python-in-google-app-engine-how-do-you-capture-output-produced-by-the-print
         self.GAE_STDOUT = sys.stdout
 
@@ -418,6 +425,10 @@ class PGLogger(bdb.Bdb):
         self.stack, self.curindex = self.get_stack(f, t)
         self.curframe = self.stack[self.curindex][0]
 
+    # should be a reasonably unique ID to match calls and returns:
+    def get_stack_code_IDs(self):
+        return [id(e[0].f_code) for e in self.stack]
+
 
     # Override Bdb methods
 
@@ -479,6 +490,8 @@ class PGLogger(bdb.Bdb):
         else:
           self.interaction(frame, exc_traceback, 'exception')
 
+    def get_script_line(self, n):
+        return self.executed_script_lines[n-1]
 
     # General interaction function
 
@@ -539,10 +552,26 @@ class PGLogger(bdb.Bdb):
         '''
 
 
-        # don't trace inside of our __restricted_import__ helper function
-        # (this check is now subsumed by the above check)
-        #if top_frame.f_code.co_name == '__restricted_import__':
-        #  return
+        # don't trace if wait_for_return_stack is non-null ...
+        if self.wait_for_return_stack:
+          if event_type == 'return' and \
+             (self.wait_for_return_stack == self.get_stack_code_IDs()):
+            self.wait_for_return_stack = None # reset!
+          return # always bail!
+        else:
+          # Skip all "calls" that are actually class definitions, since
+          # those faux calls produce lots of ugly cruft in the trace.
+          #
+          # NB: Only trigger on calls to functions defined in
+          # user-written code (i.e., co_filename == '<string>'), but that
+          # should already be ensured by the above check for whether we're
+          # in user-written code.
+          if event_type == 'call':
+            func_line = self.get_script_line(top_frame.f_code.co_firstlineno)
+            if CLASS_RE.match(func_line.lstrip()): # ignore leading spaces
+              self.wait_for_return_stack = self.get_stack_code_IDs()
+              return
+
 
         self.encoder.reset_heap() # VERY VERY VERY IMPORTANT,
                                   # or else we won't properly capture heap object mutations in the trace!
@@ -892,8 +921,9 @@ class PGLogger(bdb.Bdb):
 
     def _runscript(self, script_str):
         self.executed_script = script_str
+        self.executed_script_lines = self.executed_script.splitlines()
 
-        for (i, line) in enumerate(self.executed_script.splitlines()):
+        for (i, line) in enumerate(self.executed_script_lines):
           line_no = i + 1
           if line.endswith(BREAKPOINT_STR):
             self.breakpoints.append(line_no)
