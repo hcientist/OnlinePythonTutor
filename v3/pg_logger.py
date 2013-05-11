@@ -422,12 +422,12 @@ class PGLogger(bdb.Bdb):
     # Override Bdb methods
 
     def user_call(self, frame, argument_list):
+        """This method is called when there is the remote possibility
+        that we ever need to stop in this function."""
         # TODO: figure out a way to move this down to 'def interaction'
         # or right before self.trace.append ...
         if self.done: return
 
-        """This method is called when there is the remote possibility
-        that we ever need to stop in this function."""
         if self._wait_for_mainpyfile:
             return
         if self.stop_here(frame):
@@ -442,9 +442,9 @@ class PGLogger(bdb.Bdb):
             self.interaction(frame, None, 'call')
 
     def user_line(self, frame):
+        """This function is called when we stop or break at this line."""
         if self.done: return
 
-        """This function is called when we stop or break at this line."""
         if self._wait_for_mainpyfile:
             if (self.canonic(frame.f_code.co_filename) != "<string>" or
                 frame.f_lineno <= 0):
@@ -453,18 +453,18 @@ class PGLogger(bdb.Bdb):
         self.interaction(frame, None, 'step_line')
 
     def user_return(self, frame, return_value):
+        """This function is called when a return trap is set here."""
         if self.done: return
 
-        """This function is called when a return trap is set here."""
         frame.f_locals['__return__'] = return_value
         self.interaction(frame, None, 'return')
 
     def user_exception(self, frame, exc_info):
+        """This function is called if an exception occurs,
+        but only if we are to stop at or just below this level."""
         if self.done: return
 
         exc_type, exc_value, exc_traceback = exc_info
-        """This function is called if an exception occurs,
-        but only if we are to stop at or just below this level."""
         frame.f_locals['__exception__'] = exc_type, exc_value
         if type(exc_type) == type(''):
             exc_type_name = exc_type
