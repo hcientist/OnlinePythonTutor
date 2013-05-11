@@ -20,7 +20,7 @@ to "use text labels for references".
 
 Of course! Toggle options are customizable via the query string. Here are the default settings:
 
-http://pythontutor.com/visualize.html#cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2
+http://pythontutor.com/visualize.html#cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=2
 
 For example, if you want to default to Python 3, visit:
 http://pythontutor.com/visualize.html#&py=3
@@ -28,25 +28,21 @@ http://pythontutor.com/visualize.html#&py=3
 Or if you want to render all objects on the heap and use text label references, visit:
 http://pythontutor.com/visualize.html#heapPrimitives=true&textReferences=true
 
-The possibilities are endless! (or 2^5 or something.)
+The possibilities are endless! (or 2^6 or something.)
+
 
 #### Unicode strings look weird or broken
 
 Yep, that's a known bug; Online Python Tutor currently doesn't have much support for Unicode.
 
 
-#### Visualizations of object-oriented programs are confusing; why are there grayed-out frames everywhere?
-
-We haven't "cleaned-up" the visualizations to look better for OOP code examples;
-they are simply displaying what Python is doing step-by-step as those programs execute.
-Please email if you have suggestions for more aesthetically-pleasing yet accurate OOP visualizations.
-
 #### Can Online Python Tutor visualize programs that accept user input via, say, raw_input()?
 
 *Update on 2013-04-29*: Yes, try raw_input() now!!!
 
-*Old lame answer*:
+*Old lame and outdated answer*:
 No, sorry it can't currently do that; and chances are, it won't ever be able to unless I significantly rewrite the backend.
+
 
 #### Did you know that stepping through code with generators looks weird when "display frames of exited functions" is selected?
 
