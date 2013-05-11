@@ -12,117 +12,6 @@
       "event": "step_line"
     }, 
     {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Outer", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Outer", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Outer_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT"
-        ]
-      }, 
-      "line": 1, 
-      "event": "call"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Outer", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Outer", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Outer_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT"
-        ]
-      }, 
-      "line": 1, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Outer", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Outer", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Outer_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT"
-        ]
-      }, 
-      "line": 2, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Outer", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ]
-          }, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Outer", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Outer_f1", 
-          "ordered_varnames": [
-            "__return__"
-          ]
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT"
-        ]
-      }, 
-      "line": 2, 
-      "event": "return"
-    }, 
-    {
       "ordered_globals": [
         "Outer"
       ], 
@@ -132,11 +21,11 @@
       "globals": {
         "Outer": [
           "REF", 
-          2
+          1
         ]
       }, 
       "heap": {
-        "2": [
+        "1": [
           "CLASS", 
           "Outer", 
           []
@@ -156,20 +45,20 @@
       "globals": {
         "Outer": [
           "REF", 
-          2
+          1
         ], 
         "o": [
           "REF", 
-          3
+          2
         ]
       }, 
       "heap": {
-        "2": [
+        "1": [
           "CLASS", 
           "Outer", 
           []
         ], 
-        "3": [
+        "2": [
           "INSTANCE", 
           "Outer"
         ]
@@ -188,20 +77,20 @@
       "globals": {
         "Outer": [
           "REF", 
-          2
+          1
         ], 
         "o": [
           "REF", 
-          3
+          2
         ]
       }, 
       "heap": {
-        "2": [
+        "1": [
           "CLASS", 
           "Outer", 
           []
         ], 
-        "3": [
+        "2": [
           "INSTANCE", 
           "Outer", 
           [
@@ -224,20 +113,20 @@
       "globals": {
         "Outer": [
           "REF", 
-          2
+          1
         ], 
         "o": [
           "REF", 
-          3
+          2
         ]
       }, 
       "heap": {
-        "2": [
+        "1": [
           "CLASS", 
           "Outer", 
           []
         ], 
-        "3": [
+        "2": [
           "INSTANCE", 
           "Outer", 
           [
@@ -264,20 +153,20 @@
       "globals": {
         "Outer": [
           "REF", 
-          2
+          1
         ], 
         "o": [
           "REF", 
-          3
+          2
         ]
       }, 
       "heap": {
-        "2": [
+        "1": [
           "CLASS", 
           "Outer", 
           []
         ], 
-        "3": [
+        "2": [
           "INSTANCE", 
           "Outer", 
           [

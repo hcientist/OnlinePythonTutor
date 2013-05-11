@@ -836,519 +836,16 @@
     {
       "ordered_globals": [
         "x", 
-        "i"
-      ], 
-      "stdout": "", 
-      "func_name": "Node", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Node", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {
-        "i": 1, 
-        "x": [
-          "REF", 
-          6
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ], 
-        "3": [
-          "DICT", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "4": [
-          "DICT", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              3
-            ]
-          ]
-        ], 
-        "5": [
-          "DICT", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              4
-            ]
-          ]
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              5
-            ]
-          ]
-        ]
-      }, 
-      "line": 7, 
-      "event": "call"
-    }, 
-    {
-      "ordered_globals": [
-        "x", 
-        "i"
-      ], 
-      "stdout": "", 
-      "func_name": "Node", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Node", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {
-        "i": 1, 
-        "x": [
-          "REF", 
-          6
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ], 
-        "3": [
-          "DICT", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "4": [
-          "DICT", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              3
-            ]
-          ]
-        ], 
-        "5": [
-          "DICT", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              4
-            ]
-          ]
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              5
-            ]
-          ]
-        ]
-      }, 
-      "line": 7, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [
-        "x", 
-        "i"
-      ], 
-      "stdout": "", 
-      "func_name": "Node", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Node", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {
-        "i": 1, 
-        "x": [
-          "REF", 
-          6
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ], 
-        "3": [
-          "DICT", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "4": [
-          "DICT", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              3
-            ]
-          ]
-        ], 
-        "5": [
-          "DICT", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              4
-            ]
-          ]
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              5
-            ]
-          ]
-        ]
-      }, 
-      "line": 8, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [
-        "x", 
-        "i"
-      ], 
-      "stdout": "", 
-      "func_name": "Node", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": true, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
-      "globals": {
-        "i": 1, 
-        "x": [
-          "REF", 
-          6
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ], 
-        "3": [
-          "DICT", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "4": [
-          "DICT", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              3
-            ]
-          ]
-        ], 
-        "5": [
-          "DICT", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              4
-            ]
-          ]
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ]
-      }, 
-      "line": 8, 
-      "event": "return"
-    }, 
-    {
-      "ordered_globals": [
-        "x", 
         "i", 
         "Node"
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
         "i": 1, 
         "x": [
@@ -1439,25 +936,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -1468,6 +946,11 @@
               8
             ]
           ]
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
         ]
       }, 
       "line": 12, 
@@ -1482,35 +965,11 @@
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
         "i": 1, 
         "y": null, 
@@ -1602,11 +1061,9 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
+          "CLASS", 
+          "Node", 
+          [], 
           [
             "__init__", 
             [
@@ -1618,19 +1075,7 @@
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
-          "CLASS", 
-          "Node", 
-          [], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
+          null
         ]
       }, 
       "line": 13, 
@@ -1645,35 +1090,11 @@
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
         "i": 6, 
         "y": null, 
@@ -1765,11 +1186,9 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
+          "CLASS", 
+          "Node", 
+          [], 
           [
             "__init__", 
             [
@@ -1781,19 +1200,7 @@
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
-          "CLASS", 
-          "Node", 
-          [], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
+          null
         ]
       }, 
       "line": 14, 
@@ -1812,32 +1219,9 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 2, 
-          "encoded_locals": {
             "self": [
               "REF", 
-              10
+              9
             ], 
             "data": 6, 
             "next": null
@@ -1846,9 +1230,912 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
+          "ordered_varnames": [
+            "self", 
+            "data", 
+            "next"
+          ]
+        }
+      ], 
+      "globals": {
+        "Node": [
+          "REF", 
+          7
+        ], 
+        "i": 6, 
+        "y": null, 
+        "x": [
+          "REF", 
+          6
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "3": [
+          "DICT", 
+          [
+            "data", 
+            4
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ], 
+        "4": [
+          "DICT", 
+          [
+            "data", 
+            3
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "5": [
+          "DICT", 
+          [
+            "data", 
+            2
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "data", 
             1
           ], 
+          [
+            "next", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "Node", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              8
+            ]
+          ]
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
+          "INSTANCE", 
+          "Node"
+        ]
+      }, 
+      "line": 8, 
+      "event": "call"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "i", 
+        "Node", 
+        "y"
+      ], 
+      "stdout": "", 
+      "func_name": "__init__", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "self": [
+              "REF", 
+              9
+            ], 
+            "data": 6, 
+            "next": null
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__init__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
+          "ordered_varnames": [
+            "self", 
+            "data", 
+            "next"
+          ]
+        }
+      ], 
+      "globals": {
+        "Node": [
+          "REF", 
+          7
+        ], 
+        "i": 6, 
+        "y": null, 
+        "x": [
+          "REF", 
+          6
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "3": [
+          "DICT", 
+          [
+            "data", 
+            4
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ], 
+        "4": [
+          "DICT", 
+          [
+            "data", 
+            3
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "5": [
+          "DICT", 
+          [
+            "data", 
+            2
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "data", 
+            1
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "Node", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              8
+            ]
+          ]
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
+          "INSTANCE", 
+          "Node"
+        ]
+      }, 
+      "line": 9, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "i", 
+        "Node", 
+        "y"
+      ], 
+      "stdout": "", 
+      "func_name": "__init__", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "self": [
+              "REF", 
+              9
+            ], 
+            "data": 6, 
+            "next": null
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__init__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
+          "ordered_varnames": [
+            "self", 
+            "data", 
+            "next"
+          ]
+        }
+      ], 
+      "globals": {
+        "Node": [
+          "REF", 
+          7
+        ], 
+        "i": 6, 
+        "y": null, 
+        "x": [
+          "REF", 
+          6
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "3": [
+          "DICT", 
+          [
+            "data", 
+            4
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ], 
+        "4": [
+          "DICT", 
+          [
+            "data", 
+            3
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "5": [
+          "DICT", 
+          [
+            "data", 
+            2
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "data", 
+            1
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "Node", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              8
+            ]
+          ]
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            6
+          ]
+        ]
+      }, 
+      "line": 10, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "i", 
+        "Node", 
+        "y"
+      ], 
+      "stdout": "", 
+      "func_name": "__init__", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "__return__": null, 
+            "self": [
+              "REF", 
+              9
+            ], 
+            "data": 6, 
+            "next": null
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__init__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
+          "ordered_varnames": [
+            "self", 
+            "data", 
+            "next", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "Node": [
+          "REF", 
+          7
+        ], 
+        "i": 6, 
+        "y": null, 
+        "x": [
+          "REF", 
+          6
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "3": [
+          "DICT", 
+          [
+            "data", 
+            4
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ], 
+        "4": [
+          "DICT", 
+          [
+            "data", 
+            3
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "5": [
+          "DICT", 
+          [
+            "data", 
+            2
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "data", 
+            1
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "Node", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              8
+            ]
+          ]
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ]
+      }, 
+      "line": 10, 
+      "event": "return"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "i", 
+        "Node", 
+        "y"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "Node": [
+          "REF", 
+          7
+        ], 
+        "i": 6, 
+        "y": [
+          "REF", 
+          9
+        ], 
+        "x": [
+          "REF", 
+          6
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "3": [
+          "DICT", 
+          [
+            "data", 
+            4
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ], 
+        "4": [
+          "DICT", 
+          [
+            "data", 
+            3
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "5": [
+          "DICT", 
+          [
+            "data", 
+            2
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "data", 
+            1
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "Node", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              8
+            ]
+          ]
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ]
+      }, 
+      "line": 13, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "i", 
+        "Node", 
+        "y"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "Node": [
+          "REF", 
+          7
+        ], 
+        "i": 5, 
+        "y": [
+          "REF", 
+          9
+        ], 
+        "x": [
+          "REF", 
+          6
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "3": [
+          "DICT", 
+          [
+            "data", 
+            4
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ], 
+        "4": [
+          "DICT", 
+          [
+            "data", 
+            3
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "5": [
+          "DICT", 
+          [
+            "data", 
+            2
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "data", 
+            1
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "Node", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              8
+            ]
+          ]
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ]
+      }, 
+      "line": 14, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "i", 
+        "Node", 
+        "y"
+      ], 
+      "stdout": "", 
+      "func_name": "__init__", 
+      "stack_to_render": [
+        {
+          "frame_id": 2, 
+          "encoded_locals": {
+            "self": [
+              "REF", 
+              10
+            ], 
+            "data": 5, 
+            "next": [
+              "REF", 
+              9
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__init__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f2", 
           "ordered_varnames": [
             "self", 
@@ -1860,10 +2147,13 @@
       "globals": {
         "Node": [
           "REF", 
+          7
+        ], 
+        "i": 5, 
+        "y": [
+          "REF", 
           9
         ], 
-        "i": 6, 
-        "y": null, 
         "x": [
           "REF", 
           6
@@ -1952,11 +2242,9 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
+          "CLASS", 
+          "Node", 
+          [], 
           [
             "__init__", 
             [
@@ -1968,18 +2256,18 @@
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
-          1
+          null
         ], 
         "9": [
-          "CLASS", 
+          "INSTANCE", 
           "Node", 
-          [], 
           [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
           ]
         ], 
         "10": [
@@ -2001,45 +2289,23 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 2, 
           "encoded_locals": {
             "self": [
               "REF", 
               10
             ], 
-            "data": 6, 
-            "next": null
+            "data": 5, 
+            "next": [
+              "REF", 
+              9
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f2", 
           "ordered_varnames": [
             "self", 
@@ -2051,10 +2317,13 @@
       "globals": {
         "Node": [
           "REF", 
+          7
+        ], 
+        "i": 5, 
+        "y": [
+          "REF", 
           9
         ], 
-        "i": 6, 
-        "y": null, 
         "x": [
           "REF", 
           6
@@ -2143,11 +2412,9 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
+          "CLASS", 
+          "Node", 
+          [], 
           [
             "__init__", 
             [
@@ -2159,18 +2426,18 @@
         "8": [
           "FUNCTION", 
           "__init__(self, data, next)", 
-          1
+          null
         ], 
         "9": [
-          "CLASS", 
+          "INSTANCE", 
           "Node", 
-          [], 
           [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
           ]
         ], 
         "10": [
@@ -2192,45 +2459,23 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 2, 
           "encoded_locals": {
             "self": [
               "REF", 
               10
             ], 
-            "data": 6, 
-            "next": null
+            "data": 5, 
+            "next": [
+              "REF", 
+              9
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f2", 
           "ordered_varnames": [
             "self", 
@@ -2242,10 +2487,13 @@
       "globals": {
         "Node": [
           "REF", 
+          7
+        ], 
+        "i": 5, 
+        "y": [
+          "REF", 
           9
         ], 
-        "i": 6, 
-        "y": null, 
         "x": [
           "REF", 
           6
@@ -2334,25 +2582,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -2364,12 +2593,29 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "10": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            5
           ]
         ]
       }, 
@@ -2387,29 +2633,6 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 2, 
           "encoded_locals": {
             "__return__": null, 
@@ -2417,16 +2640,17 @@
               "REF", 
               10
             ], 
-            "data": 6, 
-            "next": null
+            "data": 5, 
+            "next": [
+              "REF", 
+              9
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f2", 
           "ordered_varnames": [
             "self", 
@@ -2439,10 +2663,13 @@
       "globals": {
         "Node": [
           "REF", 
+          7
+        ], 
+        "i": 5, 
+        "y": [
+          "REF", 
           9
         ], 
-        "i": 6, 
-        "y": null, 
         "x": [
           "REF", 
           6
@@ -2531,25 +2758,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -2561,7 +2769,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -2571,6 +2784,21 @@
           [
             "next", 
             null
+          ]
+        ], 
+        "10": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
           ]
         ]
       }, 
@@ -2586,213 +2814,11 @@
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Node": [
           "REF", 
-          9
-        ], 
-        "i": 6, 
-        "y": [
-          "REF", 
-          10
-        ], 
-        "x": [
-          "REF", 
-          6
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ], 
-        "3": [
-          "DICT", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "4": [
-          "DICT", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              3
-            ]
-          ]
-        ], 
-        "5": [
-          "DICT", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              4
-            ]
-          ]
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
-          "CLASS", 
-          "Node", 
-          [], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "10": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ]
-      }, 
-      "line": 13, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [
-        "x", 
-        "i", 
-        "Node", 
-        "y"
-      ], 
-      "stdout": "", 
-      "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
-      "globals": {
-        "Node": [
-          "REF", 
-          9
+          7
         ], 
         "i": 5, 
         "y": [
@@ -2887,25 +2913,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -2917,7 +2924,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -2927,6 +2939,176 @@
           [
             "next", 
             null
+          ]
+        ], 
+        "10": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ]
+      }, 
+      "line": 13, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "i", 
+        "Node", 
+        "y"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "Node": [
+          "REF", 
+          7
+        ], 
+        "i": 4, 
+        "y": [
+          "REF", 
+          10
+        ], 
+        "x": [
+          "REF", 
+          6
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "3": [
+          "DICT", 
+          [
+            "data", 
+            4
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ], 
+        "4": [
+          "DICT", 
+          [
+            "data", 
+            3
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "5": [
+          "DICT", 
+          [
+            "data", 
+            2
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "data", 
+            1
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "Node", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              8
+            ]
+          ]
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "10": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
           ]
         ]
       }, 
@@ -2944,36 +3126,13 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 3, 
           "encoded_locals": {
             "self": [
               "REF", 
               11
             ], 
-            "data": 5, 
+            "data": 4, 
             "next": [
               "REF", 
               10
@@ -2983,9 +3142,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f3", 
           "ordered_varnames": [
             "self", 
@@ -2997,9 +3154,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 5, 
+        "i": 4, 
         "y": [
           "REF", 
           10
@@ -3092,25 +3249,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -3122,7 +3260,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -3132,6 +3275,21 @@
           [
             "next", 
             null
+          ]
+        ], 
+        "10": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
           ]
         ], 
         "11": [
@@ -3153,36 +3311,13 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 3, 
           "encoded_locals": {
             "self": [
               "REF", 
               11
             ], 
-            "data": 5, 
+            "data": 4, 
             "next": [
               "REF", 
               10
@@ -3192,9 +3327,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f3", 
           "ordered_varnames": [
             "self", 
@@ -3206,9 +3339,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 5, 
+        "i": 4, 
         "y": [
           "REF", 
           10
@@ -3301,25 +3434,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -3331,7 +3445,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -3341,6 +3460,21 @@
           [
             "next", 
             null
+          ]
+        ], 
+        "10": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
           ]
         ], 
         "11": [
@@ -3362,36 +3496,13 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 3, 
           "encoded_locals": {
             "self": [
               "REF", 
               11
             ], 
-            "data": 5, 
+            "data": 4, 
             "next": [
               "REF", 
               10
@@ -3401,9 +3512,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f3", 
           "ordered_varnames": [
             "self", 
@@ -3415,9 +3524,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 5, 
+        "i": 4, 
         "y": [
           "REF", 
           10
@@ -3510,25 +3619,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -3540,7 +3630,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -3552,12 +3647,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ]
         ]
       }, 
@@ -3575,29 +3685,6 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 3, 
           "encoded_locals": {
             "__return__": null, 
@@ -3605,7 +3692,7 @@
               "REF", 
               11
             ], 
-            "data": 5, 
+            "data": 4, 
             "next": [
               "REF", 
               10
@@ -3615,9 +3702,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f3", 
           "ordered_varnames": [
             "self", 
@@ -3630,9 +3715,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 5, 
+        "i": 4, 
         "y": [
           "REF", 
           10
@@ -3725,25 +3810,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -3755,7 +3821,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -3767,12 +3838,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -3795,228 +3881,11 @@
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Node": [
           "REF", 
-          9
-        ], 
-        "i": 5, 
-        "y": [
-          "REF", 
-          11
-        ], 
-        "x": [
-          "REF", 
-          6
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ], 
-        "3": [
-          "DICT", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "4": [
-          "DICT", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              3
-            ]
-          ]
-        ], 
-        "5": [
-          "DICT", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              4
-            ]
-          ]
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
-          "CLASS", 
-          "Node", 
-          [], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "10": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "11": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              10
-            ]
-          ]
-        ]
-      }, 
-      "line": 13, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [
-        "x", 
-        "i", 
-        "Node", 
-        "y"
-      ], 
-      "stdout": "", 
-      "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
-      "globals": {
-        "Node": [
-          "REF", 
-          9
+          7
         ], 
         "i": 4, 
         "y": [
@@ -4111,25 +3980,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -4141,7 +3991,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -4153,12 +4008,197 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              10
+            ]
+          ]
+        ]
+      }, 
+      "line": 13, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "i", 
+        "Node", 
+        "y"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "Node": [
+          "REF", 
+          7
+        ], 
+        "i": 3, 
+        "y": [
+          "REF", 
+          11
+        ], 
+        "x": [
+          "REF", 
+          6
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "3": [
+          "DICT", 
+          [
+            "data", 
+            4
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ], 
+        "4": [
+          "DICT", 
+          [
+            "data", 
+            3
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "5": [
+          "DICT", 
+          [
+            "data", 
+            2
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "data", 
+            1
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "Node", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              8
+            ]
+          ]
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "10": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -4183,36 +4223,13 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 4, 
           "encoded_locals": {
             "self": [
               "REF", 
               12
             ], 
-            "data": 4, 
+            "data": 3, 
             "next": [
               "REF", 
               11
@@ -4222,9 +4239,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f4", 
           "ordered_varnames": [
             "self", 
@@ -4236,9 +4251,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 4, 
+        "i": 3, 
         "y": [
           "REF", 
           11
@@ -4331,25 +4346,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -4361,7 +4357,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -4373,12 +4374,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -4407,36 +4423,13 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 4, 
           "encoded_locals": {
             "self": [
               "REF", 
               12
             ], 
-            "data": 4, 
+            "data": 3, 
             "next": [
               "REF", 
               11
@@ -4446,9 +4439,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f4", 
           "ordered_varnames": [
             "self", 
@@ -4460,9 +4451,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 4, 
+        "i": 3, 
         "y": [
           "REF", 
           11
@@ -4555,25 +4546,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -4585,7 +4557,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -4597,12 +4574,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -4631,36 +4623,13 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 4, 
           "encoded_locals": {
             "self": [
               "REF", 
               12
             ], 
-            "data": 4, 
+            "data": 3, 
             "next": [
               "REF", 
               11
@@ -4670,9 +4639,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f4", 
           "ordered_varnames": [
             "self", 
@@ -4684,9 +4651,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 4, 
+        "i": 3, 
         "y": [
           "REF", 
           11
@@ -4779,25 +4746,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -4809,7 +4757,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -4821,12 +4774,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -4841,7 +4809,7 @@
           "Node", 
           [
             "data", 
-            4
+            3
           ]
         ]
       }, 
@@ -4859,29 +4827,6 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 4, 
           "encoded_locals": {
             "__return__": null, 
@@ -4889,7 +4834,7 @@
               "REF", 
               12
             ], 
-            "data": 4, 
+            "data": 3, 
             "next": [
               "REF", 
               11
@@ -4899,9 +4844,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f4", 
           "ordered_varnames": [
             "self", 
@@ -4914,9 +4857,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 4, 
+        "i": 3, 
         "y": [
           "REF", 
           11
@@ -5009,25 +4952,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -5039,7 +4963,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -5051,12 +4980,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -5071,7 +5015,7 @@
           "Node", 
           [
             "data", 
-            4
+            3
           ], 
           [
             "next", 
@@ -5094,243 +5038,11 @@
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Node": [
           "REF", 
-          9
-        ], 
-        "i": 4, 
-        "y": [
-          "REF", 
-          12
-        ], 
-        "x": [
-          "REF", 
-          6
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ], 
-        "3": [
-          "DICT", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "4": [
-          "DICT", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              3
-            ]
-          ]
-        ], 
-        "5": [
-          "DICT", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              4
-            ]
-          ]
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
-          "CLASS", 
-          "Node", 
-          [], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "10": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "11": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              10
-            ]
-          ]
-        ], 
-        "12": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              11
-            ]
-          ]
-        ]
-      }, 
-      "line": 13, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [
-        "x", 
-        "i", 
-        "Node", 
-        "y"
-      ], 
-      "stdout": "", 
-      "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
-      "globals": {
-        "Node": [
-          "REF", 
-          9
+          7
         ], 
         "i": 3, 
         "y": [
@@ -5425,25 +5137,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -5455,7 +5148,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -5467,12 +5165,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -5487,7 +5200,192 @@
           "Node", 
           [
             "data", 
+            3
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              11
+            ]
+          ]
+        ]
+      }, 
+      "line": 13, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "i", 
+        "Node", 
+        "y"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "Node": [
+          "REF", 
+          7
+        ], 
+        "i": 2, 
+        "y": [
+          "REF", 
+          12
+        ], 
+        "x": [
+          "REF", 
+          6
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "3": [
+          "DICT", 
+          [
+            "data", 
             4
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ], 
+        "4": [
+          "DICT", 
+          [
+            "data", 
+            3
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "5": [
+          "DICT", 
+          [
+            "data", 
+            2
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "data", 
+            1
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "Node", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              8
+            ]
+          ]
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "10": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              10
+            ]
+          ]
+        ], 
+        "12": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            3
           ], 
           [
             "next", 
@@ -5512,36 +5410,13 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 5, 
           "encoded_locals": {
             "self": [
               "REF", 
               13
             ], 
-            "data": 3, 
+            "data": 2, 
             "next": [
               "REF", 
               12
@@ -5551,9 +5426,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f5", 
           "ordered_varnames": [
             "self", 
@@ -5565,9 +5438,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 3, 
+        "i": 2, 
         "y": [
           "REF", 
           12
@@ -5660,25 +5533,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -5690,7 +5544,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -5702,12 +5561,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -5722,7 +5596,7 @@
           "Node", 
           [
             "data", 
-            4
+            3
           ], 
           [
             "next", 
@@ -5751,36 +5625,13 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 5, 
           "encoded_locals": {
             "self": [
               "REF", 
               13
             ], 
-            "data": 3, 
+            "data": 2, 
             "next": [
               "REF", 
               12
@@ -5790,9 +5641,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f5", 
           "ordered_varnames": [
             "self", 
@@ -5804,9 +5653,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 3, 
+        "i": 2, 
         "y": [
           "REF", 
           12
@@ -5899,25 +5748,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -5929,7 +5759,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -5941,12 +5776,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -5961,7 +5811,7 @@
           "Node", 
           [
             "data", 
-            4
+            3
           ], 
           [
             "next", 
@@ -5990,36 +5840,13 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 5, 
           "encoded_locals": {
             "self": [
               "REF", 
               13
             ], 
-            "data": 3, 
+            "data": 2, 
             "next": [
               "REF", 
               12
@@ -6029,9 +5856,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f5", 
           "ordered_varnames": [
             "self", 
@@ -6043,9 +5868,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 3, 
+        "i": 2, 
         "y": [
           "REF", 
           12
@@ -6138,25 +5963,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -6168,7 +5974,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -6180,12 +5991,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -6200,7 +6026,7 @@
           "Node", 
           [
             "data", 
-            4
+            3
           ], 
           [
             "next", 
@@ -6215,7 +6041,7 @@
           "Node", 
           [
             "data", 
-            3
+            2
           ]
         ]
       }, 
@@ -6233,29 +6059,6 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 5, 
           "encoded_locals": {
             "__return__": null, 
@@ -6263,7 +6066,7 @@
               "REF", 
               13
             ], 
-            "data": 3, 
+            "data": 2, 
             "next": [
               "REF", 
               12
@@ -6273,9 +6076,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f5", 
           "ordered_varnames": [
             "self", 
@@ -6288,9 +6089,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 3, 
+        "i": 2, 
         "y": [
           "REF", 
           12
@@ -6383,25 +6184,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -6413,7 +6195,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -6425,12 +6212,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -6445,7 +6247,7 @@
           "Node", 
           [
             "data", 
-            4
+            3
           ], 
           [
             "next", 
@@ -6460,7 +6262,7 @@
           "Node", 
           [
             "data", 
-            3
+            2
           ], 
           [
             "next", 
@@ -6483,258 +6285,11 @@
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Node": [
           "REF", 
-          9
-        ], 
-        "i": 3, 
-        "y": [
-          "REF", 
-          13
-        ], 
-        "x": [
-          "REF", 
-          6
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ], 
-        "3": [
-          "DICT", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "4": [
-          "DICT", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              3
-            ]
-          ]
-        ], 
-        "5": [
-          "DICT", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              4
-            ]
-          ]
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
-          "CLASS", 
-          "Node", 
-          [], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "10": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "11": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              10
-            ]
-          ]
-        ], 
-        "12": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              11
-            ]
-          ]
-        ], 
-        "13": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              12
-            ]
-          ]
-        ]
-      }, 
-      "line": 13, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [
-        "x", 
-        "i", 
-        "Node", 
-        "y"
-      ], 
-      "stdout": "", 
-      "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
-      "globals": {
-        "Node": [
-          "REF", 
-          9
+          7
         ], 
         "i": 2, 
         "y": [
@@ -6829,25 +6384,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -6859,7 +6395,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -6871,12 +6412,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -6891,7 +6447,7 @@
           "Node", 
           [
             "data", 
-            4
+            3
           ], 
           [
             "next", 
@@ -6906,7 +6462,207 @@
           "Node", 
           [
             "data", 
+            2
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              12
+            ]
+          ]
+        ]
+      }, 
+      "line": 13, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "i", 
+        "Node", 
+        "y"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "Node": [
+          "REF", 
+          7
+        ], 
+        "i": 1, 
+        "y": [
+          "REF", 
+          13
+        ], 
+        "x": [
+          "REF", 
+          6
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "3": [
+          "DICT", 
+          [
+            "data", 
+            4
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ], 
+        "4": [
+          "DICT", 
+          [
+            "data", 
             3
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "5": [
+          "DICT", 
+          [
+            "data", 
+            2
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "6": [
+          "DICT", 
+          [
+            "data", 
+            1
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "Node", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              8
+            ]
+          ]
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            6
+          ], 
+          [
+            "next", 
+            null
+          ]
+        ], 
+        "10": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              10
+            ]
+          ]
+        ], 
+        "12": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            3
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              11
+            ]
+          ]
+        ], 
+        "13": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            2
           ], 
           [
             "next", 
@@ -6931,36 +6687,13 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 6, 
           "encoded_locals": {
             "self": [
               "REF", 
               14
             ], 
-            "data": 2, 
+            "data": 1, 
             "next": [
               "REF", 
               13
@@ -6970,9 +6703,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f6", 
           "ordered_varnames": [
             "self", 
@@ -6984,9 +6715,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 2, 
+        "i": 1, 
         "y": [
           "REF", 
           13
@@ -7079,25 +6810,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -7109,7 +6821,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -7121,12 +6838,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -7141,7 +6873,7 @@
           "Node", 
           [
             "data", 
-            4
+            3
           ], 
           [
             "next", 
@@ -7156,7 +6888,7 @@
           "Node", 
           [
             "data", 
-            3
+            2
           ], 
           [
             "next", 
@@ -7185,36 +6917,13 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 6, 
           "encoded_locals": {
             "self": [
               "REF", 
               14
             ], 
-            "data": 2, 
+            "data": 1, 
             "next": [
               "REF", 
               13
@@ -7224,9 +6933,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f6", 
           "ordered_varnames": [
             "self", 
@@ -7238,9 +6945,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 2, 
+        "i": 1, 
         "y": [
           "REF", 
           13
@@ -7333,25 +7040,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -7363,7 +7051,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -7375,12 +7068,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -7395,7 +7103,7 @@
           "Node", 
           [
             "data", 
-            4
+            3
           ], 
           [
             "next", 
@@ -7410,7 +7118,7 @@
           "Node", 
           [
             "data", 
-            3
+            2
           ], 
           [
             "next", 
@@ -7439,36 +7147,13 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 6, 
           "encoded_locals": {
             "self": [
               "REF", 
               14
             ], 
-            "data": 2, 
+            "data": 1, 
             "next": [
               "REF", 
               13
@@ -7478,9 +7163,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f6", 
           "ordered_varnames": [
             "self", 
@@ -7492,9 +7175,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 2, 
+        "i": 1, 
         "y": [
           "REF", 
           13
@@ -7587,25 +7270,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -7617,7 +7281,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -7629,12 +7298,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -7649,7 +7333,7 @@
           "Node", 
           [
             "data", 
-            4
+            3
           ], 
           [
             "next", 
@@ -7664,7 +7348,7 @@
           "Node", 
           [
             "data", 
-            3
+            2
           ], 
           [
             "next", 
@@ -7679,7 +7363,7 @@
           "Node", 
           [
             "data", 
-            2
+            1
           ]
         ]
       }, 
@@ -7697,29 +7381,6 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
           "frame_id": 6, 
           "encoded_locals": {
             "__return__": null, 
@@ -7727,7 +7388,7 @@
               "REF", 
               14
             ], 
-            "data": 2, 
+            "data": 1, 
             "next": [
               "REF", 
               13
@@ -7737,9 +7398,7 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
+          "parent_frame_id_list": [], 
           "unique_hash": "__init___f6", 
           "ordered_varnames": [
             "self", 
@@ -7752,9 +7411,9 @@
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 2, 
+        "i": 1, 
         "y": [
           "REF", 
           13
@@ -7847,25 +7506,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -7877,7 +7517,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -7889,12 +7534,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -7909,7 +7569,7 @@
           "Node", 
           [
             "data", 
-            4
+            3
           ], 
           [
             "next", 
@@ -7924,7 +7584,7 @@
           "Node", 
           [
             "data", 
-            3
+            2
           ], 
           [
             "next", 
@@ -7939,7 +7599,7 @@
           "Node", 
           [
             "data", 
-            2
+            1
           ], 
           [
             "next", 
@@ -7962,37 +7622,13 @@
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 2, 
+        "i": 1, 
         "y": [
           "REF", 
           14
@@ -8085,25 +7721,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -8115,7 +7732,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -8127,12 +7749,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -8147,7 +7784,7 @@
           "Node", 
           [
             "data", 
-            4
+            3
           ], 
           [
             "next", 
@@ -8162,7 +7799,7 @@
           "Node", 
           [
             "data", 
-            3
+            2
           ], 
           [
             "next", 
@@ -8177,7 +7814,7 @@
           "Node", 
           [
             "data", 
-            2
+            1
           ], 
           [
             "next", 
@@ -8200,1624 +7837,16 @@
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Node": [
           "REF", 
-          9
+          7
         ], 
-        "i": 1, 
         "y": [
           "REF", 
           14
         ], 
-        "x": [
-          "REF", 
-          6
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ], 
-        "3": [
-          "DICT", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "4": [
-          "DICT", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              3
-            ]
-          ]
-        ], 
-        "5": [
-          "DICT", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              4
-            ]
-          ]
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
-          "CLASS", 
-          "Node", 
-          [], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "10": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "11": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              10
-            ]
-          ]
-        ], 
-        "12": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              11
-            ]
-          ]
-        ], 
-        "13": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              12
-            ]
-          ]
-        ], 
-        "14": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              13
-            ]
-          ]
-        ]
-      }, 
-      "line": 14, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [
-        "x", 
-        "i", 
-        "Node", 
-        "y"
-      ], 
-      "stdout": "", 
-      "func_name": "__init__", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 7, 
-          "encoded_locals": {
-            "self": [
-              "REF", 
-              15
-            ], 
-            "data": 1, 
-            "next": [
-              "REF", 
-              14
-            ]
-          }, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "__init__", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f7", 
-          "ordered_varnames": [
-            "self", 
-            "data", 
-            "next"
-          ]
-        }
-      ], 
-      "globals": {
-        "Node": [
-          "REF", 
-          9
-        ], 
-        "i": 1, 
-        "y": [
-          "REF", 
-          14
-        ], 
-        "x": [
-          "REF", 
-          6
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ], 
-        "3": [
-          "DICT", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "4": [
-          "DICT", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              3
-            ]
-          ]
-        ], 
-        "5": [
-          "DICT", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              4
-            ]
-          ]
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
-          "CLASS", 
-          "Node", 
-          [], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "10": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "11": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              10
-            ]
-          ]
-        ], 
-        "12": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              11
-            ]
-          ]
-        ], 
-        "13": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              12
-            ]
-          ]
-        ], 
-        "14": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              13
-            ]
-          ]
-        ], 
-        "15": [
-          "INSTANCE", 
-          "Node"
-        ]
-      }, 
-      "line": 8, 
-      "event": "call"
-    }, 
-    {
-      "ordered_globals": [
-        "x", 
-        "i", 
-        "Node", 
-        "y"
-      ], 
-      "stdout": "", 
-      "func_name": "__init__", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 7, 
-          "encoded_locals": {
-            "self": [
-              "REF", 
-              15
-            ], 
-            "data": 1, 
-            "next": [
-              "REF", 
-              14
-            ]
-          }, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "__init__", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f7", 
-          "ordered_varnames": [
-            "self", 
-            "data", 
-            "next"
-          ]
-        }
-      ], 
-      "globals": {
-        "Node": [
-          "REF", 
-          9
-        ], 
-        "i": 1, 
-        "y": [
-          "REF", 
-          14
-        ], 
-        "x": [
-          "REF", 
-          6
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ], 
-        "3": [
-          "DICT", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "4": [
-          "DICT", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              3
-            ]
-          ]
-        ], 
-        "5": [
-          "DICT", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              4
-            ]
-          ]
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
-          "CLASS", 
-          "Node", 
-          [], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "10": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "11": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              10
-            ]
-          ]
-        ], 
-        "12": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              11
-            ]
-          ]
-        ], 
-        "13": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              12
-            ]
-          ]
-        ], 
-        "14": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              13
-            ]
-          ]
-        ], 
-        "15": [
-          "INSTANCE", 
-          "Node"
-        ]
-      }, 
-      "line": 9, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [
-        "x", 
-        "i", 
-        "Node", 
-        "y"
-      ], 
-      "stdout": "", 
-      "func_name": "__init__", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 7, 
-          "encoded_locals": {
-            "self": [
-              "REF", 
-              15
-            ], 
-            "data": 1, 
-            "next": [
-              "REF", 
-              14
-            ]
-          }, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "__init__", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f7", 
-          "ordered_varnames": [
-            "self", 
-            "data", 
-            "next"
-          ]
-        }
-      ], 
-      "globals": {
-        "Node": [
-          "REF", 
-          9
-        ], 
-        "i": 1, 
-        "y": [
-          "REF", 
-          14
-        ], 
-        "x": [
-          "REF", 
-          6
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ], 
-        "3": [
-          "DICT", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "4": [
-          "DICT", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              3
-            ]
-          ]
-        ], 
-        "5": [
-          "DICT", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              4
-            ]
-          ]
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
-          "CLASS", 
-          "Node", 
-          [], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "10": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "11": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              10
-            ]
-          ]
-        ], 
-        "12": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              11
-            ]
-          ]
-        ], 
-        "13": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              12
-            ]
-          ]
-        ], 
-        "14": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              13
-            ]
-          ]
-        ], 
-        "15": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            1
-          ]
-        ]
-      }, 
-      "line": 10, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [
-        "x", 
-        "i", 
-        "Node", 
-        "y"
-      ], 
-      "stdout": "", 
-      "func_name": "__init__", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 7, 
-          "encoded_locals": {
-            "__return__": null, 
-            "self": [
-              "REF", 
-              15
-            ], 
-            "data": 1, 
-            "next": [
-              "REF", 
-              14
-            ]
-          }, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "__init__", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f7", 
-          "ordered_varnames": [
-            "self", 
-            "data", 
-            "next", 
-            "__return__"
-          ]
-        }
-      ], 
-      "globals": {
-        "Node": [
-          "REF", 
-          9
-        ], 
-        "i": 1, 
-        "y": [
-          "REF", 
-          14
-        ], 
-        "x": [
-          "REF", 
-          6
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ], 
-        "3": [
-          "DICT", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "4": [
-          "DICT", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              3
-            ]
-          ]
-        ], 
-        "5": [
-          "DICT", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              4
-            ]
-          ]
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
-          "CLASS", 
-          "Node", 
-          [], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "10": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "11": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              10
-            ]
-          ]
-        ], 
-        "12": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              11
-            ]
-          ]
-        ], 
-        "13": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              12
-            ]
-          ]
-        ], 
-        "14": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              13
-            ]
-          ]
-        ], 
-        "15": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              14
-            ]
-          ]
-        ]
-      }, 
-      "line": 10, 
-      "event": "return"
-    }, 
-    {
-      "ordered_globals": [
-        "x", 
-        "i", 
-        "Node", 
-        "y"
-      ], 
-      "stdout": "", 
-      "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
-      "globals": {
-        "Node": [
-          "REF", 
-          9
-        ], 
-        "i": 1, 
-        "y": [
-          "REF", 
-          15
-        ], 
-        "x": [
-          "REF", 
-          6
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ], 
-        "3": [
-          "DICT", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "4": [
-          "DICT", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              3
-            ]
-          ]
-        ], 
-        "5": [
-          "DICT", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              4
-            ]
-          ]
-        ], 
-        "6": [
-          "DICT", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              5
-            ]
-          ]
-        ], 
-        "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
-          "CLASS", 
-          "Node", 
-          [], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "10": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            6
-          ], 
-          [
-            "next", 
-            null
-          ]
-        ], 
-        "11": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            5
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              10
-            ]
-          ]
-        ], 
-        "12": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            4
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              11
-            ]
-          ]
-        ], 
-        "13": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            3
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              12
-            ]
-          ]
-        ], 
-        "14": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              13
-            ]
-          ]
-        ], 
-        "15": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
-            1
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              14
-            ]
-          ]
-        ]
-      }, 
-      "line": 13, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [
-        "x", 
-        "i", 
-        "Node", 
-        "y"
-      ], 
-      "stdout": "", 
-      "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              7
-            ], 
-            "__init__": [
-              "REF", 
-              8
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Node", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Node_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__return__"
-          ]
-        }
-      ], 
-      "globals": {
-        "Node": [
-          "REF", 
-          9
-        ], 
-        "y": [
-          "REF", 
-          15
-        ], 
         "i": 1, 
         "x": [
           "REF", 
@@ -9907,25 +7936,6 @@
           ]
         ], 
         "7": [
-          "DICT", 
-          [
-            "__doc__", 
-            null
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              8
-            ]
-          ]
-        ], 
-        "8": [
-          "FUNCTION", 
-          "__init__(self, data, next)", 
-          1
-        ], 
-        "9": [
           "CLASS", 
           "Node", 
           [], 
@@ -9937,7 +7947,12 @@
             ]
           ]
         ], 
-        "10": [
+        "8": [
+          "FUNCTION", 
+          "__init__(self, data, next)", 
+          null
+        ], 
+        "9": [
           "INSTANCE", 
           "Node", 
           [
@@ -9949,12 +7964,27 @@
             null
           ]
         ], 
-        "11": [
+        "10": [
           "INSTANCE", 
           "Node", 
           [
             "data", 
             5
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "11": [
+          "INSTANCE", 
+          "Node", 
+          [
+            "data", 
+            4
           ], 
           [
             "next", 
@@ -9969,7 +7999,7 @@
           "Node", 
           [
             "data", 
-            4
+            3
           ], 
           [
             "next", 
@@ -9984,7 +8014,7 @@
           "Node", 
           [
             "data", 
-            3
+            2
           ], 
           [
             "next", 
@@ -9999,28 +8029,13 @@
           "Node", 
           [
             "data", 
-            2
-          ], 
-          [
-            "next", 
-            [
-              "REF", 
-              13
-            ]
-          ]
-        ], 
-        "15": [
-          "INSTANCE", 
-          "Node", 
-          [
-            "data", 
             1
           ], 
           [
             "next", 
             [
               "REF", 
-              14
+              13
             ]
           ]
         ]

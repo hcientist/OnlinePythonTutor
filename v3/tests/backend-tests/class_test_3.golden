@@ -12,177 +12,6 @@
       "event": "step_line"
     }, 
     {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Staff601", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Staff601", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {}, 
-      "line": 1, 
-      "event": "call"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Staff601", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Staff601", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {}, 
-      "line": 1, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Staff601", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Staff601", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {}, 
-      "line": 2, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Staff601", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "course": "6.01"
-          }, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Staff601", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1", 
-          "ordered_varnames": [
-            "course"
-          ]
-        }
-      ], 
-      "globals": {}, 
-      "heap": {}, 
-      "line": 3, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Staff601", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01"
-          }, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Staff601", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1", 
-          "ordered_varnames": [
-            "building", 
-            "course"
-          ]
-        }
-      ], 
-      "globals": {}, 
-      "heap": {}, 
-      "line": 4, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Staff601", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "room": 501
-          }, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Staff601", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "__return__"
-          ]
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "room", 
-            501
-          ]
-        ]
-      }, 
-      "line": 4, 
-      "event": "return"
-    }, 
-    {
       "ordered_globals": [
         "Staff601"
       ], 
@@ -192,11 +21,11 @@
       "globals": {
         "Staff601": [
           "REF", 
-          2
+          1
         ]
       }, 
       "heap": {
-        "2": [
+        "1": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -228,15 +57,15 @@
       "globals": {
         "Staff601": [
           "REF", 
-          2
+          1
         ], 
         "pat": [
           "REF", 
-          3
+          2
         ]
       }, 
       "heap": {
-        "2": [
+        "1": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -253,7 +82,7 @@
             501
           ]
         ], 
-        "3": [
+        "2": [
           "INSTANCE", 
           "Staff601"
         ]
@@ -272,15 +101,15 @@
       "globals": {
         "Staff601": [
           "REF", 
-          2
+          1
         ], 
         "pat": [
           "REF", 
-          3
+          2
         ]
       }, 
       "heap": {
-        "2": [
+        "1": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -297,7 +126,7 @@
             501
           ]
         ], 
-        "3": [
+        "2": [
           "INSTANCE", 
           "Staff601"
         ]
@@ -316,15 +145,15 @@
       "globals": {
         "Staff601": [
           "REF", 
-          2
+          1
         ], 
         "pat": [
           "REF", 
-          3
+          2
         ]
       }, 
       "heap": {
-        "2": [
+        "1": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -341,7 +170,7 @@
             501
           ]
         ], 
-        "3": [
+        "2": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -364,15 +193,15 @@
       "globals": {
         "Staff601": [
           "REF", 
-          2
+          1
         ], 
         "pat": [
           "REF", 
-          3
+          2
         ]
       }, 
       "heap": {
-        "2": [
+        "1": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -389,7 +218,7 @@
             501
           ]
         ], 
-        "3": [
+        "2": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -416,15 +245,15 @@
       "globals": {
         "Staff601": [
           "REF", 
-          2
+          1
         ], 
         "pat": [
           "REF", 
-          3
+          2
         ]
       }, 
       "heap": {
-        "2": [
+        "1": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -441,7 +270,7 @@
             501
           ]
         ], 
-        "3": [
+        "2": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -472,15 +301,15 @@
       "globals": {
         "Staff601": [
           "REF", 
-          2
+          1
         ], 
         "pat": [
           "REF", 
-          3
+          2
         ]
       }, 
       "heap": {
-        "2": [
+        "1": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -497,7 +326,7 @@
             501
           ]
         ], 
-        "3": [
+        "2": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -528,15 +357,15 @@
       "globals": {
         "Staff601": [
           "REF", 
-          2
+          1
         ], 
         "pat": [
           "REF", 
-          3
+          2
         ]
       }, 
       "heap": {
-        "2": [
+        "1": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -553,7 +382,7 @@
             501
           ]
         ], 
-        "3": [
+        "2": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -588,15 +417,15 @@
       "globals": {
         "Staff601": [
           "REF", 
-          2
+          1
         ], 
         "pat": [
           "REF", 
-          3
+          2
         ]
       }, 
       "heap": {
-        "2": [
+        "1": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -613,7 +442,7 @@
             501
           ]
         ], 
-        "3": [
+        "2": [
           "INSTANCE", 
           "Staff601", 
           [

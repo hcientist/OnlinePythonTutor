@@ -12,318 +12,20 @@
       "event": "step_line"
     }, 
     {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "A", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "A", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT"
-        ]
-      }, 
-      "line": 1, 
-      "event": "call"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "A", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "A", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT"
-        ]
-      }, 
-      "line": 1, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "A", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "A", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT"
-        ]
-      }, 
-      "line": 2, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "A", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "bla": "A"
-          }, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "A", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1", 
-          "ordered_varnames": [
-            "bla"
-          ]
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "bla", 
-            "A"
-          ]
-        ]
-      }, 
-      "line": 3, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "A", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "bla": "A", 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": true, 
-          "is_parent": true, 
-          "func_name": "A", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1_p", 
-          "ordered_varnames": [
-            "__init__", 
-            "bla"
-          ]
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "bla", 
-            "A"
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self)", 
-          1
-        ]
-      }, 
-      "line": 6, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "A", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "x": [
-              "REF", 
-              3
-            ], 
-            "bla": "A", 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": true, 
-          "is_parent": true, 
-          "func_name": "A", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1_p", 
-          "ordered_varnames": [
-            "__init__", 
-            "bla", 
-            "x", 
-            "__return__"
-          ]
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "x", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "bla", 
-            "A"
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "x(self)", 
-          1
-        ]
-      }, 
-      "line": 6, 
-      "event": "return"
-    }, 
-    {
       "ordered_globals": [
         "A"
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "x": [
-              "REF", 
-              3
-            ], 
-            "bla": "A", 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "A", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "bla", 
-            "x", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "A": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "x", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "bla", 
-            "A"
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "x(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "A", 
           [], 
@@ -345,6 +47,16 @@
               3
             ]
           ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "x(self)", 
+          null
         ]
       }, 
       "line": 9, 
@@ -360,49 +72,17 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "x": [
-              "REF", 
-              3
-            ], 
-            "bla": "A", 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "A", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "bla", 
-            "x", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 2, 
-          "encoded_locals": {
             "self": [
               "REF", 
-              5
+              4
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f2", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
           "ordered_varnames": [
             "self"
           ]
@@ -411,42 +91,11 @@
       "globals": {
         "A": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "x", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "bla", 
-            "A"
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "x(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "A", 
           [], 
@@ -469,7 +118,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "x(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE", 
           "A"
         ]
@@ -487,49 +146,17 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "x": [
-              "REF", 
-              3
-            ], 
-            "bla": "A", 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "A", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "bla", 
-            "x", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 2, 
-          "encoded_locals": {
             "self": [
               "REF", 
-              5
+              4
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f2", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
           "ordered_varnames": [
             "self"
           ]
@@ -538,42 +165,11 @@
       "globals": {
         "A": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "x", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "bla", 
-            "A"
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "x(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "A", 
           [], 
@@ -596,7 +192,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "x(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE", 
           "A"
         ]
@@ -614,50 +220,18 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "x": [
-              "REF", 
-              3
-            ], 
-            "bla": "A", 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "A", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "bla", 
-            "x", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 2, 
-          "encoded_locals": {
             "__return__": null, 
             "self": [
               "REF", 
-              5
+              4
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f2", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
           "ordered_varnames": [
             "self", 
             "__return__"
@@ -667,42 +241,11 @@
       "globals": {
         "A": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "x", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "bla", 
-            "A"
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "x(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "A", 
           [], 
@@ -725,7 +268,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "x(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE", 
           "A", 
           [
@@ -744,81 +297,19 @@
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "x": [
-              "REF", 
-              3
-            ], 
-            "bla": "A", 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "A", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "bla", 
-            "x", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "A": [
           "REF", 
-          4
+          1
         ], 
         "a": [
           "REF", 
-          5
+          4
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "x", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "bla", 
-            "A"
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "x(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "A", 
           [], 
@@ -841,7 +332,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "x(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE", 
           "A", 
           [
@@ -862,51 +363,19 @@
       "func_name": "x", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "x": [
-              "REF", 
-              3
-            ], 
-            "bla": "A", 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "A", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "bla", 
-            "x", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 3, 
+          "frame_id": 2, 
           "encoded_locals": {
             "self": [
               "REF", 
-              5
+              4
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "x", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "x_f3", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "x_f2", 
           "ordered_varnames": [
             "self"
           ]
@@ -915,46 +384,15 @@
       "globals": {
         "A": [
           "REF", 
-          4
+          1
         ], 
         "a": [
           "REF", 
-          5
+          4
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "x", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "bla", 
-            "A"
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "x(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "A", 
           [], 
@@ -977,7 +415,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "x(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE", 
           "A", 
           [
@@ -998,51 +446,19 @@
       "func_name": "x", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "x": [
-              "REF", 
-              3
-            ], 
-            "bla": "A", 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "A", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "bla", 
-            "x", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 3, 
+          "frame_id": 2, 
           "encoded_locals": {
             "self": [
               "REF", 
-              5
+              4
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "x", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "x_f3", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "x_f2", 
           "ordered_varnames": [
             "self"
           ]
@@ -1051,46 +467,15 @@
       "globals": {
         "A": [
           "REF", 
-          4
+          1
         ], 
         "a": [
           "REF", 
-          5
+          4
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "x", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "bla", 
-            "A"
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "x(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "A", 
           [], 
@@ -1113,7 +498,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "x(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE", 
           "A", 
           [
@@ -1134,52 +529,20 @@
       "func_name": "x", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "x": [
-              "REF", 
-              3
-            ], 
-            "bla": "A", 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "A", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "bla", 
-            "x", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 3, 
+          "frame_id": 2, 
           "encoded_locals": {
             "__return__": null, 
             "self": [
               "REF", 
-              5
+              4
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "x", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "x_f3", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "x_f2", 
           "ordered_varnames": [
             "self", 
             "__return__"
@@ -1189,46 +552,15 @@
       "globals": {
         "A": [
           "REF", 
-          4
+          1
         ], 
         "a": [
           "REF", 
-          5
+          4
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "x", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "bla", 
-            "A"
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "x(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "A", 
           [], 
@@ -1251,7 +583,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "x(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE", 
           "A", 
           [
@@ -1274,81 +616,19 @@
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "x": [
-              "REF", 
-              3
-            ], 
-            "bla": "A", 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "A", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "bla", 
-            "x", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "A": [
           "REF", 
-          4
+          1
         ], 
         "a": [
           "REF", 
-          5
+          4
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "x", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "bla", 
-            "A"
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "x(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "A", 
           [], 
@@ -1371,7 +651,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "x(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE", 
           "A", 
           [
@@ -1394,81 +684,19 @@
       ], 
       "stdout": "B\n", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "x": [
-              "REF", 
-              3
-            ], 
-            "bla": "A", 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "A", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "bla", 
-            "x", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "A": [
           "REF", 
-          4
+          1
         ], 
         "a": [
           "REF", 
-          5
+          4
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "x", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "bla", 
-            "A"
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "x(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "A", 
           [], 
@@ -1491,7 +719,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "x(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE", 
           "A", 
           [
@@ -1514,81 +752,19 @@
       ], 
       "stdout": "B\nA\n", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "x": [
-              "REF", 
-              3
-            ], 
-            "bla": "A", 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "A", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "A_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "bla", 
-            "x", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "A": [
           "REF", 
-          4
+          1
         ], 
         "a": [
           "REF", 
-          5
+          4
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "x", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "bla", 
-            "A"
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "x(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "A", 
           [], 
@@ -1611,7 +787,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "x(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE", 
           "A", 
           [

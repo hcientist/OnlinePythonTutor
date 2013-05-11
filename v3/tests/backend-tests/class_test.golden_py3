@@ -12,266 +12,20 @@
       "event": "step_line"
     }, 
     {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Point", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Point", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT"
-        ]
-      }, 
-      "line": 1, 
-      "event": "call"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Point", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Point", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT"
-        ]
-      }, 
-      "line": 1, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Point", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Point", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT"
-        ]
-      }, 
-      "line": 2, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Point", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": true, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p", 
-          "ordered_varnames": [
-            "__init__"
-          ]
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ]
-      }, 
-      "line": 6, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Point", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": true, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ]
-      }, 
-      "line": 6, 
-      "event": "return"
-    }, 
-    {
       "ordered_globals": [
         "Point"
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -289,6 +43,16 @@
               3
             ]
           ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
         ]
       }, 
       "line": 9, 
@@ -304,49 +68,19 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 2, 
-          "encoded_locals": {
             "y": 2, 
             "x": 1, 
             "self": [
               "REF", 
-              5
+              4
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f2", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
           "ordered_varnames": [
             "self", 
             "x", 
@@ -357,38 +91,11 @@
       "globals": {
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -407,7 +114,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "<incomplete object>"
@@ -426,49 +143,19 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 2, 
-          "encoded_locals": {
             "y": 2, 
             "x": 1, 
             "self": [
               "REF", 
-              5
+              4
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f2", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
           "ordered_varnames": [
             "self", 
             "x", 
@@ -479,38 +166,11 @@
       "globals": {
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -529,7 +189,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "<incomplete object>"
@@ -548,49 +218,19 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 2, 
-          "encoded_locals": {
             "y": 2, 
             "x": 1, 
             "self": [
               "REF", 
-              5
+              4
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f2", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
           "ordered_varnames": [
             "self", 
             "x", 
@@ -601,38 +241,11 @@
       "globals": {
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -651,7 +264,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "<incomplete object>"
@@ -670,39 +293,11 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 2, 
-          "encoded_locals": {
             "y": 2, 
             "x": 1, 
             "self": [
               "REF", 
-              5
+              4
             ], 
             "__return__": null
           }, 
@@ -710,10 +305,8 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f2", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
           "ordered_varnames": [
             "self", 
             "x", 
@@ -725,38 +318,11 @@
       "globals": {
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -775,7 +341,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
@@ -791,75 +367,19 @@
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "p": [
           "REF", 
-          5
+          4
         ], 
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -878,7 +398,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
@@ -896,49 +426,19 @@
       "func_name": "__str__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 3, 
+          "frame_id": 2, 
           "encoded_locals": {
             "self": [
               "REF", 
-              5
+              4
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__str__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__str___f3", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__str___f2", 
           "ordered_varnames": [
             "self"
           ]
@@ -947,42 +447,15 @@
       "globals": {
         "p": [
           "REF", 
-          5
+          4
         ], 
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -1001,7 +474,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
@@ -1019,49 +502,19 @@
       "func_name": "__str__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 3, 
+          "frame_id": 2, 
           "encoded_locals": {
             "self": [
               "REF", 
-              5
+              4
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__str__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__str___f3", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__str___f2", 
           "ordered_varnames": [
             "self"
           ]
@@ -1070,42 +523,15 @@
       "globals": {
         "p": [
           "REF", 
-          5
+          4
         ], 
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -1124,7 +550,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
@@ -1142,50 +578,20 @@
       "func_name": "__str__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 3, 
+          "frame_id": 2, 
           "encoded_locals": {
             "__return__": "(1, 2)", 
             "self": [
               "REF", 
-              5
+              4
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__str__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__str___f3", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__str___f2", 
           "ordered_varnames": [
             "self", 
             "__return__"
@@ -1195,42 +601,15 @@
       "globals": {
         "p": [
           "REF", 
-          5
+          4
         ], 
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -1249,7 +628,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
@@ -1265,75 +654,19 @@
       ], 
       "stdout": "(1, 2)\n", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "p": [
           "REF", 
-          5
+          4
         ], 
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -1352,7 +685,17 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
@@ -1370,51 +713,21 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 4, 
+          "frame_id": 3, 
           "encoded_locals": {
             "y": -4, 
             "x": 3, 
             "self": [
               "REF", 
-              6
+              5
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f4", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f3", 
           "ordered_varnames": [
             "self", 
             "x", 
@@ -1425,42 +738,15 @@
       "globals": {
         "p": [
           "REF", 
-          5
+          4
         ], 
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -1479,12 +765,22 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
         ], 
-        "6": [
+        "5": [
           "INSTANCE_PPRINT", 
           "Point", 
           "<incomplete object>"
@@ -1502,51 +798,21 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 4, 
+          "frame_id": 3, 
           "encoded_locals": {
             "y": -4, 
             "x": 3, 
             "self": [
               "REF", 
-              6
+              5
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f4", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f3", 
           "ordered_varnames": [
             "self", 
             "x", 
@@ -1557,42 +823,15 @@
       "globals": {
         "p": [
           "REF", 
-          5
+          4
         ], 
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -1611,12 +850,22 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
         ], 
-        "6": [
+        "5": [
           "INSTANCE_PPRINT", 
           "Point", 
           "<incomplete object>"
@@ -1634,51 +883,21 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 4, 
+          "frame_id": 3, 
           "encoded_locals": {
             "y": -4, 
             "x": 3, 
             "self": [
               "REF", 
-              6
+              5
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f4", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f3", 
           "ordered_varnames": [
             "self", 
             "x", 
@@ -1689,42 +908,15 @@
       "globals": {
         "p": [
           "REF", 
-          5
+          4
         ], 
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -1743,12 +935,22 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
         ], 
-        "6": [
+        "5": [
           "INSTANCE_PPRINT", 
           "Point", 
           "<incomplete object>"
@@ -1766,41 +968,13 @@
       "func_name": "__init__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 4, 
+          "frame_id": 3, 
           "encoded_locals": {
             "y": -4, 
             "x": 3, 
             "self": [
               "REF", 
-              6
+              5
             ], 
             "__return__": null
           }, 
@@ -1808,10 +982,8 @@
           "is_parent": false, 
           "func_name": "__init__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__init___f4", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f3", 
           "ordered_varnames": [
             "self", 
             "x", 
@@ -1823,42 +995,15 @@
       "globals": {
         "p": [
           "REF", 
-          5
+          4
         ], 
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -1877,12 +1022,22 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
         ], 
-        "6": [
+        "5": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(3, -4)"
@@ -1899,79 +1054,23 @@
       ], 
       "stdout": "(1, 2)\n", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "p2": [
           "REF", 
-          6
+          5
         ], 
         "p": [
           "REF", 
-          5
+          4
         ], 
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -1990,12 +1089,22 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
         ], 
-        "6": [
+        "5": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(3, -4)"
@@ -2014,49 +1123,19 @@
       "func_name": "__str__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 5, 
+          "frame_id": 4, 
           "encoded_locals": {
             "self": [
               "REF", 
-              6
+              5
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__str__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__str___f5", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__str___f4", 
           "ordered_varnames": [
             "self"
           ]
@@ -2065,46 +1144,19 @@
       "globals": {
         "p2": [
           "REF", 
-          6
+          5
         ], 
         "p": [
           "REF", 
-          5
+          4
         ], 
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -2123,12 +1175,22 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
         ], 
-        "6": [
+        "5": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(3, -4)"
@@ -2147,49 +1209,19 @@
       "func_name": "__str__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 5, 
+          "frame_id": 4, 
           "encoded_locals": {
             "self": [
               "REF", 
-              6
+              5
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__str__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__str___f5", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__str___f4", 
           "ordered_varnames": [
             "self"
           ]
@@ -2198,46 +1230,19 @@
       "globals": {
         "p2": [
           "REF", 
-          6
+          5
         ], 
         "p": [
           "REF", 
-          5
+          4
         ], 
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -2256,12 +1261,22 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
         ], 
-        "6": [
+        "5": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(3, -4)"
@@ -2280,50 +1295,20 @@
       "func_name": "__str__", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 5, 
+          "frame_id": 4, 
           "encoded_locals": {
             "__return__": "(3, -4)", 
             "self": [
               "REF", 
-              6
+              5
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "__str__", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "__str___f5", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__str___f4", 
           "ordered_varnames": [
             "self", 
             "__return__"
@@ -2333,46 +1318,19 @@
       "globals": {
         "p2": [
           "REF", 
-          6
+          5
         ], 
         "p": [
           "REF", 
-          5
+          4
         ], 
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -2391,12 +1349,22 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
         ], 
-        "6": [
+        "5": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(3, -4)"
@@ -2413,79 +1381,23 @@
       ], 
       "stdout": "(1, 2)\n(3, -4)\n", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "__return__": [
-              "REF", 
-              1
-            ], 
-            "__str__": [
-              "REF", 
-              3
-            ], 
-            "__init__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Point", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Point_f1_p_z", 
-          "ordered_varnames": [
-            "__init__", 
-            "__str__", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "p2": [
           "REF", 
-          6
+          5
         ], 
         "p": [
           "REF", 
-          5
+          4
         ], 
         "Point": [
           "REF", 
-          4
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "DICT", 
-          [
-            "__str__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              2
-            ]
-          ]
-        ], 
-        "2": [
-          "FUNCTION", 
-          "__init__(self, x, y)", 
-          1
-        ], 
-        "3": [
-          "FUNCTION", 
-          "__str__(self)", 
-          1
-        ], 
-        "4": [
           "CLASS", 
           "Point", 
           [], 
@@ -2504,12 +1416,22 @@
             ]
           ]
         ], 
-        "5": [
+        "2": [
+          "FUNCTION", 
+          "__init__(self, x, y)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "4": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(1, 2)"
         ], 
-        "6": [
+        "5": [
           "INSTANCE_PPRINT", 
           "Point", 
           "(3, -4)"

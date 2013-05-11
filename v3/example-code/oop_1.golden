@@ -12,299 +12,20 @@
       "event": "step_line"
     }, 
     {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Staff601", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Staff601", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {}, 
-      "line": 5, 
-      "event": "call"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Staff601", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Staff601", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {}, 
-      "line": 5, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Staff601", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {}, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Staff601", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1", 
-          "ordered_varnames": []
-        }
-      ], 
-      "globals": {}, 
-      "heap": {}, 
-      "line": 6, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Staff601", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "course": "6.01"
-          }, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Staff601", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1", 
-          "ordered_varnames": [
-            "course"
-          ]
-        }
-      ], 
-      "globals": {}, 
-      "heap": {}, 
-      "line": 7, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Staff601", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01"
-          }, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Staff601", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1", 
-          "ordered_varnames": [
-            "building", 
-            "course"
-          ]
-        }
-      ], 
-      "globals": {}, 
-      "heap": {}, 
-      "line": 8, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Staff601", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "room": 501
-          }, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "Staff601", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room"
-          ]
-        }
-      ], 
-      "globals": {}, 
-      "heap": {}, 
-      "line": 10, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [], 
-      "stdout": "", 
-      "func_name": "Staff601", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": true, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }
-      ], 
-      "globals": {}, 
-      "heap": {
-        "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ]
-        ]
-      }, 
-      "line": 10, 
-      "event": "return"
-    }, 
-    {
       "ordered_globals": [
         "Staff601"
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -324,9 +45,14 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
         ]
       }, 
       "line": 13, 
@@ -339,80 +65,19 @@
       ], 
       "stdout": "", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -432,11 +97,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601"
         ]
@@ -451,80 +121,19 @@
       ], 
       "stdout": "6.01\n", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -544,11 +153,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601"
         ]
@@ -563,80 +177,19 @@
       ], 
       "stdout": "6.01\n", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -656,11 +209,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -679,80 +237,19 @@
       ], 
       "stdout": "6.01\n", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -772,11 +269,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -799,80 +301,19 @@
       ], 
       "stdout": "6.01\n", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -892,11 +333,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -923,80 +369,19 @@
       ], 
       "stdout": "6.01\n34\n", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -1016,11 +401,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -1047,80 +437,19 @@
       ], 
       "stdout": "6.01\n34\n", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -1140,11 +469,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -1175,80 +509,19 @@
       ], 
       "stdout": "6.01\n34\n32\n", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -1268,11 +541,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -1307,48 +585,17 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 2, 
-          "encoded_locals": {
             "self": [
               "REF", 
-              4
+              3
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "salutation", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "salutation_f2", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "salutation_f1", 
           "ordered_varnames": [
             "self"
           ]
@@ -1357,46 +604,15 @@
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -1416,11 +632,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -1455,48 +676,17 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 2, 
-          "encoded_locals": {
             "self": [
               "REF", 
-              4
+              3
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "salutation", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "salutation_f2", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "salutation_f1", 
           "ordered_varnames": [
             "self"
           ]
@@ -1505,46 +695,15 @@
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -1564,11 +723,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -1603,49 +767,18 @@
         {
           "frame_id": 1, 
           "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 2, 
-          "encoded_locals": {
             "__return__": "Professor Pat", 
             "self": [
               "REF", 
-              4
+              3
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "salutation", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "salutation_f2", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "salutation_f1", 
           "ordered_varnames": [
             "self", 
             "__return__"
@@ -1655,46 +788,15 @@
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -1714,11 +816,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -1749,80 +856,19 @@
       ], 
       "stdout": "6.01\n34\n32\nProfessor Pat\n", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -1842,11 +888,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -1879,50 +930,19 @@
       "func_name": "salutation", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 3, 
+          "frame_id": 2, 
           "encoded_locals": {
             "self": [
               "REF", 
-              4
+              3
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "salutation", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "salutation_f3", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "salutation_f2", 
           "ordered_varnames": [
             "self"
           ]
@@ -1931,46 +951,15 @@
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -1990,11 +979,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -2027,50 +1021,19 @@
       "func_name": "salutation", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 3, 
+          "frame_id": 2, 
           "encoded_locals": {
             "self": [
               "REF", 
-              4
+              3
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "salutation", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "salutation_f3", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "salutation_f2", 
           "ordered_varnames": [
             "self"
           ]
@@ -2079,46 +1042,15 @@
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -2138,11 +1070,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -2175,51 +1112,20 @@
       "func_name": "salutation", 
       "stack_to_render": [
         {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }, 
-        {
-          "frame_id": 3, 
+          "frame_id": 2, 
           "encoded_locals": {
             "__return__": "Professor Pat", 
             "self": [
               "REF", 
-              4
+              3
             ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "salutation", 
           "is_zombie": false, 
-          "parent_frame_id_list": [
-            1
-          ], 
-          "unique_hash": "salutation_f3", 
+          "parent_frame_id_list": [], 
+          "unique_hash": "salutation_f2", 
           "ordered_varnames": [
             "self", 
             "__return__"
@@ -2229,46 +1135,15 @@
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -2288,11 +1163,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601", 
           [
@@ -2323,80 +1203,19 @@
       ], 
       "stdout": "6.01\n34\n32\nProfessor Pat\nProfessor Pat\n", 
       "func_name": "<module>", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
-            "building": 34, 
-            "course": "6.01", 
-            "salutation": [
-              "REF", 
-              1
-            ], 
-            "room": 501, 
-            "__return__": [
-              "REF", 
-              2
-            ]
-          }, 
-          "is_highlighted": false, 
-          "is_parent": true, 
-          "func_name": "Staff601", 
-          "is_zombie": true, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "Staff601_f1_p_z", 
-          "ordered_varnames": [
-            "building", 
-            "course", 
-            "room", 
-            "salutation", 
-            "__return__"
-          ]
-        }
-      ], 
+      "stack_to_render": [], 
       "globals": {
         "Staff601": [
           "REF", 
-          3
+          1
         ], 
         "pat": [
           "REF", 
-          4
+          3
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "salutation(self)", 
-          1
-        ], 
-        "2": [
-          "DICT", 
-          [
-            "building", 
-            34
-          ], 
-          [
-            "room", 
-            501
-          ], 
-          [
-            "course", 
-            "6.01"
-          ], 
-          [
-            "salutation", 
-            [
-              "REF", 
-              1
-            ]
-          ], 
-          [
-            "__doc__", 
-            null
-          ]
-        ], 
-        "3": [
           "CLASS", 
           "Staff601", 
           [], 
@@ -2416,11 +1235,16 @@
             "salutation", 
             [
               "REF", 
-              1
+              2
             ]
           ]
         ], 
-        "4": [
+        "2": [
+          "FUNCTION", 
+          "salutation(self)", 
+          null
+        ], 
+        "3": [
           "INSTANCE", 
           "Staff601", 
           [
