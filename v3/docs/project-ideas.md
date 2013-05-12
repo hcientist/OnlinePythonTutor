@@ -90,6 +90,7 @@ Ok sorry that was mostly me thinking out loud.
 
 Ha, I guess you can call this "Offline Python Tutor"!
 
+
 ## Optimize display of object-oriented programs (medium)
 
 This is a good project for an object-oriented programming enthusiast.
@@ -195,3 +196,6 @@ Tips & Tricks:
   - From Scott Graham, when I asked him whether Skulpt implements Python 2 or 3: “Mostly 2-ish. Some object hierarchy things take after 3's simplified semantics.”
 
 Dec 2012: Brython -- http://www.brython.info/index_en.html -- might also be a contender here, since it supports lots of Python 3 (except for OOP, lambdas, exceptions, and generators, afaik).
+
+May 2013: The main caveat with re-implementing for one of these alternative Python implementations is that they don't support the full ("official") Python language.
+Thus, users might be frustrated that code they type into this tutor doesn't run exactly like code they type into the official Python interpreter.
