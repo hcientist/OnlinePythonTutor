@@ -268,9 +268,9 @@ class ObjectEncoder:
       new_obj.extend(['CLASS', get_name(dat), superclass_names])
 
     # traverse inside of its __dict__ to grab attributes
-    # (filter out useless-seeming ones):
+    # (filter out useless-seeming ones, based on anecdotal observation):
     hidden = ('__doc__', '__module__', '__return__', '__dict__',
-        '__locals__', '__weakref__')
+        '__locals__', '__weakref__', '__qualname__')
     if hasattr(dat, '__dict__'):
       user_attrs = sorted([e for e in dat.__dict__ if e not in hidden])
     else:
