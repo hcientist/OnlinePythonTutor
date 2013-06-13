@@ -2478,7 +2478,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       // pretty-print lambdas and display other weird characters
       // (might contain '<' or '>' for weird names like <genexpr>)
       var funcName = htmlspecialchars(frame.func_name).replace('&lt;lambda&gt;', '\u03bb')
-            .replace('\n', '<br>');
+            .replace('\n', '<br/>');
 
       var headerLabel = funcName;
 
