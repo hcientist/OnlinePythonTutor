@@ -77,6 +77,31 @@ $(document).ready(function() {
   }
 
 
+  var resizeContainer = ($.bbq.getState('resizeContainer') == 'true');
+    
+  if (resizeContainer) {
+      function findContainer() {
+          var ifs = window.top.document.getElementsByTagName("iframe");
+          for(var i = 0, len = ifs.length; i < len; i++)  {
+              var f = ifs[i];
+              var fDoc = f.contentDocument || f.contentWindow.document;
+              if(fDoc === document)   {
+                  return f;
+              }
+          }
+      }
+      
+      var container = findContainer();
+      
+      function resizeContainerNow() {
+          $(container).height($("#vizDiv").height()+20);
+      };
+
+      $("body").on("click", "button", resizeContainerNow);
+      $("body").on("slide", ".ui-slider", resizeContainerNow);
+  }
+
+      
   $.get(backend_script,
         {user_script : preseededCode,
          options_json: JSON.stringify(options)},
@@ -116,6 +141,7 @@ $(document).ready(function() {
                                                     textualMemoryLabels: textRefsBool,
                                                     showOnlyOutputs: showOnlyOutputsBool,
                                                    });
+            if (resizeContainer) resizeContainerNow();
           }
         },
         "json");
@@ -129,7 +155,7 @@ $(document).ready(function() {
 
   // redraw connector arrows on window resize
   $(window).resize(function() {
-    if (appMode == 'display') {
+    if (typeof appMode !== "undefined" && appMode == 'display') {
       myVisualizer.redrawConnectors();
     }
   });
