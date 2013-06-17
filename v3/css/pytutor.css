@@ -693,3 +693,14 @@ div.ExecutionVisualizer div#vizHeader {
   max-width: 700px;
 }
 
+div.ExecutionVisualizer .highlight-curr {
+  background-color: #FFFF66;
+}
+
+div.ExecutionVisualizer .highlight-prev {
+  background-color: #F0F0EA;
+}
+
+div.ExecutionVisualizer .highlight-legend {
+  padding: 2px;
+}
