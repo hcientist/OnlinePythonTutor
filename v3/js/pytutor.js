@@ -73,7 +73,8 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 // dat is data returned by the Python Tutor backend consisting of two fields:
 //   code  - string of executed code
 //   trace - a full execution trace
-// params contains optional parameters, such as:
+//
+// params is an object containing optional parameters, such as:
 //   jumpToEnd - if non-null, jump to the very end of execution
 //   startingInstruction - the (zero-indexed) execution point to display upon rendering
 //   hideOutput - hide "Program output" display
@@ -99,6 +100,8 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //                   (else place side-by-side)
 //   executeCodeWithRawInputFunc - function to call when you want to re-execute the given program
 //                                 with some new user input (somewhat hacky!)
+//   highlightLines - highlight current and previously executed lines (default: false)
+//   arrowLines     - draw arrows pointing to current and previously executed lines (default: true)
 function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
   this.curTrace = dat.trace;
@@ -135,6 +138,28 @@ function ExecutionVisualizer(domRootID, dat, params) {
     this.params = {}; // make it an empty object by default
   }
 
+  var arrowLinesDef = (this.params.arrowLines !== undefined);
+  var highlightLinesDef = (this.params.highlightLines !== undefined);
+
+  if (!arrowLinesDef && !highlightLinesDef) {
+      // neither is set
+      this.params.highlightLines = false;
+      this.params.arrowLines = true;
+  }
+  else if (arrowLinesDef && highlightLinesDef) {
+      // both are set, so just use their set values
+  }
+  else if (arrowLinesDef) {
+      // only arrowLines set
+      this.params.highlightLines = !(this.params.arrowLines);
+  }
+  else {
+      // only highlightLines set
+      this.params.arrowLines = !(this.params.highlightLines);
+  }
+
+  // David's original logic ...
+  /*
   if (!this.params.arrowLines && !this.params.highlightLines) {
       this.params.highlightLines = false;
       this.params.arrowLines = true;
@@ -151,6 +176,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
       this.params.arrowLines = (this.params.arrowLines == true);
       this.params.highlightLines = (this.params.highlightLines == true);
   }
+  */
 
   // needs to be unique!
   this.visualizerID = curVisualizerID;
