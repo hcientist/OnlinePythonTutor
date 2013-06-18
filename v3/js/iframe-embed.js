@@ -140,6 +140,7 @@ $(document).ready(function() {
                                                     drawParentPointers: drawParentPointerBool,
                                                     textualMemoryLabels: textRefsBool,
                                                     showOnlyOutputs: showOnlyOutputsBool,
+                                                    highlightLines: typeof $.bbq.getState("highlightLines") !== undefined
                                                    });
             if (resizeContainer) resizeContainerNow();
           }

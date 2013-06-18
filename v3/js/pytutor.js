@@ -135,6 +135,23 @@ function ExecutionVisualizer(domRootID, dat, params) {
     this.params = {}; // make it an empty object by default
   }
 
+  if (!this.params.arrowLines && !this.params.highlightLines) {
+      this.params.highlightLines = false;
+      this.params.arrowLines = true;
+  }
+  else if (this.params.arrowLines) {
+      this.params.arrowLines = (this.params.arrowLines == true);
+      this.params.highlightLines = !(this.params.arrowLines);
+  }
+  else if (this.params.highlightLines) {
+      this.params.highlightLines = (this.params.highlightLines == true);
+      this.params.arrowLines = !(this.params.highlightLines);
+  }
+  else {
+      this.params.arrowLines = (this.params.arrowLines == true);
+      this.params.highlightLines = (this.params.highlightLines == true);
+  }
+
   // needs to be unique!
   this.visualizerID = curVisualizerID;
   curVisualizerID++;
@@ -304,19 +321,26 @@ ExecutionVisualizer.prototype.render = function() {
     this.domRoot.find('#vizLayoutTdFirst').append(outputsHTML);
   }
 
-  this.domRoot.find('#legendDiv')
-    .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
-    .append('<p style="margin-top: 4px"><svg id="curLegendArrowSVG"/> next line to execute</p>');
-
-  myViz.domRootD3.select('svg#prevLegendArrowSVG')
-    .append('polygon')
-    .attr('points', SVG_ARROW_POLYGON)
-    .attr('fill', lightArrowColor);
-
-  myViz.domRootD3.select('svg#curLegendArrowSVG')
-    .append('polygon')
-    .attr('points', SVG_ARROW_POLYGON)
-    .attr('fill', darkArrowColor);
+  if (this.params.arrowLines) {
+      this.domRoot.find('#legendDiv')
+          .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
+          .append('<p style="margin-top: 4px"><svg id="curLegendArrowSVG"/> next line to execute</p>');
+      
+      myViz.domRootD3.select('svg#prevLegendArrowSVG')
+          .append('polygon')
+          .attr('points', SVG_ARROW_POLYGON)
+          .attr('fill', lightArrowColor);
+      
+      myViz.domRootD3.select('svg#curLegendArrowSVG')
+          .append('polygon')
+          .attr('points', SVG_ARROW_POLYGON)
+          .attr('fill', darkArrowColor);
+  }
+  else if (this.params.highlightLines) {
+      myViz.domRoot.find('#legendDiv')
+          .append('<span class="highlight-legend highlight-prev">line that has just executed</span> ')
+          .append('<span class="highlight-legend highlight-curr">next line to execute</span>')
+  }
 
 
   if (this.params.editCodeBaseURL) {
@@ -1031,22 +1055,23 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
 
   // create a left-most gutter td that spans ALL rows ...
   // (NB: valign="top" is CRUCIAL for this to work in IE)
-  myViz.domRoot.find('#pyCodeOutput tr:first')
-    .prepend('<td id="gutterTD" valign="top" rowspan="' + this.codeOutputLines.length + '"><svg id="leftCodeGutterSVG"/></td>');
-
-  // create prevLineArrow and curLineArrow
-  myViz.domRootD3.select('svg#leftCodeGutterSVG')
-    .append('polygon')
-    .attr('id', 'prevLineArrow')
-    .attr('points', SVG_ARROW_POLYGON)
-    .attr('fill', lightArrowColor);
-
-  myViz.domRootD3.select('svg#leftCodeGutterSVG')
-    .append('polygon')
-    .attr('id', 'curLineArrow')
-    .attr('points', SVG_ARROW_POLYGON)
-    .attr('fill', darkArrowColor);
-
+  if (myViz.params.arrowLines) {
+      myViz.domRoot.find('#pyCodeOutput tr:first')
+          .prepend('<td id="gutterTD" valign="top" rowspan="' + this.codeOutputLines.length + '"><svg id="leftCodeGutterSVG"/></td>');
+      
+      // create prevLineArrow and curLineArrow
+      myViz.domRootD3.select('svg#leftCodeGutterSVG')
+          .append('polygon')
+          .attr('id', 'prevLineArrow')
+          .attr('points', SVG_ARROW_POLYGON)
+          .attr('fill', lightArrowColor);
+      
+      myViz.domRootD3.select('svg#leftCodeGutterSVG')
+          .append('polygon')
+          .attr('id', 'curLineArrow')
+          .attr('points', SVG_ARROW_POLYGON)
+          .attr('fill', darkArrowColor);
+  }
 
   // 2012-09-05: Disable breakpoints for now to simplify UX
   /*
@@ -1129,7 +1154,7 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
   // (we often can't do this earlier since the entire pane
   //  might be invisible and hence returns a height of zero or NaN
   //  -- the exact format depends on browser)
-  if (!myViz.leftGutterSvgInitialized) {
+  if (!myViz.leftGutterSvgInitialized && myViz.params.arrowLines) {
     // set the gutter's height to match that of its parent
     gutterSVG.height(gutterSVG.parent().height());
 
@@ -1159,9 +1184,11 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
     myViz.leftGutterSvgInitialized = true;
   }
 
-  assert(myViz.arrowOffsetY !== undefined);
-  assert(myViz.codeRowHeight !== undefined);
-  assert(0 <= myViz.arrowOffsetY && myViz.arrowOffsetY <= myViz.codeRowHeight);
+  if (myViz.params.arrowLines) {
+      assert(myViz.arrowOffsetY !== undefined);
+      assert(myViz.codeRowHeight !== undefined);
+      assert(0 <= myViz.arrowOffsetY && myViz.arrowOffsetY <= myViz.codeRowHeight);
+  }
 
   // call the callback if necessary (BEFORE rendering)
   if (this.params.updateOutputCallback) {
@@ -1287,54 +1314,55 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
       }
     }
 
-    if (prevLineNumber) {
-      var pla = myViz.domRootD3.select('#prevLineArrow');
-      var translatePrevCmd = 'translate(0, ' + (((prevLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + prevVerticalNudge) + ')';
-
-      if (smoothTransition) {
-        pla 
-          .transition()
-          .duration(200)
-          .attr('fill', 'white')
-          .each('end', function() {
-            pla
-              .attr('transform', translatePrevCmd)
-              .attr('fill', lightArrowColor);
-
-            gutterSVG.find('#prevLineArrow').show(); // show at the end to avoid flickering
-          });
-      }
-      else {
-        pla.attr('transform', translatePrevCmd)
-        gutterSVG.find('#prevLineArrow').show();
-      }
-
+    if (myViz.params.arrowLines) {
+        if (prevLineNumber) {
+            var pla = myViz.domRootD3.select('#prevLineArrow');
+            var translatePrevCmd = 'translate(0, ' + (((prevLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + prevVerticalNudge) + ')';
+            
+            if (smoothTransition) {
+                pla 
+                    .transition()
+                    .duration(200)
+                    .attr('fill', 'white')
+                    .each('end', function() {
+                        pla
+                            .attr('transform', translatePrevCmd)
+                            .attr('fill', lightArrowColor);
+                        
+                        gutterSVG.find('#prevLineArrow').show(); // show at the end to avoid flickering
+                    });
+            }
+            else {
+                pla.attr('transform', translatePrevCmd)
+                gutterSVG.find('#prevLineArrow').show();
+            }
+            
+        }
+        else {
+            gutterSVG.find('#prevLineArrow').hide();
+        }
+        
+        if (curLineNumber) {
+            var cla = myViz.domRootD3.select('#curLineArrow');
+            var translateCurCmd = 'translate(0, ' + (((curLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + curVerticalNudge) + ')';
+            
+            if (smoothTransition) {
+                cla 
+                    .transition()
+                    .delay(200)
+                    .duration(250)
+                    .attr('transform', translateCurCmd);
+            }
+            else {
+                cla.attr('transform', translateCurCmd);
+            }
+            
+            gutterSVG.find('#curLineArrow').show();
+        }
+        else {
+            gutterSVG.find('#curLineArrow').hide();
+        }
     }
-    else {
-      gutterSVG.find('#prevLineArrow').hide();
-    }
-
-    if (curLineNumber) {
-      var cla = myViz.domRootD3.select('#curLineArrow');
-      var translateCurCmd = 'translate(0, ' + (((curLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + curVerticalNudge) + ')';
-
-      if (smoothTransition) {
-        cla 
-          .transition()
-          .delay(200)
-          .duration(250)
-          .attr('transform', translateCurCmd);
-      }
-      else {
-        cla.attr('transform', translateCurCmd);
-      }
-
-      gutterSVG.find('#curLineArrow').show();
-    }
-    else {
-      gutterSVG.find('#curLineArrow').hide();
-    }
-
 
     myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
       .style('border-top', function(d) {
@@ -1382,12 +1410,22 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
       pcod.animate({scrollTop: (ST + (LO - PO - (Math.round(H / 2))))}, 300);
     }
 
+    if (myViz.params.highlightLines) {
+        myViz.domRoot.find('#pyCodeOutputDiv td.cod').removeClass('highlight-prev');
+        myViz.domRoot.find('#pyCodeOutputDiv td.cod').removeClass('highlight-curr');
+        if (curLineNumber)
+            myViz.domRoot.find('#'+myViz.generateID('cod'+curLineNumber)).addClass('highlight-curr');        
+        if (prevLineNumber)
+            myViz.domRoot.find('#'+myViz.generateID('cod'+prevLineNumber)).addClass('highlight-prev');      
+    }
+
 
     // smoothly scroll code display
     if (!isOutputLineVisible(curEntry.line)) {
       scrollCodeOutputToLine(curEntry.line);
     }
-  }
+
+  } // end of highlightCodeLine
 
 
   // render code output:
