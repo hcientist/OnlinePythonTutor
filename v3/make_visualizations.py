@@ -50,8 +50,8 @@ Here is an example of the 'Makefile' viz_makefile.json
 
 "default_viz_config": 
       {
-        "embeddedMode": false, 
-        "heightChangeCallback": "redrawAllVisualizerArrows"
+        "embeddedMode": true, 
+        "verticalStack": true
       },
 
 "eg1.html":
@@ -60,15 +60,15 @@ Here is an example of the 'Makefile' viz_makefile.json
         "js/t1.js",
         {
            "python_scripts/t1a.py": {}
-           "python_scripts/t1b.py": {"embeddedMode": true}
+           "python_scripts/t1b.py": {"embeddedMode": false}
         }
       ]
 "eg2.html":
       [
         "js/t2.js",
         {
-           # the heightChangeCallback is removed from the params below
-           "python_scripts/t2.py": {"heightChangeCallback": ""}
+           # verticalStack is removed from the params below
+           "python_scripts/t2.py": {"verticalStack": ""}
         }
       ]
 }
@@ -81,11 +81,12 @@ If "visualizer_url" is not supplied it defaults to
   "http://pythontutor.com/visualize.html"
 
 If "default_viz_config" is not supplied it defaults to 
-  {'embeddedMode': true, 
-   'heightChangeCallback': 'redrawAllVisualizerArrows', 
+  {'heightChangeCallback': 'redrawAllVisualizerArrows', 
    'editCodeBaseURL': viz_url}
 
 where viz_url is the value associated with the "visualizer_url" key.
+Note: for this version heightChangeCallback is hard-wired to be 
+redrawAllVisualizerArrows.
 
 The dictionary associated with a python script overrides the 
 "default_viz_config" dictionary.
@@ -141,8 +142,8 @@ CALLBACK_PATTERN_REPL = [
 DEFALUT_VIZ_URL = 'http://pythontutor.com/visualize.html'
 
 # The global default visualization configuration
-DEFAULT_VIZ_CONFIG = {'embeddedMode': False, 
-                      'heightChangeCallback': 'redrawAllVisualizerArrows', 
+# Note: heightChangeCallback is hard-wired to be redrawAllVisualizerArrows
+DEFAULT_VIZ_CONFIG = {'heightChangeCallback': 'redrawAllVisualizerArrows', 
                       'editCodeBaseURL': DEFALUT_VIZ_URL}
             
 
