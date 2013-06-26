@@ -70,27 +70,27 @@ If you already have a visualization set up and you would like to use this approa
 At the end of the dependencies information injected into the `.html` file is a comment containing div entries that you can cut-and-paste into the position within the `.html` file where you would like the visualization to appear. The Makefile does not know where this is to be added and so this step needs to be done manually. Re-making this file will not remove this infomation from the body of the file. So, for example, in the header of `file3.html` you should find
 the following.
 
-    &lt;!-- Cut and paste the following lines to the place where the visualizations are to be inserted
+    <!-- Cut and paste the following lines to the place where the visualizations are to be inserted
     
-    &lt;div id="prog3_1_pyDiv"&gt;&lt;/div&gt;
-    --&gt;
+    <div id="prog3_1_pyDiv"></div>
+    -->
 
 
 For reference, we list the possible visualization parameters (with system-wide defaults - based on comments in `pytutor.js`) below.
 
-*heightChangeCallback: the function to call whenever the height of the visualization changes. If using the make program this is hard-wired in and can't be changed.
-*updateOutputCallback: the function to call before rendering output. Disabled for the make program.
-*executeCodeWithRawInputFunc: function to call when you want to re-execute the given program with some new user input. Disabled for the make program.
-*embeddedMode: if true, it is a shorthand for hideOutput = true, allowEditAnnotations = false (default : false)
-*startingInstruction: the trace entry to start execution at (0-indexed) (default : 0).
-*verticalStack: if true then place code display above visualization, else place side-by-side (default: false)
-*jumpToEnd: if true jump to the end of execution - the same as setting startingInstruction to the last trace entry (default:false).
-*codeDivWidth: the width of the code text window in pixels (default : 350).
-*codeDivHeight: the height of the code text window in pixels (default : 400).
-*hideOutput: hide "Program output" display (default : false).
-*editCodeBaseURL: the URL to visit when the user clicks 'Edit code'.
-*allowEditAnnotations: allow user to edit per-step annotations (default: false).
-*disableHeapNesting: if true, then render all heap objects at the top level (i.e., no nested objects) (default : true).
-*drawParentPointer: if true, then draw environment diagram parent pointers for all frames (default : true).
-*textualMemoryLabels: render references using textual memory labels rather than as jsPlumb arrows (default : true).
-*showOnlyOutputs: show only program outputs and NOT internal data structures (default : true).
+- heightChangeCallback: the function to call whenever the height of the visualization changes. If using the make program this is hard-wired in and can't be changed.
+- updateOutputCallback: the function to call before rendering output. Disabled for the make program.
+- executeCodeWithRawInputFunc: function to call when you want to re-execute the given program with some new user input. Disabled for the make program.
+- embeddedMode: if true, it is a shorthand for hideOutput = true, allowEditAnnotations = false (default : false)
+- startingInstruction: the trace entry to start execution at (0-indexed) (default : 0).
+- verticalStack: if true then place code display above visualization, else place side-by-side (default: false)
+- jumpToEnd: if true jump to the end of execution - the same as setting startingInstruction to the last trace entry (default:false).
+- codeDivWidth: the width of the code text window in pixels (default : 350).
+- codeDivHeight: the height of the code text window in pixels (default : 400).
+- hideOutput: hide "Program output" display (default : false).
+- editCodeBaseURL: the URL to visit when the user clicks 'Edit code'.
+- allowEditAnnotations: allow user to edit per-step annotations (default: false).
+- disableHeapNesting: if true, then render all heap objects at the top level (i.e., no nested objects) (default : true).
+- drawParentPointer: if true, then draw environment diagram parent pointers for all frames (default : true).
+- textualMemoryLabels: render references using textual memory labels rather than as jsPlumb arrows (default : true).
+- showOnlyOutputs: show only program outputs and NOT internal data structures (default : true).
