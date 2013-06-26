@@ -6,16 +6,16 @@ For an example of how to use this program and to embed visualizations we will as
 
 The first step is to copy across some `.js` files and `.css` files.
 
- cp -r $OPT/js/* js
- cp -r $OPT/css/* css
+    cp -r $OPT/js/* js
+    cp -r $OPT/css/* css
 
 The next step is to create the Makefile - say `make_viz.json` and to add the required information to the file. An example of such a file is given below. The required visualizations can be built as follows.
 
- python $OPT/make_visualizations.py make_viz.json
+    python $OPT/make_visualizations.py make_viz.json
 
 Calling this again will rebuild everything. Alternatively, the program can be used to build visualizations for particular `.html` files listed in `make_viz.json` by listing them at the end of the command. For example
 
- python $OPT/make_visualizations.py make_viz.json file1.html file3.html
+    python $OPT/make_visualizations.py make_viz.json file1.html file3.html
 
 For the example we assume the `.html` files are `file1.html`, `file2.html` and `file3.html` and that `file1.html` will have visualizations for `prog1_1.py` and `prog1_2.py`; `file2.html` will have a visualization for `prog2_1.py`; and `file3.html` will have a visualization for `prog3_1.py`. Further we assume that a local OPT server has been set up (see the following section) at the URL http://my.local.server/visualize.html.
 
@@ -70,10 +70,10 @@ If you already have a visualization set up and you would like to use this approa
 At the end of the dependencies information injected into the `.html` file is a comment containing div entries that you can cut-and-paste into the position within the `.html` file where you would like the visualization to appear. The Makefile does not know where this is to be added and so this step needs to be done manually. Re-making this file will not remove this infomation from the body of the file. So, for example, in the header of `file3.html` you should find
 the following.
 
- &lt;!-- Cut and paste the following lines to the place where the visualizations are to be inserted
- 
- &lt;div id="prog3_1_pyDiv"&gt;&lt;/div&gt;
- --&gt;
+    &lt;!-- Cut and paste the following lines to the place where the visualizations are to be inserted
+    
+    &lt;div id="prog3_1_pyDiv"&gt;&lt;/div&gt;
+    --&gt;
 
 
 For reference, we list the possible visualization parameters (with system-wide defaults - based on comments in `pytutor.js`) below.
