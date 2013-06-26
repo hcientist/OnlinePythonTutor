@@ -21,43 +21,43 @@ For the example we assume the `.html` files are `file1.html`, `file2.html` and `
 
 The following is a possible example for `make_viz.json`
 
- {       
-  "visualizer_url": 
-        "http://my.local.server/visualize.html",
- 
-  "default_viz_config": 
-        {
-          "embeddedMode": true, 
-          "codeDivWidth": 500
-        },
- 
-  "file1.html":
-        [
-          "js/file1.js",
-          {
-             "examples/prog1_1.py":{},
-             "examples/prog1_2.py":{"codeDivWidth": 400}
-          }
-        ],
- 
-  # hash to end of line is a comment
-  
-  "file2.html":
-        [
-          "js/file2.js",
-          {
-             "examples/prog2_1.py":{}
-          }
-        ],
- 
-  "file3.html":
-        [
-          "js/file3.js",
-          {
-             "examples/prog3_1.py":{"codeDivWidth": ""}
-          }
-        ]
- }
+    {       
+     "visualizer_url": 
+           "http://my.local.server/visualize.html",
+    
+     "default_viz_config": 
+           {
+             "embeddedMode": true, 
+             "codeDivWidth": 500
+           },
+    
+     "file1.html":
+           [
+             "js/file1.js",
+             {
+                "examples/prog1_1.py":{},
+                "examples/prog1_2.py":{"codeDivWidth": 400}
+             }
+           ],
+     
+     # hash to end of line is a comment
+     
+     "file2.html":
+           [
+             "js/file2.js",
+             {
+                "examples/prog2_1.py":{}
+             }
+           ],
+    
+     "file3.html":
+           [
+             "js/file3.js",
+             {
+                "examples/prog3_1.py":{"codeDivWidth": ""}
+             }
+           ]
+    }
 
 The first entry specifies the location of the server. If this is not present, the default is http://pythontutor.com/visualize.html.
 
