@@ -17,7 +17,7 @@ Calling this again will rebuild everything. Alternatively, the program can be us
 
     python $OPT/make_visualizations.py make_viz.json file1.html file3.html
 
-For the example we assume the `.html` files are `file1.html`, `file2.html` and `file3.html` and that `file1.html` will have visualizations for `prog1_1.py` and `prog1_2.py`; `file2.html` will have a visualization for `prog2_1.py`; and `file3.html` will have a visualization for `prog3_1.py`. Further we assume that a local OPT server has been set up (see the following section) at the URL http://my.local.server/visualize.html.
+For the example we assume the `.html` files are `file1.html`, `file2.html` and `file3.html` and that `file1.html` will have visualizations for `prog1_1.py` and `prog1_2.py`; `file2.html` will have a visualization for `prog2_1.py`; and `file3.html` will have a visualization for `prog3_1.py`. Further we assume that a local OPT server has been set up at the URL http://my.local.server/visualize.html.
 
 The following is a possible example for `make_viz.json`
 

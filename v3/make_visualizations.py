@@ -391,17 +391,17 @@ def make_html_viz(prog, html_file, html_info):
     if end_head_pos == -1:
         print "Could not find '\n</head>' in {0}".format(html_file)
         return
-    # add the updated dependency info just before </head>
-    html_text = html_text[:end_head_pos] + PY_TUTOR_DEPEND + \
-        html_text[end_head_pos:]
 
     # all_divs is the string of all div entries to embed in the html
     # this is added to the header comments for easy cut and pasting
     # to the correct location in the document.
     all_divs = '\n'.join(DIV_TEXT.format(get_vizname_root(py)) for py in py_dict)
-
+    # add the updated dependency info just before </head>
+    html_text = html_text[:end_head_pos] +\
+        PY_TUTOR_DEPEND.format(js_out, all_divs) + \
+        html_text[end_head_pos:]
     fd = open(html_file, 'w')
-    fd.write(html_text.format(js_out, all_divs))
+    fd.write(html_text)
     fd.close()
     
 
