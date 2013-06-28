@@ -4,6 +4,8 @@ project!
 
 Here is a brief message from him on how to set it up:
 
+------
+
 I teach python to undergrads and my students have enjoyed using
 PythonTutor to trace programs. I have modified PythonTutor slightly to
 work within GraphTerm, which is a graphical terminal for unix computers
@@ -12,9 +14,9 @@ now trace your programs visually within the terminal.
 
 To install it and run it, use the following three commands on a Mac or Linux system:
 
-  sudo easy_install graphterm
-  sudo gterm_setup              # To setup the toolchain
-  gtermserver --terminal
+    sudo easy_install graphterm
+    sudo gterm_setup              # To setup the toolchain
+    gtermserver --terminal
 
 This will run the GraphTerm server and open up a browser terminal
 window. In that window, you can `cd` to the directory containing the
