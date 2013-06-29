@@ -1,4 +1,4 @@
-Professor Ramalingam Saravanan from Texas A&M has integrated Online
+R. Saravanan from Texas A&M has integrated Online
 Python Tutor with his [GraphTerm](http://code.mindmeldr.com/graphterm/)
 project!
 
