@@ -1,6 +1,6 @@
 # Project Ideas
 
-This document provides an overview of some project ideas for extending
+This (messy!) document provides an overview of some project ideas for extending
 Online Python Tutor (thereafter abbreviated as OPT). View it online at:
 
 https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/project-ideas.md
@@ -9,9 +9,9 @@ Email philip@pgbovine.net if you're interested in working on anything here, or i
 project ideas.
 
 
-# Stylistic
+## Stylistic
 
-## Beautiful print-outs of OPT visualizations
+### Beautiful print-outs of OPT visualizations
 
 A lot of instructors want to print out their OPT visualizations to make handouts or lecture notes
 for students.
@@ -26,7 +26,7 @@ Another idea is to get OPT to output SVG, PDF, or another
 printer-friendly format.
 
 
-## Responsive web UI design for OPT frontend
+### Responsive web UI design for OPT frontend
 
 This is a good project for someone interested in visual and web design.
 
@@ -35,9 +35,9 @@ so that OPT visualizations (and the surrounding user interface) look good on dis
 ranging from smartphones to tablets to laptops to giant desktop monitors.
 
 
-# Frontend
+## Frontend
 
-## Rich user input widgets
+### Rich user input widgets
 
 Right now Online Python Tutor takes only code as input. However, it would be great to create widgets that allow
 the user to input data into their code. That way, they can visualize the same code executing on different data
@@ -55,7 +55,7 @@ Here are some examples of input widgets:
 - A text box that represents a file on the filesystem. Imagine a web-based I/O simulator where there would be a text box simulating a file object, and then I/O calls such as open, readline, etc. would be intercepted and visualized as iterating (pointing) to the file object one line at a time, reading each line into a string, etc. Writing into a file can also be visualized in this way too. And seeking, overwriting, appending, etc.
 
 
-## Custom data structure visualizations
+### Custom data structure visualizations
 
 Right now Online Python Tutor can render only basic Python data structures.
 
@@ -83,7 +83,7 @@ There are (at least) two main ways to implement this feature:
 The dream is to be able to write Python modules for each custom data type.
 
 
-## Custom Rendering API and Lightweight Plug-In System
+### Custom rendering API and plugin system
 
 Right now Online Python Tutor renders Python data structures in a single, fixed way.
 However, different instructors have different preferences for how they want certain objects to render
@@ -98,7 +98,7 @@ The ultimate goal here is to completely replace one-off custom algorithm visuali
 and ad-hoc PowerPoint slide deck animations of CS concepts.
 
 
-## Annotations for simplifying visualizations
+### Annotations for simplifying visualizations
 
 Right now OPT visualizes "everything" about program execution. However, that can easily lead to visual overload.
 Let's think about implementing annotations to selectively show/hide different parts of execution, so that instructors
@@ -123,9 +123,11 @@ lying around.
 Think about how annotations can "clean up" such a big and hairy visualization.
 
 
-## Authoring environment for programming exercises and quizzes
+### Authoring environment
 
+With a proper authoring environment,
 Online Python Tutor visualizations could become a basis for annotated examples, programming exercises, and quizzes.
+
 
 **Annotated code visualizations**:
 
@@ -146,79 +148,10 @@ and the user would need to fill in those slots with the appropriate values. (The
 not-yet-documented prototype of these sorts of pop-up questions, done by Brad Miller.)
 
 
-# Backend
-
-## Offline mode for use as a production debugger
-
-From a reader comment: "As a teaching tool it is invaluable, not only for teaching python, but for programming in general (what is going on in memory...).
-I've actively used it to debug / trace short pieces of code. Any chance of having it offline (and without the limitations of an online tool like the inability to load all modules)? That would make a perfect pdb visualization tool."
-
-You could imagine running a webserver on localhost and using OPT as a graphical frontend for pdb; interesting idea!
-
-Notes from an email I sent on 2012-10-24: {
-
-One possible offline application is to use OPT as a visual debugger for pdb (http://docs.python.org/library/pdb.html). The use case here would be:
-
-1.) The user launches a special version of pdb augmented with OPT.
-2.) The user types in some Python command to visualize.
-3.) pdb starts a local webserver and pops up a web browser window.
-4.) The visualization appears in the web browser window, and the user can interact with it.
-
-Actually, now that I think about it, you can start even simpler without pdb. Here is an even simpler starting point:
-
-1.) The user writes some code to visualize in a file on his/her computer.
-2.) The user runs a special Python script that runs OPT on that file, launches a local webserver, and pops open a web browser window.
-3.) The visualization appears in the web browser window.
-
-Ok, that seems simpler as a starting point, and it will still teach you about local webservers and interfacing between the OPT backend and frontend.
-
-Then comes the question of why this offline mode might be useful (beyond being a good learning exercise). After all, just by following the directions in the developer overview docs, you've essentially set up OPT to run offline without an Internet connection. So my plan above doesn't give you any extra functionality. However, I think the potential lies in integrating with a real debugger such as pdb, so that you can run large Python programs, pause execution, and then visualize selected data structures (rather than all data structures in the program, which can get overwhelming).
-
-Ok sorry that was mostly me thinking out loud.
-
-}
-
-Ha, I guess you can call this **"Offline Python Tutor"**!
+## Backend
 
 
-## Add better Unicode support
-
-This project is a great fit for someone familiar with coding in non-English languages.
-
-Right now, OPT has poor-to-nonexistent Unicode support, so adding it is important for making it friendlier to
-non-English audiences.
-
-Here is one bug report that inspired this project idea:
-
-"""
-I’m having some fun with your nifty Python visualiser.
-While trying too see what happens in Unicode strings are processed,
-I encountered some odd little quirks such as a unicode character
-being replace with a string representation of a Unicode code point
-number in denary.
-
-
-<a href="http://www.pythontutor.com/visualize.html#code=s+%3D+unicode(0x2015)%0Aa+%3D+'Myer'+%2B+s+%2B+'Briggs'%0Ax+%3D+a.index(s)%0Al+%3D+a%5B%3Ax%5D%0Ar+%3D+a%5Bx+%2B+len(s)%3A%5D%0Aprint+l%0Aprint+r%0Aprint+'%22'+%2B+a+%2B+'%22+is+'+%2B+str(len(a))+%2B+'+characters+long.'%0Afor+i,+z+in+unumerate(a)%3A%0A++print+'a%5B'+%2B+str(i)+%2B+'%5D+%3D+'+%2B+str(z)&mode=display&cumulative=false&py=2&curInstr=8">click to visualize code snippet</a>
-
-Changing the first line to
-
-```python
-s = u'\u2015'
-```
-
-Causes an “unknown error” to be reported, as does the insertion of unicode characters like “—” (em dash) in string literals.
-
-The following code causes the interpreter to hang.
-```python
-# -*- coding: utf-8 -*-
-s = u'—'
-```
-"""
-
-(Note that Unicode support in Python 2 and 3 involve different subtleties.)
-
-
-## Visualizing different programming languages (especially JavaScript!)
+### Visualizing different programming languages (especially JavaScript!)
 
 This project is great for someone who likes to hack on language implementations and runtimes.
 
@@ -254,7 +187,7 @@ trace generator for C and C++.
 It should be much easier to build a backend for a memory- and type-safe language, though :)
 
 
-## Skulpt (Python-in-JavaScript) backend
+### Skulpt (Python-in-JavaScript) backend
 
 This project is appropriate for someone with advanced knowledge of hacking a Python interpreter
 who is willing to make a substantive time commitment.
@@ -286,7 +219,40 @@ Tips & Tricks:
 
 Dec 2012: Brython -- http://www.brython.info/index_en.html -- might also be a contender here, since it supports lots of Python 3 (except for OOP, lambdas, exceptions, and generators, afaik).
 
-May 2013: The main caveat with re-implementing for one of these alternative Python implementations is that they don't support the full ("official") Python language.
+May 2013: In the experience of Python veterans, the main caveat with targeting one of these alternative Python implementations is that they don't support the full ("official") Python language.
 Thus, users might be frustrated that code they type into this tutor doesn't run exactly like code they type into the official Python interpreter.
 That said, though, a Skulpt implementation would still be useful, as long as users understand its limitations and caveats, and that it doesn't support the full Python language in all of its glory (or its weird edge-case behaviors).
+
+
+### Offline mode for use as a production debugger
+
+From a reader comment: "As a teaching tool it is invaluable, not only for teaching python, but for programming in general (what is going on in memory...).
+I've actively used it to debug / trace short pieces of code. Any chance of having it offline (and without the limitations of an online tool like the inability to load all modules)? That would make a perfect pdb visualization tool."
+
+You could imagine running a webserver on localhost and using OPT as a graphical frontend for pdb; interesting idea!
+
+Notes from an email I sent on 2012-10-24: {
+
+One possible offline application is to use OPT as a visual debugger for pdb (http://docs.python.org/library/pdb.html). The use case here would be:
+
+1.) The user launches a special version of pdb augmented with OPT.
+2.) The user types in some Python command to visualize.
+3.) pdb starts a local webserver and pops up a web browser window.
+4.) The visualization appears in the web browser window, and the user can interact with it.
+
+Actually, now that I think about it, you can start even simpler without pdb. Here is an even simpler starting point:
+
+1.) The user writes some code to visualize in a file on his/her computer.
+2.) The user runs a special Python script that runs OPT on that file, launches a local webserver, and pops open a web browser window.
+3.) The visualization appears in the web browser window.
+
+Ok, that seems simpler as a starting point, and it will still teach you about local webservers and interfacing between the OPT backend and frontend.
+
+Then comes the question of why this offline mode might be useful (beyond being a good learning exercise). After all, just by following the directions in the developer overview docs, you've essentially set up OPT to run offline without an Internet connection. So my plan above doesn't give you any extra functionality. However, I think the potential lies in integrating with a real debugger such as pdb, so that you can run large Python programs, pause execution, and then visualize selected data structures (rather than all data structures in the program, which can get overwhelming).
+
+Ok sorry that was mostly me thinking out loud.
+
+}
+
+Ha, I guess you can call this **"Offline Python Tutor"**!
 
