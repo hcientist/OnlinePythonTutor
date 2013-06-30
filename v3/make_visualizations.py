@@ -143,8 +143,7 @@ DEFALUT_VIZ_URL = 'http://pythontutor.com/visualize.html'
 
 # The global default visualization configuration
 # Note: heightChangeCallback is hard-wired to be redrawAllVisualizerArrows
-DEFAULT_VIZ_CONFIG = {'heightChangeCallback': 'redrawAllVisualizerArrows', 
-                      'editCodeBaseURL': DEFALUT_VIZ_URL}
+DEFAULT_VIZ_CONFIG = {'heightChangeCallback': 'redrawAllVisualizerArrows'}
             
 
 # The string used to generate js code for ExecutionVisualizer
@@ -298,7 +297,8 @@ def get_build_info(json_file):
     if "visualizer_url" not in build_info:
         build_info["visualizer_url"] = DEFALUT_VIZ_URL
     # merge DEFAULT_VIZ_CONFIG with the supplied "default_viz_config"
-    config = dict(DEFAULT_VIZ_CONFIG)
+    config = DEFAULT_VIZ_CONFIG
+    config["editCodeBaseURL"] = build_info["visualizer_url"]
     config.update(build_info.get("default_viz_config", {}))
     build_info["default_viz_config"] = config
     # update all the 
