@@ -26,7 +26,7 @@ Another idea is to get OPT to output SVG, PDF, or another
 printer-friendly format.
 
 
-### Responsive web UI design for OPT frontend
+### Responsive web design for OPT UI
 
 This is a good project for someone interested in visual and web design.
 
@@ -95,10 +95,15 @@ The class definition of VisualFile includes the proper HTML-generation code to r
 
 There are (at least) two main ways to implement this feature:
 
-- Add custom data types to the trace and have the frontend render them specially, using JS visualization libraries such as d3.
-- Take advantage of OPT's (still undocumented) ability to print arbitrary HTML/CSS/JS to the canvas (just like how it can print stdout output to a text box), so create custom data structure classes with printHTML() methods that print their representation in HTML format.
+- Add custom data types to the trace and have the frontend render them
+  specially using JS visualization libraries such as d3.
 
-The dream is to be able to write Python modules for each custom data type.
+- Take advantage of OPT's (still undocumented) ability to print
+  arbitrary HTML/CSS/JS to the canvas (just like how it can print stdout
+  output to a text box). Thus, we create custom data structure classes
+  with printHTML() methods that print their representation in HTML
+  format. The dream here is to be able to write pure-Python modules for
+  each custom data type, which can "pretty-print" as HTML/CSS/JS.
 
 
 ### Custom rendering API and plugin system
