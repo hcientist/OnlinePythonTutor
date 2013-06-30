@@ -5,13 +5,13 @@ Online Python Tutor (thereafter abbreviated as OPT). View it online at:
 
 https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/project-ideas.md
 
-These projects are listed roughly in order of difficulty.
-
 Email philip@pgbovine.net if you're interested in working on anything here, or if you have other
 project ideas.
 
 
-## Enable beautiful printouts of OPT visualizations (easy)
+# Stylistic
+
+## Beautiful print-outs of OPT visualizations
 
 A lot of instructors want to print out their OPT visualizations to make handouts or lecture notes
 for students.
@@ -22,8 +22,11 @@ The project involves creating a custom CSS optimized for printing, especially on
 Here is an example how-to guide to get started creating a CSS print style sheet ...
 http://coding.smashingmagazine.com/2011/11/24/how-to-set-up-a-print-style-sheet/
 
+Another idea is to get OPT to output SVG, PDF, or another
+printer-friendly format.
 
-## Implement responsive web UI design for OPT frontend (easy/medium)
+
+## Responsive web UI design for OPT frontend
 
 This is a good project for someone interested in visual and web design.
 
@@ -32,15 +35,19 @@ so that OPT visualizations (and the surrounding user interface) look good on dis
 ranging from smartphones to tablets to laptops to giant desktop monitors.
 
 
-## Rich user input widgets (medium)
+# Richer input/output
+
+## Rich user input widgets
 
 Right now Online Python Tutor takes only code as input. However, it would be great to create widgets that allow
 the user to input data into their code. That way, they can visualize the same code executing on different data
-without changing the code. Currently, the only way to do this is to "hard-code" the input data as global constants.
+without changing the code. Currently, the only way to do this is to
+"hard-code" the input data as global constants, which is cumbersome.
 
-Here are some example sorts of input widgets:
+Here are some examples of input widgets:
 
-- Text input widget to simulate stdin (e.g., for use with raw_input())
+- Text input widget to simulate stdin. This could be used with raw_input()/input()
+
 - Interactive widget to draw mathematical graphs (e.g., nodes and edges); useful for visualizing graph/tree manipulation algorithms
 - A 2-D canvas where the user can draw points and lines in a coordinate system; useful for visualizing simple computational geometry algorithms
 - A 2-D matrix of numbers or colored blocks for, say, a PacMan world
@@ -48,7 +55,7 @@ Here are some example sorts of input widgets:
 - A text box that represents a file on the filesystem. Imagine a web-based I/O simulator where there would be a text box simulating a file object, and then I/O calls such as open, readline, etc. would be intercepted and visualized as iterating (pointing) to the file object one line at a time, reading each line into a string, etc. Writing into a file can also be visualized in this way too. And seeking, overwriting, appending, etc.
 
 
-## Custom data structure visualizations (medium)
+# Custom data structure visualizations
 
 Right now Online Python Tutor can render only basic Python data structures. While this is sufficient for teaching introductory CS courses, intermediate and advanced CS students must learn algorithms involving more sophisticated data structures such as binary trees and graphs. The goal of this project is to create a set of effective custom renderers for data structures such as trees, graphs, numerical matrices, and even simple 2D graphical worlds (e.g., for Pac-Man or Conway’s Game of Life). These renderers will make Online Python Tutor useful in a far larger variety of CS courses and online textbooks.
 
