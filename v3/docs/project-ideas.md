@@ -113,19 +113,37 @@ and students can hone in on what they find interesting. Examples:
 Implementing annotations as ordinary code comments (rather than using a specialized UI) is elegant
 because the instructor's code examples are self-contained in plain text and easily archivable outside of OPT.
 
-
-## Optimize display of object-oriented programs
-
-This is a good project for an object-oriented programming enthusiast.
-
+As a concrete use case, think about how to "clean up" the display of object-oriented programs.
 Right now OPT naively visualizes all the steps that the Python interpreter takes when executing an
 object-oriented program, which leads to all sorts of extraneous variables, frames, and pointers
 lying around.
 
 <a href="http://pythontutor.com/visualize.html#code=%23+Inheritance+-+object-oriented+programming+intro%0A%23+Adapted+from+MIT+6.01+course+notes+(Section+3.5)%0A%23+http%3A//mit.edu/6.01/mercurial/spring10/www/handouts/readings.pdf%0A%0Aclass+Staff601%3A%0A++++course+%3D+'6.01'%0A++++building+%3D+34%0A++++room+%3D+501%0A%0A++++def+giveRaise(self,+percentage)%3A%0A++++++++self.salary+%3D+self.salary+%2B+self.salary+*+percentage%0A%0Aclass+Prof601(Staff601)%3A%0A++++salary+%3D+100000%0A%0A++++def+__init__(self,+name,+age)%3A%0A++++++++self.name+%3D+name%0A++++++++self.giveRaise((age+-+18)+*+0.03)%0A%0A++++def+salutation(self)%3A%0A++++++++return+self.role+%2B+'+'+%2B+self.name%0A%0Apat+%3D+Prof601('Pat',+60)&mode=display&cumulative=false&py=2&curInstr=16">Click here for an example.</a>
 
-This project involves cleaning up the execution trace so that object-oriented programs look
-sensible when visualized.
+Think about how annotations can "clean up" such a big and hairy visualization.
+
+
+## Authoring environment for programming exercises and quizzes
+
+Online Python Tutor visualizations could become a basis for annotated examples, programming exercises, and quizzes.
+
+**Annotated code visualizations**:
+
+- Teachers to use as a place to put their code examples and mini-lessons (so that they’re persistent, rather than sending out a bunch of gross URLs)
+- Lesson text can be fine-grained -- e.g., specific text to accompany each execution point, or annotations atop individual objects.
+  - I've already implemented a prototype of "annotation speech bubbles" to annotate individual visualization elements.
+- Think about what asides or remarks would a teacher/mentor SAY OUT LOUD when stepping through code with a student/mentee. Those are probably the kinds of commentary that you'd want to put inside of visualizations.
+- Students could use it as a Stackoverflow-like forum for asking questions
+  - Potentially powerful use case in MOOCs where students can directly annotate visualizations while debugging and then fire off a question to a discussion forum (with all required context). Again, OPT will be embedded within a larger MOOC courseware environment and be a segue into discussion forums.
+- With a lightweight authoring environment, OPT can be used for embedding read-write visualizations. When a student is viewing code visualizations embedded within a textbook or lesson, they can mark annotations for parts they don’t understand and then send off the link to the course staff or discussion forum. So in essence, they’re interacting with the visualization rather than just passively consuming it.
+
+
+**Exercises/quizzes**: Since we have rich visualizations and interactivity at our disposal,
+we can come up with new forms of exercises that are more engaging than simply
+"write a function that does X and then passes these 10 unit tests."
+For example, one could imagine putting in blank slots as the user steps through the visualization,
+and the user would need to fill in those slots with the appropriate values. (There is already a
+not-yet-documented prototype of these sorts of pop-up questions, done by Brad Miller.)
 
 
 # Backend
