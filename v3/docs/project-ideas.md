@@ -64,16 +64,36 @@ algorithms involving more sophisticated data structures such as binary trees and
 The goal of this project is to create a set of effective custom renderers for data structures
 such as:
 
-- trees,
-- graphs,
-- numerical matrices,
-- and even simple 2D graphical worlds (e.g., for Pac-Man or Conway’s Game of Life).
+- trees
+- graphs
+- numerical matrices
+- simple 2D graphical worlds (e.g., for Pac-Man or Conway’s Game of Life)
+- rendering lists of numbers as bar/line graphs, charts, and other quantitative data visualizations (e.g., using Google Charts API)
+- file objects
+- DSL components such as logic gates for a logic simulator written in Python, or proof trees for formal logic courses
  
 These renderers will make Online Python Tutor useful in a far larger variety of CS courses and online textbooks
 beyond CS0/CS1 sorts of intro classes.
 
 One ultimate goal is to make OPT capable of visualizing classic AI and algorithm textbook algorithms
 that otherwise would need to be tediously built as one-off special-case visualizations.
+
+From an email excerpt in May 2013: {
+I recently added a feature to Online Python Tutor (OPT) that enables user programs to output HTML/CSS/JS, in addition to printing to stdout. Thus, if a program calls html_output(" ... "), when OPT steps over that line, it will render the HTML string in a div. This makes it possible to generate a wide array of visualizations in pure Python (by simply constructing strings that represent legal HTML/CSS/JS).
+
+For the file I/O example, I can imagine creating a special File class that implements "file-like" stream I/O methods. Then the user program might look like:
+
+---
+import VisualFile
+f = VisualFile(<string contents of the file>)
+
+for line in open(f):
+  <parse line>
+---
+
+The class definition of VisualFile includes the proper HTML-generation code to render a pretty HTML representation of the file's contents. And when methods iterate over the file, it can render an HTML representation with certain lines or characters highlighted to represent, say, the current file pointer position, etc.
+}
+
 
 There are (at least) two main ways to implement this feature:
 
@@ -123,21 +143,26 @@ lying around.
 Think about how annotations can "clean up" such a big and hairy visualization.
 
 
-### Authoring environment
+### Web-based authoring environment
 
-With a proper authoring environment,
-Online Python Tutor visualizations could become a basis for annotated examples, programming exercises, and quizzes.
+With a proper Web-based authoring environment, teachers and students can use
+Online Python Tutor visualizations as the basis for annotated examples,
+programming exercises, and quizzes.
+
+As a start, I've implemented a prototype of "annotation bubbles" for fine-grained annotation of visualization elements:
+
+![annotation bubbles](../opt-annotations.png)
 
 
 **Annotated code visualizations**:
 
-- Teachers to use as a place to put their code examples and mini-lessons (so that they’re persistent, rather than sending out a bunch of gross URLs)
-- Lesson text can be fine-grained -- e.g., specific text to accompany each execution point, or annotations atop individual objects.
-  - I've already implemented a prototype of "annotation speech bubbles" to annotate individual visualization elements.
-- Think about what asides or remarks would a teacher/mentor SAY OUT LOUD when stepping through code with a student/mentee. Those are probably the kinds of commentary that you'd want to put inside of visualizations.
+- Teachers could use it as a place to put their code examples and mini-lessons (so that they’re persistent, rather than sending out a bunch of gross URLs)
+  - Lesson text can be fine-grained -- e.g., specific text to accompany each execution point, or annotations atop individual objects.
+    - see the above screenshot for "annotation bubbles" prototype to label individual visualization elements
+  - Think about what asides or remarks would a teacher/mentor SAY OUT LOUD when stepping through code with a student/mentee. Those are probably the kinds of commentary that you'd want to put inside of visualizations.
 - Students could use it as a Stackoverflow-like forum for asking questions
   - Potentially powerful use case in MOOCs where students can directly annotate visualizations while debugging and then fire off a question to a discussion forum (with all required context). Again, OPT will be embedded within a larger MOOC courseware environment and be a segue into discussion forums.
-- With a lightweight authoring environment, OPT can be used for embedding read-write visualizations. When a student is viewing code visualizations embedded within a textbook or lesson, they can mark annotations for parts they don’t understand and then send off the link to the course staff or discussion forum. So in essence, they’re interacting with the visualization rather than just passively consuming it.
+  - With a lightweight authoring environment, OPT can be used for embedding read-write visualizations. When a student is viewing code visualizations embedded within a textbook or lesson, they can mark annotations for parts they don’t understand and then send off the link to the course staff or discussion forum. So in essence, they’re interacting with the visualization rather than just passively consuming it.
 
 
 **Exercises/quizzes**: Since we have rich visualizations and interactivity at our disposal,
@@ -148,7 +173,44 @@ and the user would need to fill in those slots with the appropriate values. (The
 not-yet-documented prototype of these sorts of pop-up questions, done by Brad Miller.)
 
 
+### Visualizing orders of growth
+
+Think about how to convey orders of growth of algorithms across data sets of varying sizes.
+
+Notes from Peter N.: {
+Peter suggested augmenting special data structure classes with callback hooks to the visualizer (like __str__ on steroids). This allows the visualizer to gracefully skip steps of the yucky internals of a data structure while just stepping through the significant parts. You can imagine instrumenting an Array class and visualizing compares, swaps, etc. for sorting algorithms.
+
+"Third, it would also be great to have a plot API, to plot the runtimes (or some other stat) as a function of input size N."
+
+"Fourth, while I have seen other algorithm systems where they annotate the code (by putting in annotations that say @step or something), I think we can get away without it.  For example, if the problem is sorting a list of integers, don't annotate the algorithm: just pass it an input that consists not of a list of ints, but rather an annotaed list of annotated ints.  An annotated lists increments a counter for every __getitem__ and __setitem__, and an annotated int increments a counter for every __lt__ and the like.  It won't survive malicious attacks, but it will work for all but the actively uncooperative users."
+
+We also talked about visualizing orders of growth of code, such as loops, nested loops, etc. by visualizing how many times things execute and then how that changes as your input size changes.
+}
+
+
 ## Backend
+
+### Support multiple concurrent viewers
+
+My main high-level vision for where to take the shared editing is the following:
+
+1. The instructor tells students to join a shared session.
+2. The instructor starts "driving" and typing code in the shared session. students watch along.
+3. At any time, a student can click a "detach" button and detach his/her session from the teacher. Then the session acts just like regular Online Python Tutor.
+4. At any time, a student can "reattach" to the shared session and follow the instructor again.
+
+The basic idea here is that students can follow along with an instructor but then "detach" at anytime to try out their own variations and experiments without interfering with other people's sessions.
+
+Here's another snippet on this idea:
+
+Collaborative visualizations: Adding real-time concurrent editing to these visualizations enables students to work together and tutor one another while physically separated. A shared workspace can also be useful during both physical and virtual lectures: As the instructor is lecturing using code visualizations, students can follow along by viewing those same running examples on their laptops. At any point when curious or confused, students can instantly diverge from the live example and try out their own variants
+on-the-fly in private; they can then sync back to the "live feed" at any time. Students can also text
+chat with one another about the lecture, all within the context of the live lecture materials. If students
+opt-in to allowing the instructor to access such interaction data, then that could "close the loop" and
+help the instructor improve future lectures. For instance, if 80% of students are silently diverging from
+the live example at a certain point in lecture, then perhaps that part requires further clarification.
+
+A related point/question is: what happens if two people try to simultaneously edit? i assume that they clobber each other's changes, right? in that case, it might be good to designate only ONE person who can edit, and everyone else just watches. or else a mischievous student can just delete everyone's code. of course, you can also have another "free-for-all" mode where everyone can edit.
 
 
 ### Visualizing different programming languages (especially JavaScript!)
