@@ -98,11 +98,11 @@ There are (at least) two main ways to implement this feature:
 - Add custom data types to the trace and have the frontend render them
   specially using JS visualization libraries such as d3.
 
-- Take advantage of OPT's (still undocumented) ability to print
+- Take advantage of OPT's (still-undocumented) ability to print
   arbitrary HTML/CSS/JS to the canvas (just like how it can print stdout
-  output to a text box). Thus, we create custom data structure classes
-  with printHTML() methods that print their representation in HTML
-  format. The dream here is to be able to write pure-Python modules for
+  output to a text box). This enables us to create custom data structure classes
+  with printHTML() methods that print their graphical representation to
+  the web page canvas. The dream here is to be able to write pure-Python modules for
   each custom data type, which can "pretty-print" as HTML/CSS/JS.
 
 
