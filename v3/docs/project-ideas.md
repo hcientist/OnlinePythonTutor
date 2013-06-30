@@ -83,13 +83,11 @@ I recently added a feature to Online Python Tutor (OPT) that enables user progra
 
 For the file I/O example, I can imagine creating a special File class that implements "file-like" stream I/O methods. Then the user program might look like:
 
----
-import VisualFile
-f = VisualFile(<string contents of the file>)
+    import VisualFile
+    f = VisualFile(<string contents of the file>)
+    for line in open(f):
+        <parse line>
 
-for line in open(f):
-  <parse line>
----
 
 The class definition of VisualFile includes the proper HTML-generation code to render a pretty HTML representation of the file's contents. And when methods iterate over the file, it can render an HTML representation with certain lines or characters highlighted to represent, say, the current file pointer position, etc.
 }
@@ -190,7 +188,7 @@ We also talked about visualizing orders of growth of code, such as loops, nested
 
 ## Backend
 
-### Support multiple concurrent viewers
+### Shared visualization sessions
 
 My main high-level vision for where to take the shared editing is the following:
 
@@ -201,16 +199,20 @@ My main high-level vision for where to take the shared editing is the following:
 
 The basic idea here is that students can follow along with an instructor but then "detach" at anytime to try out their own variations and experiments without interfering with other people's sessions.
 
-Here's another snippet on this idea:
+A related point/question is: what happens if two people try to simultaneously edit? i assume that they clobber each other's changes, right? in that case, it might be good to designate only ONE person who can edit, and everyone else just watches. or else a mischievous student can just delete everyone's code. of course, you can also have another "free-for-all" mode where everyone can edit.
 
-Collaborative visualizations: Adding real-time concurrent editing to these visualizations enables students to work together and tutor one another while physically separated. A shared workspace can also be useful during both physical and virtual lectures: As the instructor is lecturing using code visualizations, students can follow along by viewing those same running examples on their laptops. At any point when curious or confused, students can instantly diverge from the live example and try out their own variants
+
+Another take on this idea:
+Adding real-time concurrent editing to these visualizations enables students to work together and tutor
+one another while physically separated. A shared workspace can also be useful during both physical and
+virtual lectures: As the instructor is lecturing using code visualizations, students can follow along by
+viewing those same running examples on their laptops. At any point when curious or confused, students can
+instantly diverge from the live example and try out their own variants
 on-the-fly in private; they can then sync back to the "live feed" at any time. Students can also text
 chat with one another about the lecture, all within the context of the live lecture materials. If students
 opt-in to allowing the instructor to access such interaction data, then that could "close the loop" and
 help the instructor improve future lectures. For instance, if 80% of students are silently diverging from
 the live example at a certain point in lecture, then perhaps that part requires further clarification.
-
-A related point/question is: what happens if two people try to simultaneously edit? i assume that they clobber each other's changes, right? in that case, it might be good to designate only ONE person who can edit, and everyone else just watches. or else a mischievous student can just delete everyone's code. of course, you can also have another "free-for-all" mode where everyone can edit.
 
 
 ### Visualizing different programming languages (especially JavaScript!)
