@@ -57,15 +57,50 @@ Here are some examples of input widgets:
 
 # Custom data structure visualizations
 
-Right now Online Python Tutor can render only basic Python data structures. While this is sufficient for teaching introductory CS courses, intermediate and advanced CS students must learn algorithms involving more sophisticated data structures such as binary trees and graphs. The goal of this project is to create a set of effective custom renderers for data structures such as trees, graphs, numerical matrices, and even simple 2D graphical worlds (e.g., for Pac-Man or Conway’s Game of Life). These renderers will make Online Python Tutor useful in a far larger variety of CS courses and online textbooks.
+Right now Online Python Tutor can render only basic Python data structures.
+
+While this is sufficient for teaching introductory CS courses, intermediate and advanced CS students must learn
+algorithms involving more sophisticated data structures such as binary trees and graphs.
+The goal of this project is to create a set of effective custom renderers for data structures
+such as:
+
+- trees,
+- graphs,
+- numerical matrices,
+- and even simple 2D graphical worlds (e.g., for Pac-Man or Conway’s Game of Life).
+ 
+These renderers will make Online Python Tutor useful in a far larger variety of CS courses and online textbooks
+beyond CS0/CS1 sorts of intro classes.
+
+One ultimate goal is to make OPT capable of visualizing classic AI and algorithm textbook algorithms
+that otherwise would need to be tediously built as one-off special-case visualizations.
+
+There are (at least) two main ways to implement this feature:
+
+- Add custom data types to the trace and have the frontend render them specially, using JS visualization libraries such as d3.
+- Take advantage of OPT's (still undocumented) ability to print arbitrary HTML/CSS/JS to the canvas (just like how it can print stdout output to a text box), so create custom data structure classes with printHTML() methods that print their representation in HTML format.
+
+The dream is to be able to write Python modules for each custom data type.
 
 
-## Custom Rendering API and Lightweight Plug-In System (medium)
+## Custom Rendering API and Lightweight Plug-In System
 
-Right now Online Python Tutor renders Python data structures in a single, fixed way. However, different instructors have different preferences for how they want certain objects to render on-screen (and argue passionately for their specific tastes). There is currently no way for them to specify these custom rendering schemes without mucking around with intricate JavaScript code in the frontend. The goal of this project is to create a clean API and plugin architecture so that JavaScript-savvy instructors can easily create custom renderers.
+Right now Online Python Tutor renders Python data structures in a single, fixed way.
+However, different instructors have different preferences for how they want certain objects to render
+on-screen (and argue passionately for their specific tastes).
+There is currently no way for them to specify these custom rendering schemes without mucking around with
+intricate JavaScript code in the frontend.
+
+The goal of this project is to create a clean API and plugin architecture so that JavaScript-savvy instructors
+can easily create custom renderers.
+
+The ultimate goal here is to completely replace one-off custom algorithm visualizations, whiteboard doodles,
+and ad-hoc PowerPoint slide deck animations of CS concepts.
 
 
-## Offline mode for use as a production debugger (medium)
+# Backend
+
+## Offline mode for use as a production debugger
 
 From a reader comment: "As a teaching tool it is invaluable, not only for teaching python, but for programming in general (what is going on in memory...).
 I've actively used it to debug / trace short pieces of code. Any chance of having it offline (and without the limitations of an online tool like the inability to load all modules)? That would make a perfect pdb visualization tool."
