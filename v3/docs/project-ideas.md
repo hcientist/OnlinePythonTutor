@@ -35,7 +35,7 @@ so that OPT visualizations (and the surrounding user interface) look good on dis
 ranging from smartphones to tablets to laptops to giant desktop monitors.
 
 
-# Richer input/output
+# Frontend
 
 ## Rich user input widgets
 
@@ -55,7 +55,7 @@ Here are some examples of input widgets:
 - A text box that represents a file on the filesystem. Imagine a web-based I/O simulator where there would be a text box simulating a file object, and then I/O calls such as open, readline, etc. would be intercepted and visualized as iterating (pointing) to the file object one line at a time, reading each line into a string, etc. Writing into a file can also be visualized in this way too. And seeking, overwriting, appending, etc.
 
 
-# Custom data structure visualizations
+## Custom data structure visualizations
 
 Right now Online Python Tutor can render only basic Python data structures.
 
@@ -98,6 +98,36 @@ The ultimate goal here is to completely replace one-off custom algorithm visuali
 and ad-hoc PowerPoint slide deck animations of CS concepts.
 
 
+## Annotations for simplifying visualizations
+
+Right now OPT visualizes "everything" about program execution. However, that can easily lead to visual overload.
+Let's think about implementing annotations to selectively show/hide different parts of execution, so that instructors
+and students can hone in on what they find interesting. Examples:
+
+- annotate functions to trace/skip
+- annotate data structures (or parts) to show/hide
+- selectively expand or collapse data structure visualizations, which is useful for giant structures
+- line-based breakpoints (currently implemented as a hack by puttin `# break` at the end of a line)
+- conditional breakpoints
+
+Implementing annotations as ordinary code comments (rather than using a specialized UI) is elegant
+because the instructor's code examples are self-contained in plain text and easily archivable outside of OPT.
+
+
+## Optimize display of object-oriented programs
+
+This is a good project for an object-oriented programming enthusiast.
+
+Right now OPT naively visualizes all the steps that the Python interpreter takes when executing an
+object-oriented program, which leads to all sorts of extraneous variables, frames, and pointers
+lying around.
+
+<a href="http://pythontutor.com/visualize.html#code=%23+Inheritance+-+object-oriented+programming+intro%0A%23+Adapted+from+MIT+6.01+course+notes+(Section+3.5)%0A%23+http%3A//mit.edu/6.01/mercurial/spring10/www/handouts/readings.pdf%0A%0Aclass+Staff601%3A%0A++++course+%3D+'6.01'%0A++++building+%3D+34%0A++++room+%3D+501%0A%0A++++def+giveRaise(self,+percentage)%3A%0A++++++++self.salary+%3D+self.salary+%2B+self.salary+*+percentage%0A%0Aclass+Prof601(Staff601)%3A%0A++++salary+%3D+100000%0A%0A++++def+__init__(self,+name,+age)%3A%0A++++++++self.name+%3D+name%0A++++++++self.giveRaise((age+-+18)+*+0.03)%0A%0A++++def+salutation(self)%3A%0A++++++++return+self.role+%2B+'+'+%2B+self.name%0A%0Apat+%3D+Prof601('Pat',+60)&mode=display&cumulative=false&py=2&curInstr=16">Click here for an example.</a>
+
+This project involves cleaning up the execution trace so that object-oriented programs look
+sensible when visualized.
+
+
 # Backend
 
 ## Offline mode for use as a production debugger
@@ -130,24 +160,10 @@ Ok sorry that was mostly me thinking out loud.
 
 }
 
-Ha, I guess you can call this "Offline Python Tutor"!
+Ha, I guess you can call this **"Offline Python Tutor"**!
 
 
-## Optimize display of object-oriented programs (medium)
-
-This is a good project for an object-oriented programming enthusiast.
-
-Right now OPT naively visualizes all the steps that the Python interpreter takes when executing an
-object-oriented program, which leads to all sorts of extraneous variables, frames, and pointers
-lying around.
-
-<a href="http://pythontutor.com/visualize.html#code=%23+Inheritance+-+object-oriented+programming+intro%0A%23+Adapted+from+MIT+6.01+course+notes+(Section+3.5)%0A%23+http%3A//mit.edu/6.01/mercurial/spring10/www/handouts/readings.pdf%0A%0Aclass+Staff601%3A%0A++++course+%3D+'6.01'%0A++++building+%3D+34%0A++++room+%3D+501%0A%0A++++def+giveRaise(self,+percentage)%3A%0A++++++++self.salary+%3D+self.salary+%2B+self.salary+*+percentage%0A%0Aclass+Prof601(Staff601)%3A%0A++++salary+%3D+100000%0A%0A++++def+__init__(self,+name,+age)%3A%0A++++++++self.name+%3D+name%0A++++++++self.giveRaise((age+-+18)+*+0.03)%0A%0A++++def+salutation(self)%3A%0A++++++++return+self.role+%2B+'+'+%2B+self.name%0A%0Apat+%3D+Prof601('Pat',+60)&mode=display&cumulative=false&py=2&curInstr=16">Click here for an example.</a>
-
-This project involves cleaning up the execution trace so that object-oriented programs look
-sensible when visualized.
-
-
-## Add better Unicode support (medium)
+## Add better Unicode support
 
 This project is a great fit for someone familiar with coding in non-English languages.
 
@@ -184,30 +200,43 @@ s = u'—'
 (Note that Unicode support in Python 2 and 3 involve different subtleties.)
 
 
-## Create an OPT backend for a different programming language (hard)
+## Visualizing different programming languages (especially JavaScript!)
 
 This project is great for someone who likes to hack on language implementations and runtimes.
 
 The OPT frontend can visualize programs written in any mainstream language, not just Python.
 This project involves creating a backend for another language (e.g., Ruby, Java, JavaScript, C, C++, Scheme).
-All the backend needs to do is to generate an execution trace in the following format ...
+All the backend needs to do is to generate an execution trace in the following format:
 
 https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-format.md
 
-... and the frontend should be able to visualize it!
+And the OPT frontend should be able to visualize it!
 
-For instance, the [Chicory Java trace generator for Daikon](http://groups.csail.mit.edu/pag/daikon/download/doc/daikon_manual_html/daikon_7.html#SEC69)
+In particular, I think a **JavaScript backend** would be amazing.
+By hacking the [narcissus](https://github.com/mozilla/narcissus) meta-circular JavaScript interpreter,
+you should be able to implement a JavaScript visualizer purely in the browser. You get the benefits of
+low latency, offline access, and no security concerns that plague traditional server-side apps. How cool is that?!?
+
+Check out backends that other people have already written:
+
+- [Online Java Tutor](http://cscircles.cemc.uwaterloo.ca/java_visualize/) by David Pritchard
+- [Online Ruby Tutor](http://www.onlinerubytutor.com/) by Daniel Stutzman
+- [Blockly + OPT](http://epleweb.appspot.com/) by Pier Giuliano Nioi
+
+Other misc. implementation notes:
+
+- The [Chicory Java trace generator for Daikon](http://groups.csail.mit.edu/pag/daikon/download/doc/daikon_manual_html/daikon_7.html#SEC69)
 might be a good basis for writing a Java backend for OPT. Or take a look at [jdb](http://docs.oracle.com/javase/1.3/docs/tooldocs/solaris/jdb.html), which
 should be similar to how Online Python Tutor uses Python's pdb module to generate traces.
 
-Also, my
-[master's thesis](http://pgbovine.net/projects/pubs/guo-mixedlevel-mengthesis.pdf) from 2006
+- My [master's thesis](http://pgbovine.net/projects/pubs/guo-mixedlevel-mengthesis.pdf) from 2006
 describes one possible technique for building a C-language backend based upon the [Valgrind](http://www.valgrind.org)
 tool. More importantly, it describes the difficulties involved in creating a robust execution
-trace generator for C and C++. It should be much easier to build a backend for a memory- and type-safe language, though :)
+trace generator for C and C++.
+It should be much easier to build a backend for a memory- and type-safe language, though :)
 
 
-## Migrate OPT backend to Skulpt (very hard but super cool!)
+## Skulpt (Python-in-JavaScript) backend
 
 This project is appropriate for someone with advanced knowledge of hacking a Python interpreter
 who is willing to make a substantive time commitment.
@@ -241,3 +270,5 @@ Dec 2012: Brython -- http://www.brython.info/index_en.html -- might also be a co
 
 May 2013: The main caveat with re-implementing for one of these alternative Python implementations is that they don't support the full ("official") Python language.
 Thus, users might be frustrated that code they type into this tutor doesn't run exactly like code they type into the official Python interpreter.
+That said, though, a Skulpt implementation would still be useful, as long as users understand its limitations and caveats, and that it doesn't support the full Python language in all of its glory (or its weird edge-case behaviors).
+
