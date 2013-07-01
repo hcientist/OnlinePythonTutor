@@ -704,3 +704,13 @@ div.ExecutionVisualizer .highlight-prev {
 div.ExecutionVisualizer .highlight-legend {
   padding: 2px;
 }
+
+.ui-resizable-e {
+  background-color: #DDDDFF;
+  border: 3px solid white;
+  box-sizing: border-box;
+}
+
+.ui-resizable-e:hover {
+  border-color: #DDDDFF;
+}
