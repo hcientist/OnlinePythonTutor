@@ -146,6 +146,23 @@ lying around.
 Think about how annotations can "clean up" such a big and hairy visualization.
 
 
+### Semantic zoom and other visual customizations
+
+Right now OPT has only a limited number of ways to display visualizations, mostly set at the time
+the "Visualize Execution" button is pressed.
+
+First, push some of the relevant options back to the visualizer UI itself, so they can be toggled
+on a live visualization.
+
+Then think about "semantic zooming" -- i.e., displaying different levels of granularity and focus
+targeted towar different user audiences. For instance, fully expanding all the data structures
+up-front might overwhelm beginners, so maybe start with them collapsed and then allow the user
+to zoom in to expand them. Or maybe even "zooming out" to the point where data structures are
+just rendered as plain-text (e.g., a list as `[1, 2, ..., 100]`, to take the focus off the heap details).
+
+Semantic zooming will help improve the scalability of the visualizations.
+
+
 ### Web-based authoring environment
 
 With a proper Web-based authoring environment, teachers and students can use
