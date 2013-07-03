@@ -310,6 +310,25 @@ Thus, users might be frustrated that code they type into this tutor doesn't run 
 That said, though, a Skulpt implementation would still be useful, as long as users understand its limitations and caveats, and that it doesn't support the full Python language in all of its glory (or its weird edge-case behaviors).
 
 
+### Hack CPython to enable sub-expression-level tracing
+
+Right now OPT uses [bdb](http://docs.python.org/2/library/bdb.html) to trace at line-level granularity.
+However, lots of users want sub-expression-level granularity, such as this user:
+
+"The second idea came about when teaching about return values, but it applies to any "compound" expression that is more than a single function call or assignment of a literal to a variable.  I often find myself showing how Python processes a statement like "x = len(s) + 1" by showing how individual pieces are computed sequentially.  Right now, OPT treats that as a single, atomic line, so students don't see clearly how it first calls len(s), "replaces" that with its return value, performs the addition, and then stores the result of that into x.  I draw things like this on the board with underlining and arrows (e.g., "len(s)" is underlined, with an arrow pointing down to its return value) to show where data goes and how everything is evaluated.  I expect that could be automated and displayed in something like OPT.  I'm not sure I'm being clear, but I hope that makes some sense.  I recognize that this doesn't fit that well into the current model, which is focused on one step being one line of code, so it may be a bit of a pipe-dream."
+
+One way to deal is to use Skulpt (see above), but the problem with Skulpt is that it's not "real" Python
+(i.e., CPython), so that code typed into OPT won't work exactly the same as code run by CPython.
+
+The goal of this project is to hack CPython all the way from the compiler frontend to the bytecode generator
+and debugger hooks to add **fine-grained** information into the bytecode to enable sub-expression-level tracing.
+I envision the result as being a custom CPython interpreter that I can compile and run on the OPT server, which
+will run real CPython code, albeit with bytecode that's enhanced with extra metadata. The resulting interpreter
+should be compatible with pure-Python modules, and hopefully compatible with C modules as well, as long as `PyObject`
+and other internal guts aren't altered too much. But I don't care a ton about C module compatibility since OPT
+doesn't really use C modules.
+
+
 ### Offline mode for use as a production debugger
 
 From a reader comment: "As a teaching tool it is invaluable, not only for teaching python, but for programming in general (what is going on in memory...).
