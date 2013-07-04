@@ -868,6 +868,14 @@ class PGLogger(bdb.Bdb):
                              heap=self.encoder.get_heap(),
                              stdout=get_user_stdout(tos[0]))
 
+        # optional column numbers for greater precision
+        # (only relevant in a hacked CPython that supports column numbers)
+        if hasattr(frame, 'f_colno'):
+          # -1 is an invalid column number
+          if frame.f_colno >= 0:
+            trace_entry['column'] = frame.f_colno
+
+
         # TODO: refactor into a non-global
         global __html__, __css__, __js__
         if __html__:
