@@ -60,12 +60,12 @@ div.ExecutionVisualizer #dataViz {
   margin-left: 25px;
 }
 
-div.ExecutionVisualizer div#codeDisplayDiv {
+/*div.ExecutionVisualizer div#codeDisplayDiv {
   width: 550px;
-}
+}*/
 
 div.ExecutionVisualizer div#pyCodeOutputDiv {
-  max-width: 550px;
+  /*max-width: 550px;*/
   max-height: 450px;
   /*max-height: 620px;*/
   overflow: auto;
@@ -529,6 +529,8 @@ div.ExecutionVisualizer #executionSlider {
 
   margin-left: auto;
   margin-right: auto;
+
+  width: 95%;
 }
 
 div.ExecutionVisualizer #executionSliderCaption {
