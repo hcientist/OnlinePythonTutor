@@ -1533,9 +1533,6 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
     }
   }
 
-  if (this.updateOutputCallback) {
-    this.updateOutputCallback();
-  }
 } // end of updateOutput
 
 
