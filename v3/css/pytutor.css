@@ -60,9 +60,10 @@ div.ExecutionVisualizer #dataViz {
   margin-left: 25px;
 }
 
-/*div.ExecutionVisualizer div#codeDisplayDiv {
+div.ExecutionVisualizer div#codeDisplayDiv {
+  /* set this as default unless user specifies a custom size */
   width: 550px;
-}*/
+}
 
 div.ExecutionVisualizer div#pyCodeOutputDiv {
   /*max-width: 550px;*/
