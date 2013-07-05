@@ -317,8 +317,8 @@ However, lots of users want sub-expression-level granularity, such as this user:
 
 "The second idea came about when teaching about return values, but it applies to any "compound" expression that is more than a single function call or assignment of a literal to a variable.  I often find myself showing how Python processes a statement like "x = len(s) + 1" by showing how individual pieces are computed sequentially.  Right now, OPT treats that as a single, atomic line, so students don't see clearly how it first calls len(s), "replaces" that with its return value, performs the addition, and then stores the result of that into x.  I draw things like this on the board with underlining and arrows (e.g., "len(s)" is underlined, with an arrow pointing down to its return value) to show where data goes and how everything is evaluated.  I expect that could be automated and displayed in something like OPT.  I'm not sure I'm being clear, but I hope that makes some sense.  I recognize that this doesn't fit that well into the current model, which is focused on one step being one line of code, so it may be a bit of a pipe-dream."
 
-One way to deal is to use Skulpt (see above), but the problem with Skulpt is that it's not "real" Python
-(i.e., CPython), so that code typed into OPT won't work exactly the same as code run by CPython.
+One way to get finer-grained tracing is to use Skulpt (see above), but the problem with Skulpt is that it's not
+"real" Python (i.e., CPython), so that code typed into OPT won't run exactly the same as code run by CPython.
 
 The goal of this project is to hack CPython all the way from the compiler frontend to the bytecode generator
 and debugger hooks to add **fine-grained** information into the bytecode to enable sub-expression-level tracing.
@@ -326,7 +326,64 @@ I envision the result as being a custom CPython interpreter that I can compile a
 will run real CPython code, albeit with bytecode that's enhanced with extra metadata. The resulting interpreter
 should be compatible with pure-Python modules, and hopefully compatible with C modules as well, as long as `PyObject`
 and other internal guts aren't altered too much. But I don't care a ton about C module compatibility since OPT
-doesn't really use C modules.
+doesn't really use C modules. (Update in July 2013 -- it seems like hacks to CPython core data structures are
+intrusive enough to preclude C module object compatibility. But that's not a big deal.)
+
+In early July 2013, I made some initial steps toward this goal as a proof-of-concept and am fairly encouraged by
+my findings so far. To support this finer-grained intra-line stepping, I hacked CPython 2.7.5 to:
+
+1. call the trace function at each bytecode rather than each time a new line is executed, which turns it into a bytecode-level stepper
+2. disable the peephole optimizer so that bytecodes match source code more closely
+3. insert column number information along with line numbers in bytecode
+
+The trickest part was getting column number information into the code object.
+It turns out that the tokenizer, parser, and AST all keep column numbers,
+but only line numbers show up in bytecode (encoded in the cryptic lnotab string).
+After some hair-pulling, I managed to add a new code.co_coltab dict that maps each
+bytecode instruction to a (line number, column number) pair.
+
+Here's example disassembly from the following line (line 7 in source code) with line/column number mappings,
+and the corresponding point in the source code.
+
+    Source code line 7:
+    "if foo() and (x + y > 7):"
+
+    (7, 3)          21 LOAD_NAME                0 (foo)  if foo() and (x + y > 7):
+                                                            ^
+    (7, 3)          24 CALL_FUNCTION            0        if foo() and (x + y > 7):
+                                                            ^
+    (7, 3)          27 JUMP_IF_FALSE_OR_POP    43        if foo() and (x + y > 7):
+                                                            ^
+    (7, 14)         30 LOAD_NAME                1 (x)    if foo() and (x + y > 7):
+                                                                       ^
+    (7, 18)         33 LOAD_NAME                2 (y)    if foo() and (x + y > 7):
+                                                                           ^
+    (7, 16)         36 BINARY_ADD                        if foo() and (x + y > 7):
+                                                                         ^
+    (7, 22)         37 LOAD_CONST               3 (7)    if foo() and (x + y > 7):
+                                                                               ^
+    (7, 20)         40 COMPARE_OP               4 (>)    if foo() and (x + y > 7):
+                                                                             ^
+    (7, 20)    >>   43 POP_JUMP_IF_FALSE       54        if foo() and (x + y > 7):
+                                                                             ^
+
+
+With this extended bytecode format, I can extend Online Python Tutor to point
+not only to the line being executed, but also to the column, which gives finer-grained tracing for instructors.
+
+The column number precision isn't perfect for all kinds of expressions, but it's still better than having 
+no column numbers. For instance, it's not precise for chained comparisons (`x < y < z < w`),
+field accesses (`foo.bar.baz`), and probably subscripting.
+
+In short, I think that with enough elbow grease to hack on CPython innards,
+you can get pretty good line/column number information into bytecodes;
+then Online Python Tutor can do much finer-grained stepping within expressions.
+
+Line-level stepping is too coarse, and bytecode-level might be too fine-grained;
+so I imagine that with some good filtering heuristics, we can hit a sweet spot of
+stepping at a level that instructors like. In particular, lots of bytecodes are executed for
+loading constants when initializing, say, a list; those can probably be skipped since
+they're un-interesting.
 
 
 ### Offline mode for use as a production debugger
