@@ -146,6 +146,9 @@ $(document).ready(function() {
                                                    });
 
             // set keyboard bindings
+            // VERY IMPORTANT to clear and reset this every time or
+            // else the handlers might be bound multiple times
+            $(document).unbind('keydown');
             $(document).keydown(function(k) {
               if (k.keyCode == 37) { // left arrow
                 if (myVisualizer.stepBack()) {
