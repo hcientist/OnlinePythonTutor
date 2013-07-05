@@ -50,7 +50,6 @@ var rawInputLst = []; // a list of strings inputted by the user in response to r
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 
-var keyStuckDown = false;
 
 function enterEditMode() {
   $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
@@ -229,26 +228,17 @@ $(document).ready(function() {
 
                 // set keyboard bindings
                 $(document).keydown(function(k) {
-                  if (!keyStuckDown) {
-                    if (k.keyCode == 37) { // left arrow
-                      if (myVisualizer.stepBack()) {
-                        k.preventDefault(); // don't horizontally scroll the display
-                        keyStuckDown = true;
-                      }
+                  if (k.keyCode == 37) { // left arrow
+                    if (myVisualizer.stepBack()) {
+                      k.preventDefault(); // don't horizontally scroll the display
                     }
-                    else if (k.keyCode == 39) { // right arrow
-                      if (myVisualizer.stepForward()) {
-                        k.preventDefault(); // don't horizontally scroll the display
-                        keyStuckDown = true;
-                      }
+                  }
+                  else if (k.keyCode == 39) { // right arrow
+                    if (myVisualizer.stepForward()) {
+                      k.preventDefault(); // don't horizontally scroll the display
                     }
                   }
                 });
-
-                $(document).keyup(function(k) {
-                  keyStuckDown = false;
-                });
-
 
                 // also scroll to top to make the UI more usable on smaller monitors
                 $(document).scrollTop(0);
