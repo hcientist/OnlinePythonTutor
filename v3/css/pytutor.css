@@ -523,7 +523,7 @@ div.ExecutionVisualizer div#heapHeader {
 }
 
 div.ExecutionVisualizer #executionSlider {
-  width: 500px;
+  /* if you set 'width', then it looks ugly when you dynamically resize */
   margin-top: 15px;
   margin-bottom: 5px;
 
@@ -705,12 +705,9 @@ div.ExecutionVisualizer .highlight-legend {
   padding: 2px;
 }
 
+/* resizing sliders from David Pritchard */
 .ui-resizable-e {
-  background-color: #DDDDFF;
+  background-color: #dddddd;
   border: 3px solid white;
   box-sizing: border-box;
-}
-
-.ui-resizable-e:hover {
-  border-color: #DDDDFF;
 }

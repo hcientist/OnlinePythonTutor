@@ -546,12 +546,11 @@ ExecutionVisualizer.prototype.render = function() {
 
   this.hasRendered = true;
 
-  // left-right horizontal resizer
+  // left-right draggable pane resizer (from David Pritchard)
   $('#pyCodeOutputDiv').css({"max-width":"inherit"});
   $('#codeDisplayDiv').css({"max-width":"inherit"});
-  $('#codeDisplayDiv').css({"width":"350px"}); // or whatever default width you want
   $('#pyStdout').css({"max-width":"inherit"});
-  $('#executionSlider').css({"width":"75%"});
+  $('#executionSlider').css({"width":"95%"});
   var syncStdoutWidth = function(event, ui){
     $("#vizLayoutTdFirst #pyStdout").width(ui.size.width-2*parseInt($("#pyStdout").css("padding-left")));};
   $('#codeDisplayDiv').resizable({handles:"e", resize: syncStdoutWidth});
