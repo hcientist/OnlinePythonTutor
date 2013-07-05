@@ -707,7 +707,7 @@ div.ExecutionVisualizer .highlight-legend {
 
 /* resizing sliders from David Pritchard */
 .ui-resizable-e {
-  background-color: #dddddd;
+  background-color: #cccccc;
+  width: 1px;
   border: 3px solid white;
-  box-sizing: border-box;
 }
