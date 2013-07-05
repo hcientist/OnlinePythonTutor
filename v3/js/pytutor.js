@@ -441,12 +441,22 @@ ExecutionVisualizer.prototype.render = function() {
 
 
   if (this.params.codeDivWidth) {
-    this.domRoot.find('#pyCodeOutputDiv,#codeDisplayDiv,#pyStdout')
-      .css('max-width', this.params.codeDivWidth + 'px');
+    this.domRoot.find('#codeDisplayDiv')
+      .css('width', this.params.codeDivWidth + 'px');
 
     this.domRoot.find('#executionSlider')
       .css('width', (this.params.codeDivWidth - 20) + 'px');
   }
+
+  // enable left-right draggable pane resizer (originally from David Pritchard)
+  $('#pyCodeOutputDiv,#codeDisplayDiv,#pyStdout').css({"max-width":"inherit"});
+  $('#executionSlider').css({"width":"95%"});
+
+  var syncStdoutWidth = function(event, ui){
+    $("#vizLayoutTdFirst #pyStdout").width(ui.size.width-2*parseInt($("#pyStdout").css("padding-left")));};
+  $('#codeDisplayDiv').resizable({handles:"e", resize: syncStdoutWidth});
+  syncStdoutWidth(null, {size: {width: $('#codeDisplayDiv').width()}});
+
 
   if (this.params.codeDivHeight) {
     this.domRoot.find('#pyCodeOutputDiv')
@@ -545,17 +555,6 @@ ExecutionVisualizer.prototype.render = function() {
   this.updateOutput();
 
   this.hasRendered = true;
-
-  // left-right draggable pane resizer (from David Pritchard)
-  $('#pyCodeOutputDiv').css({"max-width":"inherit"});
-  $('#codeDisplayDiv').css({"max-width":"inherit"});
-  $('#pyStdout').css({"max-width":"inherit"});
-  $('#executionSlider').css({"width":"95%"});
-  var syncStdoutWidth = function(event, ui){
-    $("#vizLayoutTdFirst #pyStdout").width(ui.size.width-2*parseInt($("#pyStdout").css("padding-left")));};
-  $('#codeDisplayDiv').resizable({handles:"e", resize: syncStdoutWidth});
-  syncStdoutWidth(null, {size: {width: $('#codeDisplayDiv').width()}});
-
 }
 
 
