@@ -441,17 +441,13 @@ ExecutionVisualizer.prototype.render = function() {
 
 
   if (this.params.codeDivWidth) {
-    this.domRoot.find('#codeDisplayDiv')
-      .css('width', this.params.codeDivWidth + 'px');
-
-    this.domRoot.find('#executionSlider')
-      .css('width', (this.params.codeDivWidth - 20) + 'px');
+    // set width once
+    this.domRoot.find('#codeDisplayDiv').width(
+      this.params.codeDivWidth);
+    // it will propagate to the slider
   }
 
   // enable left-right draggable pane resizer (originally from David Pritchard)
-  $('#pyCodeOutputDiv,#codeDisplayDiv,#pyStdout').css({"max-width":"inherit"});
-  $('#executionSlider').css({"width":"95%"});
-
   var syncStdoutWidth = function(event, ui){
     $("#vizLayoutTdFirst #pyStdout").width(ui.size.width-2*parseInt($("#pyStdout").css("padding-left")));};
   $('#codeDisplayDiv').resizable({handles:"e", resize: syncStdoutWidth});
@@ -1536,7 +1532,11 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
       }
     }
   }
-}
+
+  if (this.updateOutputCallback) {
+    this.updateOutputCallback();
+  }
+} // end of updateOutput
 
 
 // Pre-compute the layout of top-level heap objects for ALL execution
