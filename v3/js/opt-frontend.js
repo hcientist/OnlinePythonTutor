@@ -34,12 +34,25 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // make two copies of ../web_exec.py and give them the following names,
 // then change the first line (starting with #!) to the proper version
 // of the Python interpreter (i.e., Python 2 or Python 3).
+// Note that your hosting provider might have stringent rules for what
+// kind of scripts are allowed to execute. For instance, my provider
+// (Webfaction) seems to let scripts execute only if permissions are
+// something like:
+// -rwxr-xr-x 1 pgbovine pgbovine 2.5K Jul  5 22:46 web_exec_py2.py*
+// (most notably, only the owner of the file should have write
+//  permissions)
 //var python2_backend_script = 'web_exec_py2.py';
 //var python3_backend_script = 'web_exec_py3.py';
 
 // uncomment below if you're running on Google App Engine using the built-in app.yaml
 var python2_backend_script = 'exec';
 var python3_backend_script = null;
+
+// KRAZY experimental KODE!!! Use a custom hacked CPython interpreter
+var python2crazy_backend_script = 'web_exec_py2-crazy.py';
+// On Google App Engine, simply run dev_appserver.py with the
+// crazy custom CPython interpreter to get 2crazy
+//var python2crazy_backend_script = 'exec';
 
 var appMode = 'edit'; // 'edit', 'display', or 'display_no_frills'
 
@@ -143,6 +156,10 @@ $(document).ready(function() {
       else if ($('#pythonVersionSelector').val() == '3') {
           backend_script = python3_backend_script;
       }
+      // experimental KRAZY MODE!!!
+      else if ($('#pythonVersionSelector').val() == '2crazy') {
+          backend_script = python2crazy_backend_script;
+      }
 
       if (!backend_script) {
         alert('Error: This server is not configured to run Python ' + $('#pythonVersionSelector').val());
@@ -222,6 +239,9 @@ $(document).ready(function() {
                                                         textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
                                                         showOnlyOutputs: ($('#showOnlyOutputsSelector').val() == 'true'),
                                                         executeCodeWithRawInputFunc: executeCodeWithRawInput,
+
+                                                        // undocumented experimental modes:
+                                                        pyCrazyMode: ($('#pythonVersionSelector').val() == '2crazy'),
                                                         //allowEditAnnotations: true,
                                                        });
 

@@ -388,6 +388,13 @@ ExecutionVisualizer.prototype.render = function() {
     this.allowEditAnnotations = false;
   }
 
+  if (this.params.pyCrazyMode !== undefined) {
+    this.pyCrazyMode = this.params.pyCrazyMode;
+  }
+  else {
+    this.pyCrazyMode = false;
+  }
+
   this.domRoot.find('#stepAnnotationEditor').hide();
 
   if (this.params.embeddedMode) {
@@ -1317,6 +1324,10 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
     var curLineNumber = null;
     var prevLineNumber = null;
 
+    // only relevant if in myViz.pyCrazyMode
+    var curColumnNumber = null;
+    var prevColumnNumber = null;
+
     var curIsReturn = (curEntry.event == 'return');
     var prevIsReturn = false;
 
@@ -1324,9 +1335,51 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
     if (myViz.curInstr > 0) {
       prevLineNumber = myViz.curTrace[myViz.curInstr - 1].line;
       prevIsReturn = (myViz.curTrace[myViz.curInstr - 1].event == 'return');
+
+      if (myViz.pyCrazyMode) {
+        prevColumnNumber = myViz.curTrace[myViz.curInstr - 1].column;
+      }
     }
 
     curLineNumber = curEntry.line;
+
+    if (myViz.pyCrazyMode) {
+      curColumnNumber = curEntry.column;
+    }
+
+    if (myViz.pyCrazyMode) {
+      var lineInfo = myViz.codeOutputLines[curLineNumber - 1];
+      assert(lineInfo.lineNumber == curLineNumber);
+      var codeAtLine = lineInfo.text;
+      //console.log("Line=", curLineNumber, ", Col=", curColumnNumber, codeAtLine);
+
+      // super hack to create three different substrings from codeAtLine
+      // and then encode each one separately as HTML
+      var prefix = '';
+      if (curColumnNumber > 0) {
+        prefix = codeAtLine.slice(0, curColumnNumber);
+      }
+
+      var highlightedChar = codeAtLine.slice(curColumnNumber, curColumnNumber + 1);
+
+      var suffix = '';
+      if (curColumnNumber < codeAtLine.length - 1) {
+        suffix = codeAtLine.slice(curColumnNumber + 1, codeAtLine.length);
+      }
+
+      // shotgun approach: reset ALL lines to their natural (unbolded) state
+      $.each(myViz.codeOutputLines, function(i, e) {
+        var d = myViz.generateID('cod' + e.lineNumber);
+        myViz.domRoot.find('#' + d).html(htmlspecialchars(e.text));
+      });
+
+      // ... then set the current line to lineHTML
+      var lineHTML = htmlspecialchars(prefix) +
+          '<span class="crazyHighlightedChar">' + htmlspecialchars(highlightedChar) + '</span>' +
+          htmlspecialchars(suffix);
+      var curCodeLineDiv = myViz.generateID('cod' + curLineNumber);
+      myViz.domRoot.find('#' + curCodeLineDiv).html(lineHTML);
+    }
 
     // on 'return' events, give a bit more of a vertical nudge to show that
     // the arrow is aligned with the 'bottom' of the line ...

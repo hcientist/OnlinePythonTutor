@@ -719,3 +719,8 @@ div.ExecutionVisualizer .highlight-legend {
 .ui-resizable-e:hover {
   border-color: #cccccc;
 }
+
+/* for pyCrazyMode */
+span.crazyHighlightedChar {
+  background-color: #FFFF66;
+}
