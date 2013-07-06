@@ -711,13 +711,13 @@ div.ExecutionVisualizer .highlight-legend {
 
 /* resizing sliders from David Pritchard */
 .ui-resizable-e {
-  background-color: #cccccc;
+  background-color: #dddddd;
   width: 1px;
   border: 3px solid white;
 }
 
 .ui-resizable-e:hover {
-  border-color: #cccccc;
+  border-color: #dddddd;
 }
 
 
