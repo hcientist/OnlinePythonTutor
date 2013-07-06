@@ -720,7 +720,14 @@ div.ExecutionVisualizer .highlight-legend {
   border-color: #cccccc;
 }
 
+
 /* for pyCrazyMode */
-span.crazyHighlightedChar {
+
+/* prev then curr, so curr gets precedence when both apply */
+div.ExecutionVisualizer .pycrazy-highlight-prev {
+  background-color: #F0F0EA;
+}
+
+div.ExecutionVisualizer .pycrazy-highlight-curr {
   background-color: #FFFF66;
 }
