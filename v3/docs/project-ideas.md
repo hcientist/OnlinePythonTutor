@@ -338,9 +338,9 @@ In early July 2013, I made some initial steps toward this goal as a proof-of-con
 my findings so far.
 
 [**Try the prototype now**](http://pythontutor.com/visualize.html#py=2crazy) by selecting
-"2.crazy" as the Python version.
+"2.crazy" as the Python version. (And see the accompanying [Py2crazy](https://github.com/pgbovine/Py2crazy/) project for more details.)
 
-Or try the prototype on a <a href="http://pythontutor.com/visualize.html#code=def+foo()%3A%0A++return+True%0A%0Ax+%3D+3%0Ay+%3D+5%0A%0Aif+foo()+and+(x+%2B+y+%3E+7)%3A%0A++print+'YES'%0Aelse%3A%0A++print+'NO'&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=2crazy&curInstr=0"><b>simple example</b></a>.
+Specifically, try the prototype on a <a href="http://pythontutor.com/visualize.html#code=def+foo()%3A%0A++return+True%0A%0Ax+%3D+3%0Ay+%3D+5%0A%0Aif+foo()+and+(x+%2B+y+%3E+7)%3A%0A++print+'YES'%0Aelse%3A%0A++print+'NO'&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=2crazy&curInstr=0"><b>simple example</b></a>.
 
 Note that the (approximate) column of the currently-executing bytecode instruction is highlighed in yellow.
 
