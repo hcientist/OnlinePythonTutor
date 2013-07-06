@@ -71,11 +71,13 @@ such as:
 - rendering lists of numbers as bar/line graphs, charts, and other quantitative data visualizations (e.g., using Google Charts API)
 - file objects
 - DSL components such as logic gates for a logic simulator written in Python, or proof trees for formal logic courses
- 
+- compiler data structures such as parser states, parse tables, AST construction, code generators, etc.
+- relational algebra diagrams for database courses
+
 These renderers will make Online Python Tutor useful in a far larger variety of CS courses and online textbooks
 beyond CS0/CS1 sorts of intro classes.
 
-One ultimate goal is to make OPT capable of visualizing classic AI and algorithm textbook algorithms
+One ultimate goal is to make OPT capable of visualizing classic AI, algorithm, and compiler textbook algorithms
 that otherwise would need to be tediously built as one-off special-case visualizations.
 
 From an email excerpt in May 2013: {
