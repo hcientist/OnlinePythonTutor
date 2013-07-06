@@ -329,8 +329,17 @@ and other internal guts aren't altered too much. But I don't care a ton about C 
 doesn't really use C modules. (Update in July 2013 -- it seems like hacks to CPython core data structures are
 intrusive enough to preclude C module object compatibility. But that's not a big deal.)
 
+
+#### Early Prototype (July 2013)
+
 In early July 2013, I made some initial steps toward this goal as a proof-of-concept and am fairly encouraged by
-my findings so far. To support this finer-grained intra-line stepping, I hacked CPython 2.7.5 to:
+my findings so far. [**Try the prototype now**](http://pythontutor.com/visualize.html#py=2crazy) by selecting
+"2.crazy" as the Python version. Note that the (approximate) column of the currently-executing bytecode
+instruction is highlighed in yellow.
+
+[Try the prototype on a simple example.](http://pythontutor.com/visualize.html#code=def+foo()%3A%0A++return+True%0A%0Ax+%3D+3%0Ay+%3D+5%0A%0Aif+foo()+and+(x+%2B+y+%3E+7)%3A%0A++print+'YES'%0Aelse%3A%0A++print+'NO'&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=2crazy&curInstr=0)
+
+To support this finer-grained intra-line stepping, I hacked CPython 2.7.5 to:
 
 1. call the trace function at each bytecode rather than each time a new line is executed, which turns it into a bytecode-level stepper
 2. disable the peephole optimizer so that bytecodes match source code more closely
