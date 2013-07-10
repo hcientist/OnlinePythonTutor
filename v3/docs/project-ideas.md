@@ -175,6 +175,8 @@ As a start, I've implemented a prototype of "annotation bubbles" for fine-graine
 
 ![annotation bubbles](../opt-annotations.png)
 
+[Try a mock-up here!](http://pythontutor.com/commentary-bubbles-demo.html)
+
 
 **Annotated code visualizations**:
 
