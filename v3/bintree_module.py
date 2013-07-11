@@ -1,5 +1,40 @@
 # TODO: how do you set the BACKGROUND COLOR of a GraphViz node ... fill=?
 
+
+# example code snippet to visualize, which uses '#break' as a breakpoint
+# feel free to clean up however you like
+'''
+from bintree_module import TNode
+import html_module
+
+r = TNode('a',
+          left=TNode('b0',
+                     left=TNode('c0',
+                                right=TNode('d1')),
+                     right=TNode('c1',
+                                 left=TNode('d3'),
+                                 right=TNode('d4'))),
+          right=TNode('b1',
+                      left=TNode('c2')))
+
+def highlight_and_display(root):
+    def f(node):
+        node.highlight()
+        html_module.display_img(root.to_graphviz_img()) #break
+        node.reset_style()
+    return f
+
+def preorder(t, visitfn):
+    if not t:
+        return
+    visitfn(t)
+    preorder(t.left, visitfn)
+    preorder(t.right, visitfn)
+
+preorder(r, highlight_and_display(r))
+'''
+
+
 from collections import defaultdict
 
 import GChartWrapper
