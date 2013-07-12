@@ -372,14 +372,14 @@ ExecutionVisualizer.prototype.render = function() {
   else if (this.params.highlightLines) {
       myViz.domRoot.find('#legendDiv')
           .append('<span class="highlight-legend highlight-prev">line that has just executed</span> ')
-          .append('<span class="highlight-legend highlight-curr">next line to execute</span>')
+          .append('<span class="highlight-legend highlight-cur">next line to execute</span>')
   }
   else if (this.params.pyCrazyMode) {
       myViz.domRoot.find('#legendDiv')
           .append('<a href="https://github.com/pgbovine/Py2crazy">Py2crazy</a> mode!')
           .append(' Stepping through (roughly) each executed expression. Color codes:<p/>')
           .append('<span class="pycrazy-highlight-prev">expression that just executed</span><br/>')
-          .append('<span class="pycrazy-highlight-curr">next expression to execute</span>');
+          .append('<span class="pycrazy-highlight-cur">next expression to execute</span>');
   }
 
 
@@ -1172,25 +1172,25 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
 
 
 // takes a string inputStr and returns an HTML version with
-// the single character at highlightIndex highlighted with
+// the characters from [highlightIndex, highlightIndex+extent) highlighted with
 // a span of class highlightCssClass
-function htmlWithHighlight(inputStr, highlightInd, highlightCssClass) {
+function htmlWithHighlight(inputStr, highlightInd, extent, highlightCssClass) {
   var prefix = '';
   if (highlightInd > 0) {
     prefix = inputStr.slice(0, highlightInd);
   }
 
-  var highlightedChar = inputStr.slice(highlightInd, highlightInd + 1);
+  var highlightedChars = inputStr.slice(highlightInd, highlightInd + extent);
 
   var suffix = '';
-  if (highlightInd < inputStr.length - 1) {
-    suffix = inputStr.slice(highlightInd + 1, inputStr.length);
+  if (highlightInd + extent < inputStr.length) {
+    suffix = inputStr.slice(highlightInd + extent, inputStr.length);
   }
 
   // ... then set the current line to lineHTML
   var lineHTML = htmlspecialchars(prefix) +
       '<span class="' + highlightCssClass + '">' +
-      htmlspecialchars(highlightedChar) +
+      htmlspecialchars(highlightedChars) +
       '</span>' +
       htmlspecialchars(suffix);
   return lineHTML;
@@ -1365,8 +1365,9 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
     var prevLineNumber = null;
 
     // only relevant if in myViz.pyCrazyMode
-    var curColumnNumber = null;
-    var prevColumnNumber = null;
+    var prevColumn = undefined;
+    var prevExprStartCol = undefined;
+    var prevExprWidth = undefined;
 
     var curIsReturn = (curEntry.event == 'return');
     var prevIsReturn = false;
@@ -1377,17 +1378,23 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
       prevIsReturn = (myViz.curTrace[myViz.curInstr - 1].event == 'return');
 
       if (myViz.pyCrazyMode) {
-        prevColumnNumber = myViz.curTrace[myViz.curInstr - 1].column;
+        var p = myViz.curTrace[myViz.curInstr - 1];
+        prevColumn = p.column;
+        // if these don't exist, set reasonable defaults
+        prevExprStartCol = (p.expr_start_col !== undefined) ? p.expr_start_col : p.column;
+        prevExprWidth = (p.expr_width !== undefined) ? p.expr_width : 1;
       }
     }
 
     curLineNumber = curEntry.line;
 
     if (myViz.pyCrazyMode) {
-      curColumnNumber = curEntry.column;
-    }
+      var curColumn = curEntry.column;
 
-    if (myViz.pyCrazyMode) {
+      // if these don't exist, set reasonable defaults
+      var curExprStartCol = (curEntry.expr_start_col !== undefined) ? curEntry.expr_start_col : curColumn;
+      var curExprWidth = (curEntry.expr_width !== undefined) ? curEntry.expr_width : 1;
+
       var curLineInfo = myViz.codeOutputLines[curLineNumber - 1];
       assert(curLineInfo.lineNumber == curLineNumber);
       var codeAtLine = curLineInfo.text;
@@ -1405,30 +1412,30 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
       // 3. there is no previous trace entry
 
       if (prevLineNumber == curLineNumber) {
-        var curLineHTML = null;
+        var curLineHTML = '';
 
+        // tricky tricky!
         // generate a combined line with both previous and current
         // columns highlighted
 
-        if (prevColumnNumber < curColumnNumber) {
-          var firstPortion = codeAtLine.slice(0, prevColumnNumber+1);
-          var secondPortion = codeAtLine.slice(prevColumnNumber+1, codeAtLine.length);
-          curLineHTML =
-            htmlWithHighlight(firstPortion, prevColumnNumber, 'pycrazy-highlight-prev') +
-            htmlWithHighlight(secondPortion, curColumnNumber - prevColumnNumber - 1, 'pycrazy-highlight-curr');
-        }
-        else if (prevColumnNumber == curColumnNumber) {
-          // just display current
-          curLineHTML = htmlWithHighlight(codeAtLine, curColumnNumber, 'pycrazy-highlight-curr');
-        }
-        else {
-          assert(curColumnNumber < prevColumnNumber);
+        for (var i = 0; i < codeAtLine.length; i++) {
+          var isCur = (curExprStartCol <= i) && (i < curExprStartCol + curExprWidth);
+          var isPrev = (prevExprStartCol <= i) && (i < prevExprStartCol + prevExprWidth);
 
-          var firstPortion = codeAtLine.slice(0, curColumnNumber+1);
-          var secondPortion = codeAtLine.slice(curColumnNumber+1, codeAtLine.length);
-          curLineHTML =
-            htmlWithHighlight(firstPortion, curColumnNumber, 'pycrazy-highlight-curr') +
-            htmlWithHighlight(secondPortion, prevColumnNumber - curColumnNumber - 1, 'pycrazy-highlight-prev');
+          var htmlEscapedChar = htmlspecialchars(codeAtLine[i]);
+
+          if (isCur && isPrev) {
+            curLineHTML += '<span class="pycrazy-highlight-prev pycrazy-highlight-cur">' + htmlEscapedChar + '</span>';
+          }
+          else if (isPrev) {
+            curLineHTML += '<span class="pycrazy-highlight-prev">' + htmlEscapedChar + '</span>';
+          }
+          else if (isCur) {
+            curLineHTML += '<span class="pycrazy-highlight-cur">' + htmlEscapedChar + '</span>';
+          }
+          else {
+            curLineHTML += htmlEscapedChar;
+          }
         }
 
         assert(curLineHTML);
@@ -1437,10 +1444,10 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
       else {
         if (prevLineNumber) {
           var prevLineInfo = myViz.codeOutputLines[prevLineNumber - 1];
-          var prevLineHTML = htmlWithHighlight(prevLineInfo.text, prevColumnNumber, 'pycrazy-highlight-prev');
+          var prevLineHTML = htmlWithHighlight(prevLineInfo.text, prevExprStartCol, prevExprWidth, 'pycrazy-highlight-prev');
           myViz.domRoot.find('#' + myViz.generateID('cod' + prevLineNumber)).html(prevLineHTML);
         }
-        var curLineHTML = htmlWithHighlight(codeAtLine, curColumnNumber, 'pycrazy-highlight-curr');
+        var curLineHTML = htmlWithHighlight(codeAtLine, curExprStartCol, curExprWidth, 'pycrazy-highlight-cur');
         myViz.domRoot.find('#' + myViz.generateID('cod' + curLineNumber)).html(curLineHTML);
       }
     }
@@ -1561,9 +1568,9 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
 
     if (myViz.params.highlightLines) {
         myViz.domRoot.find('#pyCodeOutputDiv td.cod').removeClass('highlight-prev');
-        myViz.domRoot.find('#pyCodeOutputDiv td.cod').removeClass('highlight-curr');
+        myViz.domRoot.find('#pyCodeOutputDiv td.cod').removeClass('highlight-cur');
         if (curLineNumber)
-            myViz.domRoot.find('#'+myViz.generateID('cod'+curLineNumber)).addClass('highlight-curr');        
+            myViz.domRoot.find('#'+myViz.generateID('cod'+curLineNumber)).addClass('highlight-cur');        
         if (prevLineNumber)
             myViz.domRoot.find('#'+myViz.generateID('cod'+prevLineNumber)).addClass('highlight-prev');      
     }

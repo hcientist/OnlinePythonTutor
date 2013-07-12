@@ -49,10 +49,10 @@ var python2_backend_script = 'exec';
 var python3_backend_script = null;
 
 // KRAZY experimental KODE!!! Use a custom hacked CPython interpreter
-var python2crazy_backend_script = 'web_exec_py2-crazy.py';
+//var python2crazy_backend_script = 'web_exec_py2-crazy.py';
 // On Google App Engine, simply run dev_appserver.py with the
 // crazy custom CPython interpreter to get 2crazy
-//var python2crazy_backend_script = 'exec';
+var python2crazy_backend_script = 'exec';
 
 var appMode = 'edit'; // 'edit', 'display', or 'display_no_frills'
 
