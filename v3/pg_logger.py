@@ -275,7 +275,8 @@ def visit_function_obj(v, ids_seen_set):
 
 class PGLogger(bdb.Bdb):
 
-    def __init__(self, cumulative_mode, heap_primitives, show_only_outputs, finalizer_func, disable_security_checks=False):
+    def __init__(self, cumulative_mode, heap_primitives, show_only_outputs, finalizer_func,
+                 disable_security_checks=False, crazy_mode=False):
         bdb.Bdb.__init__(self)
         self.mainpyfile = ''
         self._wait_for_mainpyfile = 0
@@ -293,6 +294,9 @@ class PGLogger(bdb.Bdb):
         # if True, then don't render any data structures in the trace,
         # and show only outputs
         self.show_only_outputs = show_only_outputs
+
+        # Run using the custom Py2crazy Python interpreter
+        self.crazy_mode = crazy_mode
 
         # a function that takes the output trace as a parameter and
         # processes it
@@ -869,11 +873,16 @@ class PGLogger(bdb.Bdb):
                              stdout=get_user_stdout(tos[0]))
 
         # optional column numbers for greater precision
-        # (only relevant in a hacked CPython that supports column numbers)
-        if hasattr(frame, 'f_colno'):
+        # (only relevant in Py2crazy, a hacked CPython that supports column numbers)
+        if self.crazy_mode:
           # -1 is an invalid column number
           if frame.f_colno >= 0:
             trace_entry['column'] = frame.f_colno
+            lc = (trace_entry['line'], trace_entry['column'])
+            if lc in self.extent_map:
+                expr_start_col, expr_width = self.extent_map[lc]
+                trace_entry['expr_start_col'] = expr_start_col
+                trace_entry['expr_width'] = expr_width
 
 
         # TODO: refactor into a non-global
@@ -935,6 +944,17 @@ class PGLogger(bdb.Bdb):
           line_no = i + 1
           if line.endswith(BREAKPOINT_STR):
             self.breakpoints.append(line_no)
+
+
+        # populate an extent map to get more accurate ranges from code
+        if self.crazy_mode:
+            # in Py2crazy standard library as Python-2.7.5/Lib/ast_extents.py
+            import ast_extents
+            try:
+                self.extent_map = ast_extents.create_extent_map(self.executed_script)
+            except:
+                # failure oblivious
+                self.extent_map = {}
 
 
         # When bdb sets tracing, a number of call and line events happens
@@ -1101,7 +1121,10 @@ import json
 def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func):
   options = json.loads(options_json)
 
-  logger = PGLogger(options['cumulative_mode'], options['heap_primitives'], options['show_only_outputs'], finalizer_func)
+  py_crazy_mode = ('py_crazy_mode' in options and options['py_crazy_mode'])
+
+  logger = PGLogger(options['cumulative_mode'], options['heap_primitives'], options['show_only_outputs'], finalizer_func,
+                    crazy_mode=py_crazy_mode)
 
   # TODO: refactor these NOT to be globals
   global input_string_queue
@@ -1125,6 +1148,7 @@ def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func
 # WARNING: ONLY RUN THIS LOCALLY and never over the web, since
 # security checks are disabled
 def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func):
+  # TODO: add py_crazy_mode option here too ...
   logger = PGLogger(cumulative_mode, heap_primitives, False, finalizer_func, disable_security_checks=True)
 
   # TODO: refactor these NOT to be globals

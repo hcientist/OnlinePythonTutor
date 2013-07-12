@@ -57,8 +57,9 @@ $(document).ready(function() {
 
   // set up all options in a JS object
   var options = {cumulative_mode: ($.bbq.getState('cumulative') == 'true'),
-                 heap_primitives: ($.bbq.getState('heapPrimitives') == 'true'),
-                 show_only_outputs: showOnlyOutputsBool};
+                 heap_primitives: heapPrimitivesBool,
+                 show_only_outputs: showOnlyOutputsBool,
+                 py_crazy_mode: ($.bbq.getState('py') == '2crazy')};
 
 
   var preseededCurInstr = Number($.bbq.getState('curInstr'));
@@ -142,6 +143,7 @@ $(document).ready(function() {
                                                     textualMemoryLabels: textRefsBool,
                                                     showOnlyOutputs: showOnlyOutputsBool,
                                                     highlightLines: typeof $.bbq.getState("highlightLines") !== "undefined",
+                                                    pyCrazyMode: ($.bbq.getState('py') == '2crazy'),
                                                     updateOutputCallback: (resizeContainer ? resizeContainerNow : null)
                                                    });
 

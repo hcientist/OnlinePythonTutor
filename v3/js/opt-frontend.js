@@ -175,7 +175,8 @@ $(document).ready(function() {
       // set up all options in a JS object
       var options = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
                      heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
-                     show_only_outputs: ($('#showOnlyOutputsSelector').val() == 'true')};
+                     show_only_outputs: ($('#showOnlyOutputsSelector').val() == 'true'),
+                     py_crazy_mode: ($('#pythonVersionSelector').val() == '2crazy')};
 
       $.get(backend_script,
             {user_script : pyInputCodeMirror.getValue(),
