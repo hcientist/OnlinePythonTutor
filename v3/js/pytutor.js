@@ -1425,7 +1425,7 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
           var htmlEscapedChar = htmlspecialchars(codeAtLine[i]);
 
           if (isCur && isPrev) {
-            curLineHTML += '<span class="pycrazy-highlight-prev pycrazy-highlight-cur">' + htmlEscapedChar + '</span>';
+            curLineHTML += '<span class="pycrazy-highlight-prev-and-cur">' + htmlEscapedChar + '</span>';
           }
           else if (isPrev) {
             curLineHTML += '<span class="pycrazy-highlight-prev">' + htmlEscapedChar + '</span>';

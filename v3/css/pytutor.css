@@ -725,15 +725,25 @@ div.ExecutionVisualizer .highlight-legend {
 
 /* prev then curr, so curr gets precedence when both apply */
 div.ExecutionVisualizer .pycrazy-highlight-prev {
-  /*background-color: #F0F0EA;*/
+  background-color: #eeeeee; /*#F0F0EA;*/
+  /*
   text-decoration: none;
-  border-bottom: 1px solid #c9e6ca;
+  border-bottom: 1px solid #dddddd;
+  */
 }
 
 div.ExecutionVisualizer .pycrazy-highlight-cur {
-  /*background-color: #FFFF66;*/
-  color: #e93f34;
+  background-color: #FFFF66;
   /* aligned slightly higher than border-bottom */
-  text-decoration: underline;
+  /*
+  text-decoration: none;
+  border-bottom: 1px solid #e93f34;
+  */
 }
 
+div.ExecutionVisualizer .pycrazy-highlight-prev-and-cur {
+  background-color: #FFFF66;
+
+  text-decoration: none;
+  border-bottom: 1px solid #999999;
+}
