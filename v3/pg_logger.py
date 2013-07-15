@@ -875,14 +875,18 @@ class PGLogger(bdb.Bdb):
         # optional column numbers for greater precision
         # (only relevant in Py2crazy, a hacked CPython that supports column numbers)
         if self.crazy_mode:
-          # -1 is an invalid column number
-          if frame.f_colno >= 0:
-            trace_entry['column'] = frame.f_colno
-            lc = (trace_entry['line'], trace_entry['column'])
-            if lc in self.extent_map:
-                expr_start_col, expr_width = self.extent_map[lc]
-                trace_entry['expr_start_col'] = expr_start_col
-                trace_entry['expr_width'] = expr_width
+          # at the very least, grab the column number
+          trace_entry['column'] = frame.f_colno
+
+          # now try to find start_col and extent
+          # (-1 is an invalid instruction index)
+          if frame.f_lasti >= 0:
+            key = (frame.f_lineno, frame.f_colno,frame.f_lasti)
+            if key in self.bytecode_map:
+              v = self.bytecode_map[key]
+              trace_entry['expr_start_col'] = v.start_col
+              trace_entry['expr_width'] = v.extent
+              trace_entry['opcode'] = v.opcode
 
 
         # TODO: refactor into a non-global
@@ -948,13 +952,13 @@ class PGLogger(bdb.Bdb):
 
         # populate an extent map to get more accurate ranges from code
         if self.crazy_mode:
-            # in Py2crazy standard library as Python-2.7.5/Lib/ast_extents.py
-            import ast_extents
+            # in Py2crazy standard library as Python-2.7.5/Lib/super_dis.py
+            import super_dis
             try:
-                self.extent_map = ast_extents.create_extent_map(self.executed_script)
+                self.bytecode_map = super_dis.get_bytecode_map(self.executed_script)
             except:
                 # failure oblivious
-                self.extent_map = {}
+                self.bytecode_map = {}
 
 
         # When bdb sets tracing, a number of call and line events happens
