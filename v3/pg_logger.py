@@ -881,7 +881,7 @@ class PGLogger(bdb.Bdb):
           # now try to find start_col and extent
           # (-1 is an invalid instruction index)
           if frame.f_lasti >= 0:
-            key = (frame.f_lineno, frame.f_colno,frame.f_lasti)
+            key = (frame.f_code.co_code, frame.f_lineno, frame.f_colno,frame.f_lasti)
             if key in self.bytecode_map:
               v = self.bytecode_map[key]
               trace_entry['expr_start_col'] = v.start_col
