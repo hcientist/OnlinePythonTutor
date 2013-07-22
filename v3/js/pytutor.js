@@ -3449,7 +3449,7 @@ function traceQCheckMe(inputId, divId, answer) {
        correctAns = correctAns[attrs[j]]
    }
    feedbackElement = $("#" + divId + "_feedbacktext")
-   if (ans == correctAns) {
+   if (ans === correctAns) { // do an exact match so that "" doesn't spuriously get matched with 0
        feedbackElement.html('Correct')
    } else {
        feedbackElement.html(vis.curTrace[i].question.feedback)
