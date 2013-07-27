@@ -211,7 +211,13 @@ def get_user_globals(frame):
   return d
 
 def get_user_locals(frame):
-  return filter_var_dict(frame.f_locals)
+  ret = filter_var_dict(frame.f_locals)
+  # only present in crazy_mode ...
+  if hasattr(frame, 'f_valuestack'):
+    for (i, e) in enumerate(frame.f_valuestack):
+      ret['expr_stack_' + str(i+1)] = e
+
+  return ret
 
 def filter_var_dict(d):
   ret = {}
