@@ -203,8 +203,14 @@ IGNORE_VARS = set(('__user_stdout__', '__builtins__', '__name__', '__exception__
 def get_user_stdout(frame):
   return frame.f_globals['__user_stdout__'].getvalue()
 
-def get_user_globals(frame):
+# at_global_scope should be true only if 'frame' represents the global scope
+def get_user_globals(frame, at_global_scope=False):
   d = filter_var_dict(frame.f_globals)
+  # only present in crazy_mode ...
+  if at_global_scope and hasattr(frame, 'f_valuestack'):
+    for (i, e) in enumerate(frame.f_valuestack):
+      d['_tmp' + str(i+1)] = e
+
   # also filter out __return__ for globals only, but NOT for locals
   if '__return__' in d:
     del d['__return__']
@@ -215,7 +221,7 @@ def get_user_locals(frame):
   # only present in crazy_mode ...
   if hasattr(frame, 'f_valuestack'):
     for (i, e) in enumerate(frame.f_valuestack):
-      ret['expr_stack_' + str(i+1)] = e
+      ret['_tmp' + str(i+1)] = e
 
   return ret
 
@@ -785,7 +791,7 @@ class PGLogger(bdb.Bdb):
         # encode in a JSON-friendly format now, in order to prevent ill
         # effects of aliasing later down the line ...
         encoded_globals = {}
-        for (k, v) in get_user_globals(tos[0]).items():
+        for (k, v) in get_user_globals(tos[0], at_global_scope=(self.curindex <= 1)).items():
           encoded_val = self.encoder.encode(v, self.get_parent_of_function)
           encoded_globals[k] = encoded_val
 
