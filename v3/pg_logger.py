@@ -119,6 +119,7 @@ CUSTOM_MODULE_IMPORTS = ('callback_module',
                          'html_module',
                          'watch_module',
                          'bintree_module',
+                         'htmlexample_module',
                          'GChartWrapper')
 
 
