@@ -28,9 +28,38 @@ to contain a single `div` of class `bigText` with the loop index as its contents
 the code makes one final `setHTML` call to set the canvas to an image from my personal website.
 
 
+## Creating external modules
 
-
-The best way to take advantage of HTML rendering is to define a custom
-module to encapsulate the rendering code:
+It's really tedious to write out all of the HTML rendering code in the OPT input text box.
+Thus, the best way to take advantage of HTML rendering is to define a custom
+module to encapsulate all of the rendering code. Here is an example module:
 
 https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/htmlexample_module.py
+
+To get this module working with OPT, you need to first add its filename
+(e.g., 'htmlexample_module') to the CUSTOM_MODULE_IMPORTS variable in pg_logger.py, approximately here:
+
+https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/pg_logger.py#L119
+
+Here is
+<a href="http://pythontutor.com/visualize.html#code=from+htmlexample_module+import+ColorTable%0A%0At+%3D+ColorTable(3,+4)%0A%0At.set_color(0,+0,+'red')%0At.render_HTML()%0A%0At.set_color(1,+1,+'green')%0At.render_HTML()%0A%0At.set_color(2,+2,+'blue')%0At.render_HTML()%0A%0Afor+i+in+range(3)%3A%0A++++for+j+in+range(4)%3A%0A++++++++t.set_color(i,+j,+'gray')%0A++++++++t.render_HTML()&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=2&curInstr=0">an example</a>
+of this module in action:
+
+    from htmlexample_module import ColorTable
+
+    t = ColorTable(3, 4)
+
+    t.set_color(0, 0, 'red')
+    t.render_HTML()
+
+    t.set_color(1, 1, 'green')
+    t.render_HTML()
+
+    t.set_color(2, 2, 'blue')
+    t.render_HTML()
+
+    for i in range(3):
+        for j in range(4):
+            t.set_color(i, j, 'gray')
+            t.render_HTML()
+
