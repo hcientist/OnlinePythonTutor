@@ -36,10 +36,10 @@ module to encapsulate all of the rendering code. Here is an example module:
 
 https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/htmlexample_module.py
 
-To get this module working with OPT, you need to first add its filename
-(e.g., 'htmlexample_module') to the CUSTOM_MODULE_IMPORTS variable in pg_logger.py, approximately here:
-
-https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/pg_logger.py#L119
+This example module defines a `ColorTable` class that represents a table whose cells
+can be filled in with colors. Each time the `render_HTML` method is called, OPT
+renders the contents of the table as an HTML table whose cells are filled in with
+the respective colors.
 
 Here is
 <a href="http://pythontutor.com/visualize.html#code=from+htmlexample_module+import+ColorTable%0A%0At+%3D+ColorTable(3,+4)%0A%0At.set_color(0,+0,+'red')%0At.render_HTML()%0A%0At.set_color(1,+1,+'green')%0At.render_HTML()%0A%0At.set_color(2,+2,+'blue')%0At.render_HTML()%0A%0Afor+i+in+range(3)%3A%0A++++for+j+in+range(4)%3A%0A++++++++t.set_color(i,+j,+'gray')%0A++++++++t.render_HTML()&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=2&curInstr=0">an example</a>
@@ -63,3 +63,12 @@ of this module in action:
             t.set_color(i, j, 'gray')
             t.render_HTML()
 
+If you step through the code in OPT, you'll see an HTML table appearing below the code
+and getting gradually filled in with colors.
+
+To get this module working with OPT, you need to first add its filename
+(e.g., 'htmlexample_module') to the CUSTOM_MODULE_IMPORTS variable in pg_logger.py, approximately here:
+
+https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/pg_logger.py#L119
+
+To create your own custom modules, simply follow the conventions I've laid out with `htmlexample_module.py`!
