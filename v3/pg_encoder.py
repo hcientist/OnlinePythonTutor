@@ -205,7 +205,16 @@ class ObjectEncoder:
             printed_args.append('**' + argspec.keywords)
 
         func_name = get_name(dat)
-        pretty_name = func_name + '(' + ', '.join(printed_args) + ')'
+
+        pretty_name = func_name
+
+        # sometimes might fail for, say, <genexpr>, so just ignore
+        # failures for now ...
+        try:
+          pretty_name += '(' + ', '.join(printed_args) + ')'
+        except TypeError:
+          pass
+
         encoded_val = ['FUNCTION', pretty_name, None]
         if get_parent:
           enclosing_frame_id = get_parent(dat)
