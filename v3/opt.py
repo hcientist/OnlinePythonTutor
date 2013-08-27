@@ -136,9 +136,9 @@ def opt_pre_run_code_hook(self):
         filtered_ns[k] = v
 
     last_cmd = self.history_manager.input_hist_parsed[-1]
-    print 'last_cmd:', last_cmd
+    #print 'last_cmd:', last_cmd
     self.meta.opt_history.run_str(last_cmd, filtered_ns)
-    #urllib2.urlopen("http://localhost:8888/post", last_cmd)
+    urllib2.urlopen("http://localhost:8888/post", last_cmd)
 
 
 def load_ipython_extension(ipython):
