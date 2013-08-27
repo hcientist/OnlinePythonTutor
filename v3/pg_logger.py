@@ -953,7 +953,7 @@ class PGLogger(bdb.Bdb):
         self.forget()
 
 
-    def _runscript(self, script_str):
+    def _runscript(self, script_str, custom_globals=None):
         self.executed_script = script_str
         self.executed_script_lines = self.executed_script.splitlines()
 
@@ -1026,6 +1026,9 @@ class PGLogger(bdb.Bdb):
         user_globals = {"__name__"    : "__main__",
                         "__builtins__" : user_builtins,
                         "__user_stdout__" : user_stdout}
+
+        if custom_globals:
+            user_globals.update(custom_globals)
 
         try:
           # enforce resource limits RIGHT BEFORE running script_str
@@ -1184,3 +1187,18 @@ def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_
     pass
   finally:
     return logger.finalize()
+
+
+def exec_str_with_user_ns(script_str, user_ns, finalizer_func):
+  logger = PGLogger(False, False, False, finalizer_func, disable_security_checks=True)
+
+  global __html__, __css__, __js__
+  __html__, __css__, __js__ = None, None, None
+
+  try:
+    logger._runscript(script_str, user_ns)
+  except bdb.BdbQuit:
+    pass
+  finally:
+    return logger.finalize()
+
