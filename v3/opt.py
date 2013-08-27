@@ -35,12 +35,15 @@ INDENT_LEVEL = 2
 # TODO: support incremental pushes to the OPT frontend for efficiency
 # and better "snappiness"
 
-
 # TODO: support line number adjustments for function definitions
+
 
 class OptHistory(object):
     def __init__(self):
         self.executed_stmts = []
+
+        # first line number of each line in self.executed_stmts
+        self.first_lineno = []
 
         # each element is a LIST containing an OPT trace
         self.output_traces = []
@@ -48,12 +51,38 @@ class OptHistory(object):
         # was the last executed stmt an exception?
         self.last_exec_is_exception = False
 
+
     def pop_last(self):
         self.executed_stmts.pop()
+        self.first_lineno.pop()
         self.output_traces.pop()
 
-    def run_str(self, cmd_string, user_globals):
-        opt_trace = pg_logger.exec_str_with_user_ns(cmd_string, user_globals, get_trace)
+
+    def check_rep(self):
+        assert len(self.executed_stmts) == len(self.first_lineno) == len(self.output_traces)
+
+
+    def get_code(self):
+        return '\n'.join(self.executed_stmts)
+
+    def get_trace(self):
+        ret = []
+        for t in self.output_traces:
+            for e in t:
+                ret.append(e)
+        return ret
+
+
+    def run_str(self, stmt_str, user_globals):
+        opt_trace = pg_logger.exec_str_with_user_ns(stmt_str, user_globals, get_trace)
+
+        # 'clean up' the trace a bit:
+        if len(self.output_traces):
+            # lop off the last element of the previous entry since it should match
+            # the first element of opt_trace
+            end_of_last_trace = self.output_traces[-1].pop()
+            #print 'END:', end_of_last_trace
+            #print 'CUR:', opt_trace[0]
 
         # clobber the last entry
         if self.last_exec_is_exception:
@@ -67,18 +96,29 @@ class OptHistory(object):
             assert last_evt == 'return'
             self.last_exec_is_exception = False
 
-        pp.pprint(opt_trace)
-        
+        if len(self.executed_stmts):
+            lineno = self.first_lineno[-1] + len(self.executed_stmts[-1].splitlines())
+        else:
+            lineno = 1
 
-        
+        # adjust all the line numbers in the trace
+        for elt in opt_trace:
+            elt['line'] += (lineno - 1)
+
+        self.executed_stmts.append(stmt_str)
+        self.first_lineno.append(lineno)
+        self.output_traces.append(opt_trace)
+
+        output_dict = dict(code=self.get_code(), trace=self.get_trace())
+        json_output = json.dumps(output_dict, indent=INDENT_LEVEL)
+
+        print json_output
+
+        self.check_rep()
+
+
 def get_trace(input_code, output_trace):
     return output_trace
-
-
-def custom_json_finalizer(input_code, output_trace):
-  ret = dict(code=input_code, trace=output_trace)
-  json_output = json.dumps(ret, indent=INDENT_LEVEL)
-  return json_output
 
 
 # called right before a statement gets executed
