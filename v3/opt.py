@@ -37,6 +37,10 @@ INDENT_LEVEL = 2
 
 # TODO: support line number adjustments for function definitions
 
+# TODO: make 'stdout' cumulatively build up
+
+# TODO: add an IPython magic to "reset" the trace to start from scratch
+
 
 class OptHistory(object):
     def __init__(self):
