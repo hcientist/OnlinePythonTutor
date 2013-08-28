@@ -28,20 +28,21 @@ pp = pprint.PrettyPrinter()
 # http://stackoverflow.com/questions/1447287/format-floats-with-standard-json-module
 json.encoder.FLOAT_REPR = lambda f: ('%.3f' % f)
 
-INDENT_LEVEL = 2   # human-readable
-#INDENT_LEVEL = None # compact
+#INDENT_LEVEL = 2   # human-readable
+INDENT_LEVEL = None # compact
 
 
 # TODO: support incremental pushes to the OPT frontend for efficiency
-# and better "snappiness"
+# and better "snappiness" (although the speed seems fine for now)
 
 # TODO: support line number adjustments for function definitions/calls
 # (right now opt-ipy doesn't jump into function calls at all)
 
-# TODO: make 'stdout' cumulatively build up
-
 # TODO: add an IPython magic to "reset" the trace to start from scratch
 # (although the global environment will still not be blank)
+
+# TODO: weird shit happens if you write multiple statement on one line
+# separated by a semicolon. don't do that!
 
 
 class OptHistory(object):
@@ -80,6 +81,7 @@ class OptHistory(object):
 
 
     def run_str(self, stmt_str, user_globals):
+        # now run this string ...
         opt_trace = pg_logger.exec_str_with_user_ns(stmt_str, user_globals, lambda cod, trace: trace)
 
         # 'clean up' the trace a bit:
@@ -109,12 +111,19 @@ class OptHistory(object):
                 assert len(og) == len(new_og)
                 t['ordered_globals'] = new_og
 
+            # patch up stdout to make it cumulative too
+            last_stdout = end_of_last_trace['stdout']
+            for t in opt_trace:
+                t['stdout'] = last_stdout + t['stdout']
 
-        # clobber the last entry
+
+        # destroy the last entry if it was an error
+        # TODO: be careful about where to position this statement
         if self.last_exec_is_exception:
             self.pop_last()
 
-        # did this end in disaster?
+
+        # did executing stmt_str end in disaster?
         last_evt = opt_trace[-1]['event']
         if last_evt == 'exception':
             self.last_exec_is_exception = True
