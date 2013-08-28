@@ -30,18 +30,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // Pre-reqs: pytutor.js and jquery.ba-bbq.min.js should be imported BEFORE this file
 
 
-// backend scripts to execute (Python 2 and 3 variants, if available)
-// make two copies of ../web_exec.py and give them the following names,
-// then change the first line (starting with #!) to the proper version
-// of the Python interpreter (i.e., Python 2 or Python 3).
-//var python2_backend_script = 'web_exec_py2.py';
-//var python3_backend_script = 'web_exec_py3.py';
-
-// uncomment below if you're running on Google App Engine using the built-in app.yaml
-var python2_backend_script = 'exec';
-var python3_backend_script = null;
-
-
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 
 
@@ -67,43 +55,7 @@ $(document).ready(function() {
     preseededCurInstr = 0;
   }
 
-  var backend_script = null;
-  if (pyState == '2') {
-      backend_script = python2_backend_script;
-  }
-  else if (pyState == '3') {
-      backend_script = python3_backend_script;
-  }
-
-  if (!backend_script) {
-    alert('Error: This server is not configured to run Python ' + $('#pythonVersionSelector').val());
-    return;
-  }
-
-
-  // David Pritchard's code for resizeContainer option ...
-  var resizeContainer = ($.bbq.getState('resizeContainer') == 'true');
-    
-  if (resizeContainer) {
-      function findContainer() {
-          var ifs = window.top.document.getElementsByTagName("iframe");
-          for(var i = 0, len = ifs.length; i < len; i++)  {
-              var f = ifs[i];
-              var fDoc = f.contentDocument || f.contentWindow.document;
-              if(fDoc === document)   {
-                  return f;
-              }
-          }
-      }
-      
-      var container = findContainer();
-      
-      function resizeContainerNow() {
-          $(container).height($("#vizDiv").height()+20);
-      };
-  }
-
-      
+  /*
   $.get(backend_script,
         {user_script : preseededCode,
          options_json: JSON.stringify(options)},
@@ -166,7 +118,7 @@ $(document).ready(function() {
           }
         },
         "json");
-
+  */
 
   // log a generic AJAX error handler
   $(document).ajaxError(function() {
@@ -181,5 +133,59 @@ $(document).ready(function() {
     }
   });
 
+  updater.start();
 });
 
+
+// Adapted from https://github.com/facebook/tornado/tree/master/demos/websocket
+
+// Copyright 2009 FriendFeed
+//
+// Licensed under the Apache License, Version 2.0 (the "License"); you may
+// not use this file except in compliance with the License. You may obtain
+// a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+// WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+// License for the specific language governing permissions and limitations
+// under the License.
+
+var updater = {
+    socket: null,
+    start: function() {
+      var url = "ws://" + location.host + "/chatsocket";
+      updater.socket = new WebSocket(url);
+      updater.socket.onmessage = function(event) {
+        updater.showMessage(JSON.parse(event.data));
+      }
+    },
+
+    showMessage: function(message) {
+      myVisualizer = new ExecutionVisualizer('vizDiv',
+                                             message,
+                                             {startingInstruction: message.trace.length - 1,
+                                              embeddedMode: true,
+                                             });
+
+      // set keyboard bindings
+      // VERY IMPORTANT to clear and reset this every time or
+      // else the handlers might be bound multiple times
+      $(document).unbind('keydown');
+      $(document).keydown(function(k) {
+        if (k.keyCode == 37) { // left arrow
+          if (myVisualizer.stepBack()) {
+            k.preventDefault(); // don't horizontally scroll the display
+          }
+        }
+        else if (k.keyCode == 39) { // right arrow
+          if (myVisualizer.stepForward()) {
+            k.preventDefault(); // don't horizontally scroll the display
+          }
+        }
+      });
+    }
+
+};

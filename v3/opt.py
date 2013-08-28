@@ -28,18 +28,23 @@ pp = pprint.PrettyPrinter()
 # http://stackoverflow.com/questions/1447287/format-floats-with-standard-json-module
 json.encoder.FLOAT_REPR = lambda f: ('%.3f' % f)
 
-INDENT_LEVEL = 2
-#INDENT_LEVEL = None
+INDENT_LEVEL = 2   # human-readable
+#INDENT_LEVEL = None # compact
 
 
 # TODO: support incremental pushes to the OPT frontend for efficiency
 # and better "snappiness"
 
-# TODO: support line number adjustments for function definitions
+# TODO: keep global variables in the right order so that elements don't
+# "jump" around
+
+# TODO: support line number adjustments for function definitions/calls
+# (right now opt-ipy doesn't jump into function calls at all)
 
 # TODO: make 'stdout' cumulatively build up
 
 # TODO: add an IPython magic to "reset" the trace to start from scratch
+# (although the global environment will still not be blank)
 
 
 class OptHistory(object):
@@ -69,7 +74,7 @@ class OptHistory(object):
     def get_code(self):
         return '\n'.join(self.executed_stmts)
 
-    def get_trace(self):
+    def get_full_trace(self):
         ret = []
         for t in self.output_traces:
             for e in t:
@@ -113,12 +118,11 @@ class OptHistory(object):
         self.first_lineno.append(lineno)
         self.output_traces.append(opt_trace)
 
-        output_dict = dict(code=self.get_code(), trace=self.get_trace())
+        output_dict = dict(code=self.get_code(), trace=self.get_full_trace())
         json_output = json.dumps(output_dict, indent=INDENT_LEVEL)
 
-        print json_output
-
         self.check_rep()
+        return json_output
 
 
 def get_trace(input_code, output_trace):
@@ -137,8 +141,9 @@ def opt_pre_run_code_hook(self):
 
     last_cmd = self.history_manager.input_hist_parsed[-1]
     #print 'last_cmd:', last_cmd
-    self.meta.opt_history.run_str(last_cmd, filtered_ns)
-    #urllib2.urlopen("http://localhost:8888/post", last_cmd)
+    trace_json = self.meta.opt_history.run_str(last_cmd, filtered_ns)
+    print trace_json
+    urllib2.urlopen("http://localhost:8888/post", trace_json)
 
 
 def load_ipython_extension(ipython):
