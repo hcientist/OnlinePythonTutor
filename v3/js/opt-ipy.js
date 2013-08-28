@@ -75,11 +75,17 @@ var updater = {
     },
 
     showMessage: function(message) {
+      // empty trace!
+      if (message.trace.length == 0) {
+        myVisualizer = null;
+        $('#vizDiv').empty();
+        $(document).unbind('keydown');
+        return;
+      }
+
       myVisualizer = new ExecutionVisualizer('vizDiv',
                                              message,
-                                             {startingInstruction: message.trace.length - 1,
-                                              embeddedMode: true,
-                                             });
+                                             {embeddedMode: true, jumpToEnd: true});
 
       // set keyboard bindings
       // VERY IMPORTANT to clear and reset this every time or
