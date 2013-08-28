@@ -41,9 +41,6 @@ INDENT_LEVEL = None # compact
 # TODO: add an IPython magic to "reset" the trace to start from scratch
 # (although the global environment will still not be blank)
 
-# TODO: weird shit happens if you write multiple statement on one line
-# separated by a semicolon. don't do that!
-
 
 class OptHistory(object):
     def __init__(self):
@@ -54,9 +51,6 @@ class OptHistory(object):
 
         # each element is a LIST containing an OPT trace
         self.output_traces = []
-
-        # was the last executed stmt an exception?
-        self.last_exec_is_exception = False
 
 
     def pop_last(self):
@@ -81,13 +75,23 @@ class OptHistory(object):
 
 
     def run_str(self, stmt_str, user_globals):
-        # now run this string ...
         opt_trace = pg_logger.exec_str_with_user_ns(stmt_str, user_globals, lambda cod, trace: trace)
+
+        # did it end in disaster?
+        last_evt = opt_trace[-1]['event']
+        if last_evt == 'exception':
+            last_exec_is_exception = True
+        else:
+            assert last_evt == 'return'
+            last_exec_is_exception = False
+
+
+        end_of_last_trace = None
 
         # 'clean up' the trace a bit:
         if len(self.output_traces):
-            # lop off the last element of the previous entry since it should match
-            # the first element of opt_trace
+            # for aesthetics, lop off the last element of the previous
+            # entry since it should match the first element of opt_trace
             end_of_last_trace = self.output_traces[-1].pop()
             #print 'END:', end_of_last_trace
             #print 'CUR:', opt_trace[0]
@@ -117,26 +121,11 @@ class OptHistory(object):
                 t['stdout'] = last_stdout + t['stdout']
 
 
-        # destroy the last entry if it was an error
-        # TODO: be careful about where to position this statement
-        if self.last_exec_is_exception:
-            self.pop_last()
-
-
-        # did executing stmt_str end in disaster?
-        last_evt = opt_trace[-1]['event']
-        if last_evt == 'exception':
-            self.last_exec_is_exception = True
-        else:
-            assert last_evt == 'return'
-            self.last_exec_is_exception = False
-
+        # adjust all the line numbers in the trace
         if len(self.executed_stmts):
             lineno = self.first_lineno[-1] + len(self.executed_stmts[-1].splitlines())
         else:
             lineno = 1
-
-        # adjust all the line numbers in the trace
         for elt in opt_trace:
             elt['line'] += (lineno - 1)
 
@@ -144,8 +133,19 @@ class OptHistory(object):
         self.first_lineno.append(lineno)
         self.output_traces.append(opt_trace)
 
+        # now create json_output:
         output_dict = dict(code=self.get_code(), trace=self.get_full_trace())
         json_output = json.dumps(output_dict, indent=INDENT_LEVEL)
+
+
+        # if this statement ended in an exception, delete it from the
+        # history and pretend it never happened
+        if last_exec_is_exception:
+            self.pop_last()
+            # SUPER-HACK! patch end_of_last_trace back on
+            if end_of_last_trace:
+                self.output_traces[-1].append(end_of_last_trace)
+
 
         self.check_rep()
         return json_output
@@ -162,7 +162,19 @@ def opt_pre_run_code_hook(self):
             continue
         filtered_ns[k] = v
 
+    # when you run multiple statements on one line using a semicolon:
+    # e.g., "print x; print y", this function will fire multiple times.
+    # we want to avoid duplicates!
     last_cmd = self.history_manager.input_hist_parsed[-1]
+    last_cmd_index = len(self.history_manager.input_hist_parsed) - 1
+
+    if self.meta.last_cmd_index == last_cmd_index:
+        assert self.meta.last_cmd == last_cmd
+        return # punt!!!
+
+    self.meta.last_cmd = last_cmd
+    self.meta.last_cmd_index = last_cmd_index
+
     trace_json = self.meta.opt_history.run_str(last_cmd, filtered_ns)
     #print trace_json
     urllib2.urlopen("http://localhost:8888/post", trace_json)
@@ -174,6 +186,9 @@ def load_ipython_extension(ipython):
     # new magics or aliases, for example.
 
     ipython.meta.opt_history = OptHistory()
+
+    ipython.meta.last_cmd = None
+    ipython.meta.last_cmd_index = -1 # set to an impossible initial value
 
     # NB: spelling might be different in older IPython versions
     ipython.set_hook('pre_run_code_hook', opt_pre_run_code_hook)
