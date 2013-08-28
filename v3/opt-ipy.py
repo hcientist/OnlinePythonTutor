@@ -35,9 +35,6 @@ INDENT_LEVEL = 2   # human-readable
 # TODO: support incremental pushes to the OPT frontend for efficiency
 # and better "snappiness"
 
-# TODO: keep global variables in the right order so that elements don't
-# "jump" around
-
 # TODO: support line number adjustments for function definitions/calls
 # (right now opt-ipy doesn't jump into function calls at all)
 
@@ -83,7 +80,7 @@ class OptHistory(object):
 
 
     def run_str(self, stmt_str, user_globals):
-        opt_trace = pg_logger.exec_str_with_user_ns(stmt_str, user_globals, get_trace)
+        opt_trace = pg_logger.exec_str_with_user_ns(stmt_str, user_globals, lambda cod, trace: trace)
 
         # 'clean up' the trace a bit:
         if len(self.output_traces):
@@ -92,6 +89,26 @@ class OptHistory(object):
             end_of_last_trace = self.output_traces[-1].pop()
             #print 'END:', end_of_last_trace
             #print 'CUR:', opt_trace[0]
+            last_ordered_globals = list(end_of_last_trace['ordered_globals']) # copy just to be paranoid
+
+            # patch up ordered_globals with last_ordered_globals to
+            # maintain continuity, i.e., prevent variable display from "jumping"
+            for t in opt_trace:
+                og = t['ordered_globals']
+                og_set = set(og)
+
+                # reorder og to use last_ordered_globals as a prefix to
+                # maintain order
+                new_og = [e for e in last_ordered_globals if e in og_set]
+                new_og_set = set(new_og)
+
+                # patch in leftovers
+                leftovers = [e for e in og if e not in new_og_set]
+                new_og.extend(leftovers)
+
+                assert len(og) == len(new_og)
+                t['ordered_globals'] = new_og
+
 
         # clobber the last entry
         if self.last_exec_is_exception:
@@ -125,9 +142,6 @@ class OptHistory(object):
         return json_output
 
 
-def get_trace(input_code, output_trace):
-    return output_trace
-
 
 # called right before a statement gets executed
 def opt_pre_run_code_hook(self):
@@ -140,9 +154,8 @@ def opt_pre_run_code_hook(self):
         filtered_ns[k] = v
 
     last_cmd = self.history_manager.input_hist_parsed[-1]
-    #print 'last_cmd:', last_cmd
     trace_json = self.meta.opt_history.run_str(last_cmd, filtered_ns)
-    print trace_json
+    #print trace_json
     urllib2.urlopen("http://localhost:8888/post", trace_json)
 
 

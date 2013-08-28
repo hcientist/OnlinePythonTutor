@@ -75,6 +75,11 @@ except ImportError:
   resource_module_loaded = False
 
 
+# From http://coreygoldberg.blogspot.com/2009/05/python-redirect-or-turn-off-stdout-and.html
+class NullDevice():
+    def write(self, s):
+        pass
+
 
 # These could lead to XSS or other code injection attacks, so be careful:
 __html__ = None
@@ -1023,6 +1028,10 @@ class PGLogger(bdb.Bdb):
         user_stdout = cStringIO.StringIO()
 
         sys.stdout = user_stdout
+
+        self.ORIGINAL_STDERR = sys.stderr
+        sys.stderr = NullDevice # silence errors
+
         user_globals = {"__name__"    : "__main__",
                         "__builtins__" : user_builtins,
                         "__user_stdout__" : user_stdout}
@@ -1106,6 +1115,7 @@ class PGLogger(bdb.Bdb):
 
     def finalize(self):
       sys.stdout = self.GAE_STDOUT # very important!
+      sys.stderr = self.ORIGINAL_STDERR
 
       assert len(self.trace) <= (MAX_EXECUTED_LINES + 1)
 
