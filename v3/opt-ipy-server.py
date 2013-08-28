@@ -1,13 +1,11 @@
 # Adapted from https://github.com/facebook/tornado/tree/master/demos/websocket
 
 import logging
-import tornado.escape
 import tornado.ioloop
 import tornado.options
 import tornado.web
 import tornado.websocket
 import os.path
-import uuid
 
 from tornado.options import define, options
 
@@ -17,8 +15,12 @@ define("port", default=8888, help="run on the given port", type=int)
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
-            (r"/js/(.*)", tornado.web.StaticFileHandler, {"path": os.path.join(os.path.dirname(__file__), 'js/')}),
-            (r"/css/(.*)", tornado.web.StaticFileHandler, {"path": os.path.join(os.path.dirname(__file__), 'css/')}),
+            (r"/js/(.*)",
+             tornado.web.StaticFileHandler,
+             {"path": os.path.join(os.path.dirname(__file__), 'js/')}),
+            (r"/css/(.*)",
+             tornado.web.StaticFileHandler,
+             {"path": os.path.join(os.path.dirname(__file__), 'css/')}),
             (r"/", MainHandler),
             (r"/post", PostHandler),
             (r"/chatsocket", ChatSocketHandler),
