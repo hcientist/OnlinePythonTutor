@@ -39,9 +39,7 @@ var myVisualizer = null; // singleton ExecutionVisualizer instance
 $(document).ready(function() {
   // redraw connector arrows on window resize
   $(window).resize(function() {
-    if (typeof appMode !== "undefined" && appMode == 'display') {
-      myVisualizer.redrawConnectors();
-    }
+    myVisualizer.redrawConnectors();
   });
 
   updater.start();
