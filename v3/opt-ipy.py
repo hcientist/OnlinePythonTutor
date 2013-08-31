@@ -8,6 +8,8 @@
 # This extension also defines a '%clear' magic command to clear the
 # user's global environment and accompanying visualization.
 
+# One-minute video demo:
+# http://www.youtube.com/watch?v=Q3oarDuZPL0
 
 # Prerequisites:
 # - IPython shell (http://ipython.org/, tested on 0.13.1 and 1.0.dev)
@@ -17,20 +19,21 @@
 # free Enthought Python Distribution:
 # https://www.enthought.com/products/epd/free/
 
-
 # Instructions:
 #
-# 1. Start the IPython shell in this directory by running:
+# 1. Start a local web server
+#
+#    python opt-ipy-server.py
+#
+# 2. Load this URL in your browser: http://localhost:8888/
+#
+# 3. Start the IPython shell in this directory by running:
 #
 #    ipython
 #
-# 2. Load this extension by running:
+# 4. Load this extension by running:
 #
 #    %load_ext opt-ipy
-#
-# 3. Start a local web server: python opt-ipy-server.py
-#
-# 4. Load this URL in your browser: http://localhost:8888/
 #
 # At this point, as soon as you execute a Python statement in the
 # IPython shell, it should immediately be visualized in your browser.
