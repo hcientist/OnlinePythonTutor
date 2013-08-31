@@ -1,26 +1,22 @@
 # Online Python Tutor extension for the IPython shell
 # http://ipython.org/ipython-doc/stable/config/extensions/index.html
 
-# defines a '%clear' magic to clear the user's global environment
+# Type in Python code in IPython prompt, and visualize in a browser.
+# Also defines a '%clear' magic to clear the user's global environment.
 
-# Tested on IPython 1.0.dev
+# Instructions:
 
-# pgbovine
+# To load this extension in IPython, run:
+#
+# %load_ext opt-ipy
+#
+# Then start a local web server: python opt-ipy-server.py
+# and load this URL in the browser: http://localhost:8888/
+
+# Tested on IPython 0.13.1 and 1.0.dev
+
 import os, sys, urllib2, json
-
-'''
-modpath = __file__
-# grab the .py file since that's the symlink
-if modpath.endswith('.pyc') and os.path.exists(modpath[:-1]):
-    modpath = modpath[:-1]
-sys.path.insert(0, os.path.dirname(os.path.realpath(modpath)))
-'''
-
 import pg_logger
-
-import pprint
-
-pp = pprint.PrettyPrinter()
 
 
 # To make regression tests work consistently across platforms,
@@ -133,6 +129,11 @@ def load_ipython_extension(ipython):
     # NB: spelling might be different in older IPython versions
     ipython.set_hook('pre_run_code_hook', opt_pre_run_code_hook)
     ipython.define_magic('clear', opt_clear)
+
+    print "Online Python Tutor extension loaded!"
+    print
+    print "1.) Now start a local web server: python opt-ipy-server.py"
+    print "2.) and visit this URL in a browser: http://localhost:8888/"
 
 
 def unload_ipython_extension(ipython):
