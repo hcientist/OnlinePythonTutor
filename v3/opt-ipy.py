@@ -1,26 +1,46 @@
 # Online Python Tutor extension for the IPython shell
-# http://ipython.org/ipython-doc/stable/config/extensions/index.html
+# by Philip Guo (philip@pgbovine.net)
+# August 2013
 
-# Type in Python code in IPython prompt, and visualize in a browser.
-# Also defines a '%clear' magic to clear the user's global environment.
+# When this extension is loaded, you can type code into the IPython
+# prompt and visualize its execution in a web browser.
+#
+# This extension also defines a '%clear' magic command to clear the
+# user's global environment and accompanying visualization.
+
+
+# Prerequisites:
+# - IPython shell (http://ipython.org/, tested on 0.13.1 and 1.0.dev)
+# - tornado Web server (http://www.tornadoweb.org/)
+#
+# One easy way to set up these prerequisites is by installing the
+# free Enthought Python Distribution:
+# https://www.enthought.com/products/epd/free/
+
 
 # Instructions:
-
-# To load this extension in IPython, run:
 #
-# %load_ext opt-ipy
+# 1. Start the IPython shell in this directory by running:
 #
-# Then start a local web server: python opt-ipy-server.py
-# and load this URL in the browser: http://localhost:8888/
+#    ipython
+#
+# 2. Load this extension by running:
+#
+#    %load_ext opt-ipy
+#
+# 3. Start a local web server: python opt-ipy-server.py
+#
+# 4. Load this URL in your browser: http://localhost:8888/
+#
+# At this point, as soon as you execute a Python statement in the
+# IPython shell, it should immediately be visualized in your browser.
 
-# Tested on IPython 0.13.1 and 1.0.dev
 
 import os, sys, urllib2, json
 import pg_logger
 
 
-# To make regression tests work consistently across platforms,
-# standardize display of floats to 3 significant figures
+# Standardize display of floats to 3 significant figures
 #
 # Trick from:
 # http://stackoverflow.com/questions/1447287/format-floats-with-standard-json-module
