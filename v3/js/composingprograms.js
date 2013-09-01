@@ -159,6 +159,7 @@ $(document).ready(function() {
       var frontendOptionsObj = {startingInstruction: startingInstruction,
                                 executeCodeWithRawInputFunc: executeCodeWithRawInput,
                                 updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
+                                compactFuncLabels: true,
                                }
 
       function handleSuccessFunc() {
