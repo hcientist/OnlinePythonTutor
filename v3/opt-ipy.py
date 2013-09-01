@@ -160,9 +160,6 @@ def load_ipython_extension(ipython):
     ipython.define_magic('clear', opt_clear)
 
     print "Online Python Tutor extension loaded!"
-    print
-    print "1.) Now start a local web server: python opt-ipy-server.py"
-    print "2.) and visit this URL in a browser: http://localhost:8888/"
 
 
 def unload_ipython_extension(ipython):
