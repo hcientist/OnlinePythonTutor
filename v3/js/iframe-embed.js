@@ -27,19 +27,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
-// Pre-reqs: pytutor.js and jquery.ba-bbq.min.js should be imported BEFORE this file
-
-
-// backend scripts to execute (Python 2 and 3 variants, if available)
-// make two copies of ../web_exec.py and give them the following names,
-// then change the first line (starting with #!) to the proper version
-// of the Python interpreter (i.e., Python 2 or Python 3).
-//var python2_backend_script = 'web_exec_py2.py';
-//var python3_backend_script = 'web_exec_py3.py';
-
-// uncomment below if you're running on Google App Engine using the built-in app.yaml
-var python2_backend_script = 'exec';
-var python3_backend_script = null;
+// Pre-reqs:
+// - pytutor.js
+// - jquery.ba-bbq.min.js
+// - opt-frontend-common.js
+// should all be imported BEFORE this file
 
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance

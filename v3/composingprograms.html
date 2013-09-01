@@ -49,6 +49,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <script type="text/javascript" src="js/pytutor.js"></script>
 <link rel="stylesheet" href="css/pytutor.css"/>
+<link rel="stylesheet" href="css/pytutor.cs61a.css"/> <!-- include AFTER pytutor.css -->
 
 
 <!-- requirements for opt-frontend.js -->
@@ -58,8 +59,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <link type="text/css" href="css/codemirror.css" rel="stylesheet" />
 <script type="text/javascript" src="js/codemirror/python.js"></script>
 
-<script type="text/javascript" src="js/opt-frontend-common.js"></script>
-<script type="text/javascript" src="js/opt-frontend.js"></script>
+<script type="text/javascript" src="js/opt-frontend-cs61a.js"></script>
 <link rel="stylesheet" href="css/opt-frontend.css"/>
 
 </head>
@@ -76,115 +76,17 @@ Write your Python code here:
 <p style="margin-top: 10px; line-height: 200%;">
 Execute code using
   <select id="pythonVersionSelector">
-    <option value="2">Python 2.7</option>
     <option value="3">Python 3.3</option>
-    <option value="2crazy">Py 2.crazy</option>
-  </select>,
+  </select>
+and
   <select id="cumulativeModeSelector">
-    <option value="false">hide frames of exited functions</option>
-    <option value="true">show frames of exited functions</option>
-  </select>,
-  <select id="heapPrimitivesSelector">
-    <option value="false">inline primitives and nested objects</option>
-    <option value="true">render all objects on the heap</option>
-  </select>,
-  <select id="drawParentPointerSelector">
-    <option value="false">hide environment parent pointers</option>
-    <option value="true">show environment parent pointers</option>
-  </select>,
-  <select id="textualMemoryLabelsSelector">
-    <option value="false">draw references using arrows</option>
-    <option value="true">use text labels for references</option>
-  </select>, and
-  <select id="showOnlyOutputsSelector">
-    <option value="false">show everything</option>
-    <option value="true">show only outputs</option>
-  </select>.
+    <option value="true">display frames of exited functions.</option>
+    <option value="false">don't display exited functions.</option>
+  </select>
 </p>
 
 <p>
 <button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
-</p>
-
-
-<p style="margin-top: 25px;">Basic Examples:<br/>
-
-<a id="aliasExampleLink" href="#">hello</a> |
-<a id="happyExampleLink" href="#">happy</a> |
-<a id="tutorialExampleLink" href="#">intro</a> |
-<a id="filterExampleLink" href="#">filter</a> |
-<a id="strtokExampleLink" href="#">tokenize</a> |
-<a id="insSortExampleLink" href="#">insertion sort</a> |
-<a id="listCompLink" href="#">list comprehension</a>
-</p>
-
-<p style="margin-top: 15px;">Math-Related Fun:<br/>
-<a id="factExampleLink" href="#">factorial</a> |
-<a id="fibonacciExampleLink" href="#">fibonacci</a> |
-<a id="memoFibExampleLink" href="#">memoized fibonacci</a> |
-<a id="newtonExampleLink" href="#">square root</a> |
-<a id="pwGcdLink" href="#">gcd</a> |
-<a id="towersOfHanoiLink" href="#">towers of hanoi</a>
-</p>
-
-<p style="margin-top: 15px;">Higher-Order Functions:<br/>
-
-<a id="closure1Link" href="#">closure 1</a> |
-<a id="closure2Link" href="#">closure 2</a> |
-<a id="closure3Link" href="#">closure 3</a> |
-<a id="closure4Link" href="#">closure 4</a> |
-<a id="closure5Link" href="#">closure 5</a>
-<br/>
-<!-- <a id="sumCubesLink" href="#">sum cubes</a> | -->
-<a id="mapExampleLink" href="#">list map</a> |
-<a id="sumExampleLink" href="#">summation</a> |
-<a id="lambdaParamLink" href="#">lambda param</a> |
-<a id="tortureLink" href="#">student torture</a>
-
-</p>
-
-<p style="margin-top: 15px;">User Input:<br/>
-
-<a id="rawInputExampleLink" href="#">raw input</a>
-
-</p>
-
-<p style="margin-top: 15px;">Object-Oriented Programming:<br/>
-
-<a id="oop1ExampleLink" href="#">OOP 1</a> |
-<a id="oop2ExampleLink" href="#">OOP 2</a> |
-<a id="oopSmallExampleLink" href="#">OOP 3</a> |
-<a id="inheritanceExampleLink" href="#">inheritance</a>
-
-</p>
-
-<p style="margin-top: 15px;">Linked Lists:<br/>
-<a id="ll1Link" href="#">LL 1</a> |
-<a id="ll2Link" href="#">LL 2</a> |
-<a id="sumListLink" href="#">LL sum</a>
-</p>
-
-<p style="margin-top: 15px;">Pointer Aliasing:<br/>
-<a id="aliasing1Link" href="#">aliasing 1</a> |
-<a id="aliasing2Link" href="#">aliasing 2</a> |
-<a id="aliasing3Link" href="#">aliasing 3</a> |
-<a id="aliasing4Link" href="#">aliasing 4</a>
-<br/>
-<a id="aliasing5Link" href="#">aliasing 5</a> |
-<a id="aliasing6Link" href="#">aliasing 6</a> |
-<a id="aliasing7Link" href="#">aliasing 7</a> |
-<a id="aliasing8Link" href="#">aliasing 8</a> |
-<a id="pwSumListLink" href="#">sumList</a>
-</p>
-
-<p style="margin-top: 15px;">More Python Tricks:<br/>
-<a id="decoratorsLink" href="#">decorators</a> |
-<a id="genPrimesLink" href="#">generators</a> |
-<a id="genExprLink" href="#">gen expr</a> |
-<a id="varargsLink" href="#">varargs</a> |
-<a id="pwTryFinallyLink" href="#">exceptions</a> |
-<a id="forElseLink" href="#">for-else</a> |
-<a id="nonlocalLink" href="#">nonlocal</a>
 </p>
 
 </div>
@@ -203,19 +105,8 @@ Execute code using
 and share that URL. To report a bug, paste the URL along with a brief
 error description in an email addressed to philip@pgbovine.net</p>
 
-<div id="embedLinkDiv">
-<p>
-  <button id="genEmbedBtn" class="smallBtn" type="button">Generate embed code</button> <input type="text" id="embedCodeOutput" size="70"/>
-</p>
-
-<p>To embed this visualization in your webpage, click the 'Generate
-embed code' button above and paste the resulting HTML code into your
-webpage. Adjust the height and width parameters as needed.</p>
-</div>
-
-<a href="http://pythontutor.com/">Online Python Tutor</a> supports <a
-href="http://www.python.org/doc/2.7/">Python 2.7</a> and <a
-href="http://www.python.org/doc/3.3.0/">Python 3.3</a> with limited module
+This version of <a href="http://pythontutor.com/">Online Python Tutor</a> supports
+<a href="http://www.python.org/doc/3.3.0/">Python 3.3</a> with limited module
 imports and no file I/O. 
 The following modules may be imported: 
 bisect,

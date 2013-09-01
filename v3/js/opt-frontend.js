@@ -27,32 +27,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
-// Pre-reqs: pytutor.js and jquery.ba-bbq.min.js should be imported BEFORE this file
+// Pre-reqs:
+// - pytutor.js
+// - jquery.ba-bbq.min.js
+// - opt-frontend-common.js
+// should all be imported BEFORE this file
 
-
-// backend scripts to execute (Python 2 and 3 variants, if available)
-// make two copies of ../web_exec.py and give them the following names,
-// then change the first line (starting with #!) to the proper version
-// of the Python interpreter (i.e., Python 2 or Python 3).
-// Note that your hosting provider might have stringent rules for what
-// kind of scripts are allowed to execute. For instance, my provider
-// (Webfaction) seems to let scripts execute only if permissions are
-// something like:
-// -rwxr-xr-x 1 pgbovine pgbovine 2.5K Jul  5 22:46 web_exec_py2.py*
-// (most notably, only the owner of the file should have write
-//  permissions)
-//var python2_backend_script = 'web_exec_py2.py';
-//var python3_backend_script = 'web_exec_py3.py';
-
-// uncomment below if you're running on Google App Engine using the built-in app.yaml
-var python2_backend_script = 'exec';
-var python3_backend_script = null;
-
-// KRAZY experimental KODE!!! Use a custom hacked CPython interpreter
-var python2crazy_backend_script = 'web_exec_py2-crazy.py';
-// On Google App Engine, simply run dev_appserver.py with the
-// crazy custom CPython interpreter to get 2crazy
-//var python2crazy_backend_script = 'exec';
 
 var appMode = 'edit'; // 'edit', 'display', or 'display_no_frills'
 
@@ -520,47 +500,40 @@ $(document).ready(function() {
   });
 
 
-  // handle hash parameters passed in when loading the page
-  preseededCode = $.bbq.getState('code');
-  if (preseededCode) {
-    setCodeMirrorVal(preseededCode);
+  var queryStrOptions = getQueryStringOptions();
+
+  if (queryStrOptions.preseededCode) {
+    setCodeMirrorVal(queryStrOptions.preseededCode);
   }
   else {
     // select a canned example on start-up:
     $("#aliasExampleLink").trigger('click');
   }
 
-  // parse query string options ...
-  // ugh, ugly tristate due to the possibility of them being undefined
-  var cumulativeState = $.bbq.getState('cumulative');
-  if (cumulativeState !== undefined) {
-    $('#cumulativeModeSelector').val(cumulativeState);
+  // ugh, ugly tristate due to the possibility of each being undefined
+  if (queryStrOptions.pyState !== undefined) {
+    $('#pythonVersionSelector').val(queryStrOptions.pyState);
   }
-  var heapPrimitivesState = $.bbq.getState('heapPrimitives');
-  if (heapPrimitivesState !== undefined) {
-    $('#heapPrimitivesSelector').val(heapPrimitivesState);
+  if (queryStrOptions.cumulativeState !== undefined) {
+    $('#cumulativeModeSelector').val(queryStrOptions.cumulativeState);
   }
-  var drawParentPointerState = $.bbq.getState('drawParentPointers');
-  if (drawParentPointerState !== undefined) {
-    $('#drawParentPointerSelector').val(drawParentPointerState);
+  if (queryStrOptions.heapPrimitives !== undefined) {
+    $('#heapPrimitivesSelector').val(queryStrOptions.heapPrimitives);
   }
-  var textRefsState = $.bbq.getState('textReferences');
-  if (textRefsState !== undefined) {
-    $('#textualMemoryLabelsSelector').val(textRefsState);
+  if (queryStrOptions.drawParentPointers !== undefined) {
+    $('#drawParentPointerSelector').val(queryStrOptions.drawParentPointers);
   }
-  var showOnlyOutputsState = $.bbq.getState('showOnlyOutputs');
-  if (showOnlyOutputsState !== undefined) {
-    $('#showOnlyOutputsSelector').val(showOnlyOutputsState);
+  if (queryStrOptions.textRefs !== undefined) {
+    $('#textualMemoryLabelsSelector').val(queryStrOptions.textRefs);
+  }
+  if (queryStrOptions.showOnlyOutputs !== undefined) {
+    $('#showOnlyOutputsSelector').val(queryStrOptions.showOnlyOutputs);
   }
 
-  var pyState = $.bbq.getState('py');
-  if (pyState !== undefined) {
-    $('#pythonVersionSelector').val(pyState);
-  }
 
   appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
-  if ((appMode == "display") && preseededCode /* jump to display only with pre-seeded code */) {
-    preseededCurInstr = Number($.bbq.getState('curInstr'));
+  if ((appMode == "display") && queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
+    preseededCurInstr = queryStrOptions.preseededCurInstr;
     $("#executeBtn").trigger('click');
   }
   else {
