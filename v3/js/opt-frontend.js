@@ -554,7 +554,7 @@ $(document).ready(function() {
                   curInstr: myVisualizer.curInstr,
                  };
 
-    var embedUrlStr = $.param.fragment('http://pythontutor.com/iframe-embed.html', myArgs, 2 /* clobber all */);
+    var embedUrlStr = $.param.fragment(domain + "iframe-embed.html", myArgs, 2 /* clobber all */);
     var iframeStr = '<iframe width="800" height="500" frameborder="0" src="' + embedUrlStr + '"> </iframe>';
     $('#embedCodeOutput').val(iframeStr);
   });

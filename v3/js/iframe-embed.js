@@ -106,11 +106,11 @@ $(document).ready(function() {
                             textualMemoryLabels: textRefsBool,
                             showOnlyOutputs: showOnlyOutputsBool,
                             executeCodeWithRawInputFunc: executeCodeWithRawInput,
-                            updateOutputCallback: (resizeContainer ? resizeContainerNow : null)
+                            updateOutputCallback: (resizeContainer ? resizeContainerNow : null),
 
                             // undocumented experimental modes:
                             pyCrazyMode: (pyState == '2crazy'),
-                            highlightLines: typeof $.bbq.getState("highlightLines") !== "undefined",
+                            highlightLines: typeof $.bbq.getState("highlightLines") !== "undefined"
                            }
 
   function executeCode(forceStartingInstr) {
@@ -149,5 +149,7 @@ $(document).ready(function() {
     myVisualizer.redrawConnectors();
   });
 
+
+  executeCodeFromScratch(); // finally, execute code and display visualization
 });
 
