@@ -102,6 +102,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //                                 with some new user input (somewhat hacky!)
 //   highlightLines - highlight current and previously executed lines (default: false)
 //   arrowLines     - draw arrows pointing to current and previously executed lines (default: true)
+//   compactFuncLabels - render functions with a 'func' prefix and no type label
 //   pyCrazyMode    - run with Py2crazy, which provides expression-level
 //                    granularity instead of line-level granularity (HIGHLY EXPERIMENTAL!)
 function ExecutionVisualizer(domRootID, dat, params) {
@@ -159,6 +160,8 @@ function ExecutionVisualizer(domRootID, dat, params) {
       // only highlightLines set
       this.params.arrowLines = !(this.params.highlightLines);
   }
+
+  this.compactFuncLabels = this.params.compactFuncLabels;
 
   // audible!
   if (this.params.pyCrazyMode) {
@@ -485,7 +488,7 @@ ExecutionVisualizer.prototype.render = function() {
   // (note that we need to keep #globals_area separate from #stack for d3 to work its magic)
   this.domRoot.find("#globals_area").append('<div class="stackFrame" id="'
     + myViz.generateID('globals') + '"><div id="' + myViz.generateID('globals_header')
-    + '" class="stackFrameHeader">Global variables</div><table class="stackFrameVarTable" id="'
+    + '" class="stackFrameHeader">Global frame</div><table class="stackFrameVarTable" id="'
     + myViz.generateID('global_table') + '"></table></div>');
 
 
@@ -2393,13 +2396,17 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       var funcName = htmlspecialchars(obj[1]).replace('&lt;lambda&gt;', '\u03bb');
       var parentFrameID = obj[2]; // optional
 
-      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + 'function</div>');
+      if (!myViz.compactFuncLabels) {
+        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + 'function</div>');
+      }
+
+      var funcPrefix = myViz.compactFuncLabels ? 'func' : '';
 
       if (parentFrameID) {
-        d3DomElement.append('<div class="funcObj">' + funcName + ' [parent=f'+ parentFrameID + ']</div>');
+        d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + ' [parent=f'+ parentFrameID + ']</div>');
       }
       else {
-        d3DomElement.append('<div class="funcObj">' + funcName + '</div>');
+        d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + '</div>');
       }
     }
     else if (obj[0] == 'HEAP_PRIMITIVE') {
