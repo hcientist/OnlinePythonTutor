@@ -1,0 +1,15 @@
+/*  custom CSS for Berkeley CS61a
+
+    always include this AFTER pytutor.css
+*/
+
+div.ExecutionVisualizer table#pyCodeOutput {
+  font-size:11pt;
+  white-space: nowrap;
+}
+
+div.ExecutionVisualizer div.stackFrame,
+div.ExecutionVisualizer div.zombieStackFrame {
+  white-space: nowrap;
+}
+
