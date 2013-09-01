@@ -52,6 +52,9 @@ var python2crazy_backend_script = 'web_exec_py2-crazy.py';
 //var python2crazy_backend_script = 'exec';
 
 
+var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
+
+
 function getQueryStringOptions() {
   // note that any of these can be 'undefined'
   var preseededCode = $.bbq.getState('code');
@@ -72,5 +75,5 @@ function getQueryStringOptions() {
           drawParentPointers: drawParentPointers,
           textRefs: textRefs,
           showOnlyOutputs: showOnlyOutputs,
-          cumulativeState: cumulativeState}
+          cumulativeState: cumulativeState};
 }

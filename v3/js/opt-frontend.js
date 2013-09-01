@@ -39,8 +39,6 @@ var appMode = 'edit'; // 'edit', 'display', or 'display_no_frills'
 var preseededCode = null;     // if you passed in a 'code=<code string>' in the URL, then set this var
 var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
 
-var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
-
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 
 
@@ -101,7 +99,7 @@ $(document).ready(function() {
 
       $("#embedLinkDiv").show();
 
-      $('#executeBtn').html("Visualize execution");
+      $('#executeBtn').html("Visualize Execution");
       $('#executeBtn').attr('disabled', false);
 
 
@@ -193,7 +191,7 @@ $(document).ready(function() {
                   alert("Whoa, unknown error! Reload to try again, or report a bug to philip@pgbovine.net\n\n(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
                 }
 
-                $('#executeBtn').html("Visualize execution");
+                $('#executeBtn').html("Visualize Execution");
                 $('#executeBtn').attr('disabled', false);
               }
               else {
@@ -553,7 +551,7 @@ $(document).ready(function() {
   $(document).ajaxError(function() {
     alert("Server error (possibly due to memory/resource overload). Report a bug to philip@pgbovine.net\n\n(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
 
-    $('#executeBtn').html("Visualize execution");
+    $('#executeBtn').html("Visualize Execution");
     $('#executeBtn').attr('disabled', false);
   });
 

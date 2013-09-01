@@ -38,23 +38,25 @@ var myVisualizer = null; // singleton ExecutionVisualizer instance
 
 
 $(document).ready(function() {
-  var preseededCode = $.bbq.getState('code');
+  var queryStrOptions = getQueryStringOptions();
 
-  var pyState = $.bbq.getState('py');
-  var verticalStackBool = ($.bbq.getState('verticalStack') == 'true'); // boolean
-  var heapPrimitivesBool = ($.bbq.getState('heapPrimitives') == 'true');
-  var drawParentPointerBool = ($.bbq.getState('drawParentPointers') == 'true');
-  var textRefsBool = ($.bbq.getState('textReferences') == 'true');
-  var showOnlyOutputsBool = ($.bbq.getState('showOnlyOutputs') == 'true');
+  var preseededCode = queryStrOptions.preseededCode;
+  var pyState = queryStrOptions.pyState;
+  var verticalStackBool = (queryStrOptions.verticalStack == 'true');
+  var heapPrimitivesBool = (queryStrOptions.heapPrimitives == 'true');
+  var drawParentPointerBool = (queryStrOptions.drawParentPointers == 'true');
+  var textRefsBool = (queryStrOptions.textRefs == 'true');
+  var showOnlyOutputsBool = (queryStrOptions.showOnlyOutputs == 'true');
+  var cumModeBool = (queryStrOptions.cumulativeState == 'true');
 
   // set up all options in a JS object
-  var options = {cumulative_mode: ($.bbq.getState('cumulative') == 'true'),
+  var options = {cumulative_mode: cumModeBool,
                  heap_primitives: heapPrimitivesBool,
                  show_only_outputs: showOnlyOutputsBool,
-                 py_crazy_mode: ($.bbq.getState('py') == '2crazy')};
+                 py_crazy_mode: (pyState == '2crazy')};
 
 
-  var preseededCurInstr = Number($.bbq.getState('curInstr'));
+  var preseededCurInstr = queryStrOptions.preseededCurInstr;
   if (!preseededCurInstr) {
     preseededCurInstr = 0;
   }
@@ -95,82 +97,106 @@ $(document).ready(function() {
       };
   }
 
-      
-  $.get(backend_script,
-        {user_script : preseededCode,
-         options_json: JSON.stringify(options)},
-        function(dataFromBackend) {
-          var trace = dataFromBackend.trace;
 
-          // don't enter visualize mode if there are killer errors:
-          if (!trace ||
-              (trace.length == 0) ||
-              (trace[trace.length - 1].event == 'uncaught_exception')) {
+  function executeCode(forceStartingInstr) {
+    $.get(backend_script,
+          {user_script : preseededCode,
+           raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
+           options_json: JSON.stringify(options)},
+          function(dataFromBackend) {
+            var trace = dataFromBackend.trace;
 
-            if (trace.length == 1) {
-              alert(trace[0].exception_msg);
-            }
-            else if (trace[trace.length - 1].exception_msg) {
-              alert(trace[trace.length - 1].exception_msg);
+            // don't enter visualize mode if there are killer errors:
+            if (!trace ||
+                (trace.length == 0) ||
+                (trace[trace.length - 1].event == 'uncaught_exception')) {
+
+              if (trace.length == 1) {
+                alert(trace[0].exception_msg);
+              }
+              else if (trace[trace.length - 1].exception_msg) {
+                alert(trace[trace.length - 1].exception_msg);
+              }
+              else {
+                alert("Whoa, unknown error! Reload to try again, or report a bug to philip@pgbovine.net");
+              }
             }
             else {
-              alert("Whoa, unknown error! Reload to try again, or report a bug to philip@pgbovine.net\n\n(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
-            }
-          }
-          else {
-            var startingInstruction = 0;
+              var startingInstruction = 0;
 
-            // only do this at most ONCE, and then clear out preseededCurInstr
-            if (preseededCurInstr && preseededCurInstr < trace.length) { // NOP anyways if preseededCurInstr is 0
-              startingInstruction = preseededCurInstr;
-            }
-
-            myVisualizer = new ExecutionVisualizer('vizDiv',
-                                                   dataFromBackend,
-                                                   {startingInstruction: preseededCurInstr,
-                                                    embeddedMode: true,
-                                                    verticalStack: verticalStackBool,
-                                                    disableHeapNesting: heapPrimitivesBool,
-                                                    drawParentPointers: drawParentPointerBool,
-                                                    textualMemoryLabels: textRefsBool,
-                                                    showOnlyOutputs: showOnlyOutputsBool,
-                                                    highlightLines: typeof $.bbq.getState("highlightLines") !== "undefined",
-                                                    pyCrazyMode: ($.bbq.getState('py') == '2crazy'),
-                                                    updateOutputCallback: (resizeContainer ? resizeContainerNow : null)
-                                                   });
-
-            // set keyboard bindings
-            // VERY IMPORTANT to clear and reset this every time or
-            // else the handlers might be bound multiple times
-            $(document).unbind('keydown');
-            $(document).keydown(function(k) {
-              if (k.keyCode == 37) { // left arrow
-                if (myVisualizer.stepBack()) {
-                  k.preventDefault(); // don't horizontally scroll the display
-                }
+              // only do this at most ONCE, and then clear out preseededCurInstr
+              if (preseededCurInstr && preseededCurInstr < trace.length) { // NOP anyways if preseededCurInstr is 0
+                startingInstruction = preseededCurInstr;
               }
-              else if (k.keyCode == 39) { // right arrow
-                if (myVisualizer.stepForward()) {
-                  k.preventDefault(); // don't horizontally scroll the display
-                }
+
+              // forceStartingInstr overrides everything else
+              if (forceStartingInstr !== undefined) {
+                startingInstruction = forceStartingInstr;
               }
-            });
-          }
-        },
-        "json");
+
+              myVisualizer = new ExecutionVisualizer('vizDiv',
+                                                     dataFromBackend,
+                                                     {startingInstruction: preseededCurInstr,
+                                                      embeddedMode: true,
+                                                      verticalStack: verticalStackBool,
+                                                      disableHeapNesting: heapPrimitivesBool,
+                                                      drawParentPointers: drawParentPointerBool,
+                                                      textualMemoryLabels: textRefsBool,
+                                                      showOnlyOutputs: showOnlyOutputsBool,
+                                                      highlightLines: typeof $.bbq.getState("highlightLines") !== "undefined",
+                                                      executeCodeWithRawInputFunc: executeCodeWithRawInput,
+                                                      pyCrazyMode: (pyState == '2crazy'),
+                                                      updateOutputCallback: (resizeContainer ? resizeContainerNow : null)
+                                                     });
+
+              // set keyboard bindings
+              // VERY IMPORTANT to clear and reset this every time or
+              // else the handlers might be bound multiple times
+              $(document).unbind('keydown');
+              $(document).keydown(function(k) {
+                if (k.keyCode == 37) { // left arrow
+                  if (myVisualizer.stepBack()) {
+                    k.preventDefault(); // don't horizontally scroll the display
+                  }
+                }
+                else if (k.keyCode == 39) { // right arrow
+                  if (myVisualizer.stepForward()) {
+                    k.preventDefault(); // don't horizontally scroll the display
+                  }
+                }
+              });
+            }
+          },
+          "json");
+  }
+
+
+  function executeCodeFromScratch() {
+    // reset these globals
+    rawInputLst = [];
+
+    executeCode();
+  }
+
+  function executeCodeWithRawInput(rawInputStr, curInstr) {
+    enterDisplayNoFrillsMode();
+
+    // set some globals
+    rawInputLst.push(rawInputStr);
+
+    executeCode(curInstr);
+  }
 
 
   // log a generic AJAX error handler
   $(document).ajaxError(function() {
-    alert("Online Python Tutor server error (possibly due to memory/resource overload).");
+    alert("Ugh, Online Python Tutor server error :(");
   });
 
 
   // redraw connector arrows on window resize
   $(window).resize(function() {
-    if (typeof appMode !== "undefined" && appMode == 'display') {
-      myVisualizer.redrawConnectors();
-    }
+    myVisualizer.redrawConnectors();
   });
 
 });
