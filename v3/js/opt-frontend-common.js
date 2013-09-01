@@ -121,8 +121,11 @@ function executePythonCode(pythonSourceCode,
               }
             }
             else {
+              // fail-soft to prevent running off of the end of trace
+              if (frontendOptionsObj.startingInstruction >= trace.length) {
+                frontendOptionsObj.startingInstruction = 0;
+              }
               myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
-
 
               // set keyboard bindings
               // VERY IMPORTANT to clear and reset this every time or
