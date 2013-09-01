@@ -12,6 +12,10 @@ from tornado.options import define, options
 define("port", default=8888, help="run on the given port", type=int)
 
 
+# TODO: ugly clunky global
+current_full_trace = None
+
+
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
@@ -37,7 +41,10 @@ class PostHandler(tornado.web.RequestHandler):
     def post(self):
         message = self.request.body
         #logging.info("got message %r", message)
-        ChatSocketHandler.send_updates(message)
+        global current_full_trace
+        current_full_trace = message
+        if current_full_trace:
+            ChatSocketHandler.send_updates(current_full_trace)
 
 
 class ChatSocketHandler(tornado.websocket.WebSocketHandler):
@@ -49,6 +56,9 @@ class ChatSocketHandler(tornado.websocket.WebSocketHandler):
 
     def open(self):
         ChatSocketHandler.waiters.add(self)
+        global current_full_trace
+        if current_full_trace:
+            ChatSocketHandler.send_updates(current_full_trace)
 
     def on_close(self):
         ChatSocketHandler.waiters.remove(self)

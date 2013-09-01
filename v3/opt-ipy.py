@@ -67,6 +67,9 @@ class OptHistory(object):
     def __init__(self):
         self.executed_stmts = []
 
+        # saved version of current trace
+        self.cur_trace = None
+
     def pop_last(self):
         self.executed_stmts.pop()
 
@@ -76,10 +79,14 @@ class OptHistory(object):
     def get_code(self):
         return '\n'.join(self.executed_stmts)
 
-    def run_str(self, stmt_str):
+    def run_str_and_broadcast(self, stmt_str):
+        '''
+        Run stmt_str and transmit trace to server
+        '''
         self.executed_stmts.append(stmt_str)
 
-        opt_trace = pg_logger.exec_script_str_local(self.get_code(), [], False, False, lambda cod, trace: trace)
+        opt_trace = pg_logger.exec_script_str_local(self.get_code(), [], False, False,
+                                                    lambda cod, trace: trace)
 
         last_evt = opt_trace[-1]['event']
         if last_evt == 'exception':
@@ -88,8 +95,8 @@ class OptHistory(object):
             assert last_evt == 'return'
             epic_fail = False
 
-        output_dict = dict(code=self.get_code(), trace=opt_trace)
-        json_output = json.dumps(output_dict, indent=INDENT_LEVEL)
+        trace_dict = dict(code=self.get_code(), trace=opt_trace)
+        json_output = json.dumps(trace_dict, indent=INDENT_LEVEL)
 
         # if this statement ended in an exception, delete it from the
         # history and pretend it never happened
@@ -97,7 +104,7 @@ class OptHistory(object):
             self.pop_last()
 
         self.check_rep()
-        return json_output
+        urllib2.urlopen(POST_ADDR, json_output)
 
 
 # called right before a statement gets executed
@@ -119,9 +126,7 @@ def opt_pre_run_code_hook(self):
     self.meta.last_cmd = last_cmd
     self.meta.last_cmd_index = last_cmd_index
 
-    trace_json = self.meta.opt_history.run_str(last_cmd)
-    #print trace_json
-    urllib2.urlopen(POST_ADDR, trace_json)
+    self.meta.opt_history.run_str_and_broadcast(last_cmd)
 
 
 # clear global namespace and reset history
