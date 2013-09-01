@@ -25,7 +25,9 @@
 #
 #    python opt-ipy-server.py
 #
-# 2. Load this URL in your browser: http://localhost:8888/
+# 2. Load this URL in your browser:
+#
+#    http://localhost:8888/
 #
 # 3. Start the IPython shell in this directory by running:
 #
@@ -37,6 +39,10 @@
 #
 # At this point, as soon as you execute a Python statement in the
 # IPython shell, it should immediately be visualized in your browser.
+
+
+# If you're hosting the server remotely, then change this address:
+POST_ADDR = "http://localhost:8888/post"
 
 
 import os, sys, urllib2, json
@@ -115,7 +121,7 @@ def opt_pre_run_code_hook(self):
 
     trace_json = self.meta.opt_history.run_str(last_cmd)
     #print trace_json
-    urllib2.urlopen("http://localhost:8888/post", trace_json)
+    urllib2.urlopen(POST_ADDR, trace_json)
 
 
 # clear global namespace and reset history
@@ -136,7 +142,7 @@ def opt_clear(self, params):
     ip.meta.opt_history = OptHistory() # just create a new one!
 
     empty_msg = dict(code='', trace=[])
-    urllib2.urlopen("http://localhost:8888/post", json.dumps(empty_msg))
+    urllib2.urlopen(POST_ADDR, json.dumps(empty_msg))
 
 
 def load_ipython_extension(ipython):
