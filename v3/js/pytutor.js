@@ -83,8 +83,8 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code' (if null, then 'Edit code' link hidden)
 //   allowEditAnnotations - allow user to edit per-step annotations (default: false)
 //   embeddedMode         - shortcut for hideOutput=true, allowEditAnnotations=false
-//   disableHeapNesting   - if true, then render all heap objects at the top level (i.e., no nested objects)
 //                          codeDivWidth=350, codeDivHeight=400
+//   disableHeapNesting   - if true, then render all heap objects at the top level (i.e., no nested objects)
 //   drawParentPointers   - if true, then draw environment diagram parent pointers for all frames
 //                          WARNING: there are hard-to-debug MEMORY LEAKS associated with activating this option
 //   textualMemoryLabels  - render references using textual memory labels rather than as jsPlumb arrows.
@@ -1740,8 +1740,8 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
       //            $.extend(true /* make a deep copy */ , [], curRow),
       //            $.extend(true /* make a deep copy */ , [], newRow));
 
-      // heuristic for laying out 1-D linked data structures:
-      // try to lay them out as "siblings" in the same row
+      // heuristic for laying out 1-D linked data structures: check for enclosing elements that are
+      // structurally identical and then lay them out as siblings in the same "row"
       var heapObj = curEntry.heap[id];
       assert(heapObj);
 
@@ -1751,11 +1751,11 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 
           if (!isPrimitiveType(child)) {
             var childID = getRefID(child);
-            if (myViz.disableHeapNesting) {
-              updateCurLayout(childID, [], []);
-            }
-            else {
+            if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
               updateCurLayout(childID, curRow, newRow);
+            }
+            else if (myViz.disableHeapNesting) {
+              updateCurLayout(childID, [], []);
             }
           }
         });
@@ -1775,11 +1775,11 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
           var dictVal = child[1];
           if (!isPrimitiveType(dictVal)) {
             var childID = getRefID(dictVal);
-            if (myViz.disableHeapNesting) {
-              updateCurLayout(childID, [], []);
-            }
-            else {
+            if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
               updateCurLayout(childID, curRow, newRow);
+            }
+            else if (myViz.disableHeapNesting) {
+              updateCurLayout(childID, [], []);
             }
           }
         });
@@ -1800,11 +1800,11 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
           var instVal = child[1];
           if (!isPrimitiveType(instVal)) {
             var childID = getRefID(instVal);
-            if (myViz.disableHeapNesting) {
-              updateCurLayout(childID, [], []);
-            }
-            else {
+            if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
               updateCurLayout(childID, curRow, newRow);
+            }
+            else if (myViz.disableHeapNesting) {
+              updateCurLayout(childID, [], []);
             }
           }
         });
