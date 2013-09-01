@@ -9,14 +9,16 @@ import os.path
 
 from tornado.options import define, options
 
+import json
+
+
 define("port", default=8888, help="run on the given port", type=int)
 
 
-# TODO: ugly clunky global
-current_full_trace = None
-
-
 class Application(tornado.web.Application):
+    # singleton
+    current_full_trace = None
+
     def __init__(self):
         handlers = [
             (r"/js/(.*)",
@@ -26,8 +28,12 @@ class Application(tornado.web.Application):
              tornado.web.StaticFileHandler,
              {"path": os.path.join(os.path.dirname(__file__), 'css/')}),
             (r"/", MainHandler),
-            (r"/post", PostHandler),
             (r"/chatsocket", ChatSocketHandler),
+            # respond to HTTP POST requests:
+            (r"/wholetrace", WholeTraceHandler),
+            (r"/append", AppendHandler),
+            (r"/replace", ReplaceHandler),
+            (r"/clear", ClearHandler),
         ]
         tornado.web.Application.__init__(self, handlers)
 
@@ -37,14 +43,31 @@ class MainHandler(tornado.web.RequestHandler):
         self.render("opt-ipy.html")
 
 
-class PostHandler(tornado.web.RequestHandler):
+class WholeTraceHandler(tornado.web.RequestHandler):
     def post(self):
         message = self.request.body
-        #logging.info("got message %r", message)
-        global current_full_trace
-        current_full_trace = message
-        if current_full_trace:
-            ChatSocketHandler.send_updates(current_full_trace)
+        dat = json.loads(message)
+        Application.current_full_trace = dat
+
+        js_msg=dict(payload=Application.current_full_trace, type='wholetrace')
+        ChatSocketHandler.send_updates(json.dumps(js_msg))
+
+
+class AppendHandler(tornado.web.RequestHandler):
+    def post(self):
+        pass
+
+
+class ReplaceHandler(tornado.web.RequestHandler):
+    def post(self):
+        pass
+
+
+class ClearHandler(tornado.web.RequestHandler):
+    def post(self):
+        Application.current_full_trace = None
+        js_msg=dict(type='clear')
+        ChatSocketHandler.send_updates(json.dumps(js_msg))
 
 
 class ChatSocketHandler(tornado.websocket.WebSocketHandler):
@@ -56,9 +79,11 @@ class ChatSocketHandler(tornado.websocket.WebSocketHandler):
 
     def open(self):
         ChatSocketHandler.waiters.add(self)
-        global current_full_trace
-        if current_full_trace:
-            ChatSocketHandler.send_updates(current_full_trace)
+        # when a new connection is made, send the entire trace to only
+        # THIS browser
+        if Application.current_full_trace:
+            js_msg=dict(payload=Application.current_full_trace, type='wholetrace')
+            self.write_message(json.dumps(js_msg))
 
     def on_close(self):
         ChatSocketHandler.waiters.remove(self)

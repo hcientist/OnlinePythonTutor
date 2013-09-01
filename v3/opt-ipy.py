@@ -42,7 +42,9 @@
 
 
 # If you're hosting the server remotely, then change this address:
-POST_ADDR = "http://localhost:8888/post"
+SERVER_ADDR = "http://localhost:8888/"
+
+assert SERVER_ADDR[-1] == '/'
 
 
 import os, sys, urllib2, json
@@ -104,7 +106,7 @@ class OptHistory(object):
             self.pop_last()
 
         self.check_rep()
-        urllib2.urlopen(POST_ADDR, json_output)
+        urllib2.urlopen(SERVER_ADDR + 'wholetrace', json_output)
 
 
 # called right before a statement gets executed
@@ -146,8 +148,7 @@ def opt_clear(self, params):
 
     ip.meta.opt_history = OptHistory() # just create a new one!
 
-    empty_msg = dict(code='', trace=[])
-    urllib2.urlopen(POST_ADDR, json.dumps(empty_msg))
+    urllib2.urlopen(SERVER_ADDR + 'clear', 'blub') # need a non-empty POST body
 
 
 def load_ipython_extension(ipython):

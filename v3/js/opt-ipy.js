@@ -73,33 +73,34 @@ var updater = {
     },
 
     showMessage: function(message) {
-      // empty trace!
-      if (message.trace.length == 0) {
-        myVisualizer = null;
-        $('#vizDiv').empty();
-        $(document).unbind('keydown');
-        return;
-      }
+      if (message.type == 'wholetrace') {
+          payload = message.payload
+          myVisualizer = new ExecutionVisualizer('vizDiv',
+                                                 payload,
+                                                 {embeddedMode: true, jumpToEnd: true});
 
-      myVisualizer = new ExecutionVisualizer('vizDiv',
-                                             message,
-                                             {embeddedMode: true, jumpToEnd: true});
-
-      // set keyboard bindings
-      // VERY IMPORTANT to clear and reset this every time or
-      // else the handlers might be bound multiple times
-      $(document).unbind('keydown');
-      $(document).keydown(function(k) {
-        if (k.keyCode == 37) { // left arrow
-          if (myVisualizer.stepBack()) {
-            k.preventDefault(); // don't horizontally scroll the display
-          }
+          // set keyboard bindings
+          // VERY IMPORTANT to clear and reset this every time or
+          // else the handlers might be bound multiple times
+          $(document).unbind('keydown');
+          $(document).keydown(function(k) {
+            if (k.keyCode == 37) { // left arrow
+              if (myVisualizer.stepBack()) {
+                k.preventDefault(); // don't horizontally scroll the display
+              }
+            }
+            else if (k.keyCode == 39) { // right arrow
+              if (myVisualizer.stepForward()) {
+                k.preventDefault(); // don't horizontally scroll the display
+              }
+            }
+          });
         }
-        else if (k.keyCode == 39) { // right arrow
-          if (myVisualizer.stepForward()) {
-            k.preventDefault(); // don't horizontally scroll the display
-          }
+        else if (message.type == 'clear') {
+          myVisualizer = null;
+          $('#vizDiv').empty();
+          $(document).unbind('keydown');
+          return;
         }
-      });
     }
 };
