@@ -77,9 +77,6 @@ class OptHistory(object):
     def __init__(self):
         self.executed_stmts = []
 
-        # saved version of current trace
-        self.cur_trace = None
-
     def pop_last(self):
         self.executed_stmts.pop()
 
