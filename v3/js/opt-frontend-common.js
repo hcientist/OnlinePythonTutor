@@ -77,3 +77,68 @@ function getQueryStringOptions() {
           showOnlyOutputs: showOnlyOutputs,
           cumulativeState: cumulativeState};
 }
+
+
+function executePythonCode(pythonSourceCode,
+                           backendScript, backendOptionsObj,
+                           frontendOptionsObj,
+                           outputDiv,
+                           handleSuccessFunc, handleUncaughtExceptionFunc) {
+    if (!backendScript) {
+      alert('Server configuration error: No backend script');
+      return;
+    }
+
+    $.get(backendScript,
+          {user_script : pythonSourceCode,
+           raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
+           options_json: JSON.stringify(backendOptionsObj)},
+          function(dataFromBackend) {
+            var trace = dataFromBackend.trace;
+
+            // don't enter visualize mode if there are killer errors:
+            if (!trace ||
+                (trace.length == 0) ||
+                (trace[trace.length - 1].event == 'uncaught_exception')) {
+
+              handleUncaughtExceptionFunc(trace);
+
+              if (trace.length == 1) {
+                alert(trace[0].exception_msg);
+              }
+              else if (trace[trace.length - 1].exception_msg) {
+                alert(trace[trace.length - 1].exception_msg);
+              }
+              else {
+                alert("Unknown error. Reload to try again," +
+                      "or report a bug to philip@pgbovine.net\n\n" +
+                      "(Click the 'Generate URL' button to include a " + 
+                      "unique URL in your email bug report.)");
+              }
+            }
+            else {
+              myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
+
+
+              // set keyboard bindings
+              // VERY IMPORTANT to clear and reset this every time or
+              // else the handlers might be bound multiple times
+              $(document).unbind('keydown');
+              $(document).keydown(function(k) {
+                if (k.keyCode == 37) { // left arrow
+                  if (myVisualizer.stepBack()) {
+                    k.preventDefault(); // don't horizontally scroll the display
+                  }
+                }
+                else if (k.keyCode == 39) { // right arrow
+                  if (myVisualizer.stepForward()) {
+                    k.preventDefault(); // don't horizontally scroll the display
+                  }
+                }
+              });
+
+              handleSuccessFunc();
+            }
+          },
+          "json");
+}

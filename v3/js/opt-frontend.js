@@ -36,7 +36,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 var appMode = 'edit'; // 'edit', 'display', or 'display_no_frills'
 
-var preseededCode = null;     // if you passed in a 'code=<code string>' in the URL, then set this var
 var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
@@ -139,122 +138,82 @@ $(document).ready(function() {
           backend_script = python2crazy_backend_script;
       }
 
-      if (!backend_script) {
-        alert('Error: This server is not configured to run Python ' + $('#pythonVersionSelector').val());
-        return;
-      }
-
       $('#executeBtn').html("Please wait ... processing your code");
       $('#executeBtn').attr('disabled', true);
       $("#pyOutputPane").hide();
       $("#embedLinkDiv").hide();
 
-
-      // set up all options in a JS object
-      var options = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
-                     heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
-                     show_only_outputs: ($('#showOnlyOutputsSelector').val() == 'true'),
-                     py_crazy_mode: ($('#pythonVersionSelector').val() == '2crazy')};
-
-      $.get(backend_script,
-            {user_script : pyInputCodeMirror.getValue(),
-             raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
-             options_json: JSON.stringify(options)},
-            function(dataFromBackend) {
-              var trace = dataFromBackend.trace;
-
-              // don't enter visualize mode if there are killer errors:
-              if (!trace ||
-                  (trace.length == 0) ||
-                  (trace[trace.length - 1].event == 'uncaught_exception')) {
-
-                if (trace.length == 1) {
-                  var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
-                  if (errorLineNo !== undefined) {
-                    // highlight the faulting line in pyInputCodeMirror
-                    pyInputCodeMirror.focus();
-                    pyInputCodeMirror.setCursor(errorLineNo, 0);
-                    pyInputCodeMirror.setLineClass(errorLineNo, null, 'errorLine');
-
-                    pyInputCodeMirror.setOption('onChange', function() {
-                      pyInputCodeMirror.setLineClass(errorLineNo, null, null); // reset line back to normal
-                      pyInputCodeMirror.setOption('onChange', null); // cancel
-                    });
-                  }
-
-                  alert(trace[0].exception_msg);
-                }
-                else if (trace[trace.length - 1].exception_msg) {
-                  alert(trace[trace.length - 1].exception_msg);
-                }
-                else {
-                  alert("Whoa, unknown error! Reload to try again, or report a bug to philip@pgbovine.net\n\n(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
-                }
-
-                $('#executeBtn').html("Visualize Execution");
-                $('#executeBtn').attr('disabled', false);
-              }
-              else {
-                var startingInstruction = 0;
-
-                // only do this at most ONCE, and then clear out preseededCurInstr
-                if (preseededCurInstr && preseededCurInstr < trace.length) { // NOP anyways if preseededCurInstr is 0
-                  startingInstruction = preseededCurInstr;
-                  preseededCurInstr = null;
-                }
-
-                // forceStartingInstr overrides everything else
-                if (forceStartingInstr !== undefined) {
-                  startingInstruction = forceStartingInstr;
-                }
-
-                myVisualizer = new ExecutionVisualizer('pyOutputPane',
-                                                       dataFromBackend,
-                                                       {startingInstruction:  startingInstruction,
-                                                        updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
-                                                        // tricky: selector 'true' and 'false' values are strings!
-                                                        disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
-                                                        drawParentPointers: ($('#drawParentPointerSelector').val() == 'true'),
-                                                        textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
-                                                        showOnlyOutputs: ($('#showOnlyOutputsSelector').val() == 'true'),
-                                                        executeCodeWithRawInputFunc: executeCodeWithRawInput,
-
-                                                        // undocumented experimental modes:
-                                                        pyCrazyMode: ($('#pythonVersionSelector').val() == '2crazy'),
-                                                        //allowEditAnnotations: true,
-                                                       });
+      var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
+                               heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
+                               show_only_outputs: ($('#showOnlyOutputsSelector').val() == 'true'),
+                               py_crazy_mode: ($('#pythonVersionSelector').val() == '2crazy')};
 
 
-                // set keyboard bindings
-                // VERY IMPORTANT to clear and reset this every time or
-                // else the handlers might be bound multiple times
-                $(document).unbind('keydown');
-                $(document).keydown(function(k) {
-                  if (k.keyCode == 37) { // left arrow
-                    if (myVisualizer.stepBack()) {
-                      k.preventDefault(); // don't horizontally scroll the display
-                    }
-                  }
-                  else if (k.keyCode == 39) { // right arrow
-                    if (myVisualizer.stepForward()) {
-                      k.preventDefault(); // don't horizontally scroll the display
-                    }
-                  }
-                });
+      var startingInstruction = 0;
 
-                // also scroll to top to make the UI more usable on smaller monitors
-                $(document).scrollTop(0);
+      // only do this at most ONCE, and then clear out preseededCurInstr
+      // NOP anyways if preseededCurInstr is 0
+      if (preseededCurInstr) {
+        startingInstruction = preseededCurInstr;
+        preseededCurInstr = null;
+      }
 
-                $.bbq.pushState({ mode: 'display' }, 2 /* completely override other hash strings to keep URL clean */);
-              }
-            },
-            "json");
+      // forceStartingInstr overrides everything else
+      if (forceStartingInstr !== undefined) {
+        startingInstruction = forceStartingInstr;
+      }
+
+      var frontendOptionsObj = {startingInstruction: startingInstruction,
+                                // tricky: selector 'true' and 'false' values are strings!
+                                disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
+                                drawParentPointers: ($('#drawParentPointerSelector').val() == 'true'),
+                                textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
+                                showOnlyOutputs: ($('#showOnlyOutputsSelector').val() == 'true'),
+                                executeCodeWithRawInputFunc: executeCodeWithRawInput,
+                                updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
+
+                                // undocumented experimental modes:
+                                pyCrazyMode: ($('#pythonVersionSelector').val() == '2crazy'),
+                                //allowEditAnnotations: true,
+                               }
+
+      function handleSuccessFunc() {
+        // also scroll to top to make the UI more usable on smaller monitors
+        $(document).scrollTop(0);
+
+        $.bbq.pushState({ mode: 'display' }, 2 /* completely override other hash strings to keep URL clean */);
+      }
+
+      function handleUncaughtExceptionFunc(trace) {
+        if (trace.length == 1) {
+          var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
+          if (errorLineNo !== undefined) {
+            // highlight the faulting line in pyInputCodeMirror
+            pyInputCodeMirror.focus();
+            pyInputCodeMirror.setCursor(errorLineNo, 0);
+            pyInputCodeMirror.setLineClass(errorLineNo, null, 'errorLine');
+
+            pyInputCodeMirror.setOption('onChange', function() {
+              pyInputCodeMirror.setLineClass(errorLineNo, null, null); // reset line back to normal
+              pyInputCodeMirror.setOption('onChange', null); // cancel
+            });
+          }
+
+          $('#executeBtn').html("Visualize Execution");
+          $('#executeBtn').attr('disabled', false);
+        }
+      }
+
+      executePythonCode(pyInputCodeMirror.getValue(),
+                        backend_script, backendOptionsObj,
+                        frontendOptionsObj,
+                        'pyOutputPane',
+                        handleSuccessFunc, handleUncaughtExceptionFunc);
   }
 
   function executeCodeFromScratch() {
     // reset these globals
     rawInputLst = [];
-
     executeCode();
   }
 
@@ -263,7 +222,6 @@ $(document).ready(function() {
 
     // set some globals
     rawInputLst.push(rawInputStr);
-
     executeCode(curInstr);
   }
 
@@ -531,7 +489,7 @@ $(document).ready(function() {
 
   appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
   if ((appMode == "display") && queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
-    preseededCurInstr = queryStrOptions.preseededCurInstr;
+    preseededCurInstr = queryStrOptions.preseededCurInstr; // ugly global
     $("#executeBtn").trigger('click');
   }
   else {
@@ -549,7 +507,9 @@ $(document).ready(function() {
 
   // log a generic AJAX error handler
   $(document).ajaxError(function() {
-    alert("Server error (possibly due to memory/resource overload). Report a bug to philip@pgbovine.net\n\n(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
+    alert("Server error (possibly due to memory/resource overload). " +
+          "Report a bug to philip@pgbovine.net\n\n" +
+          "(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
 
     $('#executeBtn').html("Visualize Execution");
     $('#executeBtn').attr('disabled', false);

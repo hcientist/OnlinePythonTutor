@@ -37,6 +37,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 
 
+function NOP() {};
+
+
 $(document).ready(function() {
   var queryStrOptions = getQueryStringOptions();
 
@@ -49,16 +52,9 @@ $(document).ready(function() {
   var showOnlyOutputsBool = (queryStrOptions.showOnlyOutputs == 'true');
   var cumModeBool = (queryStrOptions.cumulativeState == 'true');
 
-  // set up all options in a JS object
-  var options = {cumulative_mode: cumModeBool,
-                 heap_primitives: heapPrimitivesBool,
-                 show_only_outputs: showOnlyOutputsBool,
-                 py_crazy_mode: (pyState == '2crazy')};
-
-
-  var preseededCurInstr = queryStrOptions.preseededCurInstr;
-  if (!preseededCurInstr) {
-    preseededCurInstr = 0;
+  var startingInstruction = queryStrOptions.preseededCurInstr;
+  if (!startingInstruction) {
+    startingInstruction = 0;
   }
 
   var backend_script = null;
@@ -68,10 +64,8 @@ $(document).ready(function() {
   else if (pyState == '3') {
       backend_script = python3_backend_script;
   }
-
-  if (!backend_script) {
-    alert('Error: This server is not configured to run Python ' + $('#pythonVersionSelector').val());
-    return;
+  else if (pyState == '2crazy') {
+      backend_script = python2crazy_backend_script;
   }
 
 
@@ -98,92 +92,48 @@ $(document).ready(function() {
   }
 
 
+  // set up all options in a JS object
+  var backendOptionsObj = {cumulative_mode: cumModeBool,
+                           heap_primitives: heapPrimitivesBool,
+                           show_only_outputs: showOnlyOutputsBool,
+                           py_crazy_mode: (pyState == '2crazy')};
+
+  var frontendOptionsObj = {startingInstruction: startingInstruction,
+                            embeddedMode: true,
+                            verticalStack: verticalStackBool,
+                            disableHeapNesting: heapPrimitivesBool,
+                            drawParentPointers: drawParentPointerBool,
+                            textualMemoryLabels: textRefsBool,
+                            showOnlyOutputs: showOnlyOutputsBool,
+                            executeCodeWithRawInputFunc: executeCodeWithRawInput,
+                            updateOutputCallback: (resizeContainer ? resizeContainerNow : null)
+
+                            // undocumented experimental modes:
+                            pyCrazyMode: (pyState == '2crazy'),
+                            highlightLines: typeof $.bbq.getState("highlightLines") !== "undefined",
+                           }
+
   function executeCode(forceStartingInstr) {
-    $.get(backend_script,
-          {user_script : preseededCode,
-           raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
-           options_json: JSON.stringify(options)},
-          function(dataFromBackend) {
-            var trace = dataFromBackend.trace;
-
-            // don't enter visualize mode if there are killer errors:
-            if (!trace ||
-                (trace.length == 0) ||
-                (trace[trace.length - 1].event == 'uncaught_exception')) {
-
-              if (trace.length == 1) {
-                alert(trace[0].exception_msg);
-              }
-              else if (trace[trace.length - 1].exception_msg) {
-                alert(trace[trace.length - 1].exception_msg);
-              }
-              else {
-                alert("Whoa, unknown error! Reload to try again, or report a bug to philip@pgbovine.net");
-              }
-            }
-            else {
-              var startingInstruction = 0;
-
-              // only do this at most ONCE, and then clear out preseededCurInstr
-              if (preseededCurInstr && preseededCurInstr < trace.length) { // NOP anyways if preseededCurInstr is 0
-                startingInstruction = preseededCurInstr;
-              }
-
-              // forceStartingInstr overrides everything else
-              if (forceStartingInstr !== undefined) {
-                startingInstruction = forceStartingInstr;
-              }
-
-              myVisualizer = new ExecutionVisualizer('vizDiv',
-                                                     dataFromBackend,
-                                                     {startingInstruction: preseededCurInstr,
-                                                      embeddedMode: true,
-                                                      verticalStack: verticalStackBool,
-                                                      disableHeapNesting: heapPrimitivesBool,
-                                                      drawParentPointers: drawParentPointerBool,
-                                                      textualMemoryLabels: textRefsBool,
-                                                      showOnlyOutputs: showOnlyOutputsBool,
-                                                      highlightLines: typeof $.bbq.getState("highlightLines") !== "undefined",
-                                                      executeCodeWithRawInputFunc: executeCodeWithRawInput,
-                                                      pyCrazyMode: (pyState == '2crazy'),
-                                                      updateOutputCallback: (resizeContainer ? resizeContainerNow : null)
-                                                     });
-
-              // set keyboard bindings
-              // VERY IMPORTANT to clear and reset this every time or
-              // else the handlers might be bound multiple times
-              $(document).unbind('keydown');
-              $(document).keydown(function(k) {
-                if (k.keyCode == 37) { // left arrow
-                  if (myVisualizer.stepBack()) {
-                    k.preventDefault(); // don't horizontally scroll the display
-                  }
-                }
-                else if (k.keyCode == 39) { // right arrow
-                  if (myVisualizer.stepForward()) {
-                    k.preventDefault(); // don't horizontally scroll the display
-                  }
-                }
-              });
-            }
-          },
-          "json");
+    if (forceStartingInstr) {
+      frontendOptionsObj.startingInstruction = forceStartingInstr;
+    }
+    executePythonCode(preseededCode,
+                      backend_script, backendOptionsObj,
+                      frontendOptionsObj,
+                      'vizDiv',
+                      NOP, NOP);
   }
 
 
   function executeCodeFromScratch() {
     // reset these globals
     rawInputLst = [];
-
     executeCode();
   }
 
   function executeCodeWithRawInput(rawInputStr, curInstr) {
-    enterDisplayNoFrillsMode();
-
     // set some globals
     rawInputLst.push(rawInputStr);
-
     executeCode(curInstr);
   }
 
