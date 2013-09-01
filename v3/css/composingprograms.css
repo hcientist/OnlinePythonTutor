@@ -1,6 +1,6 @@
-/*  custom CSS for Berkeley CS61a
+/*  custom CSS for ../composingprograms.html
 
-    always include this AFTER pytutor.css
+    always include this file AFTER pytutor.css
 */
 
 div.ExecutionVisualizer table#pyCodeOutput {
