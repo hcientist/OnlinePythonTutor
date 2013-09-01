@@ -418,8 +418,7 @@ div.ExecutionVisualizer div.zombieStackFrame {
 div.ExecutionVisualizer div.zombieStackFrame {
   border-left: 1px dotted #aaa;
   /*color: #c0c0c0;*/
-  /*color: #b0b0b0;*/
-  color: #808080;
+  color: #a0a0a0;
 }
 
 div.ExecutionVisualizer div.highlightedStackFrame {
