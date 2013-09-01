@@ -96,6 +96,13 @@ var updater = {
             }
           });
         }
+        else if (message.type == 'difftrace') {
+            // TODO: implement optimization based on, say,
+            // https://code.google.com/p/google-diff-match-patch/
+
+            // for starters, simply create a new ExecutionVisualizer
+            // object using the patched version of the payload
+        }
         else if (message.type == 'clear') {
           myVisualizer = null;
           $('#vizDiv').empty();

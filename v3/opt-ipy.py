@@ -60,9 +60,17 @@ json.encoder.FLOAT_REPR = lambda f: ('%.3f' % f)
 #INDENT_LEVEL = 2   # human-readable
 INDENT_LEVEL = None # compact
 
-
 # TODO: support incremental pushes to the OPT frontend for efficiency
-# and better "snappiness" (although the speed seems fine for now)
+# and better "snappiness"
+#
+# I think the easiest way to do diffs is to set INDENT_LEVEL = 2 above
+# and then simply send the diff of the JSON string to the server.
+# It's WAY TOO COMPLICATED to try implementing semantic diffs of the
+# OPT trace ourselves, since there are too many corner cases.
+#
+# text diffs are an elegant solution :)
+#
+# https://code.google.com/p/google-diff-match-patch/
 
 
 class OptHistory(object):
@@ -74,9 +82,6 @@ class OptHistory(object):
 
     def pop_last(self):
         self.executed_stmts.pop()
-
-    def check_rep(self):
-        pass
 
     def get_code(self):
         return '\n'.join(self.executed_stmts)
@@ -105,7 +110,6 @@ class OptHistory(object):
         if epic_fail:
             self.pop_last()
 
-        self.check_rep()
         urllib2.urlopen(SERVER_ADDR + 'wholetrace', json_output)
 
 

@@ -31,8 +31,7 @@ class Application(tornado.web.Application):
             (r"/chatsocket", ChatSocketHandler),
             # respond to HTTP POST requests:
             (r"/wholetrace", WholeTraceHandler),
-            (r"/append", AppendHandler),
-            (r"/replace", ReplaceHandler),
+            (r"/difftrace", DiffTraceHandler),
             (r"/clear", ClearHandler),
         ]
         tornado.web.Application.__init__(self, handlers)
@@ -53,13 +52,10 @@ class WholeTraceHandler(tornado.web.RequestHandler):
         ChatSocketHandler.send_updates(json.dumps(js_msg))
 
 
-class AppendHandler(tornado.web.RequestHandler):
+class DiffTraceHandler(tornado.web.RequestHandler):
     def post(self):
-        pass
-
-
-class ReplaceHandler(tornado.web.RequestHandler):
-    def post(self):
+        # TODO: implement me using, say,
+        # https://code.google.com/p/google-diff-match-patch/
         pass
 
 
