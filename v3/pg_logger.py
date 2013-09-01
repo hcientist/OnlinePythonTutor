@@ -1030,7 +1030,10 @@ class PGLogger(bdb.Bdb):
         sys.stdout = user_stdout
 
         self.ORIGINAL_STDERR = sys.stderr
-        sys.stderr = NullDevice # silence errors
+
+        # don't do this, or else certain kinds of errors, such as syntax
+        # errors, will be silently ignored. WEIRD!
+        #sys.stderr = NullDevice # silence errors
 
         user_globals = {"__name__"    : "__main__",
                         "__builtins__" : user_builtins,
