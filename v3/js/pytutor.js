@@ -1751,11 +1751,18 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 
           if (!isPrimitiveType(child)) {
             var childID = getRefID(child);
-            if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-              updateCurLayout(childID, curRow, newRow);
-            }
-            else if (myViz.disableHeapNesting) {
+
+            // comment this out to make "linked lists" that aren't
+            // structurally equivalent look good, e.g.,:
+            //   x = (1, 2, (3, 4, 5, 6, (7, 8, 9, None)))
+            //if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
+            //  updateCurLayout(childID, curRow, newRow);
+            //}
+            if (myViz.disableHeapNesting) {
               updateCurLayout(childID, [], []);
+            }
+            else {
+              updateCurLayout(childID, curRow, newRow);
             }
           }
         });
