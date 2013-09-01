@@ -1737,8 +1737,8 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
       //            $.extend(true /* make a deep copy */ , [], curRow),
       //            $.extend(true /* make a deep copy */ , [], newRow));
 
-      // heuristic for laying out 1-D linked data structures: check for enclosing elements that are
-      // structurally identical and then lay them out as siblings in the same "row"
+      // heuristic for laying out 1-D linked data structures:
+      // try to lay them out as "siblings" in the same row
       var heapObj = curEntry.heap[id];
       assert(heapObj);
 
@@ -1748,11 +1748,11 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 
           if (!isPrimitiveType(child)) {
             var childID = getRefID(child);
-            if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-              updateCurLayout(childID, curRow, newRow);
-            }
-            else if (myViz.disableHeapNesting) {
+            if (myViz.disableHeapNesting) {
               updateCurLayout(childID, [], []);
+            }
+            else {
+              updateCurLayout(childID, curRow, newRow);
             }
           }
         });
@@ -1772,11 +1772,11 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
           var dictVal = child[1];
           if (!isPrimitiveType(dictVal)) {
             var childID = getRefID(dictVal);
-            if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-              updateCurLayout(childID, curRow, newRow);
-            }
-            else if (myViz.disableHeapNesting) {
+            if (myViz.disableHeapNesting) {
               updateCurLayout(childID, [], []);
+            }
+            else {
+              updateCurLayout(childID, curRow, newRow);
             }
           }
         });
@@ -1797,11 +1797,11 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
           var instVal = child[1];
           if (!isPrimitiveType(instVal)) {
             var childID = getRefID(instVal);
-            if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-              updateCurLayout(childID, curRow, newRow);
-            }
-            else if (myViz.disableHeapNesting) {
+            if (myViz.disableHeapNesting) {
               updateCurLayout(childID, [], []);
+            }
+            else {
+              updateCurLayout(childID, curRow, newRow);
             }
           }
         });
