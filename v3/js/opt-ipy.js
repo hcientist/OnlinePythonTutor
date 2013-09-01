@@ -75,9 +75,30 @@ var updater = {
     showMessage: function(message) {
       if (message.type == 'wholetrace') {
           payload = message.payload
-          myVisualizer = new ExecutionVisualizer('vizDiv',
-                                                 payload,
-                                                 {embeddedMode: true, jumpToEnd: true});
+
+          var curInstr = 0;
+          var jumpToEnd = true; // yes by default
+
+          // if the user isn't currently viewing the final element of
+          // the trace, then restore their original position, so that
+          // their display doesn't suddenly jump to the end
+          if (myVisualizer) {
+            curInstr = myVisualizer.curInstr;
+            jumpToEnd = (curInstr == myVisualizer.curTrace.length - 1);
+          }
+
+          if (jumpToEnd) {
+            myVisualizer = new ExecutionVisualizer('vizDiv',
+                                                   payload,
+                                                   {embeddedMode: true,
+                                                    jumpToEnd: true});
+          }
+          else {
+            myVisualizer = new ExecutionVisualizer('vizDiv',
+                                                   payload,
+                                                   {embeddedMode: true,
+                                                    startingInstruction: curInstr});
+          }
 
           // set keyboard bindings
           // VERY IMPORTANT to clear and reset this every time or
