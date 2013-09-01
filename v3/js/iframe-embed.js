@@ -96,7 +96,8 @@ $(document).ready(function() {
   var backendOptionsObj = {cumulative_mode: cumModeBool,
                            heap_primitives: heapPrimitivesBool,
                            show_only_outputs: showOnlyOutputsBool,
-                           py_crazy_mode: (pyState == '2crazy')};
+                           py_crazy_mode: (pyState == '2crazy'),
+                           origin: 'iframe-embed.js'};
 
   var frontendOptionsObj = {startingInstruction: startingInstruction,
                             embeddedMode: true,

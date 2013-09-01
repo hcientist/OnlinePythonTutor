@@ -146,7 +146,8 @@ $(document).ready(function() {
       var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
                                heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
                                show_only_outputs: ($('#showOnlyOutputsSelector').val() == 'true'),
-                               py_crazy_mode: ($('#pythonVersionSelector').val() == '2crazy')};
+                               py_crazy_mode: ($('#pythonVersionSelector').val() == '2crazy'),
+                               origin: 'opt-frontend.js'};
 
 
       var startingInstruction = 0;
