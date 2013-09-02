@@ -52,6 +52,12 @@ $(document).ready(function() {
   var showOnlyOutputsBool = (queryStrOptions.showOnlyOutputs == 'true');
   var cumModeBool = (queryStrOptions.cumulativeState == 'true');
 
+  var codeDivWidth = undefined;
+  var cdv = $.bbq.getState('codeDivWidth');
+  if (cdv) {
+    codeDivWidth = Number(cdv);
+  }
+
   var startingInstruction = queryStrOptions.preseededCurInstr;
   if (!startingInstruction) {
     startingInstruction = 0;
@@ -111,7 +117,8 @@ $(document).ready(function() {
 
                             // undocumented experimental modes:
                             pyCrazyMode: (pyState == '2crazy'),
-                            highlightLines: typeof $.bbq.getState("highlightLines") !== "undefined"
+                            highlightLines: typeof $.bbq.getState("highlightLines") !== "undefined",
+                            codeDivWidth: codeDivWidth,
                            }
 
   function executeCode(forceStartingInstr) {
