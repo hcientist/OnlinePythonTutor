@@ -53,10 +53,17 @@ $(document).ready(function() {
   var cumModeBool = (queryStrOptions.cumulativeState == 'true');
 
   var codeDivWidth = undefined;
-  var cdv = $.bbq.getState('codeDivWidth');
-  if (cdv) {
-    codeDivWidth = Number(cdv);
+  var cdw = $.bbq.getState('codeDivWidth');
+  if (cdw) {
+    codeDivWidth = Number(cdw);
   }
+
+  var codeDivHeight = undefined;
+  var cdh = $.bbq.getState('codeDivHeight');
+  if (cdh) {
+    codeDivHeight = Number(cdh);
+  }
+
 
   var startingInstruction = queryStrOptions.preseededCurInstr;
   if (!startingInstruction) {
@@ -119,6 +126,7 @@ $(document).ready(function() {
                             pyCrazyMode: (pyState == '2crazy'),
                             highlightLines: typeof $.bbq.getState("highlightLines") !== "undefined",
                             codeDivWidth: codeDivWidth,
+                            codeDivHeight: codeDivHeight,
                            }
 
   function executeCode(forceStartingInstr) {

@@ -82,8 +82,9 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   codeDivWidth  - maximum width  of #pyCodeOutputDiv (in integer pixels)
 //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code' (if null, then 'Edit code' link hidden)
 //   allowEditAnnotations - allow user to edit per-step annotations (default: false)
-//   embeddedMode         - shortcut for hideOutput=true, allowEditAnnotations=false
-//                          codeDivWidth=350, codeDivHeight=400
+//   embeddedMode         - shortcut for hideOutput=true, allowEditAnnotations=false,
+//                                       codeDivWidth=this.DEFAULT_EMBEDDED_CODE_DIV_WIDTH,
+//                                       codeDivHeight=this.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT
 //   disableHeapNesting   - if true, then render all heap objects at the top level (i.e., no nested objects)
 //   drawParentPointers   - if true, then draw environment diagram parent pointers for all frames
 //                          WARNING: there are hard-to-debug MEMORY LEAKS associated with activating this option
@@ -109,6 +110,8 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
   this.curTrace = dat.trace;
 
+  this.DEFAULT_EMBEDDED_CODE_DIV_WIDTH = 350;
+  this.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT = 400;
 
   // optional filtering to remove redundancy ...
   // ok, we're gonna filter out all trace entries of 'call' events,
@@ -419,11 +422,11 @@ ExecutionVisualizer.prototype.render = function() {
 
     // don't override if they've already been set!
     if (this.params.codeDivWidth === undefined) {
-      this.params.codeDivWidth = 350;
+      this.params.codeDivWidth = this.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
     }
 
     if (this.params.codeDivHeight === undefined) {
-      this.params.codeDivHeight = 400;
+      this.params.codeDivHeight = this.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
     }
     
     this.allowEditAnnotations = false;

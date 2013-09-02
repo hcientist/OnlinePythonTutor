@@ -553,6 +553,8 @@ $(document).ready(function() {
                   showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
                   py: $('#pythonVersionSelector').val(),
                   curInstr: myVisualizer.curInstr,
+                  codeDivWidth: myVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH,
+                  codeDivHeight: myVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT,
                  };
 
     var embedUrlStr = $.param.fragment(domain + "iframe-embed.html", myArgs, 2 /* clobber all */);
