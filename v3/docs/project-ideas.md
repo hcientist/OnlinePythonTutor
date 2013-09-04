@@ -37,6 +37,14 @@ ranging from smartphones to tablets to laptops to giant desktop monitors.
 
 ## Frontend
 
+### IPython Notebook integration
+
+It would be awesome to integrate OPT with the [IPython Notebook](http://ipython.org/notebook.html) so that visualizations
+can be displayed inline within a notebook using, say, a `%visualize` magic keyword.
+
+In late 2012, I started messing around with a prototype but didn't get too far.
+
+
 ### Rich user input widgets
 
 Right now Online Python Tutor takes only code as input. However, it would be great to create widgets that allow
