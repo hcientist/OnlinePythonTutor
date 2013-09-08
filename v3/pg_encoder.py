@@ -137,9 +137,9 @@ class ObjectEncoder:
     # primitive type
     if not self.render_heap_primitives and type(dat) in PRIMITIVE_TYPES:
       if type(dat) is float:
-        return round(dat, FLOAT_PRECISION)
+        return ['NUMBER-LITERAL', str(round(dat, FLOAT_PRECISION))]
       else:
-        return dat
+        return ['NUMBER-LITERAL', str(dat)]
 
     # compound type - return an object reference and update encoded_heap_objects
     else:
