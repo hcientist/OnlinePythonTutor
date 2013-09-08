@@ -171,26 +171,6 @@ function ExecutionVisualizer(domRootID, dat, params) {
       this.params.arrowLines = this.params.highlightLines = false;
   }
 
-  // David's original logic ...
-  /*
-  if (!this.params.arrowLines && !this.params.highlightLines) {
-      this.params.highlightLines = false;
-      this.params.arrowLines = true;
-  }
-  else if (this.params.arrowLines) {
-      this.params.arrowLines = (this.params.arrowLines == true);
-      this.params.highlightLines = !(this.params.arrowLines);
-  }
-  else if (this.params.highlightLines) {
-      this.params.highlightLines = (this.params.highlightLines == true);
-      this.params.arrowLines = !(this.params.highlightLines);
-  }
-  else {
-      this.params.arrowLines = (this.params.arrowLines == true);
-      this.params.highlightLines = (this.params.highlightLines == true);
-  }
-  */
-
   // needs to be unique!
   this.visualizerID = curVisualizerID;
   curVisualizerID++;
