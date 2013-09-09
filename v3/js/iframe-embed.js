@@ -100,7 +100,7 @@ $(document).ready(function() {
       var container = findContainer();
       
       function resizeContainerNow() {
-          $(container).height($("#vizDiv").height()+20);
+          $(container).height($("html").height());
       };
   }
 
@@ -120,7 +120,7 @@ $(document).ready(function() {
                             textualMemoryLabels: textRefsBool,
                             showOnlyOutputs: showOnlyOutputsBool,
                             executeCodeWithRawInputFunc: executeCodeWithRawInput,
-                            updateOutputCallback: (resizeContainer ? resizeContainerNow : null),
+                            heightChangeCallback: (resizeContainer ? resizeContainerNow : NOP),
 
                             // undocumented experimental modes:
                             pyCrazyMode: (pyState == '2crazy'),
@@ -137,7 +137,11 @@ $(document).ready(function() {
                       backend_script, backendOptionsObj,
                       frontendOptionsObj,
                       'vizDiv',
-                      NOP, NOP);
+                      function() { // success
+                        if (resizeContainer)
+                            resizeContainerNow();
+                      },
+                      NOP);
   }
 
 
