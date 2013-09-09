@@ -2177,10 +2177,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
       d3DomElement.append('<span class="stringObj">' + literalStr + '</span>');
     }
-    else if (obj instanceof Array && obj[0] == "NUMBER-LITERAL") {
-      // actually transmitted as a string
-      d3DomElement.append('<span class="numberObj">' + obj[1] + '</span>');
-    }
     else {
       assert(false);
     }
@@ -3102,7 +3098,7 @@ function structurallyEquivalent(obj1, obj2) {
 
 function isPrimitiveType(obj) {
   var typ = typeof obj;
-  return ((obj == null) || (typ != "object") || (obj instanceof Array && obj[0] == "NUMBER-LITERAL"));
+  return ((obj == null) || (typ != "object"));
 }
 
 function getRefID(obj) {
