@@ -118,7 +118,9 @@ function ExecutionVisualizer(domRootID, dat, params) {
   // because each one contains IDENTICAL state information as the
   // 'step_line' entry immediately following it. this filtering allows the
   // visualization to not show as much redundancy.
-  this.curTrace = this.curTrace.filter(function(e) {return e.event != 'call';});
+  // (on second thought, don't filter, since explicitly stepping into
+  // the function def line is clearer!)
+  //this.curTrace = this.curTrace.filter(function(e) {return e.event != 'call';});
 
   // if the final entry is raw_input or mouse_input, then trim it from the trace and
   // set a flag to prompt for user input when execution advances to the
