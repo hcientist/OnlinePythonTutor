@@ -464,8 +464,7 @@ $(document).ready(function() {
   }
   else {
     // select a canned example on start-up:
-    // 2013-09-21: nixed canned example
-    //$("#aliasExampleLink").trigger('click');
+    $("#aliasExampleLink").trigger('click');
   }
 
   // ugh, ugly tristate due to the possibility of each being undefined
