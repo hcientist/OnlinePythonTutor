@@ -35,6 +35,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 var appMode = 'edit'; // 'edit', 'display', or 'display_no_frills'
+                      // also support 'visualize' for backward
+                      // compatibility (it's the same as 'display')
 
 var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
 
@@ -92,7 +94,7 @@ $(document).ready(function() {
         myVisualizer.destroyAllAnnotationBubbles();
       }
     }
-    else if (appMode == 'display') {
+    else if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
       $("#pyInputPane").hide();
       $("#pyOutputPane").show();
 
@@ -489,7 +491,8 @@ $(document).ready(function() {
 
 
   appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
-  if ((appMode == "display") && queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
+  if ((appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) &&
+      queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
     preseededCurInstr = queryStrOptions.preseededCurInstr; // ugly global
     $("#executeBtn").trigger('click');
   }
@@ -519,7 +522,7 @@ $(document).ready(function() {
 
   // redraw connector arrows on window resize
   $(window).resize(function() {
-    if (appMode == 'display') {
+    if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
       myVisualizer.redrawConnectors();
     }
   });
@@ -534,7 +537,7 @@ $(document).ready(function() {
                   showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
                   py: $('#pythonVersionSelector').val()};
 
-    if (appMode == 'display') {
+    if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
       myArgs.curInstr = myVisualizer.curInstr;
     }
 
@@ -544,7 +547,7 @@ $(document).ready(function() {
 
 
   $('#genEmbedBtn').bind('click', function() {
-    assert(appMode == 'display');
+    assert(appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */);
     var myArgs = {code: pyInputCodeMirror.getValue(),
                   cumulative: $('#cumulativeModeSelector').val(),
                   heapPrimitives: $('#heapPrimitivesSelector').val(),
