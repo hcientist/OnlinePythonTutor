@@ -231,6 +231,10 @@ $(document).ready(function() {
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(executeCodeFromScratch);
 
+  $("#clearBtn").click(function() {
+    pyInputCodeMirror.setValue('');
+  });
+
 
   // canned examples
 
