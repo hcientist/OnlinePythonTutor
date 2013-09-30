@@ -475,7 +475,7 @@ $(document).ready(function() {
   });
 
   $('#cmMinPathLink').click(function() {
-    $.get("example-code/chris-meyers/optMinPath.txt", setCodeMirrorVal);
+    $.get("example-code/chris-meyers/optMinpath.txt", setCodeMirrorVal);
     $("#showOnlyOutputsSelector").val('true');
     return false;
   });
