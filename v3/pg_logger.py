@@ -932,6 +932,12 @@ class PGLogger(bdb.Bdb):
         if self.breakpoints:
           if not ((lineno in self.breakpoints) or (self.prev_lineno in self.breakpoints)):
             append_to_trace = False
+
+          # TRICKY -- however, if there's an exception, then ALWAYS
+          # append it to the trace, so that the error can be displayed
+          if event_type == 'exception':
+            append_to_trace = True
+
         self.prev_lineno = lineno
 
         if append_to_trace:

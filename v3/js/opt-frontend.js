@@ -188,9 +188,9 @@ $(document).ready(function() {
       }
 
       function handleUncaughtExceptionFunc(trace) {
-        if (trace.length == 1) {
+        if (trace.length == 1 && trace[0].line) {
           var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
-          if (errorLineNo !== undefined) {
+          if (errorLineNo !== undefined && errorLineNo != NaN) {
             // highlight the faulting line in pyInputCodeMirror
             pyInputCodeMirror.focus();
             pyInputCodeMirror.setCursor(errorLineNo, 0);
