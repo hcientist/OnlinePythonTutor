@@ -125,7 +125,9 @@ CUSTOM_MODULE_IMPORTS = ('callback_module',
                          'watch_module',
                          'bintree_module',
                          'htmlexample_module',
-                         'GChartWrapper')
+                         'GChartWrapper',
+                         'matrix',
+                         'htmlFrame')
 
 
 # PREEMPTIVELY import all of these modules, so that when the user's
