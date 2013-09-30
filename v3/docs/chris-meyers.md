@@ -1,5 +1,8 @@
-Chris has been helping out on adding support for HTML rendering modules
+Starting in Summer 2013, Chris has been adding support for HTML rendering modules
 in Online Python Tutor. His first two modules were:
+
+- [https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/htmlFrame.py](htmlFrame.py)
+- [https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/matrix.py](matrix.py)
 
 
 ### Chris Meyers short bio ###
