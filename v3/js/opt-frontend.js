@@ -468,6 +468,30 @@ $(document).ready(function() {
     return false;
   });
 
+  $('#cmFibLink').click(function() {
+    $.get("example-code/chris-meyers/optFib.txt", setCodeMirrorVal);
+    $("#showOnlyOutputsSelector").val('true');
+    return false;
+  });
+
+  $('#cmMinPathLink').click(function() {
+    $.get("example-code/chris-meyers/optMinPath.txt", setCodeMirrorVal);
+    $("#showOnlyOutputsSelector").val('true');
+    return false;
+  });
+
+  $('#cmKnapsackLink').click(function() {
+    $.get("example-code/chris-meyers/optKnapsack.txt", setCodeMirrorVal);
+    $("#showOnlyOutputsSelector").val('true');
+    return false;
+  });
+
+  $('#cmSieveLink').click(function() {
+    $.get("example-code/chris-meyers/optSieve.txt", setCodeMirrorVal);
+    $("#showOnlyOutputsSelector").val('true');
+    return false;
+  });
+
 
   var queryStrOptions = getQueryStringOptions();
 
