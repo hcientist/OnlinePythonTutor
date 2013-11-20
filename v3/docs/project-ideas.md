@@ -327,6 +327,12 @@ May 2013: In the experience of Python veterans, the main caveat with targeting o
 Thus, users might be frustrated that code they type into this tutor doesn't run exactly like code they type into the official Python interpreter.
 That said, though, a Skulpt implementation would still be useful, as long as users understand its limitations and caveats, and that it doesn't support the full Python language in all of its glory (or its weird edge-case behaviors).
 
+Nov 2013: Currently, the only way to get the official CPython in JS is to use https://github.com/replit/empythoned,
+which is used by the more general https://github.com/replit/jsrepl and https://github.com/replit/repl.it projects.
+However, handling `stdin` is really kludgy and works well only on Chrome/Safari ... kinda works in Firefox, and not at all in IE: https://github.com/replit/jsrepl#standard-input-hacks
+And it's unclear how to get the CPython code to communicate with the custom JS viz code ... so this is still not a shoo-in yet :/ The technology is still not there, ugh!
+
+
 
 ### Hack CPython to enable sub-expression-level tracing
 
