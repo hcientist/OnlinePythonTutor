@@ -125,24 +125,29 @@ function executePythonCode(pythonSourceCode,
               if (frontendOptionsObj.startingInstruction >= trace.length) {
                 frontendOptionsObj.startingInstruction = 0;
               }
-              myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
 
-              // set keyboard bindings
-              // VERY IMPORTANT to clear and reset this every time or
-              // else the handlers might be bound multiple times
-              $(document).unbind('keydown');
-              $(document).keydown(function(k) {
-                if (k.keyCode == 37) { // left arrow
-                  if (myVisualizer.stepBack()) {
-                    k.preventDefault(); // don't horizontally scroll the display
+              if (frontendOptionsObj.holisticMode) {
+                myVisualizer = new HolisticVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
+              } else {
+                myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
+
+                // set keyboard bindings
+                // VERY IMPORTANT to clear and reset this every time or
+                // else the handlers might be bound multiple times
+                $(document).unbind('keydown');
+                $(document).keydown(function(k) {
+                  if (k.keyCode == 37) { // left arrow
+                    if (myVisualizer.stepBack()) {
+                      k.preventDefault(); // don't horizontally scroll the display
+                    }
                   }
-                }
-                else if (k.keyCode == 39) { // right arrow
-                  if (myVisualizer.stepForward()) {
-                    k.preventDefault(); // don't horizontally scroll the display
+                  else if (k.keyCode == 39) { // right arrow
+                    if (myVisualizer.stepForward()) {
+                      k.preventDefault(); // don't horizontally scroll the display
+                    }
                   }
-                }
-              });
+                });
+              }
 
               handleSuccessFunc();
             }
