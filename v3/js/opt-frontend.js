@@ -177,6 +177,7 @@ $(document).ready(function() {
 
                                 // undocumented experimental modes:
                                 pyCrazyMode: ($('#pythonVersionSelector').val() == '2crazy'),
+                                holisticMode: ($('#cumulativeModeSelector').val() == 'holistic')
                                 //allowEditAnnotations: true,
                                }
 
