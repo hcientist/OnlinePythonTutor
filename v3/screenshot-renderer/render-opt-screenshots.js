@@ -1,3 +1,13 @@
+// Uses PhantomJS (phantomjs.org) to call Online Python Tutor to
+// visualize and render screenshots of a Python file as .png images
+
+// Created by Philip Guo on 2013-11-23
+
+// TODO: experiment with PDF rendering by calling page.render() with a
+// .pdf file extension. We might need to mess around with viewport and
+// page sizes.
+
+
 var page = require('webpage').create();
 var system = require('system');
 var fs = require('fs');
