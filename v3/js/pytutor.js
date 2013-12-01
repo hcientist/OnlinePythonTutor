@@ -412,6 +412,10 @@ ExecutionVisualizer.prototype.render = function() {
     }
     
     this.allowEditAnnotations = false;
+
+    // add an extra label to link back to the main site, so that viewers
+    // on the embedded page know that they're seeing an OPT visualization
+    this.domRoot.find('#codeDisplayDiv').append('<div style="font-size: 8pt; margin-bottom: 20px;">Code visualized   with <a href="http://pythontutor.com" target="_blank">Online Python Tutor</a></div>');
   }
 
   myViz.editAnnotationMode = false;
