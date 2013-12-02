@@ -3107,14 +3107,16 @@ function structurallyEquivalent(obj1, obj2) {
 
 
 function isPrimitiveType(obj) {
-  var typ = typeof obj;
-
-  // kludge: 'SPECIAL_FLOAT' objects count as primitives
-  if (typ == "object" && obj[0] == 'SPECIAL_FLOAT') {
+  if (obj == null) {
     return true;
   }
 
-  return ((obj == null) || (typ != "object"));
+  if (typeof obj == "object") {
+    // kludge: 'SPECIAL_FLOAT' objects count as primitives
+    return (obj[0] == 'SPECIAL_FLOAT');
+  else {
+    return true;
+  }
 }
 
 function getRefID(obj) {
