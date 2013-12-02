@@ -3107,14 +3107,17 @@ function structurallyEquivalent(obj1, obj2) {
 
 
 function isPrimitiveType(obj) {
+  // null is a primitive
   if (obj == null) {
     return true;
   }
 
   if (typeof obj == "object") {
-    // kludge: 'SPECIAL_FLOAT' objects count as primitives
+    // kludge: only 'SPECIAL_FLOAT' objects count as primitives
     return (obj[0] == 'SPECIAL_FLOAT');
+  }
   else {
+    // non-objects are primitives
     return true;
   }
 }
