@@ -35,10 +35,18 @@
 # Format:
 #   Primitives:
 #   * None, int, long, float, str, bool - unchanged
-#     (json.dumps encodes these fine verbatim)
+#     (json.dumps encodes these fine verbatim, except for inf, -inf, and nan)
+#
+#   exceptions: float('inf')  -> ['SPECIAL_FLOAT', 'Infinity']
+#               float('-inf') -> ['SPECIAL_FLOAT', '-Infinity']
+#               float('nan')  -> ['SPECIAL_FLOAT', 'NaN']
+#               x == int(x)   -> ['SPECIAL_FLOAT', '%.1f' % x]
+#               (this way, 3.0 prints as '3.0' and not as 3, which looks like an int)
 #
 #   If render_heap_primitives is True, then primitive values are rendered
 #   on the heap as ['HEAP_PRIMITIVE', <type name>, <value>]
+#
+#   (for SPECIAL_FLOAT values, <value> is a list like ['SPECIAL_FLOAT', 'Infinity'])
 #
 #   Compound objects:
 #   * list     - ['LIST', elt1, elt2, elt3, ..., eltN]
@@ -62,11 +70,13 @@ FLOAT_PRECISION = 4
 
 import re, types
 import sys
+import math
 typeRE = re.compile("<type '(.*)'>")
 classRE = re.compile("<class '(.*)'>")
 
 import inspect
 
+# TODO: maybe use the 'six' library to smooth over Py2 and Py3 incompatibilities?
 is_python3 = (sys.version_info[0] == 3)
 if is_python3:
   long = None # Avoid NameError when evaluating "long"
@@ -97,6 +107,26 @@ def get_name(obj):
 
 
 PRIMITIVE_TYPES = (int, long, float, str, bool, type(None))
+
+def encode_primitive(dat):
+  if type(dat) is float:
+    if math.isinf(dat):
+      if dat > 0:
+        return ['SPECIAL_FLOAT', 'Infinity']
+      else:
+        return ['SPECIAL_FLOAT', '-Infinity']
+    elif math.isnan(dat):
+      return ['SPECIAL_FLOAT', 'NaN']
+    else:
+      # render floats like 3.0 as '3.0' and not as 3
+      if dat == int(dat):
+        return ['SPECIAL_FLOAT', '%.1f' % dat]
+      else:
+        return round(dat, FLOAT_PRECISION)
+  else:
+    # return all other primitives verbatim
+    return dat
+
 
 # Note that this might BLOAT MEMORY CONSUMPTION since we're holding on
 # to every reference ever created by the program without ever releasing
@@ -136,11 +166,7 @@ class ObjectEncoder:
     """Encode a data value DAT using the GET_PARENT function for parent ids."""
     # primitive type
     if not self.render_heap_primitives and type(dat) in PRIMITIVE_TYPES:
-      if type(dat) is float:
-        return round(dat, FLOAT_PRECISION)
-      else:
-        return dat
-
+      return encode_primitive(dat)
     # compound type - return an object reference and update encoded_heap_objects
     else:
       my_id = id(dat)
@@ -229,7 +255,7 @@ class ObjectEncoder:
         new_obj.extend(['module', dat.__name__])
       elif typ in PRIMITIVE_TYPES:
         assert self.render_heap_primitives
-        new_obj.extend(['HEAP_PRIMITIVE', type(dat).__name__, dat])
+        new_obj.extend(['HEAP_PRIMITIVE', type(dat).__name__, encode_primitive(dat)])
       else:
         typeStr = str(typ)
         m = typeRE.match(typeStr)
