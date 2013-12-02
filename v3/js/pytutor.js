@@ -2342,7 +2342,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
         if (obj[2].length > 0) {
           superclassStr += ('[extends ' + obj[2].join(', ') + '] ');
         }
-        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' class ' + superclassStr + '</div>');
+        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' class ' + superclassStr +
+                            '<br/>' + '<a href="#" id="attrToggleLink">hide attributes</a>' + '</div>');
       }
 
       // right now, let's NOT display class members, since that clutters
@@ -2381,6 +2382,29 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
           // values can be arbitrary objects, so recurse:
           renderNestedObject(kvPair[1], valTd);
         });
+      }
+
+      // class attributes can be displayed or hidden, so as not to
+      // CLUTTER UP the display with a ton of attributes, especially
+      // from imported modules and custom types created from, say,
+      // collections.namedtuple
+      if (!isInstance) {
+        // super kludgy! use a global selector $ to get at the DOM
+        // element, which should be okay since IDs should be globally
+        // unique on a page, even with multiple ExecutionVisualizer
+        // instances ... but still feels dirty to me since it violates
+        // my "no using naked $(__) selectors for jQuery" convention :/
+        $(d3DomElement.selector + ' .typeLabel #attrToggleLink').click(function() {
+          var elt = $(d3DomElement.selector + ' .classTbl');
+          elt.toggle();
+          $(this).html((elt.is(':visible') ? 'hide' : 'show') + ' attributes');
+
+          myViz.redrawConnectors(); // redraw all arrows!
+          return false; // so that the <a href="#"> doesn't reload the page
+        });
+
+        // hide class attributes by default (or not!)
+        //$(d3DomElement.selector + ' .classTbl').hide();
       }
     }
     else if (obj[0] == 'INSTANCE_PPRINT') {
