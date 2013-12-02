@@ -2179,6 +2179,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       var literalStr = htmlspecialchars(obj);
 
       // print as a double-quoted string literal
+      // with explicit newlines as <br/>
+      literalStr = literalStr.replace(new RegExp('\n', 'g'), '<br/>'); // replace ALL
       literalStr = literalStr.replace(new RegExp('\"', 'g'), '\\"'); // replace ALL
       literalStr = '"' + literalStr + '"';
 
