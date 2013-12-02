@@ -1,0 +1,339 @@
+{
+  "code": "# o p t K n a p s a c k . p y\n#\n#  Chris Meyers. 09/25/2013\n#\nfrom htmlFrame import HtmlFrame\nfrom matrix import Matrix\n\nmaxwgt = 10\nvals = [0,10,40,30,50]\nwgts = [0, 5, 4, 6, 3]\n\nhtmlPage = HtmlFrame()\nhtmlPage.banner = \"Knapsack Problem\"\nheaders=['wt'+str(i) for i in range(maxwgt+1)]\n\ninp = Matrix(len(vals),3)\ninp.title = \"Sack holds weight %s\" % maxwgt\ninp.dftFormat = \"<pre>%03s</pre>\"\ninp.tableAttr = 'border=\"1\" cellspacing=\"0\" cellpadding=\"4\"',\ninp.tableHeaders=['Item #','Weight','Value']             \nfor i in range(len(vals)) :\n  inp.setrowVals(i, [i, wgts[i], vals[i]])\n\nframe = Matrix(1,2)\nframe[0,0] = inp.renderHtml()\nnItems = len(vals)\nbest = Matrix(nItems,maxwgt+1)\nbest.dftFormat = \"<pre>%03s</pre>\"\n\nfor i in range(1,nItems) :\n  best.setrowVal(i,0)\nfor i in range(1,nItems) :\n  for w in range(0,maxwgt+1) :\n    remBest = best[i-1,w-wgts[i]]\n    if remBest == None : remBest = 0\n    newSolution = vals[i]+remBest\n    if ((wgts[i] <= w and newSolution > best[i-1,w])) :\n      best[i,w] = newSolution\n      best.style[i,w] = \"background-color:pink\"\n      best.title = \"Optimal solution for weight %s includes item %s\" % (w,i)\n      best.tableAttr='border=\"1\" cellspacing=\"0\" cellpadding=\"4\"'\n      best.tableHeaders=headers\n      frame[0,1] = best.renderHtml()\n      htmlPage.item1 = frame.renderHtml()\n      htmlPage.makeFrame()  #break\n    else :\n      best[i,w] = best[i-1,w]\n", 
+  "trace": [
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "maxwgt", 
+        "vals", 
+        "wgts", 
+        "htmlPage", 
+        "headers", 
+        "inp", 
+        "i", 
+        "frame", 
+        "nItems", 
+        "best", 
+        "w", 
+        "remBest", 
+        "newSolution"
+      ], 
+      "stdout": "", 
+      "exception_msg": "TypeError: unorderable types: int() > NoneType()", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "wgts": [
+          "REF", 
+          19
+        ], 
+        "nItems": 5, 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "maxwgt": 10, 
+        "i": 1, 
+        "frame": [
+          "REF", 
+          24
+        ], 
+        "inp": [
+          "REF", 
+          23
+        ], 
+        "headers": [
+          "REF", 
+          22
+        ], 
+        "w": 5, 
+        "vals": [
+          "REF", 
+          18
+        ], 
+        "remBest": 0, 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ], 
+        "newSolution": 10, 
+        "best": [
+          "REF", 
+          25
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "LIST", 
+          0, 
+          10, 
+          40, 
+          30, 
+          50
+        ], 
+        "19": [
+          "LIST", 
+          0, 
+          5, 
+          4, 
+          6, 
+          3
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Knapsack Problem"
+          ], 
+          [
+            "item1", 
+            ""
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "22": [
+          "LIST", 
+          "wt0", 
+          "wt1", 
+          "wt2", 
+          "wt3", 
+          "wt4", 
+          "wt5", 
+          "wt6", 
+          "wt7", 
+          "wt8", 
+          "wt9", 
+          "wt10"
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-5x3"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-5x11"
+        ]
+      }, 
+      "line": 37, 
+      "event": "exception"
+    }
+  ]
+}

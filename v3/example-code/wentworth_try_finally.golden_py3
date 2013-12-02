@@ -780,7 +780,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": true, 
@@ -855,7 +858,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": true, 
@@ -930,7 +936,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": false, 
@@ -1020,7 +1029,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": false, 
@@ -1110,7 +1122,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": false, 
@@ -1200,7 +1215,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": false, 
@@ -1217,7 +1235,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "x": 10.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "10.0"
+            ], 
             "n": 1
           }, 
           "is_highlighted": true, 
@@ -1292,7 +1313,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": false, 
@@ -1309,7 +1333,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "x": 10.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "10.0"
+            ], 
             "n": 1
           }, 
           "is_highlighted": true, 
@@ -1384,7 +1411,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": false, 
@@ -1401,7 +1431,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "x": 10.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "10.0"
+            ], 
             "n": 1
           }, 
           "is_highlighted": false, 
@@ -1491,7 +1524,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": false, 
@@ -1508,7 +1544,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "x": 10.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "10.0"
+            ], 
             "n": 1
           }, 
           "is_highlighted": false, 
@@ -1598,7 +1637,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": false, 
@@ -1615,7 +1657,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "x": 10.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "10.0"
+            ], 
             "n": 1
           }, 
           "is_highlighted": false, 
@@ -1706,7 +1751,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": false, 
@@ -1723,7 +1771,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "x": 10.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "10.0"
+            ], 
             "n": 1
           }, 
           "is_highlighted": false, 
@@ -1813,7 +1864,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": false, 
@@ -1830,7 +1884,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "x": 10.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "10.0"
+            ], 
             "n": 1
           }, 
           "is_highlighted": false, 
@@ -1920,7 +1977,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": false, 
@@ -1937,7 +1997,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "x": 10.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "10.0"
+            ], 
             "n": 1
           }, 
           "is_highlighted": false, 
@@ -2030,7 +2093,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": false, 
@@ -2047,7 +2113,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "x": 10.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "10.0"
+            ], 
             "n": 1
           }, 
           "is_highlighted": true, 
@@ -2122,7 +2191,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": false, 
@@ -2139,7 +2211,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "x": 10.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "10.0"
+            ], 
             "n": 1
           }, 
           "is_highlighted": true, 
@@ -2214,7 +2289,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": false, 
@@ -2232,7 +2310,10 @@
           "frame_id": 4, 
           "encoded_locals": {
             "__return__": null, 
-            "x": 10.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "10.0"
+            ], 
             "n": 1
           }, 
           "is_highlighted": true, 
@@ -2309,7 +2390,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": true, 
@@ -2384,7 +2468,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": true, 
@@ -2460,7 +2547,10 @@
           "frame_id": 3, 
           "encoded_locals": {
             "__return__": null, 
-            "x": 5.000, 
+            "x": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "n": 2
           }, 
           "is_highlighted": true, 

@@ -795,7 +795,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "__return__": 1.000, 
+            "__return__": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ], 
             "x": 2
           }, 
           "is_highlighted": true, 
@@ -1579,7 +1582,10 @@
         {
           "frame_id": 5, 
           "encoded_locals": {
-            "__return__": 2.000, 
+            "__return__": [
+              "SPECIAL_FLOAT", 
+              "2.0"
+            ], 
             "x": 4
           }, 
           "is_highlighted": true, 
@@ -2538,7 +2544,10 @@
         {
           "frame_id": 7, 
           "encoded_locals": {
-            "__return__": 3.000, 
+            "__return__": [
+              "SPECIAL_FLOAT", 
+              "3.0"
+            ], 
             "x": 6
           }, 
           "is_highlighted": true, 
@@ -3666,7 +3675,10 @@
         {
           "frame_id": 9, 
           "encoded_locals": {
-            "__return__": 4.000, 
+            "__return__": [
+              "SPECIAL_FLOAT", 
+              "4.0"
+            ], 
             "x": 8
           }, 
           "is_highlighted": true, 
@@ -4957,7 +4969,10 @@
         {
           "frame_id": 11, 
           "encoded_locals": {
-            "__return__": 5.000, 
+            "__return__": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "x": 10
           }, 
           "is_highlighted": true, 
@@ -6188,7 +6203,10 @@
         ], 
         "11": [
           "LIST", 
-          5.000
+          [
+            "SPECIAL_FLOAT", 
+            "5.0"
+          ]
         ]
       }, 
       "line": 9, 
@@ -6377,8 +6395,14 @@
         ], 
         "12": [
           "LIST", 
-          4.000, 
-          5.000
+          [
+            "SPECIAL_FLOAT", 
+            "4.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "5.0"
+          ]
         ]
       }, 
       "line": 9, 
@@ -6539,9 +6563,18 @@
         ], 
         "13": [
           "LIST", 
-          3.000, 
-          4.000, 
-          5.000
+          [
+            "SPECIAL_FLOAT", 
+            "3.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "4.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "5.0"
+          ]
         ]
       }, 
       "line": 9, 
@@ -6673,10 +6706,22 @@
         ], 
         "14": [
           "LIST", 
-          2.000, 
-          3.000, 
-          4.000, 
-          5.000
+          [
+            "SPECIAL_FLOAT", 
+            "2.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "3.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "4.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "5.0"
+          ]
         ]
       }, 
       "line": 9, 
@@ -6778,11 +6823,26 @@
         ], 
         "15": [
           "LIST", 
-          1.000, 
-          2.000, 
-          3.000, 
-          4.000, 
-          5.000
+          [
+            "SPECIAL_FLOAT", 
+            "1.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "2.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "3.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "4.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "5.0"
+          ]
         ]
       }, 
       "line": 9, 
@@ -6856,11 +6916,26 @@
         ], 
         "15": [
           "LIST", 
-          1.000, 
-          2.000, 
-          3.000, 
-          4.000, 
-          5.000
+          [
+            "SPECIAL_FLOAT", 
+            "1.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "2.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "3.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "4.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "5.0"
+          ]
         ]
       }, 
       "line": 12, 
@@ -6939,11 +7014,26 @@
         ], 
         "15": [
           "LIST", 
-          1.000, 
-          2.000, 
-          3.000, 
-          4.000, 
-          5.000
+          [
+            "SPECIAL_FLOAT", 
+            "1.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "2.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "3.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "4.0"
+          ], 
+          [
+            "SPECIAL_FLOAT", 
+            "5.0"
+          ]
         ]
       }, 
       "line": 15, 
