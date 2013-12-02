@@ -1,0 +1,1883 @@
+{
+  "code": "class Metaclass(type):\n    def __new__(mcs, name, bases, dict_):\n        print(\"__NEW__\")\n        cls = super(Metaclass, mcs).__new__(mcs, name, bases, dict_)\n        return cls\n\n    def __init__(cls, name, bases, dict_):\n        print(\"__INIT__\")\n        super(Metaclass, cls).__init__(name, bases, dict_)\n\n    def __call__(cls, *args):\n        print(\"__CALL__\")\n        obj = super(Metaclass, cls).__call__(*args)\n        return obj\n\nclass MyObj(object):\n    __metaclass__ = Metaclass\n\nMyObj()\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ]
+      }, 
+      "line": 16, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass"
+      ], 
+      "stdout": "__NEW__\n", 
+      "func_name": "__init__", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "dict_": [
+              "REF", 
+              5
+            ], 
+            "bases": [
+              "REF", 
+              6
+            ], 
+            "name": "MyObj", 
+            "cls": [
+              "REF", 
+              22
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__init__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
+          "ordered_varnames": [
+            "cls", 
+            "name", 
+            "bases", 
+            "dict_"
+          ]
+        }
+      ], 
+      "globals": {
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "DICT", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "6": [
+          "TUPLE", 
+          [
+            "REF", 
+            7
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "object", 
+          [], 
+          [
+            "__class__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__delattr__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "__format__", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "__getattribute__", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "__hash__", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "__reduce__", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "__reduce_ex__", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              17
+            ]
+          ], 
+          [
+            "__setattr__", 
+            [
+              "REF", 
+              18
+            ]
+          ], 
+          [
+            "__sizeof__", 
+            [
+              "REF", 
+              19
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              20
+            ]
+          ], 
+          [
+            "__subclasshook__", 
+            [
+              "REF", 
+              21
+            ]
+          ]
+        ], 
+        "8": [
+          "getset_descriptor", 
+          "<attribute '__class__' of 'object' objects>"
+        ], 
+        "9": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__delattr__' of 'object' objects>"
+        ], 
+        "10": [
+          "method_descriptor", 
+          "<method '__format__' of 'object' objects>"
+        ], 
+        "11": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'object' objects>"
+        ], 
+        "12": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__hash__' of 'object' objects>"
+        ], 
+        "13": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'object' objects>"
+        ], 
+        "14": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "15": [
+          "method_descriptor", 
+          "<method '__reduce__' of 'object' objects>"
+        ], 
+        "16": [
+          "method_descriptor", 
+          "<method '__reduce_ex__' of 'object' objects>"
+        ], 
+        "17": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of 'object' objects>"
+        ], 
+        "18": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__setattr__' of 'object' objects>"
+        ], 
+        "19": [
+          "method_descriptor", 
+          "<method '__sizeof__' of 'object' objects>"
+        ], 
+        "20": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__str__' of 'object' objects>"
+        ], 
+        "21": [
+          "classmethod_descriptor", 
+          "<method '__subclasshook__' of 'object' objects>"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Metaclass", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ]
+      }, 
+      "line": 7, 
+      "event": "call"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass"
+      ], 
+      "stdout": "__NEW__\n", 
+      "func_name": "__init__", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "dict_": [
+              "REF", 
+              5
+            ], 
+            "bases": [
+              "REF", 
+              6
+            ], 
+            "name": "MyObj", 
+            "cls": [
+              "REF", 
+              22
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__init__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
+          "ordered_varnames": [
+            "cls", 
+            "name", 
+            "bases", 
+            "dict_"
+          ]
+        }
+      ], 
+      "globals": {
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "DICT", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "6": [
+          "TUPLE", 
+          [
+            "REF", 
+            7
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "object", 
+          [], 
+          [
+            "__class__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__delattr__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "__format__", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "__getattribute__", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "__hash__", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "__reduce__", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "__reduce_ex__", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              17
+            ]
+          ], 
+          [
+            "__setattr__", 
+            [
+              "REF", 
+              18
+            ]
+          ], 
+          [
+            "__sizeof__", 
+            [
+              "REF", 
+              19
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              20
+            ]
+          ], 
+          [
+            "__subclasshook__", 
+            [
+              "REF", 
+              21
+            ]
+          ]
+        ], 
+        "8": [
+          "getset_descriptor", 
+          "<attribute '__class__' of 'object' objects>"
+        ], 
+        "9": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__delattr__' of 'object' objects>"
+        ], 
+        "10": [
+          "method_descriptor", 
+          "<method '__format__' of 'object' objects>"
+        ], 
+        "11": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'object' objects>"
+        ], 
+        "12": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__hash__' of 'object' objects>"
+        ], 
+        "13": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'object' objects>"
+        ], 
+        "14": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "15": [
+          "method_descriptor", 
+          "<method '__reduce__' of 'object' objects>"
+        ], 
+        "16": [
+          "method_descriptor", 
+          "<method '__reduce_ex__' of 'object' objects>"
+        ], 
+        "17": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of 'object' objects>"
+        ], 
+        "18": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__setattr__' of 'object' objects>"
+        ], 
+        "19": [
+          "method_descriptor", 
+          "<method '__sizeof__' of 'object' objects>"
+        ], 
+        "20": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__str__' of 'object' objects>"
+        ], 
+        "21": [
+          "classmethod_descriptor", 
+          "<method '__subclasshook__' of 'object' objects>"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Metaclass", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ]
+      }, 
+      "line": 8, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass"
+      ], 
+      "stdout": "__NEW__\n__INIT__\n", 
+      "func_name": "__init__", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "dict_": [
+              "REF", 
+              5
+            ], 
+            "bases": [
+              "REF", 
+              6
+            ], 
+            "name": "MyObj", 
+            "cls": [
+              "REF", 
+              22
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__init__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
+          "ordered_varnames": [
+            "cls", 
+            "name", 
+            "bases", 
+            "dict_"
+          ]
+        }
+      ], 
+      "globals": {
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "DICT", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "6": [
+          "TUPLE", 
+          [
+            "REF", 
+            7
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "object", 
+          [], 
+          [
+            "__class__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__delattr__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "__format__", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "__getattribute__", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "__hash__", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "__reduce__", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "__reduce_ex__", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              17
+            ]
+          ], 
+          [
+            "__setattr__", 
+            [
+              "REF", 
+              18
+            ]
+          ], 
+          [
+            "__sizeof__", 
+            [
+              "REF", 
+              19
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              20
+            ]
+          ], 
+          [
+            "__subclasshook__", 
+            [
+              "REF", 
+              21
+            ]
+          ]
+        ], 
+        "8": [
+          "getset_descriptor", 
+          "<attribute '__class__' of 'object' objects>"
+        ], 
+        "9": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__delattr__' of 'object' objects>"
+        ], 
+        "10": [
+          "method_descriptor", 
+          "<method '__format__' of 'object' objects>"
+        ], 
+        "11": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'object' objects>"
+        ], 
+        "12": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__hash__' of 'object' objects>"
+        ], 
+        "13": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'object' objects>"
+        ], 
+        "14": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "15": [
+          "method_descriptor", 
+          "<method '__reduce__' of 'object' objects>"
+        ], 
+        "16": [
+          "method_descriptor", 
+          "<method '__reduce_ex__' of 'object' objects>"
+        ], 
+        "17": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of 'object' objects>"
+        ], 
+        "18": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__setattr__' of 'object' objects>"
+        ], 
+        "19": [
+          "method_descriptor", 
+          "<method '__sizeof__' of 'object' objects>"
+        ], 
+        "20": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__str__' of 'object' objects>"
+        ], 
+        "21": [
+          "classmethod_descriptor", 
+          "<method '__subclasshook__' of 'object' objects>"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Metaclass", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ]
+      }, 
+      "line": 9, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass"
+      ], 
+      "stdout": "__NEW__\n__INIT__\n", 
+      "func_name": "__init__", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "__return__": null, 
+            "dict_": [
+              "REF", 
+              5
+            ], 
+            "bases": [
+              "REF", 
+              6
+            ], 
+            "name": "MyObj", 
+            "cls": [
+              "REF", 
+              22
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__init__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
+          "ordered_varnames": [
+            "cls", 
+            "name", 
+            "bases", 
+            "dict_", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "5": [
+          "DICT", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "6": [
+          "TUPLE", 
+          [
+            "REF", 
+            7
+          ]
+        ], 
+        "7": [
+          "CLASS", 
+          "object", 
+          [], 
+          [
+            "__class__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__delattr__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "__format__", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "__getattribute__", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "__hash__", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "__reduce__", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "__reduce_ex__", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              17
+            ]
+          ], 
+          [
+            "__setattr__", 
+            [
+              "REF", 
+              18
+            ]
+          ], 
+          [
+            "__sizeof__", 
+            [
+              "REF", 
+              19
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              20
+            ]
+          ], 
+          [
+            "__subclasshook__", 
+            [
+              "REF", 
+              21
+            ]
+          ]
+        ], 
+        "8": [
+          "getset_descriptor", 
+          "<attribute '__class__' of 'object' objects>"
+        ], 
+        "9": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__delattr__' of 'object' objects>"
+        ], 
+        "10": [
+          "method_descriptor", 
+          "<method '__format__' of 'object' objects>"
+        ], 
+        "11": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'object' objects>"
+        ], 
+        "12": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__hash__' of 'object' objects>"
+        ], 
+        "13": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'object' objects>"
+        ], 
+        "14": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "15": [
+          "method_descriptor", 
+          "<method '__reduce__' of 'object' objects>"
+        ], 
+        "16": [
+          "method_descriptor", 
+          "<method '__reduce_ex__' of 'object' objects>"
+        ], 
+        "17": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of 'object' objects>"
+        ], 
+        "18": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__setattr__' of 'object' objects>"
+        ], 
+        "19": [
+          "method_descriptor", 
+          "<method '__sizeof__' of 'object' objects>"
+        ], 
+        "20": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__str__' of 'object' objects>"
+        ], 
+        "21": [
+          "classmethod_descriptor", 
+          "<method '__subclasshook__' of 'object' objects>"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Metaclass", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ]
+      }, 
+      "line": 9, 
+      "event": "return"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass", 
+        "MyObj"
+      ], 
+      "stdout": "__NEW__\n__INIT__\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "MyObj": [
+          "REF", 
+          22
+        ], 
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Metaclass", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ]
+      }, 
+      "line": 19, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass", 
+        "MyObj"
+      ], 
+      "stdout": "__NEW__\n__INIT__\n", 
+      "func_name": "__call__", 
+      "stack_to_render": [
+        {
+          "frame_id": 2, 
+          "encoded_locals": {
+            "args": [
+              "REF", 
+              23
+            ], 
+            "cls": [
+              "REF", 
+              22
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__call__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__call___f2", 
+          "ordered_varnames": [
+            "cls", 
+            "args"
+          ]
+        }
+      ], 
+      "globals": {
+        "MyObj": [
+          "REF", 
+          22
+        ], 
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Metaclass", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "23": [
+          "TUPLE"
+        ]
+      }, 
+      "line": 11, 
+      "event": "call"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass", 
+        "MyObj"
+      ], 
+      "stdout": "__NEW__\n__INIT__\n", 
+      "func_name": "__call__", 
+      "stack_to_render": [
+        {
+          "frame_id": 2, 
+          "encoded_locals": {
+            "args": [
+              "REF", 
+              23
+            ], 
+            "cls": [
+              "REF", 
+              22
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__call__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__call___f2", 
+          "ordered_varnames": [
+            "cls", 
+            "args"
+          ]
+        }
+      ], 
+      "globals": {
+        "MyObj": [
+          "REF", 
+          22
+        ], 
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Metaclass", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "23": [
+          "TUPLE"
+        ]
+      }, 
+      "line": 12, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass", 
+        "MyObj"
+      ], 
+      "stdout": "__NEW__\n__INIT__\n__CALL__\n", 
+      "func_name": "__call__", 
+      "stack_to_render": [
+        {
+          "frame_id": 2, 
+          "encoded_locals": {
+            "args": [
+              "REF", 
+              23
+            ], 
+            "cls": [
+              "REF", 
+              22
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__call__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__call___f2", 
+          "ordered_varnames": [
+            "cls", 
+            "args"
+          ]
+        }
+      ], 
+      "globals": {
+        "MyObj": [
+          "REF", 
+          22
+        ], 
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Metaclass", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "23": [
+          "TUPLE"
+        ]
+      }, 
+      "line": 13, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass", 
+        "MyObj"
+      ], 
+      "stdout": "__NEW__\n__INIT__\n__CALL__\n", 
+      "func_name": "__call__", 
+      "stack_to_render": [
+        {
+          "frame_id": 2, 
+          "encoded_locals": {
+            "args": [
+              "REF", 
+              23
+            ], 
+            "obj": [
+              "REF", 
+              24
+            ], 
+            "cls": [
+              "REF", 
+              22
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__call__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__call___f2", 
+          "ordered_varnames": [
+            "cls", 
+            "args", 
+            "obj"
+          ]
+        }
+      ], 
+      "globals": {
+        "MyObj": [
+          "REF", 
+          22
+        ], 
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Metaclass", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "23": [
+          "TUPLE"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "MyObj"
+        ]
+      }, 
+      "line": 14, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass", 
+        "MyObj"
+      ], 
+      "stdout": "__NEW__\n__INIT__\n__CALL__\n", 
+      "func_name": "__call__", 
+      "stack_to_render": [
+        {
+          "frame_id": 2, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              24
+            ], 
+            "args": [
+              "REF", 
+              23
+            ], 
+            "obj": [
+              "REF", 
+              24
+            ], 
+            "cls": [
+              "REF", 
+              22
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__call__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__call___f2", 
+          "ordered_varnames": [
+            "cls", 
+            "args", 
+            "obj", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "MyObj": [
+          "REF", 
+          22
+        ], 
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Metaclass", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ], 
+        "23": [
+          "TUPLE"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "MyObj"
+        ]
+      }, 
+      "line": 14, 
+      "event": "return"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass", 
+        "MyObj"
+      ], 
+      "stdout": "__NEW__\n__INIT__\n__CALL__\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "MyObj": [
+          "REF", 
+          22
+        ], 
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "Metaclass", 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ]
+      }, 
+      "line": 19, 
+      "event": "return"
+    }
+  ]
+}

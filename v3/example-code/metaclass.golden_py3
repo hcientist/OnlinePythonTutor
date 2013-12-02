@@ -1,0 +1,229 @@
+{
+  "code": "class Metaclass(type):\n    def __new__(mcs, name, bases, dict_):\n        print(\"__NEW__\")\n        cls = super(Metaclass, mcs).__new__(mcs, name, bases, dict_)\n        return cls\n\n    def __init__(cls, name, bases, dict_):\n        print(\"__INIT__\")\n        super(Metaclass, cls).__init__(name, bases, dict_)\n\n    def __call__(cls, *args):\n        print(\"__CALL__\")\n        obj = super(Metaclass, cls).__call__(*args)\n        return obj\n\nclass MyObj(object):\n    __metaclass__ = Metaclass\n\nMyObj()\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "INSTANCE", 
+          "staticmethod"
+        ]
+      }, 
+      "line": 16, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass", 
+        "MyObj"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "MyObj": [
+          "REF", 
+          5
+        ], 
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "INSTANCE", 
+          "staticmethod"
+        ], 
+        "5": [
+          "CLASS", 
+          "MyObj", 
+          [], 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ]
+      }, 
+      "line": 19, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Metaclass", 
+        "MyObj"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "MyObj": [
+          "REF", 
+          5
+        ], 
+        "Metaclass": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Metaclass", 
+          [
+            "type"
+          ], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__call__(cls, *args)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(cls, name, bases, dict_)", 
+          null
+        ], 
+        "4": [
+          "INSTANCE", 
+          "staticmethod"
+        ], 
+        "5": [
+          "CLASS", 
+          "MyObj", 
+          [], 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              1
+            ]
+          ]
+        ]
+      }, 
+      "line": 19, 
+      "event": "return"
+    }
+  ]
+}

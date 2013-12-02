@@ -469,6 +469,11 @@ $(document).ready(function() {
     return false;
   });
 
+  $('#metaclassLink').click(function() {
+    $.get("example-code/metaclass.txt", setCodeMirrorVal);
+    return false;
+  });
+
   $('#cmFibLink').click(function() {
     $.get("example-code/chris-meyers/optFib.txt", setCodeMirrorVal);
     $("#showOnlyOutputsSelector").val('true');
