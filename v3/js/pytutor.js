@@ -236,6 +236,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
 
   this.enableTransitions = false; // EXPERIMENTAL - enable transition effects
 
+  this.classAttrsHidden = {}; // kludgy hack for 'show/hide attributes' for class objects
 
   this.hasRendered = false;
 
@@ -2399,12 +2400,26 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
           elt.toggle();
           $(this).html((elt.is(':visible') ? 'hide' : 'show') + ' attributes');
 
+          if (elt.is(':visible')) {
+            myViz.classAttrsHidden[d3DomElement.selector] = false;
+            $(this).html('hide attributes');
+          }
+          else {
+            myViz.classAttrsHidden[d3DomElement.selector] = true;
+            $(this).html('show attributes');
+          }
+
           myViz.redrawConnectors(); // redraw all arrows!
+
           return false; // so that the <a href="#"> doesn't reload the page
         });
 
-        // hide class attributes by default (or not!)
-        //$(d3DomElement.selector + ' .classTbl').hide();
+        // "remember" whether this was hidden earlier during this
+        // visualization session
+        if (myViz.classAttrsHidden[d3DomElement.selector]) {
+          $(d3DomElement.selector + ' .classTbl').hide();
+          $(d3DomElement.selector + ' .typeLabel #attrToggleLink').html('show attributes');
+        }
       }
     }
     else if (obj[0] == 'INSTANCE_PPRINT') {
