@@ -6,6 +6,9 @@ from htmlFrame import HtmlFrame
 from matrix import Matrix
 
 from random     import randint
+import random
+random.seed(0) # for determinism
+
 htmlPage = HtmlFrame()
 htmlPage.banner = "Minimum Path from top to bottom"
 
