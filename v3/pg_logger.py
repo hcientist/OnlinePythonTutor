@@ -206,7 +206,7 @@ if not is_python3:
   BANNED_BUILTINS.append('input')
 
 
-IGNORE_VARS = set(('__user_stdout__', '__builtins__', '__name__', '__exception__', '__doc__', '__package__'))
+IGNORE_VARS = set(('__user_stdout__', '__OPT_toplevel__', '__builtins__', '__name__', '__exception__', '__doc__', '__package__'))
 
 def get_user_stdout(frame):
   return frame.f_globals['__user_stdout__'].getvalue()
@@ -555,6 +555,12 @@ class PGLogger(bdb.Bdb):
           return
         # or __repr__, which is often called when running print statements
         if top_frame.f_code.co_name == '__repr__':
+          return
+
+        # if top_frame.f_globals doesn't contain the sentinel '__OPT_toplevel__',
+        # then we're in another global scope altogether, so skip it!
+        # (this comes up in tests/backend-tests/namedtuple.txt)
+        if '__OPT_toplevel__' not in top_frame.f_globals:
           return
 
 
@@ -1047,7 +1053,9 @@ class PGLogger(bdb.Bdb):
 
         user_globals = {"__name__"    : "__main__",
                         "__builtins__" : user_builtins,
-                        "__user_stdout__" : user_stdout}
+                        "__user_stdout__" : user_stdout,
+                        # sentinel value for frames deriving from a top-level module
+                        "__OPT_toplevel__": True}
 
         if custom_globals:
             user_globals.update(custom_globals)
