@@ -1286,7 +1286,9 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
 
   if (isLastInstr) {
     if (this.promptForUserInput || this.promptForMouseInput) {
-      vcrControls.find("#curInstr").html('<b><font color="' + brightRed + '">' + this.userInputPromptStr + '</font></b>');
+      vcrControls.find("#curInstr").html('<b><font color="' + brightRed + '">user input</font></b>');
+      // looks ugly when userInputPromptStr is TOO LONG
+      //vcrControls.find("#curInstr").html('<b><font color="' + brightRed + '">' + this.userInputPromptStr + '</font></b>');
 
       // don't do smooth transition since prompt() is modal so it doesn't
       // give the animation background thread time to run
