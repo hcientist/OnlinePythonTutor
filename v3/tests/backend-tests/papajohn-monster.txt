@@ -1,0 +1,28 @@
+# original reported by papajohn in Oct 2013
+class Monster:
+    vampire = {2: 'scary'}
+    def werewolf(self):
+        return self.vampire[2]
+
+class Blob(Monster):
+    vampire = {2: 'night'}
+    def __init__(self, ghoul):
+        self.witch = ghoul.vampire
+        self.witch[3] = self
+
+spooky = Blob(Monster)
+spooky.werewolf = lambda self: Monster.vampire[2]
+
+
+# minimized by pgbovine ...
+'''
+class Monster:
+    def werewolf(self):
+        pass
+
+class Blob(Monster):
+    def __init__(self, ghoul):
+        pass
+
+spooky = Blob(Monster)
+'''
