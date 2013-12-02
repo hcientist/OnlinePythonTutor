@@ -180,7 +180,13 @@ class RawInputException(Exception):
 
 def raw_input_wrapper(prompt=''):
   if input_string_queue:
-    return input_string_queue.pop(0)
+    input_str = input_string_queue.pop(0)
+
+    # write the prompt and user input to stdout, to emulate what happens
+    # at the terminal
+    sys.stdout.write(prompt)
+    sys.stdout.write(input_str + "\n") # newline to simulate the user hitting Enter
+    return input_str
   raise RawInputException(prompt)
 
 class MouseInputException(Exception):
