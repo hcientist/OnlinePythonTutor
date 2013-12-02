@@ -12,6 +12,9 @@ json.encoder.FLOAT_REPR = lambda f: ('%.3f' % f)
 
 def json_finalizer(input_code, output_trace):
   ret = dict(code=input_code, trace=output_trace)
+  # sort_keys=True leads to printing in DETERMINISTIC order, but might
+  # screw up some old tests ... however, there is STILL non-determinism
+  # in Python 3.3 tests, ugh!
   json_output = json.dumps(ret, indent=INDENT_LEVEL)
   return json_output
 
