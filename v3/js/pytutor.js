@@ -2183,6 +2183,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
       d3DomElement.append('<span class="stringObj">' + literalStr + '</span>');
     }
+    else if (typ == "object") {
+      assert(obj[0] == 'SPECIAL_FLOAT');
+      d3DomElement.append('<span class="numberObj">' + obj[1] + '</span>');
+    }
     else {
       assert(false);
     }
@@ -3104,6 +3108,12 @@ function structurallyEquivalent(obj1, obj2) {
 
 function isPrimitiveType(obj) {
   var typ = typeof obj;
+
+  // kludge: 'SPECIAL_FLOAT' objects count as primitives
+  if (typ == "object" && obj[0] == 'SPECIAL_FLOAT') {
+    return true;
+  }
+
   return ((obj == null) || (typ != "object"));
 }
 
