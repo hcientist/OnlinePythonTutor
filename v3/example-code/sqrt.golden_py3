@@ -413,7 +413,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -509,7 +512,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -605,7 +611,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -622,7 +631,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -718,7 +730,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -735,7 +750,10 @@
         {
           "frame_id": 3, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -831,7 +849,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -849,7 +870,10 @@
           "frame_id": 3, 
           "encoded_locals": {
             "__return__": false, 
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -946,7 +970,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -1042,7 +1069,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -1059,7 +1089,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -1155,7 +1188,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -1172,7 +1208,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -1268,7 +1307,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -1285,7 +1327,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -1302,8 +1347,14 @@
         {
           "frame_id": 5, 
           "encoded_locals": {
-            "a": 1.000, 
-            "b": 9.000
+            "a": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ], 
+            "b": [
+              "SPECIAL_FLOAT", 
+              "9.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -1400,7 +1451,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -1417,7 +1471,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -1434,8 +1491,14 @@
         {
           "frame_id": 5, 
           "encoded_locals": {
-            "a": 1.000, 
-            "b": 9.000
+            "a": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ], 
+            "b": [
+              "SPECIAL_FLOAT", 
+              "9.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -1532,7 +1595,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -1549,7 +1615,10 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -1566,9 +1635,18 @@
         {
           "frame_id": 5, 
           "encoded_locals": {
-            "a": 1.000, 
-            "__return__": 5.000, 
-            "b": 9.000
+            "a": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ], 
+            "__return__": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
+            "b": [
+              "SPECIAL_FLOAT", 
+              "9.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -1666,7 +1744,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -1683,8 +1764,14 @@
         {
           "frame_id": 4, 
           "encoded_locals": {
-            "__return__": 5.000, 
-            "guess": 1.000
+            "__return__": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -1781,7 +1868,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -1798,7 +1888,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -1894,7 +1987,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -1911,7 +2007,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -2007,7 +2106,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2024,7 +2126,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2041,7 +2146,10 @@
         {
           "frame_id": 7, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -2137,7 +2245,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2154,7 +2265,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2171,7 +2285,10 @@
         {
           "frame_id": 7, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -2267,7 +2384,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2284,7 +2404,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2302,7 +2425,10 @@
           "frame_id": 7, 
           "encoded_locals": {
             "__return__": false, 
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -2399,7 +2525,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2416,7 +2545,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -2512,7 +2644,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2529,7 +2664,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2546,7 +2684,10 @@
         {
           "frame_id": 8, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -2642,7 +2783,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2659,7 +2803,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2676,7 +2823,10 @@
         {
           "frame_id": 8, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -2772,7 +2922,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2789,7 +2942,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2806,7 +2962,10 @@
         {
           "frame_id": 8, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2823,7 +2982,10 @@
         {
           "frame_id": 9, 
           "encoded_locals": {
-            "a": 5.000, 
+            "a": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "b": 1.800
           }, 
           "is_highlighted": true, 
@@ -2921,7 +3083,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2938,7 +3103,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2955,7 +3123,10 @@
         {
           "frame_id": 8, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -2972,7 +3143,10 @@
         {
           "frame_id": 9, 
           "encoded_locals": {
-            "a": 5.000, 
+            "a": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "b": 1.800
           }, 
           "is_highlighted": true, 
@@ -3070,7 +3244,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3087,7 +3264,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3104,7 +3284,10 @@
         {
           "frame_id": 8, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3121,7 +3304,10 @@
         {
           "frame_id": 9, 
           "encoded_locals": {
-            "a": 5.000, 
+            "a": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ], 
             "__return__": 3.400, 
             "b": 1.800
           }, 
@@ -3221,7 +3407,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3238,7 +3427,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3256,7 +3448,10 @@
           "frame_id": 8, 
           "encoded_locals": {
             "__return__": 3.400, 
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -3353,7 +3548,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3370,7 +3568,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3483,7 +3684,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3500,7 +3704,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3613,7 +3820,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3630,7 +3840,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3760,7 +3973,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3777,7 +3993,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3907,7 +4126,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -3924,7 +4146,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4056,7 +4281,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4073,7 +4301,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4186,7 +4417,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4203,7 +4437,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4333,7 +4570,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4350,7 +4590,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4480,7 +4723,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4497,7 +4743,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4646,7 +4895,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4663,7 +4915,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4812,7 +5067,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4829,7 +5087,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4980,7 +5241,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -4997,7 +5261,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5129,7 +5396,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5146,7 +5416,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5276,7 +5549,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5293,7 +5569,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5423,7 +5702,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5440,7 +5722,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5587,7 +5872,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5604,7 +5892,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5751,7 +6042,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5768,7 +6062,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5917,7 +6214,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -5934,7 +6234,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6064,7 +6367,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6081,7 +6387,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6228,7 +6537,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6245,7 +6557,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6392,7 +6707,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6409,7 +6727,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6575,7 +6896,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6592,7 +6916,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6758,7 +7085,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6775,7 +7105,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6943,7 +7276,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -6960,7 +7296,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7109,7 +7448,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7126,7 +7468,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7273,7 +7618,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7290,7 +7638,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7437,7 +7788,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7454,7 +7808,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7618,7 +7975,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7635,7 +7995,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7799,7 +8162,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7816,7 +8182,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7982,7 +8351,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -7999,7 +8371,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -8146,7 +8521,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -8163,7 +8541,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -8312,7 +8693,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -8329,7 +8713,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -8461,7 +8848,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -8478,7 +8868,10 @@
         {
           "frame_id": 6, 
           "encoded_locals": {
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -8593,7 +8986,10 @@
         {
           "frame_id": 2, 
           "encoded_locals": {
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
@@ -8611,7 +9007,10 @@
           "frame_id": 6, 
           "encoded_locals": {
             "__return__": 3.000, 
-            "guess": 5.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "5.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
@@ -8709,7 +9108,10 @@
           "frame_id": 2, 
           "encoded_locals": {
             "__return__": 3.000, 
-            "guess": 1.000
+            "guess": [
+              "SPECIAL_FLOAT", 
+              "1.0"
+            ]
           }, 
           "is_highlighted": true, 
           "is_parent": false, 

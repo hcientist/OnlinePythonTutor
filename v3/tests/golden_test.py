@@ -3,6 +3,12 @@ A simple framework for regression testing based on golden files
 by Philip Guo
 
 (sloppily) customized for the Online Python Tutor project
+
+THIS ONLY WORKS ON Python 2.7 and 3.2
+(note that Python 3.3 gives all sorts of weird non-deterministic errors, so use Python 3.2 for now)
+
+Also note that the Python 3 tests aren't as "robust" or as rigorously checked ...
+I've been focusing on Python 2 for now.
 '''
 
 import os, re, shutil, optparse, difflib
