@@ -407,27 +407,7 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ]
       }, 
       "line": 7, 
@@ -626,51 +606,11 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ]
       }, 
       "line": 8, 
@@ -874,75 +814,15 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Bouillabaisse"
-          ], 
-          [
-            "name", 
-            "Pascal"
-          ], 
-          [
-            "phone", 
-            "333-4444"
-          ], 
-          [
-            "price", 
-            32.000
-          ]
+          "Restaurant"
         ]
       }, 
       "line": 9, 
@@ -1151,99 +1031,19 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Bouillabaisse"
-          ], 
-          [
-            "name", 
-            "Pascal"
-          ], 
-          [
-            "phone", 
-            "333-4444"
-          ], 
-          [
-            "price", 
-            32.000
-          ]
+          "Restaurant"
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mee Krob"
-          ], 
-          [
-            "name", 
-            "Thai Touch"
-          ], 
-          [
-            "phone", 
-            "444-3333"
-          ], 
-          [
-            "price", 
-            10.950
-          ]
+          "Restaurant"
         ]
       }, 
       "line": 10, 
@@ -1457,123 +1257,23 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Bouillabaisse"
-          ], 
-          [
-            "name", 
-            "Pascal"
-          ], 
-          [
-            "phone", 
-            "333-4444"
-          ], 
-          [
-            "price", 
-            32.000
-          ]
+          "Restaurant"
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mee Krob"
-          ], 
-          [
-            "name", 
-            "Thai Touch"
-          ], 
-          [
-            "phone", 
-            "444-3333"
-          ], 
-          [
-            "price", 
-            10.950
-          ]
+          "Restaurant"
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Paht Woon Sen"
-          ], 
-          [
-            "name", 
-            "Thai Dishes"
-          ], 
-          [
-            "phone", 
-            "333-4433"
-          ], 
-          [
-            "price", 
-            8.500
-          ]
+          "Restaurant"
         ]
       }, 
       "line": 11, 
@@ -1792,147 +1492,27 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Bouillabaisse"
-          ], 
-          [
-            "name", 
-            "Pascal"
-          ], 
-          [
-            "phone", 
-            "333-4444"
-          ], 
-          [
-            "price", 
-            32.000
-          ]
+          "Restaurant"
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mee Krob"
-          ], 
-          [
-            "name", 
-            "Thai Touch"
-          ], 
-          [
-            "phone", 
-            "444-3333"
-          ], 
-          [
-            "price", 
-            10.950
-          ]
+          "Restaurant"
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Paht Woon Sen"
-          ], 
-          [
-            "name", 
-            "Thai Dishes"
-          ], 
-          [
-            "phone", 
-            "333-4433"
-          ], 
-          [
-            "price", 
-            8.500
-          ]
+          "Restaurant"
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mussamun"
-          ], 
-          [
-            "name", 
-            "Thai Spoon"
-          ], 
-          [
-            "phone", 
-            "334-3344"
-          ], 
-          [
-            "price", 
-            9.000
-          ]
+          "Restaurant"
         ]
       }, 
       "line": 13, 
@@ -2156,147 +1736,27 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Bouillabaisse"
-          ], 
-          [
-            "name", 
-            "Pascal"
-          ], 
-          [
-            "phone", 
-            "333-4444"
-          ], 
-          [
-            "price", 
-            32.000
-          ]
+          "Restaurant"
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mee Krob"
-          ], 
-          [
-            "name", 
-            "Thai Touch"
-          ], 
-          [
-            "phone", 
-            "444-3333"
-          ], 
-          [
-            "price", 
-            10.950
-          ]
+          "Restaurant"
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Paht Woon Sen"
-          ], 
-          [
-            "name", 
-            "Thai Dishes"
-          ], 
-          [
-            "phone", 
-            "333-4433"
-          ], 
-          [
-            "price", 
-            8.500
-          ]
+          "Restaurant"
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mussamun"
-          ], 
-          [
-            "name", 
-            "Thai Spoon"
-          ], 
-          [
-            "phone", 
-            "334-3344"
-          ], 
-          [
-            "price", 
-            9.000
-          ]
+          "Restaurant"
         ], 
         "22": [
           "LIST", 
@@ -2552,147 +2012,27 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Bouillabaisse"
-          ], 
-          [
-            "name", 
-            "Pascal"
-          ], 
-          [
-            "phone", 
-            "333-4444"
-          ], 
-          [
-            "price", 
-            32.000
-          ]
+          "Restaurant"
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mee Krob"
-          ], 
-          [
-            "name", 
-            "Thai Touch"
-          ], 
-          [
-            "phone", 
-            "444-3333"
-          ], 
-          [
-            "price", 
-            10.950
-          ]
+          "Restaurant"
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Paht Woon Sen"
-          ], 
-          [
-            "name", 
-            "Thai Dishes"
-          ], 
-          [
-            "phone", 
-            "333-4433"
-          ], 
-          [
-            "price", 
-            8.500
-          ]
+          "Restaurant"
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mussamun"
-          ], 
-          [
-            "name", 
-            "Thai Spoon"
-          ], 
-          [
-            "phone", 
-            "334-3344"
-          ], 
-          [
-            "price", 
-            9.000
-          ]
+          "Restaurant"
         ], 
         "22": [
           "LIST", 
@@ -2948,147 +2288,27 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Bouillabaisse"
-          ], 
-          [
-            "name", 
-            "Pascal"
-          ], 
-          [
-            "phone", 
-            "333-4444"
-          ], 
-          [
-            "price", 
-            32.000
-          ]
+          "Restaurant"
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mee Krob"
-          ], 
-          [
-            "name", 
-            "Thai Touch"
-          ], 
-          [
-            "phone", 
-            "444-3333"
-          ], 
-          [
-            "price", 
-            10.950
-          ]
+          "Restaurant"
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Paht Woon Sen"
-          ], 
-          [
-            "name", 
-            "Thai Dishes"
-          ], 
-          [
-            "phone", 
-            "333-4433"
-          ], 
-          [
-            "price", 
-            8.500
-          ]
+          "Restaurant"
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mussamun"
-          ], 
-          [
-            "name", 
-            "Thai Spoon"
-          ], 
-          [
-            "phone", 
-            "334-3344"
-          ], 
-          [
-            "price", 
-            9.000
-          ]
+          "Restaurant"
         ], 
         "22": [
           "LIST", 
@@ -3344,147 +2564,27 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Bouillabaisse"
-          ], 
-          [
-            "name", 
-            "Pascal"
-          ], 
-          [
-            "phone", 
-            "333-4444"
-          ], 
-          [
-            "price", 
-            32.000
-          ]
+          "Restaurant"
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mee Krob"
-          ], 
-          [
-            "name", 
-            "Thai Touch"
-          ], 
-          [
-            "phone", 
-            "444-3333"
-          ], 
-          [
-            "price", 
-            10.950
-          ]
+          "Restaurant"
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Paht Woon Sen"
-          ], 
-          [
-            "name", 
-            "Thai Dishes"
-          ], 
-          [
-            "phone", 
-            "333-4433"
-          ], 
-          [
-            "price", 
-            8.500
-          ]
+          "Restaurant"
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mussamun"
-          ], 
-          [
-            "name", 
-            "Thai Spoon"
-          ], 
-          [
-            "phone", 
-            "334-3344"
-          ], 
-          [
-            "price", 
-            9.000
-          ]
+          "Restaurant"
         ], 
         "22": [
           "LIST", 
@@ -3740,147 +2840,27 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Bouillabaisse"
-          ], 
-          [
-            "name", 
-            "Pascal"
-          ], 
-          [
-            "phone", 
-            "333-4444"
-          ], 
-          [
-            "price", 
-            32.000
-          ]
+          "Restaurant"
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mee Krob"
-          ], 
-          [
-            "name", 
-            "Thai Touch"
-          ], 
-          [
-            "phone", 
-            "444-3333"
-          ], 
-          [
-            "price", 
-            10.950
-          ]
+          "Restaurant"
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Paht Woon Sen"
-          ], 
-          [
-            "name", 
-            "Thai Dishes"
-          ], 
-          [
-            "phone", 
-            "333-4433"
-          ], 
-          [
-            "price", 
-            8.500
-          ]
+          "Restaurant"
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mussamun"
-          ], 
-          [
-            "name", 
-            "Thai Spoon"
-          ], 
-          [
-            "phone", 
-            "334-3344"
-          ], 
-          [
-            "price", 
-            9.000
-          ]
+          "Restaurant"
         ], 
         "22": [
           "LIST", 
@@ -4136,147 +3116,27 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Bouillabaisse"
-          ], 
-          [
-            "name", 
-            "Pascal"
-          ], 
-          [
-            "phone", 
-            "333-4444"
-          ], 
-          [
-            "price", 
-            32.000
-          ]
+          "Restaurant"
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mee Krob"
-          ], 
-          [
-            "name", 
-            "Thai Touch"
-          ], 
-          [
-            "phone", 
-            "444-3333"
-          ], 
-          [
-            "price", 
-            10.950
-          ]
+          "Restaurant"
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Paht Woon Sen"
-          ], 
-          [
-            "name", 
-            "Thai Dishes"
-          ], 
-          [
-            "phone", 
-            "333-4433"
-          ], 
-          [
-            "price", 
-            8.500
-          ]
+          "Restaurant"
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mussamun"
-          ], 
-          [
-            "name", 
-            "Thai Spoon"
-          ], 
-          [
-            "phone", 
-            "334-3344"
-          ], 
-          [
-            "price", 
-            9.000
-          ]
+          "Restaurant"
         ], 
         "22": [
           "LIST", 
@@ -4532,147 +3392,27 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Bouillabaisse"
-          ], 
-          [
-            "name", 
-            "Pascal"
-          ], 
-          [
-            "phone", 
-            "333-4444"
-          ], 
-          [
-            "price", 
-            32.000
-          ]
+          "Restaurant"
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mee Krob"
-          ], 
-          [
-            "name", 
-            "Thai Touch"
-          ], 
-          [
-            "phone", 
-            "444-3333"
-          ], 
-          [
-            "price", 
-            10.950
-          ]
+          "Restaurant"
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Paht Woon Sen"
-          ], 
-          [
-            "name", 
-            "Thai Dishes"
-          ], 
-          [
-            "phone", 
-            "333-4433"
-          ], 
-          [
-            "price", 
-            8.500
-          ]
+          "Restaurant"
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mussamun"
-          ], 
-          [
-            "name", 
-            "Thai Spoon"
-          ], 
-          [
-            "phone", 
-            "334-3344"
-          ], 
-          [
-            "price", 
-            9.000
-          ]
+          "Restaurant"
         ], 
         "22": [
           "LIST", 
@@ -4933,147 +3673,27 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Bouillabaisse"
-          ], 
-          [
-            "name", 
-            "Pascal"
-          ], 
-          [
-            "phone", 
-            "333-4444"
-          ], 
-          [
-            "price", 
-            32.000
-          ]
+          "Restaurant"
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mee Krob"
-          ], 
-          [
-            "name", 
-            "Thai Touch"
-          ], 
-          [
-            "phone", 
-            "444-3333"
-          ], 
-          [
-            "price", 
-            10.950
-          ]
+          "Restaurant"
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Paht Woon Sen"
-          ], 
-          [
-            "name", 
-            "Thai Dishes"
-          ], 
-          [
-            "phone", 
-            "333-4433"
-          ], 
-          [
-            "price", 
-            8.500
-          ]
+          "Restaurant"
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mussamun"
-          ], 
-          [
-            "name", 
-            "Thai Spoon"
-          ], 
-          [
-            "phone", 
-            "334-3344"
-          ], 
-          [
-            "price", 
-            9.000
-          ]
+          "Restaurant"
         ], 
         "22": [
           "LIST", 
@@ -5349,147 +3969,27 @@
         ], 
         "16": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ], 
         "18": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Bouillabaisse"
-          ], 
-          [
-            "name", 
-            "Pascal"
-          ], 
-          [
-            "phone", 
-            "333-4444"
-          ], 
-          [
-            "price", 
-            32.000
-          ]
+          "Restaurant"
         ], 
         "19": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mee Krob"
-          ], 
-          [
-            "name", 
-            "Thai Touch"
-          ], 
-          [
-            "phone", 
-            "444-3333"
-          ], 
-          [
-            "price", 
-            10.950
-          ]
+          "Restaurant"
         ], 
         "20": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Paht Woon Sen"
-          ], 
-          [
-            "name", 
-            "Thai Dishes"
-          ], 
-          [
-            "phone", 
-            "333-4433"
-          ], 
-          [
-            "price", 
-            8.500
-          ]
+          "Restaurant"
         ], 
         "21": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "Thai"
-          ], 
-          [
-            "dish", 
-            "Mussamun"
-          ], 
-          [
-            "name", 
-            "Thai Spoon"
-          ], 
-          [
-            "phone", 
-            "334-3344"
-          ], 
-          [
-            "price", 
-            9.000
-          ]
+          "Restaurant"
         ], 
         "22": [
           "LIST", 
