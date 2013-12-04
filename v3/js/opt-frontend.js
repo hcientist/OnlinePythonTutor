@@ -501,7 +501,10 @@ $(document).ready(function() {
   }
   else {
     // select a canned example on start-up:
-    $("#aliasExampleLink").trigger('click');
+    // $("#aliasExampleLink").trigger('click');
+    
+    // call setCodeMirrorVal() to set custom code
+    setCodeMirrorVal("print 'Hello World'");
   }
 
   // ugh, ugly tristate due to the possibility of each being undefined
