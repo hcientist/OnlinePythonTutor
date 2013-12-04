@@ -1,3 +1,5 @@
+/* Created by Irene Chen (2013) */
+
 div.HolisticVisualizer div#debug::-webkit-scrollbar {
     width:9px;
 }
@@ -90,14 +92,14 @@ div.HolisticVisualizer path {
 }
 
 div.HolisticVisualizer .delimiter {
- 	stroke: black; 
+ 	stroke: black;
  	stroke-opacity: 0.8;
- 	stroke-width: 1px;	
+ 	stroke-width: 1px;
 }
 
 div.HolisticVisualizer .h-hover {
 	fill-opacity: 0;
- 	stroke: black; 
+ 	stroke: black;
  	stroke-opacity: 0;
  	stroke-width: 20px;
 }
@@ -107,7 +109,7 @@ div.HolisticVisualizer .v-hover {
 }
 
 div.HolisticVisualizer .v-guide, div.HolisticVisualizer .h-guide {
- 	stroke: black; 
+ 	stroke: black;
  	stroke-opacity: 0.4;
  	stroke-width: 1px;
 }

@@ -1,3 +1,5 @@
+// Created by Irene Chen (2013)
+
 // look at js/pytutor.js for guide on refactoring object methods in JS!
 function HolisticVisualizer(domRootID, dat, params) {
 
@@ -153,7 +155,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 	            	 .attr("width", w)
 	            	 .attr("height", final_h);
 
-	// scales            	 
+	// scales
 	var xScale = d3.scale.linear()
 	                     .domain([0, dataset.length-1])
 	                     .range([col_mid, w - col_mid]);
@@ -220,7 +222,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 		        		return trace.trace[i].stack_to_render[n-1].encoded_locals[val];
 		        	} else {
 		        		return NO_VALUE;
-		        	}	        	
+		        	}
 		        }
 	        })
 	        .attr("x", function(d, i) {
@@ -240,11 +242,11 @@ function HolisticVisualizer(domRootID, dat, params) {
 
 	// create a line function that can convert data[] into x and y points
 	var line = d3.svg.line()
-		.x(function(d,i) { 
-			return xScale(i); 
+		.x(function(d,i) {
+			return xScale(i);
 		})
-		.y(function(d) { 
-			return yScale(d); 
+		.y(function(d) {
+			return yScale(d);
 		});
 
 	var connector = connectorGroup.append("svg:path")
@@ -307,7 +309,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 	        })
 	        .attr("y1", function(d, i) {
 	            return 0;
-	        })        
+	        })
 	        .attr("x2", function(d, i) {
 				if (d[2] == 'call') {
 	            	return xScale(d[0]) - col_mid;
@@ -337,7 +339,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 	        })
 	        .attr("y1", function(d, i) {
 	            return 0;
-	        })        
+	        })
 	        .attr("x2", function(d, i) {
 	            return xScale(i);
 	        })
@@ -357,7 +359,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 	        })
 	        .attr("y", function(d, i) {
 	            return 0;
-	        })        
+	        })
 	        .attr("width", function(d, i) {
 	            return col_w;
 	        })
@@ -365,46 +367,46 @@ function HolisticVisualizer(domRootID, dat, params) {
 	            return h;
 	        })
 	        .classed("v-hover", true)
-	        .on("mouseover", 
+	        .on("mouseover",
 	            function(d, i) {
 					var row = table[0].rows[d];
 					var cell = row.cells[0];
 					myViz.domRoot.find('#code tr:eq(' + d + ') td:first').addClass("v-hover");
 	                v_guides.filter(
-	                    function(data, index) { 
-	                        return index == i; 
+	                    function(data, index) {
+	                        return index == i;
 	                    })
 	                .style("visibility", "visible");
 	                circles.filter(
-	                    function(data, index) { 
-	                        return index == i; 
+	                    function(data, index) {
+	                        return index == i;
 	                    });
 	                //.style("fill", "teal");
 	            })
-	        .on("mousemove", 
+	        .on("mousemove",
 	            function(d, i) {
 					var row = table[0].rows[d];
 					var cell = row.cells[0];
 					myViz.domRoot.find('#code tr:eq(' + d + ') td:first').addClass("v-hover");
 	                v_guides.filter(
-	                    function(data, index) { 
-	                        return index == i; 
+	                    function(data, index) {
+	                        return index == i;
 	                    })
 	                .style("visibility", "visible");
 	            })
-	        .on("mouseout", 
+	        .on("mouseout",
 	            function(d, i) {
 					var row = table[0].rows[d];
 					var cell = row.cells[0];
 					myViz.domRoot.find('#code tr:eq(' + d + ') td:first').removeClass("v-hover");
 	                v_guides.filter(
-	                    function(data, index) { 
-	                        return index == i; 
+	                    function(data, index) {
+	                        return index == i;
 	                    })
 	                .style("visibility", "hidden");
 	                circles.filter(
-	                    function(data, index) { 
-	                        return index == i; 
+	                    function(data, index) {
+	                        return index == i;
 	                    });
 	                //.style("fill", "black");
 	            });
@@ -452,7 +454,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 		        		return trace.trace[i].stack_to_render[n-1].encoded_locals[val];
 		        	} else {
 		        		return "~";
-		        	}	        	
+		        	}
 		        }
 	        });
 	    } else {
