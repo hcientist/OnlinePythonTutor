@@ -1123,8 +1123,6 @@ class PGLogger(bdb.Bdb):
             del sys.modules['os']
             del sys.modules['os.path']
             del sys.modules['sys']
-            # so that ppl don't try to dig up dead objects with gc.get_objects()
-            del sys.modules['gc']
 
           self.run(script_str, user_globals, user_globals)
         # sys.exit ...
