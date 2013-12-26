@@ -222,7 +222,8 @@ def get_user_stdout(frame):
   return frame.f_globals['__user_stdout__'].getvalue()
 
 '''
-Dec 2013
+2013-12-26
+
 Okay, what's with this f_valuestack business?
 
 If you compile your own CPython and patch Objects/frameobject.c to add a
@@ -231,6 +232,10 @@ stack, which is useful for, say, grabbbing the objects within
 list/set/dict comprehensions as they're being built. e.g., try:
 
     z = [x*y for x in range(5) for y in range(5)]
+
+Note that on pythontutor.com, I am currently running custom-compiled
+versions of Python-2.7.6 and Python-3.3.3 with this f_valuestack hack.
+Unless you run your own custom CPython, you won't get these benefits.
 
 
 Patch:
