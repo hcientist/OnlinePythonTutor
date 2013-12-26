@@ -296,7 +296,7 @@ def get_user_globals(frame, at_global_scope=False):
   # (which don't have its own special <listcomp> frame, sadly)
   if hasattr(frame, 'f_valuestack'):
     for (i, e) in enumerate([e for e in frame.f_valuestack if type(e) is list]):
-      ret['_tmp' + str(i+1)] = e
+      d['_tmp' + str(i+1)] = e
 
   # also filter out __return__ for globals only, but NOT for locals
   if '__return__' in d:
