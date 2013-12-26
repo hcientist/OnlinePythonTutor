@@ -47,7 +47,7 @@ Here is a [blog post by a Hacker School student](http://theworldsoldestintern.wo
 who set up OPT on his Ubuntu laptop. (btw [Hacker School](http://www.hackerschool.com/) is worth checking out!)
 
 
-## Alternative: Running OPT locally using bottle
+## Alternative setup: Running OPT locally using bottle
 
 Google App Engine works only with Python 2, not Python 3. So if you want to run with Python 3 as well,
 first install the [bottle](http://bottlepy.org/) micro web framework:
@@ -57,7 +57,7 @@ first install the [bottle](http://bottlepy.org/) micro web framework:
 
 And then run:
 
-    cd OnlinePythonTutor/
+    cd OnlinePythonTutor/v3/
     python bottle_backend.py
 
 If all goes well, when you visit this URL, you should see the Python Tutor visualizer:
