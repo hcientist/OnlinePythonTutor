@@ -1098,8 +1098,6 @@ class PGLogger(bdb.Bdb):
             #  is baked into the python executable, ergh.)
             for a in dir(sys.modules['posix']):
                 delattr(sys.modules['posix'], a)
-            for a in dir(sys.modules['posixpath']):
-                delattr(sys.modules['posixpath'], a)
 
             # sys.modules contains an in-memory cache of already-loaded
             # modules, so if you delete modules from here, they will
@@ -1113,8 +1111,7 @@ class PGLogger(bdb.Bdb):
             # and it might lead to UNEXPECTED FAILURES later in execution.
             del sys.modules['os']
             del sys.modules['os.path']
-            del sys.modules['posix']     # not sufficient, see above!
-            del sys.modules['posixpath'] # not sufficient, see above!
+            del sys.modules['posix'] # not sufficient, see above!
             del sys.modules['sys']
 
           self.run(script_str, user_globals, user_globals)
