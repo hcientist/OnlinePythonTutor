@@ -1095,7 +1095,9 @@ class PGLogger(bdb.Bdb):
             # (It's not sufficient to just "del sys.modules['posix']";
             #  it can just be reimported without accessing an external
             #  file and tripping RLIMIT_NOFILE, since the posix module
-            #  is baked into the python executable, ergh.)
+            #  is baked into the python executable, ergh. Actually DON'T
+            #  "del sys.modules['posix']", since re-importing it will
+            #  refresh all of the attributes. ergh^2)
             for a in dir(sys.modules['posix']):
                 delattr(sys.modules['posix'], a)
 
@@ -1111,7 +1113,6 @@ class PGLogger(bdb.Bdb):
             # and it might lead to UNEXPECTED FAILURES later in execution.
             del sys.modules['os']
             del sys.modules['os.path']
-            del sys.modules['posix'] # not sufficient, see above!
             del sys.modules['sys']
 
           self.run(script_str, user_globals, user_globals)
