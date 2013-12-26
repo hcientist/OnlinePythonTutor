@@ -284,10 +284,19 @@ Patch:
 # at_global_scope should be true only if 'frame' represents the global scope
 def get_user_globals(frame, at_global_scope=False):
   d = filter_var_dict(frame.f_globals)
-  # only present in crazy_mode ...
+
+  # don't blurt out all of f_valuestack for now ...
+  '''
   if at_global_scope and hasattr(frame, 'f_valuestack'):
     for (i, e) in enumerate(frame.f_valuestack):
       d['_tmp' + str(i+1)] = e
+  '''
+
+  # print out list objects being built up in Python 2.x list comprehensions
+  # (which don't have its own special <listcomp> frame, sadly)
+  if hasattr(frame, 'f_valuestack'):
+    for (i, e) in enumerate([e for e in frame.f_valuestack if type(e) is list]):
+      ret['_tmp' + str(i+1)] = e
 
   # also filter out __return__ for globals only, but NOT for locals
   if '__return__' in d:
@@ -296,10 +305,27 @@ def get_user_globals(frame, at_global_scope=False):
 
 def get_user_locals(frame):
   ret = filter_var_dict(frame.f_locals)
-  # only present in crazy_mode ...
+  # don't blurt out all of f_valuestack for now ...
+  '''
   if hasattr(frame, 'f_valuestack'):
     for (i, e) in enumerate(frame.f_valuestack):
       ret['_tmp' + str(i+1)] = e
+  '''
+
+  # special printing of list/set/dict comprehension objects as they are
+  # being built up incrementally ...
+  f_name = frame.f_code.co_name
+  if hasattr(frame, 'f_valuestack'):
+    # print out list objects being built up in Python 2.x list comprehensions
+    # (which don't have its own special <listcomp> frame, sadly)
+    for (i, e) in enumerate([e for e in frame.f_valuestack if type(e) is list]):
+      ret['_tmp' + str(i+1)] = e
+
+    # for dict and set comprehensions, which have their own frames:
+    if f_name.endswith('comp>'):
+      for (i, e) in enumerate([e for e in frame.f_valuestack
+                               if type(e) in (set, dict)]):
+        ret['_tmp' + str(i+1)] = e
 
   return ret
 
