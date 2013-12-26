@@ -1087,6 +1087,18 @@ class PGLogger(bdb.Bdb):
             # (at least on my Webfaction hosting with Python 2.7)
             #resource.setrlimit(resource.RLIMIT_FSIZE, (0, 0))  # (redundancy for paranoia)
 
+            # the posix module is built-in and has a ton of OS-munging
+            # facilities ... if you delete thoe functions from
+            # sys.modules['posix'], it seems like they're gone even if
+            # someone else imports posix in a roundabout way ... of
+            # course, I don't know how foolproof this is, though
+            # (it's not sufficient to just "del sys.modules['posix']";
+            #  it can just be reimported without accessing an external
+            #  file and tripping RLIMIT_NOFILE, since the posix module
+            #  is baked into the python executable, ergh)
+            for a in dir(sys.modules['posix']):
+                delattr(sys.modules['posix'], a)
+
             # sys.modules contains an in-memory cache of already-loaded
             # modules, so if you delete modules from here, they will
             # need to be re-loaded from the filesystem.
