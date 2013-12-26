@@ -144,6 +144,10 @@ for m in ALLOWED_STDLIB_MODULE_IMPORTS + CUSTOM_MODULE_IMPORTS:
 
 # Restrict imports to a whitelist
 def __restricted_import__(*args):
+  # filter args to ONLY take in real strings so that someone can't
+  # subclass str and bypass the 'in' test on the next line
+  #args = [e for e in args if type(e) is str]
+
   if args[0] in ALLOWED_STDLIB_MODULE_IMPORTS + CUSTOM_MODULE_IMPORTS:
     imported_mod = BUILTIN_IMPORT(*args)
 
@@ -1100,6 +1104,9 @@ class PGLogger(bdb.Bdb):
             #  refresh all of the attributes. ergh^2)
             for a in dir(sys.modules['posix']):
                 delattr(sys.modules['posix'], a)
+            # do the same with os
+            for a in dir(sys.modules['os']):
+                delattr(sys.modules['os'], a)
 
             # sys.modules contains an in-memory cache of already-loaded
             # modules, so if you delete modules from here, they will
