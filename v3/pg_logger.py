@@ -36,6 +36,7 @@ import re
 import traceback
 import types
 
+# TODO: use the 'six' package to smooth out Py2 and Py3 differences
 is_python3 = (sys.version_info[0] == 3)
 
 if is_python3:
@@ -294,7 +295,7 @@ def get_user_globals(frame, at_global_scope=False):
 
   # print out list objects being built up in Python 2.x list comprehensions
   # (which don't have its own special <listcomp> frame, sadly)
-  if hasattr(frame, 'f_valuestack'):
+  if not is_python3 and hasattr(frame, 'f_valuestack'):
     for (i, e) in enumerate([e for e in frame.f_valuestack if type(e) is list]):
       d['_tmp' + str(i+1)] = e
 
@@ -318,13 +319,15 @@ def get_user_locals(frame):
   if hasattr(frame, 'f_valuestack'):
     # print out list objects being built up in Python 2.x list comprehensions
     # (which don't have its own special <listcomp> frame, sadly)
-    for (i, e) in enumerate([e for e in frame.f_valuestack if type(e) is list]):
-      ret['_tmp' + str(i+1)] = e
+    if not is_python3:
+      for (i, e) in enumerate([e for e in frame.f_valuestack
+                               if type(e) is list]):
+        ret['_tmp' + str(i+1)] = e
 
     # for dict and set comprehensions, which have their own frames:
     if f_name.endswith('comp>'):
       for (i, e) in enumerate([e for e in frame.f_valuestack
-                               if type(e) in (set, dict)]):
+                               if type(e) in (list, set, dict)]):
         ret['_tmp' + str(i+1)] = e
 
   return ret
