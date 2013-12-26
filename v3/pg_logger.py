@@ -221,6 +221,61 @@ IGNORE_VARS = set(('__user_stdout__', '__OPT_toplevel__', '__builtins__', '__nam
 def get_user_stdout(frame):
   return frame.f_globals['__user_stdout__'].getvalue()
 
+'''
+Dec 2013
+Okay, what's with this f_valuestack business?
+
+If you compile your own CPython and patch Objects/frameobject.c to add a
+Python accessor for f_valuestack, then you can actually access the value
+stack, which is useful for, say, grabbbing the objects within
+list/set/dict comprehensions as they're being built. e.g., try:
+
+    z = [x*y for x in range(5) for y in range(5)]
+
+
+Patch:
+
+ static PyObject *
+ frame_getlineno(PyFrameObject *f, void *closure)
+ {
+     return PyLong_FromLong(PyFrame_GetLineNumber(f));
+ }
+
++// copied from Py2crazy, which was for Python 2, but let's hope this still works!
++static PyObject *
++frame_getvaluestack(PyFrameObject* f) {
++    // pgbovine - TODO: will this memory leak? hopefully not,
++    // since all other accessors seem to follow the same idiom
++    PyObject* lst = PyList_New(0);
++    if (f->f_stacktop != NULL) {
++        PyObject** p = NULL;
++        for (p = f->f_valuestack; p < f->f_stacktop; p++) {
++            PyList_Append(lst, *p);
++        }
++    }
++
++    return lst;
++}
++
+ /* Setter for f_lineno - you can set f_lineno from within a trace function in
+  * order to jump to a given line of code, subject to some restrictions.  Most
+  * lines are OK to jump to because they don't make any assumptions about the
+@@ -368,6 +384,11 @@
+
+ static PyGetSetDef frame_getsetlist[] = {
+     {"f_locals",        (getter)frame_getlocals, NULL, NULL},
+     {"f_lineno",        (getter)frame_getlineno,
+                     (setter)frame_setlineno, NULL},
+     {"f_trace",         (getter)frame_gettrace, (setter)frame_settrace, NULL},
++
++    // pgbovine
++    {"f_valuestack",(getter)frame_getvaluestack,
++                    (setter)NULL /* don't let it be set */, NULL},
++
+     {0}
+ };
+'''
+
 # at_global_scope should be true only if 'frame' represents the global scope
 def get_user_globals(frame, at_global_scope=False):
   d = filter_var_dict(frame.f_globals)
