@@ -1109,6 +1109,11 @@ class PGLogger(bdb.Bdb):
               # 'path' is needed for __restricted_import__ to work
               if a != 'path':
                 delattr(sys.modules['os'], a)
+            # ppl can dig up trashed objects with gc.get_objects()
+            import gc
+            for a in dir(sys.modules['gc']):
+              delattr(sys.modules['gc'], a)
+            del sys.modules['gc']
 
             # sys.modules contains an in-memory cache of already-loaded
             # modules, so if you delete modules from here, they will
