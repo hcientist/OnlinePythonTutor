@@ -260,6 +260,11 @@ $(document).ready(function() {
     return false;
   });
 
+  $("#compsLink").click(function() {
+    $.get("example-code/comprehensions.txt", setCodeMirrorVal);
+    return false;
+  });
+
   $("#fibonacciExampleLink").click(function() {
     $.get("example-code/fib.txt", setCodeMirrorVal);
     return false;
