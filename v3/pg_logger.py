@@ -1103,9 +1103,11 @@ class PGLogger(bdb.Bdb):
             #  "del sys.modules['posix']", since re-importing it will
             #  refresh all of the attributes. ergh^2)
             for a in dir(sys.modules['posix']):
-                delattr(sys.modules['posix'], a)
+              delattr(sys.modules['posix'], a)
             # do the same with os
             for a in dir(sys.modules['os']):
+              # 'path' is needed for __restricted_import__ to work
+              if a != 'path':
                 delattr(sys.modules['os'], a)
 
             # sys.modules contains an in-memory cache of already-loaded
