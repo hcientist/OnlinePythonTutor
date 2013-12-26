@@ -58,7 +58,7 @@ first install the [bottle](http://bottlepy.org/) micro web framework:
 And then run:
 
     cd OnlinePythonTutor/v3/
-    python bottle_backend.py
+    python bottle_server.py
 
 If all goes well, when you visit this URL, you should see the Python Tutor visualizer:
 
@@ -66,7 +66,7 @@ If all goes well, when you visit this URL, you should see the Python Tutor visua
 
 Note that you can run bottle with both Python 2 and 3.
 
-However, **only** run this locally, not in production, since security checks are disabled.
+However, **only** run this app locally for testing, not in production, since security checks are disabled.
 
 
 ## Overall system architecture
