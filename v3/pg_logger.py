@@ -146,7 +146,7 @@ for m in ALLOWED_STDLIB_MODULE_IMPORTS + CUSTOM_MODULE_IMPORTS:
 def __restricted_import__(*args):
   # filter args to ONLY take in real strings so that someone can't
   # subclass str and bypass the 'in' test on the next line
-  #args = [e for e in args if type(e) is str]
+  args = [e for e in args if type(e) is str]
 
   if args[0] in ALLOWED_STDLIB_MODULE_IMPORTS + CUSTOM_MODULE_IMPORTS:
     imported_mod = BUILTIN_IMPORT(*args)
@@ -1123,6 +1123,8 @@ class PGLogger(bdb.Bdb):
             del sys.modules['os']
             del sys.modules['os.path']
             del sys.modules['sys']
+            # so that ppl don't try to dig up dead objects with gc.get_objects()
+            del sys.modules['gc']
 
           self.run(script_str, user_globals, user_globals)
         # sys.exit ...
