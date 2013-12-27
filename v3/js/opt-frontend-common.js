@@ -43,7 +43,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // uncomment below if you're running on Google App Engine using the built-in app.yaml
 var python2_backend_script = 'exec';
-var python3_backend_script = null;
+var python3_backend_script = 'exec';
 
 // KRAZY experimental KODE!!! Use a custom hacked CPython interpreter
 var python2crazy_backend_script = 'web_exec_py2-crazy.py';
