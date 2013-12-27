@@ -123,7 +123,7 @@ ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'datetime',
 CUSTOM_MODULE_IMPORTS = ('callback_module',
                          'ttt_module',
                          'html_module',
-                         'watch_module',
+                         #'watch_module', # 'import sys' might be troublesome
                          'bintree_module',
                          'htmlexample_module',
                          'GChartWrapper',
