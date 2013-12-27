@@ -116,6 +116,49 @@ There are (at least) two main ways to implement this feature:
   the web page canvas. The dream here is to be able to write pure-Python modules for
   each custom data type, which can "pretty-print" as HTML/CSS/JS.
 
+### Holistic tabular view
+
+Right now OPT displays one state at a time. For simple algorithms, students often find it helpful
+to have the entire state displayed in a table, and will manually insert in `print` statements like so:
+
+<pre>
+i = 0
+numbers = []
+
+while i < 6:
+  print 'At the top i is %d' % i
+  numbers.append(i)
+
+  i = i + 1
+  print 'Numbers now: ', numbers
+  print 'At the bottom i is %d' % i
+
+print 'The numbers: '
+
+for num in numbers:
+  print num
+</pre>
+
+Question: Can we augment OPT to provide this sort of "cumulative tabular view"?
+All of the data is right there in the trace; it's just a matter of visualizing it properly.
+
+For instance (this output is faked, so it's not accurate):
+
+       i       numbers             code executed
+      -------------------------------------------
+       0       [0]                 while i < 6:
+       1       [0, 1]                i  = i + 1
+       2       [0, 1, 2]           while i < 6:
+       3       [0, 1, 2, 3]          i  = i + 1
+       4       [0, 1, 2, 3, 4]
+
+The obvious challenge here is scalabiilty, and what happens when there are multiple frames.
+
+Some ideas include:
+- having the user manually document (in, say, a docstring) which variables to print to the table
+- only printing the table for one frame at a time
+- or maybe nesting frames
+
 
 ### Custom rendering API and plugin system
 
