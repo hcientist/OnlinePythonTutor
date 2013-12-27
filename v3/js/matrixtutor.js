@@ -43,6 +43,8 @@ var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the U
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 
+var VIZ_LABEL = "Run and Visualize Code";
+
 
 function enterEditMode() {
   $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
@@ -58,7 +60,7 @@ var pyTestInputCodeMirror; // CodeMirror object that contains the test code
 
 $(document).ready(function() {
 
-  $("#embedLinkDiv").hide();
+  $("#embedLinkDiv,#gradingPane,#pyOutputPane").hide();
 
   pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
     mode: 'python',
@@ -88,7 +90,7 @@ $(document).ready(function() {
 
     if (appMode === undefined || appMode == 'edit') {
       $("#pyInputPane").show();
-      $("#pyOutputPane").hide();
+      $("#pyOutputPane,#gradingPane").hide();
       $("#embedLinkDiv").hide();
 
       // destroy all annotation bubbles (NB: kludgy)
@@ -98,11 +100,10 @@ $(document).ready(function() {
     }
     else if (appMode == 'display') {
       $("#pyInputPane").hide();
-      $("#pyOutputPane").show();
-
+      $("#pyOutputPane,#gradingPane").show();
       $("#embedLinkDiv").show();
 
-      $('#executeBtn').html("Visualize Execution");
+      $('#executeBtn').html(VIZ_LABEL);
       $('#executeBtn').attr('disabled', false);
 
 
@@ -118,7 +119,7 @@ $(document).ready(function() {
     }
     else if (appMode == 'display_no_frills') {
       $("#pyInputPane").hide();
-      $("#pyOutputPane").show();
+      $("#pyOutputPane,#gradingPane").show();
       $("#embedLinkDiv").show();
     }
     else {
@@ -138,7 +139,7 @@ $(document).ready(function() {
 
       $('#executeBtn').html("Please wait ... processing your code");
       $('#executeBtn').attr('disabled', true);
-      $("#pyOutputPane").hide();
+      $("#pyOutputPane,#gradingPane").hide();
       $("#embedLinkDiv").hide();
 
       var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
@@ -176,7 +177,6 @@ $(document).ready(function() {
               });
             }
             else {
-              console.log('wtf?', errorLineNo, nCodeLines);
               // instead highlight the faulting line in pyTestInputCodeMirror
               errorLineNo -= nCodeLines;
 
@@ -191,7 +191,7 @@ $(document).ready(function() {
             }
           }
 
-          $('#executeBtn').html("Visualize Execution");
+          $('#executeBtn').html(VIZ_LABEL);
           $('#executeBtn').attr('disabled', false);
         }
       }
@@ -251,7 +251,7 @@ $(document).ready(function() {
           "Report a bug to philip@pgbovine.net\n\n" +
           "(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
 
-    $('#executeBtn').html("Visualize Execution");
+    $('#executeBtn').html(VIZ_LABEL);
     $('#executeBtn').attr('disabled', false);
   });
 
