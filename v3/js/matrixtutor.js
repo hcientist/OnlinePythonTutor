@@ -263,21 +263,6 @@ $(document).ready(function() {
     }
   });
 
-  $('#genUrlBtn').bind('click', function() {
-    var myArgs = {code: pyInputCodeMirror.getValue(),
-                  mode: appMode,
-                  cumulative: $('#cumulativeModeSelector').val(),
-                  py: $('#pythonVersionSelector').val()};
-
-    if (appMode == 'display') {
-      myArgs.curInstr = myVisualizer.curInstr;
-    }
-
-    var urlStr = $.param.fragment(window.location.href, myArgs, 2 /* clobber all */);
-    $('#urlOutput').val(urlStr);
-  });
-
-
   $.get('load_matrix_problem',
         {problem_name: 'python_comprehension-1'},
         function(dataFromBackend) {
@@ -285,5 +270,17 @@ $(document).ready(function() {
           pyTestInputCodeMirror.setValue(dataFromBackend.test.rtrim());
         },
         "json");
-});
 
+
+  $('#submitGradeBtn').bind('click', function() {
+    $.get('submit_matrix_problem',
+          {submitted_code: pyInputCodeMirror.getValue(),
+           problem_name: 'python_comprehension-1'},
+          function(dataFromBackend) {
+            $('#gradeStdout').val(dataFromBackend.user_stdout);
+            $('#gradeStderr').val(dataFromBackend.user_stderr);
+          },
+          "json");
+
+  });
+});

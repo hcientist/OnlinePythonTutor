@@ -60,5 +60,30 @@ def load_matrix_problem():
   return json.dumps(dict(code=cod, test=testCod))
 
 
+@get('/submit_matrix_problem')
+def submit_matrix_problem():
+  user_code = request.query.submitted_code
+  prob_name = request.query.problem_name
+  assert type(prob_name) in (str, unicode)
+
+  # whitelist
+  assert prob_name in ('python_comprehension-1',)
+
+  test_fn = 'matrix-demo/' + prob_name + '.test.py'
+  test_cod = open(test_fn).read()
+
+  # concatenate!
+  script = test_cod + '\n' + user_code + '\nimport doctest\ndoctest.testmod()'
+
+  import simple_sandbox
+
+  def json_finalizer(executor):
+    return json.dumps(dict(code=executor.executed_script,
+                           user_stdout=executor.user_stdout.getvalue(),
+                           user_stderr=executor.user_stderr.getvalue()))
+
+  return simple_sandbox.exec_str(script, json_finalizer)
+
+
 if __name__ == "__main__":
     run(host='localhost', port=8080, reloader=True)
