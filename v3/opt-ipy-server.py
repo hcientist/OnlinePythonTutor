@@ -45,7 +45,7 @@ class MainHandler(tornado.web.RequestHandler):
 class WholeTraceHandler(tornado.web.RequestHandler):
     def post(self):
         message = self.request.body
-        dat = json.loads(message)
+        dat = json.loads(message.decode())
         Application.current_full_trace = dat
 
         js_msg=dict(payload=Application.current_full_trace, type='wholetrace')
