@@ -37,16 +37,6 @@ DEBUG = True
 import resource
 
 
-# ugh, I can't figure out why in Python 2, __builtins__ seems to
-# be a dict, but in Python 3, __builtins__ seems to be a module,
-# so just handle both cases ... UGLY!
-if type(__builtins__) is dict:
-  BUILTIN_IMPORT = __builtins__['__import__']
-else:
-  assert type(__builtins__) is types.ModuleType
-  BUILTIN_IMPORT = __builtins__.__import__
-
-
 # whitelist of module imports
 ALLOWED_MODULE_IMPORTS = ('doctest',)
 
@@ -107,29 +97,6 @@ class SandboxExecutor(bdb.Bdb):
           # (at least on my Webfaction hosting with Python 2.7)
           #resource.setrlimit(resource.RLIMIT_FSIZE, (0, 0))  # (redundancy for paranoia)
 
-          # The posix module is a built-in and has a ton of OS access
-          # facilities ... if you delete those functions from
-          # sys.modules['posix'], it seems like they're gone EVEN IF
-          # someone else imports posix in a roundabout way. Of course,
-          # I don't know how foolproof this scheme is, though.
-          # (It's not sufficient to just "del sys.modules['posix']";
-          #  it can just be reimported without accessing an external
-          #  file and tripping RLIMIT_NOFILE, since the posix module
-          #  is baked into the python executable, ergh. Actually DON'T
-          #  "del sys.modules['posix']", since re-importing it will
-          #  refresh all of the attributes. ergh^2)
-          for a in dir(sys.modules['posix']):
-            delattr(sys.modules['posix'], a)
-          # do the same with os
-          for a in dir(sys.modules['os']):
-            if not a in ('path', 'stat', 'environ'):
-              delattr(sys.modules['os'], a)
-          # ppl can dig up trashed objects with gc.get_objects()
-          import gc
-          for a in dir(sys.modules['gc']):
-            delattr(sys.modules['gc'], a)
-          del sys.modules['gc']
-
           # sys.modules contains an in-memory cache of already-loaded
           # modules, so if you delete modules from here, they will
           # need to be re-loaded from the filesystem.
@@ -164,10 +131,10 @@ class SandboxExecutor(bdb.Bdb):
 def print_finalizer(executor):
     #print 'DONE:'
     #print executor.executed_script
-    print 'stdout:'
-    print executor.user_stdout.getvalue()
-    print 'stderr:'
-    print executor.user_stderr.getvalue()
+    print('stdout:')
+    print(executor.user_stdout.getvalue())
+    print('stderr:')
+    print(executor.user_stderr.getvalue())
 
 
 # the MAIN meaty function!!!
