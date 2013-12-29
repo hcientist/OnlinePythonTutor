@@ -262,7 +262,7 @@ $(document).ready(function() {
     }
   });
 
-  $.get('load_matrix_problem',
+  $.get('load_matrix_problem.py',
         {problem_name: 'python_comprehension-1'},
         function(dataFromBackend) {
           pyInputCodeMirror.setValue(dataFromBackend.code.rtrim());
@@ -275,7 +275,7 @@ $(document).ready(function() {
     $('#submitGradeBtn').html('Now Grading ...');
     $('#submitGradeBtn').attr('disabled', true);
 
-    $.get('submit_matrix_problem',
+    $.get('submit_matrix_problem.py',
           {submitted_code: pyInputCodeMirror.getValue(),
            problem_name: 'python_comprehension-1'},
           function(dataFromBackend) {
