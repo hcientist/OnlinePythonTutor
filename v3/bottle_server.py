@@ -12,6 +12,9 @@ from bottle import route, get, request, run, template, static_file
 import cStringIO
 import json
 import pg_logger
+import urllib
+import urllib2
+
 
 @route('/<filepath:path>')
 def index(filepath):
@@ -46,7 +49,9 @@ def load_matrix_problem():
   assert prob_name in ('python_comprehension-1',)
 
   fn = 'matrix-demo/' + prob_name + '.py'
-  cod = open(fn).read()
+  f = open(fn)
+  cod = f.read()
+  f.close()
 
   import doctest
   import sys
@@ -73,16 +78,22 @@ def submit_matrix_problem():
   test_cod = open(test_fn).read()
 
   # concatenate!
-  script = test_cod + '\n' + user_code + '\nimport doctest\ndoctest.testmod()'
+  script = test_cod + '\n' + user_code + \
+'''
+import doctest
+(n_fail, n_tests) = doctest.testmod(verbose=False)
+if n_fail == 0:
+    print("All %d tests passed!" % n_tests)
+'''
 
-  import simple_sandbox
+  url = 'http://ec2-107-20-94-197.compute-1.amazonaws.com/cgi-bin/run_code.py'
+  values = {'user_script' : script}
 
-  def json_finalizer(executor):
-    return json.dumps(dict(code=executor.executed_script,
-                           user_stdout=executor.user_stdout.getvalue(),
-                           user_stderr=executor.user_stderr.getvalue()))
-
-  return simple_sandbox.exec_str(script, json_finalizer)
+  data = urllib.urlencode(values)
+  req = urllib2.Request(url, data)
+  response = urllib2.urlopen(req)
+  the_page = response.read()
+  return the_page
 
 
 if __name__ == "__main__":
