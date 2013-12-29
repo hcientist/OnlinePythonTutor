@@ -116,6 +116,10 @@ $(document).ready(function() {
       $('#pyOutputPane #editBtn').click(function() {
         enterEditMode();
       });
+
+      $('#gradeStdout,#gradeStderr').val(''); // clear 'em
+      $('#submitGradeBtn').html('Submit for Grading');
+      $('#submitGradeBtn').attr('disabled', false);
     }
     else if (appMode == 'display_no_frills') {
       $("#pyInputPane").hide();
@@ -142,7 +146,7 @@ $(document).ready(function() {
       $("#pyOutputPane,#gradingPane").hide();
       $("#embedLinkDiv").hide();
 
-      var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
+      var backendOptionsObj = {cumulative_mode: false,
                                heap_primitives: false,
                                show_only_outputs: false,
                                py_crazy_mode: false,
@@ -222,11 +226,6 @@ $(document).ready(function() {
 
   var queryStrOptions = getQueryStringOptions();
 
-  // ugh, ugly tristate due to the possibility of each being undefined
-  if (queryStrOptions.cumulativeState !== undefined) {
-    $('#cumulativeModeSelector').val(queryStrOptions.cumulativeState);
-  }
-
   appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
   if ((appMode == "display") && queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
     preseededCurInstr = queryStrOptions.preseededCurInstr; // ugly global
@@ -273,12 +272,18 @@ $(document).ready(function() {
 
 
   $('#submitGradeBtn').bind('click', function() {
+    $('#submitGradeBtn').html('Now Grading ...');
+    $('#submitGradeBtn').attr('disabled', true);
+
     $.get('submit_matrix_problem',
           {submitted_code: pyInputCodeMirror.getValue(),
            problem_name: 'python_comprehension-1'},
           function(dataFromBackend) {
             $('#gradeStdout').val(dataFromBackend.user_stdout);
             $('#gradeStderr').val(dataFromBackend.user_stderr);
+
+            $('#submitGradeBtn').html('Submit for Grading');
+            $('#submitGradeBtn').attr('disabled', false);
           },
           "json");
 
