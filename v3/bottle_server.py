@@ -40,7 +40,7 @@ def get_exec():
   return out_s.getvalue()
 
 
-@get('/load_matrix_problem')
+@get('/load_matrix_problem.py')
 def load_matrix_problem():
   prob_name = request.query.problem_name
   assert type(prob_name) in (str, unicode)
@@ -65,7 +65,7 @@ def load_matrix_problem():
   return json.dumps(dict(code=cod, test=testCod))
 
 
-@get('/submit_matrix_problem')
+@get('/submit_matrix_problem.py')
 def submit_matrix_problem():
   user_code = request.query.submitted_code
   prob_name = request.query.problem_name
