@@ -1,10 +1,11 @@
 #!/usr/bin/python
 
 import cgi
-import doctest
-import json
 import urllib
 import urllib2
+
+#import cgitb
+#cgitb.enable()
 
 form = cgi.FieldStorage()
 user_code = form['submitted_code'].value
@@ -12,7 +13,7 @@ prob_name = form['problem_name'].value
 
 # run on the EC2 sandbox
 url = 'http://ec2-107-20-94-197.compute-1.amazonaws.com/cgi-bin/test_matrix_code.py'
-values = {'user_script' : script, 'problem_name': prob_name}
+values = {'user_script' : user_code, 'problem_name': prob_name}
 
 data = urllib.urlencode(values)
 req = urllib2.Request(url, data)
