@@ -36,6 +36,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // - opt-frontend-common.js
 // should all be imported BEFORE this file
 
+var problemName = null;
 
 var appMode = 'edit'; // 'edit', 'display', or 'display_no_frills'
 
@@ -59,6 +60,14 @@ var pyTestInputCodeMirror; // CodeMirror object that contains the test code
 
 
 $(document).ready(function() {
+  problemName = window.location.search;
+  if (!problemName) {
+    alert("Error! Pass in a valid problem name in the url as '?<problem name>'");
+  }
+  else {
+    problemName = problemName.slice(1); // strip off '?'
+  }
+
 
   $("#embedLinkDiv,#gradingPane,#pyOutputPane").hide();
 
@@ -117,7 +126,7 @@ $(document).ready(function() {
         enterEditMode();
       });
 
-      $('#gradeStdout,#gradeStderr').val(''); // clear 'em
+      $('#gradeStdout').val(''); // clear 'em
       $('#submitGradeBtn').html('Submit for Grading');
       $('#submitGradeBtn').attr('disabled', false);
     }
@@ -262,30 +271,35 @@ $(document).ready(function() {
     }
   });
 
-  $.get('load_matrix_problem.py',
-        {problem_name: 'python_comprehension-1'},
-        function(dataFromBackend) {
-          pyInputCodeMirror.setValue(dataFromBackend.code.rtrim());
-          pyTestInputCodeMirror.setValue(dataFromBackend.test.rtrim());
-        },
-        "json");
-
-
-  $('#submitGradeBtn').bind('click', function() {
-    $('#submitGradeBtn').html('Now Grading ...');
-    $('#submitGradeBtn').attr('disabled', true);
-
-    $.get('submit_matrix_problem.py',
-          {submitted_code: pyInputCodeMirror.getValue(),
-           problem_name: 'python_comprehension-1'},
+  if (problemName) {
+    $.get('load_matrix_problem.py',
+          {problem_name: problemName},
           function(dataFromBackend) {
-            $('#gradeStdout').val(dataFromBackend.user_stdout);
-            $('#gradeStderr').val(dataFromBackend.user_stderr);
-
-            $('#submitGradeBtn').html('Submit for Grading');
-            $('#submitGradeBtn').attr('disabled', false);
+            if (dataFromBackend.status == 'error') {
+              alert("Error: " + problemName + " is not a valid problem name");
+            }
+            else {
+              pyInputCodeMirror.setValue(dataFromBackend.code.rtrim());
+              pyTestInputCodeMirror.setValue(dataFromBackend.test.rtrim());
+              $(".problemDescClass").html(dataFromBackend.description);
+            }
           },
           "json");
 
-  });
+    $('#submitGradeBtn').bind('click', function() {
+      $('#submitGradeBtn').html('Now Grading ...');
+      $('#submitGradeBtn').attr('disabled', true);
+
+      $.get('submit_matrix_problem.py',
+            {submitted_code: pyInputCodeMirror.getValue(),
+             problem_name: problemName},
+            function(dataFromBackend) {
+              $('#gradeStdout').val(dataFromBackend.user_stdout);
+
+              $('#submitGradeBtn').html('Submit for Grading');
+              $('#submitGradeBtn').attr('disabled', false);
+            },
+            "json");
+    });
+  }
 });
