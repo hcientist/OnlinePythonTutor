@@ -11,7 +11,7 @@ form = cgi.FieldStorage()
 user_code = form['submitted_code'].value
 prob_name = form['problem_name'].value
 
-# run on the EC2 sandbox
+# run tests on EC2
 url = 'http://ec2-107-20-94-197.compute-1.amazonaws.com/cgi-bin/test_matrix_code.py'
 values = {'user_script' : user_code, 'problem_name': prob_name}
 

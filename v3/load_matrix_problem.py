@@ -1,9 +1,7 @@
 #!/usr/bin/python
 
 import cgi
-import doctest
 import json
-import sys
 
 form = cgi.FieldStorage()
 prob_name = form['problem_name'].value
@@ -12,7 +10,6 @@ assert type(prob_name) is str # prevent subclassing shenanigans
 print("Content-type: text/plain; charset=iso-8859-1\n")
 
 try:
-
   for line in open('coding-the-matrix/python_lab.problem2name'):
     p, desc = line.strip().split('%')
     if p == prob_name:
@@ -26,6 +23,7 @@ except:
  
 
 '''
+import doctest
 p = doctest.DocTestParser()
 examples = p.get_examples(cod)
 if len(examples):
