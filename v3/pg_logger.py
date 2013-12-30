@@ -1196,7 +1196,8 @@ class PGLogger(bdb.Bdb):
             # do the same with os
             for a in dir(sys.modules['os']):
               # 'path' is needed for __restricted_import__ to work
-              if a != 'path':
+              # and 'stat' is needed for some errors to be reported properly
+              if a not in ('path', 'stat'):
                 delattr(sys.modules['os'], a)
             # ppl can dig up trashed objects with gc.get_objects()
             import gc
