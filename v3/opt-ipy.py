@@ -47,8 +47,24 @@ SERVER_ADDR = "http://localhost:8888/"
 assert SERVER_ADDR[-1] == '/'
 
 
-import os, sys, urllib2, json
+import sys, json
 import pg_logger
+
+is_python3 = (sys.version_info[0] == 3)
+
+
+viewitems = None
+urlopen = None
+if is_python3:
+    import urllib
+    urlopen = urllib.request.urlopen
+    viewitems = lambda x: x.items()
+
+else:
+    import urllib2
+    urlopen = urllib2.urlopen
+    viewitems = lambda x: x.viewitems()
+
 
 
 # Standardize display of floats to 3 significant figures
@@ -107,7 +123,7 @@ class OptHistory(object):
         if epic_fail:
             self.pop_last()
 
-        urllib2.urlopen(SERVER_ADDR + 'wholetrace', json_output)
+        urlopen(SERVER_ADDR + 'wholetrace', json_output.encode())
 
 
 # called right before a statement gets executed
@@ -137,7 +153,7 @@ def opt_clear(self, params):
     ip = get_ipython()
 
     filtered_user_ns = set()
-    for k, v in ip.user_ns.iteritems():
+    for k, v in viewitems(ip.user_ns):
         if k[0] == '_':
             continue
         if k in ('In', 'Out', 'help', 'quit', 'exit', 'get_ipython'):
@@ -149,7 +165,7 @@ def opt_clear(self, params):
 
     ip.meta.opt_history = OptHistory() # just create a new one!
 
-    urllib2.urlopen(SERVER_ADDR + 'clear', 'blub') # need a non-empty POST body
+    urlopen(SERVER_ADDR + 'clear', 'blub'.encode()) # need a non-empty POST body
 
 
 def load_ipython_extension(ipython):
@@ -166,7 +182,7 @@ def load_ipython_extension(ipython):
     ipython.set_hook('pre_run_code_hook', opt_pre_run_code_hook)
     ipython.define_magic('clear', opt_clear)
 
-    print "Online Python Tutor extension loaded!"
+    print("Online Python Tutor extension loaded!")
 
 
 def unload_ipython_extension(ipython):
