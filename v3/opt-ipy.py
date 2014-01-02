@@ -50,6 +50,7 @@ assert SERVER_ADDR[-1] == '/'
 import sys, json
 import pg_logger
 
+# TODO: use the 'six' library to smooth out py2 and py3 differences
 is_python3 = (sys.version_info[0] == 3)
 
 
@@ -63,7 +64,7 @@ if is_python3:
 else:
     import urllib2
     urlopen = urllib2.urlopen
-    viewitems = lambda x: x.viewitems()
+    viewitems = lambda x: x.iteritems()
 
 
 
