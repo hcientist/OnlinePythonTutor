@@ -7,7 +7,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 	myViz.domRoot = $('#' + domRootID);
 	myViz.domRootD3 = d3.select('#' + domRootID);
 
-	myViz.domRoot.html('<div class="HolisticVisualizer"></div>');
+	myViz.domRoot.html('<div class="HolisticVisualizer"></div><div id="alt-visual"></div>');
 	myViz.domRoot = myViz.domRoot.find('div.HolisticVisualizer');
 	myViz.domRootD3 = myViz.domRootD3.select('div.HolisticVisualizer');
 
@@ -32,10 +32,12 @@ function HolisticVisualizer(domRootID, dat, params) {
 	            <h3>Debug: step <span id="debug-title">N/A</span></h3>\
 	            <div id="debug">\
 	            </div>\
-	        </div>\
-	        <div id="alt-visual"></div>';
+	        </div>';
 
 	myViz.domRoot.html(pregeneratedHTML);
+
+	params.hideCode = true;
+	myViz.altVisualizer = new ExecutionVisualizer('alt-visual', dat, params);
 
 	/*
 	 * =================================
@@ -578,12 +580,13 @@ function HolisticVisualizer(domRootID, dat, params) {
 							$('#alt-visual').hide();
 						} else {
 							altVisualStep = i;
-							$('#alt-visual').html('Execution step: ' + i);
+							myViz.altVisualizer.renderStep(altVisualStep);
 						}
 					} else {
 						altVisualStep = i;
-						$('#alt-visual').html('Execution step: ' + i);
+						// have to draw arrows after the div is shown!
 						$('#alt-visual').show();
+						myViz.altVisualizer.renderStep(altVisualStep);
 					}
 				});
 
@@ -679,5 +682,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 
 // stubs for unimplemented interface methods
 HolisticVisualizer.prototype.updateOutput = function() {};
-HolisticVisualizer.prototype.redrawConnectors = function() {};
+HolisticVisualizer.prototype.redrawConnectors = function() {
+	this.altVisualizer.redrawConnectors();
+};
 HolisticVisualizer.prototype.destroyAllAnnotationBubbles = function() {};

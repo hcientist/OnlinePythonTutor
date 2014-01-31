@@ -85,15 +85,6 @@ div.HolisticVisualizer div#debug {
     overflow-y: scroll;
 }
 
-div.HolisticVisualizer div#alt-visual {
-	background-color: blue;
-  	display: none;
-  	font-size: 10pt;
-  	height: 400px;
-  	vertical-align: top;
-  	width: 400px;
-}
-
 div.HolisticVisualizer #tooltip {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
