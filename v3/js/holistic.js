@@ -7,7 +7,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 	myViz.domRoot = $('#' + domRootID);
 	myViz.domRootD3 = d3.select('#' + domRootID);
 
-	myViz.domRoot.html('<div class="HolisticVisualizer"></div><div id="alt-visual"></div>');
+	myViz.domRoot.html('<div class="HolisticVisualizer"></div><div id="alt-visual"></div><div id="tooltip"></div>');
 	myViz.domRoot = myViz.domRoot.find('div.HolisticVisualizer');
 	myViz.domRootD3 = myViz.domRootD3.select('div.HolisticVisualizer');
 
@@ -38,6 +38,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 
 	params.hideCode = true;
 	myViz.altVisualizer = new ExecutionVisualizer('alt-visual', dat, params);
+	myViz.tooltipVisualizer = new ExecutionVisualizer('tooltip', dat, params);
 
 	/*
 	 * =================================
@@ -523,15 +524,13 @@ function HolisticVisualizer(domRootID, dat, params) {
 
 	                var svgOffset = myViz.domRoot.find('div#slider svg').offset();
 
-	                // clear old tooltip
+	                // hide old tooltip
 	                hideTooltip();
 
-	                var tooltipDiv = document.createElement('div');
-	                $(tooltipDiv).attr('id', 'tooltip');
-	                $(tooltipDiv).html('Line of code: ' + (d+1) + '<br />' + 'Execution step: ' + i);
-				    // TODO: clean up this messy div creation JS code
-				    $(tooltipDiv).appendTo(myViz.domRoot.find('#slider'));
 
+
+	                $('#tooltip').show();
+	                myViz.tooltipVisualizer.renderStep(i);
 				    changeTooltipPosition(xScale(i) + svgOffset.left, yScale(d) + svgOffset.top);
 	            })
 	        .on("mousemove",
@@ -594,11 +593,11 @@ function HolisticVisualizer(domRootID, dat, params) {
 	var changeTooltipPosition = function(x, y) {
 		var tooltipX = x - 8;
 		var tooltipY = y + 8;
-		myViz.domRoot.find('div#tooltip').css({top: tooltipY, left: tooltipX});
+		$('#tooltip').css({top: tooltipY, left: tooltipX});
 	};
 
 	var hideTooltip = function() {
-		myViz.domRoot.find('div#tooltip').remove();
+		$('#tooltip').hide();
 	};
 
 	/*
