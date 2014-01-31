@@ -106,6 +106,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   compactFuncLabels - render functions with a 'func' prefix and no type label
 //   pyCrazyMode    - run with Py2crazy, which provides expression-level
 //                    granularity instead of line-level granularity (HIGHLY EXPERIMENTAL!)
+//   hideCode - hide the code display and show only the data structure viz
 function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
   this.curTrace = dat.trace;
@@ -487,13 +488,11 @@ ExecutionVisualizer.prototype.render = function() {
   }
 
   this.domRoot.find("#jmpFirstInstr").click(function() {
-    myViz.curInstr = 0;
-    myViz.updateOutput();
+    myViz.renderStep(0);
   });
 
   this.domRoot.find("#jmpLastInstr").click(function() {
-    myViz.curInstr = myViz.curTrace.length - 1;
-    myViz.updateOutput();
+    myViz.renderStep(myViz.curTrace.length - 1);
   });
 
   this.domRoot.find("#jmpStepBack").click(function() {
@@ -541,8 +540,7 @@ ExecutionVisualizer.prototype.render = function() {
     // was changed by a user-initiated event, then this code should be
     // executed ...
     if (evt.originalEvent) {
-      myViz.curInstr = ui.value;
-      myViz.updateOutput();
+      myViz.renderStep(ui.value);
     }
   });
 
@@ -557,10 +555,16 @@ ExecutionVisualizer.prototype.render = function() {
     this.curInstr = this.curTrace.length - 1;
   }
 
+  if (this.params.hideCode) {
+    this.domRoot.find('#vizLayoutTdFirst').hide(); // gigantic hack!
+  }
+
 
   this.precomputeCurTraceLayouts();
 
-  this.renderPyCodeOutput();
+  if (!this.params.hideCode) {
+    this.renderPyCodeOutput();
+  }
 
   this.updateOutput();
 
@@ -1193,7 +1197,17 @@ function htmlWithHighlight(inputStr, highlightInd, extent, highlightCssClass) {
 // This function is called every time the display needs to be updated
 // smoothTransition is OPTIONAL!
 ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
+  if (this.params.hideCode) {
+    this.updateOutputMini();
+  }
+  else {
+    this.updateOutputFull(smoothTransition);
+  }
+}
+
+ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
   assert(this.curTrace);
+  assert(!this.params.hideCode);
 
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
@@ -1624,7 +1638,9 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
 
 
   // finally, render all of the data structures
-  this.renderDataStructures();
+  var curEntry = this.curTrace[this.curInstr];
+  var curToplevelLayout = this.curTraceLayouts[this.curInstr];
+  this.renderDataStructures(curEntry, curToplevelLayout);
 
   this.enterViewAnnotationsMode(); // ... and render optional annotations (if any exist)
 
@@ -1652,7 +1668,26 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
     }
   }
 
-} // end of updateOutput
+} // end of updateOutputFull
+
+
+ExecutionVisualizer.prototype.updateOutputMini = function() {
+  assert(this.params.hideCode);
+  var curEntry = this.curTrace[this.curInstr];
+  var curToplevelLayout = this.curTraceLayouts[this.curInstr];
+  this.renderDataStructures(curEntry, curToplevelLayout);
+
+  this.enterViewAnnotationsMode(); // ... and render optional annotations (if any exist)
+}
+
+
+ExecutionVisualizer.prototype.renderStep = function(step) {
+  assert(0 <= step);
+  assert(step < this.curTrace.length);
+
+  this.curInstr = step;
+  this.updateOutput();
+}
 
 
 // Pre-compute the layout of top-level heap objects for ALL execution
@@ -1973,12 +2008,9 @@ var heapPtrSrcRE = /__heap_pointer_src_/;
 // INLINE within each stack frame without any explicit representation
 // of data structure aliasing. That is, aliased objects were rendered
 // multiple times, and a unique ID label was used to identify aliases.
-ExecutionVisualizer.prototype.renderDataStructures = function() {
+ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curToplevelLayout) {
 
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
-
-  var curEntry = this.curTrace[this.curInstr];
-  var curToplevelLayout = this.curTraceLayouts[this.curInstr];
 
   // for simplicity (but sacrificing some performance), delete all
   // connectors and redraw them from scratch. doing so avoids mysterious

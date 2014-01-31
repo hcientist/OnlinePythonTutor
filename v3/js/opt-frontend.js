@@ -179,6 +179,8 @@ $(document).ready(function() {
                                 pyCrazyMode: ($('#pythonVersionSelector').val() == '2crazy'),
                                 holisticMode: ($('#cumulativeModeSelector').val() == 'holistic')
                                 //allowEditAnnotations: true,
+
+                                //, hideCode: true,
                                }
 
       function handleSuccessFunc() {
