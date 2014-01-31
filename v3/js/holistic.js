@@ -7,7 +7,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 	myViz.domRoot = $('#' + domRootID);
 	myViz.domRootD3 = d3.select('#' + domRootID);
 
-	myViz.domRoot.html('<div class="HolisticVisualizer"></div><div id="alt-visual"></div><div id="tooltip"></div>');
+	myViz.domRoot.html('<div class="HolisticVisualizer"></div><div id="alt-visual"></div><div id="holisticTooltip"></div>');
 	myViz.domRoot = myViz.domRoot.find('div.HolisticVisualizer');
 	myViz.domRootD3 = myViz.domRootD3.select('div.HolisticVisualizer');
 
@@ -38,7 +38,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 
 	params.hideCode = true;
 	myViz.altVisualizer = new ExecutionVisualizer('alt-visual', dat, params);
-	myViz.tooltipVisualizer = new ExecutionVisualizer('tooltip', dat, params);
+	myViz.tooltipVisualizer = new ExecutionVisualizer('holisticTooltip', dat, params);
 
 	/*
 	 * =================================
@@ -529,7 +529,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 
 
 
-	                $('#tooltip').show();
+	                $('#holisticTooltip').show();
 	                myViz.tooltipVisualizer.renderStep(i);
 				    changeTooltipPosition(xScale(i) + svgOffset.left, yScale(d) + svgOffset.top);
 	            })
@@ -593,11 +593,11 @@ function HolisticVisualizer(domRootID, dat, params) {
 	var changeTooltipPosition = function(x, y) {
 		var tooltipX = x - 8;
 		var tooltipY = y + 8;
-		$('#tooltip').css({top: tooltipY, left: tooltipX});
+		$('#holisticTooltip').css({top: tooltipY, left: tooltipX});
 	};
 
 	var hideTooltip = function() {
-		$('#tooltip').hide();
+		$('#holisticTooltip').hide();
 	};
 
 	/*

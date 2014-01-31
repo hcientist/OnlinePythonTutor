@@ -68,7 +68,7 @@ div.HolisticVisualizer div#slider {
   	height: 100%;
   	overflow-x: scroll;
   	vertical-align: top;
-  	width: 700px;
+  	width: 500px;
 }
 
 div.HolisticVisualizer div#debug-panel {
@@ -85,7 +85,7 @@ div.HolisticVisualizer div#debug {
     overflow-y: scroll;
 }
 
-#tooltip {
+#holisticTooltip {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
@@ -100,11 +100,11 @@ div.HolisticVisualizer div#debug {
     width: auto;
 }
 
-#tooltip.hidden {
+#holisticTooltip.hidden {
     display: none;
 }
 
-#tooltip p {
+#holisticTooltip p {
     margin: 0;
     font-family: sans-serif;
     font-size: 16px;
