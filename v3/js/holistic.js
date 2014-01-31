@@ -32,7 +32,8 @@ function HolisticVisualizer(domRootID, dat, params) {
 	            <h3>Debug: step <span id="debug-title">N/A</span></h3>\
 	            <div id="debug">\
 	            </div>\
-	        </div>';
+	        </div>\
+	        <div id="alt-visual"></div>';
 
 	myViz.domRoot.html(pregeneratedHTML);
 
@@ -41,14 +42,6 @@ function HolisticVisualizer(domRootID, dat, params) {
 	 *              DATASET
 	 * =================================
 	 */
-	// factorial
-	// var trace = {"code": "# dumb recursive factorial\ndef fact(n):\n    if (n <= 1):\n        return 1\n    else:\n        return n * fact(n - 1)\n\nprint(fact(6))\n", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 2, "event": "step_line"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 8, "event": "step_line"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 2, "event": "call"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 2, "event": "call"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 2, "event": "call"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}, {"frame_id": 4, "encoded_locals": {"n": 3}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f4", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 2, "event": "call"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}, {"frame_id": 4, "encoded_locals": {"n": 3}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f4", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}, {"frame_id": 4, "encoded_locals": {"n": 3}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f4", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}, {"frame_id": 4, "encoded_locals": {"n": 3}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f4", "ordered_varnames": ["n"]}, {"frame_id": 5, "encoded_locals": {"n": 2}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f5", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 2, "event": "call"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}, {"frame_id": 4, "encoded_locals": {"n": 3}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f4", "ordered_varnames": ["n"]}, {"frame_id": 5, "encoded_locals": {"n": 2}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f5", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}, {"frame_id": 4, "encoded_locals": {"n": 3}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f4", "ordered_varnames": ["n"]}, {"frame_id": 5, "encoded_locals": {"n": 2}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f5", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}, {"frame_id": 4, "encoded_locals": {"n": 3}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f4", "ordered_varnames": ["n"]}, {"frame_id": 5, "encoded_locals": {"n": 2}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f5", "ordered_varnames": ["n"]}, {"frame_id": 6, "encoded_locals": {"n": 1}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f6", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 2, "event": "call"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}, {"frame_id": 4, "encoded_locals": {"n": 3}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f4", "ordered_varnames": ["n"]}, {"frame_id": 5, "encoded_locals": {"n": 2}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f5", "ordered_varnames": ["n"]}, {"frame_id": 6, "encoded_locals": {"n": 1}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f6", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}, {"frame_id": 4, "encoded_locals": {"n": 3}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f4", "ordered_varnames": ["n"]}, {"frame_id": 5, "encoded_locals": {"n": 2}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f5", "ordered_varnames": ["n"]}, {"frame_id": 6, "encoded_locals": {"n": 1}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f6", "ordered_varnames": ["n"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 4, "event": "step_line"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}, {"frame_id": 4, "encoded_locals": {"n": 3}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f4", "ordered_varnames": ["n"]}, {"frame_id": 5, "encoded_locals": {"n": 2}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f5", "ordered_varnames": ["n"]}, {"frame_id": 6, "encoded_locals": {"__return__": 1, "n": 1}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f6", "ordered_varnames": ["n", "__return__"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 4, "event": "return"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}, {"frame_id": 4, "encoded_locals": {"n": 3}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f4", "ordered_varnames": ["n"]}, {"frame_id": 5, "encoded_locals": {"__return__": 2, "n": 2}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f5", "ordered_varnames": ["n", "__return__"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 6, "event": "return"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"n": 4}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n"]}, {"frame_id": 4, "encoded_locals": {"__return__": 6, "n": 3}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f4", "ordered_varnames": ["n", "__return__"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 6, "event": "return"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"n": 5}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n"]}, {"frame_id": 3, "encoded_locals": {"__return__": 24, "n": 4}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f3", "ordered_varnames": ["n", "__return__"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 6, "event": "return"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"n": 6}, "is_highlighted": false, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n"]}, {"frame_id": 2, "encoded_locals": {"__return__": 120, "n": 5}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f2", "ordered_varnames": ["n", "__return__"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 6, "event": "return"}, {"ordered_globals": ["fact"], "stdout": "", "func_name": "fact", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"__return__": 720, "n": 6}, "is_highlighted": true, "is_parent": false, "func_name": "fact", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "fact_f1", "ordered_varnames": ["n", "__return__"]}], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 6, "event": "return"}, {"ordered_globals": ["fact"], "stdout": "720\n", "func_name": "<module>", "stack_to_render": [], "globals": {"fact": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fact(n)", null]}, "line": 8, "event": "return"}]};
-	// an example with lists (hello from opt)
-	// var trace = {"code": "x = [1, 2, 3]\ny = [4, 5, 6]\nz = y\ny = x\nx = z\n\nx = [1, 2, 3] # a different [1, 2, 3] list!\ny = x\nx.append(4)\ny.append(5)\nz = [1, 2, 3, 4, 5] # a different list!\nx.append(6)\ny.append(7)\ny = \"hello\"\n\n\ndef foo(lst):\n    lst.append(\"hello\")\n    bar(lst)\n\ndef bar(myLst):\n    print(myLst)\n\nfoo(x)\nfoo(z)\n", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 1, "event": "step_line"}, {"ordered_globals": ["x"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"x": ["REF", 1]}, "heap": {"1": ["LIST", 1, 2, 3]}, "line": 2, "event": "step_line"}, {"ordered_globals": ["x", "y"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": ["REF", 2], "x": ["REF", 1]}, "heap": {"1": ["LIST", 1, 2, 3], "2": ["LIST", 4, 5, 6]}, "line": 3, "event": "step_line"}, {"ordered_globals": ["x", "y", "z"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": ["REF", 2], "x": ["REF", 1], "z": ["REF", 2]}, "heap": {"1": ["LIST", 1, 2, 3], "2": ["LIST", 4, 5, 6]}, "line": 4, "event": "step_line"}, {"ordered_globals": ["x", "y", "z"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": ["REF", 1], "x": ["REF", 1], "z": ["REF", 2]}, "heap": {"1": ["LIST", 1, 2, 3], "2": ["LIST", 4, 5, 6]}, "line": 5, "event": "step_line"}, {"ordered_globals": ["x", "y", "z"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": ["REF", 1], "x": ["REF", 2], "z": ["REF", 2]}, "heap": {"1": ["LIST", 1, 2, 3], "2": ["LIST", 4, 5, 6]}, "line": 7, "event": "step_line"}, {"ordered_globals": ["x", "y", "z"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": ["REF", 1], "x": ["REF", 3], "z": ["REF", 2]}, "heap": {"1": ["LIST", 1, 2, 3], "2": ["LIST", 4, 5, 6], "3": ["LIST", 1, 2, 3]}, "line": 8, "event": "step_line"}, {"ordered_globals": ["x", "y", "z"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": ["REF", 3], "x": ["REF", 3], "z": ["REF", 2]}, "heap": {"2": ["LIST", 4, 5, 6], "3": ["LIST", 1, 2, 3]}, "line": 9, "event": "step_line"}, {"ordered_globals": ["x", "y", "z"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": ["REF", 3], "x": ["REF", 3], "z": ["REF", 2]}, "heap": {"2": ["LIST", 4, 5, 6], "3": ["LIST", 1, 2, 3, 4]}, "line": 10, "event": "step_line"}, {"ordered_globals": ["x", "y", "z"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": ["REF", 3], "x": ["REF", 3], "z": ["REF", 2]}, "heap": {"2": ["LIST", 4, 5, 6], "3": ["LIST", 1, 2, 3, 4, 5]}, "line": 11, "event": "step_line"}, {"ordered_globals": ["x", "y", "z"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": ["REF", 3], "x": ["REF", 3], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5], "4": ["LIST", 1, 2, 3, 4, 5]}, "line": 12, "event": "step_line"}, {"ordered_globals": ["x", "y", "z"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": ["REF", 3], "x": ["REF", 3], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6], "4": ["LIST", 1, 2, 3, 4, 5]}, "line": 13, "event": "step_line"}, {"ordered_globals": ["x", "y", "z"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": ["REF", 3], "x": ["REF", 3], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7], "4": ["LIST", 1, 2, 3, 4, 5]}, "line": 14, "event": "step_line"}, {"ordered_globals": ["x", "y", "z"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": "hello", "x": ["REF", 3], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7], "4": ["LIST", 1, 2, 3, 4, 5]}, "line": 17, "event": "step_line"}, {"ordered_globals": ["x", "y", "z", "foo"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7], "4": ["LIST", 1, 2, 3, 4, 5], "5": ["FUNCTION", "foo(lst)", null]}, "line": 21, "event": "step_line"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7], "4": ["LIST", 1, 2, 3, 4, 5], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 24, "event": "step_line"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "", "func_name": "foo", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"lst": ["REF", 3]}, "is_highlighted": true, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f1", "ordered_varnames": ["lst"]}], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7], "4": ["LIST", 1, 2, 3, 4, 5], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 17, "event": "call"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "", "func_name": "foo", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"lst": ["REF", 3]}, "is_highlighted": true, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f1", "ordered_varnames": ["lst"]}], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7], "4": ["LIST", 1, 2, 3, 4, 5], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 18, "event": "step_line"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "", "func_name": "foo", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"lst": ["REF", 3]}, "is_highlighted": true, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f1", "ordered_varnames": ["lst"]}], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7, "hello"], "4": ["LIST", 1, 2, 3, 4, 5], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 19, "event": "step_line"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "", "func_name": "bar", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"lst": ["REF", 3]}, "is_highlighted": false, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f1", "ordered_varnames": ["lst"]}, {"frame_id": 2, "encoded_locals": {"myLst": ["REF", 3]}, "is_highlighted": true, "is_parent": false, "func_name": "bar", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "bar_f2", "ordered_varnames": ["myLst"]}], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7, "hello"], "4": ["LIST", 1, 2, 3, 4, 5], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 21, "event": "call"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "", "func_name": "bar", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"lst": ["REF", 3]}, "is_highlighted": false, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f1", "ordered_varnames": ["lst"]}, {"frame_id": 2, "encoded_locals": {"myLst": ["REF", 3]}, "is_highlighted": true, "is_parent": false, "func_name": "bar", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "bar_f2", "ordered_varnames": ["myLst"]}], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7, "hello"], "4": ["LIST", 1, 2, 3, 4, 5], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 22, "event": "step_line"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n", "func_name": "bar", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"lst": ["REF", 3]}, "is_highlighted": false, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f1", "ordered_varnames": ["lst"]}, {"frame_id": 2, "encoded_locals": {"__return__": null, "myLst": ["REF", 3]}, "is_highlighted": true, "is_parent": false, "func_name": "bar", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "bar_f2", "ordered_varnames": ["myLst", "__return__"]}], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7, "hello"], "4": ["LIST", 1, 2, 3, 4, 5], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 22, "event": "return"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n", "func_name": "foo", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"__return__": null, "lst": ["REF", 3]}, "is_highlighted": true, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f1", "ordered_varnames": ["lst", "__return__"]}], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7, "hello"], "4": ["LIST", 1, 2, 3, 4, 5], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 19, "event": "return"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n", "func_name": "<module>", "stack_to_render": [], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7, "hello"], "4": ["LIST", 1, 2, 3, 4, 5], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 25, "event": "step_line"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n", "func_name": "foo", "stack_to_render": [{"frame_id": 3, "encoded_locals": {"lst": ["REF", 4]}, "is_highlighted": true, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f3", "ordered_varnames": ["lst"]}], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7, "hello"], "4": ["LIST", 1, 2, 3, 4, 5], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 17, "event": "call"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n", "func_name": "foo", "stack_to_render": [{"frame_id": 3, "encoded_locals": {"lst": ["REF", 4]}, "is_highlighted": true, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f3", "ordered_varnames": ["lst"]}], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7, "hello"], "4": ["LIST", 1, 2, 3, 4, 5], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 18, "event": "step_line"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n", "func_name": "foo", "stack_to_render": [{"frame_id": 3, "encoded_locals": {"lst": ["REF", 4]}, "is_highlighted": true, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f3", "ordered_varnames": ["lst"]}], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7, "hello"], "4": ["LIST", 1, 2, 3, 4, 5, "hello"], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 19, "event": "step_line"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n", "func_name": "bar", "stack_to_render": [{"frame_id": 3, "encoded_locals": {"lst": ["REF", 4]}, "is_highlighted": false, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f3", "ordered_varnames": ["lst"]}, {"frame_id": 4, "encoded_locals": {"myLst": ["REF", 4]}, "is_highlighted": true, "is_parent": false, "func_name": "bar", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "bar_f4", "ordered_varnames": ["myLst"]}], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7, "hello"], "4": ["LIST", 1, 2, 3, 4, 5, "hello"], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 21, "event": "call"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n", "func_name": "bar", "stack_to_render": [{"frame_id": 3, "encoded_locals": {"lst": ["REF", 4]}, "is_highlighted": false, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f3", "ordered_varnames": ["lst"]}, {"frame_id": 4, "encoded_locals": {"myLst": ["REF", 4]}, "is_highlighted": true, "is_parent": false, "func_name": "bar", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "bar_f4", "ordered_varnames": ["myLst"]}], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7, "hello"], "4": ["LIST", 1, 2, 3, 4, 5, "hello"], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 22, "event": "step_line"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n[1, 2, 3, 4, 5, 'hello']\n", "func_name": "bar", "stack_to_render": [{"frame_id": 3, "encoded_locals": {"lst": ["REF", 4]}, "is_highlighted": false, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f3", "ordered_varnames": ["lst"]}, {"frame_id": 4, "encoded_locals": {"__return__": null, "myLst": ["REF", 4]}, "is_highlighted": true, "is_parent": false, "func_name": "bar", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "bar_f4", "ordered_varnames": ["myLst", "__return__"]}], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7, "hello"], "4": ["LIST", 1, 2, 3, 4, 5, "hello"], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 22, "event": "return"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n[1, 2, 3, 4, 5, 'hello']\n", "func_name": "foo", "stack_to_render": [{"frame_id": 3, "encoded_locals": {"__return__": null, "lst": ["REF", 4]}, "is_highlighted": true, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f3", "ordered_varnames": ["lst", "__return__"]}], "globals": {"y": "hello", "x": ["REF", 3], "foo": ["REF", 5], "bar": ["REF", 6], "z": ["REF", 4]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7, "hello"], "4": ["LIST", 1, 2, 3, 4, 5, "hello"], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 19, "event": "return"}, {"ordered_globals": ["x", "y", "z", "foo", "bar"], "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n[1, 2, 3, 4, 5, 'hello']\n", "func_name": "<module>", "stack_to_render": [], "globals": {"y": "hello", "x": ["REF", 3], "z": ["REF", 4], "bar": ["REF", 6], "foo": ["REF", 5]}, "heap": {"3": ["LIST", 1, 2, 3, 4, 5, 6, 7, "hello"], "4": ["LIST", 1, 2, 3, 4, 5, "hello"], "5": ["FUNCTION", "foo(lst)", null], "6": ["FUNCTION", "bar(myLst)", null]}, "line": 25, "event": "return"}]};
-	// short example
-	// var trace = {"code": "x = 5\ny = float(2)\nz = \"hello\"\n\ndef foo(a):\n    return a\n\nprint foo(x)\n", "trace": [{"ordered_globals": [], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {}, "heap": {}, "line": 1, "event": "step_line"}, {"ordered_globals": ["x"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"x": 5}, "heap": {}, "line": 2, "event": "step_line"}, {"ordered_globals": ["x", "y"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": 2.0, "x": 5}, "heap": {}, "line": 3, "event": "step_line"}, {"ordered_globals": ["x", "y", "z"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": 2.0, "x": 5, "z": "hello"}, "heap": {}, "line": 5, "event": "step_line"}, {"ordered_globals": ["x", "y", "z", "foo"], "stdout": "", "func_name": "<module>", "stack_to_render": [], "globals": {"y": 2.0, "x": 5, "foo": ["REF", 1], "z": "hello"}, "heap": {"1": ["FUNCTION", "foo(a)", null]}, "line": 8, "event": "step_line"}, {"ordered_globals": ["x", "y", "z", "foo"], "stdout": "", "func_name": "foo", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"a": 5}, "is_highlighted": true, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f1", "ordered_varnames": ["a"]}], "globals": {"y": 2.0, "x": 5, "foo": ["REF", 1], "z": "hello"}, "heap": {"1": ["FUNCTION", "foo(a)", null]}, "line": 5, "event": "call"}, {"ordered_globals": ["x", "y", "z", "foo"], "stdout": "", "func_name": "foo", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"a": 5}, "is_highlighted": true, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f1", "ordered_varnames": ["a"]}], "globals": {"y": 2.0, "x": 5, "foo": ["REF", 1], "z": "hello"}, "heap": {"1": ["FUNCTION", "foo(a)", null]}, "line": 6, "event": "step_line"}, {"ordered_globals": ["x", "y", "z", "foo"], "stdout": "", "func_name": "foo", "stack_to_render": [{"frame_id": 1, "encoded_locals": {"a": 5, "__return__": 5}, "is_highlighted": true, "is_parent": false, "func_name": "foo", "is_zombie": false, "parent_frame_id_list": [], "unique_hash": "foo_f1", "ordered_varnames": ["a", "__return__"]}], "globals": {"y": 2.0, "x": 5, "foo": ["REF", 1], "z": "hello"}, "heap": {"1": ["FUNCTION", "foo(a)", null]}, "line": 6, "event": "return"}, {"ordered_globals": ["x", "y", "z", "foo"], "stdout": "5\n", "func_name": "<module>", "stack_to_render": [], "globals": {"y": 2.0, "x": 5, "foo": ["REF", 1], "z": "hello"}, "heap": {"1": ["FUNCTION", "foo(a)", null]}, "line": 8, "event": "return"}]};
-
-	// fact + fib
 
 	var trace = dat;
 	// build dataset from trace
@@ -78,6 +71,9 @@ function HolisticVisualizer(domRootID, dat, params) {
 	var h = num_rows * row_h;
 	var final_h = h + row_h;
 
+	// track alt visual data
+	var altVisualStep = 0;
+
 	/*
 	 * =================================
 	 *            CODE TABLE
@@ -87,7 +83,10 @@ function HolisticVisualizer(domRootID, dat, params) {
 	var table = myViz.domRoot.find('#code');
 
 	for (var i = 0; i < code.length; i++) {
-	    table.append('<tr><td><pre><code>' + code[i] + '</code></pre></td></tr>');
+	    table.append('<tr>' + 
+	    	'<td><pre><code>' + code[i] + '</code></pre></td>' + 
+	    	'<td style="text-align:right;"><pre><code>' + (i+1) + ' </code></pre></td>' + 
+	    	'</tr>');
 	}
 
 	// adjust width and height of table
@@ -243,15 +242,151 @@ function HolisticVisualizer(domRootID, dat, params) {
 	// create a line function that can convert data[] into x and y points
 	var line = d3.svg.line()
 		.x(function(d,i) {
-			return xScale(i);
+			return xScale(d[0]);
 		})
 		.y(function(d) {
-			return yScale(d);
-		});
+			return yScale(d[1]);
+		})
+		.interpolate('linear');
 
-	var connector = connectorGroup.append("svg:path")
-						.attr("d", line(dataset))
+	// TODO: this doesn't interpolate the way i want - let's do it manually instead
+	var curvedLine = d3.svg.line()
+		.x(function(d,i) {
+			return xScale(d[0]);
+		})
+		.y(function(d) {
+			return yScale(d[1]);
+		})
+		.interpolate('basis');
+
+	// tweak path data to include curves
+	var straightData = [];
+	var callData = [];
+	var callTextData = [];
+	var returnData = [];
+
+	var specialSegmentsData = [];
+	for (var i = 0; i < dataset.length; i++) {
+		if (trace.trace[i].event == 'call') {
+			if ((i-1) > 0) {
+				specialSegmentsData.push([i-1, i, dataset[i], 'call']);
+			}
+		} else if (trace.trace[i].event == 'return') {
+			if ((i+1) < dataset.length) {
+				specialSegmentsData.push([i, i+1, dataset[i], 'return']);
+			}
+		}
+	}
+	specialSegmentsData.push([dataset.length, dataset.length, dataset[-1], 'end']);
+
+	for (var i = 0; i < specialSegmentsData.length; i++) {
+		if (i > 0) {
+			var start = specialSegmentsData[i-1][1];
+		} else {
+			var start = 0;
+		}
+
+		// need to include original indices
+		var slice = dataset.slice(start,specialSegmentsData[i][1]);
+		var sliceData = [];
+
+		for (var j = 0; j < slice.length; j++) {
+			sliceData.push([start + j, slice[j]]);
+		}
+
+		// push to pathData
+		straightData.push(line(sliceData));
+
+		if (specialSegmentsData[i][3] == 'call') {
+			var headIndex = specialSegmentsData[i][0];
+			var tailIndex = specialSegmentsData[i][1];
+			var mid = headIndex;
+			var magic = (0.3*dataset[headIndex] + 0.7*dataset[tailIndex]);
+			var arrowData = [[headIndex, dataset[headIndex]], [mid, magic], [tailIndex, dataset[tailIndex]]];
+			var arrowPathData = "M"+xScale(headIndex)+","+yScale(dataset[headIndex])+
+				" Q"+xScale(mid)+","+yScale(magic)+" "+xScale(tailIndex)+","+yScale(dataset[tailIndex]);
+			callData.push(arrowPathData);
+			callTextData.push([headIndex, dataset[headIndex], tailIndex, dataset[tailIndex]]);
+		} else if (specialSegmentsData[i][3] == 'return') {
+			var headIndex = specialSegmentsData[i][0];
+			var tailIndex = specialSegmentsData[i][1];
+			var mid = tailIndex;
+			var magic = (0.3*dataset[headIndex] + 0.7*dataset[tailIndex]);
+			var arrowData = [[headIndex, dataset[headIndex]], [mid, magic], [tailIndex, dataset[tailIndex]]];
+			var arrowPathData = "M"+xScale(headIndex)+","+yScale(dataset[headIndex])+
+				" Q"+xScale(mid)+","+yScale(magic)+" "+xScale(tailIndex)+","+yScale(dataset[tailIndex]);
+			returnData.push(arrowPathData);
+		}
+	}
+
+	// arrow head definition
+
+	svg.append("defs").append("marker")
+	    .attr("id", "call-arrowhead")
+	    .attr("refX", 6 + 3) /*must be smarter way to calculate shift*/
+	    .attr("refY", 4)
+	    .attr("markerWidth", 10)
+	    .attr("markerHeight", 10)
+	    .attr("orient", "auto")
+	    .append("path")
+	    .attr("d", "M 0,0 V 8 L6,4 Z")
+	    .style("stroke", "red")
+	    .style("fill", "red"); //this is actual shape for arrowhead
+
+	svg.append("defs").append("marker")
+	    .attr("id", "return-arrowhead")
+	    .attr("refX", 6 + 3) /*must be smarter way to calculate shift*/
+	    .attr("refY", 4)
+	    .attr("markerWidth", 10)
+	    .attr("markerHeight", 10)
+	    .attr("orient", "auto")
+	    .append("path")
+	    .attr("d", "M 0,0 V 8 L6,4 Z")
+	    .style("stroke", "lime")
+	    .style("fill", "lime"); //this is actual shape for arrowhead
+
+	var straightConnector = connectorGroup.selectAll(".straight")
+						.data(straightData)
+						.enter()
+						.append("svg:path")
+						.attr("d", function (d) { return d; })
 						.style("visibility", "visible");
+	var callConnector = connectorGroup.selectAll(".call")
+						.data(callData)
+						.enter()
+						.append("svg:path")
+						.attr("d", function (d) { return d; })
+						.style("stroke", "red")
+						.style("visibility", "visible")
+						.attr("marker-end", "url(#call-arrowhead)");
+	var returnConnector = connectorGroup.selectAll(".return")
+						.data(returnData)
+						.enter()
+						.append("svg:path")
+						.attr("d", function (d) { return d; })
+						.style("stroke", "lime")
+						.style("visibility", "visible")
+						.attr("marker-end", "url(#return-arrowhead)");
+
+	// TODO: now, let's add some text to our function call arrows
+	var functionText = connectorGroup.selectAll("text")
+                .data(callTextData) // probably wrong...
+                .enter()
+                .append("text");
+
+	functionText.text(function(d, i) {
+				return trace.trace[d[2]].func_name;
+			})
+	        .attr("x", function(d, i) {
+	            return xScale(d[0]) + 10;
+	        })
+	        .attr("y", function(d, i) {
+	        	var mid = 0.5 * (d[1]+d[3]);
+	            return yScale(mid) + 4;
+	        })
+	        .style("visibility", "visible")
+	        .style("font-family", "monospace")
+	        .style("font-size", "10pt");
 
 	/*
 	 * =================================
@@ -272,10 +407,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 	        })
 	        .attr("r", "4")
 	        .attr("fill", function(d, i) {
-	        	var red = 0 + i*7;
-	        	var green = 0;
-	        	var blue = 0;
-	        	return "rgb(" + red + "," + green + "," + blue + ")";
+	        	return 'black';
 	        })
 	        .style("visibility", "visible");
 
@@ -285,18 +417,18 @@ function HolisticVisualizer(domRootID, dat, params) {
 	 * =================================
 	 */
 	// build function call dataset (need to grab returns as well!)
-	var function_call_dataset = [];
+	var functionCallDataset = [];
 	for (var i = 0; i < dataset.length; i++) {
 		if (trace.trace[i].event == 'call') {
-			function_call_dataset.push([i, dataset[i], 'call']);
+			functionCallDataset.push([i, dataset[i], 'call']);
 		} else if (trace.trace[i].event == 'return') {
-			function_call_dataset.push([i, dataset[i], 'return']);
+			functionCallDataset.push([i, dataset[i], 'return']);
 		}
 	}
 
 	var delimitingGroup = svg.append("svg:g");
 	var delimiters = delimitingGroup.selectAll("line")
-						.data(function_call_dataset)
+						.data(functionCallDataset)
 						.enter()
 						.append("line");
 
@@ -354,6 +486,9 @@ function HolisticVisualizer(domRootID, dat, params) {
 	                  .enter()
 	                  .append("rect");
 
+	// save "top" position for debug panel
+	var topPosition = myViz.domRoot.find('#debug').scrollTop();
+
 	v_hovers.attr("x", function(d, i) {
 	            return (i * col_w);
 	        })
@@ -368,10 +503,12 @@ function HolisticVisualizer(domRootID, dat, params) {
 	        })
 	        .classed("v-hover", true)
 	        .on("mouseover",
-	            function(d, i) {
+	            function (d, i) {
 					var row = table[0].rows[d];
 					var cell = row.cells[0];
+					// TODO: find easier way to highlight both cells in the row
 					myViz.domRoot.find('#code tr:eq(' + d + ') td:first').addClass("v-hover");
+					myViz.domRoot.find('#code tr:eq(' + d + ') td:last').addClass("v-hover");
 	                v_guides.filter(
 	                    function(data, index) {
 	                        return index == i;
@@ -381,13 +518,27 @@ function HolisticVisualizer(domRootID, dat, params) {
 	                    function(data, index) {
 	                        return index == i;
 	                    });
-	                //.style("fill", "teal");
+
+	                var svgOffset = myViz.domRoot.find('div#slider svg').offset();
+
+	                // clear old tooltip
+	                hideTooltip();
+
+	                var tooltipDiv = document.createElement('div');
+	                $(tooltipDiv).attr('id', 'tooltip');
+	                $(tooltipDiv).html('Line of code: ' + (d+1) + '<br />' + 'Execution step: ' + i);
+				    // TODO: clean up this messy div creation JS code
+				    $(tooltipDiv).appendTo(myViz.domRoot.find('#slider'));
+
+				    changeTooltipPosition(xScale(i) + svgOffset.left, yScale(d) + svgOffset.top);
 	            })
 	        .on("mousemove",
-	            function(d, i) {
+	            function (d, i) {
 					var row = table[0].rows[d];
 					var cell = row.cells[0];
+					// TODO: find easier way to highlight both cells in the row
 					myViz.domRoot.find('#code tr:eq(' + d + ') td:first').addClass("v-hover");
+					myViz.domRoot.find('#code tr:eq(' + d + ') td:last').addClass("v-hover");
 	                v_guides.filter(
 	                    function(data, index) {
 	                        return index == i;
@@ -395,10 +546,12 @@ function HolisticVisualizer(domRootID, dat, params) {
 	                .style("visibility", "visible");
 	            })
 	        .on("mouseout",
-	            function(d, i) {
+	            function (d, i) {
 					var row = table[0].rows[d];
 					var cell = row.cells[0];
+					// TODO: find easier way to highlight both cells in the row
 					myViz.domRoot.find('#code tr:eq(' + d + ') td:first').removeClass("v-hover");
+					myViz.domRoot.find('#code tr:eq(' + d + ') td:last').removeClass("v-hover");
 	                v_guides.filter(
 	                    function(data, index) {
 	                        return index == i;
@@ -408,8 +561,42 @@ function HolisticVisualizer(domRootID, dat, params) {
 	                    function(data, index) {
 	                        return index == i;
 	                    });
-	                //.style("fill", "black");
-	            });
+
+	                hideTooltip();
+	            })
+	        .on("click", 
+	        	function (d, i) {
+	        		// debug panel
+					myViz.domRoot.find('#debug-title').text(i);
+					myViz.domRoot.find('#debug').html("<pre>"+JSON.stringify(trace.trace[i], undefined, 2)+"</pre>");
+					myViz.domRoot.find('#debug').scrollTop(topPosition);
+
+					// ExecutionVisualizer panel
+					// use $('#alt-visual').is(":visible") to check if visible
+					if ($('#alt-visual').is(":visible")) {
+						if (altVisualStep == i) {
+							$('#alt-visual').hide();
+						} else {
+							altVisualStep = i;
+							$('#alt-visual').html('Execution step: ' + i);
+						}
+					} else {
+						altVisualStep = i;
+						$('#alt-visual').html('Execution step: ' + i);
+						$('#alt-visual').show();
+					}
+				});
+
+	// tooltip helper function
+	var changeTooltipPosition = function(x, y) {
+		var tooltipX = x - 8;
+		var tooltipY = y + 8;
+		myViz.domRoot.find('div#tooltip').css({top: tooltipY, left: tooltipX});
+	};
+
+	var hideTooltip = function() {
+		myViz.domRoot.find('div#tooltip').remove();
+	};
 
 	/*
 	 * =================================
@@ -488,13 +675,6 @@ function HolisticVisualizer(domRootID, dat, params) {
 	        delimiters.style("visibility", "hidden");
 	    }
 	});
-
-	var top_position = myViz.domRoot.find('#debug').scrollTop();
-	v_hovers.on("click", function (d, i) {
-		myViz.domRoot.find('#debug-title').text(i);
-		myViz.domRoot.find('#debug').html("<pre>"+JSON.stringify(trace.trace[i], undefined, 2)+"</pre>");
-		myViz.domRoot.find('#debug').scrollTop(top_position);
-	})
 }
 
 // stubs for unimplemented interface methods

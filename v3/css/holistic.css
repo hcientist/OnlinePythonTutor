@@ -68,7 +68,7 @@ div.HolisticVisualizer div#slider {
   	height: 100%;
   	overflow-x: scroll;
   	vertical-align: top;
-  	width: 500px;
+  	width: 700px;
 }
 
 div.HolisticVisualizer div#debug-panel {
@@ -85,10 +85,45 @@ div.HolisticVisualizer div#debug {
     overflow-y: scroll;
 }
 
+div.HolisticVisualizer div#alt-visual {
+	background-color: blue;
+  	display: none;
+  	font-size: 10pt;
+  	height: 400px;
+  	vertical-align: top;
+  	width: 400px;
+}
+
+div.HolisticVisualizer #tooltip {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    height: auto;
+    padding: 10px;
+    pointer-events: none;
+    position: absolute;
+    width: 200px;
+}
+
+div.HolisticVisualizer #tooltip.hidden {
+    display: none;
+}
+
+div.HolisticVisualizer #tooltip p {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
 div.HolisticVisualizer path {
+	fill: none;
 	stroke: steelblue;
 	stroke-width: 1;
-	fill: none;
 }
 
 div.HolisticVisualizer .delimiter {
