@@ -3174,11 +3174,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -3255,7 +3255,7 @@
         "16": [
           "FUNCTION", 
           "<lambda>(x)", 
-          1
+          7
         ]
       }, 
       "line": 1, 
@@ -3297,11 +3297,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -3378,7 +3378,7 @@
         "16": [
           "FUNCTION", 
           "<lambda>(x)", 
-          1
+          7
         ]
       }, 
       "line": 2, 
@@ -3420,11 +3420,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -3501,7 +3501,7 @@
         "16": [
           "FUNCTION", 
           "<lambda>(x)", 
-          1
+          7
         ]
       }, 
       "line": 5, 
@@ -3543,11 +3543,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -3578,21 +3578,18 @@
         {
           "frame_id": 9, 
           "encoded_locals": {
-            "x": 3, 
-            "xs": [
-              "REF", 
-              14
-            ]
+            "x": 3
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "<lambda>", 
           "is_zombie": false, 
-          "parent_frame_id_list": [], 
+          "parent_frame_id_list": [
+            7
+          ], 
           "unique_hash": "<lambda>_f9", 
           "ordered_varnames": [
-            "x", 
-            "xs"
+            "x"
           ]
         }
       ], 
@@ -3644,7 +3641,7 @@
         "16": [
           "FUNCTION", 
           "<lambda>(x)", 
-          1
+          7
         ]
       }, 
       "line": 19, 
@@ -3686,11 +3683,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -3721,21 +3718,18 @@
         {
           "frame_id": 9, 
           "encoded_locals": {
-            "x": 3, 
-            "xs": [
-              "REF", 
-              14
-            ]
+            "x": 3
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "<lambda>", 
           "is_zombie": false, 
-          "parent_frame_id_list": [], 
+          "parent_frame_id_list": [
+            7
+          ], 
           "unique_hash": "<lambda>_f9", 
           "ordered_varnames": [
-            "x", 
-            "xs"
+            "x"
           ]
         }
       ], 
@@ -3787,7 +3781,7 @@
         "16": [
           "FUNCTION", 
           "<lambda>(x)", 
-          1
+          7
         ]
       }, 
       "line": 19, 
@@ -3829,11 +3823,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -3868,21 +3862,18 @@
               "REF", 
               17
             ], 
-            "x": 3, 
-            "xs": [
-              "REF", 
-              14
-            ]
+            "x": 3
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
           "func_name": "<lambda>", 
           "is_zombie": false, 
-          "parent_frame_id_list": [], 
+          "parent_frame_id_list": [
+            7
+          ], 
           "unique_hash": "<lambda>_f9", 
           "ordered_varnames": [
             "x", 
-            "xs", 
             "__return__"
           ]
         }
@@ -3935,7 +3926,7 @@
         "16": [
           "FUNCTION", 
           "<lambda>(x)", 
-          1
+          7
         ], 
         "17": [
           "LIST", 
@@ -3982,11 +3973,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -4086,7 +4077,7 @@
         "16": [
           "FUNCTION", 
           "<lambda>(x)", 
-          1
+          7
         ], 
         "18": [
           "LIST"
@@ -4131,11 +4122,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -4235,7 +4226,7 @@
         "16": [
           "FUNCTION", 
           "<lambda>(x)", 
-          1
+          7
         ], 
         "18": [
           "LIST"
@@ -4280,11 +4271,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -4384,7 +4375,7 @@
         "16": [
           "FUNCTION", 
           "<lambda>(x)", 
-          1
+          7
         ], 
         "18": [
           "LIST"
@@ -4429,11 +4420,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -4538,7 +4529,7 @@
         "16": [
           "FUNCTION", 
           "<lambda>(x)", 
-          1
+          7
         ], 
         "18": [
           "LIST"
@@ -4586,11 +4577,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -4672,7 +4663,7 @@
         "16": [
           "FUNCTION", 
           "<lambda>(x)", 
-          1
+          7
         ], 
         "17": [
           "LIST", 
@@ -4726,11 +4717,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -4839,11 +4830,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -4952,11 +4943,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -5065,11 +5056,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -5178,11 +5169,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -5299,11 +5290,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -5428,11 +5419,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -5557,11 +5548,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -5686,11 +5677,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -5841,11 +5832,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -5996,11 +5987,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -6151,11 +6142,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -6311,11 +6302,11 @@
             ]
           }, 
           "is_highlighted": false, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs"
           ]
@@ -6456,11 +6447,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "pairs", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f7", 
+          "unique_hash": "pairs_f7_p", 
           "ordered_varnames": [
             "xs", 
             "__return__"
@@ -6552,6 +6543,29 @@
           ]
         }, 
         {
+          "frame_id": 7, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              24
+            ], 
+            "xs": [
+              "REF", 
+              14
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "pairs", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "pairs_f7_p_z", 
+          "ordered_varnames": [
+            "xs", 
+            "__return__"
+          ]
+        }, 
+        {
           "frame_id": 14, 
           "encoded_locals": {
             "xs": [
@@ -6631,6 +6645,11 @@
             "REF", 
             9
           ]
+        ], 
+        "14": [
+          "LIST", 
+          2, 
+          3
         ], 
         "17": [
           "LIST", 
@@ -6676,127 +6695,26 @@
           ]
         }, 
         {
-          "frame_id": 14, 
+          "frame_id": 7, 
           "encoded_locals": {
-            "xs": [
-              "REF", 
-              13
-            ], 
-            "ys": [
+            "__return__": [
               "REF", 
               24
-            ]
-          }, 
-          "is_highlighted": true, 
-          "is_parent": false, 
-          "func_name": "append", 
-          "is_zombie": false, 
-          "parent_frame_id_list": [], 
-          "unique_hash": "append_f14", 
-          "ordered_varnames": [
-            "xs", 
-            "ys"
-          ]
-        }
-      ], 
-      "globals": {
-        "map": [
-          "REF", 
-          1
-        ], 
-        "pairs": [
-          "REF", 
-          3
-        ], 
-        "append": [
-          "REF", 
-          2
-        ]
-      }, 
-      "heap": {
-        "1": [
-          "FUNCTION", 
-          "map(f, xs)", 
-          null
-        ], 
-        "2": [
-          "FUNCTION", 
-          "append(xs, ys)", 
-          null
-        ], 
-        "3": [
-          "FUNCTION", 
-          "pairs(xs)", 
-          null
-        ], 
-        "4": [
-          "LIST", 
-          1, 
-          2, 
-          3
-        ], 
-        "7": [
-          "LIST", 
-          1, 
-          2
-        ], 
-        "9": [
-          "LIST", 
-          1, 
-          3
-        ], 
-        "13": [
-          "LIST", 
-          [
-            "REF", 
-            7
-          ], 
-          [
-            "REF", 
-            9
-          ]
-        ], 
-        "17": [
-          "LIST", 
-          2, 
-          3
-        ], 
-        "24": [
-          "LIST", 
-          [
-            "REF", 
-            17
-          ]
-        ]
-      }, 
-      "line": 8, 
-      "event": "step_line"
-    }, 
-    {
-      "ordered_globals": [
-        "map", 
-        "append", 
-        "pairs"
-      ], 
-      "stdout": "", 
-      "func_name": "append", 
-      "stack_to_render": [
-        {
-          "frame_id": 1, 
-          "encoded_locals": {
+            ], 
             "xs": [
               "REF", 
-              4
+              14
             ]
           }, 
           "is_highlighted": false, 
           "is_parent": true, 
           "func_name": "pairs", 
-          "is_zombie": false, 
+          "is_zombie": true, 
           "parent_frame_id_list": [], 
-          "unique_hash": "pairs_f1_p", 
+          "unique_hash": "pairs_f7_p_z", 
           "ordered_varnames": [
-            "xs"
+            "xs", 
+            "__return__"
           ]
         }, 
         {
@@ -6880,6 +6798,163 @@
             9
           ]
         ], 
+        "14": [
+          "LIST", 
+          2, 
+          3
+        ], 
+        "17": [
+          "LIST", 
+          2, 
+          3
+        ], 
+        "24": [
+          "LIST", 
+          [
+            "REF", 
+            17
+          ]
+        ]
+      }, 
+      "line": 8, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "map", 
+        "append", 
+        "pairs"
+      ], 
+      "stdout": "", 
+      "func_name": "append", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "xs": [
+              "REF", 
+              4
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "pairs", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "pairs_f1_p", 
+          "ordered_varnames": [
+            "xs"
+          ]
+        }, 
+        {
+          "frame_id": 7, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              24
+            ], 
+            "xs": [
+              "REF", 
+              14
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "pairs", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "pairs_f7_p_z", 
+          "ordered_varnames": [
+            "xs", 
+            "__return__"
+          ]
+        }, 
+        {
+          "frame_id": 14, 
+          "encoded_locals": {
+            "xs": [
+              "REF", 
+              13
+            ], 
+            "ys": [
+              "REF", 
+              24
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "append", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "append_f14", 
+          "ordered_varnames": [
+            "xs", 
+            "ys"
+          ]
+        }
+      ], 
+      "globals": {
+        "map": [
+          "REF", 
+          1
+        ], 
+        "pairs": [
+          "REF", 
+          3
+        ], 
+        "append": [
+          "REF", 
+          2
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "map(f, xs)", 
+          null
+        ], 
+        "2": [
+          "FUNCTION", 
+          "append(xs, ys)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "pairs(xs)", 
+          null
+        ], 
+        "4": [
+          "LIST", 
+          1, 
+          2, 
+          3
+        ], 
+        "7": [
+          "LIST", 
+          1, 
+          2
+        ], 
+        "9": [
+          "LIST", 
+          1, 
+          3
+        ], 
+        "13": [
+          "LIST", 
+          [
+            "REF", 
+            7
+          ], 
+          [
+            "REF", 
+            9
+          ]
+        ], 
+        "14": [
+          "LIST", 
+          2, 
+          3
+        ], 
         "17": [
           "LIST", 
           2, 
@@ -6921,6 +6996,29 @@
           "unique_hash": "pairs_f1_p", 
           "ordered_varnames": [
             "xs"
+          ]
+        }, 
+        {
+          "frame_id": 7, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              24
+            ], 
+            "xs": [
+              "REF", 
+              14
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "pairs", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "pairs_f7_p_z", 
+          "ordered_varnames": [
+            "xs", 
+            "__return__"
           ]
         }, 
         {
@@ -7026,6 +7124,11 @@
             "REF", 
             9
           ]
+        ], 
+        "14": [
+          "LIST", 
+          2, 
+          3
         ], 
         "17": [
           "LIST", 
@@ -7078,6 +7181,29 @@
           ]
         }, 
         {
+          "frame_id": 7, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              24
+            ], 
+            "xs": [
+              "REF", 
+              14
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "pairs", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "pairs_f7_p_z", 
+          "ordered_varnames": [
+            "xs", 
+            "__return__"
+          ]
+        }, 
+        {
           "frame_id": 14, 
           "encoded_locals": {
             "xs": [
@@ -7180,6 +7306,11 @@
             "REF", 
             9
           ]
+        ], 
+        "14": [
+          "LIST", 
+          2, 
+          3
         ], 
         "17": [
           "LIST", 
@@ -7232,6 +7363,29 @@
           ]
         }, 
         {
+          "frame_id": 7, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              24
+            ], 
+            "xs": [
+              "REF", 
+              14
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "pairs", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "pairs_f7_p_z", 
+          "ordered_varnames": [
+            "xs", 
+            "__return__"
+          ]
+        }, 
+        {
           "frame_id": 14, 
           "encoded_locals": {
             "xs": [
@@ -7335,6 +7489,11 @@
             9
           ]
         ], 
+        "14": [
+          "LIST", 
+          2, 
+          3
+        ], 
         "17": [
           "LIST", 
           2, 
@@ -7383,6 +7542,29 @@
           "unique_hash": "pairs_f1_p", 
           "ordered_varnames": [
             "xs"
+          ]
+        }, 
+        {
+          "frame_id": 7, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              24
+            ], 
+            "xs": [
+              "REF", 
+              14
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "pairs", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "pairs_f7_p_z", 
+          "ordered_varnames": [
+            "xs", 
+            "__return__"
           ]
         }, 
         {
@@ -7511,6 +7693,11 @@
             "REF", 
             9
           ]
+        ], 
+        "14": [
+          "LIST", 
+          2, 
+          3
         ], 
         "17": [
           "LIST", 
@@ -7566,6 +7753,29 @@
           ]
         }, 
         {
+          "frame_id": 7, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              24
+            ], 
+            "xs": [
+              "REF", 
+              14
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "pairs", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "pairs_f7_p_z", 
+          "ordered_varnames": [
+            "xs", 
+            "__return__"
+          ]
+        }, 
+        {
           "frame_id": 14, 
           "encoded_locals": {
             "xs": [
@@ -7691,6 +7901,11 @@
             "REF", 
             9
           ]
+        ], 
+        "14": [
+          "LIST", 
+          2, 
+          3
         ], 
         "17": [
           "LIST", 
@@ -7746,6 +7961,29 @@
           ]
         }, 
         {
+          "frame_id": 7, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              24
+            ], 
+            "xs": [
+              "REF", 
+              14
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "pairs", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "pairs_f7_p_z", 
+          "ordered_varnames": [
+            "xs", 
+            "__return__"
+          ]
+        }, 
+        {
           "frame_id": 14, 
           "encoded_locals": {
             "xs": [
@@ -7871,6 +8109,11 @@
             "REF", 
             9
           ]
+        ], 
+        "14": [
+          "LIST", 
+          2, 
+          3
         ], 
         "17": [
           "LIST", 
@@ -7923,6 +8166,29 @@
           "unique_hash": "pairs_f1_p", 
           "ordered_varnames": [
             "xs"
+          ]
+        }, 
+        {
+          "frame_id": 7, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              24
+            ], 
+            "xs": [
+              "REF", 
+              14
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "pairs", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "pairs_f7_p_z", 
+          "ordered_varnames": [
+            "xs", 
+            "__return__"
           ]
         }, 
         {
@@ -8057,6 +8323,11 @@
             9
           ]
         ], 
+        "14": [
+          "LIST", 
+          2, 
+          3
+        ], 
         "17": [
           "LIST", 
           2, 
@@ -8108,6 +8379,29 @@
           "unique_hash": "pairs_f1_p", 
           "ordered_varnames": [
             "xs"
+          ]
+        }, 
+        {
+          "frame_id": 7, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              24
+            ], 
+            "xs": [
+              "REF", 
+              14
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "pairs", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "pairs_f7_p_z", 
+          "ordered_varnames": [
+            "xs", 
+            "__return__"
           ]
         }, 
         {
@@ -8219,6 +8513,11 @@
             9
           ]
         ], 
+        "14": [
+          "LIST", 
+          2, 
+          3
+        ], 
         "17": [
           "LIST", 
           2, 
@@ -8278,6 +8577,29 @@
           "unique_hash": "pairs_f1_p", 
           "ordered_varnames": [
             "xs"
+          ]
+        }, 
+        {
+          "frame_id": 7, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              24
+            ], 
+            "xs": [
+              "REF", 
+              14
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "pairs", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "pairs_f7_p_z", 
+          "ordered_varnames": [
+            "xs", 
+            "__return__"
           ]
         }, 
         {
@@ -8366,6 +8688,11 @@
             9
           ]
         ], 
+        "14": [
+          "LIST", 
+          2, 
+          3
+        ], 
         "17": [
           "LIST", 
           2, 
@@ -8428,6 +8755,29 @@
             "xs", 
             "__return__"
           ]
+        }, 
+        {
+          "frame_id": 7, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              24
+            ], 
+            "xs": [
+              "REF", 
+              14
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "pairs", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "pairs_f7_p_z", 
+          "ordered_varnames": [
+            "xs", 
+            "__return__"
+          ]
         }
       ], 
       "globals": {
@@ -8476,10 +8826,22 @@
           1, 
           3
         ], 
+        "14": [
+          "LIST", 
+          2, 
+          3
+        ], 
         "17": [
           "LIST", 
           2, 
           3
+        ], 
+        "24": [
+          "LIST", 
+          [
+            "REF", 
+            17
+          ]
         ], 
         "28": [
           "LIST", 
@@ -8528,6 +8890,29 @@
           "is_zombie": true, 
           "parent_frame_id_list": [], 
           "unique_hash": "pairs_f1_p_z", 
+          "ordered_varnames": [
+            "xs", 
+            "__return__"
+          ]
+        }, 
+        {
+          "frame_id": 7, 
+          "encoded_locals": {
+            "__return__": [
+              "REF", 
+              24
+            ], 
+            "xs": [
+              "REF", 
+              14
+            ]
+          }, 
+          "is_highlighted": false, 
+          "is_parent": true, 
+          "func_name": "pairs", 
+          "is_zombie": true, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "pairs_f7_p_z", 
           "ordered_varnames": [
             "xs", 
             "__return__"
@@ -8584,10 +8969,22 @@
           1, 
           3
         ], 
+        "14": [
+          "LIST", 
+          2, 
+          3
+        ], 
         "17": [
           "LIST", 
           2, 
           3
+        ], 
+        "24": [
+          "LIST", 
+          [
+            "REF", 
+            17
+          ]
         ], 
         "28": [
           "LIST", 

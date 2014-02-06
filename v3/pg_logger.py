@@ -845,7 +845,30 @@ class PGLogger(bdb.Bdb):
               #   print a(20)
               # foo(10)
               chosen_parent_frame = None
-              for (my_frame, my_lineno) in self.stack:
+              # SUPER hacky but seems to work -- use reversed(self.stack)
+              # because we want to traverse starting from the TOP of the stack
+              # (most recent frame) and find the first frame containing
+              # a constant code object that matches v.__code__ or v.func_code
+              #
+              # required for this example from Berkeley CS61a:
+              #
+              # def f(p, k):
+              #     def g():
+              #         print(k)
+              #     if k == 0:
+              #         f(g, 1)
+              # f(None, 0)
+              #
+              # there are two calls to f, each of which defines a
+              # closure g that should point to the respective frame.
+              #
+              # note that for the second call to f, the parent of the
+              # g defined in there should be that frame, which is at
+              # the TOP of the stack. this reversed() hack does the
+              # right thing. note that if you don't traverse the stack
+              # backwards, then you will mistakenly get the parent as
+              # the FIRST f frame (bottom of the stack).
+              for (my_frame, my_lineno) in reversed(self.stack):
                 if chosen_parent_frame:
                   break
 
