@@ -72,94 +72,87 @@
             ]
           ], 
           [
-            "__getstate__", 
+            "__new__", 
             [
               "REF", 
               4
             ]
           ], 
           [
-            "__new__", 
+            "__repr__", 
             [
               "REF", 
               5
             ]
           ], 
           [
-            "__repr__", 
+            "__slots__", 
             [
               "REF", 
               6
             ]
           ], 
           [
-            "__slots__", 
+            "_asdict", 
             [
               "REF", 
               7
             ]
           ], 
           [
-            "_asdict", 
+            "_fields", 
             [
               "REF", 
               8
             ]
           ], 
           [
-            "_fields", 
+            "_make", 
             [
               "REF", 
               9
             ]
           ], 
           [
-            "_make", 
+            "_replace", 
             [
               "REF", 
               10
             ]
           ], 
           [
-            "_replace", 
+            "cuisine", 
             [
               "REF", 
               11
             ]
           ], 
           [
-            "cuisine", 
+            "dish", 
             [
               "REF", 
               12
             ]
           ], 
           [
-            "dish", 
+            "name", 
             [
               "REF", 
               13
             ]
           ], 
           [
-            "name", 
+            "phone", 
             [
               "REF", 
               14
             ]
           ], 
           [
-            "phone", 
-            [
-              "REF", 
-              15
-            ]
-          ], 
-          [
             "price", 
             [
               "REF", 
-              16
+              15
             ]
           ]
         ], 
@@ -169,28 +162,23 @@
           null
         ], 
         "4": [
-          "FUNCTION", 
-          "__getstate__(self)", 
-          null
-        ], 
-        "5": [
           "INSTANCE", 
           "staticmethod"
         ], 
-        "6": [
+        "5": [
           "FUNCTION", 
           "__repr__(self)", 
           null
         ], 
-        "7": [
+        "6": [
           "TUPLE"
         ], 
-        "8": [
+        "7": [
           "FUNCTION", 
           "_asdict(self)", 
           null
         ], 
-        "9": [
+        "8": [
           "TUPLE", 
           "name", 
           "cuisine", 
@@ -198,14 +186,18 @@
           "dish", 
           "price"
         ], 
-        "10": [
+        "9": [
           "INSTANCE", 
           "classmethod"
         ], 
-        "11": [
+        "10": [
           "FUNCTION", 
           "_replace(_self, **kwds)", 
           null
+        ], 
+        "11": [
+          "INSTANCE", 
+          "property"
         ], 
         "12": [
           "INSTANCE", 
@@ -220,10 +212,6 @@
           "property"
         ], 
         "15": [
-          "INSTANCE", 
-          "property"
-        ], 
-        "16": [
           "INSTANCE", 
           "property"
         ]
@@ -247,7 +235,7 @@
         ], 
         "R1": [
           "REF", 
-          17
+          16
         ], 
         "Restaurant": [
           "REF", 
@@ -274,94 +262,87 @@
             ]
           ], 
           [
-            "__getstate__", 
+            "__new__", 
             [
               "REF", 
               4
             ]
           ], 
           [
-            "__new__", 
+            "__repr__", 
             [
               "REF", 
               5
             ]
           ], 
           [
-            "__repr__", 
+            "__slots__", 
             [
               "REF", 
               6
             ]
           ], 
           [
-            "__slots__", 
+            "_asdict", 
             [
               "REF", 
               7
             ]
           ], 
           [
-            "_asdict", 
+            "_fields", 
             [
               "REF", 
               8
             ]
           ], 
           [
-            "_fields", 
+            "_make", 
             [
               "REF", 
               9
             ]
           ], 
           [
-            "_make", 
+            "_replace", 
             [
               "REF", 
               10
             ]
           ], 
           [
-            "_replace", 
+            "cuisine", 
             [
               "REF", 
               11
             ]
           ], 
           [
-            "cuisine", 
+            "dish", 
             [
               "REF", 
               12
             ]
           ], 
           [
-            "dish", 
+            "name", 
             [
               "REF", 
               13
             ]
           ], 
           [
-            "name", 
+            "phone", 
             [
               "REF", 
               14
             ]
           ], 
           [
-            "phone", 
-            [
-              "REF", 
-              15
-            ]
-          ], 
-          [
             "price", 
             [
               "REF", 
-              16
+              15
             ]
           ]
         ], 
@@ -371,28 +352,23 @@
           null
         ], 
         "4": [
-          "FUNCTION", 
-          "__getstate__(self)", 
-          null
-        ], 
-        "5": [
           "INSTANCE", 
           "staticmethod"
         ], 
-        "6": [
+        "5": [
           "FUNCTION", 
           "__repr__(self)", 
           null
         ], 
-        "7": [
+        "6": [
           "TUPLE"
         ], 
-        "8": [
+        "7": [
           "FUNCTION", 
           "_asdict(self)", 
           null
         ], 
-        "9": [
+        "8": [
           "TUPLE", 
           "name", 
           "cuisine", 
@@ -400,14 +376,18 @@
           "dish", 
           "price"
         ], 
-        "10": [
+        "9": [
           "INSTANCE", 
           "classmethod"
         ], 
-        "11": [
+        "10": [
           "FUNCTION", 
           "_replace(_self, **kwds)", 
           null
+        ], 
+        "11": [
+          "INSTANCE", 
+          "property"
         ], 
         "12": [
           "INSTANCE", 
@@ -427,31 +407,7 @@
         ], 
         "16": [
           "INSTANCE", 
-          "property"
-        ], 
-        "17": [
-          "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
+          "Restaurant"
         ]
       }, 
       "line": 6, 
@@ -474,11 +430,11 @@
         ], 
         "R1": [
           "REF", 
-          17
+          16
         ], 
         "R2": [
           "REF", 
-          18
+          17
         ], 
         "Restaurant": [
           "REF", 
@@ -505,94 +461,87 @@
             ]
           ], 
           [
-            "__getstate__", 
+            "__new__", 
             [
               "REF", 
               4
             ]
           ], 
           [
-            "__new__", 
+            "__repr__", 
             [
               "REF", 
               5
             ]
           ], 
           [
-            "__repr__", 
+            "__slots__", 
             [
               "REF", 
               6
             ]
           ], 
           [
-            "__slots__", 
+            "_asdict", 
             [
               "REF", 
               7
             ]
           ], 
           [
-            "_asdict", 
+            "_fields", 
             [
               "REF", 
               8
             ]
           ], 
           [
-            "_fields", 
+            "_make", 
             [
               "REF", 
               9
             ]
           ], 
           [
-            "_make", 
+            "_replace", 
             [
               "REF", 
               10
             ]
           ], 
           [
-            "_replace", 
+            "cuisine", 
             [
               "REF", 
               11
             ]
           ], 
           [
-            "cuisine", 
+            "dish", 
             [
               "REF", 
               12
             ]
           ], 
           [
-            "dish", 
+            "name", 
             [
               "REF", 
               13
             ]
           ], 
           [
-            "name", 
+            "phone", 
             [
               "REF", 
               14
             ]
           ], 
           [
-            "phone", 
-            [
-              "REF", 
-              15
-            ]
-          ], 
-          [
             "price", 
             [
               "REF", 
-              16
+              15
             ]
           ]
         ], 
@@ -602,28 +551,23 @@
           null
         ], 
         "4": [
-          "FUNCTION", 
-          "__getstate__(self)", 
-          null
-        ], 
-        "5": [
           "INSTANCE", 
           "staticmethod"
         ], 
-        "6": [
+        "5": [
           "FUNCTION", 
           "__repr__(self)", 
           null
         ], 
-        "7": [
+        "6": [
           "TUPLE"
         ], 
-        "8": [
+        "7": [
           "FUNCTION", 
           "_asdict(self)", 
           null
         ], 
-        "9": [
+        "8": [
           "TUPLE", 
           "name", 
           "cuisine", 
@@ -631,14 +575,18 @@
           "dish", 
           "price"
         ], 
-        "10": [
+        "9": [
           "INSTANCE", 
           "classmethod"
         ], 
-        "11": [
+        "10": [
           "FUNCTION", 
           "_replace(_self, **kwds)", 
           null
+        ], 
+        "11": [
+          "INSTANCE", 
+          "property"
         ], 
         "12": [
           "INSTANCE", 
@@ -658,55 +606,11 @@
         ], 
         "16": [
           "INSTANCE", 
-          "property"
+          "Restaurant"
         ], 
         "17": [
           "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Escargots"
-          ], 
-          [
-            "name", 
-            "Taillevent"
-          ], 
-          [
-            "phone", 
-            "343-3434"
-          ], 
-          [
-            "price", 
-            24.500
-          ]
-        ], 
-        "18": [
-          "INSTANCE", 
-          "Restaurant", 
-          [
-            "cuisine", 
-            "French"
-          ], 
-          [
-            "dish", 
-            "Ris de Veau"
-          ], 
-          [
-            "name", 
-            "La Tour D'Argent"
-          ], 
-          [
-            "phone", 
-            "343-3344"
-          ], 
-          [
-            "price", 
-            48.500
-          ]
+          "Restaurant"
         ]
       }, 
       "line": 6, 
