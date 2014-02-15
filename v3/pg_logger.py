@@ -158,6 +158,13 @@ def __restricted_import__(*args):
       setattr(imported_mod, 'setCSS', setCSS)
       setattr(imported_mod, 'setJS', setJS)
 
+    # somewhat weak protection against imported modules that contain one
+    # of these troublesome builtins. again, NOTHING is foolproof ...
+    # just more defense in depth :)
+    for mod in ('os', 'sys', 'posix', 'gc'):
+      if hasattr(imported_mod, mod):
+        delattr(imported_mod, mod)
+
     return imported_mod
   else:
     raise ImportError('{0} not supported'.format(args[0]))
