@@ -8,6 +8,10 @@
 # easy_install pip
 # pip install bottle
 
+# From an OPT user: A couple notes: to get bottle_server.py running,
+# I had to replace cStringIO with io and urllib2 with urllib, for
+# compatibility from 2.x to 3.x Ii was running from /v3/).
+
 from bottle import route, get, request, run, template, static_file
 import cStringIO
 import json
