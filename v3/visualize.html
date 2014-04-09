@@ -75,8 +75,27 @@ Write your Python code here:
 
 <div id="codeInputPane"></div> <!-- populate with a CodeMirror instance -->
 
-<p style="margin-top: 10px; line-height: 200%;">
-Execute code using
+<p style="margin-top: 10px; line-height: 175%;">
+
+[Optional] Please answer these questions to support our research and to help improve this tool.<br/>
+
+Where is your code from? <input type="text" id="code-origin-Q" class="surveyQ" size=70 maxlength=140/><br/>
+
+What do you hope to learn by visualizing it? <input type="text" id="what-learn-Q" class="surveyQ" size=70 maxlength=140/><br/>
+
+How did you find this web site? <input type="text" id="how-find-Q" class="surveyQ" size=70 maxlength=140/>
+
+<input type="hidden" id="Q-version" value="v1"/> <!-- for versioning -->
+
+</p>
+
+<p>
+<button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
+<button style="margin-left: 10px;" id="clearBtn" class="bigBtn" type="button">Clear All</button>
+</p>
+
+<p style="margin-top: 20px; line-height: 200%;">
+Options:<br/> Execute code using
   <select id="pythonVersionSelector">
     <option value="2">Python 2.7</option>
     <option value="3">Python 3.3</option>
@@ -86,7 +105,7 @@ Execute code using
     <option value="false">hide frames of exited functions</option>
     <option value="true">show frames of exited functions</option>
     <option value="holistic">holistic mode (experimental)</option>
-  </select>,
+  </select>,<br/>
   <select id="heapPrimitivesSelector">
     <option value="false">inline primitives and nested objects</option>
     <option value="true">render all objects on the heap</option>
@@ -94,7 +113,7 @@ Execute code using
   <select id="drawParentPointerSelector">
     <option value="false">hide environment parent pointers</option>
     <option value="true">show environment parent pointers</option>
-  </select>,
+  </select>,<br/>
   <select id="textualMemoryLabelsSelector">
     <option value="false">draw references using arrows</option>
     <option value="true">use text labels for references</option>
@@ -105,13 +124,9 @@ Execute code using
   </select>.
 </p>
 
-<p>
-<button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
-<button style="margin-left: 10px;" id="clearBtn" class="bigBtn" type="button">Clear</button>
-</p>
 
 
-<p style="margin-top: 25px;">Here are some example Python code snippets to visualize:</p>
+<p style="margin-top: 35px;">Here are some example Python code snippets to visualize:</p>
 
 <p style="margin-top: 10px;">Basic:
 
@@ -261,15 +276,23 @@ href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/">docume
 can help. Or check out its code at <a
 href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub</a>.</p>
 
+<!--
 <p>Join the <a
 href="https://groups.google.com/forum/#!forum/pythontutor-users">pythontutor-users</a>
 mailing list to participate in user discussions and <a
 href="https://groups.google.com/forum/#!forum/pythontutor-announce">pythontutor-announce</a>
 to receive occasional announcements.
 (Your name and email address will be kept private; only the list owner can see them.)</p>
+ -->
+
+<p>By using Online Python Tutor, your visualized code, options, and IP
+address are logged on our server and may be analyzed for research
+purposes. Nearly all Web services collect this basic information from
+users. However, Online Python Tutor does not collect any personal
+information, cookies, or session state from users.</p>
 
 <p style="margin-top: 8px;">
-Copyright &copy; 2010-2013 <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
+Copyright &copy; 2010-2014 <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
 </p>
 
 </div>
