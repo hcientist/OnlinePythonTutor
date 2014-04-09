@@ -74,7 +74,23 @@ Write your Python code here:
 
 <div id="codeInputPane"></div> <!-- populate with a CodeMirror instance -->
 
-<p style="margin-top: 10px; line-height: 200%;">
+<p style="margin-top: 10px; line-height: 175%;">
+
+[Optional] Please answer these questions to support our research and to help improve this tool.<br/>
+
+Where is your code from? <input type="text" id="code-origin-Q" class="surveyQ" size=70 maxlength=140/><br/>
+
+What do you hope to learn by visualizing it? <input type="text" id="what-learn-Q" class="surveyQ" size=70 maxlength=140/><br/>
+
+<input type="hidden" id="Q-version" value="v1"/> <!-- for versioning -->
+
+</p>
+
+<p>
+<button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
+</p>
+
+<p style="margin-top: 20px; line-height: 200%;">
 Execute code using
   <select id="pythonVersionSelector">
     <option value="3">Python 3.3</option>
@@ -84,10 +100,6 @@ and
     <option value="true">display frames of exited functions.</option>
     <option value="false">don't display exited functions.</option>
   </select>
-</p>
-
-<p>
-<button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
 </p>
 
 </div>
@@ -131,15 +143,23 @@ href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/">docume
 can help. Or check out its code at <a
 href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub</a>.</p>
 
+<!--
 <p>Join the <a
 href="https://groups.google.com/forum/#!forum/pythontutor-users">pythontutor-users</a>
 mailing list to participate in user discussions and <a
 href="https://groups.google.com/forum/#!forum/pythontutor-announce">pythontutor-announce</a>
 to receive occasional announcements.
 (Your name and email address will be kept private; only the list owner can see them.)</p>
+-->
+
+<p>By using Online Python Tutor, your visualized code, options, and IP
+address are logged on our server and may be analyzed for research
+purposes. Nearly all Web services collect this basic information from
+users. However, Online Python Tutor does not collect any personal
+information, cookies, or session state from users.</p>
 
 <p style="margin-top: 8px;">
-Copyright &copy; 2010-2013 <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
+Copyright &copy; 2010-2014 <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
 </p>
 
 </div>

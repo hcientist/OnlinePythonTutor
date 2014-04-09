@@ -154,3 +154,44 @@ function executePythonCode(pythonSourceCode,
           },
           "json");
 }
+
+
+/* For survey questions:
+
+Versions of survey wording:
+
+v1:
+
+<p style="margin-top: 10px; line-height: 175%;">
+
+[Optional] Please answer these questions to support our research and to help improve this tool.<br/>
+
+Where is your code from? <input type="text" id="code-origin-Q" class="surveyQ" size=70 maxlength=140/><br/>
+
+What do you hope to learn by visualizing it? <input type="text" id="what-learn-Q" class="surveyQ" size=70 maxlength=140/><br/>
+
+How did you find this web site? <input type="text" id="how-find-Q" class="surveyQ" size=70 maxlength=140/>
+
+<input type="hidden" id="Q-version" value="v1"/> <!-- for versioning -->
+
+</p>
+
+*/
+function getSurveyObject() {
+  var code_origin_Q_val = $('#code-origin-Q').val();
+  var what_learn_Q_val = $('#what-learn-Q').val();
+  var how_find_Q_val = $('#how-find-Q').val();
+
+  var ret = null;
+
+  if (code_origin_Q_val || what_learn_Q_val || how_find_Q_val) {
+    ret = {
+      ver: $('#Q-version').val(),
+      code_origin_Q: code_origin_Q_val,
+      what_learn_Q: what_learn_Q_val,
+      how_find_Q: how_find_Q_val,
+    }
+  }
+
+ return ret;
+}

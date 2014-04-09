@@ -90,6 +90,8 @@ $(document).ready(function() {
       $("#pyOutputPane").hide();
       $("#embedLinkDiv").hide();
 
+      $(".surveyQ").val(''); // clear all survey results when user hits forward/back
+
       // destroy all annotation bubbles (NB: kludgy)
       if (myVisualizer) {
         myVisualizer.destroyAllAnnotationBubbles();
@@ -141,6 +143,11 @@ $(document).ready(function() {
                                show_only_outputs: false,
                                py_crazy_mode: false,
                                origin: 'composingprograms.js'};
+
+      var surveyObj = getSurveyObject();
+      if (surveyObj) {
+        backendOptionsObj.survey = surveyObj;
+      }
 
       var startingInstruction = 0;
 
