@@ -66,6 +66,7 @@ $(document).ready(function() {
   setSurveyHTML();
 
   $("#embedLinkDiv").hide();
+  $("#surveyHeader").hide();
 
   pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
     mode: 'python',
@@ -87,7 +88,7 @@ $(document).ready(function() {
 
     if (appMode === undefined || appMode == 'edit') {
       $("#pyInputPane").show();
-      $("#pyOutputPane").hide();
+      $("#pyOutputPane,#surveyHeader").hide();
       $("#embedLinkDiv").hide();
 
       $(".surveyQ").val(''); // clear all survey results when user hits forward/back
@@ -99,8 +100,7 @@ $(document).ready(function() {
     }
     else if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
       $("#pyInputPane").hide();
-      $("#pyOutputPane").show();
-
+      $("#pyOutputPane,#surveyHeader").show();
       $("#embedLinkDiv").show();
 
       $('#executeBtn').html("Visualize Execution");
@@ -119,7 +119,7 @@ $(document).ready(function() {
     }
     else if (appMode == 'display_no_frills') {
       $("#pyInputPane").hide();
-      $("#pyOutputPane").show();
+      $("#pyOutputPane,#surveyHeader").show();
       $("#embedLinkDiv").show();
     }
     else {
@@ -618,6 +618,33 @@ $(document).ready(function() {
     var embedUrlStr = $.param.fragment(domain + "iframe-embed.html", myArgs, 2 /* clobber all */);
     var iframeStr = '<iframe width="800" height="500" frameborder="0" src="' + embedUrlStr + '"> </iframe>';
     $('#embedCodeOutput').val(iframeStr);
+  });
+
+
+  // for survey-related stuff
+  $('.surveyBtn').click(function(e) {
+    // wow, massive copy-and-paste action from above!
+    var myArgs = {code: pyInputCodeMirror.getValue(),
+                  mode: appMode,
+                  cumulative: $('#cumulativeModeSelector').val(),
+                  heapPrimitives: $('#heapPrimitivesSelector').val(),
+                  drawParentPointers: $('#drawParentPointerSelector').val(),
+                  textReferences: $('#textualMemoryLabelsSelector').val(),
+                  showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
+                  py: $('#pythonVersionSelector').val()};
+
+    if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
+      myArgs.curInstr = myVisualizer.curInstr;
+    }
+
+    var buttonPrompt = $(this).html();
+    var res = prompt('"' + buttonPrompt + '"' + ' Please elaborate:');
+    // don't submit EMPTY results with no feedback or when Cancel button is pressed
+    if (res) {
+      myArgs.surveyQuestion = buttonPrompt;
+      myArgs.surveyResponse = res;
+      $.get('survey.py', myArgs, function(dat) {});
+    }
   });
 });
 
