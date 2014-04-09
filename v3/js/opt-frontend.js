@@ -63,6 +63,7 @@ function setCodeMirrorVal(dat) {
 
 
 $(document).ready(function() {
+  setSurveyHTML();
 
   $("#embedLinkDiv").hide();
 
