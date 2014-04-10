@@ -638,9 +638,11 @@ $(document).ready(function() {
     }
 
     var buttonPrompt = $(this).html();
-    var res = prompt('"' + buttonPrompt + '"' + ' Please elaborate:');
-    // don't submit EMPTY results with no feedback or when Cancel button is pressed
-    if (res) {
+    var res = prompt('"' + buttonPrompt + '"' + '\nPlease elaborate if you can and hit OK to submit:');
+    // don't do ajax call when Cancel button is pressed
+    // (note that if OK button is pressed with no response, then an
+    // empty string will still be sent to the server
+    if (res !== null) {
       myArgs.surveyQuestion = buttonPrompt;
       myArgs.surveyResponse = res;
       $.get('survey.py', myArgs, function(dat) {});
