@@ -63,6 +63,43 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
+/* API for adding a hook.
+ If multiple functions are added to a hook, the oldest goes first.
+ The func should take a list of arguments, even though try_hook
+ wants its arguments packaged in an array.
+
+ A hook should return an array whose first element is a boolean,
+ true if it completely handled the situation (no further hooks
+ or the base function should be called), false otherwise. If the
+ hook semantically represents a functions that returns something,
+ the second value of the array is that something. 
+
+ Hook callbacks can return false or undefined (i.e. no return
+ value) in lieu of [false]. But try_hook always returns [false].
+*/
+
+var add_pytutor_hook = function(hook_name, func) {
+  if (pytutor_hooks[hook_name])
+    pytutor_hooks[hook_name].push();
+  else
+    pytutor_hooks[hook_name] = [func];
+}
+
+// this is global in order to reach static functions like isPrimitiveType
+var pytutor_hooks = {}; // keys, hook names; values, array of functions
+
+// note that args should be an array, it is unpacked upon calling the callback
+// returns [false], [true], or [true, return_value]
+var try_hook = function(hook_name, args) {
+  if (pytutor_hooks[hook_name]) {
+    for (var i=0; i<pytutor_hooks[hook_name].length; i++) {
+      var handled_and_result = pytutor_hooks[hook_name][i].apply(null, args); // no "this"
+      if (handled_and_result && handled_and_result[0]) 
+        return handled_and_result;
+    } 
+  }
+  return [false];
+}
 
 var SVG_ARROW_POLYGON = '0,3 12,3 12,0 18,5 12,10 12,7 0,7';
 var SVG_ARROW_HEIGHT = 10; // must match height of SVG_ARROW_POLYGON
@@ -238,6 +275,8 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.enableTransitions = false; // EXPERIMENTAL - enable transition effects
 
   this.classAttrsHidden = {}; // kludgy hack for 'show/hide attributes' for class objects
+
+  try_hook("end_constructor", [this]);
 
   this.hasRendered = false;
 
@@ -463,11 +502,14 @@ ExecutionVisualizer.prototype.render = function() {
   }
 
   // enable left-right draggable pane resizer (originally from David Pritchard)
-  var syncStdoutWidth = function(event, ui){
-    $("#vizLayoutTdFirst #pyStdout").width(ui.size.width-2*parseInt($("#pyStdout").css("padding-left")));};
-  $('#codeDisplayDiv').resizable({handles:"e", resize: syncStdoutWidth});
-  syncStdoutWidth(null, {size: {width: $('#codeDisplayDiv').width()}});
-
+  this.domRoot.find('#codeDisplayDiv').resizable({
+    handles: "e", 
+    minWidth: 100, //otherwise looks really goofy
+    resize: function(event, ui){ // old name: syncStdoutWidth, now not appropriate
+      $("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
+      if (myViz.params.updateOutputCallback) // report size change
+        myViz.params.updateOutputCallback(this);
+    }});
 
   if (this.params.codeDivHeight) {
     this.domRoot.find('#pyCodeOutputDiv')
@@ -559,6 +601,7 @@ ExecutionVisualizer.prototype.render = function() {
     this.domRoot.find('#vizLayoutTdFirst').hide(); // gigantic hack!
   }
 
+  try_hook("end_render", [this]);
 
   this.precomputeCurTraceLayouts();
 
@@ -1203,6 +1246,7 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
   else {
     this.updateOutputFull(smoothTransition);
   }
+  try_hook("end_updateOutput", [this]);
 }
 
 ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
@@ -1761,6 +1805,12 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
       return null;
     }
 
+    function isLinearObj(heapObj) {
+      var hook_result = try_hook("isLinearObj", [heapObj]);
+      if (hook_result[0]) return hook_result[1];
+
+      return heapObj[0] == 'LIST' || heapObj[0] == 'TUPLE' || heapObj[0] == 'SET';
+    }
 
     function recurseIntoObject(id, curRow, newRow) {
       //console.log('recurseIntoObject', id,
@@ -1772,7 +1822,7 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
       var heapObj = curEntry.heap[id];
       assert(heapObj);
 
-      if (heapObj[0] == 'LIST' || heapObj[0] == 'TUPLE' || heapObj[0] == 'SET') {
+      if (isLinearObj(heapObj)) {
         $.each(heapObj, function(ind, child) {
           if (ind < 1) return; // skip type tag
 
@@ -2192,6 +2242,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
 
 
   function renderPrimitiveObject(obj, d3DomElement) {
+    if (try_hook("renderPrimitiveObject", [obj, d3DomElement])[0])
+      return;
+
     var typ = typeof obj;
 
     if (obj == null) {
@@ -2289,6 +2342,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
     if (myViz.textualMemoryLabels) {
       typeLabelPrefix = 'id' + objID + ':';
     }
+
+    var hook_result = try_hook("renderCompoundObject", [objID, d3DomElement, isTopLevel, obj, typeLabelPrefix, renderNestedObject]);
+    if (hook_result[0]) return;
 
     if (obj[0] == 'LIST' || obj[0] == 'TUPLE' || obj[0] == 'SET' || obj[0] == 'DICT') {
       var label = obj[0].toLowerCase();
@@ -3027,6 +3083,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
     highlight_frame(myViz.generateID('globals'));
   }
 
+  try_hook("end_renderDataStructures", [myViz]);  
+
 }
 
 
@@ -3182,6 +3240,9 @@ function structurallyEquivalent(obj1, obj2) {
 
 
 function isPrimitiveType(obj) {
+  var hook_result = try_hook("isPrimitiveType", [obj]);
+  if (hook_result[0]) return hook_result[1];
+
   // null is a primitive
   if (obj == null) {
     return true;
