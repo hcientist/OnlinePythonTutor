@@ -64,18 +64,31 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 /* API for adding a hook.
- If multiple functions are added to a hook, the oldest goes first.
- The func should take a list of arguments, even though try_hook
- wants its arguments packaged in an array.
 
- A hook should return an array whose first element is a boolean,
+ An external user should call
+add_pytutor_hook("hook_name_here", function(args) {...})
+ args will be a javascript object with several named properties;
+ this is meant to be similar to Python's keyword arguments.
+
+ The hooked function should return an array whose first element is a boolean:
  true if it completely handled the situation (no further hooks
- or the base function should be called), false otherwise. If the
- hook semantically represents a functions that returns something,
- the second value of the array is that something. 
+ nor the base function should be called); false otherwise (wasn't handled). 
+ If the hook semantically represents a function that returns something,
+ the second value of the returned array is that semantic return value.
+
+ E.g. for the Java visualizer a simplified version of a hook we use is:
+
+add_pytutor_hook(
+  "isPrimitiveType", 
+  function(args) {
+    var obj = args.obj; // unpack
+    if (obj instanceof Array && obj[0] == "CHAR-LITERAL")
+      return [true, true]; // yes we handled it, yes it's primitive
+    return [false]; // didn't handle it, let someone else
+  });
 
  Hook callbacks can return false or undefined (i.e. no return
- value) in lieu of [false]. But try_hook always returns [false].
+ value) in lieu of [false]. 
 */
 
 var add_pytutor_hook = function(hook_name, func) {
@@ -86,14 +99,32 @@ var add_pytutor_hook = function(hook_name, func) {
 }
 
 // this is global in order to reach static functions like isPrimitiveType
-var pytutor_hooks = {}; // keys, hook names; values, array of functions
+var pytutor_hooks = {}; // keys, hook names; values, list of functions
 
-// note that args should be an array, it is unpacked upon calling the callback
-// returns [false], [true], or [true, return_value]
+/*
+try_hook(hook_name, args): how the internal codebase invokes a hook. 
+ args will be a javascript object with several named properties;
+ this is meant to be similar to Python's keyword arguments.
+ E.g., 
+
+function isPrimitiveType(obj) {
+  var hook_result = try_hook("isPrimitiveType", {obj:obj});
+  if (hook_result[0]) return hook_result[1];
+  // go on as normal if the hook didn't handle it
+
+ Although add_pytutor_hook allows the hooked function to 
+ return false or undefined, try_hook will always return
+ something with the strict format [false], [true] or [true, ...].
+*/
+
 var try_hook = function(hook_name, args) {
   if (pytutor_hooks[hook_name]) {
     for (var i=0; i<pytutor_hooks[hook_name].length; i++) {
-      var handled_and_result = pytutor_hooks[hook_name][i].apply(null, args); // no "this"
+
+      // apply w/o "this", and pack sole arg into array as required by apply
+      var handled_and_result 
+        = pytutor_hooks[hook_name][i].apply(null, [args]); 
+
       if (handled_and_result && handled_and_result[0]) 
         return handled_and_result;
     } 
@@ -276,7 +307,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
 
   this.classAttrsHidden = {}; // kludgy hack for 'show/hide attributes' for class objects
 
-  try_hook("end_constructor", [this]);
+  try_hook("end_constructor", {myViz:this});
 
   this.hasRendered = false;
 
@@ -506,7 +537,7 @@ ExecutionVisualizer.prototype.render = function() {
     handles: "e", 
     minWidth: 100, //otherwise looks really goofy
     resize: function(event, ui){ // old name: syncStdoutWidth, now not appropriate
-      $("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
+      myViz.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
       if (myViz.params.updateOutputCallback) // report size change
         myViz.params.updateOutputCallback(this);
     }});
@@ -601,7 +632,7 @@ ExecutionVisualizer.prototype.render = function() {
     this.domRoot.find('#vizLayoutTdFirst').hide(); // gigantic hack!
   }
 
-  try_hook("end_render", [this]);
+  try_hook("end_render", {myViz:this});
 
   this.precomputeCurTraceLayouts();
 
@@ -1246,7 +1277,7 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
   else {
     this.updateOutputFull(smoothTransition);
   }
-  try_hook("end_updateOutput", [this]);
+  try_hook("end_updateOutput", {myViz:this});
 }
 
 ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
@@ -1806,7 +1837,7 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
     }
 
     function isLinearObj(heapObj) {
-      var hook_result = try_hook("isLinearObj", [heapObj]);
+      var hook_result = try_hook("isLinearObj", {heapObj:heapObj});
       if (hook_result[0]) return hook_result[1];
 
       return heapObj[0] == 'LIST' || heapObj[0] == 'TUPLE' || heapObj[0] == 'SET';
@@ -2242,7 +2273,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
 
 
   function renderPrimitiveObject(obj, d3DomElement) {
-    if (try_hook("renderPrimitiveObject", [obj, d3DomElement])[0])
+    if (try_hook("renderPrimitiveObject", {obj:obj, d3DomElement:d3DomElement})[0])
       return;
 
     var typ = typeof obj;
@@ -2343,7 +2374,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
       typeLabelPrefix = 'id' + objID + ':';
     }
 
-    var hook_result = try_hook("renderCompoundObject", [objID, d3DomElement, isTopLevel, obj, typeLabelPrefix, renderNestedObject]);
+    var hook_result = try_hook("renderCompoundObject", 
+                               {objID:objID, d3DomElement:d3DomElement, 
+                                isTopLevel:isTopLevel, obj:obj, 
+                                typeLabelPrefix:typeLabelPrefix, renderNestedObject:renderNestedObject});
     if (hook_result[0]) return;
 
     if (obj[0] == 'LIST' || obj[0] == 'TUPLE' || obj[0] == 'SET' || obj[0] == 'DICT') {
@@ -3083,7 +3117,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
     highlight_frame(myViz.generateID('globals'));
   }
 
-  try_hook("end_renderDataStructures", [myViz]);  
+  try_hook("end_renderDataStructures", {myViz:myViz});  
 
 }
 
@@ -3240,7 +3274,7 @@ function structurallyEquivalent(obj1, obj2) {
 
 
 function isPrimitiveType(obj) {
-  var hook_result = try_hook("isPrimitiveType", [obj]);
+  var hook_result = try_hook("isPrimitiveType", {obj:obj});
   if (hook_result[0]) return hook_result[1];
 
   // null is a primitive
