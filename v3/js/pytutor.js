@@ -89,6 +89,8 @@ add_pytutor_hook(
 
  Hook callbacks can return false or undefined (i.e. no return
  value) in lieu of [false]. 
+
+ NB: If multiple functions are added to a hook, the oldest goes first.
 */
 
 var add_pytutor_hook = function(hook_name, func) {
