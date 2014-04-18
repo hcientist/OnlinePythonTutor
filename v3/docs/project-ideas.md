@@ -154,6 +154,14 @@ Some ideas include:
 - only printing the table for one frame at a time
 - or maybe displaying nesting frames
 
+2014-04-18: brainstorming on whiteboard
+
+![tabular view](../opt-tabular-view.jpg)
+
+One interesting visual element is to bold or color values when they change, to draw the viewer's eye
+to changes. In this way, it turns the OPT trace into more of a data visualization to focus on how data
+changes over time.
+
 
 ### Custom rendering API and plugin system
 
