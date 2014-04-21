@@ -64,7 +64,12 @@ def run_test(input_filename, clobber_golden=False):
 
             if os.path.isfile(golden_file):
                 if not filecmp.cmp(e, golden_file):
-                    print "  " + RED + e + " differs!" + ENDC
+                    print "    " + RED + e + " differs, moved to failed-tests/" + ENDC
+
+                    # save it under a new name so it won't be deleted
+                    # at the end of this function call
+                    newname = e + '.' + option + '.png'
+                    os.rename(e, 'failed-tests/' + newname)
                 if clobber_golden:
                     clobber_golden_file(e, golden_file)
             else:
