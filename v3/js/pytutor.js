@@ -63,6 +63,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
+// include hooks.js after you include pytutor.js, if you want to use hooks
+// see hooks.js for more instructions.
+var try_hook = function(hook_name, args) {
+  return [false]; // just a stub
+}
 
 var SVG_ARROW_POLYGON = '0,3 12,3 12,0 18,5 12,10 12,7 0,7';
 var SVG_ARROW_HEIGHT = 10; // must match height of SVG_ARROW_POLYGON
@@ -238,6 +243,8 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.enableTransitions = false; // EXPERIMENTAL - enable transition effects
 
   this.classAttrsHidden = {}; // kludgy hack for 'show/hide attributes' for class objects
+
+  try_hook("end_constructor", {myViz:this});
 
   this.hasRendered = false;
 
@@ -463,11 +470,14 @@ ExecutionVisualizer.prototype.render = function() {
   }
 
   // enable left-right draggable pane resizer (originally from David Pritchard)
-  var syncStdoutWidth = function(event, ui){
-    $("#vizLayoutTdFirst #pyStdout").width(ui.size.width-2*parseInt($("#pyStdout").css("padding-left")));};
-  $('#codeDisplayDiv').resizable({handles:"e", resize: syncStdoutWidth});
-  syncStdoutWidth(null, {size: {width: $('#codeDisplayDiv').width()}});
-
+  this.domRoot.find('#codeDisplayDiv').resizable({
+    handles: "e", 
+    minWidth: 100, //otherwise looks really goofy
+    resize: function(event, ui){ // old name: syncStdoutWidth, now not appropriate
+      myViz.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
+      if (myViz.params.updateOutputCallback) // report size change
+        myViz.params.updateOutputCallback(this);
+    }});
 
   if (this.params.codeDivHeight) {
     this.domRoot.find('#pyCodeOutputDiv')
@@ -559,6 +569,7 @@ ExecutionVisualizer.prototype.render = function() {
     this.domRoot.find('#vizLayoutTdFirst').hide(); // gigantic hack!
   }
 
+  try_hook("end_render", {myViz:this});
 
   this.precomputeCurTraceLayouts();
 
@@ -1203,6 +1214,7 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
   else {
     this.updateOutputFull(smoothTransition);
   }
+  try_hook("end_updateOutput", {myViz:this});
 }
 
 ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
@@ -1761,6 +1773,12 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
       return null;
     }
 
+    function isLinearObj(heapObj) {
+      var hook_result = try_hook("isLinearObj", {heapObj:heapObj});
+      if (hook_result[0]) return hook_result[1];
+
+      return heapObj[0] == 'LIST' || heapObj[0] == 'TUPLE' || heapObj[0] == 'SET';
+    }
 
     function recurseIntoObject(id, curRow, newRow) {
       //console.log('recurseIntoObject', id,
@@ -1772,7 +1790,7 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
       var heapObj = curEntry.heap[id];
       assert(heapObj);
 
-      if (heapObj[0] == 'LIST' || heapObj[0] == 'TUPLE' || heapObj[0] == 'SET') {
+      if (isLinearObj(heapObj)) {
         $.each(heapObj, function(ind, child) {
           if (ind < 1) return; // skip type tag
 
@@ -2192,6 +2210,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
 
 
   function renderPrimitiveObject(obj, d3DomElement) {
+    if (try_hook("renderPrimitiveObject", {obj:obj, d3DomElement:d3DomElement})[0])
+      return;
+
     var typ = typeof obj;
 
     if (obj == null) {
@@ -2289,6 +2310,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
     if (myViz.textualMemoryLabels) {
       typeLabelPrefix = 'id' + objID + ':';
     }
+
+    var hook_result = try_hook("renderCompoundObject", 
+                               {objID:objID, d3DomElement:d3DomElement, 
+                                isTopLevel:isTopLevel, obj:obj, 
+                                typeLabelPrefix:typeLabelPrefix, renderNestedObject:renderNestedObject});
+    if (hook_result[0]) return;
 
     if (obj[0] == 'LIST' || obj[0] == 'TUPLE' || obj[0] == 'SET' || obj[0] == 'DICT') {
       var label = obj[0].toLowerCase();
@@ -3027,6 +3054,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
     highlight_frame(myViz.generateID('globals'));
   }
 
+  try_hook("end_renderDataStructures", {myViz:myViz});  
+
 }
 
 
@@ -3182,6 +3211,9 @@ function structurallyEquivalent(obj1, obj2) {
 
 
 function isPrimitiveType(obj) {
+  var hook_result = try_hook("isPrimitiveType", {obj:obj});
+  if (hook_result[0]) return hook_result[1];
+
   // null is a primitive
   if (obj == null) {
     return true;
