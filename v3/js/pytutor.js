@@ -64,7 +64,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 // include hooks.js after you include pytutor.js, if you want to use hooks
-// see hooks.js for more instructions.
+// see hooks.js for more instructions. (hooking code created by David Pritchard)
 var try_hook = function(hook_name, args) {
   return [false]; // just a stub
 }
