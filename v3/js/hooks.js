@@ -1,4 +1,4 @@
-/* API for adding a hook.
+/* API for adding a hook, created by David Pritchard
 
  An external user should call
 add_pytutor_hook("hook_name_here", function(args) {...})
