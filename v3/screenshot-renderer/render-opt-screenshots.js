@@ -7,39 +7,46 @@
 // .pdf file extension. We might need to mess around with viewport and
 // page sizes.
 
+var DEBUG = true;
 
 var page = require('webpage').create();
 var system = require('system');
 var fs = require('fs');
 
+var fn, server, option_str;
+
 if (system.args.length < 2) {
-  console.log('\nUsage:\n  phantomjs render-opt-screenshots.js <filename>');
+  console.log('\nUsage:');
+  console.log('phantomjs render-opt-screenshots.js <filename> [custom server name] [custom option string]');
   console.log('\nVisualizes execution of a Python file at pythontutor.com and renders');
   console.log('the state diagram at each step i as <filename>.step.$i.png');
   phantom.exit(1);
 }
-
-fn = system.args[1];
+else if (system.args.length == 2) {
+  fn = system.args[1];
+  // default options
+  server = 'www.pythontutor.com';
+  option_str = 'cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2';
+}
+else {
+  fn = system.args[1];
+  server = system.args[2];
+  option_str = system.args[3];
+}
 
 var pythonScript = fs.open(fn, 'r').read();
-console.log('Visualizing ...\n');
-console.log(pythonScript);
-console.log('--- please wait ---');
+
+if (DEBUG) {
+  console.log('Visualizing ...\n');
+  console.log(pythonScript);
+  console.log('--- please wait ---');
+}
 
 var scriptEncoded = encodeURIComponent(pythonScript);
 
 // construct a URL with the script and options:
-// (for instance, to run with Python 3, change the 'py=2' string to 'py=3')
-var url = 'http://www.pythontutor.com/visualize.html#code=' +
-          scriptEncoded +
-          '&mode=display' +
-          '&cumulative=false' +
-          '&heapPrimitives=false' +
-          '&drawParentPointers=false' +
-          '&textReferences=false' +
-          '&showOnlyOutputs=false' +
-          '&py=2' +
-          '&curInstr=0';
+var url = 'http://' + server + '/visualize.html#code=' + scriptEncoded +
+          '&mode=display&showOnlyOutputs=false&' + option_str;
 
 page.open(url, function () {
     // impose a slight delay to make sure the page loads completely before working
@@ -47,6 +54,7 @@ page.open(url, function () {
 
       // hide extraneous components and resize
       page.evaluate(function() {
+          $("#surveyHeader").hide();
           $("#footer").hide();
           $("#vizLayoutTdFirst").hide();
           $('#pyOutputPane').width($('table.visualizer').width());
@@ -57,18 +65,20 @@ page.open(url, function () {
           return myVisualizer.curTrace.length - 1;
       });
 
-      for (var i=0; i <= maxInstr; i++) {
+      // ignore step 0 since there's nothing interesting to render there
+      for (var i=1; i <= maxInstr; i++) {
           page.evaluate(function(i) {
               myVisualizer.curInstr = i;
               myVisualizer.updateOutput();
           }, i /* pass i in here */);
           var outfn = fn + '.step.' + (i+1) + '.png';
           page.render(outfn);
-          console.log('Rendered step ' + (i+1) + ' of ' + (maxInstr+1));
+          if (DEBUG) {
+            console.log('Rendered step ' + (i+1) + ' / ' + (maxInstr+1), '\t' + outfn);
+          }
       }
 
       phantom.exit()
 
     }, 1000);
 });
-
