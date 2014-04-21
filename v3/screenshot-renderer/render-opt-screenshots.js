@@ -13,8 +13,6 @@ var page = require('webpage').create();
 var system = require('system');
 var fs = require('fs');
 
-var fn, server, option_str;
-
 if (system.args.length < 2) {
   console.log('\nUsage:');
   console.log('phantomjs render-opt-screenshots.js <filename> [custom server name] [custom option string]');
@@ -22,14 +20,17 @@ if (system.args.length < 2) {
   console.log('the state diagram at each step i as <filename>.step.$i.png');
   phantom.exit(1);
 }
-else if (system.args.length == 2) {
-  fn = system.args[1];
+
+var fn = system.args[1];
+var basename = fn.split(/[\\/]/).pop();
+
+var server, option_str;
+if (system.args.length == 2) {
   // default options
   server = 'www.pythontutor.com';
   option_str = 'cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2';
 }
 else {
-  fn = system.args[1];
   server = system.args[2];
   option_str = system.args[3];
 }
@@ -71,7 +72,7 @@ page.open(url, function () {
               myVisualizer.curInstr = i;
               myVisualizer.updateOutput();
           }, i /* pass i in here */);
-          var outfn = fn + '.step.' + (i+1) + '.png';
+          var outfn = basename + '.step.' + (i+1) + '.png';
           page.render(outfn);
           if (DEBUG) {
             console.log('Rendered step ' + (i+1) + ' / ' + (maxInstr+1), '\t' + outfn);
