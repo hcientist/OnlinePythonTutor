@@ -3,16 +3,14 @@ Golden tests for OPT frontend JS rendering
 Created on 2014-04-21
 
 Pre-reqs:
-    phantomjs installed (tested on v1.9.2)
-    OPT running locally on localhost:8080 using "python bottle_server.py"
-    must run from the current directory
-
-TODO:
-    for fuzzy image diffing, consider:
-    http://www.imagemagick.org/Usage/compare/
+- phantomjs installed (tested on v1.9.2)
+- ImageMagick installed to do fuzzy image diffing
+  (tested on Version: ImageMagick 6.8.8-3 Q16 x86_64 2014-01-12 http://www.imagemagick.org)
+  http://www.imagemagick.org/Usage/compare/
+- OPT running locally on localhost:8080 using "python bottle_server.py"
+- execute from the current directory
 
 ---
-
 Forked from ../golden_test.py
 
 A simple framework for regression testing based on golden files
@@ -48,6 +46,29 @@ def clobber_golden_file(outfile, golden_file):
   print '  Clobber %s => %s' % (outfile, golden_file)
   shutil.copy(outfile, golden_file)
 
+# trivial EXACT FILE MATCH comparison, which works only if you're
+# running on the exact same machine!
+'''
+def png_files_differ(f1, f2):
+    return not filecmp.cmp(f1, f2)
+'''
+
+# fuzzy image comparison using ImageMagick
+# see: http://www.imagemagick.org/Usage/compare/
+# compare -metric AE -fuzz 1% aliasing.txt.step.2.png.regular.png  ../golden-files/regular/aliasing.txt.step.3.png -compose src -highlight-color White -lowlight-color Black cmp.png
+def png_files_differ(f1, f2):
+    # adjust fuzz to a higher percentage if it's not sensitive enough
+    # /tmp/diff.png shows pixel differences,
+    # and the number of differed pixels is sent to stderr
+    cmdline = ['compare', '-metric', 'AE', '-fuzz', '3%',
+               f1, f2,
+               '-compose', 'src', '-highlight-color', 'White',
+               '-lowlight-color', 'Black', '/tmp/diff.png']
+    (stdout, stderr) = Popen(cmdline, stdout=PIPE, stderr=PIPE).communicate()
+    assert stderr
+    num_pixels_diff = int(stderr)
+    return num_pixels_diff != 0
+
 
 def run_test(input_filename, clobber_golden=False):
     print 'Testing', input_filename
@@ -59,17 +80,23 @@ def run_test(input_filename, clobber_golden=False):
         execute(input_filename, option)
 
         output_png_files = [e for e in os.listdir('.') if bn + '.step.' in e]
+        if not output_png_files:
+            print "    " + RED + "no output .png files, maybe server is down?" + ENDC
+            
+
         for e in output_png_files:
             golden_file = 'golden-files/' + option + '/' + e
 
             if os.path.isfile(golden_file):
-                if not filecmp.cmp(e, golden_file):
+                if png_files_differ(e, golden_file):
                     print "    " + RED + e + " differs, moved to failed-tests/" + ENDC
 
-                    # save it under a new name so it won't be deleted
-                    # at the end of this function call
-                    newname = e + '.' + option + '.png'
+                    # save it under a new name in failed-tests/
+                    newname = os.path.splitext(e)[0] + '.' + option + '.png'
                     os.rename(e, 'failed-tests/' + newname)
+                    # ... and the diff too:
+                    os.rename('/tmp/diff.png',
+                              'failed-tests/' + os.path.splitext(newname)[0] + '.diff.png')
                 if clobber_golden:
                     clobber_golden_file(e, golden_file)
             else:
