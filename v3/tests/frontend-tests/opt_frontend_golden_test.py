@@ -56,57 +56,67 @@ def png_files_differ(f1, f2):
 # fuzzy image comparison using ImageMagick
 # see: http://www.imagemagick.org/Usage/compare/
 # compare -metric AE -fuzz 1% aliasing.txt.step.2.png.regular.png  ../golden-files/regular/aliasing.txt.step.3.png -compose src -highlight-color White -lowlight-color Black cmp.png
+DIFF_PNG = '/tmp/diff.png'
 def png_files_differ(f1, f2):
+
     # adjust fuzz to a higher percentage if it's not sensitive enough
     # /tmp/diff.png shows pixel differences,
     # and the number of differed pixels is sent to stderr
     cmdline = ['compare', '-metric', 'AE', '-fuzz', '3%',
                f1, f2,
                '-compose', 'src', '-highlight-color', 'White',
-               '-lowlight-color', 'Black', '/tmp/diff.png']
+               '-lowlight-color', 'Black', DIFF_PNG]
     (stdout, stderr) = Popen(cmdline, stdout=PIPE, stderr=PIPE).communicate()
     assert stderr
-    num_pixels_diff = int(stderr)
-    return num_pixels_diff != 0
+    if 'image widths or heights differ' in stderr:
+        if os.path.isfile(DIFF_PNG):
+            os.remove(DIFF_PNG)
+        return True
+    else:
+        num_pixels_diff = int(stderr)
+        return num_pixels_diff != 0
 
 
 def run_test(input_filename, clobber_golden=False):
-    print 'Testing', input_filename
-    bn = os.path.basename(input_filename)
+    try:
+        print 'Testing', input_filename
+        bn = os.path.basename(input_filename)
 
-    # test all frontend display options
-    for option in OPTIONS_DICT:
-        print "  " + option
-        execute(input_filename, option)
+        # test all frontend display options
+        for option in OPTIONS_DICT:
+            print "  " + option
+            execute(input_filename, option)
 
-        output_png_files = [e for e in os.listdir('.') if bn + '.step.' in e]
-        if not output_png_files:
-            print "    " + RED + "no output .png files, maybe server is down?" + ENDC
-            
+            output_png_files = [e for e in os.listdir('.') if bn + '.step.' in e]
+            if not output_png_files:
+                print "    " + RED + "no output .png files, maybe server is down?" + ENDC
+                
 
-        for e in output_png_files:
-            golden_file = 'golden-files/' + option + '/' + e
+            for e in output_png_files:
+                golden_file = 'golden-files/' + option + '/' + e
 
-            if os.path.isfile(golden_file):
-                if png_files_differ(e, golden_file):
-                    print "    " + RED + e + " differs, moved to failed-tests/" + ENDC
+                if os.path.isfile(golden_file):
+                    if png_files_differ(e, golden_file):
+                        print "    " + RED + e + " differs, moved to failed-tests/" + ENDC
 
-                    # save it under a new name in failed-tests/
-                    newname = os.path.splitext(e)[0] + '.' + option + '.png'
-                    os.rename(e, 'failed-tests/' + newname)
-                    # ... and the diff too:
-                    os.rename('/tmp/diff.png',
-                              'failed-tests/' + os.path.splitext(newname)[0] + '.diff.png')
-                if clobber_golden:
+                        # save it under a new name in failed-tests/
+                        newname = os.path.splitext(e)[0] + '.' + option + '.png'
+                        os.rename(e, 'failed-tests/' + newname)
+                        # ... and the diff too, if it exists:
+                        if os.path.isfile(DIFF_PNG):
+                            os.rename(DIFF_PNG, 'failed-tests/' + os.path.splitext(newname)[0] + '.diff.png')
+
+                    if clobber_golden:
+                        clobber_golden_file(e, golden_file)
+                else:
                     clobber_golden_file(e, golden_file)
-            else:
-                clobber_golden_file(e, golden_file)
 
-    # do a crude cleanup pass at the very end of the test
-    # to not interfere as much with Dropbox's weird behavior
-    for e in os.listdir('.'):
-        if '.step.' in e:
-            os.remove(e)
+    finally:
+        # do a crude cleanup pass at the very end of the test
+        # to not interfere as much with Dropbox's weird behavior
+        for e in os.listdir('.'):
+            if '.step.' in e:
+                os.remove(e)
 
 
 def run_all_tests(clobber=False):
