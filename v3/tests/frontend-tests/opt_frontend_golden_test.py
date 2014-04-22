@@ -36,7 +36,6 @@ ENDC  = '\033[0m'  # end color
 def execute(input_filename, option_name):
   assert os.path.isfile(input_filename)
   (base, ext) = os.path.splitext(input_filename)
-  assert ext == INPUT_FILE_EXTENSION
 
   (stdout, stderr) = Popen(PROGRAM + [input_filename, 'localhost:8080', OPTIONS_DICT[option_name]],
                            stdout=PIPE, stderr=PIPE).communicate()
@@ -134,8 +133,6 @@ if __name__ == "__main__":
                     help="Run one test")
   (options, args) = parser.parse_args()
 
-  INPUT_FILE_EXTENSION = '.txt' # input test files are .txt, NOT .py
-
   PROGRAM = ['phantomjs', '../../screenshot-renderer/render-opt-screenshots.js']
 
   # grab a representative subset of backend tests
@@ -148,6 +145,7 @@ if __name__ == "__main__":
                '../example-code/linked-lists/ll1.txt',
                '../example-code/sum-list.txt',
                '../example-code/closures/closure3.txt',
+               'basic-data-structures.py',
                ]
 
   if options.run_all:
