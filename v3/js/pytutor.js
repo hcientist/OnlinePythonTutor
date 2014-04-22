@@ -233,7 +233,6 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.domRoot = this.domRoot.find('div.ExecutionVisualizer');
   this.domRootD3 = this.domRootD3.select('div.ExecutionVisualizer');
 
-
   // initialize in renderPyCodeOutput()
   this.codeOutputLines = null;
   this.breakpoints = null;           // set of execution points to set as breakpoints
@@ -250,6 +249,34 @@ function ExecutionVisualizer(domRootID, dat, params) {
 
   this.render(); // go for it!
   
+}
+
+// for managing state related to pesky jsPlumb connectors, need to reset
+// before every call to renderDataStructures, or else all hell breaks
+// loose. yeah, this is kludgy and stateful, but at least all of the
+// relevant state gets shoved into one unified place
+ExecutionVisualizer.prototype.resetJsPlumbManager = function() {
+  this.jsPlumbManager = {
+    heap_pointer_src_id: 1, // increment this to be unique for each heap_pointer_src_*
+
+    // Key:   CSS ID of the div element representing the stack frame variable
+    //        (for stack->heap connections) or heap object (for heap->heap connections)
+    //        the format is: '<this.visualizerID>__heap_pointer_src_<src id>'
+    // Value: CSS ID of the div element representing the value rendered in the heap
+    //        (the format is: '<this.visualizerID>__heap_object_<id>')
+    //
+    // The reason we need to prepend this.visualizerID is because jsPlumb needs
+    // GLOBALLY UNIQUE IDs for use as connector endpoints.
+
+    // the only elements in these sets are NEW elements to be rendered in this
+    // particular call to renderDataStructures.
+    connectionEndpointIDs: d3.map(),
+    heapConnectionEndpointIDs: d3.map(), // subset of connectionEndpointIDs for heap->heap connections
+    // analogous to connectionEndpointIDs, except for environment parent pointers
+    parentPointerConnectionEndpointIDs: d3.map(),
+
+    renderedObjectIDs: d3.map(),
+  };
 }
 
 
@@ -2011,6 +2038,16 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 
 var heapPtrSrcRE = /__heap_pointer_src_/;
 
+
+// This is the main event here!!!
+//
+// The "4.0" version of renderDataStructures was refactored to be much
+// less monolithic and more modular. It was made possible by first
+// creating a suite of frontend JS regression tests so that I felt more
+// comfortable mucking around with the super-brittle code in this
+// function. This version was created in April 2014. For reference,
+// before refactoring, this function was 1,030 lines of convoluted code!
+//
 // The "3.0" version of renderDataStructures renders variables in
 // a stack, values in a separate heap, and draws line connectors
 // to represent both stack->heap object references and, more importantly,
@@ -2027,8 +2064,9 @@ var heapPtrSrcRE = /__heap_pointer_src_/;
 // of data structure aliasing. That is, aliased objects were rendered
 // multiple times, and a unique ID label was used to identify aliases.
 ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curToplevelLayout) {
-
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
+
+  myViz.resetJsPlumbManager(); // very important!!!
 
   // for simplicity (but sacrificing some performance), delete all
   // connectors and redraw them from scratch. doing so avoids mysterious
@@ -2058,34 +2096,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
 
   // Heap object rendering phase:
 
-
-  // Key:   CSS ID of the div element representing the stack frame variable
-  //        (for stack->heap connections) or heap object (for heap->heap connections)
-  //        the format is: '<this.visualizerID>__heap_pointer_src_<src id>'
-  // Value: CSS ID of the div element representing the value rendered in the heap
-  //        (the format is: '<this.visualizerID>__heap_object_<id>')
-  //
-  // The reason we need to prepend this.visualizerID is because jsPlumb needs
-  // GLOBALLY UNIQUE IDs for use as connector endpoints.
-
-  // the only elements in these sets are NEW elements to be rendered in this
-  // particular call to renderDataStructures.
-  var connectionEndpointIDs = d3.map();
-  var heapConnectionEndpointIDs = d3.map(); // subset of connectionEndpointIDs for heap->heap connections
-
-  // analogous to connectionEndpointIDs, except for environment parent pointers
-  var parentPointerConnectionEndpointIDs = d3.map();
-
-  var heap_pointer_src_id = 1; // increment this to be unique for each heap_pointer_src_*
-
-
-  var renderedObjectIDs = d3.map();
-
   // count everything in curToplevelLayout as already rendered since we will render them
   // in d3 .each() statements
   $.each(curToplevelLayout, function(xxx, row) {
     for (var i = 0; i < row.length; i++) {
-      renderedObjectIDs.set(row[i], 1);
+      myViz.jsPlumbManager.renderedObjectIDs.set(row[i], 1);
     }
   });
 
@@ -2171,7 +2186,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
       // TODO: add a smoother transition in the future
       // Right now, just delete the old element and render a new one in its place
       $(this).empty();
-      renderCompoundObject(objID, $(this), true);
+      myViz.renderCompoundObject(objID, $(this), true);
     });
 
   // delete a toplevelHeapObject
@@ -2197,345 +2212,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
       })
       .remove();
   }
-
-
-  function renderNestedObject(obj, d3DomElement) {
-    if (isPrimitiveType(obj)) {
-      renderPrimitiveObject(obj, d3DomElement);
-    }
-    else {
-      renderCompoundObject(getRefID(obj), d3DomElement, false);
-    }
-  }
-
-
-  function renderPrimitiveObject(obj, d3DomElement) {
-    if (try_hook("renderPrimitiveObject", {obj:obj, d3DomElement:d3DomElement})[0])
-      return;
-
-    var typ = typeof obj;
-
-    if (obj == null) {
-      d3DomElement.append('<span class="nullObj">None</span>');
-    }
-    else if (typ == "number") {
-      d3DomElement.append('<span class="numberObj">' + obj + '</span>');
-    }
-    else if (typ == "boolean") {
-      if (obj) {
-        d3DomElement.append('<span class="boolObj">True</span>');
-      }
-      else {
-        d3DomElement.append('<span class="boolObj">False</span>');
-      }
-    }
-    else if (typ == "string") {
-      // escape using htmlspecialchars to prevent HTML/script injection
-      var literalStr = htmlspecialchars(obj);
-
-      // print as a double-quoted string literal
-      // with explicit newlines as <br/>
-      literalStr = literalStr.replace(new RegExp('\n', 'g'), '<br/>'); // replace ALL
-      literalStr = literalStr.replace(new RegExp('\"', 'g'), '\\"'); // replace ALL
-      literalStr = '"' + literalStr + '"';
-
-      d3DomElement.append('<span class="stringObj">' + literalStr + '</span>');
-    }
-    else if (typ == "object") {
-      assert(obj[0] == 'SPECIAL_FLOAT');
-      d3DomElement.append('<span class="numberObj">' + obj[1] + '</span>');
-    }
-    else {
-      assert(false);
-    }
-  }
-
-
-  function renderCompoundObject(objID, d3DomElement, isTopLevel) {
-    if (!isTopLevel && renderedObjectIDs.has(objID)) {
-      var srcDivID = myViz.generateID('heap_pointer_src_' + heap_pointer_src_id);
-      heap_pointer_src_id++; // just make sure each source has a UNIQUE ID
-
-      var dstDivID = myViz.generateID('heap_object_' + objID);
-
-      if (myViz.textualMemoryLabels) {
-        var labelID = srcDivID + '_text_label';
-        d3DomElement.append('<div class="objectIdLabel" id="' + labelID + '">id' + objID + '</div>');
-
-        myViz.domRoot.find('div#' + labelID).hover(
-          function() {
-            myViz.jsPlumbInstance.connect({source: labelID, target: dstDivID,
-                                           scope: 'varValuePointer'});
-          },
-          function() {
-            myViz.jsPlumbInstance.select({source: labelID}).detach();
-          });
-      }
-      else {
-        // render jsPlumb arrow source since this heap object has already been rendered
-        // (or will be rendered soon)
-
-        // add a stub so that we can connect it with a connector later.
-        // IE needs this div to be NON-EMPTY in order to properly
-        // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
-        d3DomElement.append('<div id="' + srcDivID + '">&nbsp;</div>');
-
-        assert(!connectionEndpointIDs.has(srcDivID));
-        connectionEndpointIDs.set(srcDivID, dstDivID);
-        //console.log('HEAP->HEAP', srcDivID, dstDivID);
-
-        assert(!heapConnectionEndpointIDs.has(srcDivID));
-        heapConnectionEndpointIDs.set(srcDivID, dstDivID);
-      }
-
-      return; // early return!
-    }
-
-
-    var heapObjID = myViz.generateID('heap_object_' + objID);
-
-
-    // wrap ALL compound objects in a heapObject div so that jsPlumb
-    // connectors can point to it:
-    d3DomElement.append('<div class="heapObject" id="' + heapObjID + '"></div>');
-    d3DomElement = myViz.domRoot.find('#' + heapObjID);
-
-    renderedObjectIDs.set(objID, 1);
-
-    var obj = curEntry.heap[objID];
-    assert($.isArray(obj));
-
-    // prepend the type label with a memory address label
-    var typeLabelPrefix = '';
-    if (myViz.textualMemoryLabels) {
-      typeLabelPrefix = 'id' + objID + ':';
-    }
-
-    var hook_result = try_hook("renderCompoundObject", 
-                               {objID:objID, d3DomElement:d3DomElement, 
-                                isTopLevel:isTopLevel, obj:obj, 
-                                typeLabelPrefix:typeLabelPrefix, renderNestedObject:renderNestedObject});
-    if (hook_result[0]) return;
-
-    if (obj[0] == 'LIST' || obj[0] == 'TUPLE' || obj[0] == 'SET' || obj[0] == 'DICT') {
-      var label = obj[0].toLowerCase();
-
-      assert(obj.length >= 1);
-      if (obj.length == 1) {
-        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + 'empty ' + label + '</div>');
-      }
-      else {
-        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + label + '</div>');
-        d3DomElement.append('<table class="' + label + 'Tbl"></table>');
-        var tbl = d3DomElement.children('table');
-
-        if (obj[0] == 'LIST' || obj[0] == 'TUPLE') {
-          tbl.append('<tr></tr><tr></tr>');
-          var headerTr = tbl.find('tr:first');
-          var contentTr = tbl.find('tr:last');
-          $.each(obj, function(ind, val) {
-            if (ind < 1) return; // skip type tag and ID entry
-
-            // add a new column and then pass in that newly-added column
-            // as d3DomElement to the recursive call to child:
-            headerTr.append('<td class="' + label + 'Header"></td>');
-            headerTr.find('td:last').append(ind - 1);
-
-            contentTr.append('<td class="'+ label + 'Elt"></td>');
-            renderNestedObject(val, contentTr.find('td:last'));
-          });
-        }
-        else if (obj[0] == 'SET') {
-          // create an R x C matrix:
-          var numElts = obj.length - 1;
-
-          // gives roughly a 3x5 rectangular ratio, square is too, err,
-          // 'square' and boring
-          var numRows = Math.round(Math.sqrt(numElts));
-          if (numRows > 3) {
-            numRows -= 1;
-          }
-
-          var numCols = Math.round(numElts / numRows);
-          // round up if not a perfect multiple:
-          if (numElts % numRows) {
-            numCols += 1;
-          }
-
-          jQuery.each(obj, function(ind, val) {
-            if (ind < 1) return; // skip 'SET' tag
-
-            if (((ind - 1) % numCols) == 0) {
-              tbl.append('<tr></tr>');
-            }
-
-            var curTr = tbl.find('tr:last');
-            curTr.append('<td class="setElt"></td>');
-            renderNestedObject(val, curTr.find('td:last'));
-          });
-        }
-        else if (obj[0] == 'DICT') {
-          $.each(obj, function(ind, kvPair) {
-            if (ind < 1) return; // skip 'DICT' tag
-
-            tbl.append('<tr class="dictEntry"><td class="dictKey"></td><td class="dictVal"></td></tr>');
-            var newRow = tbl.find('tr:last');
-            var keyTd = newRow.find('td:first');
-            var valTd = newRow.find('td:last');
-
-            var key = kvPair[0];
-            var val = kvPair[1];
-
-            renderNestedObject(key, keyTd);
-            renderNestedObject(val, valTd);
-          });
-        }
-      }
-    }
-    else if (obj[0] == 'INSTANCE' || obj[0] == 'CLASS') {
-      var isInstance = (obj[0] == 'INSTANCE');
-      var headerLength = isInstance ? 2 : 3;
-
-      assert(obj.length >= headerLength);
-
-      if (isInstance) {
-        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' instance</div>');
-      }
-      else {
-        var superclassStr = '';
-        if (obj[2].length > 0) {
-          superclassStr += ('[extends ' + obj[2].join(', ') + '] ');
-        }
-        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' class ' + superclassStr +
-                            '<br/>' + '<a href="#" id="attrToggleLink">hide attributes</a>' + '</div>');
-      }
-
-      // right now, let's NOT display class members, since that clutters
-      // up the display too much. in the future, consider displaying
-      // class members in a pop-up pane on mouseover or mouseclick
-      // actually nix what i just said above ...
-      //if (!isInstance) return;
-
-      if (obj.length > headerLength) {
-        var lab = isInstance ? 'inst' : 'class';
-        d3DomElement.append('<table class="' + lab + 'Tbl"></table>');
-
-        var tbl = d3DomElement.children('table');
-
-        $.each(obj, function(ind, kvPair) {
-          if (ind < headerLength) return; // skip header tags
-
-          tbl.append('<tr class="' + lab + 'Entry"><td class="' + lab + 'Key"></td><td class="' + lab + 'Val"></td></tr>');
-
-          var newRow = tbl.find('tr:last');
-          var keyTd = newRow.find('td:first');
-          var valTd = newRow.find('td:last');
-
-          // the keys should always be strings, so render them directly (and without quotes):
-          // (actually this isn't the case when strings are rendered on the heap)
-          if (typeof kvPair[0] == "string") {
-            // common case ...
-            var attrnameStr = htmlspecialchars(kvPair[0]);
-            keyTd.append('<span class="keyObj">' + attrnameStr + '</span>');
-          }
-          else {
-            // when strings are rendered as heap objects ...
-            renderNestedObject(kvPair[0], keyTd);
-          }
-
-          // values can be arbitrary objects, so recurse:
-          renderNestedObject(kvPair[1], valTd);
-        });
-      }
-
-      // class attributes can be displayed or hidden, so as not to
-      // CLUTTER UP the display with a ton of attributes, especially
-      // from imported modules and custom types created from, say,
-      // collections.namedtuple
-      if (!isInstance) {
-        // super kludgy! use a global selector $ to get at the DOM
-        // element, which should be okay since IDs should be globally
-        // unique on a page, even with multiple ExecutionVisualizer
-        // instances ... but still feels dirty to me since it violates
-        // my "no using naked $(__) selectors for jQuery" convention :/
-        $(d3DomElement.selector + ' .typeLabel #attrToggleLink').click(function() {
-          var elt = $(d3DomElement.selector + ' .classTbl');
-          elt.toggle();
-          $(this).html((elt.is(':visible') ? 'hide' : 'show') + ' attributes');
-
-          if (elt.is(':visible')) {
-            myViz.classAttrsHidden[d3DomElement.selector] = false;
-            $(this).html('hide attributes');
-          }
-          else {
-            myViz.classAttrsHidden[d3DomElement.selector] = true;
-            $(this).html('show attributes');
-          }
-
-          myViz.redrawConnectors(); // redraw all arrows!
-
-          return false; // so that the <a href="#"> doesn't reload the page
-        });
-
-        // "remember" whether this was hidden earlier during this
-        // visualization session
-        if (myViz.classAttrsHidden[d3DomElement.selector]) {
-          $(d3DomElement.selector + ' .classTbl').hide();
-          $(d3DomElement.selector + ' .typeLabel #attrToggleLink').html('show attributes');
-        }
-      }
-    }
-    else if (obj[0] == 'INSTANCE_PPRINT') {
-      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' instance</div>');
-
-      strRepr = htmlspecialchars(obj[2]); // escape strings!
-      d3DomElement.append('<table class="customObjTbl"><tr><td class="customObjElt">' + strRepr + '</td></tr></table>');
-    }
-    else if (obj[0] == 'FUNCTION') {
-      assert(obj.length == 3);
-
-      // pretty-print lambdas and display other weird characters:
-      var funcName = htmlspecialchars(obj[1]).replace('&lt;lambda&gt;', '\u03bb');
-      var parentFrameID = obj[2]; // optional
-
-      if (!myViz.compactFuncLabels) {
-        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + 'function</div>');
-      }
-
-      var funcPrefix = myViz.compactFuncLabels ? 'func' : '';
-
-      if (parentFrameID) {
-        d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + ' [parent=f'+ parentFrameID + ']</div>');
-      }
-      else {
-        d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + '</div>');
-      }
-    }
-    else if (obj[0] == 'HEAP_PRIMITIVE') {
-      assert(obj.length == 3);
-
-      var typeName = obj[1];
-      var primitiveVal = obj[2];
-
-      // add a bit of padding to heap primitives, for aesthetics
-      d3DomElement.append('<div class="heapPrimitive"></div>');
-      d3DomElement.find('div.heapPrimitive').append('<div class="typeLabel">' + typeLabelPrefix + typeName + '</div>');
-      renderPrimitiveObject(primitiveVal, d3DomElement.find('div.heapPrimitive'));
-    }
-    else {
-      // render custom data type
-      assert(obj.length == 2);
-
-      var typeName = obj[0];
-      var strRepr = obj[1];
-
-      strRepr = htmlspecialchars(strRepr); // escape strings!
-
-      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + typeName + '</div>');
-      d3DomElement.append('<table class="customObjTbl"><tr><td class="customObjElt">' + strRepr + '</td></tr></table>');
-    }
-  }
-
 
   // Render globals and then stack frames using d3:
 
@@ -2642,7 +2318,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
 
         var val = curEntry.globals[varname];
         if (isPrimitiveType(val)) {
-          renderPrimitiveObject(val, $(this));
+          myViz.renderPrimitiveObject(val, $(this));
         }
         else {
           var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
@@ -2665,8 +2341,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
             // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
             $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
 
-            assert(!connectionEndpointIDs.has(varDivID));
-            connectionEndpointIDs.set(varDivID, heapObjID);
+            assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(varDivID));
+            myViz.jsPlumbManager.connectionEndpointIDs.set(varDivID, heapObjID);
             //console.log('STACK->HEAP', varDivID, heapObjID);
           }
         }
@@ -2750,7 +2426,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
         myViz.domRoot.find('div#stack [data-frame_id=' + parent_frame_id + ']').each(function(i, e) {
           var parent_CSS_id = $(this).attr('id');
           //console.log('connect', my_CSS_id, parent_CSS_id);
-          parentPointerConnectionEndpointIDs.set(my_CSS_id, parent_CSS_id);
+          myViz.jsPlumbManager.parentPointerConnectionEndpointIDs.set(my_CSS_id, parent_CSS_id);
         });
       }
       else {
@@ -2758,7 +2434,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
         //console.log('connect', my_CSS_id, globalsID);
         // only do this if there are actually some global variables to display ...
         if (curEntry.ordered_globals.length > 0) {
-          parentPointerConnectionEndpointIDs.set(my_CSS_id, globalsID);
+          myViz.jsPlumbManager.parentPointerConnectionEndpointIDs.set(my_CSS_id, globalsID);
         }
       }
 
@@ -2770,7 +2446,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
       myViz.domRoot.find('div#stack [data-parent_frame_id=' + my_frame_id + ']').each(function(i, e) {
         var child_CSS_id = $(this).attr('id');
         //console.log('connect', child_CSS_id, my_CSS_id);
-        parentPointerConnectionEndpointIDs.set(child_CSS_id, my_CSS_id);
+        myViz.jsPlumbManager.parentPointerConnectionEndpointIDs.set(child_CSS_id, my_CSS_id);
       });
     });
 
@@ -2863,7 +2539,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
 
         var val = frame.encoded_locals[varname];
         if (isPrimitiveType(val)) {
-          renderPrimitiveObject(val, $(this));
+          myViz.renderPrimitiveObject(val, $(this));
         }
         else {
           var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
@@ -2885,8 +2561,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
             // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
             $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
 
-            assert(!connectionEndpointIDs.has(varDivID));
-            connectionEndpointIDs.set(varDivID, heapObjID);
+            assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(varDivID));
+            myViz.jsPlumbManager.connectionEndpointIDs.set(varDivID, heapObjID);
             //console.log('STACK->HEAP', varDivID, heapObjID);
           }
         }
@@ -2988,12 +2664,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
     // re-render existing connectors and then ...
     existingConnectionEndpointIDs.forEach(renderVarValueConnector);
     // add all the NEW connectors that have arisen in this call to renderDataStructures
-    connectionEndpointIDs.forEach(renderVarValueConnector);
+    myViz.jsPlumbManager.connectionEndpointIDs.forEach(renderVarValueConnector);
   }
   // do the same for environment parent pointers
   if (myViz.drawParentPointers) {
     existingParentPointerConnectionEndpointIDs.forEach(renderParentPointerConnector);
-    parentPointerConnectionEndpointIDs.forEach(renderParentPointerConnector);
+    myViz.jsPlumbManager.parentPointerConnectionEndpointIDs.forEach(renderParentPointerConnector);
   }
 
   /*
@@ -3021,7 +2697,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
         $(c.canvas).css("z-index", 1000); // ... and move it to the VERY FRONT
       }
       // for heap->heap connectors
-      else if (heapConnectionEndpointIDs.has(c.endpoints[0].elementId)) {
+      else if (myViz.jsPlumbManager.heapConnectionEndpointIDs.has(c.endpoints[0].elementId)) {
         // NOP since it's already the color and style we set by default
       }
       else {
@@ -3058,6 +2734,351 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
 
 }
 
+
+// rendering functions, which all take a d3 dom element to anchor the
+// new element to render
+ExecutionVisualizer.prototype.renderPrimitiveObject = function(obj, d3DomElement) {
+  if (try_hook("renderPrimitiveObject", {obj:obj, d3DomElement:d3DomElement})[0])
+    return;
+
+  var typ = typeof obj;
+
+  if (obj == null) {
+    d3DomElement.append('<span class="nullObj">None</span>');
+  }
+  else if (typ == "number") {
+    d3DomElement.append('<span class="numberObj">' + obj + '</span>');
+  }
+  else if (typ == "boolean") {
+    if (obj) {
+      d3DomElement.append('<span class="boolObj">True</span>');
+    }
+    else {
+      d3DomElement.append('<span class="boolObj">False</span>');
+    }
+  }
+  else if (typ == "string") {
+    // escape using htmlspecialchars to prevent HTML/script injection
+    var literalStr = htmlspecialchars(obj);
+
+    // print as a double-quoted string literal
+    // with explicit newlines as <br/>
+    literalStr = literalStr.replace(new RegExp('\n', 'g'), '<br/>'); // replace ALL
+    literalStr = literalStr.replace(new RegExp('\"', 'g'), '\\"'); // replace ALL
+    literalStr = '"' + literalStr + '"';
+
+    d3DomElement.append('<span class="stringObj">' + literalStr + '</span>');
+  }
+  else if (typ == "object") {
+    assert(obj[0] == 'SPECIAL_FLOAT');
+    d3DomElement.append('<span class="numberObj">' + obj[1] + '</span>');
+  }
+  else {
+    assert(false);
+  }
+}
+
+
+ExecutionVisualizer.prototype.renderNestedObject = function(obj, d3DomElement) {
+  if (isPrimitiveType(obj)) {
+    this.renderPrimitiveObject(obj, d3DomElement);
+  }
+  else {
+    this.renderCompoundObject(getRefID(obj), d3DomElement, false);
+  }
+}
+
+
+ExecutionVisualizer.prototype.renderCompoundObject =
+function(objID, d3DomElement, isTopLevel) {
+  var myViz = this; // to prevent confusion of 'this' inside of nested functions
+
+  if (!isTopLevel && myViz.jsPlumbManager.renderedObjectIDs.has(objID)) {
+    var srcDivID = myViz.generateID('heap_pointer_src_' + myViz.jsPlumbManager.heap_pointer_src_id);
+    myViz.jsPlumbManager.heap_pointer_src_id++; // just make sure each source has a UNIQUE ID
+
+    var dstDivID = myViz.generateID('heap_object_' + objID);
+
+    if (myViz.textualMemoryLabels) {
+      var labelID = srcDivID + '_text_label';
+      d3DomElement.append('<div class="objectIdLabel" id="' + labelID + '">id' + objID + '</div>');
+
+      myViz.domRoot.find('div#' + labelID).hover(
+        function() {
+          myViz.jsPlumbInstance.connect({source: labelID, target: dstDivID,
+                                         scope: 'varValuePointer'});
+        },
+        function() {
+          myViz.jsPlumbInstance.select({source: labelID}).detach();
+        });
+    }
+    else {
+      // render jsPlumb arrow source since this heap object has already been rendered
+      // (or will be rendered soon)
+
+      // add a stub so that we can connect it with a connector later.
+      // IE needs this div to be NON-EMPTY in order to properly
+      // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
+      d3DomElement.append('<div id="' + srcDivID + '">&nbsp;</div>');
+
+      assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(srcDivID));
+      myViz.jsPlumbManager.connectionEndpointIDs.set(srcDivID, dstDivID);
+      //console.log('HEAP->HEAP', srcDivID, dstDivID);
+
+      assert(!myViz.jsPlumbManager.heapConnectionEndpointIDs.has(srcDivID));
+      myViz.jsPlumbManager.heapConnectionEndpointIDs.set(srcDivID, dstDivID);
+    }
+
+    return; // early return!
+  }
+
+  var heapObjID = myViz.generateID('heap_object_' + objID);
+
+
+  // wrap ALL compound objects in a heapObject div so that jsPlumb
+  // connectors can point to it:
+  d3DomElement.append('<div class="heapObject" id="' + heapObjID + '"></div>');
+  d3DomElement = myViz.domRoot.find('#' + heapObjID);
+
+  myViz.jsPlumbManager.renderedObjectIDs.set(objID, 1);
+
+  var curEntry = this.curTrace[this.curInstr]; // was originally a param
+                                               // in renderDataStructures
+
+  var obj = curEntry.heap[objID];
+  assert($.isArray(obj));
+
+  // prepend the type label with a memory address label
+  var typeLabelPrefix = '';
+  if (myViz.textualMemoryLabels) {
+    typeLabelPrefix = 'id' + objID + ':';
+  }
+
+  var hook_result = try_hook("renderCompoundObject", 
+                             {objID:objID, d3DomElement:d3DomElement, 
+                              isTopLevel:isTopLevel, obj:obj, 
+                              typeLabelPrefix:typeLabelPrefix,
+                              renderNestedObject:myViz.renderNestedObject});
+  if (hook_result[0]) return;
+
+  if (obj[0] == 'LIST' || obj[0] == 'TUPLE' || obj[0] == 'SET' || obj[0] == 'DICT') {
+    var label = obj[0].toLowerCase();
+
+    assert(obj.length >= 1);
+    if (obj.length == 1) {
+      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + 'empty ' + label + '</div>');
+    }
+    else {
+      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + label + '</div>');
+      d3DomElement.append('<table class="' + label + 'Tbl"></table>');
+      var tbl = d3DomElement.children('table');
+
+      if (obj[0] == 'LIST' || obj[0] == 'TUPLE') {
+        tbl.append('<tr></tr><tr></tr>');
+        var headerTr = tbl.find('tr:first');
+        var contentTr = tbl.find('tr:last');
+        $.each(obj, function(ind, val) {
+          if (ind < 1) return; // skip type tag and ID entry
+
+          // add a new column and then pass in that newly-added column
+          // as d3DomElement to the recursive call to child:
+          headerTr.append('<td class="' + label + 'Header"></td>');
+          headerTr.find('td:last').append(ind - 1);
+
+          contentTr.append('<td class="'+ label + 'Elt"></td>');
+          myViz.renderNestedObject(val, contentTr.find('td:last'));
+        });
+      }
+      else if (obj[0] == 'SET') {
+        // create an R x C matrix:
+        var numElts = obj.length - 1;
+
+        // gives roughly a 3x5 rectangular ratio, square is too, err,
+        // 'square' and boring
+        var numRows = Math.round(Math.sqrt(numElts));
+        if (numRows > 3) {
+          numRows -= 1;
+        }
+
+        var numCols = Math.round(numElts / numRows);
+        // round up if not a perfect multiple:
+        if (numElts % numRows) {
+          numCols += 1;
+        }
+
+        jQuery.each(obj, function(ind, val) {
+          if (ind < 1) return; // skip 'SET' tag
+
+          if (((ind - 1) % numCols) == 0) {
+            tbl.append('<tr></tr>');
+          }
+
+          var curTr = tbl.find('tr:last');
+          curTr.append('<td class="setElt"></td>');
+          myViz.renderNestedObject(val, curTr.find('td:last'));
+        });
+      }
+      else if (obj[0] == 'DICT') {
+        $.each(obj, function(ind, kvPair) {
+          if (ind < 1) return; // skip 'DICT' tag
+
+          tbl.append('<tr class="dictEntry"><td class="dictKey"></td><td class="dictVal"></td></tr>');
+          var newRow = tbl.find('tr:last');
+          var keyTd = newRow.find('td:first');
+          var valTd = newRow.find('td:last');
+
+          var key = kvPair[0];
+          var val = kvPair[1];
+
+          myViz.renderNestedObject(key, keyTd);
+          myViz.renderNestedObject(val, valTd);
+        });
+      }
+    }
+  }
+  else if (obj[0] == 'INSTANCE' || obj[0] == 'CLASS') {
+    var isInstance = (obj[0] == 'INSTANCE');
+    var headerLength = isInstance ? 2 : 3;
+
+    assert(obj.length >= headerLength);
+
+    if (isInstance) {
+      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' instance</div>');
+    }
+    else {
+      var superclassStr = '';
+      if (obj[2].length > 0) {
+        superclassStr += ('[extends ' + obj[2].join(', ') + '] ');
+      }
+      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' class ' + superclassStr +
+                          '<br/>' + '<a href="#" id="attrToggleLink">hide attributes</a>' + '</div>');
+    }
+
+    // right now, let's NOT display class members, since that clutters
+    // up the display too much. in the future, consider displaying
+    // class members in a pop-up pane on mouseover or mouseclick
+    // actually nix what i just said above ...
+    //if (!isInstance) return;
+
+    if (obj.length > headerLength) {
+      var lab = isInstance ? 'inst' : 'class';
+      d3DomElement.append('<table class="' + lab + 'Tbl"></table>');
+
+      var tbl = d3DomElement.children('table');
+
+      $.each(obj, function(ind, kvPair) {
+        if (ind < headerLength) return; // skip header tags
+
+        tbl.append('<tr class="' + lab + 'Entry"><td class="' + lab + 'Key"></td><td class="' + lab + 'Val"></td></tr>');
+
+        var newRow = tbl.find('tr:last');
+        var keyTd = newRow.find('td:first');
+        var valTd = newRow.find('td:last');
+
+        // the keys should always be strings, so render them directly (and without quotes):
+        // (actually this isn't the case when strings are rendered on the heap)
+        if (typeof kvPair[0] == "string") {
+          // common case ...
+          var attrnameStr = htmlspecialchars(kvPair[0]);
+          keyTd.append('<span class="keyObj">' + attrnameStr + '</span>');
+        }
+        else {
+          // when strings are rendered as heap objects ...
+          myViz.renderNestedObject(kvPair[0], keyTd);
+        }
+
+        // values can be arbitrary objects, so recurse:
+        myViz.renderNestedObject(kvPair[1], valTd);
+      });
+    }
+
+    // class attributes can be displayed or hidden, so as not to
+    // CLUTTER UP the display with a ton of attributes, especially
+    // from imported modules and custom types created from, say,
+    // collections.namedtuple
+    if (!isInstance) {
+      // super kludgy! use a global selector $ to get at the DOM
+      // element, which should be okay since IDs should be globally
+      // unique on a page, even with multiple ExecutionVisualizer
+      // instances ... but still feels dirty to me since it violates
+      // my "no using naked $(__) selectors for jQuery" convention :/
+      $(d3DomElement.selector + ' .typeLabel #attrToggleLink').click(function() {
+        var elt = $(d3DomElement.selector + ' .classTbl');
+        elt.toggle();
+        $(this).html((elt.is(':visible') ? 'hide' : 'show') + ' attributes');
+
+        if (elt.is(':visible')) {
+          myViz.classAttrsHidden[d3DomElement.selector] = false;
+          $(this).html('hide attributes');
+        }
+        else {
+          myViz.classAttrsHidden[d3DomElement.selector] = true;
+          $(this).html('show attributes');
+        }
+
+        myViz.redrawConnectors(); // redraw all arrows!
+
+        return false; // so that the <a href="#"> doesn't reload the page
+      });
+
+      // "remember" whether this was hidden earlier during this
+      // visualization session
+      if (myViz.classAttrsHidden[d3DomElement.selector]) {
+        $(d3DomElement.selector + ' .classTbl').hide();
+        $(d3DomElement.selector + ' .typeLabel #attrToggleLink').html('show attributes');
+      }
+    }
+  }
+  else if (obj[0] == 'INSTANCE_PPRINT') {
+    d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' instance</div>');
+
+    strRepr = htmlspecialchars(obj[2]); // escape strings!
+    d3DomElement.append('<table class="customObjTbl"><tr><td class="customObjElt">' + strRepr + '</td></tr></table>');
+  }
+  else if (obj[0] == 'FUNCTION') {
+    assert(obj.length == 3);
+
+    // pretty-print lambdas and display other weird characters:
+    var funcName = htmlspecialchars(obj[1]).replace('&lt;lambda&gt;', '\u03bb');
+    var parentFrameID = obj[2]; // optional
+
+    if (!myViz.compactFuncLabels) {
+      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + 'function</div>');
+    }
+
+    var funcPrefix = myViz.compactFuncLabels ? 'func' : '';
+
+    if (parentFrameID) {
+      d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + ' [parent=f'+ parentFrameID + ']</div>');
+    }
+    else {
+      d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + '</div>');
+    }
+  }
+  else if (obj[0] == 'HEAP_PRIMITIVE') {
+    assert(obj.length == 3);
+
+    var typeName = obj[1];
+    var primitiveVal = obj[2];
+
+    // add a bit of padding to heap primitives, for aesthetics
+    d3DomElement.append('<div class="heapPrimitive"></div>');
+    d3DomElement.find('div.heapPrimitive').append('<div class="typeLabel">' + typeLabelPrefix + typeName + '</div>');
+    myViz.renderPrimitiveObject(primitiveVal, d3DomElement.find('div.heapPrimitive'));
+  }
+  else {
+    // render custom data type
+    assert(obj.length == 2);
+
+    var typeName = obj[0];
+    var strRepr = obj[1];
+
+    strRepr = htmlspecialchars(strRepr); // escape strings!
+
+    d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + typeName + '</div>');
+    d3DomElement.append('<table class="customObjTbl"><tr><td class="customObjElt">' + strRepr + '</td></tr></table>');
+  }
+}
 
 
 ExecutionVisualizer.prototype.redrawConnectors = function() {
