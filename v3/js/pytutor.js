@@ -2850,7 +2850,7 @@ function(objID, d3DomElement, isTopLevel) {
                              {objID:objID, d3DomElement:d3DomElement, 
                               isTopLevel:isTopLevel, obj:obj, 
                               typeLabelPrefix:typeLabelPrefix,
-                              renderNestedObject:myViz.renderNestedObject});
+                              myViz:myViz});
   if (hook_result[0]) return;
 
   if (obj[0] == 'LIST' || obj[0] == 'TUPLE' || obj[0] == 'SET' || obj[0] == 'DICT') {
