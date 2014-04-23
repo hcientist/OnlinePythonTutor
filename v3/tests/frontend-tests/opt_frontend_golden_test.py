@@ -146,6 +146,8 @@ if __name__ == "__main__":
                '../example-code/sum-list.txt',
                '../example-code/closures/closure3.txt',
                'basic-data-structures.py',
+               'criss-cross.py',
+               'binary-tree.py',
                ]
 
   if options.run_all:
