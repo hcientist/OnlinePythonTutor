@@ -1735,7 +1735,6 @@ ExecutionVisualizer.prototype.renderStep = function(step) {
 // heap objects don't "jiggle around" (i.e., preserving positional
 // invariance). Also, if we set up the layout objects properly, then we
 // can take full advantage of d3 to perform rendering and transitions.
-
 ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 
   // curTraceLayouts is a list of top-level heap layout "objects" with the
@@ -1767,11 +1766,9 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
   this.curTraceLayouts = [];
   this.curTraceLayouts.push([]); // pre-seed with an empty sentinel to simplify the code
 
-  assert(this.curTrace.length > 0);
-
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
-
+  assert(this.curTrace.length > 0);
   $.each(this.curTrace, function(i, curEntry) {
     var prevLayout = myViz.curTraceLayouts[myViz.curTraceLayouts.length - 1];
 
@@ -1787,7 +1784,6 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
     });
 
     var idsAlreadyLaidOut = d3.map(); // to prevent infinite recursion
-
 
     function curLayoutIndexOf(id) {
       for (var i = 0; i < curLayout.length; i++) {
@@ -1808,10 +1804,6 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
     }
 
     function recurseIntoObject(id, curRow, newRow) {
-      //console.log('recurseIntoObject', id,
-      //            $.extend(true /* make a deep copy */ , [], curRow),
-      //            $.extend(true /* make a deep copy */ , [], newRow));
-
       // heuristic for laying out 1-D linked data structures: check for enclosing elements that are
       // structurally identical and then lay them out as siblings in the same "row"
       var heapObj = curEntry.heap[id];
