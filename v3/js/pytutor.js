@@ -239,8 +239,6 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.sortedBreakpointsList = null; // sorted and synced with breakpointLines
   this.hoverBreakpoints = null;      // set of breakpoints because we're HOVERING over a given line
 
-  this.enableTransitions = false; // EXPERIMENTAL - enable transition effects
-
   this.classAttrsHidden = {}; // kludgy hack for 'show/hide attributes' for class objects
 
   try_hook("end_constructor", {myViz:this});
@@ -2031,6 +2029,8 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 var heapPtrSrcRE = /__heap_pointer_src_/;
 
 
+var rightwardNudgeHack = true; // suggested by John DeNero, toggle with global
+
 // This is the main event here!!!
 //
 // The "4.0" version of renderDataStructures was refactored to be much
@@ -2039,6 +2039,10 @@ var heapPtrSrcRE = /__heap_pointer_src_/;
 // comfortable mucking around with the super-brittle code in this
 // function. This version was created in April 2014. For reference,
 // before refactoring, this function was 1,030 lines of convoluted code!
+//
+// (Also added the rightward nudge hack to make tree-like structures
+// look more sane without any sophisticated graph rendering code. Thanks
+// to John DeNero for this suggestion all the way back in Fall 2012.)
 //
 // The "3.0" version of renderDataStructures renders variables in
 // a stack, values in a separate heap, and draws line connectors
@@ -2101,8 +2105,19 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
   // use d3 to render the heap by mapping curToplevelLayout into <table class="heapRow">
   // and <td class="toplevelHeapObject"> elements
 
+  // for simplicity, CLEAR this entire div every time, which totally
+  // gets rid of the incremental benefits of using d3 for, say,
+  // transitions or efficient updates. but it provides more
+  // deterministic and predictable output for other functions. sigh, i'm
+  // not really using d3 to the fullest, but oh wells!
+  myViz.domRoot.find('#heap')
+    .empty()
+    .html('<div id="heapHeader">Objects</div>');
+
+
   var heapRows = myViz.domRootD3.select('#heap')
     .selectAll('table.heapRow')
+    .attr('id', function(d, i){ return 'heapRow' + i; }) // add unique ID
     .data(curToplevelLayout, function(objLst) {
       return objLst[0]; // return first element, which is the row ID tag
   });
@@ -2111,33 +2126,17 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
   // insert new heap rows
   heapRows.enter().append('table')
     //.each(function(objLst, i) {console.log('NEW ROW:', objLst, i);})
+    .attr('id', function(d, i){ return 'heapRow' + i; }) // add unique ID
     .attr('class', 'heapRow');
 
   // delete a heap row
   var hrExit = heapRows.exit();
-
-  if (myViz.enableTransitions) {
-    hrExit
-      .style('opacity', '1')
-      .transition()
-      .style('opacity', '0')
-      .duration(500)
-      .each('end', function() {
-        hrExit
-          .each(function(d, idx) {
-            $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
-          })
-          .remove();
-        myViz.redrawConnectors();
-      });
-  }
-  else {
-    hrExit
-      .each(function(d, idx) {
-        $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
-      })
-      .remove();
-  }
+  hrExit
+    .each(function(d, idx) {
+      //console.log('DEL ROW:', d, idx);
+      $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
+    })
+    .remove();
 
 
   // update an existing heap row
@@ -2151,20 +2150,6 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
   var tlhEnter = toplevelHeapObjects.enter().append('td')
     .attr('class', 'toplevelHeapObject')
     .attr('id', function(d, i) {return 'toplevel_heap_object_' + d;});
-
-  if (myViz.enableTransitions) {
-    tlhEnter
-      .style('opacity', '0')
-      .style('border-color', 'red')
-      .transition()
-      .style('opacity', '1') /* fade in */
-      .duration(700)
-      .each('end', function() {
-        tlhEnter.transition()
-          .style('border-color', 'white') /* kill border */
-          .duration(300)
-        });
-  }
 
   // remember that the enter selection is added to the update
   // selection so that we can process it later ...
@@ -2183,27 +2168,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
 
   // delete a toplevelHeapObject
   var tlhExit = toplevelHeapObjects.exit();
+  tlhExit
+    .each(function(d, idx) {
+      $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
+    })
+    .remove();
 
-  if (myViz.enableTransitions) {
-    tlhExit.transition()
-      .style('opacity', '0') /* fade out */
-      .duration(500)
-      .each('end', function() {
-        tlhExit
-          .each(function(d, idx) {
-            $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
-          })
-          .remove();
-        myViz.redrawConnectors();
-      });
-  }
-  else {
-    tlhExit
-      .each(function(d, idx) {
-        $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
-      })
-      .remove();
-  }
 
   // Render globals and then stack frames using d3:
 
@@ -2601,6 +2571,102 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
       $(this).empty(); // crucial for garbage collecting jsPlumb connectors!
     })
     .remove();
+
+
+  // Rightward nudge hack to make tree-like structures look more sane
+  // without any sophisticated graph rendering code. Thanks to John
+  // DeNero for this suggestion in Fall 2012.
+  //
+  // This hack tries to ensure that all pointers that span different
+  // rows point RIGHTWARD (as much as possible), which makes tree-like
+  // structures look decent. e.g.,:
+  //
+  // t = [[['a', 'b'], ['c', 'd']], [[1,2], [3,4]]]
+  //
+  // Do it here since all of the divs have been rendered by now, but no
+  // jsPlumb arrows have been rendered yet.
+  if (rightwardNudgeHack) {
+    // Basic idea: keep a set of all nudged ROWS for each nudger row, so
+    // that when you get nudged, you can, in turn, nudge all of the rows
+    // that you've nudged. this algorithm nicely takes care of the fact
+    // that there might not be cycles in objects that you've nudged, but
+    // there are cycles in entire rows.
+    //
+    // Key:   ID of .heapRow object that did the nudging
+    // Value: set of .heapRow ID that were (transitively) nudged by this element
+    //        (represented as a d3.map)
+    var nudger_to_nudged_rows = {};
+
+    // VERY IMPORTANT to sort these connector IDs in ascending order,
+    // since I think they're rendered left-to-right, top-to-bottom in ID
+    // order, so we want to run the nudging algorithm in that same order.
+    var srcHeapConnectorIDs = myViz.jsPlumbManager.heapConnectionEndpointIDs.keys();
+    srcHeapConnectorIDs.sort();
+
+    $.each(srcHeapConnectorIDs, function(i, srcID) {
+      var dstID = myViz.jsPlumbManager.heapConnectionEndpointIDs.get(srcID);
+
+      var srcAnchorObject = myViz.domRoot.find('#' + srcID);
+      var srcHeapObject = srcAnchorObject.closest('.heapObject');
+      var dstHeapObject = myViz.domRoot.find('#' + dstID);
+      assert(dstHeapObject.attr('class') == 'heapObject');
+
+      var srcHeapRow = srcHeapObject.closest('.heapRow');
+      var dstHeapRow = dstHeapObject.closest('.heapRow');
+
+      var srcRowID = srcHeapRow.attr('id');
+      var dstRowID = dstHeapRow.attr('id');
+
+      // only consider nudging if srcID and dstID are on different rows
+      if (srcRowID != dstRowID) {
+        var srcAnchorLeft = srcAnchorObject.offset().left;
+        var srcHeapObjectLeft = srcHeapObject.offset().left;
+        var dstHeapObjectLeft = dstHeapObject.offset().left;
+
+        // if srcAnchorObject is to the RIGHT of dstHeapObject, then nudge
+        // dstHeapObject to the right
+        if (srcAnchorLeft > dstHeapObjectLeft) {
+          // an extra nudge of 32px matches up pretty well with the
+          // current CSS padding around .toplevelHeapObject
+          var delta = (srcAnchorLeft - dstHeapObjectLeft) + 32;
+
+          // set margin rather than padding so that arrows tips still end
+          // at the left edge of the element.
+          // whoa, set relative CSS using +=, nice!
+          dstHeapObject.css('margin-left', '+=' + delta);
+
+          //console.log(srcRowID, 'nudged', dstRowID, 'by', delta);
+
+          var cur_nudgee_set = nudger_to_nudged_rows[srcRowID];
+          if (cur_nudgee_set === undefined) {
+            cur_nudgee_set = d3.map();
+            nudger_to_nudged_rows[srcRowID] = cur_nudgee_set;
+          }
+          cur_nudgee_set.set(dstRowID, 1 /* useless value */);
+
+          // now if dstRowID itself nudged some other nodes, then nudge
+          // all of its nudgees by delta as well
+          var dst_nudgee_set = nudger_to_nudged_rows[dstRowID];
+          if (dst_nudgee_set) {
+            dst_nudgee_set.forEach(function(k, v) {
+              // don't nudge if it's yourself, to make cycles look
+              // somewhat reasonable (although still not ideal). e.g.,:
+              //   x = [1,2]
+              //   y = [3,x]
+              //   x[1] = y
+              if (k != srcRowID) {
+                // nudge this entire ROW by delta as well
+                myViz.domRoot.find('#' + k).css('margin-left', '+=' + delta);
+
+                // then transitively add to entry for srcRowID
+                cur_nudgee_set.set(k, 1 /* useless value */);
+              }
+            });
+          }
+        }
+      }
+    });
+  }
 
 
   // NB: ugh, I'm not very happy about this hack, but it seems necessary

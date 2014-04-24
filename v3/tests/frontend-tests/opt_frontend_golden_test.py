@@ -99,14 +99,14 @@ def run_test(input_filename, clobber_golden=False):
                         print "    " + RED + e + " differs, moved to failed-tests/" + ENDC
 
                         # save it under a new name in failed-tests/
-                        newname = os.path.splitext(e)[0] + '.' + option + '.png'
-                        os.rename(e, 'failed-tests/' + newname)
+                        newname = 'failed-tests/' + os.path.splitext(e)[0] + '.' + option + '.png'
+                        os.rename(e, newname)
                         # ... and the diff too, if it exists:
                         if os.path.isfile(DIFF_PNG):
-                            os.rename(DIFF_PNG, 'failed-tests/' + os.path.splitext(newname)[0] + '.diff.png')
+                            os.rename(DIFF_PNG, os.path.splitext(newname)[0] + '.diff.png')
 
-                    if clobber_golden:
-                        clobber_golden_file(e, golden_file)
+                        if clobber_golden:
+                            clobber_golden_file(newname, golden_file)
                 else:
                     clobber_golden_file(e, golden_file)
 
@@ -148,6 +148,8 @@ if __name__ == "__main__":
                'basic-data-structures.py',
                'criss-cross.py',
                'binary-tree.py',
+               'circular.py',
+               'double-nudge.py',
                ]
 
   if options.run_all:
