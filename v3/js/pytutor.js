@@ -261,7 +261,7 @@ ExecutionVisualizer.prototype.resetJsPlumbManager = function() {
     //        (for stack->heap connections) or heap object (for heap->heap connections)
     //        the format is: '<this.visualizerID>__heap_pointer_src_<src id>'
     // Value: CSS ID of the div element representing the value rendered in the heap
-    //        (the format is: '<this.visualizerID>__heap_object_<id>')
+    //        (the format is given by generateHeapObjID())
     //
     // The reason we need to prepend this.visualizerID is because jsPlumb needs
     // GLOBALLY UNIQUE IDs for use as connector endpoints.
@@ -283,6 +283,13 @@ ExecutionVisualizer.prototype.resetJsPlumbManager = function() {
 ExecutionVisualizer.prototype.generateID = function(original_id) {
   // (it's safer to start names with a letter rather than a number)
   return 'v' + this.visualizerID + '__' + original_id;
+}
+
+// create a unique CSS ID for a heap object, which should include both
+// its ID and the current step number. this is necessary if we want to
+// display the same heap object at multiple execution steps.
+ExecutionVisualizer.prototype.generateHeapObjID = function(objID, stepNum) {
+  return this.generateID('heap_object_' + objID + '_s' + stepNum);
 }
 
 
@@ -2283,7 +2290,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
           myViz.renderPrimitiveObject(val, $(this));
         }
         else {
-          var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
+          var heapObjID = myViz.generateHeapObjID(getRefID(val), myViz.curInstr);
 
           if (myViz.textualMemoryLabels) {
             var labelID = varDivID + '_text_label';
@@ -2504,7 +2511,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
           myViz.renderPrimitiveObject(val, $(this));
         }
         else {
-          var heapObjID = myViz.generateID('heap_object_' + getRefID(val));
+          var heapObjID = myViz.generateHeapObjID(getRefID(val), myViz.curInstr);
           if (myViz.textualMemoryLabels) {
             var labelID = varDivID + '_text_label';
             $(this).append('<div class="objectIdLabel" id="' + labelID + '">id' + getRefID(val) + '</div>');
@@ -2854,7 +2861,7 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
     var srcDivID = myViz.generateID('heap_pointer_src_' + myViz.jsPlumbManager.heap_pointer_src_id);
     myViz.jsPlumbManager.heap_pointer_src_id++; // just make sure each source has a UNIQUE ID
 
-    var dstDivID = myViz.generateID('heap_object_' + objID);
+    var dstDivID = myViz.generateHeapObjID(objID, stepNum);
 
     if (myViz.textualMemoryLabels) {
       var labelID = srcDivID + '_text_label';
@@ -2889,7 +2896,7 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
     return; // early return!
   }
 
-  var heapObjID = myViz.generateID('heap_object_' + objID);
+  var heapObjID = myViz.generateHeapObjID(objID, stepNum);
 
 
   // wrap ALL compound objects in a heapObject div so that jsPlumb
