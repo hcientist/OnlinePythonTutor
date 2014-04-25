@@ -265,6 +265,10 @@ ExecutionVisualizer.prototype.resetJsPlumbManager = function() {
     //
     // The reason we need to prepend this.visualizerID is because jsPlumb needs
     // GLOBALLY UNIQUE IDs for use as connector endpoints.
+    //
+    // TODO: jsPlumb might be able to directly take DOM elements rather
+    // than IDs, which makes the above point moot. But let's just stick
+    // with this for now until I want to majorly refactor :)
 
     // the only elements in these sets are NEW elements to be rendered in this
     // particular call to renderDataStructures.
@@ -273,7 +277,7 @@ ExecutionVisualizer.prototype.resetJsPlumbManager = function() {
     // analogous to connectionEndpointIDs, except for environment parent pointers
     parentPointerConnectionEndpointIDs: d3.map(),
 
-    renderedObjectIDs: d3.map(),
+    renderedHeapObjectIDs: d3.map(), // format given by generateHeapObjID()
   };
 }
 
@@ -2103,7 +2107,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
   // in d3 .each() statements
   $.each(curToplevelLayout, function(xxx, row) {
     for (var i = 0; i < row.length; i++) {
-      myViz.jsPlumbManager.renderedObjectIDs.set(row[i], 1);
+      var objID = row[i];
+      var heapObjID = myViz.generateHeapObjID(objID, myViz.curInstr);
+      myViz.jsPlumbManager.renderedHeapObjectIDs.set(heapObjID, 1);
     }
   });
 
@@ -2857,11 +2863,13 @@ ExecutionVisualizer.prototype.renderCompoundObject =
 function(objID, stepNum, d3DomElement, isTopLevel) {
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
-  if (!isTopLevel && myViz.jsPlumbManager.renderedObjectIDs.has(objID)) {
+  var heapObjID = myViz.generateHeapObjID(objID, stepNum);
+
+  if (!isTopLevel && myViz.jsPlumbManager.renderedHeapObjectIDs.has(heapObjID)) {
     var srcDivID = myViz.generateID('heap_pointer_src_' + myViz.jsPlumbManager.heap_pointer_src_id);
     myViz.jsPlumbManager.heap_pointer_src_id++; // just make sure each source has a UNIQUE ID
 
-    var dstDivID = myViz.generateHeapObjID(objID, stepNum);
+    var dstDivID = heapObjID;
 
     if (myViz.textualMemoryLabels) {
       var labelID = srcDivID + '_text_label';
@@ -2896,15 +2904,13 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
     return; // early return!
   }
 
-  var heapObjID = myViz.generateHeapObjID(objID, stepNum);
-
 
   // wrap ALL compound objects in a heapObject div so that jsPlumb
   // connectors can point to it:
   d3DomElement.append('<div class="heapObject" id="' + heapObjID + '"></div>');
-  d3DomElement = myViz.domRoot.find('#' + heapObjID);
+  d3DomElement = myViz.domRoot.find('#' + heapObjID); // TODO: maybe inefficient
 
-  myViz.jsPlumbManager.renderedObjectIDs.set(objID, 1);
+  myViz.jsPlumbManager.renderedHeapObjectIDs.set(heapObjID, 1);
 
   var curHeap = myViz.curTrace[stepNum].heap;
   var obj = curHeap[objID];
