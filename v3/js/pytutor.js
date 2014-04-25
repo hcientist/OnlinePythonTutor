@@ -2740,10 +2740,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
 
   function highlight_frame(frameID) {
     myViz.jsPlumbInstance.select().each(function(c) {
-      // this is VERY VERY fragile code, since it assumes that going up
-      // FOUR layers of parent() calls will get you from the source end
-      // of the connector to the enclosing stack frame
-      var stackFrameDiv = c.source.parent().parent().parent().parent();
+      // find the enclosing .stackFrame ...
+      var stackFrameDiv = c.source.closest('.stackFrame');
 
       // if this connector starts in the selected stack frame ...
       if (stackFrameDiv.attr('id') == frameID) {
