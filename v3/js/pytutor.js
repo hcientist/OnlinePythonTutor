@@ -2163,7 +2163,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
       // TODO: add a smoother transition in the future
       // Right now, just delete the old element and render a new one in its place
       $(this).empty();
-      myViz.renderCompoundObject(objID, $(this), true);
+      myViz.renderCompoundObject(objID, myViz.curInstr, $(this), true);
     });
 
   // delete a toplevelHeapObject
@@ -2835,18 +2835,19 @@ ExecutionVisualizer.prototype.renderPrimitiveObject = function(obj, d3DomElement
 }
 
 
-ExecutionVisualizer.prototype.renderNestedObject = function(obj, d3DomElement) {
+ExecutionVisualizer.prototype.renderNestedObject = function(obj, stepNum, d3DomElement) {
   if (isPrimitiveType(obj)) {
     this.renderPrimitiveObject(obj, d3DomElement);
   }
   else {
-    this.renderCompoundObject(getRefID(obj), d3DomElement, false);
+    // obj is a ["REF", <int>] so dereference the 'pointer' to render that object
+    this.renderCompoundObject(getRefID(obj), stepNum, d3DomElement, false);
   }
 }
 
 
 ExecutionVisualizer.prototype.renderCompoundObject =
-function(objID, d3DomElement, isTopLevel) {
+function(objID, stepNum, d3DomElement, isTopLevel) {
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
   if (!isTopLevel && myViz.jsPlumbManager.renderedObjectIDs.has(objID)) {
@@ -2898,10 +2899,8 @@ function(objID, d3DomElement, isTopLevel) {
 
   myViz.jsPlumbManager.renderedObjectIDs.set(objID, 1);
 
-  var curEntry = this.curTrace[this.curInstr]; // was originally a param
-                                               // in renderDataStructures
-
-  var obj = curEntry.heap[objID];
+  var curHeap = myViz.curTrace[stepNum].heap;
+  var obj = curHeap[objID];
   assert($.isArray(obj));
 
   // prepend the type label with a memory address label
@@ -2942,7 +2941,7 @@ function(objID, d3DomElement, isTopLevel) {
           headerTr.find('td:last').append(ind - 1);
 
           contentTr.append('<td class="'+ label + 'Elt"></td>');
-          myViz.renderNestedObject(val, contentTr.find('td:last'));
+          myViz.renderNestedObject(val, stepNum, contentTr.find('td:last'));
         });
       }
       else if (obj[0] == 'SET') {
@@ -2971,7 +2970,7 @@ function(objID, d3DomElement, isTopLevel) {
 
           var curTr = tbl.find('tr:last');
           curTr.append('<td class="setElt"></td>');
-          myViz.renderNestedObject(val, curTr.find('td:last'));
+          myViz.renderNestedObject(val, stepNum, curTr.find('td:last'));
         });
       }
       else if (obj[0] == 'DICT') {
@@ -2986,8 +2985,8 @@ function(objID, d3DomElement, isTopLevel) {
           var key = kvPair[0];
           var val = kvPair[1];
 
-          myViz.renderNestedObject(key, keyTd);
-          myViz.renderNestedObject(val, valTd);
+          myViz.renderNestedObject(key, stepNum, keyTd);
+          myViz.renderNestedObject(val, stepNum, valTd);
         });
       }
     }
@@ -3040,11 +3039,11 @@ function(objID, d3DomElement, isTopLevel) {
         }
         else {
           // when strings are rendered as heap objects ...
-          myViz.renderNestedObject(kvPair[0], keyTd);
+          myViz.renderNestedObject(kvPair[0], stepNum, keyTd);
         }
 
         // values can be arbitrary objects, so recurse:
-        myViz.renderNestedObject(kvPair[1], valTd);
+        myViz.renderNestedObject(kvPair[1], stepNum, valTd);
       });
     }
 
