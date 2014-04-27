@@ -112,6 +112,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   pyCrazyMode    - run with Py2crazy, which provides expression-level
 //                    granularity instead of line-level granularity (HIGHLY EXPERIMENTAL!)
 //   hideCode - hide the code display and show only the data structure viz
+//   tabularView - render a tabular view of ALL steps at once (EXPERIMENTAL)
 function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
   this.curTrace = dat.trace;
@@ -193,6 +194,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.drawParentPointers = (this.params.drawParentPointers == true);
   this.textualMemoryLabels = (this.params.textualMemoryLabels == true);
   this.showOnlyOutputs = (this.params.showOnlyOutputs == true);
+  this.tabularView = (this.params.tabularView == true);
 
   this.executeCodeWithRawInputFunc = this.params.executeCodeWithRawInputFunc;
 
@@ -352,6 +354,11 @@ ExecutionVisualizer.prototype.render = function() {
          </tr>\
        </table>\
      </div>';
+
+  // override
+  if (myViz.tabularView) {
+    codeVizHTML = '<div id="optTabularView"></div>';
+  }
 
   var vizHeaderHTML =
     '<div id="vizHeader">\
@@ -611,6 +618,11 @@ ExecutionVisualizer.prototype.render = function() {
 
   if (!this.params.hideCode) {
     this.renderPyCodeOutput();
+  }
+
+  // EXPERIMENTAL!
+  if (this.tabularView) {
+    this.renderTabularView();
   }
 
   this.updateOutput();
@@ -2073,6 +2085,10 @@ var rightwardNudgeHack = true; // suggested by John DeNero, toggle with global
 ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curToplevelLayout) {
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
+  if (myViz.tabularView) {
+    return; // return EARLY!!!
+  }
+
   myViz.resetJsPlumbManager(); // very important!!!
 
   // for simplicity (but sacrificing some performance), delete all
@@ -2801,6 +2817,152 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
 
   try_hook("end_renderDataStructures", {myViz:myViz});  
 
+}
+
+
+// render a tabular visualization where each row is an execution step,
+// and each column is a variable
+ExecutionVisualizer.prototype.renderTabularView = function() {
+  var myViz = this; // to prevent confusion of 'this' inside of nested functions
+
+  myViz.resetJsPlumbManager(); // very important!!!
+
+  var allGlobalVars = [];
+  // Key: function name
+  // Value: list of ordered variables for function
+  var funcNameToOrderedVars = {};
+  var orderedFuncNames = []; // function names in order of appearance
+
+  // iterate through the entire trace and find all global variables, and
+  // all local variables in all functions, in order of appearance in the trace
+  $.each(myViz.curTrace, function(i, elt) {
+    $.each(elt.ordered_globals, function(i, g) {
+      // don't add duplicates into this list,
+      // but need to use a list to maintain ORDERING
+      if ($.inArray(g, allGlobalVars) === -1) {
+        allGlobalVars.push(g);
+      }
+    });
+
+    $.each(elt.stack_to_render, function(i, sf) {
+      var funcVarsList = funcNameToOrderedVars[sf.func_name];
+      if (funcVarsList === undefined) {
+        funcVarsList = [];
+        funcNameToOrderedVars[sf.func_name] = funcVarsList;
+        orderedFuncNames.push(sf.func_name);
+      }
+      $.each(sf.ordered_varnames, function(i, v) {
+        // don't add duplicates into this list,
+        // but need to use a list to maintain ORDERING
+        // (ignore the special __return__ value)
+        if ($.inArray(v, funcVarsList) === -1 && v !== '__return__') {
+          funcVarsList.push(v);
+        }
+      });
+    });
+  });
+
+  /*
+  console.log("allGlobalVars:", allGlobalVars);
+  console.log("orderedFuncNames:", orderedFuncNames);
+  $.each(funcNameToOrderedVars, function(k, v) {
+    console.log("funcNameToOrderedVars[", k, "] =", v);
+  });
+  */
+
+  var allVarNames = [];
+
+  $.each(allGlobalVars, function(i, e) {
+    allVarNames.push(e);
+  });
+  $.each(orderedFuncNames, function(i, funcName) {
+    $.each(funcNameToOrderedVars[funcName], function(i, v) {
+      allVarNames.push(funcName + ':' + v);
+    });
+  });
+  console.log(allVarNames);
+
+  // get the values of all objects in trace entry e
+  function getAllOrderedValues(curEntry) {
+    var allVarValues = [];
+
+    $.each(allGlobalVars, function(i, e) {
+      allVarValues.push(curEntry.globals[e]);
+    });
+
+    // for local variables, grab only the values in the highlighted
+    // frame (if any)
+    var highlightedFrame = null;
+    $.each(curEntry.stack_to_render, function(i, sf) {
+      if (sf.is_highlighted) {
+        highlightedFrame = sf;
+      }
+    });
+
+    $.each(orderedFuncNames, function(i, funcName) {
+      $.each(funcNameToOrderedVars[funcName], function(i, v) {
+        var found = false;
+        if (highlightedFrame && funcName == highlightedFrame.func_name) {
+          var obj = highlightedFrame.encoded_locals[v];
+          if (obj) {
+            allVarValues.push(obj);
+            found = true;
+          }
+        }
+
+        // push an empty value if not found since we want everything to
+        // align with allVarNames
+        if (!found) {
+          allVarValues.push(undefined);
+        }
+      });
+    });
+
+    // TODO: also walk up parent pointers to also display variable
+    // values in enclosing frames
+
+    return allVarValues;
+  }
+
+
+  var tblRoot = myViz.domRootD3.select("#optTabularView");
+  var tbl = tblRoot.append("table");
+  var tHead = tbl.append('thead').append('tr');
+  tHead.selectAll('thead td')
+    .data(allVarNames)
+    .enter()
+    .append('td')
+    .html(function(d) { return d; })
+
+  var tBody = tbl.append('tbody');
+
+  var stepsAndTraceEntries = [];
+  $.each(myViz.curTrace, function(i, e) {
+    stepsAndTraceEntries.push([i, e]);
+  });
+
+  var tr = tBody.selectAll('tbody tr')
+    .data(stepsAndTraceEntries)
+    .enter()
+    .append("tr")
+    .attr("step", function(d, i) { return i; });
+
+  var td = tr.selectAll("td")
+    .data(function(e) { return getAllOrderedValues(e[1]); })
+    .enter()
+    .append("td")
+    .each(function(obj, i) {
+      $(this).empty();
+      // TODO: fixme -- this is super kludgy; must be a better way
+      var step = parseInt($(this).closest('tr').attr('step'));
+
+      if (obj === undefined) {
+        // keep this table cell EMPTY
+      }
+      else {
+        myViz.renderNestedObject(obj, step, $(this), 'tabular');
+      }
+    });
 }
 
 
