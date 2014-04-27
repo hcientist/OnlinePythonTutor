@@ -196,6 +196,8 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.showOnlyOutputs = (this.params.showOnlyOutputs == true);
   this.tabularView = (this.params.tabularView == true);
 
+  //this.tabularView = true; // for testing only
+
   this.executeCodeWithRawInputFunc = this.params.executeCodeWithRawInputFunc;
 
   // cool, we can create a separate jsPlumb instance for each visualization:
@@ -2880,7 +2882,6 @@ ExecutionVisualizer.prototype.renderTabularView = function() {
       allVarNames.push(funcName + ':' + v);
     });
   });
-  console.log(allVarNames);
 
   // get the values of all objects in trace entry e
   function getAllOrderedValues(curEntry) {
@@ -2963,6 +2964,18 @@ ExecutionVisualizer.prototype.renderTabularView = function() {
         myViz.renderNestedObject(obj, step, $(this), 'tabular');
       }
     });
+
+
+  myViz.jsPlumbInstance.reset();
+
+  function renderTableVarValueConnector(varID, valueID) {
+    myViz.jsPlumbInstance.connect({source: varID, target: valueID,
+                                   scope: 'varValuePointer',
+                                   // make it look more aesthetically pleasing:
+                                   anchors: ['TopCenter', 'LeftMiddle']});
+  }
+
+  myViz.jsPlumbManager.connectionEndpointIDs.forEach(renderTableVarValueConnector);
 }
 
 
