@@ -749,3 +749,15 @@ div.ExecutionVisualizer .pycrazy-highlight-prev-and-cur {
   text-decoration: none;
   border-bottom: 1px solid #999999;
 }
+
+
+#optTabularView thead.stepTableThead {
+  background-color: #bbb;
+}
+
+#optTabularView tbody.stepTableTbody {
+}
+
+#optTabularView td.stepTableTd {
+  padding: 3px 10px;
+}

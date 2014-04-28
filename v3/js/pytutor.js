@@ -625,6 +625,26 @@ ExecutionVisualizer.prototype.render = function() {
   // EXPERIMENTAL!
   if (this.tabularView) {
     this.renderTabularView();
+
+    // scroll vizLayoutTdFirst down to always align with the vertical
+    // scrolling ...
+    $(window).scroll(function() {
+      var codePane = myViz.domRoot.find('#vizLayoutTdFirst');
+      var docScrollTop = $(document).scrollTop();
+      var offset = codePane.offset().top;
+      var delta = docScrollTop - offset;
+      if (delta < 0) {
+        delta = 0;
+      }
+
+      // don't scroll past the bottom of the optTabularView table:
+      var optTable = myViz.domRoot.find('#optTabularView');
+      var optTableBottom = optTable.height() + optTable.offset().top;
+      var codeDisplayHeight = myViz.domRoot.find('#codeDisplayDiv').height();
+      if (delta - offset < optTableBottom - codeDisplayHeight) {
+        codePane.css('padding-top', delta);
+      }
+    });
   }
 
   this.updateOutput();
@@ -2872,7 +2892,7 @@ ExecutionVisualizer.prototype.renderTabularView = function() {
   });
   */
 
-  var allVarNames = [];
+  var allVarNames = ['Step'];
 
   $.each(allGlobalVars, function(i, e) {
     allVarNames.push(e);
@@ -2885,7 +2905,9 @@ ExecutionVisualizer.prototype.renderTabularView = function() {
 
   // get the values of all objects in trace entry e
   function getAllOrderedValues(curEntry) {
-    var allVarValues = [];
+    // HACK! start with a blank sentinel since the first column of the
+    // table is the step number
+    var allVarValues = [''];
 
     $.each(allGlobalVars, function(i, e) {
       allVarValues.push(curEntry.globals[e]);
@@ -2928,14 +2950,19 @@ ExecutionVisualizer.prototype.renderTabularView = function() {
 
   var tblRoot = myViz.domRootD3.select("#optTabularView");
   var tbl = tblRoot.append("table");
-  var tHead = tbl.append('thead').append('tr');
+  tbl.attr('id', 'optTable');
+
+  var tHead = tbl.append('thead').attr('class', 'stepTableThead').append('tr');
+  tHead.attr('class', 'stepTableTr');
   tHead.selectAll('thead td')
     .data(allVarNames)
     .enter()
     .append('td')
+    .attr('class', 'stepTableTd')
     .html(function(d) { return d; })
 
   var tBody = tbl.append('tbody');
+  tBody.attr('class', 'stepTableTbody');
 
   var stepsAndTraceEntries = [];
   $.each(myViz.curTrace, function(i, e) {
@@ -2946,22 +2973,30 @@ ExecutionVisualizer.prototype.renderTabularView = function() {
     .data(stepsAndTraceEntries)
     .enter()
     .append("tr")
-    .attr("step", function(d, i) { return i; });
+    .attr("step", function(d, i) { return i; })
+    .attr("class", 'stepTableTr');
 
   var td = tr.selectAll("td")
     .data(function(e) { return getAllOrderedValues(e[1]); })
     .enter()
     .append("td")
+    .attr('class', 'stepTableTd')
     .each(function(obj, i) {
       $(this).empty();
+
       // TODO: fixme -- this is super kludgy; must be a better way
       var step = parseInt($(this).closest('tr').attr('step'));
 
-      if (obj === undefined) {
-        // keep this table cell EMPTY
+      if (i == 0) {
+        $(this).html(step + 1); // one-indexed for readability
       }
       else {
-        myViz.renderNestedObject(obj, step, $(this), 'tabular');
+        if (obj === undefined) {
+          // keep this table cell EMPTY
+        }
+        else {
+          myViz.renderNestedObject(obj, step, $(this), 'tabular');
+        }
       }
     });
 
