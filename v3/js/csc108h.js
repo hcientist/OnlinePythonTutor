@@ -45,14 +45,6 @@ var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the U
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 
 
-function enterEditMode() {
-  $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
-}
-
-function enterDisplayNoFrillsMode() {
-  $.bbq.pushState({ mode: 'display_no_frills' }, 2 /* completely override other hash strings to keep URL clean */);
-}
-
 var pyInputCodeMirror; // CodeMirror object that contains the input text
 
 function setCodeMirrorVal(dat) {
@@ -173,13 +165,6 @@ $(document).ready(function() {
                                 updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
                                }
 
-      function handleSuccessFunc() {
-        // also scroll to top to make the UI more usable on smaller monitors
-        $(document).scrollTop(0);
-
-        $.bbq.pushState({ mode: 'display' }, 2 /* completely override other hash strings to keep URL clean */);
-      }
-
       function handleUncaughtExceptionFunc(trace) {
         if (trace.length == 1) {
           var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
@@ -204,7 +189,7 @@ $(document).ready(function() {
                         backend_script, backendOptionsObj,
                         frontendOptionsObj,
                         'pyOutputPane',
-                        handleSuccessFunc, handleUncaughtExceptionFunc);
+                        enterDisplayMode, handleUncaughtExceptionFunc);
   }
 
   function executeCodeFromScratch() {
@@ -286,4 +271,3 @@ $(document).ready(function() {
     $('#urlOutput').val(urlStr);
   });
 });
-

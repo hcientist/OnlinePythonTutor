@@ -97,6 +97,21 @@ function setToggleOptions(dat) {
 }
 
 
+function enterDisplayMode() {
+  $(document).scrollTop(0); // scroll to top to make UX better on small monitors
+  $.bbq.pushState({ mode: 'display' }, 2 /* completely override other hash strings to keep URL clean */);
+}
+
+function enterEditMode() {
+  $(document).scrollTop(0); // scroll to top to make UX better on small monitors
+  $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
+}
+
+function enterDisplayNoFrillsMode() {
+  $.bbq.pushState({ mode: 'display_no_frills' }, 2 /* completely override other hash strings to keep URL clean */);
+}
+
+
 function executePythonCode(pythonSourceCode,
                            backendScript, backendOptionsObj,
                            frontendOptionsObj,
