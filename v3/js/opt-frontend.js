@@ -3,7 +3,7 @@
 Online Python Tutor
 https://github.com/pgbovine/OnlinePythonTutor/
 
-Copyright (C) 2010-2013 Philip J. Guo (philip@pgbovine.net)
+Copyright (C) 2010-2014 Philip J. Guo (philip@pgbovine.net)
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
@@ -54,6 +54,14 @@ function setCodeMirrorVal(dat) {
 }
 
 
+// EXPERIMENTAL
+var enableTogetherJS = false;
+
+var TogetherJSConfig_disableWebRTC = true;
+var TogetherJSConfig_suppressJoinConfirmation = true;
+var updateOutputSignalFromRemote = false;
+
+
 function getAppState() {
   return {code: pyInputCodeMirror.getValue(),
           mode: appMode,
@@ -67,6 +75,42 @@ function getAppState() {
 
 $(document).ready(function() {
   setSurveyHTML();
+
+  if (enableTogetherJS) {
+    // dynamically load this JS file on demand
+    //$.getScript("https://togetherjs.com/togetherjs-min.js", function() {
+
+    $("#surveyHeader").append('<div style="margin-top: 12px;">\
+                               <button id="togetherBtn" \
+                               style="font-size: 12pt; padding: 6px;" \
+                               type="button">Start TogetherJS</button>\
+                               </div>');
+
+    $("#togetherBtn").click(function() {
+      TogetherJS(); // toggles on and off
+    });
+
+    // fired when TogetherJS is activated. might fire on page load if there's
+    // already an open session from a prior page load in the recent past.
+    TogetherJS.on("ready", function () {
+      console.log("TogetherJS ready");
+      $("#togetherBtn").html("End TogetherJS");
+    });
+
+    // emitted when TogetherJS is closed. This is not emitted when the
+    // page simply closes or navigates elsewhere. It is only closed when
+    // TogetherJS is specifically stopped.
+    TogetherJS.on("close", function () {
+      console.log("TogetherJS close");
+      $("#togetherBtn").html("Start TogetherJS");
+    });
+
+
+    // this is the URL that we want, except it doesn't exist until
+    // TogetherJS has been initialized: TogetherJS.shareUrl()
+
+    //});
+  }
 
   $("#embedLinkDiv").hide();
   $("#surveyHeader").hide();
