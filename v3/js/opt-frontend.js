@@ -62,6 +62,17 @@ function setCodeMirrorVal(dat) {
 }
 
 
+function getAppState() {
+  return {code: pyInputCodeMirror.getValue(),
+          mode: appMode,
+          cumulative: $('#cumulativeModeSelector').val(),
+          heapPrimitives: $('#heapPrimitivesSelector').val(),
+          drawParentPointers: $('#drawParentPointerSelector').val(),
+          textReferences: $('#textualMemoryLabelsSelector').val(),
+          showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
+          py: $('#pythonVersionSelector').val()};
+}
+
 $(document).ready(function() {
   setSurveyHTML();
 
@@ -583,15 +594,7 @@ $(document).ready(function() {
   });
 
   $('#genUrlBtn').bind('click', function() {
-    var myArgs = {code: pyInputCodeMirror.getValue(),
-                  mode: appMode,
-                  cumulative: $('#cumulativeModeSelector').val(),
-                  heapPrimitives: $('#heapPrimitivesSelector').val(),
-                  drawParentPointers: $('#drawParentPointerSelector').val(),
-                  textReferences: $('#textualMemoryLabelsSelector').val(),
-                  showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
-                  py: $('#pythonVersionSelector').val()};
-
+    var myArgs = getAppState();
     if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
       myArgs.curInstr = myVisualizer.curInstr;
     }
@@ -603,17 +606,11 @@ $(document).ready(function() {
 
   $('#genEmbedBtn').bind('click', function() {
     assert(appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */);
-    var myArgs = {code: pyInputCodeMirror.getValue(),
-                  cumulative: $('#cumulativeModeSelector').val(),
-                  heapPrimitives: $('#heapPrimitivesSelector').val(),
-                  drawParentPointers: $('#drawParentPointerSelector').val(),
-                  textReferences: $('#textualMemoryLabelsSelector').val(),
-                  showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
-                  py: $('#pythonVersionSelector').val(),
-                  curInstr: myVisualizer.curInstr,
-                  codeDivWidth: myVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH,
-                  codeDivHeight: myVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT,
-                 };
+    var myArgs = getAppState();
+    delete myArgs.mode;
+    myArgs.curInstr = myVisualizer.curInstr;
+    myArgs.codeDivWidth = myVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
+    myArgs.codeDivHeight = myVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
 
     var embedUrlStr = $.param.fragment(domain + "iframe-embed.html", myArgs, 2 /* clobber all */);
     var iframeStr = '<iframe width="800" height="500" frameborder="0" src="' + embedUrlStr + '"> </iframe>';
@@ -624,15 +621,7 @@ $(document).ready(function() {
   // for survey-related stuff
   $('.surveyBtn').click(function(e) {
     // wow, massive copy-and-paste action from above!
-    var myArgs = {code: pyInputCodeMirror.getValue(),
-                  mode: appMode,
-                  cumulative: $('#cumulativeModeSelector').val(),
-                  heapPrimitives: $('#heapPrimitivesSelector').val(),
-                  drawParentPointers: $('#drawParentPointerSelector').val(),
-                  textReferences: $('#textualMemoryLabelsSelector').val(),
-                  showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
-                  py: $('#pythonVersionSelector').val()};
-
+    var myArgs = getAppState();
     if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
       myArgs.curInstr = myVisualizer.curInstr;
     }
