@@ -73,6 +73,28 @@ function getAppState() {
           py: $('#pythonVersionSelector').val()};
 }
 
+function setToggleOptions(dat) {
+  // ugh, ugly tristate due to the possibility of each being undefined
+  if (dat.py !== undefined) {
+    $('#pythonVersionSelector').val(dat.py);
+  }
+  if (dat.cumulative !== undefined) {
+    $('#cumulativeModeSelector').val(dat.cumulative);
+  }
+  if (dat.heapPrimitives !== undefined) {
+    $('#heapPrimitivesSelector').val(dat.heapPrimitives);
+  }
+  if (dat.drawParentPointers !== undefined) {
+    $('#drawParentPointerSelector').val(dat.drawParentPointers);
+  }
+  if (dat.textReferences !== undefined) {
+    $('#textualMemoryLabelsSelector').val(dat.textReferences);
+  }
+  if (dat.showOnlyOutputs !== undefined) {
+    $('#showOnlyOutputsSelector').val(dat.showOnlyOutputs);
+  }
+}
+
 $(document).ready(function() {
   setSurveyHTML();
 
@@ -526,6 +548,7 @@ $(document).ready(function() {
 
 
   var queryStrOptions = getQueryStringOptions();
+  setToggleOptions(queryStrOptions);
 
   if (queryStrOptions.preseededCode) {
     setCodeMirrorVal(queryStrOptions.preseededCode);
@@ -534,27 +557,6 @@ $(document).ready(function() {
     // select a canned example on start-up:
     $("#aliasExampleLink").trigger('click');
   }
-
-  // ugh, ugly tristate due to the possibility of each being undefined
-  if (queryStrOptions.pyState !== undefined) {
-    $('#pythonVersionSelector').val(queryStrOptions.pyState);
-  }
-  if (queryStrOptions.cumulativeState !== undefined) {
-    $('#cumulativeModeSelector').val(queryStrOptions.cumulativeState);
-  }
-  if (queryStrOptions.heapPrimitives !== undefined) {
-    $('#heapPrimitivesSelector').val(queryStrOptions.heapPrimitives);
-  }
-  if (queryStrOptions.drawParentPointers !== undefined) {
-    $('#drawParentPointerSelector').val(queryStrOptions.drawParentPointers);
-  }
-  if (queryStrOptions.textRefs !== undefined) {
-    $('#textualMemoryLabelsSelector').val(queryStrOptions.textRefs);
-  }
-  if (queryStrOptions.showOnlyOutputs !== undefined) {
-    $('#showOnlyOutputsSelector').val(queryStrOptions.showOnlyOutputs);
-  }
-
 
   appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
   if ((appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) &&

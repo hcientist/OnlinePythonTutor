@@ -61,25 +61,16 @@ var rawInputLst = []; // a list of strings inputted by the user in response to r
 
 function getQueryStringOptions() {
   // note that any of these can be 'undefined'
-  var preseededCode = $.bbq.getState('code');
-  var preseededCurInstr = Number($.bbq.getState('curInstr'));
-  var pyState = $.bbq.getState('py');
-  var verticalStack = $.bbq.getState('verticalStack');
-  var heapPrimitives = $.bbq.getState('heapPrimitives');
-  var drawParentPointers = $.bbq.getState('drawParentPointers');
-  var textRefs = $.bbq.getState('textReferences');
-  var showOnlyOutputs = $.bbq.getState('showOnlyOutputs');
-  var cumulativeState = $.bbq.getState('cumulative');
-
-  return {preseededCode: preseededCode,
-          preseededCurInstr: preseededCurInstr,
-          pyState: pyState,
-          verticalStack: verticalStack,
-          heapPrimitives: heapPrimitives,
-          drawParentPointers: drawParentPointers,
-          textRefs: textRefs,
-          showOnlyOutputs: showOnlyOutputs,
-          cumulativeState: cumulativeState};
+  return {preseededCode: $.bbq.getState('code'),
+          preseededCurInstr: Number($.bbq.getState('curInstr')),
+          verticalStack: $.bbq.getState('verticalStack'),
+          py: $.bbq.getState('py'),
+          cumulative: $.bbq.getState('cumulative'),
+          heapPrimitives: $.bbq.getState('heapPrimitives'),
+          drawParentPointers: $.bbq.getState('drawParentPointers'),
+          textReferences: $.bbq.getState('textReferences'),
+          showOnlyOutputs: $.bbq.getState('showOnlyOutputs'),
+          };
 }
 
 
