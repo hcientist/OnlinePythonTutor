@@ -73,28 +73,6 @@ function getAppState() {
           py: $('#pythonVersionSelector').val()};
 }
 
-function setToggleOptions(dat) {
-  // ugh, ugly tristate due to the possibility of each being undefined
-  if (dat.py !== undefined) {
-    $('#pythonVersionSelector').val(dat.py);
-  }
-  if (dat.cumulative !== undefined) {
-    $('#cumulativeModeSelector').val(dat.cumulative);
-  }
-  if (dat.heapPrimitives !== undefined) {
-    $('#heapPrimitivesSelector').val(dat.heapPrimitives);
-  }
-  if (dat.drawParentPointers !== undefined) {
-    $('#drawParentPointerSelector').val(dat.drawParentPointers);
-  }
-  if (dat.textReferences !== undefined) {
-    $('#textualMemoryLabelsSelector').val(dat.textReferences);
-  }
-  if (dat.showOnlyOutputs !== undefined) {
-    $('#showOnlyOutputsSelector').val(dat.showOnlyOutputs);
-  }
-}
-
 $(document).ready(function() {
   setSurveyHTML();
 
@@ -558,7 +536,7 @@ $(document).ready(function() {
     $("#aliasExampleLink").trigger('click');
   }
 
-  appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
+  appMode = queryStrOptions.appMode; // assign this to the GLOBAL appMode
   if ((appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) &&
       queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
     preseededCurInstr = queryStrOptions.preseededCurInstr; // ugly global
@@ -640,4 +618,3 @@ $(document).ready(function() {
     }
   });
 });
-

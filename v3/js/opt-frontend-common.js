@@ -64,6 +64,7 @@ function getQueryStringOptions() {
   return {preseededCode: $.bbq.getState('code'),
           preseededCurInstr: Number($.bbq.getState('curInstr')),
           verticalStack: $.bbq.getState('verticalStack'),
+          appMode: $.bbq.getState('mode'),
           py: $.bbq.getState('py'),
           cumulative: $.bbq.getState('cumulative'),
           heapPrimitives: $.bbq.getState('heapPrimitives'),
@@ -71,6 +72,28 @@ function getQueryStringOptions() {
           textReferences: $.bbq.getState('textReferences'),
           showOnlyOutputs: $.bbq.getState('showOnlyOutputs'),
           };
+}
+
+function setToggleOptions(dat) {
+  // ugh, ugly tristate due to the possibility of each being undefined
+  if (dat.py !== undefined) {
+    $('#pythonVersionSelector').val(dat.py);
+  }
+  if (dat.cumulative !== undefined) {
+    $('#cumulativeModeSelector').val(dat.cumulative);
+  }
+  if (dat.heapPrimitives !== undefined) {
+    $('#heapPrimitivesSelector').val(dat.heapPrimitives);
+  }
+  if (dat.drawParentPointers !== undefined) {
+    $('#drawParentPointerSelector').val(dat.drawParentPointers);
+  }
+  if (dat.textReferences !== undefined) {
+    $('#textualMemoryLabelsSelector').val(dat.textReferences);
+  }
+  if (dat.showOnlyOutputs !== undefined) {
+    $('#showOnlyOutputsSelector').val(dat.showOnlyOutputs);
+  }
 }
 
 

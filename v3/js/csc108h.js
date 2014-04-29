@@ -232,21 +232,11 @@ $(document).ready(function() {
 
 
   var queryStrOptions = getQueryStringOptions();
-
   if (queryStrOptions.preseededCode) {
     setCodeMirrorVal(queryStrOptions.preseededCode);
   }
-  else {
-    // select a canned example on start-up:
-    $("#aliasExampleLink").trigger('click');
-  }
 
-  // ugh, ugly tristate due to the possibility of each being undefined
-  if (queryStrOptions.cumulativeState !== undefined) {
-    $('#cumulativeModeSelector').val(queryStrOptions.cumulativeState);
-  }
-
-  appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
+  appMode = queryStrOptions.appMode; // assign this to the GLOBAL appMode
   if ((appMode == "display") && queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
     preseededCurInstr = queryStrOptions.preseededCurInstr; // ugly global
     $("#executeBtn").trigger('click');

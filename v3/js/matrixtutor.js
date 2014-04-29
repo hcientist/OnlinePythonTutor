@@ -235,7 +235,7 @@ $(document).ready(function() {
 
   var queryStrOptions = getQueryStringOptions();
 
-  appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
+  appMode = queryStrOptions.appMode; // assign this to the GLOBAL appMode
   if ((appMode == "display") && queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
     preseededCurInstr = queryStrOptions.preseededCurInstr; // ugly global
     $("#executeBtn").trigger('click');
