@@ -43,14 +43,6 @@ var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the U
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 
 
-function enterEditMode() {
-  $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
-}
-
-function enterDisplayNoFrillsMode() {
-  $.bbq.pushState({ mode: 'display_no_frills' }, 2 /* completely override other hash strings to keep URL clean */);
-}
-
 var pyInputCodeMirror; // CodeMirror object that contains the input text
 
 function setCodeMirrorVal(dat) {
