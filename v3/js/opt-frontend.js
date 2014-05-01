@@ -39,23 +39,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // should all be imported BEFORE this file
 
 
-var appMode = 'edit'; // 'edit', 'display', or 'display_no_frills'
-                      // also support 'visualize' for backward
-                      // compatibility (it's the same as 'display')
-
-var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
-
-var myVisualizer = null; // singleton ExecutionVisualizer instance
-
-
-var pyInputCodeMirror; // CodeMirror object that contains the input text
-
-function setCodeMirrorVal(dat) {
-  pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
-  $('#urlOutput,#embedCodeOutput').val('');
-
-  // also scroll to top to make the UI more usable on smaller monitors
-  $(document).scrollTop(0);
+function redrawConnectors() {
+  if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
+    if (myVisualizer) {
+      myVisualizer.redrawConnectors();
+    }
+  }
 }
 
 
@@ -100,6 +89,7 @@ var try_hook = function(hook_name, args) {
 }
 
 
+// get the ENTIRE current state of the app
 function getAppState() {
   return {code: pyInputCodeMirror.getValue(),
           mode: appMode,
@@ -108,7 +98,8 @@ function getAppState() {
           drawParentPointers: $('#drawParentPointerSelector').val(),
           textReferences: $('#textualMemoryLabelsSelector').val(),
           showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
-          py: $('#pythonVersionSelector').val()};
+          py: $('#pythonVersionSelector').val(),
+          myVisualizerState: myVisualizerState};
 }
 
 
@@ -208,14 +199,14 @@ $(document).ready(function() {
         }
 
         if (dat.helpAvailable) {
-          $("#togetherJSHeader").fadeIn(750);
+          $("#togetherJSHeader").fadeIn(750, redrawConnectors);
         }
         else {
           if (TogetherJS.running) {
             alert("No more live tutors are available now.\nPlease check back later.");
             TogetherJS(); // toggle off
           }
-          $("#togetherJSHeader").fadeOut(750);
+          $("#togetherJSHeader").fadeOut(750, redrawConnectors);
         }
       };
     }
@@ -332,9 +323,6 @@ $(document).ready(function() {
                                 // undocumented experimental modes:
                                 pyCrazyMode: ($('#pythonVersionSelector').val() == '2crazy'),
                                 holisticMode: ($('#cumulativeModeSelector').val() == 'holistic')
-                                //allowEditAnnotations: true,
-
-                                //, hideCode: true,
                                }
 
       function handleUncaughtExceptionFunc(trace) {
@@ -704,12 +692,7 @@ $(document).ready(function() {
   });
 
 
-  // redraw connector arrows on window resize
-  $(window).resize(function() {
-    if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
-      myVisualizer.redrawConnectors();
-    }
-  });
+  $(window).resize(redrawConnectors);
 
   $('#genUrlBtn').bind('click', function() {
     var myArgs = getAppState();

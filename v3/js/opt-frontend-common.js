@@ -56,6 +56,26 @@ var domain = "http://pythontutor.com/"; // for deployment
 //var domain = "http://localhost:8080/"; // for Google App Engine local testing
 
 
+var appMode = 'edit'; // 'edit', 'display', or 'display_no_frills' also support
+                      // 'visualize' for backward compatibility (same as 'display')
+
+var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
+
+var pyInputCodeMirror; // CodeMirror object that contains the input text
+
+function setCodeMirrorVal(dat) {
+  pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
+  $('#urlOutput,#embedCodeOutput').val('');
+
+  // also scroll to top to make the UI more usable on smaller monitors
+  $(document).scrollTop(0);
+}
+
+
+var myVisualizer = null; // singleton ExecutionVisualizer instance
+var myVisualizerState = null; // contains the parameters necessary to generate myVisualizer
+
+
 var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
 
 
@@ -169,6 +189,8 @@ function executePythonCode(pythonSourceCode,
       return;
     }
 
+    myVisualizerState = null; // clear this before attempting to execute
+
     $.get(backendScript,
           {user_script : pythonSourceCode,
            raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
@@ -224,6 +246,14 @@ function executePythonCode(pythonSourceCode,
                   }
                 });
               }
+
+              // set some nasty global state that represents the current
+              // code that's being visualized at the moment
+              myVisualizerState = {visualizedCode: pythonSourceCode,
+                                   backendScript: backendScript,
+                                   backendOptionsObj: backendOptionsObj,
+                                   frontendOptionsObj: frontendOptionsObj};
+                                   // TODO: insert UUID
 
               handleSuccessFunc();
             }

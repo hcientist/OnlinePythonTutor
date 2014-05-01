@@ -37,24 +37,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // should all be imported BEFORE this file
 
 
-var appMode = 'edit'; // 'edit', 'display', or 'display_no_frills'
-
-var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
-
-var myVisualizer = null; // singleton ExecutionVisualizer instance
-
-
-var pyInputCodeMirror; // CodeMirror object that contains the input text
-
-function setCodeMirrorVal(dat) {
-  pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
-  $('#urlOutput,#embedCodeOutput').val('');
-
-  // also scroll to top to make the UI more usable on smaller monitors
-  $(document).scrollTop(0);
-}
-
-
 $(document).ready(function() {
   setSurveyHTML();
 
@@ -77,49 +59,7 @@ $(document).ready(function() {
   // thanks to http://benalman.com/projects/jquery-bbq-plugin/
   $(window).bind("hashchange", function(e) {
     appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
-
-    if (appMode === undefined || appMode == 'edit') {
-      $("#pyInputPane").show();
-      $("#pyOutputPane").hide();
-      $("#embedLinkDiv").hide();
-
-      $(".surveyQ").val(''); // clear all survey results when user hits forward/back
-
-      // destroy all annotation bubbles (NB: kludgy)
-      if (myVisualizer) {
-        myVisualizer.destroyAllAnnotationBubbles();
-      }
-    }
-    else if (appMode == 'display') {
-      $("#pyInputPane").hide();
-      $("#pyOutputPane").show();
-
-      $("#embedLinkDiv").show();
-
-      $('#executeBtn').html("Visualize Execution");
-      $('#executeBtn').attr('disabled', false);
-
-
-      // do this AFTER making #pyOutputPane visible, or else
-      // jsPlumb connectors won't render properly
-      myVisualizer.updateOutput();
-
-      // customize edit button click functionality AFTER rendering (NB: awkward!)
-      $('#pyOutputPane #editCodeLinkDiv').show();
-      $('#pyOutputPane #editBtn').click(function() {
-        enterEditMode();
-      });
-    }
-    else if (appMode == 'display_no_frills') {
-      $("#pyInputPane").hide();
-      $("#pyOutputPane").show();
-      $("#embedLinkDiv").show();
-    }
-    else {
-      assert(false);
-    }
-
-    $('#urlOutput,#embedCodeOutput').val(''); // clear to avoid stale values
+    updateAppDisplay();
   });
 
 
