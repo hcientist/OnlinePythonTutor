@@ -97,6 +97,53 @@ function setToggleOptions(dat) {
 }
 
 
+// update the app display based on current state of the appMode global
+// TODO: refactor all frontend clients to call this unified function
+function updateAppDisplay() {
+  if (appMode === undefined || appMode == 'edit') {
+    $("#pyInputPane").show();
+    $("#pyOutputPane,#surveyHeader").hide();
+    $("#embedLinkDiv").hide();
+
+    $(".surveyQ").val(''); // clear all survey results when user hits forward/back
+
+    // destroy all annotation bubbles (NB: kludgy)
+    if (myVisualizer) {
+      myVisualizer.destroyAllAnnotationBubbles();
+    }
+  }
+  else if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
+    $("#pyInputPane").hide();
+    $("#pyOutputPane,#surveyHeader").show();
+    $("#embedLinkDiv").show();
+
+    $('#executeBtn').html("Visualize Execution");
+    $('#executeBtn').attr('disabled', false);
+
+
+    // do this AFTER making #pyOutputPane visible, or else
+    // jsPlumb connectors won't render properly
+    myVisualizer.updateOutput();
+
+    // customize edit button click functionality AFTER rendering (NB: awkward!)
+    $('#pyOutputPane #editCodeLinkDiv').show();
+    $('#pyOutputPane #editBtn').click(function() {
+      enterEditMode();
+    });
+  }
+  else if (appMode == 'display_no_frills') {
+    $("#pyInputPane").hide();
+    $("#pyOutputPane,#surveyHeader").show();
+    $("#embedLinkDiv").show();
+  }
+  else {
+    assert(false);
+  }
+
+  $('#urlOutput,#embedCodeOutput').val(''); // clear to avoid stale values
+}
+
+
 function enterDisplayMode() {
   $(document).scrollTop(0); // scroll to top to make UX better on small monitors
   $.bbq.pushState({ mode: 'display' }, 2 /* completely override other hash strings to keep URL clean */);

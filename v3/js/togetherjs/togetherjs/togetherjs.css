@@ -638,7 +638,13 @@ input.togetherjs-upload-avatar {
   overflow-y: auto;
   /*FIXME: I'm just pulling numbers out of thin air here:*/
 
-  height: 260px;
+  /* pgbovine -- make a bit smaller */
+
+  height: 180px;
+  /*
+    height: 260px;
+    */
+
 }
 .togetherjs #togetherjs-feedback-form > header {
   font-weight: bold;
@@ -762,7 +768,13 @@ input.togetherjs-upload-avatar {
   overflow-y: auto;
   /*FIXME: I'm just pulling numbers out of thin air here:*/
 
-  height: 260px;
+  /* pgbovine -- make a bit smaller */
+
+  height: 180px;
+  /*
+    height: 260px;
+    */
+
 }
 .togetherjs .togetherjs-notification:hover {
   background: #f2f2f2;
@@ -1489,7 +1501,13 @@ section.togetherjs-buttons .togetherjs-same-url {
   overflow-y: auto;
   /*FIXME: I'm just pulling numbers out of thin air here:*/
 
-  height: 260px;
+  /* pgbovine -- make a bit smaller */
+
+  height: 180px;
+  /*
+    height: 260px;
+    */
+
 }
 .togetherjs .togetherjs-modal.togetherjs-modal-wide {
   width: 550px;

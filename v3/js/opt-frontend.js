@@ -27,6 +27,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
+// TODO: combine and minify with https://github.com/mishoo/UglifyJS2
+// and add version numbering using a ?-style query string to prevent
+// caching snafus
+
+
 // Pre-reqs:
 // - pytutor.js
 // - jquery.ba-bbq.min.js
@@ -59,7 +64,6 @@ var enableTogetherJS = false;
 
 var TogetherJSConfig_disableWebRTC = true;
 var TogetherJSConfig_suppressJoinConfirmation = true;
-var updateOutputSignalFromRemote = false;
 var TogetherJSConfig_dontShowClicks = true;
 
 // stop popping up boring intro dialog box:
@@ -69,10 +73,13 @@ var TogetherJSConfig_seenIntroDialog = true;
 var TogetherJSConfig_suppressInvite = true;
 var TogetherJSConfig_suppressJoinConfirmation = true;
 
+// only clone clicks in the input pane to keep things simple and prevent
+// duplicate clicks on, say, the visualizer pane
+var TogetherJSConfig_cloneClicks = '#pyInputPane';
+
 var TogetherJSConfig_siteName = "Online Python Tutor live help";
 var TogetherJSConfig_toolName = "Online Python Tutor live help";
 
-var togetherJsHelpAvailable = false;
 
 // TODO: consider deferred initialization later: "TogetherJS starts up
 // automatically as soon as it can, especially when continuing a
@@ -81,6 +88,16 @@ var togetherJsHelpAvailable = false;
 // initialization, define a function TogetherJSConfig_callToStart like:"
 //TogetherJSConfig_callToStart = function (callback) {
 //};
+
+
+// nasty globals
+var updateOutputSignalFromRemote = false;
+var hashchangeSignalFromRemote = false;
+
+// Global hook for ExecutionVisualizer.
+var try_hook = function(hook_name, args) {
+  return [false]; // just a stub
+}
 
 
 function getAppState() {
@@ -113,14 +130,66 @@ $(document).ready(function() {
 
 
   if (enableTogetherJS) {
-    // TODO: in CSS file, make chat window shorter to save vertical space
-    //.togetherjs .togetherjs-window #togetherjs-chat-messages
+    $("#surveyHeader").remove(); // kill this to save space
 
     var role = $.bbq.getState('role');
     var isTutor = (role == 'tutor');
     if (isTutor) {
       $("#togetherBtn").html("TUTOR - Join live help session");
+      $("#togetherJSHeader").append('<button id="syncBtn"\
+                                     type="button">Sync with learner</button>');
+
+      $("#syncBtn").click(function() {
+        console.log("Sync!");
+      });
     }
+
+
+    // Global hook for ExecutionVisualizer.
+    // Set it here after TogetherJS gets defined, hopefully!
+    try_hook = function(hook_name, args) {
+      if (hook_name == "end_updateOutput") {
+        if (updateOutputSignalFromRemote) {
+          return;
+        }
+        if (TogetherJS.running) {
+          TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
+        }
+      }
+      return [false];
+    }
+
+    TogetherJS.hub.on("updateOutput", function(msg) {
+      if (!msg.sameUrl) {
+        return;
+      }
+      if (myVisualizer) {
+        console.log("updateOutput:", msg);
+        // to prevent this call to updateOutput from firing its own TogetherJS event
+        updateOutputSignalFromRemote = true;
+        try {
+          myVisualizer.renderStep(msg.step);
+        }
+        finally {
+          updateOutputSignalFromRemote = false;
+        }
+      }
+    });
+
+    TogetherJS.hub.on("hashchange", function(msg) {
+      if (!msg.sameUrl) {
+        return;
+      }
+      hashchangeSignalFromRemote = true;
+      try {
+        appMode = msg.appMode; // assign this to the GLOBAL appMode
+        updateAppDisplay();
+      }
+      finally {
+        hashchangeSignalFromRemote = false;
+      }
+    });
+
 
     try {
       var source = new EventSource('http://togetherjs.pythontutor.com/learner-SSE');
@@ -140,8 +209,6 @@ $(document).ready(function() {
 
         if (dat.helpAvailable) {
           $("#togetherJSHeader").fadeIn(750);
-          togetherJsHelpAvailable = true;
-          $("#surveyHeader").hide(); // to save space
         }
         else {
           if (TogetherJS.running) {
@@ -149,7 +216,6 @@ $(document).ready(function() {
             TogetherJS(); // toggle off
           }
           $("#togetherJSHeader").fadeOut(750);
-          togetherJsHelpAvailable = false;
         }
       };
     }
@@ -196,54 +262,14 @@ $(document).ready(function() {
   // thanks to http://benalman.com/projects/jquery-bbq-plugin/
   $(window).bind("hashchange", function(e) {
     appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
-    //console.log("hashchange", appMode);
+    updateAppDisplay();
 
-    if (appMode === undefined || appMode == 'edit') {
-      $("#pyInputPane").show();
-      $("#pyOutputPane,#surveyHeader").hide();
-      $("#embedLinkDiv").hide();
-
-      $(".surveyQ").val(''); // clear all survey results when user hits forward/back
-
-      // destroy all annotation bubbles (NB: kludgy)
-      if (myVisualizer) {
-        myVisualizer.destroyAllAnnotationBubbles();
+    if (enableTogetherJS) {
+      if (TogetherJS.running &&
+          !hashchangeSignalFromRemote /* don't double send */) {
+        TogetherJS.send({type: "hashchange", appMode: appMode});
       }
     }
-    else if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
-      $("#pyInputPane").hide();
-      $("#pyOutputPane,#surveyHeader").show();
-      $("#embedLinkDiv").show();
-
-      $('#executeBtn').html("Visualize Execution");
-      $('#executeBtn').attr('disabled', false);
-
-
-      // do this AFTER making #pyOutputPane visible, or else
-      // jsPlumb connectors won't render properly
-      myVisualizer.updateOutput();
-
-      // customize edit button click functionality AFTER rendering (NB: awkward!)
-      $('#pyOutputPane #editCodeLinkDiv').show();
-      $('#pyOutputPane #editBtn').click(function() {
-        enterEditMode();
-      });
-    }
-    else if (appMode == 'display_no_frills') {
-      $("#pyInputPane").hide();
-      $("#pyOutputPane,#surveyHeader").show();
-      $("#embedLinkDiv").show();
-    }
-    else {
-      assert(false);
-    }
-
-
-    if (togetherJsHelpAvailable) {
-      $("#surveyHeader").hide(); // to save space
-    }
-
-    $('#urlOutput,#embedCodeOutput').val(''); // clear to avoid stale values
   });
 
 
@@ -339,15 +365,19 @@ $(document).ready(function() {
   }
 
   function executeCodeFromScratch() {
-    // don't execute empty string:
-    if ($.trim(pyInputCodeMirror.getValue()) == '') {
-      alert('Type in some code to visualize.');
-      return;
-    }
+    // prevent the weird double-execute situation where someone (such as
+    // a remote collaborator) "clicks" executeBtn while it's disabled
+    if (!$("#executeBtn").attr('disabled')) {
+      // don't execute empty string:
+      if ($.trim(pyInputCodeMirror.getValue()) == '') {
+        alert('Type in some code to visualize.');
+        return;
+      }
 
-    // reset these globals
-    rawInputLst = [];
-    executeCode();
+      // reset these globals
+      rawInputLst = [];
+      executeCode();
+    }
   }
 
   function executeCodeWithRawInput(rawInputStr, curInstr) {
