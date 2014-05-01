@@ -62,13 +62,13 @@ var TogetherJSConfig_seenIntroDialog = true;
 var TogetherJSConfig_suppressInvite = true;
 var TogetherJSConfig_suppressJoinConfirmation = true;
 
-// only clone clicks in the input pane to keep things simple and prevent
-// duplicate clicks on, say, the visualizer pane
-var TogetherJSConfig_cloneClicks = '#pyInputPane';
+// clone clicks ONLY in certain elements to keep things simple:
+var TogetherJSConfig_cloneClicks = '#pyInputPane select,#pyInputPane #executeBtn';
 
 var TogetherJSConfig_siteName = "Online Python Tutor live help";
 var TogetherJSConfig_toolName = "Online Python Tutor live help";
 
+var isTutor = false;
 
 // TODO: consider deferred initialization later: "TogetherJS starts up
 // automatically as soon as it can, especially when continuing a
@@ -82,6 +82,7 @@ var TogetherJSConfig_toolName = "Online Python Tutor live help";
 // nasty globals
 var updateOutputSignalFromRemote = false;
 var hashchangeSignalFromRemote = false;
+var nowSyncing = false;
 
 // Global hook for ExecutionVisualizer.
 var try_hook = function(hook_name, args) {
@@ -99,8 +100,23 @@ function getAppState() {
           textReferences: $('#textualMemoryLabelsSelector').val(),
           showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
           py: $('#pythonVersionSelector').val(),
+          curInstr: myVisualizer ? myVisualizer.curInstr : undefined,
           // the app state that led to the CURRENT visualization
           visualizedAppState: visualizedAppState};
+}
+
+// sets the proper GUI features to match the given appState object
+function setVisibleAppState(appState) {
+  setCodeMirrorVal(appState.code);
+
+  $('#cumulativeModeSelector').val(appState.cumulative);
+  $('#heapPrimitivesSelector').val(appState.heapPrimitives);
+  $('#drawParentPointerSelector').val(appState.drawParentPointers);
+  $('#textualMemoryLabelsSelector').val(appState.textReferences);
+  $('#showOnlyOutputsSelector').val(appState.showOnlyOutputs);
+  $('#pythonVersionSelector').val(appState.py);
+
+  // TODO: what to do about mode and curInstr?
 }
 
 
@@ -125,7 +141,8 @@ $(document).ready(function() {
     $("#surveyHeader").remove(); // kill this to save space
 
     var role = $.bbq.getState('role');
-    var isTutor = (role == 'tutor');
+    isTutor = (role == 'tutor'); // GLOBAL
+
     if (isTutor) {
       $("#togetherBtn").html("TUTOR - Join live help session");
       $("#togetherJSHeader").append('<button id="syncBtn"\
@@ -133,6 +150,11 @@ $(document).ready(function() {
 
       $("#syncBtn").click(function() {
         console.log("Sync!");
+
+        if (TogetherJS.running) {
+          nowSyncing = true;
+          TogetherJS.send({type: "requestSync"});
+        }
       });
     }
 
@@ -144,7 +166,7 @@ $(document).ready(function() {
         if (updateOutputSignalFromRemote) {
           return;
         }
-        if (TogetherJS.running) {
+        if (TogetherJS.running && !nowSyncing /* don't perterb when syncing */) {
           TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
         }
       }
@@ -174,11 +196,58 @@ $(document).ready(function() {
       }
       hashchangeSignalFromRemote = true;
       try {
+        console.log("TogetherJS RECEIVE hashchange", msg.appMode);
         appMode = msg.appMode; // assign this to the GLOBAL appMode
         updateAppDisplay();
       }
       finally {
         hashchangeSignalFromRemote = false;
+      }
+    });
+
+    // learner receives a sync request from tutor and responds by
+    // sending its current app state
+    TogetherJS.hub.on("requestSync", function(msg) {
+      // only a learner should receive sync requests from a tutor
+      if (isTutor) {
+        return;
+      }
+
+      if (TogetherJS.running) {
+        TogetherJS.send({type: "myAppState", myAppState: getAppState()});
+      }
+    });
+
+    // tutor receives an app state from a learner
+    // TODO: what happens if more than one learner sends state to tutor?
+    // i suppose the last one wins at this point :/
+    TogetherJS.hub.on("myAppState", function(msg) {
+      // only a tutor should handle receiving an app state from a learner
+      if (!isTutor) {
+        return;
+      }
+
+      try {
+        var learnerAppState = msg.myAppState;
+
+        // if available, first set my own app state to visualizedAppState
+        // and then EXECUTE that code with the given options to create the
+        // proper myVisualizer object. then adjust app state to the rest
+        // of learnerAppState
+
+        if (learnerAppState.visualizedAppState) {
+          setVisibleAppState(learnerAppState.visualizedAppState);
+          // execute code and jump to the learner's curInstr
+          executeCode(learnerAppState.curInstr);
+        }
+
+        setVisibleAppState(learnerAppState);
+
+        appMode = learnerAppState.mode;
+        updateAppDisplay();
+      }
+      finally {
+        nowSyncing = false; // done with a successful sync round trip
       }
     });
 
@@ -227,6 +296,8 @@ $(document).ready(function() {
       console.log("TogetherJS ready");
       $("#togetherBtn").html("Stop live help session");
 
+      $("#togetherJSHeader").fadeIn(750, redrawConnectors); // always show when ready
+
       if (!isTutor) {
         $.get("http://togetherjs.pythontutor.com/request-help",
               {url: TogetherJS.shareUrl()},
@@ -259,6 +330,7 @@ $(document).ready(function() {
     if (enableTogetherJS) {
       if (TogetherJS.running &&
           !hashchangeSignalFromRemote /* don't double send */) {
+        console.log("TogetherJS SEND hashchange", appMode);
         TogetherJS.send({type: "hashchange", appMode: appMode});
       }
     }
@@ -354,19 +426,15 @@ $(document).ready(function() {
   }
 
   function executeCodeFromScratch() {
-    // prevent the weird double-execute situation where someone (such as
-    // a remote collaborator) "clicks" executeBtn while it's disabled
-    if (!$("#executeBtn").attr('disabled')) {
-      // don't execute empty string:
-      if ($.trim(pyInputCodeMirror.getValue()) == '') {
-        alert('Type in some code to visualize.');
-        return;
-      }
-
-      // reset these globals
-      rawInputLst = [];
-      executeCode();
+    // don't execute empty string:
+    if ($.trim(pyInputCodeMirror.getValue()) == '') {
+      alert('Type in some code to visualize.');
+      return;
     }
+
+    // reset these globals
+    rawInputLst = [];
+    executeCode();
   }
 
   function executeCodeWithRawInput(rawInputStr, curInstr) {

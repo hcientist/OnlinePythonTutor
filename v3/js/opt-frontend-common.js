@@ -135,23 +135,27 @@ function updateAppDisplay() {
     }
   }
   else if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
-    $("#pyInputPane").hide();
-    $("#pyOutputPane,#surveyHeader").show();
-    $("#embedLinkDiv").show();
+    if (!myVisualizer) {
+      enterEditMode(); // if there's no visualizer, switch back to edit mode
+    }
+    else {
+      $("#pyInputPane").hide();
+      $("#pyOutputPane,#surveyHeader").show();
+      $("#embedLinkDiv").show();
 
-    $('#executeBtn').html("Visualize Execution");
-    $('#executeBtn').attr('disabled', false);
+      $('#executeBtn').html("Visualize Execution");
+      $('#executeBtn').attr('disabled', false);
 
+      // do this AFTER making #pyOutputPane visible, or else
+      // jsPlumb connectors won't render properly
+      myVisualizer.updateOutput();
 
-    // do this AFTER making #pyOutputPane visible, or else
-    // jsPlumb connectors won't render properly
-    myVisualizer.updateOutput();
-
-    // customize edit button click functionality AFTER rendering (NB: awkward!)
-    $('#pyOutputPane #editCodeLinkDiv').show();
-    $('#pyOutputPane #editBtn').click(function() {
-      enterEditMode();
-    });
+      // customize edit button click functionality AFTER rendering (NB: awkward!)
+      $('#pyOutputPane #editCodeLinkDiv').show();
+      $('#pyOutputPane #editBtn').click(function() {
+        enterEditMode();
+      });
+    }
   }
   else if (appMode == 'display_no_frills') {
     $("#pyInputPane").hide();
