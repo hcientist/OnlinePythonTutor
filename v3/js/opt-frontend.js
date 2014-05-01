@@ -120,24 +120,7 @@ function setVisibleAppState(appState) {
 }
 
 
-$(document).ready(function() {
-  setSurveyHTML();
-
-  $("#embedLinkDiv").hide();
-
-  pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
-    mode: 'python',
-    lineNumbers: true,
-    tabSize: 4,
-    indentUnit: 4,
-    // convert tab into four spaces:
-    extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
-  });
-
-  pyInputCodeMirror.setSize(null, '420px');
-
-
-  if (enableTogetherJS) {
+function initTogetherJS() {
     $("#surveyHeader").remove(); // kill this to save space
 
     var role = $.bbq.getState('role');
@@ -318,6 +301,28 @@ $(document).ready(function() {
         $("#togetherBtn").html("Get live help now");
       }
     });
+}
+
+
+$(document).ready(function() {
+  setSurveyHTML();
+
+  $("#embedLinkDiv").hide();
+
+  pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
+    mode: 'python',
+    lineNumbers: true,
+    tabSize: 4,
+    indentUnit: 4,
+    // convert tab into four spaces:
+    extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
+  });
+
+  pyInputCodeMirror.setSize(null, '420px');
+
+
+  if (enableTogetherJS) {
+    initTogetherJS(); // can also call this manually as well
   }
 
 
