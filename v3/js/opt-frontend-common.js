@@ -26,6 +26,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
+// include this file BEFORE any OPT frontend files
+
 
 // backend scripts to execute (Python 2 and 3 variants, if available)
 // make two copies of ../web_exec.py and give them the following names,
@@ -73,7 +75,7 @@ function setCodeMirrorVal(dat) {
 
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
-var myVisualizerState = null; // contains the parameters necessary to generate myVisualizer
+var visualizedAppState = null; // parameters necessary to generate myVisualizer
 
 
 var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
@@ -189,7 +191,7 @@ function executePythonCode(pythonSourceCode,
       return;
     }
 
-    myVisualizerState = null; // clear this before attempting to execute
+    visualizedAppState = null; // clear this before attempting to execute
 
     $.get(backendScript,
           {user_script : pythonSourceCode,
@@ -249,11 +251,8 @@ function executePythonCode(pythonSourceCode,
 
               // set some nasty global state that represents the current
               // code that's being visualized at the moment
-              myVisualizerState = {visualizedCode: pythonSourceCode,
-                                   backendScript: backendScript,
-                                   backendOptionsObj: backendOptionsObj,
-                                   frontendOptionsObj: frontendOptionsObj};
-                                   // TODO: insert UUID
+              visualizedAppState = getAppState(); // TODO: add UUID
+              visualizedAppState.visualizedAppState = null; // prevent chaining
 
               handleSuccessFunc();
             }

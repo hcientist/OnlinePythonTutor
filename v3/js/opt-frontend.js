@@ -99,7 +99,8 @@ function getAppState() {
           textReferences: $('#textualMemoryLabelsSelector').val(),
           showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
           py: $('#pythonVersionSelector').val(),
-          myVisualizerState: myVisualizerState};
+          // the app state that led to the CURRENT visualization
+          visualizedAppState: visualizedAppState};
 }
 
 
