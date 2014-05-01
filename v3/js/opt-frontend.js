@@ -124,9 +124,6 @@ function setVisibleAppState(appState) {
 function initTogetherJS() {
   $("#surveyHeader").remove(); // kill this to save space
 
-  var role = $.bbq.getState('role');
-  isTutor = (role == 'tutor'); // GLOBAL
-
   if (isTutor) {
     $("#togetherBtn").html("TUTOR - Join live help session");
     $("#togetherJSHeader").append('<button id="syncBtn"\
@@ -321,9 +318,11 @@ $(document).ready(function() {
 
   pyInputCodeMirror.setSize(null, '420px');
 
+  var role = $.bbq.getState('role');
+  isTutor = (role == 'tutor'); // GLOBAL
 
-  if (enableTogetherJS) {
-    initTogetherJS(); // can also call this manually as well
+  if (enableTogetherJS || isTutor) {
+    initTogetherJS(); // can also call this manually to test
   }
 
 
