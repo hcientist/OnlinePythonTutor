@@ -60,6 +60,27 @@ var enableTogetherJS = false;
 var TogetherJSConfig_disableWebRTC = true;
 var TogetherJSConfig_suppressJoinConfirmation = true;
 var updateOutputSignalFromRemote = false;
+var TogetherJSConfig_dontShowClicks = true;
+
+// stop popping up boring intro dialog box:
+var TogetherJSConfig_seenIntroDialog = true;
+
+// suppress annoying pop-ups:
+var TogetherJSConfig_suppressInvite = true;
+var TogetherJSConfig_suppressJoinConfirmation = true;
+
+var TogetherJSConfig_siteName = "Online Python Tutor live help";
+var TogetherJSConfig_toolName = "Online Python Tutor live help";
+
+var togetherJsHelpAvailable = false;
+
+// TODO: consider deferred initialization later: "TogetherJS starts up
+// automatically as soon as it can, especially when continuing a
+// session. Sometimes this is problematic, like an application that
+// bootstraps all of its UI after page load. To defer this
+// initialization, define a function TogetherJSConfig_callToStart like:"
+//TogetherJSConfig_callToStart = function (callback) {
+//};
 
 
 function getAppState() {
@@ -73,47 +94,11 @@ function getAppState() {
           py: $('#pythonVersionSelector').val()};
 }
 
+
 $(document).ready(function() {
   setSurveyHTML();
 
-  if (enableTogetherJS) {
-    // dynamically load this JS file on demand
-    //$.getScript("https://togetherjs.com/togetherjs-min.js", function() {
-
-    $("#surveyHeader").append('<div style="margin-top: 12px;">\
-                               <button id="togetherBtn" \
-                               style="font-size: 12pt; padding: 6px;" \
-                               type="button">Start TogetherJS</button>\
-                               </div>');
-
-    $("#togetherBtn").click(function() {
-      TogetherJS(); // toggles on and off
-    });
-
-    // fired when TogetherJS is activated. might fire on page load if there's
-    // already an open session from a prior page load in the recent past.
-    TogetherJS.on("ready", function () {
-      console.log("TogetherJS ready");
-      $("#togetherBtn").html("End TogetherJS");
-    });
-
-    // emitted when TogetherJS is closed. This is not emitted when the
-    // page simply closes or navigates elsewhere. It is only closed when
-    // TogetherJS is specifically stopped.
-    TogetherJS.on("close", function () {
-      console.log("TogetherJS close");
-      $("#togetherBtn").html("Start TogetherJS");
-    });
-
-
-    // this is the URL that we want, except it doesn't exist until
-    // TogetherJS has been initialized: TogetherJS.shareUrl()
-
-    //});
-  }
-
   $("#embedLinkDiv").hide();
-  $("#surveyHeader").hide();
 
   pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
     mode: 'python',
@@ -126,6 +111,85 @@ $(document).ready(function() {
 
   pyInputCodeMirror.setSize(null, '420px');
 
+
+  if (enableTogetherJS) {
+    // TODO: in CSS file, make chat window shorter to save vertical space
+    //.togetherjs .togetherjs-window #togetherjs-chat-messages
+
+    var role = $.bbq.getState('role');
+    var isTutor = (role == 'tutor');
+    if (isTutor) {
+      $("#togetherBtn").html("TUTOR - Join live help session");
+    }
+
+    try {
+      var source = new EventSource('http://togetherjs.pythontutor.com/learner-SSE');
+      source.onmessage = function(e) {
+        var dat = JSON.parse(e.data);
+
+        if (dat.helpQueueUrls == 1) {
+          $("#helpQueueUrls").html('There is 1 person waiting in the queue.');
+        }
+        else if (dat.helpQueueUrls == 0 || dat.helpQueueUrls > 1) {
+          $("#helpQueueUrls").html('There are ' + dat.helpQueueUrls +
+                                     ' people waiting in the queue.');
+        }
+        else {
+          $("#helpQueueUrls").html('');
+        }
+
+        if (dat.helpAvailable) {
+          $("#togetherJSHeader").fadeIn(750);
+          togetherJsHelpAvailable = true;
+          $("#surveyHeader").hide(); // to save space
+        }
+        else {
+          if (TogetherJS.running) {
+            alert("No more live tutors are available now.\nPlease check back later.");
+            TogetherJS(); // toggle off
+          }
+          $("#togetherJSHeader").fadeOut(750);
+          togetherJsHelpAvailable = false;
+        }
+      };
+    }
+    catch(err) {
+      // ugh, SSE doesn't work in Safari when testing on localhost,
+      // but I think it works when deployed on pythontutor.com
+      console.warn("Sad ... EventSource not supported :(");
+    }
+
+    $("#togetherBtn").click(function() {
+      TogetherJS(); // toggles on and off
+    });
+
+    // fired when TogetherJS is activated. might fire on page load if there's
+    // already an open session from a prior page load in the recent past.
+    TogetherJS.on("ready", function () {
+      console.log("TogetherJS ready");
+      $("#togetherBtn").html("Stop live help session");
+
+      if (!isTutor) {
+        $.get("http://togetherjs.pythontutor.com/request-help",
+              {url: TogetherJS.shareUrl()},
+              null /* don't use a callback; rely on SSE */);
+      }
+    });
+
+    // emitted when TogetherJS is closed. This is not emitted when the
+    // page simply closes or navigates elsewhere. It is only closed when
+    // TogetherJS is specifically stopped.
+    TogetherJS.on("close", function () {
+      console.log("TogetherJS close");
+
+      if (isTutor) {
+        $("#togetherBtn").html("TUTOR - Join live help session");
+      }
+      else {
+        $("#togetherBtn").html("Get live help now");
+      }
+    });
+  }
 
 
   // be friendly to the browser's forward and back buttons
@@ -172,6 +236,11 @@ $(document).ready(function() {
     }
     else {
       assert(false);
+    }
+
+
+    if (togetherJsHelpAvailable) {
+      $("#surveyHeader").hide(); // to save space
     }
 
     $('#urlOutput,#embedCodeOutput').val(''); // clear to avoid stale values
@@ -228,6 +297,10 @@ $(document).ready(function() {
                                 textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
                                 showOnlyOutputs: ($('#showOnlyOutputsSelector').val() == 'true'),
                                 executeCodeWithRawInputFunc: executeCodeWithRawInput,
+                                // if TogetherJS is enabled, always use the same
+                                // visualizer ID for all ExecutionVisualizer
+                                // objects, so that they can sync properly
+                                visualizerIdOverride: enableTogetherJS ? '1' : undefined,
                                 updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
 
                                 // undocumented experimental modes:
@@ -586,7 +659,12 @@ $(document).ready(function() {
 
 
   // log a generic AJAX error handler
-  $(document).ajaxError(function() {
+  $(document).ajaxError(function(evt, jqxhr, settings, exception) {
+    // ignore errors related to togetherjs stuff:
+    if (settings.url.indexOf('togetherjs') > -1) {
+      return; // get out early
+    }
+
     alert("Server error (possibly due to memory/resource overload). " +
           "Report a bug to philip@pgbovine.net\n\n" +
           "(Click the 'Generate URL' button to include a unique URL in your email bug report.)");

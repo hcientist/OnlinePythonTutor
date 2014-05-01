@@ -104,6 +104,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //                          whenever the HEIGHT of #dataViz changes
 //   verticalStack - if true, then stack code display ON TOP of visualization
 //                   (else place side-by-side)
+//   visualizerIdOverride - override visualizer ID instead of auto-assigning it
 //   executeCodeWithRawInputFunc - function to call when you want to re-execute the given program
 //                                 with some new user input (somewhat hacky!)
 //   highlightLines - highlight current and previously executed lines (default: false)
@@ -180,9 +181,14 @@ function ExecutionVisualizer(domRootID, dat, params) {
       this.params.arrowLines = this.params.highlightLines = false;
   }
 
-  // needs to be unique!
-  this.visualizerID = curVisualizerID;
-  curVisualizerID++;
+  if (this.params.visualizerIdOverride) {
+    this.visualizerID = this.params.visualizerIdOverride;
+  }
+  else {
+    // needs to be unique!
+    this.visualizerID = curVisualizerID;
+    curVisualizerID++;
+  }
 
 
   this.leftGutterSvgInitialized = false;
