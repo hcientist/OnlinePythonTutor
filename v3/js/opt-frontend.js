@@ -120,187 +120,188 @@ function setVisibleAppState(appState) {
 }
 
 
+// get this app ready for TogetherJS
 function initTogetherJS() {
-    $("#surveyHeader").remove(); // kill this to save space
+  $("#surveyHeader").remove(); // kill this to save space
 
-    var role = $.bbq.getState('role');
-    isTutor = (role == 'tutor'); // GLOBAL
+  var role = $.bbq.getState('role');
+  isTutor = (role == 'tutor'); // GLOBAL
+
+  if (isTutor) {
+    $("#togetherBtn").html("TUTOR - Join live help session");
+    $("#togetherJSHeader").append('<button id="syncBtn"\
+                                   type="button">Sync with learner</button>');
+
+    $("#syncBtn").click(function() {
+      console.log("Sync!");
+
+      if (TogetherJS.running) {
+        nowSyncing = true;
+        TogetherJS.send({type: "requestSync"});
+      }
+    });
+  }
+
+
+  // Global hook for ExecutionVisualizer.
+  // Set it here after TogetherJS gets defined, hopefully!
+  try_hook = function(hook_name, args) {
+    if (hook_name == "end_updateOutput") {
+      if (updateOutputSignalFromRemote) {
+        return;
+      }
+      if (TogetherJS.running && !nowSyncing /* don't perterb when syncing */) {
+        TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
+      }
+    }
+    return [false];
+  }
+
+  TogetherJS.hub.on("updateOutput", function(msg) {
+    if (!msg.sameUrl) {
+      return;
+    }
+    if (myVisualizer) {
+      console.log("updateOutput:", msg);
+      // to prevent this call to updateOutput from firing its own TogetherJS event
+      updateOutputSignalFromRemote = true;
+      try {
+        myVisualizer.renderStep(msg.step);
+      }
+      finally {
+        updateOutputSignalFromRemote = false;
+      }
+    }
+  });
+
+  TogetherJS.hub.on("hashchange", function(msg) {
+    if (!msg.sameUrl) {
+      return;
+    }
+    hashchangeSignalFromRemote = true;
+    try {
+      console.log("TogetherJS RECEIVE hashchange", msg.appMode);
+      appMode = msg.appMode; // assign this to the GLOBAL appMode
+      updateAppDisplay();
+    }
+    finally {
+      hashchangeSignalFromRemote = false;
+    }
+  });
+
+  // learner receives a sync request from tutor and responds by
+  // sending its current app state
+  TogetherJS.hub.on("requestSync", function(msg) {
+    // only a learner should receive sync requests from a tutor
+    if (isTutor) {
+      return;
+    }
+
+    if (TogetherJS.running) {
+      TogetherJS.send({type: "myAppState", myAppState: getAppState()});
+    }
+  });
+
+  // tutor receives an app state from a learner
+  // TODO: what happens if more than one learner sends state to tutor?
+  // i suppose the last one wins at this point :/
+  TogetherJS.hub.on("myAppState", function(msg) {
+    // only a tutor should handle receiving an app state from a learner
+    if (!isTutor) {
+      return;
+    }
+
+    try {
+      var learnerAppState = msg.myAppState;
+
+      // if available, first set my own app state to visualizedAppState
+      // and then EXECUTE that code with the given options to create the
+      // proper myVisualizer object. then adjust app state to the rest
+      // of learnerAppState
+
+      if (learnerAppState.visualizedAppState) {
+        setVisibleAppState(learnerAppState.visualizedAppState);
+        // execute code and jump to the learner's curInstr
+        executeCode(learnerAppState.curInstr);
+      }
+
+      setVisibleAppState(learnerAppState);
+
+      appMode = learnerAppState.mode;
+      updateAppDisplay();
+    }
+    finally {
+      nowSyncing = false; // done with a successful sync round trip
+    }
+  });
+
+
+  try {
+    var source = new EventSource('http://togetherjs.pythontutor.com/learner-SSE');
+    source.onmessage = function(e) {
+      var dat = JSON.parse(e.data);
+
+      if (dat.helpQueueUrls == 1) {
+        $("#helpQueueUrls").html('There is 1 person waiting in the queue.');
+      }
+      else if (dat.helpQueueUrls == 0 || dat.helpQueueUrls > 1) {
+        $("#helpQueueUrls").html('There are ' + dat.helpQueueUrls +
+                                   ' people waiting in the queue.');
+      }
+      else {
+        $("#helpQueueUrls").html('');
+      }
+
+      if (dat.helpAvailable) {
+        $("#togetherJSHeader").fadeIn(750, redrawConnectors);
+      }
+      else {
+        if (TogetherJS.running) {
+          alert("No more live tutors are available now.\nPlease check back later.");
+          TogetherJS(); // toggle off
+        }
+        $("#togetherJSHeader").fadeOut(750, redrawConnectors);
+      }
+    };
+  }
+  catch(err) {
+    // ugh, SSE doesn't work in Safari when testing on localhost,
+    // but I think it works when deployed on pythontutor.com
+    console.warn("Sad ... EventSource not supported :(");
+  }
+
+  $("#togetherBtn").click(function() {
+    TogetherJS(); // toggles on and off
+  });
+
+  // fired when TogetherJS is activated. might fire on page load if there's
+  // already an open session from a prior page load in the recent past.
+  TogetherJS.on("ready", function () {
+    console.log("TogetherJS ready");
+    $("#togetherBtn").html("Stop live help session");
+
+    $("#togetherJSHeader").fadeIn(750, redrawConnectors); // always show when ready
+
+    if (!isTutor) {
+      $.get("http://togetherjs.pythontutor.com/request-help",
+            {url: TogetherJS.shareUrl()},
+            null /* don't use a callback; rely on SSE */);
+    }
+  });
+
+  // emitted when TogetherJS is closed. This is not emitted when the
+  // page simply closes or navigates elsewhere. It is only closed when
+  // TogetherJS is specifically stopped.
+  TogetherJS.on("close", function () {
+    console.log("TogetherJS close");
 
     if (isTutor) {
       $("#togetherBtn").html("TUTOR - Join live help session");
-      $("#togetherJSHeader").append('<button id="syncBtn"\
-                                     type="button">Sync with learner</button>');
-
-      $("#syncBtn").click(function() {
-        console.log("Sync!");
-
-        if (TogetherJS.running) {
-          nowSyncing = true;
-          TogetherJS.send({type: "requestSync"});
-        }
-      });
     }
-
-
-    // Global hook for ExecutionVisualizer.
-    // Set it here after TogetherJS gets defined, hopefully!
-    try_hook = function(hook_name, args) {
-      if (hook_name == "end_updateOutput") {
-        if (updateOutputSignalFromRemote) {
-          return;
-        }
-        if (TogetherJS.running && !nowSyncing /* don't perterb when syncing */) {
-          TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
-        }
-      }
-      return [false];
+    else {
+      $("#togetherBtn").html("Get live help now");
     }
-
-    TogetherJS.hub.on("updateOutput", function(msg) {
-      if (!msg.sameUrl) {
-        return;
-      }
-      if (myVisualizer) {
-        console.log("updateOutput:", msg);
-        // to prevent this call to updateOutput from firing its own TogetherJS event
-        updateOutputSignalFromRemote = true;
-        try {
-          myVisualizer.renderStep(msg.step);
-        }
-        finally {
-          updateOutputSignalFromRemote = false;
-        }
-      }
-    });
-
-    TogetherJS.hub.on("hashchange", function(msg) {
-      if (!msg.sameUrl) {
-        return;
-      }
-      hashchangeSignalFromRemote = true;
-      try {
-        console.log("TogetherJS RECEIVE hashchange", msg.appMode);
-        appMode = msg.appMode; // assign this to the GLOBAL appMode
-        updateAppDisplay();
-      }
-      finally {
-        hashchangeSignalFromRemote = false;
-      }
-    });
-
-    // learner receives a sync request from tutor and responds by
-    // sending its current app state
-    TogetherJS.hub.on("requestSync", function(msg) {
-      // only a learner should receive sync requests from a tutor
-      if (isTutor) {
-        return;
-      }
-
-      if (TogetherJS.running) {
-        TogetherJS.send({type: "myAppState", myAppState: getAppState()});
-      }
-    });
-
-    // tutor receives an app state from a learner
-    // TODO: what happens if more than one learner sends state to tutor?
-    // i suppose the last one wins at this point :/
-    TogetherJS.hub.on("myAppState", function(msg) {
-      // only a tutor should handle receiving an app state from a learner
-      if (!isTutor) {
-        return;
-      }
-
-      try {
-        var learnerAppState = msg.myAppState;
-
-        // if available, first set my own app state to visualizedAppState
-        // and then EXECUTE that code with the given options to create the
-        // proper myVisualizer object. then adjust app state to the rest
-        // of learnerAppState
-
-        if (learnerAppState.visualizedAppState) {
-          setVisibleAppState(learnerAppState.visualizedAppState);
-          // execute code and jump to the learner's curInstr
-          executeCode(learnerAppState.curInstr);
-        }
-
-        setVisibleAppState(learnerAppState);
-
-        appMode = learnerAppState.mode;
-        updateAppDisplay();
-      }
-      finally {
-        nowSyncing = false; // done with a successful sync round trip
-      }
-    });
-
-
-    try {
-      var source = new EventSource('http://togetherjs.pythontutor.com/learner-SSE');
-      source.onmessage = function(e) {
-        var dat = JSON.parse(e.data);
-
-        if (dat.helpQueueUrls == 1) {
-          $("#helpQueueUrls").html('There is 1 person waiting in the queue.');
-        }
-        else if (dat.helpQueueUrls == 0 || dat.helpQueueUrls > 1) {
-          $("#helpQueueUrls").html('There are ' + dat.helpQueueUrls +
-                                     ' people waiting in the queue.');
-        }
-        else {
-          $("#helpQueueUrls").html('');
-        }
-
-        if (dat.helpAvailable) {
-          $("#togetherJSHeader").fadeIn(750, redrawConnectors);
-        }
-        else {
-          if (TogetherJS.running) {
-            alert("No more live tutors are available now.\nPlease check back later.");
-            TogetherJS(); // toggle off
-          }
-          $("#togetherJSHeader").fadeOut(750, redrawConnectors);
-        }
-      };
-    }
-    catch(err) {
-      // ugh, SSE doesn't work in Safari when testing on localhost,
-      // but I think it works when deployed on pythontutor.com
-      console.warn("Sad ... EventSource not supported :(");
-    }
-
-    $("#togetherBtn").click(function() {
-      TogetherJS(); // toggles on and off
-    });
-
-    // fired when TogetherJS is activated. might fire on page load if there's
-    // already an open session from a prior page load in the recent past.
-    TogetherJS.on("ready", function () {
-      console.log("TogetherJS ready");
-      $("#togetherBtn").html("Stop live help session");
-
-      $("#togetherJSHeader").fadeIn(750, redrawConnectors); // always show when ready
-
-      if (!isTutor) {
-        $.get("http://togetherjs.pythontutor.com/request-help",
-              {url: TogetherJS.shareUrl()},
-              null /* don't use a callback; rely on SSE */);
-      }
-    });
-
-    // emitted when TogetherJS is closed. This is not emitted when the
-    // page simply closes or navigates elsewhere. It is only closed when
-    // TogetherJS is specifically stopped.
-    TogetherJS.on("close", function () {
-      console.log("TogetherJS close");
-
-      if (isTutor) {
-        $("#togetherBtn").html("TUTOR - Join live help session");
-      }
-      else {
-        $("#togetherBtn").html("Get live help now");
-      }
-    });
+  });
 }
 
 
