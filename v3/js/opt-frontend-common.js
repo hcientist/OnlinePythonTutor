@@ -119,6 +119,34 @@ function setToggleOptions(dat) {
 }
 
 
+// get the ENTIRE current state of the app
+function getAppState() {
+  return {code: pyInputCodeMirror.getValue(),
+          mode: appMode,
+          cumulative: $('#cumulativeModeSelector').val(),
+          heapPrimitives: $('#heapPrimitivesSelector').val(),
+          drawParentPointers: $('#drawParentPointerSelector').val(),
+          textReferences: $('#textualMemoryLabelsSelector').val(),
+          showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
+          py: $('#pythonVersionSelector').val(),
+          curInstr: myVisualizer ? myVisualizer.curInstr : undefined,
+          // the app state that led to the CURRENT visualization
+          visualizedAppState: visualizedAppState};
+}
+
+// sets the proper GUI features to match the given appState object
+function setVisibleAppState(appState) {
+  setCodeMirrorVal(appState.code);
+
+  $('#cumulativeModeSelector').val(appState.cumulative);
+  $('#heapPrimitivesSelector').val(appState.heapPrimitives);
+  $('#drawParentPointerSelector').val(appState.drawParentPointers);
+  $('#textualMemoryLabelsSelector').val(appState.textReferences);
+  $('#showOnlyOutputsSelector').val(appState.showOnlyOutputs);
+  $('#pythonVersionSelector').val(appState.py);
+}
+
+
 // update the app display based on current state of the appMode global
 // TODO: refactor all frontend clients to call this unified function
 function updateAppDisplay() {

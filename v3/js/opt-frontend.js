@@ -90,36 +90,6 @@ var try_hook = function(hook_name, args) {
 }
 
 
-// get the ENTIRE current state of the app
-function getAppState() {
-  return {code: pyInputCodeMirror.getValue(),
-          mode: appMode,
-          cumulative: $('#cumulativeModeSelector').val(),
-          heapPrimitives: $('#heapPrimitivesSelector').val(),
-          drawParentPointers: $('#drawParentPointerSelector').val(),
-          textReferences: $('#textualMemoryLabelsSelector').val(),
-          showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
-          py: $('#pythonVersionSelector').val(),
-          curInstr: myVisualizer ? myVisualizer.curInstr : undefined,
-          // the app state that led to the CURRENT visualization
-          visualizedAppState: visualizedAppState};
-}
-
-// sets the proper GUI features to match the given appState object
-function setVisibleAppState(appState) {
-  setCodeMirrorVal(appState.code);
-
-  $('#cumulativeModeSelector').val(appState.cumulative);
-  $('#heapPrimitivesSelector').val(appState.heapPrimitives);
-  $('#drawParentPointerSelector').val(appState.drawParentPointers);
-  $('#textualMemoryLabelsSelector').val(appState.textReferences);
-  $('#showOnlyOutputsSelector').val(appState.showOnlyOutputs);
-  $('#pythonVersionSelector').val(appState.py);
-
-  // TODO: what to do about mode and curInstr?
-}
-
-
 // get this app ready for TogetherJS
 function initTogetherJS() {
   $("#surveyHeader").remove(); // kill this to save space
@@ -302,6 +272,115 @@ function initTogetherJS() {
 }
 
 
+function executeCode(forceStartingInstr) {
+  var backend_script = null;
+  if ($('#pythonVersionSelector').val() == '2') {
+      backend_script = python2_backend_script;
+  }
+  else if ($('#pythonVersionSelector').val() == '3') {
+      backend_script = python3_backend_script;
+  }
+  // experimental KRAZY MODE!!!
+  else if ($('#pythonVersionSelector').val() == '2crazy') {
+      backend_script = python2crazy_backend_script;
+  }
+
+  $('#executeBtn').html("Please wait ... processing your code");
+  $('#executeBtn').attr('disabled', true);
+  $("#pyOutputPane").hide();
+  $("#embedLinkDiv").hide();
+
+  var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
+                           heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
+                           show_only_outputs: ($('#showOnlyOutputsSelector').val() == 'true'),
+                           py_crazy_mode: ($('#pythonVersionSelector').val() == '2crazy'),
+                           origin: 'opt-frontend.js'};
+
+  var surveyObj = getSurveyObject();
+  if (surveyObj) {
+    backendOptionsObj.survey = surveyObj;
+  }
+
+  var startingInstruction = 0;
+
+  // only do this at most ONCE, and then clear out preseededCurInstr
+  // NOP anyways if preseededCurInstr is 0
+  if (preseededCurInstr) {
+    startingInstruction = preseededCurInstr;
+    preseededCurInstr = null;
+  }
+
+  // forceStartingInstr overrides everything else
+  if (forceStartingInstr !== undefined) {
+    startingInstruction = forceStartingInstr;
+  }
+
+  var frontendOptionsObj = {startingInstruction: startingInstruction,
+                            // tricky: selector 'true' and 'false' values are strings!
+                            disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
+                            drawParentPointers: ($('#drawParentPointerSelector').val() == 'true'),
+                            textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
+                            showOnlyOutputs: ($('#showOnlyOutputsSelector').val() == 'true'),
+                            executeCodeWithRawInputFunc: executeCodeWithRawInput,
+                            // if TogetherJS is enabled, always use the same
+                            // visualizer ID for all ExecutionVisualizer
+                            // objects, so that they can sync properly
+                            visualizerIdOverride: enableTogetherJS ? '1' : undefined,
+                            updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
+
+                            // undocumented experimental modes:
+                            pyCrazyMode: ($('#pythonVersionSelector').val() == '2crazy'),
+                            holisticMode: ($('#cumulativeModeSelector').val() == 'holistic')
+                           }
+
+  function handleUncaughtExceptionFunc(trace) {
+    if (trace.length == 1 && trace[0].line) {
+      var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
+      if (errorLineNo !== undefined && errorLineNo != NaN) {
+        // highlight the faulting line in pyInputCodeMirror
+        pyInputCodeMirror.focus();
+        pyInputCodeMirror.setCursor(errorLineNo, 0);
+        pyInputCodeMirror.setLineClass(errorLineNo, null, 'errorLine');
+
+        pyInputCodeMirror.setOption('onChange', function() {
+          pyInputCodeMirror.setLineClass(errorLineNo, null, null); // reset line back to normal
+          pyInputCodeMirror.setOption('onChange', null); // cancel
+        });
+      }
+
+      $('#executeBtn').html("Visualize Execution");
+      $('#executeBtn').attr('disabled', false);
+    }
+  }
+
+  executePythonCode(pyInputCodeMirror.getValue(),
+                    backend_script, backendOptionsObj,
+                    frontendOptionsObj,
+                    'pyOutputPane',
+                    enterDisplayMode, handleUncaughtExceptionFunc);
+}
+
+function executeCodeFromScratch() {
+  // don't execute empty string:
+  if ($.trim(pyInputCodeMirror.getValue()) == '') {
+    alert('Type in some code to visualize.');
+    return;
+  }
+
+  // reset these globals
+  rawInputLst = [];
+  executeCode();
+}
+
+function executeCodeWithRawInput(rawInputStr, curInstr) {
+  enterDisplayNoFrillsMode();
+
+  // set some globals
+  rawInputLst.push(rawInputStr);
+  executeCode(curInstr);
+}
+
+
 $(document).ready(function() {
   setSurveyHTML();
 
@@ -341,114 +420,6 @@ $(document).ready(function() {
     }
   });
 
-
-  function executeCode(forceStartingInstr) {
-      var backend_script = null;
-      if ($('#pythonVersionSelector').val() == '2') {
-          backend_script = python2_backend_script;
-      }
-      else if ($('#pythonVersionSelector').val() == '3') {
-          backend_script = python3_backend_script;
-      }
-      // experimental KRAZY MODE!!!
-      else if ($('#pythonVersionSelector').val() == '2crazy') {
-          backend_script = python2crazy_backend_script;
-      }
-
-      $('#executeBtn').html("Please wait ... processing your code");
-      $('#executeBtn').attr('disabled', true);
-      $("#pyOutputPane").hide();
-      $("#embedLinkDiv").hide();
-
-      var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
-                               heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
-                               show_only_outputs: ($('#showOnlyOutputsSelector').val() == 'true'),
-                               py_crazy_mode: ($('#pythonVersionSelector').val() == '2crazy'),
-                               origin: 'opt-frontend.js'};
-
-      var surveyObj = getSurveyObject();
-      if (surveyObj) {
-        backendOptionsObj.survey = surveyObj;
-      }
-
-      var startingInstruction = 0;
-
-      // only do this at most ONCE, and then clear out preseededCurInstr
-      // NOP anyways if preseededCurInstr is 0
-      if (preseededCurInstr) {
-        startingInstruction = preseededCurInstr;
-        preseededCurInstr = null;
-      }
-
-      // forceStartingInstr overrides everything else
-      if (forceStartingInstr !== undefined) {
-        startingInstruction = forceStartingInstr;
-      }
-
-      var frontendOptionsObj = {startingInstruction: startingInstruction,
-                                // tricky: selector 'true' and 'false' values are strings!
-                                disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
-                                drawParentPointers: ($('#drawParentPointerSelector').val() == 'true'),
-                                textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
-                                showOnlyOutputs: ($('#showOnlyOutputsSelector').val() == 'true'),
-                                executeCodeWithRawInputFunc: executeCodeWithRawInput,
-                                // if TogetherJS is enabled, always use the same
-                                // visualizer ID for all ExecutionVisualizer
-                                // objects, so that they can sync properly
-                                visualizerIdOverride: enableTogetherJS ? '1' : undefined,
-                                updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
-
-                                // undocumented experimental modes:
-                                pyCrazyMode: ($('#pythonVersionSelector').val() == '2crazy'),
-                                holisticMode: ($('#cumulativeModeSelector').val() == 'holistic')
-                               }
-
-      function handleUncaughtExceptionFunc(trace) {
-        if (trace.length == 1 && trace[0].line) {
-          var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
-          if (errorLineNo !== undefined && errorLineNo != NaN) {
-            // highlight the faulting line in pyInputCodeMirror
-            pyInputCodeMirror.focus();
-            pyInputCodeMirror.setCursor(errorLineNo, 0);
-            pyInputCodeMirror.setLineClass(errorLineNo, null, 'errorLine');
-
-            pyInputCodeMirror.setOption('onChange', function() {
-              pyInputCodeMirror.setLineClass(errorLineNo, null, null); // reset line back to normal
-              pyInputCodeMirror.setOption('onChange', null); // cancel
-            });
-          }
-
-          $('#executeBtn').html("Visualize Execution");
-          $('#executeBtn').attr('disabled', false);
-        }
-      }
-
-      executePythonCode(pyInputCodeMirror.getValue(),
-                        backend_script, backendOptionsObj,
-                        frontendOptionsObj,
-                        'pyOutputPane',
-                        enterDisplayMode, handleUncaughtExceptionFunc);
-  }
-
-  function executeCodeFromScratch() {
-    // don't execute empty string:
-    if ($.trim(pyInputCodeMirror.getValue()) == '') {
-      alert('Type in some code to visualize.');
-      return;
-    }
-
-    // reset these globals
-    rawInputLst = [];
-    executeCode();
-  }
-
-  function executeCodeWithRawInput(rawInputStr, curInstr) {
-    enterDisplayNoFrillsMode();
-
-    // set some globals
-    rawInputLst.push(rawInputStr);
-    executeCode(curInstr);
-  }
 
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(executeCodeFromScratch);
