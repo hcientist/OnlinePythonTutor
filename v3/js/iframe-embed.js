@@ -34,9 +34,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // should all be imported BEFORE this file
 
 
-var myVisualizer = null; // singleton ExecutionVisualizer instance
-
-
 function NOP() {};
 
 

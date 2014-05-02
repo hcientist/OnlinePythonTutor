@@ -721,20 +721,16 @@ $(document).ready(function() {
 
   $('#genUrlBtn').bind('click', function() {
     var myArgs = getAppState();
-    if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
-      myArgs.curInstr = myVisualizer.curInstr;
-    }
-
+    delete myArgs.visualizedAppState; // no need to put this in the URL
     var urlStr = $.param.fragment(window.location.href, myArgs, 2 /* clobber all */);
     $('#urlOutput').val(urlStr);
   });
-
 
   $('#genEmbedBtn').bind('click', function() {
     assert(appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */);
     var myArgs = getAppState();
     delete myArgs.mode;
-    myArgs.curInstr = myVisualizer.curInstr;
+    delete myArgs.visualizedAppState; // no need to put this in the URL
     myArgs.codeDivWidth = myVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
     myArgs.codeDivHeight = myVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
 
@@ -748,9 +744,7 @@ $(document).ready(function() {
   $('.surveyBtn').click(function(e) {
     // wow, massive copy-and-paste action from above!
     var myArgs = getAppState();
-    if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
-      myArgs.curInstr = myVisualizer.curInstr;
-    }
+    delete myArgs.visualizedAppState; // no need to put this in the URL
 
     var buttonPrompt = $(this).html();
     var res = prompt('"' + buttonPrompt + '"' + '\nPlease elaborate if you can and hit OK to submit:');
