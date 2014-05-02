@@ -3,7 +3,7 @@
 Online Python Tutor
 https://github.com/pgbovine/OnlinePythonTutor/
 
-Copyright (C) 2010-2013 Philip J. Guo (philip@pgbovine.net)
+Copyright (C) 2010-2014 Philip J. Guo (philip@pgbovine.net)
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
@@ -41,13 +41,13 @@ $(document).ready(function() {
   var queryStrOptions = getQueryStringOptions();
 
   var preseededCode = queryStrOptions.preseededCode;
-  var pyState = queryStrOptions.pyState;
+  var pyState = queryStrOptions.py;
   var verticalStackBool = (queryStrOptions.verticalStack == 'true');
   var heapPrimitivesBool = (queryStrOptions.heapPrimitives == 'true');
   var drawParentPointerBool = (queryStrOptions.drawParentPointers == 'true');
-  var textRefsBool = (queryStrOptions.textRefs == 'true');
+  var textRefsBool = (queryStrOptions.textReferences == 'true');
   var showOnlyOutputsBool = (queryStrOptions.showOnlyOutputs == 'true');
-  var cumModeBool = (queryStrOptions.cumulativeState == 'true');
+  var cumModeBool = (queryStrOptions.cumulative == 'true');
 
   var codeDivWidth = undefined;
   var cdw = $.bbq.getState('codeDivWidth');
@@ -169,4 +169,3 @@ $(document).ready(function() {
 
   executeCodeFromScratch(); // finally, execute code and display visualization
 });
-
