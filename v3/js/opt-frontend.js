@@ -180,23 +180,32 @@ function initTogetherJS() {
     try {
       var learnerAppState = msg.myAppState;
 
-      // if available, first set my own app state to visualizedAppState
-      // and then EXECUTE that code with the given options to create the
-      // proper myVisualizer object. then adjust app state to the rest
-      // of learnerAppState
-
-      if (learnerAppState.visualizedAppState) {
-        setVisibleAppState(learnerAppState.visualizedAppState);
-        // execute code and jump to the learner's curInstr
-        executeCode(learnerAppState.curInstr);
+      if (learnerAppState.mode == 'display' ||
+          learnerAppState.mode == 'visualize' /* deprecated */) {
+        if (appStateEq(getAppState(), learnerAppState)) {
+          // update curInstr only
+          console.log("on:myAppState - app states equal, renderStep", learnerAppState.curInstr);
+          myVisualizer.renderStep(learnerAppState.curInstr);
+        }
+        else {
+          console.log("on:myAppState - app states unequal, executing", learnerAppState);
+          setVisibleAppState(learnerAppState);
+          // execute code and jump to the learner's curInstr
+          executeCode(learnerAppState.curInstr);
+        }
       }
-
-      setVisibleAppState(learnerAppState);
+      else {
+        console.log("on:myAppState - edit mode sync");
+        setVisibleAppState(learnerAppState);
+      }
 
       appMode = learnerAppState.mode;
       updateAppDisplay();
     }
     finally {
+      // TODO: this is wrong since it switches way too early. we should
+      // stop syncing after executeCode has successfully finished, which
+      // runs a callback function
       nowSyncing = false; // done with a successful sync round trip
     }
   });
@@ -401,10 +410,10 @@ $(document).ready(function() {
   // thanks to http://benalman.com/projects/jquery-bbq-plugin/
   $(window).bind("hashchange", function(e) {
     appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
+    console.log('hashchange:', appMode);
     updateAppDisplay();
 
-    if (TogetherJS.running &&
-        !hashchangeSignalFromRemote /* don't double send */) {
+    if (TogetherJS.running && !nowSyncing && !hashchangeSignalFromRemote) {
       console.log("TogetherJS SEND hashchange", appMode);
       TogetherJS.send({type: "hashchange", appMode: appMode});
     }
@@ -731,7 +740,6 @@ $(document).ready(function() {
 
   $('#genUrlBtn').bind('click', function() {
     var myArgs = getAppState();
-    delete myArgs.visualizedAppState; // no need to put this in the URL
     var urlStr = $.param.fragment(window.location.href, myArgs, 2 /* clobber all */);
     $('#urlOutput').val(urlStr);
   });
@@ -740,7 +748,6 @@ $(document).ready(function() {
     assert(appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */);
     var myArgs = getAppState();
     delete myArgs.mode;
-    delete myArgs.visualizedAppState; // no need to put this in the URL
     myArgs.codeDivWidth = myVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
     myArgs.codeDivHeight = myVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
 
@@ -754,7 +761,6 @@ $(document).ready(function() {
   $('.surveyBtn').click(function(e) {
     // wow, massive copy-and-paste action from above!
     var myArgs = getAppState();
-    delete myArgs.visualizedAppState; // no need to put this in the URL
 
     var buttonPrompt = $(this).html();
     var res = prompt('"' + buttonPrompt + '"' + '\nPlease elaborate if you can and hit OK to submit:');

@@ -87,7 +87,6 @@ function guid() {
 
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
-var visualizedAppState = null; // parameters necessary to generate myVisualizer
 
 
 var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
@@ -141,9 +140,19 @@ function getAppState() {
           textReferences: $('#textualMemoryLabelsSelector').val(),
           showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
           py: $('#pythonVersionSelector').val(),
-          curInstr: myVisualizer ? myVisualizer.curInstr : undefined,
-          // the app state that led to the CURRENT visualization
-          visualizedAppState: visualizedAppState};
+          curInstr: myVisualizer ? myVisualizer.curInstr : undefined};
+}
+
+// return whether two states match, except don't worry about curInstr
+function appStateEq(s1, s2) {
+  return (s1.code == s2.code &&
+          s1.mode == s2.mode &&
+          s1.cumulative == s2.cumulative &&
+          s1.heapPrimitives == s1.heapPrimitives &&
+          s1.drawParentPointers == s2.drawParentPointers &&
+          s1.textReferences == s2.textReferences &&
+          s1.showOnlyOutputs == s2.showOnlyOutputs &&
+          s1.py == s2.py);
 }
 
 // sets the proper GUI features to match the given appState object
@@ -173,6 +182,13 @@ function updateAppDisplay() {
     if (myVisualizer) {
       myVisualizer.destroyAllAnnotationBubbles();
     }
+
+    // Potentially controversial: when you enter edit mode, DESTROY any
+    // existing visualizer object. note that this simplifies the app's
+    // conceptual model but breaks the browser's expected Forward and
+    // Back button flow
+    $("#pyOutputPane").empty();
+    myVisualizer = null;
   }
   else if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
     if (!myVisualizer) {
@@ -257,8 +273,6 @@ function executePythonCode(pythonSourceCode,
       return;
     }
 
-    visualizedAppState = null; // clear this before attempting to execute
-
     $.get(backendScript,
           {user_script : pythonSourceCode,
            raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
@@ -314,12 +328,6 @@ function executePythonCode(pythonSourceCode,
                   }
                 });
               }
-
-              // set some nasty global state that represents the current
-              // code that's being visualized at the moment, so that we
-              // can sync its state with other viewers via TogetherJS
-              visualizedAppState = getAppState();
-              visualizedAppState.visualizedAppState = null; // prevent chaining
 
               handleSuccessFunc();
             }
