@@ -1,5 +1,4 @@
 /* Created by Irene Chen (2013) */
-
 div.HolisticVisualizer div#debug::-webkit-scrollbar {
     width:9px;
 }
@@ -39,26 +38,47 @@ div.HolisticVisualizer div.control {
 	display: block;
 	height: 100px;
 	margin-bottom: 10px;
-	margin-left: 50px;
+	margin-left: 10px;
 	padding: 5px;
 	width: 240px;
 }
 
-div.HolisticVisualizer table {
+div.HolisticVisualizer #wrapper {
+	width: 100%;
+}
+
+div.HolisticVisualizer #left {
+    float: left;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 500px;
+}
+
+div.HolisticVisualizer #right {
+    width: 100%;
+    vertical-align: top;
+}
+
+div.HolisticVisualizer #padder {
+    padding-left: 502px;
+}
+
+div.HolisticVisualizer table#code {
 	border-collapse: collapse;
-	display: inline-block;
 	font-family: Courier, monospace;
-	margin-left: 50px;
-	margin-top: 1px;
+	font-size: 11pt;
+	margin: 1px auto;
 	vertical-align: top;
 }
 
 div.HolisticVisualizer #code tr, div.HolisticVisualizer #code td {
 	border-width: 0px;
+	text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
 	padding: 0px;
 }
 
-div.HolisticVisualizer #code td:hover, div.HolisticVisualizer #code td.v-hover {
+div.HolisticVisualizer #code td.v-hover {
 	background-color: #b0e0e6;
 }
 
@@ -68,10 +88,10 @@ div.HolisticVisualizer div#slider {
   	height: 100%;
   	overflow-x: scroll;
   	vertical-align: top;
-  	width: 500px;
+	width: 100%;
 }
 
-div.HolisticVisualizer div#debug-panel {
+div.HolisticVisualizer div#debugPanel {
   	display: inline-block;
   	font-size: 10pt;
   	height: 400px;
@@ -85,6 +105,13 @@ div.HolisticVisualizer div#debug {
     overflow-y: scroll;
 }
 
+#altContainer {
+  display: none;
+}
+
+#altVisual {
+}
+
 #holisticTooltip {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -93,6 +120,7 @@ div.HolisticVisualizer div#debug {
 	background-color: white;
 	border-radius: 10px;
 	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	display: none;
     height: auto;
     padding: 10px;
     pointer-events: none;
