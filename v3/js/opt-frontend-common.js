@@ -74,6 +74,18 @@ function setCodeMirrorVal(dat) {
 }
 
 
+// From: http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+               .toString(16)
+               .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+         s4() + '-' + s4() + s4() + s4();
+}
+
+
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 var visualizedAppState = null; // parameters necessary to generate myVisualizer
 
@@ -304,8 +316,9 @@ function executePythonCode(pythonSourceCode,
               }
 
               // set some nasty global state that represents the current
-              // code that's being visualized at the moment
-              visualizedAppState = getAppState(); // TODO: add UUID
+              // code that's being visualized at the moment, so that we
+              // can sync its state with other viewers via TogetherJS
+              visualizedAppState = getAppState();
               visualizedAppState.visualizedAppState = null; // prevent chaining
 
               handleSuccessFunc();

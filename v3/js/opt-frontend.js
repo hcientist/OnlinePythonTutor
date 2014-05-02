@@ -90,6 +90,13 @@ var try_hook = function(hook_name, args) {
 }
 
 
+function requestSync() {
+  if (enableTogetherJS && TogetherJS.running) {
+    nowSyncing = true;
+    TogetherJS.send({type: "requestSync"});
+  }
+}
+
 // get this app ready for TogetherJS
 function initTogetherJS() {
   $("#surveyHeader").remove(); // kill this to save space
@@ -99,16 +106,8 @@ function initTogetherJS() {
     $("#togetherJSHeader").append('<button id="syncBtn"\
                                    type="button">Sync with learner</button>');
 
-    $("#syncBtn").click(function() {
-      console.log("Sync!");
-
-      if (TogetherJS.running) {
-        nowSyncing = true;
-        TogetherJS.send({type: "requestSync"});
-      }
-    });
+    $("#syncBtn").click(requestSync);
   }
-
 
   // Global hook for ExecutionVisualizer.
   // Set it here after TogetherJS gets defined, hopefully!
@@ -209,11 +208,11 @@ function initTogetherJS() {
       var dat = JSON.parse(e.data);
 
       if (dat.helpQueueUrls == 1) {
-        $("#helpQueueUrls").html('There is 1 person waiting in the queue.');
+        $("#helpQueueUrls").html('Please wait ... there is now 1 person in the queue.');
       }
       else if (dat.helpQueueUrls == 0 || dat.helpQueueUrls > 1) {
-        $("#helpQueueUrls").html('There are ' + dat.helpQueueUrls +
-                                   ' people waiting in the queue.');
+        $("#helpQueueUrls").html('Please wait ... there are now ' + dat.helpQueueUrls +
+                                   ' people in the queue.');
       }
       else {
         $("#helpQueueUrls").html('');
@@ -247,9 +246,16 @@ function initTogetherJS() {
     console.log("TogetherJS ready");
     $("#togetherBtn").html("Stop live help session");
 
+    $("#helpQueueUrls").fadeIn(500);
+
     $("#togetherJSHeader").fadeIn(750, redrawConnectors); // always show when ready
 
-    if (!isTutor) {
+    if (isTutor) {
+      // if you're a tutor, immediately try to sync to the learner upon startup
+      requestSync();
+    }
+    else {
+      // if you're a learner, request help when TogetherJS is activated
       $.get("http://togetherjs.pythontutor.com/request-help",
             {url: TogetherJS.shareUrl()},
             null /* don't use a callback; rely on SSE */);
@@ -261,6 +267,8 @@ function initTogetherJS() {
   // TogetherJS is specifically stopped.
   TogetherJS.on("close", function () {
     console.log("TogetherJS close");
+
+    $("#helpQueueUrls").fadeOut(500);
 
     if (isTutor) {
       $("#togetherBtn").html("TUTOR - Join live help session");
