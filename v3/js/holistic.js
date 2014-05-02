@@ -7,7 +7,11 @@ function HolisticVisualizer(domRootID, dat, params) {
 	myViz.domRoot = $('#' + domRootID);
 	myViz.domRootD3 = d3.select('#' + domRootID);
 
-	myViz.domRoot.html('<div class="HolisticVisualizer"></div><div id="alt-visual"></div><div id="holisticTooltip"></div>');
+	myViz.domRoot.html('<div class="HolisticVisualizer"></div>\
+		<div id="altContainer"><h3>Step <span id="step-id">N/A</span></h3>\
+		<div id="altVisual"></div></div>\
+		<div id="holisticTooltip"><b>Step <span id="tooltip-step-id">N/A</span></b>\
+		<div id="holisticTooltipVisual"></div></div>');
 	myViz.domRoot = myViz.domRoot.find('div.HolisticVisualizer');
 	myViz.domRootD3 = myViz.domRootD3.select('div.HolisticVisualizer');
 
@@ -22,13 +26,15 @@ function HolisticVisualizer(domRootID, dat, params) {
 	                <br>\
 	                <input id="debug-select" type="checkbox" name="debug" value="debug">Debug panel\
 	                <br>\
-	                <input id="delimiter-select" type="checkbox" name="delimiters" value="delimiters">Function delimiters\
-	                <br>\
+	                <!--<input id="delimiter-select" type="checkbox" name="delimiters" value="delimiters">Function delimiters\
+	                <br>-->\
 	            </form>\
 	        </div>\
-	        <table id="code"></table>\
-	        <div id="slider"></div>\
-	        <div id="debug-panel">\
+	        <div id="wrapper">\
+	        <div id="left"><table id="code"></table></div>\
+		    <div id="right"><div id="padder"><div id="slider"></div></div></div>\
+		    </div>\
+	        <div id="debugPanel">\
 	            <h3>Debug: step <span id="debug-title">N/A</span></h3>\
 	            <div id="debug">\
 	            </div>\
@@ -37,8 +43,8 @@ function HolisticVisualizer(domRootID, dat, params) {
 	myViz.domRoot.html(pregeneratedHTML);
 
 	params.hideCode = true;
-	myViz.altVisualizer = new ExecutionVisualizer('alt-visual', dat, params);
-	myViz.tooltipVisualizer = new ExecutionVisualizer('holisticTooltip', dat, params);
+	myViz.altVisualizer = new ExecutionVisualizer('altVisual', dat, params);
+	myViz.tooltipVisualizer = new ExecutionVisualizer('holisticTooltipVisual', dat, params);
 
 	/*
 	 * =================================
@@ -87,7 +93,7 @@ function HolisticVisualizer(domRootID, dat, params) {
 
 	for (var i = 0; i < code.length; i++) {
 	    table.append('<tr>' + 
-	    	'<td><pre><code>' + code[i] + '</code></pre></td>' + 
+	    	'<td><pre id="code-' + i + '"><code>' + code[i] + '</code></pre></td>' + 
 	    	'<td style="text-align:right;"><pre><code>' + (i+1) + ' </code></pre></td>' + 
 	    	'</tr>');
 	}
@@ -371,9 +377,8 @@ function HolisticVisualizer(domRootID, dat, params) {
 						.style("visibility", "visible")
 						.attr("marker-end", "url(#return-arrowhead)");
 
-	// TODO: now, let's add some text to our function call arrows
 	var functionText = connectorGroup.selectAll("text")
-                .data(callTextData) // probably wrong...
+                .data(callTextData)
                 .enter()
                 .append("text");
 
@@ -509,7 +514,6 @@ function HolisticVisualizer(domRootID, dat, params) {
 	            function (d, i) {
 					var row = table[0].rows[d];
 					var cell = row.cells[0];
-					// TODO: find easier way to highlight both cells in the row
 					myViz.domRoot.find('#code tr:eq(' + d + ') td:first').addClass("v-hover");
 					myViz.domRoot.find('#code tr:eq(' + d + ') td:last').addClass("v-hover");
 	                v_guides.filter(
@@ -527,17 +531,17 @@ function HolisticVisualizer(domRootID, dat, params) {
 	                // hide old tooltip
 	                hideTooltip();
 
-
-
-	                $('#holisticTooltip').show();
-	                myViz.tooltipVisualizer.renderStep(i);
-				    changeTooltipPosition(xScale(i) + svgOffset.left, yScale(d) + svgOffset.top);
+					if (d3.mouse(this)[1] > (yScale(d)-row_mid) && d3.mouse(this)[1] < (yScale(d+1)-row_mid) ) {
+						$('#tooltip-step-id').text(i);
+		                $('#holisticTooltip').show();
+		                myViz.tooltipVisualizer.renderStep(i);
+					    changeTooltipPosition(xScale(i) + svgOffset.left, yScale(d) + svgOffset.top);
+					}
 	            })
 	        .on("mousemove",
 	            function (d, i) {
 					var row = table[0].rows[d];
 					var cell = row.cells[0];
-					// TODO: find easier way to highlight both cells in the row
 					myViz.domRoot.find('#code tr:eq(' + d + ') td:first').addClass("v-hover");
 					myViz.domRoot.find('#code tr:eq(' + d + ') td:last').addClass("v-hover");
 	                v_guides.filter(
@@ -545,12 +549,23 @@ function HolisticVisualizer(domRootID, dat, params) {
 	                        return index == i;
 	                    })
 	                .style("visibility", "visible");
+
+	                var svgOffset = myViz.domRoot.find('div#slider svg').offset();
+
+	                // hide old tooltip
+	                hideTooltip();
+
+					if (d3.mouse(this)[1] > (yScale(d)-row_mid) && d3.mouse(this)[1] < (yScale(d+1)-row_mid) ) {
+						$('#tooltip-step-id').text(i);
+		                $('#holisticTooltip').show();
+		                myViz.tooltipVisualizer.renderStep(i);
+					    changeTooltipPosition(xScale(i) + svgOffset.left, yScale(d) + svgOffset.top);
+					}
 	            })
 	        .on("mouseout",
 	            function (d, i) {
 					var row = table[0].rows[d];
 					var cell = row.cells[0];
-					// TODO: find easier way to highlight both cells in the row
 					myViz.domRoot.find('#code tr:eq(' + d + ') td:first').removeClass("v-hover");
 					myViz.domRoot.find('#code tr:eq(' + d + ') td:last').removeClass("v-hover");
 	                v_guides.filter(
@@ -572,20 +587,24 @@ function HolisticVisualizer(domRootID, dat, params) {
 					myViz.domRoot.find('#debug').html("<pre>"+JSON.stringify(trace.trace[i], undefined, 2)+"</pre>");
 					myViz.domRoot.find('#debug').scrollTop(topPosition);
 
-					// ExecutionVisualizer panel
-					// use $('#alt-visual').is(":visible") to check if visible
-					if ($('#alt-visual').is(":visible")) {
-						if (altVisualStep == i) {
-							$('#alt-visual').hide();
+					if (d3.mouse(this)[1] > (yScale(d)-row_mid) && d3.mouse(this)[1] < (yScale(d+1)-row_mid) ) {
+						// ExecutionVisualizer panel
+						// use $('#altVisual').is(":visible") to check if visible
+						if ($('#altContainer').is(":visible")) {
+							if (altVisualStep == i) {
+								$('#altContainer').hide();
+							} else {
+								$('#step-id').text(i);
+								altVisualStep = i;
+								myViz.altVisualizer.renderStep(altVisualStep);
+							}
 						} else {
+							$('#step-id').text(i);
 							altVisualStep = i;
+							// have to draw arrows after the div is shown!
+							$('#altContainer').show();
 							myViz.altVisualizer.renderStep(altVisualStep);
 						}
-					} else {
-						altVisualStep = i;
-						// have to draw arrows after the div is shown!
-						$('#alt-visual').show();
-						myViz.altVisualizer.renderStep(altVisualStep);
 					}
 				});
 
@@ -593,7 +612,13 @@ function HolisticVisualizer(domRootID, dat, params) {
 	var changeTooltipPosition = function(x, y) {
 		var tooltipX = x - 8;
 		var tooltipY = y + 8;
-		$('#holisticTooltip').css({top: tooltipY, left: tooltipX});
+		var tooltipWidth = $('#holisticTooltip').width();
+		// TODO: adjust for tooltip height
+		if ((tooltipX + tooltipWidth) > $(window).width()) {
+			$('#holisticTooltip').css({top: tooltipY, left: tooltipX - tooltipWidth});
+		} else {
+			$('#holisticTooltip').css({top: tooltipY, left: tooltipX});
+		}
 	};
 
 	var hideTooltip = function() {
@@ -661,12 +686,12 @@ function HolisticVisualizer(domRootID, dat, params) {
 	    }
 	});
 
-	myViz.domRoot.find('#debug-panel').hide();
+	myViz.domRoot.find('#debugPanel').hide();
 	myViz.domRoot.find('#debug-select').click(function() {
 	    if($(this).is(':checked')){
-	        myViz.domRoot.find('#debug-panel').show();
+	        myViz.domRoot.find('#debugPanel').show();
 	    } else {
-	        myViz.domRoot.find('#debug-panel').hide();
+	        myViz.domRoot.find('#debugPanel').hide();
 	    }
 	});
 
