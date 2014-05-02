@@ -3142,6 +3142,7 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
                              {objID:objID, d3DomElement:d3DomElement, 
                               isTopLevel:isTopLevel, obj:obj, 
                               typeLabelPrefix:typeLabelPrefix,
+                              stepNum:stepNum,
                               myViz:myViz});
   if (hook_result[0]) return;
 
