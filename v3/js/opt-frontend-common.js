@@ -307,6 +307,10 @@ function executePythonCode(pythonSourceCode,
               }
 
               if (frontendOptionsObj.holisticMode) {
+                // do NOT override, or else bad things will happen with
+                // jsPlumb arrows interfering ...
+                delete frontendOptionsObj.visualizerIdOverride;
+
                 myVisualizer = new HolisticVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
               } else {
                 myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
