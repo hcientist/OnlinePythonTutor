@@ -91,7 +91,7 @@ var try_hook = function(hook_name, args) {
 
 
 function requestSync() {
-  if (enableTogetherJS && TogetherJS.running) {
+  if (TogetherJS.running) {
     nowSyncing = true;
     TogetherJS.send({type: "requestSync"});
   }
@@ -399,12 +399,10 @@ $(document).ready(function() {
     appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
     updateAppDisplay();
 
-    if (enableTogetherJS) {
-      if (TogetherJS.running &&
-          !hashchangeSignalFromRemote /* don't double send */) {
-        console.log("TogetherJS SEND hashchange", appMode);
-        TogetherJS.send({type: "hashchange", appMode: appMode});
-      }
+    if (TogetherJS.running &&
+        !hashchangeSignalFromRemote /* don't double send */) {
+      console.log("TogetherJS SEND hashchange", appMode);
+      TogetherJS.send({type: "hashchange", appMode: appMode});
     }
   });
 
