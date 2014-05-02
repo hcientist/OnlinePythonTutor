@@ -105,26 +105,6 @@ $(document).ready(function() {
                                 updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
                                }
 
-      function handleUncaughtExceptionFunc(trace) {
-        if (trace.length == 1) {
-          var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
-          if (errorLineNo !== undefined) {
-            // highlight the faulting line in pyInputCodeMirror
-            pyInputCodeMirror.focus();
-            pyInputCodeMirror.setCursor(errorLineNo, 0);
-            pyInputCodeMirror.setLineClass(errorLineNo, null, 'errorLine');
-
-            pyInputCodeMirror.setOption('onChange', function() {
-              pyInputCodeMirror.setLineClass(errorLineNo, null, null); // reset line back to normal
-              pyInputCodeMirror.setOption('onChange', null); // cancel
-            });
-          }
-
-          $('#executeBtn').html("Visualize Execution");
-          $('#executeBtn').attr('disabled', false);
-        }
-      }
-
       executePythonCode(pyInputCodeMirror.getValue(),
                         backend_script, backendOptionsObj,
                         frontendOptionsObj,

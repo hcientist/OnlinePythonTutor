@@ -167,6 +167,7 @@ $(document).ready(function() {
               // highlight the faulting line in pyInputCodeMirror
               pyInputCodeMirror.focus();
               pyInputCodeMirror.setCursor(errorLineNo, 0);
+              // TODO: refactor to use new CodeMirror version
               pyInputCodeMirror.setLineClass(errorLineNo, null, 'errorLine');
 
               pyInputCodeMirror.setOption('onChange', function() {
@@ -178,6 +179,7 @@ $(document).ready(function() {
               // instead highlight the faulting line in pyTestInputCodeMirror
               errorLineNo -= nCodeLines;
 
+              // TODO: refactor to use new CodeMirror version
               pyTestInputCodeMirror.focus();
               pyTestInputCodeMirror.setCursor(errorLineNo, 0);
               pyTestInputCodeMirror.setLineClass(errorLineNo, null, 'errorLine');
