@@ -330,10 +330,14 @@ function executeCode(forceStartingInstr) {
                             textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
                             showOnlyOutputs: ($('#showOnlyOutputsSelector').val() == 'true'),
                             executeCodeWithRawInputFunc: executeCodeWithRawInput,
-                            // if TogetherJS is enabled, always use the same
-                            // visualizer ID for all ExecutionVisualizer
-                            // objects, so that they can sync properly
-                            visualizerIdOverride: enableTogetherJS ? '1' : undefined,
+
+                            // always use the same visualizer ID for all
+                            // instantiated ExecutionVisualizer objects,
+                            // so that they can sync properly across
+                            // multiple clients using TogetherJS. this
+                            // shouldn't lead to problems since only ONE
+                            // ExecutionVisualizer will be shown at a time
+                            visualizerIdOverride: '1',
                             updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
 
                             // undocumented experimental modes:
@@ -389,7 +393,7 @@ $(document).ready(function() {
   isTutor = (role == 'tutor'); // GLOBAL
 
   if (enableTogetherJS || isTutor) {
-    initTogetherJS(); // can also call this manually to test
+    initTogetherJS();
   }
 
 
