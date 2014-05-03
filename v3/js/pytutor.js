@@ -1773,6 +1773,11 @@ ExecutionVisualizer.prototype.renderStep = function(step) {
   assert(0 <= step);
   assert(step < this.curTrace.length);
 
+  // ignore redundant calls
+  if (this.curInstr == step) {
+    return;
+  }
+
   this.curInstr = step;
   this.updateOutput();
 }

@@ -82,7 +82,6 @@ var isTutor = false;
 // nasty globals
 var updateOutputSignalFromRemote = false;
 var hashchangeSignalFromRemote = false;
-var nowSyncing = false;
 
 // Global hook for ExecutionVisualizer.
 var try_hook = function(hook_name, args) {
@@ -92,7 +91,6 @@ var try_hook = function(hook_name, args) {
 
 function requestSync() {
   if (TogetherJS.running) {
-    nowSyncing = true;
     TogetherJS.send({type: "requestSync"});
   }
 }
@@ -114,7 +112,7 @@ function initTogetherJS() {
       if (updateOutputSignalFromRemote) {
         return;
       }
-      if (TogetherJS.running && !nowSyncing /* don't perterb when syncing */) {
+      if (TogetherJS.running) {
         TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
       }
     }
@@ -126,7 +124,6 @@ function initTogetherJS() {
       return;
     }
     if (myVisualizer) {
-      console.log("updateOutput:", msg);
       // to prevent this call to updateOutput from firing its own TogetherJS event
       updateOutputSignalFromRemote = true;
       try {
@@ -145,8 +142,10 @@ function initTogetherJS() {
     hashchangeSignalFromRemote = true;
     try {
       console.log("TogetherJS RECEIVE hashchange", msg.appMode);
-      appMode = msg.appMode; // assign this to the GLOBAL appMode
-      updateAppDisplay();
+      if (appMode != msg.appMode) {
+        appMode = msg.appMode; // assign this to the GLOBAL appMode
+        updateAppDisplay();
+      }
     }
     finally {
       hashchangeSignalFromRemote = false;
@@ -175,36 +174,24 @@ function initTogetherJS() {
       return;
     }
 
-    try {
-      var learnerAppState = msg.myAppState;
+    var learnerAppState = msg.myAppState;
 
-      if (learnerAppState.mode == 'display' ||
-          learnerAppState.mode == 'visualize' /* deprecated */) {
-        if (appStateEq(getAppState(), learnerAppState)) {
-          // update curInstr only
-          console.log("on:myAppState - app states equal, renderStep", learnerAppState.curInstr);
-          myVisualizer.renderStep(learnerAppState.curInstr);
-        }
-        else {
-          console.log("on:myAppState - app states unequal, executing", learnerAppState);
-          setVisibleAppState(learnerAppState);
-          // execute code and jump to the learner's curInstr
-          executeCode(learnerAppState.curInstr);
-        }
+    if (learnerAppState.mode == 'display' ||
+        learnerAppState.mode == 'visualize' /* deprecated */) {
+      if (appStateEq(getAppState(), learnerAppState)) {
+        // update curInstr only
+        console.log("on:myAppState - app states equal, renderStep", learnerAppState.curInstr);
+        myVisualizer.renderStep(learnerAppState.curInstr);
       }
       else {
-        console.log("on:myAppState - edit mode sync");
+        console.log("on:myAppState - app states unequal, executing", learnerAppState);
         setVisibleAppState(learnerAppState);
+        executeCode(learnerAppState.curInstr);
       }
-
-      appMode = learnerAppState.mode;
-      updateAppDisplay();
     }
-    finally {
-      // TODO: this is wrong since it switches way too early. we should
-      // stop syncing after executeCode has successfully finished, which
-      // runs a callback function
-      nowSyncing = false; // done with a successful sync round trip
+    else {
+      console.log("on:myAppState - edit mode sync");
+      setVisibleAppState(learnerAppState);
     }
   });
 
@@ -384,11 +371,6 @@ function executeCodeWithRawInput(rawInputStr, curInstr) {
 $(document).ready(function() {
   setSurveyHTML();
 
-  // as of 2014-05-02, remove the button click survey questions from the
-  // visualizer so as not to clutter up the screen. i started running
-  // this experiment on 2014-04-09 and put it on hold on 2014-05-02:
-  $("#surveyHeader").remove();
-
   $("#embedLinkDiv").hide();
 
   pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
@@ -410,15 +392,14 @@ $(document).ready(function() {
   }
 
 
-  // be friendly to the browser's forward and back buttons
+  // be (somewhat) friendly to the browser's forward and back buttons
   // thanks to http://benalman.com/projects/jquery-bbq-plugin/
   $(window).bind("hashchange", function(e) {
     appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
     console.log('hashchange:', appMode);
     updateAppDisplay();
 
-    if (TogetherJS.running && !nowSyncing && !hashchangeSignalFromRemote) {
-      console.log("TogetherJS SEND hashchange", appMode);
+    if (TogetherJS.running && !hashchangeSignalFromRemote) {
       TogetherJS.send({type: "hashchange", appMode: appMode});
     }
   });

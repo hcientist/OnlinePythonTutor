@@ -23,7 +23,7 @@ function appendDiv(dat) {
   var linkURL = dat.url + '&role=tutor';
 
   d.html(dat.timestr + ' ' + dat.ip + 
-        ' <a href="' + linkURL + '">' + linkURL + '</a> ' +
+        ' <a href="' + linkURL + '" target="_blank">' + linkURL + '</a> ' +
         '<button type="button" class="eraseBtn">Erase</button>');
 
   d.find('button.eraseBtn').click(function() {
