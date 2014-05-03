@@ -99,8 +99,6 @@ function requestSync() {
 
 // get this app ready for TogetherJS
 function initTogetherJS() {
-  $("#surveyHeader").remove(); // kill this to save space
-
   if (isTutor) {
     $("#togetherBtn").html("TUTOR - Join live help session");
     $("#togetherJSHeader").append('<button id="syncBtn"\
@@ -229,6 +227,7 @@ function initTogetherJS() {
 
       if (dat.helpAvailable) {
         $("#togetherJSHeader").fadeIn(750, redrawConnectors);
+        $("#surveyHeader").remove(); // kill this to save space
       }
       else {
         if (TogetherJS.running) {
