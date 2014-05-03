@@ -384,6 +384,11 @@ function executeCodeWithRawInput(rawInputStr, curInstr) {
 $(document).ready(function() {
   setSurveyHTML();
 
+  // as of 2014-05-02, remove the button click survey questions from the
+  // visualizer so as not to clutter up the screen. i started running
+  // this experiment on 2014-04-09 and put it on hold on 2014-05-02:
+  $("#surveyHeader").remove();
+
   $("#embedLinkDiv").hide();
 
   pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
