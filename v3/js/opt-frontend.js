@@ -49,7 +49,7 @@ function redrawConnectors() {
 
 
 // EXPERIMENTAL
-var enableTogetherJS = false;
+var enableTogetherJS = true;
 
 var TogetherJSConfig_disableWebRTC = true;
 var TogetherJSConfig_suppressJoinConfirmation = true;
@@ -192,6 +192,7 @@ function initTogetherJS() {
     else {
       console.log("on:myAppState - edit mode sync");
       setVisibleAppState(learnerAppState);
+      enterEditMode();
     }
   });
 
@@ -269,7 +270,7 @@ function initTogetherJS() {
       $("#togetherBtn").html("TUTOR - Join live help session");
     }
     else {
-      $("#togetherBtn").html("Get live help now");
+      $("#togetherBtn").html("Get live help (experimental)");
     }
   });
 }
