@@ -53,7 +53,7 @@ var enableTogetherJS = true;
 
 var TogetherJSConfig_disableWebRTC = true;
 var TogetherJSConfig_suppressJoinConfirmation = true;
-var TogetherJSConfig_dontShowClicks = true;
+var TogetherJSConfig_dontShowClicks = false;
 
 // stop popping up boring intro dialog box:
 var TogetherJSConfig_seenIntroDialog = true;
