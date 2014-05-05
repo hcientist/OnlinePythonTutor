@@ -18,6 +18,10 @@ var EventEmitter = require('events').EventEmitter;
 var learnerEmitter = new EventEmitter(); // sending events to learners
 var adminEmitter = new EventEmitter();   // sending events to administrators
 
+// to prevent warnings when a bunch of learners sign online
+learnerEmitter.setMaxListeners(20);
+adminEmitter.setMaxListeners(20);
+
 var helpQueue = [];
 var helpAvailable = false;
 

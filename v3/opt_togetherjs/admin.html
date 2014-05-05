@@ -15,10 +15,10 @@ function setBtnLabel(dat) {
   }
 }
 
-
 function appendDiv(dat) {
   $("div#queue").append('<div class="entry" id="div_' + dat.id + '"/>');
   var d = $('div#queue div.entry').last();
+  document.title = "(" + $("div.entry").length + ") OPT live help admin panel";
 
   var linkURL = dat.url + '&role=tutor';
 
@@ -32,6 +32,7 @@ function appendDiv(dat) {
     $.get('/remove-help-queue-element', {id: dat.id}, function(ret) {
       if (ret == "success") {
         d.remove();
+        document.title = "(" + $("div.entry").length + ") OPT live help admin panel";
       }
       else {
         alert("Unknown error :(");
@@ -54,6 +55,7 @@ $(document).ready(function() {
       $('span#fetchTime').html(dat.fetchTime);
 
       $('div#queue').empty();
+      document.title = "(0) OPT live help admin panel";
       $.each(dat.helpQueue, function(i, e) {
         appendDiv(e);
       });
@@ -80,6 +82,7 @@ $(document).ready(function() {
       $.get('/clear-help-queue', {}, function(dat) {
         if (dat == 'success') {
           $('div#queue').empty();
+          document.title = "(0) OPT live help admin panel";
         }
         else {
           alert('Unknown error with /clear-help-queue');
