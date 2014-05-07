@@ -207,6 +207,7 @@ function updateAppDisplay() {
     // Back button flow
     $("#pyOutputPane").empty();
     myVisualizer = null;
+    $(document).unbind('keydown'); // also kill kb bindings to avoid staleness
   }
   else if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
     if (!myVisualizer) {
