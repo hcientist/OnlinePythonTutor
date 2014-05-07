@@ -148,10 +148,6 @@ function initTogetherJS() {
   // learner receives a sync request from tutor and responds by
   // sending its current app state
   TogetherJS.hub.on("requestSync", function(msg) {
-    if (!msg.sameUrl) {
-      return;
-    }
-
     // only a learner should receive sync requests from a tutor
     if (isTutor) {
       return;
@@ -166,10 +162,6 @@ function initTogetherJS() {
   // TODO: what happens if more than one learner sends state to tutor?
   // i suppose the last one wins at this point :/
   TogetherJS.hub.on("myAppState", function(msg) {
-    if (!msg.sameUrl) {
-      return;
-    }
-
     // only a tutor should handle receiving an app state from a learner
     if (!isTutor) {
       return;
