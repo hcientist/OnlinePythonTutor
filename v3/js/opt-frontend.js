@@ -152,9 +152,17 @@ function initTogetherJS() {
     hashchangeSignalFromRemote = true;
     try {
       console.log("TogetherJS RECEIVE hashchange", msg.appMode);
-      if (appMode != msg.appMode) {
-        appMode = msg.appMode; // assign this to the GLOBAL appMode
-        updateAppDisplay();
+
+      // TODO: this will infinite loop if you hit the "back button"!
+      if (msg.appMode != appMode) {
+        // UGH: need to do this to keep the URL hashes consistent across
+        // clients, or else the hashchange trigger won't fire
+        if (msg.appMode == 'edit') {
+          enterEditMode();
+        }
+        else if (msg.appMode == 'display') {
+          enterDisplayMode();
+        }
       }
     }
     finally {
