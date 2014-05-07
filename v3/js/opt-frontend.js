@@ -90,7 +90,7 @@ var try_hook = function(hook_name, args) {
 
 
 function requestSync() {
-  if (TogetherJS.running && !isExecutingCode) {
+  if (TogetherJS.running) {
     TogetherJS.send({type: "requestSync"});
   }
 }
@@ -170,7 +170,7 @@ function initTogetherJS() {
       return;
     }
 
-    if (TogetherJS.running && !isExecutingCode) {
+    if (TogetherJS.running) {
       TogetherJS.send({type: "myAppState", myAppState: getAppState()});
     }
   });
