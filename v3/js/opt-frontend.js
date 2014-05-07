@@ -90,7 +90,7 @@ var try_hook = function(hook_name, args) {
 
 
 function requestSync() {
-  if (TogetherJS.running) {
+  if (TogetherJS.running && !isExecutingCode) {
     TogetherJS.send({type: "requestSync"});
   }
 }
@@ -112,7 +112,7 @@ function initTogetherJS() {
       if (updateOutputSignalFromRemote) {
         return;
       }
-      if (TogetherJS.running) {
+      if (TogetherJS.running && !isExecutingCode) {
         TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
       }
     }
@@ -123,6 +123,11 @@ function initTogetherJS() {
     if (!msg.sameUrl) {
       return;
     }
+
+    if (isExecutingCode) {
+      return;
+    }
+
     if (myVisualizer) {
       // to prevent this call to updateOutput from firing its own TogetherJS event
       updateOutputSignalFromRemote = true;
@@ -139,6 +144,11 @@ function initTogetherJS() {
     if (!msg.sameUrl) {
       return;
     }
+
+    if (isExecutingCode) {
+      return;
+    }
+
     hashchangeSignalFromRemote = true;
     try {
       console.log("TogetherJS RECEIVE hashchange", msg.appMode);
@@ -160,7 +170,7 @@ function initTogetherJS() {
       return;
     }
 
-    if (TogetherJS.running) {
+    if (TogetherJS.running && !isExecutingCode) {
       TogetherJS.send({type: "myAppState", myAppState: getAppState()});
     }
   });
@@ -401,7 +411,7 @@ $(document).ready(function() {
     console.log('hashchange:', appMode);
     updateAppDisplay();
 
-    if (TogetherJS.running && !hashchangeSignalFromRemote) {
+    if (TogetherJS.running && !hashchangeSignalFromRemote && !isExecutingCode) {
       TogetherJS.send({type: "hashchange", appMode: appMode});
     }
   });
