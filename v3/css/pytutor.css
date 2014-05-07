@@ -149,6 +149,7 @@ div.ExecutionVisualizer div#editCodeLinkDiv {
   margin-bottom: 4px;
   */
   margin: 8px auto;
+  font-size: 11pt;
 }
 
 div.ExecutionVisualizer div#annotateLinkDiv {

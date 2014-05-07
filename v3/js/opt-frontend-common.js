@@ -61,7 +61,7 @@ var domain = "http://pythontutor.com/"; // for deployment
 var isExecutingCode = false; // nasty, nasty global
 
 
-var appMode = 'edit'; // 'edit', 'display', or 'display_no_frills' also support
+var appMode = 'edit'; // 'edit', 'display', 'display_no_frills'. also support
                       // 'visualize' for backward compatibility (same as 'display')
 
 var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
@@ -91,11 +91,49 @@ function guid() {
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 
-
 var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
 
+
+function redrawConnectors() {
+  if (appMode == 'display' || appMode == 'visualize' /* deprecated */) {
+    if (myVisualizer) {
+      myVisualizer.redrawConnectors();
+    }
+  }
+}
+
+
 function genericOptFrontendReady() {
-  // log a generic AJAX error handler
+  var queryStrOptions = getQueryStringOptions();
+  setToggleOptions(queryStrOptions);
+
+  if (queryStrOptions.preseededCode) {
+    setCodeMirrorVal(queryStrOptions.preseededCode);
+  }
+
+  // ugh tricky -- always start in edit mode by default, and then
+  // simulate a click to get it to switch to display mode ONLY after the
+  // code successfully executes
+  appMode = 'edit';
+  if ((queryStrOptions.appMode == 'display' ||
+       queryStrOptions.appMode == 'visualize' /* 'visualize' is deprecated */) &&
+      queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
+    console.log('seeded in display mode');
+    preseededCurInstr = queryStrOptions.preseededCurInstr; // ugly global
+    $("#executeBtn").trigger('click');
+  }
+  $.bbq.removeState(); // clean up the URL no matter what
+
+  $(window).resize(redrawConnectors);
+
+  $('#genUrlBtn').bind('click', function() {
+    var myArgs = getAppState();
+    var urlStr = $.param.fragment(window.location.href, myArgs, 2 /* clobber all */);
+    $('#urlOutput').val(urlStr);
+  });
+
+
+  // register a generic AJAX error handler
   $(document).ajaxError(function(evt, jqxhr, settings, exception) {
     // ignore errors related to togetherjs stuff:
     if (settings.url.indexOf('togetherjs') > -1) {
@@ -150,15 +188,33 @@ function setToggleOptions(dat) {
 
 // get the ENTIRE current state of the app
 function getAppState() {
-  return {code: pyInputCodeMirror.getValue(),
-          mode: appMode,
-          cumulative: $('#cumulativeModeSelector').val(),
-          heapPrimitives: $('#heapPrimitivesSelector').val(),
-          drawParentPointers: $('#drawParentPointerSelector').val(),
-          textReferences: $('#textualMemoryLabelsSelector').val(),
-          showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
-          py: $('#pythonVersionSelector').val(),
-          curInstr: myVisualizer ? myVisualizer.curInstr : undefined};
+  var ret = {code: pyInputCodeMirror.getValue(),
+             mode: appMode,
+             cumulative: $('#cumulativeModeSelector').val(),
+             heapPrimitives: $('#heapPrimitivesSelector').val(),
+             drawParentPointers: $('#drawParentPointerSelector').val(),
+             textReferences: $('#textualMemoryLabelsSelector').val(),
+             showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
+             py: $('#pythonVersionSelector').val(),
+             curInstr: myVisualizer ? myVisualizer.curInstr : undefined};
+
+  // keep this really clean by avoiding undefined values
+  if (ret.cumulative === undefined)
+    delete ret.cumulative;
+  if (ret.heapPrimitives === undefined)
+    delete ret.heapPrimitives;
+  if (ret.drawParentPointers === undefined)
+    delete ret.drawParentPointers;
+  if (ret.textReferences === undefined)
+    delete ret.textReferences;
+  if (ret.showOnlyOutputs === undefined)
+    delete ret.showOnlyOutputs;
+  if (ret.py === undefined)
+    delete ret.py;
+  if (ret.curInstr === undefined)
+    delete ret.curInstr;
+
+  return ret;
 }
 
 // return whether two states match, except don't worry about curInstr
@@ -186,10 +242,20 @@ function setVisibleAppState(appState) {
 }
 
 
-// update the app display based on current state of the appMode global
-// TODO: refactor all frontend clients to call this unified function
-function updateAppDisplay() {
-  if (appMode === undefined || appMode == 'edit') {
+// sets the global appMode variable if relevant and also the URL hash to
+// support some amount of Web browser back button goodness
+function updateAppDisplay(newAppMode) {
+  // idempotence is VERY important here
+  if (newAppMode == appMode) {
+    return;
+  }
+
+  appMode = newAppMode; // global!
+
+  if (appMode === undefined || appMode == 'edit' ||
+      !myVisualizer /* subtle -- if no visualizer, default to edit mode */) {
+    appMode = 'edit'; // canonicalize
+
     $("#pyInputPane").show();
     $("#pyOutputPane,#surveyHeader").hide();
     $("#embedLinkDiv").hide();
@@ -208,39 +274,48 @@ function updateAppDisplay() {
     $("#pyOutputPane").empty();
     myVisualizer = null;
     $(document).unbind('keydown'); // also kill kb bindings to avoid staleness
+
+    $(document).scrollTop(0); // scroll to top to make UX better on small monitors
+
+    $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
   }
   else if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
-    if (!myVisualizer) {
-      enterEditMode(); // if there's no visualizer, switch back to edit mode
-    }
-    else {
-      $("#pyInputPane").hide();
-      $("#pyOutputPane,#surveyHeader").show();
-      $("#embedLinkDiv").show();
+    assert(myVisualizer);
+    appMode = 'display'; // canonicalize
 
-      doneExecutingCode();
-
-      // do this AFTER making #pyOutputPane visible, or else
-      // jsPlumb connectors won't render properly
-      myVisualizer.updateOutput();
-
-      // customize edit button click functionality AFTER rendering (NB: awkward!)
-      $('#pyOutputPane #editCodeLinkDiv').show();
-      $('#pyOutputPane #editBtn').click(function() {
-        enterEditMode();
-      });
-    }
-  }
-  else if (appMode == 'display_no_frills') {
     $("#pyInputPane").hide();
     $("#pyOutputPane,#surveyHeader").show();
     $("#embedLinkDiv").show();
+
+    doneExecutingCode();
+
+    // do this AFTER making #pyOutputPane visible, or else
+    // jsPlumb connectors won't render properly
+    myVisualizer.updateOutput();
+
+    // customize edit button click functionality AFTER rendering (NB: awkward!)
+    $('#pyOutputPane #editCodeLinkDiv').show();
+    $('#pyOutputPane #editBtn').click(function() {
+      enterEditMode();
+    });
+
+    $(document).scrollTop(0); // scroll to top to make UX better on small monitors
+
+    $.bbq.pushState({ mode: 'display' }, 2 /* completely override other hash strings to keep URL clean */);
   }
   else {
-    assert(false);
+    assert(appMode == 'display_no_frills');
+    assert(myVisualizer);
+
+    $("#pyInputPane").hide();
+    $("#pyOutputPane,#surveyHeader").show();
+    $("#embedLinkDiv").show();
+    $.bbq.pushState({ mode: 'display_no_frills' }, 2 /* completely override other hash strings to keep URL clean */);
   }
 
   $('#urlOutput,#embedCodeOutput').val(''); // clear to avoid stale values
+
+  console.log('END updateAppDisplay', appMode);
 }
 
 
@@ -270,18 +345,20 @@ function doneExecutingCode() {
   isExecutingCode = false; // nasty global
 }
 
+
 function enterDisplayMode() {
-  $(document).scrollTop(0); // scroll to top to make UX better on small monitors
-  $.bbq.pushState({ mode: 'display' }, 2 /* completely override other hash strings to keep URL clean */);
+  console.log('enterDisplayMode');
+  updateAppDisplay('display');
 }
 
 function enterEditMode() {
-  $(document).scrollTop(0); // scroll to top to make UX better on small monitors
-  $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
+  console.log('enterEditMode');
+  updateAppDisplay('edit');
 }
 
 function enterDisplayNoFrillsMode() {
-  $.bbq.pushState({ mode: 'display_no_frills' }, 2 /* completely override other hash strings to keep URL clean */);
+  console.log('enterDisplayNoFrillsMode');
+  updateAppDisplay('display_no_frills');
 }
 
 

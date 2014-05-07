@@ -15,7 +15,7 @@ var fs = require('fs');
 
 if (system.args.length < 2) {
   console.log('\nUsage:');
-  console.log('phantomjs render-opt-screenshots.js <filename> [custom server name] [custom option string]');
+  console.log('phantomjs render-opt-screenshots.js <filename> [custom server name] [custom HTML file] [custom option string]');
   console.log('\nVisualizes execution of a Python file at pythontutor.com and renders');
   console.log('the state diagram at each step i as <filename>.step.$i.png');
   phantom.exit(1);
@@ -24,15 +24,20 @@ if (system.args.length < 2) {
 var fn = system.args[1];
 var basename = fn.split(/[\\/]/).pop();
 
-var server, option_str;
+var server, html, option_str;
 if (system.args.length == 2) {
   // default options
   server = 'www.pythontutor.com';
+  html = 'visualize.html';
   option_str = 'cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2';
 }
 else {
   server = system.args[2];
-  option_str = system.args[3];
+  html = system.args[3]
+  option_str = system.args[4];
+  if (!option_str) {
+    option_str = ''; // to make string concatenation work properly
+  }
 }
 
 var pythonScript = fs.open(fn, 'r').read();
@@ -46,7 +51,7 @@ if (DEBUG) {
 var scriptEncoded = encodeURIComponent(pythonScript);
 
 // construct a URL with the script and options:
-var url = 'http://' + server + '/visualize.html#code=' + scriptEncoded +
+var url = 'http://' + server + '/' + html + '#code=' + scriptEncoded +
           '&mode=display&showOnlyOutputs=false&' + option_str;
 
 page.open(url, function () {

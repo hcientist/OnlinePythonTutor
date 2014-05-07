@@ -38,7 +38,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 $(document).ready(function() {
-  genericOptFrontendReady();
   setSurveyHTML();
 
   $("#embedLinkDiv").hide();
@@ -55,12 +54,10 @@ $(document).ready(function() {
   pyInputCodeMirror.setSize(null, '420px');
 
 
-
   // be friendly to the browser's forward and back buttons
   // thanks to http://benalman.com/projects/jquery-bbq-plugin/
   $(window).bind("hashchange", function(e) {
-    appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
-    updateAppDisplay();
+    updateAppDisplay($.bbq.getState('mode'));
   });
 
 
@@ -133,49 +130,5 @@ $(document).ready(function() {
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(executeCodeFromScratch);
 
-
-  var queryStrOptions = getQueryStringOptions();
-  setToggleOptions(queryStrOptions);
-
-  if (queryStrOptions.preseededCode) {
-    setCodeMirrorVal(queryStrOptions.preseededCode);
-  }
-
-  appMode = queryStrOptions.appMode; // assign this to the GLOBAL appMode
-  if ((appMode == "display") && queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
-    preseededCurInstr = queryStrOptions.preseededCurInstr; // ugly global
-    $("#executeBtn").trigger('click');
-  }
-  else {
-    if (appMode === undefined) {
-      // default mode is 'edit', don't trigger a "hashchange" event
-      appMode = 'edit';
-    }
-    else {
-      // fail-soft by killing all passed-in hashes and triggering a "hashchange"
-      // event, which will then go to 'edit' mode
-      $.bbq.removeState();
-    }
-  }
-
-  // redraw connector arrows on window resize
-  $(window).resize(function() {
-    if (appMode == 'display') {
-      myVisualizer.redrawConnectors();
-    }
-  });
-
-  $('#genUrlBtn').bind('click', function() {
-    var myArgs = {code: pyInputCodeMirror.getValue(),
-                  mode: appMode,
-                  cumulative: $('#cumulativeModeSelector').val(),
-                  py: $('#pythonVersionSelector').val()};
-
-    if (appMode == 'display') {
-      myArgs.curInstr = myVisualizer.curInstr;
-    }
-
-    var urlStr = $.param.fragment(window.location.href, myArgs, 2 /* clobber all */);
-    $('#urlOutput').val(urlStr);
-  });
+  genericOptFrontendReady(); // initialize at the end
 });

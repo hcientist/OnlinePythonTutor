@@ -39,15 +39,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // should all be imported BEFORE this file
 
 
-function redrawConnectors() {
-  if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
-    if (myVisualizer) {
-      myVisualizer.redrawConnectors();
-    }
-  }
-}
-
-
 // EXPERIMENTAL
 var enableTogetherJS = true;
 
@@ -81,7 +72,6 @@ var isTutor = false;
 
 // nasty globals
 var updateOutputSignalFromRemote = false;
-var hashchangeSignalFromRemote = false;
 
 // Global hook for ExecutionVisualizer.
 var try_hook = function(hook_name, args) {
@@ -149,30 +139,19 @@ function initTogetherJS() {
       return;
     }
 
-    hashchangeSignalFromRemote = true;
-    try {
-      console.log("TogetherJS RECEIVE hashchange", msg.appMode);
-
-      // TODO: this will infinite loop if you hit the "back button"!
-      if (msg.appMode != appMode) {
-        // UGH: need to do this to keep the URL hashes consistent across
-        // clients, or else the hashchange trigger won't fire
-        if (msg.appMode == 'edit') {
-          enterEditMode();
-        }
-        else if (msg.appMode == 'display') {
-          enterDisplayMode();
-        }
-      }
-    }
-    finally {
-      hashchangeSignalFromRemote = false;
+    console.log("TogetherJS RECEIVE hashchange", msg.appMode);
+    if (msg.appMode != appMode) {
+      updateAppDisplay(msg.appMode);
     }
   });
 
   // learner receives a sync request from tutor and responds by
   // sending its current app state
   TogetherJS.hub.on("requestSync", function(msg) {
+    if (!msg.sameUrl) {
+      return;
+    }
+
     // only a learner should receive sync requests from a tutor
     if (isTutor) {
       return;
@@ -187,6 +166,10 @@ function initTogetherJS() {
   // TODO: what happens if more than one learner sends state to tutor?
   // i suppose the last one wins at this point :/
   TogetherJS.hub.on("myAppState", function(msg) {
+    if (!msg.sameUrl) {
+      return;
+    }
+
     // only a tutor should handle receiving an app state from a learner
     if (!isTutor) {
       return;
@@ -194,8 +177,7 @@ function initTogetherJS() {
 
     var learnerAppState = msg.myAppState;
 
-    if (learnerAppState.mode == 'display' ||
-        learnerAppState.mode == 'visualize' /* deprecated */) {
+    if (learnerAppState.mode == 'display') {
       if (appStateEq(getAppState(), learnerAppState)) {
         // update curInstr only
         console.log("on:myAppState - app states equal, renderStep", learnerAppState.curInstr);
@@ -388,7 +370,6 @@ function executeCodeWithRawInput(rawInputStr, curInstr) {
 
 
 $(document).ready(function() {
-  genericOptFrontendReady();
   setSurveyHTML();
 
   $("#embedLinkDiv").hide();
@@ -412,14 +393,14 @@ $(document).ready(function() {
   }
 
 
-  // be (somewhat) friendly to the browser's forward and back buttons
+  // be friendly to the browser's forward and back buttons
   // thanks to http://benalman.com/projects/jquery-bbq-plugin/
   $(window).bind("hashchange", function(e) {
-    appMode = $.bbq.getState('mode'); // assign this to the GLOBAL appMode
-    console.log('hashchange:', appMode);
-    updateAppDisplay();
+    var newMode = $.bbq.getState('mode');
+    console.log('hashchange:', newMode);
+    updateAppDisplay(newMode);
 
-    if (TogetherJS.running && !hashchangeSignalFromRemote && !isExecutingCode) {
+    if (TogetherJS.running && !isExecutingCode) {
       TogetherJS.send({type: "hashchange", appMode: appMode});
     }
   });
@@ -695,43 +676,10 @@ $(document).ready(function() {
   });
 
 
-  var queryStrOptions = getQueryStringOptions();
-  setToggleOptions(queryStrOptions);
-
-  if (queryStrOptions.preseededCode) {
-    setCodeMirrorVal(queryStrOptions.preseededCode);
-  }
-  else {
-    // select a canned example on start-up:
+  // if blank, then select a canned example on start-up
+  if (!pyInputCodeMirror.getValue()) {
     $("#aliasExampleLink").trigger('click');
   }
-
-  appMode = queryStrOptions.appMode; // assign this to the GLOBAL appMode
-  if ((appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) &&
-      queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
-    preseededCurInstr = queryStrOptions.preseededCurInstr; // ugly global
-    $("#executeBtn").trigger('click');
-  }
-  else {
-    if (appMode === undefined) {
-      // default mode is 'edit', don't trigger a "hashchange" event
-      appMode = 'edit';
-    }
-    else {
-      // fail-soft by killing all passed-in hashes and triggering a "hashchange"
-      // event, which will then go to 'edit' mode
-      $.bbq.removeState();
-    }
-  }
-
-
-  $(window).resize(redrawConnectors);
-
-  $('#genUrlBtn').bind('click', function() {
-    var myArgs = getAppState();
-    var urlStr = $.param.fragment(window.location.href, myArgs, 2 /* clobber all */);
-    $('#urlOutput').val(urlStr);
-  });
 
   $('#genEmbedBtn').bind('click', function() {
     assert(appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */);
@@ -762,4 +710,6 @@ $(document).ready(function() {
       $.get('survey.py', myArgs, function(dat) {});
     }
   });
+
+  genericOptFrontendReady(); // initialize at the end
 });

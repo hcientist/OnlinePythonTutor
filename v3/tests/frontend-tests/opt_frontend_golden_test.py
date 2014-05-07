@@ -20,6 +20,14 @@ by Philip Guo
 '''
 
 # test with different display options
+'''
+HTML_DICT = {
+  'regular': 'visualize.html',
+  'csc108h': 'csc108h.html',
+  'composingprograms': 'composingprograms.html',
+}
+'''
+
 OPTIONS_DICT = {
   'regular': 'cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2',
   'csc108h': 'cumulative=false&heapPrimitives=true&drawParentPointers=false&textReferences=true&py=2',
@@ -37,7 +45,8 @@ def execute(input_filename, option_name):
   assert os.path.isfile(input_filename)
   (base, ext) = os.path.splitext(input_filename)
 
-  (stdout, stderr) = Popen(PROGRAM + [input_filename, 'localhost:8080', OPTIONS_DICT[option_name]],
+  args = [input_filename, 'localhost:8080', 'visualize.html', OPTIONS_DICT[option_name]]
+  (stdout, stderr) = Popen(PROGRAM + args,
                            stdout=PIPE, stderr=PIPE).communicate()
 
 
