@@ -58,6 +58,9 @@ var domain = "http://pythontutor.com/"; // for deployment
 //var domain = "http://localhost:8080/"; // for Google App Engine local testing
 
 
+var isExecutingCode = false; // nasty, nasty global
+
+
 var appMode = 'edit'; // 'edit', 'display', or 'display_no_frills' also support
                       // 'visualize' for backward compatibility (same as 'display')
 
@@ -91,6 +94,24 @@ var myVisualizer = null; // singleton ExecutionVisualizer instance
 
 var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
 
+function genericOptFrontendReady() {
+  // log a generic AJAX error handler
+  $(document).ajaxError(function(evt, jqxhr, settings, exception) {
+    // ignore errors related to togetherjs stuff:
+    if (settings.url.indexOf('togetherjs') > -1) {
+      return; // get out early
+    }
+
+    alert("Server error (possibly due to memory/resource overload). " +
+          "Report a bug to philip@pgbovine.net\n\n" +
+          "(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
+
+    $('#executeBtn').html("Visualize Execution");
+    $('#executeBtn').attr('disabled', false);
+
+    isExecutingCode = false; // ugh, nasty global
+  });
+}
 
 function getQueryStringOptions() {
   // note that any of these can be 'undefined'
@@ -273,6 +294,8 @@ function executePythonCode(pythonSourceCode,
       return;
     }
 
+    isExecutingCode = true; // nasty global
+
     $.get(backendScript,
           {user_script : pythonSourceCode,
            raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
@@ -335,6 +358,11 @@ function executePythonCode(pythonSourceCode,
 
               handleSuccessFunc();
             }
+
+            // WARNING: this line may run before handleSuccessFunc or
+            // handleUncaughtExceptionFunc fully finishes if they
+            // contain asynchronous parts
+            isExecutingCode = false;
           },
           "json");
 }

@@ -370,6 +370,7 @@ function executeCodeWithRawInput(rawInputStr, curInstr) {
 
 
 $(document).ready(function() {
+  genericOptFrontendReady();
   setSurveyHTML();
 
   $("#embedLinkDiv").hide();
@@ -704,22 +705,6 @@ $(document).ready(function() {
       $.bbq.removeState();
     }
   }
-
-
-  // log a generic AJAX error handler
-  $(document).ajaxError(function(evt, jqxhr, settings, exception) {
-    // ignore errors related to togetherjs stuff:
-    if (settings.url.indexOf('togetherjs') > -1) {
-      return; // get out early
-    }
-
-    alert("Server error (possibly due to memory/resource overload). " +
-          "Report a bug to philip@pgbovine.net\n\n" +
-          "(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
-
-    $('#executeBtn').html("Visualize Execution");
-    $('#executeBtn').attr('disabled', false);
-  });
 
 
   $(window).resize(redrawConnectors);

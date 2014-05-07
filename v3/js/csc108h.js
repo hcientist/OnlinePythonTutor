@@ -39,6 +39,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 $(document).ready(function() {
+  genericOptFrontendReady();
   setSurveyHTML();
 
   $("#embedLinkDiv").hide();
@@ -157,18 +158,6 @@ $(document).ready(function() {
       $.bbq.removeState();
     }
   }
-
-
-  // log a generic AJAX error handler
-  $(document).ajaxError(function() {
-    alert("Server error (possibly due to memory/resource overload). " +
-          "Report a bug to philip@pgbovine.net\n\n" +
-          "(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
-
-    $('#executeBtn').html("Visualize Execution");
-    $('#executeBtn').attr('disabled', false);
-  });
-
 
   // redraw connector arrows on window resize
   $(window).resize(function() {
