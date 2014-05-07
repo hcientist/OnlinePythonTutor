@@ -106,10 +106,7 @@ function genericOptFrontendReady() {
           "Report a bug to philip@pgbovine.net\n\n" +
           "(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
 
-    $('#executeBtn').html("Visualize Execution");
-    $('#executeBtn').attr('disabled', false);
-
-    isExecutingCode = false; // ugh, nasty global
+    doneExecutingCode();
   });
 }
 
@@ -220,8 +217,7 @@ function updateAppDisplay() {
       $("#pyOutputPane,#surveyHeader").show();
       $("#embedLinkDiv").show();
 
-      $('#executeBtn').html("Visualize Execution");
-      $('#executeBtn').attr('disabled', false);
+      doneExecutingCode();
 
       // do this AFTER making #pyOutputPane visible, or else
       // jsPlumb connectors won't render properly
@@ -263,11 +259,15 @@ function handleUncaughtExceptionFunc(trace) {
       pyInputCodeMirror.on('change', f);
     }
 
-    $('#executeBtn').html("Visualize Execution");
-    $('#executeBtn').attr('disabled', false);
+    doneExecutingCode();
   }
 }
 
+function doneExecutingCode() {
+  $('#executeBtn').html("Visualize Execution");
+  $('#executeBtn').attr('disabled', false);
+  isExecutingCode = false; // nasty global
+}
 
 function enterDisplayMode() {
   $(document).scrollTop(0); // scroll to top to make UX better on small monitors
@@ -358,11 +358,6 @@ function executePythonCode(pythonSourceCode,
 
               handleSuccessFunc();
             }
-
-            // WARNING: this line may run before handleSuccessFunc or
-            // handleUncaughtExceptionFunc fully finishes if they
-            // contain asynchronous parts
-            isExecutingCode = false;
           },
           "json");
 }
