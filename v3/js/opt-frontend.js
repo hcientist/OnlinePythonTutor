@@ -59,6 +59,9 @@ var TogetherJSConfig_cloneClicks = '#pyInputPane select,#pyInputPane #executeBtn
 var TogetherJSConfig_siteName = "Online Python Tutor live help";
 var TogetherJSConfig_toolName = "Online Python Tutor live help";
 
+//var TogetherJSConfig_hubBase = "http://184.173.101.176:30035/"; // online
+var TogetherJSConfig_hubBase = "http://localhost:30035/"; // local
+
 var isTutor = false;
 
 // TODO: consider deferred initialization later: "TogetherJS starts up
@@ -190,7 +193,7 @@ function initTogetherJS() {
 
 
   try {
-    var source = new EventSource('http://togetherjs.pythontutor.com/learner-SSE');
+    var source = new EventSource(TogetherJSConfig_hubBase + 'learner-SSE');
     source.onmessage = function(e) {
       var dat = JSON.parse(e.data);
 
@@ -244,7 +247,7 @@ function initTogetherJS() {
     }
     else {
       // if you're a learner, request help when TogetherJS is activated
-      $.get("http://togetherjs.pythontutor.com/request-help",
+      $.get(TogetherJSConfig_hubBase + 'request-help',
             {url: TogetherJS.shareUrl()},
             null /* don't use a callback; rely on SSE */);
     }

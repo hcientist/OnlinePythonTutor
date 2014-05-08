@@ -1,5 +1,8 @@
 // created on 2014-04-29 by Philip Guo
 
+// DEPRECATED on 2014-05-08. Use server.js instead to implement both the
+// administrator hub and the TogetherJS server all in one program.
+
 // To install on Webfaction, run:
 // npm install express
 // npm install node-uuid
