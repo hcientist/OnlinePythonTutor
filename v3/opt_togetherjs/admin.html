@@ -80,6 +80,8 @@ $(document).ready(function() {
       setBtnLabel(dat);
     }
     else if (dat.type == 'new-help-request') {
+      $('#rikerRedAlertSound').get(0).play();
+      $('#redAlertSirenSound').get(0).play();
       appendDiv(dat);
     }
   };
@@ -110,6 +112,13 @@ $(document).ready(function() {
 </script>
 
 <body>
+
+<audio id="rikerRedAlertSound" controls>
+  <source src="sounds/redalert.mp3" type="audio/mpeg"/>
+</audio>
+<audio id="redAlertSirenSound" controls>
+  <source src="sounds/tng_red_alert2.mp3" type="audio/mpeg"/>
+</audio>
 
 <h2>OPT live help admin panel</h2>
 

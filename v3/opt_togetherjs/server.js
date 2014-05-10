@@ -509,7 +509,7 @@ var helpAvailable = false;
 
 function pgLogWrite(logObj) {
   var s = JSON.stringify(logObj);
-  console.log(s); // debug
+  //console.log(s); // debug
 
   if (pgLogFile) {
     pgLogFile.write(s + '\n');
