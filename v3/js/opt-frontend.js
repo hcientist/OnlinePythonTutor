@@ -39,8 +39,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // should all be imported BEFORE this file
 
 
-// EXPERIMENTAL
-var enableTogetherJS = true;
+var enableTogetherJS = true; // EXPERIMENTAL
 
 var TogetherJSConfig_disableWebRTC = true;
 var TogetherJSConfig_suppressJoinConfirmation = true;
@@ -54,7 +53,8 @@ var TogetherJSConfig_suppressInvite = true;
 var TogetherJSConfig_suppressJoinConfirmation = true;
 
 // clone clicks ONLY in certain elements to keep things simple:
-var TogetherJSConfig_cloneClicks = '#pyInputPane select,#pyInputPane #executeBtn';
+//var TogetherJSConfig_cloneClicks = '#pyInputPane select,#pyInputPane #executeBtn';
+var TogetherJSConfig_cloneClicks = '#pyInputPane select';
 
 var TogetherJSConfig_siteName = "Online Python Tutor live help";
 var TogetherJSConfig_toolName = "Online Python Tutor live help";
@@ -72,9 +72,14 @@ var isTutor = false;
 //TogetherJSConfig_callToStart = function (callback) {
 //};
 
+var origDocURL = document.URL; // capture this ASAP before TogetherJS munges the URL
+
+var tutorWaitText = 'Please wait for the next available tutor.';
+var informedConsentText = '<br/>During the tutoring session, chat logs and code may be recorded for research purposes.';
 
 // nasty globals
 var updateOutputSignalFromRemote = false;
+var executeCodeSignalFromRemote = false;
 
 // Global hook for ExecutionVisualizer.
 var try_hook = function(hook_name, args) {
@@ -116,7 +121,6 @@ function initTogetherJS() {
     if (!msg.sameUrl) {
       return;
     }
-
     if (isExecutingCode) {
       return;
     }
@@ -133,11 +137,28 @@ function initTogetherJS() {
     }
   });
 
+  TogetherJS.hub.on("executeCode", function(msg) {
+    if (!msg.sameUrl) {
+      return;
+    }
+    if (isExecutingCode) {
+      return;
+    }
+
+    executeCodeSignalFromRemote = true;
+    try {
+      executeCodeFromScratch();
+    }
+    finally {
+      executeCodeSignalFromRemote = false;
+    }
+
+  });
+
   TogetherJS.hub.on("hashchange", function(msg) {
     if (!msg.sameUrl) {
       return;
     }
-
     if (isExecutingCode) {
       return;
     }
@@ -197,15 +218,21 @@ function initTogetherJS() {
     source.onmessage = function(e) {
       var dat = JSON.parse(e.data);
 
-      if (dat.helpQueueUrls == 1) {
-        $("#helpQueueUrls").html('Please wait ... there is now 1 person in the queue.');
-      }
-      else if (dat.helpQueueUrls == 0 || dat.helpQueueUrls > 1) {
-        $("#helpQueueUrls").html('Please wait ... there are now ' + dat.helpQueueUrls +
-                                   ' people in the queue.');
-      }
-      else {
-        $("#helpQueueUrls").html('');
+      if (!isTutor) {
+        if (dat.helpQueueUrls == 1) {
+          $("#helpQueueUrls").html(tutorWaitText +
+                                   ' There is 1 person in line.' +
+                                   informedConsentText);
+        }
+        else if (dat.helpQueueUrls == 0 || dat.helpQueueUrls > 1) {
+          $("#helpQueueUrls").html(tutorWaitText +
+                                   ' There are ' + dat.helpQueueUrls +
+                                   ' people in line.' +
+                                   informedConsentText);
+        }
+        else {
+          $("#helpQueueUrls").html('');
+        }
       }
 
       if (dat.helpAvailable) {
@@ -242,14 +269,18 @@ function initTogetherJS() {
     $("#togetherJSHeader").fadeIn(750, redrawConnectors); // always show when ready
 
     if (isTutor) {
+      $("#helpQueueUrls").html(origDocURL);
       // if you're a tutor, immediately try to sync to the learner upon startup
       requestSync();
     }
     else {
       // if you're a learner, request help when TogetherJS is activated
       $.get(TogetherJSConfig_hubBase + 'request-help',
-            {url: TogetherJS.shareUrl()},
+            {url: TogetherJS.shareUrl(), id: TogetherJS.shareId()},
             null /* don't use a callback; rely on SSE */);
+
+      // also log the learner's initial state when they first requested help
+      TogetherJS.send({type: "initialAppState", myAppState: getAppState()});
     }
   });
 
@@ -343,11 +374,16 @@ function executeCode(forceStartingInstr) {
                     enterDisplayMode, handleUncaughtExceptionFunc);
 }
 
+// side effect: fires a TogetherJS signal if enabled
 function executeCodeFromScratch() {
   // don't execute empty string:
   if ($.trim(pyInputCodeMirror.getValue()) == '') {
     alert('Type in some code to visualize.');
     return;
+  }
+
+  if (TogetherJS.running && !executeCodeSignalFromRemote) {
+    TogetherJS.send({type: "executeCode", myAppState: getAppState()});
   }
 
   // reset these globals
@@ -396,7 +432,9 @@ $(document).ready(function() {
     updateAppDisplay(newMode);
 
     if (TogetherJS.running && !isExecutingCode) {
-      TogetherJS.send({type: "hashchange", appMode: appMode});
+      TogetherJS.send({type: "hashchange",
+                       appMode: appMode,
+                       myAppState: getAppState()});
     }
   });
 

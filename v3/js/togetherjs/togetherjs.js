@@ -751,6 +751,16 @@
     return session.shareUrl();
   };
 
+  // pgbovine - added
+  TogetherJS.shareId = function () {
+    if (! TogetherJS.require) {
+      return null;
+    }
+    var session = TogetherJS.require("session");
+    assert(session.shareId, "Attempted to access shareId before it is set");
+    return session.shareId;
+  };
+
   var listener = null;
 
   TogetherJS.listenForShortcut = function () {

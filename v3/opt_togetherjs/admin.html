@@ -22,23 +22,39 @@ function appendDiv(dat) {
 
   var linkURL = dat.url + '&role=tutor';
 
-  d.html(dat.timestr + ' ' + dat.ip + 
-        ' <a href="' + linkURL + '" target="_blank">' + linkURL + '</a> ' +
-        '<button type="button" class="eraseBtn">Erase</button>');
 
-  d.find('button.eraseBtn').click(function() {
-    console.log("Erase", dat.id);
+  function removeHelpQueueElt(reason) {
+    var p = confirm("Confirm remove " + dat.id + " for " + reason);
+    if (!p) {
+      return;
+    }
+    $.get('/remove-help-queue-element',
+          {id: dat.id, reason: reason},
+          function(ret) {
+            if (ret == "success") {
+              d.remove();
+              document.title = "(" + $("div.entry").length +
+                               ") OPT live help admin panel";
+            }
+            else {
+              alert("Unknown error :(");
+            }
+          });
+  }
 
-    $.get('/remove-help-queue-element', {id: dat.id}, function(ret) {
-      if (ret == "success") {
-        d.remove();
-        document.title = "(" + $("div.entry").length + ") OPT live help admin panel";
-      }
-      else {
-        alert("Unknown error :(");
-      }
-    });
-  });
+  d.html('<button type="button" id="eraseBtnNoShow">No-show</button>' +
+         '<button type="button" id="eraseBtnFled">Fled</button>' +
+         '<button type="button" id="eraseBtnSuccess">Success</button>' +
+         '<button type="button" id="eraseBtnFail">Fail</button>' +
+         '<button type="button" id="eraseBtnGeneric">(No reason)</button>' +
+         ' ' + dat.date + ' <a href="' + linkURL + '" target="_blank">' +
+         linkURL + '</a>');
+
+  d.find('button#eraseBtnNoShow').click(function() {removeHelpQueueElt('no-show')});
+  d.find('button#eraseBtnFled').click(function() {removeHelpQueueElt('learner-fled')});
+  d.find('button#eraseBtnSuccess').click(function() {removeHelpQueueElt('tutoring-success')});
+  d.find('button#eraseBtnFail').click(function() {removeHelpQueueElt('tutoring-fail')});
+  d.find('button#eraseBtnGeneric').click(function() {removeHelpQueueElt()});
 }
 
 $(document).ready(function() {
@@ -60,7 +76,7 @@ $(document).ready(function() {
         appendDiv(e);
       });
     }
-    else if (dat.type == 'ha') {
+    else if (dat.type == 'help-available') {
       setBtnLabel(dat);
     }
     else if (dat.type == 'new-help-request') {

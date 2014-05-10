@@ -1,5 +1,6 @@
-// forked from TogetherJS togetherjs/hub/server.js and modifications
-// marked by 'pgbovine' comments
+// 2014-05-08 Philip Guo forked this code from TogetherJS
+// togetherjs/hub/server.js and started making modifications marked by
+// 'pgbovine' in comments
 
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
@@ -135,7 +136,9 @@ var server = http.createServer(function(request, response) {
       return;
     }
     findRoom(prefix, max, response);
-  } else if (url.pathname == '/toggle-help-available') {
+  }
+  // administrator hub ...
+  else if (url.pathname == '/toggle-help-available') {
     toggleHelpAvailable(request, response);
   } else if (url.pathname == '/learner-SSE') {
     learnerSSE(request, response);
@@ -317,7 +320,21 @@ wsServer.on('request', function(request) {
                  ' conn ID: ' + connection.ID + ' data:' + message.utf8Data.substr(0, 20) +
                  ' connections: ' + allConnections[id].length);
 
-    console.log(message.utf8Data); // pgbovine
+    // ignore some kinds of extraneous events
+    if (parsed.type != 'cursor-update' &&
+        parsed.type != 'scroll-update' &&
+        parsed.type != 'keydown' &&
+        parsed.type != 'form-init' &&
+        parsed.type != 'form-focus' &&
+        parsed.type != 'form-update' &&
+        parsed.type != 'hello-back'
+        ) {
+      var logObj = createLogEntry(request, 'help-available');
+      logObj.id = id;
+      logObj.type = 'togetherjs';
+      logObj.togetherjs = parsed;
+      pgLogWrite(logObj);
+    }
 
     for (var i=0; i<allConnections[id].length; i++) {
       var c = allConnections[id][i];
@@ -450,9 +467,34 @@ if (require.main == module) {
 exports.startServer = startServer;
 
 
+// pgbovine - logging infrastructure
+
+function createLogEntry(req, event_type) {
+  obj = {};
+
+  // Webfaction forwards IP addresses via proxy, so use this ...
+  // http://stackoverflow.com/questions/8107856/how-can-i-get-the-users-ip-address-using-node-js
+  var ip = req.remoteAddress /* check this FIRST since it's for WebSockets */ ||
+    req.headers['x-forwarded-for'] ||
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    req.connection.socket.remoteAddress;
+
+  obj['ip'] = ip;
+  obj['date'] = (new Date()).toISOString();
+  obj['type'] = event_type;
+
+  return obj;
+}
+
+
 // pgbovine - TogetherJS administrator hub
-var uuid = require('node-uuid');
-var url = require('url');
+
+var pgLogFile = null;
+var catchallLogFile = fs.createWriteStream('log_CATCHALL.json',
+                                           {flags: 'a',
+                                            mode: parseInt('644', 8),
+                                            encoding: "UTF-8"});
 
 var EventEmitter = require('events').EventEmitter;
 var learnerEmitter = new EventEmitter(); // sending events to learners
@@ -465,13 +507,47 @@ adminEmitter.setMaxListeners(100);
 var helpQueue = [];
 var helpAvailable = false;
 
+function pgLogWrite(logObj) {
+  var s = JSON.stringify(logObj);
+  console.log(s); // debug
+
+  if (pgLogFile) {
+    pgLogFile.write(s + '\n');
+  }
+  else {
+    // a slush of everything that's not covered by a real log file, to
+    // see what falls between the cracks
+    catchallLogFile.write(s + '\n');
+  }
+}
+
 function toggleHelpAvailable(req, res) {
   helpAvailable = !helpAvailable;
   res.end(String(helpAvailable));
 
-  var ha = {type: 'ha', helpAvailable: helpAvailable};
-  learnerEmitter.emit('help-available-update', ha);
-  adminEmitter.emit('help-available-update', ha);
+  var logObj = createLogEntry(req, 'help-available');
+  logObj.helpAvailable = helpAvailable;
+
+  learnerEmitter.emit('help-available-update', logObj);
+  adminEmitter.emit('help-available-update', logObj);
+
+  // use this event to segment log files
+  if (helpAvailable) { // just turned ON helpAvailable
+    if (pgLogFile) {
+      pgLogFile.end();
+    }
+    var filename = 'log_' + logObj.date + '.json';
+    pgLogFile = fs.createWriteStream(filename,
+                                     {flags: 'w',
+                                      mode: parseInt('644', 8),
+                                      encoding: "UTF-8"});
+    pgLogWrite(logObj); // write this as the FIRST entry
+  }
+  else { // just turned OFF helpAvailable
+    pgLogWrite(logObj); // write this as the FINAL entry
+    pgLogFile.end();
+    pgLogFile = null;
+  }
 }
 
 
@@ -486,17 +562,8 @@ function learnerSSE(req, res) {
   });
 
   function sendDat() {
-    var helpQueueUniqueUrls = {};
-    var numUniqueUrls = 0;
-    for (var i=0; i < helpQueue.length; i++) {
-      var u = helpQueue[i].url;
-      if (helpQueueUniqueUrls[u] === undefined) {
-        numUniqueUrls++;
-        helpQueueUniqueUrls[u] = true;
-      }
-    }
     var dat = {helpAvailable: helpAvailable,
-               helpQueueUrls: numUniqueUrls};
+               helpQueueUrls: helpQueue.length};
     constructSSE(res, dat);
   };
 
@@ -529,7 +596,7 @@ function adminSSE(req, res) {
   var firstTimeDat = {type: 'firstTime',
                       helpQueue: helpQueue,
                       helpAvailable: helpAvailable,
-                      fetchTime: (new Date()).toUTCString(),
+                      fetchTime: (new Date()).toISOString(),
                       numLearners: EventEmitter.listenerCount(learnerEmitter,
                                                               'help-available-update')};
   constructSSE(res, firstTimeDat); // send an initial burst of data
@@ -556,43 +623,36 @@ function constructSSE(res, data) {
 
 function adminHTML(req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
-  res.write(fs.readFileSync(__dirname + '/admin.html'));
-  res.end();
+  res.end(fs.readFileSync(__dirname + '/admin.html'));
 }
 
 // when a learner requests help ...
 function requestHelp(url, req, res) {
   res.writeHead(200, {'Access-Control-Allow-Origin': '*'}); // CORS action
-
   if (!helpAvailable) {
     res.end("failure");
     return; // early return!
   }
 
-  // Webfaction forwards IP addresses via proxy, so use this ...
-  // http://stackoverflow.com/questions/8107856/how-can-i-get-the-users-ip-address-using-node-js
-  var ip = req.headers['x-forwarded-for'] || 
-    req.connection.remoteAddress || 
-    req.socket.remoteAddress ||
-    req.connection.socket.remoteAddress;
-  url.query.ip = ip;
-  url.query.id = uuid.v4(); // use randomly-generated UUID
-  url.query.timestr = (new Date()).toUTCString();
-  url.query.type = 'new-help-request';
+  var logObj = createLogEntry(req, 'new-help-request');
+  logObj.url = url.query.url;
+  logObj.id = url.query.id;
 
   // if you're already on the queue, don't insert a duplicate:
   for (var i=0; i < helpQueue.length; i++) {
-    if (helpQueue[i].url == url.query.url) {
+    if (helpQueue[i].id == logObj.id) {
       res.end("failure");
       return; // early return!
     }
   }
 
-  helpQueue.push(url.query);
+  helpQueue.push(logObj);
   res.end("success");
 
-  learnerEmitter.emit('new-help-request', url.query);
-  adminEmitter.emit('new-help-request', url.query);
+  learnerEmitter.emit('new-help-request', logObj);
+  adminEmitter.emit('new-help-request', logObj);
+
+  pgLogWrite(logObj);
 }
 
 // clear the entire queue
@@ -600,21 +660,28 @@ function clearHelpQueue(req, res) {
   // clear helpQueue QUICKLY
   // http://stackoverflow.com/questions/1232040/how-to-empty-an-array-in-javascript
   while (helpQueue.length > 0) {
-    helpQueue.pop();
+    var elt = helpQueue.pop();
+    var logObj = createLogEntry(req, 'remove-help-request');
+    logObj.id = elt.id;
+    pgLogWrite(logObj);
   }
 
   res.end("success");
   learnerEmitter.emit('help-queue-update');
 }
 
-// remove an element from the queue with id=<id>
+// remove an element from the queue with id=<id> and optional reason=<reason>
 function removeHelpQueueElement(url, req, res) {
-  var q = url.query;
   for (var i = 0; i < helpQueue.length; i++) {
-    if (helpQueue[i].id == q.id) {
+    if (helpQueue[i].id == url.query.id) {
       helpQueue.splice(i, 1);
-      learnerEmitter.emit('help-queue-update');
       res.end("success");
+      learnerEmitter.emit('help-queue-update');
+
+      var logObj = createLogEntry(req, 'remove-help-request');
+      logObj.id = url.query.id;
+      logObj.reason = url.query.reason;
+      pgLogWrite(logObj);
       return;
     }
   }
