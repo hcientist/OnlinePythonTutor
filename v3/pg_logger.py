@@ -1268,12 +1268,14 @@ class PGLogger(bdb.Bdb):
 
           trace_entry['exception_msg'] = type(exc_val).__name__ + ": " +  str(exc_val)
 
-          # SUPER SUBTLE! if this exact same exception has already been
-          # recorded by the program, then DON'T record it again as an
-          # uncaught_exception
+          # SUPER SUBTLE! if ANY exception has already been recorded by
+          # the program, then DON'T record it again as an uncaught_exception.
+          # This looks kinda weird since the exact exception message doesn't
+          # need to match up, but in practice, there should be at most only
+          # ONE exception per trace.
           already_caught = False
           for e in self.trace:
-            if e['event'] == 'exception' and e['exception_msg'] == trace_entry['exception_msg']:
+            if e['event'] == 'exception':
               already_caught = True
               break
 
