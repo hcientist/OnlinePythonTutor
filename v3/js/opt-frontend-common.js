@@ -103,7 +103,20 @@ function redrawConnectors() {
 }
 
 
+// run in the BEGINNING
 function genericOptFrontendReady() {
+  pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
+    mode: 'python',
+    lineNumbers: true,
+    tabSize: 4,
+    indentUnit: 4,
+    // convert tab into four spaces:
+    extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
+  });
+
+  pyInputCodeMirror.setSize(null, '420px');
+
+
   var queryStrOptions = getQueryStringOptions();
   setToggleOptions(queryStrOptions);
 

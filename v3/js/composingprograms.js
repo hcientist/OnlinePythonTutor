@@ -38,21 +38,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 $(document).ready(function() {
+  genericOptFrontendReady(); // initialize at the beginning
   setSurveyHTML();
 
   $("#embedLinkDiv").hide();
-
-  pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
-    mode: 'python',
-    lineNumbers: true,
-    tabSize: 4,
-    indentUnit: 4,
-    // convert tab into four spaces:
-    extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
-  });
-
-  pyInputCodeMirror.setSize(null, '420px');
-
 
   // be friendly to the browser's forward and back buttons
   // thanks to http://benalman.com/projects/jquery-bbq-plugin/
@@ -129,6 +118,4 @@ $(document).ready(function() {
 
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(executeCodeFromScratch);
-
-  genericOptFrontendReady(); // initialize at the end
 });

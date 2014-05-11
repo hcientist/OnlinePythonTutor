@@ -403,20 +403,10 @@ function executeCodeWithRawInput(rawInputStr, curInstr) {
 
 
 $(document).ready(function() {
+  genericOptFrontendReady(); // initialize at the beginning
   setSurveyHTML();
 
   $("#embedLinkDiv").hide();
-
-  pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
-    mode: 'python',
-    lineNumbers: true,
-    tabSize: 4,
-    indentUnit: 4,
-    // convert tab into four spaces:
-    extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
-  });
-
-  pyInputCodeMirror.setSize(null, '420px');
 
   var role = $.bbq.getState('role');
   isTutor = (role == 'tutor'); // GLOBAL
@@ -745,6 +735,4 @@ $(document).ready(function() {
       $.get('survey.py', myArgs, function(dat) {});
     }
   });
-
-  genericOptFrontendReady(); // initialize at the end
 });
