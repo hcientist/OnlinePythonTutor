@@ -38,7 +38,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 $(document).ready(function() {
-  genericOptFrontendReady(); // initialize at the beginning
   setSurveyHTML();
 
   $("#embedLinkDiv").hide();
@@ -118,4 +117,6 @@ $(document).ready(function() {
 
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(executeCodeFromScratch);
+
+  genericOptFrontendReady(); // initialize at the end
 });

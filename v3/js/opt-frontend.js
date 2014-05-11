@@ -403,7 +403,6 @@ function executeCodeWithRawInput(rawInputStr, curInstr) {
 
 
 $(document).ready(function() {
-  genericOptFrontendReady(); // initialize at the beginning
   setSurveyHTML();
 
   $("#embedLinkDiv").hide();
@@ -701,11 +700,6 @@ $(document).ready(function() {
   });
 
 
-  // if blank, then select a canned example on start-up
-  if (!pyInputCodeMirror.getValue()) {
-    $("#aliasExampleLink").trigger('click');
-  }
-
   $('#genEmbedBtn').bind('click', function() {
     assert(appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */);
     var myArgs = getAppState();
@@ -735,4 +729,13 @@ $(document).ready(function() {
       $.get('survey.py', myArgs, function(dat) {});
     }
   });
+
+  genericOptFrontendReady(); // initialize at the end
+
+
+  // if blank, then select a canned example on start-up
+  // (need to do this after pyInputCodeMirror is initialized)
+  if (!pyInputCodeMirror.getValue()) {
+    $("#aliasExampleLink").trigger('click');
+  }
 });

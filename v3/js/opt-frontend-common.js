@@ -103,7 +103,7 @@ function redrawConnectors() {
 }
 
 
-// run in the BEGINNING
+// run at the END so that everything else can be initialized first
 function genericOptFrontendReady() {
   pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
     mode: 'python',
