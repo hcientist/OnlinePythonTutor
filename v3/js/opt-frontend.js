@@ -182,10 +182,12 @@ function initTogetherJS() {
     }
   });
 
-  // tutor receives an app state from a learner
+  // tutor receives an app state from a learner, either using a regular
+  // myAppState or an initialAppState signal, which occurs when the
+  // learner, say, REFRESHES THE PAGE!!!
   // TODO: what happens if more than one learner sends state to tutor?
   // i suppose the last one wins at this point :/
-  TogetherJS.hub.on("myAppState", function(msg) {
+  TogetherJS.hub.on("myAppState initialAppState", function(msg) {
     // only a tutor should handle receiving an app state from a learner
     if (!isTutor) {
       return;
