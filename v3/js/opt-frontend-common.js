@@ -273,7 +273,7 @@ function updateAppDisplay(newAppMode) {
     // Back button flow
     $("#pyOutputPane").empty();
     myVisualizer = null;
-    $(document).unbind('keydown'); // also kill kb bindings to avoid staleness
+    //$(document).unbind('keydown'); // also kill kb bindings to avoid staleness
 
     $(document).scrollTop(0); // scroll to top to make UX better on small monitors
 
@@ -419,6 +419,9 @@ function executePythonCode(pythonSourceCode,
                 // set keyboard bindings
                 // VERY IMPORTANT to clear and reset this every time or
                 // else the handlers might be bound multiple times
+                // NIX keyboard bindings since they're not easily
+                // discoverable and also interfere with TogetherJS chatting
+                /*
                 $(document).unbind('keydown');
                 $(document).keydown(function(k) {
                   if (k.keyCode == 37) { // left arrow
@@ -432,6 +435,7 @@ function executePythonCode(pythonSourceCode,
                     }
                   }
                 });
+                */
               }
 
               handleSuccessFunc();
