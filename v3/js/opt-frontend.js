@@ -394,7 +394,9 @@ function executeCodeFromScratch() {
 }
 
 function executeCodeWithRawInput(rawInputStr, curInstr) {
-  enterDisplayNoFrillsMode();
+  // kick back into edit mode before executing or else the display won't
+  // refresh properly ... ugh
+  enterEditMode();
 
   // set some globals
   rawInputLst.push(rawInputStr);

@@ -61,7 +61,7 @@ var domain = "http://pythontutor.com/"; // for deployment
 var isExecutingCode = false; // nasty, nasty global
 
 
-var appMode = 'edit'; // 'edit', 'display', 'display_no_frills'. also support
+var appMode = 'edit'; // 'edit' or 'display'. also support
                       // 'visualize' for backward compatibility (same as 'display')
 
 var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
@@ -317,13 +317,7 @@ function updateAppDisplay(newAppMode) {
     $.bbq.pushState({ mode: 'display' }, 2 /* completely override other hash strings to keep URL clean */);
   }
   else {
-    assert(appMode == 'display_no_frills');
-    assert(myVisualizer);
-
-    $("#pyInputPane").hide();
-    $("#pyOutputPane,#surveyHeader").show();
-    $("#embedLinkDiv").show();
-    $.bbq.pushState({ mode: 'display_no_frills' }, 2 /* completely override other hash strings to keep URL clean */);
+    assert(false);
   }
 
   $('#urlOutput,#embedCodeOutput').val(''); // clear to avoid stale values
@@ -367,11 +361,6 @@ function enterDisplayMode() {
 function enterEditMode() {
   console.log('enterEditMode');
   updateAppDisplay('edit');
-}
-
-function enterDisplayNoFrillsMode() {
-  console.log('enterDisplayNoFrillsMode');
-  updateAppDisplay('display_no_frills');
 }
 
 
