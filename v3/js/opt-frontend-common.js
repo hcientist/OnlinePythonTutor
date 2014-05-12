@@ -102,6 +102,15 @@ function redrawConnectors() {
   }
 }
 
+function setFronendError(lines) {
+  $("#frontendErrorOutput").html(lines.map(htmlspecialchars).join('<br/>'));
+  $("#frontendErrorOutput").show();
+}
+
+function clearFrontendError() {
+  $("#frontendErrorOutput").hide();
+}
+
 
 // run at the END so that everything else can be initialized first
 function genericOptFrontendReady() {
@@ -153,12 +162,14 @@ function genericOptFrontendReady() {
       return; // get out early
     }
 
-    alert("Server error (possibly due to memory/resource overload). " +
-          "Report a bug to philip@pgbovine.net\n\n" +
-          "(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
+    setFronendError(["Server error (possibly due to memory/resource overload).",
+                     "Report a bug to philip@pgbovine.net by clicking on the",
+                     "'Generate URL' button and including a URL in your email."]);
 
     doneExecutingCode();
   });
+
+  clearFrontendError();
 }
 
 function getQueryStringOptions() {
@@ -370,11 +381,15 @@ function executePythonCode(pythonSourceCode,
                            outputDiv,
                            handleSuccessFunc, handleUncaughtExceptionFunc) {
     if (!backendScript) {
-      alert('Server configuration error: No backend script');
+      setFronendError(["Server configuration error: No backend script",
+                       "Report a bug to philip@pgbovine.net by clicking on the",
+                       "'Generate URL' button and including a URL in your email."]);
       return;
     }
 
     isExecutingCode = true; // nasty global
+
+    clearFrontendError();
 
     $.get(backendScript,
           {user_script : pythonSourceCode,
@@ -391,16 +406,15 @@ function executePythonCode(pythonSourceCode,
               handleUncaughtExceptionFunc(trace);
 
               if (trace.length == 1) {
-                alert(trace[0].exception_msg);
+                setFronendError([trace[0].exception_msg]);
               }
               else if (trace[trace.length - 1].exception_msg) {
-                alert(trace[trace.length - 1].exception_msg);
+                setFronendError([trace[trace.length - 1].exception_msg]);
               }
               else {
-                alert("Unknown error. Reload to try again," +
-                      "or report a bug to philip@pgbovine.net\n\n" +
-                      "(Click the 'Generate URL' button to include a " + 
-                      "unique URL in your email bug report.)");
+                setFronendError(["Unknown error. Reload the page and try again.",
+                                 "Report a bug to philip@pgbovine.net by clicking on the",
+                                 "'Generate URL' button and including a URL in your email."]);
               }
             }
             else {

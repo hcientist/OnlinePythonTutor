@@ -98,7 +98,7 @@ $(document).ready(function() {
   function executeCodeFromScratch() {
     // don't execute empty string:
     if ($.trim(pyInputCodeMirror.getValue()) == '') {
-      alert('Type in some code to visualize.');
+      setFronendError(["Type in some code to visualize."]);
       return;
     }
 

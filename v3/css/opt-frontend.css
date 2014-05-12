@@ -86,6 +86,12 @@ button.surveyBtn {
   margin-right: auto;
 }
 
+#frontendErrorOutput {
+  color: #e93f34; /* should match brightRed JavaScript variable */
+  font-size: 12pt;
+  line-height: 1.5em;
+  margin-top: 8px;
+}
 
 /* necessary for CodeMirror error line highlighting to work! */
 .CodeMirror .errorLine { background: #ffff3f !important; }
