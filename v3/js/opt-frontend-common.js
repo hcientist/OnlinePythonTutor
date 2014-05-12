@@ -162,7 +162,8 @@ function genericOptFrontendReady() {
       return; // get out early
     }
 
-    setFronendError(["Server error (possibly due to memory/resource overload).",
+    setFronendError(["Server error! Your code might be too long to properly visualize",
+                     "(e.g., over 100 lines), so try a entering a smaller piece of code.",
                      "Report a bug to philip@pgbovine.net by clicking on the",
                      "'Generate URL' button and including a URL in your email."]);
 
