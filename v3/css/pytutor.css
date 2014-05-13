@@ -723,6 +723,13 @@ div.ExecutionVisualizer .highlight-legend {
   border-color: #dddddd;
 }
 
+div.ExecutionVisualizer div#rawUserInputDiv {
+  padding: 5px;
+  width: 95%;
+  margin: 5px auto;
+  text-align: center;
+  border: 1px #e93f34 solid;
+}
 
 /* for pyCrazyMode */
 

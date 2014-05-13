@@ -333,8 +333,6 @@ function updateAppDisplay(newAppMode) {
   }
 
   $('#urlOutput,#embedCodeOutput').val(''); // clear to avoid stale values
-
-  console.log('END updateAppDisplay', appMode);
 }
 
 
@@ -366,12 +364,10 @@ function doneExecutingCode() {
 
 
 function enterDisplayMode() {
-  console.log('enterDisplayMode');
   updateAppDisplay('display');
 }
 
 function enterEditMode() {
-  console.log('enterEditMode');
   updateAppDisplay('edit');
 }
 

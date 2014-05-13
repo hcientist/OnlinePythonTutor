@@ -328,6 +328,7 @@ ExecutionVisualizer.prototype.render = function() {
          <button id="jmpStepFwd", type="button">Forward &gt;</button>\
          <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
        </div>\
+       <div id="rawUserInputDiv"/>\
        <div id="errorOutput"/>\
        <div id="legendDiv"/>\
        <div id="stepAnnotationDiv">\
@@ -1388,7 +1389,7 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
 
   if (isLastInstr) {
     if (this.promptForUserInput || this.promptForMouseInput) {
-      vcrControls.find("#curInstr").html('<b><font color="' + brightRed + '">user input</font></b>');
+      vcrControls.find("#curInstr").html('<b><font color="' + brightRed + '">Enter user input:</font></b>');
       // looks ugly when userInputPromptStr is TOO LONG
       //vcrControls.find("#curInstr").html('<b><font color="' + brightRed + '">' + this.userInputPromptStr + '</font></b>');
 
@@ -1740,19 +1741,22 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
     }
   }
 
+  // handle raw user input
+  var ruiDiv = myViz.domRoot.find('#rawUserInputDiv');
+  ruiDiv.hide(); // hide by default
 
-  if (isLastInstr && this.executeCodeWithRawInputFunc) {
-    if (this.promptForUserInput) {
-      // blocking prompt dialog!
-      // put a default string of '' or else it looks ugly in IE
-      var userInput = prompt(this.userInputPromptStr, '');
+  if (isLastInstr && myViz.executeCodeWithRawInputFunc) {
+    if (myViz.promptForUserInput) {
+      ruiDiv.html(myViz.userInputPromptStr +
+                  ' <input id="raw_input_textbox" type="textbox" size="30"/>' +
+                  ' <button id="raw_input_submit_btn">Submit</button>');
+      ruiDiv.show();
 
-      // if you hit 'Cancel' in prompt(), it returns null
-      if (userInput !== null) {
-        // after executing, jump back to this.curInstr to give the
-        // illusion of continuity
-        this.executeCodeWithRawInputFunc(userInput, this.curInstr);
-      }
+      ruiDiv.find('#raw_input_submit_btn').click(function() {
+        var userInput = ruiDiv.find('#raw_input_textbox').val();
+        // advance instruction count by 1 to get to the NEXT instruction
+        myViz.executeCodeWithRawInputFunc(userInput, myViz.curInstr + 1);
+      });
     }
   }
 
