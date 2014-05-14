@@ -180,9 +180,10 @@ def __restricted_import__(*args):
 #    available), or to termination.
 # Repeat until no more raw_input calls are encountered.
 # Note that this is mad inefficient, but is simple to implement!
-#
-# TODO: To make this technique more deterministic,
-#       save away and restore the random seed.
+
+# VERY IMPORTANT -- set random seed to 0 to ensure deterministic execution:
+import random
+random.seed(0)
 
 # queue of input strings passed from either raw_input or mouse_input
 input_string_queue = []
