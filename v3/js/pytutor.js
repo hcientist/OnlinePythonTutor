@@ -606,7 +606,6 @@ ExecutionVisualizer.prototype.render = function() {
     }
   });
 
-
   if (this.params.startingInstruction) {
     assert(0 <= this.params.startingInstruction &&
            this.params.startingInstruction < this.curTrace.length);
@@ -1747,13 +1746,14 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
 
   if (isLastInstr && myViz.executeCodeWithRawInputFunc) {
     if (myViz.promptForUserInput) {
+      var txtboxId = myViz.generateID('raw_input_textbox');
       ruiDiv.html(myViz.userInputPromptStr +
-                  ' <input id="raw_input_textbox" type="textbox" size="30"/>' +
+                  ' <input type="text" id="' + txtboxId + '" size="30"/>' +
                   ' <button id="raw_input_submit_btn">Submit</button>');
       ruiDiv.show();
 
       ruiDiv.find('#raw_input_submit_btn').click(function() {
-        var userInput = ruiDiv.find('#raw_input_textbox').val();
+        var userInput = ruiDiv.find('#' + txtboxId).val();
         // advance instruction count by 1 to get to the NEXT instruction
         myViz.executeCodeWithRawInputFunc(userInput, myViz.curInstr + 1);
       });

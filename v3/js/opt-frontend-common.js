@@ -64,8 +64,6 @@ var isExecutingCode = false; // nasty, nasty global
 var appMode = 'edit'; // 'edit' or 'display'. also support
                       // 'visualize' for backward compatibility (same as 'display')
 
-var preseededCurInstr = null; // if you passed in a 'curInstr=<number>' in the URL, then set this var
-
 var pyInputCodeMirror; // CodeMirror object that contains the input text
 
 function setCodeMirrorVal(dat) {
@@ -77,22 +75,15 @@ function setCodeMirrorVal(dat) {
 }
 
 
-// From: http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
-function guid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-               .toString(16)
-               .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-         s4() + '-' + s4() + s4() + s4();
-}
-
-
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 
 var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
 
+
+// each frontend must implement its own executeCode function
+function executeCode() {
+  alert("Configuration error. Need to override executeCode(). This is an empty stub.");
+}
 
 function redrawConnectors() {
   if (appMode == 'display' || appMode == 'visualize' /* deprecated */) {
@@ -125,12 +116,17 @@ function genericOptFrontendReady() {
 
   pyInputCodeMirror.setSize(null, '420px');
 
-
+  // initialize from query string
   var queryStrOptions = getQueryStringOptions();
   setToggleOptions(queryStrOptions);
-
   if (queryStrOptions.preseededCode) {
     setCodeMirrorVal(queryStrOptions.preseededCode);
+  }
+  if (queryStrOptions.rawInputLst) {
+    rawInputLst = queryStrOptions.rawInputLst; // global
+  }
+  else {
+    rawInputLst = [];
   }
 
   // ugh tricky -- always start in edit mode by default, and then
@@ -141,8 +137,7 @@ function genericOptFrontendReady() {
        queryStrOptions.appMode == 'visualize' /* 'visualize' is deprecated */) &&
       queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
     console.log('seeded in display mode');
-    preseededCurInstr = queryStrOptions.preseededCurInstr; // ugly global
-    $("#executeBtn").trigger('click');
+    executeCode(queryStrOptions.preseededCurInstr);
   }
   $.bbq.removeState(); // clean up the URL no matter what
 
@@ -171,9 +166,15 @@ function genericOptFrontendReady() {
   });
 
   clearFrontendError();
+
+  $("#embedLinkDiv").hide();
+  $("#executeBtn").attr('disabled', false);
+  $("#executeBtn").click(executeCodeFromScratch);
 }
 
+// parsing the URL query string hash
 function getQueryStringOptions() {
+  var ril = $.bbq.getState('rawInputLstJSON');
   // note that any of these can be 'undefined'
   return {preseededCode: $.bbq.getState('code'),
           preseededCurInstr: Number($.bbq.getState('curInstr')),
@@ -185,6 +186,7 @@ function getQueryStringOptions() {
           drawParentPointers: $.bbq.getState('drawParentPointers'),
           textReferences: $.bbq.getState('textReferences'),
           showOnlyOutputs: $.bbq.getState('showOnlyOutputs'),
+          rawInputLst: ril ? $.parseJSON(ril) : undefined
           };
 }
 
@@ -221,6 +223,8 @@ function getAppState() {
              textReferences: $('#textualMemoryLabelsSelector').val(),
              showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
              py: $('#pythonVersionSelector').val(),
+             /* ALWAYS JSON serialize rawInputLst, even if it's empty! */
+             rawInputLstJSON: JSON.stringify(rawInputLst),
              curInstr: myVisualizer ? myVisualizer.curInstr : undefined};
 
   // keep this really clean by avoiding undefined values
@@ -236,10 +240,24 @@ function getAppState() {
     delete ret.showOnlyOutputs;
   if (ret.py === undefined)
     delete ret.py;
+  if (ret.rawInputLstJSON === undefined)
+    delete ret.rawInputLstJSON;
   if (ret.curInstr === undefined)
     delete ret.curInstr;
 
   return ret;
+}
+
+function setAppState(appState) {
+  setToggleOptions(appState);
+  setCodeMirrorVal(appState.code);
+
+  if (appState.rawInputLst) {
+    rawInputLst = $.parseJSON(appState.rawInputLstJSON);
+  }
+  else {
+    rawInputLst = [];
+  }
 }
 
 // return whether two states match, except don't worry about curInstr
@@ -251,19 +269,8 @@ function appStateEq(s1, s2) {
           s1.drawParentPointers == s2.drawParentPointers &&
           s1.textReferences == s2.textReferences &&
           s1.showOnlyOutputs == s2.showOnlyOutputs &&
-          s1.py == s2.py);
-}
-
-// sets the proper GUI features to match the given appState object
-function setVisibleAppState(appState) {
-  setCodeMirrorVal(appState.code);
-
-  $('#cumulativeModeSelector').val(appState.cumulative);
-  $('#heapPrimitivesSelector').val(appState.heapPrimitives);
-  $('#drawParentPointerSelector').val(appState.drawParentPointers);
-  $('#textualMemoryLabelsSelector').val(appState.textReferences);
-  $('#showOnlyOutputsSelector').val(appState.showOnlyOutputs);
-  $('#pythonVersionSelector').val(appState.py);
+          s1.py == s2.py &&
+          s1.rawInputLstJSON == s2.rawInputLstJSON);
 }
 
 
@@ -298,7 +305,6 @@ function updateAppDisplay(newAppMode) {
     // Back button flow
     $("#pyOutputPane").empty();
     myVisualizer = null;
-    //$(document).unbind('keydown'); // also kill kb bindings to avoid staleness
 
     $(document).scrollTop(0); // scroll to top to make UX better on small monitors
 
@@ -336,6 +342,23 @@ function updateAppDisplay(newAppMode) {
 }
 
 
+function executeCodeFromScratch() {
+  // don't execute empty string:
+  if ($.trim(pyInputCodeMirror.getValue()) == '') {
+    setFronendError(["Type in some code to visualize."]);
+    return;
+  }
+
+  rawInputLst = []; // reset!
+  executeCode();
+}
+
+function executeCodeWithRawInput(rawInputStr, curInstr) {
+  rawInputLst.push(rawInputStr);
+  executeCode(curInstr);
+}
+
+
 function handleUncaughtExceptionFunc(trace) {
   if (trace.length == 1 && trace[0].line) {
     var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
@@ -351,9 +374,13 @@ function handleUncaughtExceptionFunc(trace) {
       }
       pyInputCodeMirror.on('change', f);
     }
-
-    doneExecutingCode();
   }
+}
+
+function startExecutingCode() {
+  $('#executeBtn').html("Please wait ... processing your code");
+  $('#executeBtn').attr('disabled', true);
+  isExecutingCode = true; // nasty global
 }
 
 function doneExecutingCode() {
@@ -372,6 +399,7 @@ function enterEditMode() {
 }
 
 
+// TODO: cut reliance on the nasty rawInputLst global
 function executePythonCode(pythonSourceCode,
                            backendScript, backendOptionsObj,
                            frontendOptionsObj,
@@ -384,15 +412,16 @@ function executePythonCode(pythonSourceCode,
       return;
     }
 
-    isExecutingCode = true; // nasty global
-
     clearFrontendError();
+    startExecutingCode();
 
     $.get(backendScript,
           {user_script : pythonSourceCode,
            raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
            options_json: JSON.stringify(backendOptionsObj)},
           function(dataFromBackend) {
+            doneExecutingCode(); // rain or shine, we're done executing!
+
             var trace = dataFromBackend.trace;
 
             // don't enter visualize mode if there are killer errors:
@@ -428,27 +457,6 @@ function executePythonCode(pythonSourceCode,
                 myVisualizer = new HolisticVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
               } else {
                 myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
-
-                // set keyboard bindings
-                // VERY IMPORTANT to clear and reset this every time or
-                // else the handlers might be bound multiple times
-                // NIX keyboard bindings since they're not easily
-                // discoverable and also interfere with TogetherJS chatting
-                /*
-                $(document).unbind('keydown');
-                $(document).keydown(function(k) {
-                  if (k.keyCode == 37) { // left arrow
-                    if (myVisualizer.stepBack()) {
-                      k.preventDefault(); // don't horizontally scroll the display
-                    }
-                  }
-                  else if (k.keyCode == 39) { // right arrow
-                    if (myVisualizer.stepForward()) {
-                      k.preventDefault(); // don't horizontally scroll the display
-                    }
-                  }
-                });
-                */
               }
 
               handleSuccessFunc();

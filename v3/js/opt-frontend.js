@@ -147,7 +147,7 @@ function initTogetherJS() {
 
     executeCodeSignalFromRemote = true;
     try {
-      executeCodeFromScratch();
+      executeCode(msg.startingInstruction, msg.forceRawInputLst);
     }
     finally {
       executeCodeSignalFromRemote = false;
@@ -203,13 +203,13 @@ function initTogetherJS() {
       }
       else {
         console.log("on:myAppState - app states unequal, executing", learnerAppState);
-        setVisibleAppState(learnerAppState);
+        setAppState(learnerAppState);
         executeCode(learnerAppState.curInstr);
       }
     }
     else {
       console.log("on:myAppState - edit mode sync");
-      setVisibleAppState(learnerAppState);
+      setAppState(learnerAppState);
       enterEditMode();
     }
   });
@@ -304,7 +304,18 @@ function initTogetherJS() {
 }
 
 
-function executeCode(forceStartingInstr) {
+// also fires a TogetherJS "executeCode" signal if enabled
+function executeCode(forceStartingInstr, forceRawInputLst) {
+  console.log('executeCode', forceStartingInstr, forceRawInputLst);
+
+  if (forceRawInputLst !== undefined) {
+    rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
+  }
+
+  // kick back into edit mode before executing or else the display might
+  // not refresh properly ... ugh krufty FIXME
+  enterEditMode();
+
   var backend_script = null;
   if ($('#pythonVersionSelector').val() == '2') {
       backend_script = python2_backend_script;
@@ -317,11 +328,6 @@ function executeCode(forceStartingInstr) {
       backend_script = python2crazy_backend_script;
   }
 
-  $('#executeBtn').html("Please wait ... processing your code");
-  $('#executeBtn').attr('disabled', true);
-  $("#pyOutputPane").hide();
-  $("#embedLinkDiv").hide();
-
   var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
                            heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
                            show_only_outputs: ($('#showOnlyOutputsSelector').val() == 'true'),
@@ -333,19 +339,7 @@ function executeCode(forceStartingInstr) {
     backendOptionsObj.survey = surveyObj;
   }
 
-  var startingInstruction = 0;
-
-  // only do this at most ONCE, and then clear out preseededCurInstr
-  // NOP anyways if preseededCurInstr is 0
-  if (preseededCurInstr) {
-    startingInstruction = preseededCurInstr;
-    preseededCurInstr = null;
-  }
-
-  // forceStartingInstr overrides everything else
-  if (forceStartingInstr !== undefined) {
-    startingInstruction = forceStartingInstr;
-  }
+  var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
 
   var frontendOptionsObj = {startingInstruction: startingInstruction,
                             // tricky: selector 'true' and 'false' values are strings!
@@ -369,6 +363,13 @@ function executeCode(forceStartingInstr) {
                             holisticMode: ($('#cumulativeModeSelector').val() == 'holistic')
                            }
 
+  if (TogetherJS.running && !executeCodeSignalFromRemote) {
+    TogetherJS.send({type: "executeCode",
+                     myAppState: getAppState(),
+                     forceStartingInstr: forceStartingInstr,
+                     forceRawInputLst: forceRawInputLst});
+  }
+
   executePythonCode(pyInputCodeMirror.getValue(),
                     backend_script, backendOptionsObj,
                     frontendOptionsObj,
@@ -376,38 +377,9 @@ function executeCode(forceStartingInstr) {
                     enterDisplayMode, handleUncaughtExceptionFunc);
 }
 
-// side effect: fires a TogetherJS signal if enabled
-function executeCodeFromScratch() {
-  // don't execute empty string:
-  if ($.trim(pyInputCodeMirror.getValue()) == '') {
-    setFronendError(["Type in some code to visualize."]);
-    return;
-  }
-
-  if (TogetherJS.running && !executeCodeSignalFromRemote) {
-    TogetherJS.send({type: "executeCode", myAppState: getAppState()});
-  }
-
-  // reset these globals
-  rawInputLst = [];
-  executeCode();
-}
-
-function executeCodeWithRawInput(rawInputStr, curInstr) {
-  // kick back into edit mode before executing or else the display won't
-  // refresh properly ... ugh
-  enterEditMode();
-
-  // set some globals
-  rawInputLst.push(rawInputStr);
-  executeCode(curInstr);
-}
-
 
 $(document).ready(function() {
   setSurveyHTML();
-
-  $("#embedLinkDiv").hide();
 
   var role = $.bbq.getState('role');
   isTutor = (role == 'tutor'); // GLOBAL
@@ -431,9 +403,6 @@ $(document).ready(function() {
     }
   });
 
-
-  $("#executeBtn").attr('disabled', false);
-  $("#executeBtn").click(executeCodeFromScratch);
 
   $("#clearBtn").click(function() {
     pyInputCodeMirror.setValue('');
@@ -733,7 +702,6 @@ $(document).ready(function() {
   });
 
   genericOptFrontendReady(); // initialize at the end
-
 
   // if blank, then select a canned example on start-up
   // (need to do this after pyInputCodeMirror is initialized)
