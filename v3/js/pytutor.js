@@ -328,7 +328,11 @@ ExecutionVisualizer.prototype.render = function() {
          <button id="jmpStepFwd", type="button">Forward &gt;</button>\
          <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
        </div>\
-       <div id="rawUserInputDiv"/>\
+       <div id="rawUserInputDiv">\
+         <span id="userInputPromptStr"/>\
+         <input type="text" id="raw_input_textbox" size="30"/>\
+         <button id="raw_input_submit_btn">Submit</button>\
+       </div>\
        <div id="errorOutput"/>\
        <div id="legendDiv"/>\
        <div id="stepAnnotationDiv">\
@@ -652,6 +656,16 @@ ExecutionVisualizer.prototype.render = function() {
       }
     });
   }
+
+
+  var ruiDiv = myViz.domRoot.find('#rawUserInputDiv');
+  ruiDiv.find('#userInputPromptStr').html(myViz.userInputPromptStr);
+  ruiDiv.find('#raw_input_submit_btn').click(function() {
+    var userInput = ruiDiv.find('#raw_input_textbox').val();
+    // advance instruction count by 1 to get to the NEXT instruction
+    myViz.executeCodeWithRawInputFunc(userInput, myViz.curInstr + 1);
+  });
+
 
   this.updateOutput();
 
@@ -1746,17 +1760,7 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
 
   if (isLastInstr && myViz.executeCodeWithRawInputFunc) {
     if (myViz.promptForUserInput) {
-      var txtboxId = myViz.generateID('raw_input_textbox');
-      ruiDiv.html(myViz.userInputPromptStr +
-                  ' <input type="text" id="' + txtboxId + '" size="30"/>' +
-                  ' <button id="raw_input_submit_btn">Submit</button>');
       ruiDiv.show();
-
-      ruiDiv.find('#raw_input_submit_btn').click(function() {
-        var userInput = ruiDiv.find('#' + txtboxId).val();
-        // advance instruction count by 1 to get to the NEXT instruction
-        myViz.executeCodeWithRawInputFunc(userInput, myViz.curInstr + 1);
-      });
     }
   }
 
