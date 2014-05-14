@@ -355,6 +355,7 @@ function executeCodeFromScratch() {
 
 function executeCodeWithRawInput(rawInputStr, curInstr) {
   rawInputLst.push(rawInputStr);
+  console.log('executeCodeWithRawInput', rawInputStr, curInstr, rawInputLst);
   executeCode(curInstr);
 }
 

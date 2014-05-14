@@ -147,7 +147,7 @@ function initTogetherJS() {
 
     executeCodeSignalFromRemote = true;
     try {
-      executeCode(msg.startingInstruction, msg.forceRawInputLst);
+      executeCode(msg.forceStartingInstr, msg.rawInputLst);
     }
     finally {
       executeCodeSignalFromRemote = false;
@@ -204,7 +204,14 @@ function initTogetherJS() {
       else {
         console.log("on:myAppState - app states unequal, executing", learnerAppState);
         setAppState(learnerAppState);
-        executeCode(learnerAppState.curInstr);
+
+        executeCodeSignalFromRemote = true;
+        try {
+          executeCode(learnerAppState.curInstr);
+        }
+        finally {
+          executeCodeSignalFromRemote = false;
+        }
       }
     }
     else {
@@ -367,7 +374,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
     TogetherJS.send({type: "executeCode",
                      myAppState: getAppState(),
                      forceStartingInstr: forceStartingInstr,
-                     forceRawInputLst: forceRawInputLst});
+                     rawInputLst: rawInputLst});
   }
 
   executePythonCode(pyInputCodeMirror.getValue(),
