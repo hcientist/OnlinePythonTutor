@@ -3,7 +3,7 @@
 Online Python Tutor
 https://github.com/pgbovine/OnlinePythonTutor/
 
-Copyright (C) 2010-2013 Philip J. Guo (philip@pgbovine.net)
+Copyright (C) 2010-2014 Philip J. Guo (philip@pgbovine.net)
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
@@ -120,15 +120,6 @@ function ExecutionVisualizer(domRootID, dat, params) {
 
   this.DEFAULT_EMBEDDED_CODE_DIV_WIDTH = 350;
   this.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT = 400;
-
-  // optional filtering to remove redundancy ...
-  // ok, we're gonna filter out all trace entries of 'call' events,
-  // because each one contains IDENTICAL state information as the
-  // 'step_line' entry immediately following it. this filtering allows the
-  // visualization to not show as much redundancy.
-  // (on second thought, don't filter, since explicitly stepping into
-  // the function def line is clearer!)
-  //this.curTrace = this.curTrace.filter(function(e) {return e.event != 'call';});
 
   // if the final entry is raw_input or mouse_input, then trim it from the trace and
   // set a flag to prompt for user input when execution advances to the
@@ -1403,12 +1394,6 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
   if (isLastInstr) {
     if (this.promptForUserInput || this.promptForMouseInput) {
       vcrControls.find("#curInstr").html('<b><font color="' + brightRed + '">Enter user input:</font></b>');
-      // looks ugly when userInputPromptStr is TOO LONG
-      //vcrControls.find("#curInstr").html('<b><font color="' + brightRed + '">' + this.userInputPromptStr + '</font></b>');
-
-      // don't do smooth transition since prompt() is modal so it doesn't
-      // give the animation background thread time to run
-      smoothTransition = false;
     }
     else if (this.instrLimitReached) {
       vcrControls.find("#curInstr").html("Instruction limit reached");
@@ -1487,6 +1472,54 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
     if (myViz.curInstr > 0) {
       prevLineNumber = myViz.curTrace[myViz.curInstr - 1].line;
       prevIsReturn = (myViz.curTrace[myViz.curInstr - 1].event == 'return');
+
+      /* kinda nutsy hack: if the previous line is a return line, don't
+         highlight it. instead, highlight the line in the enclosing
+         function that called this one (i.e., the call site). e.g.,:
+
+         1. def foo(lst):
+         2.   return len(lst)
+         3.
+         4. y = foo([1,2,3])
+         5. print y
+
+         If prevLineNumber is 2 and prevIsReturn, then curLineNumber is
+         5, since that's the line that executes right after line 2
+         finishes. However, this looks confusing to the user since what
+         actually happened here was that the return value of foo was
+         assigned to y on line 4. I want to have prevLineNumber be line
+         4 so that it gets highlighted. There's no ideal solution, but I
+         think that looks more sensible, since line 4 was the previous
+         line that executed *in this function's frame*.
+      */
+      if (prevIsReturn) {
+        var idx = myViz.curInstr - 1;
+        var retStack = myViz.curTrace[idx].stack_to_render;
+        assert(retStack.length > 0);
+        var retFrameId = retStack[retStack.length - 1].frame_id;
+
+        // now go backwards until we find a 'call' to this frame
+        while (idx >= 0) {
+          var entry = myViz.curTrace[idx];
+          if (entry.event == 'call' && entry.stack_to_render) {
+            var topFrame = entry.stack_to_render[entry.stack_to_render.length - 1];
+            if (topFrame.frame_id == retFrameId) {
+              break; // DONE, we found the call that corresponds to this return
+            }
+          }
+          idx--;
+        }
+
+        // now idx is the index of the 'call' entry. we need to find the
+        // entry before that, which is the instruction before the call.
+        // THAT's the line of the call site.
+        if (idx > 0) {
+          var callingEntry = myViz.curTrace[idx - 1];
+          prevLineNumber = callingEntry.line; // WOOHOO!!!
+          prevIsReturn = false; // this is now a call site, not a return
+          smoothTransition = false;
+        }
+      }
 
       if (myViz.pyCrazyMode) {
         var p = myViz.curTrace[myViz.curInstr - 1];
