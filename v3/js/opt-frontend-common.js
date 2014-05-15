@@ -421,8 +421,6 @@ function executePythonCode(pythonSourceCode,
            raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
            options_json: JSON.stringify(backendOptionsObj)},
           function(dataFromBackend) {
-            doneExecutingCode(); // rain or shine, we're done executing!
-
             var trace = dataFromBackend.trace;
 
             // don't enter visualize mode if there are killer errors:
@@ -462,6 +460,9 @@ function executePythonCode(pythonSourceCode,
 
               handleSuccessFunc();
             }
+
+            doneExecutingCode(); // rain or shine, we're done executing!
+            // run this at the VERY END after all the dust has settled
           },
           "json");
 }
