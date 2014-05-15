@@ -602,6 +602,12 @@ ExecutionVisualizer.prototype.render = function() {
   });
 
   if (this.params.startingInstruction) {
+    // weird special case for something like:
+    // e=raw_input(raw_input("Enter something:"))
+    if (this.params.startingInstruction == this.curTrace.length) {
+      this.params.startingInstruction--;
+    }
+
     assert(0 <= this.params.startingInstruction &&
            this.params.startingInstruction < this.curTrace.length);
     this.curInstr = this.params.startingInstruction;
