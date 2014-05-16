@@ -69,8 +69,6 @@ function executeCode(forceStartingInstr) {
 }
 
 $(document).ready(function() {
-  setSurveyHTML();
-
   // be friendly to the browser's forward and back buttons
   // thanks to http://benalman.com/projects/jquery-bbq-plugin/
   $(window).bind("hashchange", function(e) {
