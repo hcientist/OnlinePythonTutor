@@ -46,11 +46,6 @@ function executeCode(forceStartingInstr) {
                              py_crazy_mode: false,
                              origin: 'csc108h.js'};
 
-    var surveyObj = getSurveyObject();
-    if (surveyObj) {
-      backendOptionsObj.survey = surveyObj;
-    }
-
     var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
 
     var frontendOptionsObj = {startingInstruction: startingInstruction,

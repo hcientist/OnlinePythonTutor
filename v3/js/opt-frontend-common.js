@@ -413,6 +413,11 @@ function executePythonCode(pythonSourceCode,
       return;
     }
 
+    // if you're in display mode, kick back into edit mode before
+    // executing or else the display might not refresh properly ... ugh
+    // krufty FIXME
+    enterEditMode();
+
     clearFrontendError();
     startExecutingCode();
 

@@ -319,10 +319,6 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
     rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
   }
 
-  // kick back into edit mode before executing or else the display might
-  // not refresh properly ... ugh krufty FIXME
-  enterEditMode();
-
   var backend_script = null;
   if ($('#pythonVersionSelector').val() == '2') {
       backend_script = python2_backend_script;
