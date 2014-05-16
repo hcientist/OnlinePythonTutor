@@ -1,0 +1,8 @@
+# for Python 2 only
+yinyang = u'\u262F'
+smiley = '''☺'''
+frownie = u'\u2639'
+heart = r'♡'
+
+lst = [smiley, frownie]
+lst2 = lst * 5

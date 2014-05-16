@@ -1,0 +1,11 @@
+{
+  "code": "# for Python 2 only\nyinyang = u'\\u262F'\nsmiley = '''\u263a'''\nfrownie = u'\\u2639'\nheart = r'\u2661'\n\nlst = [smiley, frownie]\nlst2 = lst * 5\n", 
+  "trace": [
+    {
+      "exception_msg": "SyntaxError: invalid syntax (<string>, line 2)", 
+      "line": 2, 
+      "event": "uncaught_exception", 
+      "offset": 19
+    }
+  ]
+}
