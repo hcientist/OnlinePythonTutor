@@ -79,7 +79,9 @@ import inspect
 # TODO: maybe use the 'six' library to smooth over Py2 and Py3 incompatibilities?
 is_python3 = (sys.version_info[0] == 3)
 if is_python3:
-  long = None # Avoid NameError when evaluating "long"
+  # avoid name errors (GROSS!)
+  long = int
+  unicode = str
 
 
 def is_class(dat):
