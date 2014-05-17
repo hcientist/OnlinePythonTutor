@@ -70,6 +70,9 @@ if len(sys.argv) > 1:
 else:
   form = cgi.FieldStorage()
   user_script = form['user_script'].value
+  # for Python 2, immediately convert to utf-8 before passing input into program
+  if hasattr(user_script, 'decode'):
+    user_script = user_script.decode('utf-8')
   if 'raw_input_json' in form:
     raw_input_json = form['raw_input_json'].value
   if 'options_json' in form:
