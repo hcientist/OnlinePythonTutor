@@ -1,0 +1,17 @@
+# The ultimate Unicode test for Python 3
+
+x = '☺' # this is a unicode string U+263A representing a smiley
+print(x)
+
+x_lst = [x]
+x_lst *= 3
+
+z = '\x8e'
+print(z)
+
+print(x + ' ' + z)
+
+xz_lst = [x, z]
+xz_lst *= 3
+types_lst = [repr(type(e)) for e in xz_lst]
+print(xz_lst)

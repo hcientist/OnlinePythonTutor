@@ -13,7 +13,7 @@
 # compatibility from 2.x to 3.x Ii was running from /v3/).
 
 from bottle import route, get, request, run, template, static_file
-import cStringIO
+import StringIO # NB: don't use cStringIO since it doesn't support unicode!!!
 import json
 import pg_logger
 import urllib
@@ -26,7 +26,7 @@ def index(filepath):
 
 @get('/exec')
 def get_exec():
-  out_s = cStringIO.StringIO()
+  out_s = StringIO.StringIO()
 
   def json_finalizer(input_code, output_trace):
     ret = dict(code=input_code, trace=output_trace)

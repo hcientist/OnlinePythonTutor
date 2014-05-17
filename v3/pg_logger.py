@@ -39,10 +39,11 @@ import types
 # TODO: use the 'six' package to smooth out Py2 and Py3 differences
 is_python3 = (sys.version_info[0] == 3)
 
+# NB: don't use cStringIO since it doesn't support unicode!!!
 if is_python3:
-  import io as cStringIO
+  import io as StringIO
 else:
-  import cStringIO
+  import StringIO
 import pg_encoder
 
 
@@ -228,7 +229,21 @@ if not is_python3:
 IGNORE_VARS = set(('__user_stdout__', '__OPT_toplevel__', '__builtins__', '__name__', '__exception__', '__doc__', '__package__'))
 
 def get_user_stdout(frame):
-  return frame.f_globals['__user_stdout__'].getvalue()
+  my_user_stdout = frame.f_globals['__user_stdout__']
+
+  # This is SUPER KRAZY! In Python 2, the buflist inside of a StringIO
+  # instance can be made up of both str and unicode, so we need to convert
+  # the str to unicode and replace invalid characters with the Unicode '?'
+  # But leave unicode elements alone. This way, EVERYTHING inside buflist
+  # will be unicode. (Note that in Python 3, everything is already unicode,
+  # so we're fine.)
+  if not is_python3:
+    my_user_stdout.buflist = [(e.decode('utf-8', 'replace')
+                               if type(e) is str
+                               else e)
+                              for e in my_user_stdout.buflist]
+  return my_user_stdout.getvalue()
+
 
 '''
 2013-12-26
@@ -1171,7 +1186,7 @@ class PGLogger(bdb.Bdb):
         user_builtins['setCSS'] = setCSS
         user_builtins['setJS'] = setJS
 
-        user_stdout = cStringIO.StringIO()
+        user_stdout = StringIO.StringIO()
 
         sys.stdout = user_stdout
 

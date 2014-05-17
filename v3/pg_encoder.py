@@ -111,7 +111,8 @@ def get_name(obj):
 PRIMITIVE_TYPES = (int, long, float, str, unicode, bool, type(None))
 
 def encode_primitive(dat):
-  if type(dat) is float:
+  t = type(dat)
+  if t is float:
     if math.isinf(dat):
       if dat > 0:
         return ['SPECIAL_FLOAT', 'Infinity']
@@ -125,6 +126,10 @@ def encode_primitive(dat):
         return ['SPECIAL_FLOAT', '%.1f' % dat]
       else:
         return round(dat, FLOAT_PRECISION)
+  elif t is str and (not is_python3):
+    # hack only for Python 2 strings ... always turn into unicode
+    # and display '?' when it's not valid unicode
+    return dat.decode('utf-8', 'replace')
   else:
     # return all other primitives verbatim
     return dat
