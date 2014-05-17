@@ -80,6 +80,7 @@ var informedConsentText = '<br/>During the tutoring session, chat logs and code 
 // nasty globals
 var updateOutputSignalFromRemote = false;
 var executeCodeSignalFromRemote = false;
+var codeMirrorWarningTimeoutId = undefined;
 
 // Global hook for ExecutionVisualizer.
 var try_hook = function(hook_name, args) {
@@ -167,6 +168,22 @@ function initTogetherJS() {
     if (msg.appMode != appMode) {
       updateAppDisplay(msg.appMode);
     }
+  });
+
+  TogetherJS.hub.on("codemirror-edit", function(msg) {
+    if (!msg.sameUrl) {
+      return;
+    }
+
+    if (codeMirrorWarningTimeoutId !== undefined) {
+      clearTimeout(codeMirrorWarningTimeoutId); // don't let these events pile up
+    }
+
+    $("#codeInputWarnings").html('<span style="color: #e93f34; font-weight: bold">\
+                                  Hold on, someone else is typing ...</span>');
+    codeMirrorWarningTimeoutId = setTimeout(function() {
+      $("#codeInputWarnings").html('Write your Python code here:');
+    }, 1000);
   });
 
   // learner receives a sync request from tutor and responds by
@@ -711,4 +728,14 @@ $(document).ready(function() {
   if (!pyInputCodeMirror.getValue()) {
     $("#aliasExampleLink").trigger('click');
   }
+
+
+  pyInputCodeMirror.on("change", function(cm, change) {
+    // only trigger when the user explicitly typed something
+    if (change.origin != 'setValue') {
+      if (TogetherJS.running) {
+        TogetherJS.send({type: "codemirror-edit"});
+      }
+    }
+  });
 });
