@@ -103,6 +103,15 @@ function clearFrontendError() {
 }
 
 
+// From http://diveintohtml5.info/storage.html
+function supports_html5_storage() {
+  try {
+    return 'localStorage' in window && window['localStorage'] !== null;
+  } catch (e) {
+    return false;
+  }
+}
+
 // run at the END so that everything else can be initialized first
 function genericOptFrontendReady() {
   pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
@@ -115,6 +124,35 @@ function genericOptFrontendReady() {
   });
 
   pyInputCodeMirror.setSize(null, '420px');
+
+  // first initialize options from HTML LocalStorage. very important
+  // that this code runs first so that options get overridden by query
+  // string options and anything else the user wants to override with.
+  if (supports_html5_storage()) {
+    var lsKeys = ['cumulative',
+                  'drawParentPointers',
+                  'heapPrimitives',
+                  'py',
+                  'showOnlyOutputs',
+                  'textReferences'];
+    // restore toggleState if available
+    var lsOptions = {};
+    $.each(lsKeys, function(i, k) {
+      var v = localStorage.getItem(k);
+      if (v) {
+        lsOptions[k] = v;
+      }
+    });
+    setToggleOptions(lsOptions);
+
+    // store in localStorage whenever user explicitly changes any toggle option:
+    $('#cumulativeModeSelector,#heapPrimitivesSelector,#drawParentPointerSelector,#textualMemoryLabelsSelector,#showOnlyOutputsSelector,#pythonVersionSelector').change(function() {
+      var ts = getToggleState();
+      $.each(ts, function(k, v) {
+        localStorage.setItem(k, v);
+      });
+    });
+  }
 
   // initialize from query string
   var queryStrOptions = getQueryStringOptions();
@@ -273,6 +311,15 @@ function appStateEq(s1, s2) {
           s1.rawInputLstJSON == s2.rawInputLstJSON);
 }
 
+// strip it down to the bare minimum
+function getToggleState() {
+  var x = getAppState();
+  delete x.code;
+  delete x.mode;
+  delete x.rawInputLstJSON;
+  delete x.curInstr;
+  return x;
+}
 
 // sets the global appMode variable if relevant and also the URL hash to
 // support some amount of Web browser back button goodness
