@@ -511,6 +511,13 @@ function executePythonCode(pythonSourceCode,
               }
 
               handleSuccessFunc();
+
+
+              // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
+              // and sync any new elements that are now inside myVisualizer
+              if (TogetherJS && TogetherJS.running) {
+                TogetherJS.reinitialize();
+              }
             }
 
             doneExecutingCode(); // rain or shine, we're done executing!
