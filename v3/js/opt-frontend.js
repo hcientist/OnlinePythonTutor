@@ -125,18 +125,28 @@ function initTogetherJS() {
     }
 
     var p = TogetherJS.require("peers");
-    //console.warn('togetherjs.hello-back', msg.name, p.getAllPeers().map(function(e) {return e.name}));
+
+    var peerNames = p.getAllPeers().map(function(e) {return e.name});
+    //console.warn('togetherjs.hello-back', msg.name, peerNames);
 
     if (msg.name == p.Self.name) {
-      var newName = null;
+      var newName = undefined;
       var toks = msg.name.split(' ');
       var count = Number(toks[1]);
-      if (!isNaN(count)) {
-        newName = toks[0] + ' ' + String(count + 1);
-      }
-      else {
-        newName = p.Self.name + ' 2'; // e.g., "Tutor 2"
-      }
+
+      // make sure the name is truly unique, incrementing count as necessary
+      do {
+        if (!isNaN(count)) {
+          newName = toks[0] + ' ' + String(count + 1); // e.g., "Tutor 3"
+          count++;
+        }
+        else {
+          // the original name was something like "Tutor", so make
+          // newName into, say, "Tutor 2"
+          newName = p.Self.name + ' 2';
+          count = 2;
+        }
+      } while ($.inArray(newName, peerNames) >= 0); // i.e., is newName in peerNames?
 
       p.Self.update({name: newName}); // change our own name
     }
