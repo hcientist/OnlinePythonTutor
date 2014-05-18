@@ -182,9 +182,10 @@ define(["require", "jquery", "util", "session", "templates", "templating", "link
       }
     });
 
-    // pgbovine -- disable the "Invite a friend" link dialog
+    // pgbovine -- disable the user profile and "Invite a friend" link dialogs
+    ui.container.find("#togetherjs-profile-button").hide();
     ui.container.find("#togetherjs-share-button").hide();
-    adjustDockSize(-1);
+    adjustDockSize(-2);
 
   };
 
@@ -793,9 +794,9 @@ define(["require", "jquery", "util", "session", "templates", "templating", "link
     assert(buttons && Math.floor(buttons) == buttons);
     var iface = $("#togetherjs-dock");
     var newHeight = iface.height() + (BUTTON_HEIGHT * buttons);
-    // pgbovine - set the lower limit to 2 instead of 3 ...
-    assert(newHeight >= BUTTON_HEIGHT * 2, "Height went too low (", newHeight,
-           "), should never be less than 2 buttons high (", BUTTON_HEIGHT * 2, ")");
+    // pgbovine - set the lower limit to 1 instead of 3 ...
+    assert(newHeight >= BUTTON_HEIGHT * 1, "Height went too low (", newHeight,
+           "), should never be less than 2 buttons high (", BUTTON_HEIGHT * 1, ")");
     //assert(newHeight >= BUTTON_HEIGHT * 3, "Height went too low (", newHeight,
     //       "), should never be less than 3 buttons high (", BUTTON_HEIGHT * 3, ")");
     iface.css({
