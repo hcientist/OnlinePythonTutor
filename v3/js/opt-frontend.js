@@ -94,6 +94,16 @@ function requestSync() {
   }
 }
 
+
+var TogetherJSConfig_getUserName = function () {
+  if (isTutor) {
+    return 'Tutor';
+  }
+  else {
+    return 'Learner';
+  }
+}
+
 // get this app ready for TogetherJS
 function initTogetherJS() {
   if (isTutor) {
@@ -103,6 +113,34 @@ function initTogetherJS() {
 
     $("#syncBtn").click(requestSync);
   }
+
+  // This event triggers when you first join a session and say 'hello',
+  // and then one of your peers says hello back to you. If they have the
+  // exact same name as you, then change your own name to avoid ambiguity.
+  // Remember, they were here first (that's why they're saying 'hello-back'),
+  // so they keep their own name, but you need to change yours :)
+  TogetherJS.hub.on("togetherjs.hello-back", function(msg) {
+    if (!msg.sameUrl) {
+      return;
+    }
+
+    var p = TogetherJS.require("peers");
+    //console.warn('togetherjs.hello-back', msg.name, p.getAllPeers().map(function(e) {return e.name}));
+
+    if (msg.name == p.Self.name) {
+      var newName = null;
+      var toks = msg.name.split(' ');
+      var count = Number(toks[1]);
+      if (!isNaN(count)) {
+        newName = toks[0] + ' ' + String(count + 1);
+      }
+      else {
+        newName = p.Self.name + ' 2'; // e.g., "Tutor 2"
+      }
+
+      p.Self.update({name: newName}); // change our own name
+    }
+  });
 
   // Global hook for ExecutionVisualizer.
   // Set it here after TogetherJS gets defined, hopefully!
