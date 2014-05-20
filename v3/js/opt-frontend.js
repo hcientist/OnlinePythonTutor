@@ -75,7 +75,7 @@ var isTutor = false;
 var origDocURL = document.URL; // capture this ASAP before TogetherJS munges the URL
 
 var tutorWaitText = 'Please wait for the next available tutor.';
-var informedConsentText = '<br/>During the tutoring session, chat logs and code may be recorded for research purposes.';
+var informedConsentText = '<br/>During the tutoring session, chat logs and code may be recorded and published for<br/>educational purposes. Please do not reveal any private or confidential information.';
 
 // nasty globals
 var updateOutputSignalFromRemote = false;
@@ -370,7 +370,7 @@ function initTogetherJS() {
       $("#togetherBtn").html("TUTOR - Join live help session");
     }
     else {
-      $("#togetherBtn").html("Get live help (experimental)");
+      $("#togetherBtn").html("Chat with a tutor (experimental)");
     }
   });
 }
