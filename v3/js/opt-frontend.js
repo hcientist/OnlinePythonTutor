@@ -81,6 +81,7 @@ var informedConsentText = '<br/>During the tutoring session, chat logs and code 
 var updateOutputSignalFromRemote = false;
 var executeCodeSignalFromRemote = false;
 var codeMirrorWarningTimeoutId = undefined;
+var pendingScrollTop = null;
 
 // Global hook for ExecutionVisualizer.
 var try_hook = function(hook_name, args) {
@@ -243,7 +244,11 @@ function initTogetherJS() {
     }
 
     if (TogetherJS.running) {
-      TogetherJS.send({type: "myAppState", myAppState: getAppState()});
+      TogetherJS.send({type: "myAppState",
+                       myAppState: getAppState(),
+                       pyCodeOutputDivScrollTop: myVisualizer ?
+                                                 myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop() :
+                                                 undefined});
     }
   });
 
@@ -265,6 +270,10 @@ function initTogetherJS() {
         // update curInstr only
         console.log("on:myAppState - app states equal, renderStep", learnerAppState.curInstr);
         myVisualizer.renderStep(learnerAppState.curInstr);
+
+        if (msg.pyCodeOutputDivScrollTop !== undefined) {
+          myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(msg.pyCodeOutputDivScrollTop);
+        }
       }
       else {
         console.log("on:myAppState - app states unequal, executing", learnerAppState);
@@ -272,6 +281,9 @@ function initTogetherJS() {
 
         executeCodeSignalFromRemote = true;
         try {
+          if (msg.pyCodeOutputDivScrollTop !== undefined) {
+            pendingScrollTop = msg.pyCodeOutputDivScrollTop; // NASTY global
+          }
           executeCode(learnerAppState.curInstr);
         }
         finally {
@@ -286,6 +298,14 @@ function initTogetherJS() {
     }
   });
 
+  TogetherJS.hub.on("pyCodeOutputDivScroll", function(msg) {
+    if (!msg.sameUrl) {
+      return;
+    }
+    if (myVisualizer) {
+      myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(msg.scrollTop);
+    }
+  });
 
   try {
     var source = new EventSource(TogetherJSConfig_hubBase + 'learner-SSE');
@@ -442,7 +462,29 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                     backend_script, backendOptionsObj,
                     frontendOptionsObj,
                     'pyOutputPane',
-                    enterDisplayMode, handleUncaughtExceptionFunc);
+                    optFinishSuccessfulExecution, handleUncaughtExceptionFunc);
+}
+
+
+function optFinishSuccessfulExecution() {
+  enterDisplayMode(); // do this first!
+
+  // NASTY global :(
+  if (pendingScrollTop) {
+    myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(pendingScrollTop);
+    pendingScrollTop = null;
+  }
+
+  myVisualizer.domRoot.find('#pyCodeOutputDiv').scroll(function(e) {
+    if (TogetherJS.running) {
+      // note that this will send a signal back and forth both ways
+      // (there's no easy way to prevent this), but it shouldn't keep
+      // bouncing back and forth indefinitely since no the second signal
+      // causes no additional scrolling
+      TogetherJS.send({type: "pyCodeOutputDivScroll",
+                       scrollTop: $(this).scrollTop()});
+    }
+  });
 }
 
 
