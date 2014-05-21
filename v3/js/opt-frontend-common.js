@@ -286,18 +286,6 @@ function getAppState() {
   return ret;
 }
 
-function setAppState(appState) {
-  setToggleOptions(appState);
-  setCodeMirrorVal(appState.code);
-
-  if (appState.rawInputLst) {
-    rawInputLst = $.parseJSON(appState.rawInputLstJSON);
-  }
-  else {
-    rawInputLst = [];
-  }
-}
-
 // return whether two states match, except don't worry about curInstr
 function appStateEq(s1, s2) {
   return (s1.code == s2.code &&

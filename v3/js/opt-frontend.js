@@ -63,6 +63,8 @@ var TogetherJSConfig_toolName = "Online Python Tutor live help";
 //var TogetherJSConfig_hubBase = "http://184.173.101.176:30035/"; // online
 var TogetherJSConfig_hubBase = "http://localhost:30035/"; // local
 
+// TODO: generalize beyond tutor to "joiner" or something, since we
+// can imagine other learners joining into the original session as well
 var isTutor = false;
 
 // TODO: consider deferred initialization later: "TogetherJS starts up
@@ -96,6 +98,25 @@ function requestSync() {
   }
 }
 
+function syncAppState(appState) {
+  setToggleOptions(appState);
+
+  // VERY VERY subtle -- temporarily prevent TogetherJS from sending
+  // form update events while we set the code mirror value. otherwise
+  // this will send an incorrect delta to the other end and screw things
+  // up because the initial states of the two forms aren't equal.
+  var orig = TogetherJS.config.get('ignoreForms');
+  TogetherJS.config('ignoreForms', true);
+  setCodeMirrorVal(appState.code);
+  TogetherJS.config('ignoreForms', orig);
+
+  if (appState.rawInputLst) {
+    rawInputLst = $.parseJSON(appState.rawInputLstJSON);
+  }
+  else {
+    rawInputLst = [];
+  }
+}
 
 var TogetherJSConfig_getUserName = function () {
   if (isTutor) {
@@ -279,7 +300,7 @@ function initTogetherJS() {
       }
       else {
         console.log("on:myAppState - app states unequal, executing", learnerAppState);
-        setAppState(learnerAppState);
+        syncAppState(learnerAppState);
 
         executeCodeSignalFromRemote = true;
         try {
@@ -294,16 +315,18 @@ function initTogetherJS() {
       }
     }
     else {
-      console.log("on:myAppState - edit mode sync");
-      setAppState(learnerAppState);
-      enterEditMode();
+      if (!appStateEq(getAppState(), learnerAppState)) {
+        console.log("on:myAppState - edit mode sync");
+        syncAppState(learnerAppState);
+        enterEditMode();
+      }
     }
 
     // TODO: this doesn't work properly, so when a new person joins in,
     // their code editor scroll position (of zero) overrides everyone
     // else's and makes everyone else go to scrollTop zero
     if (msg.codeInputScrollTop !== undefined) {
-      console.log("$('#codeInputPane .CodeMirror-scroll').scrollTop(", msg.codeInputScrollTop, ');"');
+      //console.log("$('#codeInputPane .CodeMirror-scroll').scrollTop(", msg.codeInputScrollTop, ');"');
       $('#codeInputPane .CodeMirror-scroll').scrollTop(msg.codeInputScrollTop); // this line doesn't work
     }
   });
@@ -836,8 +859,13 @@ $(document).ready(function() {
 
   // if blank, then select a canned example on start-up
   // (need to do this after pyInputCodeMirror is initialized)
-  if (!pyInputCodeMirror.getValue()) {
-    $("#aliasExampleLink").trigger('click');
+  // TODO: generalize beyond tutor to "joiner" or something, since we
+  // can imagine other learners joining into the original session as well
+  if (!isTutor) { // don't pre-seed since things will go screwy when the
+                  // input box automatically syncs
+    if (!pyInputCodeMirror.getValue()) {
+      $("#aliasExampleLink").trigger('click');
+    }
   }
 
 
