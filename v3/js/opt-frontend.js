@@ -81,7 +81,7 @@ var informedConsentText = '<br/>During the tutoring session, chat logs and code 
 var updateOutputSignalFromRemote = false;
 var executeCodeSignalFromRemote = false;
 var codeMirrorWarningTimeoutId = undefined;
-var pendingScrollTop = null;
+var pendingCodeOutputScrollTop = null;
 
 // Global hook for ExecutionVisualizer.
 var try_hook = function(hook_name, args) {
@@ -282,7 +282,7 @@ function initTogetherJS() {
         executeCodeSignalFromRemote = true;
         try {
           if (msg.pyCodeOutputDivScrollTop !== undefined) {
-            pendingScrollTop = msg.pyCodeOutputDivScrollTop; // NASTY global
+            pendingCodeOutputScrollTop = msg.pyCodeOutputDivScrollTop; // NASTY global
           }
           executeCode(learnerAppState.curInstr);
         }
@@ -470,9 +470,9 @@ function optFinishSuccessfulExecution() {
   enterDisplayMode(); // do this first!
 
   // NASTY global :(
-  if (pendingScrollTop) {
-    myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(pendingScrollTop);
-    pendingScrollTop = null;
+  if (pendingCodeOutputScrollTop) {
+    myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(pendingCodeOutputScrollTop);
+    pendingCodeOutputScrollTop = null;
   }
 
   myVisualizer.domRoot.find('#pyCodeOutputDiv').scroll(function(e) {
