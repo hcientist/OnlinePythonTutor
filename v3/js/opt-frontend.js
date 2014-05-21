@@ -35,6 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // Pre-reqs:
 // - pytutor.js
 // - jquery.ba-bbq.min.js
+// - jquery.ba-dotimeout.min.js // for event debouncing: http://benalman.com/code/projects/jquery-dotimeout/examples/debouncing/
 // - opt-frontend-common.js
 // should all be imported BEFORE this file
 
@@ -246,6 +247,7 @@ function initTogetherJS() {
     if (TogetherJS.running) {
       TogetherJS.send({type: "myAppState",
                        myAppState: getAppState(),
+                       codeInputScrollTop: $('#codeInputPane .CodeMirror-scroll').scrollTop(),
                        pyCodeOutputDivScrollTop: myVisualizer ?
                                                  myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop() :
                                                  undefined});
@@ -296,6 +298,21 @@ function initTogetherJS() {
       setAppState(learnerAppState);
       enterEditMode();
     }
+
+    // TODO: this doesn't work properly, so when a new person joins in,
+    // their code editor scroll position (of zero) overrides everyone
+    // else's and makes everyone else go to scrollTop zero
+    if (msg.codeInputScrollTop !== undefined) {
+      console.log("$('#codeInputPane .CodeMirror-scroll').scrollTop(", msg.codeInputScrollTop, ');"');
+      $('#codeInputPane .CodeMirror-scroll').scrollTop(msg.codeInputScrollTop); // this line doesn't work
+    }
+  });
+
+  TogetherJS.hub.on("codeInputScroll", function(msg) {
+    if (!msg.sameUrl) {
+      return;
+    }
+    $('#codeInputPane .CodeMirror-scroll').scrollTop(msg.scrollTop);
   });
 
   TogetherJS.hub.on("pyCodeOutputDivScroll", function(msg) {
@@ -477,12 +494,16 @@ function optFinishSuccessfulExecution() {
 
   myVisualizer.domRoot.find('#pyCodeOutputDiv').scroll(function(e) {
     if (TogetherJS.running) {
-      // note that this will send a signal back and forth both ways
-      // (there's no easy way to prevent this), but it shouldn't keep
-      // bouncing back and forth indefinitely since no the second signal
-      // causes no additional scrolling
-      TogetherJS.send({type: "pyCodeOutputDivScroll",
-                       scrollTop: $(this).scrollTop()});
+      var elt = $(this);
+      // debounce
+      $.doTimeout('pyCodeOutputDivScroll', 100, function() {
+        // note that this will send a signal back and forth both ways
+        // (there's no easy way to prevent this), but it shouldn't keep
+        // bouncing back and forth indefinitely since no the second signal
+        // causes no additional scrolling
+        TogetherJS.send({type: "pyCodeOutputDivScroll",
+                         scrollTop: elt.scrollTop()});
+      });
     }
   });
 }
@@ -826,6 +847,21 @@ $(document).ready(function() {
       if (TogetherJS.running) {
         TogetherJS.send({type: "codemirror-edit"});
       }
+    }
+  });
+
+  $('#codeInputPane .CodeMirror-scroll').scroll(function(e) {
+    if (TogetherJS.running) {
+      var elt = $(this);
+      // debounce
+      $.doTimeout('codeInputScroll', 100, function() {
+        // note that this will send a signal back and forth both ways
+        // (there's no easy way to prevent this), but it shouldn't keep
+        // bouncing back and forth indefinitely since no the second signal
+        // causes no additional scrolling
+        TogetherJS.send({type: "codeInputScroll",
+                         scrollTop: elt.scrollTop()});
+      });
     }
   });
 });
