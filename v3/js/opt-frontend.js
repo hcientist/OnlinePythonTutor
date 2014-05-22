@@ -322,12 +322,13 @@ function initTogetherJS() {
       }
     }
 
-    // TODO: this doesn't work properly, so when a new person joins in,
-    // their code editor scroll position (of zero) overrides everyone
-    // else's and makes everyone else go to scrollTop zero
     if (msg.codeInputScrollTop !== undefined) {
-      //console.log("$('#codeInputPane .CodeMirror-scroll').scrollTop(", msg.codeInputScrollTop, ');"');
-      $('#codeInputPane .CodeMirror-scroll').scrollTop(msg.codeInputScrollTop); // this line doesn't work
+      // give pyInputCodeMirror a bit of time to settle with its new
+      // value. this is hacky; ideally we have a callback function for
+      // when setValue() completes.
+      $.doTimeout('pyInputCodeMirrorInit', 200, function() {
+        $('#codeInputPane .CodeMirror-scroll').scrollTop(msg.codeInputScrollTop);
+      });
     }
   });
 
