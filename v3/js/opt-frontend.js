@@ -86,6 +86,9 @@ var executeCodeSignalFromRemote = false;
 var codeMirrorWarningTimeoutId = undefined;
 var pendingCodeOutputScrollTop = null;
 
+var codeMirrorScroller = '#codeInputPane .CodeMirror-scroll';
+
+
 // Global hook for ExecutionVisualizer.
 var try_hook = function(hook_name, args) {
   return [false]; // just a stub
@@ -238,6 +241,14 @@ function initTogetherJS() {
     console.log("TogetherJS RECEIVE hashchange", msg.appMode);
     if (msg.appMode != appMode) {
       updateAppDisplay(msg.appMode);
+
+      if (msg.codeInputScrollTop &&
+          $(codeMirrorScroller).scrollTop() != msg.codeInputScrollTop) {
+        // hack: give it a bit of time to settle first ...
+        $.doTimeout('pyInputCodeMirrorInit', 200, function() {
+          $(codeMirrorScroller).scrollTop(msg.codeInputScrollTop);
+        });
+      }
     }
   });
 
@@ -327,7 +338,7 @@ function initTogetherJS() {
       // value. this is hacky; ideally we have a callback function for
       // when setValue() completes.
       $.doTimeout('pyInputCodeMirrorInit', 200, function() {
-        $('#codeInputPane .CodeMirror-scroll').scrollTop(msg.codeInputScrollTop);
+        $(codeMirrorScroller).scrollTop(msg.codeInputScrollTop);
       });
     }
   });
@@ -336,7 +347,7 @@ function initTogetherJS() {
     if (!msg.sameUrl) {
       return;
     }
-    $('#codeInputPane .CodeMirror-scroll').scrollTop(msg.scrollTop);
+    $(codeMirrorScroller).scrollTop(msg.scrollTop);
   });
 
   TogetherJS.hub.on("pyCodeOutputDivScroll", function(msg) {
@@ -517,18 +528,18 @@ function optFinishSuccessfulExecution() {
   }
 
   myVisualizer.domRoot.find('#pyCodeOutputDiv').scroll(function(e) {
-    if (TogetherJS.running) {
-      var elt = $(this);
-      // debounce
-      $.doTimeout('pyCodeOutputDivScroll', 100, function() {
-        // note that this will send a signal back and forth both ways
+    var elt = $(this);
+    // debounce
+    $.doTimeout('pyCodeOutputDivScroll', 100, function() {
+      // note that this will send a signal back and forth both ways
+      if (TogetherJS.running) {
         // (there's no easy way to prevent this), but it shouldn't keep
         // bouncing back and forth indefinitely since no the second signal
         // causes no additional scrolling
         TogetherJS.send({type: "pyCodeOutputDivScroll",
                          scrollTop: elt.scrollTop()});
-      });
-    }
+      }
+    });
   });
 }
 
@@ -554,6 +565,7 @@ $(document).ready(function() {
     if (TogetherJS.running && !isExecutingCode) {
       TogetherJS.send({type: "hashchange",
                        appMode: appMode,
+                       codeInputScrollTop: $(codeMirrorScroller).scrollTop(),
                        myAppState: getAppState()});
     }
   });
