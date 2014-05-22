@@ -242,7 +242,7 @@ function initTogetherJS() {
     if (msg.appMode != appMode) {
       updateAppDisplay(msg.appMode);
 
-      if (msg.codeInputScrollTop &&
+      if (appMode == 'edit' && msg.codeInputScrollTop !== undefined &&
           $(codeMirrorScroller).scrollTop() != msg.codeInputScrollTop) {
         // hack: give it a bit of time to settle first ...
         $.doTimeout('pyInputCodeMirrorInit', 200, function() {
@@ -526,6 +526,8 @@ function optFinishSuccessfulExecution() {
     myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(pendingCodeOutputScrollTop);
     pendingCodeOutputScrollTop = null;
   }
+
+  $.doTimeout('pyCodeOutputDivScroll'); // cancel any prior scheduled calls
 
   myVisualizer.domRoot.find('#pyCodeOutputDiv').scroll(function(e) {
     var elt = $(this);
