@@ -854,6 +854,9 @@ $(document).ready(function() {
 
 
   // for survey-related stuff
+  // (Version 1 - started running this experiment on 2014-04-09 and put
+  // it on hold on 2014-05-02)
+
   $('.surveyBtn').click(function(e) {
     // wow, massive copy-and-paste action from above!
     var myArgs = getAppState();
@@ -868,6 +871,28 @@ $(document).ready(function() {
       myArgs.surveyResponse = res;
       $.get('survey.py', myArgs, function(dat) {});
     }
+  });
+
+  // for survey-related stuff
+  // (Version 2 - started running on 2014-05-24)
+  $('#iJustLearnedSubmission').click(function(e) {
+    var resp = $("#iJustLearnedInput").val();
+
+    if (!$.trim(resp)) {
+      return;
+    }
+
+    // wow, massive copy-and-paste action from above!
+    var myArgs = getAppState();
+
+    myArgs.surveyQuestion = "I just learned that ...";
+    myArgs.surveyResponse = resp;
+    myArgs.surveyVersion = 'v2';
+
+    $.get('survey.py', myArgs, function(dat) {});
+
+    $("#iJustLearnedInput").val('');
+    $("#iJustLearnedThanks").show().fadeOut(1500);
   });
 
   genericOptFrontendReady(); // initialize at the end
