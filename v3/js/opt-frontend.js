@@ -892,7 +892,10 @@ $(document).ready(function() {
     $.get('survey.py', myArgs, function(dat) {});
 
     $("#iJustLearnedInput").val('');
-    $("#iJustLearnedThanks").show().fadeOut(1500);
+    $("#iJustLearnedThanks").show();
+    $.doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
+      $("#iJustLearnedThanks").fadeOut(1000);
+    });
   });
 
   genericOptFrontendReady(); // initialize at the end
