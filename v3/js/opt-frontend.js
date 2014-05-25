@@ -917,7 +917,7 @@ $(document).ready(function() {
 
     // 2014-05-25: implemented more detailed tracing for surveys
     if (myVisualizer) {
-      myArgs.updateHistory = myVisualizer.updateHistory;
+      myArgs.updateHistoryJSON = JSON.stringify(myVisualizer.updateHistory);
     }
 
     $.get('survey.py', myArgs, function(dat) {});
