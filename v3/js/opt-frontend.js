@@ -188,6 +188,23 @@ function initTogetherJS() {
       if (TogetherJS.running && !isExecutingCode) {
         TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
       }
+
+      // 2014-05-25: implemented more detailed tracing for surveys
+      if (args.myViz.creationTime) {
+        var deltaMs = (new Date()) - args.myViz.creationTime;
+
+        var uh = args.myViz.updateHistory;
+        assert(uh.length > 0); // should already be seeded with an initial value
+        var lastDeltaMs = uh[uh.length - 1][1];
+
+        // ("debounce" entries that are less than 1 second apart to
+        // compress the logs a bit when there's rapid scrubbing or scrolling)
+        if ((deltaMs - lastDeltaMs) < 1000) {
+          uh.pop(); // get rid of last entry before pushing a new entry
+        }
+        uh.push([args.myViz.curInstr, deltaMs]);
+        //console.log(JSON.stringify(uh));
+      }
     }
     return [false];
   }
@@ -543,6 +560,15 @@ function optFinishSuccessfulExecution() {
       }
     });
   });
+
+  // 2014-05-25: implemented more detailed tracing for surveys
+  myVisualizer.creationTime = new Date();
+  // each element will be a two-element list consisting of:
+  // [step number, milliseconds elapsed since creationTime]
+  // ("debounce" entries that are less than 1 second apart to
+  // compress the logs a bit when there's rapid scrubbing or scrolling)
+  myVisualizer.updateHistory = [];
+  myVisualizer.updateHistory.push([myVisualizer.curInstr, 0]); // seed it!
 }
 
 
@@ -888,6 +914,11 @@ $(document).ready(function() {
     myArgs.surveyQuestion = "I just learned that ...";
     myArgs.surveyResponse = resp;
     myArgs.surveyVersion = 'v2';
+
+    // 2014-05-25: implemented more detailed tracing for surveys
+    if (myVisualizer) {
+      myArgs.updateHistory = myVisualizer.updateHistory;
+    }
 
     $.get('survey.py', myArgs, function(dat) {});
 
