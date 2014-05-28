@@ -93,5 +93,12 @@ button.surveyBtn {
   margin-top: 8px;
 }
 
+.togetherjsBtn {
+  color: #b80000;
+  font-size: 11pt;
+  padding: 5px;
+  margin-top: 6px;
+}
+
 /* necessary for CodeMirror error line highlighting to work! */
 .CodeMirror .errorLine { background: #ffff3f !important; }

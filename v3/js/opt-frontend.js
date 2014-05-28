@@ -67,7 +67,9 @@ var TogetherJSConfig_hubBase = "http://localhost:30035/"; // local
 // can imagine other learners joining into the original session as well
 var isTutor = false;
 
-var manuallySharingUrl = false; // TODO: refactor
+var manualSharedSession = false; // XXX: this is uber-unreliable since
+                                 // it's not set on page reload unless
+                                 // there's a special url hash
 
 // TODO: consider deferred initialization later: "TogetherJS starts up
 // automatically as soon as it can, especially when continuing a
@@ -80,7 +82,7 @@ var manuallySharingUrl = false; // TODO: refactor
 var origDocURL = document.URL; // capture this ASAP before TogetherJS munges the URL
 
 var tutorWaitText = 'Please wait for the next available tutor.';
-var informedConsentText = '<br/>During the tutoring session, chat logs and code may be recorded and published for<br/>educational purposes. Please do not reveal any private or confidential information.';
+var informedConsentText = '<p/>During shared sessions, chat logs and code may be recorded and published for<br/>educational purposes. Please do not reveal any private or confidential information.';
 
 // nasty globals
 var updateOutputSignalFromRemote = false;
@@ -132,20 +134,29 @@ var TogetherJSConfig_getUserName = function () {
   }
 }
 
-// temporary stent:
-function startSharedSession() {
-  manuallySharingUrl = true; // icky global!
+
+function getTutor() {
+  manualSharedSession = false; // icky global!
   TogetherJS();
 }
+
+function startSharedSession() {
+  manualSharedSession = true; // icky global!
+  TogetherJS();
+}
+
 
 // get this app ready for TogetherJS
 function initTogetherJS() {
   if (isTutor) {
-    $("#togetherBtn").html("TUTOR - Join live help session");
+    $("#getTutorBtn").html("TUTOR - Join live help session");
+    /*
     $("#togetherJSHeader").append('<button id="syncBtn"\
                                    type="button">Sync with learner</button>');
-
     $("#syncBtn").click(requestSync);
+    */
+
+    $("#sharedSessionBtn").hide();
   }
 
   // This event triggers when you first join a session and say 'hello',
@@ -389,32 +400,17 @@ function initTogetherJS() {
     source.onmessage = function(e) {
       var dat = JSON.parse(e.data);
 
-      if (!isTutor) {
-        if (dat.helpQueueUrls == 1) {
-          $("#helpQueueUrls").html(tutorWaitText +
-                                   ' There is 1 person in line.' +
-                                   informedConsentText);
-        }
-        else if (dat.helpQueueUrls == 0 || dat.helpQueueUrls > 1) {
-          $("#helpQueueUrls").html(tutorWaitText +
-                                   ' There are ' + dat.helpQueueUrls +
-                                   ' people in line.' +
-                                   informedConsentText);
-        }
-        else {
-          $("#helpQueueUrls").html('');
-        }
-      }
-
-      if (dat.helpAvailable) {
-        $("#togetherJSHeader").fadeIn(750, redrawConnectors);
+      if (dat.helpAvailable && !TogetherJS.running) {
+        $("#getTutorBtn").fadeIn(750, redrawConnectors);
       }
       else {
-        if (TogetherJS.running && !manuallySharingUrl) {
+        /* janky
+        if (TogetherJS.running && !manualSharedSession) {
           alert("No more live tutors are available now.\nPlease check back later.");
           TogetherJS(); // toggle off
         }
-        $("#togetherJSHeader").fadeOut(750, redrawConnectors);
+        */
+        $("#getTutorBtn").fadeOut(750, redrawConnectors);
       }
     };
   }
@@ -424,30 +420,30 @@ function initTogetherJS() {
     console.warn("Sad ... EventSource not supported :(");
   }
 
-  $("#togetherBtn").click(function() {
-    TogetherJS(); // toggles on and off
-  });
+  $("#getTutorBtn").click(getTutor);
+  $("#sharedSessionBtn").click(startSharedSession);
+  $("#stopTogetherJSBtn").click(TogetherJS); // toggles off
 
   // fired when TogetherJS is activated. might fire on page load if there's
   // already an open session from a prior page load in the recent past.
   TogetherJS.on("ready", function () {
     console.log("TogetherJS ready");
-    $("#togetherBtn").html("Stop live help session");
-
+    $("#getTutorBtn,#sharedSessionBtn").hide();
     $("#surveyHeader").hide();
+    $("#stopTogetherJSBtn").show();
 
-    $("#helpQueueUrls").fadeIn(500);
+    $("#togetherjsStatus").html(informedConsentText).fadeIn(500);
 
-    $("#togetherJSHeader").fadeIn(750, redrawConnectors); // always show when ready
+    //$("#getTutorBtn").fadeIn(750, redrawConnectors); // always show when ready
 
     if (isTutor) {
-      $("#helpQueueUrls").html(origDocURL);
+      $("#togetherjsStatus").html(origDocURL);
       // if you're a tutor, immediately try to sync to the learner upon startup
       requestSync();
     }
     else {
-      if (manuallySharingUrl) {
-        console.log('URL TO SHARE', TogetherJS.shareUrl() + '&role=tutor&share=manual');
+      if (manualSharedSession) {
+        console.log('URL TO SHARE:', TogetherJS.shareUrl() + '&share=manual');
       }
       else {
         // if you're a learner, request help when TogetherJS is activated
@@ -467,17 +463,11 @@ function initTogetherJS() {
   TogetherJS.on("close", function () {
     console.log("TogetherJS close");
 
+    $("#stopTogetherJSBtn,#togetherjsStatus").hide();
+    $("#getTutorBtn,#sharedSessionBtn").show();
+
     if (appMode == "display") {
       $("#surveyHeader").show();
-    }
-
-    $("#helpQueueUrls").fadeOut(500);
-
-    if (isTutor) {
-      $("#togetherBtn").html("TUTOR - Join live help session");
-    }
-    else {
-      $("#togetherBtn").html("Chat with a tutor (experimental)");
     }
   });
 }
@@ -596,7 +586,7 @@ $(document).ready(function() {
   var role = $.bbq.getState('role');
   isTutor = (role == 'tutor'); // GLOBAL
 
-  manuallySharingUrl = ($.bbq.getState('share') == 'manual'); // GLOBAL
+  manualSharedSession = ($.bbq.getState('share') == 'manual'); // GLOBAL
 
   if (enableTogetherJS || isTutor) {
     initTogetherJS();

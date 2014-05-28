@@ -73,14 +73,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <body>
 
-<!-- hide by default -->
-<div id="togetherJSHeader" style="margin-top: 12pt; margin-bottom: 12pt; display: none;">
-<button id="togetherBtn" type="button"
-        style="color: #b80000; font-size: 12pt; padding: 6px;
-        margin-right: 5pt;">Chat with a tutor (experimental)</button>
-<span style="display: none;" id="helpQueueUrls"></span>
-</div>
-
 <!--
   // as of 2014-05-03, remove the button click survey questions from the
   // visualizer so as not to clutter up the screen. i started running
@@ -101,15 +93,47 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -->
 
+<table id="experimentalHeader">
+<tr>
+<td valign="top">
+
+Experimental features:
+
+<div>
+<button id="sharedSessionBtn" type="button" class="togetherjsBtn">
+Start a shared session
+</button>
+</div>
+
+<div>
+<button id="getTutorBtn" type="button" class="togetherjsBtn" style="display: none;">
+Get help from a tutor
+</button>
+</div>
+
+<div>
+<button id="stopTogetherJSBtn" type="button" class="togetherjsBtn" style="display: none;">
+Stop live chat session
+</button>
+</div>
+
+</td>
+<td valign="top" style="padding-left: 15px;">
+
+<div style="display: none;" id="togetherjsStatus"></div>
+
 <!--
   // Version 2 of my display-mode survey, greatly simplified and deployed on 2014-05-24
  -->
+<div id="surveyHeader" style="display: none;">
+  <div id="vizSurveyLabel" style="font-size: 8pt; color: #666; margin-bottom: 5pt;">
+    <!-- 2014-05-28 tagline -->
+    Help future learners by describing what you just learned.
 
-<div id="surveyHeader" style="margin-left: 70px; margin-bottom: 10pt; display: none;">
-  <div id="vizSurveyLabel" style="font-size: 8pt; color: #666; margin-bottom: 8pt;">
-    <!-- 2014-05-25 tagline -->
+    <!-- 2014-05-25 tagline
     Help future learners by writing about what you are learning.
     Submit as often as you like!
+    -->
 
     <!-- 2014-05-24 original tagline
     Help future learners by filling in this blank whenever you learn
@@ -118,9 +142,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   </div>
   <div style="font-size: 10pt; margin-bottom: 5pt; padding: 1pt;">
     I just learned that
-    <input style="font-size: 10pt; padding: 1pt;" type="text" id="iJustLearnedInput" size="75"/>
+    <input style="font-size: 10pt; padding: 1pt;" type="text" id="iJustLearnedInput" size="70"/>
 
-    <button id="iJustLearnedSubmission" type="button" style="font-size: 12pt;">Submit</button>
+    <button id="iJustLearnedSubmission" type="button" style="font-size: 10pt;">Submit</button>
 
     <span id="iJustLearnedThanks"
           style="color: #e93f34; font-weight: bold; font-size: 11pt; display: none;">
@@ -128,6 +152,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     </span>
   </div>
 </div>
+
+</td>
+</tr>
+</table>
 
 
 <div id="pyInputPane">
