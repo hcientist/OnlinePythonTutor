@@ -350,8 +350,12 @@ function updateAppDisplay(newAppMode) {
     appMode = 'display'; // canonicalize
 
     $("#pyInputPane").hide();
-    $("#pyOutputPane,#surveyHeader").show();
+    $("#pyOutputPane").show();
     $("#embedLinkDiv").show();
+
+    if (!(TogetherJS && TogetherJS.running)) {
+      $("#surveyHeader").show();
+    }
 
     doneExecutingCode();
 

@@ -67,6 +67,8 @@ var TogetherJSConfig_hubBase = "http://localhost:30035/"; // local
 // can imagine other learners joining into the original session as well
 var isTutor = false;
 
+var manuallySharingUrl = false; // TODO: refactor
+
 // TODO: consider deferred initialization later: "TogetherJS starts up
 // automatically as soon as it can, especially when continuing a
 // session. Sometimes this is problematic, like an application that
@@ -128,6 +130,12 @@ var TogetherJSConfig_getUserName = function () {
   else {
     return 'Learner';
   }
+}
+
+// temporary stent:
+function startSharedSession() {
+  manuallySharingUrl = true; // icky global!
+  TogetherJS();
 }
 
 // get this app ready for TogetherJS
@@ -400,10 +408,9 @@ function initTogetherJS() {
 
       if (dat.helpAvailable) {
         $("#togetherJSHeader").fadeIn(750, redrawConnectors);
-        $("#surveyHeader").remove(); // kill this to save space
       }
       else {
-        if (TogetherJS.running) {
+        if (TogetherJS.running && !manuallySharingUrl) {
           alert("No more live tutors are available now.\nPlease check back later.");
           TogetherJS(); // toggle off
         }
@@ -427,6 +434,8 @@ function initTogetherJS() {
     console.log("TogetherJS ready");
     $("#togetherBtn").html("Stop live help session");
 
+    $("#surveyHeader").hide();
+
     $("#helpQueueUrls").fadeIn(500);
 
     $("#togetherJSHeader").fadeIn(750, redrawConnectors); // always show when ready
@@ -437,10 +446,15 @@ function initTogetherJS() {
       requestSync();
     }
     else {
-      // if you're a learner, request help when TogetherJS is activated
-      $.get(TogetherJSConfig_hubBase + 'request-help',
-            {url: TogetherJS.shareUrl(), id: TogetherJS.shareId()},
-            null /* don't use a callback; rely on SSE */);
+      if (manuallySharingUrl) {
+        console.log('URL TO SHARE', TogetherJS.shareUrl() + '&role=tutor&share=manual');
+      }
+      else {
+        // if you're a learner, request help when TogetherJS is activated
+        $.get(TogetherJSConfig_hubBase + 'request-help',
+              {url: TogetherJS.shareUrl(), id: TogetherJS.shareId()},
+              null /* don't use a callback; rely on SSE */);
+      }
 
       // also log the learner's initial state when they first requested help
       TogetherJS.send({type: "initialAppState", myAppState: getAppState()});
@@ -452,6 +466,10 @@ function initTogetherJS() {
   // TogetherJS is specifically stopped.
   TogetherJS.on("close", function () {
     console.log("TogetherJS close");
+
+    if (appMode == "display") {
+      $("#surveyHeader").show();
+    }
 
     $("#helpQueueUrls").fadeOut(500);
 
@@ -577,6 +595,8 @@ $(document).ready(function() {
 
   var role = $.bbq.getState('role');
   isTutor = (role == 'tutor'); // GLOBAL
+
+  manuallySharingUrl = ($.bbq.getState('share') == 'manual'); // GLOBAL
 
   if (enableTogetherJS || isTutor) {
     initTogetherJS();
