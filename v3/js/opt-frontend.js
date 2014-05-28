@@ -71,6 +71,9 @@ var manualSharedSession = false; // XXX: this is uber-unreliable since
                                  // it's not set on page reload unless
                                  // there's a special url hash
 
+var helpQueueSize = 0;
+var tutorAvailable = false;
+
 // TODO: consider deferred initialization later: "TogetherJS starts up
 // automatically as soon as it can, especially when continuing a
 // session. Sometimes this is problematic, like an application that
@@ -82,7 +85,7 @@ var manualSharedSession = false; // XXX: this is uber-unreliable since
 var origDocURL = document.URL; // capture this ASAP before TogetherJS munges the URL
 
 var tutorWaitText = 'Please wait for the next available tutor.';
-var informedConsentText = '<p/>During shared sessions, chat logs and code may be recorded and published for<br/>educational purposes. Please do not reveal any private or confidential information.';
+var informedConsentText = '<p>During shared sessions, chat logs and code may be recorded and published for<br/>educational purposes. Do not reveal any private or confidential information.</p>';
 
 // nasty globals
 var updateOutputSignalFromRemote = false;
@@ -125,7 +128,8 @@ function syncAppState(appState) {
   }
 }
 
-var TogetherJSConfig_getUserName = function () {
+/*
+var TogetherJSConfig_getUserName = function() {
   if (isTutor) {
     return 'Tutor';
   }
@@ -133,16 +137,36 @@ var TogetherJSConfig_getUserName = function () {
     return 'Learner';
   }
 }
+*/
 
 
 function getTutor() {
   manualSharedSession = false; // icky global!
+
+  $("#togetherjsStatus").html('<div style="font-size: 11pt;">Please wait for the next available tutor. <span id="helpQueueText"></span></div>');
+
   TogetherJS();
 }
 
 function startSharedSession() {
   manualSharedSession = true; // icky global!
+
+  $("#togetherjsStatus").html('<div style="font-size: 11pt;">\
+                               Copy and send this URL to let others join your session:\
+                               </div>\
+                               <input type="text" style="font-size:\
+                               12pt; font-weight: bold; padding: 5px;" id="togetherjsURL"\
+                               size="80" readonly="readonly"/>');
   TogetherJS();
+}
+
+function setHelpQueueSizeLabel() {
+  if (helpQueueSize == 1) {
+    $("#helpQueueText").html('There is 1 person in line.');
+  }
+  else if (helpQueueSize == 0 || helpQueueSize > 1) {
+    $("#helpQueueText").html('There are ' + dat.helpQueueUrls + ' people in line.');
+  }
 }
 
 
@@ -400,23 +424,23 @@ function initTogetherJS() {
     source.onmessage = function(e) {
       var dat = JSON.parse(e.data);
 
-      if (dat.helpAvailable && !TogetherJS.running) {
+      // nasty globals
+      helpQueueSize = dat.helpQueueUrls;
+      tutorAvailable = dat.helpAvailable;
+
+      setHelpQueueSizeLabel();
+
+      if (tutorAvailable && !TogetherJS.running) {
         $("#getTutorBtn").fadeIn(750, redrawConnectors);
       }
       else {
-        /* janky
-        if (TogetherJS.running && !manualSharedSession) {
-          alert("No more live tutors are available now.\nPlease check back later.");
-          TogetherJS(); // toggle off
-        }
-        */
         $("#getTutorBtn").fadeOut(750, redrawConnectors);
       }
     };
   }
   catch(err) {
     // ugh, SSE doesn't work in Safari when testing on localhost,
-    // but I think it works when deployed on pythontutor.com
+    // but I think it works when deployed on pythontutor.com (maybe?)
     console.warn("Sad ... EventSource not supported :(");
   }
 
@@ -432,9 +456,7 @@ function initTogetherJS() {
     $("#surveyHeader").hide();
     $("#stopTogetherJSBtn").show();
 
-    $("#togetherjsStatus").html(informedConsentText).fadeIn(500);
-
-    //$("#getTutorBtn").fadeIn(750, redrawConnectors); // always show when ready
+    $("#togetherjsStatus").append(informedConsentText).fadeIn(500);
 
     if (isTutor) {
       $("#togetherjsStatus").html(origDocURL);
@@ -443,7 +465,10 @@ function initTogetherJS() {
     }
     else {
       if (manualSharedSession) {
-        console.log('URL TO SHARE:', TogetherJS.shareUrl() + '&share=manual');
+        // without anything after the '#' in the hash
+        var cleanUrl = $.param.fragment(location.href, {}, 2 /* override */);
+        var urlToShare = cleanUrl + 'togetherjs=' + TogetherJS.shareId();
+        $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 15);
       }
       else {
         // if you're a learner, request help when TogetherJS is activated
@@ -455,6 +480,8 @@ function initTogetherJS() {
       // also log the learner's initial state when they first requested help
       TogetherJS.send({type: "initialAppState", myAppState: getAppState()});
     }
+
+    setHelpQueueSizeLabel();
   });
 
   // emitted when TogetherJS is closed. This is not emitted when the
@@ -464,7 +491,11 @@ function initTogetherJS() {
     console.log("TogetherJS close");
 
     $("#stopTogetherJSBtn,#togetherjsStatus").hide();
-    $("#getTutorBtn,#sharedSessionBtn").show();
+    $("#sharedSessionBtn").show();
+
+    if (tutorAvailable) {
+      $("#getTutorBtn").show();
+    }
 
     if (appMode == "display") {
       $("#surveyHeader").show();

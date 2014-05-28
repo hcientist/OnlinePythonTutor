@@ -363,6 +363,10 @@ wsServer.on('request', function(request) {
       connectionStats[id].lastLeft = Date.now();
     }
     logger.debug('Peer ' + connection.remoteAddress + ' disconnected, ID: ' + connection.ID);
+
+    var logObj = createLogEntry(request, 'websocket-connection-closed');
+    logObj.id = id;
+    pgLogWrite(logObj);
   });
 });
 

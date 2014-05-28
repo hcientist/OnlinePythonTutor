@@ -60,7 +60,7 @@ page.open(url, function () {
 
       // hide extraneous components and resize
       page.evaluate(function() {
-          $("#surveyHeader").hide();
+          $("#experimentalHeader").hide();
           $("#footer").hide();
           $("#vizLayoutTdFirst").hide();
           $('#pyOutputPane').width($('table.visualizer').width());
