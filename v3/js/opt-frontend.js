@@ -79,7 +79,7 @@ var tutorAvailable = false;
 var origDocURL = document.URL; // capture this ASAP before TogetherJS munges the URL
 
 var tutorWaitText = 'Please wait for the next available tutor.';
-var informedConsentText = '<div style="color: #666;">During shared sessions, chat logs and code may be recorded and published for<br/>educational purposes. Do not reveal any private or confidential information.</div>';
+var informedConsentText = '<div style="font-size: 8pt; color: #666;">During shared sessions, chat logs and code may be recorded and published for<br/>research and education. Please do not reveal any private or sensitive information.</div>';
 
 // nasty globals
 var updateOutputSignalFromRemote = false;
@@ -314,7 +314,7 @@ function initTogetherJS() {
           myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(msg.pyCodeOutputDivScrollTop);
         }
       }
-      else {
+      else if (!isExecutingCode) { // if already executing from a prior signal, ignore
         console.log("on:myAppState - app states unequal, executing", learnerAppState);
         syncAppState(learnerAppState);
 
@@ -331,6 +331,7 @@ function initTogetherJS() {
       }
     }
     else {
+      assert(learnerAppState.mode == 'edit');
       if (!appStateEq(getAppState(), learnerAppState)) {
         console.log("on:myAppState - edit mode sync");
         syncAppState(learnerAppState);
@@ -429,7 +430,7 @@ function initTogetherJS() {
       $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 25);
     }
 
-    $("#togetherjsStatus").append(informedConsentText).fadeIn(500);
+    $("#togetherjsStatus").append(informedConsentText).show();
   });
 
   // emitted when TogetherJS is closed. This is not emitted when the

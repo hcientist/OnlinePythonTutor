@@ -320,14 +320,15 @@ wsServer.on('request', function(request) {
                  ' conn ID: ' + connection.ID + ' data:' + message.utf8Data.substr(0, 20) +
                  ' connections: ' + allConnections[id].length);
 
-    // ignore some kinds of extraneous events
+    // ignore some kinds of extraneous noisy events
     if (parsed.type != 'cursor-update' &&
         parsed.type != 'scroll-update' &&
         parsed.type != 'keydown' &&
         parsed.type != 'form-init' &&
         parsed.type != 'form-focus' &&
         parsed.type != 'form-update' &&
-        parsed.type != 'hello-back'
+        parsed.type != 'hello-back' &&
+        parsed.type != 'app.codemirror-edit'
         ) {
       var logObj = createLogEntry(request, 'help-available');
       logObj.id = id;
@@ -495,10 +496,6 @@ function createLogEntry(req, event_type) {
 // pgbovine - TogetherJS administrator hub
 
 var pgLogFile = null;
-var catchallLogFile = fs.createWriteStream('log_CATCHALL.json',
-                                           {flags: 'a',
-                                            mode: parseInt('644', 8),
-                                            encoding: "UTF-8"});
 
 var EventEmitter = require('events').EventEmitter;
 var learnerEmitter = new EventEmitter(); // sending events to learners
@@ -511,18 +508,28 @@ adminEmitter.setMaxListeners(100);
 var helpQueue = [];
 var helpAvailable = false;
 
+var MAX_LOG_SIZE = 10000;
+var curLogSize = 0;
+
 function pgLogWrite(logObj) {
   var s = JSON.stringify(logObj);
   //console.log(s); // debug
 
-  if (pgLogFile) {
-    pgLogFile.write(s + '\n');
+  // rotate log every MAX_LOG_SIZE entries
+  if (!pgLogFile || curLogSize >= MAX_LOG_SIZE) {
+    if (pgLogFile) {
+      pgLogFile.end();
+    }
+    var filename = 'log_' + logObj.date + '.json';
+    pgLogFile = fs.createWriteStream(filename,
+                                     {flags: 'w',
+                                      mode: parseInt('644', 8),
+                                      encoding: "UTF-8"});
+    curLogSize = 0;
   }
-  else {
-    // a slush of everything that's not covered by a real log file, to
-    // see what falls between the cracks
-    catchallLogFile.write(s + '\n');
-  }
+
+  pgLogFile.write(s + '\n');
+  curLogSize++;
 }
 
 function toggleHelpAvailable(req, res) {
