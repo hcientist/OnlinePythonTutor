@@ -63,13 +63,7 @@ var TogetherJSConfig_toolName = "Online Python Tutor live help";
 //var TogetherJSConfig_hubBase = "http://184.173.101.176:30035/"; // online
 var TogetherJSConfig_hubBase = "http://localhost:30035/"; // local
 
-// TODO: generalize beyond tutor to "joiner" or something, since we
-// can imagine other learners joining into the original session as well
-var isTutor = false;
-
-var manualSharedSession = false; // XXX: this is uber-unreliable since
-                                 // it's not set on page reload unless
-                                 // there's a special url hash
+var tutorRequested = false;
 
 var helpQueueSize = 0;
 var tutorAvailable = false;
@@ -85,7 +79,7 @@ var tutorAvailable = false;
 var origDocURL = document.URL; // capture this ASAP before TogetherJS munges the URL
 
 var tutorWaitText = 'Please wait for the next available tutor.';
-var informedConsentText = '<p>During shared sessions, chat logs and code may be recorded and published for<br/>educational purposes. Do not reveal any private or confidential information.</p>';
+var informedConsentText = '<div style="color: #666;">During shared sessions, chat logs and code may be recorded and published for<br/>educational purposes. Do not reveal any private or confidential information.</div>';
 
 // nasty globals
 var updateOutputSignalFromRemote = false;
@@ -128,35 +122,14 @@ function syncAppState(appState) {
   }
 }
 
-/*
-var TogetherJSConfig_getUserName = function() {
-  if (isTutor) {
-    return 'Tutor';
-  }
-  else {
-    return 'Learner';
-  }
-}
-*/
 
-
-function getTutor() {
-  manualSharedSession = false; // icky global!
-
-  $("#togetherjsStatus").html('<div style="font-size: 11pt;">Please wait for the next available tutor. <span id="helpQueueText"></span></div>');
-
+function requestTutor() {
+  tutorRequested = true;
   TogetherJS();
 }
 
 function startSharedSession() {
-  manualSharedSession = true; // icky global!
-
-  $("#togetherjsStatus").html('<div style="font-size: 11pt;">\
-                               Copy and send this URL to let others join your session:\
-                               </div>\
-                               <input type="text" style="font-size:\
-                               12pt; font-weight: bold; padding: 5px;" id="togetherjsURL"\
-                               size="80" readonly="readonly"/>');
+  tutorRequested = false;
   TogetherJS();
 }
 
@@ -165,24 +138,13 @@ function setHelpQueueSizeLabel() {
     $("#helpQueueText").html('There is 1 person in line.');
   }
   else if (helpQueueSize == 0 || helpQueueSize > 1) {
-    $("#helpQueueText").html('There are ' + dat.helpQueueUrls + ' people in line.');
+    $("#helpQueueText").html('There are ' + helpQueueSize + ' people in line.');
   }
 }
 
 
 // get this app ready for TogetherJS
 function initTogetherJS() {
-  if (isTutor) {
-    $("#getTutorBtn").html("TUTOR - Join live help session");
-    /*
-    $("#togetherJSHeader").append('<button id="syncBtn"\
-                                   type="button">Sync with learner</button>');
-    $("#syncBtn").click(requestSync);
-    */
-
-    $("#sharedSessionBtn").hide();
-  }
-
   // This event triggers when you first join a session and say 'hello',
   // and then one of your peers says hello back to you. If they have the
   // exact same name as you, then change your own name to avoid ambiguity.
@@ -328,14 +290,7 @@ function initTogetherJS() {
     }, 1000);
   });
 
-  // learner receives a sync request from tutor and responds by
-  // sending its current app state
   TogetherJS.hub.on("requestSync", function(msg) {
-    // only a learner should receive sync requests from a tutor
-    if (isTutor) {
-      return;
-    }
-
     if (TogetherJS.running) {
       TogetherJS.send({type: "myAppState",
                        myAppState: getAppState(),
@@ -346,17 +301,7 @@ function initTogetherJS() {
     }
   });
 
-  // tutor receives an app state from a learner, either using a regular
-  // myAppState or an initialAppState signal, which occurs when the
-  // learner, say, REFRESHES THE PAGE!!!
-  // TODO: what happens if more than one learner sends state to tutor?
-  // i suppose the last one wins at this point :/
-  TogetherJS.hub.on("myAppState initialAppState", function(msg) {
-    // only a tutor should handle receiving an app state from a learner
-    if (!isTutor) {
-      return;
-    }
-
+  TogetherJS.hub.on("myAppState", function(msg) {
     var learnerAppState = msg.myAppState;
 
     if (learnerAppState.mode == 'display') {
@@ -439,12 +384,11 @@ function initTogetherJS() {
     };
   }
   catch(err) {
-    // ugh, SSE doesn't work in Safari when testing on localhost,
-    // but I think it works when deployed on pythontutor.com (maybe?)
+    // ugh, SSE doesn't seem to work in Safari
     console.warn("Sad ... EventSource not supported :(");
   }
 
-  $("#getTutorBtn").click(getTutor);
+  $("#getTutorBtn").click(requestTutor);
   $("#sharedSessionBtn").click(startSharedSession);
   $("#stopTogetherJSBtn").click(TogetherJS); // toggles off
 
@@ -456,32 +400,36 @@ function initTogetherJS() {
     $("#surveyHeader").hide();
     $("#stopTogetherJSBtn").show();
 
-    $("#togetherjsStatus").append(informedConsentText).fadeIn(500);
+    // without anything after the '#' in the hash
+    var cleanUrl = $.param.fragment(location.href, {}, 2 /* override */);
+    var urlToShare = cleanUrl + 'togetherjs=' + TogetherJS.shareId();
 
-    if (isTutor) {
-      $("#togetherjsStatus").html(origDocURL);
-      // if you're a tutor, immediately try to sync to the learner upon startup
-      requestSync();
+    requestSync(); // immediately try to sync upon startup so that if
+                   // others are already in the session, we will be
+                   // synced up. and if nobody is here, then this is a NOP.
+
+    if (tutorRequested) {
+      $.get(TogetherJSConfig_hubBase + 'request-help',
+            {url: TogetherJS.shareUrl(), id: TogetherJS.shareId()},
+            null /* don't use a callback; rely on SSE */);
+
+      $("#togetherjsStatus").html('<div style="font-size: 11pt; margin-bottom: 5pt;">\
+                                   Please wait for the next available tutor. \
+                                   <span id="helpQueueText"></span></div>');
+      setHelpQueueSizeLabel(); // run after creating span#helpQueueText
     }
     else {
-      if (manualSharedSession) {
-        // without anything after the '#' in the hash
-        var cleanUrl = $.param.fragment(location.href, {}, 2 /* override */);
-        var urlToShare = cleanUrl + 'togetherjs=' + TogetherJS.shareId();
-        $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 15);
-      }
-      else {
-        // if you're a learner, request help when TogetherJS is activated
-        $.get(TogetherJSConfig_hubBase + 'request-help',
-              {url: TogetherJS.shareUrl(), id: TogetherJS.shareId()},
-              null /* don't use a callback; rely on SSE */);
-      }
-
-      // also log the learner's initial state when they first requested help
-      TogetherJS.send({type: "initialAppState", myAppState: getAppState()});
+      $("#togetherjsStatus").html('<div>\
+                                   Copy and send this URL to let others join your session:\
+                                   </div>\
+                                   <input type="text" style="font-size: 12pt; \
+                                   font-weight: bold; padding: 5px;\
+                                   margin-bottom: 10pt;" \
+                                   id="togetherjsURL" size="80" readonly="readonly"/>');
+      $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 15);
     }
 
-    setHelpQueueSizeLabel();
+    $("#togetherjsStatus").append(informedConsentText).fadeIn(500);
   });
 
   // emitted when TogetherJS is closed. This is not emitted when the
@@ -614,12 +562,7 @@ function optFinishSuccessfulExecution() {
 $(document).ready(function() {
   setSurveyHTML();
 
-  var role = $.bbq.getState('role');
-  isTutor = (role == 'tutor'); // GLOBAL
-
-  manualSharedSession = ($.bbq.getState('share') == 'manual'); // GLOBAL
-
-  if (enableTogetherJS || isTutor) {
+  if (enableTogetherJS) {
     initTogetherJS();
   }
 
@@ -971,18 +914,6 @@ $(document).ready(function() {
   });
 
   genericOptFrontendReady(); // initialize at the end
-
-  // if blank, then select a canned example on start-up
-  // (need to do this after pyInputCodeMirror is initialized)
-  // TODO: generalize beyond tutor to "joiner" or something, since we
-  // can imagine other learners joining into the original session as well
-  if (!isTutor) { // don't pre-seed since things will go screwy when the
-                  // input box automatically syncs
-    if (!pyInputCodeMirror.getValue()) {
-      $("#aliasExampleLink").trigger('click');
-    }
-  }
-
 
   pyInputCodeMirror.on("change", function(cm, change) {
     // only trigger when the user explicitly typed something
