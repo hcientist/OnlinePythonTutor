@@ -124,12 +124,14 @@ function syncAppState(appState) {
 
 
 function requestTutor() {
+  $("#getTutorBtn,#sharedSessionBtn,#surveyHeader").hide(); // hide ASAP!
   $("#togetherjsStatus").html("Please wait ... loading");
   tutorRequested = true;
   TogetherJS();
 }
 
 function startSharedSession() {
+  $("#getTutorBtn,#sharedSessionBtn,#surveyHeader").hide(); // hide ASAP!
   $("#togetherjsStatus").html("Please wait ... loading");
   tutorRequested = false;
   TogetherJS();
@@ -399,8 +401,7 @@ function initTogetherJS() {
   // already an open session from a prior page load in the recent past.
   TogetherJS.on("ready", function () {
     console.log("TogetherJS ready");
-    $("#getTutorBtn,#sharedSessionBtn").hide();
-    $("#surveyHeader").hide();
+    $("#getTutorBtn,#sharedSessionBtn,#surveyHeader").hide();
     $("#stopTogetherJSBtn").show();
 
     // without anything after the '#' in the hash
