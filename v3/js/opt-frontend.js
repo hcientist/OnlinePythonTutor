@@ -124,11 +124,13 @@ function syncAppState(appState) {
 
 
 function requestTutor() {
+  $("#togetherjsStatus").html("Please wait ... loading");
   tutorRequested = true;
   TogetherJS();
 }
 
 function startSharedSession() {
+  $("#togetherjsStatus").html("Please wait ... loading");
   tutorRequested = false;
   TogetherJS();
 }
@@ -430,7 +432,9 @@ function initTogetherJS() {
       $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 25);
     }
 
-    $("#togetherjsStatus").append(informedConsentText).show();
+    $("#togetherjsStatus").append(informedConsentText);
+
+    redrawConnectors(); // update all arrows at the end
   });
 
   // emitted when TogetherJS is closed. This is not emitted when the
@@ -439,7 +443,9 @@ function initTogetherJS() {
   TogetherJS.on("close", function () {
     console.log("TogetherJS close");
 
-    $("#stopTogetherJSBtn,#togetherjsStatus").hide();
+    $("#togetherjsStatus").html(''); // clear it
+
+    $("#stopTogetherJSBtn").hide();
     $("#sharedSessionBtn").show();
 
     if (tutorAvailable) {
@@ -449,6 +455,8 @@ function initTogetherJS() {
     if (appMode == "display") {
       $("#surveyHeader").show();
     }
+
+    redrawConnectors(); // update all arrows at the end
   });
 }
 
