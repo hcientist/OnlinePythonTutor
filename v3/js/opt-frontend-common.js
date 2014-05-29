@@ -545,7 +545,7 @@ var survey_v1 = '\n\
 <p style="margin-top: 10px; line-height: 175%;">\n\
 [Optional] Please answer these questions to support our research and to help improve this tool.<br/>\n\
 Where is your code from? <input type="text" id="code-origin-Q" class="surveyQ" size=60 maxlength=140/><br/>\n\
-What do you hope to learn by visualizing it? <input type="text" id="what-learn-Q" class="surveyQ" size=60 maxlength=140/><br/>\n\
+What do you hope to learn by visualizing it? <input type="text" id="what-learn-Q" class="surveyQ" size=55 maxlength=140/><br/>\n\
 How did you find this web site? <input type="text" id="how-find-Q" class="surveyQ" size=60 maxlength=140/>\n\
 <input type="hidden" id="Q-version" value="v1"/> <!-- for versioning -->\n\
 </p>'

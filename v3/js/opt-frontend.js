@@ -422,11 +422,11 @@ function initTogetherJS() {
       $("#togetherjsStatus").html('<div>\
                                    Copy and send this URL to let others join your session:\
                                    </div>\
-                                   <input type="text" style="font-size: 12pt; \
+                                   <input type="text" style="font-size: 11pt; \
                                    font-weight: bold; padding: 5px;\
-                                   margin-bottom: 10pt;" \
+                                   margin-bottom: 6pt;" \
                                    id="togetherjsURL" size="80" readonly="readonly"/>');
-      $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 15);
+      $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 25);
     }
 
     $("#togetherjsStatus").append(informedConsentText).fadeIn(500);
