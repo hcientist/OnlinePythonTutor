@@ -286,7 +286,7 @@ function initTogetherJS() {
     $("#codeInputWarnings").html('<span style="color: #e93f34; font-weight: bold">\
                                   Hold on, someone else is typing ...</span>');
     codeMirrorWarningTimeoutId = setTimeout(function() {
-      $("#codeInputWarnings").html('Write your Python code here:');
+      $("#codeInputWarnings").html('Write Python code here:');
     }, 1000);
   });
 
@@ -636,7 +636,7 @@ $(document).ready(function() {
     return false;
   });
 
-  $("#aliasExampleLink").click(function() {
+  $("#aliasExampleLink,#firstExampleDupLink").click(function() {
     $.get("example-code/aliasing.txt", setCodeMirrorVal);
     return false;
   });

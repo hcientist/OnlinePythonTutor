@@ -384,7 +384,7 @@ function updateAppDisplay(newAppMode) {
 function executeCodeFromScratch() {
   // don't execute empty string:
   if ($.trim(pyInputCodeMirror.getValue()) == '') {
-    setFronendError(["Type in some code to visualize."]);
+    setFronendError(["Type in some Python code to visualize."]);
     return;
   }
 
