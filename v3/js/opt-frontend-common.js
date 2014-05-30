@@ -94,7 +94,6 @@ var TogetherJSConfig_toolName = "Online Python Tutor shared session";
 var updateOutputSignalFromRemote = false;
 var executeCodeSignalFromRemote = false;
 var togetherjsSyncRequested = false;
-var codeMirrorWarningTimeoutId = undefined;
 var pendingCodeOutputScrollTop = null;
 
 var codeMirrorScroller = '#codeInputPane .CodeMirror-scroll';
@@ -249,15 +248,16 @@ function initTogetherJS() {
   });
 
   TogetherJS.hub.on("codemirror-edit", function(msg) {
-    if (codeMirrorWarningTimeoutId !== undefined) {
-      clearTimeout(codeMirrorWarningTimeoutId); // don't let these events pile up
+    if (!$("#codeInputWarnings").data('orig-html')) { // set only once
+      $("#codeInputWarnings").data('orig-html', $("#codeInputWarnings").html());
     }
 
     $("#codeInputWarnings").html('<span style="color: #e93f34; font-weight: bold">\
                                   Hold on, someone else is typing ...</span>');
-    codeMirrorWarningTimeoutId = setTimeout(function() {
-      $("#codeInputWarnings").html('Write Python code here:');
-    }, 1000);
+
+    $.doTimeout('codeMirrorWarningTimeout', 1000, function() { // debounce
+      $("#codeInputWarnings").html($("#codeInputWarnings").data('orig-html'));
+    });
   });
 
   TogetherJS.hub.on("requestSync", function(msg) {
