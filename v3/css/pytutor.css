@@ -432,8 +432,7 @@ div.ExecutionVisualizer div.highlightedStackFrame {
 
 div.ExecutionVisualizer div.stackFrame,
 div.ExecutionVisualizer div.highlightedStackFrame {
-  /*border-left: 1px solid #a6b3b6;*/
-  border-left: 2px solid #686f70;
+  border-left: 1px solid #a6b3b6;
 }
 
 
