@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
-// include this file BEFORE any OPT frontend files
+// include this file BEFORE any OPT frontend file
 
 
 // backend scripts to execute (Python 2 and 3 variants, if available)
@@ -633,11 +633,13 @@ function setToggleOptions(dat) {
   }
 }
 
-
 // get the ENTIRE current state of the app
 function getAppState() {
+  assert(originFrontendJsFile); // global var defined in each frontend
+
   var ret = {code: pyInputCodeMirror.getValue(),
              mode: appMode,
+             origin: originFrontendJsFile,
              cumulative: $('#cumulativeModeSelector').val(),
              heapPrimitives: $('#heapPrimitivesSelector').val(),
              drawParentPointers: $('#drawParentPointerSelector').val(),
@@ -671,6 +673,8 @@ function getAppState() {
 
 // return whether two states match, except don't worry about curInstr
 function appStateEq(s1, s2) {
+  assert(s1.origin == s2.origin); // sanity check!
+
   return (s1.code == s2.code &&
           s1.mode == s2.mode &&
           s1.cumulative == s2.cumulative &&

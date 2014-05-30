@@ -40,6 +40,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // should all be imported BEFORE this file
 
 
+var originFrontendJsFile = 'csc108h.js';
+
 function TogetherjsReadyHandler() {
   populateTogetherJsShareUrl();
   $("#togetherjsStatus").append(informedConsentText);
@@ -61,7 +63,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                              heap_primitives: true, // render all objects on the heap
                              show_only_outputs: false,
                              py_crazy_mode: false,
-                             origin: 'csc108h.js'};
+                             origin: originFrontendJsFile};
 
     var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
 

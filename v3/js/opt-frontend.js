@@ -44,6 +44,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //var TogetherJSConfig_hubBase = "http://184.173.101.176:30035/"; // online
 var TogetherJSConfig_hubBase = "http://localhost:30035/"; // local
 
+var originFrontendJsFile = 'opt-frontend.js';
 
 // for OPT live chat tutoring interface
 var tutorRequested = false;
@@ -127,7 +128,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                            heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
                            show_only_outputs: ($('#showOnlyOutputsSelector').val() == 'true'),
                            py_crazy_mode: ($('#pythonVersionSelector').val() == '2crazy'),
-                           origin: 'opt-frontend.js'};
+                           origin: originFrontendJsFile};
 
   var surveyObj = getSurveyObject();
   if (surveyObj) {
