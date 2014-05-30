@@ -38,7 +38,22 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // - js/togetherjs/togetherjs-min.js
 // should all be imported BEFORE this file
 
-function executeCode(forceStartingInstr) {
+
+function TogetherjsReadyHandler() {
+  populateTogetherJsShareUrl();
+  $("#togetherjsStatus").append(informedConsentText);
+}
+
+function TogetherjsCloseHandler() {
+  // NOP
+}
+
+
+function executeCode(forceStartingInstr, forceRawInputLst) {
+    if (forceRawInputLst !== undefined) {
+        rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
+    }
+
     backend_script = python3_backend_script; // Python 3
 
     var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
@@ -63,11 +78,6 @@ function executeCode(forceStartingInstr) {
 }
 
 $(document).ready(function() {
-  // be friendly to the browser's forward and back buttons
-  // thanks to http://benalman.com/projects/jquery-bbq-plugin/
-  $(window).bind("hashchange", function(e) {
-    updateAppDisplay($.bbq.getState('mode'));
-  });
 
-  genericOptFrontendReady(); // initialize at the end
+  genericOptFrontendReady(); // initialize at the very end
 });

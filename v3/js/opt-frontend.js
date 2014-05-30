@@ -67,7 +67,7 @@ function requestTutor() {
   TogetherJS();
 }
 
-function startSharedSession() {
+function startSharedSession() { // override default
   $("#getTutorBtn,#sharedSessionBtn,#surveyHeader").hide(); // hide ASAP!
   $("#togetherjsStatus").html("Please wait ... loading");
   tutorRequested = false;
@@ -76,11 +76,8 @@ function startSharedSession() {
 
 
 function TogetherjsReadyHandler() {
-  // without anything after the '#' in the hash
-  var cleanUrl = $.param.fragment(location.href, {}, 2 /* override */);
-  var urlToShare = cleanUrl + 'togetherjs=' + TogetherJS.shareId();
-
   $("#getTutorBtn,#surveyHeader").hide();
+
   if (tutorRequested) {
     $.get(TogetherJSConfig_hubBase + 'request-help',
           {url: TogetherJS.shareUrl(), id: TogetherJS.shareId()},
@@ -92,14 +89,7 @@ function TogetherjsReadyHandler() {
     setHelpQueueSizeLabel(); // run after creating span#helpQueueText
   }
   else {
-    $("#togetherjsStatus").html('<div>\
-                                 Copy and send this URL to let others join your session:\
-                                 </div>\
-                                 <input type="text" style="font-size: 11pt; \
-                                 font-weight: bold; padding: 5px;\
-                                 margin-bottom: 6pt;" \
-                                 id="togetherjsURL" size="80" readonly="readonly"/>');
-    $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 25);
+    populateTogetherJsShareUrl();
   }
 
   $("#togetherjsStatus").append(informedConsentText);
@@ -116,10 +106,7 @@ function TogetherjsCloseHandler() {
 }
 
 
-// also fires a TogetherJS "executeCode" signal if enabled
 function executeCode(forceStartingInstr, forceRawInputLst) {
-  console.log('executeCode', forceStartingInstr, forceRawInputLst);
-
   if (forceRawInputLst !== undefined) {
     rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
   }
@@ -171,13 +158,6 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                             holisticMode: ($('#cumulativeModeSelector').val() == 'holistic')
                            }
 
-  if (TogetherJS.running && !executeCodeSignalFromRemote) {
-    TogetherJS.send({type: "executeCode",
-                     myAppState: getAppState(),
-                     forceStartingInstr: forceStartingInstr,
-                     rawInputLst: rawInputLst});
-  }
-
   executePythonCode(pyInputCodeMirror.getValue(),
                     backend_script, backendOptionsObj,
                     frontendOptionsObj,
@@ -188,29 +168,6 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 
 function optFinishSuccessfulExecution() {
   enterDisplayMode(); // do this first!
-
-  // NASTY global :(
-  if (pendingCodeOutputScrollTop) {
-    myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(pendingCodeOutputScrollTop);
-    pendingCodeOutputScrollTop = null;
-  }
-
-  $.doTimeout('pyCodeOutputDivScroll'); // cancel any prior scheduled calls
-
-  myVisualizer.domRoot.find('#pyCodeOutputDiv').scroll(function(e) {
-    var elt = $(this);
-    // debounce
-    $.doTimeout('pyCodeOutputDivScroll', 100, function() {
-      // note that this will send a signal back and forth both ways
-      if (TogetherJS.running) {
-        // (there's no easy way to prevent this), but it shouldn't keep
-        // bouncing back and forth indefinitely since no the second signal
-        // causes no additional scrolling
-        TogetherJS.send({type: "pyCodeOutputDivScroll",
-                         scrollTop: elt.scrollTop()});
-      }
-    });
-  });
 
   // 2014-05-25: implemented more detailed tracing for surveys
   myVisualizer.creationTime = new Date();
@@ -225,8 +182,6 @@ function optFinishSuccessfulExecution() {
 
 $(document).ready(function() {
   setSurveyHTML();
-
-  initTogetherJS();
 
   // for OPT live chat tutoring interface
   try {
@@ -254,22 +209,6 @@ $(document).ready(function() {
   }
 
   $("#getTutorBtn").click(requestTutor);
-
-
-  // be friendly to the browser's forward and back buttons
-  // thanks to http://benalman.com/projects/jquery-bbq-plugin/
-  $(window).bind("hashchange", function(e) {
-    var newMode = $.bbq.getState('mode');
-    console.log('hashchange:', newMode);
-    updateAppDisplay(newMode);
-
-    if (TogetherJS.running && !isExecutingCode) {
-      TogetherJS.send({type: "hashchange",
-                       appMode: appMode,
-                       codeInputScrollTop: $(codeMirrorScroller).scrollTop(),
-                       myAppState: getAppState()});
-    }
-  });
 
 
   $("#clearBtn").click(function() {
@@ -553,9 +492,7 @@ $(document).ready(function() {
 
 
   // for survey-related stuff
-  // (Version 1 - started running this experiment on 2014-04-09 and put
-  // it on hold on 2014-05-02)
-
+  // Version 1 - started experiment on 2014-04-09, put on hold on 2014-05-02
   $('.surveyBtn').click(function(e) {
     // wow, massive copy-and-paste action from above!
     var myArgs = getAppState();
@@ -572,8 +509,7 @@ $(document).ready(function() {
     }
   });
 
-  // for survey-related stuff
-  // (Version 2 - started running on 2014-05-24)
+  // Version 2 - started running on 2014-05-24
   $('#iJustLearnedSubmission').click(function(e) {
     var resp = $("#iJustLearnedInput").val();
 
@@ -603,28 +539,4 @@ $(document).ready(function() {
   });
 
   genericOptFrontendReady(); // initialize at the end
-
-  pyInputCodeMirror.on("change", function(cm, change) {
-    // only trigger when the user explicitly typed something
-    if (change.origin != 'setValue') {
-      if (TogetherJS.running) {
-        TogetherJS.send({type: "codemirror-edit"});
-      }
-    }
-  });
-
-  $('#codeInputPane .CodeMirror-scroll').scroll(function(e) {
-    if (TogetherJS.running) {
-      var elt = $(this);
-      // debounce
-      $.doTimeout('codeInputScroll', 100, function() {
-        // note that this will send a signal back and forth both ways
-        // (there's no easy way to prevent this), but it shouldn't keep
-        // bouncing back and forth indefinitely since no the second signal
-        // causes no additional scrolling
-        TogetherJS.send({type: "codeInputScroll",
-                         scrollTop: elt.scrollTop()});
-      });
-    }
-  });
 });

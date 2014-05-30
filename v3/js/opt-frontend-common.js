@@ -367,6 +367,34 @@ function initTogetherJS() {
   });
 }
 
+function TogetherjsReadyHandler() {
+  alert("ERROR: need to override TogetherjsReadyHandler()");
+}
+
+function TogetherjsCloseHandler() {
+  alert("ERROR: need to override TogetherjsCloseHandler()");
+}
+
+function startSharedSession() {
+  $("#sharedSessionBtn").hide(); // hide ASAP!
+  $("#togetherjsStatus").html("Please wait ... loading");
+  TogetherJS();
+}
+
+function populateTogetherJsShareUrl() {
+  // without anything after the '#' in the hash
+  var cleanUrl = $.param.fragment(location.href, {}, 2 /* override */);
+  var urlToShare = cleanUrl + 'togetherjs=' + TogetherJS.shareId();
+  $("#togetherjsStatus").html('<div>\
+                               Copy and send this URL to let others join your session:\
+                               </div>\
+                               <input type="text" style="font-size: 11pt; \
+                               font-weight: bold; padding: 5px;\
+                               margin-bottom: 6pt;" \
+                               id="togetherjsURL" size="80" readonly="readonly"/>');
+  $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 25);
+}
+
 // END - shared session stuff
 
 
@@ -423,6 +451,25 @@ function supports_html5_storage() {
 
 // run at the END so that everything else can be initialized first
 function genericOptFrontendReady() {
+  initTogetherJS(); // initialize early
+
+
+  // be friendly to the browser's forward and back buttons
+  // thanks to http://benalman.com/projects/jquery-bbq-plugin/
+  $(window).bind("hashchange", function(e) {
+    var newMode = $.bbq.getState('mode');
+    console.log('hashchange:', newMode);
+    updateAppDisplay(newMode);
+
+    if (TogetherJS.running && !isExecutingCode) {
+      TogetherJS.send({type: "hashchange",
+                       appMode: appMode,
+                       codeInputScrollTop: $(codeMirrorScroller).scrollTop(),
+                       myAppState: getAppState()});
+    }
+  });
+
+
   pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
     mode: 'python',
     lineNumbers: true,
@@ -433,6 +480,33 @@ function genericOptFrontendReady() {
   });
 
   pyInputCodeMirror.setSize(null, '420px');
+
+
+  // for shared sessions
+  pyInputCodeMirror.on("change", function(cm, change) {
+    // only trigger when the user explicitly typed something
+    if (change.origin != 'setValue') {
+      if (TogetherJS.running) {
+        TogetherJS.send({type: "codemirror-edit"});
+      }
+    }
+  });
+
+  $('#codeInputPane .CodeMirror-scroll').scroll(function(e) {
+    if (TogetherJS.running) {
+      var elt = $(this);
+      // debounce
+      $.doTimeout('codeInputScroll', 100, function() {
+        // note that this will send a signal back and forth both ways
+        // (there's no easy way to prevent this), but it shouldn't keep
+        // bouncing back and forth indefinitely since no the second signal
+        // causes no additional scrolling
+        TogetherJS.send({type: "codeInputScroll",
+                         scrollTop: elt.scrollTop()});
+      });
+    }
+  });
+
 
   // first initialize options from HTML LocalStorage. very important
   // that this code runs first so that options get overridden by query
@@ -662,8 +736,7 @@ function updateAppDisplay(newAppMode) {
     $("#pyOutputPane").show();
     $("#embedLinkDiv").show();
 
-    // XXX: ugly dependency on TogetherJS
-    if (!(typeof TogetherJS !== 'undefined' && TogetherJS.running)) {
+    if (!TogetherJS.running) {
       $("#surveyHeader").show();
     }
 
@@ -680,6 +753,31 @@ function updateAppDisplay(newAppMode) {
     });
 
     $(document).scrollTop(0); // scroll to top to make UX better on small monitors
+
+
+    // NASTY global :(
+    if (pendingCodeOutputScrollTop) {
+      myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(pendingCodeOutputScrollTop);
+      pendingCodeOutputScrollTop = null;
+    }
+
+    $.doTimeout('pyCodeOutputDivScroll'); // cancel any prior scheduled calls
+
+    myVisualizer.domRoot.find('#pyCodeOutputDiv').scroll(function(e) {
+      var elt = $(this);
+      // debounce
+      $.doTimeout('pyCodeOutputDivScroll', 100, function() {
+        // note that this will send a signal back and forth both ways
+        if (TogetherJS.running) {
+          // (there's no easy way to prevent this), but it shouldn't keep
+          // bouncing back and forth indefinitely since no the second signal
+          // causes no additional scrolling
+          TogetherJS.send({type: "pyCodeOutputDivScroll",
+                           scrollTop: elt.scrollTop()});
+        }
+      });
+    });
+
 
     $.bbq.pushState({ mode: 'display' }, 2 /* completely override other hash strings to keep URL clean */);
   }
@@ -762,6 +860,13 @@ function executePythonCode(pythonSourceCode,
       return;
     }
 
+    if (TogetherJS.running && !executeCodeSignalFromRemote) {
+      TogetherJS.send({type: "executeCode",
+                       myAppState: getAppState(),
+                       forceStartingInstr: frontendOptionsObj.startingInstruction,
+                       rawInputLst: rawInputLst});
+    }
+
     // if you're in display mode, kick back into edit mode before
     // executing or else the display might not refresh properly ... ugh
     // krufty FIXME
@@ -817,8 +922,7 @@ function executePythonCode(pythonSourceCode,
 
               // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
               // and sync any new elements that are now inside myVisualizer
-              // XXX: ugly dependency on TogetherJS
-              if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+              if (TogetherJS.running) {
                 TogetherJS.reinitialize();
               }
             }
