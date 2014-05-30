@@ -138,9 +138,8 @@ function initTogetherJS() {
   // Remember, they were here first (that's why they're saying 'hello-back'),
   // so they keep their own name, but you need to change yours :)
   TogetherJS.hub.on("togetherjs.hello-back", function(msg) {
-    // guard against weird cases where someone is in your same session
-    // but accidentally meandered to another page
-    if (!msg.sameUrl) return;
+    // do NOT use a msg.sameUrl guard since that will miss some signals
+    // due to our funky URLs
 
     var p = TogetherJS.require("peers");
 
@@ -201,9 +200,8 @@ function initTogetherJS() {
   }
 
   TogetherJS.hub.on("updateOutput", function(msg) {
-    // guard against weird cases where someone is in your same session
-    // but accidentally meandered to another page
-    if (!msg.sameUrl) return;
+    // do NOT use a msg.sameUrl guard since that will miss some signals
+    // due to our funky URLs
 
     if (isExecutingCode) {
       return;
@@ -222,9 +220,8 @@ function initTogetherJS() {
   });
 
   TogetherJS.hub.on("executeCode", function(msg) {
-    // guard against weird cases where someone is in your same session
-    // but accidentally meandered to another page
-    if (!msg.sameUrl) return;
+    // do NOT use a msg.sameUrl guard since that will miss some signals
+    // due to our funky URLs
 
     if (isExecutingCode) {
       return;
@@ -241,9 +238,8 @@ function initTogetherJS() {
   });
 
   TogetherJS.hub.on("hashchange", function(msg) {
-    // guard against weird cases where someone is in your same session
-    // but accidentally meandered to another page
-    if (!msg.sameUrl) return;
+    // do NOT use a msg.sameUrl guard since that will miss some signals
+    // due to our funky URLs
 
     if (isExecutingCode) {
       return;
@@ -264,9 +260,8 @@ function initTogetherJS() {
   });
 
   TogetherJS.hub.on("codemirror-edit", function(msg) {
-    // guard against weird cases where someone is in your same session
-    // but accidentally meandered to another page
-    if (!msg.sameUrl) return;
+    // do NOT use a msg.sameUrl guard since that will miss some signals
+    // due to our funky URLs
 
     if (!$("#codeInputWarnings").data('orig-html')) { // set only once
       $("#codeInputWarnings").data('orig-html', $("#codeInputWarnings").html());
@@ -281,9 +276,8 @@ function initTogetherJS() {
   });
 
   TogetherJS.hub.on("requestSync", function(msg) {
-    // guard against weird cases where someone is in your same session
-    // but accidentally meandered to another page
-    if (!msg.sameUrl) return;
+    // do NOT use a msg.sameUrl guard since that will miss some signals
+    // due to our funky URLs
 
     if (TogetherJS.running) {
       TogetherJS.send({type: "myAppState",
@@ -296,9 +290,8 @@ function initTogetherJS() {
   });
 
   TogetherJS.hub.on("myAppState", function(msg) {
-    // guard against weird cases where someone is in your same session
-    // but accidentally meandered to another page
-    if (!msg.sameUrl) return;
+    // do NOT use a msg.sameUrl guard since that will miss some signals
+    // due to our funky URLs
 
     // if we didn't explicitly request a sync, then don't do anything
     if (!togetherjsSyncRequested) {
@@ -355,17 +348,15 @@ function initTogetherJS() {
   });
 
   TogetherJS.hub.on("codeInputScroll", function(msg) {
-    // guard against weird cases where someone is in your same session
-    // but accidentally meandered to another page
-    if (!msg.sameUrl) return;
+    // do NOT use a msg.sameUrl guard since that will miss some signals
+    // due to our funky URLs
 
     $(codeMirrorScroller).scrollTop(msg.scrollTop);
   });
 
   TogetherJS.hub.on("pyCodeOutputDivScroll", function(msg) {
-    // guard against weird cases where someone is in your same session
-    // but accidentally meandered to another page
-    if (!msg.sameUrl) return;
+    // do NOT use a msg.sameUrl guard since that will miss some signals
+    // due to our funky URLs
 
     if (myVisualizer) {
       myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(msg.scrollTop);
