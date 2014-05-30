@@ -37,93 +37,28 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // - jquery.ba-bbq.min.js
 // - jquery.ba-dotimeout.min.js // for event debouncing: http://benalman.com/code/projects/jquery-dotimeout/examples/debouncing/
 // - opt-frontend-common.js
+// - js/togetherjs/togetherjs-min.js
 // should all be imported BEFORE this file
 
-
-var enableTogetherJS = true; // EXPERIMENTAL
-
-var TogetherJSConfig_disableWebRTC = true;
-var TogetherJSConfig_suppressJoinConfirmation = true;
-var TogetherJSConfig_dontShowClicks = false;
-
-// stop popping up boring intro dialog box:
-var TogetherJSConfig_seenIntroDialog = true;
-
-// suppress annoying pop-ups:
-var TogetherJSConfig_suppressInvite = true;
-var TogetherJSConfig_suppressJoinConfirmation = true;
-
-// clone clicks ONLY in certain elements to keep things simple:
-//var TogetherJSConfig_cloneClicks = '#pyInputPane select,#pyInputPane #executeBtn';
-var TogetherJSConfig_cloneClicks = '#pyInputPane select';
-
-var TogetherJSConfig_siteName = "Online Python Tutor live help";
-var TogetherJSConfig_toolName = "Online Python Tutor live help";
 
 //var TogetherJSConfig_hubBase = "http://184.173.101.176:30035/"; // online
 var TogetherJSConfig_hubBase = "http://localhost:30035/"; // local
 
-var tutorRequested = false;
 
+// for OPT live chat tutoring interface
+var tutorRequested = false;
 var helpQueueSize = 0;
 var tutorAvailable = false;
-
-// TODO: consider deferred initialization later: "TogetherJS starts up
-// automatically as soon as it can, especially when continuing a
-// session. Sometimes this is problematic, like an application that
-// bootstraps all of its UI after page load. To defer this
-// initialization, define a function TogetherJSConfig_callToStart like:"
-//TogetherJSConfig_callToStart = function (callback) {
-//};
-
-var origDocURL = document.URL; // capture this ASAP before TogetherJS munges the URL
-
 var tutorWaitText = 'Please wait for the next available tutor.';
-var informedConsentText = '<div style="font-size: 8pt; color: #666;">During shared sessions, chat logs and code may be recorded and published for<br/>research and education. Please do not reveal any private or sensitive information.</div>';
 
-// nasty globals
-var updateOutputSignalFromRemote = false;
-var executeCodeSignalFromRemote = false;
-var togetherjsSyncRequested = false;
-var codeMirrorWarningTimeoutId = undefined;
-var pendingCodeOutputScrollTop = null;
-
-var codeMirrorScroller = '#codeInputPane .CodeMirror-scroll';
-
-
-// Global hook for ExecutionVisualizer.
-var try_hook = function(hook_name, args) {
-  return [false]; // just a stub
-}
-
-
-function requestSync() {
-  if (TogetherJS.running) {
-    togetherjsSyncRequested = true;
-    TogetherJS.send({type: "requestSync"});
+function setHelpQueueSizeLabel() {
+  if (helpQueueSize == 1) {
+    $("#helpQueueText").html('There is 1 person in line.');
+  }
+  else if (helpQueueSize == 0 || helpQueueSize > 1) {
+    $("#helpQueueText").html('There are ' + helpQueueSize + ' people in line.');
   }
 }
-
-function syncAppState(appState) {
-  setToggleOptions(appState);
-
-  // VERY VERY subtle -- temporarily prevent TogetherJS from sending
-  // form update events while we set the code mirror value. otherwise
-  // this will send an incorrect delta to the other end and screw things
-  // up because the initial states of the two forms aren't equal.
-  var orig = TogetherJS.config.get('ignoreForms');
-  TogetherJS.config('ignoreForms', true);
-  setCodeMirrorVal(appState.code);
-  TogetherJS.config('ignoreForms', orig);
-
-  if (appState.rawInputLst) {
-    rawInputLst = $.parseJSON(appState.rawInputLstJSON);
-  }
-  else {
-    rawInputLst = [];
-  }
-}
-
 
 function requestTutor() {
   $("#getTutorBtn,#sharedSessionBtn,#surveyHeader").hide(); // hide ASAP!
@@ -139,17 +74,8 @@ function startSharedSession() {
   TogetherJS();
 }
 
-function setHelpQueueSizeLabel() {
-  if (helpQueueSize == 1) {
-    $("#helpQueueText").html('There is 1 person in line.');
-  }
-  else if (helpQueueSize == 0 || helpQueueSize > 1) {
-    $("#helpQueueText").html('There are ' + helpQueueSize + ' people in line.');
-  }
-}
 
-
-// get this app ready for TogetherJS
+// get OPT ready for integration with TogetherJS
 function initTogetherJS() {
   // This event triggers when you first join a session and say 'hello',
   // and then one of your peers says hello back to you. If they have the
@@ -157,14 +83,9 @@ function initTogetherJS() {
   // Remember, they were here first (that's why they're saying 'hello-back'),
   // so they keep their own name, but you need to change yours :)
   TogetherJS.hub.on("togetherjs.hello-back", function(msg) {
-    if (!msg.sameUrl) {
-      return;
-    }
-
     var p = TogetherJS.require("peers");
 
     var peerNames = p.getAllPeers().map(function(e) {return e.name});
-    //console.warn('togetherjs.hello-back', msg.name, peerNames);
 
     if (msg.name == p.Self.name) {
       var newName = undefined;
@@ -221,9 +142,6 @@ function initTogetherJS() {
   }
 
   TogetherJS.hub.on("updateOutput", function(msg) {
-    if (!msg.sameUrl) {
-      return;
-    }
     if (isExecutingCode) {
       return;
     }
@@ -241,9 +159,6 @@ function initTogetherJS() {
   });
 
   TogetherJS.hub.on("executeCode", function(msg) {
-    if (!msg.sameUrl) {
-      return;
-    }
     if (isExecutingCode) {
       return;
     }
@@ -259,9 +174,6 @@ function initTogetherJS() {
   });
 
   TogetherJS.hub.on("hashchange", function(msg) {
-    if (!msg.sameUrl) {
-      return;
-    }
     if (isExecutingCode) {
       return;
     }
@@ -281,10 +193,6 @@ function initTogetherJS() {
   });
 
   TogetherJS.hub.on("codemirror-edit", function(msg) {
-    if (!msg.sameUrl) {
-      return;
-    }
-
     if (codeMirrorWarningTimeoutId !== undefined) {
       clearTimeout(codeMirrorWarningTimeoutId); // don't let these events pile up
     }
@@ -363,46 +271,15 @@ function initTogetherJS() {
   });
 
   TogetherJS.hub.on("codeInputScroll", function(msg) {
-    if (!msg.sameUrl) {
-      return;
-    }
     $(codeMirrorScroller).scrollTop(msg.scrollTop);
   });
 
   TogetherJS.hub.on("pyCodeOutputDivScroll", function(msg) {
-    if (!msg.sameUrl) {
-      return;
-    }
     if (myVisualizer) {
       myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(msg.scrollTop);
     }
   });
 
-  try {
-    var source = new EventSource(TogetherJSConfig_hubBase + 'learner-SSE');
-    source.onmessage = function(e) {
-      var dat = JSON.parse(e.data);
-
-      // nasty globals
-      helpQueueSize = dat.helpQueueUrls;
-      tutorAvailable = dat.helpAvailable;
-
-      setHelpQueueSizeLabel();
-
-      if (tutorAvailable && !TogetherJS.running) {
-        $("#getTutorBtn").fadeIn(750, redrawConnectors);
-      }
-      else {
-        $("#getTutorBtn").fadeOut(750, redrawConnectors);
-      }
-    };
-  }
-  catch(err) {
-    // ugh, SSE doesn't seem to work in Safari
-    console.warn("Sad ... EventSource not supported :(");
-  }
-
-  $("#getTutorBtn").click(requestTutor);
   $("#sharedSessionBtn").click(startSharedSession);
   $("#stopTogetherJSBtn").click(TogetherJS); // toggles off
 
@@ -410,64 +287,72 @@ function initTogetherJS() {
   // already an open session from a prior page load in the recent past.
   TogetherJS.on("ready", function () {
     console.log("TogetherJS ready");
-    $("#getTutorBtn,#sharedSessionBtn,#surveyHeader").hide();
-    $("#stopTogetherJSBtn").show();
 
-    // without anything after the '#' in the hash
-    var cleanUrl = $.param.fragment(location.href, {}, 2 /* override */);
-    var urlToShare = cleanUrl + 'togetherjs=' + TogetherJS.shareId();
+    $("#stopTogetherJSBtn").show();
+    $("#sharedSessionBtn").hide();
 
     requestSync(); // immediately try to sync upon startup so that if
                    // others are already in the session, we will be
                    // synced up. and if nobody is here, then this is a NOP.
 
-    if (tutorRequested) {
-      $.get(TogetherJSConfig_hubBase + 'request-help',
-            {url: TogetherJS.shareUrl(), id: TogetherJS.shareId()},
-            null /* don't use a callback; rely on SSE */);
-
-      $("#togetherjsStatus").html('<div style="font-size: 11pt; margin-bottom: 5pt;">\
-                                   Please wait for the next available tutor. \
-                                   <span id="helpQueueText"></span></div>');
-      setHelpQueueSizeLabel(); // run after creating span#helpQueueText
-    }
-    else {
-      $("#togetherjsStatus").html('<div>\
-                                   Copy and send this URL to let others join your session:\
-                                   </div>\
-                                   <input type="text" style="font-size: 11pt; \
-                                   font-weight: bold; padding: 5px;\
-                                   margin-bottom: 6pt;" \
-                                   id="togetherjsURL" size="80" readonly="readonly"/>');
-      $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 25);
-    }
-
-    $("#togetherjsStatus").append(informedConsentText);
-
+    TogetherjsReadyHandler(); // needs to be defined in each frontend
     redrawConnectors(); // update all arrows at the end
   });
 
   // emitted when TogetherJS is closed. This is not emitted when the
-  // page simply closes or navigates elsewhere. It is only closed when
-  // TogetherJS is specifically stopped.
+  // webpage simply closes or navigates elsewhere, ONLY when TogetherJS
+  // is explicitly stopped via a call to TogetherJS()
   TogetherJS.on("close", function () {
     console.log("TogetherJS close");
 
     $("#togetherjsStatus").html(''); // clear it
-
     $("#stopTogetherJSBtn").hide();
     $("#sharedSessionBtn").show();
 
-    if (tutorAvailable) {
-      $("#getTutorBtn").show();
-    }
-
-    if (appMode == "display") {
-      $("#surveyHeader").show();
-    }
-
+    TogetherjsCloseHandler(); // needs to be defined in each frontend
     redrawConnectors(); // update all arrows at the end
   });
+}
+
+
+function TogetherjsReadyHandler() {
+  // without anything after the '#' in the hash
+  var cleanUrl = $.param.fragment(location.href, {}, 2 /* override */);
+  var urlToShare = cleanUrl + 'togetherjs=' + TogetherJS.shareId();
+
+  $("#getTutorBtn,#surveyHeader").hide();
+  if (tutorRequested) {
+    $.get(TogetherJSConfig_hubBase + 'request-help',
+          {url: TogetherJS.shareUrl(), id: TogetherJS.shareId()},
+          null /* don't use a callback; rely on SSE */);
+
+    $("#togetherjsStatus").html('<div style="font-size: 11pt; margin-bottom: 5pt;">\
+                                 Please wait for the next available tutor. \
+                                 <span id="helpQueueText"></span></div>');
+    setHelpQueueSizeLabel(); // run after creating span#helpQueueText
+  }
+  else {
+    $("#togetherjsStatus").html('<div>\
+                                 Copy and send this URL to let others join your session:\
+                                 </div>\
+                                 <input type="text" style="font-size: 11pt; \
+                                 font-weight: bold; padding: 5px;\
+                                 margin-bottom: 6pt;" \
+                                 id="togetherjsURL" size="80" readonly="readonly"/>');
+    $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 25);
+  }
+
+  $("#togetherjsStatus").append(informedConsentText);
+}
+
+function TogetherjsCloseHandler() {
+  if (tutorAvailable) {
+    $("#getTutorBtn").show();
+  }
+
+  if (appMode == "display") {
+    $("#surveyHeader").show();
+  }
 }
 
 
@@ -581,9 +466,34 @@ function optFinishSuccessfulExecution() {
 $(document).ready(function() {
   setSurveyHTML();
 
-  if (enableTogetherJS) {
-    initTogetherJS();
+  initTogetherJS();
+
+  // for OPT live chat tutoring interface
+  try {
+    var source = new EventSource(TogetherJSConfig_hubBase + 'learner-SSE');
+    source.onmessage = function(e) {
+      var dat = JSON.parse(e.data);
+
+      // nasty globals
+      helpQueueSize = dat.helpQueueUrls;
+      tutorAvailable = dat.helpAvailable;
+
+      setHelpQueueSizeLabel();
+
+      if (tutorAvailable && !TogetherJS.running) {
+        $("#getTutorBtn").fadeIn(750, redrawConnectors);
+      }
+      else {
+        $("#getTutorBtn").fadeOut(750, redrawConnectors);
+      }
+    };
   }
+  catch(err) {
+    // ugh, SSE doesn't seem to work in Safari
+    console.warn("Sad ... EventSource not supported :(");
+  }
+
+  $("#getTutorBtn").click(requestTutor);
 
 
   // be friendly to the browser's forward and back buttons

@@ -33,7 +33,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // Pre-reqs:
 // - pytutor.js
 // - jquery.ba-bbq.min.js
+// - jquery.ba-dotimeout.min.js // for event debouncing: http://benalman.com/code/projects/jquery-dotimeout/examples/debouncing/
 // - opt-frontend-common.js
+// - js/togetherjs/togetherjs-min.js
 // should all be imported BEFORE this file
 
 function executeCode(forceStartingInstr) {

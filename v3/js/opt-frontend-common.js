@@ -66,6 +66,75 @@ var appMode = 'edit'; // 'edit' or 'display'. also support
 
 var pyInputCodeMirror; // CodeMirror object that contains the input text
 
+
+// BEGIN - shared session stuff
+
+// TogetherJS common configuration
+var TogetherJSConfig_disableWebRTC = true;
+var TogetherJSConfig_suppressJoinConfirmation = true;
+var TogetherJSConfig_dontShowClicks = false;
+
+// stop popping up boring intro dialog box:
+var TogetherJSConfig_seenIntroDialog = true;
+
+// suppress annoying pop-ups:
+var TogetherJSConfig_suppressInvite = true;
+var TogetherJSConfig_suppressJoinConfirmation = true;
+
+// clone clicks ONLY in certain elements to keep things simple:
+var TogetherJSConfig_cloneClicks = '#pyInputPane select';
+
+var TogetherJSConfig_siteName = "Online Python Tutor shared session";
+var TogetherJSConfig_toolName = "Online Python Tutor shared session";
+
+// more nasty global state vars
+var updateOutputSignalFromRemote = false;
+var executeCodeSignalFromRemote = false;
+var togetherjsSyncRequested = false;
+var codeMirrorWarningTimeoutId = undefined;
+var pendingCodeOutputScrollTop = null;
+
+var codeMirrorScroller = '#codeInputPane .CodeMirror-scroll';
+
+
+var informedConsentText = '<div style="font-size: 8pt; color: #666;">During shared sessions, chat logs and code may be recorded and published for<br/>research and education. Please do not reveal any private or sensitive information.</div>';
+
+
+function requestSync() {
+  if (TogetherJS.running) {
+    togetherjsSyncRequested = true;
+    TogetherJS.send({type: "requestSync"});
+  }
+}
+
+function syncAppState(appState) {
+  setToggleOptions(appState);
+
+  // VERY VERY subtle -- temporarily prevent TogetherJS from sending
+  // form update events while we set the code mirror value. otherwise
+  // this will send an incorrect delta to the other end and screw things
+  // up because the initial states of the two forms aren't equal.
+  var orig = TogetherJS.config.get('ignoreForms');
+  TogetherJS.config('ignoreForms', true);
+  setCodeMirrorVal(appState.code);
+  TogetherJS.config('ignoreForms', orig);
+
+  if (appState.rawInputLst) {
+    rawInputLst = $.parseJSON(appState.rawInputLstJSON);
+  }
+  else {
+    rawInputLst = [];
+  }
+}
+
+// END - shared session stuff
+
+
+// Global hook for ExecutionVisualizer.
+var try_hook = function(hook_name, args) {
+  return [false]; // just a stub
+}
+
 function setCodeMirrorVal(dat) {
   pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
   $('#urlOutput,#embedCodeOutput').val('');
