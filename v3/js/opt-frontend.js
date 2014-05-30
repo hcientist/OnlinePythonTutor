@@ -60,14 +60,14 @@ function setHelpQueueSizeLabel() {
 
 function requestTutor() {
   $("#getTutorBtn,#sharedSessionBtn,#surveyHeader").hide(); // hide ASAP!
-  $("#togetherjsStatus").html("Please wait ... loading");
+  $("#togetherjsStatus").html("Please wait ... requesting a tutor");
   tutorRequested = true;
   TogetherJS();
 }
 
 function startSharedSession() { // override default
   $("#getTutorBtn,#sharedSessionBtn,#surveyHeader").hide(); // hide ASAP!
-  $("#togetherjsStatus").html("Please wait ... loading");
+  $("#togetherjsStatus").html("Please wait ... loading shared session");
   tutorRequested = false;
   TogetherJS();
 }

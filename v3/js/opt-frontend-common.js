@@ -69,6 +69,9 @@ var pyInputCodeMirror; // CodeMirror object that contains the input text
 
 // BEGIN - shared session stuff
 
+// grab this as early as possible before TogetherJS munges the URL
+var togetherjsInUrl = $.bbq.getState('togetherjs');
+
 //var TogetherJSConfig_hubBase = "http://184.173.101.176:30035/"; // online
 var TogetherJSConfig_hubBase = "http://localhost:30035/"; // local
 
@@ -132,6 +135,11 @@ function syncAppState(appState) {
 
 // get OPT ready for integration with TogetherJS
 function initTogetherJS() {
+  if (togetherjsInUrl) {
+    $("#sharedSessionBtn").hide(); // hide ASAP!
+    $("#togetherjsStatus").html("Please wait ... loading shared session");
+  }
+
   // This event triggers when you first join a session and say 'hello',
   // and then one of your peers says hello back to you. If they have the
   // exact same name as you, then change your own name to avoid ambiguity.
@@ -407,7 +415,7 @@ function TogetherjsCloseHandler() {
 
 function startSharedSession() {
   $("#sharedSessionBtn").hide(); // hide ASAP!
-  $("#togetherjsStatus").html("Please wait ... loading");
+  $("#togetherjsStatus").html("Please wait ... loading shared session");
   TogetherJS();
 }
 
