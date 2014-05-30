@@ -127,6 +127,246 @@ function syncAppState(appState) {
   }
 }
 
+
+// get OPT ready for integration with TogetherJS
+function initTogetherJS() {
+  // This event triggers when you first join a session and say 'hello',
+  // and then one of your peers says hello back to you. If they have the
+  // exact same name as you, then change your own name to avoid ambiguity.
+  // Remember, they were here first (that's why they're saying 'hello-back'),
+  // so they keep their own name, but you need to change yours :)
+  TogetherJS.hub.on("togetherjs.hello-back", function(msg) {
+    var p = TogetherJS.require("peers");
+
+    var peerNames = p.getAllPeers().map(function(e) {return e.name});
+
+    if (msg.name == p.Self.name) {
+      var newName = undefined;
+      var toks = msg.name.split(' ');
+      var count = Number(toks[1]);
+
+      // make sure the name is truly unique, incrementing count as necessary
+      do {
+        if (!isNaN(count)) {
+          newName = toks[0] + ' ' + String(count + 1); // e.g., "Tutor 3"
+          count++;
+        }
+        else {
+          // the original name was something like "Tutor", so make
+          // newName into, say, "Tutor 2"
+          newName = p.Self.name + ' 2';
+          count = 2;
+        }
+      } while ($.inArray(newName, peerNames) >= 0); // i.e., is newName in peerNames?
+
+      p.Self.update({name: newName}); // change our own name
+    }
+  });
+
+  // Global hook for ExecutionVisualizer.
+  // Set it here after TogetherJS gets defined, hopefully!
+  try_hook = function(hook_name, args) {
+    if (hook_name == "end_updateOutput") {
+      if (updateOutputSignalFromRemote) {
+        return;
+      }
+      if (TogetherJS.running && !isExecutingCode) {
+        TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
+      }
+
+      // 2014-05-25: implemented more detailed tracing for surveys
+      if (args.myViz.creationTime) {
+        var deltaMs = (new Date()) - args.myViz.creationTime;
+
+        var uh = args.myViz.updateHistory;
+        assert(uh.length > 0); // should already be seeded with an initial value
+        var lastDeltaMs = uh[uh.length - 1][1];
+
+        // ("debounce" entries that are less than 1 second apart to
+        // compress the logs a bit when there's rapid scrubbing or scrolling)
+        if ((deltaMs - lastDeltaMs) < 1000) {
+          uh.pop(); // get rid of last entry before pushing a new entry
+        }
+        uh.push([args.myViz.curInstr, deltaMs]);
+        //console.log(JSON.stringify(uh));
+      }
+    }
+    return [false];
+  }
+
+  TogetherJS.hub.on("updateOutput", function(msg) {
+    if (isExecutingCode) {
+      return;
+    }
+
+    if (myVisualizer) {
+      // to prevent this call to updateOutput from firing its own TogetherJS event
+      updateOutputSignalFromRemote = true;
+      try {
+        myVisualizer.renderStep(msg.step);
+      }
+      finally {
+        updateOutputSignalFromRemote = false;
+      }
+    }
+  });
+
+  TogetherJS.hub.on("executeCode", function(msg) {
+    if (isExecutingCode) {
+      return;
+    }
+
+    executeCodeSignalFromRemote = true;
+    try {
+      executeCode(msg.forceStartingInstr, msg.rawInputLst);
+    }
+    finally {
+      executeCodeSignalFromRemote = false;
+    }
+
+  });
+
+  TogetherJS.hub.on("hashchange", function(msg) {
+    if (isExecutingCode) {
+      return;
+    }
+
+    console.log("TogetherJS RECEIVE hashchange", msg.appMode);
+    if (msg.appMode != appMode) {
+      updateAppDisplay(msg.appMode);
+
+      if (appMode == 'edit' && msg.codeInputScrollTop !== undefined &&
+          $(codeMirrorScroller).scrollTop() != msg.codeInputScrollTop) {
+        // hack: give it a bit of time to settle first ...
+        $.doTimeout('pyInputCodeMirrorInit', 200, function() {
+          $(codeMirrorScroller).scrollTop(msg.codeInputScrollTop);
+        });
+      }
+    }
+  });
+
+  TogetherJS.hub.on("codemirror-edit", function(msg) {
+    if (codeMirrorWarningTimeoutId !== undefined) {
+      clearTimeout(codeMirrorWarningTimeoutId); // don't let these events pile up
+    }
+
+    $("#codeInputWarnings").html('<span style="color: #e93f34; font-weight: bold">\
+                                  Hold on, someone else is typing ...</span>');
+    codeMirrorWarningTimeoutId = setTimeout(function() {
+      $("#codeInputWarnings").html('Write Python code here:');
+    }, 1000);
+  });
+
+  TogetherJS.hub.on("requestSync", function(msg) {
+    if (TogetherJS.running) {
+      TogetherJS.send({type: "myAppState",
+                       myAppState: getAppState(),
+                       codeInputScrollTop: $('#codeInputPane .CodeMirror-scroll').scrollTop(),
+                       pyCodeOutputDivScrollTop: myVisualizer ?
+                                                 myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop() :
+                                                 undefined});
+    }
+  });
+
+  TogetherJS.hub.on("myAppState", function(msg) {
+    // if we didn't explicitly request a sync, then don't do anything
+    if (!togetherjsSyncRequested) {
+      return;
+    }
+
+    togetherjsSyncRequested = false;
+
+    var learnerAppState = msg.myAppState;
+
+    if (learnerAppState.mode == 'display') {
+      if (appStateEq(getAppState(), learnerAppState)) {
+        // update curInstr only
+        console.log("on:myAppState - app states equal, renderStep", learnerAppState.curInstr);
+        myVisualizer.renderStep(learnerAppState.curInstr);
+
+        if (msg.pyCodeOutputDivScrollTop !== undefined) {
+          myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(msg.pyCodeOutputDivScrollTop);
+        }
+      }
+      else if (!isExecutingCode) { // if already executing from a prior signal, ignore
+        console.log("on:myAppState - app states unequal, executing", learnerAppState);
+        syncAppState(learnerAppState);
+
+        executeCodeSignalFromRemote = true;
+        try {
+          if (msg.pyCodeOutputDivScrollTop !== undefined) {
+            pendingCodeOutputScrollTop = msg.pyCodeOutputDivScrollTop; // NASTY global
+          }
+          executeCode(learnerAppState.curInstr);
+        }
+        finally {
+          executeCodeSignalFromRemote = false;
+        }
+      }
+    }
+    else {
+      assert(learnerAppState.mode == 'edit');
+      if (!appStateEq(getAppState(), learnerAppState)) {
+        console.log("on:myAppState - edit mode sync");
+        syncAppState(learnerAppState);
+        enterEditMode();
+      }
+    }
+
+    if (msg.codeInputScrollTop !== undefined) {
+      // give pyInputCodeMirror a bit of time to settle with its new
+      // value. this is hacky; ideally we have a callback function for
+      // when setValue() completes.
+      $.doTimeout('pyInputCodeMirrorInit', 200, function() {
+        $(codeMirrorScroller).scrollTop(msg.codeInputScrollTop);
+      });
+    }
+  });
+
+  TogetherJS.hub.on("codeInputScroll", function(msg) {
+    $(codeMirrorScroller).scrollTop(msg.scrollTop);
+  });
+
+  TogetherJS.hub.on("pyCodeOutputDivScroll", function(msg) {
+    if (myVisualizer) {
+      myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(msg.scrollTop);
+    }
+  });
+
+  $("#sharedSessionBtn").click(startSharedSession);
+  $("#stopTogetherJSBtn").click(TogetherJS); // toggles off
+
+  // fired when TogetherJS is activated. might fire on page load if there's
+  // already an open session from a prior page load in the recent past.
+  TogetherJS.on("ready", function () {
+    console.log("TogetherJS ready");
+
+    $("#stopTogetherJSBtn").show();
+    $("#sharedSessionBtn").hide();
+
+    requestSync(); // immediately try to sync upon startup so that if
+                   // others are already in the session, we will be
+                   // synced up. and if nobody is here, then this is a NOP.
+
+    TogetherjsReadyHandler(); // needs to be defined in each frontend
+    redrawConnectors(); // update all arrows at the end
+  });
+
+  // emitted when TogetherJS is closed. This is not emitted when the
+  // webpage simply closes or navigates elsewhere, ONLY when TogetherJS
+  // is explicitly stopped via a call to TogetherJS()
+  TogetherJS.on("close", function () {
+    console.log("TogetherJS close");
+
+    $("#togetherjsStatus").html(''); // clear it
+    $("#stopTogetherJSBtn").hide();
+    $("#sharedSessionBtn").show();
+
+    TogetherjsCloseHandler(); // needs to be defined in each frontend
+    redrawConnectors(); // update all arrows at the end
+  });
+}
+
 // END - shared session stuff
 
 
