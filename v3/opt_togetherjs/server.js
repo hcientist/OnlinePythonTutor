@@ -542,23 +542,7 @@ function toggleHelpAvailable(req, res) {
   learnerEmitter.emit('help-available-update', logObj);
   adminEmitter.emit('help-available-update', logObj);
 
-  // use this event to segment log files
-  if (helpAvailable) { // just turned ON helpAvailable
-    if (pgLogFile) {
-      pgLogFile.end();
-    }
-    var filename = 'log_' + logObj.date + '.json';
-    pgLogFile = fs.createWriteStream(filename,
-                                     {flags: 'w',
-                                      mode: parseInt('644', 8),
-                                      encoding: "UTF-8"});
-    pgLogWrite(logObj); // write this as the FIRST entry
-  }
-  else { // just turned OFF helpAvailable
-    pgLogWrite(logObj); // write this as the FINAL entry
-    pgLogFile.end();
-    pgLogFile = null;
-  }
+  pgLogWrite(logObj);
 }
 
 
