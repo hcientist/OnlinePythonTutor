@@ -84,6 +84,7 @@ var informedConsentText = '<div style="font-size: 8pt; color: #666;">During shar
 // nasty globals
 var updateOutputSignalFromRemote = false;
 var executeCodeSignalFromRemote = false;
+var togetherjsSyncRequested = false;
 var codeMirrorWarningTimeoutId = undefined;
 var pendingCodeOutputScrollTop = null;
 
@@ -98,6 +99,7 @@ var try_hook = function(hook_name, args) {
 
 function requestSync() {
   if (TogetherJS.running) {
+    togetherjsSyncRequested = true;
     TogetherJS.send({type: "requestSync"});
   }
 }
@@ -306,6 +308,13 @@ function initTogetherJS() {
   });
 
   TogetherJS.hub.on("myAppState", function(msg) {
+    // if we didn't explicitly request a sync, then don't do anything
+    if (!togetherjsSyncRequested) {
+      return;
+    }
+
+    togetherjsSyncRequested = false;
+
     var learnerAppState = msg.myAppState;
 
     if (learnerAppState.mode == 'display') {
