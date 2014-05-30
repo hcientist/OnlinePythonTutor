@@ -353,7 +353,8 @@ function updateAppDisplay(newAppMode) {
     $("#pyOutputPane").show();
     $("#embedLinkDiv").show();
 
-    if (!(TogetherJS && TogetherJS.running)) {
+    // XXX: ugly dependency on TogetherJS
+    if (!(typeof TogetherJS !== 'undefined' && TogetherJS.running)) {
       $("#surveyHeader").show();
     }
 
@@ -507,7 +508,8 @@ function executePythonCode(pythonSourceCode,
 
               // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
               // and sync any new elements that are now inside myVisualizer
-              if (TogetherJS && TogetherJS.running) {
+              // XXX: ugly dependency on TogetherJS
+              if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
                 TogetherJS.reinitialize();
               }
             }
