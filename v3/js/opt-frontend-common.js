@@ -69,6 +69,9 @@ var pyInputCodeMirror; // CodeMirror object that contains the input text
 
 // BEGIN - shared session stuff
 
+//var TogetherJSConfig_hubBase = "http://184.173.101.176:30035/"; // online
+var TogetherJSConfig_hubBase = "http://localhost:30035/"; // local
+
 // TogetherJS common configuration
 var TogetherJSConfig_disableWebRTC = true;
 var TogetherJSConfig_suppressJoinConfirmation = true;

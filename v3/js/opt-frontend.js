@@ -41,9 +41,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // should all be imported BEFORE this file
 
 
-//var TogetherJSConfig_hubBase = "http://184.173.101.176:30035/"; // online
-var TogetherJSConfig_hubBase = "http://localhost:30035/"; // local
-
 var originFrontendJsFile = 'opt-frontend.js';
 
 // for OPT live chat tutoring interface
