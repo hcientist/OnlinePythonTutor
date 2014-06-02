@@ -424,13 +424,15 @@ function populateTogetherJsShareUrl() {
   var cleanUrl = $.param.fragment(location.href, {}, 2 /* override */);
   var urlToShare = cleanUrl + 'togetherjs=' + TogetherJS.shareId();
   $("#togetherjsStatus").html('<div>\
-                               Copy and send this URL to let others join your session:\
+                               Copy and send this URL to let someone (e.g., a tutor or friend) join your live session:\
                                </div>\
                                <input type="text" style="font-size: 11pt; \
                                font-weight: bold; padding: 5px;\
                                margin-bottom: 6pt;" \
-                               id="togetherjsURL" size="80" readonly="readonly"/>');
-  $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 25);
+                               id="togetherjsURL" size="80" readonly="readonly"/>\
+                               <button id="syncBtn" type="button" style="font-size: 8pt;">Force sync</button>');
+  $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
+  $("#syncBtn").click(requestSync);
 }
 
 // END - shared session stuff
