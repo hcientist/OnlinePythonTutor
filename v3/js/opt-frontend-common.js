@@ -431,7 +431,7 @@ function populateTogetherJsShareUrl() {
                                margin-bottom: 6pt;" \
                                id="togetherjsURL" size="80" readonly="readonly"/>\
                                <button id="syncBtn" type="button" style="font-size: 8pt;">Force sync</button>');
-  $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
+  $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 25);
   $("#syncBtn").click(requestSync);
 }
 
