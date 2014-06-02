@@ -497,9 +497,17 @@ function genericOptFrontendReady() {
   // be friendly to the browser's forward and back buttons
   // thanks to http://benalman.com/projects/jquery-bbq-plugin/
   $(window).bind("hashchange", function(e) {
-    var newMode = $.bbq.getState('mode');
-    console.log('hashchange:', newMode);
-    updateAppDisplay(newMode);
+    // if you've got some preseeded code, then parse the entire query
+    // string from scratch just like a page reload
+    if ($.bbq.getState('code')) {
+      parseQueryString();
+    }
+    // otherwise just do an incremental update
+    else {
+      var newMode = $.bbq.getState('mode');
+      console.log('hashchange:', newMode, window.location.hash);
+      updateAppDisplay(newMode);
+    }
 
     if (TogetherJS.running && !isExecutingCode) {
       TogetherJS.send({type: "hashchange",
@@ -577,30 +585,7 @@ function genericOptFrontendReady() {
     });
   }
 
-  // initialize from query string
-  var queryStrOptions = getQueryStringOptions();
-  setToggleOptions(queryStrOptions);
-  if (queryStrOptions.preseededCode) {
-    setCodeMirrorVal(queryStrOptions.preseededCode);
-  }
-  if (queryStrOptions.rawInputLst) {
-    rawInputLst = queryStrOptions.rawInputLst; // global
-  }
-  else {
-    rawInputLst = [];
-  }
-
-  // ugh tricky -- always start in edit mode by default, and then
-  // simulate a click to get it to switch to display mode ONLY after the
-  // code successfully executes
-  appMode = 'edit';
-  if ((queryStrOptions.appMode == 'display' ||
-       queryStrOptions.appMode == 'visualize' /* 'visualize' is deprecated */) &&
-      queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
-    console.log('seeded in display mode');
-    executeCode(queryStrOptions.preseededCurInstr);
-  }
-  $.bbq.removeState(); // clean up the URL no matter what
+  parseQueryString();
 
   $(window).resize(redrawConnectors);
 
@@ -631,6 +616,32 @@ function genericOptFrontendReady() {
   $("#embedLinkDiv").hide();
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(executeCodeFromScratch);
+}
+
+
+// sets globals such as rawInputLst, CodeMirror input box, and toggle options
+function parseQueryString() {
+  var queryStrOptions = getQueryStringOptions();
+  setToggleOptions(queryStrOptions);
+  if (queryStrOptions.preseededCode) {
+    setCodeMirrorVal(queryStrOptions.preseededCode);
+  }
+  if (queryStrOptions.rawInputLst) {
+    rawInputLst = queryStrOptions.rawInputLst; // global
+  }
+  else {
+    rawInputLst = [];
+  }
+
+  // ugh tricky -- always start in edit mode by default, and then
+  // switch to display mode only after the code successfully executes
+  appMode = 'edit';
+  if ((queryStrOptions.appMode == 'display' ||
+       queryStrOptions.appMode == 'visualize' /* 'visualize' is deprecated */) &&
+      queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
+    executeCode(queryStrOptions.preseededCurInstr); // will switch to 'display' mode
+  }
+  $.bbq.removeState(); // clean up the URL no matter what
 }
 
 // parsing the URL query string hash
@@ -821,7 +832,6 @@ function updateAppDisplay(newAppMode) {
         }
       });
     });
-
 
     $.bbq.pushState({ mode: 'display' }, 2 /* completely override other hash strings to keep URL clean */);
   }
