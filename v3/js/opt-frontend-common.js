@@ -914,7 +914,8 @@ function executePythonCode(pythonSourceCode,
       return;
     }
 
-    if (TogetherJS.running && !executeCodeSignalFromRemote) {
+    if (typeof TogetherJS !== 'undefined' &&
+        TogetherJS.running && !executeCodeSignalFromRemote) {
       TogetherJS.send({type: "executeCode",
                        myAppState: getAppState(),
                        forceStartingInstr: frontendOptionsObj.startingInstruction,
@@ -976,7 +977,7 @@ function executePythonCode(pythonSourceCode,
 
               // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
               // and sync any new elements that are now inside myVisualizer
-              if (TogetherJS.running) {
+              if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
                 TogetherJS.reinitialize();
               }
             }
