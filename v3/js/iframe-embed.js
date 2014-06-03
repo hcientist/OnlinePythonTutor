@@ -137,6 +137,7 @@ $(document).ready(function() {
                       function() { // success
                         if (resizeContainer)
                             resizeContainerNow();
+                        myVisualizer.redrawConnectors();
                       },
                       NOP);
   }
