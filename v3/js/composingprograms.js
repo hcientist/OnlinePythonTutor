@@ -100,7 +100,15 @@ function signinCallback(authResult) {
          'userId': 'me'
        });
        request.execute(function(resp) {
-         alert('Retrieved profile for "' + resp.displayName + '"');
+          // From https://developers.google.com/+/web/people/#retrieve_an_authenticated_users_email_address
+
+          // Filter the emails object to find the user's primary account, which might
+          // not always be the first in the array. The filter() method supports IE9+.
+          var email = resp['emails'].filter(function(v) {
+              return v.type === 'account'; // Filter out the primary email
+          })[0].value; // get the email from the filtered results, should always be defined.
+
+         alert('Real name: "' + resp.displayName + '", Email addr: "' + email + '"');
        });
       });
 
