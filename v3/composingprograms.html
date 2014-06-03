@@ -74,6 +74,20 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 <table id="experimentalHeader" style="margin-bottom: 15pt;">
+
+
+<span id="signinButton">
+  <span
+    class="g-signin"
+    data-callback="signinCallback"
+    data-clientid="639826413051-n4c566bfu9jnee6893qolvbt8od9kiaf.apps.googleusercontent.com"
+    data-cookiepolicy="single_host_origin"
+    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+    data-scope="https://www.googleapis.com/auth/plus.profile.emails.read">
+  </span>
+</span>
+
+
 <tr>
 <td valign="top">
 <div style="font-size: 8pt; color: #666; margin-left: 2px;">Experimental features</div>
@@ -182,6 +196,16 @@ Copyright &copy; 2010-2014 <a href="http://www.pgbovine.net/">Philip Guo</a>.  A
 </p>
 
 </div>
+
+
+<!-- Place this asynchronous JavaScript just before your </body> tag -->
+<script type="text/javascript">
+  (function() {
+   var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+   po.src = 'https://apis.google.com/js/client:plusone.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+ })();
+</script>
 
 </body>
 </html>

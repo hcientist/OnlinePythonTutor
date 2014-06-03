@@ -83,3 +83,31 @@ $(document).ready(function() {
 
   genericOptFrontendReady(); // initialize at the very end
 });
+
+
+// for Google+ Web signin:
+// https://developers.google.com/+/web/signin/add-button
+
+function signinCallback(authResult) {
+  if (authResult) {
+    if (authResult['error'] == undefined){
+
+      // This sample assumes a client object has been created.
+      // To learn more about creating a client, check out the starter:
+      //  https://developers.google.com/+/quickstart/javascript
+      gapi.client.load('plus','v1', function(){
+       var request = gapi.client.plus.people.get({
+         'userId': 'me'
+       });
+       request.execute(function(resp) {
+         alert('Retrieved profile for "' + resp.displayName + '"');
+       });
+      });
+
+    } else {
+      console.log('An error occurred');
+    }
+  } else {
+    console.log('Empty authResult');  // Something went wrong
+  }
+}
