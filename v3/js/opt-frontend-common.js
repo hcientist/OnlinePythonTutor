@@ -102,7 +102,7 @@ var pendingCodeOutputScrollTop = null;
 var codeMirrorScroller = '#codeInputPane .CodeMirror-scroll';
 
 
-var informedConsentText = '<div style="font-size: 8pt; color: #666;">During shared sessions, chat logs and code may be recorded and published for<br/>research and education. Please do not reveal any private or sensitive information.</div>';
+var informedConsentText = '<div style="font-size: 8pt; color: #666;">Your chat logs and code may be recorded, anonymized, and published for research purposes.</div>';
 
 
 function requestSync() {

@@ -42,11 +42,27 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 var originFrontendJsFile = 'composingprograms.js';
 
 
-var chatDisplayName = null; // sign in with Google account to get your real chat name
+var postSessionSurvey = '\n\
+<div style="border: 1px solid #C2382F; padding: 5px; margin-top: 10px; line-height: 175%;">\n\
+<span style="font-size: 8pt; color: #666;">Support our research by answering these questions after you finish:</span><br/>\n\
+How useful was this particular session? (click star to rate)\n\
+<span class="star-rating">\n\
+  <input type="radio" name="rating" value="1"/><i></i>\n\
+  <input type="radio" name="rating" value="2"/><i></i>\n\
+  <input type="radio" name="rating" value="3"/><i></i>\n\
+  <input type="radio" name="rating" value="4"/><i></i>\n\
+  <input type="radio" name="rating" value="5"/><i></i>\n\
+</span>\n\
+<br/>\
+What did you just learn? <input type="text" id="what-learned" class="surveyQ" size=60 maxlength=140/>\n\
+<button id="submitSessionSurveyBtn" type="button" style="font-size: 8pt;">Submit</button>\n\
+</div>'
+
 
 function TogetherjsReadyHandler() {
   populateTogetherJsShareUrl();
   $("#togetherjsStatus").append(informedConsentText);
+  $("#togetherjsStatus").append(postSessionSurvey);
 
   updateChatName();
 }
@@ -90,6 +106,8 @@ $(document).ready(function() {
   genericOptFrontendReady(); // initialize at the very end
 });
 
+
+var chatDisplayName = null; // sign in with Google account to get your real chat name
 
 // for Google+ Web signin:
 // https://developers.google.com/+/web/signin/add-button
