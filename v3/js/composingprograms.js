@@ -86,9 +86,10 @@ $(document).ready(function() {
 });
 
 
+var chatDisplayName = null; // sign in with Google account to get your real chat name
+
 // for Google+ Web signin:
 // https://developers.google.com/+/web/signin/add-button
-
 function signinCallback(authResult) {
   if (authResult) {
     if (authResult['error'] == undefined){
@@ -117,21 +118,19 @@ function signinCallback(authResult) {
           // if we can actually grab the display name (e.g., from a
           // Google+ account), then use it
           if (resp.displayName) {
-            $("#loggedInNameDisplay").html("Hello, " + resp.displayName);
+            chatDisplayName = resp.displayName;
+            showChatName();
           }
 
           // otherwise try to look up the email address on the server to
           // find a real name mapping on the server
-          else if (email){
+          else if (email) {
             $.get('name_lookup.py',
                   {email : email},
                   function(data) {
-                    if (data.name) {
-                      $("#loggedInNameDisplay").html("Hello, " + data.name);
-                    }
-                    else {
-                      $("#loggedInNameDisplay").html("Hello, " + email);
-                    }
+                    // fall back on email address
+                    chatDisplayName = data.name ? data.name : email;
+                    showChatName();
                   },
                   "json");
           }
@@ -144,6 +143,10 @@ function signinCallback(authResult) {
   } else {
     console.log('signinCallback: empty authResult');  // Something went wrong
   }
+}
+
+function showChatName() {
+  $("#loggedInNameDisplay").html("Welcome, " + chatDisplayName);
 }
 
 // adapted from https://developers.google.com/+/quickstart/javascript
@@ -171,7 +174,6 @@ function signout() {
     });
   }
   else {
-    $('#signinButton').show();
-    $('#loggedInDiv').hide();
+    console.log('signout failed :(');
   }
 }

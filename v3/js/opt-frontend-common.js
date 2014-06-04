@@ -426,12 +426,12 @@ function populateTogetherJsShareUrl() {
   $("#togetherjsStatus").html('<div>\
                                Copy and send this URL to let someone (e.g., a tutor or friend) join your live session:\
                                </div>\
-                               <input type="text" style="font-size: 11pt; \
-                               font-weight: bold; padding: 5px;\
+                               <input type="text" style="font-size: 10pt; \
+                               font-weight: bold; padding: 3px;\
                                margin-bottom: 6pt;" \
                                id="togetherjsURL" size="80" readonly="readonly"/>\
                                <button id="syncBtn" type="button" style="font-size: 8pt;">Force sync</button>');
-  $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 25);
+  $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
   $("#syncBtn").click(requestSync);
 }
 
@@ -600,6 +600,11 @@ function genericOptFrontendReady() {
   $(document).ajaxError(function(evt, jqxhr, settings, exception) {
     // ignore errors related to togetherjs stuff:
     if (settings.url.indexOf('togetherjs') > -1) {
+      return; // get out early
+    }
+
+    // ugh other idiosyncratic stuff
+    if (settings.url.indexOf('name_lookup.py') > -1) {
       return; // get out early
     }
 

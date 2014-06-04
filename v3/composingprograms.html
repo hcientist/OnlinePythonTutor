@@ -76,20 +76,20 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <table id="experimentalHeader" style="margin-bottom: 15pt;">
 
 
-<div id="gplusDiv" style="margin-bottom: 10pt;">
+<div id="gplusDiv" style="margin-bottom: 10pt; margin-left: 5px;">
 
 <div id="signinButton" style="font-size: 8pt;">
-  <button
+  <span
     class="g-signin"
     data-callback="signinCallback"
     data-clientid="639826413051-n4c566bfu9jnee6893qolvbt8od9kiaf.apps.googleusercontent.com"
     data-cookiepolicy="single_host_origin"
     data-requestvisibleactions="http://schemas.google.com/AddActivity"
     data-scope="https://www.googleapis.com/auth/plus.profile.emails.read">
-  </button>
+  </span>
 
-  Sign in with either your UC Berkeley email or personal Google+
-  account.
+  Use either your UC Berkeley account or personal Google account to
+  identify yourself when chatting.
 
 </div>
 
@@ -101,24 +101,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </div>
 
 
-<div id="authOps" style="display:none">
-  <h2>User is now signed in to the app using Google+</h2>
-  <p>If the user chooses to disconnect, the app must delete all stored
-  information retrieved from Google for the given user.</p>
-  <button id="disconnect" >Disconnect your Google account from this app</button>
-
-  <h2>User's profile information</h2>
-  <div id="profile"></div>
-
-  <h2>Authentication Logs</h2>
-  <pre id="authResult"></pre>
-</div>
-
-
-
 <tr>
 <td valign="top">
-<div style="font-size: 8pt; color: #666; margin-left: 2px;">Experimental features</div>
 
 <div>
 <button id="sharedSessionBtn" type="button" class="togetherjsBtn">

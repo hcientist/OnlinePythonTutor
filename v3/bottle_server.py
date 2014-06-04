@@ -22,6 +22,9 @@ import urllib2
 
 @route('/<filepath:path>')
 def index(filepath):
+    # special-case for testing name_lookup.py ...
+    if 'name_lookup.py' in filepath:
+        return json.dumps(dict(name='TEST NAME', email='TEST EMAIL'))
     return static_file(filepath, root='.')
 
 @get('/exec')
