@@ -41,9 +41,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 var originFrontendJsFile = 'composingprograms.js';
 
+
+var chatDisplayName = null; // sign in with Google account to get your real chat name
+
 function TogetherjsReadyHandler() {
   populateTogetherJsShareUrl();
   $("#togetherjsStatus").append(informedConsentText);
+
+  updateChatName();
 }
 
 function TogetherjsCloseHandler() {
@@ -86,8 +91,6 @@ $(document).ready(function() {
 });
 
 
-var chatDisplayName = null; // sign in with Google account to get your real chat name
-
 // for Google+ Web signin:
 // https://developers.google.com/+/web/signin/add-button
 function signinCallback(authResult) {
@@ -119,7 +122,7 @@ function signinCallback(authResult) {
           // Google+ account), then use it
           if (resp.displayName) {
             chatDisplayName = resp.displayName;
-            showChatName();
+            updateChatName();
           }
 
           // otherwise try to look up the email address on the server to
@@ -130,7 +133,7 @@ function signinCallback(authResult) {
                   function(data) {
                     // fall back on email address
                     chatDisplayName = data.name ? data.name : email;
-                    showChatName();
+                    updateChatName();
                   },
                   "json");
           }
@@ -145,8 +148,16 @@ function signinCallback(authResult) {
   }
 }
 
-function showChatName() {
-  $("#loggedInNameDisplay").html("Welcome, " + chatDisplayName);
+function updateChatName() {
+  if (chatDisplayName) {
+    $("#loggedInNameDisplay").html("Welcome, " + chatDisplayName);
+
+    if (TogetherJS.running) {
+      var p = TogetherJS.require("peers");
+      p.Self.update({name: chatDisplayName});
+      console.log('updateChatName:', p.Self.name);
+    }
+  }
 }
 
 // adapted from https://developers.google.com/+/quickstart/javascript
@@ -154,6 +165,18 @@ function showChatName() {
  * Calls the OAuth2 endpoint to disconnect the app for the user.
  */
 function signout() {
+  chatDisplayName = null;
+  if (supports_html5_storage()) {
+    localStorage.removeItem('togetherjs.settings.name'); // purge from cache
+
+    // restore the default name
+    if (TogetherJS.running) {
+      var defaultName = $.parseJSON(localStorage.getItem('togetherjs.settings.defaultName'));
+      var p = TogetherJS.require("peers");
+      p.Self.update({name: defaultName});
+    }
+  }
+
   var tok = gapi.auth.getToken();
   if (tok) {
     // Revoke the access token.
