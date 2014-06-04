@@ -151,20 +151,27 @@ function signinCallback(authResult) {
  * Calls the OAuth2 endpoint to disconnect the app for the user.
  */
 function signout() {
-  // Revoke the access token.
-  $.ajax({
-    type: 'GET',
-    url: 'https://accounts.google.com/o/oauth2/revoke?token=' +
-        gapi.auth.getToken().access_token,
-    async: false,
-    contentType: 'application/json',
-    dataType: 'jsonp',
-    success: function(result) {
-      $('#signinButton').show();
-      $('#loggedInDiv').hide();
-    },
-    error: function(e) {
-      console.log(e);
-    }
-  });
+  var tok = gapi.auth.getToken();
+  if (tok) {
+    // Revoke the access token.
+    $.ajax({
+      type: 'GET',
+      url: 'https://accounts.google.com/o/oauth2/revoke?token=' +
+          tok.access_token,
+      async: false,
+      contentType: 'application/json',
+      dataType: 'jsonp',
+      success: function(result) {
+        $('#signinButton').show();
+        $('#loggedInDiv').hide();
+      },
+      error: function(e) {
+        console.log(e);
+      }
+    });
+  }
+  else {
+    $('#signinButton').show();
+    $('#loggedInDiv').hide();
+  }
 }
