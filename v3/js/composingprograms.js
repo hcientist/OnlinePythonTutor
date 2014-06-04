@@ -125,8 +125,13 @@ function signinCallback(authResult) {
           else if (email){
             $.get('name_lookup.py',
                   {email : email},
-                  function(dataFromBackend) {
-                    $("#loggedInNameDisplay").html("Hello, " + email);
+                  function(data) {
+                    if (data.name) {
+                      $("#loggedInNameDisplay").html("Hello, " + data.name);
+                    }
+                    else {
+                      $("#loggedInNameDisplay").html("Hello, " + email);
+                    }
                   },
                   "json");
           }
