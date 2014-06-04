@@ -518,7 +518,8 @@ $(document).ready(function() {
     // wow, massive copy-and-paste action from above!
     var myArgs = getAppState();
 
-    myArgs.surveyQuestion = "I just learned that ...";
+    // myArgs.surveyQuestion = "I just learned that ..."; // retired on 2014-06-04
+    myArgs.surveyQuestion = "What did you just learn?";
     myArgs.surveyResponse = resp;
     myArgs.surveyVersion = 'v2';
 
