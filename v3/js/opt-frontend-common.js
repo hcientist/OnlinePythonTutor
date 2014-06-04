@@ -373,13 +373,14 @@ function initTogetherJS() {
 
   $("#sharedSessionBtn").click(startSharedSession);
   $("#stopTogetherJSBtn").click(TogetherJS); // toggles off
+  $("#syncBtn").click(requestSync);
 
   // fired when TogetherJS is activated. might fire on page load if there's
   // already an open session from a prior page load in the recent past.
   TogetherJS.on("ready", function () {
     console.log("TogetherJS ready");
 
-    $("#stopTogetherJSBtn").show();
+    $("#stopTogetherJSBtn,#syncBtn").show();
     $("#sharedSessionBtn").hide();
 
     requestSync(); // immediately try to sync upon startup so that if
@@ -397,7 +398,7 @@ function initTogetherJS() {
     console.log("TogetherJS close");
 
     $("#togetherjsStatus").html(''); // clear it
-    $("#stopTogetherJSBtn").hide();
+    $("#stopTogetherJSBtn,#syncBtn").hide();
     $("#sharedSessionBtn").show();
 
     TogetherjsCloseHandler(); // needs to be defined in each frontend
@@ -429,10 +430,8 @@ function populateTogetherJsShareUrl() {
                                <input type="text" style="font-size: 10pt; \
                                font-weight: bold; padding: 3px;\
                                margin-bottom: 6pt;" \
-                               id="togetherjsURL" size="80" readonly="readonly"/>\
-                               <button id="syncBtn" type="button" style="font-size: 8pt;">Force sync</button>');
+                               id="togetherjsURL" size="80" readonly="readonly"/>');
   $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
-  $("#syncBtn").click(requestSync);
 }
 
 // END - shared session stuff

@@ -44,7 +44,7 @@ var originFrontendJsFile = 'composingprograms.js';
 
 var postSessionSurvey = '\n\
 <div style="border: 1px solid #C2382F; padding: 5px; margin-top: 10px; line-height: 175%;">\n\
-<span style="font-size: 8pt; color: #666;">Support our research by answering these questions after you finish:</span><br/>\n\
+<span style="font-size: 8pt; color: #666;">Support our research by answering these questions before you leave:</span><br/>\n\
 How useful was this particular session? (click star to rate)\n\
 <span class="star-rating">\n\
   <input type="radio" name="rating" value="1"/><i></i>\n\
