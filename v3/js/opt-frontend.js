@@ -89,8 +89,6 @@ function TogetherjsReadyHandler() {
   else {
     populateTogetherJsShareUrl();
   }
-
-  $("#togetherjsStatus").append(informedConsentText);
 }
 
 function TogetherjsCloseHandler() {

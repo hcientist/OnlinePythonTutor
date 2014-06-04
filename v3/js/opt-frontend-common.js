@@ -102,9 +102,6 @@ var pendingCodeOutputScrollTop = null;
 var codeMirrorScroller = '#codeInputPane .CodeMirror-scroll';
 
 
-var informedConsentText = '<div style="font-size: 8pt; color: #666;">Your chat logs and code may be recorded, anonymized, and published for research purposes.</div>';
-
-
 function requestSync() {
   if (TogetherJS.running) {
     togetherjsSyncRequested = true;
@@ -373,14 +370,13 @@ function initTogetherJS() {
 
   $("#sharedSessionBtn").click(startSharedSession);
   $("#stopTogetherJSBtn").click(TogetherJS); // toggles off
-  $("#syncBtn").click(requestSync);
 
   // fired when TogetherJS is activated. might fire on page load if there's
   // already an open session from a prior page load in the recent past.
   TogetherJS.on("ready", function () {
     console.log("TogetherJS ready");
 
-    $("#stopTogetherJSBtn,#syncBtn").show();
+    $("#sharedSessionDisplayDiv").show();
     $("#sharedSessionBtn").hide();
 
     requestSync(); // immediately try to sync upon startup so that if
@@ -398,7 +394,7 @@ function initTogetherJS() {
     console.log("TogetherJS close");
 
     $("#togetherjsStatus").html(''); // clear it
-    $("#stopTogetherJSBtn,#syncBtn").hide();
+    $("#sharedSessionDisplayDiv").hide();
     $("#sharedSessionBtn").show();
 
     TogetherjsCloseHandler(); // needs to be defined in each frontend
@@ -425,13 +421,16 @@ function populateTogetherJsShareUrl() {
   var cleanUrl = $.param.fragment(location.href, {}, 2 /* override */);
   var urlToShare = cleanUrl + 'togetherjs=' + TogetherJS.shareId();
   $("#togetherjsStatus").html('<div>\
-                               Copy and send this URL to let someone (e.g., a tutor or friend) join your live session:\
+                               Copy and send this URL to let someone (e.g., a tutor or friend) join your session:\
                                </div>\
                                <input type="text" style="font-size: 10pt; \
                                font-weight: bold; padding: 3px;\
                                margin-bottom: 6pt;" \
-                               id="togetherjsURL" size="80" readonly="readonly"/>');
+                               id="togetherjsURL" size="80" readonly="readonly"/>\
+                               <button id="syncBtn" type="button">Force sync</button>\
+                               ');
   $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
+  $("#syncBtn").click(requestSync);
 }
 
 // END - shared session stuff

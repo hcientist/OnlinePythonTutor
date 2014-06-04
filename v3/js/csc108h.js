@@ -44,7 +44,6 @@ var originFrontendJsFile = 'csc108h.js';
 
 function TogetherjsReadyHandler() {
   populateTogetherJsShareUrl();
-  $("#togetherjsStatus").append(informedConsentText);
 }
 
 function TogetherjsCloseHandler() {

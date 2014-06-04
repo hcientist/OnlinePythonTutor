@@ -61,7 +61,6 @@ What did you just learn? <input type="text" id="what-learned" class="surveyQ" si
 
 function TogetherjsReadyHandler() {
   populateTogetherJsShareUrl();
-  $("#togetherjsStatus").append(informedConsentText);
   $("#togetherjsStatus").append(postSessionSurvey);
 
   updateChatName();
