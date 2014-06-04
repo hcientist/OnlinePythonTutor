@@ -80,6 +80,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 }
 
 $(document).ready(function() {
+  $('#signoutButton').click(signout);
 
   genericOptFrontendReady(); // initialize at the very end
 });
@@ -92,30 +93,73 @@ function signinCallback(authResult) {
   if (authResult) {
     if (authResult['error'] == undefined){
 
+      $("#signinButton").hide();
+      $("#loggedInDiv").show();
+
       // This sample assumes a client object has been created.
       // To learn more about creating a client, check out the starter:
       //  https://developers.google.com/+/quickstart/javascript
-      gapi.client.load('plus','v1', function(){
-       var request = gapi.client.plus.people.get({
-         'userId': 'me'
-       });
-       request.execute(function(resp) {
+      gapi.client.load('plus','v1', function() {
+        var request = gapi.client.plus.people.get({
+          'userId': 'me'
+        });
+        request.execute(function(resp) {
           // From https://developers.google.com/+/web/people/#retrieve_an_authenticated_users_email_address
 
           // Filter the emails object to find the user's primary account, which might
           // not always be the first in the array. The filter() method supports IE9+.
           var email = resp['emails'].filter(function(v) {
-              return v.type === 'account'; // Filter out the primary email
+            return v.type === 'account'; // Filter out the primary email
           })[0].value; // get the email from the filtered results, should always be defined.
 
-         alert('Real name: "' + resp.displayName + '", Email addr: "' + email + '"');
-       });
+          //alert('Real name: "' + resp.displayName + '", Email addr: "' + email + '"');
+
+          // if we can actually grab the display name (e.g., from a
+          // Google+ account), then use it
+          if (resp.displayName) {
+            $("#loggedInNameDisplay").html("Hello, " + resp.displayName);
+          }
+
+          // otherwise try to look up the email address on the server to
+          // find a real name mapping on the server
+          else if (email){
+            $.get('name_lookup.py',
+                  {email : email},
+                  function(dataFromBackend) {
+                    $("#loggedInNameDisplay").html("Hello, " + email);
+                  },
+                  "json");
+          }
+        });
       });
 
     } else {
-      console.log('An error occurred');
+      console.log('signinCallback: error occurred');
     }
   } else {
-    console.log('Empty authResult');  // Something went wrong
+    console.log('signinCallback: empty authResult');  // Something went wrong
   }
+}
+
+// adapted from https://developers.google.com/+/quickstart/javascript
+/**
+ * Calls the OAuth2 endpoint to disconnect the app for the user.
+ */
+function signout() {
+  // Revoke the access token.
+  $.ajax({
+    type: 'GET',
+    url: 'https://accounts.google.com/o/oauth2/revoke?token=' +
+        gapi.auth.getToken().access_token,
+    async: false,
+    contentType: 'application/json',
+    dataType: 'jsonp',
+    success: function(result) {
+      $('#signinButton').show();
+      $('#loggedInDiv').hide();
+    },
+    error: function(e) {
+      console.log(e);
+    }
+  });
 }
