@@ -101,6 +101,8 @@ var pendingCodeOutputScrollTop = null;
 
 var codeMirrorScroller = '#codeInputPane .CodeMirror-scroll';
 
+TogetherJSConfig_ignoreForms = ['.togetherjsIgnore']; // do NOT sync these elements
+
 
 function requestSync() {
   if (TogetherJS.running) {
