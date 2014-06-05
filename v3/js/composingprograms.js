@@ -44,7 +44,7 @@ var originFrontendJsFile = 'composingprograms.js';
 
 var postSessionSurvey = '\n\
 <div id="postSessionSurveyDiv" style="border: 1px solid #BE554E; padding: 5px; margin-top: 5px; line-height: 175%;">\n\
-<span style="font-size: 8pt; color: #666;">Support our research by giving anonymous feedback.</span><br/>\n\
+<span style="font-size: 8pt; color: #666;">Support our research by giving anonymous feedback before ending your session.</span><br/>\n\
 How useful was this particular session? (click star to rate)\n\
 <span class="star-rating togetherjsIgnore">\n\
   <input type="radio" class="togetherjsIgnore" name="rating" value="1"/><i></i>\n\
