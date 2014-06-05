@@ -110,6 +110,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   highlightLines - highlight current and previously executed lines (default: false)
 //   arrowLines     - draw arrows pointing to current and previously executed lines (default: true)
 //   compactFuncLabels - render functions with a 'func' prefix and no type label
+//   showAllFrameLabels - display frame and parent frame labels for all functions (default: false)
 //   pyCrazyMode    - run with Py2crazy, which provides expression-level
 //                    granularity instead of line-level granularity (HIGHLY EXPERIMENTAL!)
 //   hideCode - hide the code display and show only the data structure viz
@@ -192,8 +193,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.textualMemoryLabels = (this.params.textualMemoryLabels == true);
   this.showOnlyOutputs = (this.params.showOnlyOutputs == true);
   this.tabularView = (this.params.tabularView == true);
-
-  //this.tabularView = true; // for testing only
+  this.showAllFrameLabels = (this.params.showAllFrameLabels == true);
 
   this.executeCodeWithRawInputFunc = this.params.executeCodeWithRawInputFunc;
 
@@ -2533,8 +2533,8 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
 
       var headerLabel = funcName;
 
-      // only display if you're someone's parent
-      if (frame.is_parent) {
+      // only display if you're someone's parent (unless showAllFrameLabels)
+      if (frame.is_parent || myViz.showAllFrameLabels) {
         headerLabel = 'f' + frame.frame_id + ': ' + headerLabel;
       }
 
@@ -2542,6 +2542,9 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
       if (frame.parent_frame_id_list.length > 0) {
         var parentFrameID = frame.parent_frame_id_list[0];
         headerLabel = headerLabel + ' [parent=f' + parentFrameID + ']';
+      }
+      else if (myViz.showAllFrameLabels) {
+        headerLabel = headerLabel + ' [parent=Global]';
       }
 
       return headerLabel;
@@ -3387,6 +3390,9 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
 
     if (parentFrameID) {
       d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + ' [parent=f'+ parentFrameID + ']</div>');
+    }
+    else if (myViz.showAllFrameLabels) {
+      d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + ' [parent=Global]</div>');
     }
     else {
       d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + '</div>');

@@ -116,6 +116,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                               executeCodeWithRawInputFunc: executeCodeWithRawInput,
                               updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
                               compactFuncLabels: true,
+                              showAllFrameLabels: true,
                              }
 
     executePythonCode(pyInputCodeMirror.getValue(),
