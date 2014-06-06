@@ -433,6 +433,30 @@ function populateTogetherJsShareUrl() {
                                ');
   $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
   $("#syncBtn").click(requestSync);
+
+  // append post shared session survey
+  $("#togetherjsStatus").append(postSessionSurvey);
+  $('.star-rating :radio').change(function() {
+    if (TogetherJS.running) {
+      TogetherJS.send({type: "surveyHowUsefulStars",
+                       stars: Number(this.value)});
+    }
+  });
+
+  $('#submitSessionSurveyBtn').click(function() {
+    var resp = $('#sharedSessionWhatLearned').val();
+    if (TogetherJS.running && resp) {
+      TogetherJS.send({type: "surveyFreetextQuestion",
+                       question: "What did you just learn?",
+                       answer: $('#sharedSessionWhatLearned').val()});
+
+      $("#sharedSessionWhatLearned").val('');
+      $("#sharedSessionWhatLearnedThanks").show();
+      $.doTimeout('sharedSessionWhatLearnedThanksFadeOut', 1000, function() {
+        $("#sharedSessionWhatLearnedThanks").fadeOut(2000);
+      });
+    }
+  });
 }
 
 // END - shared session stuff
@@ -1049,3 +1073,22 @@ function getSurveyObject() {
 
  return ret;
 }
+
+
+// survey for shared sessions, deployed on 2014-06-06
+var postSessionSurvey = '\n\
+<div id="postSessionSurveyDiv" style="border: 1px solid #BE554E; padding: 5px; margin-top: 5px; line-height: 175%;">\n\
+<span style="font-size: 8pt; color: #666;">Support our research by giving anonymous feedback before ending your session.</span><br/>\n\
+How useful was this particular session? (click star to rate)\n\
+<span class="star-rating togetherjsIgnore">\n\
+  <input type="radio" class="togetherjsIgnore" name="rating" value="1"/><i></i>\n\
+  <input type="radio" class="togetherjsIgnore" name="rating" value="2"/><i></i>\n\
+  <input type="radio" class="togetherjsIgnore" name="rating" value="3"/><i></i>\n\
+  <input type="radio" class="togetherjsIgnore" name="rating" value="4"/><i></i>\n\
+  <input type="radio" class="togetherjsIgnore" name="rating" value="5"/><i></i>\n\
+</span>\n\
+<br/>\
+What did you just learn? <input type="text" id="sharedSessionWhatLearned" class="surveyQ togetherjsIgnore" size=60 maxlength=140/>\n\
+<button id="submitSessionSurveyBtn" type="button" style="font-size: 8pt;">Submit</button>\n\
+<span id="sharedSessionWhatLearnedThanks" style="color: #e93f34; font-weight: bold; font-size: 10pt; display: none;">Thanks!</span>\n\
+</div>'
