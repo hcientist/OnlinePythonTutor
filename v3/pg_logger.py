@@ -775,6 +775,11 @@ class PGLogger(bdb.Bdb):
           if cur_name == '':
             cur_name = 'unnamed function'
 
+          # augment lambdas with line number
+          if cur_name == '<lambda>':
+            cur_name += pg_encoder.create_lambda_line_number(cur_frame.f_code,
+                                                             self.encoder.line_to_lambda_code)
+
           # encode in a JSON-friendly format now, in order to prevent ill
           # effects of aliasing later down the line ...
           encoded_locals = {}

@@ -68,6 +68,7 @@
 FLOAT_PRECISION = 4
 
 
+from collections import defaultdict
 import re, types
 import sys
 import math
@@ -135,6 +136,22 @@ def encode_primitive(dat):
     return dat
 
 
+# grab a line number like ' <line 2>' or ' <line 2b>'
+def create_lambda_line_number(codeobj, line_to_lambda_code):
+  try:
+    lambda_lineno = codeobj.co_firstlineno
+    lst = line_to_lambda_code[lambda_lineno]
+    ind = lst.index(codeobj)
+    # add a suffix for all subsequent lambdas on a line beyond the first
+    if ind > 0:
+      lineno_str = str(lambda_lineno) + chr(ord('a') + ind)
+    else:
+      lineno_str = str(lambda_lineno)
+    return ' <line ' + lineno_str + '>'
+  except:
+    return ''
+
+
 # Note that this might BLOAT MEMORY CONSUMPTION since we're holding on
 # to every reference ever created by the program without ever releasing
 # anything!
@@ -148,6 +165,21 @@ class ObjectEncoder:
 
     self.id_to_small_IDs = {}
     self.cur_small_ID = 1
+
+    # wow, creating unique identifiers for lambdas is quite annoying,
+    # especially if we want to properly differentiate:
+    # 1.) multiple lambdas defined on the same line, and
+    # 2.) the same lambda code defined multiple times on different lines
+    #
+    # However, it gets confused when there are multiple identical
+    # lambdas on the same line, like:
+    # f(lambda x:x*x, lambda y:y*y, lambda x:x*x)
+
+    # (assumes everything is in one file)
+    # Key:   line number
+    # Value: list of the code objects of lambdas defined
+    #        on that line in the order they were defined
+    self.line_to_lambda_code = defaultdict(list)
 
 
   def get_heap(self):
@@ -247,6 +279,16 @@ class ObjectEncoder:
           pretty_name += '(' + ', '.join(printed_args) + ')'
         except TypeError:
           pass
+
+        # put a line number suffix on lambdas to more uniquely identify
+        # them, since they don't have names
+        if func_name == '<lambda>':
+            cod = (dat.__code__ if is_python3 else dat.func_code) # ugh!
+            lst = self.line_to_lambda_code[cod.co_firstlineno]
+            if cod not in lst:
+                lst.append(cod)
+            pretty_name += create_lambda_line_number(cod,
+                                                     self.line_to_lambda_code)
 
         encoded_val = ['FUNCTION', pretty_name, None]
         if get_parent:

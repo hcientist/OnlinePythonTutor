@@ -3514,11 +3514,15 @@ String.prototype.rtrim = function() {
 //
 // also some variable names are like '.0' (for generator expressions),
 // and '.' seems to be illegal.
+//
+// also spaces are illegal, so convert to '_'
 // TODO: what other characters are illegal???
 var lbRE = new RegExp('\\[|{|\\(|<', 'g');
 var rbRE = new RegExp('\\]|}|\\)|>', 'g');
 function varnameToCssID(varname) {
-  return varname.replace(lbRE, 'LeftB_').replace(rbRE, '_RightB').replace('.', '_DOT_');
+  // make sure to REPLACE ALL (using the 'g' option)
+  // rather than just replacing the first entry
+  return varname.replace(lbRE, 'LeftB_').replace(rbRE, '_RightB').replace(/[.]/g, '_DOT_').replace(/ /g, '_');
 }
 
 
