@@ -60,7 +60,7 @@
         ], 
         "2": [
           "FUNCTION", 
-          "<lambda>(horse)", 
+          "<lambda>(horse) <line 8>", 
           null
         ]
       }, 
@@ -112,7 +112,7 @@
         ], 
         "2": [
           "FUNCTION", 
-          "<lambda>(horse)", 
+          "<lambda>(horse) <line 8>", 
           null
         ]
       }, 
@@ -164,7 +164,7 @@
         ], 
         "2": [
           "FUNCTION", 
-          "<lambda>(horse)", 
+          "<lambda>(horse) <line 8>", 
           null
         ]
       }, 
@@ -221,7 +221,7 @@
         ], 
         "2": [
           "FUNCTION", 
-          "<lambda>(horse)", 
+          "<lambda>(horse) <line 8>", 
           null
         ]
       }, 
@@ -278,7 +278,7 @@
         ], 
         "2": [
           "FUNCTION", 
-          "<lambda>(horse)", 
+          "<lambda>(horse) <line 8>", 
           null
         ], 
         "3": [
@@ -331,10 +331,10 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "<lambda>", 
+          "func_name": "<lambda> <line 8>", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "<lambda>_f2", 
+          "unique_hash": "<lambda> <line 8>_f2", 
           "ordered_varnames": [
             "horse"
           ]
@@ -358,7 +358,7 @@
         ], 
         "2": [
           "FUNCTION", 
-          "<lambda>(horse)", 
+          "<lambda>(horse) <line 8>", 
           null
         ], 
         "3": [
@@ -411,10 +411,10 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "<lambda>", 
+          "func_name": "<lambda> <line 8>", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "<lambda>_f2", 
+          "unique_hash": "<lambda> <line 8>_f2", 
           "ordered_varnames": [
             "horse"
           ]
@@ -438,7 +438,7 @@
         ], 
         "2": [
           "FUNCTION", 
-          "<lambda>(horse)", 
+          "<lambda>(horse) <line 8>", 
           null
         ], 
         "3": [
@@ -491,10 +491,10 @@
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
-          "func_name": "<lambda>", 
+          "func_name": "<lambda> <line 8>", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "<lambda>_f2", 
+          "unique_hash": "<lambda> <line 8>_f2", 
           "ordered_varnames": [
             "horse"
           ]
@@ -535,7 +535,7 @@
         ], 
         "2": [
           "FUNCTION", 
-          "<lambda>(horse)", 
+          "<lambda>(horse) <line 8>", 
           null
         ], 
         "3": [
@@ -588,10 +588,10 @@
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
-          "func_name": "<lambda>", 
+          "func_name": "<lambda> <line 8>", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "<lambda>_f2", 
+          "unique_hash": "<lambda> <line 8>_f2", 
           "ordered_varnames": [
             "horse"
           ]
@@ -632,7 +632,7 @@
         ], 
         "2": [
           "FUNCTION", 
-          "<lambda>(horse)", 
+          "<lambda>(horse) <line 8>", 
           null
         ], 
         "3": [
@@ -685,10 +685,10 @@
           }, 
           "is_highlighted": false, 
           "is_parent": false, 
-          "func_name": "<lambda>", 
+          "func_name": "<lambda> <line 8>", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "<lambda>_f2", 
+          "unique_hash": "<lambda> <line 8>_f2", 
           "ordered_varnames": [
             "horse"
           ]
@@ -731,7 +731,7 @@
         ], 
         "2": [
           "FUNCTION", 
-          "<lambda>(horse)", 
+          "<lambda>(horse) <line 8>", 
           null
         ], 
         "3": [
@@ -785,10 +785,10 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "<lambda>", 
+          "func_name": "<lambda> <line 8>", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "<lambda>_f2", 
+          "unique_hash": "<lambda> <line 8>_f2", 
           "ordered_varnames": [
             "horse", 
             "__return__"
@@ -813,7 +813,7 @@
         ], 
         "2": [
           "FUNCTION", 
-          "<lambda>(horse)", 
+          "<lambda>(horse) <line 8>", 
           null
         ], 
         "3": [
@@ -877,7 +877,7 @@
         ], 
         "2": [
           "FUNCTION", 
-          "<lambda>(horse)", 
+          "<lambda>(horse) <line 8>", 
           null
         ], 
         "3": [
@@ -941,7 +941,7 @@
         ], 
         "2": [
           "FUNCTION", 
-          "<lambda>(horse)", 
+          "<lambda>(horse) <line 8>", 
           null
         ], 
         "3": [

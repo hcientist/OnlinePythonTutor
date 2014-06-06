@@ -1,473 +1,476 @@
 {
+  "code": "# list comprehension\nl = [e**e for e in range(10) if e%2==0]\n# set comprehension\ns = {e**e for e in range(10) if e%2==0}\n# dict comprehension\nd = {e: e**e for e in range(10) if e%2==0}\n", 
   "trace": [
     {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {}, 
-      "func_name": "<module>", 
       "heap": {}, 
-      "stdout": "", 
-      "ordered_globals": [], 
-      "event": "step_line", 
-      "line": 2
+      "line": 2, 
+      "event": "step_line"
     }, 
     {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<listcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 1, 
-          "is_parent": false, 
           "encoded_locals": {
             ".0": [
               "REF", 
               1
             ]
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<listcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<listcomp>_f1", 
           "ordered_varnames": [
             ".0"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<listcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<listcomp>_f1"
+          ]
         }
       ], 
       "globals": {}, 
-      "func_name": "<listcomp>", 
       "heap": {
         "1": [
           "INSTANCE", 
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [], 
-      "event": "call", 
-      "line": 2
+      "line": 2, 
+      "event": "call"
     }, 
     {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<listcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 1, 
-          "is_parent": false, 
           "encoded_locals": {
             ".0": [
               "REF", 
               1
             ]
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<listcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<listcomp>_f1", 
           "ordered_varnames": [
             ".0"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<listcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<listcomp>_f1"
+          ]
         }
       ], 
       "globals": {}, 
-      "func_name": "<listcomp>", 
       "heap": {
         "1": [
           "INSTANCE", 
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [], 
-      "event": "step_line", 
-      "line": 2
+      "line": 2, 
+      "event": "step_line"
     }, 
     {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<listcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 1, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 0, 
             ".0": [
               "REF", 
               1
-            ]
+            ], 
+            "e": 0
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<listcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<listcomp>_f1", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<listcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<listcomp>_f1"
+          ]
         }
       ], 
       "globals": {}, 
-      "func_name": "<listcomp>", 
       "heap": {
         "1": [
           "INSTANCE", 
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [], 
-      "event": "step_line", 
-      "line": 2
+      "line": 2, 
+      "event": "step_line"
     }, 
     {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<listcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 1, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 1, 
             ".0": [
               "REF", 
               1
-            ]
+            ], 
+            "e": 1
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<listcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<listcomp>_f1", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<listcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<listcomp>_f1"
+          ]
         }
       ], 
       "globals": {}, 
-      "func_name": "<listcomp>", 
       "heap": {
         "1": [
           "INSTANCE", 
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [], 
-      "event": "step_line", 
-      "line": 2
+      "line": 2, 
+      "event": "step_line"
     }, 
     {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<listcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 1, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 2, 
             ".0": [
               "REF", 
               1
-            ]
+            ], 
+            "e": 2
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<listcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<listcomp>_f1", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<listcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<listcomp>_f1"
+          ]
         }
       ], 
       "globals": {}, 
-      "func_name": "<listcomp>", 
       "heap": {
         "1": [
           "INSTANCE", 
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [], 
-      "event": "step_line", 
-      "line": 2
+      "line": 2, 
+      "event": "step_line"
     }, 
     {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<listcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 1, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 3, 
             ".0": [
               "REF", 
               1
-            ]
+            ], 
+            "e": 3
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<listcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<listcomp>_f1", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<listcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<listcomp>_f1"
+          ]
         }
       ], 
       "globals": {}, 
-      "func_name": "<listcomp>", 
       "heap": {
         "1": [
           "INSTANCE", 
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [], 
-      "event": "step_line", 
-      "line": 2
+      "line": 2, 
+      "event": "step_line"
     }, 
     {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<listcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 1, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 4, 
             ".0": [
               "REF", 
               1
-            ]
+            ], 
+            "e": 4
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<listcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<listcomp>_f1", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<listcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<listcomp>_f1"
+          ]
         }
       ], 
       "globals": {}, 
-      "func_name": "<listcomp>", 
       "heap": {
         "1": [
           "INSTANCE", 
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [], 
-      "event": "step_line", 
-      "line": 2
+      "line": 2, 
+      "event": "step_line"
     }, 
     {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<listcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 1, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 5, 
             ".0": [
               "REF", 
               1
-            ]
+            ], 
+            "e": 5
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<listcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<listcomp>_f1", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<listcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<listcomp>_f1"
+          ]
         }
       ], 
       "globals": {}, 
-      "func_name": "<listcomp>", 
       "heap": {
         "1": [
           "INSTANCE", 
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [], 
-      "event": "step_line", 
-      "line": 2
+      "line": 2, 
+      "event": "step_line"
     }, 
     {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<listcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 1, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 6, 
             ".0": [
               "REF", 
               1
-            ]
+            ], 
+            "e": 6
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<listcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<listcomp>_f1", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<listcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<listcomp>_f1"
+          ]
         }
       ], 
       "globals": {}, 
-      "func_name": "<listcomp>", 
       "heap": {
         "1": [
           "INSTANCE", 
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [], 
-      "event": "step_line", 
-      "line": 2
+      "line": 2, 
+      "event": "step_line"
     }, 
     {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<listcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 1, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 7, 
             ".0": [
               "REF", 
               1
-            ]
+            ], 
+            "e": 7
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<listcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<listcomp>_f1", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<listcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<listcomp>_f1"
+          ]
         }
       ], 
       "globals": {}, 
-      "func_name": "<listcomp>", 
       "heap": {
         "1": [
           "INSTANCE", 
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [], 
-      "event": "step_line", 
-      "line": 2
+      "line": 2, 
+      "event": "step_line"
     }, 
     {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<listcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 1, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 8, 
             ".0": [
               "REF", 
               1
-            ]
+            ], 
+            "e": 8
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<listcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<listcomp>_f1", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<listcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<listcomp>_f1"
+          ]
         }
       ], 
       "globals": {}, 
-      "func_name": "<listcomp>", 
       "heap": {
         "1": [
           "INSTANCE", 
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [], 
-      "event": "step_line", 
-      "line": 2
+      "line": 2, 
+      "event": "step_line"
     }, 
     {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<listcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 1, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 9, 
             ".0": [
               "REF", 
               1
-            ]
+            ], 
+            "e": 9
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<listcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<listcomp>_f1", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<listcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<listcomp>_f1"
+          ]
         }
       ], 
       "globals": {}, 
-      "func_name": "<listcomp>", 
       "heap": {
         "1": [
           "INSTANCE", 
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [], 
-      "event": "step_line", 
-      "line": 2
+      "line": 2, 
+      "event": "step_line"
     }, 
     {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<listcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 1, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 9, 
+            ".0": [
+              "REF", 
+              1
+            ], 
             "__return__": [
               "REF", 
               2
             ], 
-            ".0": [
-              "REF", 
-              1
-            ]
+            "e": 9
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<listcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<listcomp>_f1", 
           "ordered_varnames": [
             ".0", 
             "e", 
             "__return__"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<listcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<listcomp>_f1"
+          ]
         }
       ], 
       "globals": {}, 
-      "func_name": "<listcomp>", 
       "heap": {
         "1": [
           "INSTANCE", 
@@ -482,12 +485,15 @@
           16777216
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [], 
-      "event": "return", 
-      "line": 2
+      "line": 2, 
+      "event": "return"
     }, 
     {
+      "ordered_globals": [
+        "l"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {
         "l": [
@@ -495,7 +501,6 @@
           2
         ]
       }, 
-      "func_name": "<module>", 
       "heap": {
         "2": [
           "LIST", 
@@ -506,32 +511,33 @@
           16777216
         ]
       }, 
-      "stdout": "", 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l"
       ], 
-      "event": "step_line", 
-      "line": 4
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<setcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 2, 
-          "is_parent": false, 
           "encoded_locals": {
             ".0": [
               "REF", 
               3
             ]
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<setcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<setcomp>_f2", 
           "ordered_varnames": [
             ".0"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<setcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<setcomp>_f2"
+          ]
         }
       ], 
       "globals": {
@@ -540,7 +546,6 @@
           2
         ]
       }, 
-      "func_name": "<setcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -555,32 +560,33 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 4, 
+      "event": "call"
+    }, 
+    {
       "ordered_globals": [
         "l"
       ], 
-      "event": "call", 
-      "line": 4
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<setcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 2, 
-          "is_parent": false, 
           "encoded_locals": {
             ".0": [
               "REF", 
               3
             ]
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<setcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<setcomp>_f2", 
           "ordered_varnames": [
             ".0"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<setcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<setcomp>_f2"
+          ]
         }
       ], 
       "globals": {
@@ -589,7 +595,6 @@
           2
         ]
       }, 
-      "func_name": "<setcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -604,34 +609,35 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l"
       ], 
-      "event": "step_line", 
-      "line": 4
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<setcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 2, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 0, 
             ".0": [
               "REF", 
               3
-            ]
+            ], 
+            "e": 0
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<setcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<setcomp>_f2", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<setcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<setcomp>_f2"
+          ]
         }
       ], 
       "globals": {
@@ -640,7 +646,6 @@
           2
         ]
       }, 
-      "func_name": "<setcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -655,34 +660,35 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l"
       ], 
-      "event": "step_line", 
-      "line": 4
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<setcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 2, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 1, 
             ".0": [
               "REF", 
               3
-            ]
+            ], 
+            "e": 1
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<setcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<setcomp>_f2", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<setcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<setcomp>_f2"
+          ]
         }
       ], 
       "globals": {
@@ -691,7 +697,6 @@
           2
         ]
       }, 
-      "func_name": "<setcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -706,34 +711,35 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l"
       ], 
-      "event": "step_line", 
-      "line": 4
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<setcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 2, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 2, 
             ".0": [
               "REF", 
               3
-            ]
+            ], 
+            "e": 2
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<setcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<setcomp>_f2", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<setcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<setcomp>_f2"
+          ]
         }
       ], 
       "globals": {
@@ -742,7 +748,6 @@
           2
         ]
       }, 
-      "func_name": "<setcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -757,34 +762,35 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l"
       ], 
-      "event": "step_line", 
-      "line": 4
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<setcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 2, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 3, 
             ".0": [
               "REF", 
               3
-            ]
+            ], 
+            "e": 3
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<setcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<setcomp>_f2", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<setcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<setcomp>_f2"
+          ]
         }
       ], 
       "globals": {
@@ -793,7 +799,6 @@
           2
         ]
       }, 
-      "func_name": "<setcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -808,34 +813,35 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l"
       ], 
-      "event": "step_line", 
-      "line": 4
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<setcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 2, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 4, 
             ".0": [
               "REF", 
               3
-            ]
+            ], 
+            "e": 4
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<setcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<setcomp>_f2", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<setcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<setcomp>_f2"
+          ]
         }
       ], 
       "globals": {
@@ -844,7 +850,6 @@
           2
         ]
       }, 
-      "func_name": "<setcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -859,34 +864,35 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l"
       ], 
-      "event": "step_line", 
-      "line": 4
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<setcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 2, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 5, 
             ".0": [
               "REF", 
               3
-            ]
+            ], 
+            "e": 5
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<setcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<setcomp>_f2", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<setcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<setcomp>_f2"
+          ]
         }
       ], 
       "globals": {
@@ -895,7 +901,6 @@
           2
         ]
       }, 
-      "func_name": "<setcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -910,34 +915,35 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l"
       ], 
-      "event": "step_line", 
-      "line": 4
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<setcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 2, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 6, 
             ".0": [
               "REF", 
               3
-            ]
+            ], 
+            "e": 6
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<setcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<setcomp>_f2", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<setcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<setcomp>_f2"
+          ]
         }
       ], 
       "globals": {
@@ -946,7 +952,6 @@
           2
         ]
       }, 
-      "func_name": "<setcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -961,34 +966,35 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l"
       ], 
-      "event": "step_line", 
-      "line": 4
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<setcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 2, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 7, 
             ".0": [
               "REF", 
               3
-            ]
+            ], 
+            "e": 7
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<setcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<setcomp>_f2", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<setcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<setcomp>_f2"
+          ]
         }
       ], 
       "globals": {
@@ -997,7 +1003,6 @@
           2
         ]
       }, 
-      "func_name": "<setcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1012,34 +1017,35 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l"
       ], 
-      "event": "step_line", 
-      "line": 4
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<setcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 2, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 8, 
             ".0": [
               "REF", 
               3
-            ]
+            ], 
+            "e": 8
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<setcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<setcomp>_f2", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<setcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<setcomp>_f2"
+          ]
         }
       ], 
       "globals": {
@@ -1048,7 +1054,6 @@
           2
         ]
       }, 
-      "func_name": "<setcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1063,34 +1068,35 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l"
       ], 
-      "event": "step_line", 
-      "line": 4
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<setcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 2, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 9, 
             ".0": [
               "REF", 
               3
-            ]
+            ], 
+            "e": 9
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<setcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<setcomp>_f2", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<setcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<setcomp>_f2"
+          ]
         }
       ], 
       "globals": {
@@ -1099,7 +1105,6 @@
           2
         ]
       }, 
-      "func_name": "<setcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1114,39 +1119,40 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l"
       ], 
-      "event": "step_line", 
-      "line": 4
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<setcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 2, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 9, 
+            ".0": [
+              "REF", 
+              3
+            ], 
             "__return__": [
               "REF", 
               4
             ], 
-            ".0": [
-              "REF", 
-              3
-            ]
+            "e": 9
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<setcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<setcomp>_f2", 
           "ordered_varnames": [
             ".0", 
             "e", 
             "__return__"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<setcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<setcomp>_f2"
+          ]
         }
       ], 
       "globals": {
@@ -1155,7 +1161,6 @@
           2
         ]
       }, 
-      "func_name": "<setcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1178,14 +1183,16 @@
           16777216
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [
-        "l"
-      ], 
-      "event": "return", 
-      "line": 4
+      "line": 4, 
+      "event": "return"
     }, 
     {
+      "ordered_globals": [
+        "l", 
+        "s"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {
         "s": [
@@ -1197,7 +1204,6 @@
           2
         ]
       }, 
-      "func_name": "<module>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1216,33 +1222,34 @@
           16777216
         ]
       }, 
-      "stdout": "", 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l", 
         "s"
       ], 
-      "event": "step_line", 
-      "line": 6
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<dictcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 3, 
-          "is_parent": false, 
           "encoded_locals": {
             ".0": [
               "REF", 
               5
             ]
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<dictcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<dictcomp>_f3", 
           "ordered_varnames": [
             ".0"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<dictcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<dictcomp>_f3"
+          ]
         }
       ], 
       "globals": {
@@ -1255,7 +1262,6 @@
           2
         ]
       }, 
-      "func_name": "<dictcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1278,33 +1284,34 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 6, 
+      "event": "call"
+    }, 
+    {
       "ordered_globals": [
         "l", 
         "s"
       ], 
-      "event": "call", 
-      "line": 6
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<dictcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 3, 
-          "is_parent": false, 
           "encoded_locals": {
             ".0": [
               "REF", 
               5
             ]
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<dictcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<dictcomp>_f3", 
           "ordered_varnames": [
             ".0"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<dictcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<dictcomp>_f3"
+          ]
         }
       ], 
       "globals": {
@@ -1317,7 +1324,6 @@
           2
         ]
       }, 
-      "func_name": "<dictcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1340,35 +1346,36 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l", 
         "s"
       ], 
-      "event": "step_line", 
-      "line": 6
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<dictcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 3, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 0, 
             ".0": [
               "REF", 
               5
-            ]
+            ], 
+            "e": 0
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<dictcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<dictcomp>_f3", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<dictcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<dictcomp>_f3"
+          ]
         }
       ], 
       "globals": {
@@ -1381,7 +1388,6 @@
           2
         ]
       }, 
-      "func_name": "<dictcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1404,35 +1410,36 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l", 
         "s"
       ], 
-      "event": "step_line", 
-      "line": 6
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<dictcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 3, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 1, 
             ".0": [
               "REF", 
               5
-            ]
+            ], 
+            "e": 1
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<dictcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<dictcomp>_f3", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<dictcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<dictcomp>_f3"
+          ]
         }
       ], 
       "globals": {
@@ -1445,7 +1452,6 @@
           2
         ]
       }, 
-      "func_name": "<dictcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1468,35 +1474,36 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l", 
         "s"
       ], 
-      "event": "step_line", 
-      "line": 6
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<dictcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 3, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 2, 
             ".0": [
               "REF", 
               5
-            ]
+            ], 
+            "e": 2
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<dictcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<dictcomp>_f3", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<dictcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<dictcomp>_f3"
+          ]
         }
       ], 
       "globals": {
@@ -1509,7 +1516,6 @@
           2
         ]
       }, 
-      "func_name": "<dictcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1532,35 +1538,36 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l", 
         "s"
       ], 
-      "event": "step_line", 
-      "line": 6
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<dictcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 3, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 3, 
             ".0": [
               "REF", 
               5
-            ]
+            ], 
+            "e": 3
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<dictcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<dictcomp>_f3", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<dictcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<dictcomp>_f3"
+          ]
         }
       ], 
       "globals": {
@@ -1573,7 +1580,6 @@
           2
         ]
       }, 
-      "func_name": "<dictcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1596,35 +1602,36 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l", 
         "s"
       ], 
-      "event": "step_line", 
-      "line": 6
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<dictcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 3, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 4, 
             ".0": [
               "REF", 
               5
-            ]
+            ], 
+            "e": 4
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<dictcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<dictcomp>_f3", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<dictcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<dictcomp>_f3"
+          ]
         }
       ], 
       "globals": {
@@ -1637,7 +1644,6 @@
           2
         ]
       }, 
-      "func_name": "<dictcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1660,35 +1666,36 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l", 
         "s"
       ], 
-      "event": "step_line", 
-      "line": 6
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<dictcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 3, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 5, 
             ".0": [
               "REF", 
               5
-            ]
+            ], 
+            "e": 5
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<dictcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<dictcomp>_f3", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<dictcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<dictcomp>_f3"
+          ]
         }
       ], 
       "globals": {
@@ -1701,7 +1708,6 @@
           2
         ]
       }, 
-      "func_name": "<dictcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1724,35 +1730,36 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l", 
         "s"
       ], 
-      "event": "step_line", 
-      "line": 6
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<dictcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 3, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 6, 
             ".0": [
               "REF", 
               5
-            ]
+            ], 
+            "e": 6
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<dictcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<dictcomp>_f3", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<dictcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<dictcomp>_f3"
+          ]
         }
       ], 
       "globals": {
@@ -1765,7 +1772,6 @@
           2
         ]
       }, 
-      "func_name": "<dictcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1788,35 +1794,36 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l", 
         "s"
       ], 
-      "event": "step_line", 
-      "line": 6
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<dictcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 3, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 7, 
             ".0": [
               "REF", 
               5
-            ]
+            ], 
+            "e": 7
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<dictcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<dictcomp>_f3", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<dictcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<dictcomp>_f3"
+          ]
         }
       ], 
       "globals": {
@@ -1829,7 +1836,6 @@
           2
         ]
       }, 
-      "func_name": "<dictcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1852,35 +1858,36 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l", 
         "s"
       ], 
-      "event": "step_line", 
-      "line": 6
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<dictcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 3, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 8, 
             ".0": [
               "REF", 
               5
-            ]
+            ], 
+            "e": 8
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<dictcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<dictcomp>_f3", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<dictcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<dictcomp>_f3"
+          ]
         }
       ], 
       "globals": {
@@ -1893,7 +1900,6 @@
           2
         ]
       }, 
-      "func_name": "<dictcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1916,35 +1922,36 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l", 
         "s"
       ], 
-      "event": "step_line", 
-      "line": 6
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<dictcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 3, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 9, 
             ".0": [
               "REF", 
               5
-            ]
+            ], 
+            "e": 9
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<dictcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<dictcomp>_f3", 
           "ordered_varnames": [
             ".0", 
             "e"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<dictcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<dictcomp>_f3"
+          ]
         }
       ], 
       "globals": {
@@ -1957,7 +1964,6 @@
           2
         ]
       }, 
-      "func_name": "<dictcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -1980,40 +1986,41 @@
           "range_iterator"
         ]
       }, 
-      "stdout": "", 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
       "ordered_globals": [
         "l", 
         "s"
       ], 
-      "event": "step_line", 
-      "line": 6
-    }, 
-    {
+      "stdout": "", 
+      "func_name": "<dictcomp>", 
       "stack_to_render": [
         {
-          "is_zombie": false, 
           "frame_id": 3, 
-          "is_parent": false, 
           "encoded_locals": {
-            "e": 9, 
+            ".0": [
+              "REF", 
+              5
+            ], 
             "__return__": [
               "REF", 
               6
             ], 
-            ".0": [
-              "REF", 
-              5
-            ]
+            "e": 9
           }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "<dictcomp>", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "<dictcomp>_f3", 
           "ordered_varnames": [
             ".0", 
             "e", 
             "__return__"
-          ], 
-          "is_highlighted": true, 
-          "func_name": "<dictcomp>", 
-          "parent_frame_id_list": [], 
-          "unique_hash": "<dictcomp>_f3"
+          ]
         }
       ], 
       "globals": {
@@ -2026,7 +2033,6 @@
           2
         ]
       }, 
-      "func_name": "<dictcomp>", 
       "heap": {
         "2": [
           "LIST", 
@@ -2072,81 +2078,75 @@
           ]
         ]
       }, 
-      "stdout": "", 
-      "ordered_globals": [
-        "l", 
-        "s"
-      ], 
-      "event": "return", 
-      "line": 6
+      "line": 6, 
+      "event": "return"
     }, 
     {
-      "stack_to_render": [], 
-      "globals": {
-        "s": [
-          "REF", 
-          4
-        ], 
-        "l": [
-          "REF", 
-          2
-        ], 
-        "d": [
-          "REF", 
-          6
-        ]
-      }, 
-      "func_name": "<module>", 
-      "heap": {
-        "2": [
-          "LIST", 
-          1, 
-          4, 
-          256, 
-          46656, 
-          16777216
-        ], 
-        "4": [
-          "SET", 
-          256, 
-          1, 
-          4, 
-          46656, 
-          16777216
-        ], 
-        "6": [
-          "DICT", 
-          [
-            0, 
-            1
-          ], 
-          [
-            8, 
-            16777216
-          ], 
-          [
-            2, 
-            4
-          ], 
-          [
-            4, 
-            256
-          ], 
-          [
-            6, 
-            46656
-          ]
-        ]
-      }, 
-      "stdout": "", 
       "ordered_globals": [
         "l", 
         "s", 
         "d"
       ], 
-      "event": "return", 
-      "line": 6
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "s": [
+          "REF", 
+          4
+        ], 
+        "d": [
+          "REF", 
+          6
+        ], 
+        "l": [
+          "REF", 
+          2
+        ]
+      }, 
+      "heap": {
+        "2": [
+          "LIST", 
+          1, 
+          4, 
+          256, 
+          46656, 
+          16777216
+        ], 
+        "4": [
+          "SET", 
+          256, 
+          1, 
+          4, 
+          46656, 
+          16777216
+        ], 
+        "6": [
+          "DICT", 
+          [
+            0, 
+            1
+          ], 
+          [
+            8, 
+            16777216
+          ], 
+          [
+            2, 
+            4
+          ], 
+          [
+            4, 
+            256
+          ], 
+          [
+            6, 
+            46656
+          ]
+        ]
+      }, 
+      "line": 6, 
+      "event": "return"
     }
-  ], 
-  "code": "# list comprehension\nl = [e**e for e in range(10) if e%2==0]\n# set comprehension\ns = {e**e for e in range(10) if e%2==0}\n# dict comprehension\nd = {e: e**e for e in range(10) if e%2==0}\n"
+  ]
 }
