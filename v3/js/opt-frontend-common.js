@@ -381,6 +381,12 @@ function initTogetherJS() {
     $("#sharedSessionDisplayDiv").show();
     $("#sharedSessionBtn").hide();
 
+    // send this to the server for the purposes of logging, but other
+    // clients shouldn't do anything with this data
+    if (TogetherJS.running) {
+      TogetherJS.send({type: "initialAppState", myAppState: getAppState()});
+    }
+
     requestSync(); // immediately try to sync upon startup so that if
                    // others are already in the session, we will be
                    // synced up. and if nobody is here, then this is a NOP.
