@@ -85,7 +85,7 @@ href="http://www.python.org/">Python</a> program in the Web
 browser and visualize what the computer is doing step-by-step as it
 executes the program.</p>
 
-<p>As of Dec 2013, over <b>500,000 people</b> in over <b>165
+<p>Over <b>500,000 people</b> in over <b>165
 countries</b> have used Online Python Tutor to understand and debug
 their programs, often as a supplement to textbooks, lecture notes, and
 online programming tutorials. Over 6,000 pieces of Python code are
@@ -115,6 +115,7 @@ computer executes each line of code.</p>
 
 <div id="demoViz"></div>
 
+<!--
 <p>
 
 Watch a <a href="http://www.youtube.com/watch?v=y3sVN7uaxDM">1-minute
@@ -124,6 +125,7 @@ href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/opt-ipy.py">i
 mode</a>
 
 </p>
+-->
 
 <p>
 <b><a
@@ -148,38 +150,26 @@ href="http://pgbovine.net/publications/Online-Python-Tutor-web-based-program-vis
 
 <div class="activityPane" id="embedPane">
 
-<h1><span id="embedHeading">EMBED</span> <span class="smallH1">visualizations in digital textbooks</span></h1>
+<h1><span id="embedHeading">SHARE</span> <span class="smallH1">live visualization sessions</span></h1>
 
-<p>Using a single line of JavaScript code, you can <a
-href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/embedding-HOWTO.md">embed</a> an Online Python Tutor
-visualization within your Web page (as shown in the &ldquo;Learn&rdquo;
-box above). The screenshot below shows a few of these visualizations
-embedded within the online textbook for the introductory CS course at UC
-Berkeley (<a href="http://www.composingprograms.com/">CS61A</a>):
-
+<p>Click on the "Start a shared session" button to allow an instructor or friend
+    to join your live visualization session. You can chat about your code and navigate
+    the visualization together to get real-time tutoring. Watch this one-minute
+    <a href="http://youtu.be/Z2TIjNArOK4">video demo</a>:
 </p>
 
-<img src="opt-v3-cs61a-embed.png" style="border: 1px solid #aaa;"/>
-<p>
+<iframe width="480" height="360" src="//www.youtube.com/embed/Z2TIjNArOK4" frameborder="0" allowfullscreen></iframe>
 
-These visualizations have also been embedded within two other Web-based
-Python textbook projects: <a
-href="http://interactivepython.org/courselib/static/thinkcspy/index.html">How
-to Think Like a Computer Scientist: Interactive Edition</a> and <a
-href="http://cscircles.cemc.uwaterloo.ca/">Computer Science Circles</a>.
-These textbooks collectively attract around 16,000 unique viewers per
-month and are being used in at least 25 universities around the world.
+<p>In addition, you can click the &ldquo;Generate
+URL&rdquo; button (at the bottom of <a href="visualize.html">this
+page</a>) and paste that URL link in an email, social networking
+post, or forum question. When recipients click on that link, they will
+see the visualization you've created.</p>
 
-</p>
-
-<p>
-
-In addition, instructors have embedded Online Python Tutor
-visualizations into LMS platforms such as <a
-href="https://moodle.org/">Moodle</a> and <a
-href="http://code.edx.org/">edX</a>.
-
-</p>
+<p>For example, clicking <a
+href="visualize.html#code=%23+find+primes+using+a+for-else+construct%0Afor+n+in+range(2,+10)%3A%0A++++x_range+%3D+range(2,+n)%0A++++for+x+in+x_range%3A%0A++++++++if+n+%25+x+%3D%3D+0%3A%0A++++++++++++break%0A++++else%3A%0A++++++++%23+loop+fell+through+without+finding+a+factor%0A++++++++print(n)&mode=display&cumulative=false&py=2&curInstr=43">this
+link</a> brings you directly to step 44 of 57 in a program that finds
+prime numbers using the Python <tt>for-else</tt> construct.</p>
 
 </div>
 
@@ -188,18 +178,18 @@ href="http://code.edx.org/">edX</a>.
 
 <div class="activityPane" id="sharePane">
 
-<h1><span id="shareHeading">SHARE</span> <span class="smallH1">visualizations online</span></h1>
+<h1><span id="shareHeading">EMBED</span> <span class="smallH1"> in any Web page</span></h1>
 
-<p>To share your current visualization, click the &ldquo;Generate
-URL&rdquo; button (at the bottom of <a href="visualize.html">this
-page</a>) and paste that URL link in an email, social networking
-post, or forum question. When recipients click on that link, they will
-see your exact visualization.</p>
+<p>Using a single line of JavaScript code, you can <a
+href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/embedding-HOWTO.md">embed</a> an Online Python Tutor
+visualization within any Web page (as shown in the &ldquo;Learn&rdquo;
+box above). The screenshot below shows visualizations
+embedded within the online textbook for the introductory CS course at UC
+Berkeley (<a href="http://www.composingprograms.com/">CS61A</a>):
 
-<p> For example, clicking <a
-href="visualize.html#code=%23+find+primes+using+a+for-else+construct%0Afor+n+in+range(2,+10)%3A%0A++++x_range+%3D+range(2,+n)%0A++++for+x+in+x_range%3A%0A++++++++if+n+%25+x+%3D%3D+0%3A%0A++++++++++++break%0A++++else%3A%0A++++++++%23+loop+fell+through+without+finding+a+factor%0A++++++++print(n)&mode=display&cumulative=false&py=2&curInstr=43">this
-link</a> brings you directly to step 44 of 57 in a program that finds
-prime numbers using the Python <tt>for-else</tt> construct.</p>
+</p>
+
+<img src="opt-v3-cs61a-embed-small.png" style="width: 275px; border: 1px solid #aaa; margin-bottom: 10px;"/>
 
 </div>
 
@@ -210,9 +200,7 @@ prime numbers using the Python <tt>for-else</tt> construct.</p>
 More Details:
 <ul>
 
-  <li/>Online Python Tutor runs Python 2.7 and 3.3, hosted on either
-  a CGI-capable Web server or on <a
-  href="https://developers.google.com/appengine/">Google App Engine</a>
+  <li/>Online Python Tutor runs Python 2.7 and 3.3, hosted on any CGI-capable Web server.
 
  <li/>Main technologies: Python with <tt><a
  href="http://docs.python.org/library/bdb.html">bdb</a></tt> for the
