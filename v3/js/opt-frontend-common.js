@@ -70,7 +70,7 @@ var pyInputCodeMirror; // CodeMirror object that contains the input text
 // BEGIN - shared session stuff
 
 // grab this as early as possible before TogetherJS munges the URL
-var togetherjsInUrl = $.bbq.getState('togetherjs');
+var togetherjsInUrl = ($.bbq.getState('togetherjs') !== undefined);
 
 //var TogetherJSConfig_hubBase = "http://184.173.101.176:30035/"; // online
 var TogetherJSConfig_hubBase = "http://localhost:30035/"; // local
