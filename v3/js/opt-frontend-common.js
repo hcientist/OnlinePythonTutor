@@ -139,6 +139,13 @@ function initTogetherJS() {
     $("#togetherjsStatus").html("Please wait ... loading shared session");
   }
 
+
+  // clear your name from the cache every time to prevent privacy leaks
+  if (supports_html5_storage()) {
+    localStorage.removeItem('togetherjs.settings.name');
+  }
+
+
   // This event triggers when you first join a session and say 'hello',
   // and then one of your peers says hello back to you. If they have the
   // exact same name as you, then change your own name to avoid ambiguity.
