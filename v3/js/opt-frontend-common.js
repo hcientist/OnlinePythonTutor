@@ -391,7 +391,12 @@ function initTogetherJS() {
     // send this to the server for the purposes of logging, but other
     // clients shouldn't do anything with this data
     if (TogetherJS.running) {
-      TogetherJS.send({type: "initialAppState", myAppState: getAppState()});
+      TogetherJS.send({type: "initialAppState",
+                       myAppState: getAppState(),
+                       // so that you can tell whether someone else
+                       // shared a TogetherJS URL with you to invite you
+                       // into this shared session:
+                       togetherjsInUrl: togetherjsInUrl});
     }
 
     requestSync(); // immediately try to sync upon startup so that if
