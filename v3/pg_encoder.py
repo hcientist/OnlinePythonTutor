@@ -143,10 +143,15 @@ def create_lambda_line_number(codeobj, line_to_lambda_code):
     lst = line_to_lambda_code[lambda_lineno]
     ind = lst.index(codeobj)
     # add a suffix for all subsequent lambdas on a line beyond the first
+    # (nix this for now because order isn't guaranteed when you have
+    #  multiple lambdas on the same line)
+    '''
     if ind > 0:
       lineno_str = str(lambda_lineno) + chr(ord('a') + ind)
     else:
       lineno_str = str(lambda_lineno)
+    '''
+    lineno_str = str(lambda_lineno)
     return ' <line ' + lineno_str + '>'
   except:
     return ''

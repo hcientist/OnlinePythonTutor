@@ -317,7 +317,7 @@
         ], 
         "3": [
           "FUNCTION", 
-          "<lambda>(b) <line 5b>", 
+          "<lambda>(b) <line 5>", 
           2
         ]
       }, 
@@ -394,7 +394,7 @@
         ], 
         "3": [
           "FUNCTION", 
-          "<lambda>(b) <line 5b>", 
+          "<lambda>(b) <line 5>", 
           2
         ]
       }, 
@@ -458,12 +458,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "<lambda> <line 5b>", 
+          "func_name": "<lambda> <line 5>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             2
           ], 
-          "unique_hash": "<lambda> <line 5b>_f3", 
+          "unique_hash": "<lambda> <line 5>_f3", 
           "ordered_varnames": [
             "b"
           ]
@@ -488,7 +488,7 @@
         ], 
         "3": [
           "FUNCTION", 
-          "<lambda>(b) <line 5b>", 
+          "<lambda>(b) <line 5>", 
           2
         ]
       }, 
@@ -552,12 +552,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "<lambda> <line 5b>", 
+          "func_name": "<lambda> <line 5>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             2
           ], 
-          "unique_hash": "<lambda> <line 5b>_f3", 
+          "unique_hash": "<lambda> <line 5>_f3", 
           "ordered_varnames": [
             "b"
           ]
@@ -582,7 +582,7 @@
         ], 
         "3": [
           "FUNCTION", 
-          "<lambda>(b) <line 5b>", 
+          "<lambda>(b) <line 5>", 
           2
         ]
       }, 
@@ -647,12 +647,12 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "<lambda> <line 5b>", 
+          "func_name": "<lambda> <line 5>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             2
           ], 
-          "unique_hash": "<lambda> <line 5b>_f3", 
+          "unique_hash": "<lambda> <line 5>_f3", 
           "ordered_varnames": [
             "b", 
             "__return__"
@@ -678,7 +678,7 @@
         ], 
         "3": [
           "FUNCTION", 
-          "<lambda>(b) <line 5b>", 
+          "<lambda>(b) <line 5>", 
           2
         ]
       }, 
@@ -757,7 +757,7 @@
         ], 
         "3": [
           "FUNCTION", 
-          "<lambda>(b) <line 5b>", 
+          "<lambda>(b) <line 5>", 
           2
         ]
       }, 
@@ -806,7 +806,7 @@
         ], 
         "3": [
           "FUNCTION", 
-          "<lambda>(b) <line 5b>", 
+          "<lambda>(b) <line 5>", 
           2
         ]
       }, 

@@ -534,7 +534,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ]
       }, 
@@ -599,13 +599,13 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "<lambda> <line 3b>", 
+          "func_name": "<lambda> <line 3>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             2, 
             1
           ], 
-          "unique_hash": "<lambda> <line 3b>_f3", 
+          "unique_hash": "<lambda> <line 3>_f3", 
           "ordered_varnames": [
             "x"
           ]
@@ -643,7 +643,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ]
       }, 
@@ -708,13 +708,13 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "<lambda> <line 3b>", 
+          "func_name": "<lambda> <line 3>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             2, 
             1
           ], 
-          "unique_hash": "<lambda> <line 3b>_f3", 
+          "unique_hash": "<lambda> <line 3>_f3", 
           "ordered_varnames": [
             "x"
           ]
@@ -752,7 +752,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ]
       }, 
@@ -818,13 +818,13 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "<lambda> <line 3b>", 
+          "func_name": "<lambda> <line 3>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             2, 
             1
           ], 
-          "unique_hash": "<lambda> <line 3b>_f3", 
+          "unique_hash": "<lambda> <line 3>_f3", 
           "ordered_varnames": [
             "x", 
             "__return__"
@@ -863,7 +863,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ]
       }, 
@@ -954,7 +954,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ]
       }, 
@@ -1060,7 +1060,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ]
       }, 
@@ -1166,7 +1166,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ]
       }, 
@@ -1277,7 +1277,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ], 
         "5": [
@@ -1410,7 +1410,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ], 
         "5": [
@@ -1543,7 +1543,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ], 
         "5": [
@@ -1681,7 +1681,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ], 
         "5": [
@@ -1691,7 +1691,7 @@
         ], 
         "6": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           5
         ]
       }, 
@@ -1798,13 +1798,13 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "<lambda> <line 3b>", 
+          "func_name": "<lambda> <line 3>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             5, 
             1
           ], 
-          "unique_hash": "<lambda> <line 3b>_f6", 
+          "unique_hash": "<lambda> <line 3>_f6", 
           "ordered_varnames": [
             "x"
           ]
@@ -1842,7 +1842,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ], 
         "5": [
@@ -1852,7 +1852,7 @@
         ], 
         "6": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           5
         ]
       }, 
@@ -1959,13 +1959,13 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "<lambda> <line 3b>", 
+          "func_name": "<lambda> <line 3>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             5, 
             1
           ], 
-          "unique_hash": "<lambda> <line 3b>_f6", 
+          "unique_hash": "<lambda> <line 3>_f6", 
           "ordered_varnames": [
             "x"
           ]
@@ -2003,7 +2003,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ], 
         "5": [
@@ -2013,7 +2013,7 @@
         ], 
         "6": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           5
         ]
       }, 
@@ -2121,13 +2121,13 @@
           }, 
           "is_highlighted": true, 
           "is_parent": false, 
-          "func_name": "<lambda> <line 3b>", 
+          "func_name": "<lambda> <line 3>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             5, 
             1
           ], 
-          "unique_hash": "<lambda> <line 3b>_f6", 
+          "unique_hash": "<lambda> <line 3>_f6", 
           "ordered_varnames": [
             "x", 
             "__return__"
@@ -2166,7 +2166,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ], 
         "5": [
@@ -2176,7 +2176,7 @@
         ], 
         "6": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           5
         ]
       }, 
@@ -2309,7 +2309,7 @@
         ], 
         "4": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           2
         ], 
         "5": [
@@ -2319,7 +2319,7 @@
         ], 
         "6": [
           "FUNCTION", 
-          "<lambda>(x) <line 3b>", 
+          "<lambda>(x) <line 3>", 
           5
         ]
       }, 
