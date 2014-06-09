@@ -139,6 +139,8 @@ function signinCallback(authResult) {
         });
       });
 
+      redrawConnectors(); // update all arrows at the end
+
     } else {
       console.log('signinCallback: error occurred');
     }
@@ -156,6 +158,8 @@ function updateChatName() {
       p.Self.update({name: chatDisplayName});
       console.log('updateChatName:', p.Self.name);
     }
+
+    redrawConnectors(); // update all arrows at the end
   }
 }
 
@@ -189,6 +193,7 @@ function signout() {
       success: function(result) {
         $('#signinButton').show();
         $('#loggedInDiv').hide();
+        redrawConnectors(); // update all arrows at the end
       },
       error: function(e) {
         console.log(e);
