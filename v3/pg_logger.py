@@ -651,11 +651,11 @@ class PGLogger(bdb.Bdb):
 
         # debug ...
         '''
-        print >> sys.stderr, '=== STACK ==='
+        print >> sys.stderr
+        print >> sys.stderr, '=== STACK ===', 'curindex:', self.curindex
         for (e,ln) in self.stack:
           print >> sys.stderr, e.f_code.co_name + ' ' + e.f_code.co_filename + ' ' + str(ln)
         print >> sys.stderr, "top_frame", top_frame.f_code.co_name
-        print >> sys.stderr
         '''
 
 
@@ -743,7 +743,13 @@ class PGLogger(bdb.Bdb):
 
 
         # only render zombie frames that are NO LONGER on the stack
-        cur_stack_frames = [e[0] for e in self.stack]
+        #
+        # subtle: self.stack[:self.curindex+1] is the real stack, since
+        # everything after self.curindex+1 is beyond the top of the
+        # stack. this seems to be relevant only when there's an exception,
+        # since the ENTIRE stack is preserved but self.curindex
+        # starts decrementing as the exception bubbles up the stack.
+        cur_stack_frames = [e[0] for e in self.stack[:self.curindex+1]]
         zombie_frames_to_render = [e for e in self.zombie_frames if e not in cur_stack_frames]
 
 
