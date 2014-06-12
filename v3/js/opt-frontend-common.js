@@ -489,6 +489,8 @@ function setCodeMirrorVal(dat) {
   pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
   $('#urlOutput,#embedCodeOutput').val('');
 
+  clearFrontendError();
+
   // also scroll to top to make the UI more usable on smaller monitors
   $(document).scrollTop(0);
 }
