@@ -2,6 +2,7 @@
 
 Email philip@pgbovine.net if you have a question that isn't addressed here.
 
+
 #### I thought all objects in Python are (conceptually) on the heap; why does Online Python Tutor render primitive values (e.g., numbers, strings) inside of stack frames?
 
 This was a design decision made to keep the display less cluttered;
@@ -33,15 +34,7 @@ The possibilities are endless! (or 2^6 or something.)
 
 #### Unicode strings look weird or broken
 
-Yep, that's a known bug; Online Python Tutor currently doesn't have much support for Unicode.
-
-
-#### Can Online Python Tutor visualize programs that accept user input via, say, raw_input()?
-
-*Update on 2013-04-29*: Yes, try raw_input() now!!!
-
-*Old lame and outdated answer*:
-No, sorry it can't currently do that; and chances are, it won't ever be able to unless I significantly rewrite the backend.
+Yep, that's a known bug; Online Python Tutor currently doesn't have great Unicode support.
 
 
 #### Did you know that stepping through code with generators looks weird when "display frames of exited functions" is selected?
