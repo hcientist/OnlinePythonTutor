@@ -207,12 +207,6 @@ $(document).ready(function() {
   $("#getTutorBtn").click(requestTutor);
 
 
-  $("#clearBtn").click(function() {
-    pyInputCodeMirror.setValue('');
-    $(".surveyQ").val('');
-  });
-
-
   // canned examples
 
   $("#tutorialExampleLink").click(function() {
