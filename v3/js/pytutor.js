@@ -520,7 +520,10 @@ ExecutionVisualizer.prototype.render = function() {
   this.domRoot.find('#codeDisplayDiv').resizable({
     handles: "e", 
     minWidth: 100, //otherwise looks really goofy
-    resize: function(event, ui){ // old name: syncStdoutWidth, now not appropriate
+    resize: function(event, ui) { // old name: syncStdoutWidth, now not appropriate
+      // resize stdout box in unison
+      myViz.domRoot.find("#pyStdout").css("width", $(this).width());
+
       myViz.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
       if (myViz.params.updateOutputCallback) // report size change
         myViz.params.updateOutputCallback(this);
