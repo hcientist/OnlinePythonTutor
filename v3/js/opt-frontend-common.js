@@ -1061,7 +1061,8 @@ var survey_v2 = '\n\
 <p style="margin-top: 10px; line-height: 175%;">\n\
 [Optional] Please answer these questions to support our research and to help improve this tool.<br/>\n\
 What do you hope to learn by visualizing this code? <input type="text" id="what-learn-Q" class="surveyQ" size=60 maxlength=200/><br/>\n\
-If you\'re taking a Python course, paste a link to the course website: <input type="text" id="course-website-Q" class="surveyQ" size=40 maxlength=300/>\n\
+Paste a link to a Python course website: <input type="text" id="course-website-Q" class="surveyQ" size=55 maxlength=300/><br/>\n\
+<span style="font-size: 8pt; color: #666;">(This could be a course that you\'re taking or teaching, or that you\'ve taken or taught in the past.)</span>\n\
 <input type="hidden" id="Q-version" value="v2"/> <!-- for versioning -->\n\
 </p>'
 
