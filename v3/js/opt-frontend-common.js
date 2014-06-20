@@ -1099,7 +1099,7 @@ function getSurveyObject() {
     ret = {
       ver: $('#Q-version').val(),
       what_learn_Q: what_learn_Q_val,
-      email_addr_Q: course_website_Q_val,
+      course_website_Q: course_website_Q_val,
     }
   }
 
