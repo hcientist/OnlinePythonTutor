@@ -1042,23 +1042,7 @@ function executePythonCode(pythonSourceCode,
 
 Versions of survey wording:
 
-v1:
-
-<p style="margin-top: 10px; line-height: 175%;">
-
-[Optional] Please answer these questions to support our research and to help improve this tool.<br/>
-
-Where is your code from? <input type="text" id="code-origin-Q" class="surveyQ" size=60 maxlength=140/><br/>
-
-What do you hope to learn by visualizing it? <input type="text" id="what-learn-Q" class="surveyQ" size=60 maxlength=140/><br/>
-
-How did you find this web site? <input type="text" id="how-find-Q" class="surveyQ" size=60 maxlength=140/>
-
-<input type="hidden" id="Q-version" value="v1"/> <!-- for versioning -->
-
-</p>
-
-*/
+v1: (deployed around 2014-04-09)
 
 var survey_v1 = '\n\
 <p style="margin-top: 10px; line-height: 175%;">\n\
@@ -1069,13 +1053,27 @@ How did you find this web site? <input type="text" id="how-find-Q" class="survey
 <input type="hidden" id="Q-version" value="v1"/> <!-- for versioning -->\n\
 </p>'
 
-var survey_html = survey_v1;
+*/
+
+/* v2: (deployed on 2014-06-20) */
+
+var survey_v2 = '\n\
+<p style="margin-top: 10px; line-height: 175%;">\n\
+[Optional] Please answer these questions to support our research and to help improve this tool.<br/>\n\
+What do you hope to learn by visualizing this code? <input type="text" id="what-learn-Q" class="surveyQ" size=60 maxlength=200/><br/>\n\
+What is your email address? <input type="text" id="email-addr-Q" class="surveyQ" size=30 maxlength=100/>\n\
+<span style="font-size: 8pt; color: #888;">(We might ask you a quick follow-up question.)</span>\n\
+<input type="hidden" id="Q-version" value="v2"/> <!-- for versioning -->\n\
+</p>'
+
+var survey_html = survey_v2;
 
 function setSurveyHTML() {
   $('#surveyPane').html(survey_html);
 }
 
 function getSurveyObject() {
+  /* v1
   var code_origin_Q_val = $('#code-origin-Q').val();
   var what_learn_Q_val = $('#what-learn-Q').val();
   var how_find_Q_val = $('#how-find-Q').val();
@@ -1088,6 +1086,21 @@ function getSurveyObject() {
       code_origin_Q: code_origin_Q_val,
       what_learn_Q: what_learn_Q_val,
       how_find_Q: how_find_Q_val,
+    }
+  }
+  */
+
+  /* v2 */
+  var what_learn_Q_val = $('#what-learn-Q').val();
+  var email_addr_Q_val = $('#email-addr-Q').val();
+
+  var ret = null;
+
+  if (what_learn_Q_val || email_addr_Q_val) {
+    ret = {
+      ver: $('#Q-version').val(),
+      what_learn_Q: what_learn_Q_val,
+      email_addr_Q: email_addr_Q_val,
     }
   }
 
