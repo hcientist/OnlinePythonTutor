@@ -514,7 +514,7 @@ ExecutionVisualizer.prototype.render = function() {
     this.domRoot.find('#codeDisplayDiv').width(this.params.codeDivWidth);
     // it will propagate to the slider
 
-    this.domRoot.find("#pyStdout").css("width", this.params.codeDivWidth);
+    this.domRoot.find("#pyStdout").css("width", this.params.codeDivWidth - 20 /* wee tweaks */);
   }
 
   // enable left-right draggable pane resizer (originally from David Pritchard)
@@ -523,7 +523,7 @@ ExecutionVisualizer.prototype.render = function() {
     minWidth: 100, //otherwise looks really goofy
     resize: function(event, ui) { // old name: syncStdoutWidth, now not appropriate
       // resize stdout box in unison
-      myViz.domRoot.find("#pyStdout").css("width", $(this).width());
+      myViz.domRoot.find("#pyStdout").css("width", $(this).width() - 20 /* wee tweaks */);
 
       myViz.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
       if (myViz.params.updateOutputCallback) // report size change
