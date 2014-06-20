@@ -1061,8 +1061,7 @@ var survey_v2 = '\n\
 <p style="margin-top: 10px; line-height: 175%;">\n\
 [Optional] Please answer these questions to support our research and to help improve this tool.<br/>\n\
 What do you hope to learn by visualizing this code? <input type="text" id="what-learn-Q" class="surveyQ" size=60 maxlength=200/><br/>\n\
-What is your email address? <input type="text" id="email-addr-Q" class="surveyQ" size=30 maxlength=100/>\n\
-<span style="font-size: 8pt; color: #888;">(We might ask you a quick follow-up question.)</span>\n\
+If you\'re taking a Python course, paste a link to the course website: <input type="text" id="course-website-Q" class="surveyQ" size=40 maxlength=300/>\n\
 <input type="hidden" id="Q-version" value="v2"/> <!-- for versioning -->\n\
 </p>'
 
@@ -1092,15 +1091,15 @@ function getSurveyObject() {
 
   /* v2 */
   var what_learn_Q_val = $('#what-learn-Q').val();
-  var email_addr_Q_val = $('#email-addr-Q').val();
+  var course_website_Q_val = $('#course-website-Q').val();
 
   var ret = null;
 
-  if (what_learn_Q_val || email_addr_Q_val) {
+  if (what_learn_Q_val || course_website_Q_val) {
     ret = {
       ver: $('#Q-version').val(),
       what_learn_Q: what_learn_Q_val,
-      email_addr_Q: email_addr_Q_val,
+      email_addr_Q: course_website_Q_val,
     }
   }
 
