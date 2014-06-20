@@ -471,7 +471,7 @@ ExecutionVisualizer.prototype.render = function() {
 
     // add an extra label to link back to the main site, so that viewers
     // on the embedded page know that they're seeing an OPT visualization
-    this.domRoot.find('#codeDisplayDiv').append('<div style="font-size: 8pt; margin-bottom: 20px;">Code visualized   with <a href="http://pythontutor.com" target="_blank">Online Python Tutor</a></div>');
+    this.domRoot.find('#codeDisplayDiv').append('<div style="font-size: 8pt; margin-bottom: 20px;">Code visualized with <a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Online Python Tutor</a></div>');
   }
 
   myViz.editAnnotationMode = false;
@@ -511,9 +511,10 @@ ExecutionVisualizer.prototype.render = function() {
 
   if (this.params.codeDivWidth) {
     // set width once
-    this.domRoot.find('#codeDisplayDiv').width(
-      this.params.codeDivWidth);
+    this.domRoot.find('#codeDisplayDiv').width(this.params.codeDivWidth);
     // it will propagate to the slider
+
+    this.domRoot.find("#pyStdout").css("width", this.params.codeDivWidth);
   }
 
   // enable left-right draggable pane resizer (originally from David Pritchard)
