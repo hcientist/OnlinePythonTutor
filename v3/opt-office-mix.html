@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Online Python Tutor
+https://github.com/pgbovine/OnlinePythonTutor/
+
+Copyright (C) 2010-2014 Philip J. Guo (philip@pgbovine.net)
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ -->
+
+<head>
+  <title>Online Python Tutor - Visualize program execution</title>
+
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+
+<!-- requirements for pytutor.js -->
+<script type="text/javascript" src="js/d3.v2.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.ba-bbq.min.js"></script> <!-- for handling back button and URL hashes -->
+<script type="text/javascript" src="js/jquery.ba-dotimeout.min.js"></script> <!-- for event debouncing -->
+<script type="text/javascript" src="js/jquery.jsPlumb-1.3.10-all-min.js "></script> <!-- for rendering SVG connectors
+                                                                                         DO NOT UPGRADE ABOVE 1.3.10 OR ELSE BREAKAGE WILL OCCUR -->
+<script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script> <!-- for sliders and other UI elements -->
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.24.custom.css" rel="stylesheet" />
+
+<script type="text/javascript" src="js/pytutor.js"></script>
+<link rel="stylesheet" href="css/pytutor.css"/>
+
+<!-- requirements for opt-frontend.js -->
+
+<!-- codemirror.net online code editor -->
+<script type="text/javascript" src="js/codemirror/codemirror.js"></script>
+<link type="text/css" href="css/codemirror.css" rel="stylesheet" />
+<script type="text/javascript" src="js/codemirror/python.js"></script>
+
+<script type="text/javascript" src="js/opt-frontend-common.js"></script>
+<script type="text/javascript" src="js/opt-office-mix.js"></script>
+<link rel="stylesheet" href="css/opt-frontend.css"/>
+
+<!-- include this AFTER opt-frontend.js so that configuration
+     global variables are already defined at load time -->
+<script type="text/javascript" src="js/togetherjs/togetherjs-min.js"></script>
+
+</head>
+
+<body>
+
+<!--
+  // as of 2014-05-03, remove the button click survey questions from the
+  // visualizer so as not to clutter up the screen. i started running
+  // this experiment on 2014-04-09 and put it on hold on 2014-05-02:
+
+<div id="surveyHeader" style="margin-bottom: 5pt; display: none;">
+  <div id="vizSurveyLabel" style="font-size: 8pt; color: #666;">
+  Support our research by clicking a button when you see something interesting in the visualization.<br/>
+  </div>
+  <div>
+    <button class="surveyBtn" type="button">Eureka! Now I understand.</button>
+    <button class="surveyBtn" type="button">I learned something new!</button>
+    <button class="surveyBtn" type="button">I found the bug in my code!</button>
+    <button class="surveyBtn" type="button">This looks confusing.</button>
+    <button class="surveyBtn" type="button">I have another comment.</button>
+  </div>
+</div>
+
+-->
+
+<td valign="top" style="padding-left: 20px;">
+
+<div id="togetherjsStatus"></div>
+
+<!--
+  // Version 2 of my display-mode survey, greatly simplified and deployed on 2014-05-24
+ -->
+<div id="surveyHeader" style="display: none;">
+  <div id="vizSurveyLabel" style="font-size: 8pt; color: #666; margin-bottom: 5pt;">
+    <!-- 2014-06-04 tagline -->
+    Support our research and help future learners by describing what you are learning.
+
+    <!-- 2014-05-28 tagline
+    Help future learners by describing what you just learned.
+    -->
+
+    <!-- 2014-05-25 tagline
+    Help future learners by writing about what you are learning.
+    Submit as often as you like!
+    -->
+
+    <!-- 2014-05-24 original tagline
+    Help future learners by filling in this blank whenever you learn
+    something new from the visualization:
+     -->
+  </div>
+  <div style="font-size: 10pt; margin-bottom: 5pt; padding: 1pt;">
+    <!-- this phrasing retired on 2014-06-04: "I just learned that" -->
+    What did you just learn?
+    <input style="font-size: 10pt; padding: 1pt;" type="text" id="iJustLearnedInput" size="60" maxlength=300/>
+
+    <button id="iJustLearnedSubmission" type="button" style="font-size: 10pt;">Submit</button>
+
+    <span id="iJustLearnedThanks"
+          style="color: #e93f34; font-weight: bold; font-size: 11pt; display: none;">
+      Thanks!
+    </span>
+  </div>
+</div>
+
+</td>
+</tr>
+</table>
+
+
+<div id="pyInputPane">
+
+<div id="codeInputWarnings">Write
+
+  <select id="pythonVersionSelector">
+    <option value="2">Python 2.7</option>
+    <option value="3">Python 3.3</option>
+  </select>
+
+code here:</div>
+<div id="codeInputPane"></div> <!-- populate with a CodeMirror instance -->
+<div id="frontendErrorOutput"></div>
+
+<p style="margin-top: 10px; line-height: 200%;">
+  Options:
+  <select id="cumulativeModeSelector">
+    <option value="false">hide exited function frames</option>
+    <option value="true">show exited function frames</option>
+  </select>
+  <select id="heapPrimitivesSelector">
+    <option value="false">inline primitives and nested objects</option>
+    <option value="true">render all objects on the heap</option>
+  </select>
+  <select id="textualMemoryLabelsSelector">
+    <option value="false">draw references using arrows</option>
+    <option value="true">use text labels for references</option>
+  </select>
+</p>
+
+</div>
+
+<div id="pyOutputPane">
+</div>
+
+<div id="footer">
+
+<p>
+
+<a href="http://pythontutor.com/">Online Python Tutor</a> supports
+Python 2.7 and 3.3 with limited module imports and no file I/O. 
+The following modules may be imported: 
+bisect,
+collections,
+datetime,
+functools,
+heapq,
+itertools,
+json,
+math,
+operator,
+random,
+re,
+string
+</p>
+
+<p style="margin-top: 8px;">
+Copyright &copy; 2010-2014 <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
+</p>
+
+</div>
+
+</body>
+</html>
