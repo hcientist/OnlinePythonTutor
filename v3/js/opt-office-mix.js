@@ -37,6 +37,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 function executeCode(forceStartingInstr, forceRawInputLst) {
+  $('#loadingPane').html('Please wait ... executing Python code.').show();
+
   if (forceRawInputLst !== undefined) {
     rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
   }
@@ -79,6 +81,17 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 
 function optFinishSuccessfulExecution() {
   enterDisplayMode(); // do this first!
+  $('#pyOutputPane #editCodeLinkDiv').hide(); // don't have explicit "Edit code" link
+  $('#loadingPane').hide();
+}
+
+// override setFronendError in opt-frontend-common.js
+// NB: this file must be included AFTER opt-frontend-common.js
+function setFronendError(lines) {
+  var errorStr = lines.map(htmlspecialchars).join('<br/>');
+  $('#loadingPane').html('There was an error. Please return to "Edit" mode, fix it, then re-enter "View" mode.').show();
+  $("#frontendErrorOutput").html(errorStr);
+  $("#frontendErrorOutput").show();
 }
 
 
@@ -143,7 +156,12 @@ $(document).ready(function() {
 
     // initialize these callbacks only after Labs.connect is successful
     Labs.on(Labs.Core.EventTypes.ModeChanged, function(data) {
-      $("#testDiv").append('<p>' + data.mode + '</p>');
+      if (data.mode == 'Edit') {
+        enterEditMode();
+      }
+      else if (data.mode == 'View') {
+        executeCodeFromScratch();
+      }
     });
 
     Labs.on(Labs.Core.EventTypes.Activate, function() {
@@ -154,6 +172,4 @@ $(document).ready(function() {
       $("#testDiv").append('<p>Deactivate</p>');
     });
   });
-
-  //$("#executeBtn").click(executeCodeFromScratch);
 });
