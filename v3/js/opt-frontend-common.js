@@ -840,7 +840,7 @@ function updateAppDisplay(newAppMode) {
     $("#pyOutputPane").show();
     $("#embedLinkDiv").show();
 
-    if (!TogetherJS.running) {
+    if (typeof TogetherJS === 'undefined' || !TogetherJS.running) {
       $("#surveyHeader").show();
     }
 
@@ -872,7 +872,7 @@ function updateAppDisplay(newAppMode) {
       // debounce
       $.doTimeout('pyCodeOutputDivScroll', 100, function() {
         // note that this will send a signal back and forth both ways
-        if (TogetherJS.running) {
+        if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
           // (there's no easy way to prevent this), but it shouldn't keep
           // bouncing back and forth indefinitely since no the second signal
           // causes no additional scrolling
