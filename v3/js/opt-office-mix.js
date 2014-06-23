@@ -51,6 +51,8 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 
   var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
                            heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
+                           show_only_outputs: false,
+                           py_crazy_mode: false,
                            origin: 'opt-office-mix.js'};
 
   var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
