@@ -131,7 +131,7 @@ function signinCallback(authResult) {
                   {email : email},
                   function(data) {
                     // fall back on email address
-                    chatDisplayName = data.name ? data.name : email;
+                    chatDisplayName = data.name ? data.name + ' [staff]': email;
                     updateChatName();
                   },
                   "json");
