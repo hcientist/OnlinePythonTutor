@@ -39,10 +39,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 var originFrontendJsFile = 'opt-office-mix.js';
 
 // modeled after Kurt's simplelab.ts
-var _labEditor = null;   // for Edit mode
-var _labInstance = null; // for View mode
+var _labEditor = null; // for Edit mode
+var _labViewer = null; // for View mode
 
-var alreadyInit = false;
 
 function executeCode(forceStartingInstr, forceRawInputLst) {
   $('#loadingPane').html('Please wait ... executing Python code.').show();
@@ -92,14 +91,13 @@ function officeMixFinishSuccessfulExecution() {
   $('#pyOutputPane #editCodeLinkDiv').hide(); // don't have explicit "Edit code" link
   $('#loadingPane').hide();
 
-  $("#toggleModebtn").html("Edit code");
+  $("#toggleModebtn").html("Edit");
 }
 
 
 // Adapted from Kurt's simplelab.ts
 //
-// Helper method to return the lab configuration from the provided data
-//
+// Returns the lab configuration from the provided data
 function getConfigurationFromData(dat) {
     var appVersion = { major: 1, minor: 0 };
     var activityComponent = {
@@ -131,23 +129,17 @@ function setFronendError(lines) {
 }
 
 
-
-function officeMixEnterViewMode() {
+function officeMixEnterViewMode(firstTime) {
   if (_labEditor) {
-    _labEditor.done(function() {
-      _labEditor = null;
-    });
+    _labEditor.done(function() { _labEditor = null; });
   }
 
   Labs.takeLab(function(err, labInstance) {
     if (labInstance) {
-      _labInstance = labInstance;
+      _labViewer = labInstance; // global
 
-      // first-time initialization:
-      if (!alreadyInit) {
-        alreadyInit = true;
-
-        var savedAppState = _labInstance.components[0].component.data;
+      if (firstTime) {
+        var savedAppState = _labViewer.components[0].component.data;
         setToggleOptions(savedAppState);
         if (savedAppState.code) {
           setCodeMirrorVal(savedAppState.code);
@@ -157,65 +149,60 @@ function officeMixEnterViewMode() {
       executeCodeFromScratch();
     }
   });
+
+  $("#footer").hide();
 }
 
-function officeMixEnterEditMode() {
-  if (_labInstance) {
-    _labInstance.done(function() {
-      _labInstance = null;
-    });
+function officeMixEnterEditMode(firstTime) {
+  if (_labViewer) {
+    _labViewer.done(function() { _labViewer = null; });
   }
 
-  Labs.editLab(editLabCallback); // create _labEditor
+  Labs.editLab(function(err, labEditor) {
+    if (labEditor) {
+      _labEditor = labEditor; // global
 
-  $("#toggleModebtn").html("Visualize execution");
-  enterEditMode();
-}
+      if (firstTime) {
+        _labEditor.getConfiguration(function(err, configuration) {
+          if (configuration) {
+            var savedAppState = configuration.components[0].data;
+            setToggleOptions(savedAppState);
+            if (savedAppState.code) {
+              setCodeMirrorVal(savedAppState.code);
+            }
+          }
+        });
 
-
-function saveCurrentConfiguration() {
-  _labEditor.setConfiguration(getConfigurationFromData(getAppState()),
-                              function() {} /* empty error handler */);
-}
-
-
-function editLabCallback(err, labEditor) {
-  if (labEditor) {
-    _labEditor = labEditor; // global
-    initLabEditorCallbacks(); // should be called only once
-  }
-}
-
-
-function initLabEditorCallbacks() {
-  if (alreadyInit) {
-    return;
-  }
-  alreadyInit = true;
-
-  _labEditor.getConfiguration(function(err, configuration) {
-    if (configuration) {
-      var savedAppState = configuration.components[0].data;
-      setToggleOptions(savedAppState);
-      if (savedAppState.code) {
-        setCodeMirrorVal(savedAppState.code);
+        // set configuration on every code edit and option toggle, to
+        // set the 'dirty bit' on the enclosing PPT file
+        pyInputCodeMirror.on("change", saveCurrentConfiguration);
+        $('select').change(saveCurrentConfiguration);
       }
     }
   });
 
-  // set configuration on every code edit and option toggle, to
-  // set the 'dirty bit' on the enclosing PPT file
-  pyInputCodeMirror.on("change", saveCurrentConfiguration);
-  $('select').change(saveCurrentConfiguration);
+  $("#toggleModebtn").html("Preview");
+  enterEditMode();
+  $("#footer").show();
 }
 
+function saveCurrentConfiguration() {
+  if (_labEditor) {
+    _labEditor.setConfiguration(getConfigurationFromData(getAppState()),
+                                function() {} /* empty error handler */);
+  }
+}
+
+
 $(document).ready(function() {
+  // DON'T switch into office mix view mode ... this is just a "Preview"
+  // that's only relevant in Edit mode
   $("#toggleModebtn").click(function() {
     if (appMode == 'edit') {
-      officeMixEnterViewMode();
-    }
-    else {
-      officeMixEnterEditMode();
+      executeCodeFromScratch();
+    } else {
+      $("#toggleModebtn").html("Preview");
+      enterEditMode();
     }
   });
 
@@ -275,31 +262,26 @@ $(document).ready(function() {
 
   Labs.connect(function (err, connectionResponse) {
     var initialMode = Labs.Core.LabMode[connectionResponse.mode];
-    $("#testDiv").append('<p>Initial mode: ' + initialMode + '</p>');
 
     if (initialMode == 'Edit') {
-      officeMixEnterEditMode();
-    }
-    else if (initialMode == 'View') {
-      officeMixEnterViewMode();
+      officeMixEnterEditMode(true);
+    } else if (initialMode == 'View') {
+      officeMixEnterViewMode(true);
     }
 
     // initialize these callbacks only after Labs.connect is successful
     Labs.on(Labs.Core.EventTypes.ModeChanged, function(data) {
       if (data.mode == 'Edit') {
-        officeMixEnterEditMode();
-      }
-      else if (data.mode == 'View') {
-        officeMixEnterViewMode();
+        officeMixEnterEditMode(false);
+      } else if (data.mode == 'View') {
+        officeMixEnterViewMode(false);
       }
     });
 
     Labs.on(Labs.Core.EventTypes.Activate, function() {
-      $("#testDiv").append('<p>Activate</p>');
     });
 
     Labs.on(Labs.Core.EventTypes.Deactivate, function() {
-      $("#testDiv").append('<p>Deactivate</p>');
     });
   });
 });
