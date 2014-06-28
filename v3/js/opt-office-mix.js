@@ -123,9 +123,9 @@ function getConfigurationFromData(dat) {
 // NB: this file must be included AFTER opt-frontend-common.js
 function setFronendError(lines) {
   var errorStr = lines.map(htmlspecialchars).join('<br/>');
-  $('#loadingPane').html('There was an error. Please return to "Edit" mode, fix it, then re-enter "View" mode.').show();
-  $("#frontendErrorOutput").html(errorStr);
-  $("#frontendErrorOutput").show();
+  $('#loadingPane').html(errorStr).show();
+  //$("#frontendErrorOutput").html(errorStr);
+  //$("#frontendErrorOutput").show();
 }
 
 

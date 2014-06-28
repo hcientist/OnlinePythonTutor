@@ -41,7 +41,7 @@ table#pyOutputPane {
   padding: 10px;
 }
 
-#pyInputPane {
+#pyInputPane, #loadingPane {
   margin-top: 10px;
   margin-bottom: 20px;
 
