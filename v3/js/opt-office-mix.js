@@ -36,6 +36,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // should all be imported BEFORE this file
 
 
+var originFrontendJsFile = 'opt-office-mix.js';
+
+// modeled after Kurt's simplelab.ts
+var _labEditor = null;   // for Edit mode
+var _labInstance = null; // for View mode
+
+var alreadyInit = false;
+
 function executeCode(forceStartingInstr, forceRawInputLst) {
   $('#loadingPane').html('Please wait ... executing Python code.').show();
 
@@ -55,7 +63,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                            heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
                            show_only_outputs: false,
                            py_crazy_mode: false,
-                           origin: 'opt-office-mix.js'};
+                           origin: originFrontendJsFile};
 
   var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
 
@@ -75,15 +83,43 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                     backend_script, backendOptionsObj,
                     frontendOptionsObj,
                     'pyOutputPane',
-                    optFinishSuccessfulExecution, handleUncaughtExceptionFunc);
+                    officeMixFinishSuccessfulExecution, handleUncaughtExceptionFunc);
 }
 
 
-function optFinishSuccessfulExecution() {
+function officeMixFinishSuccessfulExecution() {
   enterDisplayMode(); // do this first!
   $('#pyOutputPane #editCodeLinkDiv').hide(); // don't have explicit "Edit code" link
   $('#loadingPane').hide();
+
+  $("#toggleModebtn").html("Edit code");
 }
+
+
+// Adapted from Kurt's simplelab.ts
+//
+// Helper method to return the lab configuration from the provided data
+//
+function getConfigurationFromData(dat) {
+    var appVersion = { major: 1, minor: 0 };
+    var activityComponent = {
+        type: Labs.Components.ActivityComponentType,
+        name: "", // XXX: can this be blank?
+        values: {},
+        data: dat,
+        secure: false
+    };
+    var configuration = {
+        appVersion: appVersion,
+        components: [activityComponent],
+        name: "", // XXX: can this be blank?
+        timeline: null,
+        analytics: null
+    };
+
+    return configuration;
+}
+
 
 // override setFronendError in opt-frontend-common.js
 // NB: this file must be included AFTER opt-frontend-common.js
@@ -95,7 +131,94 @@ function setFronendError(lines) {
 }
 
 
+
+function officeMixEnterViewMode() {
+  if (_labEditor) {
+    _labEditor.done(function() {
+      _labEditor = null;
+    });
+  }
+
+  Labs.takeLab(function(err, labInstance) {
+    if (labInstance) {
+      _labInstance = labInstance;
+
+      // first-time initialization:
+      if (!alreadyInit) {
+        alreadyInit = true;
+
+        var savedAppState = _labInstance.components[0].component.data;
+        setToggleOptions(savedAppState);
+        if (savedAppState.code) {
+          setCodeMirrorVal(savedAppState.code);
+        }
+      }
+
+      executeCodeFromScratch();
+    }
+  });
+}
+
+function officeMixEnterEditMode() {
+  if (_labInstance) {
+    _labInstance.done(function() {
+      _labInstance = null;
+    });
+  }
+
+  Labs.editLab(editLabCallback); // create _labEditor
+
+  $("#toggleModebtn").html("Visualize execution");
+  enterEditMode();
+}
+
+
+function saveCurrentConfiguration() {
+  _labEditor.setConfiguration(getConfigurationFromData(getAppState()),
+                              function() {} /* empty error handler */);
+}
+
+
+function editLabCallback(err, labEditor) {
+  if (labEditor) {
+    _labEditor = labEditor; // global
+    initLabEditorCallbacks(); // should be called only once
+  }
+}
+
+
+function initLabEditorCallbacks() {
+  if (alreadyInit) {
+    return;
+  }
+  alreadyInit = true;
+
+  _labEditor.getConfiguration(function(err, configuration) {
+    if (configuration) {
+      var savedAppState = configuration.components[0].data;
+      setToggleOptions(savedAppState);
+      if (savedAppState.code) {
+        setCodeMirrorVal(savedAppState.code);
+      }
+    }
+  });
+
+  // set configuration on every code edit and option toggle, to
+  // set the 'dirty bit' on the enclosing PPT file
+  pyInputCodeMirror.on("change", saveCurrentConfiguration);
+  $('select').change(saveCurrentConfiguration);
+}
+
 $(document).ready(function() {
+  $("#toggleModebtn").click(function() {
+    if (appMode == 'edit') {
+      officeMixEnterViewMode();
+    }
+    else {
+      officeMixEnterEditMode();
+    }
+  });
+
   // To run in https://labsjs.blob.core.windows.net/sdk/LabsJS-1.0.4/labshost.html
   // append "?PostMessageLabHost" to the query string.
   Labs.DefaultHostBuilder = function() {
@@ -133,7 +256,7 @@ $(document).ready(function() {
     extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
   });
 
-  pyInputCodeMirror.setSize(null, '420px');
+  pyInputCodeMirror.setSize(null, '350px');
 
   $(window).resize(redrawConnectors);
 
@@ -152,15 +275,22 @@ $(document).ready(function() {
 
   Labs.connect(function (err, connectionResponse) {
     var initialMode = Labs.Core.LabMode[connectionResponse.mode];
-    $("#testDiv").append('<p>' + initialMode + '</p>');
+    $("#testDiv").append('<p>Initial mode: ' + initialMode + '</p>');
+
+    if (initialMode == 'Edit') {
+      officeMixEnterEditMode();
+    }
+    else if (initialMode == 'View') {
+      officeMixEnterViewMode();
+    }
 
     // initialize these callbacks only after Labs.connect is successful
     Labs.on(Labs.Core.EventTypes.ModeChanged, function(data) {
       if (data.mode == 'Edit') {
-        enterEditMode();
+        officeMixEnterEditMode();
       }
       else if (data.mode == 'View') {
-        executeCodeFromScratch();
+        officeMixEnterViewMode();
       }
     });
 
