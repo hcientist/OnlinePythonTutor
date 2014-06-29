@@ -64,6 +64,11 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                              py_crazy_mode: false,
                              origin: originFrontendJsFile};
 
+    var surveyObj = getSurveyObject();
+    if (surveyObj) {
+      backendOptionsObj.survey = surveyObj;
+    }
+
     var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
 
     var frontendOptionsObj = {startingInstruction: startingInstruction,
