@@ -665,6 +665,57 @@ function genericOptFrontendReady() {
   $("#embedLinkDiv").hide();
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(executeCodeFromScratch);
+
+
+  // for survey-related stuff
+  // Version 1 - started experiment on 2014-04-09, put on hold on 2014-05-02
+  /*
+  $('.surveyBtn').click(function(e) {
+    // wow, massive copy-and-paste action from above!
+    var myArgs = getAppState();
+
+    var buttonPrompt = $(this).html();
+    var res = prompt('"' + buttonPrompt + '"' + '\nPlease elaborate if you can and hit OK to submit:');
+    // don't do ajax call when Cancel button is pressed
+    // (note that if OK button is pressed with no response, then an
+    // empty string will still be sent to the server
+    if (res !== null) {
+      myArgs.surveyQuestion = buttonPrompt;
+      myArgs.surveyResponse = res;
+      $.get('survey.py', myArgs, function(dat) {});
+    }
+  });
+  */
+
+  // Version 2 - started running on 2014-05-24
+  $('#iJustLearnedSubmission').click(function(e) {
+    var resp = $("#iJustLearnedInput").val();
+
+    if (!$.trim(resp)) {
+      return;
+    }
+
+    // wow, massive copy-and-paste action from above!
+    var myArgs = getAppState();
+
+    // myArgs.surveyQuestion = "I just learned that ..."; // retired on 2014-06-04
+    myArgs.surveyQuestion = "What did you just learn?";
+    myArgs.surveyResponse = resp;
+    myArgs.surveyVersion = 'v2';
+
+    // 2014-05-25: implemented more detailed tracing for surveys
+    if (myVisualizer) {
+      myArgs.updateHistoryJSON = JSON.stringify(myVisualizer.updateHistory);
+    }
+
+    $.get('survey.py', myArgs, function(dat) {});
+
+    $("#iJustLearnedInput").val('');
+    $("#iJustLearnedThanks").show();
+    $.doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
+      $("#iJustLearnedThanks").fadeOut(1000);
+    });
+  });
 }
 
 
