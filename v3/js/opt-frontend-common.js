@@ -1042,7 +1042,7 @@ function executePythonCode(pythonSourceCode,
 
 Versions of survey wording:
 
-v1: (deployed around 2014-04-09)
+v1: (deployed around 2014-04-09, revoked on 2014-06-20)
 
 var survey_v1 = '\n\
 <p style="margin-top: 10px; line-height: 175%;">\n\
@@ -1053,9 +1053,7 @@ How did you find this web site? <input type="text" id="how-find-Q" class="survey
 <input type="hidden" id="Q-version" value="v1"/> <!-- for versioning -->\n\
 </p>'
 
-*/
-
-/* v2: (deployed on 2014-06-20) */
+v2: (deployed on 2014-06-20, revoked on 2014-06-28)
 
 var survey_v2 = '\n\
 <p style="margin-top: 10px; line-height: 175%;">\n\
@@ -1066,7 +1064,18 @@ Paste a website link to a course that uses Python: <input type="text" id="course
 <input type="hidden" id="Q-version" value="v2"/> <!-- for versioning -->\n\
 </p>'
 
-var survey_html = survey_v2;
+v3: (deployed on 2014-06-28)
+*/
+var survey_v3 = '\n\
+<p style="margin-top: 10px; line-height: 175%;">\n\
+[Optional] Please answer these questions to support our research and to help improve this tool.<br/>\n\
+What do you hope to learn by visualizing this code? <input type="text" id="what-learn-Q" class="surveyQ" size=60 maxlength=200/><br/>\n\
+Where is this code from? <input type="text" id="code-origin-Q" class="surveyQ" size=60 maxlength=140/><br/>\n\
+<input type="hidden" id="Q-version" value="v3"/> <!-- for versioning -->\n\
+</p>'
+
+
+var survey_html = survey_v3;
 
 function setSurveyHTML() {
   $('#surveyPane').html(survey_html);
@@ -1090,7 +1099,7 @@ function getSurveyObject() {
   }
   */
 
-  /* v2 */
+  /* v2
   var what_learn_Q_val = $('#what-learn-Q').val();
   var course_website_Q_val = $('#course-website-Q').val();
 
@@ -1103,8 +1112,23 @@ function getSurveyObject() {
       course_website_Q: course_website_Q_val,
     }
   }
+  */
 
- return ret;
+  /* v3 */
+  var code_origin_Q_val = $('#code-origin-Q').val();
+  var what_learn_Q_val = $('#what-learn-Q').val();
+
+  var ret = null;
+
+  if (code_origin_Q_val || what_learn_Q_val) {
+    ret = {
+      ver: $('#Q-version').val(),
+      code_origin_Q: code_origin_Q_val,
+      what_learn_Q: what_learn_Q_val,
+    }
+  }
+
+  return ret;
 }
 
 
