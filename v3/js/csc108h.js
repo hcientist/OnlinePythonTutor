@@ -83,7 +83,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                       backend_script, backendOptionsObj,
                       frontendOptionsObj,
                       'pyOutputPane',
-                      enterDisplayMode, handleUncaughtExceptionFunc);
+                      optFinishSuccessfulExecution, handleUncaughtExceptionFunc);
 }
 
 $(document).ready(function() {

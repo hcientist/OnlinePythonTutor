@@ -162,20 +162,6 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 }
 
 
-function optFinishSuccessfulExecution() {
-  enterDisplayMode(); // do this first!
-
-  // 2014-05-25: implemented more detailed tracing for surveys
-  myVisualizer.creationTime = new Date();
-  // each element will be a two-element list consisting of:
-  // [step number, milliseconds elapsed since creationTime]
-  // ("debounce" entries that are less than 1 second apart to
-  // compress the logs a bit when there's rapid scrubbing or scrolling)
-  myVisualizer.updateHistory = [];
-  myVisualizer.updateHistory.push([myVisualizer.curInstr, 0]); // seed it!
-}
-
-
 $(document).ready(function() {
   setSurveyHTML();
 
