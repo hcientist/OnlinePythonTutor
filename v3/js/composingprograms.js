@@ -82,6 +82,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 }
 
 $(document).ready(function() {
+  setSurveyHTML();
   $('#signoutButton').click(signout);
 
   genericOptFrontendReady(); // initialize at the very end

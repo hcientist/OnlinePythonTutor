@@ -82,6 +82,6 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 }
 
 $(document).ready(function() {
-
+  setSurveyHTML();
   genericOptFrontendReady(); // initialize at the very end
 });
