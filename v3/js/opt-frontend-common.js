@@ -303,7 +303,7 @@ function initTogetherJS() {
     }
 
     $("#codeInputWarnings").html('<span style="color: #e93f34; font-weight: bold">\
-                                  Hold on, someone else is typing ...</span>');
+                                  Someone is typing ...</span>');
 
     $.doTimeout('codeMirrorWarningTimeout', 1000, function() { // debounce
       $("#codeInputWarnings").html($("#codeInputWarnings").data('orig-html'));
@@ -654,9 +654,6 @@ function genericOptFrontendReady() {
     });
   }
   else {
-    // don't do any syncing on change for Ace, since I can't get it to
-    // behave quite like the CodeMirror version
-    /*
     pyInputAceEditor.getSession().on("change", function(e) {
       // unfortunately, Ace doesn't detect whether a change was caused
       // by a setValue call
@@ -664,7 +661,6 @@ function genericOptFrontendReady() {
         TogetherJS.send({type: "codemirror-edit"});
       }
     });
-    */
   }
 
 
