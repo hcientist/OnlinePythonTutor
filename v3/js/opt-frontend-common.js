@@ -67,6 +67,27 @@ var appMode = 'edit'; // 'edit' or 'display'. also support
 var pyInputCodeMirror; // CodeMirror object that contains the input code
 var pyInputAceEditor; // Ace editor object that contains the input code
 
+var useCodeMirror = true; // true -> use CodeMirror, false -> use Ace
+var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
+
+
+function initAceEditor(height) {
+  pyInputAceEditor = ace.edit('codeInputPane');
+  var s = pyInputAceEditor.getSession();
+  s.setMode("ace/mode/python");
+  // tab -> 4 spaces
+  s.setTabSize(4);
+  s.setUseSoftTabs(true);
+  // disable extraneous indicators:
+  s.setFoldStyle('manual'); // no code folding indicators
+  pyInputAceEditor.setHighlightActiveLine(false);
+  pyInputAceEditor.setShowPrintMargin(false);
+  pyInputAceEditor.setBehavioursEnabled(false);
+
+  $('#codeInputPane').css('width', '700px');
+  $('#codeInputPane').css('height', height + 'px');
+}
+
 
 // BEGIN - shared session stuff
 
@@ -529,7 +550,13 @@ function pyInputGetValue() {
 }
 
 function pyInputSetValue(dat) {
-  pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
+  if (useCodeMirror) {
+    pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
+  }
+  else {
+    pyInputAceEditor.setValue(dat.rtrim() /* kill trailing spaces */);
+  }
+
   $('#urlOutput,#embedCodeOutput').val('');
 
   clearFrontendError();
@@ -568,40 +595,44 @@ function genericOptFrontendReady() {
   });
 
 
-  pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
-    mode: 'python',
-    lineNumbers: true,
-    tabSize: 4,
-    indentUnit: 4,
-    // convert tab into four spaces:
-    extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
-  });
+  if (useCodeMirror) {
+    pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
+      mode: 'python',
+      lineNumbers: true,
+      tabSize: 4,
+      indentUnit: 4,
+      // convert tab into four spaces:
+      extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
+    });
 
-  pyInputCodeMirror.setSize(null, '420px');
-
-
-  pyInputAceEditor = ace.edit('codeInputPaneAce');
-  var s = pyInputAceEditor.getSession();
-  s.setMode("ace/mode/python");
-  // tab -> 4 spaces
-  s.setTabSize(4);
-  s.setUseSoftTabs(true);
-  // disable extraneous indicators:
-  s.setFoldStyle('manual'); // no code folding indicators
-  pyInputAceEditor.setHighlightActiveLine(false);
-  pyInputAceEditor.setShowPrintMargin(false);
-  pyInputAceEditor.setBehavioursEnabled(false);
+    pyInputCodeMirror.setSize(null, '420px');
+  }
+  else {
+    initAceEditor(420);
+  }
 
 
-  // for shared sessions
-  pyInputCodeMirror.on("change", function(cm, change) {
-    // only trigger when the user explicitly typed something
-    if (change.origin != 'setValue') {
+  if (useCodeMirror) {
+    // for shared sessions
+    pyInputCodeMirror.on("change", function(cm, change) {
+      // only trigger when the user explicitly typed something
+      if (change.origin != 'setValue') {
+        if (TogetherJS.running) {
+          TogetherJS.send({type: "codemirror-edit"});
+        }
+      }
+    });
+  }
+  else {
+    pyInputAceEditor.getSession().on("change", function(e) {
+      // unfortunately, Ace doesn't detect whether a change was caused
+      // by a setValue call
       if (TogetherJS.running) {
         TogetherJS.send({type: "codemirror-edit"});
       }
-    }
-  });
+    });
+  }
+
 
   $(pyInputScroller).scroll(function(e) {
     if (TogetherJS.running) {
@@ -807,7 +838,7 @@ function setToggleOptions(dat) {
 function getAppState() {
   assert(originFrontendJsFile); // global var defined in each frontend
 
-  var ret = {code: pyInputCodeMirror.getValue(),
+  var ret = {code: pyInputGetValue(),
              mode: appMode,
              origin: originFrontendJsFile,
              cumulative: $('#cumulativeModeSelector').val(),
@@ -964,7 +995,7 @@ function updateAppDisplay(newAppMode) {
 
 function executeCodeFromScratch() {
   // don't execute empty string:
-  if ($.trim(pyInputCodeMirror.getValue()) == '') {
+  if ($.trim(pyInputGetValue()) == '') {
     setFronendError(["Type in some Python code to visualize."]);
     return;
   }
