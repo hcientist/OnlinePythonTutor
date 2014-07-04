@@ -255,6 +255,11 @@ $(document).ready(function() {
     initAceEditor(350);
   }
 
+  // no frills footer
+  $("#footer").css("margin-top", "0px")
+              .css("padding-top", "0px")
+              .css("border-top", "0px");
+
   $(window).resize(redrawConnectors);
 
   // register a generic AJAX error handler

@@ -176,7 +176,15 @@ Get help from a tutor
 
 <div id="pyInputPane">
 
-<div id="codeInputWarnings">Write Python code here or <a href="#" id="firstExampleDupLink">load an example</a>:</div>
+<div id="codeInputWarnings">Write
+
+  <select id="pythonVersionSelector">
+    <option value="2">Python 2.7</option>
+    <option value="3">Python 3.3</option>
+    <option value="2crazy">Py 2.crazy</option>
+  </select>
+
+code here or <a href="#" id="firstExampleDupLink">load an example</a>:</div>
 <div id="codeInputPane"></div> <!-- populate with a CodeMirror or Ace code editor instance -->
 <div id="frontendErrorOutput"></div>
 <div id="surveyPane"></div>
@@ -186,33 +194,28 @@ Get help from a tutor
 </p>
 
 <p style="margin-top: 20px; line-height: 200%;">
-Execute code using
-  <select id="pythonVersionSelector">
-    <option value="2">Python 2.7</option>
-    <option value="3">Python 3.3</option>
-    <option value="2crazy">Py 2.crazy</option>
-  </select>,
+Options:
   <select id="cumulativeModeSelector">
     <option value="false">hide exited function frames (default)</option>
     <option value="true">show exited function frames</option>
     <option value="holistic">holistic mode (experimental)</option>
-  </select>,<br/>
+  </select>
   <select id="heapPrimitivesSelector">
     <option value="false">inline primitives and nested objects (default)</option>
     <option value="true">render all objects on the heap</option>
-  </select>,
+  </select>
   <select id="drawParentPointerSelector">
     <option value="false">hide environment parent pointers (default)</option>
     <option value="true">show environment parent pointers</option>
-  </select>,<br/>
+  </select>
   <select id="textualMemoryLabelsSelector">
     <option value="false">draw references using arrows (default)</option>
     <option value="true">use text labels for references</option>
-  </select>, and
+  </select>
   <select id="showOnlyOutputsSelector">
     <option value="false">show everything (default)</option>
     <option value="true">show only outputs</option>
-  </select>.
+  </select>
 </p>
 
 
@@ -341,9 +344,9 @@ webpage. Adjust the height and width parameters as needed.</p>
 </div>
 
 <p>
-<a href="http://pythontutor.com/">Online Python Tutor</a> supports <a
-href="http://www.python.org/doc/2.7/">Python 2.7</a> and <a
-href="http://www.python.org/doc/3.3.0/">Python 3.3</a> with limited module
+<a href="http://pythontutor.com/">Online Python Tutor</a> supports
+Python <a href="http://www.python.org/doc/2.7/">2.7</a> and <a
+href="http://www.python.org/doc/3.3.0/">3.3</a> with limited module
 imports and no file I/O. 
 The following modules may be imported: 
 bisect,
