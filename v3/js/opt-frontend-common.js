@@ -67,8 +67,7 @@ var appMode = 'edit'; // 'edit' or 'display'. also support
 var pyInputCodeMirror; // CodeMirror object that contains the input code
 var pyInputAceEditor; // Ace editor object that contains the input code
 
-var useCodeMirror = true; // true -> use CodeMirror, false -> use Ace
-var useCodeMirror = false;
+var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
 
 
 function initAceEditor(height) {
