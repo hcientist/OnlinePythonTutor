@@ -78,7 +78,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                             pyCrazyMode: false, holisticMode: false
                            }
 
-  executePythonCode(pyInputCodeMirror.getValue(),
+  executePythonCode(pyInputGetValue(),
                     backend_script, backendOptionsObj,
                     frontendOptionsObj,
                     'pyOutputPane',
@@ -142,7 +142,7 @@ function officeMixEnterViewMode(firstTime) {
         var savedAppState = _labViewer.components[0].component.data;
         setToggleOptions(savedAppState);
         if (savedAppState.code) {
-          setCodeMirrorVal(savedAppState.code);
+          pyInputSetValue(savedAppState.code);
         }
       }
 
@@ -168,7 +168,7 @@ function officeMixEnterEditMode(firstTime) {
             var savedAppState = configuration.components[0].data;
             setToggleOptions(savedAppState);
             if (savedAppState.code) {
-              setCodeMirrorVal(savedAppState.code);
+              pyInputSetValue(savedAppState.code);
             }
           }
         });

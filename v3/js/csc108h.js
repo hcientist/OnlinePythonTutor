@@ -79,7 +79,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                               updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
                              }
 
-    executePythonCode(pyInputCodeMirror.getValue(),
+    executePythonCode(pyInputGetValue(),
                       backend_script, backendOptionsObj,
                       frontendOptionsObj,
                       'pyOutputPane',

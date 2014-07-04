@@ -79,7 +79,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                               showAllFrameLabels: true,
                              }
 
-    executePythonCode(pyInputCodeMirror.getValue(),
+    executePythonCode(pyInputGetValue(),
                       backend_script, backendOptionsObj,
                       frontendOptionsObj,
                       'pyOutputPane',

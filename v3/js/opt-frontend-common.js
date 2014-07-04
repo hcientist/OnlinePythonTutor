@@ -65,6 +65,7 @@ var appMode = 'edit'; // 'edit' or 'display'. also support
                       // 'visualize' for backward compatibility (same as 'display')
 
 var pyInputCodeMirror; // CodeMirror object that contains the input text
+var pyInputAceEditor; // Ace editor object that contains the input text
 
 
 // BEGIN - shared session stuff
@@ -99,7 +100,7 @@ var executeCodeSignalFromRemote = false;
 var togetherjsSyncRequested = false;
 var pendingCodeOutputScrollTop = null;
 
-var codeMirrorScroller = '#codeInputPane .CodeMirror-scroll';
+var pyInputScroller = '#codeInputPane .CodeMirror-scroll';
 
 TogetherJSConfig_ignoreForms = ['.togetherjsIgnore']; // do NOT sync these elements
 
@@ -120,7 +121,7 @@ function syncAppState(appState) {
   // up because the initial states of the two forms aren't equal.
   var orig = TogetherJS.config.get('ignoreForms');
   TogetherJS.config('ignoreForms', true);
-  setCodeMirrorVal(appState.code);
+  pyInputSetValue(appState.code);
   TogetherJS.config('ignoreForms', orig);
 
   if (appState.rawInputLst) {
@@ -264,10 +265,10 @@ function initTogetherJS() {
       updateAppDisplay(msg.appMode);
 
       if (appMode == 'edit' && msg.codeInputScrollTop !== undefined &&
-          $(codeMirrorScroller).scrollTop() != msg.codeInputScrollTop) {
+          $(pyInputScroller).scrollTop() != msg.codeInputScrollTop) {
         // hack: give it a bit of time to settle first ...
         $.doTimeout('pyInputCodeMirrorInit', 200, function() {
-          $(codeMirrorScroller).scrollTop(msg.codeInputScrollTop);
+          $(pyInputScroller).scrollTop(msg.codeInputScrollTop);
         });
       }
     }
@@ -296,7 +297,7 @@ function initTogetherJS() {
     if (TogetherJS.running) {
       TogetherJS.send({type: "myAppState",
                        myAppState: getAppState(),
-                       codeInputScrollTop: $('#codeInputPane .CodeMirror-scroll').scrollTop(),
+                       codeInputScrollTop: $(pyInputScroller).scrollTop(),
                        pyCodeOutputDivScrollTop: myVisualizer ?
                                                  myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop() :
                                                  undefined});
@@ -356,7 +357,7 @@ function initTogetherJS() {
       // value. this is hacky; ideally we have a callback function for
       // when setValue() completes.
       $.doTimeout('pyInputCodeMirrorInit', 200, function() {
-        $(codeMirrorScroller).scrollTop(msg.codeInputScrollTop);
+        $(pyInputScroller).scrollTop(msg.codeInputScrollTop);
       });
     }
   });
@@ -365,7 +366,7 @@ function initTogetherJS() {
     // do NOT use a msg.sameUrl guard since that will miss some signals
     // due to our funky URLs
 
-    $(codeMirrorScroller).scrollTop(msg.scrollTop);
+    $(pyInputScroller).scrollTop(msg.scrollTop);
   });
 
   TogetherJS.hub.on("pyCodeOutputDivScroll", function(msg) {
@@ -485,17 +486,6 @@ var try_hook = function(hook_name, args) {
   return [false]; // just a stub
 }
 
-function setCodeMirrorVal(dat) {
-  pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
-  $('#urlOutput,#embedCodeOutput').val('');
-
-  clearFrontendError();
-
-  // also scroll to top to make the UI more usable on smaller monitors
-  $(document).scrollTop(0);
-}
-
-
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 
 var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
@@ -533,6 +523,22 @@ function supports_html5_storage() {
   }
 }
 
+// abstraction so that we can swap out CodeMirror or Ace
+function pyInputGetValue() {
+  return pyInputCodeMirror.getValue();
+}
+
+function pyInputSetValue(val) {
+  pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
+  $('#urlOutput,#embedCodeOutput').val('');
+
+  clearFrontendError();
+
+  // also scroll to top to make the UI more usable on smaller monitors
+  $(document).scrollTop(0);
+}
+
+
 // run at the END so that everything else can be initialized first
 function genericOptFrontendReady() {
   initTogetherJS(); // initialize early
@@ -556,7 +562,7 @@ function genericOptFrontendReady() {
     if (TogetherJS.running && !isExecutingCode) {
       TogetherJS.send({type: "hashchange",
                        appMode: appMode,
-                       codeInputScrollTop: $(codeMirrorScroller).scrollTop(),
+                       codeInputScrollTop: $(pyInputScroller).scrollTop(),
                        myAppState: getAppState()});
     }
   });
@@ -574,6 +580,19 @@ function genericOptFrontendReady() {
   pyInputCodeMirror.setSize(null, '420px');
 
 
+  pyInputAceEditor = ace.edit('codeInputPaneAce');
+  var s = pyInputAceEditor.getSession();
+  s.setMode("ace/mode/python");
+  // tab -> 4 spaces
+  s.setTabSize(4);
+  s.setUseSoftTabs(true);
+  // disable extraneous indicators:
+  s.setFoldStyle('manual'); // no code folding indicators
+  pyInputAceEditor.setHighlightActiveLine(false);
+  pyInputAceEditor.setShowPrintMargin(false);
+  pyInputAceEditor.setBehavioursEnabled(false);
+
+
   // for shared sessions
   pyInputCodeMirror.on("change", function(cm, change) {
     // only trigger when the user explicitly typed something
@@ -584,7 +603,7 @@ function genericOptFrontendReady() {
     }
   });
 
-  $('#codeInputPane .CodeMirror-scroll').scroll(function(e) {
+  $(pyInputScroller).scroll(function(e) {
     if (TogetherJS.running) {
       var elt = $(this);
       // debounce
@@ -724,7 +743,7 @@ function parseQueryString() {
   var queryStrOptions = getQueryStringOptions();
   setToggleOptions(queryStrOptions);
   if (queryStrOptions.preseededCode) {
-    setCodeMirrorVal(queryStrOptions.preseededCode);
+    pyInputSetValue(queryStrOptions.preseededCode);
   }
   if (queryStrOptions.rawInputLst) {
     rawInputLst = queryStrOptions.rawInputLst; // global

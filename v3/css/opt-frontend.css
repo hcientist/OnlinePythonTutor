@@ -51,10 +51,15 @@ table#pyOutputPane {
   margin-right: auto;
 }
 
-#codeInputPane {
+#codeInputPane, #codeInputPaneAce {
   margin-top: 5px;
   font-size: 12pt;
   border: 1px solid #ddd;
+}
+
+#codeInputPaneAce {
+  width: 700px;
+  height: 420px;
 }
 
 button.smallBtn {

@@ -154,7 +154,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                             holisticMode: ($('#cumulativeModeSelector').val() == 'holistic')
                            }
 
-  executePythonCode(pyInputCodeMirror.getValue(),
+  executePythonCode(pyInputGetValue(),
                     backend_script, backendOptionsObj,
                     frontendOptionsObj,
                     'pyOutputPane',
@@ -196,259 +196,259 @@ $(document).ready(function() {
   // canned examples
 
   $("#tutorialExampleLink").click(function() {
-    $.get("example-code/py_tutorial.txt", setCodeMirrorVal);
+    $.get("example-code/py_tutorial.txt", pyInputSetValue);
     return false;
   });
 
   $("#strtokExampleLink").click(function() {
-    $.get("example-code/strtok.txt", setCodeMirrorVal);
+    $.get("example-code/strtok.txt", pyInputSetValue);
     return false;
   });
 
   $("#listCompLink").click(function() {
-    $.get("example-code/list-comp.txt", setCodeMirrorVal);
+    $.get("example-code/list-comp.txt", pyInputSetValue);
     return false;
   });
 
   $("#compsLink").click(function() {
-    $.get("example-code/comprehensions.txt", setCodeMirrorVal);
+    $.get("example-code/comprehensions.txt", pyInputSetValue);
     return false;
   });
 
   $("#fibonacciExampleLink").click(function() {
-    $.get("example-code/fib.txt", setCodeMirrorVal);
+    $.get("example-code/fib.txt", pyInputSetValue);
     return false;
   });
 
   $("#memoFibExampleLink").click(function() {
-    $.get("example-code/memo_fib.txt", setCodeMirrorVal);
+    $.get("example-code/memo_fib.txt", pyInputSetValue);
     return false;
   });
 
   $("#factExampleLink").click(function() {
-    $.get("example-code/fact.txt", setCodeMirrorVal);
+    $.get("example-code/fact.txt", pyInputSetValue);
     return false;
   });
 
   $("#filterExampleLink").click(function() {
-    $.get("example-code/filter.txt", setCodeMirrorVal);
+    $.get("example-code/filter.txt", pyInputSetValue);
     return false;
   });
 
   $("#insSortExampleLink").click(function() {
-    $.get("example-code/ins_sort.txt", setCodeMirrorVal);
+    $.get("example-code/ins_sort.txt", pyInputSetValue);
     return false;
   });
 
   $("#aliasExampleLink,#firstExampleDupLink").click(function() {
-    $.get("example-code/aliasing.txt", setCodeMirrorVal);
+    $.get("example-code/aliasing.txt", pyInputSetValue);
     return false;
   });
 
   $("#happyExampleLink").click(function() {
-    $.get("example-code/happy.txt", setCodeMirrorVal);
+    $.get("example-code/happy.txt", pyInputSetValue);
     return false;
   });
 
   $("#newtonExampleLink").click(function() {
-    $.get("example-code/sqrt.txt", setCodeMirrorVal);
+    $.get("example-code/sqrt.txt", pyInputSetValue);
     return false;
   });
 
   $("#oopSmallExampleLink").click(function() {
-    $.get("example-code/oop_small.txt", setCodeMirrorVal);
+    $.get("example-code/oop_small.txt", pyInputSetValue);
     return false;
   });
 
   $("#mapExampleLink").click(function() {
-    $.get("example-code/map.txt", setCodeMirrorVal);
+    $.get("example-code/map.txt", pyInputSetValue);
     return false;
   });
 
   $("#rawInputExampleLink").click(function() {
-    $.get("example-code/raw_input.txt", setCodeMirrorVal);
+    $.get("example-code/raw_input.txt", pyInputSetValue);
     return false;
   });
 
   $("#oop1ExampleLink").click(function() {
-    $.get("example-code/oop_1.txt", setCodeMirrorVal);
+    $.get("example-code/oop_1.txt", pyInputSetValue);
     return false;
   });
 
   $("#oop2ExampleLink").click(function() {
-    $.get("example-code/oop_2.txt", setCodeMirrorVal);
+    $.get("example-code/oop_2.txt", pyInputSetValue);
     return false;
   });
 
   $("#inheritanceExampleLink").click(function() {
-    $.get("example-code/oop_inherit.txt", setCodeMirrorVal);
+    $.get("example-code/oop_inherit.txt", pyInputSetValue);
     return false;
   });
 
   $("#sumExampleLink").click(function() {
-    $.get("example-code/sum.txt", setCodeMirrorVal);
+    $.get("example-code/sum.txt", pyInputSetValue);
     return false;
   });
 
   $("#pwGcdLink").click(function() {
-    $.get("example-code/wentworth_gcd.txt", setCodeMirrorVal);
+    $.get("example-code/wentworth_gcd.txt", pyInputSetValue);
     return false;
   });
 
   $("#pwSumListLink").click(function() {
-    $.get("example-code/wentworth_sumList.txt", setCodeMirrorVal);
+    $.get("example-code/wentworth_sumList.txt", pyInputSetValue);
     return false;
   });
 
   $("#towersOfHanoiLink").click(function() {
-    $.get("example-code/towers_of_hanoi.txt", setCodeMirrorVal);
+    $.get("example-code/towers_of_hanoi.txt", pyInputSetValue);
     return false;
   });
 
   $("#pwTryFinallyLink").click(function() {
-    $.get("example-code/wentworth_try_finally.txt", setCodeMirrorVal);
+    $.get("example-code/wentworth_try_finally.txt", pyInputSetValue);
     return false;
   });
 
   $("#sumCubesLink").click(function() {
-    $.get("example-code/sum-cubes.txt", setCodeMirrorVal);
+    $.get("example-code/sum-cubes.txt", pyInputSetValue);
     return false;
   });
 
   $("#decoratorsLink").click(function() {
-    $.get("example-code/decorators.txt", setCodeMirrorVal);
+    $.get("example-code/decorators.txt", pyInputSetValue);
     return false;
   });
 
   $("#genPrimesLink").click(function() {
-    $.get("example-code/gen_primes.txt", setCodeMirrorVal);
+    $.get("example-code/gen_primes.txt", pyInputSetValue);
     return false;
   });
 
   $("#genExprLink").click(function() {
-    $.get("example-code/genexpr.txt", setCodeMirrorVal);
+    $.get("example-code/genexpr.txt", pyInputSetValue);
     return false;
   });
 
 
   $('#closure1Link').click(function() {
-    $.get("example-code/closures/closure1.txt", setCodeMirrorVal);
+    $.get("example-code/closures/closure1.txt", pyInputSetValue);
     return false;
   });
   $('#closure2Link').click(function() {
-    $.get("example-code/closures/closure2.txt", setCodeMirrorVal);
+    $.get("example-code/closures/closure2.txt", pyInputSetValue);
     return false;
   });
   $('#closure3Link').click(function() {
-    $.get("example-code/closures/closure3.txt", setCodeMirrorVal);
+    $.get("example-code/closures/closure3.txt", pyInputSetValue);
     return false;
   });
   $('#closure4Link').click(function() {
-    $.get("example-code/closures/closure4.txt", setCodeMirrorVal);
+    $.get("example-code/closures/closure4.txt", pyInputSetValue);
     return false;
   });
   $('#closure5Link').click(function() {
-    $.get("example-code/closures/closure5.txt", setCodeMirrorVal);
+    $.get("example-code/closures/closure5.txt", pyInputSetValue);
     return false;
   });
   $('#lambdaParamLink').click(function() {
-    $.get("example-code/closures/lambda-param.txt", setCodeMirrorVal);
+    $.get("example-code/closures/lambda-param.txt", pyInputSetValue);
     return false;
   });
   $('#tortureLink').click(function() {
-    $.get("example-code/closures/student-torture.txt", setCodeMirrorVal);
+    $.get("example-code/closures/student-torture.txt", pyInputSetValue);
     return false;
   });
 
 
 
   $('#aliasing1Link').click(function() {
-    $.get("example-code/aliasing/aliasing1.txt", setCodeMirrorVal);
+    $.get("example-code/aliasing/aliasing1.txt", pyInputSetValue);
     return false;
   });
   $('#aliasing2Link').click(function() {
-    $.get("example-code/aliasing/aliasing2.txt", setCodeMirrorVal);
+    $.get("example-code/aliasing/aliasing2.txt", pyInputSetValue);
     return false;
   });
   $('#aliasing3Link').click(function() {
-    $.get("example-code/aliasing/aliasing3.txt", setCodeMirrorVal);
+    $.get("example-code/aliasing/aliasing3.txt", pyInputSetValue);
     return false;
   });
   $('#aliasing4Link').click(function() {
-    $.get("example-code/aliasing/aliasing4.txt", setCodeMirrorVal);
+    $.get("example-code/aliasing/aliasing4.txt", pyInputSetValue);
     return false;
   });
   $('#aliasing5Link').click(function() {
-    $.get("example-code/aliasing/aliasing5.txt", setCodeMirrorVal);
+    $.get("example-code/aliasing/aliasing5.txt", pyInputSetValue);
     return false;
   });
   $('#aliasing6Link').click(function() {
-    $.get("example-code/aliasing/aliasing6.txt", setCodeMirrorVal);
+    $.get("example-code/aliasing/aliasing6.txt", pyInputSetValue);
     return false;
   });
   $('#aliasing7Link').click(function() {
-    $.get("example-code/aliasing/aliasing7.txt", setCodeMirrorVal);
+    $.get("example-code/aliasing/aliasing7.txt", pyInputSetValue);
     return false;
   });
   $('#aliasing8Link').click(function() {
-    $.get("example-code/aliasing/aliasing8.txt", setCodeMirrorVal);
+    $.get("example-code/aliasing/aliasing8.txt", pyInputSetValue);
     return false;
   });
 
 
   $('#ll1Link').click(function() {
-    $.get("example-code/linked-lists/ll1.txt", setCodeMirrorVal);
+    $.get("example-code/linked-lists/ll1.txt", pyInputSetValue);
     return false;
   });
   $('#ll2Link').click(function() {
-    $.get("example-code/linked-lists/ll2.txt", setCodeMirrorVal);
+    $.get("example-code/linked-lists/ll2.txt", pyInputSetValue);
     return false;
   });
   $('#sumListLink').click(function() {
-    $.get("example-code/sum-list.txt", setCodeMirrorVal);
+    $.get("example-code/sum-list.txt", pyInputSetValue);
     return false;
   });
 
   $('#varargsLink').click(function() {
-    $.get("example-code/varargs.txt", setCodeMirrorVal);
+    $.get("example-code/varargs.txt", pyInputSetValue);
     return false;
   });
 
   $('#forElseLink').click(function() {
-    $.get("example-code/for-else.txt", setCodeMirrorVal);
+    $.get("example-code/for-else.txt", pyInputSetValue);
     return false;
   });
 
   $('#nonlocalLink').click(function() {
-    $.get("example-code/nonlocal.txt", setCodeMirrorVal);
+    $.get("example-code/nonlocal.txt", pyInputSetValue);
     return false;
   });
 
   $('#metaclassLink').click(function() {
-    $.get("example-code/metaclass.txt", setCodeMirrorVal);
+    $.get("example-code/metaclass.txt", pyInputSetValue);
     return false;
   });
 
   $('#cmFibLink').click(function() {
-    $.get("example-code/chris-meyers/optFib.txt", setCodeMirrorVal);
+    $.get("example-code/chris-meyers/optFib.txt", pyInputSetValue);
     $("#showOnlyOutputsSelector").val('true');
     return false;
   });
 
   $('#cmMinPathLink').click(function() {
-    $.get("example-code/chris-meyers/optMinpath.txt", setCodeMirrorVal);
+    $.get("example-code/chris-meyers/optMinpath.txt", pyInputSetValue);
     $("#showOnlyOutputsSelector").val('true');
     return false;
   });
 
   $('#cmKnapsackLink').click(function() {
-    $.get("example-code/chris-meyers/optKnapsack.txt", setCodeMirrorVal);
+    $.get("example-code/chris-meyers/optKnapsack.txt", pyInputSetValue);
     $("#showOnlyOutputsSelector").val('true');
     return false;
   });
 
   $('#cmSieveLink').click(function() {
-    $.get("example-code/chris-meyers/optSieve.txt", setCodeMirrorVal);
+    $.get("example-code/chris-meyers/optSieve.txt", pyInputSetValue);
     $("#showOnlyOutputsSelector").val('true');
     return false;
   });
