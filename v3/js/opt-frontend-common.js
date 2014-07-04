@@ -303,8 +303,8 @@ function initTogetherJS() {
     }
 
     $("#codeInputWarnings").html('<span style="color: #e93f34; font-weight: bold">\
-                                  Someone is typing ...</span> + \
-                                  $("#codeInputWarnings").data('orig-html')');
+                                  Someone is typing ...</span>' +
+                                  $("#codeInputWarnings").data('orig-html'));
 
     $.doTimeout('codeMirrorWarningTimeout', 1000, function() { // debounce
       $("#codeInputWarnings").html($("#codeInputWarnings").data('orig-html'));
