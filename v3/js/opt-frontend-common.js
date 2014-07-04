@@ -121,7 +121,7 @@ var executeCodeSignalFromRemote = false;
 var togetherjsSyncRequested = false;
 var pendingCodeOutputScrollTop = null;
 
-var pyInputScroller = '#codeInputPane .CodeMirror-scroll';
+var codeMirrorScroller = '#codeInputPane .CodeMirror-scroll';
 
 TogetherJSConfig_ignoreForms = ['.togetherjsIgnore']; // do NOT sync these elements
 
@@ -286,10 +286,10 @@ function initTogetherJS() {
       updateAppDisplay(msg.appMode);
 
       if (appMode == 'edit' && msg.codeInputScrollTop !== undefined &&
-          $(pyInputScroller).scrollTop() != msg.codeInputScrollTop) {
+          $(codeMirrorScroller).scrollTop() != msg.codeInputScrollTop) {
         // hack: give it a bit of time to settle first ...
         $.doTimeout('pyInputCodeMirrorInit', 200, function() {
-          $(pyInputScroller).scrollTop(msg.codeInputScrollTop);
+          $(codeMirrorScroller).scrollTop(msg.codeInputScrollTop);
         });
       }
     }
@@ -318,7 +318,7 @@ function initTogetherJS() {
     if (TogetherJS.running) {
       TogetherJS.send({type: "myAppState",
                        myAppState: getAppState(),
-                       codeInputScrollTop: $(pyInputScroller).scrollTop(),
+                       codeInputScrollTop: $(codeMirrorScroller).scrollTop(),
                        pyCodeOutputDivScrollTop: myVisualizer ?
                                                  myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop() :
                                                  undefined});
@@ -378,7 +378,7 @@ function initTogetherJS() {
       // value. this is hacky; ideally we have a callback function for
       // when setValue() completes.
       $.doTimeout('pyInputCodeMirrorInit', 200, function() {
-        $(pyInputScroller).scrollTop(msg.codeInputScrollTop);
+        $(codeMirrorScroller).scrollTop(msg.codeInputScrollTop);
       });
     }
   });
@@ -387,7 +387,7 @@ function initTogetherJS() {
     // do NOT use a msg.sameUrl guard since that will miss some signals
     // due to our funky URLs
 
-    $(pyInputScroller).scrollTop(msg.scrollTop);
+    $(codeMirrorScroller).scrollTop(msg.scrollTop);
   });
 
   TogetherJS.hub.on("pyCodeOutputDivScroll", function(msg) {
@@ -589,7 +589,7 @@ function genericOptFrontendReady() {
     if (TogetherJS.running && !isExecutingCode) {
       TogetherJS.send({type: "hashchange",
                        appMode: appMode,
-                       codeInputScrollTop: $(pyInputScroller).scrollTop(),
+                       codeInputScrollTop: $(codeMirrorScroller).scrollTop(),
                        myAppState: getAppState()});
     }
   });
@@ -634,7 +634,7 @@ function genericOptFrontendReady() {
   }
 
 
-  $(pyInputScroller).scroll(function(e) {
+  $(codeMirrorScroller).scroll(function(e) {
     if (TogetherJS.running) {
       var elt = $(this);
       // debounce
