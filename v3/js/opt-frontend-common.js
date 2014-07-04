@@ -544,7 +544,12 @@ function supports_html5_storage() {
 
 // abstraction so that we can use either CodeMirror or Ace as our code editor
 function pyInputGetValue() {
-  return pyInputCodeMirror.getValue();
+  if (useCodeMirror) {
+    return pyInputCodeMirror.getValue();
+  }
+  else {
+    return pyInputAceEditor.getValue();
+  }
 }
 
 function pyInputSetValue(dat) {
