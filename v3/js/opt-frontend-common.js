@@ -68,7 +68,7 @@ var pyInputCodeMirror; // CodeMirror object that contains the input code
 var pyInputAceEditor; // Ace editor object that contains the input code
 
 var useCodeMirror = true; // true -> use CodeMirror, false -> use Ace
-var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
+var useCodeMirror = false;
 
 
 function initAceEditor(height) {
@@ -120,8 +120,6 @@ var updateOutputSignalFromRemote = false;
 var executeCodeSignalFromRemote = false;
 var togetherjsSyncRequested = false;
 var pendingCodeOutputScrollTop = null;
-
-var codeMirrorScroller = '#codeInputPane .CodeMirror-scroll';
 
 TogetherJSConfig_ignoreForms = ['.togetherjsIgnore']; // do NOT sync these elements
 
@@ -286,10 +284,10 @@ function initTogetherJS() {
       updateAppDisplay(msg.appMode);
 
       if (appMode == 'edit' && msg.codeInputScrollTop !== undefined &&
-          $(codeMirrorScroller).scrollTop() != msg.codeInputScrollTop) {
+          pyInputGetScrollTop() != msg.codeInputScrollTop) {
         // hack: give it a bit of time to settle first ...
         $.doTimeout('pyInputCodeMirrorInit', 200, function() {
-          $(codeMirrorScroller).scrollTop(msg.codeInputScrollTop);
+          pyInputSetScrollTop(msg.codeInputScrollTop);
         });
       }
     }
@@ -318,7 +316,7 @@ function initTogetherJS() {
     if (TogetherJS.running) {
       TogetherJS.send({type: "myAppState",
                        myAppState: getAppState(),
-                       codeInputScrollTop: $(codeMirrorScroller).scrollTop(),
+                       codeInputScrollTop: pyInputGetScrollTop(),
                        pyCodeOutputDivScrollTop: myVisualizer ?
                                                  myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop() :
                                                  undefined});
@@ -378,7 +376,7 @@ function initTogetherJS() {
       // value. this is hacky; ideally we have a callback function for
       // when setValue() completes.
       $.doTimeout('pyInputCodeMirrorInit', 200, function() {
-        $(codeMirrorScroller).scrollTop(msg.codeInputScrollTop);
+        pyInputSetScrollTop(msg.codeInputScrollTop);
       });
     }
   });
@@ -387,7 +385,7 @@ function initTogetherJS() {
     // do NOT use a msg.sameUrl guard since that will miss some signals
     // due to our funky URLs
 
-    $(codeMirrorScroller).scrollTop(msg.scrollTop);
+    pyInputSetScrollTop(msg.scrollTop);
   });
 
   TogetherJS.hub.on("pyCodeOutputDivScroll", function(msg) {
@@ -566,6 +564,27 @@ function pyInputSetValue(dat) {
 }
 
 
+var codeMirrorScroller = '#codeInputPane .CodeMirror-scroll';
+
+function pyInputGetScrollTop() {
+  if (useCodeMirror) {
+    return $(codeMirrorScroller).scrollTop();
+  }
+  else {
+    return pyInputAceEditor.getSession().getScrollTop();
+  }
+}
+
+function pyInputSetScrollTop(st) {
+  if (useCodeMirror) {
+    $(codeMirrorScroller).scrollTop(st);
+  }
+  else {
+    pyInputAceEditor.getSession().setScrollTop(st);
+  }
+}
+
+
 // run at the END so that everything else can be initialized first
 function genericOptFrontendReady() {
   initTogetherJS(); // initialize early
@@ -589,7 +608,7 @@ function genericOptFrontendReady() {
     if (TogetherJS.running && !isExecutingCode) {
       TogetherJS.send({type: "hashchange",
                        appMode: appMode,
-                       codeInputScrollTop: $(codeMirrorScroller).scrollTop(),
+                       codeInputScrollTop: pyInputGetScrollTop(),
                        myAppState: getAppState()});
     }
   });
@@ -634,20 +653,36 @@ function genericOptFrontendReady() {
   }
 
 
-  $(codeMirrorScroller).scroll(function(e) {
-    if (TogetherJS.running) {
-      var elt = $(this);
-      // debounce
-      $.doTimeout('codeInputScroll', 100, function() {
-        // note that this will send a signal back and forth both ways
-        // (there's no easy way to prevent this), but it shouldn't keep
-        // bouncing back and forth indefinitely since no the second signal
-        // causes no additional scrolling
-        TogetherJS.send({type: "codeInputScroll",
-                         scrollTop: elt.scrollTop()});
-      });
-    }
-  });
+  if (useCodeMirror) {
+    $(codeMirrorScroller).scroll(function(e) {
+      if (TogetherJS.running) {
+        var elt = $(this);
+        $.doTimeout('codeInputScroll', 100, function() { // debounce
+          // note that this will send a signal back and forth both ways
+          // (there's no easy way to prevent this), but it shouldn't keep
+          // bouncing back and forth indefinitely since no the second signal
+          // causes no additional scrolling
+          TogetherJS.send({type: "codeInputScroll",
+                           scrollTop: elt.scrollTop()});
+        });
+      }
+    });
+  }
+  else {
+    var s = pyInputAceEditor.getSession();
+    s.on('changeScrollTop', function() {
+      if (TogetherJS.running) {
+        $.doTimeout('codeInputScroll', 100, function() { // debounce
+          // note that this will send a signal back and forth both ways
+          // (there's no easy way to prevent this), but it shouldn't keep
+          // bouncing back and forth indefinitely since no the second signal
+          // causes no additional scrolling
+          TogetherJS.send({type: "codeInputScroll",
+                           scrollTop: s.getScrollTop()});
+        });
+      }
+    });
+  }
 
 
   // first initialize options from HTML LocalStorage. very important
