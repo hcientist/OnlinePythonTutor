@@ -64,8 +64,8 @@ var isExecutingCode = false; // nasty, nasty global
 var appMode = 'edit'; // 'edit' or 'display'. also support
                       // 'visualize' for backward compatibility (same as 'display')
 
-var pyInputCodeMirror; // CodeMirror object that contains the input text
-var pyInputAceEditor; // Ace editor object that contains the input text
+var pyInputCodeMirror; // CodeMirror object that contains the input code
+var pyInputAceEditor; // Ace editor object that contains the input code
 
 
 // BEGIN - shared session stuff
@@ -523,12 +523,12 @@ function supports_html5_storage() {
   }
 }
 
-// abstraction so that we can swap out CodeMirror or Ace
+// abstraction so that we can use either CodeMirror or Ace as our code editor
 function pyInputGetValue() {
   return pyInputCodeMirror.getValue();
 }
 
-function pyInputSetValue(val) {
+function pyInputSetValue(dat) {
   pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
   $('#urlOutput,#embedCodeOutput').val('');
 
