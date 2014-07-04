@@ -175,7 +175,12 @@ function officeMixEnterEditMode(firstTime) {
 
         // set configuration on every code edit and option toggle, to
         // set the 'dirty bit' on the enclosing PPT file
-        pyInputCodeMirror.on("change", saveCurrentConfiguration);
+        if (useCodeMirror) {
+          pyInputCodeMirror.on("change", saveCurrentConfiguration);
+        }
+        else {
+          pyInputAceEditor.getSession().on("change", saveCurrentConfiguration);
+        }
         $('select').change(saveCurrentConfiguration);
       }
     }
@@ -234,16 +239,21 @@ $(document).ready(function() {
   });
 
 
-  pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
-    mode: 'python',
-    lineNumbers: true,
-    tabSize: 4,
-    indentUnit: 4,
-    // convert tab into four spaces:
-    extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
-  });
+  if (useCodeMirror) {
+    pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
+      mode: 'python',
+      lineNumbers: true,
+      tabSize: 4,
+      indentUnit: 4,
+      // convert tab into four spaces:
+      extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
+    });
 
-  pyInputCodeMirror.setSize(null, '350px');
+    pyInputCodeMirror.setSize(null, '350px');
+  }
+  else {
+    initAceEditor(350);
+  }
 
   $(window).resize(redrawConnectors);
 
