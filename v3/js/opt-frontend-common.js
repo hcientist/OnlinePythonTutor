@@ -372,8 +372,8 @@ function initTogetherJS() {
     }
 
     if (msg.codeInputScrollTop !== undefined) {
-      // give pyInputCodeMirror a bit of time to settle with its new
-      // value. this is hacky; ideally we have a callback function for
+      // give pyInputCodeMirror/pyInputAceEditor a bit of time to settle with
+      // its new value. this is hacky; ideally we have a callback function for
       // when setValue() completes.
       $.doTimeout('pyInputCodeMirrorInit', 200, function() {
         pyInputSetScrollTop(msg.codeInputScrollTop);
@@ -1055,16 +1055,25 @@ function handleUncaughtExceptionFunc(trace) {
   if (trace.length == 1 && trace[0].line) {
     var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
     if (errorLineNo !== undefined && errorLineNo != NaN) {
-      // highlight the faulting line in pyInputCodeMirror
-      pyInputCodeMirror.focus();
-      pyInputCodeMirror.setCursor(errorLineNo, 0);
-      pyInputCodeMirror.addLineClass(errorLineNo, null, 'errorLine');
+      // highlight the faulting line
+      if (useCodeMirror) {
+        pyInputCodeMirror.focus();
+        pyInputCodeMirror.setCursor(errorLineNo, 0);
+        pyInputCodeMirror.addLineClass(errorLineNo, null, 'errorLine');
 
-      function f() {
-        pyInputCodeMirror.removeLineClass(errorLineNo, null, 'errorLine'); // reset line back to normal
-        pyInputCodeMirror.off('change', f);
+        function f() {
+          pyInputCodeMirror.removeLineClass(errorLineNo, null, 'errorLine'); // reset line back to normal
+          pyInputCodeMirror.off('change', f);
+        }
+        pyInputCodeMirror.on('change', f);
       }
-      pyInputCodeMirror.on('change', f);
+      else {
+        var s = pyInputAceEditor.getSession();
+        s.setAnnotations([{row: errorLineNo,
+                           type: 'error',
+                           text: trace[0].exception_msg}]);
+        pyInputAceEditor.gotoLine(errorLineNo + 1 /* one-indexed */);
+      }
     }
   }
 }
