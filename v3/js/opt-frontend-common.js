@@ -138,10 +138,12 @@ function syncAppState(appState) {
   // form update events while we set the code mirror value. otherwise
   // this will send an incorrect delta to the other end and screw things
   // up because the initial states of the two forms aren't equal.
-  var orig = TogetherJS.config.get('ignoreForms');
-  TogetherJS.config('ignoreForms', true);
-  pyInputSetValue(appState.code);
-  TogetherJS.config('ignoreForms', orig);
+  if (useCodeMirror) {
+    var orig = TogetherJS.config.get('ignoreForms');
+    TogetherJS.config('ignoreForms', true);
+    pyInputSetValue(appState.code);
+    TogetherJS.config('ignoreForms', orig);
+  }
 
   if (appState.rawInputLst) {
     rawInputLst = $.parseJSON(appState.rawInputLstJSON);
@@ -384,8 +386,12 @@ function initTogetherJS() {
   TogetherJS.hub.on("codeInputScroll", function(msg) {
     // do NOT use a msg.sameUrl guard since that will miss some signals
     // due to our funky URLs
-
-    pyInputSetScrollTop(msg.scrollTop);
+    if (useCodeMirror) {
+      pyInputSetScrollTop(msg.scrollTop);
+    }
+    else {
+      // don't sync for Ace since I can't get it working properly yet
+    }
   });
 
   TogetherJS.hub.on("pyCodeOutputDivScroll", function(msg) {
@@ -557,7 +563,8 @@ function pyInputSetValue(dat) {
     pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
   }
   else {
-    pyInputAceEditor.setValue(dat.rtrim() /* kill trailing spaces */);
+    pyInputAceEditor.setValue(dat.rtrim() /* kill trailing spaces */,
+                              -1 /* do NOT select after setting text */);
   }
 
   $('#urlOutput,#embedCodeOutput').val('');
@@ -648,6 +655,9 @@ function genericOptFrontendReady() {
     });
   }
   else {
+    // don't do any syncing on change for Ace, since I can't get it to
+    // behave quite like the CodeMirror version
+    /*
     pyInputAceEditor.getSession().on("change", function(e) {
       // unfortunately, Ace doesn't detect whether a change was caused
       // by a setValue call
@@ -655,6 +665,7 @@ function genericOptFrontendReady() {
         TogetherJS.send({type: "codemirror-edit"});
       }
     });
+    */
   }
 
 
@@ -674,8 +685,9 @@ function genericOptFrontendReady() {
     });
   }
   else {
-    var s = pyInputAceEditor.getSession();
-    s.on('changeScrollTop', function() {
+    // don't sync for Ace since I can't get it working properly yet
+    /*
+    pyInputAceEditor.getSession().on('changeScrollTop', function() {
       if (TogetherJS.running) {
         $.doTimeout('codeInputScroll', 100, function() { // debounce
           // note that this will send a signal back and forth both ways
@@ -683,10 +695,11 @@ function genericOptFrontendReady() {
           // bouncing back and forth indefinitely since no the second signal
           // causes no additional scrolling
           TogetherJS.send({type: "codeInputScroll",
-                           scrollTop: s.getScrollTop()});
+                           scrollTop: pyInputGetScrollTop()});
         });
       }
     });
+    */
   }
 
 
