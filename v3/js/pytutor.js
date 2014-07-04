@@ -471,7 +471,7 @@ ExecutionVisualizer.prototype.render = function() {
 
     // add an extra label to link back to the main site, so that viewers
     // on the embedded page know that they're seeing an OPT visualization
-    this.domRoot.find('#codeDisplayDiv').append('<div style="font-size: 8pt; margin-bottom: 20px;">Visualized using <a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Online Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank">Philip Guo</a></div>');
+    this.domRoot.find('#codeDisplayDiv').append('<div style="font-size: 8pt; margin-bottom: 20px;">Visualized using <a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Online Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a></div>');
   }
 
   myViz.editAnnotationMode = false;
