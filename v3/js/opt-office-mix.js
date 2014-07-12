@@ -143,12 +143,11 @@ function officeMixEnterViewMode(firstTime) {
         setToggleOptions(savedAppState);
         if (savedAppState.code) {
           pyInputSetValue(savedAppState.code);
+          executeCodeFromScratch();
         }
       }
     }
   });
-
-  executeCodeFromScratch(); // unconditionally execute since it's more reliable
 
   // on second thought, don't hide this
   //$("#toggleModebtn").hide();
@@ -249,10 +248,10 @@ $(document).ready(function() {
       extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
     });
 
-    pyInputCodeMirror.setSize(null, '350px');
+    pyInputCodeMirror.setSize(null, '300px');
   }
   else {
-    initAceEditor(350);
+    initAceEditor(300);
   }
 
   // no frills footer
@@ -300,5 +299,5 @@ $(document).ready(function() {
     });
   });
 
-  pyInputSetValue('x = "world"\nprint("hello " + x)')
+  pyInputSetValue('x = "world"\nprint("hello " + x)'); // set default
 });
