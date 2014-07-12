@@ -91,7 +91,7 @@ function officeMixFinishSuccessfulExecution() {
   $('#pyOutputPane #editCodeLinkDiv').hide(); // don't have explicit "Edit code" link
   $('#loadingPane').hide();
 
-  $("#toggleModebtn").html("Edit");
+  $("#toggleModebtn").html("Edit code");
 }
 
 
@@ -145,12 +145,13 @@ function officeMixEnterViewMode(firstTime) {
           pyInputSetValue(savedAppState.code);
         }
       }
-
-      executeCodeFromScratch();
     }
   });
 
-  $("#footer").hide();
+  executeCodeFromScratch(); // unconditionally execute since it's more reliable
+
+  // on second thought, don't hide this
+  //$("#toggleModebtn").hide();
 }
 
 function officeMixEnterEditMode(firstTime) {
@@ -186,9 +187,8 @@ function officeMixEnterEditMode(firstTime) {
     }
   });
 
-  $("#toggleModebtn").html("Preview");
+  $("#toggleModebtn").html("Visualize code").show();
   enterEditMode();
-  $("#footer").show();
 }
 
 function saveCurrentConfiguration() {
@@ -206,7 +206,7 @@ $(document).ready(function() {
     if (appMode == 'edit') {
       executeCodeFromScratch();
     } else {
-      $("#toggleModebtn").html("Preview");
+      $("#toggleModebtn").html("Visualize code");
       enterEditMode();
     }
   });
@@ -299,4 +299,6 @@ $(document).ready(function() {
     Labs.on(Labs.Core.EventTypes.Deactivate, function() {
     });
   });
+
+  pyInputSetValue('x = "world"\nprint("hello " + x)')
 });
