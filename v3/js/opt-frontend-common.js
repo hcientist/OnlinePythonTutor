@@ -765,56 +765,7 @@ function genericOptFrontendReady() {
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(executeCodeFromScratch);
 
-
-  // for survey-related stuff
-  // Version 1 - started experiment on 2014-04-09, put on hold on 2014-05-02
-  /*
-  $('.surveyBtn').click(function(e) {
-    // wow, massive copy-and-paste action from above!
-    var myArgs = getAppState();
-
-    var buttonPrompt = $(this).html();
-    var res = prompt('"' + buttonPrompt + '"' + '\nPlease elaborate if you can and hit OK to submit:');
-    // don't do ajax call when Cancel button is pressed
-    // (note that if OK button is pressed with no response, then an
-    // empty string will still be sent to the server
-    if (res !== null) {
-      myArgs.surveyQuestion = buttonPrompt;
-      myArgs.surveyResponse = res;
-      $.get('survey.py', myArgs, function(dat) {});
-    }
-  });
-  */
-
-  // Version 2 - started running on 2014-05-24
-  $('#iJustLearnedSubmission').click(function(e) {
-    var resp = $("#iJustLearnedInput").val();
-
-    if (!$.trim(resp)) {
-      return;
-    }
-
-    // wow, massive copy-and-paste action from above!
-    var myArgs = getAppState();
-
-    // myArgs.surveyQuestion = "I just learned that ..."; // retired on 2014-06-04
-    myArgs.surveyQuestion = "What did you just learn?";
-    myArgs.surveyResponse = resp;
-    myArgs.surveyVersion = 'v2';
-
-    // 2014-05-25: implemented more detailed tracing for surveys
-    if (myVisualizer) {
-      myArgs.updateHistoryJSON = JSON.stringify(myVisualizer.updateHistory);
-    }
-
-    $.get('survey.py', myArgs, function(dat) {});
-
-    $("#iJustLearnedInput").val('');
-    $("#iJustLearnedThanks").show();
-    $.doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
-      $("#iJustLearnedThanks").fadeOut(1000);
-    });
-  });
+  initializeDisplayModeSurvey();
 }
 
 
@@ -1345,13 +1296,11 @@ What did you just learn? <input type="text" id="sharedSessionWhatLearned" class=
 </div>'
 
 
-/* display-mode survey, which is shown when the user is in 'display' mode
+// display-mode survey, which is shown when the user is in 'display' mode
+function initializeDisplayModeSurvey() {
+  /* Version 1 - started experiment on 2014-04-09, put on hold on 2014-05-02
 
-Version 1 -- deployed on 2014-04-09 and revoked on 2014-05-02
-
-As of 2014-05-03, remove the button click survey questions from the
-visualizer so as not to clutter up the screen. i started running this
-experiment on 2014-04-09 and put it on hold on 2014-05-02:
+Hard-coded HTML in surveyHeader:
 
 <div id="surveyHeader" style="margin-bottom: 5pt; display: none;">
   <div id="vizSurveyLabel" style="font-size: 8pt; color: #666;">
@@ -1369,9 +1318,27 @@ experiment on 2014-04-09 and put it on hold on 2014-05-02:
 [when any button is clicked a pop-up modal prompt tells the user to type
 in some details elaborating on what they just clicked]
 
+  $('.surveyBtn').click(function(e) {
+    // wow, massive copy-and-paste action from above!
+    var myArgs = getAppState();
 
-Version 2 of my display-mode survey, greatly simplified and deployed on
-2014-05-24, revoked on 2014-07-13
+    var buttonPrompt = $(this).html();
+    var res = prompt('"' + buttonPrompt + '"' + '\nPlease elaborate if you can and hit OK to submit:');
+    // don't do ajax call when Cancel button is pressed
+    // (note that if OK button is pressed with no response, then an
+    // empty string will still be sent to the server
+    if (res !== null) {
+      myArgs.surveyQuestion = buttonPrompt;
+      myArgs.surveyResponse = res;
+      $.get('survey.py', myArgs, function(dat) {});
+    }
+  });
+
+  */
+
+  /* Version 2 - greatly simplified and deployed on 2014-05-24, revoked on 2014-07-13
+
+Hard-coded HTML in surveyHeader:
 
 <div id="surveyHeader" style="display: none;">
   <div id="vizSurveyLabel" style="font-size: 8pt; color: #666; margin-bottom: 5pt;">
@@ -1406,5 +1373,57 @@ Version 2 of my display-mode survey, greatly simplified and deployed on
   </div>
 </div>
 
-*/
+[when the user clicks the "Submit" button, send results to survey.py and
+display a brief "Thanks!" note]
 
+  $('#iJustLearnedSubmission').click(function(e) {
+    var resp = $("#iJustLearnedInput").val();
+
+    if (!$.trim(resp)) {
+      return;
+    }
+
+    // wow, massive copy-and-paste action from above!
+    var myArgs = getAppState();
+
+    // myArgs.surveyQuestion = "I just learned that ..."; // retired on 2014-06-04
+    myArgs.surveyQuestion = "What did you just learn?";
+    myArgs.surveyResponse = resp;
+    myArgs.surveyVersion = 'v2';
+
+    // 2014-05-25: implemented more detailed tracing for surveys
+    if (myVisualizer) {
+      myArgs.updateHistoryJSON = JSON.stringify(myVisualizer.updateHistory);
+    }
+
+    $.get('survey.py', myArgs, function(dat) {});
+
+    $("#iJustLearnedInput").val('');
+    $("#iJustLearnedThanks").show();
+    $.doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
+      $("#iJustLearnedThanks").fadeOut(1000);
+    });
+  });
+
+  */
+
+  /* Version 3 - deployed on 2014-07-13
+
+  */
+
+  var display_mode_survey_v3 = '\n\
+      <div id="vizSurveyLabel" style="font-size: 8pt; color: #666;">\n\
+      Support our research by clicking a button when you see something interesting in the visualization.<br/>\n\
+      </div>\n\
+      <div>\n\
+        <button class="surveyBtn" type="button">I learned something new!</button>\n\
+        <button class="surveyBtn" type="button">I cleared up a misunderstanding!</button>\n\
+        <button class="surveyBtn" type="button">I found a bug in my code!</button>\n\
+      </div>\n\
+    </div>\n';
+
+
+  var display_mode_survey_HTML = display_mode_survey_v3;
+  $("#surveyHeader").html(display_mode_survey_HTML);
+
+}
