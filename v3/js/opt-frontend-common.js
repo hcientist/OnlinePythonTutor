@@ -1343,3 +1343,68 @@ What did you just learn? <input type="text" id="sharedSessionWhatLearned" class=
 <button id="submitSessionSurveyBtn" type="button" style="font-size: 8pt;">Submit</button>\n\
 <span id="sharedSessionWhatLearnedThanks" style="color: #e93f34; font-weight: bold; font-size: 10pt; display: none;">Thanks!</span>\n\
 </div>'
+
+
+/* display-mode survey, which is shown when the user is in 'display' mode
+
+Version 1 -- deployed on 2014-04-09 and revoked on 2014-05-02
+
+As of 2014-05-03, remove the button click survey questions from the
+visualizer so as not to clutter up the screen. i started running this
+experiment on 2014-04-09 and put it on hold on 2014-05-02:
+
+<div id="surveyHeader" style="margin-bottom: 5pt; display: none;">
+  <div id="vizSurveyLabel" style="font-size: 8pt; color: #666;">
+  Support our research by clicking a button when you see something interesting in the visualization.<br/>
+  </div>
+  <div>
+    <button class="surveyBtn" type="button">Eureka! Now I understand.</button>
+    <button class="surveyBtn" type="button">I learned something new!</button>
+    <button class="surveyBtn" type="button">I found the bug in my code!</button>
+    <button class="surveyBtn" type="button">This looks confusing.</button>
+    <button class="surveyBtn" type="button">I have another comment.</button>
+  </div>
+</div>
+
+[when any button is clicked a pop-up modal prompt tells the user to type
+in some details elaborating on what they just clicked]
+
+
+Version 2 of my display-mode survey, greatly simplified and deployed on
+2014-05-24, revoked on 2014-07-13
+
+<div id="surveyHeader" style="display: none;">
+  <div id="vizSurveyLabel" style="font-size: 8pt; color: #666; margin-bottom: 5pt;">
+    <!-- 2014-06-04 tagline -->
+    Support our research and help future learners by describing what you are learning.
+
+    <!-- 2014-05-28 tagline
+    Help future learners by describing what you just learned.
+    -->
+
+    <!-- 2014-05-25 tagline
+    Help future learners by writing about what you are learning.
+    Submit as often as you like!
+    -->
+
+    <!-- 2014-05-24 original tagline
+    Help future learners by filling in this blank whenever you learn
+    something new from the visualization:
+     -->
+  </div>
+  <div style="font-size: 10pt; margin-bottom: 5pt; padding: 1pt;">
+    <!-- this phrasing retired on 2014-06-04: "I just learned that" -->
+    What did you just learn?
+    <input style="font-size: 10pt; padding: 1pt;" type="text" id="iJustLearnedInput" size="60" maxlength=300/>
+
+    <button id="iJustLearnedSubmission" type="button" style="font-size: 10pt;">Submit</button>
+
+    <span id="iJustLearnedThanks"
+          style="color: #e93f34; font-weight: bold; font-size: 11pt; display: none;">
+      Thanks!
+    </span>
+  </div>
+</div>
+
+*/
+
