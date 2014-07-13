@@ -1237,8 +1237,7 @@ Paste a website link to a course that uses Python: <input type="text" id="course
 <input type="hidden" id="Q-version" value="v2"/> <!-- for versioning -->\n\
 </p>'
 
-v3: (deployed on 2014-06-28) [it's a simplified version of v1]
-*/
+v3: (deployed on 2014-06-28, revoked on 2014-07-13) [it's a simplified version of v1]
 var survey_v3 = '\n\
 <p style="margin-top: 10px; line-height: 175%;">\n\
 [Optional] Please answer these questions to support our research and to help improve this tool.<br/>\n\
@@ -1247,8 +1246,17 @@ What do you hope to learn by visualizing it? <input type="text" id="what-learn-Q
 <input type="hidden" id="Q-version" value="v3"/> <!-- for versioning -->\n\
 </p>'
 
+v4: (deployed on 2014-07-13)
+[an even more simplified version of v1 just to focus on ONE important question]
+*/
+var survey_v4 = '\n\
+<p style="margin-top: 10px; line-height: 175%;">\n\
+[Optional] What do you hope to learn by visualizing this code?<br/>\n\
+<input type="text" id="what-learn-Q" class="surveyQ" size=80 maxlength=300/><br/>\n\
+<input type="hidden" id="Q-version" value="v4"/> <!-- for versioning -->\n\
+</p>'
 
-var survey_html = survey_v3;
+var survey_html = survey_v4;
 
 function setSurveyHTML() {
   $('#surveyPane').html(survey_html);
@@ -1287,7 +1295,7 @@ function getSurveyObject() {
   }
   */
 
-  /* v3 */
+  /* v3
   var code_origin_Q_val = $('#code-origin-Q').val();
   var what_learn_Q_val = $('#what-learn-Q').val();
 
@@ -1297,6 +1305,19 @@ function getSurveyObject() {
     ret = {
       ver: $('#Q-version').val(),
       code_origin_Q: code_origin_Q_val,
+      what_learn_Q: what_learn_Q_val,
+    }
+  }
+  */
+
+  /* v4 */
+  var what_learn_Q_val = $('#what-learn-Q').val();
+
+  var ret = null;
+
+  if (what_learn_Q_val) {
+    ret = {
+      ver: $('#Q-version').val(),
       what_learn_Q: what_learn_Q_val,
     }
   }
