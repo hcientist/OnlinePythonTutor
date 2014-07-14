@@ -1270,15 +1270,35 @@ function getSurveyObject() {
   */
 
   /* v4 */
+  var ret = {
+    ver: $('#Q-version').val(),
+  }
+
   var what_learn_Q_val = $('#what-learn-Q').val();
+  if ($.trim(what_learn_Q_val)) {
+    ret.what_learn_Q = what_learn_Q_val;
+    ret.testing_group = 'c'; // special group for users who have filled out this
+                             // execution-time survey
+  } else {
+    // assign to 'a' or 'b' group for A/B testing:
+    var grp = 'ERROR'; // default error sentinel
 
-  var ret = null;
-
-  if (what_learn_Q_val) {
-    ret = {
-      ver: $('#Q-version').val(),
-      what_learn_Q: what_learn_Q_val,
+    // if we have localStorage, then get/set a testing_group field to ensure
+    // some consistency across different sessions from the same user.
+    // of course, this isn't foolproof by any means, but it's a start
+    if (supports_html5_storage()) {
+      var saved_grp = localStorage.getItem('testing_group');
+      if (saved_grp) {
+        grp = saved_grp;
+      } else {
+        grp = (Math.random() < 0.5) ? 'a' : 'b';
+        localStorage.setItem('testing_group', grp);
+      }
+    } else {
+      grp = (Math.random() < 0.5) ? 'a' : 'b';
     }
+
+    ret.testing_group = grp;
   }
 
   return ret;
