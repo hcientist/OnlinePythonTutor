@@ -1150,11 +1150,10 @@ function executePythonCode(pythonSourceCode,
               } else {
                 myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
               }
-
-              handleSuccessFunc();
-
               // SUPER HACK -- slip in backendOptionsObj as an extra field
               myVisualizer.backendOptionsObj = backendOptionsObj;
+
+              handleSuccessFunc();
 
               // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
               // and sync any new elements that are now inside myVisualizer
@@ -1439,7 +1438,21 @@ display a brief "Thanks!" note]
 
   /* Version 3 - deployed on 2014-07-13
 
+  Display one of 3 display-mode surveys, depending on the contents of
+  myVisualizer.backendOptionsObj.survey.testing_group
+
+  'a' / 'b' -- A/B testing of two kinds of surveys
+
+  'c' -- if the user has filled in an answer to 'What do you hope to
+  learn by visualizing this code?' when hitting "Visualize Execution",
+  then echo that phrase back to them and display a custom survey
+
   */
+  if (!myVisualizer || !myVisualizer.backendOptionsObj.survey) {
+    return;
+  }
+
+  var surveyObj = myVisualizer.backendOptionsObj.survey;
 
   var display_mode_survey_v3a = '\n\
       <div id="vizSurveyLabel">\n\
@@ -1478,47 +1491,57 @@ display a brief "Thanks!" note]
       </div>\n\
     </div>\n';
 
+  var testingGroup = surveyObj.testing_group;
 
-  var testCondition = 'a';
   var display_mode_survey_HTML = '';
-
-  if (testCondition == 'a') {
+  if (testingGroup == 'a') {
     display_mode_survey_HTML = display_mode_survey_v3a;
-  } else if (testCondition == 'b') {
+  } else if (testingGroup == 'b') {
     display_mode_survey_HTML = display_mode_survey_v3b;
-  } else if (testCondition == 'c') {
+  } else if (testingGroup == 'c') {
     display_mode_survey_HTML = display_mode_survey_v3c;
   } else {
     assert(false);
   }
 
   $("#surveyHeader").html(display_mode_survey_HTML);
+
   $("#vizSurveyLabel").css('font-size', '8pt')
                       .css('color', '#666')
                       .css('margin-bottom', '5pt');
   $(".surveyBtn").css('margin-right', '6px');
 
+  if (testingGroup == 'c') {
+    $("#userHopeLearn").html(htmlspecialchars(surveyObj.what_learn_Q));
+  }
+
+
+  // testingGroup == 'a' || testingGroup == 'c'
   // use unbind first so that this function is idempotent
   $('.surveyBtn').unbind().click(function(e) {
-    var myArgs = getAppState();
-
     var buttonPrompt = $(this).html();
     var res = prompt('You said, "' + buttonPrompt + '"' + '\nPlease describe what you just learned:');
 
-    if ($.trim(res)) {
-      myArgs.surveyQuestion = buttonPrompt;
-      myArgs.surveyResponse = res;
-      myArgs.surveyVersion = 'v3';
-
-      // 2014-05-25: implemented more detailed tracing for surveys
-      if (myVisualizer) {
-        myArgs.updateHistoryJSON = JSON.stringify(myVisualizer.updateHistory);
-      }
-
-      $.get('survey.py', myArgs, function(dat) {});
+    if (!$.trim(res)) {
+      return;
     }
+
+    var myArgs = getAppState();
+    myArgs.surveyQuestion = buttonPrompt;
+    myArgs.surveyResponse = res;
+    myArgs.surveyVersion = 'v3';
+    myArgs.testing_group = testingGroup; // use underscore for consistency
+
+    myArgs.updateHistoryJSON = JSON.stringify(myVisualizer.updateHistory);
+
+    if (surveyObj.what_learn_Q) {
+      myArgs.what_learn_Q = surveyObj.what_learn_Q;
+    }
+
+    $.get('survey.py', myArgs, function(dat) {});
   });
 
+  // testingGroup == 'b'
   // use unbind first so that this function is idempotent
   $('#iJustLearnedSubmission').unbind().click(function(e) {
     var resp = $("#iJustLearnedInput").val();
@@ -1528,17 +1551,15 @@ display a brief "Thanks!" note]
     }
 
     var myArgs = getAppState();
-
     myArgs.surveyQuestion = "What did you just learn?";
     myArgs.surveyResponse = resp;
     myArgs.surveyVersion = 'v3';
+    myArgs.testing_group = testingGroup; // use underscore for consistency
 
-    // 2014-05-25: implemented more detailed tracing for surveys
-    if (myVisualizer) {
-      myArgs.updateHistoryJSON = JSON.stringify(myVisualizer.updateHistory);
-    }
+    myArgs.updateHistoryJSON = JSON.stringify(myVisualizer.updateHistory);
 
     $.get('survey.py', myArgs, function(dat) {});
+
 
     $("#iJustLearnedInput").val('');
     $("#iJustLearnedThanks").show();
@@ -1546,7 +1567,4 @@ display a brief "Thanks!" note]
       $("#iJustLearnedThanks").fadeOut(1000);
     });
   });
-
-
-
 }
