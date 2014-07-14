@@ -765,7 +765,9 @@ function genericOptFrontendReady() {
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(executeCodeFromScratch);
 
-  initializeDisplayModeSurvey();
+  // for Versions 1 and 2, initialize here. But for version 3+, dynamically
+  // generate a survey whenever the user successfully executes a piece of code
+  //initializeDisplayModeSurvey();
 }
 
 
@@ -1071,6 +1073,10 @@ function optFinishSuccessfulExecution() {
   // compress the logs a bit when there's rapid scrubbing or scrolling)
   myVisualizer.updateHistory = [];
   myVisualizer.updateHistory.push([myVisualizer.curInstr, 0]); // seed it!
+
+  // For version 3+, dynamically generate a survey whenever the user
+  // successfully executes a piece of code
+  initializeDisplayModeSurvey();
 }
 
 
@@ -1147,6 +1153,8 @@ function executePythonCode(pythonSourceCode,
 
               handleSuccessFunc();
 
+              // SUPER HACK -- slip in backendOptionsObj as an extra field
+              myVisualizer.backendOptionsObj = backendOptionsObj;
 
               // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
               // and sync any new elements that are now inside myVisualizer
@@ -1297,6 +1305,8 @@ What did you just learn? <input type="text" id="sharedSessionWhatLearned" class=
 
 
 // display-mode survey, which is shown when the user is in 'display' mode
+// As of Version 3, this runs every time code is executed, so make sure event
+// handlers don't unnecessarily stack up
 function initializeDisplayModeSurvey() {
   /* Version 1 - started experiment on 2014-04-09, put on hold on 2014-05-02
 
@@ -1411,19 +1421,112 @@ display a brief "Thanks!" note]
 
   */
 
-  var display_mode_survey_v3 = '\n\
-      <div id="vizSurveyLabel" style="font-size: 8pt; color: #666;">\n\
-      Support our research by clicking a button when you see something interesting in the visualization.<br/>\n\
+  var display_mode_survey_v3a = '\n\
+      <div id="vizSurveyLabel">\n\
+      Support our research by clicking a button whenever you learn something.<br/>\n\
       </div>\n\
       <div>\n\
         <button class="surveyBtn" type="button">I learned something new!</button>\n\
-        <button class="surveyBtn" type="button">I cleared up a misunderstanding!</button>\n\
         <button class="surveyBtn" type="button">I found a bug in my code!</button>\n\
+        <button class="surveyBtn" type="button">I cleared up a misunderstanding!</button>\n\
+      </div>\n\
+    </div>\n';
+
+  var display_mode_survey_v3b = '\n\
+      <div id="vizSurveyLabel">\n\
+        Support our research and help future learners by describing what you are learning.\n\
+      </div>\n\
+      <div style="font-size: 10pt; margin-bottom: 5pt; padding: 1pt;">\n\
+        What did you just learn?\n\
+        <input style="font-size: 10pt; padding: 1pt;" type="text" id="iJustLearnedInput" size="60" maxlength=300/>\n\
+        <button id="iJustLearnedSubmission" type="button" style="font-size: 10pt;">Submit</button>\n\
+        <span id="iJustLearnedThanks"\n\
+              style="color: #e93f34; font-weight: bold; font-size: 11pt; display: none;">\n\
+          Thanks!\n\
+        </span>\n\
+      </div>';
+
+  var display_mode_survey_v3c = '\n\
+      <div id="vizSurveyLabel">\n\
+      Support our research by clicking a button whenever you learn something.<br/>\n\
+      </div>\n\
+      <div>\n\
+        You hoped to learn:\n\
+        "<span id="userHopeLearn"></span>"<br/>\n\
+        <button class="surveyBtn" type="button">I just learned something about that!</button>\n\
+        <button class="surveyBtn" type="button">I just learned something else new!</button>\n\
       </div>\n\
     </div>\n';
 
 
-  var display_mode_survey_HTML = display_mode_survey_v3;
+  var testCondition = 'a';
+  var display_mode_survey_HTML = '';
+
+  if (testCondition == 'a') {
+    display_mode_survey_HTML = display_mode_survey_v3a;
+  } else if (testCondition == 'b') {
+    display_mode_survey_HTML = display_mode_survey_v3b;
+  } else if (testCondition == 'c') {
+    display_mode_survey_HTML = display_mode_survey_v3c;
+  } else {
+    assert(false);
+  }
+
   $("#surveyHeader").html(display_mode_survey_HTML);
+  $("#vizSurveyLabel").css('font-size', '8pt')
+                      .css('color', '#666')
+                      .css('margin-bottom', '5pt');
+  $(".surveyBtn").css('margin-right', '6px');
+
+  // use unbind first so that this function is idempotent
+  $('.surveyBtn').unbind().click(function(e) {
+    var myArgs = getAppState();
+
+    var buttonPrompt = $(this).html();
+    var res = prompt('You said, "' + buttonPrompt + '"' + '\nPlease describe what you just learned:');
+
+    if ($.trim(res)) {
+      myArgs.surveyQuestion = buttonPrompt;
+      myArgs.surveyResponse = res;
+      myArgs.surveyVersion = 'v3';
+
+      // 2014-05-25: implemented more detailed tracing for surveys
+      if (myVisualizer) {
+        myArgs.updateHistoryJSON = JSON.stringify(myVisualizer.updateHistory);
+      }
+
+      $.get('survey.py', myArgs, function(dat) {});
+    }
+  });
+
+  // use unbind first so that this function is idempotent
+  $('#iJustLearnedSubmission').unbind().click(function(e) {
+    var resp = $("#iJustLearnedInput").val();
+
+    if (!$.trim(resp)) {
+      return;
+    }
+
+    var myArgs = getAppState();
+
+    myArgs.surveyQuestion = "What did you just learn?";
+    myArgs.surveyResponse = resp;
+    myArgs.surveyVersion = 'v3';
+
+    // 2014-05-25: implemented more detailed tracing for surveys
+    if (myVisualizer) {
+      myArgs.updateHistoryJSON = JSON.stringify(myVisualizer.updateHistory);
+    }
+
+    $.get('survey.py', myArgs, function(dat) {});
+
+    $("#iJustLearnedInput").val('');
+    $("#iJustLearnedThanks").show();
+    $.doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
+      $("#iJustLearnedThanks").fadeOut(1000);
+    });
+  });
+
+
 
 }
