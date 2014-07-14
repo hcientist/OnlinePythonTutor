@@ -1483,7 +1483,7 @@ display a brief "Thanks!" note]
       <div id="vizSurveyLabel">\n\
       Support our research by clicking a button whenever you learn something.<br/>\n\
       </div>\n\
-      <div>\n\
+      <div style="margin-top: 12px;">\n\
         You hoped to learn:\n\
         "<span id="userHopeLearn"></span>"<br/>\n\
         <button class="surveyBtn" type="button">I just learned something about that!</button>\n\
