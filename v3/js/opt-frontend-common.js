@@ -1486,8 +1486,8 @@ display a brief "Thanks!" note]
       <div style="margin-top: 12px;">\n\
         You hoped to learn:\n\
         "<span id="userHopeLearn"></span>"<br/>\n\
-        <button class="surveyBtn" type="button">I just learned something about that!</button>\n\
-        <button class="surveyBtn" type="button">I just learned something else!</button>\n\
+        <button class="surveyBtn" type="button">I just learned something about that topic!</button>\n\
+        <button class="surveyBtn" type="button">I just learned something else new!</button>\n\
       </div>\n\
     </div>\n';
 
