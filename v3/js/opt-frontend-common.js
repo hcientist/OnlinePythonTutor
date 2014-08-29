@@ -134,15 +134,13 @@ function syncAppState(appState) {
   setToggleOptions(appState);
 
   // VERY VERY subtle -- temporarily prevent TogetherJS from sending
-  // form update events while we set the code mirror value. otherwise
+  // form update events while we set the input value. otherwise
   // this will send an incorrect delta to the other end and screw things
   // up because the initial states of the two forms aren't equal.
-  if (useCodeMirror) {
-    var orig = TogetherJS.config.get('ignoreForms');
-    TogetherJS.config('ignoreForms', true);
-    pyInputSetValue(appState.code);
-    TogetherJS.config('ignoreForms', orig);
-  }
+  var orig = TogetherJS.config.get('ignoreForms');
+  TogetherJS.config('ignoreForms', true);
+  pyInputSetValue(appState.code);
+  TogetherJS.config('ignoreForms', orig);
 
   if (appState.rawInputLst) {
     rawInputLst = $.parseJSON(appState.rawInputLstJSON);

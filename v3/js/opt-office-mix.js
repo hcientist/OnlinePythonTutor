@@ -129,7 +129,10 @@ function setFronendError(lines) {
 }
 
 
-function officeMixEnterViewMode(firstTime) {
+// temp safety for MSR faculty summit
+var tempSafe = true;
+
+function officeMixEnterViewMode() {
   if (_labEditor) {
     _labEditor.done(function() { _labEditor = null; });
   }
@@ -138,22 +141,25 @@ function officeMixEnterViewMode(firstTime) {
     if (labInstance) {
       _labViewer = labInstance; // global
 
-      if (firstTime) {
-        var savedAppState = _labViewer.components[0].component.data;
-        setToggleOptions(savedAppState);
-        if (savedAppState.code) {
-          pyInputSetValue(savedAppState.code);
+      var savedAppState = _labViewer.components[0].component.data;
+      setToggleOptions(savedAppState);
+      if (savedAppState.code) {
+        pyInputSetValue(savedAppState.code);
+
+        if (!tempSafe) {
           executeCodeFromScratch();
         }
       }
+
+      if (tempSafe) {
+        $("#toggleModebtn").html("Visualize code").show();
+        enterEditMode();
+      }
     }
   });
-
-  // on second thought, don't hide this
-  //$("#toggleModebtn").hide();
 }
 
-function officeMixEnterEditMode(firstTime) {
+function officeMixEnterEditMode() {
   if (_labViewer) {
     _labViewer.done(function() { _labViewer = null; });
   }
@@ -162,32 +168,30 @@ function officeMixEnterEditMode(firstTime) {
     if (labEditor) {
       _labEditor = labEditor; // global
 
-      if (firstTime) {
-        _labEditor.getConfiguration(function(err, configuration) {
-          if (configuration) {
-            var savedAppState = configuration.components[0].data;
-            setToggleOptions(savedAppState);
-            if (savedAppState.code) {
-              pyInputSetValue(savedAppState.code);
-            }
+      _labEditor.getConfiguration(function(err, configuration) {
+        if (configuration) {
+          var savedAppState = configuration.components[0].data;
+          setToggleOptions(savedAppState);
+          if (savedAppState.code) {
+            pyInputSetValue(savedAppState.code);
           }
-        });
+        }
+      });
 
-        // set configuration on every code edit and option toggle, to
-        // set the 'dirty bit' on the enclosing PPT file
-        if (useCodeMirror) {
-          pyInputCodeMirror.on("change", saveCurrentConfiguration);
-        }
-        else {
-          pyInputAceEditor.getSession().on("change", saveCurrentConfiguration);
-        }
-        $('select').change(saveCurrentConfiguration);
+      // set configuration on every code edit and option toggle, to
+      // set the 'dirty bit' on the enclosing PPT file
+      if (useCodeMirror) {
+        pyInputCodeMirror.on("change", saveCurrentConfiguration);
       }
+      else {
+        pyInputAceEditor.getSession().on("change", saveCurrentConfiguration);
+      }
+      $('select').change(saveCurrentConfiguration);
+
+      $("#toggleModebtn").html("Visualize code").show();
+      enterEditMode();
     }
   });
-
-  $("#toggleModebtn").html("Visualize code").show();
-  enterEditMode();
 }
 
 function saveCurrentConfiguration() {
@@ -278,17 +282,17 @@ $(document).ready(function() {
     var initialMode = Labs.Core.LabMode[connectionResponse.mode];
 
     if (initialMode == 'Edit') {
-      officeMixEnterEditMode(true);
+      officeMixEnterEditMode();
     } else if (initialMode == 'View') {
-      officeMixEnterViewMode(true);
+      officeMixEnterViewMode();
     }
 
     // initialize these callbacks only after Labs.connect is successful
     Labs.on(Labs.Core.EventTypes.ModeChanged, function(data) {
       if (data.mode == 'Edit') {
-        officeMixEnterEditMode(false);
+        officeMixEnterEditMode();
       } else if (data.mode == 'View') {
-        officeMixEnterViewMode(false);
+        officeMixEnterViewMode();
       }
     });
 
@@ -298,6 +302,4 @@ $(document).ready(function() {
     Labs.on(Labs.Core.EventTypes.Deactivate, function() {
     });
   });
-
-  pyInputSetValue('x = "world"\nprint("hello " + x)'); // set default
 });
