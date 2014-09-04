@@ -27,6 +27,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
+// TODO: refactor to be more like composingprograms.js and use more
+// of the common functionality in opt-frontend-common.js
+
+
 // custom version of opt-frontend.js for ../matrixtutor.html
 
 
