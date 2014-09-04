@@ -273,6 +273,13 @@ $(document).ready(function() {
           },
           "json");
 
+    // stent
+    /*
+    pyInputCodeMirror.setValue('x = 5');
+    pyTestInputCodeMirror.setValue('y = 10');
+    $(".problemDescClass").html('testing testing testing');
+    */
+
     $('#submitGradeBtn').bind('click', function() {
       $('#submitGradeBtn').html('Now Grading ...');
       $('#submitGradeBtn').attr('disabled', true);
