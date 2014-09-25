@@ -295,17 +295,12 @@ function initTogetherJS() {
   TogetherJS.hub.on("codemirror-edit", function(msg) {
     // do NOT use a msg.sameUrl guard since that will miss some signals
     // due to our funky URLs
-
-    if (!$("#codeInputWarnings").data('orig-html')) { // set only once
-      $("#codeInputWarnings").data('orig-html', $("#codeInputWarnings").html());
-    }
-
-    $("#codeInputWarnings").html('<span style="color: #e93f34; font-weight: bold">\
-                                  Someone is typing ... </span>' +
-                                  $("#codeInputWarnings").data('orig-html'));
+    $("#codeInputWarnings").hide();
+    $("#someoneIsTypingDiv").show();
 
     $.doTimeout('codeMirrorWarningTimeout', 1000, function() { // debounce
-      $("#codeInputWarnings").html($("#codeInputWarnings").data('orig-html'));
+      $("#codeInputWarnings").show();
+      $("#someoneIsTypingDiv").hide();
     });
   });
 
