@@ -1162,6 +1162,7 @@ function executePythonCode(pythonSourceCode,
     snapshotCodeDiff(); // do ONE MORE snapshot before we execute, or else
                         // we'll miss a diff if the user hits Visualize Execution
                         // very shortly after finishing coding
+    deltaObj.executeTime = new Date().getTime();
 
     // if you're in display mode, kick back into edit mode before
     // executing or else the display might not refresh properly ... ugh
