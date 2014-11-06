@@ -70,6 +70,16 @@ var pyInputAceEditor; // Ace editor object that contains the input code
 var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
 
 
+var dmp = new diff_match_patch();
+var curCode = '';
+var deltaObj = undefined;
+
+function initDeltaObj() {
+  // v is the version number
+  //   1 (version 1 was released on 2014-11-05)
+  deltaObj = {start: pyInputGetValue(), deltas: [], v: 1};
+}
+
 function initAceEditor(height) {
   pyInputAceEditor = ace.edit('codeInputPane');
   var s = pyInputAceEditor.getSession();
@@ -85,6 +95,61 @@ function initAceEditor(height) {
 
   $('#codeInputPane').css('width', '700px');
   $('#codeInputPane').css('height', height + 'px');
+
+  initDeltaObj();
+  pyInputAceEditor.on('change', function(e) {
+    $.doTimeout('pyInputAceEditorChange', 1000, snapshotCodeDiff); // debounce
+  });
+}
+
+function snapshotCodeDiff() {
+  if (!deltaObj) {
+    return;
+  }
+
+  var newCode = pyInputGetValue();
+  var timestamp = new Date().getTime();
+
+  //console.log('Orig:', curCode);
+  //console.log('New:', newCode);
+  if (curCode != newCode) {
+    var diff = dmp.diff_toDelta(dmp.diff_main(curCode, newCode));
+    //var patch = dmp.patch_toText(dmp.patch_make(curCode, newCode));
+    var delta = {t: timestamp, d: diff};
+    deltaObj.deltas.push(delta);
+
+    curCode = newCode;
+  }
+}
+
+function reconstructCode() {
+  var cur = '';
+
+  var dmp = new diff_match_patch();
+  var deltas = [];
+  var patches = [];
+
+  var prevTimestamp = undefined;
+  $.each(deltaObj.deltas, function(i, e) {
+    if (prevTimestamp) {
+      assert(e.t >= prevTimestamp);
+      prevTimestamp = e.t;
+    }
+    deltas.push(e.d);
+    patches.push(e.p);
+  });
+
+  console.log(patches);
+  console.log(deltas);
+
+  //var d = dmp.diff_fromDelta('', "+x = 1")
+  //var p = dmp.patch_make(d)
+  //dmp.patch_apply(p, '')
+
+  //x = dmp.patch_fromText("@@ -0,0 +1,5 @@\n+x = 1\n")
+  //dmp.patch_apply(x, '')
+  //x = dmp.patch_fromText("@@ -1,5 +1,12 @@\n x = 1\n+%0Ax = 2%0A\n")
+  //dmp.patch_apply(x, 'x = 1')
 }
 
 
@@ -1094,6 +1159,10 @@ function executePythonCode(pythonSourceCode,
                        rawInputLst: rawInputLst});
     }
 
+    snapshotCodeDiff(); // do ONE MORE snapshot before we execute, or else
+                        // we'll miss a diff if the user hits Visualize Execution
+                        // very shortly after finishing coding
+
     // if you're in display mode, kick back into edit mode before
     // executing or else the display might not refresh properly ... ugh
     // krufty FIXME
@@ -1105,7 +1174,9 @@ function executePythonCode(pythonSourceCode,
     $.get(backendScript,
           {user_script : pythonSourceCode,
            raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
-           options_json: JSON.stringify(backendOptionsObj)},
+           options_json: JSON.stringify(backendOptionsObj),
+           // if we don't have any deltas, then don't bother sending deltaObj:
+           diffs_json: deltaObj.deltas.length > 0 ? JSON.stringify(deltaObj) : null},
           function(dataFromBackend) {
             var trace = dataFromBackend.trace;
 
@@ -1159,6 +1230,9 @@ function executePythonCode(pythonSourceCode,
             // run this at the VERY END after all the dust has settled
           },
           "json");
+
+
+    initDeltaObj(); // clear deltaObj to start counting over again
 }
 
 
