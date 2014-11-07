@@ -75,6 +75,12 @@ var curCode = '';
 var deltaObj = undefined;
 
 function initDeltaObj() {
+  // make sure the editor already exists
+  // (editor doesn't exist when you're, say, doing an iframe embed)
+  if (!pyInputAceEditor && !pyInputCodeMirror) {
+    return;
+  }
+
   // v is the version number
   //   1 (version 1 was released on 2014-11-05)
   deltaObj = {start: pyInputGetValue(), deltas: [], v: 1};
