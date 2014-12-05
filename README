@@ -4,7 +4,7 @@ http://pythontutor.com/
 https://github.com/pgbovine/OnlinePythonTutor/
 
 
-Copyright (C) 2010-2013 Philip J. Guo (philip@pgbovine.net)
+Copyright (C) Philip J. Guo (philip@pgbovine.net)
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
@@ -43,10 +43,9 @@ All documentation is viewable online at:
   https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3/docs
 
 ---
-Repository contents:
+Repository contents: the v3/ sub-directory contains the latest version of the code.
 
-  tl;dr: the v3/ sub-directory contains the latest version of the code.
-
+---
 v1-v2/
 
   Online Python Tutor version 1 - released on January 19, 2010
