@@ -1,0 +1,11 @@
+{
+  "code": "# a try/except inside of an infinite loop\nwhile True:\n    #print \"good\"\n    try:\n        print \"good\"\n    except:\n        print \"bad\"\n\n", 
+  "trace": [
+    {
+      "exception_msg": "SyntaxError: invalid syntax (<string>, line 5)", 
+      "line": 5, 
+      "event": "uncaught_exception", 
+      "offset": 20
+    }
+  ]
+}
