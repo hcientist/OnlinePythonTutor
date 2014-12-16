@@ -1,8 +1,15 @@
-Online Python Tutor
+Online Python Tutor is a free educational tool created by Philip Guo
+that helps students overcome a fundamental barrier to learning
+programming: understanding what happens as the computer executes each
+line of a program's source code. Using this tool, a teacher or student
+can write a Python program in the Web browser and visualize what the
+computer is doing step-by-step as it executes the program.
 
 http://pythontutor.com/
+
 https://github.com/pgbovine/OnlinePythonTutor/
 
+======
 
 Copyright (C) Philip J. Guo (philip@pgbovine.net)
 
@@ -26,26 +33,15 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ======
-
-Summary:
- 
-  Online Python Tutor enables teachers and students to write Python
-  programs directly in the web browser, execute those programs, and then
-  step forwards and backwards through execution to view the run-time
-  state of data structures.
-
-  So far, over 100,000 people have used Online Python Tutor to
-  understand and debug their programs, often as a supplement to
-  textbooks, lecture notes, and online programming tutorials.
-
----
 All documentation is viewable online at:
-  https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3/docs
+
+https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3/docs
+
+The v3/ sub-directory contains the latest version of the code.
 
 ---
-Repository contents: the v3/ sub-directory contains the latest version of the code.
+History:
 
----
 v1-v2/
 
   Online Python Tutor version 1 - released on January 19, 2010

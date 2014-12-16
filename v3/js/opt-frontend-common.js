@@ -3,7 +3,7 @@
 Online Python Tutor
 https://github.com/pgbovine/OnlinePythonTutor/
 
-Copyright (C) 2010-2014 Philip J. Guo (philip@pgbovine.net)
+Copyright (C) Philip J. Guo (philip@pgbovine.net)
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
