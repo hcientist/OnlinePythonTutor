@@ -11,6 +11,7 @@ Also note that the Python 3 tests aren't as "robust" or as rigorously checked ..
 I've been focusing on Python 2 for now.
 '''
 
+import itertools
 import os, re, shutil, optparse, difflib
 from subprocess import *
 
@@ -158,7 +159,7 @@ if __name__ == "__main__":
 
   ALL_TESTS = []
 
-  for (pwd, subdirs, files) in os.walk('.', followlinks=True): # need to follow example-code symlink
+  for (pwd, subdirs, files) in itertools.chain(os.walk('backend-tests/'), os.walk('../example-code/')):
     for f in files:
       (base, ext) = os.path.splitext(f)
       if ext == INPUT_FILE_EXTENSION:
