@@ -1,8 +1,7 @@
 # a try/except inside of an infinite loop
 while True:
-    #print "good"
     try:
-        print "good"
+        print("good")
     except:
-        print "bad"
+        print("bad")
 
