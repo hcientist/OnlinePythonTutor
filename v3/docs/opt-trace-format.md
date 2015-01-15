@@ -741,6 +741,15 @@ However, you'll see in the "Closures and Zombie Frames" section why `unique_hash
 Finally, ignore `is_parent`, `is_zombie`, and `parent_frame_id_list` for now. We'll cover those in the more advanced
 "Closures and Zombie Frames" section below.
 
+## Event types
+
+The `event` field can either be:
+
+- `step_line` - ordinary single step
+- `call` - first line during an executed function call (very important to match with `return`)
+- `return` - about to return from a function
+- `exception` and `uncaught_exception` - see docs for details; kinda sketchy
+
 
 ## Closures and Zombie Frames (advanced)
 
