@@ -746,9 +746,9 @@ Finally, ignore `is_parent`, `is_zombie`, and `parent_frame_id_list` for now. We
 The `event` field can either be:
 
 - `step_line` - ordinary single step
-- `call` - first line during an executed function call (very important to match with `return`)
-- `return` - about to return from a function
-- `exception` and `uncaught_exception` - see docs for details; kinda sketchy
+- `call` - first line during an executed function call (very important to match with corresponding `return` for visualization to work properly)
+- `return` - about to return from a function, usually the `__return__` value is set too
+- `exception` and `uncaught_exception` - see code for details; kinda sketchy at this point
 
 
 ## Closures and Zombie Frames (advanced)
