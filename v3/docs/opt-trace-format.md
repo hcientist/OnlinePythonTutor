@@ -764,7 +764,8 @@ def foo(y):
     def bar(x):
         return x + y
 
-foo(1)```
+foo(1)
+```
 
 [TODO: talk about `parent_frame_id_list`]
 
