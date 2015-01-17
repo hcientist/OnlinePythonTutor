@@ -755,6 +755,17 @@ The `event` field can either be:
 
 As soon as a funcition becomes a parent of another function (i.e., a nested function is defined inside of it), then set the `is_parent` field of its stack entry to `true`. Also change its `unique_hash` by appending `_p` to the end of it. The reason why we want to change the unique hash is that we want the frontend to *refresh* its display, and d3 might not refresh if it sees that the hash is identical to the prior frame. Conceptually, we want `unique_hash` to be different for a function before and after it turns into the parent of another function since we want to display it differently.
 
+For example, when function `foo` is executing, its frame will have `is_parent` set to `false` when its first two lines execute. Then when its third line executes, that defines `bar` as a nested function within itself, so at that step, `foo` should have `is_parent = true` and `unique_hash = foo_f1_p` (or something similar).
+
+```python
+def foo(y):
+    x = 10
+    y = 20
+    def bar(x):
+        return x + y
+
+foo(1)```
+
 [TODO: talk about `parent_frame_id_list`]
 
 [TODO: talk about appending `_z` onto `unique_hash` when the frame becomes a zombie.]
