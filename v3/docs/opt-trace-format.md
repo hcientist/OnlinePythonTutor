@@ -745,15 +745,15 @@ Finally, ignore `is_parent`, `is_zombie`, and `parent_frame_id_list` for now. We
 
 The `event` field can either be:
 
-- `step_line` - ordinary single step
-- `call` - first line during an executed function call (very important to match with corresponding `return` for visualization to work properly)
-- `return` - about to return from a function, usually the `__return__` value is set too
-- `exception` - when an exception happens - the `exception_msg` field should be set to a reasonable error message.see code for details; kinda sketchy at this point.
-- `uncaught_exception` -  - see code for details; kinda sketchy at this point.
+- `step_line` - ordinary single step. most trace entries will be of this type.
+- `call` - first line during an executed function call; very important to match with corresponding `return` for visualization to work properly ... every frame should have matching `call` and `return` entries.
+- `return` - about to return from a function, usually the `__return__` value is set at this point in the proper stack frame entry.
+- `exception` and `uncaught_exception` - when an exception happens - the `exception_msg` field should be set to a reasonable error message. use `uncaught_exception` at the top-level of the tracer to indicate what happens when the user's program itself didn't catch the exception, and a regular `exception` when the user's program throws an exception (which might be caught in another part of their program). If the trace has exactly 1 entry and it's an `uncaught_exception`, then the OPT frontend doesn't switch to the visualization at all ... instead it displays a "syntax error"-like thingy in the code editor. It will highlight the faulting line, indicated by the `line` field and display `exception_msg` there. So if you want to indicate a syntax error, then create a trace with exactly ONE entry that's an `uncaught_exception`. (If there's more than one trace entry and the last one happens to be `uncaught_exception`, then OPT will display the visualization as usual and then show the error when the user navigates to the final execution point.)
+
 
 ## Closures and Zombie Frames (advanced)
 
-As soon as a function becomes the parent of another function (i.e., a nested function is defined inside of it), then set the `is_parent` field of its stack entry to `true`. Also change its `unique_hash` by appending `_p` to it. The reason why we want to change `unique_hash` is that we want the frontend to *refresh* its display, and d3 might not refresh if it sees that the hash is identical to the prior frame. Conceptually, we want `unique_hash` to be different for a function before and after it turns into the parent of another function since we want to display it differently.
+As soon as a function becomes the parent of another function (i.e., a nested function is defined inside of it), set the `is_parent` field of its stack entry to `true`. Also change its `unique_hash` by appending `_p` to it. The reason why we want to change `unique_hash` is that we want the frontend to *refresh* its display, and d3 might not refresh if it sees that the hash is identical to the prior frame. Conceptually, we want `unique_hash` to be different for a function before and after it turns into the parent of another function since we want to display it differently.
 
 For example, when function `foo` is executing, its frame will have `is_parent=false` and `unique_hash = foo_f1` (or something similar) when its first two lines are running to define `x` and `y`, respectively. Then when its third line executes, that defines `bar` as a nested function within itself, so at that step, `foo` should have `is_parent=true` and `unique_hash = foo_f1_p` (or something similar).
 
