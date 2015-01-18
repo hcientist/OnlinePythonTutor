@@ -748,8 +748,8 @@ The `event` field can either be:
 - `step_line` - ordinary single step
 - `call` - first line during an executed function call (very important to match with corresponding `return` for visualization to work properly)
 - `return` - about to return from a function, usually the `__return__` value is set too
-- `exception` and `uncaught_exception` - see code for details; kinda sketchy at this point
-
+- `exception` - when an exception happens - the `exception_msg` field should be set to a reasonable error message.see code for details; kinda sketchy at this point.
+- `uncaught_exception` -  - see code for details; kinda sketchy at this point.
 
 ## Closures and Zombie Frames (advanced)
 
