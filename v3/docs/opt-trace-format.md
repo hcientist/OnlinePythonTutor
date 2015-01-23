@@ -127,8 +127,8 @@ Ok, still with me? Let's now dig into what an individual element in `trace` look
 
 ## Interlude: Viewing a trace in the OPT frontend
 
-To view a trace locally on your computer without setting up a Webserver, load up [`v3/demo.html`](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/demo.html) in your browser.
-Now create a trace file called `v3/test-trace.js`, which contains a single trace variable like so:
+To view any trace locally on your computer without setting up a Webserver, load up [`v3/demo.html`](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/demo.html) in your browser.
+Now create a trace file called `v3/test-trace.js` containing a single trace variable set to the value of your desired trace object:
 
 ```javascript
 var trace = { ... your trace object ... };
