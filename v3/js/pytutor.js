@@ -115,6 +115,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //                    granularity instead of line-level granularity (HIGHLY EXPERIMENTAL!)
 //   hideCode - hide the code display and show only the data structure viz
 //   tabularView - render a tabular view of ALL steps at once (EXPERIMENTAL)
+//   debugMode - some extra debugging printouts
 function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
   this.curTrace = dat.trace;
@@ -1392,6 +1393,10 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
       //alert(curEntry.question.text);
       
       $('#'+curEntry.question.div).modal({position:["25%","50%"]});
+  }
+
+  if (myViz.params.debugMode) {
+    console.log('updateOutputFull', curEntry);
   }
 
   // render VCR controls:
