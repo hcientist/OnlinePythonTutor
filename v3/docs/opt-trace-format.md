@@ -138,6 +138,9 @@ Now reload `v3/demo.html`, and if everything works out, it will create a new vis
 variable from `v3/test-trace.js`. I use this technique as a quick way of testing out what different traces look like
 without setting up a server.
 
+**If you open up your browser console, you will see the current trace entry being printed out as you step through the
+visualization, which can help you debug.**
+
 
 ## Execution Point Objects
 
