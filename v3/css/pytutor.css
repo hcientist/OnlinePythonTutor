@@ -236,6 +236,10 @@ div.ExecutionVisualizer .funcObj {
   white-space: nowrap;
 }
 
+div.ExecutionVisualizer .funcCode {
+  font-size: 8pt;
+}
+
 div.ExecutionVisualizer .retval {
   font-size: 9pt;
 }
@@ -333,7 +337,8 @@ div.ExecutionVisualizer table.classTbl td.classKey {
 
 div.ExecutionVisualizer table.dictTbl td.dictVal,
 div.ExecutionVisualizer table.instTbl td.instVal,
-div.ExecutionVisualizer table.classTbl td.classVal {
+div.ExecutionVisualizer table.classTbl td.classVal,
+div.ExecutionVisualizer td.funcCod {
   background-color: #ffffc6;
 }
 
@@ -358,6 +363,9 @@ div.ExecutionVisualizer table.classTbl td.classVal {
   padding-left: 4px;
 }
 
+div.ExecutionVisualizer td.funcCod {
+  padding-left: 4px;
+}
 
 div.ExecutionVisualizer table.classTbl td,
 div.ExecutionVisualizer table.instTbl td {
@@ -369,7 +377,8 @@ div.ExecutionVisualizer table.instTbl td.instVal {
   border-left: 1px #888 solid;
 }
 
-div.ExecutionVisualizer table.classTbl {
+div.ExecutionVisualizer table.classTbl,
+div.ExecutionVisualizer table.funcTbl {
   border-collapse: collapse;
   border: 1px #888 solid;
 }

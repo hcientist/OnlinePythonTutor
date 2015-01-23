@@ -3114,7 +3114,7 @@ ExecutionVisualizer.prototype.renderPrimitiveObject = function(obj, d3DomElement
     d3DomElement.append('<span class="stringObj">' + literalStr + '</span>');
   }
   else if (typ == "object") {
-    assert(obj[0] == 'SPECIAL_FLOAT');
+    assert(obj[0] == 'SPECIAL_FLOAT' || obj[0] == 'JS_SPECIAL_VAL');
     d3DomElement.append('<span class="numberObj">' + obj[1] + '</span>');
   }
   else {
@@ -3402,6 +3402,39 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
       d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + '</div>');
     }
   }
+  else if (obj[0] == 'JS_FUNCTION') { /* TODO: refactor me */
+    // JavaScript function
+    assert(obj.length == 5);
+    var funcName = htmlspecialchars(obj[1]);
+    var funcCode = htmlspecialchars(obj[2]);
+    var prototype = obj[3];
+    var parentFrameID = obj[4];
+
+
+    if (prototype || parentFrameID || myViz.showAllFrameLabels) {
+      d3DomElement.append('<table class="classTbl"></table>');
+      var tbl = d3DomElement.children('table');
+      tbl.append('<tr><td class="funcCod" colspan="2"><pre class="funcCode">' + funcCode + '</pre>' + '</td></tr>');
+
+      if (prototype) {
+        tbl.append('<tr class="classEntry"><td class="classKey">prototype</td><td class="classVal"></td></tr>');
+        var newRow = tbl.find('tr:last');
+        var valTd = newRow.find('td:last');
+        myViz.renderNestedObject(prototype, stepNum, valTd);
+      }
+
+      if (parentFrameID) {
+        tbl.append('<tr class="classEntry"><td class="classKey">parent</td><td class="classVal">' + 'f' + parentFrameID + '</td></tr>');
+      }
+      else if (myViz.showAllFrameLabels) {
+        tbl.append('<tr class="classEntry"><td class="classKey">parent</td><td class="classVal">' + 'global' + '</td></tr>');
+      }
+    }
+    else {
+      // compact form:
+      d3DomElement.append('<pre class="funcCode">' + funcCode + '</pre>');
+    }
+  }
   else if (obj[0] == 'HEAP_PRIMITIVE') {
     assert(obj.length == 3);
 
@@ -3526,7 +3559,11 @@ var rbRE = new RegExp('\\]|}|\\)|>', 'g');
 function varnameToCssID(varname) {
   // make sure to REPLACE ALL (using the 'g' option)
   // rather than just replacing the first entry
-  return varname.replace(lbRE, 'LeftB_').replace(rbRE, '_RightB').replace(/[.]/g, '_DOT_').replace(/ /g, '_');
+  return varname.replace(lbRE, 'LeftB_')
+                .replace(rbRE, '_RightB')
+                .replace(/[:]/g, '_COLON_')
+                .replace(/[.]/g, '_DOT_')
+                .replace(/ /g, '_');
 }
 
 
@@ -3587,13 +3624,13 @@ function isPrimitiveType(obj) {
   if (hook_result[0]) return hook_result[1];
 
   // null is a primitive
-  if (obj == null) {
+  if (obj === null) {
     return true;
   }
 
   if (typeof obj == "object") {
     // kludge: only 'SPECIAL_FLOAT' objects count as primitives
-    return (obj[0] == 'SPECIAL_FLOAT');
+    return (obj[0] == 'SPECIAL_FLOAT' || obj[0] == 'JS_SPECIAL_VAL');
   }
   else {
     // non-objects are primitives
