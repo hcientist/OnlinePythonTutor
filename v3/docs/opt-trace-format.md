@@ -125,6 +125,28 @@ is that `trace.length` is the number of execution steps that the frontend render
 
 Ok, still with me? Let's now dig into what an individual element in `trace` looks like.
 
+## Interlude: Viewing a trace in the OPT frontend
+
+To view a trace locally on your computer without setting up a Webserver, load up `v3/demo.html` in your browser.
+Now create a trace file called `v3/test-trace.js`, which contains a single trace variable like so:
+
+```javascript
+var trace = { ... your trace object ... };
+```
+
+Now reload `v3/demo.html`, and if everything works out, it will create a new visualization using the trace in the `trace`
+variable from `v3/test-trace.js`. I use this technique as a quick way of testing out what different traces look like
+without setting up a server.
+
+**If you open up your browser console, you will see the current trace entry being printed out as you step through the
+visualization, which can help you debug.**
+
+P.S. to create a trace file in the appropriate format using the defaault OPT Python frontend, run `generate_json_trace.py` using the `--create_jsvar` option:
+
+```python
+python generate_json_trace.py --create_jsvar=trace example.py > test-trace.js
+```
+
 
 ## Execution Point Objects
 
