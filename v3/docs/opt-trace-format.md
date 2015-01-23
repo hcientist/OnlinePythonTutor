@@ -127,12 +127,14 @@ Ok, still with me? Let's now dig into what an individual element in `trace` look
 
 ## Interlude: Viewing a trace in the OPT frontend
 
-To view a trace locally on your computer without setting up a Webserver, load up `v3/demo.html` in your browser.
+To view a trace locally on your computer without setting up a Webserver, load up [`v3/demo.html`](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/demo.html) in your browser.
 Now create a trace file called `v3/test-trace.js`, which contains a single trace variable like so:
 
 ```javascript
 var trace = { ... your trace object ... };
 ```
+
+[Here is the example test-trace.js in the repo.](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/test-trace.js)
 
 Now reload `v3/demo.html`, and if everything works out, it will create a new visualization using the trace in the `trace`
 variable from `v3/test-trace.js`. I use this technique as a quick way of testing out what different traces look like
