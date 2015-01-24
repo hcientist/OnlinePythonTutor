@@ -35,9 +35,9 @@ var app = express();
 
 app.use(serveStatic('static/')); // put all static files in here
 
-app.get('/', function(req, res) {
-  res.send('Hello World!');
-});
+//app.get('/', function(req, res) {
+//  res.send('Hello World!');
+//});
 
 var server = app.listen(3000, function() {
   var host = server.address().address;

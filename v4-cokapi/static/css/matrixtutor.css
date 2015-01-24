@@ -1,0 +1,21 @@
+/*  custom CSS for ../matrixtutor.html
+
+    always include this file AFTER pytutor.css
+*/
+
+#testInputPane {
+  margin-top: 5px;
+  font-size: 12pt;
+  border: 1px solid #ddd;
+}
+
+#gradingPane {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  max-width: 700px;
+  /* center align */
+  margin-left: auto;
+  margin-right: auto;
+}
+
