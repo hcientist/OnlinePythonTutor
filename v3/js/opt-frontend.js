@@ -165,7 +165,8 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 $(document).ready(function() {
   setSurveyHTML();
 
-  // for OPT live chat tutoring interface
+  // for OPT live chat tutoring interface -- DEPRECATED FOR NOW
+  /*
   try {
     var source = new EventSource(TogetherJSConfig_hubBase + 'learner-SSE');
     source.onmessage = function(e) {
@@ -191,6 +192,7 @@ $(document).ready(function() {
   }
 
   $("#getTutorBtn").click(requestTutor);
+  */
 
 
   // canned examples

@@ -29,9 +29,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // This is a nodejs server based on express that serves the v4-cokapi/ app
 // To test locally, run 'make' and load http://localhost:3000/
 
-
 var express = require('express');
+var serveStatic = require('serve-static');
 var app = express();
+
+app.use(serveStatic('static/')); // put all static files in here
 
 app.get('/', function(req, res) {
   res.send('Hello World!');

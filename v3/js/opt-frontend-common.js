@@ -677,7 +677,7 @@ function genericOptFrontendReady() {
     // otherwise just do an incremental update
     else {
       var newMode = $.bbq.getState('mode');
-      console.log('hashchange:', newMode, window.location.hash);
+      //console.log('hashchange:', newMode, window.location.hash);
       updateAppDisplay(newMode);
     }
 
