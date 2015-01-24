@@ -28,9 +28,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // include this file BEFORE any OPT frontend file
 
-var python2_backend_script = 'web_exec_py2.py';
-var python3_backend_script = 'web_exec_py3.py';
-
 var isExecutingCode = false; // nasty, nasty global
 
 var appMode = 'edit'; // 'edit' or 'display'. also support
@@ -58,7 +55,6 @@ function initDeltaObj() {
 function initAceEditor(height) {
   pyInputAceEditor = ace.edit('codeInputPane');
   var s = pyInputAceEditor.getSession();
-  s.setMode("ace/mode/python");
   // tab -> 4 spaces
   s.setTabSize(4);
   s.setUseSoftTabs(true);
@@ -75,6 +71,22 @@ function initAceEditor(height) {
   pyInputAceEditor.on('change', function(e) {
     $.doTimeout('pyInputAceEditorChange', 1000, snapshotCodeDiff); // debounce
   });
+
+  // don't do real-time syntax checks:
+  // https://github.com/ajaxorg/ace/wiki/Syntax-validation
+  s.setOption("useWorker", false);
+
+  setAceMode();
+}
+
+function setAceMode() {
+  var mod = 'python';
+  if ($('#pythonVersionSelector').val() === 'js') {
+    mod = 'javascript';
+  }
+  assert(mod === 'python' || mod === 'javascript');
+  var s = pyInputAceEditor.getSession();
+  s.setMode("ace/mode/" + mod);
 }
 
 function snapshotCodeDiff() {
@@ -301,9 +313,7 @@ function genericOptFrontendReady() {
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(executeCodeFromScratch);
 
-  // for Versions 1 and 2, initialize here. But for version 3+, dynamically
-  // generate a survey whenever the user successfully executes a piece of code
-  //initializeDisplayModeSurvey();
+  $('#pythonVersionSelector').change(setAceMode); // update syntax highlighting mode
 }
 
 
@@ -532,7 +542,7 @@ function updateAppDisplay(newAppMode) {
 function executeCodeFromScratch() {
   // don't execute empty string:
   if ($.trim(pyInputGetValue()) == '') {
-    setFronendError(["Type in some Python code to visualize."]);
+    setFronendError(["Type in some code to visualize."]);
     return;
   }
 

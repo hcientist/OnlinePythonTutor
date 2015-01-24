@@ -69,11 +69,6 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                            py_crazy_mode: ($('#pythonVersionSelector').val() == '2crazy'),
                            origin: originFrontendJsFile};
 
-  var surveyObj = getSurveyObject();
-  if (surveyObj) {
-    backendOptionsObj.survey = surveyObj;
-  }
-
   var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
 
   var frontendOptionsObj = {startingInstruction: startingInstruction,
@@ -107,6 +102,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 
 
 $(document).ready(function() {
+  $("#optionsPane").hide();
 
   // canned examples
 
