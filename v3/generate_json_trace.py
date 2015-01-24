@@ -35,14 +35,23 @@ parser.add_option('-i', '--input', default=False, action='store',
         help='JSON list of strings for simulated raw_input.', dest='raw_input_lst_json')
 parser.add_option("--create_jsvar", dest="js_varname", default=None,
                   help="Create a JavaScript variable out of the trace")
+parser.add_option("--code", dest="usercode", default=None,
+                  help="Load user code from a string instead of a file and output compact JSON")
 
 (options, args) = parser.parse_args()
 INDENT_LEVEL = None if options.compact else 2
 
-fin = sys.stdin if args[0] == "-" else open(args[0])
-
-if options.js_varname:
-  JS_VARNAME = options.js_varname
-  print(pg_logger.exec_script_str_local(fin.read(), options.raw_input_lst_json, options.cumulative, options.heapPrimitives, js_var_finalizer))
+if options.usercode:
+  INDENT_LEVEL = None
+  print(pg_logger.exec_script_str_local(options.usercode,
+                                        options.raw_input_lst_json,
+                                        options.cumulative,
+                                        options.heapPrimitives,
+                                        json_finalizer))
 else:
-  print(pg_logger.exec_script_str_local(fin.read(), options.raw_input_lst_json, options.cumulative, options.heapPrimitives, json_finalizer))
+  fin = sys.stdin if args[0] == "-" else open(args[0])
+  if options.js_varname:
+    JS_VARNAME = options.js_varname
+    print(pg_logger.exec_script_str_local(fin.read(), options.raw_input_lst_json, options.cumulative, options.heapPrimitives, js_var_finalizer))
+  else:
+    print(pg_logger.exec_script_str_local(fin.read(), options.raw_input_lst_json, options.cumulative, options.heapPrimitives, json_finalizer))

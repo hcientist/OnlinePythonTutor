@@ -29,15 +29,32 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // This is a nodejs server based on express that serves the v4-cokapi/ app
 // To test locally, run 'make' and load http://localhost:3000/
 
+// VERY IMPORTANT - turn on the sandbox when deploying online, or else
+// you'll be executing untrusted code on your server!
+var USE_DOCKER_SANDBOX = false;
+
 var express = require('express');
 var serveStatic = require('serve-static');
 var app = express();
 
+function assert(cond) {
+  if (!cond) {
+    var stack = new Error().stack;
+    console.error('Assertion error');
+    console.error(stack);
+    throw 'Assertion Failure';
+  }
+}
+
 app.use(serveStatic('static/')); // put all static files in here
 
-//app.get('/', function(req, res) {
-//  res.send('Hello World!');
-//});
+app.get('/exec_py2', function(req, res) {
+  if (USE_DOCKER_SANDBOX) {
+    assert(false);
+  } else {
+    res.send('Hello World!');
+  }
+});
 
 var server = app.listen(3000, function() {
   var host = server.address().address;

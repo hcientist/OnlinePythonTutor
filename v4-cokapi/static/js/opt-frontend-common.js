@@ -673,15 +673,7 @@ function executeUserCode(sourceCode,
                 frontendOptionsObj.startingInstruction = 0;
               }
 
-              if (frontendOptionsObj.holisticMode) {
-                // do NOT override, or else bad things will happen with
-                // jsPlumb arrows interfering ...
-                delete frontendOptionsObj.visualizerIdOverride;
-
-                myVisualizer = new HolisticVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
-              } else {
-                myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
-              }
+              myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
               // SUPER HACK -- slip in backendOptionsObj as an extra field
               myVisualizer.backendOptionsObj = backendOptionsObj;
 
