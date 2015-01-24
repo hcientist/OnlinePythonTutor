@@ -36,10 +36,7 @@ var isExecutingCode = false; // nasty, nasty global
 var appMode = 'edit'; // 'edit' or 'display'. also support
                       // 'visualize' for backward compatibility (same as 'display')
 
-var pyInputCodeMirror; // CodeMirror object that contains the input code
 var pyInputAceEditor; // Ace editor object that contains the input code
-
-var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
 
 
 var dmp = new diff_match_patch();
@@ -49,7 +46,7 @@ var deltaObj = undefined;
 function initDeltaObj() {
   // make sure the editor already exists
   // (editor doesn't exist when you're, say, doing an iframe embed)
-  if (!pyInputAceEditor && !pyInputCodeMirror) {
+  if (!pyInputAceEditor) {
     return;
   }
 
@@ -175,22 +172,12 @@ function supports_html5_storage() {
 
 // abstraction so that we can use either CodeMirror or Ace as our code editor
 function pyInputGetValue() {
-  if (useCodeMirror) {
-    return pyInputCodeMirror.getValue();
-  }
-  else {
-    return pyInputAceEditor.getValue();
-  }
+  return pyInputAceEditor.getValue();
 }
 
 function pyInputSetValue(dat) {
-  if (useCodeMirror) {
-    pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
-  }
-  else {
-    pyInputAceEditor.setValue(dat.rtrim() /* kill trailing spaces */,
-                              -1 /* do NOT select after setting text */);
-  }
+  pyInputAceEditor.setValue(dat.rtrim() /* kill trailing spaces */,
+                            -1 /* do NOT select after setting text */);
 
   $('#urlOutput,#embedCodeOutput').val('');
 
@@ -201,24 +188,12 @@ function pyInputSetValue(dat) {
 }
 
 
-var codeMirrorScroller = '#codeInputPane .CodeMirror-scroll';
-
 function pyInputGetScrollTop() {
-  if (useCodeMirror) {
-    return $(codeMirrorScroller).scrollTop();
-  }
-  else {
-    return pyInputAceEditor.getSession().getScrollTop();
-  }
+  return pyInputAceEditor.getSession().getScrollTop();
 }
 
 function pyInputSetScrollTop(st) {
-  if (useCodeMirror) {
-    $(codeMirrorScroller).scrollTop(st);
-  }
-  else {
-    pyInputAceEditor.getSession().setScrollTop(st);
-  }
+  pyInputAceEditor.getSession().setScrollTop(st);
 }
 
 
@@ -241,79 +216,33 @@ function genericOptFrontendReady() {
   });
 
 
-  if (useCodeMirror) {
-    pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
-      mode: 'python',
-      lineNumbers: true,
-      tabSize: 4,
-      indentUnit: 4,
-      // convert tab into four spaces:
-      extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
-    });
-
-    pyInputCodeMirror.setSize(null, '420px');
-  }
-  else {
-    initAceEditor(420);
-  }
+  initAceEditor(420);
 
 
-  if (useCodeMirror) {
-    // for shared sessions
-    pyInputCodeMirror.on("change", function(cm, change) {
-      // only trigger when the user explicitly typed something
-      if (change.origin != 'setValue') {
-        //if (TogetherJS.running) {
-        //  TogetherJS.send({type: "codemirror-edit"});
-        //}
-      }
-    });
-  }
-  else {
-    pyInputAceEditor.getSession().on("change", function(e) {
-      // unfortunately, Ace doesn't detect whether a change was caused
-      // by a setValue call
-      //if (TogetherJS.running) {
-      //  TogetherJS.send({type: "codemirror-edit"});
-      //}
-    });
-  }
+  pyInputAceEditor.getSession().on("change", function(e) {
+    // unfortunately, Ace doesn't detect whether a change was caused
+    // by a setValue call
+    //if (TogetherJS.running) {
+    //  TogetherJS.send({type: "codemirror-edit"});
+    //}
+  });
 
 
-  if (useCodeMirror) {
-    $(codeMirrorScroller).scroll(function(e) {
-      /*
-      if (TogetherJS.running) {
-        var elt = $(this);
-        $.doTimeout('codeInputScroll', 100, function() { // debounce
-          // note that this will send a signal back and forth both ways
-          // (there's no easy way to prevent this), but it shouldn't keep
-          // bouncing back and forth indefinitely since no the second signal
-          // causes no additional scrolling
-          TogetherJS.send({type: "codeInputScroll",
-                           scrollTop: elt.scrollTop()});
-        });
-      }
-      */
-    });
-  }
-  else {
-    // don't sync for Ace since I can't get it working properly yet
-    /*
-    pyInputAceEditor.getSession().on('changeScrollTop', function() {
-      if (TogetherJS.running) {
-        $.doTimeout('codeInputScroll', 100, function() { // debounce
-          // note that this will send a signal back and forth both ways
-          // (there's no easy way to prevent this), but it shouldn't keep
-          // bouncing back and forth indefinitely since no the second signal
-          // causes no additional scrolling
-          TogetherJS.send({type: "codeInputScroll",
-                           scrollTop: pyInputGetScrollTop()});
-        });
-      }
-    });
-    */
-  }
+  // don't sync for Ace since I can't get it working properly yet
+  /*
+  pyInputAceEditor.getSession().on('changeScrollTop', function() {
+    if (TogetherJS.running) {
+      $.doTimeout('codeInputScroll', 100, function() { // debounce
+        // note that this will send a signal back and forth both ways
+        // (there's no easy way to prevent this), but it shouldn't keep
+        // bouncing back and forth indefinitely since no the second signal
+        // causes no additional scrolling
+        TogetherJS.send({type: "codeInputScroll",
+                         scrollTop: pyInputGetScrollTop()});
+      });
+    }
+  });
+  */
 
 
   // first initialize options from HTML LocalStorage. very important
@@ -378,7 +307,7 @@ function genericOptFrontendReady() {
 }
 
 
-// sets globals such as rawInputLst, CodeMirror input box, and toggle options
+// sets globals such as rawInputLst, code input box, and toggle options
 function parseQueryString() {
   var queryStrOptions = getQueryStringOptions();
   setToggleOptions(queryStrOptions);
@@ -620,27 +549,14 @@ function executeCodeWithRawInput(rawInputStr, curInstr) {
 
 function handleUncaughtExceptionFunc(trace) {
   if (trace.length == 1 && trace[0].line) {
-    var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
+    var errorLineNo = trace[0].line - 1; /* Ace lines are zero-indexed */
     if (errorLineNo !== undefined && errorLineNo != NaN) {
       // highlight the faulting line
-      if (useCodeMirror) {
-        pyInputCodeMirror.focus();
-        pyInputCodeMirror.setCursor(errorLineNo, 0);
-        pyInputCodeMirror.addLineClass(errorLineNo, null, 'errorLine');
-
-        function f() {
-          pyInputCodeMirror.removeLineClass(errorLineNo, null, 'errorLine'); // reset line back to normal
-          pyInputCodeMirror.off('change', f);
-        }
-        pyInputCodeMirror.on('change', f);
-      }
-      else {
-        var s = pyInputAceEditor.getSession();
-        s.setAnnotations([{row: errorLineNo,
-                           type: 'error',
-                           text: trace[0].exception_msg}]);
-        pyInputAceEditor.gotoLine(errorLineNo + 1 /* one-indexed */);
-      }
+      var s = pyInputAceEditor.getSession();
+      s.setAnnotations([{row: errorLineNo,
+                         type: 'error',
+                         text: trace[0].exception_msg}]);
+      pyInputAceEditor.gotoLine(errorLineNo + 1 /* one-indexed */);
     }
   }
 }
