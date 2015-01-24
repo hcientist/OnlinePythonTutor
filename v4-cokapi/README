@@ -1,3 +1,5 @@
 2015-01-24 - This is an experimental version of OPT that adds support
 for multiple target languages under one unified app. It relies on node
 for the server and docker for sandboxing (if available).
+
+To install node dependencies, run 'make deps'
