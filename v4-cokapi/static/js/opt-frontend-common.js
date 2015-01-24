@@ -612,11 +612,11 @@ function optFinishSuccessfulExecution() {
 
 
 // TODO: cut reliance on the nasty rawInputLst global
-function executePythonCode(pythonSourceCode,
-                           backendScript, backendOptionsObj,
-                           frontendOptionsObj,
-                           outputDiv,
-                           handleSuccessFunc, handleUncaughtExceptionFunc) {
+function executeUserCode(sourceCode,
+                         backendScript, backendOptionsObj,
+                         frontendOptionsObj,
+                         outputDiv,
+                         handleSuccessFunc, handleUncaughtExceptionFunc) {
     if (!backendScript) {
       setFronendError(["Server configuration error: No backend script",
                        "Report a bug to philip@pgbovine.net by clicking on the 'Generate URL'",
@@ -640,7 +640,7 @@ function executePythonCode(pythonSourceCode,
     startExecutingCode();
 
     $.get(backendScript,
-          {user_script : pythonSourceCode,
+          {user_script : sourceCode,
            raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
            options_json: JSON.stringify(backendOptionsObj),
            // if we don't have any deltas, then don't bother sending deltaObj:

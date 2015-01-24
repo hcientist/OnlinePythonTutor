@@ -53,14 +53,17 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 
   var backend_script = null;
   if ($('#pythonVersionSelector').val() == '2') {
-      backend_script = python2_backend_script;
+      backend_script = '/exec_py2';
   }
   else if ($('#pythonVersionSelector').val() == '3') {
-      backend_script = python3_backend_script;
+      backend_script = '/exec_py3'
   }
-  // experimental KRAZY MODE!!!
-  else if ($('#pythonVersionSelector').val() == '2crazy') {
-      backend_script = python2crazy_backend_script;
+  else if ($('#pythonVersionSelector').val() == 'js') {
+      backend_script = '/exec_js';
+  }
+  else {
+    alert("Invalid version selector");
+    assert(false);
   }
 
   var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
@@ -87,17 +90,13 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                             // ExecutionVisualizer will be shown at a time
                             visualizerIdOverride: '1',
                             updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
-
-                            // undocumented experimental modes:
-                            pyCrazyMode: ($('#pythonVersionSelector').val() == '2crazy'),
-                            holisticMode: ($('#cumulativeModeSelector').val() == 'holistic')
                            }
 
-  executePythonCode(pyInputGetValue(),
-                    backend_script, backendOptionsObj,
-                    frontendOptionsObj,
-                    'pyOutputPane',
-                    optFinishSuccessfulExecution, handleUncaughtExceptionFunc);
+  executeUserCode(pyInputGetValue(),
+                  backend_script, backendOptionsObj,
+                  frontendOptionsObj,
+                  'pyOutputPane',
+                  optFinishSuccessfulExecution, handleUncaughtExceptionFunc);
 }
 
 
