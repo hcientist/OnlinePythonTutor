@@ -37,6 +37,38 @@ var assert = require('assert');
 var child_process = require('child_process');
 var express = require('express');
 var serveStatic = require('serve-static');
+//var util = require('util');
+
+
+// We use this to execute since it supports utf8 and also an optional
+// timeout, but it needs the exact location of binaries because it doesn't
+// spawn a shell
+// http://nodejs.org/api/child_process.html#child_process_child_process_execfile_file_args_options_callback
+
+var NODE_BIN = '/usr/local/bin/node';
+var PYTHON2_BIN = '/usr/local/bin/python';
+var PYTHON3_BIN = '/usr/local/bin/python3';
+
+var TIMEOUT_SECS = 3;
+
+
+function postExecHandler(res, err, stdout, stderr) {
+  if (err) {
+    var errTrace;
+    if (err.killed) {
+      // timeout!
+      errTrace = {code: '', trace: [{'event': 'uncaught_exception',
+                                     'exception_msg': 'Timeout error. Your code ran for more than ' + TIMEOUT_SECS + ' seconds. Please shorten and try again.'}]};
+      res.send(JSON.stringify(errTrace));
+    } else {
+      errTrace = {code: '', trace: [{'event': 'uncaught_exception',
+                                     'exception_msg': "Unknown error. Report a bug to philip@pgbovine.net by clicking on the\n'Generate URL' button at the bottom and including a URL in your email."}]};
+      res.send(JSON.stringify(errTrace));
+    }
+  } else {
+    res.send(stdout);
+  }
+}
 
 
 var app = express();
@@ -47,7 +79,7 @@ app.get('/exec_py2', function(req, res) {
   if (USE_DOCKER_SANDBOX) {
     assert(false);
   } else {
-    executePython('python', req, res);
+    executePython(PYTHON2_BIN, req, res);
   }
 });
 
@@ -55,7 +87,7 @@ app.get('/exec_py3', function(req, res) {
   if (USE_DOCKER_SANDBOX) {
     assert(false);
   } else {
-    executePython('python3', req, res);
+    executePython(PYTHON3_BIN, req, res);
   }
 });
 
@@ -69,14 +101,10 @@ app.get('/exec_js', function(req, res) {
                 '--jsondump=true',
                 '--code=' + usrCod];
 
-    var child = child_process.spawn('node', args);
-    var stdoutDat = '';
-    child.stdout.on('data', function(data) {
-      stdoutDat += data;
-    });
-    child.on('close', function(code) {
-      res.send(String(stdoutDat));
-    });
+    child_process.execFile(NODE_BIN, args,
+                           {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
+                            maxBuffer: 2000 * 1024, /* 2MB data max */},
+                           postExecHandler.bind(null, res));
   }
 });
 
@@ -100,14 +128,10 @@ function executePython(pythonExe, req, res) {
   }
   args.push('--code=' + usrCod);
 
-  var child = child_process.spawn(pythonExe, args);
-  var stdoutDat = '';
-  child.stdout.on('data', function(data) {
-    stdoutDat += data;
-  });
-  child.on('close', function(code) {
-    res.send(String(stdoutDat));
-  });
+  child_process.execFile(pythonExe, args,
+                         {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
+                          maxBuffer: 2000 * 1024, /* 2MB data max */},
+                         postExecHandler.bind(null, res));
 }
 
 var server = app.listen(3000, function() {
