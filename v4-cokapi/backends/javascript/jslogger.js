@@ -46,8 +46,6 @@ regarding the 'handle_' field of serialized objects ...
 
 TODOs:
 
-- get the frontend to display 'instance' as 'object', and 'list' as 'array'
-
 
 Low-priority TODOs:
 

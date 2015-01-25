@@ -52,13 +52,13 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
   }
 
   var backend_script = null;
-  if ($('#pythonVersionSelector').val() == '2') {
+  if ($('#pythonVersionSelector').val() === '2') {
       backend_script = '/exec_py2';
   }
-  else if ($('#pythonVersionSelector').val() == '3') {
+  else if ($('#pythonVersionSelector').val() === '3') {
       backend_script = '/exec_py3'
   }
-  else if ($('#pythonVersionSelector').val() == 'js') {
+  else if ($('#pythonVersionSelector').val() === 'js') {
       backend_script = '/exec_js';
   }
   else {
@@ -81,6 +81,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                             textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
                             showOnlyOutputs: ($('#showOnlyOutputsSelector').val() == 'true'),
                             executeCodeWithRawInputFunc: executeCodeWithRawInput,
+                            lang: ($('#pythonVersionSelector').val() === 'js') ? 'js' : undefined,
 
                             // always use the same visualizer ID for all
                             // instantiated ExecutionVisualizer objects,
