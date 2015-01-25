@@ -41,7 +41,7 @@ var serveStatic = require('serve-static');
 
 var app = express();
 
-app.use(serveStatic('static/')); // put all static files in here
+app.use(serveStatic('frontends/')); // put all static files in here
 
 app.get('/exec_py2', function(req, res) {
   if (USE_DOCKER_SANDBOX) {
