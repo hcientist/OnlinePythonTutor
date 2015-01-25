@@ -846,14 +846,13 @@
             encoded_locals: { n: 0, x: [ 'JS_SPECIAL_VAL', 'undefined' ] } } ],
        globals: { f: [ 'REF', 1 ] },
        ordered_globals: [ 'f' ],
-       line: 0,
+       line: 18,
        col: 8,
-       event: 'uncaught_exception',
+       event: 'step_line',
        heap: 
         { '1': 
            [ 'JS_FUNCTION',
              'f',
              'function f(n) {\n    try {\n        if (n == 0) {\n          throw new Error(\'DivByZero\');\n        }\n        else {\n          var x = 10 / n;\n          console.log("x is " + x);\n          f(n-1);\n          console.log("survived!");\n        }\n    }\n    finally {\n        console.log("Bye from f where n = " + n);\n    }\n}',
              null,
-             null ] },
-       exception_msg: 'Error: DivByZero\n(Uncaught Exception: execution ended due to current limits of\nthis visualizer. \'finally\' blocks and other code might not be run.)' } ] }
+             null ] } } ] }

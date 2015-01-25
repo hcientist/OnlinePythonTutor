@@ -70,6 +70,7 @@ function initAceEditor(height) {
   initDeltaObj();
   pyInputAceEditor.on('change', function(e) {
     $.doTimeout('pyInputAceEditorChange', 1000, snapshotCodeDiff); // debounce
+    clearFrontendError();
   });
 
   // don't do real-time syntax checks:

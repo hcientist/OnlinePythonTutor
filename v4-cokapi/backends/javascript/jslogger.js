@@ -643,6 +643,39 @@ function listener(event, execState, eventData, data) {
   }
 }
 
+
+// for testing
+function simpleListener(event, execState, eventData, data) {
+  var stepType, i, n;
+  var ii, jj, sc, scopeType, scopeObj;
+  var f;
+
+  // TODO: catch CompileError and maybe other events too
+  if (event !== debug.DebugEvent.Break && event !== debug.DebugEvent.Exception) {
+    return;
+  }
+
+  var isException = (event === debug.DebugEvent.Exception);
+
+  var script   = eventData.func().script().name();
+  var line     = eventData.sourceLine() + 1;
+  var col      = eventData.sourceColumn();
+  assert(line >= 2);
+  line -= 2; // to account for wrapUserscript() adding extra lines
+
+  log(script, line, col, isException);
+
+  // if what we're currently executing isn't inside of userscript.js,
+  // then PUNT, since we're probably in the first line of console.log()
+  // or some other utility function
+  if (script !== 'userscript.js') {
+    execState.prepareStep(debug.StepAction.StepOut);
+  } else {
+    execState.prepareStep(debug.StepAction.StepIn);
+  }
+}
+
+
 assert(argv._.length <= 1);
 var cod;
 if (argv._.length === 1) {
@@ -667,14 +700,17 @@ try {
 }
 catch (e) {
   // for some reason, the node debugger doesn't allow us to keep going
-  // after an uncaught exception to, say, execute 'finally' clauses. so
-  // let's just issue this warning by hijacking the last entry.
+  // after an uncaught exception to, say, execute 'finally' clauses.
   if (curTrace.length > 0) {
+    // do a NOP for now ... it's weird to issue an uncaught_exception since
+    // that's usually reserved for syntax errors
+    /*
     var lastEntry = curTrace[curTrace.length - 1];
-    lastEntry.event = 'uncaught_exception';
+    lastEntry.event = 'exception';
     lastEntry.exception_msg = String(e);
     lastEntry.exception_msg += "\n(Uncaught Exception: execution ended due to current limits of\nthis visualizer. 'finally' blocks and other code might not be run.)";
     lastEntry.line = 0;
+    */
   } else {
     // likely a compile error since nothing executed yet; trace is empty
 
