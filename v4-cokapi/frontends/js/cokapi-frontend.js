@@ -114,7 +114,6 @@ function initAceAndOptions() {
 
 $(document).ready(function() {
   // canned examples
-
   /*
   $("#tutorialExampleLink").click(function() {
     $.get("example-code/py_tutorial.txt", pyInputSetValue);
@@ -136,4 +135,42 @@ $(document).ready(function() {
 
   $('#pythonVersionSelector').change(initAceAndOptions);
   initAceAndOptions();
+
+  // feedback
+  if (supports_html5_storage()) {
+    var v = localStorage.getItem('feedbackName');
+    if (v) {
+      $("#feedbackName").val(v);
+    }
+  }
+
+  $("#feedbackName").on('change', function() {
+    if (supports_html5_storage()) {
+      localStorage.setItem('feedbackName', $(this).val());
+    }
+  });
+
+  $("#submitFeedbackBtn").click(function() {
+    var name = $("#feedbackName").val();
+    var txt = $("#feedbackText").val();
+    if (!txt.trim()) {
+      return;
+    }
+
+    // should really be a $.post but i'm lazy and $.get is easier to
+    // implement on the server
+    $.get('/feedback',
+          {name: name ? name : '',
+           feedback: txt,
+           appStateJSON: JSON.stringify(getAppState())}, function(dat) {
+
+            if (dat === 'ok') {
+              alert("Thanks for submitting your feedback!");
+            } else if (dat === 'toolong') {
+              alert("Error: feedback text is too long.\nPlease shorten and resubmit.");
+            } else {
+              alert("Unknown error in submitting feedback.\nPlease email philip@pgbovine.net");
+            }
+          });
+  });
 });

@@ -37,6 +37,7 @@ var assert = require('assert');
 var child_process = require('child_process');
 var express = require('express');
 var serveStatic = require('serve-static');
+var sqlite3 = require('sqlite3');
 //var util = require('util');
 
 
@@ -133,6 +134,38 @@ function executePython(pythonExe, req, res) {
                           maxBuffer: 2000 * 1024, /* 2MB data max */},
                          postExecHandler.bind(null, res));
 }
+
+
+// prereqs: sqlite database must be first set up with
+// feedback/setup_feedback_db.py
+var feedbackDb = new sqlite3.Database('feedback/cokapi-feedback.db');
+
+// NB: should really be a POST but i'm lazy and GET  is easier to implement
+app.get('/feedback', function(req, res) {
+  var name = req.query.name;
+  var feedback = req.query.feedback;
+  var appStateJSON = req.query.appStateJSON;
+  console.log('name:', name);
+  console.log('feedback:', feedback);
+  console.log('appStateJSON:', appStateJSON);
+
+  // limit each piece of feedback to < 100KB in size to prevent users
+  // from flooding the database
+  if ((name + feedback + appStateJSON).length > (100 * 1024)) {
+    res.send('toolong');
+  } else {
+    feedbackDb.run('INSERT INTO feedback VALUES(null, ?, ?, ?, CURRENT_TIMESTAMP)',
+                   name, feedback, appStateJSON, function(err) {
+      if (err) {
+        console.log(err);
+        res.send('error');
+      } else {
+        res.send('ok');
+      }
+    });
+  }
+});
+
 
 var server = app.listen(3000, function() {
   var host = server.address().address;
