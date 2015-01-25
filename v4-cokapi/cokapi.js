@@ -34,8 +34,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 var USE_DOCKER_SANDBOX = false;
 
 var assert = require('assert');
+var child_process = require('child_process');
 var express = require('express');
 var serveStatic = require('serve-static');
+
+
 var app = express();
 
 app.use(serveStatic('static/')); // put all static files in here
@@ -44,9 +47,68 @@ app.get('/exec_py2', function(req, res) {
   if (USE_DOCKER_SANDBOX) {
     assert(false);
   } else {
-    res.send('Hello World!');
+    executePython('python', req, res);
   }
 });
+
+app.get('/exec_py3', function(req, res) {
+  if (USE_DOCKER_SANDBOX) {
+    assert(false);
+  } else {
+    executePython('python3', req, res);
+  }
+});
+
+app.get('/exec_js', function(req, res) {
+  if (USE_DOCKER_SANDBOX) {
+    assert(false);
+  } else {
+    var usrCod = req.query.user_script;
+    var args = ['--expose-debug-as=Debug',
+                'backends/javascript/jslogger.js',
+                '--jsondump=true',
+                '--code=' + usrCod];
+
+    var child = child_process.spawn('node', args);
+    var stdoutDat = '';
+    child.stdout.on('data', function(data) {
+      stdoutDat += data;
+    });
+    child.on('close', function(code) {
+      res.send(String(stdoutDat));
+    });
+  }
+});
+
+function executePython(pythonExe, req, res) {
+  var parsedOptions = JSON.parse(req.query.options_json);
+
+  var usrCod = req.query.user_script;
+  var usrInputJson = req.query.raw_input_json;
+  var cumulativeMode = parsedOptions.cumulative_mode;
+  var heapPrimitives = parsedOptions.heap_primitives;
+
+  var args = ['backends/python/generate_json_trace.py'];
+  if (cumulativeMode) {
+    args.push('-c');
+  }
+  if (heapPrimitives) {
+    args.push('-p');
+  }
+  if (usrInputJson) {
+    args.push('--input=' + usrInputJson);
+  }
+  args.push('--code=' + usrCod);
+
+  var child = child_process.spawn(pythonExe, args);
+  var stdoutDat = '';
+  child.stdout.on('data', function(data) {
+    stdoutDat += data;
+  });
+  child.on('close', function(code) {
+    res.send(String(stdoutDat));
+  });
+}
 
 var server = app.listen(3000, function() {
   var host = server.address().address;

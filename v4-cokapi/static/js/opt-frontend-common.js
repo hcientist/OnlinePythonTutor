@@ -460,10 +460,8 @@ function updateAppDisplay(newAppMode) {
     appMode = 'edit'; // canonicalize
 
     $("#pyInputPane").show();
-    $("#pyOutputPane,#surveyHeader").hide();
+    $("#pyOutputPane").hide();
     $("#embedLinkDiv").hide();
-
-    $(".surveyQ").val(''); // clear all survey results when user hits forward/back
 
     // destroy all annotation bubbles (NB: kludgy)
     if (myVisualizer) {
@@ -502,13 +500,6 @@ function updateAppDisplay(newAppMode) {
     });
 
     $(document).scrollTop(0); // scroll to top to make UX better on small monitors
-
-
-    // NASTY global :(
-    if (pendingCodeOutputScrollTop) {
-      myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(pendingCodeOutputScrollTop);
-      pendingCodeOutputScrollTop = null;
-    }
 
     $.doTimeout('pyCodeOutputDivScroll'); // cancel any prior scheduled calls
 
@@ -604,10 +595,6 @@ function optFinishSuccessfulExecution() {
   // compress the logs a bit when there's rapid scrubbing or scrolling)
   myVisualizer.updateHistory = [];
   myVisualizer.updateHistory.push([myVisualizer.curInstr, 0]); // seed it!
-
-  // For version 3+, dynamically generate a survey whenever the user
-  // successfully executes a piece of code
-  initializeDisplayModeSurvey();
 }
 
 

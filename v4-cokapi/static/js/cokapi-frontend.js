@@ -101,7 +101,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 
 
 $(document).ready(function() {
-  $("#optionsPane").hide();
+  //$("#optionsPane").hide();
 
   // canned examples
 
