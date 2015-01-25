@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // VERY IMPORTANT - turn on the sandbox when deploying online, or else
 // you'll be executing untrusted code on your server!
-var USE_DOCKER_SANDBOX = false;
+var USE_DOCKER_SANDBOX = true;
 
 var assert = require('assert');
 var child_process = require('child_process');
@@ -78,39 +78,46 @@ var app = express();
 app.use(serveStatic('frontends/')); // put all static files in here
 
 app.get('/exec_py2', function(req, res) {
-  if (USE_DOCKER_SANDBOX) {
-    assert(false);
-  } else {
-    executePython(PYTHON2_BIN, req, res);
-  }
+  executePython('py2', req, res);
 });
 
 app.get('/exec_py3', function(req, res) {
-  if (USE_DOCKER_SANDBOX) {
-    assert(false);
-  } else {
-    executePython(PYTHON3_BIN, req, res);
-  }
+  executePython('py3', req, res);
 });
 
 app.get('/exec_js', function(req, res) {
-  if (USE_DOCKER_SANDBOX) {
-    assert(false);
-  } else {
-    var usrCod = req.query.user_script;
-    var args = ['--expose-debug-as=Debug',
-                'backends/javascript/jslogger.js',
-                '--jsondump=true',
-                '--code=' + usrCod];
+  var usrCod = req.query.user_script;
 
-    child_process.execFile(NODE_BIN, args,
-                           {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
-                            maxBuffer: 2000 * 1024, /* 2MB data max */},
-                           postExecHandler.bind(null, res));
+  var exeFile;
+  var args = [];
+
+  if (USE_DOCKER_SANDBOX) {
+    // this needs to match the docker setup in Dockerfile
+    exeFile = '/usr/bin/docker'; // absolute path to docker executable
+    args.push('run', '--rm', 'pgbovine/cokapi:v1',
+              'node',
+              '--expose-debug-as=Debug',
+              '/tmp/javascript/jslogger.js');
+  } else {
+    exeFile = NODE_BIN;
+    args.push('--expose-debug-as=Debug',
+              'backends/javascript/jslogger.js');
   }
+  args.push('--jsondump=true');
+  args.push('--code=' + usrCod);
+
+  child_process.execFile(exeFile, args,
+                         {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
+                          maxBuffer: 2000 * 1024 /* 2MB data max */,
+                          // make SURE docker gets the kill signal;
+                          // this signal seems to allow docker to clean
+                          // up after itself to --rm the container, but
+                          // double-check with 'docker ps -a'
+                          killSignal: 'SIGINT'},
+                         postExecHandler.bind(null, res));
 });
 
-function executePython(pythonExe, req, res) {
+function executePython(pyVer, req, res) {
   var parsedOptions = JSON.parse(req.query.options_json);
 
   var usrCod = req.query.user_script;
@@ -118,7 +125,20 @@ function executePython(pythonExe, req, res) {
   var cumulativeMode = parsedOptions.cumulative_mode;
   var heapPrimitives = parsedOptions.heap_primitives;
 
-  var args = ['backends/python/generate_json_trace.py'];
+  var exeFile;
+  var args = [];
+
+  if (USE_DOCKER_SANDBOX) {
+    // this needs to match the docker setup in Dockerfile
+    exeFile = '/usr/bin/docker'; // absolute path to docker executable
+    args.push('run', '--rm', 'pgbovine/cokapi:v1',
+              (pyVer == 'py2' ? 'python' : 'python3'),
+              '/tmp/python/generate_json_trace.py');
+  } else {
+    exeFile = (pyVer == 'py2' ? PYTHON2_BIN : PYTHON3_BIN);
+    args.push('backends/python/generate_json_trace.py');
+  }
+
   if (cumulativeMode) {
     args.push('-c');
   }
@@ -130,9 +150,14 @@ function executePython(pythonExe, req, res) {
   }
   args.push('--code=' + usrCod);
 
-  child_process.execFile(pythonExe, args,
+  child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
-                          maxBuffer: 2000 * 1024, /* 2MB data max */},
+                          maxBuffer: 2000 * 1024 /* 2MB data max */,
+                          // make SURE docker gets the kill signal;
+                          // this signal seems to allow docker to clean
+                          // up after itself to --rm the container, but
+                          // double-check with 'docker ps -a'
+                          killSignal: 'SIGINT'},
                          postExecHandler.bind(null, res));
 }
 
