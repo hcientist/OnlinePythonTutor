@@ -33,18 +33,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // you'll be executing untrusted code on your server!
 var USE_DOCKER_SANDBOX = false;
 
+var assert = require('assert');
 var express = require('express');
 var serveStatic = require('serve-static');
 var app = express();
-
-function assert(cond) {
-  if (!cond) {
-    var stack = new Error().stack;
-    console.error('Assertion error');
-    console.error(stack);
-    throw 'Assertion Failure';
-  }
-}
 
 app.use(serveStatic('static/')); // put all static files in here
 

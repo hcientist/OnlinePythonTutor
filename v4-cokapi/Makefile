@@ -2,7 +2,4 @@ all:
 	jshint cokapi.js && node cokapi.js
 
 deps:
-	npm install \
-		jshint \
-		express \
-		serve-static
+	npm install express jshint serve-static
