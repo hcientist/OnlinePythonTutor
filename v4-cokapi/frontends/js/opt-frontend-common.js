@@ -552,13 +552,20 @@ function executeCodeWithRawInput(rawInputStr, curInstr) {
 function handleUncaughtExceptionFunc(trace) {
   if (trace.length == 1 && trace[0].line) {
     var errorLineNo = trace[0].line - 1; /* Ace lines are zero-indexed */
-    if (errorLineNo !== undefined && errorLineNo != NaN) {
+    if (errorLineNo !== undefined) {
       // highlight the faulting line
       var s = pyInputAceEditor.getSession();
       s.setAnnotations([{row: errorLineNo,
                          type: 'error',
                          text: trace[0].exception_msg}]);
       pyInputAceEditor.gotoLine(errorLineNo + 1 /* one-indexed */);
+      // if we have both a line and column number, then move over to
+      // that column. (going to the line first prevents weird
+      // highlighting bugs)
+      if (trace[0].col !== undefined) {
+        pyInputAceEditor.moveCursorTo(errorLineNo, trace[0].col);
+      }
+      pyInputAceEditor.focus();
     }
   }
 }
