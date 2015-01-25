@@ -313,8 +313,6 @@ function genericOptFrontendReady() {
   $("#embedLinkDiv").hide();
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(executeCodeFromScratch);
-
-  $('#pythonVersionSelector').change(setAceMode); // update syntax highlighting mode
 }
 
 

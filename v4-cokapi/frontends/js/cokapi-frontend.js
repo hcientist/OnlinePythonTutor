@@ -47,6 +47,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 var originFrontendJsFile = 'cokapi.js';
 
 function executeCode(forceStartingInstr, forceRawInputLst) {
+  var isJsMode = ($('#pythonVersionSelector').val() === 'js');
   if (forceRawInputLst !== undefined) {
     rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
   }
@@ -58,7 +59,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
   else if ($('#pythonVersionSelector').val() === '3') {
       backend_script = '/exec_py3'
   }
-  else if ($('#pythonVersionSelector').val() === 'js') {
+  else if (isJsMode) {
       backend_script = '/exec_js';
   }
   else {
@@ -66,22 +67,23 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
     assert(false);
   }
 
-  var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
-                           heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
-                           show_only_outputs: ($('#showOnlyOutputsSelector').val() == 'true'),
-                           py_crazy_mode: ($('#pythonVersionSelector').val() == '2crazy'),
+  // for now, don't enable any custom options when rendering JS
+
+  var backendOptionsObj = {cumulative_mode: (isJsMode ? false : ($('#cumulativeModeSelector').val() == 'true')),
+                           heap_primitives: (isJsMode ? false : ($('#heapPrimitivesSelector').val() == 'true')),
+                           show_only_outputs: (isJsMode ? false : ($('#showOnlyOutputsSelector').val() == 'true')),
                            origin: originFrontendJsFile};
 
   var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
 
   var frontendOptionsObj = {startingInstruction: startingInstruction,
                             // tricky: selector 'true' and 'false' values are strings!
-                            disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
-                            drawParentPointers: ($('#drawParentPointerSelector').val() == 'true'),
-                            textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
-                            showOnlyOutputs: ($('#showOnlyOutputsSelector').val() == 'true'),
+                            disableHeapNesting: (isJsMode ? false : ($('#heapPrimitivesSelector').val() == 'true')),
+                            drawParentPointers: (isJsMode ? false : ($('#drawParentPointerSelector').val() == 'true')),
+                            textualMemoryLabels: (isJsMode ? false : ($('#textualMemoryLabelsSelector').val() == 'true')),
+                            showOnlyOutputs: (isJsMode ? false : ($('#showOnlyOutputsSelector').val() == 'true')),
                             executeCodeWithRawInputFunc: executeCodeWithRawInput,
-                            lang: ($('#pythonVersionSelector').val() === 'js') ? 'js' : undefined,
+                            lang: (isJsMode ? 'js' : undefined),
 
                             // always use the same visualizer ID for all
                             // instantiated ExecutionVisualizer objects,
@@ -100,10 +102,17 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                   optFinishSuccessfulExecution, handleUncaughtExceptionFunc);
 }
 
+function initAceAndOptions() {
+  if ($('#pythonVersionSelector').val() === 'js') {
+    $('#optionsPane').hide();
+  } else {
+    $('#optionsPane').show();
+  }
+  setAceMode(); // update syntax highlighting mode
+}
+
 
 $(document).ready(function() {
-  //$("#optionsPane").hide();
-
   // canned examples
 
   /*
@@ -124,4 +133,7 @@ $(document).ready(function() {
   */
 
   genericOptFrontendReady(); // initialize at the end
+
+  $('#pythonVersionSelector').change(initAceAndOptions);
+  initAceAndOptions();
 });
