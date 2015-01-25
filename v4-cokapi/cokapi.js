@@ -38,7 +38,7 @@ var child_process = require('child_process');
 var express = require('express');
 var serveStatic = require('serve-static');
 var sqlite3 = require('sqlite3');
-//var util = require('util');
+var util = require('util');
 
 
 // We use this to execute since it supports utf8 and also an optional
@@ -47,14 +47,15 @@ var sqlite3 = require('sqlite3');
 // http://nodejs.org/api/child_process.html#child_process_child_process_execfile_file_args_options_callback
 
 var NODE_BIN = '/usr/local/bin/node';
-var PYTHON2_BIN = '/usr/local/bin/python';
-var PYTHON3_BIN = '/usr/local/bin/python3';
+var PYTHON2_BIN = '/usr/bin/python';
+var PYTHON3_BIN = '/usr/local/bin/python3.3';
 
 var TIMEOUT_SECS = 3;
 
 
 function postExecHandler(res, err, stdout, stderr) {
   if (err) {
+    console.log('postExecHandler', util.inspect(err, {depth: null}));
     var errTrace;
     if (err.killed) {
       // timeout!
