@@ -112,29 +112,44 @@ function initAceAndOptions() {
 }
 
 
+var JS_EXAMPLES = {
+  jsFactExLink: 'example-code/javascript/fact.js',
+  jsDatatypesExLink: 'example-code/javascript/data-types.js',
+  jsExceptionExLink: 'example-code/javascript/caught-exception.js',
+  jsClosureExLink: 'example-code/javascript/closure1.js',
+  jsShadowingExLink: 'example-code/javascript/var-shadowing2.js',
+  jsConstructorExLink: 'example-code/javascript/constructor.js',
+  jsInhExLink: 'example-code/javascript/inheritance.js',
+};
+
+var PY_EXAMPLES = {
+  pyAliasingExLink: 'example-code/python/aliasing.txt',
+  pyFactExLink: 'example-code/python/fact.txt',
+  pyInputExLink: 'example-code/python/raw_input.txt',
+  pyObjExLink: 'example-code/python/oop_1.txt',
+  pyInhExLink: 'example-code/python/oop_inherit.txt',
+  pyClosureExLink: 'example-code/python/closure2.txt',
+  pyForelseExLink: 'example-code/python/for-else.txt',
+};
+
 $(document).ready(function() {
-  // canned examples
-  /*
-  $("#tutorialExampleLink").click(function() {
-    $.get("example-code/py_tutorial.txt", pyInputSetValue);
-    return false;
+  $(".exampleLink").click(function() {
+    var myId = $(this).attr('id');
+    var exFile;
+    if (JS_EXAMPLES[myId] !== undefined) {
+      exFile = JS_EXAMPLES[myId];
+      $('#pythonVersionSelector').val('js');
+    } else {
+      assert(PY_EXAMPLES[myId] !== undefined);
+      exFile = PY_EXAMPLES[myId];
+      $('#pythonVersionSelector').val('2');
+    }
+
+    $.get(exFile, pyInputSetValue);
+    initAceAndOptions();
+    return false; // prevent 'a' click from going to an actual link
   });
-
-  $("#strtokExampleLink").click(function() {
-    $.get("example-code/strtok.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#listCompLink").click(function() {
-    $.get("example-code/list-comp.txt", pyInputSetValue);
-    return false;
-  });
-  */
-
-  genericOptFrontendReady(); // initialize at the end
-
   $('#pythonVersionSelector').change(initAceAndOptions);
-  initAceAndOptions();
 
   // feedback
   if (supports_html5_storage()) {
@@ -173,4 +188,8 @@ $(document).ready(function() {
             }
           });
   });
+
+
+  genericOptFrontendReady(); // initialize at the end
+  initAceAndOptions(); // do this after genericOptFrontendReady
 });

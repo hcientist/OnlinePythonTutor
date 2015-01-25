@@ -1,4 +1,4 @@
-{ code: 'function reverseArray(array) {\n  var output = [];\n  for (var i = array.length - 1; i >= 0; i--)\n    output.push(array[i]);\n  return output;\n}\n\nfunction reverseArrayInPlace(array) {\n  for (var i = 0; i < Math.floor(array.length / 2); i++) {\n    var old = array[i];\n    array[i] = array[array.length - 1 - i];\n    array[array.length - 1 - i] = old;\n  }\n  return array;\n}\n\nconsole.log(reverseArray(["A", "B", "C"]));\n// → ["C", "B", "A"];\nvar arrayValue = [1, 2, 3, 4, 5];\nreverseArrayInPlace(arrayValue);\nconsole.log(arrayValue);\n// → [5, 4, 3, 2, 1]',
+{ code: 'function reverseArray(array) {\n  var output = [];\n  for (var i = array.length - 1; i >= 0; i--)\n    output.push(array[i]);\n  return output;\n}\n\nfunction reverseArrayInPlace(array) {\n  for (var i = 0; i < Math.floor(array.length / 2); i++) {\n    var old = array[i];\n    array[i] = array[array.length - 1 - i];\n    array[array.length - 1 - i] = old;\n  }\n  return array;\n}\n\nconsole.log(reverseArray(["A", "B", "C"]));\n// → ["C", "B", "A"];\nvar arrayValue = [1, 2, 3, 4, 5];\nreverseArrayInPlace(arrayValue);\nconsole.log(arrayValue);\n// → [5, 4, 3, 2, 1]\n\n// Source: Eloquent JavaScript -- Exercise 4.2\n// http://eloquentjavascript.net/code/#4.2',
   trace: 
    [ { stdout: '',
        func_name: '',
@@ -869,8 +869,8 @@
           reverseArrayInPlace: [ 'REF', 2 ],
           arrayValue: [ 'REF', 5 ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
-       line: 22,
-       col: 20,
+       line: 25,
+       col: 42,
        event: 'step_line',
        heap: 
         { '1': 
