@@ -56,6 +56,8 @@ var pyTestInputCodeMirror; // CodeMirror object that contains the test code
 
 
 $(document).ready(function() {
+  useCodeMirror = true; // set global defined in opt-frontend-common.js
+
   problemName = window.location.search;
   if (!problemName) {
     alert("Error! Pass in a valid problem name in the url as '?<problem name>'");
@@ -162,36 +164,34 @@ $(document).ready(function() {
                                 jumpToEnd: true,
                                }
 
+      function f1(errorLineNo) {
+        pyInputCodeMirror.removeLineClass(errorLineNo, null, 'errorLine'); // reset line back to normal
+        pyInputCodeMirror.off('change', f1);
+      }
+      function f2(errorLineNo) {
+        pyTestInputCodeMirror.removeLineClass(errorLineNo, null, 'errorLine'); // reset line back to normal
+        pyTestInputCodeMirror.off('change', f2);
+      }
+
       function handleUncaughtExceptionFunc(trace) {
         if (trace.length == 1) {
           var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
           if (errorLineNo !== undefined) {
-
             if (errorLineNo < nCodeLines) {
               // highlight the faulting line in pyInputCodeMirror
               pyInputCodeMirror.focus();
               pyInputCodeMirror.setCursor(errorLineNo, 0);
-              // TODO: refactor to use new CodeMirror version
-              pyInputCodeMirror.setLineClass(errorLineNo, null, 'errorLine');
-
-              pyInputCodeMirror.setOption('onChange', function() {
-                pyInputCodeMirror.setLineClass(errorLineNo, null, null); // reset line back to normal
-                pyInputCodeMirror.setOption('onChange', null); // cancel
-              });
+              pyInputCodeMirror.addLineClass(errorLineNo, null, 'errorLine');
+              pyInputCodeMirror.on('change', f1.bind(errorLineNo));
             }
             else {
               // instead highlight the faulting line in pyTestInputCodeMirror
               errorLineNo -= nCodeLines;
 
-              // TODO: refactor to use new CodeMirror version
               pyTestInputCodeMirror.focus();
               pyTestInputCodeMirror.setCursor(errorLineNo, 0);
-              pyTestInputCodeMirror.setLineClass(errorLineNo, null, 'errorLine');
-
-              pyTestInputCodeMirror.setOption('onChange', function() {
-                pyTestInputCodeMirror.setLineClass(errorLineNo, null, null);
-                pyTestInputCodeMirror.setOption('onChange', null); // cancel
-              });
+              pyTestInputCodeMirror.addLineClass(errorLineNo, null, 'errorLine');
+              pyTestInputCodeMirror.on('change', f2.bind(errorLineNo));
             }
           }
 
@@ -276,13 +276,6 @@ $(document).ready(function() {
             }
           },
           "json");
-
-    // stent
-    /*
-    pyInputCodeMirror.setValue('x = 5');
-    pyTestInputCodeMirror.setValue('y = 10');
-    $(".problemDescClass").html('testing testing testing');
-    */
 
     $('#submitGradeBtn').bind('click', function() {
       $('#submitGradeBtn').html('Now Grading ...');
