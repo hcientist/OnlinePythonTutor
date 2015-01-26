@@ -145,8 +145,10 @@ $(document).ready(function() {
       $('#pythonVersionSelector').val('2');
     }
 
-    $.get(exFile, pyInputSetValue);
-    initAceAndOptions();
+    $.get(exFile, function(dat) {
+      pyInputSetValue(dat);
+      initAceAndOptions();
+    });
     return false; // prevent 'a' click from going to an actual link
   });
   $('#pythonVersionSelector').change(initAceAndOptions);
