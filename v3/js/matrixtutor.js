@@ -297,8 +297,12 @@ $(document).ready(function() {
           if (dataFromBackend.err) {
             $('#gradeStdout').val(dataFromBackend.err);
           } else {
-            // don't reveal the error messages to the student
-            $('#gradeStdout').val(dataFromBackend.user_stdout);
+            if (dataFromBackend.user_stderr) {
+              $('#gradeStdout').val(dataFromBackend.user_stdout + '\nErrors:\n' + dataFromBackend.user_stderr);
+            } else {
+              $('#gradeStdout').val(dataFromBackend.user_stdout);
+            }
+
           }
 
           $('#submitGradeBtn').html('Submit for Grading');
