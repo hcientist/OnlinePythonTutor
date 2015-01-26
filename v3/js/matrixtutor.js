@@ -281,16 +281,30 @@ $(document).ready(function() {
       $('#submitGradeBtn').html('Now Grading ...');
       $('#submitGradeBtn').attr('disabled', true);
 
-      $.get('submit_matrix_problem.py',
-            {submitted_code: pyInputCodeMirror.getValue(),
-             problem_name: problemName},
-            function(dataFromBackend) {
-              $('#gradeStdout').val(dataFromBackend.user_stdout);
+      // some JSONP action!
+      // http://learn.jquery.com/ajax/working-with-jsonp/
+      $.ajax({
+        url: "http://104.237.139.253:4000/grade",
+        // The name of the callback parameter, as specified by the YQL service
+        jsonp: "callback",
+        // Tell jQuery we're expecting JSONP
+        dataType: "jsonp",
+        data: {submitted_code: pyInputCodeMirror.getValue(),
+               problem_name: problemName},
 
-              $('#submitGradeBtn').html('Submit for Grading');
-              $('#submitGradeBtn').attr('disabled', false);
-            },
-            "json");
+        // Work with the response
+        success: function(dataFromBackend) {
+          if (dataFromBackend.err) {
+            $('#gradeStdout').val(dataFromBackend.err);
+          } else {
+            // don't reveal the error messages to the student
+            $('#gradeStdout').val(dataFromBackend.user_stdout);
+          }
+
+          $('#submitGradeBtn').html('Submit for Grading');
+          $('#submitGradeBtn').attr('disabled', false);
+        },
+      });
     });
   }
 });
