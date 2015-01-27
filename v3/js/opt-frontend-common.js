@@ -1457,6 +1457,9 @@ in some details elaborating on what they just clicked]
     if (res !== null) {
       myArgs.surveyQuestion = buttonPrompt;
       myArgs.surveyResponse = res;
+      if (supports_html5_storage()) {
+        myArgs.user_uuid = localStorage.getItem('opt_uuid');
+      }
       $.get('survey.py', myArgs, function(dat) {});
     }
   });
