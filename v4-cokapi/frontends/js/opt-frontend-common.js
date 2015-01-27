@@ -35,6 +35,17 @@ var appMode = 'edit'; // 'edit' or 'display'. also support
 
 var pyInputAceEditor; // Ace editor object that contains the input code
 
+// From http://stackoverflow.com/a/8809472
+function generateUUID(){
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c=='x' ? r : (r&0x7|0x8)).toString(16);
+    });
+    return uuid;
+};
+
 
 var dmp = new diff_match_patch();
 var curCode = '';
@@ -285,6 +296,15 @@ function genericOptFrontendReady() {
         localStorage.setItem(k, v);
       });
     });
+
+    // generate a unique UUID per "user" (as indicated by a single browser
+    // instance on a user's machine, which can be more precise than IP
+    // addresses due to sharing of IP addresses within, say, a school
+    // computer lab)
+    // added on 2015-01-27 for more precise user identification
+    if (!localStorage.getItem('opt_uuid')) {
+      localStorage.setItem('opt_uuid', generateUUID());
+    }
   }
 
   parseQueryString();
@@ -636,6 +656,7 @@ function executeUserCode(sourceCode,
           {user_script : sourceCode,
            raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
            options_json: JSON.stringify(backendOptionsObj),
+           user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
            // if we don't have any deltas, then don't bother sending deltaObj:
            diffs_json: deltaObj && (deltaObj.deltas.length > 0) ? JSON.stringify(deltaObj) : null},
           function(dataFromBackend) {
