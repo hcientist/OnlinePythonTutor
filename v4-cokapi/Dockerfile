@@ -6,13 +6,19 @@
 #
 # remember --rm or else stale old containers will be left around!
 # use "docker ps -a" to see all containers
-FROM ubuntu:latest
+
+# don't use 'latest' tag since that might change
+FROM ubuntu:14.04.1
 MAINTAINER Philip Guo <philip@pgbovine.net>
 RUN apt-get update && apt-get install -y \
   nodejs \
+  openjdk-7-jdk \
   python
+
+# ugh ubuntu calls node 'nodejs'
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 
+# JS and Python backends
 RUN mkdir /tmp/javascript
 RUN mkdir /tmp/python
 
@@ -22,3 +28,11 @@ RUN mkdir /tmp/python
 # modules within the container
 ADD backends/javascript /tmp/javascript
 ADD backends/python /tmp/python
+
+# Java backend
+RUN mkdir /tmp/java_jail
+RUN mkdir /tmp/java_jail/cp
+ADD backends/java/java_jail/cp/ /tmp/java_jail/cp
+
+# compile all Java files within cp/
+RUN cd /tmp/java_jail/cp && find . -name "*.java" -print | xargs javac -Xlint:unchecked -cp .:javax.json-1.0.jar:/usr/lib/jvm/java-7-openjdk-amd64/lib/tools.jar

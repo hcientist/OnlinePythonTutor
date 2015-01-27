@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // VERY IMPORTANT - turn on the sandbox when deploying online, or else
 // you'll be executing untrusted code on your server!
-var USE_DOCKER_SANDBOX = false;
+var USE_DOCKER_SANDBOX = true;
 
 var assert = require('assert');
 var child_process = require('child_process');
