@@ -797,3 +797,19 @@ foo(1)
 [TODO: talk about appending `_z` onto `unique_hash` when the frame becomes a zombie.]
 
 [TODO: IMPROVE ME!]
+
+
+# Notes: Potential optimizations
+
+The default trace format is completely unoptimized. It's designed so as to be "memoryless" -- i.e., a frontend can render an execution state by simply reading that entry and not any of its neighbors.
+
+However, the `stdout` field can often take up A LOT OF SPACE since it's "cumulative" -- i.e., at each step, `stdout` represents the entire contents of the `stdout` buffer, not simply what's been printed out in the current step. Thus, it suffers from N^2 space explosions. Even a simple program like this one prints out an ENORMOUS amount to stdout:
+
+```python
+choices = ['pizza', 'pasta', 'salad', 'nachos']
+for i in enumerate(choices):
+    print choices # if you comment this out, the trace is much smaller
+    choices.append(i)
+```
+
+Thus, this is one target for optimization if deemed necessary down the line. However, I'm hesitant to optimize the trace since it makes trace-handling code in the frontend and backend more complicated :/
