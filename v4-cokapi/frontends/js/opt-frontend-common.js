@@ -320,10 +320,10 @@ function genericOptFrontendReady() {
 
   // register a generic AJAX error handler
   $(document).ajaxError(function(evt, jqxhr, settings, exception) {
-    setFronendError(["Server error! Your code might be too long to visualize (e.g., over 100 lines),",
-                     "or there's some problem with our server configuration.",
-                     "Please report a bug to philip@pgbovine.net by clicking on the 'Generate URL'",
-                     "button at the bottom and including a URL in your email."]);
+    setFronendError(["Server error! Your code might be taking too much time to run or using too much memory.",
+                     "Also, this tool does not work on raw_input(), input() and bytearray() in some cases.",
+                     "Report a bug to philip@pgbovine.net by clicking the 'Generate permanent link' button",
+                     "at the bottom of this page and including a URL in your email."]);
 
     doneExecutingCode();
   });
