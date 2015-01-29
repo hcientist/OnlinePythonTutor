@@ -836,9 +836,10 @@ function genericOptFrontendReady() {
       return; // get out early
     }
 
-    setFronendError(["Server error! Your code might be too long to properly visualize (e.g., over 100 lines),",
-                     "so try again with a smaller piece of code.",
-                     "Or report a bug to philip@pgbovine.net by clicking on the 'Generate URL'",
+    setFronendError(["Server error! Your code might be taking too much time to run",
+                     "so using too much memory. Also, this tool does not work on",
+                     "raw_input(), input() and bytearray() in some cases.",
+                     "Report a bug to philip@pgbovine.net by clicking the 'Generate URL'",
                      "button at the bottom and including a URL in your email."]);
 
     doneExecutingCode();
