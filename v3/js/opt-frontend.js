@@ -469,4 +469,6 @@ $(document).ready(function() {
   });
 
   genericOptFrontendReady(); // initialize at the end
+
+  //loggingSocketIO = io.connect('http://104.237.139.253:5000/');
 });

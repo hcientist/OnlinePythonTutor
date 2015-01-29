@@ -105,6 +105,8 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   verticalStack - if true, then stack code display ON TOP of visualization
 //                   (else place side-by-side)
 //   visualizerIdOverride - override visualizer ID instead of auto-assigning it
+//                          (BE CAREFUL ABOUT NOT HAVING DUPLICATE IDs ON THE SAME PAGE,
+//                           OR ELSE ARROWS AND OTHER STUFF WILL GO HAYWIRE!)
 //   executeCodeWithRawInputFunc - function to call when you want to re-execute the given program
 //                                 with some new user input (somewhat hacky!)
 //   highlightLines - highlight current and previously executed lines (default: false)

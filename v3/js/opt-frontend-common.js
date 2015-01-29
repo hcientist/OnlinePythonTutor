@@ -70,6 +70,8 @@ var pyInputAceEditor; // Ace editor object that contains the input code
 var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
 
 
+var loggingSocketIO; // socket.io instance -- optional: not all frontends use it
+
 // From http://stackoverflow.com/a/8809472
 function generateUUID(){
     var d = new Date().getTime();
@@ -137,6 +139,7 @@ function snapshotCodeDiff() {
     deltaObj.deltas.push(delta);
 
     curCode = newCode;
+    logEvent({type: 'editCode', delta: delta});
   }
 }
 
@@ -294,6 +297,11 @@ function initTogetherJS() {
       if (TogetherJS.running && !isExecutingCode) {
         TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
       }
+
+      // debounce to compress a bit ... 250ms feels "right"
+      $.doTimeout('updateOutputLogEvent', 250, function() {
+        logEvent({type: 'updateOutput', step: args.myViz.curInstr});
+      });
 
       // 2014-05-25: implemented more detailed tracing for surveys
       if (args.myViz.creationTime) {
@@ -1077,6 +1085,9 @@ function updateAppDisplay(newAppMode) {
   }
 
   $('#urlOutput,#embedCodeOutput').val(''); // clear to avoid stale values
+
+  // log at the end after appMode gets canonicalized
+  logEvent({type: 'updateAppDisplay', mode: appMode});
 }
 
 
@@ -1259,6 +1270,14 @@ function executePythonCode(pythonSourceCode,
 
             doneExecutingCode(); // rain or shine, we're done executing!
             // run this at the VERY END after all the dust has settled
+
+            // do logging at the VERY END after the dust settles ...
+            logEvent({type: 'doneExecutingCode',
+                      appState: getAppState(),
+                      // enough to reconstruct the ExecutionVisualizer object
+                      backendDataJSON: JSON.stringify(dataFromBackend), // for easier transport and compression
+                      frontendOptionsObj: frontendOptionsObj,
+                      });
           },
           "json");
 
@@ -1673,4 +1692,17 @@ display a brief "Thanks!" note]
       $("#iJustLearnedThanks").fadeOut(1000);
     });
   });
+}
+
+
+// using socket.io:
+function logEvent(obj) {
+  if (loggingSocketIO) {
+    if (supports_html5_storage()) {
+      obj.user_uuid = localStorage.getItem('opt_uuid');
+    }
+    // this probably won't match the server time due to time zones, etc.
+    obj.clientTime = new Date().getTime();
+    loggingSocketIO.emit('opt-client-event', obj);
+  }
 }
