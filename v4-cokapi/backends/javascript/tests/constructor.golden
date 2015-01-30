@@ -82,7 +82,7 @@
              '',
              [ 'x', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
              [ 'y', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
-             [ 'prototype', [ 'REF', 2 ] ] ] } },
+             [ '[prototype]', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: 'Vector',
        stack_to_render: 
@@ -122,7 +122,7 @@
              '',
              [ 'x', 1 ],
              [ 'y', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
-             [ 'prototype', [ 'REF', 2 ] ] ] } },
+             [ '[prototype]', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: 'Vector',
        stack_to_render: 
@@ -162,7 +162,7 @@
              '',
              [ 'x', 1 ],
              [ 'y', 2 ],
-             [ 'prototype', [ 'REF', 2 ] ] ] } },
+             [ '[prototype]', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: '',
        stack_to_render: [],
@@ -193,7 +193,7 @@
              '',
              [ 'x', 1 ],
              [ 'y', 2 ],
-             [ 'prototype', [ 'REF', 2 ] ] ] } },
+             [ '[prototype]', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: 'Vector',
        stack_to_render: 
@@ -233,7 +233,7 @@
              '',
              [ 'x', 1 ],
              [ 'y', 2 ],
-             [ 'prototype', [ 'REF', 2 ] ] ] } },
+             [ '[prototype]', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: 'Vector',
        stack_to_render: 
@@ -274,7 +274,7 @@
              '',
              [ 'x', 1 ],
              [ 'y', 2 ],
-             [ 'prototype', [ 'REF', 2 ] ] ] } },
+             [ '[prototype]', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: 'Vector',
        stack_to_render: 
@@ -316,7 +316,7 @@
              '',
              [ 'x', 1 ],
              [ 'y', 2 ],
-             [ 'prototype', [ 'REF', 2 ] ] ] } },
+             [ '[prototype]', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: '',
        stack_to_render: [],
@@ -349,4 +349,4 @@
              '',
              [ 'x', 1 ],
              [ 'y', 2 ],
-             [ 'prototype', [ 'REF', 2 ] ] ] } } ] }
+             [ '[prototype]', [ 'REF', 2 ] ] ] } } ] }
