@@ -1277,6 +1277,7 @@ function executePythonCode(pythonSourceCode,
                       // enough to reconstruct the ExecutionVisualizer object
                       backendDataJSON: JSON.stringify(dataFromBackend), // for easier transport and compression
                       frontendOptionsObj: frontendOptionsObj,
+                      backendOptionsObj: backendOptionsObj,
                       });
           },
           "json");
