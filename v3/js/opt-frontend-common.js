@@ -1661,6 +1661,15 @@ display a brief "Thanks!" note]
     }
 
     $.get('survey.py', myArgs, function(dat) {});
+
+    logEvent({type: 'survey',
+              appState: getAppState(),
+              surveyQuestion: myArgs.surveyQuestion,
+              surveyResponse: myArgs.surveyResponse,
+              surveyVersion: myArgs.surveyVersion,
+              testing_group: myArgs.testing_group,
+              what_learn_Q: myArgs.what_learn_Q,
+              });
   });
 
   // testingGroup == 'b'
@@ -1692,6 +1701,14 @@ display a brief "Thanks!" note]
     $.doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
       $("#iJustLearnedThanks").fadeOut(1000);
     });
+
+    logEvent({type: 'survey',
+              appState: getAppState(),
+              surveyQuestion: myArgs.surveyQuestion,
+              surveyResponse: myArgs.surveyResponse,
+              surveyVersion: myArgs.surveyVersion,
+              testing_group: myArgs.testing_group,
+              });
   });
 }
 
