@@ -470,5 +470,6 @@ $(document).ready(function() {
 
   genericOptFrontendReady(); // initialize at the end
 
-  //loggingSocketIO = io.connect('http://104.237.139.253:5000/');
+  //loggingSocketIO = io.connect('http://104.237.139.253:5000/'); // PRODUCTION_PORT
+  //loggingSocketIO = io.connect('http://104.237.139.253:5001/'); // DEBUG_PORT
 });

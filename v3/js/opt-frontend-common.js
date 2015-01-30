@@ -1087,7 +1087,7 @@ function updateAppDisplay(newAppMode) {
   $('#urlOutput,#embedCodeOutput').val(''); // clear to avoid stale values
 
   // log at the end after appMode gets canonicalized
-  logEvent({type: 'updateAppDisplay', mode: appMode});
+  logEvent({type: 'updateAppDisplay', mode: appMode, appState: getAppState()});
 }
 
 
