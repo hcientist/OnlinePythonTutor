@@ -298,10 +298,9 @@ function encodeObject(o) {
         var proto = Object.getPrototypeOf(o);
         if (_.isObject(proto) && !_.isEmpty(proto)) {
           //log('obj.prototype', proto, proto.smallObjId_hidden_);
-          // surround 'prototype' with [ ] to indicate that it's not a
-          // real property, but rather a pseudo-property that can only
-          // be obtained using Object.getPrototypeOf
-          newEncodedObj.push(['[prototype]', encodeObject(proto)]);
+          // I think __proto__ is the official term for this field,
+          // *not* 'prototype'
+          newEncodedObj.push(['__proto__', encodeObject(proto)]);
         }
       }
 
