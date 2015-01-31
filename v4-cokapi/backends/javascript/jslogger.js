@@ -247,6 +247,8 @@ function encodeObject(o) {
       var i;
 
       if (_.isFunction(o)) {
+        var funcProperties = []; // each element is a pair of [name, encoded value]
+
         var encodedProto = null;
         if (_.isObject(o.prototype)) {
           // TRICKY TRICKY! for inheritance to be displayed properly, we
@@ -261,10 +263,23 @@ function encodeObject(o) {
             encodedProto = encodeObject(o.prototype);
           }
         }
+
+        if (encodedProto) {
+          funcProperties.push(['prototype', encodedProto]);
+        }
+
+        // now get all of the normal properties out of this function
+        // object (it's unusual to put properties in a function object,
+        // but it's still legal!)
+        var funcPropPairs = _.pairs(o);
+        for (i = 0; i < funcPropPairs.length; i++) {
+          funcProperties.push([funcPropPairs[i][0], encodeObject(funcPropPairs[i][1])]);
+        }
+
         newEncodedObj.push('JS_FUNCTION',
                            o.name,
                            o.toString() /* code string*/,
-                           encodedProto,
+                           funcProperties,
                            null /* parent frame */);
       } else if (_.isArray(o)) {
         newEncodedObj.push('LIST');
