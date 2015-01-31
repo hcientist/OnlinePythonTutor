@@ -288,19 +288,26 @@ function encodeObject(o) {
         }
       } else {
         // a true object
-        newEncodedObj.push('INSTANCE', '');
-        var pairs = _.pairs(o);
-        for (i = 0; i < pairs.length; i++) {
-          var e = pairs[i];
-          newEncodedObj.push([encodeObject(e[0]), encodeObject(e[1])]);
-        }
 
-        var proto = Object.getPrototypeOf(o);
-        if (_.isObject(proto) && !_.isEmpty(proto)) {
-          //log('obj.prototype', proto, proto.smallObjId_hidden_);
-          // I think __proto__ is the official term for this field,
-          // *not* 'prototype'
-          newEncodedObj.push(['__proto__', encodeObject(proto)]);
+        // if there's a custom toString() function
+        var s = o.toString();
+        if (s != '' && s != '[object Object]') {
+          newEncodedObj.push('INSTANCE_PPRINT', 'object', s);
+        } else {
+          newEncodedObj.push('INSTANCE', '');
+          var pairs = _.pairs(o);
+          for (i = 0; i < pairs.length; i++) {
+            var e = pairs[i];
+            newEncodedObj.push([encodeObject(e[0]), encodeObject(e[1])]);
+          }
+
+          var proto = Object.getPrototypeOf(o);
+          if (_.isObject(proto) && !_.isEmpty(proto)) {
+            //log('obj.prototype', proto, proto.smallObjId_hidden_);
+            // I think __proto__ is the official term for this field,
+            // *not* 'prototype'
+            newEncodedObj.push(['__proto__', encodeObject(proto)]);
+          }
         }
       }
 
