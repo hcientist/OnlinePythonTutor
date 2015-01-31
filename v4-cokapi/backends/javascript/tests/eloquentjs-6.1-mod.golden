@@ -36,7 +36,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': [ 'INSTANCE', '', [ 'plus', [ 'REF', 3 ] ] ],
           '3': 
@@ -62,7 +62,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -98,7 +98,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -143,7 +143,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -194,7 +194,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -245,7 +245,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -287,7 +287,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -338,7 +338,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -395,7 +395,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -452,7 +452,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -500,7 +500,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -557,7 +557,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -623,7 +623,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -695,7 +695,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -767,7 +767,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -833,7 +833,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -887,7 +887,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
@@ -941,7 +941,7 @@
            [ 'JS_FUNCTION',
              'Vector',
              'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ 'REF', 2 ],
+             [ [ 'prototype', [ 'REF', 2 ] ] ],
              null ],
           '2': 
            [ 'INSTANCE',
