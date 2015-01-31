@@ -291,7 +291,7 @@ function encodeObject(o) {
 
         // if there's a custom toString() function
         var s = o.toString();
-        if (s != '' && s != '[object Object]') {
+        if (s !== '' && s !== '[object Object]') {
           newEncodedObj.push('INSTANCE_PPRINT', 'object', s);
         } else {
           newEncodedObj.push('INSTANCE', '');
