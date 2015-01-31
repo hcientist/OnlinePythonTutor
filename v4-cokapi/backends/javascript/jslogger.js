@@ -437,6 +437,7 @@ function listener(event, execState, eventData, data) {
     curTraceEntry.event = logEventType;
     curTraceEntry.heap = getHeap();
 
+    // inspect only the top "global" frame to grab globals
     for (ii = 0; ii < topFrame.scopeCount(); ii++) {
       sc = topFrame.scope(ii);
       // According to https://code.google.com/p/v8-wiki/wiki/DebuggerProtocol
@@ -447,7 +448,7 @@ function listener(event, execState, eventData, data) {
       // 3: Closure
       // 4: Catch
       scopeType = sc.details_.details_[0];
-      if (scopeType === 0) { // Global
+      if (scopeType === 0) { // Global -- to handle global variables
         scopeObj = sc.details_.details_[1];
         var globalScopePairs = _.pairs(scopeObj);
         for (jj = 0; jj < globalScopePairs.length; jj++) {
@@ -458,6 +459,18 @@ function listener(event, execState, eventData, data) {
             assert(!_.has(curTraceEntry.globals, globalVarname));
             curTraceEntry.globals[globalVarname] = encodeObject(globalVal);
           }
+        }
+      }
+      else if (scopeType === 4) { // Catch -- to handle global exception blocks
+        scopeObj = sc.details_.details_[1];
+
+        var globalCatchScopePairs = _.pairs(scopeObj);
+        for (jj = 0; jj < globalCatchScopePairs.length; jj++) {
+          var globalCatchVarname = globalCatchScopePairs[jj][0];
+          var globalCatchVal = globalCatchScopePairs[jj][1];
+          curTraceEntry.ordered_globals.push(globalCatchVarname);
+          assert(!_.has(curTraceEntry.globals, globalCatchVarname));
+          curTraceEntry.globals[globalCatchVarname] = encodeObject(globalCatchVal);
         }
       }
     }
@@ -575,7 +588,8 @@ function listener(event, execState, eventData, data) {
         // 4: Catch
         scopeType = sc.details_.details_[0];
         var e;
-        if (scopeType === 1) { // Local
+        // DON'T grab globals again since it's redundant
+        if (scopeType === 1 || scopeType === 4) { // Local or Catch (for exceptions)
           // encode local variables
 
           scopeObj = sc.details_.details_[1];
@@ -587,7 +601,7 @@ function listener(event, execState, eventData, data) {
             assert(!_.has(traceStackEntry.encoded_locals, e[0]));
             traceStackEntry.encoded_locals[e[0]] = encodeObject(e[1]);
           }
-        } else if (scopeType !== 0 && scopeType !== 1) { // With, Closure, Catch
+        } else if (scopeType === 2 || scopeType === 3) { // With, Closure
           // poor person's closure display ... simply INLINE closure
           // variables into this frame, since that's what v8 provides us.
           // not as great as drawing real environment diagrams, but
@@ -612,6 +626,8 @@ function listener(event, execState, eventData, data) {
           }
 
           nParentScopes++;
+        } else {
+          assert(scopeType === 0);
         }
       }
 
