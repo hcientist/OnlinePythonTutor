@@ -279,7 +279,7 @@ function encodeObject(o) {
         newEncodedObj.push('JS_FUNCTION',
                            o.name,
                            o.toString() /* code string*/,
-                           funcProperties,
+                           funcProperties.length ? funcProperties : null, /* OPTIONAL */
                            null /* parent frame */);
       } else if (_.isArray(o)) {
         newEncodedObj.push('LIST');

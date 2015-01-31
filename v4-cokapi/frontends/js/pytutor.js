@@ -3418,23 +3418,26 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
     assert(obj.length == 5);
     var funcName = htmlspecialchars(obj[1]);
     var funcCode = htmlspecialchars(obj[2]);
-    var funcProperties = obj[3]; // a (possibly-empty) list of key-value pairs
+    var funcProperties = obj[3]; // either null or a non-empty list of key-value pairs
     var parentFrameID = obj[4];
 
 
-    if (funcProperties.length > 0 || parentFrameID || myViz.showAllFrameLabels) {
+    if (funcProperties || parentFrameID || myViz.showAllFrameLabels) {
       d3DomElement.append('<table class="classTbl"></table>');
       var tbl = d3DomElement.children('table');
       tbl.append('<tr><td class="funcCod" colspan="2"><pre class="funcCode">' + funcCode + '</pre>' + '</td></tr>');
 
-      $.each(funcProperties, function(ind, kvPair) {
-          tbl.append('<tr class="classEntry"><td class="classKey"></td><td class="classVal"></td></tr>');
-          var newRow = tbl.find('tr:last');
-          var keyTd = newRow.find('td:first');
-          var valTd = newRow.find('td:last');
-          keyTd.append('<span class="keyObj">' + htmlspecialchars(kvPair[0]) + '</span>');
-          myViz.renderNestedObject(kvPair[1], stepNum, valTd);
-      });
+      if (funcProperties) {
+        assert(funcProperties.length > 0);
+        $.each(funcProperties, function(ind, kvPair) {
+            tbl.append('<tr class="classEntry"><td class="classKey"></td><td class="classVal"></td></tr>');
+            var newRow = tbl.find('tr:last');
+            var keyTd = newRow.find('td:first');
+            var valTd = newRow.find('td:last');
+            keyTd.append('<span class="keyObj">' + htmlspecialchars(kvPair[0]) + '</span>');
+            myViz.renderNestedObject(kvPair[1], stepNum, valTd);
+        });
+      }
 
       if (parentFrameID) {
         tbl.append('<tr class="classEntry"><td class="classKey">parent</td><td class="classVal">' + 'f' + parentFrameID + '</td></tr>');
