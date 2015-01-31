@@ -4,6 +4,9 @@ all:
 deps:
 	npm install express jshint serve-static sqlite3
 
+docker:
+	docker build -t="pgbovine/cokapi:v1" .
+
 test:
 	@echo 'Python'
 	@time --portability docker run --rm pgbovine/cokapi:v1 python /tmp/python/generate_json_trace.py --code="x=1; y=2; z=x+y"
