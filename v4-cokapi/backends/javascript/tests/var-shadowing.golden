@@ -57,7 +57,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar() {\n    var y = x;\n    x *= 2;\n    console.log(x, y);\n  }',
+             '  function bar() {\n    var y = x;\n    x *= 2;\n    console.log(x, y);\n  }',
              null,
              null ] } },
      { stdout: '',
@@ -87,7 +87,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar() {\n    var y = x;\n    x *= 2;\n    console.log(x, y);\n  }',
+             '  function bar() {\n    var y = x;\n    x *= 2;\n    console.log(x, y);\n  }',
              null,
              null ] } },
      { stdout: '',
@@ -126,7 +126,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar() {\n    var y = x;\n    x *= 2;\n    console.log(x, y);\n  }',
+             '  function bar() {\n    var y = x;\n    x *= 2;\n    console.log(x, y);\n  }',
              null,
              null ] } },
      { stdout: '',
@@ -165,7 +165,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar() {\n    var y = x;\n    x *= 2;\n    console.log(x, y);\n  }',
+             '  function bar() {\n    var y = x;\n    x *= 2;\n    console.log(x, y);\n  }',
              null,
              null ] } },
      { stdout: '',
@@ -204,7 +204,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar() {\n    var y = x;\n    x *= 2;\n    console.log(x, y);\n  }',
+             '  function bar() {\n    var y = x;\n    x *= 2;\n    console.log(x, y);\n  }',
              null,
              null ] } },
      { stdout: '20 10\n',
@@ -246,7 +246,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar() {\n    var y = x;\n    x *= 2;\n    console.log(x, y);\n  }',
+             '  function bar() {\n    var y = x;\n    x *= 2;\n    console.log(x, y);\n  }',
              null,
              null ] } },
      { stdout: '20 10\n',
@@ -279,7 +279,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar() {\n    var y = x;\n    x *= 2;\n    console.log(x, y);\n  }',
+             '  function bar() {\n    var y = x;\n    x *= 2;\n    console.log(x, y);\n  }',
              null,
              null ] } },
      { stdout: '20 10\n',

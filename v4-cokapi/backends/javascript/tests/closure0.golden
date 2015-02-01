@@ -42,7 +42,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar(x) {\n        return x + y;\n    }',
+             '    function bar(x) {\n        return x + y;\n    }',
              null,
              null ] } },
      { stdout: '',
@@ -75,7 +75,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar(x) {\n        return x + y;\n    }',
+             '    function bar(x) {\n        return x + y;\n    }',
              null,
              null ] } },
      { stdout: '',
@@ -120,7 +120,7 @@
           '3': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar(x) {\n        return x + y;\n    }',
+             '    function bar(x) {\n        return x + y;\n    }',
              null,
              null ] } },
      { stdout: '',
@@ -153,7 +153,7 @@
           '3': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar(x) {\n        return x + y;\n    }',
+             '    function bar(x) {\n        return x + y;\n    }',
              null,
              null ] } },
      { stdout: '',
@@ -198,7 +198,7 @@
           '4': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar(x) {\n        return x + y;\n    }',
+             '    function bar(x) {\n        return x + y;\n    }',
              null,
              null ] } },
      { stdout: '',
@@ -231,7 +231,7 @@
           '4': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar(x) {\n        return x + y;\n    }',
+             '    function bar(x) {\n        return x + y;\n    }',
              null,
              null ] } },
      { stdout: '',

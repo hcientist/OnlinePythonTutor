@@ -66,7 +66,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar(x) {\n        globalZ += 100;\n        return x + y + globalZ;\n    }',
+             '    function bar(x) {\n        globalZ += 100;\n        return x + y + globalZ;\n    }',
              null,
              null ] } },
      { stdout: '',
@@ -99,7 +99,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar(x) {\n        globalZ += 100;\n        return x + y + globalZ;\n    }',
+             '    function bar(x) {\n        globalZ += 100;\n        return x + y + globalZ;\n    }',
              null,
              null ] } },
      { stdout: '',
@@ -120,7 +120,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar(x) {\n        globalZ += 100;\n        return x + y + globalZ;\n    }',
+             '    function bar(x) {\n        globalZ += 100;\n        return x + y + globalZ;\n    }',
              null,
              null ] } },
      { stdout: '',
@@ -150,7 +150,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar(x) {\n        globalZ += 100;\n        return x + y + globalZ;\n    }',
+             '    function bar(x) {\n        globalZ += 100;\n        return x + y + globalZ;\n    }',
              null,
              null ] } },
      { stdout: '',
@@ -180,7 +180,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar(x) {\n        globalZ += 100;\n        return x + y + globalZ;\n    }',
+             '    function bar(x) {\n        globalZ += 100;\n        return x + y + globalZ;\n    }',
              null,
              null ] } },
      { stdout: '',
@@ -210,7 +210,7 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar(x) {\n        globalZ += 100;\n        return x + y + globalZ;\n    }',
+             '    function bar(x) {\n        globalZ += 100;\n        return x + y + globalZ;\n    }',
              null,
              null ] } },
      { stdout: '',
@@ -231,6 +231,6 @@
           '2': 
            [ 'JS_FUNCTION',
              'bar',
-             'function bar(x) {\n        globalZ += 100;\n        return x + y + globalZ;\n    }',
+             '    function bar(x) {\n        globalZ += 100;\n        return x + y + globalZ;\n    }',
              null,
              null ] } } ] }

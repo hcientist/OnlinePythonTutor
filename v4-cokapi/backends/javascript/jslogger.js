@@ -276,9 +276,34 @@ function encodeObject(o) {
           funcProperties.push([funcPropPairs[i][0], encodeObject(funcPropPairs[i][1])]);
         }
 
+        var funcCodeString = o.toString();
+
+        /*
+
+        #craftsmanship -- make nested functions look better by indenting
+        the first line of a nested function definition by however much
+        the LAST line is indented, ONLY if the last line is simply a
+        single ending '}'. otherwise it will look ugly since the
+        function definition doesn't start out indented, like so:
+
+function bar(x) {
+        globalZ += 100;
+        return x + y + globalZ;
+    }
+
+        */
+        var codeLines = funcCodeString.split('\n');
+        if (codeLines.length > 1) {
+          var lastLine = _.last(codeLines);
+          if (lastLine.trim() === '}') {
+            var lastLinePrefix = lastLine.slice(0, lastLine.indexOf('}'));
+            funcCodeString = lastLinePrefix + funcCodeString; // prepend!
+          }
+        }
+
         newEncodedObj.push('JS_FUNCTION',
                            o.name,
-                           o.toString() /* code string*/,
+                           funcCodeString, /* code string*/
                            funcProperties.length ? funcProperties : null, /* OPTIONAL */
                            null /* parent frame */);
       } else if (_.isArray(o)) {
