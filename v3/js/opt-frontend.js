@@ -41,6 +41,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // should all be imported BEFORE this file
 
 
+// NASTY GLOBALS for socket.io!
+var reconnectAttempts = 0;
+var logEventQueue = []; // TODO: make sure this doesn't grow too large if socketio isn't enabled
+
+
 var originFrontendJsFile = 'opt-frontend.js';
 
 // for OPT live chat tutoring interface
@@ -470,6 +475,31 @@ $(document).ready(function() {
 
   genericOptFrontendReady(); // initialize at the end
 
-  //loggingSocketIO = io.connect('http://104.237.139.253:5000/'); // PRODUCTION_PORT
-  //loggingSocketIO = io.connect('http://104.237.139.253:5001/'); // DEBUG_PORT
+  // connect on-demand in logEvent(), not here
+  //loggingSocketIO = io('http://104.237.139.253:5000/'); // PRODUCTION_PORT
+  //loggingSocketIO = io('http://104.237.139.253:5001/'); // DEBUG_PORT
+
+
+  if (loggingSocketIO) {
+    loggingSocketIO.on('connect', function() {
+      //console.log('CONNECTED and emitting', logEventQueue.length, 'events');
+
+      if (logEventQueue.length > 0) {
+        // the reconnectAttempts field that denotes how many times you've
+        // attempted to reconnect (which is also how many times you've
+        // been kicked off by the logging server for, say, being idle).
+        // add this as an extra field on the FIRST event
+        if (reconnectAttempts > 0) {
+          logEventQueue[0].reconnectAttempts = reconnectAttempts;
+        }
+
+        while (logEventQueue.length > 0) {
+          loggingSocketIO.emit('opt-client-event', logEventQueue.pop());
+        }
+      }
+      assert(logEventQueue.length === 0);
+
+      reconnectAttempts++;
+    });
+  }
 });

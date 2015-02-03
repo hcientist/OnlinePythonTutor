@@ -70,7 +70,7 @@ var pyInputAceEditor; // Ace editor object that contains the input code
 var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
 
 
-var loggingSocketIO; // socket.io instance -- optional: not all frontends use it
+var loggingSocketIO = undefined; // socket.io instance -- OPTIONAL: not all frontends use it
 
 // From http://stackoverflow.com/a/8809472
 function generateUUID(){
@@ -1721,6 +1721,19 @@ function logEvent(obj) {
     }
     // this probably won't match the server time due to time zones, etc.
     obj.clientTime = new Date().getTime();
-    loggingSocketIO.emit('opt-client-event', obj);
+
+    if (loggingSocketIO.connected) {
+      loggingSocketIO.emit('opt-client-event', obj);
+      //console.log('emitted opt-client-event:', obj);
+    } else {
+      // TODO: be careful about this getting HUGE if loggingSocketIO
+      // never connects properly ...
+      logEventQueue.push(obj); // queue this up to be logged when the client
+                               // finishes successfully connecting to the server
+
+      // we're not yet connected, or we've been disconnected by the
+      // server, so try to connect/reconnect first before emitting the event
+      loggingSocketIO.connect(); // will trigger the .on('connect', ...) handler
+    }
   }
 }
