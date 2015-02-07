@@ -381,10 +381,26 @@ function listener(event, execState, eventData, data) {
 
   // if what we're currently executing isn't inside of userscript.js,
   // then PUNT, since we're probably in the first line of console.log()
-  // or some other utility function
+  // or some other utility function (except for exceptions, heh)
   if (script !== 'userscript.js') {
-    execState.prepareStep(debug.StepAction.StepOut);
-    return;
+    // this is SUPER hacky ... but if we encounter an exception in a
+    // library function AND we've already been running userscript.js
+    // (i.e., curTrace.length > 0), then still log that exception but
+    // adjust the line and column numbers to the proper values within
+    // the user's script.
+    if (isException && curTrace.length > 0) {
+      stepType = debug.StepAction.StepOut; // step out of the library func
+
+      // SUPER HACKY -- use the line and column numbers from the
+      // previous trace entry since that was in userscript.js
+      line = _.last(curTrace).line;
+      col = _.last(curTrace).col;
+    } else {
+      // any non-exception event should just be steppd out of
+      // immediately without logging to the trace ...
+      execState.prepareStep(debug.StepAction.StepOut);
+      return;
+    }
   } else {
     // NB: StepInMin is slightly finer-grained than StepIn
     stepType = debug.StepAction.StepIn;
@@ -395,7 +411,7 @@ function listener(event, execState, eventData, data) {
     }
   }
 
-  assert(script === 'userscript.js');
+  //assert(script === 'userscript.js');
 
   // VERY VERY VERY IMPORTANT, or else we won't properly capture heap
   // object mutations in the trace!
@@ -713,7 +729,7 @@ function listener(event, execState, eventData, data) {
     // GET OUTTA HERE so that the user's script doesn't keep infinite looping
     process.exit();
   } else {
-    assert(stepType);
+    assert(stepType !== undefined);
     execState.prepareStep(stepType); // set debugger to stop at next step
   }
 }
