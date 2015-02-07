@@ -53,7 +53,8 @@ var PYTHON3_BIN = '/usr/local/bin/python3.3';
 var TIMEOUT_SECS = 3;
 
 
-function postExecHandler(res, err, stdout, stderr) {
+// bind() res and useJSONP before using
+function postExecHandler(res, useJSONP, err, stdout, stderr) {
   if (err) {
     console.log('postExecHandler', util.inspect(err, {depth: null}));
     var errTrace;
@@ -61,19 +62,35 @@ function postExecHandler(res, err, stdout, stderr) {
       // timeout!
       errTrace = {code: '', trace: [{'event': 'uncaught_exception',
                                      'exception_msg': 'Timeout error. Your code ran for more than ' + TIMEOUT_SECS + ' seconds. Please shorten and try again.'}]};
-      res.send(JSON.stringify(errTrace));
+      if (useJSONP) {
+        res.jsonp(errTrace /* return an actual object, not a string */);
+      } else {
+        res.send(JSON.stringify(errTrace));
+      }
     } else {
       errTrace = {code: '', trace: [{'event': 'uncaught_exception',
                                      'exception_msg': "Unknown error. Report a bug to philip@pgbovine.net by clicking on the\n'Generate URL' button at the bottom and including a URL in your email."}]};
-      res.send(JSON.stringify(errTrace));
+      if (useJSONP) {
+        res.jsonp(errTrace /* return an actual object, not a string */);
+      } else {
+        res.send(JSON.stringify(errTrace));
+      }
     }
   } else {
-    res.send(stdout);
+    if (useJSONP) {
+      // stdout better be real JSON!!!
+      res.jsonp(JSON.parse(stdout) /* return an actual object, not a string */);
+    } else {
+      res.send(stdout);
+    }
   }
 }
 
 
 var app = express();
+
+// http://ilee.co.uk/jsonp-in-express-nodejs/
+app.set("jsonp callback", true);
 
 app.use(serveStatic('frontends/')); // put all static files in here
 
@@ -85,7 +102,10 @@ app.get('/exec_py3', function(req, res) {
   executePython('py3', req, res);
 });
 
-app.get('/exec_js', function(req, res) {
+app.get('/exec_js', exec_js_handler.bind(null, false));
+app.get('/exec_js_jsonp', exec_js_handler.bind(null, true));
+
+function exec_js_handler(useJSONP /* use bind first */, req, res) {
   var usrCod = req.query.user_script;
 
   var exeFile;
@@ -114,8 +134,8 @@ app.get('/exec_js', function(req, res) {
                           // up after itself to --rm the container, but
                           // double-check with 'docker ps -a'
                           killSignal: 'SIGINT'},
-                         postExecHandler.bind(null, res));
-});
+                         postExecHandler.bind(null, res, useJSONP));
+}
 
 function executePython(pyVer, req, res) {
   var parsedOptions = JSON.parse(req.query.options_json);
@@ -158,7 +178,7 @@ function executePython(pyVer, req, res) {
                           // up after itself to --rm the container, but
                           // double-check with 'docker ps -a'
                           killSignal: 'SIGINT'},
-                         postExecHandler.bind(null, res));
+                         postExecHandler.bind(null, res, false));
 }
 
 
