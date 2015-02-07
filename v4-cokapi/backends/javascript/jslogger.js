@@ -326,8 +326,10 @@ function bar(x) {
       } else {
         // a true object
 
-        // if there's a custom toString() function
-        var s = o.toString();
+        // if there's a custom toString() function (note that a truly
+        // prototypeless object won't have toString method, so check first to
+        // see if toString is *anywhere* up the prototype chain)
+        var s = (o.toString !== undefined) ? o.toString() : '';
         if (s !== '' && s !== '[object Object]') {
           newEncodedObj.push('INSTANCE_PPRINT', 'object', s);
         } else {
