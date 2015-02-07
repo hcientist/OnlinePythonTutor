@@ -53,6 +53,18 @@ Low-priority TODOs:
 - realize that running within VM module leads to subtle behavioral
   differences, as documented in the Node docs
 
+- check out PromiseEvent and AsyncTaskEvent for maybe handling callbacks?
+
+Debug.DebugEvent = { Break: 1,
+                     Exception: 2,
+                     NewFunction: 3,
+                     BeforeCompile: 4,
+                     AfterCompile: 5,
+                     CompileError: 6,
+                     PromiseEvent: 7,
+                     AsyncTaskEvent: 8,
+                     BreakForCommand: 9 };
+
 */
 
 
