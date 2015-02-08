@@ -1192,7 +1192,6 @@ function executePythonCode(pythonSourceCode,
                            handleSuccessFunc, handleUncaughtExceptionFunc) {
 
     function execCallback(dataFromBackend) {
-      console.log('dataFromBackend', dataFromBackend);
       var trace = dataFromBackend.trace;
 
       // don't enter visualize mode if there are killer errors:
@@ -1285,15 +1284,13 @@ function executePythonCode(pythonSourceCode,
     startExecutingCode();
 
     if (backendScript === js_backend_script) {
-      // hack for JS execution! this should just be a dummy script that
-      // does logging
-
+      // hack for JS execution! should just be a dummy script for logging only
       $.get(backendScript,
             {user_script : pythonSourceCode,
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
              // if we don't have any deltas, then don't bother sending deltaObj:
              diffs_json: deltaObj && (deltaObj.deltas.length > 0) ? JSON.stringify(deltaObj) : null},
-             function() {} /* don't do anything since this is a dummy call */, "json");
+             function(dat) {} /* don't do anything since this is a dummy call */, "text");
 
       // the REAL call uses JSONP
       // some JSONP action!
