@@ -33,6 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // - opt-frontend-common.js
 // should all be imported BEFORE this file
 
+var originFrontendJsFile = 'iframe-embed.js';
 
 function NOP() {};
 
@@ -112,7 +113,7 @@ $(document).ready(function() {
                            heap_primitives: heapPrimitivesBool,
                            show_only_outputs: showOnlyOutputsBool,
                            py_crazy_mode: (pyState == '2crazy'),
-                           origin: 'iframe-embed.js'};
+                           origin: originFrontendJsFile};
 
   var frontendOptionsObj = {startingInstruction: startingInstruction,
                             embeddedMode: true,

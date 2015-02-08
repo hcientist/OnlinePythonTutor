@@ -529,6 +529,13 @@ div.ExecutionVisualizer div#heapHeader {
   margin-bottom: 15px;
 }
 
+div.ExecutionVisualizer div#langDisplayDiv {
+  text-align: center;
+  margin-top: 2pt;
+  margin-bottom: 5pt;
+}
+
+div.ExecutionVisualizer div#langDisplayDiv,
 div.ExecutionVisualizer div#stackHeader,
 div.ExecutionVisualizer div#heapHeader {
   color: #333333;

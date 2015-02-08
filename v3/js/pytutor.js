@@ -117,8 +117,10 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //                    granularity instead of line-level granularity (HIGHLY EXPERIMENTAL!)
 //   hideCode - hide the code display and show only the data structure viz
 //   tabularView - render a tabular view of ALL steps at once (EXPERIMENTAL)
-//   lang - to render labels in a style appropriate for other languages.
-//          e.g., 'js' for JavaScript, 'java' for Java [default is Python]
+//   lang - to render labels in a style appropriate for other languages,
+//          and to display the proper language in langDisplayDiv
+//          e.g., 'py2' for Python 2, 'py3' for Python 3, 'js' for JavaScript
+//          [default is Python-style labels]
 //   debugMode - some extra debugging printouts
 function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
@@ -314,6 +316,7 @@ ExecutionVisualizer.prototype.render = function() {
 
   var codeDisplayHTML =
     '<div id="codeDisplayDiv">\
+       <div id="langDisplayDiv"></div>\
        <div id="pyCodeOutputDiv"/>\
        <div id="editCodeLinkDiv"><a id="editBtn">Edit code</a></div>\
        <div id="executionSlider"/>\
@@ -442,6 +445,18 @@ ExecutionVisualizer.prototype.render = function() {
     this.domRoot.find('#editCodeLinkDiv').hide(); // just hide for simplicity!
     this.domRoot.find('#editBtn').attr('href', "#");
     this.domRoot.find('#editBtn').click(function(){return false;}); // DISABLE the link!
+  }
+
+  if (this.params.lang !== undefined) {
+    if (this.params.lang === 'js') {
+      this.domRoot.find('#langDisplayDiv').html('JavaScript (experimental)');
+    } else if (this.params.lang === 'py2') {
+      this.domRoot.find('#langDisplayDiv').html('Python 2.7');
+    } else if (this.params.lang === 'py3') {
+      this.domRoot.find('#langDisplayDiv').html('Python 3.3');
+    } else {
+      this.domRoot.find('#langDisplayDiv').hide();
+    }
   }
 
   if (this.params.allowEditAnnotations !== undefined) {
