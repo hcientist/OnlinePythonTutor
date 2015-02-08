@@ -1760,7 +1760,6 @@ display a brief "Thanks!" note]
 
 // using socket.io:
 function logEvent(obj) {
-  console.log('logEvent', obj);
   if (loggingSocketIO) {
     if (supports_html5_storage()) {
       obj.user_uuid = localStorage.getItem('opt_uuid');
