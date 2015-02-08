@@ -1244,13 +1244,17 @@ function executePythonCode(pythonSourceCode,
       // run this at the VERY END after all the dust has settled
 
       // do logging at the VERY END after the dust settles ...
-      logEvent({type: 'doneExecutingCode',
-                appState: getAppState(),
-                // enough to reconstruct the ExecutionVisualizer object
-                backendDataJSON: JSON.stringify(dataFromBackend), // for easier transport and compression
-                frontendOptionsObj: frontendOptionsObj,
-                backendOptionsObj: backendOptionsObj,
-                });
+      // and don't do it for iframe-embed.js since getAppState doesn't
+      // work in that case ...
+      if (originFrontendJsFile !== 'iframe-embed.js') {
+        logEvent({type: 'doneExecutingCode',
+                  appState: getAppState(),
+                  // enough to reconstruct the ExecutionVisualizer object
+                  backendDataJSON: JSON.stringify(dataFromBackend), // for easier transport and compression
+                  frontendOptionsObj: frontendOptionsObj,
+                  backendOptionsObj: backendOptionsObj,
+                  });
+      }
     }
 
     if (!backendScript) {
@@ -1756,6 +1760,7 @@ display a brief "Thanks!" note]
 
 // using socket.io:
 function logEvent(obj) {
+  console.log('logEvent', obj);
   if (loggingSocketIO) {
     if (supports_html5_storage()) {
       obj.user_uuid = localStorage.getItem('opt_uuid');
