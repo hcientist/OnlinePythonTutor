@@ -148,7 +148,7 @@ $(document).ready(function() {
     $.get(exFile, function(dat) {
       pyInputSetValue(dat);
       initAceAndOptions();
-    });
+    }, 'text' /* data type - set to text or else jQuery tries to EXECUTE the JS example code! */);
     return false; // prevent 'a' click from going to an actual link
   });
   $('#pythonVersionSelector').change(initAceAndOptions);

@@ -133,10 +133,11 @@ Get help from a tutor
   <select id="pythonVersionSelector">
     <option value="2">Python 2.7</option>
     <option value="3">Python 3.3</option>
-    <option value="2crazy">Py 2.crazy</option>
+    <!--<option value="2crazy">Py 2.crazy</option>-->
+    <option value="js">JavaScript</option>
   </select>
 
-code here or <a href="#" id="firstExampleDupLink">load an example</a>:</div>
+code here or <a href="#" class="exampleLink" id="firstExampleDupLink">load an example</a>:</div>
 
 <div id="someoneIsTypingDiv" style="color: #e93f34; font-weight: bold; display: none;">Someone is typing ...</div>
 
@@ -148,128 +149,123 @@ code here or <a href="#" id="firstExampleDupLink">load an example</a>:</div>
 <button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
 </p>
 
-<p style="margin-top: 20px; line-height: 200%;">
-Options:
+<div id="optionsPane" style="margin-top: 18px; line-height: 150%;">
   <select id="cumulativeModeSelector">
-    <option value="false">hide exited function frames (default)</option>
-    <option value="true">show exited function frames</option>
+    <option value="false">hide exited frames (default)</option>
+    <option value="true">show exited frames</option>
     <option value="holistic">holistic mode (experimental)</option>
   </select>
   <select id="heapPrimitivesSelector">
-    <option value="false">inline primitives and nested objects (default)</option>
+    <option value="false">inline primitives &amp; nested objects (default)</option>
     <option value="true">render all objects on the heap</option>
   </select>
-  <select id="drawParentPointerSelector">
-    <option value="false">hide environment parent pointers (default)</option>
-    <option value="true">show environment parent pointers</option>
-  </select>
   <select id="textualMemoryLabelsSelector">
-    <option value="false">draw references using arrows (default)</option>
-    <option value="true">use text labels for references</option>
+    <option value="false">draw pointers as arrows (default)</option>
+    <option value="true">use text labels for pointers</option>
   </select>
-  <select id="showOnlyOutputsSelector">
+
+  <!-- hide these for now -->
+  <select id="drawParentPointerSelector" style="display: none;">
+    <option value="false">hide environment parent pointers (default)</option>
+    <!--<option value="true">show environment parent pointers</option>-->
+  </select>
+  <select id="showOnlyOutputsSelector" style="display: none;">
     <option value="false">show everything (default)</option>
-    <option value="true">show only outputs</option>
+    <!--<option value="true">show only outputs</option>-->
   </select>
-</p>
+</div>
 
 
-<p style="margin-top: 25px; font-weight: bold;">Examples to visualize</p>
+<p style="margin-top: 25px; font-weight: bold;">Python Examples</p>
 
 <p style="margin-top: 10px;">Basic:
 
-<a id="aliasExampleLink" href="#">hello</a> |
-<a id="happyExampleLink" href="#">happy</a> |
-<a id="tutorialExampleLink" href="#">intro</a> |
-<a id="filterExampleLink" href="#">filter</a> |
-<a id="strtokExampleLink" href="#">tokenize</a> |
-<a id="insSortExampleLink" href="#">insertion sort</a>
+<a class="exampleLink" id="aliasExampleLink" href="#">hello</a> |
+<a class="exampleLink" id="happyExampleLink" href="#">happy</a> |
+<a class="exampleLink" id="tutorialExampleLink" href="#">intro</a> |
+<a class="exampleLink" id="filterExampleLink" href="#">filter</a> |
+<a class="exampleLink" id="strtokExampleLink" href="#">tokenize</a> |
+<a class="exampleLink" id="insSortExampleLink" href="#">insertion sort</a> |
+<a class="exampleLink" id="forElseLink" href="#">for-else</a> |
+<a class="exampleLink" id="rawInputExampleLink" href="#">user input</a>
 </p>
 
 <p style="margin-top: 15px;">Math:
-<a id="factExampleLink" href="#">factorial</a> |
-<a id="fibonacciExampleLink" href="#">fibonacci</a> |
-<a id="memoFibExampleLink" href="#">memoized fibonacci</a> |
-<a id="newtonExampleLink" href="#">square root</a> |
-<a id="pwGcdLink" href="#">gcd</a> |
-<a id="towersOfHanoiLink" href="#">towers of hanoi</a>
+<a class="exampleLink" id="factExampleLink" href="#">factorial</a> |
+<a class="exampleLink" id="fibonacciExampleLink" href="#">fibonacci</a> |
+<a class="exampleLink" id="memoFibExampleLink" href="#">memoized fibonacci</a> |
+<a class="exampleLink" id="newtonExampleLink" href="#">square root</a> |
+<a class="exampleLink" id="pwGcdLink" href="#">gcd</a> |
+<a class="exampleLink" id="towersOfHanoiLink" href="#">towers of hanoi</a>
 </p>
 
-<p style="margin-top: 15px;">User Input:
-
-<a id="rawInputExampleLink" href="#">raw input</a>
-
-</p>
 
 <p style="margin-top: 15px;">Objects:
 
-<a id="oop1ExampleLink" href="#">OOP 1</a> |
-<a id="oop2ExampleLink" href="#">OOP 2</a> |
-<a id="oopSmallExampleLink" href="#">OOP 3</a> |
-<a id="inheritanceExampleLink" href="#">inheritance</a>
+<a class="exampleLink" id="oop1ExampleLink" href="#">OOP 1</a> |
+<a class="exampleLink" id="oop2ExampleLink" href="#">OOP 2</a> |
+<a class="exampleLink" id="oopSmallExampleLink" href="#">OOP 3</a> |
+<a class="exampleLink" id="inheritanceExampleLink" href="#">inheritance</a>
 
 </p>
 
 <p style="margin-top: 15px;">Linked Lists:
-<a id="ll1Link" href="#">LL 1</a> |
-<a id="ll2Link" href="#">LL 2</a> |
-<a id="sumListLink" href="#">LL sum</a>
+<a class="exampleLink" id="ll1Link" href="#">LL 1</a> |
+<a class="exampleLink" id="ll2Link" href="#">LL 2</a> |
+<a class="exampleLink" id="sumListLink" href="#">LL sum</a>
 </p>
 
 <p style="margin-top: 15px;">Pointer Aliasing:<br/>
-<a id="aliasing1Link" href="#">aliasing 1</a> |
-<a id="aliasing2Link" href="#">aliasing 2</a> |
-<a id="aliasing3Link" href="#">aliasing 3</a> |
-<a id="aliasing4Link" href="#">aliasing 4</a>
-<br/>
-<a id="aliasing5Link" href="#">aliasing 5</a> |
-<a id="aliasing6Link" href="#">aliasing 6</a> |
-<a id="aliasing7Link" href="#">aliasing 7</a> |
-<a id="aliasing8Link" href="#">aliasing 8</a> |
-<a id="pwSumListLink" href="#">sumList</a>
+<a class="exampleLink" id="aliasing1Link" href="#">aliasing1</a> |
+<a class="exampleLink" id="aliasing2Link" href="#">aliasing2</a> |
+<a class="exampleLink" id="aliasing3Link" href="#">aliasing3</a> |
+<a class="exampleLink" id="aliasing4Link" href="#">aliasing4</a> |
+<a class="exampleLink" id="aliasing5Link" href="#">aliasing5</a> |
+<a class="exampleLink" id="aliasing6Link" href="#">aliasing6</a> |
+<a class="exampleLink" id="aliasing7Link" href="#">aliasing7</a> |
+<a class="exampleLink" id="aliasing8Link" href="#">aliasing8</a> |
+<a class="exampleLink" id="pwSumListLink" href="#">sumList</a>
 </p>
 
 <p style="margin-top: 15px;">Higher-Order Functions:<br/>
 
-<a id="closure1Link" href="#">closure 1</a> |
-<a id="closure2Link" href="#">closure 2</a> |
-<a id="closure3Link" href="#">closure 3</a> |
-<a id="closure4Link" href="#">closure 4</a> |
-<a id="closure5Link" href="#">closure 5</a>
-<br/>
-<!-- <a id="sumCubesLink" href="#">sum cubes</a> | -->
-<a id="mapExampleLink" href="#">list map</a> |
-<a id="sumExampleLink" href="#">summation</a> |
-<a id="lambdaParamLink" href="#">lambda param</a> |
-<a id="tortureLink" href="#">student torture</a>
+<a class="exampleLink" id="closure1Link" href="#">closure1</a> |
+<a class="exampleLink" id="closure2Link" href="#">closure2</a> |
+<a class="exampleLink" id="closure3Link" href="#">closure3</a> |
+<a class="exampleLink" id="closure4Link" href="#">closure4</a> |
+<a class="exampleLink" id="closure5Link" href="#">closure5</a> |
+<a class="exampleLink" id="mapExampleLink" href="#">list map</a> |
+<a class="exampleLink" id="sumExampleLink" href="#">summation</a> |
+<a class="exampleLink" id="lambdaParamLink" href="#">lambda param</a>
 
 </p>
 
-<p style="margin-top: 15px;">Python Tricks:<br/>
-<a id="listCompLink" href="#">list comprehension</a> |
-<a id="compsLink" href="#">list/set/dict comp</a> |
-<a id="decoratorsLink" href="#">decorators</a> |
-<a id="genPrimesLink" href="#">generators</a> |
-<a id="genExprLink" href="#">gen expr</a>
-<br/>
-<a id="varargsLink" href="#">varargs</a> |
-<a id="pwTryFinallyLink" href="#">exceptions</a> |
-<a id="forElseLink" href="#">for-else</a> |
-<a id="nonlocalLink" href="#">nonlocal</a> |
-<a id="metaclassLink" href="#">metaclass</a>
+<p style="margin-top: 15px;">Advanced:<br/>
+<a class="exampleLink" id="listCompLink" href="#">list comp</a> |
+<a class="exampleLink" id="compsLink" href="#">list/set/dict comp</a> |
+<a class="exampleLink" id="decoratorsLink" href="#">decorator</a> |
+<a class="exampleLink" id="genPrimesLink" href="#">generator</a> |
+<a class="exampleLink" id="genExprLink" href="#">genexpr</a> |
+<a class="exampleLink" id="varargsLink" href="#">varargs</a> |
+<a class="exampleLink" id="pwTryFinallyLink" href="#">exception</a> |
+<a class="exampleLink" id="metaclassLink" href="#">metaclass</a>
 </p>
 
-<p style="margin-top: 15px;">
-<a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/html-rendering.md">HTML
-rendering</a> (experimental code by
-<a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/chris-meyers.md">Chris Meyers</a>):<br/>
-[WARNING: will set toggle option from "show everything" to "show only outputs"]<br/>
+<p style="margin-top: 15px;">Python 3 only:<br/>
+<a class="exampleLink" id="tortureLink" href="#">student torture</a> |
+<a class="exampleLink" id="nonlocalLink" href="#">nonlocal</a>
+</p>
 
-<a id="cmMinPathLink" href="#">minPath</a> |
-<a id="cmKnapsackLink" href="#">knapsack</a> |
-<a id="cmSieveLink" href="#">sieve</a> |
-<a id="cmFibLink" href="#">fib</a>
+<p style="margin-top: 25px; font-weight: bold;">JavaScript Examples (Node.js v0.10.25 in ES5 strict mode)</p>
 
+<p style="margin-top: 5px;">
+  <a class="exampleLink" id="jsFactExLink" href="#">factorial</a> |
+  <a class="exampleLink" id="jsDatatypesExLink" href="#">data types</a> |
+  <a class="exampleLink" id="jsExceptionExLink" href="#">exception</a> |
+  <a class="exampleLink" id="jsClosureExLink" href="#">closure</a> |
+  <a class="exampleLink" id="jsShadowingExLink" href="#">shadowing</a> |
+  <a class="exampleLink" id="jsConstructorExLink" href="#">constructor</a> |
+  <a class="exampleLink" id="jsInhExLink" href="#">inheritance</a>
 </p>
 
 </div>

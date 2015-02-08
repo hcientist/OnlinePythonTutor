@@ -44,10 +44,12 @@ $(document).ready(function() {
   var pyState = queryStrOptions.py;
   var verticalStackBool = (queryStrOptions.verticalStack == 'true');
   var heapPrimitivesBool = (queryStrOptions.heapPrimitives == 'true');
-  var drawParentPointerBool = (queryStrOptions.drawParentPointers == 'true');
   var textRefsBool = (queryStrOptions.textReferences == 'true');
-  var showOnlyOutputsBool = (queryStrOptions.showOnlyOutputs == 'true');
   var cumModeBool = (queryStrOptions.cumulative == 'true');
+
+  // these two are deprecated
+  var drawParentPointerBool = (queryStrOptions.drawParentPointers == 'true');
+  var showOnlyOutputsBool = (queryStrOptions.showOnlyOutputs == 'true');
 
   var codeDivWidth = undefined;
   var cdw = $.bbq.getState('codeDivWidth');
@@ -77,7 +79,10 @@ $(document).ready(function() {
   else if (pyState == '2crazy') {
       backend_script = python2crazy_backend_script;
   }
-
+  else if (pyState == 'js') {
+      backend_script = js_backend_script;
+  }
+  assert(backend_script);
 
   // David Pritchard's code for resizeContainer option ...
   var resizeContainer = ($.bbq.getState('resizeContainer') == 'true');

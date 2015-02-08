@@ -53,13 +53,15 @@ var python2crazy_backend_script = 'web_exec_py2-crazy.py';
 // crazy custom py2crazy CPython interpreter to get 2crazy mode
 //var python2crazy_backend_script = 'exec';
 
+var js_backend_script = 'web_exec_js.py';
+
+var JS_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_js_jsonp'; // for deployment
+//var JS_JSONP_ENDPOINT = 'http://localhost:3000/exec_js_jsonp'; // for local testing
 
 var domain = "http://pythontutor.com/"; // for deployment
-//var domain = "http://localhost:8080/"; // for Google App Engine local testing
 
 
 var isExecutingCode = false; // nasty, nasty global
-
 
 var appMode = 'edit'; // 'edit' or 'display'. also support
                       // 'visualize' for backward compatibility (same as 'display')
@@ -103,7 +105,6 @@ function initDeltaObj() {
 function initAceEditor(height) {
   pyInputAceEditor = ace.edit('codeInputPane');
   var s = pyInputAceEditor.getSession();
-  s.setMode("ace/mode/python");
   // tab -> 4 spaces
   s.setTabSize(4);
   s.setUseSoftTabs(true);
@@ -119,7 +120,25 @@ function initAceEditor(height) {
   initDeltaObj();
   pyInputAceEditor.on('change', function(e) {
     $.doTimeout('pyInputAceEditorChange', 1000, snapshotCodeDiff); // debounce
+    clearFrontendError();
+    s.clearAnnotations();
   });
+
+  // don't do real-time syntax checks:
+  // https://github.com/ajaxorg/ace/wiki/Syntax-validation
+  s.setOption("useWorker", false);
+
+  setAceMode();
+}
+
+function setAceMode() {
+  var mod = 'python';
+  if ($('#pythonVersionSelector').val() === 'js') {
+    mod = 'javascript';
+  }
+  assert(mod === 'python' || mod === 'javascript');
+  var s = pyInputAceEditor.getSession();
+  s.setMode("ace/mode/" + mod);
 }
 
 function snapshotCodeDiff() {
@@ -788,10 +807,8 @@ function genericOptFrontendReady() {
   // string options and anything else the user wants to override with.
   if (supports_html5_storage()) {
     var lsKeys = ['cumulative',
-                  'drawParentPointers',
                   'heapPrimitives',
                   'py',
-                  'showOnlyOutputs',
                   'textReferences'];
     // restore toggleState if available
     var lsOptions = {};
@@ -804,7 +821,7 @@ function genericOptFrontendReady() {
     setToggleOptions(lsOptions);
 
     // store in localStorage whenever user explicitly changes any toggle option:
-    $('#cumulativeModeSelector,#heapPrimitivesSelector,#drawParentPointerSelector,#textualMemoryLabelsSelector,#showOnlyOutputsSelector,#pythonVersionSelector').change(function() {
+    $('#cumulativeModeSelector,#heapPrimitivesSelector,#textualMemoryLabelsSelector,#pythonVersionSelector').change(function() {
       var ts = getToggleState();
       $.each(ts, function(k, v) {
         localStorage.setItem(k, v);
@@ -864,7 +881,7 @@ function genericOptFrontendReady() {
 }
 
 
-// sets globals such as rawInputLst, CodeMirror input box, and toggle options
+// sets globals such as rawInputLst, code input box, and toggle options
 function parseQueryString() {
   var queryStrOptions = getQueryStringOptions();
   setToggleOptions(queryStrOptions);
@@ -900,9 +917,7 @@ function getQueryStringOptions() {
           py: $.bbq.getState('py'),
           cumulative: $.bbq.getState('cumulative'),
           heapPrimitives: $.bbq.getState('heapPrimitives'),
-          drawParentPointers: $.bbq.getState('drawParentPointers'),
           textReferences: $.bbq.getState('textReferences'),
-          showOnlyOutputs: $.bbq.getState('showOnlyOutputs'),
           rawInputLst: ril ? $.parseJSON(ril) : undefined
           };
 }
@@ -918,14 +933,8 @@ function setToggleOptions(dat) {
   if (dat.heapPrimitives !== undefined) {
     $('#heapPrimitivesSelector').val(dat.heapPrimitives);
   }
-  if (dat.drawParentPointers !== undefined) {
-    $('#drawParentPointerSelector').val(dat.drawParentPointers);
-  }
   if (dat.textReferences !== undefined) {
     $('#textualMemoryLabelsSelector').val(dat.textReferences);
-  }
-  if (dat.showOnlyOutputs !== undefined) {
-    $('#showOnlyOutputsSelector').val(dat.showOnlyOutputs);
   }
 }
 
@@ -938,9 +947,7 @@ function getAppState() {
              origin: originFrontendJsFile,
              cumulative: $('#cumulativeModeSelector').val(),
              heapPrimitives: $('#heapPrimitivesSelector').val(),
-             drawParentPointers: $('#drawParentPointerSelector').val(),
              textReferences: $('#textualMemoryLabelsSelector').val(),
-             showOnlyOutputs: $('#showOnlyOutputsSelector').val(),
              py: $('#pythonVersionSelector').val(),
              /* ALWAYS JSON serialize rawInputLst, even if it's empty! */
              rawInputLstJSON: JSON.stringify(rawInputLst),
@@ -951,12 +958,8 @@ function getAppState() {
     delete ret.cumulative;
   if (ret.heapPrimitives === undefined)
     delete ret.heapPrimitives;
-  if (ret.drawParentPointers === undefined)
-    delete ret.drawParentPointers;
   if (ret.textReferences === undefined)
     delete ret.textReferences;
-  if (ret.showOnlyOutputs === undefined)
-    delete ret.showOnlyOutputs;
   if (ret.py === undefined)
     delete ret.py;
   if (ret.rawInputLstJSON === undefined)
@@ -975,9 +978,7 @@ function appStateEq(s1, s2) {
           s1.mode == s2.mode &&
           s1.cumulative == s2.cumulative &&
           s1.heapPrimitives == s1.heapPrimitives &&
-          s1.drawParentPointers == s2.drawParentPointers &&
           s1.textReferences == s2.textReferences &&
-          s1.showOnlyOutputs == s2.showOnlyOutputs &&
           s1.py == s2.py &&
           s1.rawInputLstJSON == s2.rawInputLstJSON);
 }
@@ -1094,7 +1095,7 @@ function updateAppDisplay(newAppMode) {
 function executeCodeFromScratch() {
   // don't execute empty string:
   if ($.trim(pyInputGetValue()) == '') {
-    setFronendError(["Type in some Python code to visualize."]);
+    setFronendError(["Type in some code to visualize."]);
     return;
   }
 
@@ -1131,6 +1132,13 @@ function handleUncaughtExceptionFunc(trace) {
                            type: 'error',
                            text: trace[0].exception_msg}]);
         pyInputAceEditor.gotoLine(errorLineNo + 1 /* one-indexed */);
+        // if we have both a line and column number, then move over to
+        // that column. (going to the line first prevents weird
+        // highlighting bugs)
+        if (trace[0].col !== undefined) {
+          pyInputAceEditor.moveCursorTo(errorLineNo, trace[0].col);
+        }
+        pyInputAceEditor.focus();
       }
     }
   }
@@ -1182,6 +1190,70 @@ function executePythonCode(pythonSourceCode,
                            frontendOptionsObj,
                            outputDiv,
                            handleSuccessFunc, handleUncaughtExceptionFunc) {
+
+    function execCallback(dataFromBackend) {
+      console.log('dataFromBackend', dataFromBackend);
+      var trace = dataFromBackend.trace;
+
+      // don't enter visualize mode if there are killer errors:
+      if (!trace ||
+          (trace.length == 0) ||
+          (trace[trace.length - 1].event == 'uncaught_exception')) {
+
+        handleUncaughtExceptionFunc(trace);
+
+        if (trace.length == 1) {
+          setFronendError([trace[0].exception_msg]);
+        }
+        else if (trace[trace.length - 1].exception_msg) {
+          setFronendError([trace[trace.length - 1].exception_msg]);
+        }
+        else {
+          setFronendError(["Unknown error. Reload the page and try again.",
+                           "Report a bug to philip@pgbovine.net by clicking on the 'Generate URL'",
+                           "button at the bottom and including a URL in your email."]);
+        }
+      }
+      else {
+        // fail-soft to prevent running off of the end of trace
+        if (frontendOptionsObj.startingInstruction >= trace.length) {
+          frontendOptionsObj.startingInstruction = 0;
+        }
+
+        if (frontendOptionsObj.holisticMode) {
+          // do NOT override, or else bad things will happen with
+          // jsPlumb arrows interfering ...
+          delete frontendOptionsObj.visualizerIdOverride;
+
+          myVisualizer = new HolisticVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
+        } else {
+          myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
+        }
+        // SUPER HACK -- slip in backendOptionsObj as an extra field
+        myVisualizer.backendOptionsObj = backendOptionsObj;
+
+        handleSuccessFunc();
+
+        // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
+        // and sync any new elements that are now inside myVisualizer
+        if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+          TogetherJS.reinitialize();
+        }
+      }
+
+      doneExecutingCode(); // rain or shine, we're done executing!
+      // run this at the VERY END after all the dust has settled
+
+      // do logging at the VERY END after the dust settles ...
+      logEvent({type: 'doneExecutingCode',
+                appState: getAppState(),
+                // enough to reconstruct the ExecutionVisualizer object
+                backendDataJSON: JSON.stringify(dataFromBackend), // for easier transport and compression
+                frontendOptionsObj: frontendOptionsObj,
+                backendOptionsObj: backendOptionsObj,
+                });
+    }
+
     if (!backendScript) {
       setFronendError(["Server configuration error: No backend script",
                        "Report a bug to philip@pgbovine.net by clicking on the 'Generate URL'",
@@ -1212,76 +1284,39 @@ function executePythonCode(pythonSourceCode,
     clearFrontendError();
     startExecutingCode();
 
-    $.get(backendScript,
-          {user_script : pythonSourceCode,
-           raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
-           options_json: JSON.stringify(backendOptionsObj),
-           user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
-           // if we don't have any deltas, then don't bother sending deltaObj:
-           diffs_json: deltaObj && (deltaObj.deltas.length > 0) ? JSON.stringify(deltaObj) : null},
-          function(dataFromBackend) {
-            var trace = dataFromBackend.trace;
+    if (backendScript === js_backend_script) {
+      // hack for JS execution! this should just be a dummy script that
+      // does logging
 
-            // don't enter visualize mode if there are killer errors:
-            if (!trace ||
-                (trace.length == 0) ||
-                (trace[trace.length - 1].event == 'uncaught_exception')) {
+      $.get(backendScript,
+            {user_script : pythonSourceCode,
+             user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+             // if we don't have any deltas, then don't bother sending deltaObj:
+             diffs_json: deltaObj && (deltaObj.deltas.length > 0) ? JSON.stringify(deltaObj) : null},
+             function() {} /* don't do anything since this is a dummy call */, "json");
 
-              handleUncaughtExceptionFunc(trace);
+      // the REAL call uses JSONP
+      // some JSONP action!
+      // http://learn.jquery.com/ajax/working-with-jsonp/
+      $.ajax({
+        url: JS_JSONP_ENDPOINT,
+        // The name of the callback parameter, as specified by the YQL service
+        jsonp: "callback",
+        dataType: "jsonp",
+        data: {user_script : pythonSourceCode},
+        success: execCallback,
+      });
 
-              if (trace.length == 1) {
-                setFronendError([trace[0].exception_msg]);
-              }
-              else if (trace[trace.length - 1].exception_msg) {
-                setFronendError([trace[trace.length - 1].exception_msg]);
-              }
-              else {
-                setFronendError(["Unknown error. Reload the page and try again.",
-                                 "Report a bug to philip@pgbovine.net by clicking on the 'Generate URL'",
-                                 "button at the bottom and including a URL in your email."]);
-              }
-            }
-            else {
-              // fail-soft to prevent running off of the end of trace
-              if (frontendOptionsObj.startingInstruction >= trace.length) {
-                frontendOptionsObj.startingInstruction = 0;
-              }
-
-              if (frontendOptionsObj.holisticMode) {
-                // do NOT override, or else bad things will happen with
-                // jsPlumb arrows interfering ...
-                delete frontendOptionsObj.visualizerIdOverride;
-
-                myVisualizer = new HolisticVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
-              } else {
-                myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
-              }
-              // SUPER HACK -- slip in backendOptionsObj as an extra field
-              myVisualizer.backendOptionsObj = backendOptionsObj;
-
-              handleSuccessFunc();
-
-              // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
-              // and sync any new elements that are now inside myVisualizer
-              if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
-                TogetherJS.reinitialize();
-              }
-            }
-
-            doneExecutingCode(); // rain or shine, we're done executing!
-            // run this at the VERY END after all the dust has settled
-
-            // do logging at the VERY END after the dust settles ...
-            logEvent({type: 'doneExecutingCode',
-                      appState: getAppState(),
-                      // enough to reconstruct the ExecutionVisualizer object
-                      backendDataJSON: JSON.stringify(dataFromBackend), // for easier transport and compression
-                      frontendOptionsObj: frontendOptionsObj,
-                      backendOptionsObj: backendOptionsObj,
-                      });
-          },
-          "json");
-
+    } else {
+      $.get(backendScript,
+            {user_script : pythonSourceCode,
+             raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
+             options_json: JSON.stringify(backendOptionsObj),
+             user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+             // if we don't have any deltas, then don't bother sending deltaObj:
+             diffs_json: deltaObj && (deltaObj.deltas.length > 0) ? JSON.stringify(deltaObj) : null},
+             execCallback, "json");
+    }
 
     initDeltaObj(); // clear deltaObj to start counting over again
 }

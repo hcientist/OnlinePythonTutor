@@ -123,10 +123,14 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
   else if ($('#pythonVersionSelector').val() == '2crazy') {
       backend_script = python2crazy_backend_script;
   }
+  else if ($('#pythonVersionSelector').val() == 'js') {
+      backend_script = js_backend_script;
+  }
+  assert(backend_script);
 
   var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
                            heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
-                           show_only_outputs: ($('#showOnlyOutputsSelector').val() == 'true'),
+                           show_only_outputs: false,
                            py_crazy_mode: ($('#pythonVersionSelector').val() == '2crazy'),
                            origin: originFrontendJsFile};
 
@@ -140,9 +144,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
   var frontendOptionsObj = {startingInstruction: startingInstruction,
                             // tricky: selector 'true' and 'false' values are strings!
                             disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
-                            drawParentPointers: ($('#drawParentPointerSelector').val() == 'true'),
                             textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
-                            showOnlyOutputs: ($('#showOnlyOutputsSelector').val() == 'true'),
                             executeCodeWithRawInputFunc: executeCodeWithRawInput,
 
                             // always use the same visualizer ID for all
@@ -166,6 +168,82 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                     optFinishSuccessfulExecution, handleUncaughtExceptionFunc);
 }
 
+
+function initAceAndOptions() {
+  if ($('#pythonVersionSelector').val() === 'js') {
+    $('#optionsPane').hide();
+  } else {
+    $('#optionsPane').show();
+  }
+  setAceMode(); // update syntax highlighting mode
+}
+
+
+var JS_EXAMPLES = {
+  jsFactExLink: 'js-example-code/fact.js',
+  jsDatatypesExLink: 'js-example-code/data-types.js',
+  jsExceptionExLink: 'js-example-code/caught-exception.js',
+  jsClosureExLink: 'js-example-code/closure1.js',
+  jsShadowingExLink: 'js-example-code/var-shadowing2.js',
+  jsConstructorExLink: 'js-example-code/constructor.js',
+  jsInhExLink: 'js-example-code/inheritance.js',
+};
+
+var PY2_EXAMPLES = {
+  tutorialExampleLink: "example-code/py_tutorial.txt",
+  strtokExampleLink: "example-code/strtok.txt",
+  listCompLink: "example-code/list-comp.txt",
+  compsLink: "example-code/comprehensions.txt",
+  fibonacciExampleLink: "example-code/fib.txt",
+  memoFibExampleLink: "example-code/memo_fib.txt",
+  factExampleLink: "example-code/fact.txt",
+  filterExampleLink: "example-code/filter.txt",
+  insSortExampleLink: "example-code/ins_sort.txt",
+  aliasExampleLink: "example-code/aliasing.txt",
+  firstExampleDupLink: "example-code/aliasing.txt",
+  happyExampleLink: "example-code/happy.txt",
+  newtonExampleLink: "example-code/sqrt.txt",
+  oopSmallExampleLink: "example-code/oop_small.txt",
+  mapExampleLink: "example-code/map.txt",
+  rawInputExampleLink: "example-code/raw_input.txt",
+  oop1ExampleLink: "example-code/oop_1.txt",
+  oop2ExampleLink: "example-code/oop_2.txt",
+  inheritanceExampleLink: "example-code/oop_inherit.txt",
+  sumExampleLink: "example-code/sum.txt",
+  pwGcdLink: "example-code/wentworth_gcd.txt",
+  pwSumListLink: "example-code/wentworth_sumList.txt",
+  towersOfHanoiLink: "example-code/towers_of_hanoi.txt",
+  pwTryFinallyLink: "example-code/wentworth_try_finally.txt",
+  sumCubesLink: "example-code/sum-cubes.txt",
+  decoratorsLink: "example-code/decorators.txt",
+  genPrimesLink: "example-code/gen_primes.txt",
+  genExprLink: "example-code/genexpr.txt",
+  closure1Link: "example-code/closures/closure1.txt",
+  closure2Link: "example-code/closures/closure2.txt",
+  closure3Link: "example-code/closures/closure3.txt",
+  closure4Link: "example-code/closures/closure4.txt",
+  closure5Link: "example-code/closures/closure5.txt",
+  lambdaParamLink: "example-code/closures/lambda-param.txt",
+  aliasing1Link: "example-code/aliasing/aliasing1.txt",
+  aliasing2Link: "example-code/aliasing/aliasing2.txt",
+  aliasing3Link: "example-code/aliasing/aliasing3.txt",
+  aliasing4Link: "example-code/aliasing/aliasing4.txt",
+  aliasing5Link: "example-code/aliasing/aliasing5.txt",
+  aliasing6Link: "example-code/aliasing/aliasing6.txt",
+  aliasing7Link: "example-code/aliasing/aliasing7.txt",
+  aliasing8Link: "example-code/aliasing/aliasing8.txt",
+  ll1Link: "example-code/linked-lists/ll1.txt",
+  ll2Link: "example-code/linked-lists/ll2.txt",
+  sumListLink: "example-code/sum-list.txt",
+  varargsLink: "example-code/varargs.txt",
+  forElseLink: "example-code/for-else.txt",
+  metaclassLink: "example-code/metaclass.txt",
+}
+
+var PY3_EXAMPLES = {
+  tortureLink: "example-code/closures/student-torture.txt",
+  nonlocalLink: "example-code/nonlocal.txt",
+}
 
 $(document).ready(function() {
   setSurveyHTML();
@@ -201,264 +279,33 @@ $(document).ready(function() {
 
 
   // canned examples
+  $(".exampleLink").click(function() {
+    var myId = $(this).attr('id');
+    var exFile;
+    if (JS_EXAMPLES[myId] !== undefined) {
+      exFile = JS_EXAMPLES[myId];
+      $('#pythonVersionSelector').val('js');
+    } else if (PY2_EXAMPLES[myId] !== undefined) {
+      exFile = PY2_EXAMPLES[myId];
 
-  $("#tutorialExampleLink").click(function() {
-    $.get("example-code/py_tutorial.txt", pyInputSetValue);
-    return false;
-  });
+      // only switch Python mode to 2 if we're on 'js'; otherwise leave
+      // it as-is so as not to rock the boat
+      if ($('#pythonVersionSelector').val() === 'js') {
+        $('#pythonVersionSelector').val('2');
+      }
+    } else {
+      exFile = PY3_EXAMPLES[myId];
+      assert(exFile !== undefined);
+      $('#pythonVersionSelector').val('3');
+    }
 
-  $("#strtokExampleLink").click(function() {
-    $.get("example-code/strtok.txt", pyInputSetValue);
-    return false;
+    $.get(exFile, function(dat) {
+      pyInputSetValue(dat);
+      initAceAndOptions();
+    }, 'text' /* data type - set to text or else jQuery tries to EXECUTE the JS example code! */);
+    return false; // prevent 'a' click from going to an actual link
   });
-
-  $("#listCompLink").click(function() {
-    $.get("example-code/list-comp.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#compsLink").click(function() {
-    $.get("example-code/comprehensions.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#fibonacciExampleLink").click(function() {
-    $.get("example-code/fib.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#memoFibExampleLink").click(function() {
-    $.get("example-code/memo_fib.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#factExampleLink").click(function() {
-    $.get("example-code/fact.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#filterExampleLink").click(function() {
-    $.get("example-code/filter.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#insSortExampleLink").click(function() {
-    $.get("example-code/ins_sort.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#aliasExampleLink,#firstExampleDupLink").click(function() {
-    $.get("example-code/aliasing.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#happyExampleLink").click(function() {
-    $.get("example-code/happy.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#newtonExampleLink").click(function() {
-    $.get("example-code/sqrt.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#oopSmallExampleLink").click(function() {
-    $.get("example-code/oop_small.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#mapExampleLink").click(function() {
-    $.get("example-code/map.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#rawInputExampleLink").click(function() {
-    $.get("example-code/raw_input.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#oop1ExampleLink").click(function() {
-    $.get("example-code/oop_1.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#oop2ExampleLink").click(function() {
-    $.get("example-code/oop_2.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#inheritanceExampleLink").click(function() {
-    $.get("example-code/oop_inherit.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#sumExampleLink").click(function() {
-    $.get("example-code/sum.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#pwGcdLink").click(function() {
-    $.get("example-code/wentworth_gcd.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#pwSumListLink").click(function() {
-    $.get("example-code/wentworth_sumList.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#towersOfHanoiLink").click(function() {
-    $.get("example-code/towers_of_hanoi.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#pwTryFinallyLink").click(function() {
-    $.get("example-code/wentworth_try_finally.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#sumCubesLink").click(function() {
-    $.get("example-code/sum-cubes.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#decoratorsLink").click(function() {
-    $.get("example-code/decorators.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#genPrimesLink").click(function() {
-    $.get("example-code/gen_primes.txt", pyInputSetValue);
-    return false;
-  });
-
-  $("#genExprLink").click(function() {
-    $.get("example-code/genexpr.txt", pyInputSetValue);
-    return false;
-  });
-
-
-  $('#closure1Link').click(function() {
-    $.get("example-code/closures/closure1.txt", pyInputSetValue);
-    return false;
-  });
-  $('#closure2Link').click(function() {
-    $.get("example-code/closures/closure2.txt", pyInputSetValue);
-    return false;
-  });
-  $('#closure3Link').click(function() {
-    $.get("example-code/closures/closure3.txt", pyInputSetValue);
-    return false;
-  });
-  $('#closure4Link').click(function() {
-    $.get("example-code/closures/closure4.txt", pyInputSetValue);
-    return false;
-  });
-  $('#closure5Link').click(function() {
-    $.get("example-code/closures/closure5.txt", pyInputSetValue);
-    return false;
-  });
-  $('#lambdaParamLink').click(function() {
-    $.get("example-code/closures/lambda-param.txt", pyInputSetValue);
-    return false;
-  });
-  $('#tortureLink').click(function() {
-    $.get("example-code/closures/student-torture.txt", pyInputSetValue);
-    return false;
-  });
-
-
-
-  $('#aliasing1Link').click(function() {
-    $.get("example-code/aliasing/aliasing1.txt", pyInputSetValue);
-    return false;
-  });
-  $('#aliasing2Link').click(function() {
-    $.get("example-code/aliasing/aliasing2.txt", pyInputSetValue);
-    return false;
-  });
-  $('#aliasing3Link').click(function() {
-    $.get("example-code/aliasing/aliasing3.txt", pyInputSetValue);
-    return false;
-  });
-  $('#aliasing4Link').click(function() {
-    $.get("example-code/aliasing/aliasing4.txt", pyInputSetValue);
-    return false;
-  });
-  $('#aliasing5Link').click(function() {
-    $.get("example-code/aliasing/aliasing5.txt", pyInputSetValue);
-    return false;
-  });
-  $('#aliasing6Link').click(function() {
-    $.get("example-code/aliasing/aliasing6.txt", pyInputSetValue);
-    return false;
-  });
-  $('#aliasing7Link').click(function() {
-    $.get("example-code/aliasing/aliasing7.txt", pyInputSetValue);
-    return false;
-  });
-  $('#aliasing8Link').click(function() {
-    $.get("example-code/aliasing/aliasing8.txt", pyInputSetValue);
-    return false;
-  });
-
-
-  $('#ll1Link').click(function() {
-    $.get("example-code/linked-lists/ll1.txt", pyInputSetValue);
-    return false;
-  });
-  $('#ll2Link').click(function() {
-    $.get("example-code/linked-lists/ll2.txt", pyInputSetValue);
-    return false;
-  });
-  $('#sumListLink').click(function() {
-    $.get("example-code/sum-list.txt", pyInputSetValue);
-    return false;
-  });
-
-  $('#varargsLink').click(function() {
-    $.get("example-code/varargs.txt", pyInputSetValue);
-    return false;
-  });
-
-  $('#forElseLink').click(function() {
-    $.get("example-code/for-else.txt", pyInputSetValue);
-    return false;
-  });
-
-  $('#nonlocalLink').click(function() {
-    $.get("example-code/nonlocal.txt", pyInputSetValue);
-    return false;
-  });
-
-  $('#metaclassLink').click(function() {
-    $.get("example-code/metaclass.txt", pyInputSetValue);
-    return false;
-  });
-
-  $('#cmFibLink').click(function() {
-    $.get("example-code/chris-meyers/optFib.txt", pyInputSetValue);
-    $("#showOnlyOutputsSelector").val('true');
-    return false;
-  });
-
-  $('#cmMinPathLink').click(function() {
-    $.get("example-code/chris-meyers/optMinpath.txt", pyInputSetValue);
-    $("#showOnlyOutputsSelector").val('true');
-    return false;
-  });
-
-  $('#cmKnapsackLink').click(function() {
-    $.get("example-code/chris-meyers/optKnapsack.txt", pyInputSetValue);
-    $("#showOnlyOutputsSelector").val('true');
-    return false;
-  });
-
-  $('#cmSieveLink').click(function() {
-    $.get("example-code/chris-meyers/optSieve.txt", pyInputSetValue);
-    $("#showOnlyOutputsSelector").val('true');
-    return false;
-  });
+  $('#pythonVersionSelector').change(initAceAndOptions);
 
 
   $('#genEmbedBtn').bind('click', function() {
@@ -474,6 +321,8 @@ $(document).ready(function() {
   });
 
   genericOptFrontendReady(); // initialize at the end
+
+  initAceAndOptions(); // do this after genericOptFrontendReady
 
   // connect on-demand in logEvent(), not here
   //loggingSocketIO = io('http://104.237.139.253:5000/'); // PRODUCTION_PORT

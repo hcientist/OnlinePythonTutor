@@ -117,6 +117,8 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //                    granularity instead of line-level granularity (HIGHLY EXPERIMENTAL!)
 //   hideCode - hide the code display and show only the data structure viz
 //   tabularView - render a tabular view of ALL steps at once (EXPERIMENTAL)
+//   lang - to render labels in a style appropriate for other languages.
+//          e.g., 'js' for JavaScript, 'java' for Java [default is Python]
 //   debugMode - some extra debugging printouts
 function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
@@ -3217,10 +3219,10 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
 
     assert(obj.length >= 1);
     if (obj.length == 1) {
-      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + 'empty ' + label + '</div>');
+      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + 'empty ' + myViz.getRealLabel(label) + '</div>');
     }
     else {
-      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + label + '</div>');
+      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + myViz.getRealLabel(label) + '</div>');
       d3DomElement.append('<table class="' + label + 'Tbl"></table>');
       var tbl = d3DomElement.children('table');
 
@@ -3294,7 +3296,11 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
     assert(obj.length >= headerLength);
 
     if (isInstance) {
-      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' instance</div>');
+      if (obj.length === headerLength) {
+        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + 'empty ' + myViz.getRealLabel('instance') + '</div>');
+      } else {
+        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' ' + myViz.getRealLabel('instance') + '</div>');
+      }
     }
     else {
       var superclassStr = '';
@@ -3414,20 +3420,25 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
     assert(obj.length == 5);
     var funcName = htmlspecialchars(obj[1]);
     var funcCode = htmlspecialchars(obj[2]);
-    var prototype = obj[3];
+    var funcProperties = obj[3]; // either null or a non-empty list of key-value pairs
     var parentFrameID = obj[4];
 
 
-    if (prototype || parentFrameID || myViz.showAllFrameLabels) {
+    if (funcProperties || parentFrameID || myViz.showAllFrameLabels) {
       d3DomElement.append('<table class="classTbl"></table>');
       var tbl = d3DomElement.children('table');
       tbl.append('<tr><td class="funcCod" colspan="2"><pre class="funcCode">' + funcCode + '</pre>' + '</td></tr>');
 
-      if (prototype) {
-        tbl.append('<tr class="classEntry"><td class="classKey">prototype</td><td class="classVal"></td></tr>');
-        var newRow = tbl.find('tr:last');
-        var valTd = newRow.find('td:last');
-        myViz.renderNestedObject(prototype, stepNum, valTd);
+      if (funcProperties) {
+        assert(funcProperties.length > 0);
+        $.each(funcProperties, function(ind, kvPair) {
+            tbl.append('<tr class="classEntry"><td class="classKey"></td><td class="classVal"></td></tr>');
+            var newRow = tbl.find('tr:last');
+            var keyTd = newRow.find('td:first');
+            var valTd = newRow.find('td:last');
+            keyTd.append('<span class="keyObj">' + htmlspecialchars(kvPair[0]) + '</span>');
+            myViz.renderNestedObject(kvPair[1], stepNum, valTd);
+        });
       }
 
       if (parentFrameID) {
@@ -3471,6 +3482,19 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
 ExecutionVisualizer.prototype.redrawConnectors = function() {
   this.jsPlumbInstance.repaintEverything();
 }
+
+
+ExecutionVisualizer.prototype.getRealLabel = function(label) {
+  if (this.params.lang === 'js') {
+    if (label === 'list') {
+      return 'array';
+    } else if (label === 'instance') {
+      return 'object';
+    }
+  } else {
+    return label;
+  }
+};
 
 
 // Utilities
