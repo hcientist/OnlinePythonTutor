@@ -1,6 +1,9 @@
 all:
 	jshint cokapi.js && node cokapi.js
 
+prod:
+	jshint cokapi.js && forever -l cokapi.log start cokapi.js
+
 deps:
 	npm install express jshint serve-static sqlite3
 
