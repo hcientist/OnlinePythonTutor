@@ -38,3 +38,6 @@ RUN mkdir /tmp/python
 # modules within the container
 ADD backends/javascript /tmp/javascript
 ADD backends/python /tmp/python
+
+COPY backends/java/run-java-backend.sh /tmp/
+RUN chmod a+x /tmp/run-java-backend.sh

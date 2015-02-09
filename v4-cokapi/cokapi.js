@@ -29,6 +29,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // This is a nodejs server based on express that serves the v4-cokapi/ app
 // To test locally, run 'make' and load http://localhost:3000/
 
+var IS_DEBUG = true;
+
+var PRODUCTION_PORT = 3000;
+var DEBUG_PORT = 5001;
+
 // VERY IMPORTANT - turn on the sandbox when deploying online, or else
 // you'll be executing untrusted code on your server!
 var USE_DOCKER_SANDBOX = true;
@@ -51,6 +56,7 @@ var PYTHON2_BIN = '/usr/bin/python';
 var PYTHON3_BIN = '/usr/local/bin/python3.3';
 
 var TIMEOUT_SECS = 3;
+var JAVA_TIMEOUT_SECS = 6; // the Java backend is SUPER SLOW :/
 
 
 // bind() res and useJSONP before using
@@ -128,7 +134,50 @@ function exec_js_handler(useJSONP /* use bind first */, req, res) {
 
   child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
-                          maxBuffer: 2000 * 1024 /* 2MB data max */,
+                          maxBuffer: 5000 * 1024 /* 5MB data max */,
+                          // make SURE docker gets the kill signal;
+                          // this signal seems to allow docker to clean
+                          // up after itself to --rm the container, but
+                          // double-check with 'docker ps -a'
+                          killSignal: 'SIGINT'},
+                         postExecHandler.bind(null, res, useJSONP));
+}
+
+app.get('/exec_java', exec_java_handler.bind(null, false));
+app.get('/exec_java_jsonp', exec_java_handler.bind(null, true));
+
+function exec_java_handler(useJSONP /* use bind first */, req, res) {
+  var usrCod = req.query.user_script;
+
+  var exeFile;
+  var args = [];
+
+  var inputObj = {};
+  inputObj.usercode = usrCod;
+  //inputObj.usercode = "public class Testtt { public static void main(String[] args) { int x = 3; x += x; } }"; // for testing
+  // TODO: add options, arg, and stdin later ...
+  inputObj.options = {};
+  inputObj.args = [];
+  inputObj.stdin = "";
+
+  var inputObjJSON = JSON.stringify(inputObj);
+
+  if (USE_DOCKER_SANDBOX) {
+    // this needs to match the docker setup in Dockerfile
+    exeFile = '/usr/bin/docker'; // absolute path to docker executable
+    args.push('run', '--rm', 'pgbovine/cokapi:v1',
+              '/tmp/run-java-backend.sh',
+              inputObjJSON);
+
+//'{ "usercode": "public class Test \n\n{ public static void main(String[] args) { \n\nint x = 3; \nx += x; } }", "options": {}, "args": [], "stdin": "" }');
+
+  } else {
+    assert(false);
+  }
+
+  child_process.execFile(exeFile, args,
+                         {timeout: JAVA_TIMEOUT_SECS * 1000 /* milliseconds */,
+                          maxBuffer: 5000 * 1024 /* 10MB data max */,
                           // make SURE docker gets the kill signal;
                           // this signal seems to allow docker to clean
                           // up after itself to --rm the container, but
@@ -172,7 +221,7 @@ function executePython(pyVer, req, res) {
 
   child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
-                          maxBuffer: 2000 * 1024 /* 2MB data max */,
+                          maxBuffer: 5000 * 1024 /* 5MB data max */,
                           // make SURE docker gets the kill signal;
                           // this signal seems to allow docker to clean
                           // up after itself to --rm the container, but
@@ -213,7 +262,7 @@ app.get('/feedback', function(req, res) {
 });
 
 
-var server = app.listen(3000, function() {
+var server = app.listen(IS_DEBUG ? DEBUG_PORT : PRODUCTION_PORT, function() {
   var host = server.address().address;
   var port = server.address().port;
   console.log('Example app listening at http://%s:%s', host, port);
