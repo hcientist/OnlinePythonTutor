@@ -173,6 +173,11 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 
 
 function initAceAndOptions() {
+  if ($('#pythonVersionSelector').val() === 'java') {
+    $("#javaOptionsPane").show();
+  } else {
+    $("#javaOptionsPane").hide();
+  }
   setAceMode(); // update syntax highlighting mode
 }
 
