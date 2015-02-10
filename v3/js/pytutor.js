@@ -1942,13 +1942,13 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
         $.each(heapObj, function(ind, child) {
           if (ind < 1) return; // skip type tag
 
-          if (!isPrimitiveType(child)) {
+          if (!myViz.isPrimitiveType(child)) {
             var childID = getRefID(child);
 
             // comment this out to make "linked lists" that aren't
             // structurally equivalent look good, e.g.,:
             //   x = (1, 2, (3, 4, 5, 6, (7, 8, 9, None)))
-            //if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
+            //if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
             //  updateCurLayout(childID, curRow, newRow);
             //}
             if (myViz.disableHeapNesting) {
@@ -1966,16 +1966,16 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 
           if (myViz.disableHeapNesting) {
             var dictKey = child[0];
-            if (!isPrimitiveType(dictKey)) {
+            if (!myViz.isPrimitiveType(dictKey)) {
               var keyChildID = getRefID(dictKey);
               updateCurLayout(keyChildID, [], []);
             }
           }
 
           var dictVal = child[1];
-          if (!isPrimitiveType(dictVal)) {
+          if (!myViz.isPrimitiveType(dictVal)) {
             var childID = getRefID(dictVal);
-            if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
+            if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
               updateCurLayout(childID, curRow, newRow);
             }
             else if (myViz.disableHeapNesting) {
@@ -1991,16 +1991,16 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 
           if (myViz.disableHeapNesting) {
             var instKey = child[0];
-            if (!isPrimitiveType(instKey)) {
+            if (!myViz.isPrimitiveType(instKey)) {
               var keyChildID = getRefID(instKey);
               updateCurLayout(keyChildID, [], []);
             }
           }
 
           var instVal = child[1];
-          if (!isPrimitiveType(instVal)) {
+          if (!myViz.isPrimitiveType(instVal)) {
             var childID = getRefID(instVal);
-            if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
+            if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
               updateCurLayout(childID, curRow, newRow);
             }
             else if (myViz.disableHeapNesting) {
@@ -2116,7 +2116,7 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
     $.each(curEntry.ordered_globals, function(i, varname) {
       var val = curEntry.globals[varname];
       if (val !== undefined) { // might not be defined at this line, which is OKAY!
-        if (!isPrimitiveType(val)) {
+        if (!myViz.isPrimitiveType(val)) {
           var id = getRefID(val);
           updateCurLayout(id, null, []);
         }
@@ -2127,7 +2127,7 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
       $.each(frame.ordered_varnames, function(xxx, varname) {
         var val = frame.encoded_locals[varname];
 
-        if (!isPrimitiveType(val)) {
+        if (!myViz.isPrimitiveType(val)) {
           var id = getRefID(val);
           updateCurLayout(id, null, []);
         }
@@ -2416,7 +2416,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
         existingConnectionEndpointIDs.remove(varDivID);
 
         var val = curEntry.globals[varname];
-        if (isPrimitiveType(val)) {
+        if (myViz.isPrimitiveType(val)) {
           myViz.renderPrimitiveObject(val, $(this));
         }
         else {
@@ -2640,7 +2640,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
         existingConnectionEndpointIDs.remove(varDivID);
 
         var val = frame.encoded_locals[varname];
-        if (isPrimitiveType(val)) {
+        if (myViz.isPrimitiveType(val)) {
           myViz.renderPrimitiveObject(val, $(this));
         }
         else {
@@ -3148,7 +3148,7 @@ ExecutionVisualizer.prototype.renderPrimitiveObject = function(obj, d3DomElement
 
 
 ExecutionVisualizer.prototype.renderNestedObject = function(obj, stepNum, d3DomElement) {
-  if (isPrimitiveType(obj)) {
+  if (this.isPrimitiveType(obj)) {
     this.renderPrimitiveObject(obj, d3DomElement);
   }
   else {
@@ -3614,9 +3614,9 @@ function varnameToCssID(varname) {
 
 
 // compare two JSON-encoded compound objects for structural equivalence:
-function structurallyEquivalent(obj1, obj2) {
+ExecutionVisualizer.prototype.structurallyEquivalent = function(obj1, obj2) {
   // punt if either isn't a compound type
-  if (isPrimitiveType(obj1) || isPrimitiveType(obj2)) {
+  if (this.isPrimitiveType(obj1) || this.isPrimitiveType(obj2)) {
     return false;
   }
 
@@ -3665,7 +3665,7 @@ function structurallyEquivalent(obj1, obj2) {
 }
 
 
-function isPrimitiveType(obj) {
+ExecutionVisualizer.prototype.isPrimitiveType = function(obj) {
   var hook_result = try_hook("isPrimitiveType", {obj:obj});
   if (hook_result[0]) return hook_result[1];
 
