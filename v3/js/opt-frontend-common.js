@@ -53,10 +53,13 @@ var python2crazy_backend_script = 'web_exec_py2-crazy.py';
 // crazy custom py2crazy CPython interpreter to get 2crazy mode
 //var python2crazy_backend_script = 'exec';
 
+// empty dummy just to do logging on the Apache's server
 var js_backend_script = 'web_exec_js.py';
+var java_backend_script = 'web_exec_java.py';
 
+// these are the REAL endpoints, accessed via jsonp. code is in ../../v4-cokapi/
 var JS_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_js_jsonp'; // for deployment
-//var JS_JSONP_ENDPOINT = 'http://localhost:3000/exec_js_jsonp'; // for local testing
+var JAVA_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_java_jsonp'; // for deployment
 
 var domain = "http://pythontutor.com/"; // for deployment
 
@@ -135,8 +138,18 @@ function setAceMode() {
   var mod = 'python';
   if ($('#pythonVersionSelector').val() === 'js') {
     mod = 'javascript';
+  } else if ($('#pythonVersionSelector').val() === 'java') {
+    mod = 'java';
+
+    // if empty, initialize to a Java skeleton:
+    if ($.trim(pyInputGetValue()) == '') {
+      pyInputSetValue('public class YourClassNameHere {\n\
+    public static void main(String[] args) {\n\
+\n\
+    }\n\
+}');
+    }
   }
-  assert(mod === 'python' || mod === 'javascript');
   var s = pyInputAceEditor.getSession();
   s.setMode("ace/mode/" + mod);
 }
@@ -1285,6 +1298,8 @@ function executePythonCode(pythonSourceCode,
       frontendOptionsObj.lang = 'py3';
     } else if (backendScript === js_backend_script) {
       frontendOptionsObj.lang = 'js';
+    } else if (backendScript === java_backend_script) {
+      frontendOptionsObj.lang = 'java';
     }
 
     if (backendScript === js_backend_script) {
@@ -1307,7 +1322,26 @@ function executePythonCode(pythonSourceCode,
         data: {user_script : pythonSourceCode},
         success: execCallback,
       });
+    } else if (backendScript === java_backend_script) {
+      // hack for Java execution! should just be a dummy script for logging only
+      $.get(backendScript,
+            {user_script : pythonSourceCode,
+             user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+             // if we don't have any deltas, then don't bother sending deltaObj:
+             diffs_json: deltaObj && (deltaObj.deltas.length > 0) ? JSON.stringify(deltaObj) : null},
+             function(dat) {} /* don't do anything since this is a dummy call */, "text");
 
+      // the REAL call uses JSONP
+      // some JSONP action!
+      // http://learn.jquery.com/ajax/working-with-jsonp/
+      $.ajax({
+        url: JAVA_JSONP_ENDPOINT,
+        // The name of the callback parameter, as specified by the YQL service
+        jsonp: "callback",
+        dataType: "jsonp",
+        data: {user_script : pythonSourceCode},
+        success: execCallback,
+      });
     } else {
       $.get(backendScript,
             {user_script : pythonSourceCode,

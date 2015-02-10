@@ -126,6 +126,9 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
   else if ($('#pythonVersionSelector').val() == 'js') {
       backend_script = js_backend_script;
   }
+  else if ($('#pythonVersionSelector').val() == 'java') {
+      backend_script = java_backend_script;
+  }
   assert(backend_script);
 
   var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
@@ -170,11 +173,6 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 
 
 function initAceAndOptions() {
-  if ($('#pythonVersionSelector').val() === 'js') {
-    $('#optionsPane').hide();
-  } else {
-    $('#optionsPane').show();
-  }
   setAceMode(); // update syntax highlighting mode
 }
 
@@ -200,7 +198,6 @@ var PY2_EXAMPLES = {
   filterExampleLink: "example-code/filter.txt",
   insSortExampleLink: "example-code/ins_sort.txt",
   aliasExampleLink: "example-code/aliasing.txt",
-  firstExampleDupLink: "example-code/aliasing.txt",
   happyExampleLink: "example-code/happy.txt",
   newtonExampleLink: "example-code/sqrt.txt",
   oopSmallExampleLink: "example-code/oop_small.txt",

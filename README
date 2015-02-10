@@ -158,12 +158,12 @@ v4-cokapi/
 ---
 Acknowledgments
 
-John DeNero - for helping with the official Python 3 port and lots of code patches
+John DeNero - for helping with the official Python 3 port and LOTS of code patches
 Chris Horne - https://github.com/lahwran - for security tips
 Joshua Landau - joshua@landau.ws - for security tips
-Peter Wentworth and his students - for working on the original Python 3 fork
+Peter Wentworth and his students - for working on the original Python 3 fork circa 2011
 Brad Miller - for adding pop-up question dialogs to visualizations
-David Pritchard - for some enhancements to front-end
+David Pritchard and Will Gwozdz - for the Java frontend and other frontend enhancements
 Peter Robinson - for v3/make_visualizations.py
 Chris Meyers - for custom visualizations such as v3/matrix.py and v3/htmlFrame.py
 Irene Chen - for holistic visualization mode -- v3/js/holistic.js
@@ -187,3 +187,5 @@ Andrew Petersen
 David Pritchard
 Suzanne Rivoire
 David Wilkins
+
+... and many more!

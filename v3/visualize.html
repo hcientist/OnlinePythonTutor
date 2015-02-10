@@ -30,7 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
 
 <head>
-  <title>Online Python Tutor - Visualize program execution</title>
+  <title>Online Python Tutor - Visualize Python, Java, and JavaScript code</title>
 
   <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
 
@@ -128,16 +128,17 @@ Get help from a tutor
 
 <div id="pyInputPane">
 
-<div id="codeInputWarnings">Write
+<div id="codeInputWarnings">Programming Language:
 
   <select id="pythonVersionSelector">
     <option value="2">Python 2.7</option>
     <option value="3">Python 3.3</option>
     <!--<option value="2crazy">Py 2.crazy</option>-->
+    <option value="java">Java 7</option>
     <option value="js">JavaScript</option>
   </select>
 
-code here or <a href="#" class="exampleLink" id="firstExampleDupLink">load an example</a>:</div>
+</div>
 
 <div id="someoneIsTypingDiv" style="color: #e93f34; font-weight: bold; display: none;">Someone is typing ...</div>
 
@@ -256,7 +257,7 @@ code here or <a href="#" class="exampleLink" id="firstExampleDupLink">load an ex
 <a class="exampleLink" id="nonlocalLink" href="#">nonlocal</a>
 </p>
 
-<p style="margin-top: 25px; font-weight: bold;">JavaScript Examples (Node.js v0.10.25 in ES5 strict mode)</p>
+<p style="margin-top: 25px; font-weight: bold;">JavaScript Examples</p>
 
 <p style="margin-top: 5px;">
   <a class="exampleLink" id="jsFactExLink" href="#">factorial</a> |
@@ -294,11 +295,13 @@ embed code' button above and paste the resulting HTML code into your
 webpage. Adjust the height and width parameters as needed.</p>
 </div>
 
-<p>
-<a href="http://pythontutor.com/">Online Python Tutor</a> supports
-Python <a href="http://www.python.org/doc/2.7/">2.7</a> and <a
+<p style="margin-top: 25px;">
+<a href="http://pythontutor.com/">Online Python Tutor</a> currently supports three
+languages (despite its name!):</p>
+
+<p>1. Python <a href="http://www.python.org/doc/2.7/">2.7</a> and <a
 href="http://www.python.org/doc/3.3.0/">3.3</a> with limited module
-imports and no file I/O. 
+imports and no file I/O.
 The following modules may be imported: 
 bisect,
 collections,
@@ -311,30 +314,44 @@ math,
 operator,
 random,
 re,
-string
+string.
+<a
+href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3">Backend source code</a>.
 </p>
 
-<p>Have a question? Maybe the <a
-href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/user-FAQ.md">FAQ</a>
-or other <a
-href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/">documentation</a>
-can help. Or check out its code at <a
-href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub</a>.</p>
+<p>2. Java 7 using the OpenJDK. The original <a
+href="http://cscircles.cemc.uwaterloo.ca/java_visualize/">Java
+visualizer</a> was created by <a href="https://github.com/daveagp">David Pritchard</a> and Will Gwozdz.
+It supports
+<code><a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdIn.html">StdIn</a></code>, 
+<code><a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdOut.html">StdOut</a></code>, 
+most other <a href="http://introcs.cs.princeton.edu/java/stdlib"><tt>stdlib</tt> libraries</a>,
+<a href="http://introcs.cs.princeton.edu/java/43stack/Stack.java.html"><tt>Stack</tt></a>,
+<a href="http://introcs.cs.princeton.edu/java/43stack/Queue.java.html"><tt>Queue</tt></a>,
+and <a href="http://introcs.cs.princeton.edu/java/44st/ST.java.html"><tt>ST</tt></a>.
+(To access Java's built-in <tt>Stack</tt>/<tt>Queue</tt> classes, write
+<tt>import java.util.Stack;</tt> &mdash; note, <tt>import
+java.util.*;</tt> won't work.)
+Original source
+code: for <a href="https://github.com/daveagp/java_jail/tree/master/cp/traceprinter">the backend</a> and for <a href="https://github.com/daveagp/java_visualize">the frontend and installation
+instructions.</a></p>
 
-<!--
+<p>3. JavaScript running in Node.js v0.10.25 in ES5 strict mode. <a
+href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript">Backend
+source code</a>.</p>
+
+<p>By using Online Python Tutor, your visualized code, options, user interactions, and IP
+address are logged on our server and may be analyzed for research
+purposes. Nearly all Web services collect this basic information from
+users. However, Online Python Tutor does not collect any personal
+information, cookies, or session state.</p>
+
 <p>Join the <a
 href="https://groups.google.com/forum/#!forum/pythontutor-users">pythontutor-users</a>
 mailing list to participate in user discussions and <a
 href="https://groups.google.com/forum/#!forum/pythontutor-announce">pythontutor-announce</a>
 to receive occasional announcements.
 (Your name and email address will be kept private; only the list owner can see them.)</p>
- -->
-
-<p>By using Online Python Tutor, your visualized code, options, and IP
-address are logged on our server and may be analyzed for research
-purposes. Nearly all Web services collect this basic information from
-users. However, Online Python Tutor does not collect any personal
-information, cookies, or session state from users.</p>
 
 <p style="margin-top: 8px;">
 Copyright &copy; <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
