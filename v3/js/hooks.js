@@ -1,4 +1,8 @@
 /* API for adding a hook, created by David Pritchard
+   https://github.com/daveagp
+
+[THIS FILE IS DEPRECATED SINCE PHILIP HAS ADAPTED THE HOOKS API DIRECTLY
+INTO PYTUTOR.JS]
 
  An external user should call
 add_pytutor_hook("hook_name_here", function(args) {...})
@@ -30,7 +34,7 @@ add_pytutor_hook(
 
 var add_pytutor_hook = function(hook_name, func) {
   if (pytutor_hooks[hook_name])
-    pytutor_hooks[hook_name].push();
+    pytutor_hooks[hook_name].push(func);
   else
     pytutor_hooks[hook_name] = [func];
 }

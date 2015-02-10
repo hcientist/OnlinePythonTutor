@@ -609,11 +609,6 @@ function populateTogetherJsShareUrl() {
 // END - shared session stuff
 
 
-// Global hook for ExecutionVisualizer.
-var try_hook = function(hook_name, args) {
-  return [false]; // just a stub
-}
-
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 
 var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
