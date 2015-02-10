@@ -306,42 +306,6 @@ function initTogetherJS() {
     }
   });
 
-  // Global hook for ExecutionVisualizer.
-  // Set it here after TogetherJS gets defined, hopefully!
-  try_hook = function(hook_name, args) {
-    if (hook_name == "end_updateOutput") {
-      if (updateOutputSignalFromRemote) {
-        return;
-      }
-      if (TogetherJS.running && !isExecutingCode) {
-        TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
-      }
-
-      // debounce to compress a bit ... 250ms feels "right"
-      $.doTimeout('updateOutputLogEvent', 250, function() {
-        logEvent({type: 'updateOutput', step: args.myViz.curInstr});
-      });
-
-      // 2014-05-25: implemented more detailed tracing for surveys
-      if (args.myViz.creationTime) {
-        var deltaMs = (new Date()) - args.myViz.creationTime;
-
-        var uh = args.myViz.updateHistory;
-        assert(uh.length > 0); // should already be seeded with an initial value
-        var lastDeltaMs = uh[uh.length - 1][1];
-
-        // ("debounce" entries that are less than 1 second apart to
-        // compress the logs a bit when there's rapid scrubbing or scrolling)
-        if ((deltaMs - lastDeltaMs) < 1000) {
-          uh.pop(); // get rid of last entry before pushing a new entry
-        }
-        uh.push([args.myViz.curInstr, deltaMs]);
-        //console.log(JSON.stringify(uh));
-      }
-    }
-    return [false];
-  }
-
   TogetherJS.hub.on("updateOutput", function(msg) {
     // do NOT use a msg.sameUrl guard since that will miss some signals
     // due to our funky URLs
@@ -1222,6 +1186,38 @@ function executePythonCode(pythonSourceCode,
           myVisualizer = new HolisticVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
         } else {
           myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
+
+          myVisualizer.add_pytutor_hook("end_updateOutput", function(args) {
+            if (updateOutputSignalFromRemote) {
+              return;
+            }
+            if (TogetherJS.running && !isExecutingCode) {
+              TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
+            }
+
+            // debounce to compress a bit ... 250ms feels "right"
+            $.doTimeout('updateOutputLogEvent', 250, function() {
+              logEvent({type: 'updateOutput', step: args.myViz.curInstr});
+            });
+
+            // 2014-05-25: implemented more detailed tracing for surveys
+            if (args.myViz.creationTime) {
+              var deltaMs = (new Date()) - args.myViz.creationTime;
+
+              var uh = args.myViz.updateHistory;
+              assert(uh.length > 0); // should already be seeded with an initial value
+              var lastDeltaMs = uh[uh.length - 1][1];
+
+              // ("debounce" entries that are less than 1 second apart to
+              // compress the logs a bit when there's rapid scrubbing or scrolling)
+              if ((deltaMs - lastDeltaMs) < 1000) {
+                uh.pop(); // get rid of last entry before pushing a new entry
+              }
+              uh.push([args.myViz.curInstr, deltaMs]);
+              //console.log(JSON.stringify(uh));
+            }
+            return [false]; // pass through to let other hooks keep handling
+          });
         }
         // SUPER HACK -- slip in backendOptionsObj as an extra field
         myVisualizer.backendOptionsObj = backendOptionsObj;

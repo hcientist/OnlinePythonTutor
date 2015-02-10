@@ -63,12 +63,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
-// include hooks.js after you include pytutor.js, if you want to use hooks
-// see hooks.js for more instructions. (hooking code created by David Pritchard)
-var try_hook = function(hook_name, args) {
-  return [false]; // just a stub
-}
-
 var SVG_ARROW_POLYGON = '0,3 12,3 12,0 18,5 12,10 12,7 0,7';
 var SVG_ARROW_HEIGHT = 10; // must match height of SVG_ARROW_POLYGON
 
@@ -252,7 +246,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
   // API for adding a hook, created by David Pritchard
   this.pytutor_hooks = {}; // keys, hook names; values, list of functions
 
-  try_hook("end_constructor", {myViz:this});
+  this.try_hook("end_constructor", {myViz:this});
 
   this.hasRendered = false;
 
@@ -724,7 +718,7 @@ ExecutionVisualizer.prototype.render = function() {
     this.domRoot.find('#vizLayoutTdFirst').hide(); // gigantic hack!
   }
 
-  try_hook("end_render", {myViz:this});
+  this.try_hook("end_render", {myViz:this});
 
   this.precomputeCurTraceLayouts();
 
@@ -1404,7 +1398,7 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
   else {
     this.updateOutputFull(smoothTransition);
   }
-  try_hook("end_updateOutput", {myViz:this});
+  this.try_hook("end_updateOutput", {myViz:this});
 }
 
 ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
@@ -2005,7 +1999,7 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
     }
 
     function isLinearObj(heapObj) {
-      var hook_result = try_hook("isLinearObj", {heapObj:heapObj});
+      var hook_result = myViz.try_hook("isLinearObj", {heapObj:heapObj});
       if (hook_result[0]) return hook_result[1];
 
       return heapObj[0] == 'LIST' || heapObj[0] == 'TUPLE' || heapObj[0] == 'SET';
@@ -3005,8 +2999,7 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
     highlight_frame(myViz.generateID('globals'));
   }
 
-  try_hook("end_renderDataStructures", {myViz:myViz});  
-
+  myViz.try_hook("end_renderDataStructures", {myViz:myViz});
 }
 
 
@@ -3185,7 +3178,7 @@ ExecutionVisualizer.prototype.renderTabularView = function() {
 // rendering functions, which all take a d3 dom element to anchor the
 // new element to render
 ExecutionVisualizer.prototype.renderPrimitiveObject = function(obj, d3DomElement) {
-  if (try_hook("renderPrimitiveObject", {obj:obj, d3DomElement:d3DomElement})[0])
+  if (this.try_hook("renderPrimitiveObject", {obj:obj, d3DomElement:d3DomElement})[0])
     return;
 
   var typ = typeof obj;
@@ -3300,7 +3293,7 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
     typeLabelPrefix = 'id' + objID + ':';
   }
 
-  var hook_result = try_hook("renderCompoundObject", 
+  var hook_result = myViz.try_hook("renderCompoundObject",
                              {objID:objID, d3DomElement:d3DomElement, 
                               isTopLevel:isTopLevel, obj:obj, 
                               typeLabelPrefix:typeLabelPrefix,
@@ -3745,7 +3738,7 @@ ExecutionVisualizer.prototype.structurallyEquivalent = function(obj1, obj2) {
 
 
 ExecutionVisualizer.prototype.isPrimitiveType = function(obj) {
-  var hook_result = try_hook("isPrimitiveType", {obj:obj});
+  var hook_result = this.try_hook("isPrimitiveType", {obj:obj});
   if (hook_result[0]) return hook_result[1];
 
   // null is a primitive
