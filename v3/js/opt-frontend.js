@@ -192,6 +192,39 @@ var JS_EXAMPLES = {
   jsInhExLink: 'js-example-code/inheritance.js',
 };
 
+var JAVA_EXAMPLES = {
+  javaVarLink: 'java-example-code/Variables.java',
+  javaCFLink: 'java-example-code/ControlFlow.java',
+  javaSqrtLink: 'java-example-code/Sqrt.java',
+  javaExecLimitLink: 'java-example-code/ExecLimit.java',
+  javaStringsLink: 'java-example-code/Strings.java',
+
+  javaPassByValLink: 'java-example-code/PassByValue.java',
+  javaRecurLink: 'java-example-code/Recursion.java',
+  javaSOLink: 'java-example-code/StackOverflow.java',
+
+  javaRolexLink: 'java-example-code/Rolex.java',
+  javaPersonLink: 'java-example-code/Person.java',
+  javaComplexLink: 'java-example-code/Complex.java',
+  javaCastingLink: 'java-example-code/Casting.java',
+
+  javaLLLink: 'java-example-code/LinkedList.java',
+  javaStackQueueLink: 'java-example-code/StackQueue.java',
+  javaPostfixLink: 'java-example-code/Postfix.java',
+  javaSTLink: 'java-example-code/SymbolTable.java',
+
+  javaToStringLink: 'java-example-code/ToString.java',
+  javaReflectLink: 'java-example-code/Reflect.java',
+  javaExceptionLink: 'java-example-code/Exception.java',
+  javaExceptionFlowLink: 'java-example-code/ExceptionFlow.java',
+  javaTwoClassesLink: 'java-example-code/TwoClasses.java',
+
+  javaForestLink: 'java-example-code/Forest.java',
+  javaKnapsackLink: 'java-example-code/Knapsack.java',
+  javaStaticInitLink: 'java-example-code/StaticInitializer.java',
+  javaSyntheticLink: 'java-example-code/Synthetic.java',
+};
+
 var PY2_EXAMPLES = {
   tutorialExampleLink: "example-code/py_tutorial.txt",
   strtokExampleLink: "example-code/strtok.txt",
@@ -287,12 +320,16 @@ $(document).ready(function() {
     if (JS_EXAMPLES[myId] !== undefined) {
       exFile = JS_EXAMPLES[myId];
       $('#pythonVersionSelector').val('js');
+    } else if (JAVA_EXAMPLES[myId] !== undefined) {
+      exFile = JAVA_EXAMPLES[myId];
+      $('#pythonVersionSelector').val('java');
     } else if (PY2_EXAMPLES[myId] !== undefined) {
       exFile = PY2_EXAMPLES[myId];
 
-      // only switch Python mode to 2 if we're on 'js'; otherwise leave
-      // it as-is so as not to rock the boat
-      if ($('#pythonVersionSelector').val() === 'js') {
+      // only switch Python mode to 2 if we're not on '2' or '3'; otherwise
+      // leave as-is so as not to rock the boat
+      if ($('#pythonVersionSelector').val() !== '2' &&
+          $('#pythonVersionSelector').val() !== '3') {
         $('#pythonVersionSelector').val('2');
       }
     } else {

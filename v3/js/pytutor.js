@@ -3311,7 +3311,7 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
 
     assert(obj.length >= 1);
     if (obj.length == 1) {
-      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + 'empty ' + myViz.getRealLabel(label) + '</div>');
+      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + ' empty ' + myViz.getRealLabel(label) + '</div>');
     }
     else {
       d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + myViz.getRealLabel(label) + '</div>');
@@ -3389,7 +3389,7 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
 
     if (isInstance) {
       if (obj.length === headerLength) {
-        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + 'empty ' + myViz.getRealLabel('instance') + '</div>');
+        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' empty ' + myViz.getRealLabel('instance') + '</div>');
       } else {
         d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' ' + myViz.getRealLabel('instance') + '</div>');
       }
