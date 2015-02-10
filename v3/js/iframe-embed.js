@@ -83,6 +83,9 @@ $(document).ready(function() {
   else if (pyState == 'js') {
       backend_script = js_backend_script;
   }
+  else if (pyState == 'java') {
+      backend_script = java_backend_script;
+  }
   assert(backend_script);
 
   // David Pritchard's code for resizeContainer option ...

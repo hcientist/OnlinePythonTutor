@@ -527,7 +527,7 @@ ExecutionVisualizer.prototype.render = function() {
     if (this.params.lang === 'js') {
       this.domRoot.find('#langDisplayDiv').html('JavaScript');
     } else if (this.params.lang === 'java') {
-      this.domRoot.find('#langDisplayDiv').html('Java 7');
+      this.domRoot.find('#langDisplayDiv').html('Java');
     } else if (this.params.lang === 'py2') {
       this.domRoot.find('#langDisplayDiv').html('Python 2.7');
     } else if (this.params.lang === 'py3') {
@@ -4231,7 +4231,7 @@ ExecutionVisualizer.prototype.activateJavaFrontend = function() {
     "end_render",
     function(args) {
       var myViz = args.myViz;
-      myViz.domRoot.find('#pyStdout').attr('cols', 1);
+      //myViz.domRoot.find('#pyStdout').attr('cols', 1); // commented out by pgbovine
       myViz.domRoot.find('#pyStdout').attr('rows', Math.min(10, myViz.stdoutLines));
       
       if (myViz.params.stdin && myViz.params.stdin != "") {

@@ -134,22 +134,35 @@ function initAceEditor(height) {
   setAceMode();
 }
 
-function setAceMode() {
-  var mod = 'python';
-  if ($('#pythonVersionSelector').val() === 'js') {
-    mod = 'javascript';
-  } else if ($('#pythonVersionSelector').val() === 'java') {
-    mod = 'java';
-
-    // if empty, initialize to a Java skeleton:
-    if ($.trim(pyInputGetValue()) == '') {
-      pyInputSetValue('public class YourClassNameHere {\n\
+var JAVA_BLANK_TEMPLATE = 'public class YourClassNameHere {\n\
     public static void main(String[] args) {\n\
 \n\
     }\n\
-}');
+}'
+
+function setAceMode() {
+  var mod;
+  if ($('#pythonVersionSelector').val() === 'java') {
+    mod = 'java';
+    // if blank empty, then initialize to a Java skeleton:
+    if ($.trim(pyInputGetValue()) === '') {
+      pyInputSetValue(JAVA_BLANK_TEMPLATE);
+    }
+  } else if ($('#pythonVersionSelector').val() === 'js') {
+    mod = 'javascript';
+    // if it's just a Java skeleton, then reset to blank:
+    if (pyInputGetValue() === JAVA_BLANK_TEMPLATE) {
+      pyInputSetValue('');
+    }
+  } else {
+    mod = 'python';
+    // if it's just a Java skeleton, then reset to blank:
+    if (pyInputGetValue() === JAVA_BLANK_TEMPLATE) {
+      pyInputSetValue('');
     }
   }
+  assert(mod);
+
   var s = pyInputAceEditor.getSession();
   s.setMode("ace/mode/" + mod);
 }
