@@ -41,8 +41,6 @@ var USE_DOCKER_SANDBOX = true;
 var assert = require('assert');
 var child_process = require('child_process');
 var express = require('express');
-//var serveStatic = require('serve-static');
-var sqlite3 = require('sqlite3');
 var util = require('util');
 
 
@@ -97,8 +95,6 @@ var app = express();
 
 // http://ilee.co.uk/jsonp-in-express-nodejs/
 app.set("jsonp callback", true);
-
-//app.use(serveStatic('frontends/')); // put all static files in here
 
 app.get('/exec_py2', function(req, res) {
   executePython('py2', req, res);
@@ -236,38 +232,6 @@ function executePython(pyVer, req, res) {
                           killSignal: 'SIGINT'},
                          postExecHandler.bind(null, res, false));
 }
-
-
-// prereqs: sqlite database must be first set up with
-// feedback/setup_feedback_db.py
-var feedbackDb = new sqlite3.Database('feedback/cokapi-feedback.db');
-
-// NB: should really be a POST but i'm lazy and GET  is easier to implement
-app.get('/feedback', function(req, res) {
-  var name = req.query.name;
-  var feedback = req.query.feedback;
-  var appStateJSON = req.query.appStateJSON;
-  console.log('name:', name);
-  console.log('feedback:', feedback);
-  console.log('appStateJSON:', appStateJSON);
-
-  // limit each piece of feedback to < 100KB in size to prevent users
-  // from flooding the database
-  if ((name + feedback + appStateJSON).length > (100 * 1024)) {
-    res.send('toolong');
-  } else {
-    feedbackDb.run('INSERT INTO feedback VALUES(null, ?, ?, ?, CURRENT_TIMESTAMP)',
-                   name, feedback, appStateJSON, function(err) {
-      if (err) {
-        console.log(err);
-        res.send('error');
-      } else {
-        res.send('ok');
-      }
-    });
-  }
-});
-
 
 var server = app.listen(IS_DEBUG ? DEBUG_PORT : PRODUCTION_PORT, function() {
   var host = server.address().address;
