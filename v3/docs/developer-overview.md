@@ -18,7 +18,30 @@ feel free to email philip@pgbovine.net if you have questions.
 And please excuse the sloppy writing; I'm not trying to win any style awards here :)
 
 
-## Getting Started: Running OPT locally on your machine
+## Getting Started: Running OPT locally on your machine using Bottle:
+
+First install the [bottle](http://bottlepy.org/) micro web framework:
+
+    easy_install pip
+    pip install bottle
+
+And then run:
+
+    cd OnlinePythonTutor/v3/
+    python bottle_server.py
+
+(use `python3` if you want to test the Python 3 backend.)
+
+If all goes well, when you visit this URL, you should see the Python Tutor visualizer:
+
+    http://localhost:8080/visualize.html
+
+Note that you can run bottle with both Python 2 and 3.
+
+However, **only** run this app locally for testing, not in production, since security checks are disabled.
+
+
+## Alternative: Using Google App Engine (deprecated)
 
 When you check out OPT from GitHub, it's configured by default to run on Google App Engine
 (but it can also run fine on a CGI-enabled webserver such as Apache).
@@ -42,31 +65,6 @@ The benefit of running OPT locally is that you can test all changes without goin
 if you're eventually going to deploy on something other than Google App Engine, it still makes sense to install locally
 for development and testing. The main caveat here is that Google App Engine currently runs Python 2.7,
 so you won't be able to test Python 3 locally this way.
-
-Here is a [blog post by a Hacker School student](http://theworldsoldestintern.wordpress.com/2012/10/15/installing-online-python-tutor-on-your-laptop-localhost8080/)
-who set up OPT on his Ubuntu laptop. (btw [Hacker School](http://www.hackerschool.com/) is worth checking out!)
-
-
-## Alternative setup: Running OPT locally using bottle
-
-Google App Engine works only with Python 2, not Python 3. So if you want to run with Python 3 as well,
-first install the [bottle](http://bottlepy.org/) micro web framework:
-
-    easy_install pip
-    pip install bottle
-
-And then run:
-
-    cd OnlinePythonTutor/v3/
-    python bottle_server.py
-
-If all goes well, when you visit this URL, you should see the Python Tutor visualizer:
-
-    http://localhost:8080/visualize.html
-
-Note that you can run bottle with both Python 2 and 3.
-
-However, **only** run this app locally for testing, not in production, since security checks are disabled.
 
 
 ## Overall system architecture
