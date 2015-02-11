@@ -512,8 +512,18 @@ ExecutionVisualizer.prototype.render = function() {
 
 
   if (this.params.editCodeBaseURL) {
+    // kinda kludgy
+    var pyVer = '2'; // default
+    if (this.params.lang === 'js') {
+      pyVer = 'js';
+    } else if (this.params.lang === 'java') {
+      pyVer = 'java';
+    } else if (this.params.lang === 'py3') {
+      pyVer = '3';
+    }
+
     var urlStr = $.param.fragment(this.params.editCodeBaseURL,
-                                  {code: this.curInputCode},
+                                  {code: this.curInputCode, py: pyVer},
                                   2);
     this.domRoot.find('#editBtn').attr('href', urlStr);
   }
