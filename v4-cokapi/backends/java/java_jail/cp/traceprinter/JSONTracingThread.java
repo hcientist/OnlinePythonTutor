@@ -46,7 +46,7 @@ public class JSONTracingThread extends Thread {
 
     static int MAX_STEPS = 256;
 
-    static double MAX_WALLTIME_SECONDS = 5;
+    static double MAX_WALLTIME_SECONDS = 15; // modified by pgbovine
 
     private int steps = 0;
 
