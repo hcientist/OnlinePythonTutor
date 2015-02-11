@@ -1314,6 +1314,7 @@ function executePythonCode(pythonSourceCode,
       frontendOptionsObj.lang = 'js';
     } else if (backendScript === java_backend_script) {
       frontendOptionsObj.lang = 'java';
+      frontendOptionsObj.disableHeapNesting = true; // never nest Java objects, seems like a good default
     }
 
     if (backendScript === js_backend_script) {
