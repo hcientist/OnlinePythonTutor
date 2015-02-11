@@ -39,8 +39,6 @@ https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3/docs
 
 The v3/ sub-directory contains the latest version of the code.
 
-(v4-cokapi/ is EXPERIMENTAL at the moment)
-
 ---
 History:
 
@@ -153,7 +151,8 @@ v4-cokapi/
 
   2015-01-24 - started a new version (based on v3 code base) to expand
   Online Python Tutor to support multiple languages such as JavaScript
-  and Java.
+  and Java. Note that this contains only backend code, so we still rely
+  on v3/ for the frontend (and the original Python backend)
 
 ---
 Acknowledgments
