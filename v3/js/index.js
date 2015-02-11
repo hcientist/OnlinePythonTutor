@@ -6,6 +6,7 @@ $(document).ready(function() {
   $(".activityPane").corner('15px');
 
   var demoViz = new ExecutionVisualizer('demoViz', demoTrace, {embeddedMode: true,
+                                                               lang: 'py2',
                                                                editCodeBaseURL: 'visualize.html'});
 
   // redraw connector arrows on window resize
