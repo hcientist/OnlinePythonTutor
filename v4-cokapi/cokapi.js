@@ -41,7 +41,7 @@ var USE_DOCKER_SANDBOX = true;
 var assert = require('assert');
 var child_process = require('child_process');
 var express = require('express');
-var serveStatic = require('serve-static');
+//var serveStatic = require('serve-static');
 var sqlite3 = require('sqlite3');
 var util = require('util');
 
@@ -98,7 +98,7 @@ var app = express();
 // http://ilee.co.uk/jsonp-in-express-nodejs/
 app.set("jsonp callback", true);
 
-app.use(serveStatic('frontends/')); // put all static files in here
+//app.use(serveStatic('frontends/')); // put all static files in here
 
 app.get('/exec_py2', function(req, res) {
   executePython('py2', req, res);
