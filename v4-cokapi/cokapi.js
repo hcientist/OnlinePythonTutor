@@ -146,19 +146,29 @@ function exec_js_handler(useJSONP /* use bind first */, req, res) {
 app.get('/exec_java', exec_java_handler.bind(null, false));
 app.get('/exec_java_jsonp', exec_java_handler.bind(null, true));
 
+// runs David Pritchard's Java backend in backends/java/
 function exec_java_handler(useJSONP /* use bind first */, req, res) {
   var usrCod = req.query.user_script;
+
+  var parsedOptions = JSON.parse(req.query.options_json);
+  var heapPrimitives = parsedOptions.heap_primitives;
 
   var exeFile;
   var args = [];
 
   var inputObj = {};
   inputObj.usercode = usrCod;
-  //inputObj.usercode = "public class Testtt { public static void main(String[] args) { int x = 3; x += x; } }"; // for testing
   // TODO: add options, arg, and stdin later ...
   inputObj.options = {};
   inputObj.args = [];
   inputObj.stdin = "";
+
+  // VERY unintuitive -- to get strings to display as heap objects and
+  // NOT 'primitive' values in the Java backend, set showStringsAsValues
+  // to false
+  if (heapPrimitives) {
+    inputObj.options.showStringsAsValues = false;
+  }
 
   var inputObjJSON = JSON.stringify(inputObj);
 
@@ -168,9 +178,6 @@ function exec_java_handler(useJSONP /* use bind first */, req, res) {
     args.push('run', '--rm', 'pgbovine/cokapi:v1',
               '/tmp/run-java-backend.sh',
               inputObjJSON);
-
-//'{ "usercode": "public class Test \n\n{ public static void main(String[] args) { \n\nint x = 3; \nx += x; } }", "options": {}, "args": [], "stdin": "" }');
-
   } else {
     assert(false);
   }
