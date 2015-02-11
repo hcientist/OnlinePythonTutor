@@ -56,7 +56,7 @@ var PYTHON2_BIN = '/usr/bin/python';
 var PYTHON3_BIN = '/usr/local/bin/python3.3';
 
 var TIMEOUT_SECS = 3;
-var JAVA_TIMEOUT_SECS = 6; // the Java backend is SUPER SLOW :/
+var JAVA_TIMEOUT_SECS = 15; // the Java backend is SUPER SLOW :/
 
 
 // bind() res and useJSONP before using
