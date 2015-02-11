@@ -60,6 +60,7 @@ var java_backend_script = 'web_exec_java.py';
 // these are the REAL endpoints, accessed via jsonp. code is in ../../v4-cokapi/
 var JS_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_js_jsonp'; // for deployment
 var JAVA_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_java_jsonp'; // for deployment
+//var JAVA_JSONP_ENDPOINT = 'http://104.237.139.253:5001/exec_java_jsonp'; // for debug
 
 var domain = "http://pythontutor.com/"; // for deployment
 
@@ -1339,6 +1340,7 @@ function executePythonCode(pythonSourceCode,
       // hack for Java execution! should just be a dummy script for logging only
       $.get(backendScript,
             {user_script : pythonSourceCode,
+             options_json: JSON.stringify(backendOptionsObj),
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
              // if we don't have any deltas, then don't bother sending deltaObj:
              diffs_json: deltaObj && (deltaObj.deltas.length > 0) ? JSON.stringify(deltaObj) : null},
@@ -1352,7 +1354,8 @@ function executePythonCode(pythonSourceCode,
         // The name of the callback parameter, as specified by the YQL service
         jsonp: "callback",
         dataType: "jsonp",
-        data: {user_script : pythonSourceCode},
+        data: {user_script : pythonSourceCode,
+               options_json: JSON.stringify(backendOptionsObj)},
         success: execCallback,
       });
     } else {
