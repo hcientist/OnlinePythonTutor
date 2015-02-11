@@ -17,5 +17,13 @@
 
 <iframe width="900" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=%23+Example+to+torture+students%0A%23+from+UC+Berkeley+CS61a%0A%23+(only+works+in+Python+3)%0A%0Adef+f(t)%3A%0A++++def+g(t)%3A%0A++++++++def+h()%3A%0A++++++++++++nonlocal+t%0A++++++++++++t+%2B%3D+1%0A++++++++return+h,+lambda%3A+t%0A++++h,+gt+%3D+g(0)%0A++++return+h,+gt,+lambda%3A+t%0A%0Ah,+gt,+ft+%3D+f(0)%0Aft(),+gt()%0Ah()%0Aft(),+gt()&cumulative=true&py=3&curInstr=11"> </iframe>
 
+<p/>
+
+<iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=public+class+Variables+%7B%0A+++public+static+void+main(String%5B%5D+args)+%7B%0A++++++String+me+%3D+%22me%22%3B%0A++++++String+you+%3D+%22you%22%3B%0A++++++String+tmp+%3D+me%3B%0A++++++me+%3D+you%3B%0A++++++you+%3D+tmp%3B%0A%0A++++++int+x+%3D+5%3B%0A++++++int+y+%3D+10%3B%0A++++++int+t+%3D+x%3B%0A++++++x+%3D+y%3B%0A++++++y+%3D+t%3B%0A+++%7D%0A%7D&origin=opt-frontend.js&cumulative=false&heapPrimitives=false&textReferences=false&py=java&rawInputLstJSON=%5B%5D&curInstr=7&codeDivWidth=350&codeDivHeight=400"> </iframe>
+
+<p/>
+
+<iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=function+Vector(x,+y)+%7B%0A++this.x+%3D+x%3B%0A++this.y+%3D+y%3B%0A%7D%0A%0AVector.prototype.plus+%3D+function(other)+%7B%0A++return+new+Vector(this.x+%2B+other.x,+this.y+%2B+other.y)%3B%0A%7D%3B%0A%0Avar+v1+%3D+new+Vector(1,+2)%3B%0Avar+v2+%3D+Vector(20,+30)%3B+//+whoops,+forgot+'new'&origin=opt-frontend.js&cumulative=false&heapPrimitives=false&textReferences=false&py=js&rawInputLstJSON=%5B%5D&curInstr=9&codeDivWidth=350&codeDivHeight=400"> </iframe>
+
 </body>
 </html>
