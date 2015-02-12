@@ -1131,7 +1131,7 @@ function handleUncaughtExceptionFunc(trace) {
 }
 
 function startExecutingCode() {
-  $('#executeBtn').html("Please wait ... processing your code");
+  $('#executeBtn').html("Please wait ... executing (takes up to 10 seconds)");
   $('#executeBtn').attr('disabled', true);
   isExecutingCode = true; // nasty global
 }
