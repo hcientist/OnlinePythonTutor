@@ -4133,6 +4133,15 @@ function closeModal(divId) {
 // All of the Java frontend code in this function was written by David
 // Pritchard and Will Gwozdz, and integrated by Philip Guo
 ExecutionVisualizer.prototype.activateJavaFrontend = function() {
+  // super hack by Philip that reverses the direction of the stack so
+  // that it grows DOWN and renders the same way as the Python and JS
+  // visualizer stacks
+  this.curTrace.forEach(function(e, i) {
+    if (e.stack_to_render !== undefined) {
+      e.stack_to_render.reverse();
+    }
+  });
+
   this.add_pytutor_hook(
     "renderPrimitiveObject",
     function(args) {
