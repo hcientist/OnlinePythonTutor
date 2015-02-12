@@ -137,6 +137,8 @@ function HolisticVisualizer(domRootID, dat, params) {
 				var function_vars = {};
 
 				var n = trace.trace[i].stack_to_render.length;
+				if (n > 0) { // pgbovine - added guard
+
 				for (var j = 0; j < trace.trace[i].stack_to_render[n-1].ordered_varnames.length; j++) {
 					var x = trace.trace[i].stack_to_render[n-1].ordered_varnames[j];
 					if (!(x in function_vars) &&
@@ -146,6 +148,8 @@ function HolisticVisualizer(domRootID, dat, params) {
 						function_group.appendChild(option, null);
 						function_vars[x] = 1;
 					}
+				}
+
 				}
 				myViz.domRoot.find('#var-select').append(function_group);
 			}
