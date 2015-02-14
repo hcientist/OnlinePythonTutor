@@ -341,8 +341,9 @@ $(document).ready(function() {
     // very subtle! for TogetherJS to sync #pythonVersionSelector
     // properly, we must manually trigger a change event that bubbles
     //
-    // http://stackoverflow.com/questions/2856513/how-can-i-trigger-an-onchange-event-manually
-    document.querySelector('#pythonVersionSelector').dispatchEvent(new Event('change', { 'bubbles': true }));
+    // Inspired by http://stackoverflow.com/questions/2856513/how-can-i-trigger-an-onchange-event-manually
+    // but used jQuery.Event to get cross-browser compatibility
+    $("#pythonVersionSelector").trigger(jQuery.Event('change', { 'bubbles': true }));
 
     $.get(exFile, function(dat) {
       pyInputSetValue(dat);
