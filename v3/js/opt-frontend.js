@@ -317,12 +317,13 @@ $(document).ready(function() {
   $(".exampleLink").click(function() {
     var myId = $(this).attr('id');
     var exFile;
+    var lang;
     if (JS_EXAMPLES[myId] !== undefined) {
       exFile = JS_EXAMPLES[myId];
-      $('#pythonVersionSelector').val('js');
+      lang = 'js';
     } else if (JAVA_EXAMPLES[myId] !== undefined) {
       exFile = JAVA_EXAMPLES[myId];
-      $('#pythonVersionSelector').val('java');
+      lang = 'java';
     } else if (PY2_EXAMPLES[myId] !== undefined) {
       exFile = PY2_EXAMPLES[myId];
 
@@ -330,24 +331,34 @@ $(document).ready(function() {
       // leave as-is so as not to rock the boat
       if ($('#pythonVersionSelector').val() !== '2' &&
           $('#pythonVersionSelector').val() !== '3') {
-        $('#pythonVersionSelector').val('2');
+        lang = '2';
       }
     } else {
       exFile = PY3_EXAMPLES[myId];
       assert(exFile !== undefined);
-      $('#pythonVersionSelector').val('3');
+      lang = '3';
     }
 
-    // very subtle! for TogetherJS to sync #pythonVersionSelector
-    // properly, we must manually trigger a change event that bubbles
-    //
-    // Inspired by http://stackoverflow.com/questions/2856513/how-can-i-trigger-an-onchange-event-manually
-    // but used jQuery.Event to get cross-browser compatibility
-    $("#pythonVersionSelector").trigger(jQuery.Event('change', { 'bubbles': true }));
+
+    if (lang) {
+      $('#pythonVersionSelector').val(lang);
+    }
 
     $.get(exFile, function(dat) {
       pyInputSetValue(dat);
       initAceAndOptions();
+
+      // very subtle! for TogetherJS to sync #pythonVersionSelector
+      // properly, we must manually send a sync request event:
+      if (TogetherJS && TogetherJS.running) {
+        TogetherJS.send({type: "syncAppState",
+                         myAppState: getAppState(),
+                         codeInputScrollTop: pyInputGetScrollTop(),
+                         pyCodeOutputDivScrollTop: myVisualizer ?
+                                                   myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop() :
+                                                   undefined});
+      }
+
     }, 'text' /* data type - set to text or else jQuery tries to EXECUTE the JS example code! */);
     return false; // prevent 'a' click from going to an actual link
   });

@@ -477,6 +477,10 @@ function initTogetherJS() {
     }
   });
 
+  TogetherJS.hub.on("syncAppState", function(msg) {
+    syncAppState(msg.myAppState);
+  });
+
   TogetherJS.hub.on("codeInputScroll", function(msg) {
     // do NOT use a msg.sameUrl guard since that will miss some signals
     // due to our funky URLs
