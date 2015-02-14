@@ -181,7 +181,7 @@ http://docs.oracle.com/javase/7/docs/jdk/api/jpda/jdi/com/sun/jdi/connect/Connec
 
             // set a memory limit
             
-            options += "-Xmx256M" + " "; // modified by pgbovine
+            options += "-Xmx128M" + " ";
             
             options += "-Dfile.encoding=UTF-8" + " ";
 
