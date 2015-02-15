@@ -690,6 +690,8 @@ function pyInputSetScrollTop(st) {
 }
 
 
+var num414Tries = 0; // hacky global
+
 // run at the END so that everything else can be initialized first
 function genericOptFrontendReady() {
   initTogetherJS(); // initialize early
@@ -866,7 +868,23 @@ function genericOptFrontendReady() {
 
       Note that you'll probably need to customize this check for your server. */
     if (jqxhr && jqxhr.responseText.indexOf('414') >= 0) {
-      setFronendError(["Server error! Your code might be too long for this tool. Shorten your code and re-try."]);
+
+      // ok this is an UBER UBER hack. If this happens just once, then
+      // force click the "Visualize Execution" button again and re-try.
+      // why? what's the difference the second time around? the diffs_json
+      // parameter (derived from deltaObj) will be *empty* the second time
+      // around since it gets reset on every execution. if diffs_json is
+      // HUGE, then that might force the URL to be too big without your
+      // code necessarily being too big, so give it a second shot with an
+      // empty diffs_json. if it STILL fails, then display the error
+      // message and give up.
+      if (num414Tries === 0) {
+        num414Tries++;
+        $("#executeBtn").click();
+      } else {
+        num414Tries = 0;
+        setFronendError(["Server error! Your code might be too long for this tool. Shorten your code and re-try."]);
+      }
     } else {
       setFronendError(["Server error! Your code might be taking too much time to run or using too much memory.",
                        "Also, this tool does not work on raw_input(), input() and bytearray() in some cases.",
