@@ -1313,6 +1313,9 @@ function executePythonCode(pythonSourceCode,
                   backendOptionsObj: backendOptionsObj,
                   });
       }
+
+      // tricky hacky reset
+      num414Tries = 0;
     }
 
     if (!backendScript) {
