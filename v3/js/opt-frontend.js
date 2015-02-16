@@ -382,8 +382,8 @@ $(document).ready(function() {
   initAceAndOptions(); // do this after genericOptFrontendReady
 
   // connect on-demand in logEvent(), not here
-  //loggingSocketIO = io('http://104.237.139.253:5000/'); // PRODUCTION_PORT
-  //loggingSocketIO = io('http://104.237.139.253:5001/'); // DEBUG_PORT
+  //loggingSocketIO = io('http://104.237.139.253:5000/userlog'); // PRODUCTION_PORT
+  //loggingSocketIO = io('http://104.237.139.253:5001/userlog'); // DEBUG_PORT
 
 
   if (loggingSocketIO) {
