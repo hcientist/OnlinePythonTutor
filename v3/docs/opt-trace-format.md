@@ -143,7 +143,7 @@ without setting up a server.
 **If you open up your browser console, you will see the current trace entry being printed out as you step through the
 visualization, which can help you debug.**
 
-P.S. to create a trace file in the appropriate format using the default OPT Python frontend, run `generate_json_trace.py` using the `--create_jsvar` option:
+P.S. to create a trace file in the appropriate format using the default OPT Python backend, run `generate_json_trace.py` using the `--create_jsvar` option:
 
 ```python
 python generate_json_trace.py --create_jsvar=trace example.py > test-trace.js
