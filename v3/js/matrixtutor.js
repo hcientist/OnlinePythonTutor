@@ -33,6 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // custom version of opt-frontend.js for ../matrixtutor.html
 
+var originFrontendJsFile = 'matrixtutor.js';
 
 // Pre-reqs:
 // - pytutor.js
@@ -157,7 +158,7 @@ $(document).ready(function() {
                                heap_primitives: false,
                                show_only_outputs: false,
                                py_crazy_mode: false,
-                               origin: 'matrixtutor.js'};
+                               origin: originFrontendJsFile};
 
       var frontendOptionsObj = {updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
                                 compactFuncLabels: true,
