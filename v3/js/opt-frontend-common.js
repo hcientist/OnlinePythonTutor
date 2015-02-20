@@ -1258,7 +1258,7 @@ function executePythonCode(pythonSourceCode,
             if (updateOutputSignalFromRemote) {
               return;
             }
-            if (TogetherJS.running && !isExecutingCode) {
+            if (TogetherJS && TogetherJS.running && !isExecutingCode) {
               TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
             }
 
