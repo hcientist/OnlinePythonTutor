@@ -136,22 +136,6 @@ var server = http.createServer(function(request, response) {
       return;
     }
     findRoom(prefix, max, response);
-  }
-  // administrator hub ...
-  else if (url.pathname == '/toggle-help-available') {
-    toggleHelpAvailable(request, response);
-  } else if (url.pathname == '/learner-SSE') {
-    learnerSSE(request, response);
-  } else if (url.pathname == '/admin-SSE') {
-    adminSSE(request, response);
-  } else if (url.pathname == '/request-help') {
-    requestHelp(url, request, response);
-  } else if (url.pathname == '/clear-help-queue') {
-    clearHelpQueue(request, response);
-  } else if (url.pathname == '/remove-help-queue-element') {
-    removeHelpQueueElement(url, request, response);
-  } else if (url.pathname == '/admin.html') {
-    adminHTML(request, response);
   } else {
     write404(response);
   }
@@ -330,7 +314,7 @@ wsServer.on('request', function(request) {
         parsed.type != 'hello-back' &&
         parsed.type != 'app.codemirror-edit'
         ) {
-      var logObj = createLogEntry(request, 'help-available');
+      var logObj = createLogEntry(request);
       logObj.id = id;
       logObj.type = 'togetherjs';
       logObj.togetherjs = parsed;
@@ -497,17 +481,6 @@ function createLogEntry(req, event_type) {
 
 var pgLogFile = null;
 
-var EventEmitter = require('events').EventEmitter;
-var learnerEmitter = new EventEmitter(); // sending events to learners
-var adminEmitter = new EventEmitter();   // sending events to administrators
-
-// to prevent warnings when a bunch of learners sign online
-learnerEmitter.setMaxListeners(100);
-adminEmitter.setMaxListeners(100);
-
-var helpQueue = [];
-var helpAvailable = false;
-
 var MAX_LOG_SIZE = 10000;
 var curLogSize = 0;
 
@@ -528,160 +501,11 @@ function pgLogWrite(logObj) {
     curLogSize = 0;
   }
 
+  // I think this write is buffered in memory, so it's safe to do
+  // multiple "concurrent" writes since it will all be buffered
+  // http://nodejs.org/api/stream.html#stream_writable_write_chunk_encoding_callback
   pgLogFile.write(s + '\n');
   curLogSize++;
-}
-
-function toggleHelpAvailable(req, res) {
-  helpAvailable = !helpAvailable;
-  res.end(String(helpAvailable));
-
-  var logObj = createLogEntry(req, 'help-available');
-  logObj.helpAvailable = helpAvailable;
-
-  learnerEmitter.emit('help-available-update', logObj);
-  adminEmitter.emit('help-available-update', logObj);
-
-  pgLogWrite(logObj);
-}
-
-
-// all learners on pythontutor.com connect to this SSE feed
-function learnerSSE(req, res) {
-  // set up Server-Sent Event header
-  res.writeHead(200, {
-    'Access-Control-Allow-Origin': '*', // with CORS action
-    'Content-Type': 'text/event-stream',
-    'Cache-Control': 'no-cache',
-    'Connection': 'keep-alive',
-  });
-
-  function sendDat() {
-    var dat = {helpAvailable: helpAvailable,
-               helpQueueUrls: helpQueue.length};
-    constructSSE(res, dat);
-  };
-
-  learnerEmitter.on('help-available-update', sendDat);
-  learnerEmitter.on('help-queue-update', sendDat);
-  learnerEmitter.on('new-help-request', sendDat);
-
-  req.on('close', function() {
-    // clean up after yourself to prevent too many open connections
-    learnerEmitter.removeListener('help-available-update', sendDat);
-    learnerEmitter.removeListener('help-queue-update', sendDat);
-    learnerEmitter.removeListener('new-help-request', sendDat);
-  });
-
-  sendDat(); // send an initial burst of data
-}
-
-
-// admin.html connects to this SSE feed
-function adminSSE(req, res) {
-  // set up Server-Sent Event header
-  res.writeHead(200, {
-    'Content-Type': 'text/event-stream',
-    'Cache-Control': 'no-cache',
-    'Connection': 'keep-alive'
-  });
-
-  // this happens right when a client connects or after the client loses
-  // connection and auto-reconnects:
-  var firstTimeDat = {type: 'firstTime',
-                      helpQueue: helpQueue,
-                      helpAvailable: helpAvailable,
-                      fetchTime: (new Date()).toISOString(),
-                      numLearners: EventEmitter.listenerCount(learnerEmitter,
-                                                              'help-available-update')};
-  constructSSE(res, firstTimeDat); // send an initial burst of data
-
-  function f(e) {constructSSE(res, e);};
-  adminEmitter.on('new-help-request', f);
-  adminEmitter.on('help-available-update', f);
-
-  // Why does this "close" event get triggered on page reload and
-  // browser window close?!? OHHHHH this connection isn't normally
-  // closing since we didn't explicitly do res.end() to close the
-  // connection. The client is just being kept waiting indefinitely, and
-  // it ain't gonna close on its own.
-  req.on('close', function() {
-    // clean up after yourself to prevent too many open connections
-    adminEmitter.removeListener('new-help-request', f);
-    adminEmitter.removeListener('help-available-update', f);
-  });
-}
-
-function constructSSE(res, data) {
-  res.write('data: ' + JSON.stringify(data) + '\n\n');
-}
-
-function adminHTML(req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.end(fs.readFileSync(__dirname + '/admin.html'));
-}
-
-// when a learner requests help ...
-function requestHelp(url, req, res) {
-  res.writeHead(200, {'Access-Control-Allow-Origin': '*'}); // CORS action
-  if (!helpAvailable) {
-    res.end("failure");
-    return; // early return!
-  }
-
-  var logObj = createLogEntry(req, 'new-help-request');
-  logObj.url = url.query.url;
-  logObj.id = url.query.id;
-
-  // if you're already on the queue, don't insert a duplicate:
-  for (var i=0; i < helpQueue.length; i++) {
-    if (helpQueue[i].id == logObj.id) {
-      res.end("failure");
-      return; // early return!
-    }
-  }
-
-  helpQueue.push(logObj);
-  res.end("success");
-
-  learnerEmitter.emit('new-help-request', logObj);
-  adminEmitter.emit('new-help-request', logObj);
-
-  pgLogWrite(logObj);
-}
-
-// clear the entire queue
-function clearHelpQueue(req, res) {
-  // clear helpQueue QUICKLY
-  // http://stackoverflow.com/questions/1232040/how-to-empty-an-array-in-javascript
-  while (helpQueue.length > 0) {
-    var elt = helpQueue.pop();
-    var logObj = createLogEntry(req, 'remove-help-request');
-    logObj.id = elt.id;
-    pgLogWrite(logObj);
-  }
-
-  res.end("success");
-  learnerEmitter.emit('help-queue-update');
-}
-
-// remove an element from the queue with id=<id> and optional reason=<reason>
-function removeHelpQueueElement(url, req, res) {
-  for (var i = 0; i < helpQueue.length; i++) {
-    if (helpQueue[i].id == url.query.id) {
-      helpQueue.splice(i, 1);
-      res.end("success");
-      learnerEmitter.emit('help-queue-update');
-
-      var logObj = createLogEntry(req, 'remove-help-request');
-      logObj.id = url.query.id;
-      logObj.reason = url.query.reason;
-      pgLogWrite(logObj);
-      return;
-    }
-  }
-
-  res.end("failure");
 }
 
 // end pgbovine
