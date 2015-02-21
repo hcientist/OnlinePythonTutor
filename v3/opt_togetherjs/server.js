@@ -469,9 +469,11 @@ function createLogEntry(req, event_type) {
     req.socket.remoteAddress ||
     req.connection.socket.remoteAddress;
 
-  obj['ip'] = ip;
-  obj['date'] = (new Date()).toISOString();
-  obj['type'] = event_type;
+  obj.ip = ip;
+  obj.date = (new Date()).toISOString();
+  if (event_type) {
+    obj.type = event_type;
+  }
 
   return obj;
 }
