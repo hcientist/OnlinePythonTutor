@@ -186,6 +186,10 @@ function snapshotCodeDiff() {
 
     curCode = newCode;
     logEvent({type: 'editCode', delta: delta});
+
+    if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+      TogetherJS.send({type: "editCode", delta: delta});
+    }
   }
 }
 
@@ -517,6 +521,7 @@ function initTogetherJS() {
     if (TogetherJS.running) {
       TogetherJS.send({type: "initialAppState",
                        myAppState: getAppState(),
+                       user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
                        // so that you can tell whether someone else
                        // shared a TogetherJS URL with you to invite you
                        // into this shared session:
