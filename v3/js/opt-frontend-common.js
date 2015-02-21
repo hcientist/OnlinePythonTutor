@@ -229,7 +229,7 @@ function reconstructCode() {
 // grab this as early as possible before TogetherJS munges the URL
 var togetherjsInUrl = ($.bbq.getState('togetherjs') !== undefined);
 
-//var TogetherJSConfig_hubBase = "http://184.173.101.176:30035/"; // online
+// XXX: to deploy, substitute in the online TogetherJS server URL here
 var TogetherJSConfig_hubBase = "http://localhost:30035/"; // local
 
 // TogetherJS common configuration
