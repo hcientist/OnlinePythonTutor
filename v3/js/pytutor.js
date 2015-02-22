@@ -130,12 +130,12 @@ function ExecutionVisualizer(domRootID, dat, params) {
     var lastEntry = this.curTrace[this.curTrace.length - 1];
     if (lastEntry.event == 'raw_input') {
       this.promptForUserInput = true;
-      this.userInputPromptStr = lastEntry.prompt;
+      this.userInputPromptStr = htmlspecialchars(lastEntry.prompt);
       this.curTrace.pop() // kill last entry so that it doesn't get displayed
     }
     else if (lastEntry.event == 'mouse_input') {
       this.promptForMouseInput = true;
-      this.userInputPromptStr = lastEntry.prompt;
+      this.userInputPromptStr = htmlspecialchars(lastEntry.prompt);
       this.curTrace.pop() // kill last entry so that it doesn't get displayed
     }
   }
