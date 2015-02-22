@@ -2,7 +2,7 @@
 # docker build -t="pgbovine/cokapi:v1" .
 #
 # to test:
-# docker run -t -i --rm pgbovine/cokapi:v1 bash
+# docker run -t -i --rm --user=netuser --net=none --cap-drop all pgbovine/cokapi:v1 bash
 #
 # remember --rm or else stale old containers will be left around!
 # use "docker ps -a" to see all containers
@@ -41,3 +41,5 @@ ADD backends/python /tmp/python
 
 COPY backends/java/run-java-backend.sh /tmp/
 RUN chmod a+x /tmp/run-java-backend.sh
+
+RUN useradd netuser

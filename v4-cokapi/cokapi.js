@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // This is a nodejs server based on express that serves the v4-cokapi/ app
 // To test locally, run 'make' and load http://localhost:3000/
 
-var IS_DEBUG = true;
+var IS_DEBUG = false;
 
 var PRODUCTION_PORT = 3000;
 var DEBUG_PORT = 5001;
@@ -116,7 +116,7 @@ function exec_js_handler(useJSONP /* use bind first */, req, res) {
   if (USE_DOCKER_SANDBOX) {
     // this needs to match the docker setup in Dockerfile
     exeFile = '/usr/bin/docker'; // absolute path to docker executable
-    args.push('run', '--rm', 'pgbovine/cokapi:v1',
+    args.push('run', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi:v1',
               'node',
               '--expose-debug-as=Debug',
               '/tmp/javascript/jslogger.js');
@@ -171,7 +171,7 @@ function exec_java_handler(useJSONP /* use bind first */, req, res) {
   if (USE_DOCKER_SANDBOX) {
     // this needs to match the docker setup in Dockerfile
     exeFile = '/usr/bin/docker'; // absolute path to docker executable
-    args.push('run', '--rm', 'pgbovine/cokapi:v1',
+    args.push('run', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi:v1',
               '/tmp/run-java-backend.sh',
               inputObjJSON);
   } else {
@@ -203,7 +203,7 @@ function executePython(pyVer, req, res) {
   if (USE_DOCKER_SANDBOX) {
     // this needs to match the docker setup in Dockerfile
     exeFile = '/usr/bin/docker'; // absolute path to docker executable
-    args.push('run', '--rm', 'pgbovine/cokapi:v1',
+    args.push('run', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi:v1',
               (pyVer == 'py2' ? 'python' : 'python3'),
               '/tmp/python/generate_json_trace.py');
   } else {
