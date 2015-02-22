@@ -82,8 +82,15 @@ function postExecHandler(res, useJSONP, err, stdout, stderr) {
     }
   } else {
     if (useJSONP) {
-      // stdout better be real JSON!!!
-      res.jsonp(JSON.parse(stdout) /* return an actual object, not a string */);
+      try {
+        // stdout better be real JSON, or we've got a problem!!!
+        var stdoutParsed = JSON.parse(stdout);
+        res.jsonp(stdoutParsed /* return an actual object, not a string */);
+      } catch(e) {
+        errTrace = {code: '', trace: [{'event': 'uncaught_exception',
+                                     'exception_msg': "Unknown error. Report a bug to philip@pgbovine.net by clicking on the\n'Generate URL' button at the bottom and including a URL in your email."}]};
+        res.jsonp(errTrace /* return an actual object, not a string */);
+      }
     } else {
       res.send(stdout);
     }
