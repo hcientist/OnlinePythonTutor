@@ -318,7 +318,14 @@ class ObjectEncoder:
           m = classRE.match(typeStr)
 
         assert m, typ
-        new_obj.extend([m.group(1), str(dat)])
+
+        if is_python3:
+          encoded_dat = str(dat)
+        else:
+          # ugh, for bytearray() in Python 2, str() returns
+          # non-JSON-serializable characters, so need to decode:
+          encoded_dat = str(dat).decode('utf-8', 'replace')
+        new_obj.extend([m.group(1), encoded_dat])
 
       return ret
 

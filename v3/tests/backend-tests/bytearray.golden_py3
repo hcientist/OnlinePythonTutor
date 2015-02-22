@@ -1,0 +1,44 @@
+{
+  "code": "# reported as an error in server logs\nhex_string = \"deadbeef\"\nhex_data = hex_string.decode(\"hex\")\nnew = bytearray(hex_data)\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "hex_string"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "hex_string": "deadbeef"
+      }, 
+      "heap": {}, 
+      "line": 3, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "hex_string"
+      ], 
+      "stdout": "", 
+      "exception_msg": "AttributeError: 'str' object has no attribute 'decode'", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "hex_string": "deadbeef"
+      }, 
+      "heap": {}, 
+      "line": 3, 
+      "event": "exception"
+    }
+  ]
+}

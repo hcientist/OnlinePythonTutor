@@ -1,0 +1,71 @@
+{
+  "code": "# reported as an error in server logs\nhex_string = \"deadbeef\"\nhex_data = hex_string.decode(\"hex\")\nnew = bytearray(hex_data)\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "hex_string"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "hex_string": "deadbeef"
+      }, 
+      "heap": {}, 
+      "line": 3, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "hex_string", 
+        "hex_data"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "hex_data": "\u07ad\ufffd\ufffd", 
+        "hex_string": "deadbeef"
+      }, 
+      "heap": {}, 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "hex_string", 
+        "hex_data", 
+        "new"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "new": [
+          "REF", 
+          1
+        ], 
+        "hex_data": "\u07ad\ufffd\ufffd", 
+        "hex_string": "deadbeef"
+      }, 
+      "heap": {
+        "1": [
+          "bytearray", 
+          "\u07ad\ufffd\ufffd"
+        ]
+      }, 
+      "line": 4, 
+      "event": "return"
+    }
+  ]
+}
