@@ -895,7 +895,6 @@ function genericOptFrontendReady() {
       }
     } else {
       setFronendError(["Server error! Your code might be taking too much time to run or using too much memory.",
-                       "Also, this tool does not work on raw_input(), input() and bytearray() in some cases.",
                        "Report a bug to philip@pgbovine.net by clicking the 'Generate permanent link' button",
                        "at the bottom of this page and including a URL in your email."]);
     }
