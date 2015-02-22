@@ -199,10 +199,10 @@ def raw_input_wrapper(prompt=''):
 
     # write the prompt and user input to stdout, to emulate what happens
     # at the terminal
-    sys.stdout.write(prompt)
+    sys.stdout.write(str(prompt)) # always convert prompt into a string
     sys.stdout.write(input_str + "\n") # newline to simulate the user hitting Enter
     return input_str
-  raise RawInputException(prompt)
+  raise RawInputException(str(prompt)) # always convert prompt into a string
 
 class MouseInputException(Exception):
   pass
