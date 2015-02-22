@@ -1,0 +1,19 @@
+{
+  "code": "# these showed up in my server logs as errors:\n\nmax = raw_input(max) # max is a built-in function\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 3, 
+      "event": "step_line"
+    }, 
+    {
+      "prompt": "<built-in function max>", 
+      "event": "raw_input"
+    }
+  ]
+}

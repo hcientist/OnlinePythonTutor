@@ -629,10 +629,12 @@ class PGLogger(bdb.Bdb):
         else: exc_type_name = exc_type.__name__
 
         if exc_type_name == 'RawInputException':
-          self.trace.append(dict(event='raw_input', prompt=exc_value.args[0]))
+          raw_input_arg = str(exc_value.args[0]) # make sure it's a string so it's JSON serializable!
+          self.trace.append(dict(event='raw_input', prompt=raw_input_arg))
           self.done = True
         elif exc_type_name == 'MouseInputException':
-          self.trace.append(dict(event='mouse_input', prompt=exc_value.args[0]))
+          mouse_input_arg = str(exc_value.args[0]) # make sure it's a string so it's JSON serializable!
+          self.trace.append(dict(event='mouse_input', prompt=mouse_input_arg))
           self.done = True
         else:
           self.interaction(frame, exc_traceback, 'exception')
