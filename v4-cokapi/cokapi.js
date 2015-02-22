@@ -121,9 +121,10 @@ function exec_js_handler(useJSONP /* use bind first */, req, res) {
               '--expose-debug-as=Debug',
               '/tmp/javascript/jslogger.js');
   } else {
-    exeFile = NODE_BIN;
-    args.push('--expose-debug-as=Debug',
-              'backends/javascript/jslogger.js');
+    assert(false);
+    //exeFile = NODE_BIN;
+    //args.push('--expose-debug-as=Debug',
+    //          'backends/javascript/jslogger.js');
   }
   args.push('--jsondump=true');
   args.push('--code=' + usrCod);
@@ -207,8 +208,9 @@ function executePython(pyVer, req, res) {
               (pyVer == 'py2' ? 'python' : 'python3'),
               '/tmp/python/generate_json_trace.py');
   } else {
-    exeFile = (pyVer == 'py2' ? PYTHON2_BIN : PYTHON3_BIN);
-    args.push('backends/python/generate_json_trace.py');
+    assert(false);
+    //exeFile = (pyVer == 'py2' ? PYTHON2_BIN : PYTHON3_BIN);
+    //args.push('backends/python/generate_json_trace.py');
   }
 
   if (cumulativeMode) {
