@@ -67,7 +67,7 @@ div.ExecutionVisualizer div#codeDisplayDiv {
 
 div.ExecutionVisualizer div#pyCodeOutputDiv {
   /*max-width: 550px;*/
-  max-height: 450px;
+  max-height: 460px;
   /*max-height: 620px;*/
   overflow: auto;
   /*margin-bottom: 4px;*/
@@ -78,7 +78,8 @@ div.ExecutionVisualizer div#pyCodeOutputDiv {
 
 div.ExecutionVisualizer table#pyCodeOutput {
   font-family: Andale mono, monospace;
-  font-size:12pt;
+  /*font-size:12pt;*/
+  font-size:11pt;
   line-height:1.1em;
 
   border-collapse: separate; /* some crazy CSS voodoo that needs to be
