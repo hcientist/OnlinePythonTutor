@@ -118,8 +118,11 @@ function initAceEditor(height) {
   pyInputAceEditor.setShowPrintMargin(false);
   pyInputAceEditor.setBehavioursEnabled(false);
 
+  // auto-grow height as fit
+  pyInputAceEditor.setOptions({minLines: 18, maxLines: 1000});
+
   $('#codeInputPane').css('width', '700px');
-  $('#codeInputPane').css('height', height + 'px');
+  //$('#codeInputPane').css('height', height + 'px'); // nix this, use minLines option instead
 
   initDeltaObj();
   pyInputAceEditor.on('change', function(e) {
