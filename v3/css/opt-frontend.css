@@ -109,6 +109,10 @@ button.surveyBtn {
   margin-bottom: 10px;
 }
 
+#surveyHeader {
+  margin-left: 100px;
+}
+
 /* necessary for CodeMirror error line highlighting to work! */
 .CodeMirror .errorLine { background: #ffff3f !important; }
 
