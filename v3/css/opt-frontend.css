@@ -113,6 +113,11 @@ button.surveyBtn {
   margin-left: 100px;
 }
 
+.surveyQ {
+  font-size: 9pt;
+  padding: 2px;
+}
+
 /* necessary for CodeMirror error line highlighting to work! */
 .CodeMirror .errorLine { background: #ffff3f !important; }
 
