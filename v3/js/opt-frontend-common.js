@@ -1459,9 +1459,8 @@ What do you hope to learn by visualizing it? <input type="text" id="what-learn-Q
 <input type="hidden" id="Q-version" value="v3"/> <!-- for versioning -->\n\
 </p>'
 
-v4: (deployed on 2014-07-13)
+v4: (deployed on 2014-07-13, revoked on 2015-03-01)
 [an even more simplified version of v1 just to focus on ONE important question]
-*/
 var survey_v4 = '\n\
 <p style="margin-top: 10px; line-height: 175%;">\n\
 [Optional] What do you hope to learn by visualizing this code?<br/>\n\
@@ -1469,7 +1468,16 @@ var survey_v4 = '\n\
 <input type="hidden" id="Q-version" value="v4"/> <!-- for versioning -->\n\
 </p>'
 
-var survey_html = survey_v4;
+v5: (deployed on 2015-03-01) - target older population
+*/
+var survey_v5 = '\n\
+<p style="margin-top: 10px; line-height: 175%;">\n\
+If you are <span style="color: #333; font-weight: bold;">at least 60 years old</span> and would like to help our research on how older people learn programming, please enter your email address here:\n\
+<input type="text" id="email-addr-Q" class="surveyQ" size=30 maxlength=300/><br/>\n\
+<input type="hidden" id="Q-version" value="v5"/> <!-- for versioning -->\n\
+</p>'
+
+var survey_html = survey_v5;
 
 function setSurveyHTML() {
   $('#surveyPane').html(survey_html);
@@ -1524,6 +1532,7 @@ function getSurveyObject() {
   */
 
   /* v4 */
+  /*
   var ret = {
     ver: $('#Q-version').val(),
   }
@@ -1553,6 +1562,17 @@ function getSurveyObject() {
     }
 
     ret.testing_group = grp;
+  }
+  */
+
+  /* v5 */
+  var ret = {
+    ver: $('#Q-version').val(),
+  }
+
+  var email_Q_val = $('#email-addr-Q').val();
+  if ($.trim(email_Q_val)) {
+    ret.email_Q_val = email_Q_val;
   }
 
   return ret;
@@ -1691,7 +1711,8 @@ display a brief "Thanks!" note]
 
   */
 
-  /* Version 3 - deployed on 2014-07-13
+  /* Version 3 - deployed on 2014-07-13, revoked on 2015-03-01 (revoked
+     along with v4 of the "Visualize Execution" survey)
 
   Display one of 3 display-mode surveys, depending on the contents of
   myVisualizer.backendOptionsObj.survey.testing_group
@@ -1702,7 +1723,6 @@ display a brief "Thanks!" note]
   learn by visualizing this code?' when hitting "Visualize Execution",
   then echo that phrase back to them and display a custom survey
 
-  */
   if (!myVisualizer || !myVisualizer.backendOptionsObj.survey) {
     return;
   }
@@ -1847,6 +1867,7 @@ display a brief "Thanks!" note]
               testing_group: myArgs.testing_group,
               });
   });
+  */
 }
 
 
