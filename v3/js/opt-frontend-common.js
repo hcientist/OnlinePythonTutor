@@ -122,7 +122,7 @@ function initAceEditor(height) {
   pyInputAceEditor.setOptions({minLines: 18, maxLines: 1000});
 
   $('#codeInputPane').css('width', '700px');
-  //$('#codeInputPane').css('height', height + 'px'); // nix this, use minLines option instead
+  $('#codeInputPane').css('height', height + 'px'); // VERY IMPORTANT so that it works on I.E., ugh!
 
   initDeltaObj();
   pyInputAceEditor.on('change', function(e) {
