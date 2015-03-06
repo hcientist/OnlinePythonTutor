@@ -584,7 +584,14 @@ function populateTogetherJsShareUrl() {
   $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
   $("#syncBtn").click(requestSync);
 
+  // deployed on 2015-03-06
+  $("#togetherjsStatus").append(emailNotificationHtml);
+
   // append post shared session survey
+  //
+  // survey for shared sessions, deployed on 2014-06-06, taken down on
+  // 2015-03-06 due to lack of useful responses
+  /*
   $("#togetherjsStatus").append(postSessionSurvey);
   $('.star-rating :radio').change(function() {
     if (TogetherJS.running) {
@@ -607,6 +614,7 @@ function populateTogetherJsShareUrl() {
       });
     }
   });
+  */
 }
 
 // END - shared session stuff
@@ -1579,7 +1587,8 @@ function getSurveyObject() {
 }
 
 
-// survey for shared sessions, deployed on 2014-06-06
+// survey for shared sessions, deployed on 2014-06-06, taken down on
+// 2015-03-06 due to lack of useful responses
 var postSessionSurvey = '\n\
 <div id="postSessionSurveyDiv" style="border: 1px solid #BE554E; padding: 5px; margin-top: 5px; line-height: 175%;">\n\
 <span style="font-size: 8pt; color: #666;">Support our research by giving anonymous feedback before ending your session.</span><br/>\n\
@@ -1597,6 +1606,8 @@ What did you just learn? <input type="text" id="sharedSessionWhatLearned" class=
 <span id="sharedSessionWhatLearnedThanks" style="color: #e93f34; font-weight: bold; font-size: 10pt; display: none;">Thanks!</span>\n\
 </div>'
 
+// deployed on 2015-03-06
+var emailNotificationHtml = '<div style="border: 2px solid #BE554E; padding: 5px; margin-top: 15px; margin-bottom: 15px; line-height: 150%; font-size: 12pt; width: 700px;">If you enjoyed using this feature and want to help our research by answering some quick questions, please send an email to philip@pgbovine.net</div>'
 
 // display-mode survey, which is shown when the user is in 'display' mode
 // As of Version 3, this runs every time code is executed, so make sure event
