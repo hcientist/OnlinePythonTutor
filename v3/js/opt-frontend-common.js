@@ -1607,7 +1607,7 @@ What did you just learn? <input type="text" id="sharedSessionWhatLearned" class=
 </div>'
 
 // deployed on 2015-03-06
-var emailNotificationHtml = '<div style="border: 2px solid #BE554E; padding: 5px; margin-top: 15px; margin-bottom: 15px; line-height: 150%; font-size: 12pt; width: 700px;">If you enjoyed using this feature and want to help our research by answering some quick questions, please send an email to philip@pgbovine.net</div>'
+var emailNotificationHtml = '<div style="border: 2px solid #BE554E; padding: 5px; margin-top: 15px; margin-bottom: 15px; line-height: 150%; font-size: 12pt; width: 600px;">If you enjoyed using this <em>shared sessions</em> feature, please take a minute to fill out a <a href="https://www.surveymonkey.com/s/T9XVBHD" target="_blank"><b>three-question survey</b></a> to help our research. Thank you!</div>'
 
 // display-mode survey, which is shown when the user is in 'display' mode
 // As of Version 3, this runs every time code is executed, so make sure event
