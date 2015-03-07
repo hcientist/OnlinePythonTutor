@@ -1847,12 +1847,20 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
       scrollCodeOutputToLine(curEntry.line);
     }
 
+    // add these fields to myViz
+    myViz.curLineNumber = curLineNumber;
+    myViz.prevLineNumber = prevLineNumber;
+
   } // end of highlightCodeLine
 
 
   // render code output:
   if (curEntry.line) {
     highlightCodeLine();
+  } else {
+    // reset
+    myViz.curLineNumber = undefined;
+    myViz.prevLineNumber = undefined;
   }
 
   // render stdout:

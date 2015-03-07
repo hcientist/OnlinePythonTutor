@@ -1279,7 +1279,9 @@ function executePythonCode(pythonSourceCode,
 
             // debounce to compress a bit ... 250ms feels "right"
             $.doTimeout('updateOutputLogEvent', 250, function() {
-              logEvent({type: 'updateOutput', step: args.myViz.curInstr});
+              logEvent({type: 'updateOutput', step: args.myViz.curInstr,
+                        curline: args.myViz.curLineNumber,
+                        prevline: args.myViz.prevLineNumber});
             });
 
             // 2014-05-25: implemented more detailed tracing for surveys
