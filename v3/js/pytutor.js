@@ -1427,6 +1427,8 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
     return;
   }
 
+  myViz.curLineExceptionMsg = undefined; // reset!
+
 
   // really nitpicky!!! gets the difference in width between the code display
   // and the maximum width of its enclosing div
@@ -1565,6 +1567,7 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
     myViz.domRoot.find("#errorOutput").show();
 
     hasError = true;
+    myViz.curLineExceptionMsg = curEntry.exception_msg;
   }
   else {
     if (!this.instrLimitReached) { // ugly, I know :/

@@ -1235,6 +1235,8 @@ function executePythonCode(pythonSourceCode,
     function execCallback(dataFromBackend) {
       var trace = dataFromBackend.trace;
 
+      var killerException = null;
+
       // don't enter visualize mode if there are killer errors:
       if (!trace ||
           (trace.length == 0) ||
@@ -1243,9 +1245,11 @@ function executePythonCode(pythonSourceCode,
         handleUncaughtExceptionFunc(trace);
 
         if (trace.length == 1) {
+          killerException = trace[0]; // killer!
           setFronendError([trace[0].exception_msg]);
         }
         else if (trace[trace.length - 1].exception_msg) {
+          killerException = trace[trace.length - 1]; // killer!
           setFronendError([trace[trace.length - 1].exception_msg]);
         }
         else {
@@ -1279,9 +1283,14 @@ function executePythonCode(pythonSourceCode,
 
             // debounce to compress a bit ... 250ms feels "right"
             $.doTimeout('updateOutputLogEvent', 250, function() {
-              logEvent({type: 'updateOutput', step: args.myViz.curInstr,
-                        curline: args.myViz.curLineNumber,
-                        prevline: args.myViz.prevLineNumber});
+              var obj = {type: 'updateOutput', step: args.myViz.curInstr,
+                         curline: args.myViz.curLineNumber,
+                         prevline: args.myViz.prevLineNumber};
+              // optional field
+              if (args.myViz.curLineExceptionMsg !== undefined) {
+                obj.exception = args.myViz.curLineExceptionMsg;
+              }
+              logEvent(obj);
             });
 
             // 2014-05-25: implemented more detailed tracing for surveys
@@ -1328,6 +1337,7 @@ function executePythonCode(pythonSourceCode,
                   backendDataJSON: JSON.stringify(dataFromBackend), // for easier transport and compression
                   frontendOptionsObj: frontendOptionsObj,
                   backendOptionsObj: backendOptionsObj,
+                  killerException: killerException, // if there's, say, a syntax error
                   });
       }
 
