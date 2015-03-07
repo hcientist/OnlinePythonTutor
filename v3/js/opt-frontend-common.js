@@ -1286,9 +1286,15 @@ function executePythonCode(pythonSourceCode,
               var obj = {type: 'updateOutput', step: args.myViz.curInstr,
                          curline: args.myViz.curLineNumber,
                          prevline: args.myViz.prevLineNumber};
-              // optional field
-              if (args.myViz.curLineExceptionMsg !== undefined) {
+              // optional fields
+              if (args.myViz.curLineExceptionMsg) {
                 obj.exception = args.myViz.curLineExceptionMsg;
+              }
+              if (args.myViz.curLineIsReturn) {
+                obj.curLineIsReturn = true;
+              }
+              if (args.myViz.prevLineIsReturn) {
+                obj.prevLineIsReturn = true;
               }
               logEvent(obj);
             });
@@ -1896,6 +1902,7 @@ display a brief "Thanks!" note]
 
 // using socket.io:
 function logEvent(obj) {
+  //console.log(obj);
   if (loggingSocketIO) {
     if (supports_html5_storage()) {
       obj.user_uuid = localStorage.getItem('opt_uuid');

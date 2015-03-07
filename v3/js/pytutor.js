@@ -1427,8 +1427,12 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
     return;
   }
 
-  myViz.curLineExceptionMsg = undefined; // reset!
-
+  // reset
+  myViz.curLineNumber = undefined;
+  myViz.prevLineNumber = undefined;
+  myViz.curLineIsReturn = undefined;
+  myViz.prevLineIsReturn = undefined;
+  myViz.curLineExceptionMsg = undefined;
 
   // really nitpicky!!! gets the difference in width between the code display
   // and the maximum width of its enclosing div
@@ -1853,6 +1857,8 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
     // add these fields to myViz
     myViz.curLineNumber = curLineNumber;
     myViz.prevLineNumber = prevLineNumber;
+    myViz.curLineIsReturn = curIsReturn;
+    myViz.prevLineIsReturn = prevIsReturn;
 
   } // end of highlightCodeLine
 
@@ -1860,10 +1866,6 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
   // render code output:
   if (curEntry.line) {
     highlightCodeLine();
-  } else {
-    // reset
-    myViz.curLineNumber = undefined;
-    myViz.prevLineNumber = undefined;
   }
 
   // render stdout:
