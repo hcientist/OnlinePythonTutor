@@ -202,6 +202,8 @@ function saveCurrentConfiguration() {
 
 
 $(document).ready(function() {
+  console.log("HALLO opt-office-mix.js!!!");
+
   // DON'T switch into office mix view mode ... this is just a "Preview"
   // that's only relevant in Edit mode
   $("#toggleModebtn").click(function() {
