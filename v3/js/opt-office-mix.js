@@ -32,7 +32,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // - jquery.ba-bbq.min.js
 // - jquery.ba-dotimeout.min.js // for event debouncing: http://benalman.com/code/projects/jquery-dotimeout/examples/debouncing/
 // - opt-frontend-common.js
-// - js/togetherjs/togetherjs-min.js
 // should all be imported BEFORE this file
 
 
@@ -267,10 +266,9 @@ $(document).ready(function() {
 
   // register a generic AJAX error handler
   $(document).ajaxError(function(evt, jqxhr, settings, exception) {
-    setFronendError(["Server error! Your code might be too long to properly visualize (e.g., over 100 lines),",
-                     "so try again with a smaller piece of code.",
-                     "Or report a bug to philip@pgbovine.net by clicking on the 'Generate URL'",
-                     "button at the bottom and including a URL in your email."]);
+    setFronendError(["Server error! Your code might be taking too much time to run or using too much memory.",
+                     "Report a bug to philip@pgbovine.net by clicking the 'Generate permanent link' button",
+                     "at the bottom of this page and including a URL in your email."]);
 
     doneExecutingCode();
   });
