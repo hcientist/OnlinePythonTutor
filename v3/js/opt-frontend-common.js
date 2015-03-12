@@ -1050,7 +1050,7 @@ function updateAppDisplay(newAppMode) {
     appMode = 'edit'; // canonicalize
 
     $("#pyInputPane").show();
-    $("#pyOutputPane,#surveyHeader").hide();
+    $("#pyOutputPane").hide();
     $("#embedLinkDiv").hide();
 
     $(".surveyQ").val(''); // clear all survey results when user hits forward/back
