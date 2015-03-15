@@ -1,9 +1,11 @@
+/* original from http://reason.cs.illinois.edu/wenpu1/chatbox.html, modified by Philip Guo */
 /* style sheets */
 .ui-chatbox {
     position: fixed;
     bottom:0;
     padding: 2px;
     background:  #CCCCCC;
+    font-size: 10pt;
 }
 
 .ui-chatbox-titlebar {

@@ -280,6 +280,33 @@ var PY3_EXAMPLES = {
   nonlocalLink: "example-code/nonlocal.txt",
 }
 
+var chatBox = undefined;
+
+function toggleChatBox() {
+  if (chatBox) {
+    chatBox.chatbox("option", "boxManager").toggleBox();
+  } else {
+    chatBox = $("#chat_div").chatbox({id: "Me",
+                                      user: {key : "value"},
+                                      title: "Live Chat With Tutor",
+                                      width: 250,
+                                      offset: 2, // offset from right edge
+                                      messageSent: chatMsgSent,
+                                      boxClosed: chatBoxClosed,
+                                    });
+  }
+}
+
+function chatMsgSent(id, user, msg) {
+  $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
+  logEvent({type: 'opt-client-chat', text: msg});
+}
+
+// only called when the user hits the X button to explicitly close the chat box
+function chatBoxClosed(id) {
+  console.log('chat box closed!', id);
+}
+
 $(document).ready(function() {
   setSurveyHTML();
 
