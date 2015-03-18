@@ -74,14 +74,10 @@ Debug.DebugEvent = { Break: 1,
 
 TypeScript TODOs:
 
-- stuff with inheritance and auto-generated code have no corresponding
-  lines in the .ts file, so maybe the conservative thing to do is to
-  *SKIP* those steps, since we have nothing sensible to render for them
-  anyhow? e.g., see demo2.ts Inheritance example from
-  http://www.typescriptlang.org/Playground)
-
 - display more than one error in the trace when there's a TypeScript
   compiler error. right now we display only the first error for simplicity.
+
+- add regression tests
 
 */
 
@@ -584,6 +580,16 @@ function listener(event, execState, eventData, data) {
       //log('TS:', tsPos.line, tsPos.column);
       line = tsPos.line;
       col = tsPos.column;
+
+      // TypeScript features that lead to auto-generated hidden JS code
+      // (e.g., inheritance) leave no corresponding lines in the .ts file,
+      // so the conservative thing to do is to *SKIP* those steps, since we
+      // have nothing sensible to render for them anyhow
+      if (line === null || line === undefined) {
+        assert(stepType !== undefined);
+        execState.prepareStep(stepType); // set debugger to stop at next step
+        return; // get outta here early!
+      }
     }
 
     curTraceEntry.line = line;
