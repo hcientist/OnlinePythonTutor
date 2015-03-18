@@ -111,10 +111,13 @@ app.get('/exec_py3', function(req, res) {
   executePython('py3', req, res);
 });
 
-app.get('/exec_js', exec_js_handler.bind(null, false));
-app.get('/exec_js_jsonp', exec_js_handler.bind(null, true));
+app.get('/exec_js', exec_js_handler.bind(null, false, false));
+app.get('/exec_js_jsonp', exec_js_handler.bind(null, true, false));
 
-function exec_js_handler(useJSONP /* use bind first */, req, res) {
+app.get('/exec_ts', exec_js_handler.bind(null, false, true));
+app.get('/exec_ts_jsonp', exec_js_handler.bind(null, true, true));
+
+function exec_js_handler(useJSONP /* use bind first */, isTypescript /* use bind first */, req, res) {
   var usrCod = req.query.user_script;
 
   var exeFile;
@@ -132,6 +135,9 @@ function exec_js_handler(useJSONP /* use bind first */, req, res) {
     //exeFile = NODE_BIN;
     //args.push('--expose-debug-as=Debug',
     //          'backends/javascript/jslogger.js');
+  }
+  if (isTypescript) {
+    args.push('--typescript=true');
   }
   args.push('--jsondump=true');
   args.push('--code=' + usrCod);
