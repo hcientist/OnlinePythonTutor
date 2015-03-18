@@ -195,6 +195,13 @@ var JS_EXAMPLES = {
   jsInhExLink: 'js-example-code/inheritance.js',
 };
 
+var TS_EXAMPLES = {
+  tsHelloExLink: 'ts-example-code/hello.ts',
+  tsGreeterExLink: 'ts-example-code/greeter.ts',
+  tsGreeterGenericsExLink: 'ts-example-code/greeter-generics.ts',
+  tsInheritanceExLink: 'ts-example-code/inheritance.ts',
+};
+
 var JAVA_EXAMPLES = {
   javaVarLink: 'java-example-code/Variables.java',
   javaCFLink: 'java-example-code/ControlFlow.java',
@@ -355,6 +362,9 @@ $(document).ready(function() {
     if (JS_EXAMPLES[myId] !== undefined) {
       exFile = JS_EXAMPLES[myId];
       lang = 'js';
+    } else if (TS_EXAMPLES[myId] !== undefined) {
+      exFile = TS_EXAMPLES[myId];
+      lang = 'ts';
     } else if (JAVA_EXAMPLES[myId] !== undefined) {
       exFile = JAVA_EXAMPLES[myId];
       lang = 'java';
