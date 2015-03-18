@@ -126,6 +126,9 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
   else if ($('#pythonVersionSelector').val() == 'js') {
       backend_script = js_backend_script;
   }
+  else if ($('#pythonVersionSelector').val() == 'ts') {
+      backend_script = ts_backend_script;
+  }
   else if ($('#pythonVersionSelector').val() == 'java') {
       backend_script = java_backend_script;
   }
