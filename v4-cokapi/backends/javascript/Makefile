@@ -10,6 +10,9 @@ trace:
 pretty:
 	jshint jslogger.js && node --expose-debug-as=Debug jslogger.js --prettydump=true $(infile)
 
+tspretty:
+	jshint jslogger.js && node --expose-debug-as=Debug jslogger.js --prettydump=true --typescript=true $(infile)
+
 test:
 	jshint jslogger.js && python golden_test.py --all
 
@@ -17,4 +20,5 @@ diffall:
 	jshint jslogger.js && python golden_test.py --diffall
 
 deps:
-	npm install eval underscore esprima minimist
+	npm install eval underscore esprima minimist typescript source-map
+	sudo npm link typescript # to expose TypeScript compiler
