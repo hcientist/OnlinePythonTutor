@@ -80,6 +80,9 @@ TypeScript TODOs:
   anyhow? e.g., see demo2.ts Inheritance example from
   http://www.typescriptlang.org/Playground)
 
+- display more than one error in the trace when there's a TypeScript
+  compiler error. right now we display only the first error for simplicity.
+
 */
 
 
@@ -893,9 +896,19 @@ if (argv.typescript) {
   // if there are any errors, then handle them here, create a trace, and
   // bail out before executing!
   if (tscCompilerOutput.errors.length > 0) {
-    console.log("HAS ERRORS!");
-    // TODO: handle displaying multiple errors at once
-    process.exit();
+    // right now just grab and display the first error
+    // TODO: handle displaying multiple errors
+
+    var firstErr = tscCompilerOutput.errors[0];
+
+    var errorTraceEntry = {};
+    errorTraceEntry.event = 'uncaught_exception';
+
+    errorTraceEntry.exception_msg = firstErr.msg;
+    errorTraceEntry.line = firstErr.line;
+    curTrace.push(errorTraceEntry);
+    finalize();
+    process.exit(); // bail out early!!!
   } else {
     // strip off the final line, which should say something like:
     //   '//# sourceMappingURL=file.js.map'
