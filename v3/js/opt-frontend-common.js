@@ -178,6 +178,11 @@ function setAceMode() {
 
   var s = pyInputAceEditor.getSession();
   s.setMode("ace/mode/" + mod);
+
+  // clear all error displays when switching modes
+  var s = pyInputAceEditor.getSession();
+  s.clearAnnotations();
+  clearFrontendError();
 }
 
 function snapshotCodeDiff() {
