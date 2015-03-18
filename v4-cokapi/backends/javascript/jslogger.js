@@ -71,6 +71,15 @@ Debug.DebugEvent = { Break: 1,
                      AsyncTaskEvent: 8,
                      BreakForCommand: 9 };
 
+
+TypeScript TODOs:
+
+- stuff with inheritance and auto-generated code have no corresponding
+  lines in the .ts file, so maybe the conservative thing to do is to
+  *SKIP* those steps, since we have nothing sensible to render for them
+  anyhow? e.g., see demo2.ts Inheritance example from
+  http://www.typescriptlang.org/Playground)
+
 */
 
 
@@ -553,6 +562,27 @@ function listener(event, execState, eventData, data) {
     curTraceEntry.globals = {};
     curTraceEntry.ordered_globals = [];
 
+    // apply the source map to get the right line numbers:
+    if (isTypescript) {
+      // source map doesn't seem to work for 'return' lines since the
+      // column is 0. hack: set the column to the FIRST column of the text
+      // in the line to get the source map to detect it ...
+      // (actually if it's more reliable, do this for EVERY kind of event,
+      // since we really don't care about column numbers, we care only
+      // about line numbers)
+      if (logEventType === 'return') {
+        var retline = allCodLines[line-1];
+        var retlineTrimmed = retline.trim();
+        var firstInd = retline.indexOf(retlineTrimmed);
+        assert(firstInd >= 0);
+        col = firstInd;
+      }
+      var tsPos = tsSourceMap.originalPositionFor({line: line, column: col});
+      //log('TS:', tsPos.line, tsPos.column);
+      line = tsPos.line;
+      col = tsPos.column;
+    }
+
     curTraceEntry.line = line;
     curTraceEntry.col = col;
     curTraceEntry.event = logEventType;
@@ -843,10 +873,13 @@ if (argv._.length === 1) {
 var isTypescript = false;
 var sm = require('source-map');
 
+var originalTsCod;
+
 if (argv.typescript) {
   isTypescript = true;
+  originalTsCod = cod; // stash this away!
   var tscCompilerOutput = typescriptCompile(cod);
-  console.log(tscCompilerOutput);
+  //console.log(tscCompilerOutput);
 
   var tsSourceMap, compiledJsCod;
   tscCompilerOutput.outputs.forEach(function(e, i) {
@@ -864,9 +897,17 @@ if (argv.typescript) {
     // TODO: handle displaying multiple errors at once
     process.exit();
   } else {
-    cod = compiledJsCod; // woohoo, this is just JavaScript, so proceed
+    // strip off the final line, which should say something like:
+    //   '//# sourceMappingURL=file.js.map'
+    // since that screws up line numbers when executing, and looks ugly too
+    var idx = compiledJsCod.indexOf('//# sourceMappingURL=file.js.map');
+    assert(idx >= 0);
+    cod = compiledJsCod.substr(0, idx-1);
   }
 }
+
+assert(cod);
+var allCodLines = cod.split('\n');
 
 var wrappedCod = wrapUserscript(cod);
 
@@ -945,7 +986,9 @@ function finalize() {
     }
   }
 
-  var blob = {code: cod, trace: curTrace};
+  // very important to display the ORIGINAL TypeScript code in the
+  // trace, not the auto-generated JS code
+  var blob = {code: isTypescript ? originalTsCod : cod, trace: curTrace};
   if (argv.jsfile) {
     fs.writeFileSync(argv.jsfile, 'var trace = ' + JSON.stringify(blob) + ';\n');
     log('Wrote trace to', argv.jsfile);
