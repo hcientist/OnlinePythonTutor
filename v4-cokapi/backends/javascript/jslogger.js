@@ -32,6 +32,12 @@ npm install underscore
 npm install esprima
 npm install minimist
 
+For TypeScript support:
+
+npm install typescript
+sudo npm link typescript # to expose TypeScript compiler
+npm install source-map
+
 
 From: https://code.google.com/p/v8-wiki/wiki/DebuggerProtocol
 regarding the 'handle_' field of serialized objects ...
@@ -126,6 +132,59 @@ var MAX_EXECUTED_LINES = 300;
 String.prototype.rtrim = function() {
   return this.replace(/\s*$/g, "");
 };
+
+
+// Inspired by https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API
+var ts = require("typescript");
+var path = require("path");
+
+function typescriptCompile(contents) {
+    // default ts standard library
+    var libSource = fs.readFileSync(path.join(path.dirname(require.resolve('typescript')), 'lib.d.ts')).toString();
+
+    var compilerOptions = {sourceMap: true}; // yes, create a source map!
+    // Generated outputs
+    var outputs = [];
+    // Create a compilerHost object to allow the compiler to read and write files
+    var compilerHost = {
+        getSourceFile: function (filename, languageVersion) {
+            if (filename === "file.ts")
+                return ts.createSourceFile(filename, contents, compilerOptions.target, "0");
+            if (filename === "lib.d.ts")
+                return ts.createSourceFile(filename, libSource, compilerOptions.target, "0");
+            return undefined;
+        },
+        writeFile: function (name, text, writeByteOrderMark) {
+            outputs.push({ name: name, text: text, writeByteOrderMark: writeByteOrderMark });
+        },
+        getDefaultLibFilename: function () { return "lib.d.ts"; },
+        useCaseSensitiveFileNames: function () { return false; },
+        getCanonicalFileName: function (filename) { return filename; },
+        getCurrentDirectory: function () { return ""; },
+        getNewLine: function () { return "\n"; }
+    };
+    // Create a program from inputs
+    var program = ts.createProgram(["file.ts"], compilerOptions, compilerHost);
+    // Query for early errors
+    var errors = program.getDiagnostics();
+    // Do not generate code in the presence of early errors
+    if (!errors.length) {
+        // Type check and get semantic errors
+        var checker = program.getTypeChecker(true);
+        errors = checker.getDiagnostics();
+        // Generate output
+        checker.emitFiles();
+    }
+    return {
+        outputs: outputs,
+        //errors: errors.map(function (e) { return e.file.filename + "(" + e.file.getLineAndCharacterFromPosition(e.start).line + "): " + e.messageText; })
+        errors: errors.map(function (e) {
+            var errPos = e.file.getLineAndCharacterFromPosition(e.start);
+            return {line: errPos.line, msg: e.messageText};
+        })
+    };
+}
+
 
 // for some reason, stderr is borked when running under the node
 // debugger, so we must print to stdout. the node 'assert' module fails
@@ -779,6 +838,34 @@ if (argv._.length === 1) {
   assert(argv._.length === 0);
   // take a string from the command line, trimming trailing newlines
   cod = argv.code.rtrim();
+}
+
+var isTypescript = false;
+var sm = require('source-map');
+
+if (argv.typescript) {
+  isTypescript = true;
+  var tscCompilerOutput = typescriptCompile(cod);
+  console.log(tscCompilerOutput);
+
+  var tsSourceMap, compiledJsCod;
+  tscCompilerOutput.outputs.forEach(function(e, i) {
+    if (e.name === 'file.js.map') {
+      tsSourceMap = new sm.SourceMapConsumer(e.text);
+    } else if (e.name === 'file.js') {
+      compiledJsCod = e.text;
+    }
+  });
+
+  // if there are any errors, then handle them here, create a trace, and
+  // bail out before executing!
+  if (tscCompilerOutput.errors.length > 0) {
+    console.log("HAS ERRORS!");
+    // TODO: handle displaying multiple errors at once
+    process.exit();
+  } else {
+    cod = compiledJsCod; // woohoo, this is just JavaScript, so proceed
+  }
 }
 
 var wrappedCod = wrapUserscript(cod);
