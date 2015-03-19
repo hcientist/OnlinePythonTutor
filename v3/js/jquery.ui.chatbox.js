@@ -1,3 +1,5 @@
+/* customized by Philip Guo */
+
 /*
  * Copyright 2010, Wen Pu (dexterpu at gmail dot com)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -25,6 +27,9 @@
             messageSent: function(id, user, msg) {
                 // override this
                 this.boxManager.addMsg(user.first_name, msg);
+            },
+            chatboxToggled: function(isVisible) {
+                // called when box's contents are toggled opened or closed
             },
             boxClosed: function(id) {
             }, // called when the close icon is clicked
@@ -60,11 +65,14 @@
                     $(e).fadeIn();
                     self._scrollToBottom();
 
+                    // pgbovine - don't do this for simplicity
+                    /*
                     if (!self.elem.uiChatboxTitlebar.hasClass("ui-state-focus")
                         && !self.highlightLock) {
                         self.highlightLock = true;
                         self.highlightBox();
                     }
+                    */
                 },
                 highlightBox: function() {
                     var self = this;
@@ -87,7 +95,14 @@
             this.uiChatboxContent.toggle();
             if (this.uiChatboxContent.is(":visible")) {
                 this.uiChatboxInputBox.focus();
+                this.options.chatboxToggled(true);
+            } else {
+                this.options.chatboxToggled(false);
             }
+        },
+        // pgbovine
+        showContent: function(event) {
+            this.uiChatboxContent.show();
         },
         widget: function() {
             return this.uiChatbox

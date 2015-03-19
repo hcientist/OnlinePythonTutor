@@ -291,30 +291,36 @@ var PY3_EXAMPLES = {
 }
 
 var chatBox = undefined;
-
-function toggleChatBox() {
-  if (chatBox) {
-    chatBox.chatbox("option", "boxManager").toggleBox();
-  } else {
-    chatBox = $("#chat_div").chatbox({id: "Me",
-                                      user: {key : "value"},
-                                      title: "Live Chat With Tutor",
-                                      width: 250,
-                                      offset: 2, // offset from right edge
-                                      messageSent: chatMsgSent,
-                                      boxClosed: chatBoxClosed,
-                                    });
-  }
+function createChatBox() {
+  assert(!chatBox);
+  chatBox = $("#chat_div").chatbox({id: "Me",
+                                    user: {key : "value"},
+                                    title: "Live Chat With Tutor",
+                                    width: 250,
+                                    offset: 2, // offset from right edge
+                                    messageSent: chatMsgSent,
+                                    boxClosed: chatBoxClosed,
+                                    chatboxToggled: chatBoxToggled,
+                                  });
 }
 
 function chatMsgSent(id, user, msg) {
   $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
-  logEvent({type: 'opt-client-chat', text: msg});
+  logEvent({type: 'opt-client-chat', text: msg, sid: loggingSocketIO ? loggingSocketIO.id : undefined});
 }
 
 // only called when the user hits the X button to explicitly close the chat box
 function chatBoxClosed(id) {
-  console.log('chat box closed!', id);
+  logEvent({type: 'opt-client-chat', text: '[closed chat box]', sid: loggingSocketIO ? loggingSocketIO.id : undefined});
+}
+
+// called when the user toggles the chat box open or close
+function chatBoxToggled(visible) {
+  var msg = '[minimized chat box]';
+  if (visible) {
+    msg = '[maximized chat box]';
+  }
+  logEvent({type: 'opt-client-chat', text: msg, sid: loggingSocketIO ? loggingSocketIO.id : undefined});
 }
 
 $(document).ready(function() {
@@ -456,6 +462,17 @@ $(document).ready(function() {
       assert(logEventQueue.length === 0);
 
       reconnectAttempts++;
+    });
+
+    loggingSocketIO.on('opt-codeopticon-observer-chat', function(msg) {
+      if (!chatBox) {
+        createChatBox();
+      } else {
+        $("#chat_div").chatbox("option", "hidden", false);
+        $("#chat_div").chatbox("showContent");
+      }
+
+      $("#chat_div").chatbox("option", "boxManager").addMsg('Tutor', msg.text);
     });
   }
 });
