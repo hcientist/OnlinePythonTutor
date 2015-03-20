@@ -330,9 +330,11 @@ $(document).ready(function() {
   //$("#surveyHeader").html('<a href="http://45.56.123.166/~mgordon/OnlinePythonTutor/v3/embedding-demo.html?session=fvkqv4423mcxr" target="_blank">Click here to help our research</a> by collaboratively annotating<br/>a piece of Python code to create a tutorial for beginners.');
   //$("#surveyHeader").css('font-size', '12pt');
 
-  // deployed on 2015-03-19
+  var myUuid = supports_html5_storage() ? localStorage.getItem('opt_uuid') : '';
+
+  // deployed on 2015-03-19, added opt_uuid param on 2015-03-20
   $("#surveyHeader")
-    .html('<iframe width="820" height="120" frameborder="0" src="http://45.56.123.166/~mgordon/OnlinePythonTutor/v3/embedding-demo-blur-frame.html"></iframe>')
+    .html('<iframe width="820" height="120" frameborder="0" src="http://45.56.123.166/~mgordon/OnlinePythonTutor/v3/embedding-demo-blur-frame.html?opt_uuid=' + myUuid + '"></iframe>')
     .css('margin-bottom', '10px');
 
 
