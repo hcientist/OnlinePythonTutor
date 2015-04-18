@@ -54,6 +54,8 @@ var helpQueueSize = 0;
 var tutorAvailable = false;
 var tutorWaitText = 'Please wait for the next available tutor.';
 
+var activateSyntaxErrorSurvey = false; // true;
+
 function setHelpQueueSizeLabel() {
   if (helpQueueSize == 1) {
     $("#helpQueueText").html('There is 1 person in line.');
@@ -172,6 +174,174 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                     frontendOptionsObj,
                     'pyOutputPane',
                     optFinishSuccessfulExecution, handleUncaughtExceptionFunc);
+}
+
+
+
+// domID is the ID of the element to attach to (without the leading '#' sign)
+function SyntaxErrorSurveyBubble(parentViz, domID) {
+  this.parentViz = parentViz;
+
+  this.domID = domID;
+  this.hashID = '#' + domID;
+
+  this.my = 'left center';
+  this.at = 'right center';
+
+  this.qtipHidden = false; // is there a qtip object present but hidden? (TODO: kinda confusing)
+}
+
+SyntaxErrorSurveyBubble.prototype.destroyQTip = function() {
+  $(this.hashID).qtip('destroy');
+}
+
+SyntaxErrorSurveyBubble.prototype.redrawCodelineBubble = function() {
+  if (isOutputLineVisibleForBubbles(this.domID)) {
+    if (this.qtipHidden) {
+      $(this.hashID).qtip('show');
+    }
+    else {
+      $(this.hashID).qtip('reposition');
+    }
+
+    this.qtipHidden = false;
+  }
+  else {
+    $(this.hashID).qtip('hide');
+    this.qtipHidden = true;
+  }
+}
+
+SyntaxErrorSurveyBubble.prototype.qTipContentID = function() {
+  return '#ui-tooltip-' + this.domID + '-content';
+}
+
+SyntaxErrorSurveyBubble.prototype.qTipID = function() {
+  return '#ui-tooltip-' + this.domID;
+}
+
+
+// created on 2015-04-18
+function experimentalPopUpSyntaxErrorSurvey() {
+  if (prevExecutionExceptionObj &&
+      prevExecutionExceptionObj.killerException.line !== undefined) {
+    var offendingLine = prevExecutionExceptionObj.killerException.line;
+    // make sure jquery.qtip has been imported
+
+    var codelineIDs = [];
+    $.each(myVisualizer.domRoot.find('#pyCodeOutput .cod'), function(i, e) {
+      // hacky!
+      var domID = $(e).attr('id');
+      var lineRE = new RegExp('cod' + String(offendingLine) + '$'); // $ for end-of-line match
+      if (lineRE.test(domID)) {
+        codelineIDs.push($(e).attr('id'));
+      }
+    });
+
+    // should find only 1 match, or else something is wonky, maybe
+    // because the code changed so much that the line number in question
+    // is no longer available
+    if (codelineIDs.length === 1) {
+      console.log('PREV', prevExecutionExceptionObj);
+      var codLineId = codelineIDs[0];
+
+      var bub = new SyntaxErrorSurveyBubble(myVisualizer, codLineId);
+
+      // destroy then create a new tip:
+      bub.destroyQTip();
+      $(bub.hashID).qtip($.extend({}, qtipShared, {
+        content: ' ', // can't be empty!
+        id: bub.domID,
+        position: {
+          my: bub.my,
+          at: bub.at,
+          adjust: {
+            x: -10,
+          },
+          effect: null, // disable all cutesy animations
+        },
+        style: {
+          classes: 'ui-tooltip-pgbootstrap ui-tooltip-pgbootstrap-RED'
+        }
+      }));
+
+      // need to set both max-width and width() ...
+      $(bub.qTipID()).css('max-width', '350px').width('350px');
+
+      $(bub.qTipContentID()).html('<div id="syntaxErrBubbleContents"><div id="syntaxErrHeader">You just fixed the following error:</div>\
+                                   <div id="syntaxErrMsg">[ERROR MSG]</div>\
+                                   <div id="syntaxErrCodeDisplay"></div>\
+                                   <div id="syntaxErrQuestion">\
+                                   What would have been a better error message here?<br/>\
+                                     <input type="text" id="syntaxErrTxtInput" size=60 maxlength=150/><br/>\
+                                     <button class="syntaxErrSubmitBtn" type="button">Submit</button>\
+                                     <button class="syntaxErrCloseBtn" type="button">Cancel</button>\
+                                   </div></div>\
+                                   ');
+      // unbind first, then bind a new one
+      myVisualizer.domRoot.find('#pyCodeOutputDiv')
+        .unbind('scroll')
+        .scroll(function() {
+          bub.redrawCodelineBubble();
+        });
+
+
+      var bubbleAceEditor = ace.edit('syntaxErrCodeDisplay');
+
+      var s = bubbleAceEditor.getSession();
+      // tab -> 4 spaces
+      s.setTabSize(4);
+      s.setUseSoftTabs(true);
+      // disable extraneous indicators:
+      s.setFoldStyle('manual'); // no code folding indicators
+      bubbleAceEditor.setHighlightActiveLine(false);
+      bubbleAceEditor.setShowPrintMargin(false);
+      bubbleAceEditor.setBehavioursEnabled(false);
+
+      bubbleAceEditor.setFontSize(10);
+
+      bubbleAceEditor.setOptions({minLines: 5, maxLines: 5}); // keep this SMALL
+
+      $('#syntaxErrCodeDisplay').css('width', '320px');
+      $('#syntaxErrCodeDisplay').css('height', '200px'); // VERY IMPORTANT so that it works on I.E., ugh!
+
+      // don't do real-time syntax checks:
+      // https://github.com/ajaxorg/ace/wiki/Syntax-validation
+      s.setOption("useWorker", false);
+
+      var lang = prevExecutionExceptionObj.myAppState.py;
+      var mod = 'python';
+      if (lang === 'java') {
+        mod = 'java';
+      } else if (lang === 'js') {
+        mod = 'javascript';
+      } else if (lang === 'ts') {
+        mod = 'typescript';
+      }
+      s.setMode("ace/mode/" + mod);
+
+      bubbleAceEditor.setValue(prevExecutionExceptionObj.myAppState.code.rtrim() /* kill trailing spaces */,
+                               -1 /* do NOT select after setting text */);
+      bubbleAceEditor.setReadOnly(true);
+
+      s.setAnnotations([{row: offendingLine - 1 /* zero-indexed */,
+                         type: 'error',
+                         text: prevExecutionExceptionObj.killerException.exception_msg}]);
+
+      // scroll down to the line where the error occurred, trying to center it
+      // by subtracing 3 from it (which should center it, assuming we're
+      // displaying 5 lines of context)
+      if ((offendingLine - 3) > 0) {
+        bubbleAceEditor.scrollToLine(offendingLine - 3);
+      }
+
+      // don't forget htmlspecialchars
+      $("#syntaxErrMsg").html(htmlspecialchars(prevExecutionExceptionObj.killerException.exception_msg));
+
+      // TODO: why is this positioning so wonky in the beginning?!?
+      bub.redrawCodelineBubble(); // do an initial redraw to align everything
+    }
+  }
 }
 
 

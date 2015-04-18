@@ -692,6 +692,11 @@ textarea.bubbleInputText {
   */
 }
 
+.ui-tooltip-pgbootstrap-RED {
+	border: 1px solid #e93f34; /* should match brightRed JavaScript variable */
+
+}
+
 	.ui-tooltip-pgbootstrap-stub .ui-tooltip-content{
 		padding: 6px 9px;
 	}
@@ -785,6 +790,39 @@ div.ExecutionVisualizer .pycrazy-highlight-prev-and-cur {
 
 #optTabularView td.stepTableTd {
   padding: 3px 10px;
+}
+
+
+#syntaxErrBubbleContents {
+  font-size: 9pt;
+  cursor: default;
+}
+
+#syntaxErrHeader {
+  margin-bottom: 4pt;
+}
+
+#syntaxErrCodeDisplay {
+  border: 1px solid #ddd;
+}
+
+#syntaxErrMsg {
+  color: #e93f34; /* should match brightRed JavaScript variable */
+  font-size: 10pt;
+  margin-bottom: 4pt;
+}
+
+#syntaxErrQuestion {
+  margin-top: 10px;
+}
+
+#syntaxErrTxtInput {
+  margin-top: 3px;
+  margin-bottom: 6px;
+}
+
+#syntaxErrSubmitBtn, #syntaxErrCloseBtn {
+  margin-right: 5px;
 }
 
 

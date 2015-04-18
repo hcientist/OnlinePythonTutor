@@ -1443,9 +1443,11 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
   }
 
 
+  // TODO: don't do this since it screws with other stuff, and we're not
+  // activating annotation bubbles right now ...
   // crucial resets for annotations (TODO: kludgy)
-  myViz.destroyAllAnnotationBubbles();
-  myViz.initStepAnnotation();
+  //myViz.destroyAllAnnotationBubbles();
+  //myViz.initStepAnnotation();
 
 
   var prevDataVizHeight = myViz.domRoot.find('#dataViz').height();

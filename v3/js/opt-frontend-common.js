@@ -77,6 +77,8 @@ var pyInputAceEditor; // Ace editor object that contains the input code
 
 var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
 
+var prevExecutionExceptionObj = null; // did the PREVIOUS execution have an exception? if so, what was its context?
+
 
 var loggingSocketIO = undefined; // socket.io instance -- OPTIONAL: not all frontends use it
 
@@ -1237,6 +1239,10 @@ function optFinishSuccessfulExecution() {
   // For version 3+, dynamically generate a survey whenever the user
   // successfully executes a piece of code
   initializeDisplayModeSurvey();
+
+  if (activateSyntaxErrorSurvey && experimentalPopUpSyntaxErrorSurvey) {
+    experimentalPopUpSyntaxErrorSurvey();
+  }
 }
 
 
@@ -1360,6 +1366,13 @@ function executePythonCode(pythonSourceCode,
                   backendOptionsObj: backendOptionsObj,
                   killerException: killerException, // if there's, say, a syntax error
                   });
+      }
+
+      if (killerException) {
+        var excObj = {killerException: killerException, myAppState: getAppState()};
+        prevExecutionExceptionObj = excObj;
+      } else {
+        prevExecutionExceptionObj = null; // reset!!!
       }
 
       // tricky hacky reset
