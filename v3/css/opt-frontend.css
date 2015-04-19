@@ -174,3 +174,37 @@ button.surveyBtn {
 .star-rating i ~ i ~ i ~ i ~ i {
   width: 100%;
 }
+
+
+#syntaxErrBubbleContents {
+  font-size: 9pt;
+  cursor: default;
+}
+
+#syntaxErrHeader {
+  margin-bottom: 3pt;
+}
+
+#syntaxErrCodeDisplay {
+  border: 1px solid #ddd;
+}
+
+#syntaxErrMsg {
+  color: #e93f34; /* should match brightRed JavaScript variable */
+  font-size: 10pt;
+  margin-top: 3pt;
+  margin-bottom: 2pt;
+}
+
+#syntaxErrQuestion {
+  margin-top: 10px;
+}
+
+#syntaxErrTxtInput {
+  margin-top: 3px;
+  margin-bottom: 6px;
+}
+
+#syntaxErrSubmitBtn, #syntaxErrCloseBtn {
+  margin-right: 5px;
+}

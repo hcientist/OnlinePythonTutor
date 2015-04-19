@@ -223,9 +223,15 @@ SyntaxErrorSurveyBubble.prototype.qTipID = function() {
 
 // created on 2015-04-18
 function experimentalPopUpSyntaxErrorSurvey() {
-  if (prevExecutionExceptionObj &&
-      prevExecutionExceptionObj.killerException.line !== undefined) {
+  if (prevExecutionExceptionObjLst.length > 0) {
+    // work with the most recent entry
+    var prevExecutionExceptionObj = prevExecutionExceptionObjLst[prevExecutionExceptionObjLst.length - 1];
     var offendingLine = prevExecutionExceptionObj.killerException.line;
+
+    if (offendingLine === undefined) {
+      return; // get out early!
+    }
+
     // make sure jquery.qtip has been imported
 
     var codelineIDs = [];
@@ -242,7 +248,6 @@ function experimentalPopUpSyntaxErrorSurvey() {
     // because the code changed so much that the line number in question
     // is no longer available
     if (codelineIDs.length === 1) {
-      console.log('PREV', prevExecutionExceptionObj);
       var codLineId = codelineIDs[0];
 
       var bub = new SyntaxErrorSurveyBubble(myVisualizer, codLineId);
@@ -256,7 +261,7 @@ function experimentalPopUpSyntaxErrorSurvey() {
           my: bub.my,
           at: bub.at,
           adjust: {
-            x: -10,
+            x: -6,
           },
           effect: null, // disable all cutesy animations
         },
@@ -269,10 +274,10 @@ function experimentalPopUpSyntaxErrorSurvey() {
       $(bub.qTipID()).css('max-width', '350px').width('350px');
 
       $(bub.qTipContentID()).html('<div id="syntaxErrBubbleContents"><div id="syntaxErrHeader">You just fixed the following error:</div>\
-                                   <div id="syntaxErrMsg">[ERROR MSG]</div>\
                                    <div id="syntaxErrCodeDisplay"></div>\
+                                   <div id="syntaxErrMsg"></div>\
                                    <div id="syntaxErrQuestion">\
-                                   What would have been a better error message here?<br/>\
+                                   If you think this message wasn\'t helpful, what would have been the ideal error message for you here?<br/>\
                                      <input type="text" id="syntaxErrTxtInput" size=60 maxlength=150/><br/>\
                                      <button class="syntaxErrSubmitBtn" type="button">Submit</button>\
                                      <button class="syntaxErrCloseBtn" type="button">Cancel</button>\
@@ -287,6 +292,10 @@ function experimentalPopUpSyntaxErrorSurvey() {
 
 
       var bubbleAceEditor = ace.edit('syntaxErrCodeDisplay');
+      // set the size and value ASAP to get alignment working well ...
+      bubbleAceEditor.setOptions({minLines: 1, maxLines: 5}); // keep this SMALL
+      bubbleAceEditor.setValue(prevExecutionExceptionObj.myAppState.code.rtrim() /* kill trailing spaces */,
+                               -1 /* do NOT select after setting text */);
 
       var s = bubbleAceEditor.getSession();
       // tab -> 4 spaces
@@ -300,10 +309,9 @@ function experimentalPopUpSyntaxErrorSurvey() {
 
       bubbleAceEditor.setFontSize(10);
 
-      bubbleAceEditor.setOptions({minLines: 5, maxLines: 5}); // keep this SMALL
 
       $('#syntaxErrCodeDisplay').css('width', '320px');
-      $('#syntaxErrCodeDisplay').css('height', '200px'); // VERY IMPORTANT so that it works on I.E., ugh!
+      $('#syntaxErrCodeDisplay').css('height', '90px'); // VERY IMPORTANT so that it works on I.E., ugh!
 
       // don't do real-time syntax checks:
       // https://github.com/ajaxorg/ace/wiki/Syntax-validation
@@ -320,8 +328,6 @@ function experimentalPopUpSyntaxErrorSurvey() {
       }
       s.setMode("ace/mode/" + mod);
 
-      bubbleAceEditor.setValue(prevExecutionExceptionObj.myAppState.code.rtrim() /* kill trailing spaces */,
-                               -1 /* do NOT select after setting text */);
       bubbleAceEditor.setReadOnly(true);
 
       s.setAnnotations([{row: offendingLine - 1 /* zero-indexed */,
@@ -338,8 +344,9 @@ function experimentalPopUpSyntaxErrorSurvey() {
       // don't forget htmlspecialchars
       $("#syntaxErrMsg").html(htmlspecialchars(prevExecutionExceptionObj.killerException.exception_msg));
 
-      // TODO: why is this positioning so wonky in the beginning?!?
       bub.redrawCodelineBubble(); // do an initial redraw to align everything
+
+      //globalBub = bub; // for debugging
     }
   }
 }

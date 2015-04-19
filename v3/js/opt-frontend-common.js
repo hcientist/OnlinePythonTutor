@@ -77,7 +77,8 @@ var pyInputAceEditor; // Ace editor object that contains the input code
 
 var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
 
-var prevExecutionExceptionObj = null; // did the PREVIOUS execution have an exception? if so, what was its context?
+// a list of previous consecutive executions with "compile"-time exceptions
+var prevExecutionExceptionObjLst = [];
 
 
 var loggingSocketIO = undefined; // socket.io instance -- OPTIONAL: not all frontends use it
@@ -1122,6 +1123,7 @@ function updateAppDisplay(newAppMode) {
 
     $.doTimeout('pyCodeOutputDivScroll'); // cancel any prior scheduled calls
 
+    // TODO: this might interfere with experimentalPopUpSyntaxErrorSurvey (2015-04-19)
     myVisualizer.domRoot.find('#pyCodeOutputDiv').scroll(function(e) {
       var elt = $(this);
       // debounce
@@ -1370,9 +1372,9 @@ function executePythonCode(pythonSourceCode,
 
       if (killerException) {
         var excObj = {killerException: killerException, myAppState: getAppState()};
-        prevExecutionExceptionObj = excObj;
+        prevExecutionExceptionObjLst.push(excObj);
       } else {
-        prevExecutionExceptionObj = null; // reset!!!
+        prevExecutionExceptionObjLst = []; // reset!!!
       }
 
       // tricky hacky reset
