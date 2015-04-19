@@ -197,14 +197,15 @@ button.surveyBtn {
 }
 
 #syntaxErrQuestion {
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 #syntaxErrTxtInput {
   margin-top: 3px;
   margin-bottom: 6px;
+  padding: 2px;
 }
 
 #syntaxErrSubmitBtn, #syntaxErrCloseBtn {
-  margin-right: 5px;
+  margin-right: 8px;
 }

@@ -279,8 +279,8 @@ function experimentalPopUpSyntaxErrorSurvey() {
                                    <div id="syntaxErrQuestion">\
                                    If you think this message wasn\'t helpful, what would have been the ideal error message for you here?<br/>\
                                      <input type="text" id="syntaxErrTxtInput" size=60 maxlength=150/><br/>\
-                                     <button class="syntaxErrSubmitBtn" type="button">Submit</button>\
-                                     <button class="syntaxErrCloseBtn" type="button">Cancel</button>\
+                                     <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
+                                     <button id="syntaxErrCloseBtn" type="button">Close</button>\
                                    </div></div>\
                                    ');
       // unbind first, then bind a new one
@@ -290,6 +290,13 @@ function experimentalPopUpSyntaxErrorSurvey() {
           bub.redrawCodelineBubble();
         });
 
+      $(bub.qTipContentID() + ' #syntaxErrSubmitBtn').click(function() {
+        console.log("SUBMIT!");
+      });
+
+      $(bub.qTipContentID() + ' #syntaxErrCloseBtn').click(function() {
+        bub.destroyQTip();
+      });
 
       var bubbleAceEditor = ace.edit('syntaxErrCodeDisplay');
       // set the size and value ASAP to get alignment working well ...
