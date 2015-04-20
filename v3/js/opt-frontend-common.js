@@ -887,6 +887,10 @@ function genericOptFrontendReady() {
       return; // get out early
     }
 
+    if (settings.url.indexOf('syntax_err_survey.py') > -1) {
+      return; // get out early
+    }
+
     /*
       This jqxhr.responseText might be indicative of the URL being too
       long, since the error message returned by the server is something

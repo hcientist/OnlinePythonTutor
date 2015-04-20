@@ -54,7 +54,7 @@ var helpQueueSize = 0;
 var tutorAvailable = false;
 var tutorWaitText = 'Please wait for the next available tutor.';
 
-var activateSyntaxErrorSurvey = false; // true;
+var activateSyntaxErrorSurvey = true; // true;
 
 function setHelpQueueSizeLabel() {
   if (helpQueueSize == 1) {
@@ -273,16 +273,26 @@ function experimentalPopUpSyntaxErrorSurvey() {
       // need to set both max-width and width() ...
       $(bub.qTipID()).css('max-width', '350px').width('350px');
 
-      $(bub.qTipContentID()).html('<div id="syntaxErrBubbleContents"><div id="syntaxErrHeader">You just fixed the following error:</div>\
-                                   <div id="syntaxErrCodeDisplay"></div>\
-                                   <div id="syntaxErrMsg"></div>\
-                                   <div id="syntaxErrQuestion">\
-                                   If you think this message wasn\'t helpful, what would have been the ideal error message for you here?<br/>\
-                                     <input type="text" id="syntaxErrTxtInput" size=60 maxlength=150/><br/>\
-                                     <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
-                                     <button id="syntaxErrCloseBtn" type="button">Close</button>\
-                                   </div></div>\
-                                   ');
+      var myUuid = supports_html5_storage() ? localStorage.getItem('opt_uuid') : '';
+
+      // Wording of the survey bubble:
+      var version = 'v1'; // v1 - deployed on 2015-04-20
+
+      var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
+                                <div id="syntaxErrHeader">You just fixed the following error:</div>\
+                                <div id="syntaxErrCodeDisplay"></div>\
+                                <div id="syntaxErrMsg"></div>\
+                                <div id="syntaxErrQuestion">\
+                                   If you think this message wasn\'t helpful, what would have been the best error message for you here?<br/>\
+                                   <input type="text" id="syntaxErrTxtInput" size=60 maxlength=150/><br/>\
+                                   <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
+                                   <button id="syntaxErrCloseBtn" type="button">Close</button>\
+                                </div>\
+                              </div>'
+
+
+      $(bub.qTipContentID()).html(surveyBubbleHTML);
+
       // unbind first, then bind a new one
       myVisualizer.domRoot.find('#pyCodeOutputDiv')
         .unbind('scroll')
@@ -291,12 +301,36 @@ function experimentalPopUpSyntaxErrorSurvey() {
         });
 
       $(bub.qTipContentID() + ' #syntaxErrSubmitBtn').click(function() {
-        console.log("SUBMIT!");
+        var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
+        var resObj = {appState: getAppState(),
+                      exc: prevExecutionExceptionObj, // note that prevExecutionExceptionObjLst is BLOWN AWAY by now
+                      opt_uuid: myUuid,
+                      reply: res,
+                      type: 'submit',
+                      v: version};
+
+        //console.log(resObj);
+        $.get('syntax_err_survey.py', {arg: JSON.stringify(resObj)}, function(dat) {});
+
+        bub.destroyQTip();
       });
 
       $(bub.qTipContentID() + ' #syntaxErrCloseBtn').click(function() {
+        // grab the value anyways in case the learner wrote something decent ...
+        var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
+        var resObj = {appState: getAppState(),
+                      exc: prevExecutionExceptionObj, // note that prevExecutionExceptionObjLst is BLOWN AWAY by now
+                      opt_uuid: myUuid,
+                      reply: res,
+                      type: 'close',
+                      v: version};
+
+        //console.log(resObj);
+        $.get('syntax_err_survey.py', {arg: JSON.stringify(resObj)}, function(dat) {});
+
         bub.destroyQTip();
       });
+
 
       var bubbleAceEditor = ace.edit('syntaxErrCodeDisplay');
       // set the size and value ASAP to get alignment working well ...
@@ -354,6 +388,17 @@ function experimentalPopUpSyntaxErrorSurvey() {
       bub.redrawCodelineBubble(); // do an initial redraw to align everything
 
       //globalBub = bub; // for debugging
+
+      // log an event whenever this bubble is show (i.e., an 'impression')
+      // NB: it might actually be hidden if it appears on a line that
+      // isn't initially visible to the user, but whatevers ...
+      var impressionObj = {appState: getAppState(),
+                           exceptionLst: prevExecutionExceptionObjLst,
+                           opt_uuid: myUuid,
+                           type: 'show',
+                           v: version};
+      //console.log(impressionObj);
+      $.get('syntax_err_survey.py', {arg: JSON.stringify(impressionObj)}, function(dat) {});
     }
   }
 }
