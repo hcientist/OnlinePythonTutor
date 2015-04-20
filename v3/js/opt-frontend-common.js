@@ -1246,7 +1246,9 @@ function optFinishSuccessfulExecution() {
   // successfully executes a piece of code
   initializeDisplayModeSurvey();
 
-  if (activateSyntaxErrorSurvey && experimentalPopUpSyntaxErrorSurvey) {
+  if (typeof(activateSyntaxErrorSurvey) !== 'undefined' &&
+      activateSyntaxErrorSurvey &&
+      experimentalPopUpSyntaxErrorSurvey) {
     experimentalPopUpSyntaxErrorSurvey();
   }
 }

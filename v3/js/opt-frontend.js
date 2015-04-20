@@ -276,8 +276,8 @@ function experimentalPopUpSyntaxErrorSurvey() {
       var myUuid = supports_html5_storage() ? localStorage.getItem('opt_uuid') : '';
 
       // Wording of the survey bubble:
-      var version = 'v1'; // v1 - deployed on 2015-04-20
-
+      /*
+      var version = 'v1'; // deployed on 2015-04-19, revoked on 2015-04-20
       var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
                                 <div id="syntaxErrHeader">You just fixed the following error:</div>\
                                 <div id="syntaxErrCodeDisplay"></div>\
@@ -289,7 +289,21 @@ function experimentalPopUpSyntaxErrorSurvey() {
                                    <button id="syntaxErrCloseBtn" type="button">Close</button>\
                                 </div>\
                               </div>'
+      */
 
+      var version = 'v2'; // deployed on 2015-04-20
+      var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
+                                <div id="syntaxErrHeader">You just fixed the following error:</div>\
+                                <div id="syntaxErrCodeDisplay"></div>\
+                                <div id="syntaxErrMsg"></div>\
+                                <div id="syntaxErrQuestion">\
+                                   If you think this message wasn\'t helpful, what would have been the best error message for you here?<br/>\
+                                   <input type="text" id="syntaxErrTxtInput" size=60 maxlength=150/><br/>\
+                                   <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
+                                   <button id="syntaxErrCloseBtn" type="button">Close</button>\
+                                   <a href="#" id="syntaxErrHideAllLink">Hide all pop-ups</a>\
+                                </div>\
+                              </div>'
 
       $(bub.qTipContentID()).html(surveyBubbleHTML);
 
@@ -329,6 +343,26 @@ function experimentalPopUpSyntaxErrorSurvey() {
         $.get('syntax_err_survey.py', {arg: JSON.stringify(resObj)}, function(dat) {});
 
         bub.destroyQTip();
+      });
+
+      $(bub.qTipContentID() + ' #syntaxErrHideAllLink').click(function() {
+        // grab the value anyways in case the learner wrote something decent ...
+        var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
+        var resObj = {appState: getAppState(),
+                      exc: prevExecutionExceptionObj, // note that prevExecutionExceptionObjLst is BLOWN AWAY by now
+                      opt_uuid: myUuid,
+                      reply: res,
+                      type: 'killall',
+                      v: version};
+
+        activateSyntaxErrorSurvey = false; // global!
+
+        //console.log(resObj);
+        $.get('syntax_err_survey.py', {arg: JSON.stringify(resObj)}, function(dat) {});
+
+        bub.destroyQTip();
+
+        return false; // otherwise the 'a href' will trigger a page reload, ergh!
       });
 
 

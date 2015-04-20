@@ -209,3 +209,7 @@ button.surveyBtn {
 #syntaxErrSubmitBtn, #syntaxErrCloseBtn {
   margin-right: 8px;
 }
+
+#syntaxErrHideAllLink {
+  font-size: 7pt;
+}
