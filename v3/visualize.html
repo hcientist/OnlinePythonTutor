@@ -30,7 +30,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
 
 <head>
-  <title>Online Python Tutor - Visualize Python, Java, and JavaScript code</title>
+  <title>Online Python Tutor - Visualize Python, Java, JavaScript, and
+  TypeScript code execution</title>
 
   <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
 
@@ -83,11 +84,26 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <script type="text/javascript" src="js/socket.io-client/socket.io.js"></script>
 
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34795707-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
 </head>
 
 <body>
 
-<table id="experimentalHeader">
+<table id="experimentalHeader" style="margin-bottom: 20px;">
 <tr>
 <td valign="top">
 
@@ -97,7 +113,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <div>
 <button id="sharedSessionBtn" type="button" class="togetherjsBtn">
-Start a shared session
+Start shared session
 </button>
 </div>
 
@@ -124,6 +140,26 @@ Get help from a tutor
 
 <div id="surveyHeader"></div>
 
+<div id="adHeader">
+
+<div id="optHeader" style="font-family: verdana, arial, helvetica,
+sans-serif; font-size: 12pt; margin-bottom: 10px;">
+Online Python Tutor - Visualize Python, Java, JavaScript, and
+TypeScript code execution
+</div>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- OPT top leaderboard -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-7519401450079227"
+     data-ad-slot="9796201192"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
 </td>
 </tr>
 </table>
@@ -131,7 +167,7 @@ Get help from a tutor
 
 <div id="pyInputPane">
 
-<div id="codeInputWarnings">Language:
+<div id="codeInputWarnings">Write code in
 
   <select id="pythonVersionSelector">
     <option value="2">Python 2.7</option>
@@ -415,12 +451,42 @@ source code</a>.</p>
 href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript">Backend
 source code</a>.</p>
 
-<p>By using Online Python Tutor, your visualized code, options, user interactions, and IP
+<p style="margin-top: 30px;">Privacy Policy: By using Online Python Tutor, your visualized code, options, user interactions, and IP
 address are logged on our server and may be analyzed for research
 purposes. Nearly all Web services collect this basic information from
-users. However, Online Python Tutor does not collect any personal
-information, cookies, or session state.</p>
+users. However, the Online Python Tutor website (pythontutor.com) does not collect any personal
+information or session state from users, nor does it issue any cookies of its
+own.</p>
 
+<p>
+
+Third party vendors, including Google, use cookies to serve ads based on a
+user's prior visits to pythontutor.com. Google's use of the DoubleClick cookie
+enables it and its partners to serve ads to your users based on their visit to
+pythontutor.com and/or other sites on the Internet. Users may opt out of the use
+of the DoubleClick cookie by visiting Ads Settings. (Alternatively, users may
+opt out of a third-party vendor's use of cookies for interest based advertising
+by visiting <a href="http://www.aboutads.info/">aboutads.info</a>.) Some of our
+advertising partners may use cookies and web beacons on our site. Our
+advertising partners include Google Adsense. These third-party ad servers or ad
+networks use technology to the advertisements and links that appear on
+pythontutor.com send directly to your browsers. They automatically receive your
+IP address when this occurs. Other technologies (such as cookies, JavaScript,
+or Web Beacons) may also be used by the third-party ad networks to measure the
+effectiveness of their advertisements and / or to personalize the advertising
+content that you see.
+
+pythontutor.com has no access to or control over these cookies that are used by
+third-party advertisers. Consult the respective privacy policies of these
+third-party ad servers for more detailed information on their practices as well
+as for instructions about how to opt-out of certain practices. pythontutor.com's
+privacy policy does not apply to, and we cannot control the activities of, such
+other advertisers or web sites. If you wish to disable cookies, you may do so
+through your individual browser options.
+
+</p>
+
+<!--
 <p>Join the <a
 href="https://groups.google.com/forum/#!forum/pythontutor-users">pythontutor-users</a>
 mailing list to participate in user discussions and <a
@@ -428,7 +494,9 @@ href="https://groups.google.com/forum/#!forum/pythontutor-announce">pythontutor-
 to receive occasional announcements.
 (Your name and email address will be kept private; only the list owner can see them.)</p>
 
-<p style="margin-top: 8px;">
+-->
+
+<p style="margin-top: 25px;">
 Copyright &copy; <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
 </p>
 

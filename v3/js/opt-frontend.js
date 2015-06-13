@@ -74,6 +74,7 @@ function requestTutor() {
 
 function startSharedSession() { // override default
   $("#getTutorBtn,#sharedSessionBtn,#surveyHeader").hide(); // hide ASAP!
+  $("#adHeader").hide(); // hide ASAP!
   $("#togetherjsStatus").html("Please wait ... loading shared session");
   tutorRequested = false;
   TogetherJS();

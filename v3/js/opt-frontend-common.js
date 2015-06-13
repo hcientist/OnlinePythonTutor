@@ -535,6 +535,7 @@ function initTogetherJS() {
 
     $("#sharedSessionDisplayDiv").show();
     $("#sharedSessionBtn").hide();
+    $("#adHeader").hide();
 
     // send this to the server for the purposes of logging, but other
     // clients shouldn't do anything with this data
@@ -565,6 +566,7 @@ function initTogetherJS() {
     $("#togetherjsStatus").html(''); // clear it
     $("#sharedSessionDisplayDiv").hide();
     $("#sharedSessionBtn").show();
+    $("#adHeader").show();
 
     TogetherjsCloseHandler(); // needs to be defined in each frontend
     redrawConnectors(); // update all arrows at the end
