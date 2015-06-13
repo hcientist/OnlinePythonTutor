@@ -310,7 +310,7 @@ function syncAppState(appState) {
 // get OPT ready for integration with TogetherJS
 function initTogetherJS() {
   if (togetherjsInUrl) {
-    $("#sharedSessionBtn").hide(); // hide ASAP!
+    $("#ssDiv").hide(); // hide ASAP!
     $("#togetherjsStatus").html("Please wait ... loading shared session");
   }
 
@@ -534,7 +534,7 @@ function initTogetherJS() {
     console.log("TogetherJS ready");
 
     $("#sharedSessionDisplayDiv").show();
-    $("#sharedSessionBtn").hide();
+    $("#ssDiv").hide();
     $("#adHeader").hide();
 
     // send this to the server for the purposes of logging, but other
@@ -565,7 +565,7 @@ function initTogetherJS() {
 
     $("#togetherjsStatus").html(''); // clear it
     $("#sharedSessionDisplayDiv").hide();
-    $("#sharedSessionBtn").show();
+    $("#ssDiv").show();
     $("#adHeader").show();
 
     TogetherjsCloseHandler(); // needs to be defined in each frontend
@@ -582,7 +582,7 @@ function TogetherjsCloseHandler() {
 }
 
 function startSharedSession() {
-  $("#sharedSessionBtn").hide(); // hide ASAP!
+  $("#ssDiv").hide(); // hide ASAP!
   $("#togetherjsStatus").html("Please wait ... loading shared session");
   TogetherJS();
 }
