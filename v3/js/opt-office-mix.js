@@ -43,7 +43,7 @@ var _labViewer = null; // for View mode
 
 
 function executeCode(forceStartingInstr, forceRawInputLst) {
-  $('#loadingPane').html('Please wait ... executing Python code.').show();
+  $('#loadingPane').html('Executing code ... takes up to 10 seconds.').show();
 
   if (forceRawInputLst !== undefined) {
     rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
@@ -56,6 +56,16 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
   else if ($('#pythonVersionSelector').val() == '3') {
       backend_script = python3_backend_script;
   }
+  else if ($('#pythonVersionSelector').val() == 'js') {
+      backend_script = js_backend_script;
+  }
+  else if ($('#pythonVersionSelector').val() == 'ts') {
+      backend_script = ts_backend_script;
+  }
+  else if ($('#pythonVersionSelector').val() == 'java') {
+      backend_script = java_backend_script;
+  }
+  assert(backend_script);
 
   var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
                            heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
@@ -179,12 +189,7 @@ function officeMixEnterEditMode() {
 
       // set configuration on every code edit and option toggle, to
       // set the 'dirty bit' on the enclosing PPT file
-      if (useCodeMirror) {
-        pyInputCodeMirror.on("change", saveCurrentConfiguration);
-      }
-      else {
-        pyInputAceEditor.getSession().on("change", saveCurrentConfiguration);
-      }
+      pyInputAceEditor.getSession().on("change", saveCurrentConfiguration);
       $('select').change(saveCurrentConfiguration);
 
       $("#toggleModebtn").html("Visualize code").show();
@@ -202,7 +207,13 @@ function saveCurrentConfiguration() {
 
 
 $(document).ready(function() {
-  console.log("HALLO opt-office-mix.js!!!");
+  // make sure that this file is included *after* opt-frontend-common.js so
+  // that these definitions override those in opt-frontend-common.js
+  //
+  // use https endpoints since Mix requires https:
+  JS_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_js_jsonp';
+  TS_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_ts_jsonp';
+  JAVA_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_java_jsonp';
 
   // DON'T switch into office mix view mode ... this is just a "Preview"
   // that's only relevant in Edit mode
@@ -243,21 +254,7 @@ $(document).ready(function() {
   });
 
 
-  if (useCodeMirror) {
-    pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
-      mode: 'python',
-      lineNumbers: true,
-      tabSize: 4,
-      indentUnit: 4,
-      // convert tab into four spaces:
-      extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
-    });
-
-    pyInputCodeMirror.setSize(null, '300px');
-  }
-  else {
-    initAceEditor(300);
-  }
+  initAceEditor(300);
 
   // no frills footer
   $("#footer").css("margin-top", "0px")
