@@ -29,9 +29,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // This is a nodejs server based on express that serves the v4-cokapi/ app
 // To test locally, run 'make' and load http://localhost:3000/
 
+// Run with an 'https' command-line flag to use https (must have
+// the proper certificate and key files, though)
+
 var IS_DEBUG = false;
 
 var PRODUCTION_PORT = 3000;
+var PRODUCTION_HTTPS_PORT = 8001;
 var DEBUG_PORT = 5001;
 
 // VERY IMPORTANT - turn on the sandbox when deploying online, or else
@@ -248,8 +252,30 @@ function executePython(pyVer, req, res) {
                          postExecHandler.bind(null, res, false));
 }
 
-var server = app.listen(IS_DEBUG ? DEBUG_PORT : PRODUCTION_PORT, function() {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('Example app listening at http://%s:%s', host, port);
-});
+// https support
+var https = require('https');
+var fs = require('fs');
+
+var options = {
+  key: fs.readFileSync('cokapi.com.key'),
+  cert: fs.readFileSync('cokapi.com.crt'),
+};
+
+var args = process.argv.slice(2);
+if (args.length > 0 && args[0] === 'https') {
+  var server = https.createServer(options, app).listen(
+    IS_DEBUG ? DEBUG_PORT : PRODUCTION_HTTPS_PORT,
+    function() {
+      var host = server.address().address;
+      var port = server.address().port;
+      console.log('https app listening at http://%s:%s', host, port);
+  });
+} else {
+  var server = app.listen(
+    IS_DEBUG ? DEBUG_PORT : PRODUCTION_PORT,
+    function() {
+      var host = server.address().address;
+      var port = server.address().port;
+      console.log('http app listening at http://%s:%s', host, port);
+  });
+}
