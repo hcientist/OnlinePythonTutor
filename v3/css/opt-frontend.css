@@ -65,7 +65,7 @@ button.smallBtn {
 button.bigBtn {
   font-size: 12pt;
   padding: 6px;
-  margin-top: 6px;
+  margin-top: 0px;
 }
 
 button.surveyBtn {

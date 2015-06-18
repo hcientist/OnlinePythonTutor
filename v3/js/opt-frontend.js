@@ -66,14 +66,15 @@ function setHelpQueueSizeLabel() {
 }
 
 function requestTutor() {
-  $("#getTutorBtn,#sharedSessionBtn,#surveyHeader").hide(); // hide ASAP!
+  $("#getTutorBtn,#ssDiv,#surveyHeader").hide(); // hide ASAP!
   $("#togetherjsStatus").html("Please wait ... requesting a tutor");
   tutorRequested = true;
   TogetherJS();
 }
 
 function startSharedSession() { // override default
-  $("#getTutorBtn,#sharedSessionBtn,#surveyHeader").hide(); // hide ASAP!
+  $("#getTutorBtn,#ssDiv,#surveyHeader").hide(); // hide ASAP!
+  $("#adHeader").hide(); // hide ASAP!
   $("#togetherjsStatus").html("Please wait ... loading shared session");
   tutorRequested = false;
   TogetherJS();
@@ -697,9 +698,10 @@ $(document).ready(function() {
   // set by now
   var myUuid = supports_html5_storage() ? localStorage.getItem('opt_uuid') : '';
   // deployed on 2015-03-19, added opt_uuid param on 2015-03-20
-  $("#surveyHeader")
-    .html('<iframe width="820" height="120" frameborder="0" src="http://45.56.123.166/~mgordon/OnlinePythonTutor/v3/embedding-demo-blur-frame.html?opt_uuid=' + myUuid + '"></iframe>')
-    .css('margin-bottom', '10px');
+  // taken down on 2015-05-14
+  //$("#surveyHeader")
+  //  .html('<iframe width="820" height="120" frameborder="0" src="http://45.56.123.166/~mgordon/OnlinePythonTutor/v3/embedding-demo-blur-frame.html?opt_uuid=' + myUuid + '"></iframe>')
+  //  .css('margin-bottom', '10px');
 
 
   initAceAndOptions(); // do this after genericOptFrontendReady
