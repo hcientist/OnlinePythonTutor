@@ -215,6 +215,8 @@ $(document).ready(function() {
   TS_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_ts_jsonp';
   JAVA_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_java_jsonp';
 
+  $('#pythonVersionSelector').change(setAceMode);
+
   // DON'T switch into office mix view mode ... this is just a "Preview"
   // that's only relevant in Edit mode
   $("#toggleModebtn").click(function() {
@@ -299,4 +301,7 @@ $(document).ready(function() {
     Labs.on(Labs.Core.EventTypes.Deactivate, function() {
     });
   });
+
+
+  setAceMode(); // do this at the end
 });
