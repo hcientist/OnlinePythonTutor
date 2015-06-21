@@ -45,7 +45,7 @@ var originFrontendJsFile = 'opt-office-mix.js';
 var _labEditor = null; // for Edit mode
 var _labViewer = null; // for View mode
 
-var _savedAppState = null; // nasty global
+var _savedCurInstr = undefined; // nasty global
 
 
 function executeCode(forceStartingInstr, forceRawInputLst) {
@@ -108,8 +108,9 @@ function officeMixFinishSuccessfulExecution() {
 
   $("#toggleModebtn").html("Edit code");
 
-  if (_savedAppState) {
-    myVisualizer.renderStep(_savedAppState.curInstr);
+  if (_savedCurInstr !== undefined) {
+    myVisualizer.renderStep(_savedCurInstr);
+    _savedCurInstr = undefined;
   }
 
   saveCurrentConfiguration();
@@ -230,16 +231,17 @@ function officeMixEnterViewMode() {
     if (labInstance) {
       _labViewer = labInstance; // global
 
-      _savedAppState = _labViewer.components[0].component.data; // ugh global
-      setToggleOptions(_savedAppState);
-      if (_savedAppState.code) {
-        pyInputSetValue(_savedAppState.code);
-        if (_savedAppState.mode === 'display') {
+      var savedAppState = _labViewer.components[0].component.data;
+      setToggleOptions(savedAppState);
+      if (savedAppState.code) {
+        pyInputSetValue(savedAppState.code);
+        if (savedAppState.mode === 'display') {
+          _savedCurInstr = savedAppState.curInstr; // #crufty
           mixLazyExecuteCode();
         }
       }
 
-      if (_savedAppState.mode === 'edit') {
+      if (savedAppState.mode === 'edit') {
         enterOPTEditCodeMode();
       }
     }
@@ -258,16 +260,17 @@ function officeMixEnterEditMode() {
       // this seems to run every time editLab runs
       _labEditor.getConfiguration(function(err, configuration) {
         if (configuration) {
-          _savedAppState = configuration.components[0].data; // ugh global
-          setToggleOptions(_savedAppState);
-          if (_savedAppState.code) {
-            pyInputSetValue(_savedAppState.code);
-            if (_savedAppState.mode === 'display') {
+          var savedAppState = configuration.components[0].data;
+          setToggleOptions(savedAppState);
+          if (savedAppState.code) {
+            pyInputSetValue(savedAppState.code);
+            if (savedAppState.mode === 'display') {
+              _savedCurInstr = savedAppState.curInstr; // #crufty
               mixLazyExecuteCode();
             }
           }
 
-          if (_savedAppState.mode === 'edit') {
+          if (savedAppState.mode === 'edit') {
             enterOPTEditCodeMode();
           }
         }
@@ -291,7 +294,7 @@ function saveCurrentConfiguration() {
 
 function mixLazyExecuteCode() {
   // TODO: use cachedTrace if available instead of executing code from scratch
-  executeCodeFromScratch();
+  executeCodeFromScratch(); // ends with officeMixFinishSuccessfulExecution
 }
 
 
