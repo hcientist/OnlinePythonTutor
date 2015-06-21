@@ -1,4 +1,6 @@
 // TODOs:
+//
+// - implement caching to avoid re-executing identical code from scratch
 
 /*
 
@@ -42,6 +44,8 @@ var originFrontendJsFile = 'opt-office-mix.js';
 // modeled after Kurt's simplelab.ts
 var _labEditor = null; // for Edit mode
 var _labViewer = null; // for View mode
+
+var _savedAppState = null; // nasty global
 
 
 function executeCode(forceStartingInstr, forceRawInputLst) {
@@ -98,14 +102,17 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 
 
 function officeMixFinishSuccessfulExecution() {
-  enterDisplayMode(); // do this first!
+  updateAppDisplayForMix('display'); // do this first
   $('#pyOutputPane #editCodeLinkDiv').hide(); // don't have explicit "Edit code" link
   $('#loadingPane').hide();
 
   $("#toggleModebtn").html("Edit code");
 
-  saveCurrentConfiguration();
+  if (_savedAppState) {
+    myVisualizer.renderStep(_savedAppState.curInstr);
+  }
 
+  saveCurrentConfiguration();
   // save configuration on every step action
   myVisualizer.add_pytutor_hook("end_updateOutput", function(args) {
     saveCurrentConfiguration();
@@ -159,10 +166,58 @@ function getAppStateWithTraceCache() {
 }
 
 function enterOPTEditCodeMode() {
-  enterEditMode();
+  updateAppDisplayForMix('edit');
   $("#toggleModebtn").html("Visualize code").show();
   saveCurrentConfiguration();
 }
+
+
+function updateAppDisplayForMix(newAppMode) {
+  // idempotence is VERY important here
+  if (newAppMode == appMode) {
+    return;
+  }
+
+  appMode = newAppMode; // global!
+
+  if (appMode === undefined || appMode == 'edit' ||
+      !myVisualizer /* subtle -- if no visualizer, default to edit mode */) {
+    appMode = 'edit'; // canonicalize
+
+    $("#pyInputPane").show();
+    $("#pyOutputPane").hide();
+    $("#embedLinkDiv").hide();
+
+    // Potentially controversial: when you enter edit mode, DESTROY any
+    // existing visualizer object. note that this simplifies the app's
+    // conceptual model but breaks the browser's expected Forward and
+    // Back button flow
+    $("#pyOutputPane").empty();
+    myVisualizer = null;
+
+    $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
+  } else if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
+    assert(myVisualizer);
+    appMode = 'display'; // canonicalize
+
+    $("#pyInputPane").hide();
+    $("#pyOutputPane").show();
+    $("#embedLinkDiv").show();
+
+    doneExecutingCode();
+
+    // do this AFTER making #pyOutputPane visible, or else
+    // jsPlumb connectors won't render properly
+    myVisualizer.updateOutput();
+
+    // customize edit button click functionality AFTER rendering (NB: awkward!)
+    $('#pyOutputPane #editCodeLinkDiv').show();
+    $.bbq.pushState({ mode: 'display' }, 2 /* completely override other hash strings to keep URL clean */);
+  } else {
+    assert(false);
+  }
+}
+
 
 // note that nothing in 'configuration' is saved when in View mode,
 // since that's previewing how end-users will interact with the lab
@@ -175,16 +230,16 @@ function officeMixEnterViewMode() {
     if (labInstance) {
       _labViewer = labInstance; // global
 
-      var savedAppState = _labViewer.components[0].component.data;
-      setToggleOptions(savedAppState);
-      if (savedAppState.code) {
-        pyInputSetValue(savedAppState.code);
-        if (savedAppState.mode === 'display') {
+      _savedAppState = _labViewer.components[0].component.data; // ugh global
+      setToggleOptions(_savedAppState);
+      if (_savedAppState.code) {
+        pyInputSetValue(_savedAppState.code);
+        if (_savedAppState.mode === 'display') {
           mixLazyExecuteCode();
         }
       }
 
-      if (savedAppState.mode === 'edit') {
+      if (_savedAppState.mode === 'edit') {
         enterOPTEditCodeMode();
       }
     }
@@ -200,18 +255,19 @@ function officeMixEnterEditMode() {
     if (labEditor) {
       _labEditor = labEditor; // global
 
+      // this seems to run every time editLab runs
       _labEditor.getConfiguration(function(err, configuration) {
         if (configuration) {
-          var savedAppState = configuration.components[0].data;
-          setToggleOptions(savedAppState);
-          if (savedAppState.code) {
-            pyInputSetValue(savedAppState.code);
-            if (savedAppState.mode === 'display') {
+          _savedAppState = configuration.components[0].data; // ugh global
+          setToggleOptions(_savedAppState);
+          if (_savedAppState.code) {
+            pyInputSetValue(_savedAppState.code);
+            if (_savedAppState.mode === 'display') {
               mixLazyExecuteCode();
             }
           }
 
-          if (savedAppState.mode === 'edit') {
+          if (_savedAppState.mode === 'edit') {
             enterOPTEditCodeMode();
           }
         }
@@ -221,9 +277,6 @@ function officeMixEnterEditMode() {
       // set the 'dirty bit' on the enclosing PPT file
       pyInputAceEditor.getSession().on("change", saveCurrentConfiguration);
       $('select').change(saveCurrentConfiguration);
-
-      // initial "empty" state?
-      enterOPTEditCodeMode();
     }
   });
 }
@@ -237,12 +290,8 @@ function saveCurrentConfiguration() {
 
 
 function mixLazyExecuteCode() {
-  if (appMode === 'edit') {
-    // TODO: use cachedTrace if available instead of executing code from scratch
-    executeCodeFromScratch();
-  }
-
-  // if we're already in display mode, then do nothing
+  // TODO: use cachedTrace if available instead of executing code from scratch
+  executeCodeFromScratch();
 }
 
 
@@ -275,9 +324,7 @@ $(document).ready(function() {
     }
   };
 
-
-  // I don't think we need this ...
-  /*
+  // still needed to track and trigger appMode changes
   $(window).bind("hashchange", function(e) {
     // if you've got some preseeded code, then parse the entire query
     // string from scratch just like a page reload
@@ -287,12 +334,10 @@ $(document).ready(function() {
     // otherwise just do an incremental update
     else {
       var newMode = $.bbq.getState('mode');
-      console.log('hashchange:', newMode, window.location.hash);
+      //console.log('hashchange:', newMode, window.location.hash);
       updateAppDisplay(newMode);
     }
   });
-  */
-
 
   initAceEditor(300);
 
@@ -320,6 +365,7 @@ $(document).ready(function() {
 
     if (initialMode == 'Edit') {
       officeMixEnterEditMode();
+      enterOPTEditCodeMode(); // do this once initially
     } else if (initialMode == 'View') {
       officeMixEnterViewMode();
     }
