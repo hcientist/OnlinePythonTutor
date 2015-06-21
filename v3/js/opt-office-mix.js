@@ -1,3 +1,5 @@
+// TODOs:
+
 /*
 
 Online Python Tutor
@@ -101,6 +103,14 @@ function officeMixFinishSuccessfulExecution() {
   $('#loadingPane').hide();
 
   $("#toggleModebtn").html("Edit code");
+
+  saveCurrentConfiguration();
+
+  // save configuration on every step action
+  myVisualizer.add_pytutor_hook("end_updateOutput", function(args) {
+    saveCurrentConfiguration();
+    return [false]; // pass through to let other hooks keep handling
+  });
 }
 
 
@@ -138,9 +148,24 @@ function setFronendError(lines) {
 }
 
 
-// temp safety for MSR faculty summit
-var tempSafe = true;
+// a wrapper for getAppState() that caches the value of the current
+// execution trace if we're in display mode
+function getAppStateWithTraceCache() {
+  var ret = getAppState();
+  if (ret.mode === 'display') {
+    ret.cachedTrace = myVisualizer.curTrace;
+  }
+  return ret;
+}
 
+function enterOPTEditCodeMode() {
+  enterEditMode();
+  $("#toggleModebtn").html("Visualize code").show();
+  saveCurrentConfiguration();
+}
+
+// note that nothing in 'configuration' is saved when in View mode,
+// since that's previewing how end-users will interact with the lab
 function officeMixEnterViewMode() {
   if (_labEditor) {
     _labEditor.done(function() { _labEditor = null; });
@@ -154,15 +179,13 @@ function officeMixEnterViewMode() {
       setToggleOptions(savedAppState);
       if (savedAppState.code) {
         pyInputSetValue(savedAppState.code);
-
-        if (!tempSafe) {
-          executeCodeFromScratch();
+        if (savedAppState.mode === 'display') {
+          mixLazyExecuteCode();
         }
       }
 
-      if (tempSafe) {
-        $("#toggleModebtn").html("Visualize code").show();
-        enterEditMode();
+      if (savedAppState.mode === 'edit') {
+        enterOPTEditCodeMode();
       }
     }
   });
@@ -183,6 +206,13 @@ function officeMixEnterEditMode() {
           setToggleOptions(savedAppState);
           if (savedAppState.code) {
             pyInputSetValue(savedAppState.code);
+            if (savedAppState.mode === 'display') {
+              mixLazyExecuteCode();
+            }
+          }
+
+          if (savedAppState.mode === 'edit') {
+            enterOPTEditCodeMode();
           }
         }
       });
@@ -192,17 +222,27 @@ function officeMixEnterEditMode() {
       pyInputAceEditor.getSession().on("change", saveCurrentConfiguration);
       $('select').change(saveCurrentConfiguration);
 
-      $("#toggleModebtn").html("Visualize code").show();
-      enterEditMode();
+      // initial "empty" state?
+      enterOPTEditCodeMode();
     }
   });
 }
 
 function saveCurrentConfiguration() {
   if (_labEditor) {
-    _labEditor.setConfiguration(getConfigurationFromData(getAppState()),
+    _labEditor.setConfiguration(getConfigurationFromData(getAppStateWithTraceCache()),
                                 function() {} /* empty error handler */);
   }
+}
+
+
+function mixLazyExecuteCode() {
+  if (appMode === 'edit') {
+    // TODO: use cachedTrace if available instead of executing code from scratch
+    executeCodeFromScratch();
+  }
+
+  // if we're already in display mode, then do nothing
 }
 
 
@@ -217,14 +257,11 @@ $(document).ready(function() {
 
   $('#pythonVersionSelector').change(setAceMode);
 
-  // DON'T switch into office mix view mode ... this is just a "Preview"
-  // that's only relevant in Edit mode
   $("#toggleModebtn").click(function() {
     if (appMode == 'edit') {
       executeCodeFromScratch();
     } else {
-      $("#toggleModebtn").html("Visualize code");
-      enterEditMode();
+      enterOPTEditCodeMode();
     }
   });
 
@@ -239,8 +276,8 @@ $(document).ready(function() {
   };
 
 
-  // be friendly to the browser's forward and back buttons
-  // thanks to http://benalman.com/projects/jquery-bbq-plugin/
+  // I don't think we need this ...
+  /*
   $(window).bind("hashchange", function(e) {
     // if you've got some preseeded code, then parse the entire query
     // string from scratch just like a page reload
@@ -254,6 +291,7 @@ $(document).ready(function() {
       updateAppDisplay(newMode);
     }
   });
+  */
 
 
   initAceEditor(300);
