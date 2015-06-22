@@ -298,7 +298,7 @@ function saveCurrentConfiguration() {
       x.cachedCod = _lastSavedAppState.cachedCod; // rtrim() already applied
       x.cachedLang = _lastSavedAppState.cachedLang;
     }
-    //console.log('saveCurrentConfiguration', x);
+    console.log('saveCurrentConfiguration', x);
     _labEditor.setConfiguration(getConfigurationFromData(x),
                                 function() {} /* empty error handler */);
     _lastSavedAppState = x; // global!
@@ -307,6 +307,18 @@ function saveCurrentConfiguration() {
 
 
 function mixLazyExecuteCode() {
+  var curState = getAppState();
+  var curCod = curState.code.rtrim(); // rtrim to match cachedCod
+  var curLang = curState.py;
+
+  // ugh legacy naming mismatches:
+  if (curLang === '2') {
+    curLang = 'py2';
+  } else if (curLang === '3') {
+    curLang = 'py3';
+  }
+
+  console.log('mixLazyExecuteCode', {cod: curCod, lang: curLang});
   // TODO: use cachedTrace if available instead of executing code from scratch
   executeCodeFromScratch(); // ends with officeMixFinishSuccessfulExecution
 }
@@ -325,7 +337,7 @@ $(document).ready(function() {
 
   $("#toggleModebtn").click(function() {
     if (appMode == 'edit') {
-      executeCodeFromScratch();
+      mixLazyExecuteCode();
     } else {
       enterOPTEditCodeMode();
     }
