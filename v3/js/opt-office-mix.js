@@ -46,6 +46,7 @@ var _labEditor = null; // for Edit mode
 var _labViewer = null; // for View mode
 
 var _savedCurInstr = undefined; // nasty global
+var _lastSavedAppState = undefined; // nasty global
 
 
 function executeCode(forceStartingInstr, forceRawInputLst) {
@@ -162,6 +163,8 @@ function getAppStateWithTraceCache() {
   var ret = getAppState();
   if (ret.mode === 'display') {
     ret.cachedTrace = myVisualizer.curTrace;
+    ret.cachedCod = myVisualizer.curInputCode;
+    ret.cachedLang = myVisualizer.params.lang;
   }
   return ret;
 }
@@ -286,8 +289,19 @@ function officeMixEnterEditMode() {
 
 function saveCurrentConfiguration() {
   if (_labEditor) {
-    _labEditor.setConfiguration(getConfigurationFromData(getAppStateWithTraceCache()),
+    var x = getAppStateWithTraceCache();
+    // propagate cachedTrace only if x doesn't already have one
+    // i.e., don't clobber the new cachedTrace if it exists
+    if (x.cachedTrace === undefined &&
+        _lastSavedAppState && _lastSavedAppState.cachedTrace) {
+      x.cachedTrace = _lastSavedAppState.cachedTrace;
+      x.cachedCod = _lastSavedAppState.cachedCod; // rtrim() already applied
+      x.cachedLang = _lastSavedAppState.cachedLang;
+    }
+    //console.log('saveCurrentConfiguration', x);
+    _labEditor.setConfiguration(getConfigurationFromData(x),
                                 function() {} /* empty error handler */);
+    _lastSavedAppState = x; // global!
   }
 }
 
