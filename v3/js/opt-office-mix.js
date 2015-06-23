@@ -177,6 +177,10 @@ function getAppStateWithTraceCache() {
 function enterOPTEditCodeMode() {
   updateAppDisplayForMix('edit');
   $("#toggleModebtn").html("Visualize code").show();
+
+  // https://groups.google.com/forum/#!msg/ace-discuss/TQHqey_NkBg/q9x_tLrvsXoJ
+  pyInputAceEditor.resize(); // weird hack that's necessary to refresh the editor's latest text values. #weird
+
   saveCurrentConfiguration();
 }
 
