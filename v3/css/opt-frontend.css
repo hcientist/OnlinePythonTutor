@@ -51,6 +51,10 @@ table#pyOutputPane {
   margin-right: auto;
 }
 
+#loadingPane {
+  margin-bottom: 5px;
+}
+
 #codeInputPane {
   margin-top: 5px;
   font-size: 12pt;
