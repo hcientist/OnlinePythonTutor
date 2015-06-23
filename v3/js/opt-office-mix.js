@@ -331,9 +331,26 @@ function mixLazyExecuteCode() {
       curCod === _lastSavedAppState.cachedCod &&
       curLang === _lastSavedAppState.cachedLang) {
     // cache hit!
-
     console.log('mixLazyExecuteCode CACHE HIT!');
-    executeCodeFromScratch(); // ends with officeMixFinishSuccessfulExecution
+
+    // copy-pasta from excerpts of executeCodeFromScratch and friends:
+
+    // if you're in display mode, kick back into edit mode before
+    // executing or else the display might not refresh properly ... ugh
+    // krufty FIXME
+    enterEditMode();
+    clearFrontendError();
+
+    var frontendOptionsObj = {embeddedMode: true,
+                              executeCodeWithRawInputFunc: executeCodeWithRawInput,
+                              lang: _lastSavedAppState.cachedLang, // important!
+                             };
+    myVisualizer = new ExecutionVisualizer('pyOutputPane',
+                                           {code: _lastSavedAppState.cachedCod,
+                                            trace: _lastSavedAppState.cachedTrace},
+                                           frontendOptionsObj);
+
+    officeMixFinishSuccessfulExecution();
   } else {
     // cache miss
     executeCodeFromScratch(); // ends with officeMixFinishSuccessfulExecution
