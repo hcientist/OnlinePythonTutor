@@ -113,7 +113,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   tabularView - render a tabular view of ALL steps at once (EXPERIMENTAL)
 //   lang - to render labels in a style appropriate for other languages,
 //          and to display the proper language in langDisplayDiv
-//          e.g., 'py2' for Python 2, 'py3' for Python 3, 'js' for JavaScript, 'java' for Java
+//          e.g., 'py2' for Python 2, 'py3' for Python 3, 'js' for JavaScript, 'java' for Java, 'ts' for TypeScript
 //          [default is Python-style labels]
 //   debugMode - some extra debugging printouts
 function ExecutionVisualizer(domRootID, dat, params) {
@@ -516,6 +516,8 @@ ExecutionVisualizer.prototype.render = function() {
     var pyVer = '2'; // default
     if (this.params.lang === 'js') {
       pyVer = 'js';
+    } else if (this.params.lang === 'ts') {
+      pyVer = 'ts';
     } else if (this.params.lang === 'java') {
       pyVer = 'java';
     } else if (this.params.lang === 'py3') {
@@ -536,6 +538,8 @@ ExecutionVisualizer.prototype.render = function() {
   if (this.params.lang !== undefined) {
     if (this.params.lang === 'js') {
       this.domRoot.find('#langDisplayDiv').html('JavaScript');
+    } else if (this.params.lang === 'ts') {
+      this.domRoot.find('#langDisplayDiv').html('TypeScript');
     } else if (this.params.lang === 'java') {
       this.domRoot.find('#langDisplayDiv').html('Java');
     } else if (this.params.lang === 'py2') {
@@ -3602,7 +3606,7 @@ ExecutionVisualizer.prototype.redrawConnectors = function() {
 
 
 ExecutionVisualizer.prototype.getRealLabel = function(label) {
-  if (this.params.lang === 'js') {
+  if (this.params.lang === 'js' || this.params.lang === 'ts') {
     if (label === 'list') {
       return 'array';
     } else if (label === 'instance') {
