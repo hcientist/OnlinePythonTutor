@@ -1,6 +1,5 @@
 // TODOs:
 //
-// - implement caching to avoid re-executing identical code from scratch
 
 /*
 
@@ -161,7 +160,13 @@ function setFronendError(lines) {
 // execution trace if we're in display mode
 function getAppStateWithTraceCache() {
   var ret = getAppState();
-  if (ret.mode === 'display') {
+
+  // only do caching in Mix Edit mode, *not* in View mode, since we
+  // don't want to invalidate the original cache entry that was populated
+  // in Edit mode just because we're messing around in View mode.
+  if (_labEditor /* in Mix Edit mode */ &&
+      ret.mode === 'display' /* in OPT Display mode */ &&
+      myVisualizer) {
     ret.cachedTrace = myVisualizer.curTrace;
     ret.cachedCod = myVisualizer.curInputCode;
     ret.cachedLang = myVisualizer.params.lang;
@@ -234,6 +239,8 @@ function officeMixEnterViewMode() {
     if (labInstance) {
       _labViewer = labInstance; // global
 
+      myVisualizer = null; // clear this before doing anything else, so
+                           // that we don't accidentally invalidate cache
       var savedAppState = _labViewer.components[0].component.data;
       setToggleOptions(savedAppState);
       if (savedAppState.code) {
@@ -263,6 +270,8 @@ function officeMixEnterEditMode() {
       // this seems to run every time editLab runs
       _labEditor.getConfiguration(function(err, configuration) {
         if (configuration) {
+          myVisualizer = null; // clear this before doing anything else, so
+                               // that we don't accidentally invalidate cache
           var savedAppState = configuration.components[0].data;
           setToggleOptions(savedAppState);
           if (savedAppState.code) {
@@ -298,7 +307,7 @@ function saveCurrentConfiguration() {
       x.cachedCod = _lastSavedAppState.cachedCod; // rtrim() already applied
       x.cachedLang = _lastSavedAppState.cachedLang;
     }
-    console.log('saveCurrentConfiguration', x);
+    //console.log('saveCurrentConfiguration', x);
     _labEditor.setConfiguration(getConfigurationFromData(x),
                                 function() {} /* empty error handler */);
     _lastSavedAppState = x; // global!
@@ -318,9 +327,17 @@ function mixLazyExecuteCode() {
     curLang = 'py3';
   }
 
-  console.log('mixLazyExecuteCode', {cod: curCod, lang: curLang});
-  // TODO: use cachedTrace if available instead of executing code from scratch
-  executeCodeFromScratch(); // ends with officeMixFinishSuccessfulExecution
+  if (_lastSavedAppState &&
+      curCod === _lastSavedAppState.cachedCod &&
+      curLang === _lastSavedAppState.cachedLang) {
+    // cache hit!
+
+    console.log('mixLazyExecuteCode CACHE HIT!');
+    executeCodeFromScratch(); // ends with officeMixFinishSuccessfulExecution
+  } else {
+    // cache miss
+    executeCodeFromScratch(); // ends with officeMixFinishSuccessfulExecution
+  }
 }
 
 
