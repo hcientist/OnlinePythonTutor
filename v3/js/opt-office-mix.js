@@ -103,10 +103,9 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 
 function officeMixFinishSuccessfulExecution() {
   updateAppDisplayForMix('display'); // do this first
-  $('#pyOutputPane #editCodeLinkDiv').hide(); // don't have explicit "Edit code" link
   $('#loadingPane').hide();
 
-  $("#toggleModebtn").html("Edit code");
+  $("#vizBtn").hide();
 
   if (_savedCurInstr !== undefined) {
     myVisualizer.renderStep(_savedCurInstr);
@@ -176,7 +175,7 @@ function getAppStateWithTraceCache() {
 
 function enterOPTEditCodeMode() {
   updateAppDisplayForMix('edit');
-  $("#toggleModebtn").html("Visualize code").show();
+  $("#vizBtn").html("Visualize Execution").show();
 
   // https://groups.google.com/forum/#!msg/ace-discuss/TQHqey_NkBg/q9x_tLrvsXoJ
   pyInputAceEditor.resize(); // weird hack that's necessary to refresh the editor's latest text values. #weird
@@ -225,6 +224,10 @@ function updateAppDisplayForMix(newAppMode) {
 
     // customize edit button click functionality AFTER rendering (NB: awkward!)
     $('#pyOutputPane #editCodeLinkDiv').show();
+    $('#pyOutputPane #editBtn').click(function() {
+      enterOPTEditCodeMode();
+    });
+
     $.bbq.pushState({ mode: 'display' }, 2 /* completely override other hash strings to keep URL clean */);
   } else {
     assert(false);
@@ -373,12 +376,8 @@ $(document).ready(function() {
 
   $('#pythonVersionSelector').change(setAceMode);
 
-  $("#toggleModebtn").click(function() {
-    if (appMode == 'edit') {
-      mixLazyExecuteCode();
-    } else {
-      enterOPTEditCodeMode();
-    }
+  $("#vizBtn").click(function() {
+    mixLazyExecuteCode();
   });
 
   // To run in https://labsjs.blob.core.windows.net/sdk/LabsJS-1.0.4/labshost.html
