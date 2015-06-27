@@ -180,6 +180,8 @@ function enterOPTEditCodeMode() {
   // https://groups.google.com/forum/#!msg/ace-discuss/TQHqey_NkBg/q9x_tLrvsXoJ
   pyInputAceEditor.resize(); // weird hack that's necessary to refresh the editor's latest text values. #weird
 
+  setAceMode(); // for syntax coloring
+
   saveCurrentConfiguration();
 }
 
@@ -451,7 +453,4 @@ $(document).ready(function() {
     Labs.on(Labs.Core.EventTypes.Deactivate, function() {
     });
   });
-
-
-  setAceMode(); // do this at the end
 });
