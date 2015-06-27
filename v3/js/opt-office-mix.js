@@ -49,8 +49,6 @@ var _lastSavedAppState = undefined; // nasty global
 
 
 function executeCode(forceStartingInstr, forceRawInputLst) {
-  $('#loadingPane').html('Executing code ... takes up to 10 seconds.').show();
-
   if (forceRawInputLst !== undefined) {
     rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
   }
@@ -103,9 +101,9 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 
 function officeMixFinishSuccessfulExecution() {
   updateAppDisplayForMix('display'); // do this first
-  $('#loadingPane').hide();
 
-  $("#vizBtn").hide();
+  $("#executeBtn").attr('disabled', false);
+  $("#executeBtn").hide();
 
   if (_savedCurInstr !== undefined) {
     myVisualizer.renderStep(_savedCurInstr);
@@ -145,16 +143,6 @@ function getConfigurationFromData(dat) {
 }
 
 
-// override setFronendError in opt-frontend-common.js
-// NB: this file must be included AFTER opt-frontend-common.js
-function setFronendError(lines) {
-  var errorStr = lines.map(htmlspecialchars).join('<br/>');
-  $('#loadingPane').html(errorStr).show();
-  //$("#frontendErrorOutput").html(errorStr);
-  //$("#frontendErrorOutput").show();
-}
-
-
 // a wrapper for getAppState() that caches the value of the current
 // execution trace if we're in display mode
 function getAppStateWithTraceCache() {
@@ -175,7 +163,8 @@ function getAppStateWithTraceCache() {
 
 function enterOPTEditCodeMode() {
   updateAppDisplayForMix('edit');
-  $("#vizBtn").html("Visualize Execution").show();
+  $("#executeBtn").html("Visualize Execution").show();
+  $("#executeBtn").attr('disabled', false);
 
   // https://groups.google.com/forum/#!msg/ace-discuss/TQHqey_NkBg/q9x_tLrvsXoJ
   pyInputAceEditor.resize(); // weird hack that's necessary to refresh the editor's latest text values. #weird
@@ -374,7 +363,7 @@ function mixLazyExecuteCode() {
     officeMixFinishSuccessfulExecution();
   } else {
     // cache miss
-    executeCodeFromScratch(); // ends with officeMixFinishSuccessfulExecution
+    executeCodeFromScratch(); // ends with officeMixFinishSuccessfulExecution or handleUncaughtExceptionFunc
   }
 }
 
@@ -390,7 +379,7 @@ $(document).ready(function() {
 
   $('#pythonVersionSelector').change(setAceMode);
 
-  $("#vizBtn").click(function() {
+  $("#executeBtn").click(function() {
     mixLazyExecuteCode();
   });
 
