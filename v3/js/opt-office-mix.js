@@ -251,6 +251,12 @@ function officeMixEnterViewMode() {
       myVisualizer = null; // clear this before doing anything else, so
                            // that we don't accidentally invalidate cache
       var savedAppState = _labViewer.components[0].component.data;
+
+      // very important so that trace cache can work when loading a saved Mix:
+      if (_lastSavedAppState === undefined) {
+        _lastSavedAppState = savedAppState;
+      }
+
       setToggleOptions(savedAppState);
       if (savedAppState.code) {
         pyInputSetValue(savedAppState.code);
@@ -282,6 +288,12 @@ function officeMixEnterEditMode() {
           myVisualizer = null; // clear this before doing anything else, so
                                // that we don't accidentally invalidate cache
           var savedAppState = configuration.components[0].data;
+
+          // very important so that trace cache can work when loading a saved Mix:
+          if (_lastSavedAppState === undefined) {
+            _lastSavedAppState = savedAppState;
+          }
+
           setToggleOptions(savedAppState);
           if (savedAppState.code) {
             pyInputSetValue(savedAppState.code);
@@ -407,7 +419,10 @@ $(document).ready(function() {
     }
   });
 
-  initAceEditor(300);
+  // TODO: in the future, make it flexible height but for now, just make
+  // it fixed-height but kinda small-ish
+  initAceEditor(200);
+  pyInputAceEditor.setOptions({minLines: 12, maxLines: 1000});
 
   // no frills footer
   $("#footer").css("margin-top", "0px")
