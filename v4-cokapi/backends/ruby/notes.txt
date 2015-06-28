@@ -1,0 +1,57 @@
+---
+2015-06-28
+
+Starting to learn Ruby to build an OPT backend for it ... relevant notes
+
+test cases in tests/
+
+gets is like raw_input, so should support that eventually since
+raw_input is a pretty popular OPT feature
+
+must richly support lambdas -- TODO: what are they called in ruby?!?
+
+ok there's local variable scoping even within a loop, which doesn't
+exist in Python/JS. so we might need more frames than just for function
+calls
+
+global variables are prefaced with $, but they're ugly and non-idiomatic
+but 'constants' (identifiers starting with a capital letter) can also be
+global in scope
+
+since everything is an object in Ruby, we need to make some
+simplifications for the visualization; e.g., it's overkill to show the
+entire class hierarchy for a 'primitive' Fixnum (number) object.
+
+Terminology translation:
+  Python 'list', Ruby 'array'
+  Python 'dict', Ruby 'hash'
+
+Ruby strings are mutable ... but i don't think that affects the
+visualization at all
+
+Ruby block is crucial for scoping! need to definitely support it well
+  - maybe extract out the actual source code for the block to display
+    it, like we do for JS funcs?
+
+symbols should probably be rendered specially
+
+hmmm, how do we visualize 'extensions' to built-in classes, such as:
+
+class Array
+  def iterate!
+    self.each_with_index { |n, i|
+      self[i] = yield(n)
+    }
+  end
+end
+
+see
+http://www.reactive.io/tips/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/
+choice excerpt: "So to recap, we went through Ruby’s four closure types,
+blocks, Procs, lambdas and Methods. We also know that blocks and Procs
+act like drop-in code snippets, while lambdas and Methods act just like
+methods."
+
+A lambda is simply a block with a name. but Proc (with a capital P)
+isn't the same as a lambda. a lambda is simply an anonymous method.
+
