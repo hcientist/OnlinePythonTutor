@@ -873,6 +873,7 @@ function genericOptFrontendReady() {
   $('#genUrlBtn').bind('click', function() {
     var myArgs = getAppState();
     var urlStr = $.param.fragment(window.location.href, myArgs, 2 /* clobber all */);
+    urlStr = urlStr.replace(/\)/g, '%29') // replace ) with %29 so that links embed well in Markdown
     $('#urlOutput').val(urlStr);
   });
 
