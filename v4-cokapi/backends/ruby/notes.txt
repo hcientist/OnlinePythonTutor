@@ -85,3 +85,10 @@ more misc docs:
 http://stackoverflow.com/questions/30584454/get-method-arguments-using-rubys-tracepoint
 http://kgrz.io/2014/04/19/ruby-trace-leave-oh-my.html
 
+
+StringIO could be useful:
+http://ruby-doc.org/stdlib-2.0.0/libdoc/stringio/rdoc/StringIO.html
+
+maybe use eval as well?
+http://polishinggems.blogspot.com/2011/06/how-to-evaluate-ruby-script-file-from.html
+
