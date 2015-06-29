@@ -3,14 +3,22 @@
 #
 # only works on Ruby 2.X since we use the TracePoint API
 
+# simple Ruby idiom for assert:
+# raise "error msg" unless <condition to assert>
+
+require 'json'
+
 script_name = ARGV[0]
 
-trace = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_return) do |tp|
-  if tp.path == '(eval)'
-    p [tp.event, tp.lineno]
-  end
+cur_trace = []
+
+pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_return) do |tp|
+  if tp.path != '(eval)' then next end # 'next' is a 'return' from a block
+  p [tp.event, tp.lineno, tp.path, tp.defined_class, tp.method_id]
+  # TODO: look into tp.defined_class and tp.method_id attrs
+  # TODO: look into tp.raised_exception and tp.return_value attrs
 end
 
-trace.enable
+pg_tracer.enable
 eval(File.open(script_name).read) # filename is called '(eval)'
-trace.disable
+pg_tracer.disable
