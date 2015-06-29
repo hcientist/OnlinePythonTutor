@@ -55,3 +55,33 @@ methods."
 A lambda is simply a block with a name. but Proc (with a capital P)
 isn't the same as a lambda. a lambda is simply an anonymous method.
 
+
+Look into using reflection methods such as Kernel::local_variables,
+Object::instance_variables, global_variables, constants, methods,
+instance_methods, etc.
+
+Use 'set' subtraction using '-':
+  class Dog
+    attr :bark, true
+  end
+  Dog.instance_methods - Object.instance_methods
+
+or even better, use Dog.instance_methods(false) to not get your
+ancestors' methods!
+
+we need to display 'module' contents and how a class includes (points
+to) a module, since that's a central concept for mixins
+
+
+it looks like we should target Ruby 2.X since there's the TracePoint
+class for easy tracing:
+http://ruby-doc.org/core-2.0.0/TracePoint.html
+
+the byebug debugger builds upon it:
+https://github.com/deivid-rodriguez/byebug
+
+
+more misc docs:
+http://stackoverflow.com/questions/30584454/get-method-arguments-using-rubys-tracepoint
+http://kgrz.io/2014/04/19/ruby-trace-leave-oh-my.html
+
