@@ -72,6 +72,9 @@ ancestors' methods!
 we need to display 'module' contents and how a class includes (points
 to) a module, since that's a central concept for mixins
 
+interesting -- classes can be 'opened' multiple times and have stuff
+added to them (even stdlib classes)
+
 
 it looks like we should target Ruby 2.X since there's the TracePoint
 class for easy tracing:
