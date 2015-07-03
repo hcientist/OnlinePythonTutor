@@ -19,6 +19,6 @@ def gimme
   puts x
 end
 
-gimme &p # use '&' to turn a Proc into a block
+gimme &p # use '&' to turn a lambda into a block
 print 'In main, x is '
 puts x
