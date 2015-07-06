@@ -95,3 +95,15 @@ http://ruby-doc.org/stdlib-2.0.0/libdoc/stringio/rdoc/StringIO.html
 maybe use eval as well?
 http://polishinggems.blogspot.com/2011/06/how-to-evaluate-ruby-script-file-from.html
 
+---
+2015-07-05
+
+trying out Rubinius instead of MRI since it contains more detailed
+debugging objects for inspecting variable scopes, backtraces, etc.
+
+ugh, can't get installed on Mac, so trying Linux.
+
+  rvm install rbx
+
+seems to work on my Linode
+
