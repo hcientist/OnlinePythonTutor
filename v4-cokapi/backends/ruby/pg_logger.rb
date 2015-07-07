@@ -11,11 +11,16 @@
 # - render exception events properly
 # - limit execution to N steps -- use instruction_limit_reached event type
 # - catch the execution of the LAST line in a user's script
+# - display TRUE global $variables rather than just locals of the top-most frame
+# - support recursive calls with function ids
 #
-# Limitation: no support for (lexical) environment pointers, since MRI
-# doesn't seem to expose them. We can see only the current (dynamic) stack.
+# Limitations:
+# - no support for (lexical) environment pointers, since MRI doesn't seem to
+#   expose them. We can see only the current (dynamic) stack backtrace
+#   with debug_inspector.
 
 # style guide: https://github.com/styleguide/ruby
+
 
 require 'json'
 require 'debug_inspector' # gem install debug_inspector, use on Ruby 2.X
@@ -28,8 +33,17 @@ trace_output_fn = ARGV[1] || "../../../v3/test-trace.js"
 cur_trace = []
 res = {'code' => cod, 'trace' => cur_trace}
 
+cur_frame_id = 1
+
 pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_return) do |tp|
   next if tp.path != '(eval)' # 'next' is a 'return' from a block
+
+  puts '---'
+
+  # inject a frame_id variable into the function's frame
+  if tp.event == :call || tp.event == :b_call
+    puts 'CALLLL'
+  end
 
   p [tp.event, tp.lineno, tp.path, tp.defined_class, tp.method_id]
   # TODO: look into tp.defined_class and tp.method_id attrs
@@ -64,14 +78,14 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   end
 
   # adapted from https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb
-  RubyVM::DebugInspector.open{|dc|
+  RubyVM::DebugInspector.open do |dc|
     locs = dc.backtrace_locations
 
-    effective_lines = locs.size - 2
-
-    pretty_backtrace = locs.map.with_index{|loc, i|
+    locs.each.with_index do |loc, i|
+      # ignore first two boilerplate frames
       next if i < 2
-      next loc.to_s unless (effective_lines -= 1) >= 0
+      # and totally punt as soon as you hit the 'eval' frame
+      break if /in `eval'/ =~ loc.to_s
 
       iseq = dc.frame_iseq(i)
 
@@ -92,14 +106,11 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
       end
 
       #modify_trace_line loc, loc.absolute_path, loc.lineno, lvs_val
-      if loc.lineno == 113 # HACKY STENT FOR FILTERING!
-        puts
-      else
-        print loc, ' ', lvs_val
-        puts
-      end
-    }.compact
-  }
+
+      print '>>> ', loc, ' ', lvs_val
+      puts
+    end
+  end
 
   puts
 
