@@ -11,10 +11,14 @@
 # - render exception events properly
 # - limit execution to N steps -- use instruction_limit_reached event type
 # - catch the execution of the LAST line in a user's script
+#
+# Limitation: no support for (lexical) environment pointers, since MRI
+# doesn't seem to expose them. We can see only the current (dynamic) stack.
 
 # style guide: https://github.com/styleguide/ruby
 
 require 'json'
+require 'debug_inspector' # gem install debug_inspector, use on Ruby 2.X
 
 script_name = ARGV[0]
 cod = File.open(script_name).read
@@ -53,10 +57,50 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   entry['line'] = tp.lineno
   entry['event'] = evt_type
 
-  # TODO: see http://ruby-doc.org/core-2.2.2/Thread/Backtrace/Location.html
-  caller_locations.each do |c|
-    puts c
+  # adapted from https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb
+  def self.iseq_local_variables iseq
+    _,_,_,_,arg_info,name,path,a_path,_,type,lvs, * = iseq.to_a
+    lvs
   end
+
+  # adapted from https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb
+  RubyVM::DebugInspector.open{|dc|
+    locs = dc.backtrace_locations
+
+    effective_lines = locs.size - 2
+
+    pretty_backtrace = locs.map.with_index{|loc, i|
+      next if i < 2
+      next loc.to_s unless (effective_lines -= 1) >= 0
+
+      iseq = dc.frame_iseq(i)
+
+      if iseq
+        b = dc.frame_binding(i)
+        lvs = iseq_local_variables(iseq)
+        lvs_val = lvs.inject({}){|r, lv|
+          begin
+            v = b.local_variable_get(lv).inspect
+            r[lv] = v
+          rescue NameError
+            # ignore
+          end
+          r
+        }
+      else
+        lvs_val = {}
+      end
+
+      #modify_trace_line loc, loc.absolute_path, loc.lineno, lvs_val
+      if loc.lineno == 113 # HACKY STENT FOR FILTERING!
+        puts
+      else
+        print loc, ' ', lvs_val
+        puts
+      end
+    }.compact
+  }
+
   puts
 
   cur_trace << entry

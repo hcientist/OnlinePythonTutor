@@ -96,14 +96,13 @@ maybe use eval as well?
 http://polishinggems.blogspot.com/2011/06/how-to-evaluate-ruby-script-file-from.html
 
 ---
-2015-07-05
+2015-07-06
 
-trying out Rubinius instead of MRI since it contains more detailed
-debugging objects for inspecting variable scopes, backtraces, etc.
+to get debugger inspector functionality in Ruby 2.x, use:
 
-ugh, can't get installed on Mac, so trying Linux.
+gem install debug_inspector
+gem install binding_of_caller
 
-  rvm install rbx
-
-seems to work on my Linode
+Also see here for inspirational example code for getting a pretty backtrace:
+https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb
 
