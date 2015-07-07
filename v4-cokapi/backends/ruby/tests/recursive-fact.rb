@@ -8,4 +8,4 @@ def fact n
   end
 end
 
-puts fact 5
+puts fact 4

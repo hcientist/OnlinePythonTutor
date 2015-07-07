@@ -12,7 +12,9 @@
 # - limit execution to N steps -- use instruction_limit_reached event type
 # - catch the execution of the LAST line in a user's script
 # - display TRUE global $variables rather than just locals of the top-most frame
-# - support recursive calls with function ids
+# - support recursive calls with function frame ids
+#   - maybe i need a stupid C extension to expose the pointer address of
+#     each frame object in the interpreter?!? ugh that would be a giant pain
 #
 # Limitations:
 # - no support for (lexical) environment pointers, since MRI doesn't seem to
@@ -24,6 +26,7 @@
 
 require 'json'
 require 'debug_inspector' # gem install debug_inspector, use on Ruby 2.X
+require 'binding_of_caller' # gem install binding_of_caller
 
 script_name = ARGV[0]
 cod = File.open(script_name).read
@@ -43,6 +46,15 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   # inject a frame_id variable into the function's frame
   if tp.event == :call || tp.event == :b_call
     puts 'CALLLL'
+    # ughhhh, I can't seem to create a new local variable using
+    # of_caller, although I can modify existing locals
+    # crappp instance variables are kinda 'global'
+    binding.of_caller(1).eval('@frame_id = ' + cur_frame_id.to_s)
+    puts binding.of_caller(1).eval('@frame_id')
+    #puts b.methods - Object.methods
+    #puts b.frame_type, b.frame_description, b.callers
+    #puts
+    cur_frame_id += 1
   end
 
   p [tp.event, tp.lineno, tp.path, tp.defined_class, tp.method_id]
