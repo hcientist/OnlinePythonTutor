@@ -17,6 +17,7 @@
 #     each frame object in the interpreter?!? ugh that would be a giant pain
 #     - maybe just modify this file to expose the 'cfp' pointer?
 #        https://github.com/banister/binding_of_caller/blob/master/ext/binding_of_caller/binding_of_caller.c
+#   - or recompile Ruby where the backtrace exposes the frame pointer address
 #
 # Limitations:
 # - no support for (lexical) environment pointers, since MRI doesn't seem to
