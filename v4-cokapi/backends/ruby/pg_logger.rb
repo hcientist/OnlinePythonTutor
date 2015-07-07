@@ -15,6 +15,8 @@
 # - support recursive calls with function frame ids
 #   - maybe i need a stupid C extension to expose the pointer address of
 #     each frame object in the interpreter?!? ugh that would be a giant pain
+#     - maybe just modify this file to expose the 'cfp' pointer?
+#        https://github.com/banister/binding_of_caller/blob/master/ext/binding_of_caller/binding_of_caller.c
 #
 # Limitations:
 # - no support for (lexical) environment pointers, since MRI doesn't seem to
@@ -88,6 +90,9 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
     _,_,_,_,arg_info,name,path,a_path,_,type,lvs, * = iseq.to_a
     lvs
   end
+
+  # TODO: use binding.of_caller(1) and get frame_type and
+  # frame_description properties to print out frame names
 
   # adapted from https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb
   RubyVM::DebugInspector.open do |dc|
