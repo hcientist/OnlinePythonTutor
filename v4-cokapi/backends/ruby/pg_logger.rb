@@ -38,6 +38,7 @@ cur_trace = []
 res = {'code' => cod, 'trace' => cur_trace}
 
 cur_frame_id = 1
+ordered_frame_ids = {}
 
 pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_return) do |tp|
   next if tp.path != '(eval)' # 'next' is a 'return' from a block
@@ -47,16 +48,11 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   # inject a frame_id variable into the function's frame
   if tp.event == :call || tp.event == :b_call
     puts 'CALLLL'
-    # ughhhh, I can't seem to create a new local variable using
-    # of_caller, although I can modify existing locals
-    # crappp instance variables are kinda 'global'
-    #binding.of_caller(1).eval('@frame_id = ' + cur_frame_id.to_s)
-    #puts binding.of_caller(1).eval('@frame_id')
-    #puts b.methods - Object.methods
-    #puts b.frame_type, b.frame_description, b.callers
-    #puts
-    cur_frame_id += 1
-    # TODO: collect frame_id and map it to cur_frame_id to canonicalize it
+    #new_frame_id = binding.of_caller(1).frame_id
+    #raise "Error: duplicate new_frame_id" unless !ordered_frame_ids.has_key?(new_frame_id)
+    # canonicalize it
+    #ordered_frame_ids[new_frame_id] = cur_frame_id
+    #cur_frame_id += 1
   end
 
   p [tp.event, tp.lineno, tp.path, tp.defined_class, tp.method_id]
@@ -108,8 +104,18 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
       if iseq
         b = dc.frame_binding(i)
+
+        # canonicalize to pretty-print
+        canonical_fid = ordered_frame_ids[b.frame_id]
+        if !canonical_fid
+          canonical_fid = cur_frame_id
+          ordered_frame_ids[b.frame_id] = cur_frame_id
+          cur_frame_id += 1
+        end
+
         print 'frame_id: '
-        puts b.frame_id
+        puts canonical_fid
+
         lvs = iseq_local_variables(iseq)
         lvs_val = lvs.inject({}){|r, lv|
           begin
