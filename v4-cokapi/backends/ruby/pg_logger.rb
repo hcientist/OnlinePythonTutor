@@ -14,8 +14,6 @@
 # - limit execution to N steps -- use instruction_limit_reached event type
 # - catch the execution of the LAST line in a user's script
 # - display TRUE global $variables rather than just locals of the top-most frame
-# - support recursive calls with function frame ids
-#   - TODO: use my custom binding::frame_id field
 #
 # Limitations:
 # - no support for (lexical) environment pointers, since MRI doesn't seem to
@@ -27,7 +25,7 @@
 
 require 'json'
 require 'debug_inspector' # gem install debug_inspector, use on Ruby 2.X
-#require 'binding_of_caller' # gem install binding_of_caller
+require 'binding_of_caller' # gem install binding_of_caller
 
 script_name = ARGV[0]
 cod = File.open(script_name).read
@@ -48,7 +46,8 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   # inject a frame_id variable into the function's frame
   if tp.event == :call || tp.event == :b_call
     puts 'CALLLL'
-    #new_frame_id = binding.of_caller(1).frame_id
+    #nf = binding.of_caller(1)
+    #puts nf.methods - Object.methods
     #raise "Error: duplicate new_frame_id" unless !ordered_frame_ids.has_key?(new_frame_id)
     # canonicalize it
     #ordered_frame_ids[new_frame_id] = cur_frame_id
@@ -112,6 +111,16 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
           ordered_frame_ids[b.frame_id] = cur_frame_id
           cur_frame_id += 1
         end
+
+        puts b
+
+        # TODO: hacky since we use of_caller -- make sure it looks legit
+        # in all cases:
+        print 'frame_description: '
+        puts b.of_caller(i+1).frame_description
+
+        print 'frame_type: '
+        puts b.of_caller(i+1).frame_type
 
         print 'frame_id: '
         puts canonical_fid
