@@ -14,6 +14,9 @@
 # - limit execution to N steps -- use instruction_limit_reached event type
 # - catch the execution of the LAST line in a user's script
 # - display TRUE global $variables rather than just locals of the top-most frame
+# - display constants as well, but look into weird constant scoping rules
+# - display class and instance variables as well, ergh!
+# - capture stdout output
 #
 # Limitations:
 # - no support for (lexical) environment pointers, since MRI doesn't seem to
@@ -37,6 +40,8 @@ res = {'code' => cod, 'trace' => cur_trace}
 
 cur_frame_id = 1
 ordered_frame_ids = {}
+
+basic_global_set = global_variables
 
 pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_return) do |tp|
   next if tp.path != '(eval)' # 'next' is a 'return' from a block
@@ -80,14 +85,20 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   entry['line'] = tp.lineno
   entry['event'] = evt_type
 
+  # globals
+  prog_globals = (global_variables - basic_global_set)
+  puts prog_globals.inspect # set difference
+  prog_globals.each.with_index do |varname, i|
+    val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
+    print varname, ' -> ', val
+    puts
+  end
+
   # adapted from https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb
   def self.iseq_local_variables iseq
     _,_,_,_,arg_info,name,path,a_path,_,type,lvs, * = iseq.to_a
     lvs
   end
-
-  # TODO: use binding.of_caller(1) and get frame_type and
-  # frame_description properties to print out frame names
 
   # adapted from https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb
   RubyVM::DebugInspector.open do |dc|
@@ -112,15 +123,12 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
           cur_frame_id += 1
         end
 
-        puts b
-
-        # TODO: hacky since we use of_caller -- make sure it looks legit
-        # in all cases:
+        # hacky since we use of_caller -- make sure it looks legit
         print 'frame_description: '
-        puts b.of_caller(i+1).frame_description
+        puts binding.of_caller(i+1).frame_description
 
         print 'frame_type: '
-        puts b.of_caller(i+1).frame_type
+        puts binding.of_caller(i+1).frame_type
 
         print 'frame_id: '
         puts canonical_fid
@@ -142,6 +150,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
       #modify_trace_line loc, loc.absolute_path, loc.lineno, lvs_val
 
       print '>>> ', loc, ' ', lvs_val
+      puts
       puts
     end
   end
