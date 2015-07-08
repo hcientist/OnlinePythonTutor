@@ -10,14 +10,10 @@
 
 # TODO
 # - catch exceptions so that the tracer doesn't crash on an exception
-# - render exception events properly
-# - limit execution to N steps -- use instruction_limit_reached event type
-# - catch the execution of the LAST line in a user's script
-# - display TRUE global $variables rather than just locals of the top-most frame
-# - display constants as well, but look into weird constant scoping rules
+#   - and render exception events properly
+# - display constants, but look into weird constant scoping rules
 #   - e.g., see this: http://rubylearning.com/satishtalim/ruby_constants.html
 # - display class and instance variables as well, ergh!
-# - capture stdout output
 #
 # Limitations:
 # - no support for (lexical) environment pointers, since MRI doesn't seem to
@@ -28,8 +24,11 @@
 
 
 require 'json'
+require 'stringio'
+
 require 'debug_inspector' # gem install debug_inspector, use on Ruby 2.X
 require 'binding_of_caller' # gem install binding_of_caller
+
 
 script_name = ARGV[0]
 cod = File.open(script_name).read
@@ -42,25 +41,28 @@ res = {'code' => cod, 'trace' => cur_trace}
 cur_frame_id = 1
 ordered_frame_ids = {}
 
+stdout_buffer = StringIO.new
+
 basic_global_set = global_variables
+
+n_steps = 0
+#MAX_STEPS = 30
+MAX_STEPS = 300
+
+class MaxStepsException < RuntimeError
+end
 
 pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_return) do |tp|
   next if tp.path != '(eval)' # 'next' is a 'return' from a block
 
-  puts '---'
+  # instruction_limit_reached - if you want to cap execution at a
+  # certain limit (e.g., 300 executed steps), issue this special event
+  # at the end. fill in the exception_msg field to say something like
+  # "(stopped after N steps to prevent possible infinite loop)"
+  raise MaxStepsException if n_steps >= MAX_STEPS # TODO: xxx
 
-  # inject a frame_id variable into the function's frame
-  if tp.event == :call || tp.event == :b_call
-    puts 'CALLLL'
-    #nf = binding.of_caller(1)
-    #puts nf.methods - Object.methods
-    #raise "Error: duplicate new_frame_id" unless !ordered_frame_ids.has_key?(new_frame_id)
-    # canonicalize it
-    #ordered_frame_ids[new_frame_id] = cur_frame_id
-    #cur_frame_id += 1
-  end
-
-  p [tp.event, tp.lineno, tp.path, tp.defined_class, tp.method_id]
+  STDERR.puts '---'
+  STDERR.puts [tp.event, tp.lineno, tp.path, tp.defined_class, tp.method_id].inspect
   # TODO: look into tp.defined_class and tp.method_id attrs
   # TODO: look into tp.raised_exception and tp.return_value attrs
 
@@ -86,13 +88,16 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   entry['line'] = tp.lineno
   entry['event'] = evt_type
 
+  STDERR.print 'stdout: '
+  STDERR.puts stdout_buffer.string.inspect
+
   # globals
   prog_globals = (global_variables - basic_global_set)
-  puts prog_globals.inspect # set difference
+  STDERR.puts prog_globals.inspect # set difference
   prog_globals.each.with_index do |varname, i|
     val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
-    print varname, ' -> ', val
-    puts
+    STDERR.print varname, ' -> ', val
+    STDERR.puts
   end
 
   # adapted from https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb
@@ -125,14 +130,14 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
         end
 
         # hacky since we use of_caller -- make sure it looks legit
-        print 'frame_description: '
-        puts binding.of_caller(i+1).frame_description
+        STDERR.print 'frame_description: '
+        STDERR.puts binding.of_caller(i+1).frame_description
 
-        print 'frame_type: '
-        puts binding.of_caller(i+1).frame_type
+        STDERR.print 'frame_type: '
+        STDERR.puts binding.of_caller(i+1).frame_type
 
-        print 'frame_id: '
-        puts canonical_fid
+        STDERR.print 'frame_id: '
+        STDERR.puts canonical_fid
 
         lvs = iseq_local_variables(iseq)
         lvs_val = lvs.inject({}){|r, lv|
@@ -148,29 +153,47 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
         lvs_val = {}
       end
 
-      #modify_trace_line loc, loc.absolute_path, loc.lineno, lvs_val
-
-      print '>>> ', loc, ' ', lvs_val
-      puts
-      puts
+      STDERR.print '>>> ', loc, ' ', lvs_val
+      STDERR.puts
+      STDERR.puts
     end
   end
 
-  puts
+  STDERR.puts
+
+  n_steps += 1
 
   cur_trace << entry
 end
 
-pg_tracer.enable
-eval(cod) # the filename of the user's code is '(eval)'
-pg_tracer.disable
 
-#puts JSON.pretty_generate(cur_trace) # pretty-print hack
+begin
+  # we are redirecting stdout so we need to print all warnings to stderr!
+  pg_tracer.enable
+  $stdout = stdout_buffer
 
-# postprocessing into a trace
-trace_json = JSON.generate(res)
-File.open(trace_output_fn, 'w') do |f|
-  f.write('var trace = ' + trace_json)
+  # super-hack: add an extra 'nil' line to execute at the end so that the
+  # tracer can easily pick up on the final executed line in '(eval)'
+  # - however, we need to patch up the line number and set event type to
+  #   'return' for the final line's execution.
+  # - this isn't a 'real' line number in the user's code since we've
+  #   inserted an extra line
+  cod << "\nnil"
+
+  eval(cod) # the filename of the user's code is '(eval)'
+  pg_tracer.disable
+rescue MaxStepsException
+  $stdout = STDOUT
+  puts "MaxStepsException -- OOOOOOOOOOOOOOOOOOOOOOOOOHHHHHHH!!!"
+ensure
+  $stdout = STDOUT
+  #STDERR.puts JSON.pretty_generate(cur_trace) # pretty-print hack
+
+  # postprocessing into a trace
+  trace_json = JSON.generate(res)
+  File.open(trace_output_fn, 'w') do |f|
+    f.write('var trace = ' + trace_json)
+  end
+
+  puts "Trace written to " + trace_output_fn
 end
-
-puts "Trace written to " + trace_output_fn
