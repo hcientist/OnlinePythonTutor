@@ -9,6 +9,18 @@
 # raise "error msg" unless <condition to assert>
 
 # TODO
+# - handle syntax errors in the user's code
+#   "If the trace has exactly 1 entry and it's an uncaught_exception, then
+#   the OPT frontend doesn't switch to the visualization at all ...
+#   instead it displays a "syntax error"-like thingy in the code editor.
+#   It will highlight the faulting line, indicated by the line field and
+#   display exception_msg there. So if you want to indicate a syntax
+#   error, then create a trace with exactly ONE entry that's an
+#   uncaught_exception. (If there's more than one trace entry and the last
+#   one happens to be uncaught_exception, then right now OPT still won't
+#   switch to the visualization and instead issue an error message. TODO:
+#   figure out what's a more desirable behavior here.)"
+#
 # - display constants, but look into weird constant scoping rules
 #   - e.g., see this: http://rubylearning.com/satishtalim/ruby_constants.html
 # - display class and instance variables as well, ergh!
