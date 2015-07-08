@@ -9,8 +9,6 @@
 # raise "error msg" unless <condition to assert>
 
 # TODO
-# - catch exceptions so that the tracer doesn't crash on an exception
-#   - and render exception events properly
 # - display constants, but look into weird constant scoping rules
 #   - e.g., see this: http://rubylearning.com/satishtalim/ruby_constants.html
 # - display class and instance variables as well, ergh!
@@ -64,7 +62,16 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   STDERR.puts '---'
   STDERR.puts [tp.event, tp.lineno, tp.path, tp.defined_class, tp.method_id].inspect
   # TODO: look into tp.defined_class and tp.method_id attrs
-  # TODO: look into tp.raised_exception and tp.return_value attrs
+
+  if tp.event == :return || tp.event == :b_return
+    STDERR.print 'RETURN!!! '
+    STDERR.puts tp.return_value.inspect
+  end
+
+  if tp.event == :raise
+    STDERR.print 'RAISE!!! '
+    STDERR.puts tp.raised_exception.inspect
+  end
 
   evt_type = case tp.event
              when :line then "step_line"
@@ -185,6 +192,10 @@ begin
 rescue MaxStepsException
   $stdout = STDOUT
   puts "MaxStepsException -- OOOOOOOOOOOOOOOOOOOOOOOOOHHHHHHH!!!"
+rescue
+  $stdout = STDOUT
+  puts "other exception -- EEEEEEEE!!!"
+  # ignore since we've already handled a :raise event by now
 ensure
   $stdout = STDOUT
   #STDERR.puts JSON.pretty_generate(cur_trace) # pretty-print hack
