@@ -15,6 +15,7 @@
 # - catch the execution of the LAST line in a user's script
 # - display TRUE global $variables rather than just locals of the top-most frame
 # - display constants as well, but look into weird constant scoping rules
+#   - e.g., see this: http://rubylearning.com/satishtalim/ruby_constants.html
 # - display class and instance variables as well, ergh!
 # - capture stdout output
 #
