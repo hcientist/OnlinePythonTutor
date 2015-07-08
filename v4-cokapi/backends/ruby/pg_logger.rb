@@ -1,7 +1,9 @@
 # Ruby backend for Online "Python" Tutor
 # created on 2015-06-29 by Philip Guo
 #
-# only works on Ruby 2.X since we use the TracePoint API
+# WARNING: this script only works on a *hacked version* of Ruby 2.X since
+# we use the TracePoint API and custom fields such as binding::frame_id.
+# See custom-ruby-interpreter/ for details.
 
 # simple Ruby idiom for assert:
 # raise "error msg" unless <condition to assert>
@@ -13,11 +15,7 @@
 # - catch the execution of the LAST line in a user's script
 # - display TRUE global $variables rather than just locals of the top-most frame
 # - support recursive calls with function frame ids
-#   - maybe i need a stupid C extension to expose the pointer address of
-#     each frame object in the interpreter?!? ugh that would be a giant pain
-#     - maybe just modify this file to expose the 'cfp' pointer?
-#        https://github.com/banister/binding_of_caller/blob/master/ext/binding_of_caller/binding_of_caller.c
-#   - or recompile Ruby where the backtrace exposes the frame pointer address
+#   - TODO: use my custom binding::frame_id field
 #
 # Limitations:
 # - no support for (lexical) environment pointers, since MRI doesn't seem to
@@ -29,7 +27,7 @@
 
 require 'json'
 require 'debug_inspector' # gem install debug_inspector, use on Ruby 2.X
-require 'binding_of_caller' # gem install binding_of_caller
+#require 'binding_of_caller' # gem install binding_of_caller
 
 script_name = ARGV[0]
 cod = File.open(script_name).read
@@ -52,12 +50,13 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
     # ughhhh, I can't seem to create a new local variable using
     # of_caller, although I can modify existing locals
     # crappp instance variables are kinda 'global'
-    binding.of_caller(1).eval('@frame_id = ' + cur_frame_id.to_s)
-    puts binding.of_caller(1).eval('@frame_id')
+    #binding.of_caller(1).eval('@frame_id = ' + cur_frame_id.to_s)
+    #puts binding.of_caller(1).eval('@frame_id')
     #puts b.methods - Object.methods
     #puts b.frame_type, b.frame_description, b.callers
     #puts
     cur_frame_id += 1
+    # TODO: collect frame_id and map it to cur_frame_id to canonicalize it
   end
 
   p [tp.event, tp.lineno, tp.path, tp.defined_class, tp.method_id]
@@ -109,6 +108,8 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
       if iseq
         b = dc.frame_binding(i)
+        print 'frame_id: '
+        puts b.frame_id
         lvs = iseq_local_variables(iseq)
         lvs_val = lvs.inject({}){|r, lv|
           begin
