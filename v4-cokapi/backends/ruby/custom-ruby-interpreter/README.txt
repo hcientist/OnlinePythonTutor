@@ -1,7 +1,6 @@
 2015-07-07
 
-To build the custom Ruby interpreter - use ruby-2.2.2:
-  wget http://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.2.tar.gz
+To build the custom Ruby interpreter - use ruby-2.2.2 in this directory:
   tar -zxvf ruby-2.2.2.tar.gz
   cp altered-files/* ruby-2.2.2/
   cd ruby-2.2.2/
