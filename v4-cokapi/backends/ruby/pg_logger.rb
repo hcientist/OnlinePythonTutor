@@ -201,6 +201,25 @@ begin
 
   eval(cod) # the filename of the user's code is '(eval)'
   pg_tracer.disable
+rescue SyntaxError
+  $stdout = STDOUT
+  puts "SyntaxError -- blarrrggg!!!"
+  exc_object = $!
+
+  raw_exc_message = exc_object.message
+  # parse out the line number and message from raw_exc_message. e.g.,:
+  # "(eval):11: syntax error, unexpected end-of-input, expecting keyword_end"
+  # - we want to extract out the line number of 11 and the message of
+  #   "syntax error, unexpected end-of-input, expecting keyword_end"
+  /[:](\d+)[:] (.*)$/ =~ raw_exc_message
+  lineno = $1.to_i
+  exc_message = $2
+
+  puts raw_exc_message
+  puts lineno
+  puts exc_message
+
+  # TODO: put syntax error information on trace
 rescue MaxStepsException
   $stdout = STDOUT
   puts "MaxStepsException -- OOOOOOOOOOOOOOOOOOOOOOOOOHHHHHHH!!!"
