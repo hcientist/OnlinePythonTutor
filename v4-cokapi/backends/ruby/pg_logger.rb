@@ -11,8 +11,8 @@
 # TODO
 # - display constants, but look into weird constant scoping rules
 #   - e.g., see this: http://rubylearning.com/satishtalim/ruby_constants.html
-#   - maybe use: Module.constants - Object.constants
-# - display class and instance variables as well, ergh!
+#   - display constants defined INSIDE OF modules or classes
+# - display class and instance variables
 #
 # Limitations:
 # - no support for (lexical) environment pointers, since MRI doesn't seem to
@@ -42,14 +42,18 @@ ordered_frame_ids = {}
 
 stdout_buffer = StringIO.new
 
-basic_global_set = global_variables
-
 n_steps = 0
 #MAX_STEPS = 30
 MAX_STEPS = 300
 
 class MaxStepsException < RuntimeError
 end
+
+
+# collect the sets of these variables RIGHT BEFORE the user's code runs
+base_globals_set = global_variables
+base_constants_set = Module.constants
+
 
 pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_return) do |tp|
   next if tp.path != '(eval)' # 'next' is a 'return' from a block
@@ -100,11 +104,22 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   STDERR.puts stdout_buffer.string.inspect
 
   # globals
-  prog_globals = (global_variables - basic_global_set)
-  STDERR.puts prog_globals.inspect # set difference
+  prog_globals = (global_variables - base_globals_set) # set difference
+  STDERR.print 'Globals: '
+  STDERR.puts prog_globals.inspect
   prog_globals.each.with_index do |varname, i|
     val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
-    STDERR.print varname, ' -> ', val
+    STDERR.print varname, ' -> ', val.inspect
+    STDERR.puts
+  end
+
+  # top-level constants
+  toplevel_constants = (Module.constants - base_constants_set) # set difference
+  STDERR.print 'Constants: '
+  STDERR.puts toplevel_constants.inspect
+  toplevel_constants.each.with_index do |varname, i|
+    val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
+    STDERR.print varname, ' -> ', val.inspect
     STDERR.puts
   end
 
@@ -225,6 +240,7 @@ rescue MaxStepsException
 rescue
   $stdout = STDOUT
   puts "other exception -- EEEEEEEE!!!"
+  puts $!
   # ignore since we've already handled a :raise event by now
 ensure
   $stdout = STDOUT
