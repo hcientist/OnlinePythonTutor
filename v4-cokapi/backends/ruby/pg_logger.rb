@@ -9,15 +9,27 @@
 # raise "error msg" unless <condition to assert>
 
 # TODO
-# - display constants, but look into weird constant scoping rules
-#   - e.g., see this: http://rubylearning.com/satishtalim/ruby_constants.html
-#   - display constants defined INSIDE OF modules or classes
+# - display constants defined INSIDE OF modules or classes
 # - display class and instance variables
+# - display the 'binding' within a proc/lambda object, which represents
+#   its closure
+# - toplevel methods, instance, and class variables belong to 'Object',
+#   so how do we cleanly visualize this? maybe with a special 'Object'
+#   frame?!?
+# - support gets() for user input using the restart hack mechanism
+#   - user input stored in $_
+# - support 'include'-ing a module and bringing in variables into namespace
+# - get rid of fake 'nil' on final line and adjust line numbers
+#
+# Useful notes from http://phrogz.net/programmingruby/frameset.html:
+#  - "First, every object has a unique object identifier (abbreviated as
+#    object id)."
 #
 # Limitations:
 # - no support for (lexical) environment pointers, since MRI doesn't seem to
 #   expose them. We can see only the current (dynamic) stack backtrace
 #   with debug_inspector.
+#   - NB: is this true? at least we have 'binding' for procs/lambdas
 
 # style guide: https://github.com/styleguide/ruby
 
@@ -85,43 +97,50 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
              when :raise then "exception"
              end
 
-  ordered_globals = []
-  globals = {}
-  stack = []
-  heap = {}
-
   entry = {}
-  entry['func_name'] = tp.method_id
-  entry['stdout'] = '' # TODO: xxx - look into StringIO
-  entry['ordered_globals'] = ordered_globals
-  entry['globals'] = globals
-  entry['stack_to_render'] = stack # TODO: xxx
-  entry['heap'] = heap
+
+  entry['func_name'] = '<toplevel>' #tp.method_id
   entry['line'] = tp.lineno
   entry['event'] = evt_type
 
+  # make a copy to take a snapshot at this point in time
+  entry['stdout'] = stdout_buffer.string.dup
   STDERR.print 'stdout: '
-  STDERR.puts stdout_buffer.string.inspect
+  STDERR.puts entry['stdout']
+
+  stack = []
+  heap = {}
+  entry['stack_to_render'] = stack # TODO: xxx
+  entry['heap'] = heap
 
   # globals
-  prog_globals = (global_variables - base_globals_set) # set difference
+  globals = {}
+  entry['globals'] = globals
+
+  true_globals = (global_variables - base_globals_set) # set difference
   STDERR.print 'Globals: '
-  STDERR.puts prog_globals.inspect
-  prog_globals.each.with_index do |varname, i|
+  STDERR.puts true_globals.inspect
+  entry['ordered_globals'] = true_globals.map { |e| e.to_s }
+
+  true_globals.each.with_index do |varname, i|
     val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
     STDERR.print varname, ' -> ', val.inspect
     STDERR.puts
+    globals[varname.to_s] = val.inspect # TODO: make into true objects later
   end
 
-  # top-level constants
+  # toplevel constants (stuff them in globals)
   toplevel_constants = (Module.constants - base_constants_set) # set difference
   STDERR.print 'Constants: '
   STDERR.puts toplevel_constants.inspect
+  entry['ordered_globals'] += toplevel_constants.map { |e| e.to_s }
   toplevel_constants.each.with_index do |varname, i|
     val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
     STDERR.print varname, ' -> ', val.inspect
     STDERR.puts
+    globals[varname.to_s] = val.inspect # TODO: make into true objects later
   end
+
 
   # adapted from https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb
   def self.iseq_local_variables iseq
@@ -247,7 +266,7 @@ ensure
   #STDERR.puts JSON.pretty_generate(cur_trace) # pretty-print hack
 
   # postprocessing into a trace
-  trace_json = JSON.generate(res)
+  trace_json = JSON.pretty_generate(res)
   File.open(trace_output_fn, 'w') do |f|
     f.write('var trace = ' + trace_json)
   end
