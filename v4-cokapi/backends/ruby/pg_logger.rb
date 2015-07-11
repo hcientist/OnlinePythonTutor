@@ -49,6 +49,7 @@ trace_output_fn = ARGV[1] || "../../../v3/test-trace.js"
 cur_trace = []
 res = {'code' => cod, 'trace' => cur_trace}
 
+# canonicalize to pretty-print
 cur_frame_id = 1
 ordered_frame_ids = {}
 
@@ -80,9 +81,11 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   STDERR.puts [tp.event, tp.lineno, tp.path, tp.defined_class, tp.method_id].inspect
   # TODO: look into tp.defined_class and tp.method_id attrs
 
+  retval = nil
   if tp.event == :return || tp.event == :b_return
     STDERR.print 'RETURN!!! '
     STDERR.puts tp.return_value.inspect
+    retval = tp.return_value.inspect # TODO: make into true objects later
   end
 
   if tp.event == :raise
@@ -109,8 +112,8 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   STDERR.puts entry['stdout']
 
   stack = []
-  heap = {}
-  entry['stack_to_render'] = stack # TODO: xxx
+  heap = {} # TODO: xxx
+  entry['stack_to_render'] = stack
   entry['heap'] = heap
 
   # globals
@@ -158,50 +161,77 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
       # and totally punt as soon as you hit the 'eval' frame
       break if /in `eval'/ =~ loc.to_s
 
+      stack_entry = {}
+      stack << stack_entry
+
+      stack_entry['is_highlighted'] = false # set the last entry to true later
+
       iseq = dc.frame_iseq(i)
+      raise "WTF WTF WTF?!?" unless iseq
 
-      if iseq
-        b = dc.frame_binding(i)
+      b = dc.frame_binding(i)
 
-        # canonicalize to pretty-print
-        canonical_fid = ordered_frame_ids[b.frame_id]
-        if !canonical_fid
-          canonical_fid = cur_frame_id
-          ordered_frame_ids[b.frame_id] = cur_frame_id
-          cur_frame_id += 1
-        end
-
-        # hacky since we use of_caller -- make sure it looks legit
-        STDERR.print 'frame_description: '
-        STDERR.puts binding.of_caller(i+1).frame_description
-
-        STDERR.print 'frame_type: '
-        STDERR.puts binding.of_caller(i+1).frame_type
-
-        STDERR.print 'frame_id: '
-        STDERR.puts canonical_fid
-
-        lvs = iseq_local_variables(iseq)
-        lvs_val = lvs.inject({}){|r, lv|
-          begin
-            v = b.local_variable_get(lv).inspect
-            r[lv] = v
-          rescue NameError
-            # ignore
-          end
-          r
-        }
-      else
-        lvs_val = {}
+      # frame_id field exists only in my hacked Ruby interpreter!
+      canonical_fid = ordered_frame_ids[b.frame_id]
+      if !canonical_fid
+        canonical_fid = cur_frame_id
+        ordered_frame_ids[b.frame_id] = cur_frame_id
+        cur_frame_id += 1
       end
 
-      STDERR.print '>>> ', loc, ' ', lvs_val
+      boc = binding.of_caller(i+1) # need +1 for some reason
+
+      # hacky since we use of_caller -- make sure it looks legit
+      STDERR.print 'frame_description: '
+      STDERR.puts boc.frame_description
+      STDERR.print 'frame_type: '
+      STDERR.puts boc.frame_type # 'eval', 'method', 'block'
+
+      stack_entry['func_name'] = boc.frame_description # TODO: integrate 'frame_type' too?
+
+      STDERR.print 'frame_id: '
+      STDERR.puts canonical_fid
+      stack_entry['frame_id'] = canonical_fid
+      stack_entry['unique_hash'] = stack_entry['func_name'] + '_f' + stack_entry['frame_id'].to_s
+
+      # unsupported features
+      stack_entry['is_parent'] = false
+      stack_entry['is_zombie'] = false
+      stack_entry['parent_frame_id_list'] = []
+
+      lvs = iseq_local_variables(iseq)
+      lvs_val = lvs.inject({}){|r, lv|
+        begin
+          v = b.local_variable_get(lv).inspect # TODO: make into true objects later
+          r[lv] = v
+        rescue NameError
+          # ignore
+        end
+        r
+      }
+
+      stack_entry['ordered_varnames'] = lvs.map { |e| e.to_s }
+      stack_entry['encoded_locals'] = lvs_val
+
+      STDERR.print '>>> ', loc, ' ', lvs, lvs_val
       STDERR.puts
       STDERR.puts
     end
   end
 
   STDERR.puts
+
+  # massage the topmost stack entry
+  if stack
+    stack[0]['is_highlighted'] = true
+    if tp.event == :return || tp.event == :b_return
+      stack[0]['ordered_varnames'] << '__return__'
+      stack[0]['encoded_locals']['__return__'] = retval
+    end
+  end
+
+  # now REVERSE the stack so that it grows downward
+  stack.reverse!
 
   n_steps += 1
 
