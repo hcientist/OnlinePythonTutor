@@ -9,14 +9,12 @@
 # raise "error msg" unless <condition to assert>
 
 # TODO
-# - put syntax error information into trace
 # - display constants defined INSIDE OF modules or classes
 # - display class and instance variables
 # - display the 'binding' within a proc/lambda object, which represents
 #   its closure
-# - toplevel methods, instance, and class variables belong to 'Object',
-#   so how do we cleanly visualize this? maybe with a special 'Object'
-#   frame?!?
+# - for simplicity, maybe consolidate the '<main>' frame into the global
+#   frame, so that 'locals' defined in main and methods appear together
 # - support gets() for user input using the restart hack mechanism
 #   - user input stored in $_
 # - support 'include'-ing a module and bringing in variables into namespace
@@ -67,8 +65,12 @@ end
 
 
 # collect the sets of these variables RIGHT BEFORE the user's code runs
+# so that we can do a set difference later to see what the user defined
 base_globals_set = global_variables
 base_constants_set = Module.constants
+base_inst_vars_set = self.instance_variables # toplevel instance variables are set on 'self'
+base_class_vars_set = Object.class_variables # toplevel class variables are set on 'Object'
+base_methods_set  = Object.private_methods # toplevel defined methods are set on 'Object'
 
 
 pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_return) do |tp|
@@ -131,13 +133,50 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   STDERR.print 'Constants: '
   STDERR.puts toplevel_constants.inspect
   entry['ordered_globals'] += toplevel_constants.map { |e| e.to_s }
-  toplevel_constants.each.with_index do |varname, i|
+  toplevel_constants.each do |varname|
     val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
     STDERR.print varname, ' -> ', val.inspect
     STDERR.puts
     globals[varname.to_s] = val.inspect # TODO: make into true objects later
   end
 
+  # toplevel methods, class vars, and instance vars
+  # just stuff them in globals, even though technically they're not
+  # really global variables in Ruby; they're part of the weird 'self'
+  # instance and also 'Object' itself ... quirky
+  toplevel_methods = Object.private_methods - base_methods_set
+  toplevel_class_vars = Object.class_variables - base_class_vars_set
+  toplevel_inst_vars = self.instance_variables - base_inst_vars_set
+
+  STDERR.puts 'toplevel_methods: %s' % toplevel_methods.inspect
+  STDERR.puts 'toplevel_class_vars: %s' % toplevel_class_vars.inspect
+  STDERR.puts 'toplevel_inst_vars: %s' % toplevel_inst_vars.inspect
+
+  entry['ordered_globals'] += toplevel_methods.map { |e| e.to_s }
+  entry['ordered_globals'] += toplevel_class_vars.map { |e| e.to_s }
+  entry['ordered_globals'] += toplevel_inst_vars.map { |e| e.to_s }
+
+
+  toplevel_methods.each do |varname|
+    val = Object.method(varname)
+    STDERR.print varname, ' -> ', val.inspect
+    STDERR.puts
+    globals[varname.to_s] = val.inspect # TODO: make into true objects later
+  end
+
+  toplevel_class_vars.each do |varname|
+    val = Object.class_variable_get(varname)
+    STDERR.print varname, ' -> ', val.inspect
+    STDERR.puts
+    globals[varname.to_s] = val.inspect # TODO: make into true objects later
+  end
+
+  toplevel_inst_vars.each do |varname|
+    val = self.instance_variable_get(varname)
+    STDERR.print varname, ' -> ', val.inspect
+    STDERR.puts
+    globals[varname.to_s] = val.inspect # TODO: make into true objects later
+  end
 
   if tp.event == :raise
     STDERR.print 'RAISE!!! '
@@ -280,17 +319,20 @@ rescue SyntaxError
   puts lineno
   puts exc_message
 
-  # TODO: put syntax error information into trace
-  #   "If the trace has exactly 1 entry and it's an uncaught_exception, then
-  #   the OPT frontend doesn't switch to the visualization at all ...
-  #   instead it displays a "syntax error"-like thingy in the code editor.
-  #   It will highlight the faulting line, indicated by the line field and
-  #   display exception_msg there. So if you want to indicate a syntax
-  #   error, then create a trace with exactly ONE entry that's an
-  #   uncaught_exception. (If there's more than one trace entry and the last
-  #   one happens to be uncaught_exception, then right now OPT still won't
-  #   switch to the visualization and instead issue an error message. TODO:
-  #   figure out what's a more desirable behavior here.)"
+  # From: https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-format.md
+  # "If the trace has exactly 1 entry and it's an uncaught_exception, then
+  # the OPT frontend doesn't switch to the visualization at all ...
+  # instead it displays a "syntax error"-like thingy in the code editor.
+  # It will highlight the faulting line, indicated by the line field and
+  # display exception_msg there. So if you want to indicate a syntax error,
+  # then create a trace with exactly ONE entry that's an uncaught_exception.
+  singleton_entry = {}
+  # mutate cur_trace in place rather than reassigning, since res already includes it
+  cur_trace.clear
+  cur_trace << singleton_entry
+  singleton_entry['event'] = 'uncaught_exception'
+  singleton_entry['line'] = lineno
+  singleton_entry['exception_msg'] = exc_message
 rescue MaxStepsException
   $stdout = STDOUT
 
