@@ -75,7 +75,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   # certain limit (e.g., 300 executed steps), issue this special event
   # at the end. fill in the exception_msg field to say something like
   # "(stopped after N steps to prevent possible infinite loop)"
-  raise MaxStepsException if n_steps >= MAX_STEPS # TODO: xxx
+  raise MaxStepsException if n_steps >= MAX_STEPS
 
   STDERR.puts '---'
   STDERR.puts [tp.event, tp.lineno, tp.path, tp.defined_class, tp.method_id].inspect
@@ -86,11 +86,6 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
     STDERR.print 'RETURN!!! '
     STDERR.puts tp.return_value.inspect
     retval = tp.return_value.inspect # TODO: make into true objects later
-  end
-
-  if tp.event == :raise
-    STDERR.print 'RAISE!!! '
-    STDERR.puts tp.raised_exception.inspect
   end
 
   evt_type = case tp.event
@@ -145,6 +140,12 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   end
 
 
+  if tp.event == :raise
+    STDERR.print 'RAISE!!! '
+    STDERR.puts tp.raised_exception.inspect
+    entry['exception_msg'] = tp.raised_exception.inspect # TODO: make into true objects later
+  end
+
   # adapted from https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb
   def self.iseq_local_variables iseq
     _,_,_,_,arg_info,name,path,a_path,_,type,lvs, * = iseq.to_a
@@ -162,56 +163,60 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
       break if /in `eval'/ =~ loc.to_s
 
       stack_entry = {}
-      stack << stack_entry
-
       stack_entry['is_highlighted'] = false # set the last entry to true later
 
       iseq = dc.frame_iseq(i)
-      raise "WTF WTF WTF?!?" unless iseq
+      if !iseq
+        # if you're, say, in a built-in operator like :/ (division)
+        # totally punt since we can't get any useful info
+        next
+      else
+        b = dc.frame_binding(i)
 
-      b = dc.frame_binding(i)
+        # frame_id field exists only in my hacked Ruby interpreter!
+        canonical_fid = ordered_frame_ids[b.frame_id]
+        if !canonical_fid
+          canonical_fid = cur_frame_id
+          ordered_frame_ids[b.frame_id] = cur_frame_id
+          cur_frame_id += 1
+        end
 
-      # frame_id field exists only in my hacked Ruby interpreter!
-      canonical_fid = ordered_frame_ids[b.frame_id]
-      if !canonical_fid
-        canonical_fid = cur_frame_id
-        ordered_frame_ids[b.frame_id] = cur_frame_id
-        cur_frame_id += 1
+        boc = binding.of_caller(i+1) # need +1 for some reason
+
+        # hacky since we use of_caller -- make sure it looks legit
+        STDERR.print 'frame_description: '
+        STDERR.puts boc.frame_description
+        STDERR.print 'frame_type: '
+        STDERR.puts boc.frame_type # 'eval', 'method', 'block'
+
+        stack_entry['func_name'] = boc.frame_description # TODO: integrate 'frame_type' too?
+
+        STDERR.print 'frame_id: '
+        STDERR.puts canonical_fid
+        stack_entry['frame_id'] = canonical_fid
+        stack_entry['unique_hash'] = stack_entry['func_name'] + '_f' + stack_entry['frame_id'].to_s
+
+        # unsupported features
+        stack_entry['is_parent'] = false
+        stack_entry['is_zombie'] = false
+        stack_entry['parent_frame_id_list'] = []
+
+        lvs = iseq_local_variables(iseq)
+        lvs_val = lvs.inject({}){|r, lv|
+          begin
+            v = b.local_variable_get(lv).inspect # TODO: make into true objects later
+            r[lv] = v
+          rescue NameError
+            # ignore
+          end
+          r
+        }
+
+        stack_entry['ordered_varnames'] = lvs.map { |e| e.to_s }
+        stack_entry['encoded_locals'] = lvs_val
       end
 
-      boc = binding.of_caller(i+1) # need +1 for some reason
-
-      # hacky since we use of_caller -- make sure it looks legit
-      STDERR.print 'frame_description: '
-      STDERR.puts boc.frame_description
-      STDERR.print 'frame_type: '
-      STDERR.puts boc.frame_type # 'eval', 'method', 'block'
-
-      stack_entry['func_name'] = boc.frame_description # TODO: integrate 'frame_type' too?
-
-      STDERR.print 'frame_id: '
-      STDERR.puts canonical_fid
-      stack_entry['frame_id'] = canonical_fid
-      stack_entry['unique_hash'] = stack_entry['func_name'] + '_f' + stack_entry['frame_id'].to_s
-
-      # unsupported features
-      stack_entry['is_parent'] = false
-      stack_entry['is_zombie'] = false
-      stack_entry['parent_frame_id_list'] = []
-
-      lvs = iseq_local_variables(iseq)
-      lvs_val = lvs.inject({}){|r, lv|
-        begin
-          v = b.local_variable_get(lv).inspect # TODO: make into true objects later
-          r[lv] = v
-        rescue NameError
-          # ignore
-        end
-        r
-      }
-
-      stack_entry['ordered_varnames'] = lvs.map { |e| e.to_s }
-      stack_entry['encoded_locals'] = lvs_val
+      stack << stack_entry # only append on success
 
       STDERR.print '>>> ', loc, ' ', lvs, lvs_val
       STDERR.puts
@@ -293,7 +298,6 @@ rescue
   # ignore since we've already handled a :raise event by now
 ensure
   $stdout = STDOUT
-  #STDERR.puts JSON.pretty_generate(cur_trace) # pretty-print hack
 
   # postprocessing into a trace
   trace_json = JSON.pretty_generate(res)
