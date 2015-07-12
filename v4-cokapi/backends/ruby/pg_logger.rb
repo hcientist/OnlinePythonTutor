@@ -9,6 +9,7 @@
 # raise "error msg" unless <condition to assert>
 
 # TODO
+# - put syntax error information into trace
 # - display constants defined INSIDE OF modules or classes
 # - display class and instance variables
 # - display the 'binding' within a proc/lambda object, which represents
@@ -19,7 +20,6 @@
 # - support gets() for user input using the restart hack mechanism
 #   - user input stored in $_
 # - support 'include'-ing a module and bringing in variables into namespace
-# - get rid of fake 'nil' on final line and adjust line numbers
 #
 # Useful notes from http://phrogz.net/programmingruby/frameset.html:
 #  - "First, every object has a unique object identifier (abbreviated as
@@ -47,7 +47,8 @@ cod = File.open(script_name).read
 trace_output_fn = ARGV[1] || "../../../v3/test-trace.js"
 
 cur_trace = []
-res = {'code' => cod, 'trace' => cur_trace}
+res = {'code' => cod.dup, # make a snapshot of the code NOW before it's modified
+       'trace' => cur_trace}
 
 # canonicalize to pretty-print
 cur_frame_id = 1
@@ -58,6 +59,8 @@ stdout_buffer = StringIO.new
 n_steps = 0
 #MAX_STEPS = 30
 MAX_STEPS = 300
+
+n_lines_added = nil
 
 class MaxStepsException < RuntimeError
 end
@@ -247,11 +250,15 @@ begin
 
   # super-hack: add an extra 'nil' line to execute at the end so that the
   # tracer can easily pick up on the final executed line in '(eval)'
-  # - however, we need to patch up the line number and set event type to
-  #   'return' for the final line's execution.
   # - this isn't a 'real' line number in the user's code since we've
   #   inserted an extra line
-  cod << "\nnil"
+  if cod[-1] == "\n"
+    cod << "nil"
+    n_lines_added = 1
+  else
+    cod << "\nnil"
+    n_lines_added = 2
+  end
 
   eval(cod) # the filename of the user's code is '(eval)'
   pg_tracer.disable
@@ -273,7 +280,7 @@ rescue SyntaxError
   puts lineno
   puts exc_message
 
-  # TODO: put syntax error information on trace
+  # TODO: put syntax error information into trace
   #   "If the trace has exactly 1 entry and it's an uncaught_exception, then
   #   the OPT frontend doesn't switch to the visualization at all ...
   #   instead it displays a "syntax error"-like thingy in the code editor.
@@ -297,9 +304,18 @@ rescue
   $stdout = STDOUT
   puts "other exception -- EEEEEEEE!!!"
   puts $!
-  # ignore since we've already handled a :raise event by now
+  # ignore since we've already handled a :raise event in the trace by now
 ensure
   $stdout = STDOUT
+
+  # super hack -- to account for the fact that we added an extra 'nil'
+  # instruction at the very end of the user's code, we will set the
+  # final instruction's line number to the last line of the file
+  # (only do this if the trace isn't a single element, which likely
+  # indicates some sort of uncaught_exception)
+  if cur_trace.length > 1 && n_lines_added
+    cur_trace[-1]['line'] -= n_lines_added
+  end
 
   # postprocessing into a trace
   trace_json = JSON.pretty_generate(res)
