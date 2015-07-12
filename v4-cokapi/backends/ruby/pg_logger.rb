@@ -13,8 +13,6 @@
 # - display class and instance variables
 # - display the 'binding' within a proc/lambda object, which represents
 #   its closure
-# - for simplicity, maybe consolidate the '<main>' frame into the global
-#   frame, so that 'locals' defined in main and methods appear together
 # - support gets() for user input using the restart hack mechanism
 #   - user input stored in $_
 # - support 'include'-ing a module and bringing in variables into namespace
@@ -203,6 +201,8 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
       stack_entry = {}
       stack_entry['is_highlighted'] = false # set the last entry to true later
 
+      is_main = false
+
       iseq = dc.frame_iseq(i)
       if !iseq
         # if you're, say, in a built-in operator like :/ (division)
@@ -225,7 +225,12 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
         STDERR.print 'frame_description: '
         STDERR.puts boc.frame_description
         STDERR.print 'frame_type: '
-        STDERR.puts boc.frame_type # 'eval', 'method', 'block'
+        STDERR.puts boc.frame_type # :eval, :method, :block
+
+        # special-case handling for the toplevel '<main>' frame
+        if boc.frame_description == '<main>' && boc.frame_type == :eval
+          is_main = true
+        end
 
         stack_entry['func_name'] = boc.frame_description # TODO: integrate 'frame_type' too?
 
@@ -252,13 +257,26 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
         stack_entry['ordered_varnames'] = lvs.map { |e| e.to_s }
         stack_entry['encoded_locals'] = lvs_val
+
+        # just fold everything into globals rather than creating a
+        # separate (redundant) frame for '<main>'
+        if is_main
+          entry['ordered_globals'] += stack_entry['ordered_varnames']
+          entry['globals'].update(stack_entry['encoded_locals'])
+        end
       end
 
-      stack << stack_entry # only append on success
-
+      STDERR.puts '--- is_main: %s' % is_main
       STDERR.print '>>> ', loc, ' ', lvs, lvs_val
       STDERR.puts
       STDERR.puts
+
+      # no separate frame for main since its local variables were folded
+      # into globals
+      if !is_main
+        stack << stack_entry
+      end
+
     end
   end
 

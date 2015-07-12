@@ -106,3 +106,9 @@ gem install binding_of_caller
 Also see here for inspirational example code for getting a pretty backtrace:
 https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb
 
+
+---
+2015-07-11
+
+http://eli.thegreenplace.net/2006/04/18/understanding-ruby-blocks-procs-and-methods/
+

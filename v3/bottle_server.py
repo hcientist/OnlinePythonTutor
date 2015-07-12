@@ -104,4 +104,5 @@ if n_fail == 0:
 
 
 if __name__ == "__main__":
-    run(host='localhost', port=8080, reloader=True)
+    #run(host='localhost', port=8080, reloader=True)
+    run(host='0.0.0.0', port=8003, reloader=True) # make it externally visible - DANGER this is very insecure since there's no sandboxing!
