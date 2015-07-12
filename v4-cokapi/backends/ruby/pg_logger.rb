@@ -71,11 +71,7 @@ base_constants_set = Module.constants
 pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_return) do |tp|
   next if tp.path != '(eval)' # 'next' is a 'return' from a block
 
-  # instruction_limit_reached - if you want to cap execution at a
-  # certain limit (e.g., 300 executed steps), issue this special event
-  # at the end. fill in the exception_msg field to say something like
-  # "(stopped after N steps to prevent possible infinite loop)"
-  raise MaxStepsException if n_steps >= MAX_STEPS
+  raise MaxStepsException if n_steps > MAX_STEPS
 
   STDERR.puts '---'
   STDERR.puts [tp.event, tp.lineno, tp.path, tp.defined_class, tp.method_id].inspect
@@ -227,7 +223,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   STDERR.puts
 
   # massage the topmost stack entry
-  if stack
+  if stack.length > 0
     stack[0]['is_highlighted'] = true
     if tp.event == :return || tp.event == :b_return
       stack[0]['ordered_varnames'] << '__return__'
@@ -290,7 +286,13 @@ rescue SyntaxError
   #   figure out what's a more desirable behavior here.)"
 rescue MaxStepsException
   $stdout = STDOUT
+
   puts "MaxStepsException -- OOOOOOOOOOOOOOOOOOOOOOOOOHHHHHHH!!!"
+  # take the final trace entry & make it into a instruction_limit_reached event
+  if cur_trace.length > 0
+    cur_trace[-1]['event'] = 'instruction_limit_reached'
+    cur_trace[-1]['exception_msg'] = "(stopped after %d steps to prevent possible infinite loop)" % MAX_STEPS
+  end
 rescue
   $stdout = STDOUT
   puts "other exception -- EEEEEEEE!!!"
