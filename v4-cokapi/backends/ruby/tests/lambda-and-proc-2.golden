@@ -1,0 +1,2254 @@
+other exception -- EEEEEEEE!!!
+unexpected return
+{
+  "code": "# Adapted from http://www.reactive.io/tips/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/\n\ndef generic_return(code)\n  one, two    = 1, 2\n  three, four = code.call(one, two)\n  return \"Give me a #{three} and a #{four}\"\nend\n\nputs generic_return(lambda { |x, y| return x + 2, y + 2 })\n\nputs generic_return(Proc.new { |x, y| x + 2; y + 2 })\n\nputs generic_return(Proc.new { |x, y| [x + 2, y + 2] })\n\n# runtime error -- cannot have 'return' in here ...\nputs generic_return(Proc.new { |x, y| return x + 2, y + 2 })\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:3",
+          "frame_id": 2,
+          "unique_hash": "generic_return:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
+            "one": "nil",
+            "two": "nil",
+            "three": "nil",
+            "four": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:4",
+          "frame_id": 2,
+          "unique_hash": "generic_return:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
+            "one": "nil",
+            "two": "nil",
+            "three": "nil",
+            "four": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:9",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:9_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "1",
+            "y": "2"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:9",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:9_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "1",
+            "y": "2"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:9",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:9_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": "1",
+            "y": "2",
+            "__return__": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:6",
+          "frame_id": 2,
+          "unique_hash": "generic_return:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
+            "one": "1",
+            "two": "2",
+            "three": "3",
+            "four": "4"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:7",
+          "frame_id": 2,
+          "unique_hash": "generic_return:7_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
+            "one": "1",
+            "two": "2",
+            "three": "3",
+            "four": "4",
+            "__return__": "\"Give me a 3 and a 4\""
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:3",
+          "frame_id": 2,
+          "unique_hash": "generic_return:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
+            "one": "nil",
+            "two": "nil",
+            "three": "nil",
+            "four": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:4",
+          "frame_id": 2,
+          "unique_hash": "generic_return:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
+            "one": "nil",
+            "two": "nil",
+            "three": "nil",
+            "four": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "call",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:11",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:11_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "1",
+            "y": "2"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:11",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:11_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "1",
+            "y": "2"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "return",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:11",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:11_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": "1",
+            "y": "2",
+            "__return__": "4"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:6",
+          "frame_id": 2,
+          "unique_hash": "generic_return:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
+            "one": "1",
+            "two": "2",
+            "three": "4",
+            "four": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "return",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:7",
+          "frame_id": 2,
+          "unique_hash": "generic_return:7_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
+            "one": "1",
+            "two": "2",
+            "three": "4",
+            "four": "nil",
+            "__return__": "\"Give me a 4 and a \""
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:3",
+          "frame_id": 2,
+          "unique_hash": "generic_return:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
+            "one": "nil",
+            "two": "nil",
+            "three": "nil",
+            "four": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:4",
+          "frame_id": 2,
+          "unique_hash": "generic_return:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
+            "one": "nil",
+            "two": "nil",
+            "three": "nil",
+            "four": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "call",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:13",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:13_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "1",
+            "y": "2"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:13",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:13_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "1",
+            "y": "2"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "return",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:13",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:13_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": "1",
+            "y": "2",
+            "__return__": "[3, 4]"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:6",
+          "frame_id": 2,
+          "unique_hash": "generic_return:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
+            "one": "1",
+            "two": "2",
+            "three": "3",
+            "four": "4"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "return",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:7",
+          "frame_id": 2,
+          "unique_hash": "generic_return:7_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
+            "one": "1",
+            "two": "2",
+            "three": "3",
+            "four": "4",
+            "__return__": "\"Give me a 3 and a 4\""
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:3",
+          "frame_id": 2,
+          "unique_hash": "generic_return:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950d082470@(eval):16>",
+            "one": "nil",
+            "two": "nil",
+            "three": "nil",
+            "four": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:4",
+          "frame_id": 2,
+          "unique_hash": "generic_return:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950d082470@(eval):16>",
+            "one": "nil",
+            "two": "nil",
+            "three": "nil",
+            "four": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950d082470@(eval):16>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "call",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950d082470@(eval):16>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:16",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:16_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "1",
+            "y": "2"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950d082470@(eval):16>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:16",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:16_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "1",
+            "y": "2"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "exception",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950d082470@(eval):16>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:16",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:16_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "1",
+            "y": "2"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ],
+      "exception_msg": "#<LocalJumpError: unexpected return>"
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "return",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950d082470@(eval):16>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:16",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:16_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": "1",
+            "y": "2",
+            "__return__": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "return",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "code": "#<Proc:0x007f950d082470@(eval):16>",
+            "one": "1",
+            "two": "2",
+            "three": "nil",
+            "four": "nil",
+            "__return__": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "generic_return": "#<Method: Class(Object)#generic_return>"
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    }
+  ]
+}

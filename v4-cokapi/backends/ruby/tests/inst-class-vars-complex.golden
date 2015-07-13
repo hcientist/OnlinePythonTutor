@@ -1,0 +1,2400 @@
+{
+  "code": "# adapted from http://rubylearning.com/satishtalim/ruby_constants.html\n\n# p057mymethods2.rb  \n# variables and methods start lowercase  \n$glob = 5             # global variables start with $  \nclass TestVar         # class name constant, start uppercase  \n @@cla = 6            # class variables start with @@  \n CONST_VAL = 7        # constant style, all caps, underscore  \n def initialize(x)    # constructor  \n  @inst = x           # instance variables start with @  \n  @@cla += 1          # each object shares @@cla  \n end  \n def self.cla         # class method, getter  \n  @@cla  \n end  \n def self.cla=(y)     # class method, setter, also TestVar.  \n  @@cla = y  \n end  \n def inst             # instance method, getter  \n  @inst  \n end  \n def inst=(i)         # instance method, setter  \n  @inst = i  \n end  \nend  \nputs $glob  \ntest = TestVar.new(3) # calls constructor  \nputs TestVar.cla      # calls getter  \nputs test.inspect     # gives object ID and instance vars  \nTestVar.cla = 4       # calls setter  \ntest.inst=8           # calls setter  \nputs TestVar.cla  \nputs test.inst        # calls getter  \nother = TestVar.new(17)  \nputs other.inspect  \nputs TestVar.cla  \n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:5",
+          "frame_id": 1,
+          "unique_hash": "<main>:5_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "nil"
+      },
+      "ordered_globals": [
+        "$glob"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:6",
+          "frame_id": 1,
+          "unique_hash": "<main>:6_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5"
+      },
+      "ordered_globals": [
+        "$glob"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:6",
+          "frame_id": 1,
+          "unique_hash": "<main>:6_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:TestVar>:6",
+          "frame_id": 2,
+          "unique_hash": "<class:TestVar>:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:6",
+          "frame_id": 1,
+          "unique_hash": "<main>:6_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:TestVar>:7",
+          "frame_id": 2,
+          "unique_hash": "<class:TestVar>:7_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:6",
+          "frame_id": 1,
+          "unique_hash": "<main>:6_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:TestVar>:8",
+          "frame_id": 2,
+          "unique_hash": "<class:TestVar>:8_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:6",
+          "frame_id": 1,
+          "unique_hash": "<main>:6_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:TestVar>:9",
+          "frame_id": 2,
+          "unique_hash": "<class:TestVar>:9_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:6",
+          "frame_id": 1,
+          "unique_hash": "<main>:6_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:TestVar>:13",
+          "frame_id": 2,
+          "unique_hash": "<class:TestVar>:13_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:6",
+          "frame_id": 1,
+          "unique_hash": "<main>:6_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:TestVar>:16",
+          "frame_id": 2,
+          "unique_hash": "<class:TestVar>:16_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 19,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:6",
+          "frame_id": 1,
+          "unique_hash": "<main>:6_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:TestVar>:19",
+          "frame_id": 2,
+          "unique_hash": "<class:TestVar>:19_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 22,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:6",
+          "frame_id": 1,
+          "unique_hash": "<main>:6_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:TestVar>:22",
+          "frame_id": 2,
+          "unique_hash": "<class:TestVar>:22_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 25,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:6",
+          "frame_id": 1,
+          "unique_hash": "<main>:6_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:TestVar>:25",
+          "frame_id": 2,
+          "unique_hash": "<class:TestVar>:25_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 26,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:26",
+          "frame_id": 1,
+          "unique_hash": "<main>:26_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 27,
+      "event": "step_line",
+      "stdout": "5\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:27",
+          "frame_id": 1,
+          "unique_hash": "<main>:27_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "call",
+      "stdout": "5\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:27",
+          "frame_id": 1,
+          "unique_hash": "<main>:27_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:9",
+          "frame_id": 3,
+          "unique_hash": "initialize:9_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": "3"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "5\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:27",
+          "frame_id": 1,
+          "unique_hash": "<main>:27_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:10",
+          "frame_id": 3,
+          "unique_hash": "initialize:10_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": "3"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "5\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:27",
+          "frame_id": 1,
+          "unique_hash": "<main>:27_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:11",
+          "frame_id": 3,
+          "unique_hash": "initialize:11_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": "3"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 12,
+      "event": "return",
+      "stdout": "5\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:27",
+          "frame_id": 1,
+          "unique_hash": "<main>:27_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "nil",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:12",
+          "frame_id": 3,
+          "unique_hash": "initialize:12_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": "3",
+            "__return__": "7"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 28,
+      "event": "step_line",
+      "stdout": "5\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:28",
+          "frame_id": 1,
+          "unique_hash": "<main>:28_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
+            "other": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "call",
+      "stdout": "5\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:28",
+          "frame_id": 1,
+          "unique_hash": "<main>:28_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla:13",
+          "frame_id": 2,
+          "unique_hash": "cla:13_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "5\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:28",
+          "frame_id": 1,
+          "unique_hash": "<main>:28_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla:14",
+          "frame_id": 2,
+          "unique_hash": "cla:14_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
+      "event": "return",
+      "stdout": "5\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:28",
+          "frame_id": 1,
+          "unique_hash": "<main>:28_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla:15",
+          "frame_id": 2,
+          "unique_hash": "cla:15_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": "7"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 29,
+      "event": "step_line",
+      "stdout": "5\n7\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:29",
+          "frame_id": 1,
+          "unique_hash": "<main>:29_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
+            "other": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 30,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:30",
+          "frame_id": 1,
+          "unique_hash": "<main>:30_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
+            "other": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "call",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:30",
+          "frame_id": 1,
+          "unique_hash": "<main>:30_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla=:16",
+          "frame_id": 2,
+          "unique_hash": "cla=:16_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "y"
+          ],
+          "encoded_locals": {
+            "y": "4"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 17,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:30",
+          "frame_id": 1,
+          "unique_hash": "<main>:30_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla=:17",
+          "frame_id": 2,
+          "unique_hash": "cla=:17_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "y"
+          ],
+          "encoded_locals": {
+            "y": "4"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 18,
+      "event": "return",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:30",
+          "frame_id": 1,
+          "unique_hash": "<main>:30_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla=:18",
+          "frame_id": 2,
+          "unique_hash": "cla=:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "y",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "y": "4",
+            "__return__": "4"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 31,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:31",
+          "frame_id": 1,
+          "unique_hash": "<main>:31_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
+            "other": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 22,
+      "event": "call",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:31",
+          "frame_id": 1,
+          "unique_hash": "<main>:31_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "inst=:22",
+          "frame_id": 2,
+          "unique_hash": "inst=:22_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i"
+          ],
+          "encoded_locals": {
+            "i": "8"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 23,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:31",
+          "frame_id": 1,
+          "unique_hash": "<main>:31_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "inst=:23",
+          "frame_id": 2,
+          "unique_hash": "inst=:23_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i"
+          ],
+          "encoded_locals": {
+            "i": "8"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 24,
+      "event": "return",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:31",
+          "frame_id": 1,
+          "unique_hash": "<main>:31_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "inst=:24",
+          "frame_id": 2,
+          "unique_hash": "inst=:24_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "i": "8",
+            "__return__": "8"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 32,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:32",
+          "frame_id": 1,
+          "unique_hash": "<main>:32_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "call",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:32",
+          "frame_id": 1,
+          "unique_hash": "<main>:32_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla:13",
+          "frame_id": 2,
+          "unique_hash": "cla:13_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:32",
+          "frame_id": 1,
+          "unique_hash": "<main>:32_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla:14",
+          "frame_id": 2,
+          "unique_hash": "cla:14_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
+      "event": "return",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:32",
+          "frame_id": 1,
+          "unique_hash": "<main>:32_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla:15",
+          "frame_id": 2,
+          "unique_hash": "cla:15_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": "4"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 33,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:33",
+          "frame_id": 1,
+          "unique_hash": "<main>:33_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 19,
+      "event": "call",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:33",
+          "frame_id": 1,
+          "unique_hash": "<main>:33_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "inst:19",
+          "frame_id": 2,
+          "unique_hash": "inst:19_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 20,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:33",
+          "frame_id": 1,
+          "unique_hash": "<main>:33_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "inst:20",
+          "frame_id": 2,
+          "unique_hash": "inst:20_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 21,
+      "event": "return",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:33",
+          "frame_id": 1,
+          "unique_hash": "<main>:33_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "inst:21",
+          "frame_id": 2,
+          "unique_hash": "inst:21_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": "8"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 34,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:34",
+          "frame_id": 1,
+          "unique_hash": "<main>:34_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "call",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:34",
+          "frame_id": 1,
+          "unique_hash": "<main>:34_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:9",
+          "frame_id": 3,
+          "unique_hash": "initialize:9_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": "17"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:34",
+          "frame_id": 1,
+          "unique_hash": "<main>:34_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:10",
+          "frame_id": 3,
+          "unique_hash": "initialize:10_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": "17"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:34",
+          "frame_id": 1,
+          "unique_hash": "<main>:34_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:11",
+          "frame_id": 3,
+          "unique_hash": "initialize:11_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": "17"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 12,
+      "event": "return",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:34",
+          "frame_id": 1,
+          "unique_hash": "<main>:34_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:12",
+          "frame_id": 3,
+          "unique_hash": "initialize:12_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": "17",
+            "__return__": "5"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 35,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:35",
+          "frame_id": 1,
+          "unique_hash": "<main>:35_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "#<TestVar:0x007f49718282c0 @inst=17>"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 36,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n#<TestVar:0x007f49718282c0 @inst=17>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:36",
+          "frame_id": 1,
+          "unique_hash": "<main>:36_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "#<TestVar:0x007f49718282c0 @inst=17>"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "call",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n#<TestVar:0x007f49718282c0 @inst=17>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:36",
+          "frame_id": 1,
+          "unique_hash": "<main>:36_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "#<TestVar:0x007f49718282c0 @inst=17>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla:13",
+          "frame_id": 2,
+          "unique_hash": "cla:13_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n#<TestVar:0x007f49718282c0 @inst=17>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:36",
+          "frame_id": 1,
+          "unique_hash": "<main>:36_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "#<TestVar:0x007f49718282c0 @inst=17>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla:14",
+          "frame_id": 2,
+          "unique_hash": "cla:14_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
+      "event": "return",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n#<TestVar:0x007f49718282c0 @inst=17>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:36",
+          "frame_id": 1,
+          "unique_hash": "<main>:36_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "#<TestVar:0x007f49718282c0 @inst=17>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla:15",
+          "frame_id": 2,
+          "unique_hash": "cla:15_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": "5"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 36,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n#<TestVar:0x007f49718282c0 @inst=17>\n5\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:37",
+          "frame_id": 1,
+          "unique_hash": "<main>:37_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
+            "other": "#<TestVar:0x007f49718282c0 @inst=17>"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$glob": "5",
+        "TestVar": "TestVar"
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    }
+  ]
+}

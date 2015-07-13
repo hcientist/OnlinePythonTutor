@@ -1,0 +1,14 @@
+SyntaxError -- blarrrggg!!!
+(eval):3: syntax error, unexpected tIDENTIFIER, expecting end-of-input
+3
+syntax error, unexpected tIDENTIFIER, expecting end-of-input
+{
+  "code": "x = 1\ny = 2\nz = 3x\nq = x + y\n",
+  "trace": [
+    {
+      "event": "uncaught_exception",
+      "line": 3,
+      "exception_msg": "syntax error, unexpected tIDENTIFIER, expecting end-of-input"
+    }
+  ]
+}

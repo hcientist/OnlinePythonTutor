@@ -42,10 +42,13 @@ require 'debug_inspector' # gem install debug_inspector, use on Ruby 2.X
 #require 'binding_of_caller' # gem install binding_of_caller
 
 
-script_name = ARGV[0]
-cod = File.open(script_name).read
+# pass 'stdout' to print trace to stdout
+# pass 'jstrace' to print a JS trace to test-trace.js
+trace_output_fn = ARGV[0]
+trace_output_fn = "../../../v3/test-trace.js" if trace_output_fn == 'jstrace'
 
-trace_output_fn = ARGV[1] || "../../../v3/test-trace.js"
+script_name = ARGV[1]
+cod = File.open(script_name).read
 
 cur_trace = []
 res = {'code' => cod.dup, # make a snapshot of the code NOW before it's modified
@@ -81,14 +84,14 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
   raise MaxStepsException if n_steps > MAX_STEPS
 
-  STDERR.puts '---'
-  STDERR.puts [tp.event, tp.lineno, tp.path, tp.defined_class, tp.method_id].inspect
+  #STDERR.puts '---'
+  #STDERR.puts [tp.event, tp.lineno, tp.path, tp.defined_class, tp.method_id].inspect
   # TODO: look into tp.defined_class and tp.method_id attrs
 
   retval = nil
   if tp.event == :return || tp.event == :b_return
-    STDERR.print 'RETURN!!! '
-    STDERR.puts tp.return_value.inspect
+    #STDERR.print 'RETURN!!! '
+    #STDERR.puts tp.return_value.inspect
     retval = tp.return_value.inspect # TODO: make into true objects later
   end
 
@@ -107,8 +110,8 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
   # make a copy to take a snapshot at this point in time
   entry['stdout'] = stdout_buffer.string.dup
-  STDERR.print 'stdout: '
-  STDERR.puts entry['stdout']
+  #STDERR.print 'stdout: '
+  #STDERR.puts entry['stdout']
 
   stack = []
   heap = {} # TODO: xxx
@@ -120,26 +123,26 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   entry['globals'] = globals
 
   true_globals = (global_variables - base_globals_set) # set difference
-  STDERR.print 'Globals: '
-  STDERR.puts true_globals.inspect
+  #STDERR.print 'Globals: '
+  #STDERR.puts true_globals.inspect
   entry['ordered_globals'] = true_globals.map { |e| e.to_s }
 
   true_globals.each.with_index do |varname, i|
     val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
-    STDERR.print varname, ' -> ', val.inspect
-    STDERR.puts
+    #STDERR.print varname, ' -> ', val.inspect
+    #STDERR.puts
     globals[varname.to_s] = val.inspect # TODO: make into true objects later
   end
 
   # toplevel constants (stuff them in globals)
   toplevel_constants = (Module.constants - base_constants_set) # set difference
-  STDERR.print 'Constants: '
-  STDERR.puts toplevel_constants.inspect
+  #STDERR.print 'Constants: '
+  #STDERR.puts toplevel_constants.inspect
   entry['ordered_globals'] += toplevel_constants.map { |e| e.to_s }
   toplevel_constants.each do |varname|
     val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
-    STDERR.print varname, ' -> ', val.inspect
-    STDERR.puts
+    #STDERR.print varname, ' -> ', val.inspect
+    #STDERR.puts
     globals[varname.to_s] = val.inspect # TODO: make into true objects later
   end
 
@@ -151,9 +154,9 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   toplevel_class_vars = Object.class_variables - base_class_vars_set
   toplevel_inst_vars = self.instance_variables - base_inst_vars_set
 
-  STDERR.puts 'toplevel_methods: %s' % toplevel_methods.inspect
-  STDERR.puts 'toplevel_class_vars: %s' % toplevel_class_vars.inspect
-  STDERR.puts 'toplevel_inst_vars: %s' % toplevel_inst_vars.inspect
+  #STDERR.puts 'toplevel_methods: %s' % toplevel_methods.inspect
+  #STDERR.puts 'toplevel_class_vars: %s' % toplevel_class_vars.inspect
+  #STDERR.puts 'toplevel_inst_vars: %s' % toplevel_inst_vars.inspect
 
   entry['ordered_globals'] += toplevel_methods.map { |e| e.to_s }
   entry['ordered_globals'] += toplevel_class_vars.map { |e| e.to_s }
@@ -162,28 +165,28 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
   toplevel_methods.each do |varname|
     val = Object.method(varname)
-    STDERR.print varname, ' -> ', val.inspect
-    STDERR.puts
+    #STDERR.print varname, ' -> ', val.inspect
+    #STDERR.puts
     globals[varname.to_s] = val.inspect # TODO: make into true objects later
   end
 
   toplevel_class_vars.each do |varname|
     val = Object.class_variable_get(varname)
-    STDERR.print varname, ' -> ', val.inspect
-    STDERR.puts
+    #STDERR.print varname, ' -> ', val.inspect
+    #STDERR.puts
     globals[varname.to_s] = val.inspect # TODO: make into true objects later
   end
 
   toplevel_inst_vars.each do |varname|
     val = self.instance_variable_get(varname)
-    STDERR.print varname, ' -> ', val.inspect
-    STDERR.puts
+    #STDERR.print varname, ' -> ', val.inspect
+    #STDERR.puts
     globals[varname.to_s] = val.inspect # TODO: make into true objects later
   end
 
   if tp.event == :raise
-    STDERR.print 'RAISE!!! '
-    STDERR.puts tp.raised_exception.inspect
+    #STDERR.print 'RAISE!!! '
+    #STDERR.puts tp.raised_exception.inspect
     entry['exception_msg'] = tp.raised_exception.inspect # TODO: make into true objects later
   end
 
@@ -231,8 +234,8 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
         stack_entry['func_name'] = '%s:%d' % [loc.label, loc.lineno]
 
 
-        STDERR.print 'frame_id: '
-        STDERR.puts canonical_fid
+        #STDERR.print 'frame_id: '
+        #STDERR.puts canonical_fid
         stack_entry['frame_id'] = canonical_fid
         stack_entry['unique_hash'] = stack_entry['func_name'] + '_f' + stack_entry['frame_id'].to_s
 
@@ -265,10 +268,10 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
         end
       end
 
-      STDERR.puts 'is_main: %s' % is_main
-      STDERR.print '>>> ', loc, ' ', lvs, lvs_val
-      STDERR.puts
-      STDERR.puts
+      #STDERR.puts 'is_main: %s' % is_main
+      #STDERR.print '>>> ', loc, ' ', lvs, lvs_val
+      #STDERR.puts
+      #STDERR.puts
 
       # no separate frame for main since its local variables were folded
       # into globals
@@ -279,7 +282,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
     end
   end
 
-  STDERR.puts
+  #STDERR.puts
 
   # massage the topmost stack entry
   if stack.length > 0
@@ -378,9 +381,12 @@ ensure
 
   # postprocessing into a trace
   trace_json = JSON.pretty_generate(res)
-  File.open(trace_output_fn, 'w') do |f|
-    f.write('var trace = ' + trace_json)
+  if trace_output_fn == 'stdout'
+    STDOUT.write(trace_json)
+  else
+    File.open(trace_output_fn, 'w') do |f|
+      f.write('var trace = ' + trace_json)
+    end
+    puts "Trace written to " + trace_output_fn
   end
-
-  puts "Trace written to " + trace_output_fn
 end

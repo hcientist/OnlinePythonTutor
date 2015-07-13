@@ -1,0 +1,1155 @@
+{
+  "code": "# from https://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Classes\n\nclass MyClass\n  @@value = 1\n  def add_one\n    @@value= @@value + 1\n  end\n  \n  def value\n    @@value\n  end\nend\ninstanceOne = MyClass.new\ninstanceTwo = MyClass.new\nputs instanceOne.value\ninstanceOne.add_one\nputs instanceOne.value\nputs instanceTwo.value\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "nil",
+            "instanceTwo": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "nil",
+            "instanceTwo": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MyClass>:3",
+          "frame_id": 2,
+          "unique_hash": "<class:MyClass>:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "nil",
+            "instanceTwo": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MyClass>:4",
+          "frame_id": 2,
+          "unique_hash": "<class:MyClass>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "nil",
+            "instanceTwo": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MyClass>:5",
+          "frame_id": 2,
+          "unique_hash": "<class:MyClass>:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "nil",
+            "instanceTwo": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MyClass>:9",
+          "frame_id": 2,
+          "unique_hash": "<class:MyClass>:9_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 12,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "nil",
+            "instanceTwo": "nil"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MyClass>:12",
+          "frame_id": 2,
+          "unique_hash": "<class:MyClass>:12_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "nil",
+            "instanceTwo": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "nil"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:9",
+          "frame_id": 2,
+          "unique_hash": "value:9_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:10",
+          "frame_id": 2,
+          "unique_hash": "value:10_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:11",
+          "frame_id": 2,
+          "unique_hash": "value:11_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": "1"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "call",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "add_one:5",
+          "frame_id": 2,
+          "unique_hash": "add_one:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "add_one:6",
+          "frame_id": 2,
+          "unique_hash": "add_one:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "return",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "add_one:7",
+          "frame_id": 2,
+          "unique_hash": "add_one:7_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": "2"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 17,
+      "event": "step_line",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:17",
+          "frame_id": 1,
+          "unique_hash": "<main>:17_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "call",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:17",
+          "frame_id": 1,
+          "unique_hash": "<main>:17_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:9",
+          "frame_id": 2,
+          "unique_hash": "value:9_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:17",
+          "frame_id": 1,
+          "unique_hash": "<main>:17_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:10",
+          "frame_id": 2,
+          "unique_hash": "value:10_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "return",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:17",
+          "frame_id": 1,
+          "unique_hash": "<main>:17_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:11",
+          "frame_id": 2,
+          "unique_hash": "value:11_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": "2"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 18,
+      "event": "step_line",
+      "stdout": "1\n2\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:18",
+          "frame_id": 1,
+          "unique_hash": "<main>:18_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "call",
+      "stdout": "1\n2\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:18",
+          "frame_id": 1,
+          "unique_hash": "<main>:18_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:9",
+          "frame_id": 2,
+          "unique_hash": "value:9_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "1\n2\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:18",
+          "frame_id": 1,
+          "unique_hash": "<main>:18_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:10",
+          "frame_id": 2,
+          "unique_hash": "value:10_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "return",
+      "stdout": "1\n2\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:18",
+          "frame_id": 1,
+          "unique_hash": "<main>:18_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:11",
+          "frame_id": 2,
+          "unique_hash": "value:11_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": "2"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 18,
+      "event": "step_line",
+      "stdout": "1\n2\n2\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:19",
+          "frame_id": 1,
+          "unique_hash": "<main>:19_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": "#<MyClass:0x007f8c3953bbb0>",
+            "instanceTwo": "#<MyClass:0x007f8c39538960>"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "MyClass": "MyClass"
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    }
+  ]
+}
