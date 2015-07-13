@@ -19,8 +19,10 @@
 # - support gets() for user input using the restart hack mechanism
 #   - user input stored in $_
 # - support 'include'-ing a module and bringing in variables into namespace
-# - in OPT frontend for Ruby, relabel "Global frame" as "Globals" or something
-# - augment the OPT frontend to support these types: symbol
+# - cosmetic issues in the OPT frontend for Ruby:
+#   - relabel "Global frame" as "Globals" or something
+#   - display symbol type properly, and maybe range type too?
+#   - display None values as 'nil'
 #
 # Useful notes from http://phrogz.net/programmingruby/frameset.html:
 #  - "First, every object has a unique object identifier (abbreviated as
@@ -65,7 +67,6 @@ ordered_frame_ids = {}
 stdout_buffer = StringIO.new
 
 n_steps = 0
-#MAX_STEPS = 30
 MAX_STEPS = 300
 
 n_lines_added = nil
@@ -73,6 +74,7 @@ n_lines_added = nil
 class MaxStepsException < RuntimeError
 end
 
+PRIMITIVES = [Fixnum, String, TrueClass, FalseClass, NilClass]
 
 # ported from ../../../v3/pg_encoder.py
 class ObjectEncoder
@@ -99,7 +101,17 @@ class ObjectEncoder
   # return either a primitive object or an object reference;
   # and as a side effect, update encoded_heap_objects
   def encode(dat)
-    dat.inspect # TODO: make into a rich object and fill up the heap
+    if PRIMITIVES.include? dat.class
+      # TODO: handle special primitive values like in the Python version:
+      #   exceptions: float('inf')  -> ['SPECIAL_FLOAT', 'Infinity']
+      #               float('-inf') -> ['SPECIAL_FLOAT', '-Infinity']
+      #               float('nan')  -> ['SPECIAL_FLOAT', 'NaN']
+      #               x == int(x)   -> ['SPECIAL_FLOAT', '%.1f' % x]
+      #               (this way, 3.0 prints as '3.0' and not as 3, which looks like an int)
+      return dat
+    else
+      return dat.inspect # TODO: make into a rich object and fill up the heap
+    end
   end
 end
 
