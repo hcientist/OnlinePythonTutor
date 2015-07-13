@@ -73,6 +73,12 @@ n_lines_added = nil
 class MaxStepsException < RuntimeError
 end
 
+def encode_object(obj)
+  return obj.inspect # TODO: make into a rich object and fill up the heap
+end
+
+
+# end all of my own definitions here so that I can set the following vars ...
 
 # collect the sets of these variables RIGHT BEFORE the user's code runs
 # so that we can do a set difference later to see what the user defined
@@ -88,15 +94,11 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
   raise MaxStepsException if n_steps > MAX_STEPS
 
-  #STDERR.puts '---'
-  #STDERR.puts [tp.event, tp.lineno, tp.path, tp.defined_class, tp.method_id].inspect
   # TODO: look into tp.defined_class and tp.method_id attrs
 
   retval = nil
   if tp.event == :return || tp.event == :b_return
-    #STDERR.print 'RETURN!!! '
-    #STDERR.puts tp.return_value.inspect
-    retval = tp.return_value.inspect # TODO: make into true objects later
+    retval = encode_object(tp.return_value)
   end
 
   evt_type = case tp.event
@@ -114,8 +116,6 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
   # make a copy to take a snapshot at this point in time
   entry['stdout'] = stdout_buffer.string.dup
-  #STDERR.print 'stdout: '
-  #STDERR.puts entry['stdout']
 
   stack = []
   heap = {} # TODO: xxx
@@ -127,27 +127,19 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   entry['globals'] = globals
 
   true_globals = (global_variables - base_globals_set) # set difference
-  #STDERR.print 'Globals: '
-  #STDERR.puts true_globals.inspect
   entry['ordered_globals'] = true_globals.map { |e| e.to_s }
 
   true_globals.each.with_index do |varname, i|
     val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
-    #STDERR.print varname, ' -> ', val.inspect
-    #STDERR.puts
-    globals[varname.to_s] = val.inspect # TODO: make into true objects later
+    globals[varname.to_s] = encode_object(val)
   end
 
   # toplevel constants (stuff them in globals)
   toplevel_constants = (Module.constants - base_constants_set) # set difference
-  #STDERR.print 'Constants: '
-  #STDERR.puts toplevel_constants.inspect
   entry['ordered_globals'] += toplevel_constants.map { |e| e.to_s }
   toplevel_constants.each do |varname|
     val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
-    #STDERR.print varname, ' -> ', val.inspect
-    #STDERR.puts
-    globals[varname.to_s] = val.inspect # TODO: make into true objects later
+    globals[varname.to_s] = encode_object(val)
   end
 
   # toplevel methods, class vars, and instance vars
@@ -158,10 +150,6 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   toplevel_class_vars = Object.class_variables - base_class_vars_set
   toplevel_inst_vars = self.instance_variables - base_inst_vars_set
 
-  #STDERR.puts 'toplevel_methods: %s' % toplevel_methods.inspect
-  #STDERR.puts 'toplevel_class_vars: %s' % toplevel_class_vars.inspect
-  #STDERR.puts 'toplevel_inst_vars: %s' % toplevel_inst_vars.inspect
-
   entry['ordered_globals'] += toplevel_methods.map { |e| e.to_s }
   entry['ordered_globals'] += toplevel_class_vars.map { |e| e.to_s }
   entry['ordered_globals'] += toplevel_inst_vars.map { |e| e.to_s }
@@ -169,29 +157,21 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
   toplevel_methods.each do |varname|
     val = Object.method(varname)
-    #STDERR.print varname, ' -> ', val.inspect
-    #STDERR.puts
-    globals[varname.to_s] = val.inspect # TODO: make into true objects later
+    globals[varname.to_s] = encode_object(val)
   end
 
   toplevel_class_vars.each do |varname|
     val = Object.class_variable_get(varname)
-    #STDERR.print varname, ' -> ', val.inspect
-    #STDERR.puts
-    globals[varname.to_s] = val.inspect # TODO: make into true objects later
+    globals[varname.to_s] = encode_object(val)
   end
 
   toplevel_inst_vars.each do |varname|
     val = self.instance_variable_get(varname)
-    #STDERR.print varname, ' -> ', val.inspect
-    #STDERR.puts
-    globals[varname.to_s] = val.inspect # TODO: make into true objects later
+    globals[varname.to_s] = encode_object(val)
   end
 
   if tp.event == :raise
-    #STDERR.print 'RAISE!!! '
-    #STDERR.puts tp.raised_exception.inspect
-    entry['exception_msg'] = tp.raised_exception.inspect # TODO: make into true objects later
+    entry['exception_msg'] = encode_object(tp.raised_exception)
   end
 
   # adapted from https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb
@@ -238,8 +218,6 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
         stack_entry['func_name'] = '%s:%d' % [loc.label, loc.lineno]
 
 
-        #STDERR.print 'frame_id: '
-        #STDERR.puts canonical_fid
         stack_entry['frame_id'] = canonical_fid
         stack_entry['unique_hash'] = stack_entry['func_name'] + '_f' + stack_entry['frame_id'].to_s
 
@@ -251,8 +229,8 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
         lvs = iseq_local_variables(iseq)
         lvs_val = lvs.inject({}){|r, lv|
           begin
-            v = b.local_variable_get(lv).inspect # TODO: make into true objects later
-            r[lv] = v
+            v = b.local_variable_get(lv)
+            r[lv] = encode_object(v)
           rescue NameError
             # ignore
           end
@@ -272,11 +250,6 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
         end
       end
 
-      #STDERR.puts 'is_main: %s' % is_main
-      #STDERR.print '>>> ', loc, ' ', lvs, lvs_val
-      #STDERR.puts
-      #STDERR.puts
-
       # no separate frame for main since its local variables were folded
       # into globals
       if !is_main
@@ -285,8 +258,6 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
     end
   end
-
-  #STDERR.puts
 
   # massage the topmost stack entry
   if stack.length > 0
@@ -367,8 +338,6 @@ rescue MaxStepsException
   end
 rescue
   $stdout = STDOUT
-  STDERR.puts "other exception -- EEEEEEEE!!!"
-  STDERR.puts $!
   # ignore since we've already handled a :raise event in the trace by now
 ensure
   $stdout = STDOUT
