@@ -15,21 +15,25 @@
 # - when inside of a method, maybe display implicit 'self' parameter if
 #   it's not the toplevel self?
 # - display the 'binding' within a proc/lambda object, which represents
-#   its closure
+#   its closure. test on tests/proc-return.rb
 # - support gets() for user input using the restart hack mechanism
 #   - user input stored in $_
 # - support 'include'-ing a module and bringing in variables into namespace
 # - in OPT frontend for Ruby, relabel "Global frame" as "Globals" or something
+# - augment the OPT frontend to support these types: symbol
 #
 # Useful notes from http://phrogz.net/programmingruby/frameset.html:
 #  - "First, every object has a unique object identifier (abbreviated as
 #    object id)."
 #
-# Limitations:
+# Limitations/quirks:
 # - no support for (lexical) environment pointers, since MRI doesn't seem to
 #   expose them. We can see only the current (dynamic) stack backtrace
 #   with debug_inspector.
 #   - NB: is this true? at least we have 'binding' for procs/lambdas
+#
+# - keeps executing for a few more lines after an exception -- dunno if
+#   that's standard Ruby behavior or not
 
 # style guide: https://github.com/styleguide/ruby
 
