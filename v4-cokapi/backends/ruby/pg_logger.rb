@@ -356,7 +356,6 @@ rescue SyntaxError
 rescue MaxStepsException
   $stdout = STDOUT
 
-  puts "MaxStepsException -- OOOOOOOOOOOOOOOOOOOOOOOOOHHHHHHH!!!"
   # take the final trace entry & make it into a instruction_limit_reached event
   if cur_trace.length > 0
     cur_trace[-1]['event'] = 'instruction_limit_reached'
@@ -364,8 +363,8 @@ rescue MaxStepsException
   end
 rescue
   $stdout = STDOUT
-  puts "other exception -- EEEEEEEE!!!"
-  puts $!
+  STDERR.puts "other exception -- EEEEEEEE!!!"
+  STDERR.puts $!
   # ignore since we've already handled a :raise event in the trace by now
 ensure
   $stdout = STDOUT
