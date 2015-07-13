@@ -73,9 +73,37 @@ n_lines_added = nil
 class MaxStepsException < RuntimeError
 end
 
-def encode_object(obj)
-  return obj.inspect # TODO: make into a rich object and fill up the heap
+
+# ported from ../../../v3/pg_encoder.py
+class ObjectEncoder
+  def initialize
+    # Key: canonicalized small ID
+    # Value: encoded (compound) heap object
+    @encoded_heap_objects = {}
+
+    @id_to_small_IDs = {}
+    @cur_small_ID = 1
+  end
+
+  def get_heap
+    @encoded_heap_objects
+  end
+
+  def reset_heap
+    # VERY IMPORTANT to reassign to a NEW empty hash rather than just
+    # clearing the existing hash, since get_heap() could have been
+    # called earlier to return a reference to a previous heap state
+    @encoded_heap_objects = {}
+  end
+
+  # return either a primitive object or an object reference;
+  # and as a side effect, update encoded_heap_objects
+  def encode(dat)
+    dat.inspect # TODO: make into a rich object and fill up the heap
+  end
 end
+
+pg_encoder = ObjectEncoder.new
 
 
 # end all of my own definitions here so that I can set the following vars ...
@@ -96,9 +124,12 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
   # TODO: look into tp.defined_class and tp.method_id attrs
 
+  pg_encoder.reset_heap() # VERY VERY VERY IMPORTANT, or else we won't properly
+                          # capture heap object mutations in the trace!
+
   retval = nil
   if tp.event == :return || tp.event == :b_return
-    retval = encode_object(tp.return_value)
+    retval = pg_encoder.encode(tp.return_value)
   end
 
   evt_type = case tp.event
@@ -118,9 +149,8 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   entry['stdout'] = stdout_buffer.string.dup
 
   stack = []
-  heap = {} # TODO: xxx
   entry['stack_to_render'] = stack
-  entry['heap'] = heap
+  entry['heap'] = pg_encoder.get_heap
 
   # globals
   globals = {}
@@ -131,7 +161,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
   true_globals.each.with_index do |varname, i|
     val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
-    globals[varname.to_s] = encode_object(val)
+    globals[varname.to_s] = pg_encoder.encode(val)
   end
 
   # toplevel constants (stuff them in globals)
@@ -139,7 +169,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   entry['ordered_globals'] += toplevel_constants.map { |e| e.to_s }
   toplevel_constants.each do |varname|
     val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
-    globals[varname.to_s] = encode_object(val)
+    globals[varname.to_s] = pg_encoder.encode(val)
   end
 
   # toplevel methods, class vars, and instance vars
@@ -157,21 +187,21 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
   toplevel_methods.each do |varname|
     val = Object.method(varname)
-    globals[varname.to_s] = encode_object(val)
+    globals[varname.to_s] = pg_encoder.encode(val)
   end
 
   toplevel_class_vars.each do |varname|
     val = Object.class_variable_get(varname)
-    globals[varname.to_s] = encode_object(val)
+    globals[varname.to_s] = pg_encoder.encode(val)
   end
 
   toplevel_inst_vars.each do |varname|
     val = self.instance_variable_get(varname)
-    globals[varname.to_s] = encode_object(val)
+    globals[varname.to_s] = pg_encoder.encode(val)
   end
 
   if tp.event == :raise
-    entry['exception_msg'] = encode_object(tp.raised_exception)
+    entry['exception_msg'] = pg_encoder.encode(tp.raised_exception)
   end
 
   # adapted from https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb
@@ -230,7 +260,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
         lvs_val = lvs.inject({}){|r, lv|
           begin
             v = b.local_variable_get(lv)
-            r[lv] = encode_object(v)
+            r[lv] = pg_encoder.encode(v)
           rescue NameError
             # ignore
           end
