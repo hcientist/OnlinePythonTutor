@@ -9,13 +9,17 @@
 # raise "error msg" unless <condition to assert>
 
 # TODO
+#
 # - display constants defined INSIDE OF modules or classes
 # - display class and instance variables
+# - when inside of a method, maybe display implicit 'self' parameter if
+#   it's not the toplevel self?
 # - display the 'binding' within a proc/lambda object, which represents
 #   its closure
 # - support gets() for user input using the restart hack mechanism
 #   - user input stored in $_
 # - support 'include'-ing a module and bringing in variables into namespace
+# - in OPT frontend for Ruby, relabel "Global frame" as "Globals" or something
 #
 # Useful notes from http://phrogz.net/programmingruby/frameset.html:
 #  - "First, every object has a unique object identifier (abbreviated as
@@ -34,7 +38,8 @@ require 'json'
 require 'stringio'
 
 require 'debug_inspector' # gem install debug_inspector, use on Ruby 2.X
-require 'binding_of_caller' # gem install binding_of_caller
+
+#require 'binding_of_caller' # gem install binding_of_caller
 
 
 script_name = ARGV[0]
@@ -219,20 +224,12 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
           cur_frame_id += 1
         end
 
-        boc = binding.of_caller(i+1) # need +1 for some reason
-
-        # hacky since we use of_caller -- make sure it looks legit
-        STDERR.print 'frame_description: '
-        STDERR.puts boc.frame_description
-        STDERR.print 'frame_type: '
-        STDERR.puts boc.frame_type # :eval, :method, :block
-
         # special-case handling for the toplevel '<main>' frame
-        if boc.frame_description == '<main>' && boc.frame_type == :eval
-          is_main = true
-        end
+        # (NB: don't do this for now)
+        #is_main = true if loc.label == '<main>'
 
-        stack_entry['func_name'] = boc.frame_description # TODO: integrate 'frame_type' too?
+        stack_entry['func_name'] = '%s:%d' % [loc.label, loc.lineno]
+
 
         STDERR.print 'frame_id: '
         STDERR.puts canonical_fid
@@ -260,13 +257,15 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
         # just fold everything into globals rather than creating a
         # separate (redundant) frame for '<main>'
+        # (NB: don't do this for now ... just relabel "Global frames" as
+        # 'Global Object' or something)
         if is_main
           entry['ordered_globals'] += stack_entry['ordered_varnames']
           entry['globals'].update(stack_entry['encoded_locals'])
         end
       end
 
-      STDERR.puts '--- is_main: %s' % is_main
+      STDERR.puts 'is_main: %s' % is_main
       STDERR.print '>>> ', loc, ' ', lvs, lvs_val
       STDERR.puts
       STDERR.puts
