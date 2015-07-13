@@ -1,7 +1,7 @@
 # Adapted from Learning Ruby by Michael Fitzgerald, O'Reilly
 
 name = "Matz"
-name.to_sym
+name = name.to_sym
 name2 = :Matz.id2name
 puts name
 puts name2
