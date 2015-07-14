@@ -21,8 +21,10 @@
 # - support 'include'-ing a module and bringing in variables into namespace
 # - cosmetic issues in the OPT frontend for Ruby:
 #   - relabel "Global frame" as "Globals" or something
-#   - display symbol type properly, and maybe range type too?
 #   - display None values as 'nil'
+#   - display booleans as 'true' and 'false'
+#   - rename 'list' as 'array'
+#   - rename 'dict' as 'hash'
 #
 # Useful notes from http://phrogz.net/programmingruby/frameset.html:
 #  - "First, every object has a unique object identifier (abbreviated as
@@ -41,6 +43,7 @@
 
 
 require 'json'
+require 'set'
 require 'stringio'
 
 require 'debug_inspector' # gem install debug_inspector, use on Ruby 2.X
@@ -110,7 +113,40 @@ class ObjectEncoder
       #               (this way, 3.0 prints as '3.0' and not as 3, which looks like an int)
       return dat
     else
-      return dat.inspect # TODO: make into a rich object and fill up the heap
+      my_id = dat.object_id
+
+      my_small_id = @id_to_small_IDs[my_id]
+      if !my_small_id
+        my_small_id = @cur_small_ID
+        @id_to_small_IDs[my_id] = @cur_small_ID
+        @cur_small_ID += 1
+      end
+
+      ret = ['REF', my_small_id]
+
+      # punt early if you've already encoded this object
+      return ret if @encoded_heap_objects.include? my_small_id
+
+      new_obj = []
+      @encoded_heap_objects[my_small_id] = new_obj
+
+      # otherwise encode it in the heap and return ret
+      if dat.class == Array
+        new_obj << 'LIST'
+        dat.each { |e| new_obj << encode(e) }
+      elsif dat.class == Hash
+        new_obj << 'DICT'
+        dat.each { |k, v| new_obj << [encode(k), encode(v)] }
+      elsif dat.class == Set
+        new_obj << 'SET'
+        dat.each { |e| new_obj << encode(e) }
+      else
+        # catch-all punting case! includes Range, Symbol, Regexp
+        new_obj << dat.class.to_s
+        new_obj << dat.inspect
+      end
+
+      return ret
     end
   end
 end
