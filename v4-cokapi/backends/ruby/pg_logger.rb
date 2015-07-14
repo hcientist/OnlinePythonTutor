@@ -13,6 +13,7 @@
 # - when inside of a method, always display implicit 'self' parameter if
 #   it's not the toplevel self
 # - display the 'binding' within a proc/lambda object, which represents
+#   https://codequizzes.wordpress.com/2014/04/07/rubys-self-keyword-and-implicit-self/
 #   its closure. test on tests/proc-return.rb
 # - support gets() for user input using the restart hack mechanism
 #   - user input stored in $_
@@ -317,7 +318,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
   # toplevel constants (stuff them in globals)
   toplevel_constants = (Module.constants - base_constants_set) # set difference
-  entry['ordered_globals'] += toplevel_constants.map { |e| e.to_s }
+  entry['ordered_globals'].concat(toplevel_constants.map { |e| e.to_s })
   toplevel_constants.each do |varname|
     #val = eval(varname.to_s) # TODO: is there a better way? this seems hacky! # yes, see below
     val = Module.const_get(varname)
@@ -332,9 +333,9 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   toplevel_class_vars = Object.class_variables - base_class_vars_set
   toplevel_inst_vars = self.instance_variables - base_inst_vars_set
 
-  entry['ordered_globals'] += toplevel_methods.map { |e| e.to_s }
-  entry['ordered_globals'] += toplevel_class_vars.map { |e| e.to_s }
-  entry['ordered_globals'] += toplevel_inst_vars.map { |e| e.to_s }
+  entry['ordered_globals'].concat(toplevel_methods.map { |e| e.to_s })
+  entry['ordered_globals'].concat(toplevel_class_vars.map { |e| e.to_s })
+  entry['ordered_globals'].concat(toplevel_inst_vars.map { |e| e.to_s })
 
 
   toplevel_methods.each do |varname|
@@ -427,7 +428,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
         # (NB: don't do this for now ... just relabel "Global frames" as
         # 'Global Object' or something)
         if is_main
-          entry['ordered_globals'] += stack_entry['ordered_varnames']
+          entry['ordered_globals'].concat(stack_entry['ordered_varnames'])
           entry['globals'].update(stack_entry['encoded_locals'])
         end
       end
