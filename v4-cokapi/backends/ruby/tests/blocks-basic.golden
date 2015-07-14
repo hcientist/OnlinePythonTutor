@@ -56,9 +56,17 @@
         }
       ],
       "heap": {
+        "1": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -104,9 +112,17 @@
         }
       ],
       "heap": {
+        "2": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          2
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -152,9 +168,17 @@
         }
       ],
       "heap": {
+        "3": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          3
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -200,9 +224,17 @@
         }
       ],
       "heap": {
+        "4": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          4
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -264,9 +296,17 @@
         }
       ],
       "heap": {
+        "5": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          5
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -328,9 +368,17 @@
         }
       ],
       "heap": {
+        "6": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          6
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -388,14 +436,22 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "7": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          7
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -441,9 +497,17 @@
         }
       ],
       "heap": {
+        "8": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          8
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -485,14 +549,22 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "9": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          9
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -522,9 +594,17 @@
         }
       ],
       "heap": {
+        "10": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          10
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -570,9 +650,17 @@
         }
       ],
       "heap": {
+        "11": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          11
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -618,9 +706,17 @@
         }
       ],
       "heap": {
+        "12": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          12
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -666,9 +762,17 @@
         }
       ],
       "heap": {
+        "13": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          13
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -726,14 +830,22 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "nil"
+            "localX": null
           }
         }
       ],
       "heap": {
+        "14": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          14
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -791,14 +903,22 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "nil"
+            "localX": null
           }
         }
       ],
       "heap": {
+        "15": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          15
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -856,14 +976,22 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "\"Thank you again.\""
+            "localX": "Thank you again."
           }
         }
       ],
       "heap": {
+        "16": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          16
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -922,15 +1050,23 @@
             "__return__"
           ],
           "encoded_locals": {
-            "localX": "\"Thank you again.\"",
-            "__return__": "nil"
+            "localX": "Thank you again.",
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "17": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          17
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -976,9 +1112,17 @@
         }
       ],
       "heap": {
+        "18": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          18
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -1020,14 +1164,22 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "19": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          19
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -1057,9 +1209,17 @@
         }
       ],
       "heap": {
+        "20": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          20
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -1105,9 +1265,17 @@
         }
       ],
       "heap": {
+        "21": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          21
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -1153,9 +1321,17 @@
         }
       ],
       "heap": {
+        "22": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          22
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -1201,9 +1377,17 @@
         }
       ],
       "heap": {
+        "23": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          23
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -1249,9 +1433,17 @@
         }
       ],
       "heap": {
+        "24": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          24
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -1293,14 +1485,22 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "25": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          25
+        ]
       },
       "ordered_globals": [
         "gimme"
@@ -1330,9 +1530,17 @@
         }
       ],
       "heap": {
+        "26": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ]
       },
       "globals": {
-        "gimme": "#<Method: Class(Object)#gimme>"
+        "gimme": [
+          "REF",
+          26
+        ]
       },
       "ordered_globals": [
         "gimme"

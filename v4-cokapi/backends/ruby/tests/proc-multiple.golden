@@ -21,7 +21,7 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "nil"
+            "h": null
           }
         }
       ],
@@ -53,14 +53,22 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "nil"
+            "h": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ]
       },
       "globals": {
-        "callbacks": "#<Method: Class(Object)#callbacks>"
+        "callbacks": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "callbacks"
@@ -86,14 +94,64 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "h": [
+              "REF",
+              3
+            ]
           }
         }
       ],
       "heap": {
+        "2": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
       },
       "globals": {
-        "callbacks": "#<Method: Class(Object)#callbacks>"
+        "callbacks": [
+          "REF",
+          2
+        ]
       },
       "ordered_globals": [
         "callbacks"
@@ -119,7 +177,10 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "h": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -136,14 +197,64 @@
             "procs"
           ],
           "encoded_locals": {
-            "procs": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "procs": [
+              "REF",
+              3
+            ]
           }
         }
       ],
       "heap": {
+        "8": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
       },
       "globals": {
-        "callbacks": "#<Method: Class(Object)#callbacks>"
+        "callbacks": [
+          "REF",
+          8
+        ]
       },
       "ordered_globals": [
         "callbacks"
@@ -169,7 +280,10 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "h": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -186,14 +300,64 @@
             "procs"
           ],
           "encoded_locals": {
-            "procs": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "procs": [
+              "REF",
+              3
+            ]
           }
         }
       ],
       "heap": {
+        "9": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
       },
       "globals": {
-        "callbacks": "#<Method: Class(Object)#callbacks>"
+        "callbacks": [
+          "REF",
+          9
+        ]
       },
       "ordered_globals": [
         "callbacks"
@@ -219,7 +383,10 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "h": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -236,7 +403,10 @@
             "procs"
           ],
           "encoded_locals": {
-            "procs": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "procs": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -257,9 +427,56 @@
         }
       ],
       "heap": {
+        "10": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
       },
       "globals": {
-        "callbacks": "#<Method: Class(Object)#callbacks>"
+        "callbacks": [
+          "REF",
+          10
+        ]
       },
       "ordered_globals": [
         "callbacks"
@@ -285,7 +502,10 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "h": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -302,7 +522,10 @@
             "procs"
           ],
           "encoded_locals": {
-            "procs": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "procs": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -323,9 +546,56 @@
         }
       ],
       "heap": {
+        "11": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
       },
       "globals": {
-        "callbacks": "#<Method: Class(Object)#callbacks>"
+        "callbacks": [
+          "REF",
+          11
+        ]
       },
       "ordered_globals": [
         "callbacks"
@@ -351,7 +621,10 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "h": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -368,7 +641,10 @@
             "procs"
           ],
           "encoded_locals": {
-            "procs": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "procs": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -385,14 +661,61 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "12": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
       },
       "globals": {
-        "callbacks": "#<Method: Class(Object)#callbacks>"
+        "callbacks": [
+          "REF",
+          12
+        ]
       },
       "ordered_globals": [
         "callbacks"
@@ -418,7 +741,10 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "h": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -435,14 +761,64 @@
             "procs"
           ],
           "encoded_locals": {
-            "procs": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "procs": [
+              "REF",
+              3
+            ]
           }
         }
       ],
       "heap": {
+        "13": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
       },
       "globals": {
-        "callbacks": "#<Method: Class(Object)#callbacks>"
+        "callbacks": [
+          "REF",
+          13
+        ]
       },
       "ordered_globals": [
         "callbacks"
@@ -468,7 +844,10 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "h": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -485,14 +864,64 @@
             "procs"
           ],
           "encoded_locals": {
-            "procs": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "procs": [
+              "REF",
+              3
+            ]
           }
         }
       ],
       "heap": {
+        "14": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
       },
       "globals": {
-        "callbacks": "#<Method: Class(Object)#callbacks>"
+        "callbacks": [
+          "REF",
+          14
+        ]
       },
       "ordered_globals": [
         "callbacks"
@@ -518,7 +947,10 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "h": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -535,7 +967,10 @@
             "procs"
           ],
           "encoded_locals": {
-            "procs": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "procs": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -556,9 +991,56 @@
         }
       ],
       "heap": {
+        "15": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
       },
       "globals": {
-        "callbacks": "#<Method: Class(Object)#callbacks>"
+        "callbacks": [
+          "REF",
+          15
+        ]
       },
       "ordered_globals": [
         "callbacks"
@@ -584,7 +1066,10 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "h": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -601,7 +1086,10 @@
             "procs"
           ],
           "encoded_locals": {
-            "procs": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "procs": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -622,9 +1110,56 @@
         }
       ],
       "heap": {
+        "16": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
       },
       "globals": {
-        "callbacks": "#<Method: Class(Object)#callbacks>"
+        "callbacks": [
+          "REF",
+          16
+        ]
       },
       "ordered_globals": [
         "callbacks"
@@ -650,7 +1185,10 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "h": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -667,7 +1205,10 @@
             "procs"
           ],
           "encoded_locals": {
-            "procs": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "procs": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -684,14 +1225,61 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "17": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
       },
       "globals": {
-        "callbacks": "#<Method: Class(Object)#callbacks>"
+        "callbacks": [
+          "REF",
+          17
+        ]
       },
       "ordered_globals": [
         "callbacks"
@@ -717,7 +1305,10 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "h": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -735,15 +1326,65 @@
             "__return__"
           ],
           "encoded_locals": {
-            "procs": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}",
-            "__return__": "nil"
+            "procs": [
+              "REF",
+              3
+            ],
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "18": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
       },
       "globals": {
-        "callbacks": "#<Method: Class(Object)#callbacks>"
+        "callbacks": [
+          "REF",
+          18
+        ]
       },
       "ordered_globals": [
         "callbacks"
@@ -769,14 +1410,64 @@
             "h"
           ],
           "encoded_locals": {
-            "h": "{:starting=>#<Proc:0x007fa7db4a2d08@(eval):11>, :finishing=>#<Proc:0x007fa7db4a2cb8@(eval):12>}"
+            "h": [
+              "REF",
+              3
+            ]
           }
         }
       ],
       "heap": {
+        "19": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
       },
       "globals": {
-        "callbacks": "#<Method: Class(Object)#callbacks>"
+        "callbacks": [
+          "REF",
+          19
+        ]
       },
       "ordered_globals": [
         "callbacks"

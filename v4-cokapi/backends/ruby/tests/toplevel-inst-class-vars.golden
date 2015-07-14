@@ -22,8 +22,8 @@
             "localY"
           ],
           "encoded_locals": {
-            "localX": "nil",
-            "localY": "nil"
+            "localX": null,
+            "localY": null
           }
         }
       ],
@@ -56,15 +56,15 @@
             "localY"
           ],
           "encoded_locals": {
-            "localX": "nil",
-            "localY": "nil"
+            "localX": null,
+            "localY": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "@x": "42"
+        "@x": 42
       },
       "ordered_globals": [
         "@x"
@@ -91,16 +91,16 @@
             "localY"
           ],
           "encoded_locals": {
-            "localX": "nil",
-            "localY": "nil"
+            "localX": null,
+            "localY": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "@x": "42",
-        "@y": "\"hello\""
+        "@x": 42,
+        "@y": "hello"
       },
       "ordered_globals": [
         "@x",
@@ -128,16 +128,16 @@
             "localY"
           ],
           "encoded_locals": {
-            "localX": "nil",
-            "localY": "nil"
+            "localX": null,
+            "localY": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "@x": "42",
-        "@y": "\"hello\""
+        "@x": 42,
+        "@y": "hello"
       },
       "ordered_globals": [
         "@x",
@@ -165,16 +165,16 @@
             "localY"
           ],
           "encoded_locals": {
-            "localX": "nil",
-            "localY": "nil"
+            "localX": null,
+            "localY": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "@x": "42",
-        "@y": "\"hello\""
+        "@x": 42,
+        "@y": "hello"
       },
       "ordered_globals": [
         "@x",
@@ -202,17 +202,17 @@
             "localY"
           ],
           "encoded_locals": {
-            "localX": "nil",
-            "localY": "nil"
+            "localX": null,
+            "localY": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "@@classX": "\"classy X\"",
-        "@x": "42",
-        "@y": "\"hello\""
+        "@@classX": "classy X",
+        "@x": 42,
+        "@y": "hello"
       },
       "ordered_globals": [
         "@@classX",
@@ -241,18 +241,18 @@
             "localY"
           ],
           "encoded_locals": {
-            "localX": "nil",
-            "localY": "nil"
+            "localX": null,
+            "localY": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "@@classX": "\"classy X\"",
-        "@@classY": "\"classy Y\"",
-        "@x": "42",
-        "@y": "\"hello\""
+        "@@classX": "classy X",
+        "@@classY": "classy Y",
+        "@x": 42,
+        "@y": "hello"
       },
       "ordered_globals": [
         "@@classX",
@@ -282,18 +282,18 @@
             "localY"
           ],
           "encoded_locals": {
-            "localX": "nil",
-            "localY": "nil"
+            "localX": null,
+            "localY": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "@@classX": "\"classy X\"",
-        "@@classY": "\"classy Y\"",
-        "@x": "42",
-        "@y": "\"hello\""
+        "@@classX": "classy X",
+        "@@classY": "classy Y",
+        "@x": 42,
+        "@y": "hello"
       },
       "ordered_globals": [
         "@@classX",
@@ -323,18 +323,18 @@
             "localY"
           ],
           "encoded_locals": {
-            "localX": "nil",
-            "localY": "nil"
+            "localX": null,
+            "localY": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "@@classX": "\"classy X\"",
-        "@@classY": "\"classy Y\"",
-        "@x": "42",
-        "@y": "\"hello\""
+        "@@classX": "classy X",
+        "@@classY": "classy Y",
+        "@x": 42,
+        "@y": "hello"
       },
       "ordered_globals": [
         "@@classX",
@@ -364,18 +364,18 @@
             "localY"
           ],
           "encoded_locals": {
-            "localX": "\"local X\"",
-            "localY": "nil"
+            "localX": "local X",
+            "localY": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "@@classX": "\"classy X\"",
-        "@@classY": "\"classy Y\"",
-        "@x": "42",
-        "@y": "\"hello\""
+        "@@classX": "classy X",
+        "@@classY": "classy Y",
+        "@x": 42,
+        "@y": "hello"
       },
       "ordered_globals": [
         "@@classX",
@@ -405,18 +405,18 @@
             "localY"
           ],
           "encoded_locals": {
-            "localX": "\"local X\"",
-            "localY": "\"local Y\""
+            "localX": "local X",
+            "localY": "local Y"
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "@@classX": "\"classy X\"",
-        "@@classY": "\"classy Y\"",
-        "@x": "42",
-        "@y": "\"hello\""
+        "@@classX": "classy X",
+        "@@classY": "classy Y",
+        "@x": 42,
+        "@y": "hello"
       },
       "ordered_globals": [
         "@@classX",

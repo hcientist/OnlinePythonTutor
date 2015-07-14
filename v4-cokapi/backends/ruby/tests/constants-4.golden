@@ -58,7 +58,7 @@
       "heap": {
       },
       "globals": {
-        "OUTER_CONST": "99"
+        "OUTER_CONST": 99
       },
       "ordered_globals": [
         "OUTER_CONST"
@@ -104,10 +104,20 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Const",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "OUTER_CONST": "99",
-        "Const": "Const"
+        "OUTER_CONST": 99,
+        "Const": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "OUTER_CONST",
@@ -154,10 +164,20 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Const",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "OUTER_CONST": "99",
-        "Const": "Const"
+        "OUTER_CONST": 99,
+        "Const": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "OUTER_CONST",
@@ -204,10 +224,32 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Const",
+          [
+
+          ],
+          [
+            "get_const",
+            [
+              "REF",
+              2
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "get_const",
+          ""
+        ]
       },
       "globals": {
-        "OUTER_CONST": "99",
-        "Const": "Const"
+        "OUTER_CONST": 99,
+        "Const": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "OUTER_CONST",
@@ -254,10 +296,36 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Const",
+          [
+
+          ],
+          [
+            "CONST",
+            100
+          ],
+          [
+            "get_const",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "get_const",
+          ""
+        ]
       },
       "globals": {
-        "OUTER_CONST": "99",
-        "Const": "Const"
+        "OUTER_CONST": 99,
+        "Const": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "OUTER_CONST",
@@ -288,10 +356,36 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Const",
+          [
+
+          ],
+          [
+            "CONST",
+            100
+          ],
+          [
+            "get_const",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "get_const",
+          ""
+        ]
       },
       "globals": {
-        "OUTER_CONST": "99",
-        "Const": "Const"
+        "OUTER_CONST": 99,
+        "Const": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "OUTER_CONST",
@@ -338,10 +432,36 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Const",
+          [
+
+          ],
+          [
+            "CONST",
+            100
+          ],
+          [
+            "get_const",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "get_const",
+          ""
+        ]
       },
       "globals": {
-        "OUTER_CONST": "99",
-        "Const": "Const"
+        "OUTER_CONST": 99,
+        "Const": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "OUTER_CONST",
@@ -388,10 +508,36 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Const",
+          [
+
+          ],
+          [
+            "CONST",
+            100
+          ],
+          [
+            "get_const",
+            [
+              "REF",
+              6
+            ]
+          ]
+        ],
+        "6": [
+          "FUNCTION",
+          "get_const",
+          ""
+        ]
       },
       "globals": {
-        "OUTER_CONST": "99",
-        "Const": "Const"
+        "OUTER_CONST": 99,
+        "Const": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "OUTER_CONST",
@@ -434,15 +580,41 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "100"
+            "__return__": 100
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Const",
+          [
+
+          ],
+          [
+            "CONST",
+            100
+          ],
+          [
+            "get_const",
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "7": [
+          "FUNCTION",
+          "get_const",
+          ""
+        ]
       },
       "globals": {
-        "OUTER_CONST": "99",
-        "Const": "Const"
+        "OUTER_CONST": 99,
+        "Const": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "OUTER_CONST",
@@ -473,10 +645,36 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Const",
+          [
+
+          ],
+          [
+            "CONST",
+            100
+          ],
+          [
+            "get_const",
+            [
+              "REF",
+              8
+            ]
+          ]
+        ],
+        "8": [
+          "FUNCTION",
+          "get_const",
+          ""
+        ]
       },
       "globals": {
-        "OUTER_CONST": "99",
-        "Const": "Const"
+        "OUTER_CONST": 99,
+        "Const": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "OUTER_CONST",
@@ -507,10 +705,36 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Const",
+          [
+
+          ],
+          [
+            "CONST",
+            100
+          ],
+          [
+            "get_const",
+            [
+              "REF",
+              9
+            ]
+          ]
+        ],
+        "9": [
+          "FUNCTION",
+          "get_const",
+          ""
+        ]
       },
       "globals": {
-        "OUTER_CONST": "99",
-        "Const": "Const"
+        "OUTER_CONST": 99,
+        "Const": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "OUTER_CONST",
@@ -541,10 +765,36 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Const",
+          [
+
+          ],
+          [
+            "CONST",
+            100
+          ],
+          [
+            "get_const",
+            [
+              "REF",
+              10
+            ]
+          ]
+        ],
+        "10": [
+          "FUNCTION",
+          "get_const",
+          ""
+        ]
       },
       "globals": {
-        "OUTER_CONST": "99",
-        "Const": "Const"
+        "OUTER_CONST": 99,
+        "Const": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "OUTER_CONST",
@@ -575,10 +825,40 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Const",
+          [
+
+          ],
+          [
+            "CONST",
+            100
+          ],
+          [
+            "NEW_CONST",
+            123
+          ],
+          [
+            "get_const",
+            [
+              "REF",
+              11
+            ]
+          ]
+        ],
+        "11": [
+          "FUNCTION",
+          "get_const",
+          ""
+        ]
       },
       "globals": {
-        "OUTER_CONST": "99",
-        "Const": "Const"
+        "OUTER_CONST": 99,
+        "Const": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "OUTER_CONST",

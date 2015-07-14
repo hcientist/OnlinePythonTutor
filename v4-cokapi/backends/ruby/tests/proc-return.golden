@@ -22,8 +22,8 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "nil",
-            "times5": "nil"
+            "times3": null,
+            "times5": null
           }
         }
       ],
@@ -56,15 +56,23 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "nil",
-            "times5": "nil"
+            "times3": null,
+            "times5": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -91,8 +99,8 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "nil",
-            "times5": "nil"
+            "times3": null,
+            "times5": null
           }
         },
         {
@@ -109,14 +117,22 @@
             "factor"
           ],
           "encoded_locals": {
-            "factor": "3"
+            "factor": 3
           }
         }
       ],
       "heap": {
+        "2": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          2
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -143,8 +159,8 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "nil",
-            "times5": "nil"
+            "times3": null,
+            "times5": null
           }
         },
         {
@@ -161,14 +177,22 @@
             "factor"
           ],
           "encoded_locals": {
-            "factor": "3"
+            "factor": 3
           }
         }
       ],
       "heap": {
+        "3": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          3
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -195,8 +219,8 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "nil",
-            "times5": "nil"
+            "times3": null,
+            "times5": null
           }
         },
         {
@@ -214,15 +238,30 @@
             "__return__"
           ],
           "encoded_locals": {
-            "factor": "3",
-            "__return__": "#<Proc:0x007fb7a238a160@(eval):4>"
+            "factor": 3,
+            "__return__": [
+              "REF",
+              4
+            ]
           }
         }
       ],
       "heap": {
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "5": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          5
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -249,15 +288,30 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "#<Proc:0x007fb7a238a160@(eval):4>",
-            "times5": "nil"
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": null
           }
         }
       ],
       "heap": {
+        "6": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          6
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -284,8 +338,11 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "#<Proc:0x007fb7a238a160@(eval):4>",
-            "times5": "nil"
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": null
           }
         },
         {
@@ -302,14 +359,26 @@
             "factor"
           ],
           "encoded_locals": {
-            "factor": "5"
+            "factor": 5
           }
         }
       ],
       "heap": {
+        "7": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          7
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -336,8 +405,11 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "#<Proc:0x007fb7a238a160@(eval):4>",
-            "times5": "nil"
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": null
           }
         },
         {
@@ -354,14 +426,26 @@
             "factor"
           ],
           "encoded_locals": {
-            "factor": "5"
+            "factor": 5
           }
         }
       ],
       "heap": {
+        "8": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          8
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -388,8 +472,11 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "#<Proc:0x007fb7a238a160@(eval):4>",
-            "times5": "nil"
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": null
           }
         },
         {
@@ -407,15 +494,34 @@
             "__return__"
           ],
           "encoded_locals": {
-            "factor": "5",
-            "__return__": "#<Proc:0x007fb7a2377470@(eval):4>"
+            "factor": 5,
+            "__return__": [
+              "REF",
+              9
+            ]
           }
         }
       ],
       "heap": {
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "10": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          10
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -442,15 +548,37 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "#<Proc:0x007fb7a238a160@(eval):4>",
-            "times5": "#<Proc:0x007fb7a2377470@(eval):4>"
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
           }
         }
       ],
       "heap": {
+        "11": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          11
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -477,8 +605,14 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "#<Proc:0x007fb7a238a160@(eval):4>",
-            "times5": "#<Proc:0x007fb7a2377470@(eval):4>"
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
           }
         },
         {
@@ -495,14 +629,30 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "12"
+            "n": 12
           }
         }
       ],
       "heap": {
+        "12": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          12
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -529,8 +679,14 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "#<Proc:0x007fb7a238a160@(eval):4>",
-            "times5": "#<Proc:0x007fb7a2377470@(eval):4>"
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
           }
         },
         {
@@ -547,14 +703,30 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "12"
+            "n": 12
           }
         }
       ],
       "heap": {
+        "13": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          13
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -581,8 +753,14 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "#<Proc:0x007fb7a238a160@(eval):4>",
-            "times5": "#<Proc:0x007fb7a2377470@(eval):4>"
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
           }
         },
         {
@@ -600,15 +778,31 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "12",
-            "__return__": "36"
+            "n": 12,
+            "__return__": 36
           }
         }
       ],
       "heap": {
+        "14": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          14
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -635,15 +829,37 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "#<Proc:0x007fb7a238a160@(eval):4>",
-            "times5": "#<Proc:0x007fb7a2377470@(eval):4>"
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
           }
         }
       ],
       "heap": {
+        "15": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          15
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -670,8 +886,14 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "#<Proc:0x007fb7a238a160@(eval):4>",
-            "times5": "#<Proc:0x007fb7a2377470@(eval):4>"
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
           }
         },
         {
@@ -688,14 +910,30 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "5"
+            "n": 5
           }
         }
       ],
       "heap": {
+        "16": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          16
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -722,8 +960,14 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "#<Proc:0x007fb7a238a160@(eval):4>",
-            "times5": "#<Proc:0x007fb7a2377470@(eval):4>"
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
           }
         },
         {
@@ -740,14 +984,30 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "5"
+            "n": 5
           }
         }
       ],
       "heap": {
+        "17": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          17
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -774,8 +1034,14 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "#<Proc:0x007fb7a238a160@(eval):4>",
-            "times5": "#<Proc:0x007fb7a2377470@(eval):4>"
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
           }
         },
         {
@@ -793,15 +1059,31 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "5",
-            "__return__": "25"
+            "n": 5,
+            "__return__": 25
           }
         }
       ],
       "heap": {
+        "18": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          18
+        ]
       },
       "ordered_globals": [
         "gen_times"
@@ -828,15 +1110,37 @@
             "times5"
           ],
           "encoded_locals": {
-            "times3": "#<Proc:0x007fb7a238a160@(eval):4>",
-            "times5": "#<Proc:0x007fb7a2377470@(eval):4>"
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
           }
         }
       ],
       "heap": {
+        "19": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
       },
       "globals": {
-        "gen_times": "#<Method: Class(Object)#gen_times>"
+        "gen_times": [
+          "REF",
+          19
+        ]
       },
       "ordered_globals": [
         "gen_times"

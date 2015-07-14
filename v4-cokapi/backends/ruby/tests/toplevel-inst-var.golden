@@ -58,7 +58,7 @@
       "heap": {
       },
       "globals": {
-        "@x": "42"
+        "@x": 42
       },
       "ordered_globals": [
         "@x"
@@ -90,8 +90,8 @@
       "heap": {
       },
       "globals": {
-        "@x": "42",
-        "@y": "\"hello\""
+        "@x": 42,
+        "@y": "hello"
       },
       "ordered_globals": [
         "@x",
@@ -124,8 +124,8 @@
       "heap": {
       },
       "globals": {
-        "@x": "42",
-        "@y": "\"hello\""
+        "@x": 42,
+        "@y": "hello"
       },
       "ordered_globals": [
         "@x",
@@ -158,8 +158,8 @@
       "heap": {
       },
       "globals": {
-        "@x": "42",
-        "@y": "\"hello\""
+        "@x": 42,
+        "@y": "hello"
       },
       "ordered_globals": [
         "@x",

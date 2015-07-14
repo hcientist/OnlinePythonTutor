@@ -21,14 +21,14 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "nil"
+            "localX": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "$globalX": "nil"
+        "$globalX": null
       },
       "ordered_globals": [
         "$globalX"
@@ -54,14 +54,14 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "\"local hello\""
+            "localX": "local hello"
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "$globalX": "nil"
+        "$globalX": null
       },
       "ordered_globals": [
         "$globalX"
@@ -87,14 +87,14 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "\"local hello\""
+            "localX": "local hello"
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "$globalX": "\"global hello\""
+        "$globalX": "global hello"
       },
       "ordered_globals": [
         "$globalX"
@@ -120,15 +120,15 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "\"local hello\""
+            "localX": "local hello"
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "$globalX": "\"global hello\"",
-        "CONSTANT_X": "\"constant hello\""
+        "$globalX": "global hello",
+        "CONSTANT_X": "constant hello"
       },
       "ordered_globals": [
         "$globalX",
@@ -155,15 +155,15 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "\"local hello\""
+            "localX": "local hello"
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "$globalX": "\"global hello\"",
-        "CONSTANT_X": "\"constant hello\""
+        "$globalX": "global hello",
+        "CONSTANT_X": "constant hello"
       },
       "ordered_globals": [
         "$globalX",

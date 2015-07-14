@@ -22,15 +22,15 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "$glob": "nil"
+        "$glob": null
       },
       "ordered_globals": [
         "$glob"
@@ -57,15 +57,15 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "$glob": "5"
+        "$glob": 5
       },
       "ordered_globals": [
         "$glob"
@@ -92,8 +92,8 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         },
         {
@@ -114,10 +114,20 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -145,8 +155,8 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         },
         {
@@ -167,10 +177,20 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -198,8 +218,8 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         },
         {
@@ -220,10 +240,24 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "@@cla",
+            6
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -251,8 +285,8 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         },
         {
@@ -273,10 +307,28 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "@@cla",
+            6
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -304,8 +356,8 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         },
         {
@@ -326,10 +378,28 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "@@cla",
+            6
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -357,8 +427,8 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         },
         {
@@ -379,10 +449,28 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "@@cla",
+            6
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -410,8 +498,8 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         },
         {
@@ -432,10 +520,28 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "@@cla",
+            6
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -463,8 +569,8 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         },
         {
@@ -485,10 +591,40 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "@@cla",
+            6
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "inst",
+          ""
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -516,8 +652,8 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         },
         {
@@ -538,10 +674,52 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "@@cla",
+            6
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "4": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -569,16 +747,58 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "@@cla",
+            6
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "6": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -606,16 +826,58 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "@@cla",
+            6
+          ]
+        ],
+        "7": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "8": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -643,8 +905,8 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         },
         {
@@ -661,15 +923,57 @@
             "x"
           ],
           "encoded_locals": {
-            "x": "3"
+            "x": 3
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "@@cla",
+            6
+          ]
+        ],
+        "9": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "10": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -697,8 +1001,8 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         },
         {
@@ -715,15 +1019,57 @@
             "x"
           ],
           "encoded_locals": {
-            "x": "3"
+            "x": 3
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "@@cla",
+            6
+          ]
+        ],
+        "11": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "12": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -751,8 +1097,8 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         },
         {
@@ -769,15 +1115,57 @@
             "x"
           ],
           "encoded_locals": {
-            "x": "3"
+            "x": 3
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "@@cla",
+            6
+          ]
+        ],
+        "13": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "14": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -805,8 +1193,8 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "nil",
-            "other": "nil"
+            "test": null,
+            "other": null
           }
         },
         {
@@ -824,16 +1212,58 @@
             "__return__"
           ],
           "encoded_locals": {
-            "x": "3",
-            "__return__": "7"
+            "x": 3,
+            "__return__": 7
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              15
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              16
+            ]
+          ],
+          [
+            "@@cla",
+            7
+          ]
+        ],
+        "15": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "16": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -861,16 +1291,69 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              17
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              18
+            ]
+          ],
+          [
+            "@@cla",
+            7
+          ]
+        ],
+        "17": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "18": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -898,8 +1381,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -920,10 +1406,60 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              20
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              21
+            ]
+          ],
+          [
+            "@@cla",
+            7
+          ]
+        ],
+        "20": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "21": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -951,8 +1487,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -973,10 +1512,60 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              22
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              23
+            ]
+          ],
+          [
+            "@@cla",
+            7
+          ]
+        ],
+        "22": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "23": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1004,8 +1593,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -1022,15 +1614,65 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "7"
+            "__return__": 7
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              24
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              25
+            ]
+          ],
+          [
+            "@@cla",
+            7
+          ]
+        ],
+        "24": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "25": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1058,16 +1700,69 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              26
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              27
+            ]
+          ],
+          [
+            "@@cla",
+            7
+          ]
+        ],
+        "26": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "27": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1078,7 +1773,7 @@
       "func_name": "<toplevel>",
       "line": 30,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -1095,16 +1790,69 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              28
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              29
+            ]
+          ],
+          [
+            "@@cla",
+            7
+          ]
+        ],
+        "28": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "29": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1115,7 +1863,7 @@
       "func_name": "<toplevel>",
       "line": 16,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1132,8 +1880,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -1150,15 +1901,65 @@
             "y"
           ],
           "encoded_locals": {
-            "y": "4"
+            "y": 4
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              30
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              31
+            ]
+          ],
+          [
+            "@@cla",
+            7
+          ]
+        ],
+        "30": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "31": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1169,7 +1970,7 @@
       "func_name": "<toplevel>",
       "line": 17,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1186,8 +1987,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -1204,15 +2008,65 @@
             "y"
           ],
           "encoded_locals": {
-            "y": "4"
+            "y": 4
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              32
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              33
+            ]
+          ],
+          [
+            "@@cla",
+            7
+          ]
+        ],
+        "32": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "33": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1223,7 +2077,7 @@
       "func_name": "<toplevel>",
       "line": 18,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1240,8 +2094,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -1259,16 +2116,66 @@
             "__return__"
           ],
           "encoded_locals": {
-            "y": "4",
-            "__return__": "4"
+            "y": 4,
+            "__return__": 4
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              34
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              35
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "34": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "35": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1279,7 +2186,7 @@
       "func_name": "<toplevel>",
       "line": 31,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -1296,16 +2203,69 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              36
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              37
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "36": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "37": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1316,7 +2276,7 @@
       "func_name": "<toplevel>",
       "line": 22,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1333,8 +2293,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -1351,15 +2314,65 @@
             "i"
           ],
           "encoded_locals": {
-            "i": "8"
+            "i": 8
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              38
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              39
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "38": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "39": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1370,7 +2383,7 @@
       "func_name": "<toplevel>",
       "line": 23,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1387,8 +2400,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=3>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -1405,15 +2421,65 @@
             "i"
           ],
           "encoded_locals": {
-            "i": "8"
+            "i": 8
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              40
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              41
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "40": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "41": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1424,7 +2490,7 @@
       "func_name": "<toplevel>",
       "line": 24,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1441,8 +2507,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -1460,16 +2529,66 @@
             "__return__"
           ],
           "encoded_locals": {
-            "i": "8",
-            "__return__": "8"
+            "i": 8,
+            "__return__": 8
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              42
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              43
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "42": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "43": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1480,7 +2599,7 @@
       "func_name": "<toplevel>",
       "line": 32,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -1497,16 +2616,69 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              44
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              45
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "44": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "45": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1517,7 +2689,7 @@
       "func_name": "<toplevel>",
       "line": 13,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1534,8 +2706,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -1556,10 +2731,60 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              46
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              47
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "46": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "47": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1570,7 +2795,7 @@
       "func_name": "<toplevel>",
       "line": 14,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1587,8 +2812,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -1609,10 +2837,60 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              48
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              49
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "48": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "49": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1623,7 +2901,7 @@
       "func_name": "<toplevel>",
       "line": 15,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1640,8 +2918,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -1658,15 +2939,65 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "4"
+            "__return__": 4
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              50
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              51
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "50": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "51": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1677,7 +3008,7 @@
       "func_name": "<toplevel>",
       "line": 33,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -1694,16 +3025,69 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              52
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              53
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "52": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "53": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1714,7 +3098,7 @@
       "func_name": "<toplevel>",
       "line": 19,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1731,8 +3115,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -1753,10 +3140,60 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              54
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              55
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "54": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "55": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1767,7 +3204,7 @@
       "func_name": "<toplevel>",
       "line": 20,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1784,8 +3221,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -1806,10 +3246,60 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              56
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              57
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "56": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "57": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1820,7 +3310,7 @@
       "func_name": "<toplevel>",
       "line": 21,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1837,8 +3327,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -1855,15 +3348,65 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "8"
+            "__return__": 8
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              58
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              59
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "58": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "59": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1874,7 +3417,7 @@
       "func_name": "<toplevel>",
       "line": 34,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -1891,16 +3434,69 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              60
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              61
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "60": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "61": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1911,7 +3507,7 @@
       "func_name": "<toplevel>",
       "line": 9,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1928,8 +3524,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -1946,15 +3545,65 @@
             "x"
           ],
           "encoded_locals": {
-            "x": "17"
+            "x": 17
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              62
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              63
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "62": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "63": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -1965,7 +3614,7 @@
       "func_name": "<toplevel>",
       "line": 10,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1982,8 +3631,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -2000,15 +3652,65 @@
             "x"
           ],
           "encoded_locals": {
-            "x": "17"
+            "x": 17
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              64
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              65
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "64": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "65": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -2019,7 +3721,7 @@
       "func_name": "<toplevel>",
       "line": 11,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2036,8 +3738,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -2054,15 +3759,65 @@
             "x"
           ],
           "encoded_locals": {
-            "x": "17"
+            "x": 17
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              66
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              67
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "66": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "67": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -2073,7 +3828,7 @@
       "func_name": "<toplevel>",
       "line": 12,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2090,8 +3845,11 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "nil"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": null
           }
         },
         {
@@ -2109,16 +3867,66 @@
             "__return__"
           ],
           "encoded_locals": {
-            "x": "17",
-            "__return__": "5"
+            "x": 17,
+            "__return__": 5
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              68
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              69
+            ]
+          ],
+          [
+            "@@cla",
+            5
+          ]
+        ],
+        "68": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "69": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -2129,7 +3937,7 @@
       "func_name": "<toplevel>",
       "line": 35,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -2146,16 +3954,80 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "#<TestVar:0x007f49718282c0 @inst=17>"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": [
+              "REF",
+              72
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              70
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              71
+            ]
+          ],
+          [
+            "@@cla",
+            5
+          ]
+        ],
+        "70": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "71": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ],
+        "72": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            17
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -2166,7 +4038,7 @@
       "func_name": "<toplevel>",
       "line": 36,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n#<TestVar:0x007f49718282c0 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n#<TestVar:0x007fc597604690 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -2183,16 +4055,80 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "#<TestVar:0x007f49718282c0 @inst=17>"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": [
+              "REF",
+              72
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              73
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              74
+            ]
+          ],
+          [
+            "@@cla",
+            5
+          ]
+        ],
+        "73": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "74": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ],
+        "72": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            17
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -2203,7 +4139,7 @@
       "func_name": "<toplevel>",
       "line": 13,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n#<TestVar:0x007f49718282c0 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n#<TestVar:0x007fc597604690 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2220,8 +4156,14 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "#<TestVar:0x007f49718282c0 @inst=17>"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": [
+              "REF",
+              72
+            ]
           }
         },
         {
@@ -2242,10 +4184,68 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              75
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              76
+            ]
+          ],
+          [
+            "@@cla",
+            5
+          ]
+        ],
+        "75": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "76": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ],
+        "72": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            17
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -2256,7 +4256,7 @@
       "func_name": "<toplevel>",
       "line": 14,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n#<TestVar:0x007f49718282c0 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n#<TestVar:0x007fc597604690 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2273,8 +4273,14 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "#<TestVar:0x007f49718282c0 @inst=17>"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": [
+              "REF",
+              72
+            ]
           }
         },
         {
@@ -2295,10 +4301,68 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              77
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              78
+            ]
+          ],
+          [
+            "@@cla",
+            5
+          ]
+        ],
+        "77": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "78": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ],
+        "72": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            17
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -2309,7 +4373,7 @@
       "func_name": "<toplevel>",
       "line": 15,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n#<TestVar:0x007f49718282c0 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n#<TestVar:0x007fc597604690 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2326,8 +4390,14 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "#<TestVar:0x007f49718282c0 @inst=17>"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": [
+              "REF",
+              72
+            ]
           }
         },
         {
@@ -2344,15 +4414,73 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "5"
+            "__return__": 5
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              79
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              80
+            ]
+          ],
+          [
+            "@@cla",
+            5
+          ]
+        ],
+        "79": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "80": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ],
+        "72": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            17
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",
@@ -2363,7 +4491,7 @@
       "func_name": "<toplevel>",
       "line": 36,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f49714e4550 @inst=3>\n4\n8\n#<TestVar:0x007f49718282c0 @inst=17>\n5\n",
+      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n#<TestVar:0x007fc597604690 @inst=17>\n5\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -2380,16 +4508,80 @@
             "other"
           ],
           "encoded_locals": {
-            "test": "#<TestVar:0x007f49714e4550 @inst=8>",
-            "other": "#<TestVar:0x007f49718282c0 @inst=17>"
+            "test": [
+              "REF",
+              19
+            ],
+            "other": [
+              "REF",
+              72
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              81
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              82
+            ]
+          ],
+          [
+            "@@cla",
+            5
+          ]
+        ],
+        "81": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "82": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ],
+        "72": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            17
+          ]
+        ]
       },
       "globals": {
-        "$glob": "5",
-        "TestVar": "TestVar"
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$glob",

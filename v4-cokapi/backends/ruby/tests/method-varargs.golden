@@ -56,9 +56,17 @@
         }
       ],
       "heap": {
+        "1": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -104,18 +112,32 @@
             "label"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[]",
-            "length": "nil",
-            "label": "nil"
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              3
+            ],
+            "length": null,
+            "label": null
           }
         }
       ],
       "heap": {
+        "2": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "3": [
+          "LIST"
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          2
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -161,18 +183,32 @@
             "label"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[]",
-            "length": "nil",
-            "label": "nil"
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              3
+            ],
+            "length": null,
+            "label": null
           }
         }
       ],
       "heap": {
+        "4": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "3": [
+          "LIST"
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          4
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -218,18 +254,32 @@
             "label"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[]",
-            "length": "0",
-            "label": "nil"
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              3
+            ],
+            "length": 0,
+            "label": null
           }
         }
       ],
       "heap": {
+        "5": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "3": [
+          "LIST"
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          5
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -275,18 +325,32 @@
             "label"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[]",
-            "length": "0",
-            "label": "\" varargs\""
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              3
+            ],
+            "length": 0,
+            "label": " varargs"
           }
         }
       ],
       "heap": {
+        "6": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "3": [
+          "LIST"
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          6
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -333,19 +397,33 @@
             "__return__"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[]",
-            "length": "0",
-            "label": "\" varargs\"",
-            "__return__": "\"0 varargs ( [] )\""
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              3
+            ],
+            "length": 0,
+            "label": " varargs",
+            "__return__": "0 varargs ( [] )"
           }
         }
       ],
       "heap": {
+        "7": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "3": [
+          "LIST"
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          7
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -375,9 +453,17 @@
         }
       ],
       "heap": {
+        "8": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          8
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -423,18 +509,33 @@
             "label"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[1]",
-            "length": "nil",
-            "label": "nil"
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              10
+            ],
+            "length": null,
+            "label": null
           }
         }
       ],
       "heap": {
+        "9": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "10": [
+          "LIST",
+          1
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          9
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -480,18 +581,33 @@
             "label"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[1]",
-            "length": "nil",
-            "label": "nil"
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              10
+            ],
+            "length": null,
+            "label": null
           }
         }
       ],
       "heap": {
+        "11": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "10": [
+          "LIST",
+          1
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          11
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -537,18 +653,33 @@
             "label"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[1]",
-            "length": "1",
-            "label": "nil"
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              10
+            ],
+            "length": 1,
+            "label": null
           }
         }
       ],
       "heap": {
+        "12": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "10": [
+          "LIST",
+          1
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          12
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -594,18 +725,33 @@
             "label"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[1]",
-            "length": "1",
-            "label": "\" vararg\""
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              10
+            ],
+            "length": 1,
+            "label": " vararg"
           }
         }
       ],
       "heap": {
+        "13": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "10": [
+          "LIST",
+          1
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          13
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -652,19 +798,34 @@
             "__return__"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[1]",
-            "length": "1",
-            "label": "\" vararg\"",
-            "__return__": "\"1 vararg ( [1] )\""
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              10
+            ],
+            "length": 1,
+            "label": " vararg",
+            "__return__": "1 vararg ( [1] )"
           }
         }
       ],
       "heap": {
+        "14": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "10": [
+          "LIST",
+          1
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          14
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -694,9 +855,17 @@
         }
       ],
       "heap": {
+        "15": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          15
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -742,18 +911,42 @@
             "label"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[100, 2.5, \"three\"]",
-            "length": "nil",
-            "label": "nil"
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              17
+            ],
+            "length": null,
+            "label": null
           }
         }
       ],
       "heap": {
+        "16": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "17": [
+          "LIST",
+          100,
+          [
+            "REF",
+            18
+          ],
+          "three"
+        ],
+        "18": [
+          "INSTANCE",
+          "Float"
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          16
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -799,18 +992,42 @@
             "label"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[100, 2.5, \"three\"]",
-            "length": "nil",
-            "label": "nil"
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              17
+            ],
+            "length": null,
+            "label": null
           }
         }
       ],
       "heap": {
+        "19": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "17": [
+          "LIST",
+          100,
+          [
+            "REF",
+            18
+          ],
+          "three"
+        ],
+        "18": [
+          "INSTANCE",
+          "Float"
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          19
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -856,18 +1073,42 @@
             "label"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[100, 2.5, \"three\"]",
-            "length": "3",
-            "label": "nil"
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              17
+            ],
+            "length": 3,
+            "label": null
           }
         }
       ],
       "heap": {
+        "20": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "17": [
+          "LIST",
+          100,
+          [
+            "REF",
+            18
+          ],
+          "three"
+        ],
+        "18": [
+          "INSTANCE",
+          "Float"
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          20
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -913,18 +1154,42 @@
             "label"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[100, 2.5, \"three\"]",
-            "length": "3",
-            "label": "\" varargs\""
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              17
+            ],
+            "length": 3,
+            "label": " varargs"
           }
         }
       ],
       "heap": {
+        "21": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "17": [
+          "LIST",
+          100,
+          [
+            "REF",
+            18
+          ],
+          "three"
+        ],
+        "18": [
+          "INSTANCE",
+          "Float"
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          21
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -971,19 +1236,43 @@
             "__return__"
           ],
           "encoded_locals": {
-            "x": "\"myX\"",
-            "y": "\"myY\"",
-            "args": "[100, 2.5, \"three\"]",
-            "length": "3",
-            "label": "\" varargs\"",
-            "__return__": "\"3 varargs ( [100, 2.5, \\\"three\\\"] )\""
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              17
+            ],
+            "length": 3,
+            "label": " varargs",
+            "__return__": "3 varargs ( [100, 2.5, \"three\"] )"
           }
         }
       ],
       "heap": {
+        "22": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "17": [
+          "LIST",
+          100,
+          [
+            "REF",
+            18
+          ],
+          "three"
+        ],
+        "18": [
+          "INSTANCE",
+          "Float"
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          22
+        ]
       },
       "ordered_globals": [
         "num_args"
@@ -1013,9 +1302,17 @@
         }
       ],
       "heap": {
+        "23": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ]
       },
       "globals": {
-        "num_args": "#<Method: Class(Object)#num_args>"
+        "num_args": [
+          "REF",
+          23
+        ]
       },
       "ordered_globals": [
         "num_args"

@@ -21,15 +21,15 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "nil"
+            "localX": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "$globalX": "nil",
-        "$globalY": "nil"
+        "$globalX": null,
+        "$globalY": null
       },
       "ordered_globals": [
         "$globalX",
@@ -56,15 +56,15 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "nil"
+            "localX": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "$globalX": "\"I am a global!\"",
-        "$globalY": "nil"
+        "$globalX": "I am a global!---I am another global!",
+        "$globalY": null
       },
       "ordered_globals": [
         "$globalX",
@@ -91,15 +91,15 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "nil"
+            "localX": null
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "$globalX": "\"I am a global!\"",
-        "$globalY": "\"I am another global!\""
+        "$globalX": "I am a global!---I am another global!",
+        "$globalY": "I am another global!"
       },
       "ordered_globals": [
         "$globalX",
@@ -126,15 +126,15 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "\"I am a local in <main>\""
+            "localX": "I am a local in <main>"
           }
         }
       ],
       "heap": {
       },
       "globals": {
-        "$globalX": "\"I am a global!\"",
-        "$globalY": "\"I am another global!\""
+        "$globalX": "I am a global!---I am another global!",
+        "$globalY": "I am another global!"
       },
       "ordered_globals": [
         "$globalX",
@@ -161,16 +161,24 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "\"I am a local in <main>\""
+            "localX": "I am a local in <main>"
           }
         }
       ],
       "heap": {
+        "1": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
       },
       "globals": {
-        "$globalX": "\"I am a global!\"",
-        "$globalY": "\"I am another global!\"",
-        "foo": "#<Method: Class(Object)#foo>"
+        "$globalX": "I am a global!---I am another global!",
+        "$globalY": "I am another global!",
+        "foo": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "$globalX",
@@ -198,16 +206,24 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "\"I am a local in <main>\""
+            "localX": "I am a local in <main>"
           }
         }
       ],
       "heap": {
+        "2": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
       },
       "globals": {
-        "$globalX": "\"I am a global!---\"",
-        "$globalY": "\"I am another global!\"",
-        "foo": "#<Method: Class(Object)#foo>"
+        "$globalX": "I am a global!---I am another global!",
+        "$globalY": "I am another global!",
+        "foo": [
+          "REF",
+          2
+        ]
       },
       "ordered_globals": [
         "$globalX",
@@ -235,7 +251,7 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "\"I am a local in <main>\""
+            "localX": "I am a local in <main>"
           }
         },
         {
@@ -252,16 +268,24 @@
             "reallyLocalX"
           ],
           "encoded_locals": {
-            "reallyLocalX": "nil"
+            "reallyLocalX": null
           }
         }
       ],
       "heap": {
+        "3": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
       },
       "globals": {
-        "$globalX": "\"I am a global!---\"",
-        "$globalY": "\"I am another global!\"",
-        "foo": "#<Method: Class(Object)#foo>"
+        "$globalX": "I am a global!---I am another global!",
+        "$globalY": "I am another global!",
+        "foo": [
+          "REF",
+          3
+        ]
       },
       "ordered_globals": [
         "$globalX",
@@ -289,7 +313,7 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "\"I am a local in <main>\""
+            "localX": "I am a local in <main>"
           }
         },
         {
@@ -306,16 +330,24 @@
             "reallyLocalX"
           ],
           "encoded_locals": {
-            "reallyLocalX": "nil"
+            "reallyLocalX": null
           }
         }
       ],
       "heap": {
+        "4": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
       },
       "globals": {
-        "$globalX": "\"I am a global!---\"",
-        "$globalY": "\"I am another global!\"",
-        "foo": "#<Method: Class(Object)#foo>"
+        "$globalX": "I am a global!---I am another global!",
+        "$globalY": "I am another global!",
+        "foo": [
+          "REF",
+          4
+        ]
       },
       "ordered_globals": [
         "$globalX",
@@ -343,7 +375,7 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "\"I am a local in <main>\""
+            "localX": "I am a local in <main>"
           }
         },
         {
@@ -360,16 +392,24 @@
             "reallyLocalX"
           ],
           "encoded_locals": {
-            "reallyLocalX": "\"I am a local in foo\""
+            "reallyLocalX": "I am a local in foo"
           }
         }
       ],
       "heap": {
+        "5": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
       },
       "globals": {
-        "$globalX": "\"I am a global!---\"",
-        "$globalY": "\"I am another global!\"",
-        "foo": "#<Method: Class(Object)#foo>"
+        "$globalX": "I am a global!---I am another global!",
+        "$globalY": "I am another global!",
+        "foo": [
+          "REF",
+          5
+        ]
       },
       "ordered_globals": [
         "$globalX",
@@ -397,7 +437,7 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "\"I am a local in <main>\""
+            "localX": "I am a local in <main>"
           }
         },
         {
@@ -414,16 +454,24 @@
             "reallyLocalX"
           ],
           "encoded_locals": {
-            "reallyLocalX": "\"I am a local in foo\""
+            "reallyLocalX": "I am a local in foo"
           }
         }
       ],
       "heap": {
+        "6": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
       },
       "globals": {
-        "$globalX": "\"I am a global!---\"",
-        "$globalY": "\"I am another global!\"",
-        "foo": "#<Method: Class(Object)#foo>"
+        "$globalX": "I am a global!---I am another global!",
+        "$globalY": "I am another global!",
+        "foo": [
+          "REF",
+          6
+        ]
       },
       "ordered_globals": [
         "$globalX",
@@ -451,7 +499,7 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "\"I am a local in <main>\""
+            "localX": "I am a local in <main>"
           }
         },
         {
@@ -469,17 +517,25 @@
             "__return__"
           ],
           "encoded_locals": {
-            "reallyLocalX": "\"I am a local in foo\"",
-            "__return__": "\"I am a global!---I am another global!\""
+            "reallyLocalX": "I am a local in foo",
+            "__return__": "I am a global!---I am another global!"
           }
         }
       ],
       "heap": {
+        "7": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
       },
       "globals": {
-        "$globalX": "\"I am a global!---I am another global!\"",
-        "$globalY": "\"I am another global!\"",
-        "foo": "#<Method: Class(Object)#foo>"
+        "$globalX": "I am a global!---I am another global!",
+        "$globalY": "I am another global!",
+        "foo": [
+          "REF",
+          7
+        ]
       },
       "ordered_globals": [
         "$globalX",
@@ -507,16 +563,24 @@
             "localX"
           ],
           "encoded_locals": {
-            "localX": "\"I am a local in <main>\""
+            "localX": "I am a local in <main>"
           }
         }
       ],
       "heap": {
+        "8": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
       },
       "globals": {
-        "$globalX": "\"I am a global!---I am another global!\"",
-        "$globalY": "\"I am another global!\"",
-        "foo": "#<Method: Class(Object)#foo>"
+        "$globalX": "I am a global!---I am another global!",
+        "$globalY": "I am another global!",
+        "foo": [
+          "REF",
+          8
+        ]
       },
       "ordered_globals": [
         "$globalX",

@@ -22,8 +22,8 @@
             "p"
           ],
           "encoded_locals": {
-            "x": "nil",
-            "p": "nil"
+            "x": null,
+            "p": null
           }
         }
       ],
@@ -56,8 +56,8 @@
             "p"
           ],
           "encoded_locals": {
-            "x": "5",
-            "p": "nil"
+            "x": 5,
+            "p": null
           }
         }
       ],
@@ -90,12 +90,19 @@
             "p"
           ],
           "encoded_locals": {
-            "x": "5",
-            "p": "#<Proc:0x007f6d2e064620@(eval):5>"
+            "x": 5,
+            "p": [
+              "REF",
+              1
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 5"
+        ]
       },
       "globals": {
       },
@@ -124,8 +131,11 @@
             "p"
           ],
           "encoded_locals": {
-            "x": "5",
-            "p": "#<Proc:0x007f6d2e064620@(eval):5>"
+            "x": 5,
+            "p": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -146,6 +156,10 @@
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 5"
+        ]
       },
       "globals": {
       },
@@ -174,8 +188,11 @@
             "p"
           ],
           "encoded_locals": {
-            "x": "5",
-            "p": "#<Proc:0x007f6d2e064620@(eval):5>"
+            "x": 5,
+            "p": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -196,6 +213,10 @@
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 5"
+        ]
       },
       "globals": {
       },
@@ -224,8 +245,11 @@
             "p"
           ],
           "encoded_locals": {
-            "x": "5",
-            "p": "#<Proc:0x007f6d2e064620@(eval):5>"
+            "x": 5,
+            "p": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -246,6 +270,10 @@
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 5"
+        ]
       },
       "globals": {
       },
@@ -274,8 +302,11 @@
             "p"
           ],
           "encoded_locals": {
-            "x": "105",
-            "p": "#<Proc:0x007f6d2e064620@(eval):5>"
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -296,6 +327,10 @@
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 5"
+        ]
       },
       "globals": {
       },
@@ -324,8 +359,11 @@
             "p"
           ],
           "encoded_locals": {
-            "x": "105",
-            "p": "#<Proc:0x007f6d2e064620@(eval):5>"
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -346,6 +384,10 @@
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 5"
+        ]
       },
       "globals": {
       },
@@ -374,8 +416,11 @@
             "p"
           ],
           "encoded_locals": {
-            "x": "105",
-            "p": "#<Proc:0x007f6d2e064620@(eval):5>"
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -392,11 +437,15 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 5"
+        ]
       },
       "globals": {
       },
@@ -425,12 +474,19 @@
             "p"
           ],
           "encoded_locals": {
-            "x": "105",
-            "p": "#<Proc:0x007f6d2e064620@(eval):5>"
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 5"
+        ]
       },
       "globals": {
       },
@@ -459,12 +515,19 @@
             "p"
           ],
           "encoded_locals": {
-            "x": "105",
-            "p": "#<Proc:0x007f6d2e064620@(eval):5>"
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 5"
+        ]
       },
       "globals": {
       },

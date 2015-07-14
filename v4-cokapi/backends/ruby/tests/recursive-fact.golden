@@ -56,9 +56,17 @@
         }
       ],
       "heap": {
+        "1": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -100,14 +108,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         }
       ],
       "heap": {
+        "2": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          2
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -149,14 +165,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         }
       ],
       "heap": {
+        "3": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          3
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -198,14 +222,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         }
       ],
       "heap": {
+        "4": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          4
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -247,7 +279,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         },
         {
@@ -264,14 +296,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "3"
+            "n": 3
           }
         }
       ],
       "heap": {
+        "5": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          5
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -313,7 +353,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         },
         {
@@ -330,14 +370,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "3"
+            "n": 3
           }
         }
       ],
       "heap": {
+        "6": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          6
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -379,7 +427,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         },
         {
@@ -396,14 +444,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "3"
+            "n": 3
           }
         }
       ],
       "heap": {
+        "7": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          7
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -445,7 +501,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         },
         {
@@ -462,7 +518,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "3"
+            "n": 3
           }
         },
         {
@@ -479,14 +535,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "2"
+            "n": 2
           }
         }
       ],
       "heap": {
+        "8": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          8
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -528,7 +592,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         },
         {
@@ -545,7 +609,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "3"
+            "n": 3
           }
         },
         {
@@ -562,14 +626,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "2"
+            "n": 2
           }
         }
       ],
       "heap": {
+        "9": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          9
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -611,7 +683,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         },
         {
@@ -628,7 +700,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "3"
+            "n": 3
           }
         },
         {
@@ -645,14 +717,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "2"
+            "n": 2
           }
         }
       ],
       "heap": {
+        "10": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          10
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -694,7 +774,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         },
         {
@@ -711,7 +791,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "3"
+            "n": 3
           }
         },
         {
@@ -728,7 +808,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "2"
+            "n": 2
           }
         },
         {
@@ -745,14 +825,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "1"
+            "n": 1
           }
         }
       ],
       "heap": {
+        "11": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          11
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -794,7 +882,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         },
         {
@@ -811,7 +899,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "3"
+            "n": 3
           }
         },
         {
@@ -828,7 +916,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "2"
+            "n": 2
           }
         },
         {
@@ -845,14 +933,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "1"
+            "n": 1
           }
         }
       ],
       "heap": {
+        "12": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          12
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -894,7 +990,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         },
         {
@@ -911,7 +1007,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "3"
+            "n": 3
           }
         },
         {
@@ -928,7 +1024,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "2"
+            "n": 2
           }
         },
         {
@@ -945,14 +1041,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "1"
+            "n": 1
           }
         }
       ],
       "heap": {
+        "13": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          13
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -994,7 +1098,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         },
         {
@@ -1011,7 +1115,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "3"
+            "n": 3
           }
         },
         {
@@ -1028,7 +1132,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "2"
+            "n": 2
           }
         },
         {
@@ -1046,15 +1150,23 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "1",
-            "__return__": "1"
+            "n": 1,
+            "__return__": 1
           }
         }
       ],
       "heap": {
+        "14": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          14
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -1096,7 +1208,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         },
         {
@@ -1113,7 +1225,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "3"
+            "n": 3
           }
         },
         {
@@ -1131,15 +1243,23 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "2",
-            "__return__": "2"
+            "n": 2,
+            "__return__": 2
           }
         }
       ],
       "heap": {
+        "15": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          15
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -1181,7 +1301,7 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         },
         {
@@ -1199,15 +1319,23 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "3",
-            "__return__": "6"
+            "n": 3,
+            "__return__": 6
           }
         }
       ],
       "heap": {
+        "16": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          16
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -1250,15 +1378,23 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "4",
-            "__return__": "24"
+            "n": 4,
+            "__return__": 24
           }
         }
       ],
       "heap": {
+        "17": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          17
+        ]
       },
       "ordered_globals": [
         "fact"
@@ -1288,9 +1424,17 @@
         }
       ],
       "heap": {
+        "18": [
+          "FUNCTION",
+          "fact",
+          ""
+        ]
       },
       "globals": {
-        "fact": "#<Method: Class(Object)#fact>"
+        "fact": [
+          "REF",
+          18
+        ]
       },
       "ordered_globals": [
         "fact"

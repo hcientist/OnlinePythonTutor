@@ -10,8 +10,6 @@
 
 # TODO
 #
-# - display constants defined INSIDE OF modules or classes
-# - display class and instance variables
 # - when inside of a method, always display implicit 'self' parameter if
 #   it's not the toplevel self
 # - display the 'binding' within a proc/lambda object, which represents
@@ -19,15 +17,16 @@
 # - support gets() for user input using the restart hack mechanism
 #   - user input stored in $_
 # - support 'include'-ing a module and bringing in variables into namespace
+#   - maybe this already works?
 # - cosmetic issues in the OPT frontend for Ruby:
 #   - relabel "Global frame" as "Globals" or something
 #   - display None values as 'nil'
 #   - display booleans as 'true' and 'false'
-#   - rename 'list' as 'array'
-#   - rename 'dict' as 'hash'
-#   - rename 'instance' as 'object'
+#   - rename 'list' to 'array'
+#   - rename 'dict' to 'hash'
+#   - rename 'instance' to 'object'
 #   - rename 'function' to 'method'
-# - support display of private and protected attributes
+# - display private and protected attributes
 #
 # Useful notes from http://phrogz.net/programmingruby/frameset.html:
 #  - "First, every object has a unique object identifier (abbreviated as
@@ -147,8 +146,10 @@ class ObjectEncoder
         # display these simple types as-is
         new_obj << dat.class.to_s
         new_obj << dat.inspect
-      elsif dat.class == Method
-        new_obj << 'FUNCTION' # just use 'FUNCTION', but label it Method in the frontend
+      elsif dat.class == Method || dat.class == UnboundMethod
+        # just use 'FUNCTION' for simplicity, even though it masks some
+        # subtleties of methods, unbound methods, etc.
+        new_obj << 'FUNCTION'
         new_obj << dat.name
         new_obj << '' # parent frame ID
       elsif dat.class == Proc
@@ -176,9 +177,9 @@ class ObjectEncoder
 
         my_instance_methods = dat.instance_methods - dat.superclass.instance_methods
         my_instance_methods.each do |e|
-          # TODO: fixme -- can't get method() from class, only exists in
-          # instances
-          encoded_instance_methods << [e.to_s, encode(dat.method(e))]
+          # use instance_method to get the unbound method
+          # http://ruby-doc.org/core-2.2.0/UnboundMethod.html
+          encoded_instance_methods << [e.to_s, encode(dat.instance_method(e))]
         end
 
         dat.class_variables.each do |e|
@@ -206,9 +207,12 @@ class ObjectEncoder
           encoded_constants << [e.to_s, encode(dat.const_get(e))]
         end
 
-        # TODO: fixme - test on tests/module-basic.rb
+        # TODO: maybe remove duplication from included modules?
+
         dat.instance_methods.each do |e|
-          encoded_instance_methods << [e.to_s, encode(dat.method(e))]
+          # use instance_method to get the unbound method
+          # http://ruby-doc.org/core-2.2.0/UnboundMethod.html
+          encoded_instance_methods << [e.to_s, encode(dat.instance_method(e))]
         end
 
         dat.class_variables.each do |e|

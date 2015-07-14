@@ -21,7 +21,7 @@
             "object"
           ],
           "encoded_locals": {
-            "object": "nil"
+            "object": null
           }
         }
       ],
@@ -53,7 +53,7 @@
             "object"
           ],
           "encoded_locals": {
-            "object": "nil"
+            "object": null
           }
         },
         {
@@ -74,9 +74,19 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Example",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "Example": "Example"
+        "Example": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "Example"
@@ -102,7 +112,7 @@
             "object"
           ],
           "encoded_locals": {
-            "object": "nil"
+            "object": null
           }
         },
         {
@@ -123,9 +133,19 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Example",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "Example": "Example"
+        "Example": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "Example"
@@ -151,7 +171,7 @@
             "object"
           ],
           "encoded_locals": {
-            "object": "nil"
+            "object": null
           }
         },
         {
@@ -172,9 +192,23 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Example",
+          [
+
+          ],
+          [
+            "VAR1",
+            100
+          ]
+        ]
       },
       "globals": {
-        "Example": "Example"
+        "Example": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "Example"
@@ -200,7 +234,7 @@
             "object"
           ],
           "encoded_locals": {
-            "object": "nil"
+            "object": null
           }
         },
         {
@@ -221,9 +255,27 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Example",
+          [
+
+          ],
+          [
+            "VAR1",
+            100
+          ],
+          [
+            "VAR2",
+            200
+          ]
+        ]
       },
       "globals": {
-        "Example": "Example"
+        "Example": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "Example"
@@ -249,7 +301,7 @@
             "object"
           ],
           "encoded_locals": {
-            "object": "nil"
+            "object": null
           }
         },
         {
@@ -270,9 +322,39 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Example",
+          [
+
+          ],
+          [
+            "VAR1",
+            100
+          ],
+          [
+            "VAR2",
+            200
+          ],
+          [
+            "show",
+            [
+              "REF",
+              2
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "show",
+          ""
+        ]
       },
       "globals": {
-        "Example": "Example"
+        "Example": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "Example"
@@ -298,14 +380,44 @@
             "object"
           ],
           "encoded_locals": {
-            "object": "nil"
+            "object": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Example",
+          [
+
+          ],
+          [
+            "VAR1",
+            100
+          ],
+          [
+            "VAR2",
+            200
+          ],
+          [
+            "show",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "show",
+          ""
+        ]
       },
       "globals": {
-        "Example": "Example"
+        "Example": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "Example"
@@ -331,14 +443,51 @@
             "object"
           ],
           "encoded_locals": {
-            "object": "#<Example:0x007f527100c510>"
+            "object": [
+              "REF",
+              5
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Example",
+          [
+
+          ],
+          [
+            "VAR1",
+            100
+          ],
+          [
+            "VAR2",
+            200
+          ],
+          [
+            "show",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "show",
+          ""
+        ],
+        "5": [
+          "INSTANCE",
+          "Example"
+        ]
       },
       "globals": {
-        "Example": "Example"
+        "Example": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "Example"
@@ -364,7 +513,10 @@
             "object"
           ],
           "encoded_locals": {
-            "object": "#<Example:0x007f527100c510>"
+            "object": [
+              "REF",
+              5
+            ]
           }
         },
         {
@@ -385,9 +537,43 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Example",
+          [
+
+          ],
+          [
+            "VAR1",
+            100
+          ],
+          [
+            "VAR2",
+            200
+          ],
+          [
+            "show",
+            [
+              "REF",
+              6
+            ]
+          ]
+        ],
+        "6": [
+          "FUNCTION",
+          "show",
+          ""
+        ],
+        "5": [
+          "INSTANCE",
+          "Example"
+        ]
       },
       "globals": {
-        "Example": "Example"
+        "Example": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "Example"
@@ -413,7 +599,10 @@
             "object"
           ],
           "encoded_locals": {
-            "object": "#<Example:0x007f527100c510>"
+            "object": [
+              "REF",
+              5
+            ]
           }
         },
         {
@@ -434,9 +623,43 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Example",
+          [
+
+          ],
+          [
+            "VAR1",
+            100
+          ],
+          [
+            "VAR2",
+            200
+          ],
+          [
+            "show",
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "7": [
+          "FUNCTION",
+          "show",
+          ""
+        ],
+        "5": [
+          "INSTANCE",
+          "Example"
+        ]
       },
       "globals": {
-        "Example": "Example"
+        "Example": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "Example"
@@ -462,7 +685,10 @@
             "object"
           ],
           "encoded_locals": {
-            "object": "#<Example:0x007f527100c510>"
+            "object": [
+              "REF",
+              5
+            ]
           }
         },
         {
@@ -483,9 +709,43 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Example",
+          [
+
+          ],
+          [
+            "VAR1",
+            100
+          ],
+          [
+            "VAR2",
+            200
+          ],
+          [
+            "show",
+            [
+              "REF",
+              8
+            ]
+          ]
+        ],
+        "8": [
+          "FUNCTION",
+          "show",
+          ""
+        ],
+        "5": [
+          "INSTANCE",
+          "Example"
+        ]
       },
       "globals": {
-        "Example": "Example"
+        "Example": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "Example"
@@ -511,7 +771,10 @@
             "object"
           ],
           "encoded_locals": {
-            "object": "#<Example:0x007f527100c510>"
+            "object": [
+              "REF",
+              5
+            ]
           }
         },
         {
@@ -528,14 +791,48 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Example",
+          [
+
+          ],
+          [
+            "VAR1",
+            100
+          ],
+          [
+            "VAR2",
+            200
+          ],
+          [
+            "show",
+            [
+              "REF",
+              9
+            ]
+          ]
+        ],
+        "9": [
+          "FUNCTION",
+          "show",
+          ""
+        ],
+        "5": [
+          "INSTANCE",
+          "Example"
+        ]
       },
       "globals": {
-        "Example": "Example"
+        "Example": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "Example"
@@ -561,14 +858,51 @@
             "object"
           ],
           "encoded_locals": {
-            "object": "#<Example:0x007f527100c510>"
+            "object": [
+              "REF",
+              5
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Example",
+          [
+
+          ],
+          [
+            "VAR1",
+            100
+          ],
+          [
+            "VAR2",
+            200
+          ],
+          [
+            "show",
+            [
+              "REF",
+              10
+            ]
+          ]
+        ],
+        "10": [
+          "FUNCTION",
+          "show",
+          ""
+        ],
+        "5": [
+          "INSTANCE",
+          "Example"
+        ]
       },
       "globals": {
-        "Example": "Example"
+        "Example": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "Example"

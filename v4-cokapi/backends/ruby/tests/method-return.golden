@@ -22,8 +22,8 @@
             "y"
           ],
           "encoded_locals": {
-            "x": "nil",
-            "y": "nil"
+            "x": null,
+            "y": null
           }
         }
       ],
@@ -56,15 +56,23 @@
             "y"
           ],
           "encoded_locals": {
-            "x": "nil",
-            "y": "nil"
+            "x": null,
+            "y": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
       },
       "globals": {
-        "foo": "#<Method: Class(Object)#foo>"
+        "foo": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "foo"
@@ -91,8 +99,8 @@
             "y"
           ],
           "encoded_locals": {
-            "x": "nil",
-            "y": "nil"
+            "x": null,
+            "y": null
           }
         },
         {
@@ -113,9 +121,17 @@
         }
       ],
       "heap": {
+        "2": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
       },
       "globals": {
-        "foo": "#<Method: Class(Object)#foo>"
+        "foo": [
+          "REF",
+          2
+        ]
       },
       "ordered_globals": [
         "foo"
@@ -142,8 +158,8 @@
             "y"
           ],
           "encoded_locals": {
-            "x": "nil",
-            "y": "nil"
+            "x": null,
+            "y": null
           }
         },
         {
@@ -164,9 +180,17 @@
         }
       ],
       "heap": {
+        "3": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
       },
       "globals": {
-        "foo": "#<Method: Class(Object)#foo>"
+        "foo": [
+          "REF",
+          3
+        ]
       },
       "ordered_globals": [
         "foo"
@@ -193,8 +217,8 @@
             "y"
           ],
           "encoded_locals": {
-            "x": "nil",
-            "y": "nil"
+            "x": null,
+            "y": null
           }
         },
         {
@@ -211,14 +235,22 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "\"implicit return string\""
+            "__return__": "implicit return string"
           }
         }
       ],
       "heap": {
+        "4": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
       },
       "globals": {
-        "foo": "#<Method: Class(Object)#foo>"
+        "foo": [
+          "REF",
+          4
+        ]
       },
       "ordered_globals": [
         "foo"
@@ -245,15 +277,23 @@
             "y"
           ],
           "encoded_locals": {
-            "x": "\"implicit return string\"",
-            "y": "nil"
+            "x": "implicit return string",
+            "y": null
           }
         }
       ],
       "heap": {
+        "5": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
       },
       "globals": {
-        "foo": "#<Method: Class(Object)#foo>"
+        "foo": [
+          "REF",
+          5
+        ]
       },
       "ordered_globals": [
         "foo"
@@ -280,15 +320,23 @@
             "y"
           ],
           "encoded_locals": {
-            "x": "\"implicit return string\"",
-            "y": "nil"
+            "x": "implicit return string",
+            "y": null
           }
         }
       ],
       "heap": {
+        "6": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
       },
       "globals": {
-        "foo": "#<Method: Class(Object)#foo>"
+        "foo": [
+          "REF",
+          6
+        ]
       },
       "ordered_globals": [
         "foo"
@@ -315,16 +363,32 @@
             "y"
           ],
           "encoded_locals": {
-            "x": "\"implicit return string\"",
-            "y": "nil"
+            "x": "implicit return string",
+            "y": null
           }
         }
       ],
       "heap": {
+        "7": [
+          "FUNCTION",
+          "foo",
+          ""
+        ],
+        "8": [
+          "FUNCTION",
+          "bar",
+          ""
+        ]
       },
       "globals": {
-        "foo": "#<Method: Class(Object)#foo>",
-        "bar": "#<Method: Class(Object)#bar>"
+        "foo": [
+          "REF",
+          7
+        ],
+        "bar": [
+          "REF",
+          8
+        ]
       },
       "ordered_globals": [
         "foo",
@@ -352,8 +416,8 @@
             "y"
           ],
           "encoded_locals": {
-            "x": "\"implicit return string\"",
-            "y": "nil"
+            "x": "implicit return string",
+            "y": null
           }
         },
         {
@@ -374,10 +438,26 @@
         }
       ],
       "heap": {
+        "9": [
+          "FUNCTION",
+          "foo",
+          ""
+        ],
+        "10": [
+          "FUNCTION",
+          "bar",
+          ""
+        ]
       },
       "globals": {
-        "foo": "#<Method: Class(Object)#foo>",
-        "bar": "#<Method: Class(Object)#bar>"
+        "foo": [
+          "REF",
+          9
+        ],
+        "bar": [
+          "REF",
+          10
+        ]
       },
       "ordered_globals": [
         "foo",
@@ -405,8 +485,8 @@
             "y"
           ],
           "encoded_locals": {
-            "x": "\"implicit return string\"",
-            "y": "nil"
+            "x": "implicit return string",
+            "y": null
           }
         },
         {
@@ -427,10 +507,26 @@
         }
       ],
       "heap": {
+        "11": [
+          "FUNCTION",
+          "foo",
+          ""
+        ],
+        "12": [
+          "FUNCTION",
+          "bar",
+          ""
+        ]
       },
       "globals": {
-        "foo": "#<Method: Class(Object)#foo>",
-        "bar": "#<Method: Class(Object)#bar>"
+        "foo": [
+          "REF",
+          11
+        ],
+        "bar": [
+          "REF",
+          12
+        ]
       },
       "ordered_globals": [
         "foo",
@@ -458,8 +554,8 @@
             "y"
           ],
           "encoded_locals": {
-            "x": "\"implicit return string\"",
-            "y": "nil"
+            "x": "implicit return string",
+            "y": null
           }
         },
         {
@@ -476,15 +572,31 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "\"explicit return string\""
+            "__return__": "explicit return string"
           }
         }
       ],
       "heap": {
+        "13": [
+          "FUNCTION",
+          "foo",
+          ""
+        ],
+        "14": [
+          "FUNCTION",
+          "bar",
+          ""
+        ]
       },
       "globals": {
-        "foo": "#<Method: Class(Object)#foo>",
-        "bar": "#<Method: Class(Object)#bar>"
+        "foo": [
+          "REF",
+          13
+        ],
+        "bar": [
+          "REF",
+          14
+        ]
       },
       "ordered_globals": [
         "foo",
@@ -512,16 +624,32 @@
             "y"
           ],
           "encoded_locals": {
-            "x": "\"implicit return string\"",
-            "y": "\"explicit return string\""
+            "x": "implicit return string",
+            "y": "explicit return string"
           }
         }
       ],
       "heap": {
+        "15": [
+          "FUNCTION",
+          "foo",
+          ""
+        ],
+        "16": [
+          "FUNCTION",
+          "bar",
+          ""
+        ]
       },
       "globals": {
-        "foo": "#<Method: Class(Object)#foo>",
-        "bar": "#<Method: Class(Object)#bar>"
+        "foo": [
+          "REF",
+          15
+        ],
+        "bar": [
+          "REF",
+          16
+        ]
       },
       "ordered_globals": [
         "foo",
@@ -549,16 +677,32 @@
             "y"
           ],
           "encoded_locals": {
-            "x": "\"implicit return string\"",
-            "y": "\"explicit return string\""
+            "x": "implicit return string",
+            "y": "explicit return string"
           }
         }
       ],
       "heap": {
+        "17": [
+          "FUNCTION",
+          "foo",
+          ""
+        ],
+        "18": [
+          "FUNCTION",
+          "bar",
+          ""
+        ]
       },
       "globals": {
-        "foo": "#<Method: Class(Object)#foo>",
-        "bar": "#<Method: Class(Object)#bar>"
+        "foo": [
+          "REF",
+          17
+        ],
+        "bar": [
+          "REF",
+          18
+        ]
       },
       "ordered_globals": [
         "foo",

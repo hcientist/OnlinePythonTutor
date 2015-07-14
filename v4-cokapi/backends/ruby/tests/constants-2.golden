@@ -72,9 +72,16 @@
         }
       ],
       "heap": {
+        "1": [
+          "INSTANCE",
+          "Module"
+        ]
       },
       "globals": {
-        "A": "A"
+        "A": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "A"
@@ -120,9 +127,16 @@
         }
       ],
       "heap": {
+        "1": [
+          "INSTANCE",
+          "Module"
+        ]
       },
       "globals": {
-        "A": "A"
+        "A": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "A"
@@ -184,9 +198,27 @@
         }
       ],
       "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ]
       },
       "globals": {
-        "A": "A"
+        "A": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "A"
@@ -248,9 +280,27 @@
         }
       ],
       "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ]
       },
       "globals": {
-        "A": "A"
+        "A": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "A"
@@ -296,9 +346,27 @@
         }
       ],
       "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ]
       },
       "globals": {
-        "A": "A"
+        "A": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "A"
@@ -360,9 +428,38 @@
         }
       ],
       "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module"
+        ]
       },
       "globals": {
-        "A": "A"
+        "A": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "A"
@@ -424,9 +521,38 @@
         }
       ],
       "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module"
+        ]
       },
       "globals": {
-        "A": "A"
+        "A": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "A"
@@ -504,9 +630,49 @@
         }
       ],
       "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module",
+          [
+            "D",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "Module"
+        ]
       },
       "globals": {
-        "A": "A"
+        "A": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "A"
@@ -584,9 +750,49 @@
         }
       ],
       "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module",
+          [
+            "D",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "Module"
+        ]
       },
       "globals": {
-        "A": "A"
+        "A": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "A"
@@ -664,9 +870,49 @@
         }
       ],
       "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module",
+          [
+            "D",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "Module"
+        ]
       },
       "globals": {
-        "A": "A"
+        "A": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "A"
@@ -744,9 +990,49 @@
         }
       ],
       "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module",
+          [
+            "D",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "Module"
+        ]
       },
       "globals": {
-        "A": "A"
+        "A": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "A"
@@ -808,9 +1094,49 @@
         }
       ],
       "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module",
+          [
+            "D",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "Module"
+        ]
       },
       "globals": {
-        "A": "A"
+        "A": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "A"
@@ -856,9 +1182,49 @@
         }
       ],
       "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module",
+          [
+            "D",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "Module"
+        ]
       },
       "globals": {
-        "A": "A"
+        "A": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "A"
@@ -888,9 +1254,49 @@
         }
       ],
       "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module",
+          [
+            "D",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "Module"
+        ]
       },
       "globals": {
-        "A": "A"
+        "A": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "A"

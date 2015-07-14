@@ -56,9 +56,17 @@
         }
       ],
       "heap": {
+        "1": [
+          "FUNCTION",
+          "greet",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>"
+        "greet": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "greet"
@@ -88,10 +96,26 @@
         }
       ],
       "heap": {
+        "2": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "3": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          2
+        ],
+        "greet2": [
+          "REF",
+          3
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -138,10 +162,26 @@
         }
       ],
       "heap": {
+        "4": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "5": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          4
+        ],
+        "greet2": [
+          "REF",
+          5
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -188,10 +228,26 @@
         }
       ],
       "heap": {
+        "6": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "7": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          6
+        ],
+        "greet2": [
+          "REF",
+          7
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -234,15 +290,31 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "8": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "9": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          8
+        ],
+        "greet2": [
+          "REF",
+          9
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -273,10 +345,26 @@
         }
       ],
       "heap": {
+        "10": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "11": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          10
+        ],
+        "greet2": [
+          "REF",
+          11
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -323,10 +411,26 @@
         }
       ],
       "heap": {
+        "12": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "13": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          12
+        ],
+        "greet2": [
+          "REF",
+          13
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -373,10 +477,26 @@
         }
       ],
       "heap": {
+        "14": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "15": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          14
+        ],
+        "greet2": [
+          "REF",
+          15
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -419,15 +539,31 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "16": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "17": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          16
+        ],
+        "greet2": [
+          "REF",
+          17
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -458,10 +594,26 @@
         }
       ],
       "heap": {
+        "18": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "19": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          18
+        ],
+        "greet2": [
+          "REF",
+          19
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -508,10 +660,26 @@
         }
       ],
       "heap": {
+        "20": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "21": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          20
+        ],
+        "greet2": [
+          "REF",
+          21
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -558,10 +726,26 @@
         }
       ],
       "heap": {
+        "22": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "23": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          22
+        ],
+        "greet2": [
+          "REF",
+          23
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -604,15 +788,31 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "24": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "25": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          24
+        ],
+        "greet2": [
+          "REF",
+          25
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -643,10 +843,26 @@
         }
       ],
       "heap": {
+        "26": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "27": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          26
+        ],
+        "greet2": [
+          "REF",
+          27
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -693,10 +909,26 @@
         }
       ],
       "heap": {
+        "28": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "29": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          28
+        ],
+        "greet2": [
+          "REF",
+          29
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -743,10 +975,26 @@
         }
       ],
       "heap": {
+        "30": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "31": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          30
+        ],
+        "greet2": [
+          "REF",
+          31
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -789,15 +1037,31 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "32": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "33": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          32
+        ],
+        "greet2": [
+          "REF",
+          33
+        ]
       },
       "ordered_globals": [
         "greet",
@@ -828,10 +1092,26 @@
         }
       ],
       "heap": {
+        "34": [
+          "FUNCTION",
+          "greet",
+          ""
+        ],
+        "35": [
+          "FUNCTION",
+          "greet2",
+          ""
+        ]
       },
       "globals": {
-        "greet": "#<Method: Class(Object)#greet>",
-        "greet2": "#<Method: Class(Object)#greet2(greet)>"
+        "greet": [
+          "REF",
+          34
+        ],
+        "greet2": [
+          "REF",
+          35
+        ]
       },
       "ordered_globals": [
         "greet",

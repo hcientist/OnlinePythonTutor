@@ -1,5 +1,5 @@
 {
-  "code": "# Adapted from Learning Ruby by Michael Fitzgerald, O'Reilly\n\nname = \"Matz\"\nname.to_sym\nname2 = :Matz.id2name\nputs name\nputs name2\n\nx = :\"Matz with spaces and !?!\"\nx2 = :\"Matz with spaces and !?!\"\nputs x.object_id == x2.object_id\n",
+  "code": "# Adapted from Learning Ruby by Michael Fitzgerald, O'Reilly\n\nname = \"Matz\"\nname = name.to_sym\nname2 = :Matz.id2name\nputs name\nputs name2\n\nx = :\"Matz with spaces and !?!\"\nx2 = :\"Matz with spaces and !?!\"\nputs x.object_id == x2.object_id\n",
   "trace": [
     {
       "func_name": "<toplevel>",
@@ -24,10 +24,10 @@
             "x2"
           ],
           "encoded_locals": {
-            "name": "nil",
-            "name2": "nil",
-            "x": "nil",
-            "x2": "nil"
+            "name": null,
+            "name2": null,
+            "x": null,
+            "x2": null
           }
         }
       ],
@@ -62,10 +62,10 @@
             "x2"
           ],
           "encoded_locals": {
-            "name": "\"Matz\"",
-            "name2": "nil",
-            "x": "nil",
-            "x2": "nil"
+            "name": "Matz",
+            "name2": null,
+            "x": null,
+            "x2": null
           }
         }
       ],
@@ -100,14 +100,21 @@
             "x2"
           ],
           "encoded_locals": {
-            "name": "\"Matz\"",
-            "name2": "nil",
-            "x": "nil",
-            "x2": "nil"
+            "name": [
+              "REF",
+              1
+            ],
+            "name2": null,
+            "x": null,
+            "x2": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Symbol",
+          ":Matz"
+        ]
       },
       "globals": {
       },
@@ -138,14 +145,21 @@
             "x2"
           ],
           "encoded_locals": {
-            "name": "\"Matz\"",
-            "name2": "\"Matz\"",
-            "x": "nil",
-            "x2": "nil"
+            "name": [
+              "REF",
+              1
+            ],
+            "name2": "Matz",
+            "x": null,
+            "x2": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Symbol",
+          ":Matz"
+        ]
       },
       "globals": {
       },
@@ -176,14 +190,21 @@
             "x2"
           ],
           "encoded_locals": {
-            "name": "\"Matz\"",
-            "name2": "\"Matz\"",
-            "x": "nil",
-            "x2": "nil"
+            "name": [
+              "REF",
+              1
+            ],
+            "name2": "Matz",
+            "x": null,
+            "x2": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Symbol",
+          ":Matz"
+        ]
       },
       "globals": {
       },
@@ -214,14 +235,21 @@
             "x2"
           ],
           "encoded_locals": {
-            "name": "\"Matz\"",
-            "name2": "\"Matz\"",
-            "x": "nil",
-            "x2": "nil"
+            "name": [
+              "REF",
+              1
+            ],
+            "name2": "Matz",
+            "x": null,
+            "x2": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Symbol",
+          ":Matz"
+        ]
       },
       "globals": {
       },
@@ -252,14 +280,28 @@
             "x2"
           ],
           "encoded_locals": {
-            "name": "\"Matz\"",
-            "name2": "\"Matz\"",
-            "x": ":\"Matz with spaces and !?!\"",
-            "x2": "nil"
+            "name": [
+              "REF",
+              1
+            ],
+            "name2": "Matz",
+            "x": [
+              "REF",
+              2
+            ],
+            "x2": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Symbol",
+          ":Matz"
+        ],
+        "2": [
+          "Symbol",
+          ":\"Matz with spaces and !?!\""
+        ]
       },
       "globals": {
       },
@@ -290,14 +332,31 @@
             "x2"
           ],
           "encoded_locals": {
-            "name": "\"Matz\"",
-            "name2": "\"Matz\"",
-            "x": ":\"Matz with spaces and !?!\"",
-            "x2": ":\"Matz with spaces and !?!\""
+            "name": [
+              "REF",
+              1
+            ],
+            "name2": "Matz",
+            "x": [
+              "REF",
+              2
+            ],
+            "x2": [
+              "REF",
+              2
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "Symbol",
+          ":Matz"
+        ],
+        "2": [
+          "Symbol",
+          ":\"Matz with spaces and !?!\""
+        ]
       },
       "globals": {
       },
@@ -328,14 +387,31 @@
             "x2"
           ],
           "encoded_locals": {
-            "name": "\"Matz\"",
-            "name2": "\"Matz\"",
-            "x": ":\"Matz with spaces and !?!\"",
-            "x2": ":\"Matz with spaces and !?!\""
+            "name": [
+              "REF",
+              1
+            ],
+            "name2": "Matz",
+            "x": [
+              "REF",
+              2
+            ],
+            "x2": [
+              "REF",
+              2
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "Symbol",
+          ":Matz"
+        ],
+        "2": [
+          "Symbol",
+          ":\"Matz with spaces and !?!\""
+        ]
       },
       "globals": {
       },

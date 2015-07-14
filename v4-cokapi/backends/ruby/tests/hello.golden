@@ -23,9 +23,9 @@
             "z"
           ],
           "encoded_locals": {
-            "x": "nil",
-            "y": "nil",
-            "z": "nil"
+            "x": null,
+            "y": null,
+            "z": null
           }
         }
       ],
@@ -59,9 +59,9 @@
             "z"
           ],
           "encoded_locals": {
-            "x": "\"Hello\"",
-            "y": "nil",
-            "z": "nil"
+            "x": "Hello",
+            "y": null,
+            "z": null
           }
         }
       ],
@@ -95,9 +95,9 @@
             "z"
           ],
           "encoded_locals": {
-            "x": "\"Hello\"",
-            "y": "\"world\"",
-            "z": "nil"
+            "x": "Hello",
+            "y": "world",
+            "z": null
           }
         }
       ],
@@ -131,9 +131,9 @@
             "z"
           ],
           "encoded_locals": {
-            "x": "\"Hello\"",
-            "y": "\"world\"",
-            "z": "\"Hello world\""
+            "x": "Hello",
+            "y": "world",
+            "z": "Hello world"
           }
         }
       ],
@@ -167,9 +167,9 @@
             "z"
           ],
           "encoded_locals": {
-            "x": "\"Hello\"",
-            "y": "\"world\"",
-            "z": "\"Hello world\""
+            "x": "Hello",
+            "y": "world",
+            "z": "Hello world"
           }
         }
       ],

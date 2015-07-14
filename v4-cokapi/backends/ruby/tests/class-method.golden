@@ -72,9 +72,19 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "MyClass": "MyClass"
+        "MyClass": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MyClass"
@@ -120,9 +130,19 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "MyClass": "MyClass"
+        "MyClass": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MyClass"
@@ -168,9 +188,19 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "MyClass": "MyClass"
+        "MyClass": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MyClass"
@@ -200,9 +230,19 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "MyClass": "MyClass"
+        "MyClass": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MyClass"
@@ -248,9 +288,19 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "MyClass": "MyClass"
+        "MyClass": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MyClass"
@@ -296,9 +346,19 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "MyClass": "MyClass"
+        "MyClass": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MyClass"
@@ -340,14 +400,24 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "MyClass": "MyClass"
+        "MyClass": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MyClass"
@@ -377,9 +447,19 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "MyClass": "MyClass"
+        "MyClass": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MyClass"

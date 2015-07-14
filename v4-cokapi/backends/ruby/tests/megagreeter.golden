@@ -21,7 +21,7 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "nil"
+            "mg": null
           }
         }
       ],
@@ -53,7 +53,7 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "nil"
+            "mg": null
           }
         },
         {
@@ -74,9 +74,19 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -102,7 +112,7 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "nil"
+            "mg": null
           }
         },
         {
@@ -123,9 +133,19 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -151,7 +171,7 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "nil"
+            "mg": null
           }
         },
         {
@@ -172,9 +192,43 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "3": [
+          "FUNCTION",
+          "names=",
+          ""
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -200,7 +254,7 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "nil"
+            "mg": null
           }
         },
         {
@@ -221,9 +275,43 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "5": [
+          "FUNCTION",
+          "names=",
+          ""
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -249,7 +337,7 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "nil"
+            "mg": null
           }
         },
         {
@@ -270,9 +358,55 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              8
+            ]
+          ]
+        ],
+        "6": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "7": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "8": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -298,7 +432,7 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "nil"
+            "mg": null
           }
         },
         {
@@ -319,9 +453,67 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              12
+            ]
+          ]
+        ],
+        "9": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "10": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "11": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "12": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -347,14 +539,72 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "nil"
+            "mg": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              15
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              16
+            ]
+          ]
+        ],
+        "13": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "14": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "15": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "16": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -380,7 +630,7 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "nil"
+            "mg": null
           }
         },
         {
@@ -397,14 +647,72 @@
             "names"
           ],
           "encoded_locals": {
-            "names": "\"World\""
+            "names": "World"
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              17
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              18
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              19
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              20
+            ]
+          ]
+        ],
+        "17": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "18": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "19": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "20": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -430,7 +738,7 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "nil"
+            "mg": null
           }
         },
         {
@@ -447,14 +755,72 @@
             "names"
           ],
           "encoded_locals": {
-            "names": "\"World\""
+            "names": "World"
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              21
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              22
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              23
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              24
+            ]
+          ]
+        ],
+        "21": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "22": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "23": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "24": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -480,7 +846,7 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "nil"
+            "mg": null
           }
         },
         {
@@ -498,15 +864,73 @@
             "__return__"
           ],
           "encoded_locals": {
-            "names": "\"World\"",
-            "__return__": "\"World\""
+            "names": "World",
+            "__return__": "World"
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              25
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              26
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              27
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              28
+            ]
+          ]
+        ],
+        "25": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "26": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "27": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "28": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -532,14 +956,83 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"World\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              29
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              30
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              31
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              32
+            ]
+          ]
+        ],
+        "29": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "30": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "31": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "32": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -565,7 +1058,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"World\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -586,9 +1082,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              34
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              35
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              36
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              37
+            ]
+          ]
+        ],
+        "34": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "35": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "36": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "37": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -614,7 +1176,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"World\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -635,9 +1200,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              38
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              39
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              40
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              41
+            ]
+          ]
+        ],
+        "38": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "39": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "40": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "41": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -663,7 +1294,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"World\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -684,9 +1318,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              42
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              43
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              44
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              45
+            ]
+          ]
+        ],
+        "42": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "43": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "44": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "45": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -712,7 +1412,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"World\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -733,9 +1436,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              46
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              47
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              48
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              49
+            ]
+          ]
+        ],
+        "46": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "47": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "48": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "49": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -761,7 +1530,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"World\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -778,14 +1550,80 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              50
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              51
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              52
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              53
+            ]
+          ]
+        ],
+        "50": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "51": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "52": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "53": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -811,14 +1649,83 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"World\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              54
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              55
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              56
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              57
+            ]
+          ]
+        ],
+        "54": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "55": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "56": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "57": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -844,7 +1751,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"World\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -865,9 +1775,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              58
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              59
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              60
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              61
+            ]
+          ]
+        ],
+        "58": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "59": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "60": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "61": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -893,7 +1869,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"World\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -914,9 +1893,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              62
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              63
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              64
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              65
+            ]
+          ]
+        ],
+        "62": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "63": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "64": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "65": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -942,7 +1987,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"World\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -963,9 +2011,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              66
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              67
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              68
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              69
+            ]
+          ]
+        ],
+        "66": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "67": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "68": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "69": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -991,7 +2105,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"World\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1012,9 +2129,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              70
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              71
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              72
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              73
+            ]
+          ]
+        ],
+        "70": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "71": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "72": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "73": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1040,7 +2223,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"World\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1057,14 +2243,80 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              74
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              75
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              76
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              77
+            ]
+          ]
+        ],
+        "74": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "75": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "76": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "77": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1090,14 +2342,83 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"World\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              78
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              79
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              80
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              81
+            ]
+          ]
+        ],
+        "78": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "79": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "80": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "81": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1123,14 +2444,83 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"Zeke\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              82
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              83
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              84
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              85
+            ]
+          ]
+        ],
+        "82": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "83": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "84": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "85": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1156,7 +2546,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"Zeke\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1177,9 +2570,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              86
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              87
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              88
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              89
+            ]
+          ]
+        ],
+        "86": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "87": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "88": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "89": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1205,7 +2664,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"Zeke\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1226,9 +2688,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              90
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              91
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              92
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              93
+            ]
+          ]
+        ],
+        "90": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "91": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "92": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "93": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1254,7 +2782,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"Zeke\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1275,9 +2806,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              94
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              95
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              96
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              97
+            ]
+          ]
+        ],
+        "94": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "95": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "96": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "97": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1303,7 +2900,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"Zeke\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1324,9 +2924,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              98
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              99
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              100
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              101
+            ]
+          ]
+        ],
+        "98": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "99": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "100": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "101": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1352,7 +3018,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"Zeke\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1369,14 +3038,80 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              102
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              103
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              104
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              105
+            ]
+          ]
+        ],
+        "102": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "103": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "104": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "105": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1402,14 +3137,83 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"Zeke\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              106
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              107
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              108
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              109
+            ]
+          ]
+        ],
+        "106": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "107": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "108": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "109": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1435,7 +3239,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"Zeke\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1456,9 +3263,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              110
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              111
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              112
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              113
+            ]
+          ]
+        ],
+        "110": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "111": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "112": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "113": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1484,7 +3357,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"Zeke\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1505,9 +3381,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              114
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              115
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              116
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              117
+            ]
+          ]
+        ],
+        "114": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "115": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "116": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "117": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1533,7 +3475,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"Zeke\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1554,9 +3499,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              118
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              119
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              120
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              121
+            ]
+          ]
+        ],
+        "118": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "119": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "120": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "121": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1582,7 +3593,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"Zeke\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1603,9 +3617,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              122
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              123
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              124
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              125
+            ]
+          ]
+        ],
+        "122": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "123": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "124": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "125": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1631,7 +3711,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"Zeke\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1648,14 +3731,80 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              126
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              127
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              128
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              129
+            ]
+          ]
+        ],
+        "126": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "127": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "128": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "129": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1681,14 +3830,83 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=\"Zeke\">"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              130
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              131
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              132
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              133
+            ]
+          ]
+        ],
+        "130": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "131": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "132": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "133": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1714,14 +3932,94 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              134
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              135
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              136
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              137
+            ]
+          ]
+        ],
+        "134": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "135": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "136": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "137": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1747,7 +4045,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1768,9 +4069,86 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              139
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              140
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              141
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              142
+            ]
+          ]
+        ],
+        "139": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "140": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "141": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "142": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1796,7 +4174,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1817,9 +4198,86 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              143
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              144
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              145
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              146
+            ]
+          ]
+        ],
+        "143": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "144": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "145": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "146": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1845,7 +4303,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1866,9 +4327,86 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              147
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              148
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              149
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              150
+            ]
+          ]
+        ],
+        "147": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "148": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "149": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "150": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1894,7 +4432,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1915,9 +4456,86 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              151
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              152
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              153
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              154
+            ]
+          ]
+        ],
+        "151": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "152": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "153": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "154": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -1943,7 +4561,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -1976,14 +4597,91 @@
             "name"
           ],
           "encoded_locals": {
-            "name": "\"Albert\""
+            "name": "Albert"
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              155
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              156
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              157
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              158
+            ]
+          ]
+        ],
+        "155": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "156": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "157": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "158": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2009,7 +4707,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2042,14 +4743,91 @@
             "name"
           ],
           "encoded_locals": {
-            "name": "\"Albert\""
+            "name": "Albert"
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              159
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              160
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              161
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              162
+            ]
+          ]
+        ],
+        "159": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "160": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "161": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "162": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2075,7 +4853,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2109,15 +4890,92 @@
             "__return__"
           ],
           "encoded_locals": {
-            "name": "\"Albert\"",
-            "__return__": "nil"
+            "name": "Albert",
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              163
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              164
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              165
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              166
+            ]
+          ]
+        ],
+        "163": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "164": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "165": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "166": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2143,7 +5001,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2176,14 +5037,91 @@
             "name"
           ],
           "encoded_locals": {
-            "name": "\"Brenda\""
+            "name": "Brenda"
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              167
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              168
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              169
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              170
+            ]
+          ]
+        ],
+        "167": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "168": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "169": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "170": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2209,7 +5147,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2242,14 +5183,91 @@
             "name"
           ],
           "encoded_locals": {
-            "name": "\"Brenda\""
+            "name": "Brenda"
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              171
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              172
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              173
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              174
+            ]
+          ]
+        ],
+        "171": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "172": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "173": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "174": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2275,7 +5293,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2309,15 +5330,92 @@
             "__return__"
           ],
           "encoded_locals": {
-            "name": "\"Brenda\"",
-            "__return__": "nil"
+            "name": "Brenda",
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              175
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              176
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              177
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              178
+            ]
+          ]
+        ],
+        "175": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "176": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "177": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "178": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2343,7 +5441,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2376,14 +5477,91 @@
             "name"
           ],
           "encoded_locals": {
-            "name": "\"Charles\""
+            "name": "Charles"
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              179
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              180
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              19
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              181
+            ]
+          ]
+        ],
+        "179": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "180": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "19": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "181": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2409,7 +5587,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2442,14 +5623,91 @@
             "name"
           ],
           "encoded_locals": {
-            "name": "\"Charles\""
+            "name": "Charles"
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              182
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              183
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              184
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              185
+            ]
+          ]
+        ],
+        "182": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "183": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "184": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "185": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2475,7 +5733,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2509,15 +5770,92 @@
             "__return__"
           ],
           "encoded_locals": {
-            "name": "\"Charles\"",
-            "__return__": "nil"
+            "name": "Charles",
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              186
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              187
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              188
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              189
+            ]
+          ]
+        ],
+        "186": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "187": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "188": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "189": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2543,7 +5881,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2576,14 +5917,91 @@
             "name"
           ],
           "encoded_locals": {
-            "name": "\"Dave\""
+            "name": "Dave"
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              190
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              191
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              192
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              193
+            ]
+          ]
+        ],
+        "190": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "191": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "192": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "193": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2609,7 +6027,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2642,14 +6063,91 @@
             "name"
           ],
           "encoded_locals": {
-            "name": "\"Dave\""
+            "name": "Dave"
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              194
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              195
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              196
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              197
+            ]
+          ]
+        ],
+        "194": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "195": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "196": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "197": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2675,7 +6173,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2709,15 +6210,92 @@
             "__return__"
           ],
           "encoded_locals": {
-            "name": "\"Dave\"",
-            "__return__": "nil"
+            "name": "Dave",
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              198
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              199
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              200
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              201
+            ]
+          ]
+        ],
+        "198": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "199": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "200": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "201": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2743,7 +6321,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2776,14 +6357,91 @@
             "name"
           ],
           "encoded_locals": {
-            "name": "\"Engelbert\""
+            "name": "Engelbert"
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              202
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              203
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              204
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              205
+            ]
+          ]
+        ],
+        "202": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "203": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "204": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "205": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2809,7 +6467,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2842,14 +6503,91 @@
             "name"
           ],
           "encoded_locals": {
-            "name": "\"Engelbert\""
+            "name": "Engelbert"
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              206
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              207
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              208
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              209
+            ]
+          ]
+        ],
+        "206": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "207": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "208": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "209": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2875,7 +6613,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2909,15 +6650,92 @@
             "__return__"
           ],
           "encoded_locals": {
-            "name": "\"Engelbert\"",
-            "__return__": "nil"
+            "name": "Engelbert",
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              210
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              211
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              212
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              213
+            ]
+          ]
+        ],
+        "210": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "211": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "212": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "213": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2943,7 +6761,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -2960,14 +6781,94 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]"
+            "__return__": [
+              "REF",
+              138
+            ]
           }
         }
       ],
       "heap": {
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ],
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              214
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              215
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              216
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              217
+            ]
+          ]
+        ],
+        "214": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "215": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "216": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "217": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -2993,14 +6894,94 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              218
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              219
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              220
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              221
+            ]
+          ]
+        ],
+        "218": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "219": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "220": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "221": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3026,7 +7007,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -3047,9 +7031,86 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              222
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              223
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              224
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              225
+            ]
+          ]
+        ],
+        "222": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "223": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "224": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "225": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3075,7 +7136,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -3096,9 +7160,86 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              226
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              227
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              228
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              229
+            ]
+          ]
+        ],
+        "226": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "227": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "228": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "229": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3124,7 +7265,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -3145,9 +7289,86 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              230
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              231
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              232
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              233
+            ]
+          ]
+        ],
+        "230": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "231": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "232": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "233": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3173,7 +7394,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -3194,9 +7418,86 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              234
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              235
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              236
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              237
+            ]
+          ]
+        ],
+        "234": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "235": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "236": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "237": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3222,7 +7523,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -3239,14 +7543,91 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              238
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              239
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              240
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              94
+            ]
+          ]
+        ],
+        "238": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "239": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "240": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "94": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3272,14 +7653,94 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=[\"Albert\", \"Brenda\", \"Charles\", \"Dave\", \"Engelbert\"]>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              241
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              242
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              243
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              244
+            ]
+          ]
+        ],
+        "241": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "242": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "243": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "244": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              138
+            ]
+          ]
+        ],
+        "138": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3305,14 +7766,83 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=nil>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              245
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              246
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              247
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              248
+            ]
+          ]
+        ],
+        "245": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "246": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "247": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "248": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3338,7 +7868,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=nil>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -3359,9 +7892,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              249
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              250
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              251
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              252
+            ]
+          ]
+        ],
+        "249": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "250": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "251": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "252": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3387,7 +7986,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=nil>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -3408,9 +8010,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              253
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              254
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              255
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              256
+            ]
+          ]
+        ],
+        "253": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "254": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "255": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "256": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3436,7 +8104,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=nil>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -3457,9 +8128,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              257
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              258
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              259
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              260
+            ]
+          ]
+        ],
+        "257": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "258": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "259": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "260": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3485,7 +8222,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=nil>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -3502,14 +8242,80 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              261
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              262
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              263
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              264
+            ]
+          ]
+        ],
+        "261": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "262": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "263": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "264": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3535,14 +8341,83 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=nil>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              265
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              266
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              267
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              268
+            ]
+          ]
+        ],
+        "265": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "266": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "267": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "268": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3568,7 +8443,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=nil>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -3589,9 +8467,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              269
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              270
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              271
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              272
+            ]
+          ]
+        ],
+        "269": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "270": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "271": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "272": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3617,7 +8561,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=nil>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -3638,9 +8585,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              273
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              274
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              275
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              276
+            ]
+          ]
+        ],
+        "273": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "274": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "275": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "276": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3666,7 +8679,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=nil>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -3687,9 +8703,75 @@
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              277
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              278
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              279
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              280
+            ]
+          ]
+        ],
+        "277": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "278": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "279": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "280": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3715,7 +8797,10 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=nil>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         },
         {
@@ -3732,14 +8817,80 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              281
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              282
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              283
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              284
+            ]
+          ]
+        ],
+        "281": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "282": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "283": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "284": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"
@@ -3765,14 +8916,83 @@
             "mg"
           ],
           "encoded_locals": {
-            "mg": "#<MegaGreeter:0x007f6dc9b80400 @names=nil>"
+            "mg": [
+              "REF",
+              33
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              285
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              286
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              287
+            ]
+          ],
+          [
+            "say_bye",
+            [
+              "REF",
+              288
+            ]
+          ]
+        ],
+        "285": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "286": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "287": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "288": [
+          "FUNCTION",
+          "say_bye",
+          ""
+        ],
+        "33": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
       },
       "globals": {
-        "MegaGreeter": "MegaGreeter"
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "MegaGreeter"

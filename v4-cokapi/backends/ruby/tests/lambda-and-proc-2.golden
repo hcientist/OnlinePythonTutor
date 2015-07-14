@@ -1,5 +1,3 @@
-other exception -- EEEEEEEE!!!
-unexpected return
 {
   "code": "# Adapted from http://www.reactive.io/tips/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/\n\ndef generic_return(code)\n  one, two    = 1, 2\n  three, four = code.call(one, two)\n  return \"Give me a #{three} and a #{four}\"\nend\n\nputs generic_return(lambda { |x, y| return x + 2, y + 2 })\n\nputs generic_return(Proc.new { |x, y| x + 2; y + 2 })\n\nputs generic_return(Proc.new { |x, y| [x + 2, y + 2] })\n\n# runtime error -- cannot have 'return' in here ...\nputs generic_return(Proc.new { |x, y| return x + 2, y + 2 })\n",
   "trace": [
@@ -58,9 +56,17 @@ unexpected return
         }
       ],
       "heap": {
+        "1": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -106,18 +112,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
-            "one": "nil",
-            "two": "nil",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              3
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
           }
         }
       ],
       "heap": {
+        "2": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          2
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -163,18 +184,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
-            "one": "nil",
-            "two": "nil",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              3
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
           }
         }
       ],
       "heap": {
+        "4": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          4
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -220,18 +256,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         }
       ],
       "heap": {
+        "5": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          5
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -277,11 +328,14 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         },
         {
@@ -299,15 +353,27 @@ unexpected return
             "y"
           ],
           "encoded_locals": {
-            "x": "1",
-            "y": "2"
+            "x": 1,
+            "y": 2
           }
         }
       ],
       "heap": {
+        "6": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          6
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -353,11 +419,14 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         },
         {
@@ -375,15 +444,27 @@ unexpected return
             "y"
           ],
           "encoded_locals": {
-            "x": "1",
-            "y": "2"
+            "x": 1,
+            "y": 2
           }
         }
       ],
       "heap": {
+        "7": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          7
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -429,11 +510,14 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         },
         {
@@ -452,16 +536,28 @@ unexpected return
             "__return__"
           ],
           "encoded_locals": {
-            "x": "1",
-            "y": "2",
-            "__return__": "nil"
+            "x": 1,
+            "y": 2,
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "8": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          8
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -507,18 +603,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
-            "one": "1",
-            "two": "2",
-            "three": "3",
-            "four": "4"
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2,
+            "three": 3,
+            "four": 4
           }
         }
       ],
       "heap": {
+        "9": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          9
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -565,19 +676,34 @@ unexpected return
             "__return__"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ceea860@(eval):9 (lambda)>",
-            "one": "1",
-            "two": "2",
-            "three": "3",
-            "four": "4",
-            "__return__": "\"Give me a 3 and a 4\""
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2,
+            "three": 3,
+            "four": 4,
+            "__return__": "Give me a 3 and a 4"
           }
         }
       ],
       "heap": {
+        "10": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          10
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -607,9 +733,17 @@ unexpected return
         }
       ],
       "heap": {
+        "11": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          11
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -655,18 +789,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
-            "one": "nil",
-            "two": "nil",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              13
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
           }
         }
       ],
       "heap": {
+        "12": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          12
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -712,18 +861,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
-            "one": "nil",
-            "two": "nil",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              13
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
           }
         }
       ],
       "heap": {
+        "14": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          14
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -769,18 +933,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              13
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         }
       ],
       "heap": {
+        "15": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          15
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -826,11 +1005,14 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              13
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         },
         {
@@ -848,15 +1030,27 @@ unexpected return
             "y"
           ],
           "encoded_locals": {
-            "x": "1",
-            "y": "2"
+            "x": 1,
+            "y": 2
           }
         }
       ],
       "heap": {
+        "16": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          16
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -902,11 +1096,14 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              13
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         },
         {
@@ -924,15 +1121,27 @@ unexpected return
             "y"
           ],
           "encoded_locals": {
-            "x": "1",
-            "y": "2"
+            "x": 1,
+            "y": 2
           }
         }
       ],
       "heap": {
+        "17": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          17
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -978,11 +1187,14 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              13
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         },
         {
@@ -1001,16 +1213,28 @@ unexpected return
             "__return__"
           ],
           "encoded_locals": {
-            "x": "1",
-            "y": "2",
-            "__return__": "4"
+            "x": 1,
+            "y": 2,
+            "__return__": 4
           }
         }
       ],
       "heap": {
+        "18": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          18
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1056,18 +1280,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
-            "one": "1",
-            "two": "2",
-            "three": "4",
-            "four": "nil"
+            "code": [
+              "REF",
+              13
+            ],
+            "one": 1,
+            "two": 2,
+            "three": 4,
+            "four": null
           }
         }
       ],
       "heap": {
+        "19": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          19
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1114,19 +1353,34 @@ unexpected return
             "__return__"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950ce99e88@(eval):11>",
-            "one": "1",
-            "two": "2",
-            "three": "4",
-            "four": "nil",
-            "__return__": "\"Give me a 4 and a \""
+            "code": [
+              "REF",
+              13
+            ],
+            "one": 1,
+            "two": 2,
+            "three": 4,
+            "four": null,
+            "__return__": "Give me a 4 and a "
           }
         }
       ],
       "heap": {
+        "20": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          20
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1156,9 +1410,17 @@ unexpected return
         }
       ],
       "heap": {
+        "21": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          21
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1204,18 +1466,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
-            "one": "nil",
-            "two": "nil",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              23
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
           }
         }
       ],
       "heap": {
+        "22": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          22
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1261,18 +1538,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
-            "one": "nil",
-            "two": "nil",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              23
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
           }
         }
       ],
       "heap": {
+        "24": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          24
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1318,18 +1610,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              23
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         }
       ],
       "heap": {
+        "25": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          25
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1375,11 +1682,14 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              23
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         },
         {
@@ -1397,15 +1707,27 @@ unexpected return
             "y"
           ],
           "encoded_locals": {
-            "x": "1",
-            "y": "2"
+            "x": 1,
+            "y": 2
           }
         }
       ],
       "heap": {
+        "26": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          26
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1451,11 +1773,14 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              23
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         },
         {
@@ -1473,15 +1798,27 @@ unexpected return
             "y"
           ],
           "encoded_locals": {
-            "x": "1",
-            "y": "2"
+            "x": 1,
+            "y": 2
           }
         }
       ],
       "heap": {
+        "27": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          27
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1527,11 +1864,14 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              23
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         },
         {
@@ -1550,16 +1890,36 @@ unexpected return
             "__return__"
           ],
           "encoded_locals": {
-            "x": "1",
-            "y": "2",
-            "__return__": "[3, 4]"
+            "x": 1,
+            "y": 2,
+            "__return__": [
+              "REF",
+              28
+            ]
           }
         }
       ],
       "heap": {
+        "28": [
+          "LIST",
+          3,
+          4
+        ],
+        "29": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          29
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1605,18 +1965,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
-            "one": "1",
-            "two": "2",
-            "three": "3",
-            "four": "4"
+            "code": [
+              "REF",
+              23
+            ],
+            "one": 1,
+            "two": 2,
+            "three": 3,
+            "four": 4
           }
         }
       ],
       "heap": {
+        "30": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          30
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1663,19 +2038,34 @@ unexpected return
             "__return__"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950cc9cd60@(eval):13>",
-            "one": "1",
-            "two": "2",
-            "three": "3",
-            "four": "4",
-            "__return__": "\"Give me a 3 and a 4\""
+            "code": [
+              "REF",
+              23
+            ],
+            "one": 1,
+            "two": 2,
+            "three": 3,
+            "four": 4,
+            "__return__": "Give me a 3 and a 4"
           }
         }
       ],
       "heap": {
+        "31": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          31
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1705,9 +2095,17 @@ unexpected return
         }
       ],
       "heap": {
+        "32": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          32
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1753,18 +2151,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950d082470@(eval):16>",
-            "one": "nil",
-            "two": "nil",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              34
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
           }
         }
       ],
       "heap": {
+        "33": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          33
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1810,18 +2223,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950d082470@(eval):16>",
-            "one": "nil",
-            "two": "nil",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              34
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
           }
         }
       ],
       "heap": {
+        "35": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          35
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1867,18 +2295,33 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950d082470@(eval):16>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              34
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         }
       ],
       "heap": {
+        "36": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          36
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -1924,11 +2367,14 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950d082470@(eval):16>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              34
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         },
         {
@@ -1946,15 +2392,27 @@ unexpected return
             "y"
           ],
           "encoded_locals": {
-            "x": "1",
-            "y": "2"
+            "x": 1,
+            "y": 2
           }
         }
       ],
       "heap": {
+        "37": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          37
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -2000,11 +2458,14 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950d082470@(eval):16>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              34
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         },
         {
@@ -2022,15 +2483,27 @@ unexpected return
             "y"
           ],
           "encoded_locals": {
-            "x": "1",
-            "y": "2"
+            "x": 1,
+            "y": 2
           }
         }
       ],
       "heap": {
+        "38": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          38
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -2076,11 +2549,14 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950d082470@(eval):16>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              34
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         },
         {
@@ -2098,20 +2574,62 @@ unexpected return
             "y"
           ],
           "encoded_locals": {
-            "x": "1",
-            "y": "2"
+            "x": 1,
+            "y": 2
           }
         }
       ],
       "heap": {
+        "39": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "40": [
+          "INSTANCE",
+          "LocalJumpError",
+          [
+            "@exit_value",
+            [
+              "REF",
+              41
+            ]
+          ],
+          [
+            "@reason",
+            [
+              "REF",
+              42
+            ]
+          ]
+        ],
+        "41": [
+          "LIST",
+          3,
+          4
+        ],
+        "42": [
+          "Symbol",
+          ":return"
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          39
+        ]
       },
       "ordered_globals": [
         "generic_return"
       ],
-      "exception_msg": "#<LocalJumpError: unexpected return>"
+      "exception_msg": [
+        "REF",
+        40
+      ]
     },
     {
       "func_name": "<toplevel>",
@@ -2153,11 +2671,14 @@ unexpected return
             "four"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950d082470@(eval):16>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil"
+            "code": [
+              "REF",
+              34
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
           }
         },
         {
@@ -2176,16 +2697,28 @@ unexpected return
             "__return__"
           ],
           "encoded_locals": {
-            "x": "1",
-            "y": "2",
-            "__return__": "nil"
+            "x": 1,
+            "y": 2,
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "43": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          43
+        ]
       },
       "ordered_globals": [
         "generic_return"
@@ -2232,19 +2765,34 @@ unexpected return
             "__return__"
           ],
           "encoded_locals": {
-            "code": "#<Proc:0x007f950d082470@(eval):16>",
-            "one": "1",
-            "two": "2",
-            "three": "nil",
-            "four": "nil",
-            "__return__": "nil"
+            "code": [
+              "REF",
+              34
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null,
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "44": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
       },
       "globals": {
-        "generic_return": "#<Method: Class(Object)#generic_return>"
+        "generic_return": [
+          "REF",
+          44
+        ]
       },
       "ordered_globals": [
         "generic_return"

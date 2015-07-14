@@ -23,9 +23,9 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "nil",
-            "your_proc": "nil",
-            "my_proc": "nil"
+            "count": null,
+            "your_proc": null,
+            "my_proc": null
           }
         }
       ],
@@ -59,13 +59,20 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "nil",
-            "my_proc": "nil"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": null,
+            "my_proc": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ]
       },
       "globals": {
       },
@@ -95,13 +102,27 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "nil"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ]
       },
       "globals": {
       },
@@ -131,13 +152,34 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -167,13 +209,34 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -203,9 +266,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -226,6 +298,18 @@
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -255,9 +339,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -278,6 +371,18 @@
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -307,9 +412,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -342,11 +456,23 @@
             "i"
           ],
           "encoded_locals": {
-            "i": "1"
+            "i": 1
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -376,9 +502,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -411,11 +546,23 @@
             "i"
           ],
           "encoded_locals": {
-            "i": "1"
+            "i": 1
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -445,9 +592,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -481,12 +637,24 @@
             "__return__"
           ],
           "encoded_locals": {
-            "i": "1",
-            "__return__": "nil"
+            "i": 1,
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -516,9 +684,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -551,11 +728,23 @@
             "i"
           ],
           "encoded_locals": {
-            "i": "2"
+            "i": 2
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -585,9 +774,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -620,11 +818,23 @@
             "i"
           ],
           "encoded_locals": {
-            "i": "2"
+            "i": 2
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -654,9 +864,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -690,12 +909,24 @@
             "__return__"
           ],
           "encoded_locals": {
-            "i": "2",
-            "__return__": "nil"
+            "i": 2,
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -725,9 +956,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -760,11 +1000,23 @@
             "i"
           ],
           "encoded_locals": {
-            "i": "3"
+            "i": 3
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -794,9 +1046,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -829,11 +1090,23 @@
             "i"
           ],
           "encoded_locals": {
-            "i": "3"
+            "i": 3
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -863,9 +1136,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -899,12 +1181,24 @@
             "__return__"
           ],
           "encoded_locals": {
-            "i": "3",
-            "__return__": "nil"
+            "i": 3,
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -934,9 +1228,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -969,11 +1272,23 @@
             "i"
           ],
           "encoded_locals": {
-            "i": "4"
+            "i": 4
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1003,9 +1318,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -1038,11 +1362,23 @@
             "i"
           ],
           "encoded_locals": {
-            "i": "4"
+            "i": 4
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1072,9 +1408,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -1108,12 +1453,24 @@
             "__return__"
           ],
           "encoded_locals": {
-            "i": "4",
-            "__return__": "nil"
+            "i": 4,
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1143,9 +1500,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -1178,11 +1544,23 @@
             "i"
           ],
           "encoded_locals": {
-            "i": "5"
+            "i": 5
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1212,9 +1590,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -1247,11 +1634,23 @@
             "i"
           ],
           "encoded_locals": {
-            "i": "5"
+            "i": 5
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1281,9 +1680,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -1317,12 +1725,24 @@
             "__return__"
           ],
           "encoded_locals": {
-            "i": "5",
-            "__return__": "nil"
+            "i": 5,
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1352,9 +1772,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -1375,6 +1804,18 @@
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1404,9 +1845,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -1423,11 +1873,23 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1457,13 +1919,34 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1493,9 +1976,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -1516,6 +2008,18 @@
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1545,9 +2049,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -1568,6 +2081,18 @@
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1597,9 +2122,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -1616,11 +2150,23 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1650,13 +2196,34 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1686,9 +2253,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -1709,6 +2285,18 @@
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1738,9 +2326,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -1761,6 +2358,18 @@
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1790,9 +2399,18 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         },
         {
@@ -1809,11 +2427,23 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "nil"
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },
@@ -1843,13 +2473,34 @@
             "my_proc"
           ],
           "encoded_locals": {
-            "count": "#<Proc:0x007fb02641dec0@(eval):3>",
-            "your_proc": "#<Proc:0x007fb02641b080@(eval):10 (lambda)>",
-            "my_proc": "#<Proc:0x007fb026413d08@(eval):11>"
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
       },
       "globals": {
       },

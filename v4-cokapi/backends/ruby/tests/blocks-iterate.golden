@@ -21,7 +21,7 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "nil"
+            "array": null
           }
         }
       ],
@@ -53,7 +53,7 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "nil"
+            "array": null
           }
         },
         {
@@ -101,7 +101,7 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "nil"
+            "array": null
           }
         },
         {
@@ -149,7 +149,7 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "nil"
+            "array": null
           }
         },
         {
@@ -197,7 +197,7 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "nil"
+            "array": null
           }
         },
         {
@@ -245,7 +245,7 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "nil"
+            "array": null
           }
         }
       ],
@@ -277,11 +277,21 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 2, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -309,7 +319,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 2, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -330,6 +343,13 @@
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -357,7 +377,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 2, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -378,6 +401,13 @@
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -405,7 +435,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 2, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -439,12 +472,19 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "1",
-            "i": "0"
+            "n": 1,
+            "i": 0
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -472,7 +512,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 2, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -506,12 +549,19 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "1",
-            "i": "0"
+            "n": 1,
+            "i": 0
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -539,7 +589,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 2, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -573,8 +626,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "1",
-            "i": "0"
+            "n": 1,
+            "i": 0
           }
         },
         {
@@ -591,11 +644,18 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "1"
+            "n": 1
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -623,7 +683,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 2, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -657,8 +720,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "1",
-            "i": "0"
+            "n": 1,
+            "i": 0
           }
         },
         {
@@ -675,11 +738,18 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "1"
+            "n": 1
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -707,7 +777,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 2, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -741,8 +814,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "1",
-            "i": "0"
+            "n": 1,
+            "i": 0
           }
         },
         {
@@ -760,12 +833,19 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "1",
-            "__return__": "1"
+            "n": 1,
+            "__return__": 1
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -793,7 +873,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 2, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -828,13 +911,20 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "1",
-            "i": "0",
-            "__return__": "1"
+            "n": 1,
+            "i": 0,
+            "__return__": 1
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -862,7 +952,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 2, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -896,12 +989,19 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "2",
-            "i": "1"
+            "n": 2,
+            "i": 1
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -929,7 +1029,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 2, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -963,12 +1066,19 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "2",
-            "i": "1"
+            "n": 2,
+            "i": 1
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -996,7 +1106,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 2, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -1030,8 +1143,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "2",
-            "i": "1"
+            "n": 2,
+            "i": 1
           }
         },
         {
@@ -1048,11 +1161,18 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "2"
+            "n": 2
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -1080,7 +1200,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 2, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -1114,8 +1237,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "2",
-            "i": "1"
+            "n": 2,
+            "i": 1
           }
         },
         {
@@ -1132,11 +1255,18 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "2"
+            "n": 2
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -1164,7 +1294,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 2, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -1198,8 +1331,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "2",
-            "i": "1"
+            "n": 2,
+            "i": 1
           }
         },
         {
@@ -1217,12 +1350,19 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "2",
-            "__return__": "4"
+            "n": 2,
+            "__return__": 4
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -1250,7 +1390,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -1285,13 +1428,20 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "2",
-            "i": "1",
-            "__return__": "4"
+            "n": 2,
+            "i": 1,
+            "__return__": 4
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -1319,7 +1469,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -1353,12 +1506,19 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "3",
-            "i": "2"
+            "n": 3,
+            "i": 2
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -1386,7 +1546,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -1420,12 +1583,19 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "3",
-            "i": "2"
+            "n": 3,
+            "i": 2
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -1453,7 +1623,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -1487,8 +1660,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "3",
-            "i": "2"
+            "n": 3,
+            "i": 2
           }
         },
         {
@@ -1505,11 +1678,18 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "3"
+            "n": 3
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -1537,7 +1717,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -1571,8 +1754,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "3",
-            "i": "2"
+            "n": 3,
+            "i": 2
           }
         },
         {
@@ -1589,11 +1772,18 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "3"
+            "n": 3
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -1621,7 +1811,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 3, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -1655,8 +1848,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "3",
-            "i": "2"
+            "n": 3,
+            "i": 2
           }
         },
         {
@@ -1674,12 +1867,19 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "3",
-            "__return__": "9"
+            "n": 3,
+            "__return__": 9
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          3,
+          4
+        ]
       },
       "globals": {
       },
@@ -1707,7 +1907,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -1742,13 +1945,20 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "3",
-            "i": "2",
-            "__return__": "9"
+            "n": 3,
+            "i": 2,
+            "__return__": 9
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          4
+        ]
       },
       "globals": {
       },
@@ -1776,7 +1986,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -1810,12 +2023,19 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "4",
-            "i": "3"
+            "n": 4,
+            "i": 3
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          4
+        ]
       },
       "globals": {
       },
@@ -1843,7 +2063,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -1877,12 +2100,19 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "4",
-            "i": "3"
+            "n": 4,
+            "i": 3
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          4
+        ]
       },
       "globals": {
       },
@@ -1910,7 +2140,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -1944,8 +2177,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "4",
-            "i": "3"
+            "n": 4,
+            "i": 3
           }
         },
         {
@@ -1962,11 +2195,18 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          4
+        ]
       },
       "globals": {
       },
@@ -1994,7 +2234,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -2028,8 +2271,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "4",
-            "i": "3"
+            "n": 4,
+            "i": 3
           }
         },
         {
@@ -2046,11 +2289,18 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          4
+        ]
       },
       "globals": {
       },
@@ -2078,7 +2328,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 4]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -2112,8 +2365,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "4",
-            "i": "3"
+            "n": 4,
+            "i": 3
           }
         },
         {
@@ -2131,12 +2384,19 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "4",
-            "__return__": "16"
+            "n": 4,
+            "__return__": 16
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          4
+        ]
       },
       "globals": {
       },
@@ -2164,7 +2424,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -2199,13 +2462,20 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "4",
-            "i": "3",
-            "__return__": "16"
+            "n": 4,
+            "i": 3,
+            "__return__": 16
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -2233,7 +2503,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -2250,11 +2523,21 @@
             "__return__"
           ],
           "encoded_locals": {
-            "__return__": "[1, 4, 9, 16]"
+            "__return__": [
+              "REF",
+              1
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -2282,11 +2565,21 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -2314,11 +2607,21 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -2346,7 +2649,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -2363,11 +2669,25 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -2395,7 +2715,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -2412,11 +2735,25 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -2444,7 +2781,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -2461,7 +2801,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -2479,12 +2822,23 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "1",
-            "i": "0"
+            "n": 1,
+            "i": 0
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -2512,7 +2866,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -2529,7 +2886,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -2547,12 +2907,23 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "1",
-            "i": "0"
+            "n": 1,
+            "i": 0
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -2580,7 +2951,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -2597,7 +2971,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -2615,8 +2992,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "1",
-            "i": "0"
+            "n": 1,
+            "i": 0
           }
         },
         {
@@ -2633,11 +3010,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "1"
+            "n": 1
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -2665,7 +3053,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -2682,7 +3073,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -2700,8 +3094,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "1",
-            "i": "0"
+            "n": 1,
+            "i": 0
           }
         },
         {
@@ -2718,11 +3112,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "1"
+            "n": 1
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -2750,7 +3155,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[1, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -2767,7 +3175,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -2785,8 +3196,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "1",
-            "i": "0"
+            "n": 1,
+            "i": 0
           }
         },
         {
@@ -2804,12 +3215,23 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "1",
-            "__return__": "101"
+            "n": 1,
+            "__return__": 101
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          1,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -2837,7 +3259,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -2854,7 +3279,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -2873,13 +3301,24 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "1",
-            "i": "0",
-            "__return__": "101"
+            "n": 1,
+            "i": 0,
+            "__return__": 101
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -2907,7 +3346,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -2924,7 +3366,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -2942,12 +3387,23 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "4",
-            "i": "1"
+            "n": 4,
+            "i": 1
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -2975,7 +3431,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -2992,7 +3451,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -3010,12 +3472,23 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "4",
-            "i": "1"
+            "n": 4,
+            "i": 1
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -3043,7 +3516,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -3060,7 +3536,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -3078,8 +3557,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "4",
-            "i": "1"
+            "n": 4,
+            "i": 1
           }
         },
         {
@@ -3096,11 +3575,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -3128,7 +3618,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -3145,7 +3638,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -3163,8 +3659,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "4",
-            "i": "1"
+            "n": 4,
+            "i": 1
           }
         },
         {
@@ -3181,11 +3677,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "4"
+            "n": 4
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -3213,7 +3720,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 4, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -3230,7 +3740,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -3248,8 +3761,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "4",
-            "i": "1"
+            "n": 4,
+            "i": 1
           }
         },
         {
@@ -3267,12 +3780,23 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "4",
-            "__return__": "104"
+            "n": 4,
+            "__return__": 104
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          4,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -3300,7 +3824,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -3317,7 +3844,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -3336,13 +3866,24 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "4",
-            "i": "1",
-            "__return__": "104"
+            "n": 4,
+            "i": 1,
+            "__return__": 104
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          104,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -3370,7 +3911,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -3387,7 +3931,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -3405,12 +3952,23 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "9",
-            "i": "2"
+            "n": 9,
+            "i": 2
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          104,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -3438,7 +3996,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -3455,7 +4016,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -3473,12 +4037,23 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "9",
-            "i": "2"
+            "n": 9,
+            "i": 2
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          104,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -3506,7 +4081,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -3523,7 +4101,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -3541,8 +4122,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "9",
-            "i": "2"
+            "n": 9,
+            "i": 2
           }
         },
         {
@@ -3559,11 +4140,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "9"
+            "n": 9
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          104,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -3591,7 +4183,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -3608,7 +4203,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -3626,8 +4224,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "9",
-            "i": "2"
+            "n": 9,
+            "i": 2
           }
         },
         {
@@ -3644,11 +4242,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "9"
+            "n": 9
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          104,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -3676,7 +4285,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 9, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -3693,7 +4305,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -3711,8 +4326,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "9",
-            "i": "2"
+            "n": 9,
+            "i": 2
           }
         },
         {
@@ -3730,12 +4345,23 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "9",
-            "__return__": "109"
+            "n": 9,
+            "__return__": 109
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          104,
+          9,
+          16
+        ]
       },
       "globals": {
       },
@@ -3763,7 +4389,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 109, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -3780,7 +4409,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -3799,13 +4431,24 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "9",
-            "i": "2",
-            "__return__": "109"
+            "n": 9,
+            "i": 2,
+            "__return__": 109
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          104,
+          109,
+          16
+        ]
       },
       "globals": {
       },
@@ -3833,7 +4476,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 109, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -3850,7 +4496,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -3868,12 +4517,23 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "16",
-            "i": "3"
+            "n": 16,
+            "i": 3
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          104,
+          109,
+          16
+        ]
       },
       "globals": {
       },
@@ -3901,7 +4561,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 109, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -3918,7 +4581,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -3936,12 +4602,23 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "16",
-            "i": "3"
+            "n": 16,
+            "i": 3
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          104,
+          109,
+          16
+        ]
       },
       "globals": {
       },
@@ -3969,7 +4646,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 109, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -3986,7 +4666,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -4004,8 +4687,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "16",
-            "i": "3"
+            "n": 16,
+            "i": 3
           }
         },
         {
@@ -4022,11 +4705,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "16"
+            "n": 16
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          104,
+          109,
+          16
+        ]
       },
       "globals": {
       },
@@ -4054,7 +4748,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 109, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -4071,7 +4768,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -4089,8 +4789,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "16",
-            "i": "3"
+            "n": 16,
+            "i": 3
           }
         },
         {
@@ -4107,11 +4807,22 @@
             "n"
           ],
           "encoded_locals": {
-            "n": "16"
+            "n": 16
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          104,
+          109,
+          16
+        ]
       },
       "globals": {
       },
@@ -4139,7 +4850,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 109, 16]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -4156,7 +4870,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -4174,8 +4891,8 @@
             "i"
           ],
           "encoded_locals": {
-            "n": "16",
-            "i": "3"
+            "n": 16,
+            "i": 3
           }
         },
         {
@@ -4193,12 +4910,23 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "16",
-            "__return__": "116"
+            "n": 16,
+            "__return__": 116
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          104,
+          109,
+          16
+        ]
       },
       "globals": {
       },
@@ -4226,7 +4954,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 109, 116]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -4243,7 +4974,10 @@
             "cod"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>"
+            "cod": [
+              "REF",
+              2
+            ]
           }
         },
         {
@@ -4262,13 +4996,24 @@
             "__return__"
           ],
           "encoded_locals": {
-            "n": "16",
-            "i": "3",
-            "__return__": "116"
+            "n": 16,
+            "i": 3,
+            "__return__": 116
           }
         }
       ],
       "heap": {
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ],
+        "1": [
+          "LIST",
+          101,
+          104,
+          109,
+          116
+        ]
       },
       "globals": {
       },
@@ -4296,7 +5041,10 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 109, 116]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         },
         {
@@ -4314,12 +5062,29 @@
             "__return__"
           ],
           "encoded_locals": {
-            "cod": "#<Proc:0x007f0dc958e890@(eval):23>",
-            "__return__": "[101, 104, 109, 116]"
+            "cod": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              1
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          101,
+          104,
+          109,
+          116
+        ],
+        "2": [
+          "Proc",
+          "Proc on line 23"
+        ]
       },
       "globals": {
       },
@@ -4347,11 +5112,21 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 109, 116]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          101,
+          104,
+          109,
+          116
+        ]
       },
       "globals": {
       },
@@ -4379,11 +5154,21 @@
             "array"
           ],
           "encoded_locals": {
-            "array": "[101, 104, 109, 116]"
+            "array": [
+              "REF",
+              1
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "LIST",
+          101,
+          104,
+          109,
+          116
+        ]
       },
       "globals": {
       },

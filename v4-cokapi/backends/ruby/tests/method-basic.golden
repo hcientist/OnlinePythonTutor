@@ -1,5 +1,3 @@
-other exception -- EEEEEEEE!!!
-undefined method `repeat' for main:Object
 {
   "code": "# Adapted from Learning Ruby by Michael Fitzgerald, O'Reilly\n\ndef repeat(word, times)\n  puts (word + ' ') * times\nend\n\nrepeat 'hello', 5\nrepeat 'goodbye', 3\nundef repeat\n# 'repeat' should no longer be in scope\nrepeat 'broken', 5\n",
   "trace": [
@@ -58,9 +56,17 @@ undefined method `repeat' for main:Object
         }
       ],
       "heap": {
+        "1": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
       },
       "globals": {
-        "repeat": "#<Method: Class(Object)#repeat>"
+        "repeat": [
+          "REF",
+          1
+        ]
       },
       "ordered_globals": [
         "repeat"
@@ -103,15 +109,23 @@ undefined method `repeat' for main:Object
             "times"
           ],
           "encoded_locals": {
-            "word": "\"hello\"",
-            "times": "5"
+            "word": "hello",
+            "times": 5
           }
         }
       ],
       "heap": {
+        "2": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
       },
       "globals": {
-        "repeat": "#<Method: Class(Object)#repeat>"
+        "repeat": [
+          "REF",
+          2
+        ]
       },
       "ordered_globals": [
         "repeat"
@@ -154,15 +168,23 @@ undefined method `repeat' for main:Object
             "times"
           ],
           "encoded_locals": {
-            "word": "\"hello\"",
-            "times": "5"
+            "word": "hello",
+            "times": 5
           }
         }
       ],
       "heap": {
+        "3": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
       },
       "globals": {
-        "repeat": "#<Method: Class(Object)#repeat>"
+        "repeat": [
+          "REF",
+          3
+        ]
       },
       "ordered_globals": [
         "repeat"
@@ -206,16 +228,24 @@ undefined method `repeat' for main:Object
             "__return__"
           ],
           "encoded_locals": {
-            "word": "\"hello\"",
-            "times": "5",
-            "__return__": "nil"
+            "word": "hello",
+            "times": 5,
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "4": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
       },
       "globals": {
-        "repeat": "#<Method: Class(Object)#repeat>"
+        "repeat": [
+          "REF",
+          4
+        ]
       },
       "ordered_globals": [
         "repeat"
@@ -245,9 +275,17 @@ undefined method `repeat' for main:Object
         }
       ],
       "heap": {
+        "5": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
       },
       "globals": {
-        "repeat": "#<Method: Class(Object)#repeat>"
+        "repeat": [
+          "REF",
+          5
+        ]
       },
       "ordered_globals": [
         "repeat"
@@ -290,15 +328,23 @@ undefined method `repeat' for main:Object
             "times"
           ],
           "encoded_locals": {
-            "word": "\"goodbye\"",
-            "times": "3"
+            "word": "goodbye",
+            "times": 3
           }
         }
       ],
       "heap": {
+        "6": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
       },
       "globals": {
-        "repeat": "#<Method: Class(Object)#repeat>"
+        "repeat": [
+          "REF",
+          6
+        ]
       },
       "ordered_globals": [
         "repeat"
@@ -341,15 +387,23 @@ undefined method `repeat' for main:Object
             "times"
           ],
           "encoded_locals": {
-            "word": "\"goodbye\"",
-            "times": "3"
+            "word": "goodbye",
+            "times": 3
           }
         }
       ],
       "heap": {
+        "7": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
       },
       "globals": {
-        "repeat": "#<Method: Class(Object)#repeat>"
+        "repeat": [
+          "REF",
+          7
+        ]
       },
       "ordered_globals": [
         "repeat"
@@ -393,16 +447,24 @@ undefined method `repeat' for main:Object
             "__return__"
           ],
           "encoded_locals": {
-            "word": "\"goodbye\"",
-            "times": "3",
-            "__return__": "nil"
+            "word": "goodbye",
+            "times": 3,
+            "__return__": null
           }
         }
       ],
       "heap": {
+        "8": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
       },
       "globals": {
-        "repeat": "#<Method: Class(Object)#repeat>"
+        "repeat": [
+          "REF",
+          8
+        ]
       },
       "ordered_globals": [
         "repeat"
@@ -432,9 +494,17 @@ undefined method `repeat' for main:Object
         }
       ],
       "heap": {
+        "9": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
       },
       "globals": {
-        "repeat": "#<Method: Class(Object)#repeat>"
+        "repeat": [
+          "REF",
+          9
+        ]
       },
       "ordered_globals": [
         "repeat"
@@ -495,13 +565,20 @@ undefined method `repeat' for main:Object
         }
       ],
       "heap": {
+        "10": [
+          "INSTANCE",
+          "NoMethodError"
+        ]
       },
       "globals": {
       },
       "ordered_globals": [
 
       ],
-      "exception_msg": "#<NoMethodError: undefined method `repeat' for main:Object>"
+      "exception_msg": [
+        "REF",
+        10
+      ]
     }
   ]
 }
