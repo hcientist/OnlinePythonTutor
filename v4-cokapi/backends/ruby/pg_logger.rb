@@ -12,8 +12,8 @@
 #
 # - display constants defined INSIDE OF modules or classes
 # - display class and instance variables
-# - when inside of a method, maybe display implicit 'self' parameter if
-#   it's not the toplevel self?
+# - when inside of a method, always display implicit 'self' parameter if
+#   it's not the toplevel self
 # - display the 'binding' within a proc/lambda object, which represents
 #   its closure. test on tests/proc-return.rb
 # - support gets() for user input using the restart hack mechanism
@@ -25,6 +25,9 @@
 #   - display booleans as 'true' and 'false'
 #   - rename 'list' as 'array'
 #   - rename 'dict' as 'hash'
+#   - rename 'instance' as 'object'
+#   - rename 'function' to 'method'
+# - support display of private and protected attributes
 #
 # Useful notes from http://phrogz.net/programmingruby/frameset.html:
 #  - "First, every object has a unique object identifier (abbreviated as
@@ -140,10 +143,106 @@ class ObjectEncoder
       elsif dat.class == Set
         new_obj << 'SET'
         dat.each { |e| new_obj << encode(e) }
-      else
-        # catch-all punting case! includes Range, Symbol, Regexp
+      elsif dat.class == Range || dat.class == Symbol || dat.class == Regexp
+        # display these simple types as-is
         new_obj << dat.class.to_s
         new_obj << dat.inspect
+      elsif dat.class == Method
+        new_obj << 'FUNCTION' # just use 'FUNCTION', but label it Method in the frontend
+        new_obj << dat.name
+        new_obj << '' # parent frame ID
+      elsif dat.class == Proc
+        new_obj << dat.class.to_s
+        if dat.lambda?
+          new_obj << ("Lambda on line %d" % dat.source_location[1])
+        else
+          new_obj << ("Proc on line %d" % dat.source_location[1])
+        end
+      elsif dat.class == Class
+        new_obj << 'CLASS'
+        new_obj << dat.to_s
+        sups = []
+        sups << dat.superclass if dat.superclass != Object
+        new_obj << sups
+
+        encoded_constants = []
+        encoded_instance_methods = []
+        encoded_class_variables = []
+        encoded_instance_variables = []
+
+        dat.constants.each do |e|
+          encoded_constants << [e.to_s, encode(dat.const_get(e))]
+        end
+
+        my_instance_methods = dat.instance_methods - dat.superclass.instance_methods
+        my_instance_methods.each do |e|
+          # TODO: fixme -- can't get method() from class, only exists in
+          # instances
+          encoded_instance_methods << [e.to_s, encode(dat.method(e))]
+        end
+
+        dat.class_variables.each do |e|
+          encoded_class_variables << [e.to_s, encode(dat.class_variable_get(e))]
+        end
+
+        dat.instance_variables.each do |e|
+          encoded_instance_variables << [e.to_s, encode(dat.instance_variable_get(e))]
+        end
+
+        new_obj.concat(encoded_constants)
+        new_obj.concat(encoded_instance_methods)
+        new_obj.concat(encoded_class_variables)
+        new_obj.concat(encoded_instance_variables)
+      elsif dat.class == Module
+        new_obj << 'INSTANCE'
+        new_obj << dat.class.to_s
+
+        encoded_constants = []
+        encoded_instance_methods = []
+        encoded_class_variables = []
+        encoded_instance_variables = []
+
+        dat.constants.each do |e|
+          encoded_constants << [e.to_s, encode(dat.const_get(e))]
+        end
+
+        # TODO: fixme - test on tests/module-basic.rb
+        dat.instance_methods.each do |e|
+          encoded_instance_methods << [e.to_s, encode(dat.method(e))]
+        end
+
+        dat.class_variables.each do |e|
+          encoded_class_variables << [e.to_s, encode(dat.class_variable_get(e))]
+        end
+
+        dat.instance_variables.each do |e|
+          encoded_instance_variables << [e.to_s, encode(dat.instance_variable_get(e))]
+        end
+
+        new_obj.concat(encoded_constants)
+        new_obj.concat(encoded_instance_methods)
+        new_obj.concat(encoded_class_variables)
+        new_obj.concat(encoded_instance_variables)
+      else
+        new_obj << 'INSTANCE'
+        new_obj << dat.class.to_s
+
+        # catch-all case: in Ruby, everything is an object
+        my_inst_vars = dat.instance_variables
+
+        encoded_instance_variables = []
+
+        my_inst_vars.each do |e|
+          encoded_instance_variables << [e.to_s, encode(dat.instance_variable_get(e))]
+        end
+
+        new_obj.concat(encoded_instance_variables)
+
+        # for brevity, put methods in the class, not in instances
+
+        # TODO: support pprint if to_s is custom-defined by this
+        # instance, and not by the default Object or something
+        #   * instance with __str__ defined - ['INSTANCE_PPRINT', class name, <__str__ value>]
       end
 
       return ret
@@ -216,7 +315,8 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   toplevel_constants = (Module.constants - base_constants_set) # set difference
   entry['ordered_globals'] += toplevel_constants.map { |e| e.to_s }
   toplevel_constants.each do |varname|
-    val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
+    #val = eval(varname.to_s) # TODO: is there a better way? this seems hacky! # yes, see below
+    val = Module.const_get(varname)
     globals[varname.to_s] = pg_encoder.encode(val)
   end
 
@@ -417,6 +517,8 @@ rescue MaxStepsException
 rescue
   $stdout = STDOUT
   # ignore since we've already handled a :raise event in the trace by now
+  STDERR.puts $! # but still print the error to ease debugging
+  STDERR.puts $!.backtrace
 ensure
   $stdout = STDOUT
 
