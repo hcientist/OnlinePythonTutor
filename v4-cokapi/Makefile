@@ -12,6 +12,9 @@ deps:
 docker:
 	docker build -t="pgbovine/cokapi:v1" .
 
+dockerbash:
+	docker run -t -i --rm --user=netuser --net=none --cap-drop all pgbovine/cokapi:v1 bash
+
 test:
 	@echo 'Python'
 	@time --portability docker run --rm pgbovine/cokapi:v1 python /tmp/python/generate_json_trace.py --code="x=1; y=2; z=x+y"
@@ -21,3 +24,6 @@ test:
 	@echo
 	@echo 'Java'
 	@time --portability docker run -i --rm pgbovine/cokapi:v1 java -cp /tmp/java_jail/cp:/tmp/java_jail/cp/javax.json-1.0.jar:/usr/lib/jvm/java-7-openjdk-amd64/lib/tools.jar traceprinter.InMemory < backends/java/java_jail/cp/traceprinter/test-input.txt
+	@echo
+	@echo 'Ruby'
+	@time --portability docker run -i --rm pgbovine/cokapi:v1 /tmp/ruby/ruby /tmp/ruby/pg_logger.rb -c "x = 1; y = 2"

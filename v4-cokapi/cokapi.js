@@ -207,6 +207,39 @@ function exec_java_handler(useJSONP /* use bind first */, req, res) {
                          postExecHandler.bind(null, res, useJSONP));
 }
 
+app.get('/exec_ruby', exec_ruby_handler.bind(null, false));
+app.get('/exec_ruby_jsonp', exec_ruby_handler.bind(null, true));
+
+function exec_ruby_handler(useJSONP /* use bind first */, req, res) {
+  var usrCod = req.query.user_script;
+
+  var exeFile;
+  var args = [];
+
+  if (USE_DOCKER_SANDBOX) {
+    // this needs to match the docker setup in Dockerfile
+    exeFile = '/usr/bin/docker'; // absolute path to docker executable
+    args.push('run', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi:v1',
+              '/tmp/ruby/ruby',
+              '/tmp/ruby/pg_logger.rb',
+              '-c',
+              usrCod);
+  } else {
+    assert(false);
+    // must use Docker
+  }
+
+  child_process.execFile(exeFile, args,
+                         {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
+                          maxBuffer: 5000 * 1024 /* 5MB data max */,
+                          // make SURE docker gets the kill signal;
+                          // this signal seems to allow docker to clean
+                          // up after itself to --rm the container, but
+                          // double-check with 'docker ps -a'
+                          killSignal: 'SIGINT'},
+                         postExecHandler.bind(null, res, useJSONP));
+}
+
 function executePython(pyVer, req, res) {
   var parsedOptions = JSON.parse(req.query.options_json);
 
