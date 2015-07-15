@@ -10,6 +10,22 @@
 
 # TODO
 #
+# fix these tests:
+#   tests/global-mutate.rb (only gets the most recent value of global
+#                           and doesn't pick up on mutations)
+#   tests/floats.rb
+# in frontend, maybe '=' isn't a valid CSS selector. also escape '?' too
+#   tests/blocks-iterate.rb
+#   tests/inst-class-vars-complex.rb (also class methods not shown)
+#   tests/class-method.rb (doesn't display class methods)
+#
+#   tests/blocks-scoping-2.rb (error message on Step 12 shows up as "REF11")
+#   tests/exception-basic.rb (exceptions displaying wrong)
+#   tests/lambda-and-proc-2.rb
+#   tests/lambda-and-proc.rb
+#   tests/method-basic.rb
+#
+# - test syntax errors in the OPT frontend
 # - display the 'binding' within a proc/lambda object, which represents
 #   https://codequizzes.wordpress.com/2014/04/07/rubys-self-keyword-and-implicit-self/
 #   its closure. test on tests/proc-return.rb
@@ -39,6 +55,9 @@
 #
 # - keeps executing for a few more lines after an exception -- dunno if
 #   that's standard Ruby behavior or not
+#
+# - method aliases show up as separate Method objects instead of the
+#   same one
 
 # style guide: https://github.com/styleguide/ruby
 
