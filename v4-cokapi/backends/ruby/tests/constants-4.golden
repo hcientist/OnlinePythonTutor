@@ -97,9 +97,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -157,9 +161,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -217,9 +225,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -289,9 +301,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -425,9 +441,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              6
+            ]
           }
         }
       ],
@@ -454,6 +474,10 @@
           "FUNCTION",
           "get_const",
           ""
+        ],
+        "6": [
+          "INSTANCE",
+          "Const"
         ]
       },
       "globals": {
@@ -501,9 +525,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              6
+            ]
           }
         }
       ],
@@ -522,14 +550,18 @@
             "get_const",
             [
               "REF",
-              6
+              7
             ]
           ]
         ],
-        "6": [
+        "7": [
           "FUNCTION",
           "get_const",
           ""
+        ],
+        "6": [
+          "INSTANCE",
+          "Const"
         ]
       },
       "globals": {
@@ -577,9 +609,14 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "__return__"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              6
+            ],
             "__return__": 100
           }
         }
@@ -599,14 +636,18 @@
             "get_const",
             [
               "REF",
-              7
+              8
             ]
           ]
         ],
-        "7": [
+        "8": [
           "FUNCTION",
           "get_const",
           ""
+        ],
+        "6": [
+          "INSTANCE",
+          "Const"
         ]
       },
       "globals": {
@@ -659,11 +700,11 @@
             "get_const",
             [
               "REF",
-              8
+              9
             ]
           ]
         ],
-        "8": [
+        "9": [
           "FUNCTION",
           "get_const",
           ""
@@ -719,11 +760,11 @@
             "get_const",
             [
               "REF",
-              9
+              10
             ]
           ]
         ],
-        "9": [
+        "10": [
           "FUNCTION",
           "get_const",
           ""
@@ -779,11 +820,11 @@
             "get_const",
             [
               "REF",
-              10
+              11
             ]
           ]
         ],
-        "10": [
+        "11": [
           "FUNCTION",
           "get_const",
           ""
@@ -843,11 +884,11 @@
             "get_const",
             [
               "REF",
-              11
+              12
             ]
           ]
         ],
-        "11": [
+        "12": [
           "FUNCTION",
           "get_const",
           ""

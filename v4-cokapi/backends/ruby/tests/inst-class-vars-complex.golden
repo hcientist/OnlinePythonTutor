@@ -107,9 +107,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -170,9 +174,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -233,9 +241,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -300,9 +312,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -371,9 +387,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -442,9 +462,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -513,9 +537,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -584,9 +612,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -667,9 +699,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -920,10 +956,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "x"
           ],
           "encoded_locals": {
-            "x": 3
+            "x": 3,
+            "self": [
+              "REF",
+              11
+            ]
           }
         }
       ],
@@ -966,6 +1007,10 @@
           "FUNCTION",
           "inst=",
           ""
+        ],
+        "11": [
+          "INSTANCE",
+          "TestVar"
         ]
       },
       "globals": {
@@ -1016,10 +1061,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "x"
           ],
           "encoded_locals": {
-            "x": 3
+            "x": 3,
+            "self": [
+              "REF",
+              11
+            ]
           }
         }
       ],
@@ -1038,14 +1088,14 @@
             "inst",
             [
               "REF",
-              11
+              12
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              12
+              13
             ]
           ],
           [
@@ -1053,15 +1103,19 @@
             6
           ]
         ],
-        "11": [
+        "12": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "12": [
+        "13": [
           "FUNCTION",
           "inst=",
           ""
+        ],
+        "11": [
+          "INSTANCE",
+          "TestVar"
         ]
       },
       "globals": {
@@ -1112,10 +1166,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "x"
           ],
           "encoded_locals": {
-            "x": 3
+            "x": 3,
+            "self": [
+              "REF",
+              11
+            ]
           }
         }
       ],
@@ -1134,14 +1193,14 @@
             "inst",
             [
               "REF",
-              13
+              14
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              14
+              15
             ]
           ],
           [
@@ -1149,15 +1208,23 @@
             6
           ]
         ],
-        "13": [
+        "14": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "14": [
+        "15": [
           "FUNCTION",
           "inst=",
           ""
+        ],
+        "11": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
         ]
       },
       "globals": {
@@ -1208,11 +1275,16 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "x",
             "__return__"
           ],
           "encoded_locals": {
             "x": 3,
+            "self": [
+              "REF",
+              11
+            ],
             "__return__": 7
           }
         }
@@ -1232,14 +1304,14 @@
             "inst",
             [
               "REF",
-              15
+              16
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              16
+              17
             ]
           ],
           [
@@ -1247,15 +1319,23 @@
             7
           ]
         ],
-        "15": [
+        "16": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "16": [
+        "17": [
           "FUNCTION",
           "inst=",
           ""
+        ],
+        "11": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
         ]
       },
       "globals": {
@@ -1293,7 +1373,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -1314,14 +1394,14 @@
             "inst",
             [
               "REF",
-              17
+              18
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              18
+              19
             ]
           ],
           [
@@ -1329,17 +1409,17 @@
             7
           ]
         ],
-        "17": [
+        "18": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "18": [
+        "19": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -1383,7 +1463,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -1399,9 +1479,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -1445,7 +1529,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -1489,7 +1573,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -1505,9 +1589,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -1551,7 +1639,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -1595,7 +1683,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -1611,9 +1699,14 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "__return__"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ],
             "__return__": 7
           }
         }
@@ -1658,7 +1751,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -1702,7 +1795,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -1748,7 +1841,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -1773,7 +1866,7 @@
       "func_name": "<toplevel>",
       "line": 30,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -1792,7 +1885,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -1838,7 +1931,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -1863,7 +1956,7 @@
       "func_name": "<toplevel>",
       "line": 16,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1882,7 +1975,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -1898,10 +1991,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "y"
           ],
           "encoded_locals": {
-            "y": 4
+            "y": 4,
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -1945,7 +2043,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -1970,7 +2068,7 @@
       "func_name": "<toplevel>",
       "line": 17,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1989,7 +2087,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -2005,10 +2103,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "y"
           ],
           "encoded_locals": {
-            "y": 4
+            "y": 4,
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -2052,7 +2155,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -2077,7 +2180,7 @@
       "func_name": "<toplevel>",
       "line": 18,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2096,7 +2199,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -2112,11 +2215,16 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "y",
             "__return__"
           ],
           "encoded_locals": {
             "y": 4,
+            "self": [
+              "REF",
+              1
+            ],
             "__return__": 4
           }
         }
@@ -2161,7 +2269,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -2186,7 +2294,7 @@
       "func_name": "<toplevel>",
       "line": 31,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -2205,7 +2313,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -2251,7 +2359,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -2276,7 +2384,7 @@
       "func_name": "<toplevel>",
       "line": 22,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2295,7 +2403,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -2311,10 +2419,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "i"
           ],
           "encoded_locals": {
-            "i": 8
+            "i": 8,
+            "self": [
+              "REF",
+              11
+            ]
           }
         }
       ],
@@ -2358,7 +2471,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -2383,7 +2496,7 @@
       "func_name": "<toplevel>",
       "line": 23,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2402,7 +2515,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -2418,10 +2531,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "i"
           ],
           "encoded_locals": {
-            "i": 8
+            "i": 8,
+            "self": [
+              "REF",
+              11
+            ]
           }
         }
       ],
@@ -2465,7 +2583,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -2490,7 +2608,7 @@
       "func_name": "<toplevel>",
       "line": 24,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2509,7 +2627,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -2525,11 +2643,16 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "i",
             "__return__"
           ],
           "encoded_locals": {
             "i": 8,
+            "self": [
+              "REF",
+              11
+            ],
             "__return__": 8
           }
         }
@@ -2574,7 +2697,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -2599,7 +2722,7 @@
       "func_name": "<toplevel>",
       "line": 32,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -2618,7 +2741,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -2664,7 +2787,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -2689,7 +2812,7 @@
       "func_name": "<toplevel>",
       "line": 13,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2708,7 +2831,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -2724,9 +2847,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -2770,7 +2897,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -2795,7 +2922,7 @@
       "func_name": "<toplevel>",
       "line": 14,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2814,7 +2941,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -2830,9 +2957,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -2876,7 +3007,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -2901,7 +3032,7 @@
       "func_name": "<toplevel>",
       "line": 15,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2920,7 +3051,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -2936,9 +3067,14 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "__return__"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ],
             "__return__": 4
           }
         }
@@ -2983,7 +3119,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -3008,7 +3144,7 @@
       "func_name": "<toplevel>",
       "line": 33,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -3027,7 +3163,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -3073,7 +3209,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -3098,7 +3234,7 @@
       "func_name": "<toplevel>",
       "line": 19,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3117,7 +3253,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -3133,9 +3269,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              11
+            ]
           }
         }
       ],
@@ -3179,7 +3319,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -3204,7 +3344,7 @@
       "func_name": "<toplevel>",
       "line": 20,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3223,7 +3363,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -3239,9 +3379,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              11
+            ]
           }
         }
       ],
@@ -3285,7 +3429,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -3310,7 +3454,7 @@
       "func_name": "<toplevel>",
       "line": 21,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3329,7 +3473,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -3345,9 +3489,14 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "__return__"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              11
+            ],
             "__return__": 8
           }
         }
@@ -3392,7 +3541,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -3417,7 +3566,7 @@
       "func_name": "<toplevel>",
       "line": 34,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -3436,7 +3585,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -3482,7 +3631,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -3507,7 +3656,7 @@
       "func_name": "<toplevel>",
       "line": 9,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3526,7 +3675,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -3542,10 +3691,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "x"
           ],
           "encoded_locals": {
-            "x": 17
+            "x": 17,
+            "self": [
+              "REF",
+              64
+            ]
           }
         }
       ],
@@ -3589,7 +3743,11 @@
           "inst=",
           ""
         ],
-        "19": [
+        "64": [
+          "INSTANCE",
+          "TestVar"
+        ],
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -3614,7 +3772,7 @@
       "func_name": "<toplevel>",
       "line": 10,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3633,7 +3791,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -3649,10 +3807,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "x"
           ],
           "encoded_locals": {
-            "x": 17
+            "x": 17,
+            "self": [
+              "REF",
+              64
+            ]
           }
         }
       ],
@@ -3671,14 +3834,14 @@
             "inst",
             [
               "REF",
-              64
+              65
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              65
+              66
             ]
           ],
           [
@@ -3686,17 +3849,21 @@
             4
           ]
         ],
-        "64": [
+        "65": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "65": [
+        "66": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "19": [
+        "64": [
+          "INSTANCE",
+          "TestVar"
+        ],
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -3721,7 +3888,7 @@
       "func_name": "<toplevel>",
       "line": 11,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3740,7 +3907,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -3756,10 +3923,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "x"
           ],
           "encoded_locals": {
-            "x": 17
+            "x": 17,
+            "self": [
+              "REF",
+              64
+            ]
           }
         }
       ],
@@ -3778,14 +3950,14 @@
             "inst",
             [
               "REF",
-              66
+              67
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              67
+              68
             ]
           ],
           [
@@ -3793,17 +3965,25 @@
             4
           ]
         ],
-        "66": [
+        "67": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "67": [
+        "68": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "19": [
+        "64": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            17
+          ]
+        ],
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -3828,7 +4008,7 @@
       "func_name": "<toplevel>",
       "line": 12,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3847,7 +4027,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": null
           }
@@ -3863,11 +4043,16 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "x",
             "__return__"
           ],
           "encoded_locals": {
             "x": 17,
+            "self": [
+              "REF",
+              64
+            ],
             "__return__": 5
           }
         }
@@ -3887,14 +4072,14 @@
             "inst",
             [
               "REF",
-              68
+              69
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              69
+              70
             ]
           ],
           [
@@ -3902,17 +4087,25 @@
             5
           ]
         ],
-        "68": [
+        "69": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "69": [
+        "70": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "19": [
+        "64": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            17
+          ]
+        ],
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -3937,7 +4130,7 @@
       "func_name": "<toplevel>",
       "line": 35,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -3956,11 +4149,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": [
               "REF",
-              72
+              64
             ]
           }
         }
@@ -3980,14 +4173,14 @@
             "inst",
             [
               "REF",
-              70
+              71
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              71
+              72
             ]
           ],
           [
@@ -3995,17 +4188,17 @@
             5
           ]
         ],
-        "70": [
+        "71": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "71": [
+        "72": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -4013,7 +4206,7 @@
             8
           ]
         ],
-        "72": [
+        "64": [
           "INSTANCE",
           "TestVar",
           [
@@ -4038,7 +4231,7 @@
       "func_name": "<toplevel>",
       "line": 36,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n#<TestVar:0x007fc597604690 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n#<TestVar:0x007f5466a2ad20 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -4057,11 +4250,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": [
               "REF",
-              72
+              64
             ]
           }
         }
@@ -4106,7 +4299,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -4114,7 +4307,7 @@
             8
           ]
         ],
-        "72": [
+        "64": [
           "INSTANCE",
           "TestVar",
           [
@@ -4139,7 +4332,7 @@
       "func_name": "<toplevel>",
       "line": 13,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n#<TestVar:0x007fc597604690 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n#<TestVar:0x007f5466a2ad20 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4158,11 +4351,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": [
               "REF",
-              72
+              64
             ]
           }
         },
@@ -4177,9 +4370,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -4223,7 +4420,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -4231,7 +4428,7 @@
             8
           ]
         ],
-        "72": [
+        "64": [
           "INSTANCE",
           "TestVar",
           [
@@ -4256,7 +4453,7 @@
       "func_name": "<toplevel>",
       "line": 14,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n#<TestVar:0x007fc597604690 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n#<TestVar:0x007f5466a2ad20 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4275,11 +4472,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": [
               "REF",
-              72
+              64
             ]
           }
         },
@@ -4294,9 +4491,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -4340,7 +4541,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -4348,7 +4549,7 @@
             8
           ]
         ],
-        "72": [
+        "64": [
           "INSTANCE",
           "TestVar",
           [
@@ -4373,7 +4574,7 @@
       "func_name": "<toplevel>",
       "line": 15,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n#<TestVar:0x007fc597604690 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n#<TestVar:0x007f5466a2ad20 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4392,11 +4593,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": [
               "REF",
-              72
+              64
             ]
           }
         },
@@ -4411,9 +4612,14 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "__return__"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ],
             "__return__": 5
           }
         }
@@ -4458,7 +4664,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -4466,7 +4672,7 @@
             8
           ]
         ],
-        "72": [
+        "64": [
           "INSTANCE",
           "TestVar",
           [
@@ -4491,7 +4697,7 @@
       "func_name": "<toplevel>",
       "line": 36,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007fc59730d888 @inst=3>\n4\n8\n#<TestVar:0x007fc597604690 @inst=17>\n5\n",
+      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n#<TestVar:0x007f5466a2ad20 @inst=17>\n5\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -4510,11 +4716,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              19
+              11
             ],
             "other": [
               "REF",
-              72
+              64
             ]
           }
         }
@@ -4559,7 +4765,7 @@
           "inst=",
           ""
         ],
-        "19": [
+        "11": [
           "INSTANCE",
           "TestVar",
           [
@@ -4567,7 +4773,7 @@
             8
           ]
         ],
-        "72": [
+        "64": [
           "INSTANCE",
           "TestVar",
           [

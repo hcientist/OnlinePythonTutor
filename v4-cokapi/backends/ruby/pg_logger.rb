@@ -10,8 +10,6 @@
 
 # TODO
 #
-# - when inside of a method, always display implicit 'self' parameter if
-#   it's not the toplevel self
 # - display the 'binding' within a proc/lambda object, which represents
 #   https://codequizzes.wordpress.com/2014/04/07/rubys-self-keyword-and-implicit-self/
 #   its closure. test on tests/proc-return.rb
@@ -422,6 +420,13 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
         stack_entry['ordered_varnames'] = lvs.map { |e| e.to_s }
         stack_entry['encoded_locals'] = lvs_val
+
+        # get the value of 'self' as seen by this frame
+        my_self = b.eval('self')
+        if my_self != self # ignore default global 'self' for brevity
+          stack_entry['ordered_varnames'].insert(0, 'self') # insert at front
+          stack_entry['encoded_locals']['self'] = pg_encoder.encode(my_self)
+        end
 
         # just fold everything into globals rather than creating a
         # separate (redundant) frame for '<main>'

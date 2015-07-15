@@ -67,13 +67,1428 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Array",
+          [
+
+          ],
+          [
+            "to_a",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "to_h",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "to_ary",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "[]",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "[]=",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "at",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "fetch",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "first",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "last",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "concat",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "<<",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "push",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "pop",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "shift",
+            [
+              "REF",
+              15
+            ]
+          ],
+          [
+            "unshift",
+            [
+              "REF",
+              16
+            ]
+          ],
+          [
+            "insert",
+            [
+              "REF",
+              17
+            ]
+          ],
+          [
+            "each",
+            [
+              "REF",
+              18
+            ]
+          ],
+          [
+            "each_index",
+            [
+              "REF",
+              19
+            ]
+          ],
+          [
+            "reverse_each",
+            [
+              "REF",
+              20
+            ]
+          ],
+          [
+            "length",
+            [
+              "REF",
+              21
+            ]
+          ],
+          [
+            "size",
+            [
+              "REF",
+              22
+            ]
+          ],
+          [
+            "empty?",
+            [
+              "REF",
+              23
+            ]
+          ],
+          [
+            "find_index",
+            [
+              "REF",
+              24
+            ]
+          ],
+          [
+            "index",
+            [
+              "REF",
+              25
+            ]
+          ],
+          [
+            "rindex",
+            [
+              "REF",
+              26
+            ]
+          ],
+          [
+            "join",
+            [
+              "REF",
+              27
+            ]
+          ],
+          [
+            "reverse",
+            [
+              "REF",
+              28
+            ]
+          ],
+          [
+            "reverse!",
+            [
+              "REF",
+              29
+            ]
+          ],
+          [
+            "rotate",
+            [
+              "REF",
+              30
+            ]
+          ],
+          [
+            "rotate!",
+            [
+              "REF",
+              31
+            ]
+          ],
+          [
+            "sort",
+            [
+              "REF",
+              32
+            ]
+          ],
+          [
+            "sort!",
+            [
+              "REF",
+              33
+            ]
+          ],
+          [
+            "sort_by!",
+            [
+              "REF",
+              34
+            ]
+          ],
+          [
+            "collect",
+            [
+              "REF",
+              35
+            ]
+          ],
+          [
+            "collect!",
+            [
+              "REF",
+              36
+            ]
+          ],
+          [
+            "map",
+            [
+              "REF",
+              37
+            ]
+          ],
+          [
+            "map!",
+            [
+              "REF",
+              38
+            ]
+          ],
+          [
+            "select",
+            [
+              "REF",
+              39
+            ]
+          ],
+          [
+            "select!",
+            [
+              "REF",
+              40
+            ]
+          ],
+          [
+            "keep_if",
+            [
+              "REF",
+              41
+            ]
+          ],
+          [
+            "values_at",
+            [
+              "REF",
+              42
+            ]
+          ],
+          [
+            "delete",
+            [
+              "REF",
+              43
+            ]
+          ],
+          [
+            "delete_at",
+            [
+              "REF",
+              44
+            ]
+          ],
+          [
+            "delete_if",
+            [
+              "REF",
+              45
+            ]
+          ],
+          [
+            "reject",
+            [
+              "REF",
+              46
+            ]
+          ],
+          [
+            "reject!",
+            [
+              "REF",
+              47
+            ]
+          ],
+          [
+            "zip",
+            [
+              "REF",
+              48
+            ]
+          ],
+          [
+            "transpose",
+            [
+              "REF",
+              49
+            ]
+          ],
+          [
+            "replace",
+            [
+              "REF",
+              50
+            ]
+          ],
+          [
+            "clear",
+            [
+              "REF",
+              51
+            ]
+          ],
+          [
+            "fill",
+            [
+              "REF",
+              52
+            ]
+          ],
+          [
+            "include?",
+            [
+              "REF",
+              53
+            ]
+          ],
+          [
+            "slice",
+            [
+              "REF",
+              54
+            ]
+          ],
+          [
+            "slice!",
+            [
+              "REF",
+              55
+            ]
+          ],
+          [
+            "assoc",
+            [
+              "REF",
+              56
+            ]
+          ],
+          [
+            "rassoc",
+            [
+              "REF",
+              57
+            ]
+          ],
+          [
+            "+",
+            [
+              "REF",
+              58
+            ]
+          ],
+          [
+            "*",
+            [
+              "REF",
+              59
+            ]
+          ],
+          [
+            "-",
+            [
+              "REF",
+              60
+            ]
+          ],
+          [
+            "&",
+            [
+              "REF",
+              61
+            ]
+          ],
+          [
+            "|",
+            [
+              "REF",
+              62
+            ]
+          ],
+          [
+            "uniq",
+            [
+              "REF",
+              63
+            ]
+          ],
+          [
+            "uniq!",
+            [
+              "REF",
+              64
+            ]
+          ],
+          [
+            "compact",
+            [
+              "REF",
+              65
+            ]
+          ],
+          [
+            "compact!",
+            [
+              "REF",
+              66
+            ]
+          ],
+          [
+            "flatten",
+            [
+              "REF",
+              67
+            ]
+          ],
+          [
+            "flatten!",
+            [
+              "REF",
+              68
+            ]
+          ],
+          [
+            "count",
+            [
+              "REF",
+              69
+            ]
+          ],
+          [
+            "shuffle!",
+            [
+              "REF",
+              70
+            ]
+          ],
+          [
+            "shuffle",
+            [
+              "REF",
+              71
+            ]
+          ],
+          [
+            "sample",
+            [
+              "REF",
+              72
+            ]
+          ],
+          [
+            "cycle",
+            [
+              "REF",
+              73
+            ]
+          ],
+          [
+            "permutation",
+            [
+              "REF",
+              74
+            ]
+          ],
+          [
+            "combination",
+            [
+              "REF",
+              75
+            ]
+          ],
+          [
+            "repeated_permutation",
+            [
+              "REF",
+              76
+            ]
+          ],
+          [
+            "repeated_combination",
+            [
+              "REF",
+              77
+            ]
+          ],
+          [
+            "product",
+            [
+              "REF",
+              78
+            ]
+          ],
+          [
+            "take",
+            [
+              "REF",
+              79
+            ]
+          ],
+          [
+            "take_while",
+            [
+              "REF",
+              80
+            ]
+          ],
+          [
+            "drop",
+            [
+              "REF",
+              81
+            ]
+          ],
+          [
+            "drop_while",
+            [
+              "REF",
+              82
+            ]
+          ],
+          [
+            "bsearch",
+            [
+              "REF",
+              83
+            ]
+          ],
+          [
+            "any?",
+            [
+              "REF",
+              84
+            ]
+          ],
+          [
+            "pack",
+            [
+              "REF",
+              85
+            ]
+          ],
+          [
+            "entries",
+            [
+              "REF",
+              86
+            ]
+          ],
+          [
+            "sort_by",
+            [
+              "REF",
+              87
+            ]
+          ],
+          [
+            "grep",
+            [
+              "REF",
+              88
+            ]
+          ],
+          [
+            "find",
+            [
+              "REF",
+              89
+            ]
+          ],
+          [
+            "detect",
+            [
+              "REF",
+              90
+            ]
+          ],
+          [
+            "find_all",
+            [
+              "REF",
+              91
+            ]
+          ],
+          [
+            "flat_map",
+            [
+              "REF",
+              92
+            ]
+          ],
+          [
+            "collect_concat",
+            [
+              "REF",
+              93
+            ]
+          ],
+          [
+            "inject",
+            [
+              "REF",
+              94
+            ]
+          ],
+          [
+            "reduce",
+            [
+              "REF",
+              95
+            ]
+          ],
+          [
+            "partition",
+            [
+              "REF",
+              96
+            ]
+          ],
+          [
+            "group_by",
+            [
+              "REF",
+              97
+            ]
+          ],
+          [
+            "all?",
+            [
+              "REF",
+              98
+            ]
+          ],
+          [
+            "one?",
+            [
+              "REF",
+              99
+            ]
+          ],
+          [
+            "none?",
+            [
+              "REF",
+              100
+            ]
+          ],
+          [
+            "min",
+            [
+              "REF",
+              101
+            ]
+          ],
+          [
+            "max",
+            [
+              "REF",
+              102
+            ]
+          ],
+          [
+            "minmax",
+            [
+              "REF",
+              103
+            ]
+          ],
+          [
+            "min_by",
+            [
+              "REF",
+              104
+            ]
+          ],
+          [
+            "max_by",
+            [
+              "REF",
+              105
+            ]
+          ],
+          [
+            "minmax_by",
+            [
+              "REF",
+              106
+            ]
+          ],
+          [
+            "member?",
+            [
+              "REF",
+              107
+            ]
+          ],
+          [
+            "each_with_index",
+            [
+              "REF",
+              108
+            ]
+          ],
+          [
+            "each_entry",
+            [
+              "REF",
+              109
+            ]
+          ],
+          [
+            "each_slice",
+            [
+              "REF",
+              110
+            ]
+          ],
+          [
+            "each_cons",
+            [
+              "REF",
+              111
+            ]
+          ],
+          [
+            "each_with_object",
+            [
+              "REF",
+              112
+            ]
+          ],
+          [
+            "chunk",
+            [
+              "REF",
+              113
+            ]
+          ],
+          [
+            "slice_before",
+            [
+              "REF",
+              114
+            ]
+          ],
+          [
+            "slice_after",
+            [
+              "REF",
+              115
+            ]
+          ],
+          [
+            "slice_when",
+            [
+              "REF",
+              116
+            ]
+          ],
+          [
+            "lazy",
+            [
+              "REF",
+              117
+            ]
+          ],
+          [
+            "to_set",
+            [
+              "REF",
+              118
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "to_a",
+          ""
+        ],
+        "3": [
+          "FUNCTION",
+          "to_h",
+          ""
+        ],
+        "4": [
+          "FUNCTION",
+          "to_ary",
+          ""
+        ],
+        "5": [
+          "FUNCTION",
+          "[]",
+          ""
+        ],
+        "6": [
+          "FUNCTION",
+          "[]=",
+          ""
+        ],
+        "7": [
+          "FUNCTION",
+          "at",
+          ""
+        ],
+        "8": [
+          "FUNCTION",
+          "fetch",
+          ""
+        ],
+        "9": [
+          "FUNCTION",
+          "first",
+          ""
+        ],
+        "10": [
+          "FUNCTION",
+          "last",
+          ""
+        ],
+        "11": [
+          "FUNCTION",
+          "concat",
+          ""
+        ],
+        "12": [
+          "FUNCTION",
+          "<<",
+          ""
+        ],
+        "13": [
+          "FUNCTION",
+          "push",
+          ""
+        ],
+        "14": [
+          "FUNCTION",
+          "pop",
+          ""
+        ],
+        "15": [
+          "FUNCTION",
+          "shift",
+          ""
+        ],
+        "16": [
+          "FUNCTION",
+          "unshift",
+          ""
+        ],
+        "17": [
+          "FUNCTION",
+          "insert",
+          ""
+        ],
+        "18": [
+          "FUNCTION",
+          "each",
+          ""
+        ],
+        "19": [
+          "FUNCTION",
+          "each_index",
+          ""
+        ],
+        "20": [
+          "FUNCTION",
+          "reverse_each",
+          ""
+        ],
+        "21": [
+          "FUNCTION",
+          "length",
+          ""
+        ],
+        "22": [
+          "FUNCTION",
+          "size",
+          ""
+        ],
+        "23": [
+          "FUNCTION",
+          "empty?",
+          ""
+        ],
+        "24": [
+          "FUNCTION",
+          "find_index",
+          ""
+        ],
+        "25": [
+          "FUNCTION",
+          "index",
+          ""
+        ],
+        "26": [
+          "FUNCTION",
+          "rindex",
+          ""
+        ],
+        "27": [
+          "FUNCTION",
+          "join",
+          ""
+        ],
+        "28": [
+          "FUNCTION",
+          "reverse",
+          ""
+        ],
+        "29": [
+          "FUNCTION",
+          "reverse!",
+          ""
+        ],
+        "30": [
+          "FUNCTION",
+          "rotate",
+          ""
+        ],
+        "31": [
+          "FUNCTION",
+          "rotate!",
+          ""
+        ],
+        "32": [
+          "FUNCTION",
+          "sort",
+          ""
+        ],
+        "33": [
+          "FUNCTION",
+          "sort!",
+          ""
+        ],
+        "34": [
+          "FUNCTION",
+          "sort_by!",
+          ""
+        ],
+        "35": [
+          "FUNCTION",
+          "collect",
+          ""
+        ],
+        "36": [
+          "FUNCTION",
+          "collect!",
+          ""
+        ],
+        "37": [
+          "FUNCTION",
+          "map",
+          ""
+        ],
+        "38": [
+          "FUNCTION",
+          "map!",
+          ""
+        ],
+        "39": [
+          "FUNCTION",
+          "select",
+          ""
+        ],
+        "40": [
+          "FUNCTION",
+          "select!",
+          ""
+        ],
+        "41": [
+          "FUNCTION",
+          "keep_if",
+          ""
+        ],
+        "42": [
+          "FUNCTION",
+          "values_at",
+          ""
+        ],
+        "43": [
+          "FUNCTION",
+          "delete",
+          ""
+        ],
+        "44": [
+          "FUNCTION",
+          "delete_at",
+          ""
+        ],
+        "45": [
+          "FUNCTION",
+          "delete_if",
+          ""
+        ],
+        "46": [
+          "FUNCTION",
+          "reject",
+          ""
+        ],
+        "47": [
+          "FUNCTION",
+          "reject!",
+          ""
+        ],
+        "48": [
+          "FUNCTION",
+          "zip",
+          ""
+        ],
+        "49": [
+          "FUNCTION",
+          "transpose",
+          ""
+        ],
+        "50": [
+          "FUNCTION",
+          "replace",
+          ""
+        ],
+        "51": [
+          "FUNCTION",
+          "clear",
+          ""
+        ],
+        "52": [
+          "FUNCTION",
+          "fill",
+          ""
+        ],
+        "53": [
+          "FUNCTION",
+          "include?",
+          ""
+        ],
+        "54": [
+          "FUNCTION",
+          "slice",
+          ""
+        ],
+        "55": [
+          "FUNCTION",
+          "slice!",
+          ""
+        ],
+        "56": [
+          "FUNCTION",
+          "assoc",
+          ""
+        ],
+        "57": [
+          "FUNCTION",
+          "rassoc",
+          ""
+        ],
+        "58": [
+          "FUNCTION",
+          "+",
+          ""
+        ],
+        "59": [
+          "FUNCTION",
+          "*",
+          ""
+        ],
+        "60": [
+          "FUNCTION",
+          "-",
+          ""
+        ],
+        "61": [
+          "FUNCTION",
+          "&",
+          ""
+        ],
+        "62": [
+          "FUNCTION",
+          "|",
+          ""
+        ],
+        "63": [
+          "FUNCTION",
+          "uniq",
+          ""
+        ],
+        "64": [
+          "FUNCTION",
+          "uniq!",
+          ""
+        ],
+        "65": [
+          "FUNCTION",
+          "compact",
+          ""
+        ],
+        "66": [
+          "FUNCTION",
+          "compact!",
+          ""
+        ],
+        "67": [
+          "FUNCTION",
+          "flatten",
+          ""
+        ],
+        "68": [
+          "FUNCTION",
+          "flatten!",
+          ""
+        ],
+        "69": [
+          "FUNCTION",
+          "count",
+          ""
+        ],
+        "70": [
+          "FUNCTION",
+          "shuffle!",
+          ""
+        ],
+        "71": [
+          "FUNCTION",
+          "shuffle",
+          ""
+        ],
+        "72": [
+          "FUNCTION",
+          "sample",
+          ""
+        ],
+        "73": [
+          "FUNCTION",
+          "cycle",
+          ""
+        ],
+        "74": [
+          "FUNCTION",
+          "permutation",
+          ""
+        ],
+        "75": [
+          "FUNCTION",
+          "combination",
+          ""
+        ],
+        "76": [
+          "FUNCTION",
+          "repeated_permutation",
+          ""
+        ],
+        "77": [
+          "FUNCTION",
+          "repeated_combination",
+          ""
+        ],
+        "78": [
+          "FUNCTION",
+          "product",
+          ""
+        ],
+        "79": [
+          "FUNCTION",
+          "take",
+          ""
+        ],
+        "80": [
+          "FUNCTION",
+          "take_while",
+          ""
+        ],
+        "81": [
+          "FUNCTION",
+          "drop",
+          ""
+        ],
+        "82": [
+          "FUNCTION",
+          "drop_while",
+          ""
+        ],
+        "83": [
+          "FUNCTION",
+          "bsearch",
+          ""
+        ],
+        "84": [
+          "FUNCTION",
+          "any?",
+          ""
+        ],
+        "85": [
+          "FUNCTION",
+          "pack",
+          ""
+        ],
+        "86": [
+          "FUNCTION",
+          "entries",
+          ""
+        ],
+        "87": [
+          "FUNCTION",
+          "sort_by",
+          ""
+        ],
+        "88": [
+          "FUNCTION",
+          "grep",
+          ""
+        ],
+        "89": [
+          "FUNCTION",
+          "find",
+          ""
+        ],
+        "90": [
+          "FUNCTION",
+          "detect",
+          ""
+        ],
+        "91": [
+          "FUNCTION",
+          "find_all",
+          ""
+        ],
+        "92": [
+          "FUNCTION",
+          "flat_map",
+          ""
+        ],
+        "93": [
+          "FUNCTION",
+          "collect_concat",
+          ""
+        ],
+        "94": [
+          "FUNCTION",
+          "inject",
+          ""
+        ],
+        "95": [
+          "FUNCTION",
+          "reduce",
+          ""
+        ],
+        "96": [
+          "FUNCTION",
+          "partition",
+          ""
+        ],
+        "97": [
+          "FUNCTION",
+          "group_by",
+          ""
+        ],
+        "98": [
+          "FUNCTION",
+          "all?",
+          ""
+        ],
+        "99": [
+          "FUNCTION",
+          "one?",
+          ""
+        ],
+        "100": [
+          "FUNCTION",
+          "none?",
+          ""
+        ],
+        "101": [
+          "FUNCTION",
+          "min",
+          ""
+        ],
+        "102": [
+          "FUNCTION",
+          "max",
+          ""
+        ],
+        "103": [
+          "FUNCTION",
+          "minmax",
+          ""
+        ],
+        "104": [
+          "FUNCTION",
+          "min_by",
+          ""
+        ],
+        "105": [
+          "FUNCTION",
+          "max_by",
+          ""
+        ],
+        "106": [
+          "FUNCTION",
+          "minmax_by",
+          ""
+        ],
+        "107": [
+          "FUNCTION",
+          "member?",
+          ""
+        ],
+        "108": [
+          "FUNCTION",
+          "each_with_index",
+          ""
+        ],
+        "109": [
+          "FUNCTION",
+          "each_entry",
+          ""
+        ],
+        "110": [
+          "FUNCTION",
+          "each_slice",
+          ""
+        ],
+        "111": [
+          "FUNCTION",
+          "each_cons",
+          ""
+        ],
+        "112": [
+          "FUNCTION",
+          "each_with_object",
+          ""
+        ],
+        "113": [
+          "FUNCTION",
+          "chunk",
+          ""
+        ],
+        "114": [
+          "FUNCTION",
+          "slice_before",
+          ""
+        ],
+        "115": [
+          "FUNCTION",
+          "slice_after",
+          ""
+        ],
+        "116": [
+          "FUNCTION",
+          "slice_when",
+          ""
+        ],
+        "117": [
+          "FUNCTION",
+          "lazy",
+          ""
+        ],
+        "118": [
+          "FUNCTION",
+          "to_set",
+          ""
+        ]
       },
       "globals": {
       },
@@ -115,13 +1530,1428 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Array",
+          [
+
+          ],
+          [
+            "to_a",
+            [
+              "REF",
+              119
+            ]
+          ],
+          [
+            "to_h",
+            [
+              "REF",
+              120
+            ]
+          ],
+          [
+            "to_ary",
+            [
+              "REF",
+              121
+            ]
+          ],
+          [
+            "[]",
+            [
+              "REF",
+              122
+            ]
+          ],
+          [
+            "[]=",
+            [
+              "REF",
+              123
+            ]
+          ],
+          [
+            "at",
+            [
+              "REF",
+              124
+            ]
+          ],
+          [
+            "fetch",
+            [
+              "REF",
+              125
+            ]
+          ],
+          [
+            "first",
+            [
+              "REF",
+              126
+            ]
+          ],
+          [
+            "last",
+            [
+              "REF",
+              127
+            ]
+          ],
+          [
+            "concat",
+            [
+              "REF",
+              128
+            ]
+          ],
+          [
+            "<<",
+            [
+              "REF",
+              129
+            ]
+          ],
+          [
+            "push",
+            [
+              "REF",
+              130
+            ]
+          ],
+          [
+            "pop",
+            [
+              "REF",
+              131
+            ]
+          ],
+          [
+            "shift",
+            [
+              "REF",
+              132
+            ]
+          ],
+          [
+            "unshift",
+            [
+              "REF",
+              133
+            ]
+          ],
+          [
+            "insert",
+            [
+              "REF",
+              134
+            ]
+          ],
+          [
+            "each",
+            [
+              "REF",
+              135
+            ]
+          ],
+          [
+            "each_index",
+            [
+              "REF",
+              136
+            ]
+          ],
+          [
+            "reverse_each",
+            [
+              "REF",
+              137
+            ]
+          ],
+          [
+            "length",
+            [
+              "REF",
+              138
+            ]
+          ],
+          [
+            "size",
+            [
+              "REF",
+              139
+            ]
+          ],
+          [
+            "empty?",
+            [
+              "REF",
+              140
+            ]
+          ],
+          [
+            "find_index",
+            [
+              "REF",
+              141
+            ]
+          ],
+          [
+            "index",
+            [
+              "REF",
+              142
+            ]
+          ],
+          [
+            "rindex",
+            [
+              "REF",
+              143
+            ]
+          ],
+          [
+            "join",
+            [
+              "REF",
+              144
+            ]
+          ],
+          [
+            "reverse",
+            [
+              "REF",
+              145
+            ]
+          ],
+          [
+            "reverse!",
+            [
+              "REF",
+              146
+            ]
+          ],
+          [
+            "rotate",
+            [
+              "REF",
+              147
+            ]
+          ],
+          [
+            "rotate!",
+            [
+              "REF",
+              148
+            ]
+          ],
+          [
+            "sort",
+            [
+              "REF",
+              149
+            ]
+          ],
+          [
+            "sort!",
+            [
+              "REF",
+              150
+            ]
+          ],
+          [
+            "sort_by!",
+            [
+              "REF",
+              151
+            ]
+          ],
+          [
+            "collect",
+            [
+              "REF",
+              152
+            ]
+          ],
+          [
+            "collect!",
+            [
+              "REF",
+              153
+            ]
+          ],
+          [
+            "map",
+            [
+              "REF",
+              154
+            ]
+          ],
+          [
+            "map!",
+            [
+              "REF",
+              155
+            ]
+          ],
+          [
+            "select",
+            [
+              "REF",
+              156
+            ]
+          ],
+          [
+            "select!",
+            [
+              "REF",
+              157
+            ]
+          ],
+          [
+            "keep_if",
+            [
+              "REF",
+              158
+            ]
+          ],
+          [
+            "values_at",
+            [
+              "REF",
+              159
+            ]
+          ],
+          [
+            "delete",
+            [
+              "REF",
+              160
+            ]
+          ],
+          [
+            "delete_at",
+            [
+              "REF",
+              161
+            ]
+          ],
+          [
+            "delete_if",
+            [
+              "REF",
+              162
+            ]
+          ],
+          [
+            "reject",
+            [
+              "REF",
+              163
+            ]
+          ],
+          [
+            "reject!",
+            [
+              "REF",
+              164
+            ]
+          ],
+          [
+            "zip",
+            [
+              "REF",
+              165
+            ]
+          ],
+          [
+            "transpose",
+            [
+              "REF",
+              166
+            ]
+          ],
+          [
+            "replace",
+            [
+              "REF",
+              167
+            ]
+          ],
+          [
+            "clear",
+            [
+              "REF",
+              168
+            ]
+          ],
+          [
+            "fill",
+            [
+              "REF",
+              169
+            ]
+          ],
+          [
+            "include?",
+            [
+              "REF",
+              170
+            ]
+          ],
+          [
+            "slice",
+            [
+              "REF",
+              171
+            ]
+          ],
+          [
+            "slice!",
+            [
+              "REF",
+              172
+            ]
+          ],
+          [
+            "assoc",
+            [
+              "REF",
+              173
+            ]
+          ],
+          [
+            "rassoc",
+            [
+              "REF",
+              174
+            ]
+          ],
+          [
+            "+",
+            [
+              "REF",
+              175
+            ]
+          ],
+          [
+            "*",
+            [
+              "REF",
+              176
+            ]
+          ],
+          [
+            "-",
+            [
+              "REF",
+              177
+            ]
+          ],
+          [
+            "&",
+            [
+              "REF",
+              178
+            ]
+          ],
+          [
+            "|",
+            [
+              "REF",
+              179
+            ]
+          ],
+          [
+            "uniq",
+            [
+              "REF",
+              180
+            ]
+          ],
+          [
+            "uniq!",
+            [
+              "REF",
+              181
+            ]
+          ],
+          [
+            "compact",
+            [
+              "REF",
+              182
+            ]
+          ],
+          [
+            "compact!",
+            [
+              "REF",
+              183
+            ]
+          ],
+          [
+            "flatten",
+            [
+              "REF",
+              184
+            ]
+          ],
+          [
+            "flatten!",
+            [
+              "REF",
+              185
+            ]
+          ],
+          [
+            "count",
+            [
+              "REF",
+              186
+            ]
+          ],
+          [
+            "shuffle!",
+            [
+              "REF",
+              187
+            ]
+          ],
+          [
+            "shuffle",
+            [
+              "REF",
+              188
+            ]
+          ],
+          [
+            "sample",
+            [
+              "REF",
+              189
+            ]
+          ],
+          [
+            "cycle",
+            [
+              "REF",
+              190
+            ]
+          ],
+          [
+            "permutation",
+            [
+              "REF",
+              191
+            ]
+          ],
+          [
+            "combination",
+            [
+              "REF",
+              192
+            ]
+          ],
+          [
+            "repeated_permutation",
+            [
+              "REF",
+              193
+            ]
+          ],
+          [
+            "repeated_combination",
+            [
+              "REF",
+              194
+            ]
+          ],
+          [
+            "product",
+            [
+              "REF",
+              195
+            ]
+          ],
+          [
+            "take",
+            [
+              "REF",
+              196
+            ]
+          ],
+          [
+            "take_while",
+            [
+              "REF",
+              197
+            ]
+          ],
+          [
+            "drop",
+            [
+              "REF",
+              198
+            ]
+          ],
+          [
+            "drop_while",
+            [
+              "REF",
+              199
+            ]
+          ],
+          [
+            "bsearch",
+            [
+              "REF",
+              200
+            ]
+          ],
+          [
+            "any?",
+            [
+              "REF",
+              201
+            ]
+          ],
+          [
+            "pack",
+            [
+              "REF",
+              202
+            ]
+          ],
+          [
+            "entries",
+            [
+              "REF",
+              203
+            ]
+          ],
+          [
+            "sort_by",
+            [
+              "REF",
+              204
+            ]
+          ],
+          [
+            "grep",
+            [
+              "REF",
+              205
+            ]
+          ],
+          [
+            "find",
+            [
+              "REF",
+              206
+            ]
+          ],
+          [
+            "detect",
+            [
+              "REF",
+              207
+            ]
+          ],
+          [
+            "find_all",
+            [
+              "REF",
+              208
+            ]
+          ],
+          [
+            "flat_map",
+            [
+              "REF",
+              209
+            ]
+          ],
+          [
+            "collect_concat",
+            [
+              "REF",
+              210
+            ]
+          ],
+          [
+            "inject",
+            [
+              "REF",
+              211
+            ]
+          ],
+          [
+            "reduce",
+            [
+              "REF",
+              212
+            ]
+          ],
+          [
+            "partition",
+            [
+              "REF",
+              213
+            ]
+          ],
+          [
+            "group_by",
+            [
+              "REF",
+              214
+            ]
+          ],
+          [
+            "all?",
+            [
+              "REF",
+              215
+            ]
+          ],
+          [
+            "one?",
+            [
+              "REF",
+              216
+            ]
+          ],
+          [
+            "none?",
+            [
+              "REF",
+              217
+            ]
+          ],
+          [
+            "min",
+            [
+              "REF",
+              218
+            ]
+          ],
+          [
+            "max",
+            [
+              "REF",
+              219
+            ]
+          ],
+          [
+            "minmax",
+            [
+              "REF",
+              220
+            ]
+          ],
+          [
+            "min_by",
+            [
+              "REF",
+              221
+            ]
+          ],
+          [
+            "max_by",
+            [
+              "REF",
+              222
+            ]
+          ],
+          [
+            "minmax_by",
+            [
+              "REF",
+              223
+            ]
+          ],
+          [
+            "member?",
+            [
+              "REF",
+              224
+            ]
+          ],
+          [
+            "each_with_index",
+            [
+              "REF",
+              225
+            ]
+          ],
+          [
+            "each_entry",
+            [
+              "REF",
+              226
+            ]
+          ],
+          [
+            "each_slice",
+            [
+              "REF",
+              227
+            ]
+          ],
+          [
+            "each_cons",
+            [
+              "REF",
+              228
+            ]
+          ],
+          [
+            "each_with_object",
+            [
+              "REF",
+              229
+            ]
+          ],
+          [
+            "chunk",
+            [
+              "REF",
+              230
+            ]
+          ],
+          [
+            "slice_before",
+            [
+              "REF",
+              231
+            ]
+          ],
+          [
+            "slice_after",
+            [
+              "REF",
+              232
+            ]
+          ],
+          [
+            "slice_when",
+            [
+              "REF",
+              233
+            ]
+          ],
+          [
+            "lazy",
+            [
+              "REF",
+              234
+            ]
+          ],
+          [
+            "to_set",
+            [
+              "REF",
+              235
+            ]
+          ]
+        ],
+        "119": [
+          "FUNCTION",
+          "to_a",
+          ""
+        ],
+        "120": [
+          "FUNCTION",
+          "to_h",
+          ""
+        ],
+        "121": [
+          "FUNCTION",
+          "to_ary",
+          ""
+        ],
+        "122": [
+          "FUNCTION",
+          "[]",
+          ""
+        ],
+        "123": [
+          "FUNCTION",
+          "[]=",
+          ""
+        ],
+        "124": [
+          "FUNCTION",
+          "at",
+          ""
+        ],
+        "125": [
+          "FUNCTION",
+          "fetch",
+          ""
+        ],
+        "126": [
+          "FUNCTION",
+          "first",
+          ""
+        ],
+        "127": [
+          "FUNCTION",
+          "last",
+          ""
+        ],
+        "128": [
+          "FUNCTION",
+          "concat",
+          ""
+        ],
+        "129": [
+          "FUNCTION",
+          "<<",
+          ""
+        ],
+        "130": [
+          "FUNCTION",
+          "push",
+          ""
+        ],
+        "131": [
+          "FUNCTION",
+          "pop",
+          ""
+        ],
+        "132": [
+          "FUNCTION",
+          "shift",
+          ""
+        ],
+        "133": [
+          "FUNCTION",
+          "unshift",
+          ""
+        ],
+        "134": [
+          "FUNCTION",
+          "insert",
+          ""
+        ],
+        "135": [
+          "FUNCTION",
+          "each",
+          ""
+        ],
+        "136": [
+          "FUNCTION",
+          "each_index",
+          ""
+        ],
+        "137": [
+          "FUNCTION",
+          "reverse_each",
+          ""
+        ],
+        "138": [
+          "FUNCTION",
+          "length",
+          ""
+        ],
+        "139": [
+          "FUNCTION",
+          "size",
+          ""
+        ],
+        "140": [
+          "FUNCTION",
+          "empty?",
+          ""
+        ],
+        "141": [
+          "FUNCTION",
+          "find_index",
+          ""
+        ],
+        "142": [
+          "FUNCTION",
+          "index",
+          ""
+        ],
+        "143": [
+          "FUNCTION",
+          "rindex",
+          ""
+        ],
+        "144": [
+          "FUNCTION",
+          "join",
+          ""
+        ],
+        "145": [
+          "FUNCTION",
+          "reverse",
+          ""
+        ],
+        "146": [
+          "FUNCTION",
+          "reverse!",
+          ""
+        ],
+        "147": [
+          "FUNCTION",
+          "rotate",
+          ""
+        ],
+        "148": [
+          "FUNCTION",
+          "rotate!",
+          ""
+        ],
+        "149": [
+          "FUNCTION",
+          "sort",
+          ""
+        ],
+        "150": [
+          "FUNCTION",
+          "sort!",
+          ""
+        ],
+        "151": [
+          "FUNCTION",
+          "sort_by!",
+          ""
+        ],
+        "152": [
+          "FUNCTION",
+          "collect",
+          ""
+        ],
+        "153": [
+          "FUNCTION",
+          "collect!",
+          ""
+        ],
+        "154": [
+          "FUNCTION",
+          "map",
+          ""
+        ],
+        "155": [
+          "FUNCTION",
+          "map!",
+          ""
+        ],
+        "156": [
+          "FUNCTION",
+          "select",
+          ""
+        ],
+        "157": [
+          "FUNCTION",
+          "select!",
+          ""
+        ],
+        "158": [
+          "FUNCTION",
+          "keep_if",
+          ""
+        ],
+        "159": [
+          "FUNCTION",
+          "values_at",
+          ""
+        ],
+        "160": [
+          "FUNCTION",
+          "delete",
+          ""
+        ],
+        "161": [
+          "FUNCTION",
+          "delete_at",
+          ""
+        ],
+        "162": [
+          "FUNCTION",
+          "delete_if",
+          ""
+        ],
+        "163": [
+          "FUNCTION",
+          "reject",
+          ""
+        ],
+        "164": [
+          "FUNCTION",
+          "reject!",
+          ""
+        ],
+        "165": [
+          "FUNCTION",
+          "zip",
+          ""
+        ],
+        "166": [
+          "FUNCTION",
+          "transpose",
+          ""
+        ],
+        "167": [
+          "FUNCTION",
+          "replace",
+          ""
+        ],
+        "168": [
+          "FUNCTION",
+          "clear",
+          ""
+        ],
+        "169": [
+          "FUNCTION",
+          "fill",
+          ""
+        ],
+        "170": [
+          "FUNCTION",
+          "include?",
+          ""
+        ],
+        "171": [
+          "FUNCTION",
+          "slice",
+          ""
+        ],
+        "172": [
+          "FUNCTION",
+          "slice!",
+          ""
+        ],
+        "173": [
+          "FUNCTION",
+          "assoc",
+          ""
+        ],
+        "174": [
+          "FUNCTION",
+          "rassoc",
+          ""
+        ],
+        "175": [
+          "FUNCTION",
+          "+",
+          ""
+        ],
+        "176": [
+          "FUNCTION",
+          "*",
+          ""
+        ],
+        "177": [
+          "FUNCTION",
+          "-",
+          ""
+        ],
+        "178": [
+          "FUNCTION",
+          "&",
+          ""
+        ],
+        "179": [
+          "FUNCTION",
+          "|",
+          ""
+        ],
+        "180": [
+          "FUNCTION",
+          "uniq",
+          ""
+        ],
+        "181": [
+          "FUNCTION",
+          "uniq!",
+          ""
+        ],
+        "182": [
+          "FUNCTION",
+          "compact",
+          ""
+        ],
+        "183": [
+          "FUNCTION",
+          "compact!",
+          ""
+        ],
+        "184": [
+          "FUNCTION",
+          "flatten",
+          ""
+        ],
+        "185": [
+          "FUNCTION",
+          "flatten!",
+          ""
+        ],
+        "186": [
+          "FUNCTION",
+          "count",
+          ""
+        ],
+        "187": [
+          "FUNCTION",
+          "shuffle!",
+          ""
+        ],
+        "188": [
+          "FUNCTION",
+          "shuffle",
+          ""
+        ],
+        "189": [
+          "FUNCTION",
+          "sample",
+          ""
+        ],
+        "190": [
+          "FUNCTION",
+          "cycle",
+          ""
+        ],
+        "191": [
+          "FUNCTION",
+          "permutation",
+          ""
+        ],
+        "192": [
+          "FUNCTION",
+          "combination",
+          ""
+        ],
+        "193": [
+          "FUNCTION",
+          "repeated_permutation",
+          ""
+        ],
+        "194": [
+          "FUNCTION",
+          "repeated_combination",
+          ""
+        ],
+        "195": [
+          "FUNCTION",
+          "product",
+          ""
+        ],
+        "196": [
+          "FUNCTION",
+          "take",
+          ""
+        ],
+        "197": [
+          "FUNCTION",
+          "take_while",
+          ""
+        ],
+        "198": [
+          "FUNCTION",
+          "drop",
+          ""
+        ],
+        "199": [
+          "FUNCTION",
+          "drop_while",
+          ""
+        ],
+        "200": [
+          "FUNCTION",
+          "bsearch",
+          ""
+        ],
+        "201": [
+          "FUNCTION",
+          "any?",
+          ""
+        ],
+        "202": [
+          "FUNCTION",
+          "pack",
+          ""
+        ],
+        "203": [
+          "FUNCTION",
+          "entries",
+          ""
+        ],
+        "204": [
+          "FUNCTION",
+          "sort_by",
+          ""
+        ],
+        "205": [
+          "FUNCTION",
+          "grep",
+          ""
+        ],
+        "206": [
+          "FUNCTION",
+          "find",
+          ""
+        ],
+        "207": [
+          "FUNCTION",
+          "detect",
+          ""
+        ],
+        "208": [
+          "FUNCTION",
+          "find_all",
+          ""
+        ],
+        "209": [
+          "FUNCTION",
+          "flat_map",
+          ""
+        ],
+        "210": [
+          "FUNCTION",
+          "collect_concat",
+          ""
+        ],
+        "211": [
+          "FUNCTION",
+          "inject",
+          ""
+        ],
+        "212": [
+          "FUNCTION",
+          "reduce",
+          ""
+        ],
+        "213": [
+          "FUNCTION",
+          "partition",
+          ""
+        ],
+        "214": [
+          "FUNCTION",
+          "group_by",
+          ""
+        ],
+        "215": [
+          "FUNCTION",
+          "all?",
+          ""
+        ],
+        "216": [
+          "FUNCTION",
+          "one?",
+          ""
+        ],
+        "217": [
+          "FUNCTION",
+          "none?",
+          ""
+        ],
+        "218": [
+          "FUNCTION",
+          "min",
+          ""
+        ],
+        "219": [
+          "FUNCTION",
+          "max",
+          ""
+        ],
+        "220": [
+          "FUNCTION",
+          "minmax",
+          ""
+        ],
+        "221": [
+          "FUNCTION",
+          "min_by",
+          ""
+        ],
+        "222": [
+          "FUNCTION",
+          "max_by",
+          ""
+        ],
+        "223": [
+          "FUNCTION",
+          "minmax_by",
+          ""
+        ],
+        "224": [
+          "FUNCTION",
+          "member?",
+          ""
+        ],
+        "225": [
+          "FUNCTION",
+          "each_with_index",
+          ""
+        ],
+        "226": [
+          "FUNCTION",
+          "each_entry",
+          ""
+        ],
+        "227": [
+          "FUNCTION",
+          "each_slice",
+          ""
+        ],
+        "228": [
+          "FUNCTION",
+          "each_cons",
+          ""
+        ],
+        "229": [
+          "FUNCTION",
+          "each_with_object",
+          ""
+        ],
+        "230": [
+          "FUNCTION",
+          "chunk",
+          ""
+        ],
+        "231": [
+          "FUNCTION",
+          "slice_before",
+          ""
+        ],
+        "232": [
+          "FUNCTION",
+          "slice_after",
+          ""
+        ],
+        "233": [
+          "FUNCTION",
+          "slice_when",
+          ""
+        ],
+        "234": [
+          "FUNCTION",
+          "lazy",
+          ""
+        ],
+        "235": [
+          "FUNCTION",
+          "to_set",
+          ""
+        ]
       },
       "globals": {
       },
@@ -163,13 +2993,1440 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Array",
+          [
+
+          ],
+          [
+            "to_a",
+            [
+              "REF",
+              236
+            ]
+          ],
+          [
+            "to_h",
+            [
+              "REF",
+              237
+            ]
+          ],
+          [
+            "to_ary",
+            [
+              "REF",
+              238
+            ]
+          ],
+          [
+            "[]",
+            [
+              "REF",
+              239
+            ]
+          ],
+          [
+            "[]=",
+            [
+              "REF",
+              240
+            ]
+          ],
+          [
+            "at",
+            [
+              "REF",
+              241
+            ]
+          ],
+          [
+            "fetch",
+            [
+              "REF",
+              242
+            ]
+          ],
+          [
+            "first",
+            [
+              "REF",
+              243
+            ]
+          ],
+          [
+            "last",
+            [
+              "REF",
+              244
+            ]
+          ],
+          [
+            "concat",
+            [
+              "REF",
+              245
+            ]
+          ],
+          [
+            "<<",
+            [
+              "REF",
+              246
+            ]
+          ],
+          [
+            "push",
+            [
+              "REF",
+              247
+            ]
+          ],
+          [
+            "pop",
+            [
+              "REF",
+              248
+            ]
+          ],
+          [
+            "shift",
+            [
+              "REF",
+              249
+            ]
+          ],
+          [
+            "unshift",
+            [
+              "REF",
+              250
+            ]
+          ],
+          [
+            "insert",
+            [
+              "REF",
+              251
+            ]
+          ],
+          [
+            "each",
+            [
+              "REF",
+              252
+            ]
+          ],
+          [
+            "each_index",
+            [
+              "REF",
+              253
+            ]
+          ],
+          [
+            "reverse_each",
+            [
+              "REF",
+              254
+            ]
+          ],
+          [
+            "length",
+            [
+              "REF",
+              255
+            ]
+          ],
+          [
+            "size",
+            [
+              "REF",
+              256
+            ]
+          ],
+          [
+            "empty?",
+            [
+              "REF",
+              257
+            ]
+          ],
+          [
+            "find_index",
+            [
+              "REF",
+              258
+            ]
+          ],
+          [
+            "index",
+            [
+              "REF",
+              259
+            ]
+          ],
+          [
+            "rindex",
+            [
+              "REF",
+              260
+            ]
+          ],
+          [
+            "join",
+            [
+              "REF",
+              261
+            ]
+          ],
+          [
+            "reverse",
+            [
+              "REF",
+              262
+            ]
+          ],
+          [
+            "reverse!",
+            [
+              "REF",
+              263
+            ]
+          ],
+          [
+            "rotate",
+            [
+              "REF",
+              264
+            ]
+          ],
+          [
+            "rotate!",
+            [
+              "REF",
+              265
+            ]
+          ],
+          [
+            "sort",
+            [
+              "REF",
+              266
+            ]
+          ],
+          [
+            "sort!",
+            [
+              "REF",
+              267
+            ]
+          ],
+          [
+            "sort_by!",
+            [
+              "REF",
+              268
+            ]
+          ],
+          [
+            "collect",
+            [
+              "REF",
+              269
+            ]
+          ],
+          [
+            "collect!",
+            [
+              "REF",
+              270
+            ]
+          ],
+          [
+            "map",
+            [
+              "REF",
+              271
+            ]
+          ],
+          [
+            "map!",
+            [
+              "REF",
+              272
+            ]
+          ],
+          [
+            "select",
+            [
+              "REF",
+              273
+            ]
+          ],
+          [
+            "select!",
+            [
+              "REF",
+              274
+            ]
+          ],
+          [
+            "keep_if",
+            [
+              "REF",
+              275
+            ]
+          ],
+          [
+            "values_at",
+            [
+              "REF",
+              276
+            ]
+          ],
+          [
+            "delete",
+            [
+              "REF",
+              277
+            ]
+          ],
+          [
+            "delete_at",
+            [
+              "REF",
+              278
+            ]
+          ],
+          [
+            "delete_if",
+            [
+              "REF",
+              279
+            ]
+          ],
+          [
+            "reject",
+            [
+              "REF",
+              280
+            ]
+          ],
+          [
+            "reject!",
+            [
+              "REF",
+              281
+            ]
+          ],
+          [
+            "zip",
+            [
+              "REF",
+              282
+            ]
+          ],
+          [
+            "transpose",
+            [
+              "REF",
+              283
+            ]
+          ],
+          [
+            "replace",
+            [
+              "REF",
+              284
+            ]
+          ],
+          [
+            "clear",
+            [
+              "REF",
+              285
+            ]
+          ],
+          [
+            "fill",
+            [
+              "REF",
+              286
+            ]
+          ],
+          [
+            "include?",
+            [
+              "REF",
+              287
+            ]
+          ],
+          [
+            "slice",
+            [
+              "REF",
+              288
+            ]
+          ],
+          [
+            "slice!",
+            [
+              "REF",
+              289
+            ]
+          ],
+          [
+            "assoc",
+            [
+              "REF",
+              290
+            ]
+          ],
+          [
+            "rassoc",
+            [
+              "REF",
+              291
+            ]
+          ],
+          [
+            "+",
+            [
+              "REF",
+              292
+            ]
+          ],
+          [
+            "*",
+            [
+              "REF",
+              293
+            ]
+          ],
+          [
+            "-",
+            [
+              "REF",
+              294
+            ]
+          ],
+          [
+            "&",
+            [
+              "REF",
+              295
+            ]
+          ],
+          [
+            "|",
+            [
+              "REF",
+              296
+            ]
+          ],
+          [
+            "uniq",
+            [
+              "REF",
+              297
+            ]
+          ],
+          [
+            "uniq!",
+            [
+              "REF",
+              298
+            ]
+          ],
+          [
+            "compact",
+            [
+              "REF",
+              299
+            ]
+          ],
+          [
+            "compact!",
+            [
+              "REF",
+              300
+            ]
+          ],
+          [
+            "flatten",
+            [
+              "REF",
+              301
+            ]
+          ],
+          [
+            "flatten!",
+            [
+              "REF",
+              302
+            ]
+          ],
+          [
+            "count",
+            [
+              "REF",
+              303
+            ]
+          ],
+          [
+            "shuffle!",
+            [
+              "REF",
+              304
+            ]
+          ],
+          [
+            "shuffle",
+            [
+              "REF",
+              305
+            ]
+          ],
+          [
+            "sample",
+            [
+              "REF",
+              306
+            ]
+          ],
+          [
+            "cycle",
+            [
+              "REF",
+              307
+            ]
+          ],
+          [
+            "permutation",
+            [
+              "REF",
+              308
+            ]
+          ],
+          [
+            "combination",
+            [
+              "REF",
+              309
+            ]
+          ],
+          [
+            "repeated_permutation",
+            [
+              "REF",
+              310
+            ]
+          ],
+          [
+            "repeated_combination",
+            [
+              "REF",
+              311
+            ]
+          ],
+          [
+            "product",
+            [
+              "REF",
+              312
+            ]
+          ],
+          [
+            "take",
+            [
+              "REF",
+              313
+            ]
+          ],
+          [
+            "take_while",
+            [
+              "REF",
+              314
+            ]
+          ],
+          [
+            "drop",
+            [
+              "REF",
+              315
+            ]
+          ],
+          [
+            "drop_while",
+            [
+              "REF",
+              316
+            ]
+          ],
+          [
+            "bsearch",
+            [
+              "REF",
+              317
+            ]
+          ],
+          [
+            "any?",
+            [
+              "REF",
+              318
+            ]
+          ],
+          [
+            "pack",
+            [
+              "REF",
+              319
+            ]
+          ],
+          [
+            "iterate!",
+            [
+              "REF",
+              320
+            ]
+          ],
+          [
+            "entries",
+            [
+              "REF",
+              321
+            ]
+          ],
+          [
+            "sort_by",
+            [
+              "REF",
+              322
+            ]
+          ],
+          [
+            "grep",
+            [
+              "REF",
+              323
+            ]
+          ],
+          [
+            "find",
+            [
+              "REF",
+              324
+            ]
+          ],
+          [
+            "detect",
+            [
+              "REF",
+              325
+            ]
+          ],
+          [
+            "find_all",
+            [
+              "REF",
+              326
+            ]
+          ],
+          [
+            "flat_map",
+            [
+              "REF",
+              327
+            ]
+          ],
+          [
+            "collect_concat",
+            [
+              "REF",
+              328
+            ]
+          ],
+          [
+            "inject",
+            [
+              "REF",
+              329
+            ]
+          ],
+          [
+            "reduce",
+            [
+              "REF",
+              330
+            ]
+          ],
+          [
+            "partition",
+            [
+              "REF",
+              331
+            ]
+          ],
+          [
+            "group_by",
+            [
+              "REF",
+              332
+            ]
+          ],
+          [
+            "all?",
+            [
+              "REF",
+              333
+            ]
+          ],
+          [
+            "one?",
+            [
+              "REF",
+              334
+            ]
+          ],
+          [
+            "none?",
+            [
+              "REF",
+              335
+            ]
+          ],
+          [
+            "min",
+            [
+              "REF",
+              336
+            ]
+          ],
+          [
+            "max",
+            [
+              "REF",
+              337
+            ]
+          ],
+          [
+            "minmax",
+            [
+              "REF",
+              338
+            ]
+          ],
+          [
+            "min_by",
+            [
+              "REF",
+              339
+            ]
+          ],
+          [
+            "max_by",
+            [
+              "REF",
+              340
+            ]
+          ],
+          [
+            "minmax_by",
+            [
+              "REF",
+              341
+            ]
+          ],
+          [
+            "member?",
+            [
+              "REF",
+              342
+            ]
+          ],
+          [
+            "each_with_index",
+            [
+              "REF",
+              343
+            ]
+          ],
+          [
+            "each_entry",
+            [
+              "REF",
+              344
+            ]
+          ],
+          [
+            "each_slice",
+            [
+              "REF",
+              345
+            ]
+          ],
+          [
+            "each_cons",
+            [
+              "REF",
+              346
+            ]
+          ],
+          [
+            "each_with_object",
+            [
+              "REF",
+              347
+            ]
+          ],
+          [
+            "chunk",
+            [
+              "REF",
+              348
+            ]
+          ],
+          [
+            "slice_before",
+            [
+              "REF",
+              349
+            ]
+          ],
+          [
+            "slice_after",
+            [
+              "REF",
+              350
+            ]
+          ],
+          [
+            "slice_when",
+            [
+              "REF",
+              351
+            ]
+          ],
+          [
+            "lazy",
+            [
+              "REF",
+              352
+            ]
+          ],
+          [
+            "to_set",
+            [
+              "REF",
+              353
+            ]
+          ]
+        ],
+        "236": [
+          "FUNCTION",
+          "to_a",
+          ""
+        ],
+        "237": [
+          "FUNCTION",
+          "to_h",
+          ""
+        ],
+        "238": [
+          "FUNCTION",
+          "to_ary",
+          ""
+        ],
+        "239": [
+          "FUNCTION",
+          "[]",
+          ""
+        ],
+        "240": [
+          "FUNCTION",
+          "[]=",
+          ""
+        ],
+        "241": [
+          "FUNCTION",
+          "at",
+          ""
+        ],
+        "242": [
+          "FUNCTION",
+          "fetch",
+          ""
+        ],
+        "243": [
+          "FUNCTION",
+          "first",
+          ""
+        ],
+        "244": [
+          "FUNCTION",
+          "last",
+          ""
+        ],
+        "245": [
+          "FUNCTION",
+          "concat",
+          ""
+        ],
+        "246": [
+          "FUNCTION",
+          "<<",
+          ""
+        ],
+        "247": [
+          "FUNCTION",
+          "push",
+          ""
+        ],
+        "248": [
+          "FUNCTION",
+          "pop",
+          ""
+        ],
+        "249": [
+          "FUNCTION",
+          "shift",
+          ""
+        ],
+        "250": [
+          "FUNCTION",
+          "unshift",
+          ""
+        ],
+        "251": [
+          "FUNCTION",
+          "insert",
+          ""
+        ],
+        "252": [
+          "FUNCTION",
+          "each",
+          ""
+        ],
+        "253": [
+          "FUNCTION",
+          "each_index",
+          ""
+        ],
+        "254": [
+          "FUNCTION",
+          "reverse_each",
+          ""
+        ],
+        "255": [
+          "FUNCTION",
+          "length",
+          ""
+        ],
+        "256": [
+          "FUNCTION",
+          "size",
+          ""
+        ],
+        "257": [
+          "FUNCTION",
+          "empty?",
+          ""
+        ],
+        "258": [
+          "FUNCTION",
+          "find_index",
+          ""
+        ],
+        "259": [
+          "FUNCTION",
+          "index",
+          ""
+        ],
+        "260": [
+          "FUNCTION",
+          "rindex",
+          ""
+        ],
+        "261": [
+          "FUNCTION",
+          "join",
+          ""
+        ],
+        "262": [
+          "FUNCTION",
+          "reverse",
+          ""
+        ],
+        "263": [
+          "FUNCTION",
+          "reverse!",
+          ""
+        ],
+        "264": [
+          "FUNCTION",
+          "rotate",
+          ""
+        ],
+        "265": [
+          "FUNCTION",
+          "rotate!",
+          ""
+        ],
+        "266": [
+          "FUNCTION",
+          "sort",
+          ""
+        ],
+        "267": [
+          "FUNCTION",
+          "sort!",
+          ""
+        ],
+        "268": [
+          "FUNCTION",
+          "sort_by!",
+          ""
+        ],
+        "269": [
+          "FUNCTION",
+          "collect",
+          ""
+        ],
+        "270": [
+          "FUNCTION",
+          "collect!",
+          ""
+        ],
+        "271": [
+          "FUNCTION",
+          "map",
+          ""
+        ],
+        "272": [
+          "FUNCTION",
+          "map!",
+          ""
+        ],
+        "273": [
+          "FUNCTION",
+          "select",
+          ""
+        ],
+        "274": [
+          "FUNCTION",
+          "select!",
+          ""
+        ],
+        "275": [
+          "FUNCTION",
+          "keep_if",
+          ""
+        ],
+        "276": [
+          "FUNCTION",
+          "values_at",
+          ""
+        ],
+        "277": [
+          "FUNCTION",
+          "delete",
+          ""
+        ],
+        "278": [
+          "FUNCTION",
+          "delete_at",
+          ""
+        ],
+        "279": [
+          "FUNCTION",
+          "delete_if",
+          ""
+        ],
+        "280": [
+          "FUNCTION",
+          "reject",
+          ""
+        ],
+        "281": [
+          "FUNCTION",
+          "reject!",
+          ""
+        ],
+        "282": [
+          "FUNCTION",
+          "zip",
+          ""
+        ],
+        "283": [
+          "FUNCTION",
+          "transpose",
+          ""
+        ],
+        "284": [
+          "FUNCTION",
+          "replace",
+          ""
+        ],
+        "285": [
+          "FUNCTION",
+          "clear",
+          ""
+        ],
+        "286": [
+          "FUNCTION",
+          "fill",
+          ""
+        ],
+        "287": [
+          "FUNCTION",
+          "include?",
+          ""
+        ],
+        "288": [
+          "FUNCTION",
+          "slice",
+          ""
+        ],
+        "289": [
+          "FUNCTION",
+          "slice!",
+          ""
+        ],
+        "290": [
+          "FUNCTION",
+          "assoc",
+          ""
+        ],
+        "291": [
+          "FUNCTION",
+          "rassoc",
+          ""
+        ],
+        "292": [
+          "FUNCTION",
+          "+",
+          ""
+        ],
+        "293": [
+          "FUNCTION",
+          "*",
+          ""
+        ],
+        "294": [
+          "FUNCTION",
+          "-",
+          ""
+        ],
+        "295": [
+          "FUNCTION",
+          "&",
+          ""
+        ],
+        "296": [
+          "FUNCTION",
+          "|",
+          ""
+        ],
+        "297": [
+          "FUNCTION",
+          "uniq",
+          ""
+        ],
+        "298": [
+          "FUNCTION",
+          "uniq!",
+          ""
+        ],
+        "299": [
+          "FUNCTION",
+          "compact",
+          ""
+        ],
+        "300": [
+          "FUNCTION",
+          "compact!",
+          ""
+        ],
+        "301": [
+          "FUNCTION",
+          "flatten",
+          ""
+        ],
+        "302": [
+          "FUNCTION",
+          "flatten!",
+          ""
+        ],
+        "303": [
+          "FUNCTION",
+          "count",
+          ""
+        ],
+        "304": [
+          "FUNCTION",
+          "shuffle!",
+          ""
+        ],
+        "305": [
+          "FUNCTION",
+          "shuffle",
+          ""
+        ],
+        "306": [
+          "FUNCTION",
+          "sample",
+          ""
+        ],
+        "307": [
+          "FUNCTION",
+          "cycle",
+          ""
+        ],
+        "308": [
+          "FUNCTION",
+          "permutation",
+          ""
+        ],
+        "309": [
+          "FUNCTION",
+          "combination",
+          ""
+        ],
+        "310": [
+          "FUNCTION",
+          "repeated_permutation",
+          ""
+        ],
+        "311": [
+          "FUNCTION",
+          "repeated_combination",
+          ""
+        ],
+        "312": [
+          "FUNCTION",
+          "product",
+          ""
+        ],
+        "313": [
+          "FUNCTION",
+          "take",
+          ""
+        ],
+        "314": [
+          "FUNCTION",
+          "take_while",
+          ""
+        ],
+        "315": [
+          "FUNCTION",
+          "drop",
+          ""
+        ],
+        "316": [
+          "FUNCTION",
+          "drop_while",
+          ""
+        ],
+        "317": [
+          "FUNCTION",
+          "bsearch",
+          ""
+        ],
+        "318": [
+          "FUNCTION",
+          "any?",
+          ""
+        ],
+        "319": [
+          "FUNCTION",
+          "pack",
+          ""
+        ],
+        "320": [
+          "FUNCTION",
+          "iterate!",
+          ""
+        ],
+        "321": [
+          "FUNCTION",
+          "entries",
+          ""
+        ],
+        "322": [
+          "FUNCTION",
+          "sort_by",
+          ""
+        ],
+        "323": [
+          "FUNCTION",
+          "grep",
+          ""
+        ],
+        "324": [
+          "FUNCTION",
+          "find",
+          ""
+        ],
+        "325": [
+          "FUNCTION",
+          "detect",
+          ""
+        ],
+        "326": [
+          "FUNCTION",
+          "find_all",
+          ""
+        ],
+        "327": [
+          "FUNCTION",
+          "flat_map",
+          ""
+        ],
+        "328": [
+          "FUNCTION",
+          "collect_concat",
+          ""
+        ],
+        "329": [
+          "FUNCTION",
+          "inject",
+          ""
+        ],
+        "330": [
+          "FUNCTION",
+          "reduce",
+          ""
+        ],
+        "331": [
+          "FUNCTION",
+          "partition",
+          ""
+        ],
+        "332": [
+          "FUNCTION",
+          "group_by",
+          ""
+        ],
+        "333": [
+          "FUNCTION",
+          "all?",
+          ""
+        ],
+        "334": [
+          "FUNCTION",
+          "one?",
+          ""
+        ],
+        "335": [
+          "FUNCTION",
+          "none?",
+          ""
+        ],
+        "336": [
+          "FUNCTION",
+          "min",
+          ""
+        ],
+        "337": [
+          "FUNCTION",
+          "max",
+          ""
+        ],
+        "338": [
+          "FUNCTION",
+          "minmax",
+          ""
+        ],
+        "339": [
+          "FUNCTION",
+          "min_by",
+          ""
+        ],
+        "340": [
+          "FUNCTION",
+          "max_by",
+          ""
+        ],
+        "341": [
+          "FUNCTION",
+          "minmax_by",
+          ""
+        ],
+        "342": [
+          "FUNCTION",
+          "member?",
+          ""
+        ],
+        "343": [
+          "FUNCTION",
+          "each_with_index",
+          ""
+        ],
+        "344": [
+          "FUNCTION",
+          "each_entry",
+          ""
+        ],
+        "345": [
+          "FUNCTION",
+          "each_slice",
+          ""
+        ],
+        "346": [
+          "FUNCTION",
+          "each_cons",
+          ""
+        ],
+        "347": [
+          "FUNCTION",
+          "each_with_object",
+          ""
+        ],
+        "348": [
+          "FUNCTION",
+          "chunk",
+          ""
+        ],
+        "349": [
+          "FUNCTION",
+          "slice_before",
+          ""
+        ],
+        "350": [
+          "FUNCTION",
+          "slice_after",
+          ""
+        ],
+        "351": [
+          "FUNCTION",
+          "slice_when",
+          ""
+        ],
+        "352": [
+          "FUNCTION",
+          "lazy",
+          ""
+        ],
+        "353": [
+          "FUNCTION",
+          "to_set",
+          ""
+        ]
       },
       "globals": {
       },
@@ -211,13 +4468,1452 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
       "heap": {
+        "1": [
+          "CLASS",
+          "Array",
+          [
+
+          ],
+          [
+            "to_a",
+            [
+              "REF",
+              354
+            ]
+          ],
+          [
+            "to_h",
+            [
+              "REF",
+              355
+            ]
+          ],
+          [
+            "to_ary",
+            [
+              "REF",
+              356
+            ]
+          ],
+          [
+            "[]",
+            [
+              "REF",
+              357
+            ]
+          ],
+          [
+            "[]=",
+            [
+              "REF",
+              358
+            ]
+          ],
+          [
+            "at",
+            [
+              "REF",
+              359
+            ]
+          ],
+          [
+            "fetch",
+            [
+              "REF",
+              360
+            ]
+          ],
+          [
+            "first",
+            [
+              "REF",
+              361
+            ]
+          ],
+          [
+            "last",
+            [
+              "REF",
+              362
+            ]
+          ],
+          [
+            "concat",
+            [
+              "REF",
+              363
+            ]
+          ],
+          [
+            "<<",
+            [
+              "REF",
+              364
+            ]
+          ],
+          [
+            "push",
+            [
+              "REF",
+              365
+            ]
+          ],
+          [
+            "pop",
+            [
+              "REF",
+              366
+            ]
+          ],
+          [
+            "shift",
+            [
+              "REF",
+              367
+            ]
+          ],
+          [
+            "unshift",
+            [
+              "REF",
+              368
+            ]
+          ],
+          [
+            "insert",
+            [
+              "REF",
+              369
+            ]
+          ],
+          [
+            "each",
+            [
+              "REF",
+              370
+            ]
+          ],
+          [
+            "each_index",
+            [
+              "REF",
+              371
+            ]
+          ],
+          [
+            "reverse_each",
+            [
+              "REF",
+              372
+            ]
+          ],
+          [
+            "length",
+            [
+              "REF",
+              373
+            ]
+          ],
+          [
+            "size",
+            [
+              "REF",
+              374
+            ]
+          ],
+          [
+            "empty?",
+            [
+              "REF",
+              375
+            ]
+          ],
+          [
+            "find_index",
+            [
+              "REF",
+              376
+            ]
+          ],
+          [
+            "index",
+            [
+              "REF",
+              377
+            ]
+          ],
+          [
+            "rindex",
+            [
+              "REF",
+              378
+            ]
+          ],
+          [
+            "join",
+            [
+              "REF",
+              379
+            ]
+          ],
+          [
+            "reverse",
+            [
+              "REF",
+              380
+            ]
+          ],
+          [
+            "reverse!",
+            [
+              "REF",
+              381
+            ]
+          ],
+          [
+            "rotate",
+            [
+              "REF",
+              382
+            ]
+          ],
+          [
+            "rotate!",
+            [
+              "REF",
+              383
+            ]
+          ],
+          [
+            "sort",
+            [
+              "REF",
+              384
+            ]
+          ],
+          [
+            "sort!",
+            [
+              "REF",
+              385
+            ]
+          ],
+          [
+            "sort_by!",
+            [
+              "REF",
+              386
+            ]
+          ],
+          [
+            "collect",
+            [
+              "REF",
+              387
+            ]
+          ],
+          [
+            "collect!",
+            [
+              "REF",
+              388
+            ]
+          ],
+          [
+            "map",
+            [
+              "REF",
+              389
+            ]
+          ],
+          [
+            "map!",
+            [
+              "REF",
+              390
+            ]
+          ],
+          [
+            "select",
+            [
+              "REF",
+              391
+            ]
+          ],
+          [
+            "select!",
+            [
+              "REF",
+              392
+            ]
+          ],
+          [
+            "keep_if",
+            [
+              "REF",
+              393
+            ]
+          ],
+          [
+            "values_at",
+            [
+              "REF",
+              394
+            ]
+          ],
+          [
+            "delete",
+            [
+              "REF",
+              395
+            ]
+          ],
+          [
+            "delete_at",
+            [
+              "REF",
+              396
+            ]
+          ],
+          [
+            "delete_if",
+            [
+              "REF",
+              397
+            ]
+          ],
+          [
+            "reject",
+            [
+              "REF",
+              398
+            ]
+          ],
+          [
+            "reject!",
+            [
+              "REF",
+              399
+            ]
+          ],
+          [
+            "zip",
+            [
+              "REF",
+              400
+            ]
+          ],
+          [
+            "transpose",
+            [
+              "REF",
+              401
+            ]
+          ],
+          [
+            "replace",
+            [
+              "REF",
+              402
+            ]
+          ],
+          [
+            "clear",
+            [
+              "REF",
+              403
+            ]
+          ],
+          [
+            "fill",
+            [
+              "REF",
+              404
+            ]
+          ],
+          [
+            "include?",
+            [
+              "REF",
+              405
+            ]
+          ],
+          [
+            "slice",
+            [
+              "REF",
+              406
+            ]
+          ],
+          [
+            "slice!",
+            [
+              "REF",
+              407
+            ]
+          ],
+          [
+            "assoc",
+            [
+              "REF",
+              408
+            ]
+          ],
+          [
+            "rassoc",
+            [
+              "REF",
+              409
+            ]
+          ],
+          [
+            "+",
+            [
+              "REF",
+              410
+            ]
+          ],
+          [
+            "*",
+            [
+              "REF",
+              411
+            ]
+          ],
+          [
+            "-",
+            [
+              "REF",
+              412
+            ]
+          ],
+          [
+            "&",
+            [
+              "REF",
+              413
+            ]
+          ],
+          [
+            "|",
+            [
+              "REF",
+              414
+            ]
+          ],
+          [
+            "uniq",
+            [
+              "REF",
+              415
+            ]
+          ],
+          [
+            "uniq!",
+            [
+              "REF",
+              416
+            ]
+          ],
+          [
+            "compact",
+            [
+              "REF",
+              417
+            ]
+          ],
+          [
+            "compact!",
+            [
+              "REF",
+              418
+            ]
+          ],
+          [
+            "flatten",
+            [
+              "REF",
+              419
+            ]
+          ],
+          [
+            "flatten!",
+            [
+              "REF",
+              420
+            ]
+          ],
+          [
+            "count",
+            [
+              "REF",
+              421
+            ]
+          ],
+          [
+            "shuffle!",
+            [
+              "REF",
+              422
+            ]
+          ],
+          [
+            "shuffle",
+            [
+              "REF",
+              423
+            ]
+          ],
+          [
+            "sample",
+            [
+              "REF",
+              424
+            ]
+          ],
+          [
+            "cycle",
+            [
+              "REF",
+              425
+            ]
+          ],
+          [
+            "permutation",
+            [
+              "REF",
+              426
+            ]
+          ],
+          [
+            "combination",
+            [
+              "REF",
+              427
+            ]
+          ],
+          [
+            "repeated_permutation",
+            [
+              "REF",
+              428
+            ]
+          ],
+          [
+            "repeated_combination",
+            [
+              "REF",
+              429
+            ]
+          ],
+          [
+            "product",
+            [
+              "REF",
+              430
+            ]
+          ],
+          [
+            "take",
+            [
+              "REF",
+              431
+            ]
+          ],
+          [
+            "take_while",
+            [
+              "REF",
+              432
+            ]
+          ],
+          [
+            "drop",
+            [
+              "REF",
+              433
+            ]
+          ],
+          [
+            "drop_while",
+            [
+              "REF",
+              434
+            ]
+          ],
+          [
+            "bsearch",
+            [
+              "REF",
+              435
+            ]
+          ],
+          [
+            "any?",
+            [
+              "REF",
+              436
+            ]
+          ],
+          [
+            "pack",
+            [
+              "REF",
+              437
+            ]
+          ],
+          [
+            "iterate!",
+            [
+              "REF",
+              438
+            ]
+          ],
+          [
+            "iterate_proc!",
+            [
+              "REF",
+              439
+            ]
+          ],
+          [
+            "entries",
+            [
+              "REF",
+              440
+            ]
+          ],
+          [
+            "sort_by",
+            [
+              "REF",
+              441
+            ]
+          ],
+          [
+            "grep",
+            [
+              "REF",
+              442
+            ]
+          ],
+          [
+            "find",
+            [
+              "REF",
+              443
+            ]
+          ],
+          [
+            "detect",
+            [
+              "REF",
+              444
+            ]
+          ],
+          [
+            "find_all",
+            [
+              "REF",
+              445
+            ]
+          ],
+          [
+            "flat_map",
+            [
+              "REF",
+              446
+            ]
+          ],
+          [
+            "collect_concat",
+            [
+              "REF",
+              447
+            ]
+          ],
+          [
+            "inject",
+            [
+              "REF",
+              448
+            ]
+          ],
+          [
+            "reduce",
+            [
+              "REF",
+              449
+            ]
+          ],
+          [
+            "partition",
+            [
+              "REF",
+              450
+            ]
+          ],
+          [
+            "group_by",
+            [
+              "REF",
+              451
+            ]
+          ],
+          [
+            "all?",
+            [
+              "REF",
+              452
+            ]
+          ],
+          [
+            "one?",
+            [
+              "REF",
+              453
+            ]
+          ],
+          [
+            "none?",
+            [
+              "REF",
+              454
+            ]
+          ],
+          [
+            "min",
+            [
+              "REF",
+              455
+            ]
+          ],
+          [
+            "max",
+            [
+              "REF",
+              456
+            ]
+          ],
+          [
+            "minmax",
+            [
+              "REF",
+              457
+            ]
+          ],
+          [
+            "min_by",
+            [
+              "REF",
+              458
+            ]
+          ],
+          [
+            "max_by",
+            [
+              "REF",
+              459
+            ]
+          ],
+          [
+            "minmax_by",
+            [
+              "REF",
+              460
+            ]
+          ],
+          [
+            "member?",
+            [
+              "REF",
+              461
+            ]
+          ],
+          [
+            "each_with_index",
+            [
+              "REF",
+              462
+            ]
+          ],
+          [
+            "each_entry",
+            [
+              "REF",
+              463
+            ]
+          ],
+          [
+            "each_slice",
+            [
+              "REF",
+              464
+            ]
+          ],
+          [
+            "each_cons",
+            [
+              "REF",
+              465
+            ]
+          ],
+          [
+            "each_with_object",
+            [
+              "REF",
+              466
+            ]
+          ],
+          [
+            "chunk",
+            [
+              "REF",
+              467
+            ]
+          ],
+          [
+            "slice_before",
+            [
+              "REF",
+              468
+            ]
+          ],
+          [
+            "slice_after",
+            [
+              "REF",
+              469
+            ]
+          ],
+          [
+            "slice_when",
+            [
+              "REF",
+              470
+            ]
+          ],
+          [
+            "lazy",
+            [
+              "REF",
+              471
+            ]
+          ],
+          [
+            "to_set",
+            [
+              "REF",
+              472
+            ]
+          ]
+        ],
+        "354": [
+          "FUNCTION",
+          "to_a",
+          ""
+        ],
+        "355": [
+          "FUNCTION",
+          "to_h",
+          ""
+        ],
+        "356": [
+          "FUNCTION",
+          "to_ary",
+          ""
+        ],
+        "357": [
+          "FUNCTION",
+          "[]",
+          ""
+        ],
+        "358": [
+          "FUNCTION",
+          "[]=",
+          ""
+        ],
+        "359": [
+          "FUNCTION",
+          "at",
+          ""
+        ],
+        "360": [
+          "FUNCTION",
+          "fetch",
+          ""
+        ],
+        "361": [
+          "FUNCTION",
+          "first",
+          ""
+        ],
+        "362": [
+          "FUNCTION",
+          "last",
+          ""
+        ],
+        "363": [
+          "FUNCTION",
+          "concat",
+          ""
+        ],
+        "364": [
+          "FUNCTION",
+          "<<",
+          ""
+        ],
+        "365": [
+          "FUNCTION",
+          "push",
+          ""
+        ],
+        "366": [
+          "FUNCTION",
+          "pop",
+          ""
+        ],
+        "367": [
+          "FUNCTION",
+          "shift",
+          ""
+        ],
+        "368": [
+          "FUNCTION",
+          "unshift",
+          ""
+        ],
+        "369": [
+          "FUNCTION",
+          "insert",
+          ""
+        ],
+        "370": [
+          "FUNCTION",
+          "each",
+          ""
+        ],
+        "371": [
+          "FUNCTION",
+          "each_index",
+          ""
+        ],
+        "372": [
+          "FUNCTION",
+          "reverse_each",
+          ""
+        ],
+        "373": [
+          "FUNCTION",
+          "length",
+          ""
+        ],
+        "374": [
+          "FUNCTION",
+          "size",
+          ""
+        ],
+        "375": [
+          "FUNCTION",
+          "empty?",
+          ""
+        ],
+        "376": [
+          "FUNCTION",
+          "find_index",
+          ""
+        ],
+        "377": [
+          "FUNCTION",
+          "index",
+          ""
+        ],
+        "378": [
+          "FUNCTION",
+          "rindex",
+          ""
+        ],
+        "379": [
+          "FUNCTION",
+          "join",
+          ""
+        ],
+        "380": [
+          "FUNCTION",
+          "reverse",
+          ""
+        ],
+        "381": [
+          "FUNCTION",
+          "reverse!",
+          ""
+        ],
+        "382": [
+          "FUNCTION",
+          "rotate",
+          ""
+        ],
+        "383": [
+          "FUNCTION",
+          "rotate!",
+          ""
+        ],
+        "384": [
+          "FUNCTION",
+          "sort",
+          ""
+        ],
+        "385": [
+          "FUNCTION",
+          "sort!",
+          ""
+        ],
+        "386": [
+          "FUNCTION",
+          "sort_by!",
+          ""
+        ],
+        "387": [
+          "FUNCTION",
+          "collect",
+          ""
+        ],
+        "388": [
+          "FUNCTION",
+          "collect!",
+          ""
+        ],
+        "389": [
+          "FUNCTION",
+          "map",
+          ""
+        ],
+        "390": [
+          "FUNCTION",
+          "map!",
+          ""
+        ],
+        "391": [
+          "FUNCTION",
+          "select",
+          ""
+        ],
+        "392": [
+          "FUNCTION",
+          "select!",
+          ""
+        ],
+        "393": [
+          "FUNCTION",
+          "keep_if",
+          ""
+        ],
+        "394": [
+          "FUNCTION",
+          "values_at",
+          ""
+        ],
+        "395": [
+          "FUNCTION",
+          "delete",
+          ""
+        ],
+        "396": [
+          "FUNCTION",
+          "delete_at",
+          ""
+        ],
+        "397": [
+          "FUNCTION",
+          "delete_if",
+          ""
+        ],
+        "398": [
+          "FUNCTION",
+          "reject",
+          ""
+        ],
+        "399": [
+          "FUNCTION",
+          "reject!",
+          ""
+        ],
+        "400": [
+          "FUNCTION",
+          "zip",
+          ""
+        ],
+        "401": [
+          "FUNCTION",
+          "transpose",
+          ""
+        ],
+        "402": [
+          "FUNCTION",
+          "replace",
+          ""
+        ],
+        "403": [
+          "FUNCTION",
+          "clear",
+          ""
+        ],
+        "404": [
+          "FUNCTION",
+          "fill",
+          ""
+        ],
+        "405": [
+          "FUNCTION",
+          "include?",
+          ""
+        ],
+        "406": [
+          "FUNCTION",
+          "slice",
+          ""
+        ],
+        "407": [
+          "FUNCTION",
+          "slice!",
+          ""
+        ],
+        "408": [
+          "FUNCTION",
+          "assoc",
+          ""
+        ],
+        "409": [
+          "FUNCTION",
+          "rassoc",
+          ""
+        ],
+        "410": [
+          "FUNCTION",
+          "+",
+          ""
+        ],
+        "411": [
+          "FUNCTION",
+          "*",
+          ""
+        ],
+        "412": [
+          "FUNCTION",
+          "-",
+          ""
+        ],
+        "413": [
+          "FUNCTION",
+          "&",
+          ""
+        ],
+        "414": [
+          "FUNCTION",
+          "|",
+          ""
+        ],
+        "415": [
+          "FUNCTION",
+          "uniq",
+          ""
+        ],
+        "416": [
+          "FUNCTION",
+          "uniq!",
+          ""
+        ],
+        "417": [
+          "FUNCTION",
+          "compact",
+          ""
+        ],
+        "418": [
+          "FUNCTION",
+          "compact!",
+          ""
+        ],
+        "419": [
+          "FUNCTION",
+          "flatten",
+          ""
+        ],
+        "420": [
+          "FUNCTION",
+          "flatten!",
+          ""
+        ],
+        "421": [
+          "FUNCTION",
+          "count",
+          ""
+        ],
+        "422": [
+          "FUNCTION",
+          "shuffle!",
+          ""
+        ],
+        "423": [
+          "FUNCTION",
+          "shuffle",
+          ""
+        ],
+        "424": [
+          "FUNCTION",
+          "sample",
+          ""
+        ],
+        "425": [
+          "FUNCTION",
+          "cycle",
+          ""
+        ],
+        "426": [
+          "FUNCTION",
+          "permutation",
+          ""
+        ],
+        "427": [
+          "FUNCTION",
+          "combination",
+          ""
+        ],
+        "428": [
+          "FUNCTION",
+          "repeated_permutation",
+          ""
+        ],
+        "429": [
+          "FUNCTION",
+          "repeated_combination",
+          ""
+        ],
+        "430": [
+          "FUNCTION",
+          "product",
+          ""
+        ],
+        "431": [
+          "FUNCTION",
+          "take",
+          ""
+        ],
+        "432": [
+          "FUNCTION",
+          "take_while",
+          ""
+        ],
+        "433": [
+          "FUNCTION",
+          "drop",
+          ""
+        ],
+        "434": [
+          "FUNCTION",
+          "drop_while",
+          ""
+        ],
+        "435": [
+          "FUNCTION",
+          "bsearch",
+          ""
+        ],
+        "436": [
+          "FUNCTION",
+          "any?",
+          ""
+        ],
+        "437": [
+          "FUNCTION",
+          "pack",
+          ""
+        ],
+        "438": [
+          "FUNCTION",
+          "iterate!",
+          ""
+        ],
+        "439": [
+          "FUNCTION",
+          "iterate_proc!",
+          ""
+        ],
+        "440": [
+          "FUNCTION",
+          "entries",
+          ""
+        ],
+        "441": [
+          "FUNCTION",
+          "sort_by",
+          ""
+        ],
+        "442": [
+          "FUNCTION",
+          "grep",
+          ""
+        ],
+        "443": [
+          "FUNCTION",
+          "find",
+          ""
+        ],
+        "444": [
+          "FUNCTION",
+          "detect",
+          ""
+        ],
+        "445": [
+          "FUNCTION",
+          "find_all",
+          ""
+        ],
+        "446": [
+          "FUNCTION",
+          "flat_map",
+          ""
+        ],
+        "447": [
+          "FUNCTION",
+          "collect_concat",
+          ""
+        ],
+        "448": [
+          "FUNCTION",
+          "inject",
+          ""
+        ],
+        "449": [
+          "FUNCTION",
+          "reduce",
+          ""
+        ],
+        "450": [
+          "FUNCTION",
+          "partition",
+          ""
+        ],
+        "451": [
+          "FUNCTION",
+          "group_by",
+          ""
+        ],
+        "452": [
+          "FUNCTION",
+          "all?",
+          ""
+        ],
+        "453": [
+          "FUNCTION",
+          "one?",
+          ""
+        ],
+        "454": [
+          "FUNCTION",
+          "none?",
+          ""
+        ],
+        "455": [
+          "FUNCTION",
+          "min",
+          ""
+        ],
+        "456": [
+          "FUNCTION",
+          "max",
+          ""
+        ],
+        "457": [
+          "FUNCTION",
+          "minmax",
+          ""
+        ],
+        "458": [
+          "FUNCTION",
+          "min_by",
+          ""
+        ],
+        "459": [
+          "FUNCTION",
+          "max_by",
+          ""
+        ],
+        "460": [
+          "FUNCTION",
+          "minmax_by",
+          ""
+        ],
+        "461": [
+          "FUNCTION",
+          "member?",
+          ""
+        ],
+        "462": [
+          "FUNCTION",
+          "each_with_index",
+          ""
+        ],
+        "463": [
+          "FUNCTION",
+          "each_entry",
+          ""
+        ],
+        "464": [
+          "FUNCTION",
+          "each_slice",
+          ""
+        ],
+        "465": [
+          "FUNCTION",
+          "each_cons",
+          ""
+        ],
+        "466": [
+          "FUNCTION",
+          "each_with_object",
+          ""
+        ],
+        "467": [
+          "FUNCTION",
+          "chunk",
+          ""
+        ],
+        "468": [
+          "FUNCTION",
+          "slice_before",
+          ""
+        ],
+        "469": [
+          "FUNCTION",
+          "slice_after",
+          ""
+        ],
+        "470": [
+          "FUNCTION",
+          "slice_when",
+          ""
+        ],
+        "471": [
+          "FUNCTION",
+          "lazy",
+          ""
+        ],
+        "472": [
+          "FUNCTION",
+          "to_set",
+          ""
+        ]
       },
       "globals": {
       },
@@ -279,13 +5975,13 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           2,
@@ -321,7 +6017,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -336,14 +6032,18 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           2,
@@ -379,7 +6079,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -394,14 +6094,18 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           2,
@@ -437,7 +6141,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -452,9 +6156,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -468,17 +6176,22 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 1,
-            "i": 0
+            "i": 0,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           2,
@@ -514,7 +6227,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -529,9 +6242,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -545,17 +6262,22 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 1,
-            "i": 0
+            "i": 0,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           2,
@@ -591,7 +6313,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -606,9 +6328,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -622,12 +6348,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 1,
-            "i": 0
+            "i": 0,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -649,7 +6380,7 @@
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           2,
@@ -685,7 +6416,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -700,9 +6431,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -716,12 +6451,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 1,
-            "i": 0
+            "i": 0,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -743,7 +6483,7 @@
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           2,
@@ -779,7 +6519,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -794,9 +6534,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -810,12 +6554,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 1,
-            "i": 0
+            "i": 0,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -839,7 +6588,7 @@
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           2,
@@ -875,7 +6624,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -890,9 +6639,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -906,6 +6659,7 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i",
             "__return__"
@@ -913,12 +6667,16 @@
           "encoded_locals": {
             "n": 1,
             "i": 0,
+            "self": [
+              "REF",
+              473
+            ],
             "__return__": 1
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           2,
@@ -954,7 +6712,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -969,9 +6727,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -985,17 +6747,22 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 2,
-            "i": 1
+            "i": 1,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           2,
@@ -1031,7 +6798,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -1046,9 +6813,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1062,17 +6833,22 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 2,
-            "i": 1
+            "i": 1,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           2,
@@ -1108,7 +6884,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -1123,9 +6899,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1139,12 +6919,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 2,
-            "i": 1
+            "i": 1,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1166,7 +6951,7 @@
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           2,
@@ -1202,7 +6987,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -1217,9 +7002,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1233,12 +7022,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 2,
-            "i": 1
+            "i": 1,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1260,7 +7054,7 @@
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           2,
@@ -1296,7 +7090,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -1311,9 +7105,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1327,12 +7125,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 2,
-            "i": 1
+            "i": 1,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1356,7 +7159,7 @@
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           2,
@@ -1392,7 +7195,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -1407,9 +7210,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1423,6 +7230,7 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i",
             "__return__"
@@ -1430,12 +7238,16 @@
           "encoded_locals": {
             "n": 2,
             "i": 1,
+            "self": [
+              "REF",
+              473
+            ],
             "__return__": 4
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -1471,7 +7283,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -1486,9 +7298,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1502,17 +7318,22 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 3,
-            "i": 2
+            "i": 2,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -1548,7 +7369,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -1563,9 +7384,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1579,17 +7404,22 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 3,
-            "i": 2
+            "i": 2,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -1625,7 +7455,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -1640,9 +7470,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1656,12 +7490,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 3,
-            "i": 2
+            "i": 2,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1683,7 +7522,7 @@
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -1719,7 +7558,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -1734,9 +7573,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1750,12 +7593,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 3,
-            "i": 2
+            "i": 2,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1777,7 +7625,7 @@
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -1813,7 +7661,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -1828,9 +7676,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1844,12 +7696,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 3,
-            "i": 2
+            "i": 2,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1873,7 +7730,7 @@
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -1909,7 +7766,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -1924,9 +7781,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -1940,6 +7801,7 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i",
             "__return__"
@@ -1947,12 +7809,16 @@
           "encoded_locals": {
             "n": 3,
             "i": 2,
+            "self": [
+              "REF",
+              473
+            ],
             "__return__": 9
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -1988,7 +7854,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -2003,9 +7869,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -2019,17 +7889,22 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 4,
-            "i": 3
+            "i": 3,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -2065,7 +7940,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -2080,9 +7955,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -2096,17 +7975,22 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 4,
-            "i": 3
+            "i": 3,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -2142,7 +8026,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -2157,9 +8041,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -2173,12 +8061,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 4,
-            "i": 3
+            "i": 3,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -2200,7 +8093,7 @@
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -2236,7 +8129,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -2251,9 +8144,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -2267,12 +8164,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 4,
-            "i": 3
+            "i": 3,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -2294,7 +8196,7 @@
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -2330,7 +8232,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -2345,9 +8247,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -2361,12 +8267,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 4,
-            "i": 3
+            "i": 3,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -2390,7 +8301,7 @@
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -2426,7 +8337,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -2441,9 +8352,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -2457,6 +8372,7 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i",
             "__return__"
@@ -2464,12 +8380,16 @@
           "encoded_locals": {
             "n": 4,
             "i": 3,
+            "self": [
+              "REF",
+              473
+            ],
             "__return__": 16
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -2505,7 +8425,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -2520,18 +8440,23 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "__return__"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              473
+            ],
             "__return__": [
               "REF",
-              1
+              473
             ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -2567,13 +8492,13 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -2609,13 +8534,13 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -2651,7 +8576,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -2666,22 +8591,27 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         }
       ],
       "heap": {
-        "2": [
+        "474": [
           "Proc",
           "Proc on line 23"
         ],
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -2717,7 +8647,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -2732,22 +8662,27 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         }
       ],
       "heap": {
-        "2": [
+        "474": [
           "Proc",
           "Proc on line 23"
         ],
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
@@ -2783,7 +8718,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -2798,12 +8733,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -2818,26 +8758,31 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 1,
-            "i": 0
+            "i": 0,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -2868,7 +8813,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -2883,12 +8828,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -2903,26 +8853,31 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 1,
-            "i": 0
+            "i": 0,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -2953,7 +8908,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -2968,12 +8923,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -2988,12 +8948,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 1,
-            "i": 0
+            "i": 0,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -3015,16 +8980,16 @@
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -3055,7 +9020,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -3070,12 +9035,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -3090,12 +9060,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 1,
-            "i": 0
+            "i": 0,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -3117,16 +9092,16 @@
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -3157,7 +9132,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -3172,12 +9147,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -3192,12 +9172,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 1,
-            "i": 0
+            "i": 0,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -3221,16 +9206,16 @@
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           1,
           4,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -3261,7 +9246,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -3276,12 +9261,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -3296,6 +9286,7 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i",
             "__return__"
@@ -3303,21 +9294,25 @@
           "encoded_locals": {
             "n": 1,
             "i": 0,
+            "self": [
+              "REF",
+              473
+            ],
             "__return__": 101
           }
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           4,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -3348,7 +9343,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -3363,12 +9358,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -3383,26 +9383,31 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 4,
-            "i": 1
+            "i": 1,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           4,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -3433,7 +9438,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -3448,12 +9453,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -3468,26 +9478,31 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 4,
-            "i": 1
+            "i": 1,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           4,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -3518,7 +9533,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -3533,12 +9548,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -3553,12 +9573,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 4,
-            "i": 1
+            "i": 1,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -3580,16 +9605,16 @@
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           4,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -3620,7 +9645,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -3635,12 +9660,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -3655,12 +9685,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 4,
-            "i": 1
+            "i": 1,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -3682,16 +9717,16 @@
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           4,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -3722,7 +9757,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -3737,12 +9772,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -3757,12 +9797,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 4,
-            "i": 1
+            "i": 1,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -3786,16 +9831,16 @@
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           4,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -3826,7 +9871,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -3841,12 +9886,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -3861,6 +9911,7 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i",
             "__return__"
@@ -3868,21 +9919,25 @@
           "encoded_locals": {
             "n": 4,
             "i": 1,
+            "self": [
+              "REF",
+              473
+            ],
             "__return__": 104
           }
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -3913,7 +9968,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -3928,12 +9983,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -3948,26 +10008,31 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 9,
-            "i": 2
+            "i": 2,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -3998,7 +10063,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -4013,12 +10078,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -4033,26 +10103,31 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 9,
-            "i": 2
+            "i": 2,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -4083,7 +10158,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -4098,12 +10173,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -4118,12 +10198,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 9,
-            "i": 2
+            "i": 2,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -4145,16 +10230,16 @@
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -4185,7 +10270,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -4200,12 +10285,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -4220,12 +10310,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 9,
-            "i": 2
+            "i": 2,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -4247,16 +10342,16 @@
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -4287,7 +10382,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -4302,12 +10397,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -4322,12 +10422,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 9,
-            "i": 2
+            "i": 2,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -4351,16 +10456,16 @@
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
           9,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -4391,7 +10496,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -4406,12 +10511,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -4426,6 +10536,7 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i",
             "__return__"
@@ -4433,21 +10544,25 @@
           "encoded_locals": {
             "n": 9,
             "i": 2,
+            "self": [
+              "REF",
+              473
+            ],
             "__return__": 109
           }
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
           109,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -4478,7 +10593,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -4493,12 +10608,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -4513,26 +10633,31 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 16,
-            "i": 3
+            "i": 3,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
           109,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -4563,7 +10688,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -4578,12 +10703,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -4598,26 +10728,31 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 16,
-            "i": 3
+            "i": 3,
+            "self": [
+              "REF",
+              473
+            ]
           }
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
           109,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -4648,7 +10783,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -4663,12 +10798,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -4683,12 +10823,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 16,
-            "i": 3
+            "i": 3,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -4710,16 +10855,16 @@
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
           109,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -4750,7 +10895,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -4765,12 +10910,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -4785,12 +10935,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 16,
-            "i": 3
+            "i": 3,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -4812,16 +10967,16 @@
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
           109,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -4852,7 +11007,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -4867,12 +11022,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -4887,12 +11047,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i"
           ],
           "encoded_locals": {
             "n": 16,
-            "i": 3
+            "i": 3,
+            "self": [
+              "REF",
+              473
+            ]
           }
         },
         {
@@ -4916,16 +11081,16 @@
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
           109,
           16
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -4956,7 +11121,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -4971,12 +11136,17 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ]
           }
         },
@@ -4991,6 +11161,7 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "n",
             "i",
             "__return__"
@@ -4998,21 +11169,25 @@
           "encoded_locals": {
             "n": 16,
             "i": 3,
+            "self": [
+              "REF",
+              473
+            ],
             "__return__": 116
           }
         }
       ],
       "heap": {
-        "2": [
-          "Proc",
-          "Proc on line 23"
-        ],
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
           109,
           116
+        ],
+        "474": [
+          "Proc",
+          "Proc on line 23"
         ]
       },
       "globals": {
@@ -5043,7 +11218,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         },
@@ -5058,30 +11233,35 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "cod",
             "__return__"
           ],
           "encoded_locals": {
             "cod": [
               "REF",
-              2
+              474
+            ],
+            "self": [
+              "REF",
+              473
             ],
             "__return__": [
               "REF",
-              1
+              473
             ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
           109,
           116
         ],
-        "2": [
+        "474": [
           "Proc",
           "Proc on line 23"
         ]
@@ -5114,13 +11294,13 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           101,
           104,
@@ -5156,13 +11336,13 @@
           "encoded_locals": {
             "array": [
               "REF",
-              1
+              473
             ]
           }
         }
       ],
       "heap": {
-        "1": [
+        "473": [
           "LIST",
           101,
           104,

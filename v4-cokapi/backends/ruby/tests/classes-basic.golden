@@ -67,9 +67,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -126,9 +130,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -185,9 +193,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -311,9 +323,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ]
           }
         }
       ],
@@ -394,9 +410,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ]
           }
         }
       ],
@@ -477,9 +497,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ]
           }
         }
       ],
@@ -740,10 +764,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "greeting"
           ],
           "encoded_locals": {
-            "greeting": null
+            "greeting": null,
+            "self": [
+              "REF",
+              13
+            ]
           }
         }
       ],
@@ -843,10 +872,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "greeting"
           ],
           "encoded_locals": {
-            "greeting": null
+            "greeting": null,
+            "self": [
+              "REF",
+              13
+            ]
           }
         }
       ],
@@ -946,10 +980,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "greeting"
           ],
           "encoded_locals": {
-            "greeting": "Hello, Matz!"
+            "greeting": "Hello, Matz!",
+            "self": [
+              "REF",
+              13
+            ]
           }
         }
       ],
@@ -1049,11 +1088,16 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "greeting",
             "__return__"
           ],
           "encoded_locals": {
             "greeting": "Hello, Matz!",
+            "self": [
+              "REF",
+              13
+            ],
             "__return__": null
           }
         }
@@ -1240,10 +1284,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "farewell"
           ],
           "encoded_locals": {
-            "farewell": null
+            "farewell": null,
+            "self": [
+              "REF",
+              13
+            ]
           }
         }
       ],
@@ -1343,10 +1392,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "farewell"
           ],
           "encoded_locals": {
-            "farewell": null
+            "farewell": null,
+            "self": [
+              "REF",
+              13
+            ]
           }
         }
       ],
@@ -1446,10 +1500,15 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "farewell"
           ],
           "encoded_locals": {
-            "farewell": "Goodbye, Matz."
+            "farewell": "Goodbye, Matz.",
+            "self": [
+              "REF",
+              13
+            ]
           }
         }
       ],
@@ -1549,11 +1608,16 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "farewell",
             "__return__"
           ],
           "encoded_locals": {
             "farewell": "Goodbye, Matz.",
+            "self": [
+              "REF",
+              13
+            ],
             "__return__": null
           }
         }

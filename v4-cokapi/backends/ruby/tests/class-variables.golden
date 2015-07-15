@@ -71,9 +71,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -132,9 +136,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -193,9 +201,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -258,9 +270,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -335,9 +351,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
           }
         }
       ],
@@ -670,9 +690,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ]
           }
         }
       ],
@@ -773,9 +797,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ]
           }
         }
       ],
@@ -876,9 +904,14 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "__return__"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ],
             "__return__": 1
           }
         }
@@ -1067,9 +1100,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ]
           }
         }
       ],
@@ -1170,9 +1207,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ]
           }
         }
       ],
@@ -1273,9 +1314,14 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "__return__"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ],
             "__return__": 2
           }
         }
@@ -1464,9 +1510,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ]
           }
         }
       ],
@@ -1567,9 +1617,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ]
           }
         }
       ],
@@ -1670,9 +1724,14 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "__return__"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ],
             "__return__": 2
           }
         }
@@ -1861,9 +1920,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              12
+            ]
           }
         }
       ],
@@ -1903,11 +1966,11 @@
           "value",
           ""
         ],
-        "9": [
+        "12": [
           "INSTANCE",
           "MyClass"
         ],
-        "12": [
+        "9": [
           "INSTANCE",
           "MyClass"
         ]
@@ -1964,9 +2027,13 @@
 
           ],
           "ordered_varnames": [
-
+            "self"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              12
+            ]
           }
         }
       ],
@@ -2006,11 +2073,11 @@
           "value",
           ""
         ],
-        "9": [
+        "12": [
           "INSTANCE",
           "MyClass"
         ],
-        "12": [
+        "9": [
           "INSTANCE",
           "MyClass"
         ]
@@ -2067,9 +2134,14 @@
 
           ],
           "ordered_varnames": [
+            "self",
             "__return__"
           ],
           "encoded_locals": {
+            "self": [
+              "REF",
+              12
+            ],
             "__return__": 2
           }
         }
@@ -2110,11 +2182,11 @@
           "value",
           ""
         ],
-        "9": [
+        "12": [
           "INSTANCE",
           "MyClass"
         ],
-        "12": [
+        "9": [
           "INSTANCE",
           "MyClass"
         ]
