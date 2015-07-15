@@ -8,7 +8,7 @@ TESTDIRS = ['tests/']
 INPUT_FILE_EXTENSION = '.rb'
 
 # program to run, with input file as an extra argument
-PROGRAM = ['./ruby', 'pg_logger.rb', 'stdout']
+PROGRAM = ['./ruby', 'pg_logger.rb', '-f']
 
 # this program should output to stdout, which will be redirected to this
 # extension:

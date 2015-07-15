@@ -54,21 +54,37 @@
 
 
 require 'json'
+require 'optparse'
 require 'set'
 require 'stringio'
 
 require 'debug_inspector' # gem install debug_inspector, use on Ruby 2.X
 
-#require 'binding_of_caller' # gem install binding_of_caller
+trace_output_fn = 'stdout' # default
+script_name = nil
+cod = nil
 
+OptionParser.new do |opts|
+  opts.banner = "Usage: ./ruby pg_logger.rb [options]"
 
-# pass 'stdout' to print trace to stdout
-# pass 'jstrace' to print a JS trace to test-trace.js
-trace_output_fn = ARGV[0]
-trace_output_fn = "../../../v3/test-trace.js" if trace_output_fn == 'jstrace'
+  opts.on("-t", "--tracefile", "Create a test-trace.js trace file") do |t|
+    trace_output_fn = "../../../v3/test-trace.js" if t
+  end
 
-script_name = ARGV[1]
-cod = File.open(script_name).read
+  opts.on("-f", "--file FILE", "Execute a .rb file") do |s|
+    script_name = s
+  end
+
+  opts.on("-c", "--code CODE", String, "Execute Ruby code from string") do |c|
+    cod = c
+  end
+
+end.parse!
+
+# -c gets precedence over -f
+if !cod
+  cod = File.open(script_name).read
+end
 
 cur_trace = []
 res = {'code' => cod.dup, # make a snapshot of the code NOW before it's modified
