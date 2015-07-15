@@ -4,8 +4,8 @@ To build the custom Ruby interpreter - use ruby-2.2.2 in this directory:
   tar -zxvf ruby-2.2.2.tar.gz
   cp altered-files/* ruby-2.2.2/
   cd ruby-2.2.2/
-  mkdir $HOME/ruby-2.2.2-custom-OPT/
-  ./configure --prefix=$HOME/ruby-2.2.2-custom-OPT/
+  mkdir ../ruby-2.2.2-custom-OPT/
+  ./configure --prefix=`pwd`/../ruby-2.2.2-custom-OPT/
   make
   make install # don't forget this step!
 
@@ -13,10 +13,11 @@ To recompile, run:
   make install
 
 To run the hacked Ruby, run binaries in:
-  ~/ruby-2.2.2-custom-OPT/bin/
+  `pwd`/ruby-2.2.2-custom-OPT/bin/
 
-The binding object should now have a new frame_id field
+The binding object should now have a new frame_id field, which
+../pg_logger.rb needs
 
 e.g.,:
-  ~/ruby-2.2.2-custom-OPT/bin/ruby pg_logger.rb tests/recursive-fact.rb
+  `pwd`/ruby-2.2.2-custom-OPT/bin/ruby pg_logger.rb tests/recursive-fact.rb
 
