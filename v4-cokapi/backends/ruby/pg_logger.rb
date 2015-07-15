@@ -33,13 +33,6 @@
 #   - rename 'function' to 'method'
 # - display private and protected attributes
 #
-# Useful notes from http://phrogz.net/programmingruby/frameset.html:
-#  - "First, every object has a unique object identifier (abbreviated as
-#    object id)."
-#
-# - display objects that have overridden to_s as INSTANCE_PPRINT using:
-# http://stackoverflow.com/questions/11462430/can-i-detect-that-a-method-has-been-overridden
-#
 # Limitations/quirks:
 # - no support for (lexical) environment pointers, since MRI doesn't seem to
 #   expose them. We can see only the current (dynamic) stack backtrace
@@ -51,6 +44,11 @@
 #
 # - method aliases show up as separate Method objects instead of the
 #   same one
+#
+# - if you write, say, "require 'date'", it will pull in classes from
+#   the date module into globals, which might make the display HUGE
+#   with way too many attributes. this is a general problem that
+#   manifests in other languages as well.
 
 # style guide: https://github.com/styleguide/ruby
 
@@ -256,25 +254,29 @@ class ObjectEncoder
         new_obj.concat(encoded_class_variables)
         new_obj.concat(encoded_instance_variables)
       else
-        new_obj << 'INSTANCE'
-        new_obj << dat.class.to_s
+        # concise case: instance that doesn't use the default Kernel to_s
+        # (i.e., either it or its superclass defined a custom to_s):
+        if dat.method(:to_s).owner != Kernel
+          new_obj << 'INSTANCE_PPRINT'
+          new_obj << dat.class.to_s
+          new_obj << dat.to_s
+        else
+          new_obj << 'INSTANCE'
+          new_obj << dat.class.to_s
 
-        # catch-all case: in Ruby, everything is an object
-        my_inst_vars = dat.instance_variables
+          # catch-all case: in Ruby, everything is an object
+          my_inst_vars = dat.instance_variables
 
-        encoded_instance_variables = []
+          encoded_instance_variables = []
 
-        my_inst_vars.each do |e|
-          encoded_instance_variables << [e.to_s, encode(dat.instance_variable_get(e))]
+          my_inst_vars.each do |e|
+            encoded_instance_variables << [e.to_s, encode(dat.instance_variable_get(e))]
+          end
+
+          new_obj.concat(encoded_instance_variables)
+
+          # for brevity, put methods in the class, not in instances
         end
-
-        new_obj.concat(encoded_instance_variables)
-
-        # for brevity, put methods in the class, not in instances
-
-        # TODO: support pprint if to_s is custom-defined by this
-        # instance, and not by the default Object or something
-        #   * instance with __str__ defined - ['INSTANCE_PPRINT', class name, <__str__ value>]
       end
 
       return ret
