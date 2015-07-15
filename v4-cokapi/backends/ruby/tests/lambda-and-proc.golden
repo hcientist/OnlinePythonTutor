@@ -912,10 +912,6 @@
           "args",
           ""
         ],
-        "16": [
-          "INSTANCE",
-          "ArgumentError"
-        ],
         "12": [
           "Proc",
           "Lambda on line 10"
@@ -930,10 +926,7 @@
       "ordered_globals": [
         "args"
       ],
-      "exception_msg": [
-        "REF",
-        16
-      ]
+      "exception_msg": "wrong number of arguments (2 for 3)"
     },
     {
       "func_name": "<toplevel>",
@@ -985,7 +978,7 @@
         }
       ],
       "heap": {
-        "17": [
+        "16": [
           "FUNCTION",
           "args",
           ""
@@ -998,7 +991,7 @@
       "globals": {
         "args": [
           "REF",
-          17
+          16
         ]
       },
       "ordered_globals": [

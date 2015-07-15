@@ -63,7 +63,7 @@
       "heap": {
       },
       "globals": {
-        "$globalX": "I am a global!---I am another global!",
+        "$globalX": "I am a global!",
         "$globalY": null
       },
       "ordered_globals": [
@@ -98,7 +98,7 @@
       "heap": {
       },
       "globals": {
-        "$globalX": "I am a global!---I am another global!",
+        "$globalX": "I am a global!",
         "$globalY": "I am another global!"
       },
       "ordered_globals": [
@@ -133,7 +133,7 @@
       "heap": {
       },
       "globals": {
-        "$globalX": "I am a global!---I am another global!",
+        "$globalX": "I am a global!",
         "$globalY": "I am another global!"
       },
       "ordered_globals": [
@@ -173,7 +173,7 @@
         ]
       },
       "globals": {
-        "$globalX": "I am a global!---I am another global!",
+        "$globalX": "I am a global!",
         "$globalY": "I am another global!",
         "foo": [
           "REF",
@@ -218,7 +218,7 @@
         ]
       },
       "globals": {
-        "$globalX": "I am a global!---I am another global!",
+        "$globalX": "I am a global!---",
         "$globalY": "I am another global!",
         "foo": [
           "REF",
@@ -280,7 +280,7 @@
         ]
       },
       "globals": {
-        "$globalX": "I am a global!---I am another global!",
+        "$globalX": "I am a global!---",
         "$globalY": "I am another global!",
         "foo": [
           "REF",
@@ -342,7 +342,7 @@
         ]
       },
       "globals": {
-        "$globalX": "I am a global!---I am another global!",
+        "$globalX": "I am a global!---",
         "$globalY": "I am another global!",
         "foo": [
           "REF",
@@ -404,7 +404,7 @@
         ]
       },
       "globals": {
-        "$globalX": "I am a global!---I am another global!",
+        "$globalX": "I am a global!---",
         "$globalY": "I am another global!",
         "foo": [
           "REF",
@@ -466,7 +466,7 @@
         ]
       },
       "globals": {
-        "$globalX": "I am a global!---I am another global!",
+        "$globalX": "I am a global!---",
         "$globalY": "I am another global!",
         "foo": [
           "REF",

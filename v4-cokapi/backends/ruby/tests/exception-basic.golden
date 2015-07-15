@@ -138,20 +138,13 @@
         }
       ],
       "heap": {
-        "1": [
-          "INSTANCE",
-          "ZeroDivisionError"
-        ]
       },
       "globals": {
       },
       "ordered_globals": [
 
       ],
-      "exception_msg": [
-        "REF",
-        1
-      ]
+      "exception_msg": "divided by 0"
     }
   ]
 }

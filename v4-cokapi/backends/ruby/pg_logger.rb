@@ -11,19 +11,9 @@
 # TODO
 #
 # fix these tests:
-#   tests/global-mutate.rb (only gets the most recent value of global
-#                           and doesn't pick up on mutations)
-#   tests/floats.rb
+#
 # in frontend, maybe '=' isn't a valid CSS selector. also escape '?' too
 #   tests/blocks-iterate.rb
-#   tests/inst-class-vars-complex.rb (also class methods not shown)
-#   tests/class-method.rb (doesn't display class methods)
-#
-#   tests/blocks-scoping-2.rb (error message on Step 12 shows up as "REF11")
-#   tests/exception-basic.rb (exceptions displaying wrong)
-#   tests/lambda-and-proc-2.rb
-#   tests/lambda-and-proc.rb
-#   tests/method-basic.rb
 #
 # - test syntax errors in the OPT frontend
 # - display the 'binding' within a proc/lambda object, which represents
@@ -46,6 +36,9 @@
 # Useful notes from http://phrogz.net/programmingruby/frameset.html:
 #  - "First, every object has a unique object identifier (abbreviated as
 #    object id)."
+#
+# - display objects that have overridden to_s as INSTANCE_PPRINT using:
+# http://stackoverflow.com/questions/11462430/can-i-detect-that-a-method-has-been-overridden
 #
 # Limitations/quirks:
 # - no support for (lexical) environment pointers, since MRI doesn't seem to
@@ -97,7 +90,7 @@ n_lines_added = nil
 class MaxStepsException < RuntimeError
 end
 
-PRIMITIVES = [Fixnum, String, TrueClass, FalseClass, NilClass]
+PRIMITIVES = [Fixnum, Float, String, TrueClass, FalseClass, NilClass]
 
 # ported from ../../../v3/pg_encoder.py
 class ObjectEncoder
@@ -125,12 +118,23 @@ class ObjectEncoder
   # and as a side effect, update encoded_heap_objects
   def encode(dat)
     if PRIMITIVES.include? dat.class
-      # TODO: handle special primitive values like in the Python version:
-      #   exceptions: float('inf')  -> ['SPECIAL_FLOAT', 'Infinity']
-      #               float('-inf') -> ['SPECIAL_FLOAT', '-Infinity']
-      #               float('nan')  -> ['SPECIAL_FLOAT', 'NaN']
-      #               x == int(x)   -> ['SPECIAL_FLOAT', '%.1f' % x]
-      #               (this way, 3.0 prints as '3.0' and not as 3, which looks like an int)
+      if dat.class == Float
+        if dat == Float::INFINITY
+          return ['SPECIAL_FLOAT', 'Infinity']
+        elsif dat == (-1 * Float::INFINITY)
+          return ['SPECIAL_FLOAT', '-Infinity']
+        elsif dat.nan?
+          return ['SPECIAL_FLOAT', 'NaN']
+        elsif dat == dat.to_i
+          # (this way, 3.0 prints as '3.0' and not as 3, which looks like an int)
+          return ['SPECIAL_FLOAT', '%.1f' % dat]
+        end
+      elsif dat.class == String
+        # annoying! strings are mutable, so need to make
+        # a duplicate to snapshot the current value!
+        return dat.dup
+      end
+
       return dat
     else
       my_id = dat.object_id
@@ -185,12 +189,18 @@ class ObjectEncoder
         new_obj << sups
 
         encoded_constants = []
+        encoded_class_methods = []
         encoded_instance_methods = []
         encoded_class_variables = []
         encoded_instance_variables = []
 
         dat.constants.each do |e|
           encoded_constants << [e.to_s, encode(dat.const_get(e))]
+        end
+
+        my_class_methods = dat.methods - dat.superclass.methods
+        my_class_methods.each do |e|
+          encoded_instance_methods << ['self.' + e.to_s, encode(dat.method(e))]
         end
 
         my_instance_methods = dat.instance_methods - dat.superclass.instance_methods
@@ -371,7 +381,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   end
 
   if tp.event == :raise
-    entry['exception_msg'] = pg_encoder.encode(tp.raised_exception)
+    entry['exception_msg'] = tp.raised_exception
   end
 
   # adapted from https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb

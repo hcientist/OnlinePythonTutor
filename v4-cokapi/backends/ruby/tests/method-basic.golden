@@ -565,20 +565,13 @@
         }
       ],
       "heap": {
-        "10": [
-          "INSTANCE",
-          "NoMethodError"
-        ]
       },
       "globals": {
       },
       "ordered_globals": [
 
       ],
-      "exception_msg": [
-        "REF",
-        10
-      ]
+      "exception_msg": "undefined method `repeat' for main:Object"
     }
   ]
 }

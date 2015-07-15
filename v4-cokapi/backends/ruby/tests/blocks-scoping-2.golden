@@ -712,10 +712,6 @@
           "FUNCTION",
           "gimme",
           ""
-        ],
-        "11": [
-          "INSTANCE",
-          "NameError"
         ]
       },
       "globals": {
@@ -727,10 +723,7 @@
       "ordered_globals": [
         "gimme"
       ],
-      "exception_msg": [
-        "REF",
-        11
-      ]
+      "exception_msg": "undefined local variable or method `y' for main:Object"
     },
     {
       "func_name": "<toplevel>",
@@ -791,7 +784,7 @@
         }
       ],
       "heap": {
-        "12": [
+        "11": [
           "FUNCTION",
           "gimme",
           ""
@@ -800,7 +793,7 @@
       "globals": {
         "gimme": [
           "REF",
-          12
+          11
         ]
       },
       "ordered_globals": [
@@ -851,7 +844,7 @@
         }
       ],
       "heap": {
-        "13": [
+        "12": [
           "FUNCTION",
           "gimme",
           ""
@@ -860,7 +853,7 @@
       "globals": {
         "gimme": [
           "REF",
-          13
+          12
         ]
       },
       "ordered_globals": [

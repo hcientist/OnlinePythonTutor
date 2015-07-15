@@ -2585,33 +2585,6 @@
           "generic_return",
           ""
         ],
-        "40": [
-          "INSTANCE",
-          "LocalJumpError",
-          [
-            "@exit_value",
-            [
-              "REF",
-              41
-            ]
-          ],
-          [
-            "@reason",
-            [
-              "REF",
-              42
-            ]
-          ]
-        ],
-        "41": [
-          "LIST",
-          3,
-          4
-        ],
-        "42": [
-          "Symbol",
-          ":return"
-        ],
         "34": [
           "Proc",
           "Proc on line 16"
@@ -2626,10 +2599,7 @@
       "ordered_globals": [
         "generic_return"
       ],
-      "exception_msg": [
-        "REF",
-        40
-      ]
+      "exception_msg": "unexpected return"
     },
     {
       "func_name": "<toplevel>",
@@ -2704,7 +2674,7 @@
         }
       ],
       "heap": {
-        "43": [
+        "40": [
           "FUNCTION",
           "generic_return",
           ""
@@ -2717,7 +2687,7 @@
       "globals": {
         "generic_return": [
           "REF",
-          43
+          40
         ]
       },
       "ordered_globals": [
@@ -2778,7 +2748,7 @@
         }
       ],
       "heap": {
-        "44": [
+        "41": [
           "FUNCTION",
           "generic_return",
           ""
@@ -2791,7 +2761,7 @@
       "globals": {
         "generic_return": [
           "REF",
-          44
+          41
         ]
       },
       "ordered_globals": [

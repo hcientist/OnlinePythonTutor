@@ -484,9 +484,21 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
             "@@cla",
             6
           ]
+        ],
+        "2": [
+          "FUNCTION",
+          "cla",
+          ""
         ]
       },
       "globals": {
@@ -559,9 +571,33 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
             "@@cla",
             6
           ]
+        ],
+        "3": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "4": [
+          "FUNCTION",
+          "cla=",
+          ""
         ]
       },
       "globals": {
@@ -634,10 +670,24 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              2
+              7
             ]
           ],
           [
@@ -645,7 +695,17 @@
             6
           ]
         ],
-        "2": [
+        "5": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "6": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "7": [
           "FUNCTION",
           "inst",
           ""
@@ -721,17 +781,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              3
+              10
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              4
+              11
             ]
           ],
           [
@@ -739,12 +813,22 @@
             6
           ]
         ],
-        "3": [
+        "8": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "9": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "10": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "4": [
+        "11": [
           "FUNCTION",
           "inst=",
           ""
@@ -800,17 +884,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              5
+              14
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              6
+              15
             ]
           ],
           [
@@ -818,12 +916,22 @@
             6
           ]
         ],
-        "5": [
+        "12": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "13": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "14": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "6": [
+        "15": [
           "FUNCTION",
           "inst=",
           ""
@@ -879,17 +987,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              16
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              17
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              7
+              18
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              8
+              19
             ]
           ],
           [
@@ -897,12 +1019,22 @@
             6
           ]
         ],
-        "7": [
+        "16": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "17": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "18": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "8": [
+        "19": [
           "FUNCTION",
           "inst=",
           ""
@@ -963,7 +1095,7 @@
             "x": 3,
             "self": [
               "REF",
-              11
+              24
             ]
           }
         }
@@ -980,17 +1112,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              20
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              21
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              9
+              22
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              10
+              23
             ]
           ],
           [
@@ -998,17 +1144,27 @@
             6
           ]
         ],
-        "9": [
+        "20": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "21": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "22": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "10": [
+        "23": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar"
         ]
@@ -1068,7 +1224,7 @@
             "x": 3,
             "self": [
               "REF",
-              11
+              24
             ]
           }
         }
@@ -1085,17 +1241,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              25
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              26
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              12
+              27
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              13
+              28
             ]
           ],
           [
@@ -1103,17 +1273,27 @@
             6
           ]
         ],
-        "12": [
+        "25": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "26": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "27": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "13": [
+        "28": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar"
         ]
@@ -1173,7 +1353,7 @@
             "x": 3,
             "self": [
               "REF",
-              11
+              24
             ]
           }
         }
@@ -1190,17 +1370,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              29
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              30
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              14
+              31
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              15
+              32
             ]
           ],
           [
@@ -1208,17 +1402,27 @@
             6
           ]
         ],
-        "14": [
+        "29": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "30": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "31": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "15": [
+        "32": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -1283,7 +1487,7 @@
             "x": 3,
             "self": [
               "REF",
-              11
+              24
             ],
             "__return__": 7
           }
@@ -1301,17 +1505,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              33
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              34
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              16
+              35
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              17
+              36
             ]
           ],
           [
@@ -1319,17 +1537,27 @@
             7
           ]
         ],
-        "16": [
+        "33": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "34": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "35": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "17": [
+        "36": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -1373,7 +1601,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -1391,17 +1619,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              37
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              38
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              18
+              39
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              19
+              40
             ]
           ],
           [
@@ -1409,17 +1651,27 @@
             7
           ]
         ],
-        "18": [
+        "37": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "38": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "39": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "19": [
+        "40": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -1463,7 +1715,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -1501,17 +1753,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              41
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              42
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              20
+              43
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              21
+              44
             ]
           ],
           [
@@ -1519,17 +1785,27 @@
             7
           ]
         ],
-        "20": [
+        "41": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "42": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "43": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "21": [
+        "44": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -1573,7 +1849,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -1611,17 +1887,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              45
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              46
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              22
+              47
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              23
+              48
             ]
           ],
           [
@@ -1629,17 +1919,27 @@
             7
           ]
         ],
-        "22": [
+        "45": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "46": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "47": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "23": [
+        "48": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -1683,7 +1983,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -1723,17 +2023,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              49
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              50
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              24
+              51
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              25
+              52
             ]
           ],
           [
@@ -1741,17 +2055,27 @@
             7
           ]
         ],
-        "24": [
+        "49": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "50": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "51": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "25": [
+        "52": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -1795,7 +2119,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -1813,17 +2137,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              53
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              54
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              26
+              55
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              27
+              56
             ]
           ],
           [
@@ -1831,17 +2169,27 @@
             7
           ]
         ],
-        "26": [
+        "53": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "54": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "55": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "27": [
+        "56": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -1866,7 +2214,7 @@
       "func_name": "<toplevel>",
       "line": 30,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -1885,7 +2233,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -1903,17 +2251,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              57
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              58
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              28
+              59
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              29
+              60
             ]
           ],
           [
@@ -1921,17 +2283,27 @@
             7
           ]
         ],
-        "28": [
+        "57": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "58": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "59": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "29": [
+        "60": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -1956,7 +2328,7 @@
       "func_name": "<toplevel>",
       "line": 16,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -1975,7 +2347,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -2015,17 +2387,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              61
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              62
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              30
+              63
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              31
+              64
             ]
           ],
           [
@@ -2033,17 +2419,27 @@
             7
           ]
         ],
-        "30": [
+        "61": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "62": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "63": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "31": [
+        "64": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -2068,7 +2464,7 @@
       "func_name": "<toplevel>",
       "line": 17,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2087,7 +2483,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -2127,17 +2523,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              65
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              66
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              32
+              67
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              33
+              68
             ]
           ],
           [
@@ -2145,17 +2555,27 @@
             7
           ]
         ],
-        "32": [
+        "65": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "66": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "67": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "33": [
+        "68": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -2180,7 +2600,7 @@
       "func_name": "<toplevel>",
       "line": 18,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2199,7 +2619,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -2241,17 +2661,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              69
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              70
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              34
+              71
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              35
+              72
             ]
           ],
           [
@@ -2259,17 +2693,27 @@
             4
           ]
         ],
-        "34": [
+        "69": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "70": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "71": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "35": [
+        "72": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -2294,7 +2738,7 @@
       "func_name": "<toplevel>",
       "line": 31,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -2313,7 +2757,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -2331,17 +2775,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              73
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              74
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              36
+              75
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              37
+              76
             ]
           ],
           [
@@ -2349,17 +2807,27 @@
             4
           ]
         ],
-        "36": [
+        "73": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "74": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "75": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "37": [
+        "76": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -2384,7 +2852,7 @@
       "func_name": "<toplevel>",
       "line": 22,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2403,7 +2871,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -2426,7 +2894,7 @@
             "i": 8,
             "self": [
               "REF",
-              11
+              24
             ]
           }
         }
@@ -2443,17 +2911,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              77
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              78
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              38
+              79
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              39
+              80
             ]
           ],
           [
@@ -2461,17 +2943,27 @@
             4
           ]
         ],
-        "38": [
+        "77": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "78": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "79": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "39": [
+        "80": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -2496,7 +2988,7 @@
       "func_name": "<toplevel>",
       "line": 23,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2515,7 +3007,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -2538,7 +3030,7 @@
             "i": 8,
             "self": [
               "REF",
-              11
+              24
             ]
           }
         }
@@ -2555,17 +3047,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              81
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              82
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              40
+              83
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              41
+              84
             ]
           ],
           [
@@ -2573,17 +3079,27 @@
             4
           ]
         ],
-        "40": [
+        "81": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "82": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "83": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "41": [
+        "84": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -2608,7 +3124,7 @@
       "func_name": "<toplevel>",
       "line": 24,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2627,7 +3143,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -2651,7 +3167,7 @@
             "i": 8,
             "self": [
               "REF",
-              11
+              24
             ],
             "__return__": 8
           }
@@ -2669,17 +3185,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              85
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              86
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              42
+              87
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              43
+              88
             ]
           ],
           [
@@ -2687,17 +3217,27 @@
             4
           ]
         ],
-        "42": [
+        "85": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "86": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "87": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "43": [
+        "88": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -2722,7 +3262,7 @@
       "func_name": "<toplevel>",
       "line": 32,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -2741,7 +3281,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -2759,17 +3299,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              89
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              90
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              44
+              91
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              45
+              92
             ]
           ],
           [
@@ -2777,17 +3331,27 @@
             4
           ]
         ],
-        "44": [
+        "89": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "90": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "91": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "45": [
+        "92": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -2812,7 +3376,7 @@
       "func_name": "<toplevel>",
       "line": 13,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2831,7 +3395,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -2869,17 +3433,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              93
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              94
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              46
+              95
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              47
+              96
             ]
           ],
           [
@@ -2887,17 +3465,27 @@
             4
           ]
         ],
-        "46": [
+        "93": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "94": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "95": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "47": [
+        "96": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -2922,7 +3510,7 @@
       "func_name": "<toplevel>",
       "line": 14,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2941,7 +3529,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -2979,17 +3567,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              97
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              98
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              48
+              99
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              49
+              100
             ]
           ],
           [
@@ -2997,17 +3599,27 @@
             4
           ]
         ],
-        "48": [
+        "97": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "98": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "99": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "49": [
+        "100": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -3032,7 +3644,7 @@
       "func_name": "<toplevel>",
       "line": 15,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3051,7 +3663,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -3091,17 +3703,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              101
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              102
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              50
+              103
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              51
+              104
             ]
           ],
           [
@@ -3109,17 +3735,27 @@
             4
           ]
         ],
-        "50": [
+        "101": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "102": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "103": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "51": [
+        "104": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -3144,7 +3780,7 @@
       "func_name": "<toplevel>",
       "line": 33,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -3163,7 +3799,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -3181,17 +3817,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              105
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              106
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              52
+              107
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              53
+              108
             ]
           ],
           [
@@ -3199,17 +3849,27 @@
             4
           ]
         ],
-        "52": [
+        "105": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "106": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "107": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "53": [
+        "108": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -3234,7 +3894,7 @@
       "func_name": "<toplevel>",
       "line": 19,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3253,7 +3913,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -3274,7 +3934,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              11
+              24
             ]
           }
         }
@@ -3291,17 +3951,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              109
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              110
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              54
+              111
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              55
+              112
             ]
           ],
           [
@@ -3309,17 +3983,27 @@
             4
           ]
         ],
-        "54": [
+        "109": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "110": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "111": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "55": [
+        "112": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -3344,7 +4028,7 @@
       "func_name": "<toplevel>",
       "line": 20,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3363,7 +4047,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -3384,7 +4068,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              11
+              24
             ]
           }
         }
@@ -3401,17 +4085,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              113
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              114
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              56
+              115
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              57
+              116
             ]
           ],
           [
@@ -3419,17 +4117,27 @@
             4
           ]
         ],
-        "56": [
+        "113": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "114": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "115": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "57": [
+        "116": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -3454,7 +4162,7 @@
       "func_name": "<toplevel>",
       "line": 21,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3473,7 +4181,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -3495,7 +4203,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              11
+              24
             ],
             "__return__": 8
           }
@@ -3513,17 +4221,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              117
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              118
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              58
+              119
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              59
+              120
             ]
           ],
           [
@@ -3531,17 +4253,27 @@
             4
           ]
         ],
-        "58": [
+        "117": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "118": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "119": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "59": [
+        "120": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -3566,7 +4298,7 @@
       "func_name": "<toplevel>",
       "line": 34,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -3585,7 +4317,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -3603,17 +4335,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              121
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              122
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              60
+              123
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              61
+              124
             ]
           ],
           [
@@ -3621,17 +4367,27 @@
             4
           ]
         ],
-        "60": [
+        "121": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "122": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "123": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "61": [
+        "124": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -3656,7 +4412,7 @@
       "func_name": "<toplevel>",
       "line": 9,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3675,7 +4431,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -3698,7 +4454,7 @@
             "x": 17,
             "self": [
               "REF",
-              64
+              129
             ]
           }
         }
@@ -3715,17 +4471,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              125
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              126
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              62
+              127
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              63
+              128
             ]
           ],
           [
@@ -3733,21 +4503,31 @@
             4
           ]
         ],
-        "62": [
+        "125": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "126": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "127": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "63": [
+        "128": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "64": [
+        "129": [
           "INSTANCE",
           "TestVar"
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -3772,7 +4552,7 @@
       "func_name": "<toplevel>",
       "line": 10,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3791,7 +4571,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -3814,7 +4594,7 @@
             "x": 17,
             "self": [
               "REF",
-              64
+              129
             ]
           }
         }
@@ -3831,17 +4611,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              130
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              131
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              65
+              132
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              66
+              133
             ]
           ],
           [
@@ -3849,21 +4643,31 @@
             4
           ]
         ],
-        "65": [
+        "130": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "131": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "132": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "66": [
+        "133": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "64": [
+        "129": [
           "INSTANCE",
           "TestVar"
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -3888,7 +4692,7 @@
       "func_name": "<toplevel>",
       "line": 11,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3907,7 +4711,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -3930,7 +4734,7 @@
             "x": 17,
             "self": [
               "REF",
-              64
+              129
             ]
           }
         }
@@ -3947,17 +4751,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              134
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              135
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              67
+              136
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              68
+              137
             ]
           ],
           [
@@ -3965,17 +4783,27 @@
             4
           ]
         ],
-        "67": [
+        "134": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "135": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "136": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "68": [
+        "137": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "64": [
+        "129": [
           "INSTANCE",
           "TestVar",
           [
@@ -3983,7 +4811,7 @@
             17
           ]
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -4008,7 +4836,7 @@
       "func_name": "<toplevel>",
       "line": 12,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4027,7 +4855,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": null
           }
@@ -4051,7 +4879,7 @@
             "x": 17,
             "self": [
               "REF",
-              64
+              129
             ],
             "__return__": 5
           }
@@ -4069,17 +4897,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              138
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              139
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              69
+              140
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              70
+              141
             ]
           ],
           [
@@ -4087,17 +4929,27 @@
             5
           ]
         ],
-        "69": [
+        "138": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "139": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "140": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "70": [
+        "141": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "64": [
+        "129": [
           "INSTANCE",
           "TestVar",
           [
@@ -4105,7 +4957,7 @@
             17
           ]
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -4130,7 +4982,7 @@
       "func_name": "<toplevel>",
       "line": 35,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -4149,11 +5001,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": [
               "REF",
-              64
+              129
             ]
           }
         }
@@ -4170,17 +5022,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              142
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              143
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              71
+              144
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              72
+              145
             ]
           ],
           [
@@ -4188,17 +5054,27 @@
             5
           ]
         ],
-        "71": [
+        "142": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "143": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "144": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "72": [
+        "145": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -4206,7 +5082,7 @@
             8
           ]
         ],
-        "64": [
+        "129": [
           "INSTANCE",
           "TestVar",
           [
@@ -4231,7 +5107,7 @@
       "func_name": "<toplevel>",
       "line": 36,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n#<TestVar:0x007f5466a2ad20 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n#<TestVar:0x007faeca8cefd0 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -4250,11 +5126,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": [
               "REF",
-              64
+              129
             ]
           }
         }
@@ -4271,17 +5147,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              146
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              147
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              73
+              148
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              74
+              149
             ]
           ],
           [
@@ -4289,17 +5179,27 @@
             5
           ]
         ],
-        "73": [
+        "146": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "147": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "148": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "74": [
+        "149": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -4307,7 +5207,7 @@
             8
           ]
         ],
-        "64": [
+        "129": [
           "INSTANCE",
           "TestVar",
           [
@@ -4332,7 +5232,7 @@
       "func_name": "<toplevel>",
       "line": 13,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n#<TestVar:0x007f5466a2ad20 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n#<TestVar:0x007faeca8cefd0 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4351,11 +5251,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": [
               "REF",
-              64
+              129
             ]
           }
         },
@@ -4392,17 +5292,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              150
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              151
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              75
+              152
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              76
+              153
             ]
           ],
           [
@@ -4410,17 +5324,27 @@
             5
           ]
         ],
-        "75": [
+        "150": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "151": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "152": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "76": [
+        "153": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -4428,7 +5352,7 @@
             8
           ]
         ],
-        "64": [
+        "129": [
           "INSTANCE",
           "TestVar",
           [
@@ -4453,7 +5377,7 @@
       "func_name": "<toplevel>",
       "line": 14,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n#<TestVar:0x007f5466a2ad20 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n#<TestVar:0x007faeca8cefd0 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4472,11 +5396,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": [
               "REF",
-              64
+              129
             ]
           }
         },
@@ -4513,17 +5437,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              154
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              155
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              77
+              156
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              78
+              157
             ]
           ],
           [
@@ -4531,17 +5469,27 @@
             5
           ]
         ],
-        "77": [
+        "154": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "155": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "156": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "78": [
+        "157": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -4549,7 +5497,7 @@
             8
           ]
         ],
-        "64": [
+        "129": [
           "INSTANCE",
           "TestVar",
           [
@@ -4574,7 +5522,7 @@
       "func_name": "<toplevel>",
       "line": 15,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n#<TestVar:0x007f5466a2ad20 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n#<TestVar:0x007faeca8cefd0 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4593,11 +5541,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": [
               "REF",
-              64
+              129
             ]
           }
         },
@@ -4636,17 +5584,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              158
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              159
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              79
+              160
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              80
+              161
             ]
           ],
           [
@@ -4654,17 +5616,27 @@
             5
           ]
         ],
-        "79": [
+        "158": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "159": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "160": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "80": [
+        "161": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -4672,7 +5644,7 @@
             8
           ]
         ],
-        "64": [
+        "129": [
           "INSTANCE",
           "TestVar",
           [
@@ -4697,7 +5669,7 @@
       "func_name": "<toplevel>",
       "line": 36,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f54667b3ec0 @inst=3>\n4\n8\n#<TestVar:0x007f5466a2ad20 @inst=17>\n5\n",
+      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n#<TestVar:0x007faeca8cefd0 @inst=17>\n5\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -4716,11 +5688,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              11
+              24
             ],
             "other": [
               "REF",
-              64
+              129
             ]
           }
         }
@@ -4737,17 +5709,31 @@
             7
           ],
           [
+            "self.cla",
+            [
+              "REF",
+              162
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              163
+            ]
+          ],
+          [
             "inst",
             [
               "REF",
-              81
+              164
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              82
+              165
             ]
           ],
           [
@@ -4755,17 +5741,27 @@
             5
           ]
         ],
-        "81": [
+        "162": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "163": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "164": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "82": [
+        "165": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "11": [
+        "24": [
           "INSTANCE",
           "TestVar",
           [
@@ -4773,7 +5769,7 @@
             8
           ]
         ],
-        "64": [
+        "129": [
           "INSTANCE",
           "TestVar",
           [

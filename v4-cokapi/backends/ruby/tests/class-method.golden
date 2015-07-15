@@ -205,7 +205,19 @@
           "MyClass",
           [
 
+          ],
+          [
+            "self.some_method",
+            [
+              "REF",
+              2
+            ]
           ]
+        ],
+        "2": [
+          "FUNCTION",
+          "some_method",
+          ""
         ]
       },
       "globals": {
@@ -247,7 +259,19 @@
           "MyClass",
           [
 
+          ],
+          [
+            "self.some_method",
+            [
+              "REF",
+              3
+            ]
           ]
+        ],
+        "3": [
+          "FUNCTION",
+          "some_method",
+          ""
         ]
       },
       "globals": {
@@ -309,7 +333,19 @@
           "MyClass",
           [
 
+          ],
+          [
+            "self.some_method",
+            [
+              "REF",
+              4
+            ]
           ]
+        ],
+        "4": [
+          "FUNCTION",
+          "some_method",
+          ""
         ]
       },
       "globals": {
@@ -371,7 +407,19 @@
           "MyClass",
           [
 
+          ],
+          [
+            "self.some_method",
+            [
+              "REF",
+              5
+            ]
           ]
+        ],
+        "5": [
+          "FUNCTION",
+          "some_method",
+          ""
         ]
       },
       "globals": {
@@ -435,7 +483,19 @@
           "MyClass",
           [
 
+          ],
+          [
+            "self.some_method",
+            [
+              "REF",
+              6
+            ]
           ]
+        ],
+        "6": [
+          "FUNCTION",
+          "some_method",
+          ""
         ]
       },
       "globals": {
@@ -477,7 +537,19 @@
           "MyClass",
           [
 
+          ],
+          [
+            "self.some_method",
+            [
+              "REF",
+              7
+            ]
           ]
+        ],
+        "7": [
+          "FUNCTION",
+          "some_method",
+          ""
         ]
       },
       "globals": {

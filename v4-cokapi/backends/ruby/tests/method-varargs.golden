@@ -931,15 +931,8 @@
         "17": [
           "LIST",
           100,
-          [
-            "REF",
-            18
-          ],
+          2.5,
           "three"
-        ],
-        "18": [
-          "INSTANCE",
-          "Float"
         ]
       },
       "globals": {
@@ -1004,7 +997,7 @@
         }
       ],
       "heap": {
-        "19": [
+        "18": [
           "FUNCTION",
           "num_args",
           ""
@@ -1012,21 +1005,14 @@
         "17": [
           "LIST",
           100,
-          [
-            "REF",
-            18
-          ],
+          2.5,
           "three"
-        ],
-        "18": [
-          "INSTANCE",
-          "Float"
         ]
       },
       "globals": {
         "num_args": [
           "REF",
-          19
+          18
         ]
       },
       "ordered_globals": [
@@ -1085,7 +1071,7 @@
         }
       ],
       "heap": {
-        "20": [
+        "19": [
           "FUNCTION",
           "num_args",
           ""
@@ -1093,21 +1079,14 @@
         "17": [
           "LIST",
           100,
-          [
-            "REF",
-            18
-          ],
+          2.5,
           "three"
-        ],
-        "18": [
-          "INSTANCE",
-          "Float"
         ]
       },
       "globals": {
         "num_args": [
           "REF",
-          20
+          19
         ]
       },
       "ordered_globals": [
@@ -1166,7 +1145,7 @@
         }
       ],
       "heap": {
-        "21": [
+        "20": [
           "FUNCTION",
           "num_args",
           ""
@@ -1174,21 +1153,14 @@
         "17": [
           "LIST",
           100,
-          [
-            "REF",
-            18
-          ],
+          2.5,
           "three"
-        ],
-        "18": [
-          "INSTANCE",
-          "Float"
         ]
       },
       "globals": {
         "num_args": [
           "REF",
-          21
+          20
         ]
       },
       "ordered_globals": [
@@ -1249,7 +1221,7 @@
         }
       ],
       "heap": {
-        "22": [
+        "21": [
           "FUNCTION",
           "num_args",
           ""
@@ -1257,21 +1229,14 @@
         "17": [
           "LIST",
           100,
-          [
-            "REF",
-            18
-          ],
+          2.5,
           "three"
-        ],
-        "18": [
-          "INSTANCE",
-          "Float"
         ]
       },
       "globals": {
         "num_args": [
           "REF",
-          22
+          21
         ]
       },
       "ordered_globals": [
@@ -1302,7 +1267,7 @@
         }
       ],
       "heap": {
-        "23": [
+        "22": [
           "FUNCTION",
           "num_args",
           ""
@@ -1311,7 +1276,7 @@
       "globals": {
         "num_args": [
           "REF",
-          23
+          22
         ]
       },
       "ordered_globals": [
