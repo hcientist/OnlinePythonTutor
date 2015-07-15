@@ -15,16 +15,40 @@ MAINTAINER Philip Guo <philip@pgbovine.net>
 # http://stackoverflow.com/questions/24991136/docker-build-could-not-resolve-archive-ubuntu-com-apt-get-fails-to-install-a
 # Uncomment the following line in /etc/default/docker DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4"
 # Restart the Docker service sudo service docker restart
+#
+# lots of packages required especially to build ruby and to use the compiled version of 'gem'
 RUN apt-get update && apt-get install -y \
   nodejs \
   openjdk-7-jdk \
-  python
+  python \
+  build-essential \
+  zlibc \
+  zlib1g \
+  zlib1g-dev \
+  libssl-dev
+
 
 # ugh ubuntu calls node 'nodejs'
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 
-# Java backend (put first in Dockerfile since it doesn't change as
+# Ruby backend: pretty complex setup since we need to compile and
+# install a custom Ruby interpreter
+#
+# run all of this stuff early so that we don't invalidate the cache
+RUN mkdir /tmp/ruby
+# automatically untars
+ADD backends/ruby/custom-ruby-interpreter/ruby-2.2.2.tar.gz /tmp/ruby
+ADD backends/ruby/custom-ruby-interpreter/altered-files /tmp/ruby/ruby-2.2.2
+RUN mkdir /tmp/ruby/ruby-2.2.2-custom-OPT/
+RUN cd /tmp/ruby/ruby-2.2.2 && ./configure --prefix=/tmp/ruby/ruby-2.2.2-custom-OPT/
+# beware takes a long time! so make sure we cache the build
+RUN cd /tmp/ruby/ruby-2.2.2 && make && make install
+# install custom gem
+RUN /tmp/ruby/ruby-2.2.2-custom-OPT/bin/gem install debug_inspector
+
+
+# Java backend (put early in Dockerfile since it doesn't change as
 # frequently and takes longer to build)
 RUN mkdir /tmp/java_jail
 RUN mkdir /tmp/java_jail/cp
@@ -47,31 +71,8 @@ ADD backends/python /tmp/python
 COPY backends/java/run-java-backend.sh /tmp/
 RUN chmod a+x /tmp/run-java-backend.sh
 
-RUN useradd netuser
 
-
-# Ruby backend: pretty complex setup since we need to compile and
-# install a custom Ruby interpreter
-
-# lots of packages required to build ruby and to use the compiled version of 'gem'
-RUN apt-get update && apt-get install -y \
-  build-essential \
-  zlibc \
-  zlib1g \
-  zlib1g-dev \
-  libssl-dev
-
-RUN mkdir /tmp/ruby
-# automatically untars
-ADD backends/ruby/custom-ruby-interpreter/ruby-2.2.2.tar.gz /tmp/ruby
-ADD backends/ruby/custom-ruby-interpreter/altered-files /tmp/ruby/ruby-2.2.2
-RUN mkdir /tmp/ruby/ruby-2.2.2-custom-OPT/
-RUN cd /tmp/ruby/ruby-2.2.2 && ./configure --prefix=/tmp/ruby/ruby-2.2.2-custom-OPT/
-# beware takes a long time! so make sure we cache the build
-RUN cd /tmp/ruby/ruby-2.2.2 && make && make install
-# install custom gem
-RUN /tmp/ruby/ruby-2.2.2-custom-OPT/bin/gem install debug_inspector
-
+# Ruby backend
 COPY backends/ruby/pg_logger.rb /tmp/ruby/
 
 # To properly run tests, become root:
@@ -80,3 +81,5 @@ COPY backends/ruby/golden_test.py /tmp/ruby/
 RUN mkdir /tmp/ruby/tests
 ADD backends/ruby/tests /tmp/ruby/tests
 RUN cd /tmp/ruby && ln -s ruby-2.2.2-custom-OPT/bin/ruby
+
+RUN useradd netuser

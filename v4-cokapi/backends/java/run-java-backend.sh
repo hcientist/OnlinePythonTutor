@@ -8,6 +8,8 @@
 # tricky! use a heredoc to pipe the $1 argument into the stdin of the
 # java executable WITHOUT interpreting escape chars such as '\n' ...
 # echo doesn't work here since it interprets '\n' and other chars
-cat <<ENDEND | java -Xmx512m -cp /tmp/java_jail/cp:/tmp/java_jail/cp/javax.json-1.0.jar:/usr/lib/jvm/java-7-openjdk-amd64/lib/tools.jar:/tmp/java_jail/cp/visualizer-stdlib traceprinter.InMemory
+#
+# TODO: use -Xmx512m if we need more memory
+cat <<ENDEND | java -Xmx384m -cp /tmp/java_jail/cp:/tmp/java_jail/cp/javax.json-1.0.jar:/usr/lib/jvm/java-7-openjdk-amd64/lib/tools.jar:/tmp/java_jail/cp/visualizer-stdlib traceprinter.InMemory
 $1
 ENDEND
