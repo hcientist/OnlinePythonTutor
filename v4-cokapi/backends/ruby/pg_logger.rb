@@ -163,7 +163,7 @@ class ObjectEncoder
         new_obj << 'SET'
         dat.each { |e| new_obj << encode(e) }
       elsif dat.class == Range || dat.class == Symbol || dat.class == Regexp
-        # display these simple types as-is
+        # display these simple types as-is without any frills
         new_obj << dat.class.to_s
         new_obj << dat.inspect
       elsif dat.class == Method || dat.class == UnboundMethod
@@ -198,7 +198,7 @@ class ObjectEncoder
 
         my_class_methods = dat.methods - dat.superclass.methods
         my_class_methods.each do |e|
-          encoded_instance_methods << ['self.' + e.to_s, encode(dat.method(e))]
+          encoded_class_methods << ['self.' + e.to_s, encode(dat.method(e))]
         end
 
         my_instance_methods = dat.instance_methods - dat.superclass.instance_methods
@@ -217,6 +217,7 @@ class ObjectEncoder
         end
 
         new_obj.concat(encoded_constants)
+        new_obj.concat(encoded_class_methods)
         new_obj.concat(encoded_instance_methods)
         new_obj.concat(encoded_class_variables)
         new_obj.concat(encoded_instance_variables)
