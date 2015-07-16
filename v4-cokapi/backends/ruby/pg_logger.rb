@@ -9,17 +9,10 @@
 
 # TODO
 #
-# - display the 'binding' within a proc/lambda object, which represents
-#   its closure. see tests/proc-return.rb
-#
 # - support gets() for taking user input using the restart hack mechanism
 #   that we used for Python. user input stored in $_
 #
 # Limitations/quirks:
-# - no support yet for (lexical) environment pointers, since MRI doesn't
-#   seem to expose them. We can see only the current (dynamic) stack
-#   backtrace with debug_inspector.
-#   - NB: is this true? at least we have 'binding' for procs/lambdas
 #
 # - code keeps executing for a few more lines after an exception;
 #   dunno if that's standard Ruby behavior or not
@@ -302,6 +295,8 @@ class ObjectEncoder
   end
 end
 
+# do NOT rename this anything other than pg_encoder since we refer to it
+# later by name
 pg_encoder = ObjectEncoder.new
 
 
@@ -316,6 +311,8 @@ base_class_vars_set = Object.class_variables # toplevel class variables are set 
 base_methods_set  = Object.private_methods # toplevel defined methods are set on 'Object'
 
 
+# do NOT rename this anything other than pg_tracer since we refer to it
+# later by name
 pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_return) do |tp|
   next if tp.path != '(eval)' # 'next' is a 'return' from a block
 
@@ -455,6 +452,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
         stack_entry['is_zombie'] = false
         stack_entry['parent_frame_id_list'] = []
 
+        # these include only your own frame's locals
         lvs = iseq_local_variables(iseq)
         lvs_val = lvs.inject({}){|r, lv|
           begin
@@ -463,11 +461,37 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
           rescue NameError
             # ignore
           end
-          r
+          r # very important!
         }
 
         stack_entry['ordered_varnames'] = lvs.map { |e| e.to_s }
         stack_entry['encoded_locals'] = lvs_val
+
+        # handle closures ...
+        # these also include variables captured in lexical parents' frames!!!
+        all_local_vars = b.local_variables
+
+        # OK this is RIDICULOUSLY RIDICULOUSLY hacky. if this frame is
+        # defined at the toplevel, then its parent frame will include
+        # pg_tracer and pg_encoder, which is defined in THIS VERY FILE!!!
+        # if that's the case, then totally punt since we don't want to
+        # print out spurious data that's not even in the user's program.
+        # ughhh this is sooooooo hacky!
+        if (!all_local_vars.include?(:pg_tracer) &&
+            !all_local_vars.include?(:pg_encoder))
+          parent_frame_local_vars = (all_local_vars - lvs)
+          parent_lvs_val = parent_frame_local_vars.inject(lvs_val){|r, lv|
+            begin
+              varname = 'parent:' + lv.to_s
+              v = b.local_variable_get(lv)
+              r[varname] = pg_encoder.encode(v)
+              stack_entry['ordered_varnames'] << varname
+            rescue NameError
+              # ignore
+            end
+            r # very important!
+          }
+        end
 
         # get the value of 'self' as seen by this frame
         my_self = b.eval('self')

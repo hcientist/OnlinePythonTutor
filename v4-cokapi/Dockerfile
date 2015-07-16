@@ -74,12 +74,12 @@ RUN chmod a+x /tmp/run-java-backend.sh
 
 # Ruby backend
 COPY backends/ruby/pg_logger.rb /tmp/ruby/
-
-# To properly run tests, become root:
-# $ docker run -t -i --rm --net=none --cap-drop all pgbovine/cokapi:v1 bash
-COPY backends/ruby/golden_test.py /tmp/ruby/
-RUN mkdir /tmp/ruby/tests
-ADD backends/ruby/tests /tmp/ruby/tests
 RUN cd /tmp/ruby && ln -s ruby-2.2.2-custom-OPT/bin/ruby
+
+# To properly run Ruby tests, become root:
+# $ docker run -t -i --rm --net=none --cap-drop all pgbovine/cokapi:v1 bash
+#COPY backends/ruby/golden_test.py /tmp/ruby/
+#RUN mkdir /tmp/ruby/tests
+#ADD backends/ruby/tests /tmp/ruby/tests
 
 RUN useradd netuser
