@@ -1,5 +1,6 @@
 # Ruby backend for Online "Python" Tutor
 # created on 2015-06-29 by Philip Guo
+# first deployed on 2015-07-15
 #
 # WARNING: this script only works on a *hacked version* of Ruby 2.X since
 # we use the TracePoint API and custom fields such as binding::frame_id.
@@ -10,40 +11,25 @@
 
 # TODO
 #
-# fix these tests:
-#
-# in frontend, maybe '=' isn't a valid CSS selector. also escape '?' too
-#   tests/blocks-iterate.rb
-#
-# - test syntax errors in the OPT frontend
 # - display the 'binding' within a proc/lambda object, which represents
 #   https://codequizzes.wordpress.com/2014/04/07/rubys-self-keyword-and-implicit-self/
 #   its closure. test on tests/proc-return.rb
-# - support gets() for user input using the restart hack mechanism
-#   - user input stored in $_
-# - support 'include'-ing a module and bringing in variables into namespace
-#   - maybe this already works?
-# - cosmetic issues in the OPT frontend for Ruby:
-#   - relabel "Global frame" as "Globals" or something
-#   - display None values as 'nil'
-#   - display booleans as 'true' and 'false'
-#   - rename 'list' to 'array' - check
-#   - rename 'dict' to 'hash' - check
-#   - rename 'instance' to 'object' - check
-#   - rename 'function' to 'method' - check
-# - display private and protected attributes
+#
+# - support gets() for taking user input using the restart hack mechanism
+#   that we used for Python. user input stored in $_
+#
+# - properly display private and protected attributes
 #
 # Limitations/quirks:
-# - no support for (lexical) environment pointers, since MRI doesn't seem to
-#   expose them. We can see only the current (dynamic) stack backtrace
-#   with debug_inspector.
+# - no support yet for (lexical) environment pointers, since MRI doesn't
+#   seem to expose them. We can see only the current (dynamic) stack
+#   backtrace with debug_inspector.
 #   - NB: is this true? at least we have 'binding' for procs/lambdas
 #
-# - keeps executing for a few more lines after an exception -- dunno if
+# - it keeps executing for a few more lines after an exception -- dunno if
 #   that's standard Ruby behavior or not
 #
-# - method aliases show up as separate Method objects instead of the
-#   same one
+# - method aliases show up as separate Method objects instead of the same one
 #
 # - if you write, say, "require 'date'", it will pull in classes from
 #   the date module into globals, which might make the display HUGE
@@ -366,7 +352,6 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   toplevel_constants = (Module.constants - base_constants_set) # set difference
   entry['ordered_globals'].concat(toplevel_constants.map { |e| e.to_s })
   toplevel_constants.each do |varname|
-    #val = eval(varname.to_s) # TODO: is there a better way? this seems hacky! # yes, see below
     val = Module.const_get(varname)
     globals[varname.to_s] = pg_encoder.encode(val)
   end
@@ -527,7 +512,7 @@ begin
     n_lines_added = 1
   else
     cod << "\nnil"
-    n_lines_added = 2
+    n_lines_added = 1 # pretty sure this is 1 and not 2
   end
 
   eval(cod) # the filename of the user's code is '(eval)'

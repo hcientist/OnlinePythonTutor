@@ -1,7 +1,3 @@
-SyntaxError -- blarrrggg!!!
-(eval):10: syntax error, unexpected end-of-input, expecting keyword_end
-10
-syntax error, unexpected end-of-input, expecting keyword_end
 {
   "code": "def say_hi\n  if @names.nil?\n    puts \"...\"\n  else if @names.respond_to?(\"each\") # 'else if' is wrong\n    @names.each do |name|\n      puts \"Hello #{name}!\"\n    end\n  end\nend\n",
   "trace": [
