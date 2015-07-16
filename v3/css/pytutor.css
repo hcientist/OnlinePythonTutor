@@ -347,8 +347,8 @@ div.ExecutionVisualizer td.funcCod {
 div.ExecutionVisualizer table.dictTbl td.dictKey,
 div.ExecutionVisualizer table.instTbl td.instKey,
 div.ExecutionVisualizer table.classTbl td.classKey {
-  padding-top: 12px /*15px*/;
-  padding-bottom: 5px;
+  padding-top: 6px /*15px*/;
+  padding-bottom: 6px;
   padding-left: 10px;
   padding-right: 4px;
 
