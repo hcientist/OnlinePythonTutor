@@ -3,11 +3,9 @@
 # first deployed on 2015-07-15
 #
 # WARNING: this script only works on a *hacked version* of Ruby 2.X since
-# we use the TracePoint API and custom fields such as binding::frame_id.
+# we use the TracePoint API (standard in 2.X) and custom fields such as
+# binding::frame_id (only available in our hacked version).
 # See custom-ruby-interpreter/ for details.
-
-# simple Ruby idiom for assert:
-# raise "error msg" unless <condition to assert>
 
 # TODO
 #
@@ -17,18 +15,14 @@
 # - support gets() for taking user input using the restart hack mechanism
 #   that we used for Python. user input stored in $_
 #
-# - properly display private and protected attributes
-#
 # Limitations/quirks:
 # - no support yet for (lexical) environment pointers, since MRI doesn't
 #   seem to expose them. We can see only the current (dynamic) stack
 #   backtrace with debug_inspector.
 #   - NB: is this true? at least we have 'binding' for procs/lambdas
 #
-# - it keeps executing for a few more lines after an exception -- dunno if
-#   that's standard Ruby behavior or not
-#
-# - method aliases show up as separate Method objects instead of the same one
+# - code keeps executing for a few more lines after an exception;
+#   dunno if that's standard Ruby behavior or not
 #
 # - if you write, say, "require 'date'", it will pull in classes from
 #   the date module into globals, which might make the display HUGE
@@ -202,13 +196,32 @@ class ObjectEncoder
           encoded_class_methods << ['self.' + e.to_s, encode(dat.method(e))]
         end
 
-        dat.instance_methods.each do |e|
+        # apparently there are no protected class methods
+        my_private_class_methods = dat.private_methods - dat.superclass.private_methods
+        my_private_class_methods.each do |e|
+          encoded_class_methods << ['self.' + e.to_s + ' [private]', encode(dat.method(e))]
+        end
+
+        # separately handle public, protected, and private
+        dat.public_instance_methods.each do |e|
           m = dat.instance_method(e)
           # only add if this method belongs to YOU and not to a superclass
           if m.owner == dat
             # use instance_method to get the unbound method
             # http://ruby-doc.org/core-2.2.0/UnboundMethod.html
             encoded_instance_methods << [e.to_s, encode(m)]
+          end
+        end
+        dat.protected_instance_methods.each do |e|
+          m = dat.instance_method(e)
+          if m.owner == dat
+            encoded_instance_methods << [e.to_s + ' [protected]', encode(m)]
+          end
+        end
+        dat.private_instance_methods.each do |e|
+          m = dat.instance_method(e)
+          if m.owner == dat
+            encoded_instance_methods << [e.to_s + ' [private]', encode(m)]
           end
         end
 
