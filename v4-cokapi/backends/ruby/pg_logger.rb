@@ -534,7 +534,6 @@ begin
   pg_tracer.disable
 rescue SyntaxError
   $stdout = STDOUT
-  puts "SyntaxError -- blarrrggg!!!"
   exc_object = $!
 
   raw_exc_message = exc_object.message
@@ -545,10 +544,6 @@ rescue SyntaxError
   /[:](\d+)[:] (.*)$/ =~ raw_exc_message
   lineno = $1.to_i
   exc_message = $2
-
-  puts raw_exc_message
-  puts lineno
-  puts exc_message
 
   # From: https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-format.md
   # "If the trace has exactly 1 entry and it's an uncaught_exception, then
