@@ -533,7 +533,7 @@ div.ExecutionVisualizer div#heapHeader {
 div.ExecutionVisualizer div#langDisplayDiv {
   text-align: center;
   margin-top: 2pt;
-  margin-bottom: 5pt;
+  margin-bottom: 3pt;
 }
 
 div.ExecutionVisualizer div#langDisplayDiv,
