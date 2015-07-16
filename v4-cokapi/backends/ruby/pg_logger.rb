@@ -12,8 +12,7 @@
 # TODO
 #
 # - display the 'binding' within a proc/lambda object, which represents
-#   https://codequizzes.wordpress.com/2014/04/07/rubys-self-keyword-and-implicit-self/
-#   its closure. test on tests/proc-return.rb
+#   its closure. see tests/proc-return.rb
 #
 # - support gets() for taking user input using the restart hack mechanism
 #   that we used for Python. user input stored in $_
@@ -35,8 +34,6 @@
 #   the date module into globals, which might make the display HUGE
 #   with way too many attributes. this is a general problem that
 #   manifests in other languages as well.
-
-# style guide: https://github.com/styleguide/ruby
 
 
 require 'json'
@@ -198,16 +195,21 @@ class ObjectEncoder
           encoded_constants << [e.to_s, encode(dat.const_get(e))]
         end
 
+        # TODO: what about if you override a class method that your
+        # superclass defines? will we run into problems then?
         my_class_methods = dat.methods - dat.superclass.methods
         my_class_methods.each do |e|
           encoded_class_methods << ['self.' + e.to_s, encode(dat.method(e))]
         end
 
-        my_instance_methods = dat.instance_methods - dat.superclass.instance_methods
-        my_instance_methods.each do |e|
-          # use instance_method to get the unbound method
-          # http://ruby-doc.org/core-2.2.0/UnboundMethod.html
-          encoded_instance_methods << [e.to_s, encode(dat.instance_method(e))]
+        dat.instance_methods.each do |e|
+          m = dat.instance_method(e)
+          # only add if this method belongs to YOU and not to a superclass
+          if m.owner == dat
+            # use instance_method to get the unbound method
+            # http://ruby-doc.org/core-2.2.0/UnboundMethod.html
+            encoded_instance_methods << [e.to_s, encode(m)]
+          end
         end
 
         dat.class_variables.each do |e|

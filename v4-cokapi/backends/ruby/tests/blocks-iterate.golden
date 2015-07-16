@@ -99,822 +99,640 @@
             ]
           ],
           [
-            "to_a",
+            "inspect",
             [
               "REF",
               4
             ]
           ],
           [
-            "to_h",
+            "to_s",
             [
               "REF",
               5
             ]
           ],
           [
-            "to_ary",
+            "to_a",
             [
               "REF",
               6
             ]
           ],
           [
-            "[]",
+            "to_h",
             [
               "REF",
               7
             ]
           ],
           [
-            "[]=",
+            "to_ary",
             [
               "REF",
               8
             ]
           ],
           [
-            "at",
+            "frozen?",
             [
               "REF",
               9
             ]
           ],
           [
-            "fetch",
+            "==",
             [
               "REF",
               10
             ]
           ],
           [
-            "first",
+            "eql?",
             [
               "REF",
               11
             ]
           ],
           [
-            "last",
+            "hash",
             [
               "REF",
               12
             ]
           ],
           [
-            "concat",
+            "[]",
             [
               "REF",
               13
             ]
           ],
           [
-            "<<",
+            "[]=",
             [
               "REF",
               14
             ]
           ],
           [
-            "push",
+            "at",
             [
               "REF",
               15
             ]
           ],
           [
-            "pop",
+            "fetch",
             [
               "REF",
               16
             ]
           ],
           [
-            "shift",
+            "first",
             [
               "REF",
               17
             ]
           ],
           [
-            "unshift",
+            "last",
             [
               "REF",
               18
             ]
           ],
           [
-            "insert",
+            "concat",
             [
               "REF",
               19
             ]
           ],
           [
-            "each",
+            "<<",
             [
               "REF",
               20
             ]
           ],
           [
-            "each_index",
+            "push",
             [
               "REF",
               21
             ]
           ],
           [
-            "reverse_each",
+            "pop",
             [
               "REF",
               22
             ]
           ],
           [
-            "length",
+            "shift",
             [
               "REF",
               23
             ]
           ],
           [
-            "size",
+            "unshift",
             [
               "REF",
               24
             ]
           ],
           [
-            "empty?",
+            "insert",
             [
               "REF",
               25
             ]
           ],
           [
-            "find_index",
+            "each",
             [
               "REF",
               26
             ]
           ],
           [
-            "index",
+            "each_index",
             [
               "REF",
               27
             ]
           ],
           [
-            "rindex",
+            "reverse_each",
             [
               "REF",
               28
             ]
           ],
           [
-            "join",
+            "length",
             [
               "REF",
               29
             ]
           ],
           [
-            "reverse",
+            "size",
             [
               "REF",
               30
             ]
           ],
           [
-            "reverse!",
+            "empty?",
             [
               "REF",
               31
             ]
           ],
           [
-            "rotate",
+            "find_index",
             [
               "REF",
               32
             ]
           ],
           [
-            "rotate!",
+            "index",
             [
               "REF",
               33
             ]
           ],
           [
-            "sort",
+            "rindex",
             [
               "REF",
               34
             ]
           ],
           [
-            "sort!",
+            "join",
             [
               "REF",
               35
             ]
           ],
           [
-            "sort_by!",
+            "reverse",
             [
               "REF",
               36
             ]
           ],
           [
-            "collect",
+            "reverse!",
             [
               "REF",
               37
             ]
           ],
           [
-            "collect!",
+            "rotate",
             [
               "REF",
               38
             ]
           ],
           [
-            "map",
+            "rotate!",
             [
               "REF",
               39
             ]
           ],
           [
-            "map!",
+            "sort",
             [
               "REF",
               40
             ]
           ],
           [
-            "select",
+            "sort!",
             [
               "REF",
               41
             ]
           ],
           [
-            "select!",
+            "sort_by!",
             [
               "REF",
               42
             ]
           ],
           [
-            "keep_if",
+            "collect",
             [
               "REF",
               43
             ]
           ],
           [
-            "values_at",
+            "collect!",
             [
               "REF",
               44
             ]
           ],
           [
-            "delete",
+            "map",
             [
               "REF",
               45
             ]
           ],
           [
-            "delete_at",
+            "map!",
             [
               "REF",
               46
             ]
           ],
           [
-            "delete_if",
+            "select",
             [
               "REF",
               47
             ]
           ],
           [
-            "reject",
+            "select!",
             [
               "REF",
               48
             ]
           ],
           [
-            "reject!",
+            "keep_if",
             [
               "REF",
               49
             ]
           ],
           [
-            "zip",
+            "values_at",
             [
               "REF",
               50
             ]
           ],
           [
-            "transpose",
+            "delete",
             [
               "REF",
               51
             ]
           ],
           [
-            "replace",
+            "delete_at",
             [
               "REF",
               52
             ]
           ],
           [
-            "clear",
+            "delete_if",
             [
               "REF",
               53
             ]
           ],
           [
-            "fill",
+            "reject",
             [
               "REF",
               54
             ]
           ],
           [
-            "include?",
+            "reject!",
             [
               "REF",
               55
             ]
           ],
           [
-            "slice",
+            "zip",
             [
               "REF",
               56
             ]
           ],
           [
-            "slice!",
+            "transpose",
             [
               "REF",
               57
             ]
           ],
           [
-            "assoc",
+            "replace",
             [
               "REF",
               58
             ]
           ],
           [
-            "rassoc",
+            "clear",
             [
               "REF",
               59
             ]
           ],
           [
-            "+",
+            "fill",
             [
               "REF",
               60
             ]
           ],
           [
-            "*",
+            "include?",
             [
               "REF",
               61
             ]
           ],
           [
-            "-",
+            "<=>",
             [
               "REF",
               62
             ]
           ],
           [
-            "&",
+            "slice",
             [
               "REF",
               63
             ]
           ],
           [
-            "|",
+            "slice!",
             [
               "REF",
               64
             ]
           ],
           [
-            "uniq",
+            "assoc",
             [
               "REF",
               65
             ]
           ],
           [
-            "uniq!",
+            "rassoc",
             [
               "REF",
               66
             ]
           ],
           [
-            "compact",
+            "+",
             [
               "REF",
               67
             ]
           ],
           [
-            "compact!",
+            "*",
             [
               "REF",
               68
             ]
           ],
           [
-            "flatten",
+            "-",
             [
               "REF",
               69
             ]
           ],
           [
-            "flatten!",
+            "&",
             [
               "REF",
               70
             ]
           ],
           [
-            "count",
+            "|",
             [
               "REF",
               71
             ]
           ],
           [
-            "shuffle!",
+            "uniq",
             [
               "REF",
               72
             ]
           ],
           [
-            "shuffle",
+            "uniq!",
             [
               "REF",
               73
             ]
           ],
           [
-            "sample",
+            "compact",
             [
               "REF",
               74
             ]
           ],
           [
-            "cycle",
+            "compact!",
             [
               "REF",
               75
             ]
           ],
           [
-            "permutation",
+            "flatten",
             [
               "REF",
               76
             ]
           ],
           [
-            "combination",
+            "flatten!",
             [
               "REF",
               77
             ]
           ],
           [
-            "repeated_permutation",
+            "count",
             [
               "REF",
               78
             ]
           ],
           [
-            "repeated_combination",
+            "shuffle!",
             [
               "REF",
               79
             ]
           ],
           [
-            "product",
+            "shuffle",
             [
               "REF",
               80
             ]
           ],
           [
-            "take",
+            "sample",
             [
               "REF",
               81
             ]
           ],
           [
-            "take_while",
+            "cycle",
             [
               "REF",
               82
             ]
           ],
           [
-            "drop",
+            "permutation",
             [
               "REF",
               83
             ]
           ],
           [
-            "drop_while",
+            "combination",
             [
               "REF",
               84
             ]
           ],
           [
-            "bsearch",
+            "repeated_permutation",
             [
               "REF",
               85
             ]
           ],
           [
-            "any?",
+            "repeated_combination",
             [
               "REF",
               86
             ]
           ],
           [
-            "pack",
+            "product",
             [
               "REF",
               87
             ]
           ],
           [
-            "entries",
+            "take",
             [
               "REF",
               88
             ]
           ],
           [
-            "sort_by",
+            "take_while",
             [
               "REF",
               89
             ]
           ],
           [
-            "grep",
+            "drop",
             [
               "REF",
               90
             ]
           ],
           [
-            "find",
+            "drop_while",
             [
               "REF",
               91
             ]
           ],
           [
-            "detect",
+            "bsearch",
             [
               "REF",
               92
             ]
           ],
           [
-            "find_all",
+            "any?",
             [
               "REF",
               93
             ]
           ],
           [
-            "flat_map",
+            "pack",
             [
               "REF",
               94
-            ]
-          ],
-          [
-            "collect_concat",
-            [
-              "REF",
-              95
-            ]
-          ],
-          [
-            "inject",
-            [
-              "REF",
-              96
-            ]
-          ],
-          [
-            "reduce",
-            [
-              "REF",
-              97
-            ]
-          ],
-          [
-            "partition",
-            [
-              "REF",
-              98
-            ]
-          ],
-          [
-            "group_by",
-            [
-              "REF",
-              99
-            ]
-          ],
-          [
-            "all?",
-            [
-              "REF",
-              100
-            ]
-          ],
-          [
-            "one?",
-            [
-              "REF",
-              101
-            ]
-          ],
-          [
-            "none?",
-            [
-              "REF",
-              102
-            ]
-          ],
-          [
-            "min",
-            [
-              "REF",
-              103
-            ]
-          ],
-          [
-            "max",
-            [
-              "REF",
-              104
-            ]
-          ],
-          [
-            "minmax",
-            [
-              "REF",
-              105
-            ]
-          ],
-          [
-            "min_by",
-            [
-              "REF",
-              106
-            ]
-          ],
-          [
-            "max_by",
-            [
-              "REF",
-              107
-            ]
-          ],
-          [
-            "minmax_by",
-            [
-              "REF",
-              108
-            ]
-          ],
-          [
-            "member?",
-            [
-              "REF",
-              109
-            ]
-          ],
-          [
-            "each_with_index",
-            [
-              "REF",
-              110
-            ]
-          ],
-          [
-            "each_entry",
-            [
-              "REF",
-              111
-            ]
-          ],
-          [
-            "each_slice",
-            [
-              "REF",
-              112
-            ]
-          ],
-          [
-            "each_cons",
-            [
-              "REF",
-              113
-            ]
-          ],
-          [
-            "each_with_object",
-            [
-              "REF",
-              114
-            ]
-          ],
-          [
-            "chunk",
-            [
-              "REF",
-              115
-            ]
-          ],
-          [
-            "slice_before",
-            [
-              "REF",
-              116
-            ]
-          ],
-          [
-            "slice_after",
-            [
-              "REF",
-              117
-            ]
-          ],
-          [
-            "slice_when",
-            [
-              "REF",
-              118
-            ]
-          ],
-          [
-            "lazy",
-            [
-              "REF",
-              119
-            ]
-          ],
-          [
-            "to_set",
-            [
-              "REF",
-              120
             ]
           ]
         ],
@@ -930,587 +748,457 @@
         ],
         "4": [
           "FUNCTION",
-          "to_a",
+          "inspect",
           ""
         ],
         "5": [
           "FUNCTION",
-          "to_h",
+          "to_s",
           ""
         ],
         "6": [
           "FUNCTION",
-          "to_ary",
+          "to_a",
           ""
         ],
         "7": [
           "FUNCTION",
-          "[]",
+          "to_h",
           ""
         ],
         "8": [
           "FUNCTION",
-          "[]=",
+          "to_ary",
           ""
         ],
         "9": [
           "FUNCTION",
-          "at",
+          "frozen?",
           ""
         ],
         "10": [
           "FUNCTION",
-          "fetch",
+          "==",
           ""
         ],
         "11": [
           "FUNCTION",
-          "first",
+          "eql?",
           ""
         ],
         "12": [
           "FUNCTION",
-          "last",
+          "hash",
           ""
         ],
         "13": [
           "FUNCTION",
-          "concat",
+          "[]",
           ""
         ],
         "14": [
           "FUNCTION",
-          "<<",
+          "[]=",
           ""
         ],
         "15": [
           "FUNCTION",
-          "push",
+          "at",
           ""
         ],
         "16": [
           "FUNCTION",
-          "pop",
+          "fetch",
           ""
         ],
         "17": [
           "FUNCTION",
-          "shift",
+          "first",
           ""
         ],
         "18": [
           "FUNCTION",
-          "unshift",
+          "last",
           ""
         ],
         "19": [
           "FUNCTION",
-          "insert",
+          "concat",
           ""
         ],
         "20": [
           "FUNCTION",
-          "each",
+          "<<",
           ""
         ],
         "21": [
           "FUNCTION",
-          "each_index",
+          "push",
           ""
         ],
         "22": [
           "FUNCTION",
-          "reverse_each",
+          "pop",
           ""
         ],
         "23": [
           "FUNCTION",
-          "length",
+          "shift",
           ""
         ],
         "24": [
           "FUNCTION",
-          "size",
+          "unshift",
           ""
         ],
         "25": [
           "FUNCTION",
-          "empty?",
+          "insert",
           ""
         ],
         "26": [
           "FUNCTION",
-          "find_index",
+          "each",
           ""
         ],
         "27": [
           "FUNCTION",
-          "index",
+          "each_index",
           ""
         ],
         "28": [
           "FUNCTION",
-          "rindex",
+          "reverse_each",
           ""
         ],
         "29": [
           "FUNCTION",
-          "join",
+          "length",
           ""
         ],
         "30": [
           "FUNCTION",
-          "reverse",
+          "size",
           ""
         ],
         "31": [
           "FUNCTION",
-          "reverse!",
+          "empty?",
           ""
         ],
         "32": [
           "FUNCTION",
-          "rotate",
+          "find_index",
           ""
         ],
         "33": [
           "FUNCTION",
-          "rotate!",
+          "index",
           ""
         ],
         "34": [
           "FUNCTION",
-          "sort",
+          "rindex",
           ""
         ],
         "35": [
           "FUNCTION",
-          "sort!",
+          "join",
           ""
         ],
         "36": [
           "FUNCTION",
-          "sort_by!",
+          "reverse",
           ""
         ],
         "37": [
           "FUNCTION",
-          "collect",
+          "reverse!",
           ""
         ],
         "38": [
           "FUNCTION",
-          "collect!",
+          "rotate",
           ""
         ],
         "39": [
           "FUNCTION",
-          "map",
+          "rotate!",
           ""
         ],
         "40": [
           "FUNCTION",
-          "map!",
+          "sort",
           ""
         ],
         "41": [
           "FUNCTION",
-          "select",
+          "sort!",
           ""
         ],
         "42": [
           "FUNCTION",
-          "select!",
+          "sort_by!",
           ""
         ],
         "43": [
           "FUNCTION",
-          "keep_if",
+          "collect",
           ""
         ],
         "44": [
           "FUNCTION",
-          "values_at",
+          "collect!",
           ""
         ],
         "45": [
           "FUNCTION",
-          "delete",
+          "map",
           ""
         ],
         "46": [
           "FUNCTION",
-          "delete_at",
+          "map!",
           ""
         ],
         "47": [
           "FUNCTION",
-          "delete_if",
+          "select",
           ""
         ],
         "48": [
           "FUNCTION",
-          "reject",
+          "select!",
           ""
         ],
         "49": [
           "FUNCTION",
-          "reject!",
+          "keep_if",
           ""
         ],
         "50": [
           "FUNCTION",
-          "zip",
+          "values_at",
           ""
         ],
         "51": [
           "FUNCTION",
-          "transpose",
+          "delete",
           ""
         ],
         "52": [
           "FUNCTION",
-          "replace",
+          "delete_at",
           ""
         ],
         "53": [
           "FUNCTION",
-          "clear",
+          "delete_if",
           ""
         ],
         "54": [
           "FUNCTION",
-          "fill",
+          "reject",
           ""
         ],
         "55": [
           "FUNCTION",
-          "include?",
+          "reject!",
           ""
         ],
         "56": [
           "FUNCTION",
-          "slice",
+          "zip",
           ""
         ],
         "57": [
           "FUNCTION",
-          "slice!",
+          "transpose",
           ""
         ],
         "58": [
           "FUNCTION",
-          "assoc",
+          "replace",
           ""
         ],
         "59": [
           "FUNCTION",
-          "rassoc",
+          "clear",
           ""
         ],
         "60": [
           "FUNCTION",
-          "+",
+          "fill",
           ""
         ],
         "61": [
           "FUNCTION",
-          "*",
+          "include?",
           ""
         ],
         "62": [
           "FUNCTION",
-          "-",
+          "<=>",
           ""
         ],
         "63": [
           "FUNCTION",
-          "&",
+          "slice",
           ""
         ],
         "64": [
           "FUNCTION",
-          "|",
+          "slice!",
           ""
         ],
         "65": [
           "FUNCTION",
-          "uniq",
+          "assoc",
           ""
         ],
         "66": [
           "FUNCTION",
-          "uniq!",
+          "rassoc",
           ""
         ],
         "67": [
           "FUNCTION",
-          "compact",
+          "+",
           ""
         ],
         "68": [
           "FUNCTION",
-          "compact!",
+          "*",
           ""
         ],
         "69": [
           "FUNCTION",
-          "flatten",
+          "-",
           ""
         ],
         "70": [
           "FUNCTION",
-          "flatten!",
+          "&",
           ""
         ],
         "71": [
           "FUNCTION",
-          "count",
+          "|",
           ""
         ],
         "72": [
           "FUNCTION",
-          "shuffle!",
+          "uniq",
           ""
         ],
         "73": [
           "FUNCTION",
-          "shuffle",
+          "uniq!",
           ""
         ],
         "74": [
           "FUNCTION",
-          "sample",
+          "compact",
           ""
         ],
         "75": [
           "FUNCTION",
-          "cycle",
+          "compact!",
           ""
         ],
         "76": [
           "FUNCTION",
-          "permutation",
+          "flatten",
           ""
         ],
         "77": [
           "FUNCTION",
-          "combination",
+          "flatten!",
           ""
         ],
         "78": [
           "FUNCTION",
-          "repeated_permutation",
+          "count",
           ""
         ],
         "79": [
           "FUNCTION",
-          "repeated_combination",
+          "shuffle!",
           ""
         ],
         "80": [
           "FUNCTION",
-          "product",
+          "shuffle",
           ""
         ],
         "81": [
           "FUNCTION",
-          "take",
+          "sample",
           ""
         ],
         "82": [
           "FUNCTION",
-          "take_while",
+          "cycle",
           ""
         ],
         "83": [
           "FUNCTION",
-          "drop",
+          "permutation",
           ""
         ],
         "84": [
           "FUNCTION",
-          "drop_while",
+          "combination",
           ""
         ],
         "85": [
           "FUNCTION",
-          "bsearch",
+          "repeated_permutation",
           ""
         ],
         "86": [
           "FUNCTION",
-          "any?",
+          "repeated_combination",
           ""
         ],
         "87": [
           "FUNCTION",
-          "pack",
+          "product",
           ""
         ],
         "88": [
           "FUNCTION",
-          "entries",
+          "take",
           ""
         ],
         "89": [
           "FUNCTION",
-          "sort_by",
+          "take_while",
           ""
         ],
         "90": [
           "FUNCTION",
-          "grep",
+          "drop",
           ""
         ],
         "91": [
           "FUNCTION",
-          "find",
+          "drop_while",
           ""
         ],
         "92": [
           "FUNCTION",
-          "detect",
+          "bsearch",
           ""
         ],
         "93": [
           "FUNCTION",
-          "find_all",
+          "any?",
           ""
         ],
         "94": [
           "FUNCTION",
-          "flat_map",
-          ""
-        ],
-        "95": [
-          "FUNCTION",
-          "collect_concat",
-          ""
-        ],
-        "96": [
-          "FUNCTION",
-          "inject",
-          ""
-        ],
-        "97": [
-          "FUNCTION",
-          "reduce",
-          ""
-        ],
-        "98": [
-          "FUNCTION",
-          "partition",
-          ""
-        ],
-        "99": [
-          "FUNCTION",
-          "group_by",
-          ""
-        ],
-        "100": [
-          "FUNCTION",
-          "all?",
-          ""
-        ],
-        "101": [
-          "FUNCTION",
-          "one?",
-          ""
-        ],
-        "102": [
-          "FUNCTION",
-          "none?",
-          ""
-        ],
-        "103": [
-          "FUNCTION",
-          "min",
-          ""
-        ],
-        "104": [
-          "FUNCTION",
-          "max",
-          ""
-        ],
-        "105": [
-          "FUNCTION",
-          "minmax",
-          ""
-        ],
-        "106": [
-          "FUNCTION",
-          "min_by",
-          ""
-        ],
-        "107": [
-          "FUNCTION",
-          "max_by",
-          ""
-        ],
-        "108": [
-          "FUNCTION",
-          "minmax_by",
-          ""
-        ],
-        "109": [
-          "FUNCTION",
-          "member?",
-          ""
-        ],
-        "110": [
-          "FUNCTION",
-          "each_with_index",
-          ""
-        ],
-        "111": [
-          "FUNCTION",
-          "each_entry",
-          ""
-        ],
-        "112": [
-          "FUNCTION",
-          "each_slice",
-          ""
-        ],
-        "113": [
-          "FUNCTION",
-          "each_cons",
-          ""
-        ],
-        "114": [
-          "FUNCTION",
-          "each_with_object",
-          ""
-        ],
-        "115": [
-          "FUNCTION",
-          "chunk",
-          ""
-        ],
-        "116": [
-          "FUNCTION",
-          "slice_before",
-          ""
-        ],
-        "117": [
-          "FUNCTION",
-          "slice_after",
-          ""
-        ],
-        "118": [
-          "FUNCTION",
-          "slice_when",
-          ""
-        ],
-        "119": [
-          "FUNCTION",
-          "lazy",
-          ""
-        ],
-        "120": [
-          "FUNCTION",
-          "to_set",
+          "pack",
           ""
         ]
       },
@@ -1575,1429 +1263,1117 @@
             "self.[]",
             [
               "REF",
-              121
+              95
             ]
           ],
           [
             "self.try_convert",
             [
               "REF",
-              122
+              96
+            ]
+          ],
+          [
+            "inspect",
+            [
+              "REF",
+              97
+            ]
+          ],
+          [
+            "to_s",
+            [
+              "REF",
+              98
             ]
           ],
           [
             "to_a",
             [
               "REF",
-              123
+              99
             ]
           ],
           [
             "to_h",
             [
               "REF",
-              124
+              100
             ]
           ],
           [
             "to_ary",
             [
               "REF",
-              125
+              101
+            ]
+          ],
+          [
+            "frozen?",
+            [
+              "REF",
+              102
+            ]
+          ],
+          [
+            "==",
+            [
+              "REF",
+              103
+            ]
+          ],
+          [
+            "eql?",
+            [
+              "REF",
+              104
+            ]
+          ],
+          [
+            "hash",
+            [
+              "REF",
+              105
             ]
           ],
           [
             "[]",
             [
               "REF",
-              126
+              106
             ]
           ],
           [
             "[]=",
             [
               "REF",
-              127
+              107
             ]
           ],
           [
             "at",
             [
               "REF",
-              128
+              108
             ]
           ],
           [
             "fetch",
             [
               "REF",
-              129
+              109
             ]
           ],
           [
             "first",
             [
               "REF",
-              130
+              110
             ]
           ],
           [
             "last",
             [
               "REF",
-              131
+              111
             ]
           ],
           [
             "concat",
             [
               "REF",
-              132
+              112
             ]
           ],
           [
             "<<",
             [
               "REF",
-              133
+              113
             ]
           ],
           [
             "push",
             [
               "REF",
-              134
+              114
             ]
           ],
           [
             "pop",
             [
               "REF",
-              135
+              115
             ]
           ],
           [
             "shift",
             [
               "REF",
-              136
+              116
             ]
           ],
           [
             "unshift",
             [
               "REF",
-              137
+              117
             ]
           ],
           [
             "insert",
             [
               "REF",
-              138
+              118
             ]
           ],
           [
             "each",
             [
               "REF",
-              139
+              119
             ]
           ],
           [
             "each_index",
             [
               "REF",
-              140
+              120
             ]
           ],
           [
             "reverse_each",
             [
               "REF",
-              141
+              121
             ]
           ],
           [
             "length",
             [
               "REF",
-              142
+              122
             ]
           ],
           [
             "size",
             [
               "REF",
-              143
+              123
             ]
           ],
           [
             "empty?",
             [
               "REF",
-              144
+              124
             ]
           ],
           [
             "find_index",
             [
               "REF",
-              145
+              125
             ]
           ],
           [
             "index",
             [
               "REF",
-              146
+              126
             ]
           ],
           [
             "rindex",
             [
               "REF",
-              147
+              127
             ]
           ],
           [
             "join",
             [
               "REF",
-              148
+              128
             ]
           ],
           [
             "reverse",
             [
               "REF",
-              149
+              129
             ]
           ],
           [
             "reverse!",
             [
               "REF",
-              150
+              130
             ]
           ],
           [
             "rotate",
             [
               "REF",
-              151
+              131
             ]
           ],
           [
             "rotate!",
             [
               "REF",
-              152
+              132
             ]
           ],
           [
             "sort",
             [
               "REF",
-              153
+              133
             ]
           ],
           [
             "sort!",
             [
               "REF",
-              154
+              134
             ]
           ],
           [
             "sort_by!",
             [
               "REF",
-              155
+              135
             ]
           ],
           [
             "collect",
             [
               "REF",
-              156
+              136
             ]
           ],
           [
             "collect!",
             [
               "REF",
-              157
+              137
             ]
           ],
           [
             "map",
             [
               "REF",
-              158
+              138
             ]
           ],
           [
             "map!",
             [
               "REF",
-              159
+              139
             ]
           ],
           [
             "select",
             [
               "REF",
-              160
+              140
             ]
           ],
           [
             "select!",
             [
               "REF",
-              161
+              141
             ]
           ],
           [
             "keep_if",
             [
               "REF",
-              162
+              142
             ]
           ],
           [
             "values_at",
             [
               "REF",
-              163
+              143
             ]
           ],
           [
             "delete",
             [
               "REF",
-              164
+              144
             ]
           ],
           [
             "delete_at",
             [
               "REF",
-              165
+              145
             ]
           ],
           [
             "delete_if",
             [
               "REF",
-              166
+              146
             ]
           ],
           [
             "reject",
             [
               "REF",
-              167
+              147
             ]
           ],
           [
             "reject!",
             [
               "REF",
-              168
+              148
             ]
           ],
           [
             "zip",
             [
               "REF",
-              169
+              149
             ]
           ],
           [
             "transpose",
             [
               "REF",
-              170
+              150
             ]
           ],
           [
             "replace",
             [
               "REF",
-              171
+              151
             ]
           ],
           [
             "clear",
             [
               "REF",
-              172
+              152
             ]
           ],
           [
             "fill",
             [
               "REF",
-              173
+              153
             ]
           ],
           [
             "include?",
             [
               "REF",
-              174
+              154
+            ]
+          ],
+          [
+            "<=>",
+            [
+              "REF",
+              155
             ]
           ],
           [
             "slice",
             [
               "REF",
-              175
+              156
             ]
           ],
           [
             "slice!",
             [
               "REF",
-              176
+              157
             ]
           ],
           [
             "assoc",
             [
               "REF",
-              177
+              158
             ]
           ],
           [
             "rassoc",
             [
               "REF",
-              178
+              159
             ]
           ],
           [
             "+",
             [
               "REF",
-              179
+              160
             ]
           ],
           [
             "*",
             [
               "REF",
-              180
+              161
             ]
           ],
           [
             "-",
             [
               "REF",
-              181
+              162
             ]
           ],
           [
             "&",
             [
               "REF",
-              182
+              163
             ]
           ],
           [
             "|",
             [
               "REF",
-              183
+              164
             ]
           ],
           [
             "uniq",
             [
               "REF",
-              184
+              165
             ]
           ],
           [
             "uniq!",
             [
               "REF",
-              185
+              166
             ]
           ],
           [
             "compact",
             [
               "REF",
-              186
+              167
             ]
           ],
           [
             "compact!",
             [
               "REF",
-              187
+              168
             ]
           ],
           [
             "flatten",
             [
               "REF",
-              188
+              169
             ]
           ],
           [
             "flatten!",
             [
               "REF",
-              189
+              170
             ]
           ],
           [
             "count",
             [
               "REF",
-              190
+              171
             ]
           ],
           [
             "shuffle!",
             [
               "REF",
-              191
+              172
             ]
           ],
           [
             "shuffle",
             [
               "REF",
-              192
+              173
             ]
           ],
           [
             "sample",
             [
               "REF",
-              193
+              174
             ]
           ],
           [
             "cycle",
             [
               "REF",
-              194
+              175
             ]
           ],
           [
             "permutation",
             [
               "REF",
-              195
+              176
             ]
           ],
           [
             "combination",
             [
               "REF",
-              196
+              177
             ]
           ],
           [
             "repeated_permutation",
             [
               "REF",
-              197
+              178
             ]
           ],
           [
             "repeated_combination",
             [
               "REF",
-              198
+              179
             ]
           ],
           [
             "product",
             [
               "REF",
-              199
+              180
             ]
           ],
           [
             "take",
             [
               "REF",
-              200
+              181
             ]
           ],
           [
             "take_while",
             [
               "REF",
-              201
+              182
             ]
           ],
           [
             "drop",
             [
               "REF",
-              202
+              183
             ]
           ],
           [
             "drop_while",
             [
               "REF",
-              203
+              184
             ]
           ],
           [
             "bsearch",
             [
               "REF",
-              204
+              185
             ]
           ],
           [
             "any?",
             [
               "REF",
-              205
+              186
             ]
           ],
           [
             "pack",
             [
               "REF",
-              206
-            ]
-          ],
-          [
-            "entries",
-            [
-              "REF",
-              207
-            ]
-          ],
-          [
-            "sort_by",
-            [
-              "REF",
-              208
-            ]
-          ],
-          [
-            "grep",
-            [
-              "REF",
-              209
-            ]
-          ],
-          [
-            "find",
-            [
-              "REF",
-              210
-            ]
-          ],
-          [
-            "detect",
-            [
-              "REF",
-              211
-            ]
-          ],
-          [
-            "find_all",
-            [
-              "REF",
-              212
-            ]
-          ],
-          [
-            "flat_map",
-            [
-              "REF",
-              213
-            ]
-          ],
-          [
-            "collect_concat",
-            [
-              "REF",
-              214
-            ]
-          ],
-          [
-            "inject",
-            [
-              "REF",
-              215
-            ]
-          ],
-          [
-            "reduce",
-            [
-              "REF",
-              216
-            ]
-          ],
-          [
-            "partition",
-            [
-              "REF",
-              217
-            ]
-          ],
-          [
-            "group_by",
-            [
-              "REF",
-              218
-            ]
-          ],
-          [
-            "all?",
-            [
-              "REF",
-              219
-            ]
-          ],
-          [
-            "one?",
-            [
-              "REF",
-              220
-            ]
-          ],
-          [
-            "none?",
-            [
-              "REF",
-              221
-            ]
-          ],
-          [
-            "min",
-            [
-              "REF",
-              222
-            ]
-          ],
-          [
-            "max",
-            [
-              "REF",
-              223
-            ]
-          ],
-          [
-            "minmax",
-            [
-              "REF",
-              224
-            ]
-          ],
-          [
-            "min_by",
-            [
-              "REF",
-              225
-            ]
-          ],
-          [
-            "max_by",
-            [
-              "REF",
-              226
-            ]
-          ],
-          [
-            "minmax_by",
-            [
-              "REF",
-              227
-            ]
-          ],
-          [
-            "member?",
-            [
-              "REF",
-              228
-            ]
-          ],
-          [
-            "each_with_index",
-            [
-              "REF",
-              229
-            ]
-          ],
-          [
-            "each_entry",
-            [
-              "REF",
-              230
-            ]
-          ],
-          [
-            "each_slice",
-            [
-              "REF",
-              231
-            ]
-          ],
-          [
-            "each_cons",
-            [
-              "REF",
-              232
-            ]
-          ],
-          [
-            "each_with_object",
-            [
-              "REF",
-              233
-            ]
-          ],
-          [
-            "chunk",
-            [
-              "REF",
-              234
-            ]
-          ],
-          [
-            "slice_before",
-            [
-              "REF",
-              235
-            ]
-          ],
-          [
-            "slice_after",
-            [
-              "REF",
-              236
-            ]
-          ],
-          [
-            "slice_when",
-            [
-              "REF",
-              237
-            ]
-          ],
-          [
-            "lazy",
-            [
-              "REF",
-              238
-            ]
-          ],
-          [
-            "to_set",
-            [
-              "REF",
-              239
+              187
             ]
           ]
         ],
-        "121": [
+        "95": [
           "FUNCTION",
           "[]",
           ""
         ],
-        "122": [
+        "96": [
           "FUNCTION",
           "try_convert",
           ""
         ],
-        "123": [
+        "97": [
+          "FUNCTION",
+          "inspect",
+          ""
+        ],
+        "98": [
+          "FUNCTION",
+          "to_s",
+          ""
+        ],
+        "99": [
           "FUNCTION",
           "to_a",
           ""
         ],
-        "124": [
+        "100": [
           "FUNCTION",
           "to_h",
           ""
         ],
-        "125": [
+        "101": [
           "FUNCTION",
           "to_ary",
           ""
         ],
-        "126": [
+        "102": [
+          "FUNCTION",
+          "frozen?",
+          ""
+        ],
+        "103": [
+          "FUNCTION",
+          "==",
+          ""
+        ],
+        "104": [
+          "FUNCTION",
+          "eql?",
+          ""
+        ],
+        "105": [
+          "FUNCTION",
+          "hash",
+          ""
+        ],
+        "106": [
           "FUNCTION",
           "[]",
           ""
         ],
-        "127": [
+        "107": [
           "FUNCTION",
           "[]=",
           ""
         ],
-        "128": [
+        "108": [
           "FUNCTION",
           "at",
           ""
         ],
-        "129": [
+        "109": [
           "FUNCTION",
           "fetch",
           ""
         ],
-        "130": [
+        "110": [
           "FUNCTION",
           "first",
           ""
         ],
-        "131": [
+        "111": [
           "FUNCTION",
           "last",
           ""
         ],
-        "132": [
+        "112": [
           "FUNCTION",
           "concat",
           ""
         ],
-        "133": [
+        "113": [
           "FUNCTION",
           "<<",
           ""
         ],
-        "134": [
+        "114": [
           "FUNCTION",
           "push",
           ""
         ],
-        "135": [
+        "115": [
           "FUNCTION",
           "pop",
           ""
         ],
-        "136": [
+        "116": [
           "FUNCTION",
           "shift",
           ""
         ],
-        "137": [
+        "117": [
           "FUNCTION",
           "unshift",
           ""
         ],
-        "138": [
+        "118": [
           "FUNCTION",
           "insert",
           ""
         ],
-        "139": [
+        "119": [
           "FUNCTION",
           "each",
           ""
         ],
-        "140": [
+        "120": [
           "FUNCTION",
           "each_index",
           ""
         ],
-        "141": [
+        "121": [
           "FUNCTION",
           "reverse_each",
           ""
         ],
-        "142": [
+        "122": [
           "FUNCTION",
           "length",
           ""
         ],
-        "143": [
+        "123": [
           "FUNCTION",
           "size",
           ""
         ],
-        "144": [
+        "124": [
           "FUNCTION",
           "empty?",
           ""
         ],
-        "145": [
+        "125": [
           "FUNCTION",
           "find_index",
           ""
         ],
-        "146": [
+        "126": [
           "FUNCTION",
           "index",
           ""
         ],
-        "147": [
+        "127": [
           "FUNCTION",
           "rindex",
           ""
         ],
-        "148": [
+        "128": [
           "FUNCTION",
           "join",
           ""
         ],
-        "149": [
+        "129": [
           "FUNCTION",
           "reverse",
           ""
         ],
-        "150": [
+        "130": [
           "FUNCTION",
           "reverse!",
           ""
         ],
-        "151": [
+        "131": [
           "FUNCTION",
           "rotate",
           ""
         ],
-        "152": [
+        "132": [
           "FUNCTION",
           "rotate!",
           ""
         ],
-        "153": [
+        "133": [
           "FUNCTION",
           "sort",
           ""
         ],
-        "154": [
+        "134": [
           "FUNCTION",
           "sort!",
           ""
         ],
-        "155": [
+        "135": [
           "FUNCTION",
           "sort_by!",
           ""
         ],
-        "156": [
+        "136": [
           "FUNCTION",
           "collect",
           ""
         ],
-        "157": [
+        "137": [
           "FUNCTION",
           "collect!",
           ""
         ],
-        "158": [
+        "138": [
           "FUNCTION",
           "map",
           ""
         ],
-        "159": [
+        "139": [
           "FUNCTION",
           "map!",
           ""
         ],
-        "160": [
+        "140": [
           "FUNCTION",
           "select",
           ""
         ],
-        "161": [
+        "141": [
           "FUNCTION",
           "select!",
           ""
         ],
-        "162": [
+        "142": [
           "FUNCTION",
           "keep_if",
           ""
         ],
-        "163": [
+        "143": [
           "FUNCTION",
           "values_at",
           ""
         ],
-        "164": [
+        "144": [
           "FUNCTION",
           "delete",
           ""
         ],
-        "165": [
+        "145": [
           "FUNCTION",
           "delete_at",
           ""
         ],
-        "166": [
+        "146": [
           "FUNCTION",
           "delete_if",
           ""
         ],
-        "167": [
+        "147": [
           "FUNCTION",
           "reject",
           ""
         ],
-        "168": [
+        "148": [
           "FUNCTION",
           "reject!",
           ""
         ],
-        "169": [
+        "149": [
           "FUNCTION",
           "zip",
           ""
         ],
-        "170": [
+        "150": [
           "FUNCTION",
           "transpose",
           ""
         ],
-        "171": [
+        "151": [
           "FUNCTION",
           "replace",
           ""
         ],
-        "172": [
+        "152": [
           "FUNCTION",
           "clear",
           ""
         ],
-        "173": [
+        "153": [
           "FUNCTION",
           "fill",
           ""
         ],
-        "174": [
+        "154": [
           "FUNCTION",
           "include?",
           ""
         ],
-        "175": [
+        "155": [
+          "FUNCTION",
+          "<=>",
+          ""
+        ],
+        "156": [
           "FUNCTION",
           "slice",
           ""
         ],
-        "176": [
+        "157": [
           "FUNCTION",
           "slice!",
           ""
         ],
-        "177": [
+        "158": [
           "FUNCTION",
           "assoc",
           ""
         ],
-        "178": [
+        "159": [
           "FUNCTION",
           "rassoc",
           ""
         ],
-        "179": [
+        "160": [
           "FUNCTION",
           "+",
           ""
         ],
-        "180": [
+        "161": [
           "FUNCTION",
           "*",
           ""
         ],
-        "181": [
+        "162": [
           "FUNCTION",
           "-",
           ""
         ],
-        "182": [
+        "163": [
           "FUNCTION",
           "&",
           ""
         ],
-        "183": [
+        "164": [
           "FUNCTION",
           "|",
           ""
         ],
-        "184": [
+        "165": [
           "FUNCTION",
           "uniq",
           ""
         ],
-        "185": [
+        "166": [
           "FUNCTION",
           "uniq!",
           ""
         ],
-        "186": [
+        "167": [
           "FUNCTION",
           "compact",
           ""
         ],
-        "187": [
+        "168": [
           "FUNCTION",
           "compact!",
           ""
         ],
-        "188": [
+        "169": [
           "FUNCTION",
           "flatten",
           ""
         ],
-        "189": [
+        "170": [
           "FUNCTION",
           "flatten!",
           ""
         ],
-        "190": [
+        "171": [
           "FUNCTION",
           "count",
           ""
         ],
-        "191": [
+        "172": [
           "FUNCTION",
           "shuffle!",
           ""
         ],
-        "192": [
+        "173": [
           "FUNCTION",
           "shuffle",
           ""
         ],
-        "193": [
+        "174": [
           "FUNCTION",
           "sample",
           ""
         ],
-        "194": [
+        "175": [
           "FUNCTION",
           "cycle",
           ""
         ],
-        "195": [
+        "176": [
           "FUNCTION",
           "permutation",
           ""
         ],
-        "196": [
+        "177": [
           "FUNCTION",
           "combination",
           ""
         ],
-        "197": [
+        "178": [
           "FUNCTION",
           "repeated_permutation",
           ""
         ],
-        "198": [
+        "179": [
           "FUNCTION",
           "repeated_combination",
           ""
         ],
-        "199": [
+        "180": [
           "FUNCTION",
           "product",
           ""
         ],
-        "200": [
+        "181": [
           "FUNCTION",
           "take",
           ""
         ],
-        "201": [
+        "182": [
           "FUNCTION",
           "take_while",
           ""
         ],
-        "202": [
+        "183": [
           "FUNCTION",
           "drop",
           ""
         ],
-        "203": [
+        "184": [
           "FUNCTION",
           "drop_while",
           ""
         ],
-        "204": [
+        "185": [
           "FUNCTION",
           "bsearch",
           ""
         ],
-        "205": [
+        "186": [
           "FUNCTION",
           "any?",
           ""
         ],
-        "206": [
+        "187": [
           "FUNCTION",
           "pack",
-          ""
-        ],
-        "207": [
-          "FUNCTION",
-          "entries",
-          ""
-        ],
-        "208": [
-          "FUNCTION",
-          "sort_by",
-          ""
-        ],
-        "209": [
-          "FUNCTION",
-          "grep",
-          ""
-        ],
-        "210": [
-          "FUNCTION",
-          "find",
-          ""
-        ],
-        "211": [
-          "FUNCTION",
-          "detect",
-          ""
-        ],
-        "212": [
-          "FUNCTION",
-          "find_all",
-          ""
-        ],
-        "213": [
-          "FUNCTION",
-          "flat_map",
-          ""
-        ],
-        "214": [
-          "FUNCTION",
-          "collect_concat",
-          ""
-        ],
-        "215": [
-          "FUNCTION",
-          "inject",
-          ""
-        ],
-        "216": [
-          "FUNCTION",
-          "reduce",
-          ""
-        ],
-        "217": [
-          "FUNCTION",
-          "partition",
-          ""
-        ],
-        "218": [
-          "FUNCTION",
-          "group_by",
-          ""
-        ],
-        "219": [
-          "FUNCTION",
-          "all?",
-          ""
-        ],
-        "220": [
-          "FUNCTION",
-          "one?",
-          ""
-        ],
-        "221": [
-          "FUNCTION",
-          "none?",
-          ""
-        ],
-        "222": [
-          "FUNCTION",
-          "min",
-          ""
-        ],
-        "223": [
-          "FUNCTION",
-          "max",
-          ""
-        ],
-        "224": [
-          "FUNCTION",
-          "minmax",
-          ""
-        ],
-        "225": [
-          "FUNCTION",
-          "min_by",
-          ""
-        ],
-        "226": [
-          "FUNCTION",
-          "max_by",
-          ""
-        ],
-        "227": [
-          "FUNCTION",
-          "minmax_by",
-          ""
-        ],
-        "228": [
-          "FUNCTION",
-          "member?",
-          ""
-        ],
-        "229": [
-          "FUNCTION",
-          "each_with_index",
-          ""
-        ],
-        "230": [
-          "FUNCTION",
-          "each_entry",
-          ""
-        ],
-        "231": [
-          "FUNCTION",
-          "each_slice",
-          ""
-        ],
-        "232": [
-          "FUNCTION",
-          "each_cons",
-          ""
-        ],
-        "233": [
-          "FUNCTION",
-          "each_with_object",
-          ""
-        ],
-        "234": [
-          "FUNCTION",
-          "chunk",
-          ""
-        ],
-        "235": [
-          "FUNCTION",
-          "slice_before",
-          ""
-        ],
-        "236": [
-          "FUNCTION",
-          "slice_after",
-          ""
-        ],
-        "237": [
-          "FUNCTION",
-          "slice_when",
-          ""
-        ],
-        "238": [
-          "FUNCTION",
-          "lazy",
-          ""
-        ],
-        "239": [
-          "FUNCTION",
-          "to_set",
           ""
         ]
       },
@@ -3062,1441 +2438,1129 @@
             "self.[]",
             [
               "REF",
-              240
+              188
             ]
           ],
           [
             "self.try_convert",
             [
               "REF",
-              241
+              189
+            ]
+          ],
+          [
+            "inspect",
+            [
+              "REF",
+              190
+            ]
+          ],
+          [
+            "to_s",
+            [
+              "REF",
+              191
             ]
           ],
           [
             "to_a",
             [
               "REF",
-              242
+              192
             ]
           ],
           [
             "to_h",
             [
               "REF",
-              243
+              193
             ]
           ],
           [
             "to_ary",
             [
               "REF",
-              244
+              194
+            ]
+          ],
+          [
+            "frozen?",
+            [
+              "REF",
+              195
+            ]
+          ],
+          [
+            "==",
+            [
+              "REF",
+              196
+            ]
+          ],
+          [
+            "eql?",
+            [
+              "REF",
+              197
+            ]
+          ],
+          [
+            "hash",
+            [
+              "REF",
+              198
             ]
           ],
           [
             "[]",
             [
               "REF",
-              245
+              199
             ]
           ],
           [
             "[]=",
             [
               "REF",
-              246
+              200
             ]
           ],
           [
             "at",
             [
               "REF",
-              247
+              201
             ]
           ],
           [
             "fetch",
             [
               "REF",
-              248
+              202
             ]
           ],
           [
             "first",
             [
               "REF",
-              249
+              203
             ]
           ],
           [
             "last",
             [
               "REF",
-              250
+              204
             ]
           ],
           [
             "concat",
             [
               "REF",
-              251
+              205
             ]
           ],
           [
             "<<",
             [
               "REF",
-              252
+              206
             ]
           ],
           [
             "push",
             [
               "REF",
-              253
+              207
             ]
           ],
           [
             "pop",
             [
               "REF",
-              254
+              208
             ]
           ],
           [
             "shift",
             [
               "REF",
-              255
+              209
             ]
           ],
           [
             "unshift",
             [
               "REF",
-              256
+              210
             ]
           ],
           [
             "insert",
             [
               "REF",
-              257
+              211
             ]
           ],
           [
             "each",
             [
               "REF",
-              258
+              212
             ]
           ],
           [
             "each_index",
             [
               "REF",
-              259
+              213
             ]
           ],
           [
             "reverse_each",
             [
               "REF",
-              260
+              214
             ]
           ],
           [
             "length",
             [
               "REF",
-              261
+              215
             ]
           ],
           [
             "size",
             [
               "REF",
-              262
+              216
             ]
           ],
           [
             "empty?",
             [
               "REF",
-              263
+              217
             ]
           ],
           [
             "find_index",
             [
               "REF",
-              264
+              218
             ]
           ],
           [
             "index",
             [
               "REF",
-              265
+              219
             ]
           ],
           [
             "rindex",
             [
               "REF",
-              266
+              220
             ]
           ],
           [
             "join",
             [
               "REF",
-              267
+              221
             ]
           ],
           [
             "reverse",
             [
               "REF",
-              268
+              222
             ]
           ],
           [
             "reverse!",
             [
               "REF",
-              269
+              223
             ]
           ],
           [
             "rotate",
             [
               "REF",
-              270
+              224
             ]
           ],
           [
             "rotate!",
             [
               "REF",
-              271
+              225
             ]
           ],
           [
             "sort",
             [
               "REF",
-              272
+              226
             ]
           ],
           [
             "sort!",
             [
               "REF",
-              273
+              227
             ]
           ],
           [
             "sort_by!",
             [
               "REF",
-              274
+              228
             ]
           ],
           [
             "collect",
             [
               "REF",
-              275
+              229
             ]
           ],
           [
             "collect!",
             [
               "REF",
-              276
+              230
             ]
           ],
           [
             "map",
             [
               "REF",
-              277
+              231
             ]
           ],
           [
             "map!",
             [
               "REF",
-              278
+              232
             ]
           ],
           [
             "select",
             [
               "REF",
-              279
+              233
             ]
           ],
           [
             "select!",
             [
               "REF",
-              280
+              234
             ]
           ],
           [
             "keep_if",
             [
               "REF",
-              281
+              235
             ]
           ],
           [
             "values_at",
             [
               "REF",
-              282
+              236
             ]
           ],
           [
             "delete",
             [
               "REF",
-              283
+              237
             ]
           ],
           [
             "delete_at",
             [
               "REF",
-              284
+              238
             ]
           ],
           [
             "delete_if",
             [
               "REF",
-              285
+              239
             ]
           ],
           [
             "reject",
             [
               "REF",
-              286
+              240
             ]
           ],
           [
             "reject!",
             [
               "REF",
-              287
+              241
             ]
           ],
           [
             "zip",
             [
               "REF",
-              288
+              242
             ]
           ],
           [
             "transpose",
             [
               "REF",
-              289
+              243
             ]
           ],
           [
             "replace",
             [
               "REF",
-              290
+              244
             ]
           ],
           [
             "clear",
             [
               "REF",
-              291
+              245
             ]
           ],
           [
             "fill",
             [
               "REF",
-              292
+              246
             ]
           ],
           [
             "include?",
             [
               "REF",
-              293
+              247
+            ]
+          ],
+          [
+            "<=>",
+            [
+              "REF",
+              248
             ]
           ],
           [
             "slice",
             [
               "REF",
-              294
+              249
             ]
           ],
           [
             "slice!",
             [
               "REF",
-              295
+              250
             ]
           ],
           [
             "assoc",
             [
               "REF",
-              296
+              251
             ]
           ],
           [
             "rassoc",
             [
               "REF",
-              297
+              252
             ]
           ],
           [
             "+",
             [
               "REF",
-              298
+              253
             ]
           ],
           [
             "*",
             [
               "REF",
-              299
+              254
             ]
           ],
           [
             "-",
             [
               "REF",
-              300
+              255
             ]
           ],
           [
             "&",
             [
               "REF",
-              301
+              256
             ]
           ],
           [
             "|",
             [
               "REF",
-              302
+              257
             ]
           ],
           [
             "uniq",
             [
               "REF",
-              303
+              258
             ]
           ],
           [
             "uniq!",
             [
               "REF",
-              304
+              259
             ]
           ],
           [
             "compact",
             [
               "REF",
-              305
+              260
             ]
           ],
           [
             "compact!",
             [
               "REF",
-              306
+              261
             ]
           ],
           [
             "flatten",
             [
               "REF",
-              307
+              262
             ]
           ],
           [
             "flatten!",
             [
               "REF",
-              308
+              263
             ]
           ],
           [
             "count",
             [
               "REF",
-              309
+              264
             ]
           ],
           [
             "shuffle!",
             [
               "REF",
-              310
+              265
             ]
           ],
           [
             "shuffle",
             [
               "REF",
-              311
+              266
             ]
           ],
           [
             "sample",
             [
               "REF",
-              312
+              267
             ]
           ],
           [
             "cycle",
             [
               "REF",
-              313
+              268
             ]
           ],
           [
             "permutation",
             [
               "REF",
-              314
+              269
             ]
           ],
           [
             "combination",
             [
               "REF",
-              315
+              270
             ]
           ],
           [
             "repeated_permutation",
             [
               "REF",
-              316
+              271
             ]
           ],
           [
             "repeated_combination",
             [
               "REF",
-              317
+              272
             ]
           ],
           [
             "product",
             [
               "REF",
-              318
+              273
             ]
           ],
           [
             "take",
             [
               "REF",
-              319
+              274
             ]
           ],
           [
             "take_while",
             [
               "REF",
-              320
+              275
             ]
           ],
           [
             "drop",
             [
               "REF",
-              321
+              276
             ]
           ],
           [
             "drop_while",
             [
               "REF",
-              322
+              277
             ]
           ],
           [
             "bsearch",
             [
               "REF",
-              323
+              278
             ]
           ],
           [
             "any?",
             [
               "REF",
-              324
+              279
             ]
           ],
           [
             "pack",
             [
               "REF",
-              325
+              280
             ]
           ],
           [
             "iterate!",
             [
               "REF",
-              326
-            ]
-          ],
-          [
-            "entries",
-            [
-              "REF",
-              327
-            ]
-          ],
-          [
-            "sort_by",
-            [
-              "REF",
-              328
-            ]
-          ],
-          [
-            "grep",
-            [
-              "REF",
-              329
-            ]
-          ],
-          [
-            "find",
-            [
-              "REF",
-              330
-            ]
-          ],
-          [
-            "detect",
-            [
-              "REF",
-              331
-            ]
-          ],
-          [
-            "find_all",
-            [
-              "REF",
-              332
-            ]
-          ],
-          [
-            "flat_map",
-            [
-              "REF",
-              333
-            ]
-          ],
-          [
-            "collect_concat",
-            [
-              "REF",
-              334
-            ]
-          ],
-          [
-            "inject",
-            [
-              "REF",
-              335
-            ]
-          ],
-          [
-            "reduce",
-            [
-              "REF",
-              336
-            ]
-          ],
-          [
-            "partition",
-            [
-              "REF",
-              337
-            ]
-          ],
-          [
-            "group_by",
-            [
-              "REF",
-              338
-            ]
-          ],
-          [
-            "all?",
-            [
-              "REF",
-              339
-            ]
-          ],
-          [
-            "one?",
-            [
-              "REF",
-              340
-            ]
-          ],
-          [
-            "none?",
-            [
-              "REF",
-              341
-            ]
-          ],
-          [
-            "min",
-            [
-              "REF",
-              342
-            ]
-          ],
-          [
-            "max",
-            [
-              "REF",
-              343
-            ]
-          ],
-          [
-            "minmax",
-            [
-              "REF",
-              344
-            ]
-          ],
-          [
-            "min_by",
-            [
-              "REF",
-              345
-            ]
-          ],
-          [
-            "max_by",
-            [
-              "REF",
-              346
-            ]
-          ],
-          [
-            "minmax_by",
-            [
-              "REF",
-              347
-            ]
-          ],
-          [
-            "member?",
-            [
-              "REF",
-              348
-            ]
-          ],
-          [
-            "each_with_index",
-            [
-              "REF",
-              349
-            ]
-          ],
-          [
-            "each_entry",
-            [
-              "REF",
-              350
-            ]
-          ],
-          [
-            "each_slice",
-            [
-              "REF",
-              351
-            ]
-          ],
-          [
-            "each_cons",
-            [
-              "REF",
-              352
-            ]
-          ],
-          [
-            "each_with_object",
-            [
-              "REF",
-              353
-            ]
-          ],
-          [
-            "chunk",
-            [
-              "REF",
-              354
-            ]
-          ],
-          [
-            "slice_before",
-            [
-              "REF",
-              355
-            ]
-          ],
-          [
-            "slice_after",
-            [
-              "REF",
-              356
-            ]
-          ],
-          [
-            "slice_when",
-            [
-              "REF",
-              357
-            ]
-          ],
-          [
-            "lazy",
-            [
-              "REF",
-              358
-            ]
-          ],
-          [
-            "to_set",
-            [
-              "REF",
-              359
+              281
             ]
           ]
         ],
-        "240": [
+        "188": [
           "FUNCTION",
           "[]",
           ""
         ],
-        "241": [
+        "189": [
           "FUNCTION",
           "try_convert",
           ""
         ],
-        "242": [
+        "190": [
+          "FUNCTION",
+          "inspect",
+          ""
+        ],
+        "191": [
+          "FUNCTION",
+          "to_s",
+          ""
+        ],
+        "192": [
           "FUNCTION",
           "to_a",
           ""
         ],
-        "243": [
+        "193": [
           "FUNCTION",
           "to_h",
           ""
         ],
-        "244": [
+        "194": [
           "FUNCTION",
           "to_ary",
           ""
         ],
-        "245": [
+        "195": [
+          "FUNCTION",
+          "frozen?",
+          ""
+        ],
+        "196": [
+          "FUNCTION",
+          "==",
+          ""
+        ],
+        "197": [
+          "FUNCTION",
+          "eql?",
+          ""
+        ],
+        "198": [
+          "FUNCTION",
+          "hash",
+          ""
+        ],
+        "199": [
           "FUNCTION",
           "[]",
           ""
         ],
-        "246": [
+        "200": [
           "FUNCTION",
           "[]=",
           ""
         ],
-        "247": [
+        "201": [
           "FUNCTION",
           "at",
           ""
         ],
-        "248": [
+        "202": [
           "FUNCTION",
           "fetch",
           ""
         ],
-        "249": [
+        "203": [
           "FUNCTION",
           "first",
           ""
         ],
-        "250": [
+        "204": [
           "FUNCTION",
           "last",
           ""
         ],
-        "251": [
+        "205": [
           "FUNCTION",
           "concat",
           ""
         ],
-        "252": [
+        "206": [
           "FUNCTION",
           "<<",
           ""
         ],
-        "253": [
+        "207": [
           "FUNCTION",
           "push",
           ""
         ],
-        "254": [
+        "208": [
           "FUNCTION",
           "pop",
           ""
         ],
-        "255": [
+        "209": [
           "FUNCTION",
           "shift",
           ""
         ],
-        "256": [
+        "210": [
           "FUNCTION",
           "unshift",
           ""
         ],
-        "257": [
+        "211": [
           "FUNCTION",
           "insert",
           ""
         ],
-        "258": [
+        "212": [
           "FUNCTION",
           "each",
           ""
         ],
-        "259": [
+        "213": [
           "FUNCTION",
           "each_index",
           ""
         ],
-        "260": [
+        "214": [
           "FUNCTION",
           "reverse_each",
           ""
         ],
-        "261": [
+        "215": [
           "FUNCTION",
           "length",
           ""
         ],
-        "262": [
+        "216": [
           "FUNCTION",
           "size",
           ""
         ],
-        "263": [
+        "217": [
           "FUNCTION",
           "empty?",
           ""
         ],
-        "264": [
+        "218": [
           "FUNCTION",
           "find_index",
           ""
         ],
-        "265": [
+        "219": [
           "FUNCTION",
           "index",
           ""
         ],
-        "266": [
+        "220": [
           "FUNCTION",
           "rindex",
           ""
         ],
-        "267": [
+        "221": [
           "FUNCTION",
           "join",
           ""
         ],
-        "268": [
+        "222": [
           "FUNCTION",
           "reverse",
           ""
         ],
-        "269": [
+        "223": [
           "FUNCTION",
           "reverse!",
           ""
         ],
-        "270": [
+        "224": [
           "FUNCTION",
           "rotate",
           ""
         ],
-        "271": [
+        "225": [
           "FUNCTION",
           "rotate!",
           ""
         ],
-        "272": [
+        "226": [
           "FUNCTION",
           "sort",
           ""
         ],
-        "273": [
+        "227": [
           "FUNCTION",
           "sort!",
           ""
         ],
-        "274": [
+        "228": [
           "FUNCTION",
           "sort_by!",
           ""
         ],
-        "275": [
+        "229": [
           "FUNCTION",
           "collect",
           ""
         ],
-        "276": [
+        "230": [
           "FUNCTION",
           "collect!",
           ""
         ],
-        "277": [
+        "231": [
           "FUNCTION",
           "map",
           ""
         ],
-        "278": [
+        "232": [
           "FUNCTION",
           "map!",
           ""
         ],
-        "279": [
+        "233": [
           "FUNCTION",
           "select",
           ""
         ],
-        "280": [
+        "234": [
           "FUNCTION",
           "select!",
           ""
         ],
-        "281": [
+        "235": [
           "FUNCTION",
           "keep_if",
           ""
         ],
-        "282": [
+        "236": [
           "FUNCTION",
           "values_at",
           ""
         ],
-        "283": [
+        "237": [
           "FUNCTION",
           "delete",
           ""
         ],
-        "284": [
+        "238": [
           "FUNCTION",
           "delete_at",
           ""
         ],
-        "285": [
+        "239": [
           "FUNCTION",
           "delete_if",
           ""
         ],
-        "286": [
+        "240": [
           "FUNCTION",
           "reject",
           ""
         ],
-        "287": [
+        "241": [
           "FUNCTION",
           "reject!",
           ""
         ],
-        "288": [
+        "242": [
           "FUNCTION",
           "zip",
           ""
         ],
-        "289": [
+        "243": [
           "FUNCTION",
           "transpose",
           ""
         ],
-        "290": [
+        "244": [
           "FUNCTION",
           "replace",
           ""
         ],
-        "291": [
+        "245": [
           "FUNCTION",
           "clear",
           ""
         ],
-        "292": [
+        "246": [
           "FUNCTION",
           "fill",
           ""
         ],
-        "293": [
+        "247": [
           "FUNCTION",
           "include?",
           ""
         ],
-        "294": [
+        "248": [
+          "FUNCTION",
+          "<=>",
+          ""
+        ],
+        "249": [
           "FUNCTION",
           "slice",
           ""
         ],
-        "295": [
+        "250": [
           "FUNCTION",
           "slice!",
           ""
         ],
-        "296": [
+        "251": [
           "FUNCTION",
           "assoc",
           ""
         ],
-        "297": [
+        "252": [
           "FUNCTION",
           "rassoc",
           ""
         ],
-        "298": [
+        "253": [
           "FUNCTION",
           "+",
           ""
         ],
-        "299": [
+        "254": [
           "FUNCTION",
           "*",
           ""
         ],
-        "300": [
+        "255": [
           "FUNCTION",
           "-",
           ""
         ],
-        "301": [
+        "256": [
           "FUNCTION",
           "&",
           ""
         ],
-        "302": [
+        "257": [
           "FUNCTION",
           "|",
           ""
         ],
-        "303": [
+        "258": [
           "FUNCTION",
           "uniq",
           ""
         ],
-        "304": [
+        "259": [
           "FUNCTION",
           "uniq!",
           ""
         ],
-        "305": [
+        "260": [
           "FUNCTION",
           "compact",
           ""
         ],
-        "306": [
+        "261": [
           "FUNCTION",
           "compact!",
           ""
         ],
-        "307": [
+        "262": [
           "FUNCTION",
           "flatten",
           ""
         ],
-        "308": [
+        "263": [
           "FUNCTION",
           "flatten!",
           ""
         ],
-        "309": [
+        "264": [
           "FUNCTION",
           "count",
           ""
         ],
-        "310": [
+        "265": [
           "FUNCTION",
           "shuffle!",
           ""
         ],
-        "311": [
+        "266": [
           "FUNCTION",
           "shuffle",
           ""
         ],
-        "312": [
+        "267": [
           "FUNCTION",
           "sample",
           ""
         ],
-        "313": [
+        "268": [
           "FUNCTION",
           "cycle",
           ""
         ],
-        "314": [
+        "269": [
           "FUNCTION",
           "permutation",
           ""
         ],
-        "315": [
+        "270": [
           "FUNCTION",
           "combination",
           ""
         ],
-        "316": [
+        "271": [
           "FUNCTION",
           "repeated_permutation",
           ""
         ],
-        "317": [
+        "272": [
           "FUNCTION",
           "repeated_combination",
           ""
         ],
-        "318": [
+        "273": [
           "FUNCTION",
           "product",
           ""
         ],
-        "319": [
+        "274": [
           "FUNCTION",
           "take",
           ""
         ],
-        "320": [
+        "275": [
           "FUNCTION",
           "take_while",
           ""
         ],
-        "321": [
+        "276": [
           "FUNCTION",
           "drop",
           ""
         ],
-        "322": [
+        "277": [
           "FUNCTION",
           "drop_while",
           ""
         ],
-        "323": [
+        "278": [
           "FUNCTION",
           "bsearch",
           ""
         ],
-        "324": [
+        "279": [
           "FUNCTION",
           "any?",
           ""
         ],
-        "325": [
+        "280": [
           "FUNCTION",
           "pack",
           ""
         ],
-        "326": [
+        "281": [
           "FUNCTION",
           "iterate!",
-          ""
-        ],
-        "327": [
-          "FUNCTION",
-          "entries",
-          ""
-        ],
-        "328": [
-          "FUNCTION",
-          "sort_by",
-          ""
-        ],
-        "329": [
-          "FUNCTION",
-          "grep",
-          ""
-        ],
-        "330": [
-          "FUNCTION",
-          "find",
-          ""
-        ],
-        "331": [
-          "FUNCTION",
-          "detect",
-          ""
-        ],
-        "332": [
-          "FUNCTION",
-          "find_all",
-          ""
-        ],
-        "333": [
-          "FUNCTION",
-          "flat_map",
-          ""
-        ],
-        "334": [
-          "FUNCTION",
-          "collect_concat",
-          ""
-        ],
-        "335": [
-          "FUNCTION",
-          "inject",
-          ""
-        ],
-        "336": [
-          "FUNCTION",
-          "reduce",
-          ""
-        ],
-        "337": [
-          "FUNCTION",
-          "partition",
-          ""
-        ],
-        "338": [
-          "FUNCTION",
-          "group_by",
-          ""
-        ],
-        "339": [
-          "FUNCTION",
-          "all?",
-          ""
-        ],
-        "340": [
-          "FUNCTION",
-          "one?",
-          ""
-        ],
-        "341": [
-          "FUNCTION",
-          "none?",
-          ""
-        ],
-        "342": [
-          "FUNCTION",
-          "min",
-          ""
-        ],
-        "343": [
-          "FUNCTION",
-          "max",
-          ""
-        ],
-        "344": [
-          "FUNCTION",
-          "minmax",
-          ""
-        ],
-        "345": [
-          "FUNCTION",
-          "min_by",
-          ""
-        ],
-        "346": [
-          "FUNCTION",
-          "max_by",
-          ""
-        ],
-        "347": [
-          "FUNCTION",
-          "minmax_by",
-          ""
-        ],
-        "348": [
-          "FUNCTION",
-          "member?",
-          ""
-        ],
-        "349": [
-          "FUNCTION",
-          "each_with_index",
-          ""
-        ],
-        "350": [
-          "FUNCTION",
-          "each_entry",
-          ""
-        ],
-        "351": [
-          "FUNCTION",
-          "each_slice",
-          ""
-        ],
-        "352": [
-          "FUNCTION",
-          "each_cons",
-          ""
-        ],
-        "353": [
-          "FUNCTION",
-          "each_with_object",
-          ""
-        ],
-        "354": [
-          "FUNCTION",
-          "chunk",
-          ""
-        ],
-        "355": [
-          "FUNCTION",
-          "slice_before",
-          ""
-        ],
-        "356": [
-          "FUNCTION",
-          "slice_after",
-          ""
-        ],
-        "357": [
-          "FUNCTION",
-          "slice_when",
-          ""
-        ],
-        "358": [
-          "FUNCTION",
-          "lazy",
-          ""
-        ],
-        "359": [
-          "FUNCTION",
-          "to_set",
           ""
         ]
       },
@@ -4561,1453 +3625,1141 @@
             "self.[]",
             [
               "REF",
-              360
+              282
             ]
           ],
           [
             "self.try_convert",
             [
               "REF",
-              361
+              283
+            ]
+          ],
+          [
+            "inspect",
+            [
+              "REF",
+              284
+            ]
+          ],
+          [
+            "to_s",
+            [
+              "REF",
+              285
             ]
           ],
           [
             "to_a",
             [
               "REF",
-              362
+              286
             ]
           ],
           [
             "to_h",
             [
               "REF",
-              363
+              287
             ]
           ],
           [
             "to_ary",
             [
               "REF",
-              364
+              288
+            ]
+          ],
+          [
+            "frozen?",
+            [
+              "REF",
+              289
+            ]
+          ],
+          [
+            "==",
+            [
+              "REF",
+              290
+            ]
+          ],
+          [
+            "eql?",
+            [
+              "REF",
+              291
+            ]
+          ],
+          [
+            "hash",
+            [
+              "REF",
+              292
             ]
           ],
           [
             "[]",
             [
               "REF",
-              365
+              293
             ]
           ],
           [
             "[]=",
             [
               "REF",
-              366
+              294
             ]
           ],
           [
             "at",
             [
               "REF",
-              367
+              295
             ]
           ],
           [
             "fetch",
             [
               "REF",
-              368
+              296
             ]
           ],
           [
             "first",
             [
               "REF",
-              369
+              297
             ]
           ],
           [
             "last",
             [
               "REF",
-              370
+              298
             ]
           ],
           [
             "concat",
             [
               "REF",
-              371
+              299
             ]
           ],
           [
             "<<",
             [
               "REF",
-              372
+              300
             ]
           ],
           [
             "push",
             [
               "REF",
-              373
+              301
             ]
           ],
           [
             "pop",
             [
               "REF",
-              374
+              302
             ]
           ],
           [
             "shift",
             [
               "REF",
-              375
+              303
             ]
           ],
           [
             "unshift",
             [
               "REF",
-              376
+              304
             ]
           ],
           [
             "insert",
             [
               "REF",
-              377
+              305
             ]
           ],
           [
             "each",
             [
               "REF",
-              378
+              306
             ]
           ],
           [
             "each_index",
             [
               "REF",
-              379
+              307
             ]
           ],
           [
             "reverse_each",
             [
               "REF",
-              380
+              308
             ]
           ],
           [
             "length",
             [
               "REF",
-              381
+              309
             ]
           ],
           [
             "size",
             [
               "REF",
-              382
+              310
             ]
           ],
           [
             "empty?",
             [
               "REF",
-              383
+              311
             ]
           ],
           [
             "find_index",
             [
               "REF",
-              384
+              312
             ]
           ],
           [
             "index",
             [
               "REF",
-              385
+              313
             ]
           ],
           [
             "rindex",
             [
               "REF",
-              386
+              314
             ]
           ],
           [
             "join",
             [
               "REF",
-              387
+              315
             ]
           ],
           [
             "reverse",
             [
               "REF",
-              388
+              316
             ]
           ],
           [
             "reverse!",
             [
               "REF",
-              389
+              317
             ]
           ],
           [
             "rotate",
             [
               "REF",
-              390
+              318
             ]
           ],
           [
             "rotate!",
             [
               "REF",
-              391
+              319
             ]
           ],
           [
             "sort",
             [
               "REF",
-              392
+              320
             ]
           ],
           [
             "sort!",
             [
               "REF",
-              393
+              321
             ]
           ],
           [
             "sort_by!",
             [
               "REF",
-              394
+              322
             ]
           ],
           [
             "collect",
             [
               "REF",
-              395
+              323
             ]
           ],
           [
             "collect!",
             [
               "REF",
-              396
+              324
             ]
           ],
           [
             "map",
             [
               "REF",
-              397
+              325
             ]
           ],
           [
             "map!",
             [
               "REF",
-              398
+              326
             ]
           ],
           [
             "select",
             [
               "REF",
-              399
+              327
             ]
           ],
           [
             "select!",
             [
               "REF",
-              400
+              328
             ]
           ],
           [
             "keep_if",
             [
               "REF",
-              401
+              329
             ]
           ],
           [
             "values_at",
             [
               "REF",
-              402
+              330
             ]
           ],
           [
             "delete",
             [
               "REF",
-              403
+              331
             ]
           ],
           [
             "delete_at",
             [
               "REF",
-              404
+              332
             ]
           ],
           [
             "delete_if",
             [
               "REF",
-              405
+              333
             ]
           ],
           [
             "reject",
             [
               "REF",
-              406
+              334
             ]
           ],
           [
             "reject!",
             [
               "REF",
-              407
+              335
             ]
           ],
           [
             "zip",
             [
               "REF",
-              408
+              336
             ]
           ],
           [
             "transpose",
             [
               "REF",
-              409
+              337
             ]
           ],
           [
             "replace",
             [
               "REF",
-              410
+              338
             ]
           ],
           [
             "clear",
             [
               "REF",
-              411
+              339
             ]
           ],
           [
             "fill",
             [
               "REF",
-              412
+              340
             ]
           ],
           [
             "include?",
             [
               "REF",
-              413
+              341
+            ]
+          ],
+          [
+            "<=>",
+            [
+              "REF",
+              342
             ]
           ],
           [
             "slice",
             [
               "REF",
-              414
+              343
             ]
           ],
           [
             "slice!",
             [
               "REF",
-              415
+              344
             ]
           ],
           [
             "assoc",
             [
               "REF",
-              416
+              345
             ]
           ],
           [
             "rassoc",
             [
               "REF",
-              417
+              346
             ]
           ],
           [
             "+",
             [
               "REF",
-              418
+              347
             ]
           ],
           [
             "*",
             [
               "REF",
-              419
+              348
             ]
           ],
           [
             "-",
             [
               "REF",
-              420
+              349
             ]
           ],
           [
             "&",
             [
               "REF",
-              421
+              350
             ]
           ],
           [
             "|",
             [
               "REF",
-              422
+              351
             ]
           ],
           [
             "uniq",
             [
               "REF",
-              423
+              352
             ]
           ],
           [
             "uniq!",
             [
               "REF",
-              424
+              353
             ]
           ],
           [
             "compact",
             [
               "REF",
-              425
+              354
             ]
           ],
           [
             "compact!",
             [
               "REF",
-              426
+              355
             ]
           ],
           [
             "flatten",
             [
               "REF",
-              427
+              356
             ]
           ],
           [
             "flatten!",
             [
               "REF",
-              428
+              357
             ]
           ],
           [
             "count",
             [
               "REF",
-              429
+              358
             ]
           ],
           [
             "shuffle!",
             [
               "REF",
-              430
+              359
             ]
           ],
           [
             "shuffle",
             [
               "REF",
-              431
+              360
             ]
           ],
           [
             "sample",
             [
               "REF",
-              432
+              361
             ]
           ],
           [
             "cycle",
             [
               "REF",
-              433
+              362
             ]
           ],
           [
             "permutation",
             [
               "REF",
-              434
+              363
             ]
           ],
           [
             "combination",
             [
               "REF",
-              435
+              364
             ]
           ],
           [
             "repeated_permutation",
             [
               "REF",
-              436
+              365
             ]
           ],
           [
             "repeated_combination",
             [
               "REF",
-              437
+              366
             ]
           ],
           [
             "product",
             [
               "REF",
-              438
+              367
             ]
           ],
           [
             "take",
             [
               "REF",
-              439
+              368
             ]
           ],
           [
             "take_while",
             [
               "REF",
-              440
+              369
             ]
           ],
           [
             "drop",
             [
               "REF",
-              441
+              370
             ]
           ],
           [
             "drop_while",
             [
               "REF",
-              442
+              371
             ]
           ],
           [
             "bsearch",
             [
               "REF",
-              443
+              372
             ]
           ],
           [
             "any?",
             [
               "REF",
-              444
+              373
             ]
           ],
           [
             "pack",
             [
               "REF",
-              445
+              374
             ]
           ],
           [
             "iterate!",
             [
               "REF",
-              446
+              375
             ]
           ],
           [
             "iterate_proc!",
             [
               "REF",
-              447
-            ]
-          ],
-          [
-            "entries",
-            [
-              "REF",
-              448
-            ]
-          ],
-          [
-            "sort_by",
-            [
-              "REF",
-              449
-            ]
-          ],
-          [
-            "grep",
-            [
-              "REF",
-              450
-            ]
-          ],
-          [
-            "find",
-            [
-              "REF",
-              451
-            ]
-          ],
-          [
-            "detect",
-            [
-              "REF",
-              452
-            ]
-          ],
-          [
-            "find_all",
-            [
-              "REF",
-              453
-            ]
-          ],
-          [
-            "flat_map",
-            [
-              "REF",
-              454
-            ]
-          ],
-          [
-            "collect_concat",
-            [
-              "REF",
-              455
-            ]
-          ],
-          [
-            "inject",
-            [
-              "REF",
-              456
-            ]
-          ],
-          [
-            "reduce",
-            [
-              "REF",
-              457
-            ]
-          ],
-          [
-            "partition",
-            [
-              "REF",
-              458
-            ]
-          ],
-          [
-            "group_by",
-            [
-              "REF",
-              459
-            ]
-          ],
-          [
-            "all?",
-            [
-              "REF",
-              460
-            ]
-          ],
-          [
-            "one?",
-            [
-              "REF",
-              461
-            ]
-          ],
-          [
-            "none?",
-            [
-              "REF",
-              462
-            ]
-          ],
-          [
-            "min",
-            [
-              "REF",
-              463
-            ]
-          ],
-          [
-            "max",
-            [
-              "REF",
-              464
-            ]
-          ],
-          [
-            "minmax",
-            [
-              "REF",
-              465
-            ]
-          ],
-          [
-            "min_by",
-            [
-              "REF",
-              466
-            ]
-          ],
-          [
-            "max_by",
-            [
-              "REF",
-              467
-            ]
-          ],
-          [
-            "minmax_by",
-            [
-              "REF",
-              468
-            ]
-          ],
-          [
-            "member?",
-            [
-              "REF",
-              469
-            ]
-          ],
-          [
-            "each_with_index",
-            [
-              "REF",
-              470
-            ]
-          ],
-          [
-            "each_entry",
-            [
-              "REF",
-              471
-            ]
-          ],
-          [
-            "each_slice",
-            [
-              "REF",
-              472
-            ]
-          ],
-          [
-            "each_cons",
-            [
-              "REF",
-              473
-            ]
-          ],
-          [
-            "each_with_object",
-            [
-              "REF",
-              474
-            ]
-          ],
-          [
-            "chunk",
-            [
-              "REF",
-              475
-            ]
-          ],
-          [
-            "slice_before",
-            [
-              "REF",
-              476
-            ]
-          ],
-          [
-            "slice_after",
-            [
-              "REF",
-              477
-            ]
-          ],
-          [
-            "slice_when",
-            [
-              "REF",
-              478
-            ]
-          ],
-          [
-            "lazy",
-            [
-              "REF",
-              479
-            ]
-          ],
-          [
-            "to_set",
-            [
-              "REF",
-              480
+              376
             ]
           ]
         ],
-        "360": [
+        "282": [
           "FUNCTION",
           "[]",
           ""
         ],
-        "361": [
+        "283": [
           "FUNCTION",
           "try_convert",
           ""
         ],
-        "362": [
+        "284": [
+          "FUNCTION",
+          "inspect",
+          ""
+        ],
+        "285": [
+          "FUNCTION",
+          "to_s",
+          ""
+        ],
+        "286": [
           "FUNCTION",
           "to_a",
           ""
         ],
-        "363": [
+        "287": [
           "FUNCTION",
           "to_h",
           ""
         ],
-        "364": [
+        "288": [
           "FUNCTION",
           "to_ary",
           ""
         ],
-        "365": [
+        "289": [
+          "FUNCTION",
+          "frozen?",
+          ""
+        ],
+        "290": [
+          "FUNCTION",
+          "==",
+          ""
+        ],
+        "291": [
+          "FUNCTION",
+          "eql?",
+          ""
+        ],
+        "292": [
+          "FUNCTION",
+          "hash",
+          ""
+        ],
+        "293": [
           "FUNCTION",
           "[]",
           ""
         ],
-        "366": [
+        "294": [
           "FUNCTION",
           "[]=",
           ""
         ],
-        "367": [
+        "295": [
           "FUNCTION",
           "at",
           ""
         ],
-        "368": [
+        "296": [
           "FUNCTION",
           "fetch",
           ""
         ],
-        "369": [
+        "297": [
           "FUNCTION",
           "first",
           ""
         ],
-        "370": [
+        "298": [
           "FUNCTION",
           "last",
           ""
         ],
-        "371": [
+        "299": [
           "FUNCTION",
           "concat",
           ""
         ],
-        "372": [
+        "300": [
           "FUNCTION",
           "<<",
           ""
         ],
-        "373": [
+        "301": [
           "FUNCTION",
           "push",
           ""
         ],
-        "374": [
+        "302": [
           "FUNCTION",
           "pop",
           ""
         ],
-        "375": [
+        "303": [
           "FUNCTION",
           "shift",
           ""
         ],
-        "376": [
+        "304": [
           "FUNCTION",
           "unshift",
           ""
         ],
-        "377": [
+        "305": [
           "FUNCTION",
           "insert",
           ""
         ],
-        "378": [
+        "306": [
           "FUNCTION",
           "each",
           ""
         ],
-        "379": [
+        "307": [
           "FUNCTION",
           "each_index",
           ""
         ],
-        "380": [
+        "308": [
           "FUNCTION",
           "reverse_each",
           ""
         ],
-        "381": [
+        "309": [
           "FUNCTION",
           "length",
           ""
         ],
-        "382": [
+        "310": [
           "FUNCTION",
           "size",
           ""
         ],
-        "383": [
+        "311": [
           "FUNCTION",
           "empty?",
           ""
         ],
-        "384": [
+        "312": [
           "FUNCTION",
           "find_index",
           ""
         ],
-        "385": [
+        "313": [
           "FUNCTION",
           "index",
           ""
         ],
-        "386": [
+        "314": [
           "FUNCTION",
           "rindex",
           ""
         ],
-        "387": [
+        "315": [
           "FUNCTION",
           "join",
           ""
         ],
-        "388": [
+        "316": [
           "FUNCTION",
           "reverse",
           ""
         ],
-        "389": [
+        "317": [
           "FUNCTION",
           "reverse!",
           ""
         ],
-        "390": [
+        "318": [
           "FUNCTION",
           "rotate",
           ""
         ],
-        "391": [
+        "319": [
           "FUNCTION",
           "rotate!",
           ""
         ],
-        "392": [
+        "320": [
           "FUNCTION",
           "sort",
           ""
         ],
-        "393": [
+        "321": [
           "FUNCTION",
           "sort!",
           ""
         ],
-        "394": [
+        "322": [
           "FUNCTION",
           "sort_by!",
           ""
         ],
-        "395": [
+        "323": [
           "FUNCTION",
           "collect",
           ""
         ],
-        "396": [
+        "324": [
           "FUNCTION",
           "collect!",
           ""
         ],
-        "397": [
+        "325": [
           "FUNCTION",
           "map",
           ""
         ],
-        "398": [
+        "326": [
           "FUNCTION",
           "map!",
           ""
         ],
-        "399": [
+        "327": [
           "FUNCTION",
           "select",
           ""
         ],
-        "400": [
+        "328": [
           "FUNCTION",
           "select!",
           ""
         ],
-        "401": [
+        "329": [
           "FUNCTION",
           "keep_if",
           ""
         ],
-        "402": [
+        "330": [
           "FUNCTION",
           "values_at",
           ""
         ],
-        "403": [
+        "331": [
           "FUNCTION",
           "delete",
           ""
         ],
-        "404": [
+        "332": [
           "FUNCTION",
           "delete_at",
           ""
         ],
-        "405": [
+        "333": [
           "FUNCTION",
           "delete_if",
           ""
         ],
-        "406": [
+        "334": [
           "FUNCTION",
           "reject",
           ""
         ],
-        "407": [
+        "335": [
           "FUNCTION",
           "reject!",
           ""
         ],
-        "408": [
+        "336": [
           "FUNCTION",
           "zip",
           ""
         ],
-        "409": [
+        "337": [
           "FUNCTION",
           "transpose",
           ""
         ],
-        "410": [
+        "338": [
           "FUNCTION",
           "replace",
           ""
         ],
-        "411": [
+        "339": [
           "FUNCTION",
           "clear",
           ""
         ],
-        "412": [
+        "340": [
           "FUNCTION",
           "fill",
           ""
         ],
-        "413": [
+        "341": [
           "FUNCTION",
           "include?",
           ""
         ],
-        "414": [
+        "342": [
+          "FUNCTION",
+          "<=>",
+          ""
+        ],
+        "343": [
           "FUNCTION",
           "slice",
           ""
         ],
-        "415": [
+        "344": [
           "FUNCTION",
           "slice!",
           ""
         ],
-        "416": [
+        "345": [
           "FUNCTION",
           "assoc",
           ""
         ],
-        "417": [
+        "346": [
           "FUNCTION",
           "rassoc",
           ""
         ],
-        "418": [
+        "347": [
           "FUNCTION",
           "+",
           ""
         ],
-        "419": [
+        "348": [
           "FUNCTION",
           "*",
           ""
         ],
-        "420": [
+        "349": [
           "FUNCTION",
           "-",
           ""
         ],
-        "421": [
+        "350": [
           "FUNCTION",
           "&",
           ""
         ],
-        "422": [
+        "351": [
           "FUNCTION",
           "|",
           ""
         ],
-        "423": [
+        "352": [
           "FUNCTION",
           "uniq",
           ""
         ],
-        "424": [
+        "353": [
           "FUNCTION",
           "uniq!",
           ""
         ],
-        "425": [
+        "354": [
           "FUNCTION",
           "compact",
           ""
         ],
-        "426": [
+        "355": [
           "FUNCTION",
           "compact!",
           ""
         ],
-        "427": [
+        "356": [
           "FUNCTION",
           "flatten",
           ""
         ],
-        "428": [
+        "357": [
           "FUNCTION",
           "flatten!",
           ""
         ],
-        "429": [
+        "358": [
           "FUNCTION",
           "count",
           ""
         ],
-        "430": [
+        "359": [
           "FUNCTION",
           "shuffle!",
           ""
         ],
-        "431": [
+        "360": [
           "FUNCTION",
           "shuffle",
           ""
         ],
-        "432": [
+        "361": [
           "FUNCTION",
           "sample",
           ""
         ],
-        "433": [
+        "362": [
           "FUNCTION",
           "cycle",
           ""
         ],
-        "434": [
+        "363": [
           "FUNCTION",
           "permutation",
           ""
         ],
-        "435": [
+        "364": [
           "FUNCTION",
           "combination",
           ""
         ],
-        "436": [
+        "365": [
           "FUNCTION",
           "repeated_permutation",
           ""
         ],
-        "437": [
+        "366": [
           "FUNCTION",
           "repeated_combination",
           ""
         ],
-        "438": [
+        "367": [
           "FUNCTION",
           "product",
           ""
         ],
-        "439": [
+        "368": [
           "FUNCTION",
           "take",
           ""
         ],
-        "440": [
+        "369": [
           "FUNCTION",
           "take_while",
           ""
         ],
-        "441": [
+        "370": [
           "FUNCTION",
           "drop",
           ""
         ],
-        "442": [
+        "371": [
           "FUNCTION",
           "drop_while",
           ""
         ],
-        "443": [
+        "372": [
           "FUNCTION",
           "bsearch",
           ""
         ],
-        "444": [
+        "373": [
           "FUNCTION",
           "any?",
           ""
         ],
-        "445": [
+        "374": [
           "FUNCTION",
           "pack",
           ""
         ],
-        "446": [
+        "375": [
           "FUNCTION",
           "iterate!",
           ""
         ],
-        "447": [
+        "376": [
           "FUNCTION",
           "iterate_proc!",
-          ""
-        ],
-        "448": [
-          "FUNCTION",
-          "entries",
-          ""
-        ],
-        "449": [
-          "FUNCTION",
-          "sort_by",
-          ""
-        ],
-        "450": [
-          "FUNCTION",
-          "grep",
-          ""
-        ],
-        "451": [
-          "FUNCTION",
-          "find",
-          ""
-        ],
-        "452": [
-          "FUNCTION",
-          "detect",
-          ""
-        ],
-        "453": [
-          "FUNCTION",
-          "find_all",
-          ""
-        ],
-        "454": [
-          "FUNCTION",
-          "flat_map",
-          ""
-        ],
-        "455": [
-          "FUNCTION",
-          "collect_concat",
-          ""
-        ],
-        "456": [
-          "FUNCTION",
-          "inject",
-          ""
-        ],
-        "457": [
-          "FUNCTION",
-          "reduce",
-          ""
-        ],
-        "458": [
-          "FUNCTION",
-          "partition",
-          ""
-        ],
-        "459": [
-          "FUNCTION",
-          "group_by",
-          ""
-        ],
-        "460": [
-          "FUNCTION",
-          "all?",
-          ""
-        ],
-        "461": [
-          "FUNCTION",
-          "one?",
-          ""
-        ],
-        "462": [
-          "FUNCTION",
-          "none?",
-          ""
-        ],
-        "463": [
-          "FUNCTION",
-          "min",
-          ""
-        ],
-        "464": [
-          "FUNCTION",
-          "max",
-          ""
-        ],
-        "465": [
-          "FUNCTION",
-          "minmax",
-          ""
-        ],
-        "466": [
-          "FUNCTION",
-          "min_by",
-          ""
-        ],
-        "467": [
-          "FUNCTION",
-          "max_by",
-          ""
-        ],
-        "468": [
-          "FUNCTION",
-          "minmax_by",
-          ""
-        ],
-        "469": [
-          "FUNCTION",
-          "member?",
-          ""
-        ],
-        "470": [
-          "FUNCTION",
-          "each_with_index",
-          ""
-        ],
-        "471": [
-          "FUNCTION",
-          "each_entry",
-          ""
-        ],
-        "472": [
-          "FUNCTION",
-          "each_slice",
-          ""
-        ],
-        "473": [
-          "FUNCTION",
-          "each_cons",
-          ""
-        ],
-        "474": [
-          "FUNCTION",
-          "each_with_object",
-          ""
-        ],
-        "475": [
-          "FUNCTION",
-          "chunk",
-          ""
-        ],
-        "476": [
-          "FUNCTION",
-          "slice_before",
-          ""
-        ],
-        "477": [
-          "FUNCTION",
-          "slice_after",
-          ""
-        ],
-        "478": [
-          "FUNCTION",
-          "slice_when",
-          ""
-        ],
-        "479": [
-          "FUNCTION",
-          "lazy",
-          ""
-        ],
-        "480": [
-          "FUNCTION",
-          "to_set",
           ""
         ]
       },
@@ -6071,13 +4823,13 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           2,
@@ -6113,7 +4865,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6133,13 +4885,13 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           2,
@@ -6175,7 +4927,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6195,13 +4947,13 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           2,
@@ -6237,7 +4989,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6257,7 +5009,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6281,13 +5033,13 @@
             "i": 0,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           2,
@@ -6323,7 +5075,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6343,7 +5095,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6367,13 +5119,13 @@
             "i": 0,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           2,
@@ -6409,7 +5161,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6429,7 +5181,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6453,7 +5205,7 @@
             "i": 0,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6476,7 +5228,7 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           2,
@@ -6512,7 +5264,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6532,7 +5284,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6556,7 +5308,7 @@
             "i": 0,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6579,7 +5331,7 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           2,
@@ -6615,7 +5367,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6635,7 +5387,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6659,7 +5411,7 @@
             "i": 0,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6684,7 +5436,7 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           2,
@@ -6720,7 +5472,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6740,7 +5492,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6765,14 +5517,14 @@
             "i": 0,
             "self": [
               "REF",
-              481
+              377
             ],
             "__return__": 1
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           2,
@@ -6808,7 +5560,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6828,7 +5580,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6852,13 +5604,13 @@
             "i": 1,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           2,
@@ -6894,7 +5646,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6914,7 +5666,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -6938,13 +5690,13 @@
             "i": 1,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           2,
@@ -6980,7 +5732,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7000,7 +5752,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7024,7 +5776,7 @@
             "i": 1,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7047,7 +5799,7 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           2,
@@ -7083,7 +5835,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7103,7 +5855,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7127,7 +5879,7 @@
             "i": 1,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7150,7 +5902,7 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           2,
@@ -7186,7 +5938,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7206,7 +5958,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7230,7 +5982,7 @@
             "i": 1,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7255,7 +6007,7 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           2,
@@ -7291,7 +6043,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7311,7 +6063,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7336,14 +6088,14 @@
             "i": 1,
             "self": [
               "REF",
-              481
+              377
             ],
             "__return__": 4
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -7379,7 +6131,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7399,7 +6151,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7423,13 +6175,13 @@
             "i": 2,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -7465,7 +6217,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7485,7 +6237,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7509,13 +6261,13 @@
             "i": 2,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -7551,7 +6303,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7571,7 +6323,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7595,7 +6347,7 @@
             "i": 2,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7618,7 +6370,7 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -7654,7 +6406,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7674,7 +6426,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7698,7 +6450,7 @@
             "i": 2,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7721,7 +6473,7 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -7757,7 +6509,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7777,7 +6529,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7801,7 +6553,7 @@
             "i": 2,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7826,7 +6578,7 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -7862,7 +6614,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7882,7 +6634,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7907,14 +6659,14 @@
             "i": 2,
             "self": [
               "REF",
-              481
+              377
             ],
             "__return__": 9
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -7950,7 +6702,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7970,7 +6722,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -7994,13 +6746,13 @@
             "i": 3,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -8036,7 +6788,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8056,7 +6808,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8080,13 +6832,13 @@
             "i": 3,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -8122,7 +6874,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8142,7 +6894,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8166,7 +6918,7 @@
             "i": 3,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8189,7 +6941,7 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -8225,7 +6977,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8245,7 +6997,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8269,7 +7021,7 @@
             "i": 3,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8292,7 +7044,7 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -8328,7 +7080,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8348,7 +7100,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8372,7 +7124,7 @@
             "i": 3,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8397,7 +7149,7 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -8433,7 +7185,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8453,7 +7205,7 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8478,14 +7230,14 @@
             "i": 3,
             "self": [
               "REF",
-              481
+              377
             ],
             "__return__": 16
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -8521,7 +7273,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8542,17 +7294,17 @@
           "encoded_locals": {
             "self": [
               "REF",
-              481
+              377
             ],
             "__return__": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -8588,13 +7340,13 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -8630,13 +7382,13 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -8672,7 +7424,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8693,21 +7445,21 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ],
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -8743,7 +7495,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8764,21 +7516,21 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ],
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
@@ -8814,7 +7566,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8835,11 +7587,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8863,20 +7615,20 @@
             "i": 0,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -8909,7 +7661,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8930,11 +7682,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -8958,20 +7710,20 @@
             "i": 0,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -9004,7 +7756,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9025,11 +7777,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9053,7 +7805,7 @@
             "i": 0,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9076,14 +7828,14 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -9116,7 +7868,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9137,11 +7889,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9165,7 +7917,7 @@
             "i": 0,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9188,14 +7940,14 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -9228,7 +7980,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9249,11 +8001,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9277,7 +8029,7 @@
             "i": 0,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9302,14 +8054,14 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           1,
           4,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -9342,7 +8094,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9363,11 +8115,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9392,21 +8144,21 @@
             "i": 0,
             "self": [
               "REF",
-              481
+              377
             ],
             "__return__": 101
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           4,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -9439,7 +8191,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9460,11 +8212,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9488,20 +8240,20 @@
             "i": 1,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           4,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -9534,7 +8286,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9555,11 +8307,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9583,20 +8335,20 @@
             "i": 1,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           4,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -9629,7 +8381,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9650,11 +8402,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9678,7 +8430,7 @@
             "i": 1,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9701,14 +8453,14 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           4,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -9741,7 +8493,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9762,11 +8514,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9790,7 +8542,7 @@
             "i": 1,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9813,14 +8565,14 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           4,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -9853,7 +8605,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9874,11 +8626,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9902,7 +8654,7 @@
             "i": 1,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9927,14 +8679,14 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           4,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -9967,7 +8719,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -9988,11 +8740,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10017,21 +8769,21 @@
             "i": 1,
             "self": [
               "REF",
-              481
+              377
             ],
             "__return__": 104
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -10064,7 +8816,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10085,11 +8837,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10113,20 +8865,20 @@
             "i": 2,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -10159,7 +8911,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10180,11 +8932,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10208,20 +8960,20 @@
             "i": 2,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -10254,7 +9006,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10275,11 +9027,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10303,7 +9055,7 @@
             "i": 2,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10326,14 +9078,14 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -10366,7 +9118,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10387,11 +9139,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10415,7 +9167,7 @@
             "i": 2,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10438,14 +9190,14 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -10478,7 +9230,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10499,11 +9251,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10527,7 +9279,7 @@
             "i": 2,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10552,14 +9304,14 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
           9,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -10592,7 +9344,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10613,11 +9365,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10642,21 +9394,21 @@
             "i": 2,
             "self": [
               "REF",
-              481
+              377
             ],
             "__return__": 109
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
           109,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -10689,7 +9441,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10710,11 +9462,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10738,20 +9490,20 @@
             "i": 3,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
           109,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -10784,7 +9536,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10805,11 +9557,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10833,20 +9585,20 @@
             "i": 3,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
           109,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -10879,7 +9631,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10900,11 +9652,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10928,7 +9680,7 @@
             "i": 3,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -10951,14 +9703,14 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
           109,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -10991,7 +9743,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -11012,11 +9764,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -11040,7 +9792,7 @@
             "i": 3,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -11063,14 +9815,14 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
           109,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -11103,7 +9855,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -11124,11 +9876,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -11152,7 +9904,7 @@
             "i": 3,
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -11177,14 +9929,14 @@
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
           109,
           16
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -11217,7 +9969,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -11238,11 +9990,11 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -11267,21 +10019,21 @@
             "i": 3,
             "self": [
               "REF",
-              481
+              377
             ],
             "__return__": 116
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
           109,
           116
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -11314,7 +10066,7 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         },
@@ -11336,28 +10088,28 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              482
+              378
             ],
             "self": [
               "REF",
-              481
+              377
             ],
             "__return__": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
           109,
           116
         ],
-        "482": [
+        "378": [
           "Proc",
           "Proc on line 23"
         ]
@@ -11390,13 +10142,13 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,
@@ -11432,13 +10184,13 @@
           "encoded_locals": {
             "array": [
               "REF",
-              481
+              377
             ]
           }
         }
       ],
       "heap": {
-        "481": [
+        "377": [
           "LIST",
           101,
           104,

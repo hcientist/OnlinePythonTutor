@@ -2214,7 +2214,7 @@
       "func_name": "<toplevel>",
       "line": 30,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -2328,7 +2328,7 @@
       "func_name": "<toplevel>",
       "line": 16,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2464,7 +2464,7 @@
       "func_name": "<toplevel>",
       "line": 17,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2600,7 +2600,7 @@
       "func_name": "<toplevel>",
       "line": 18,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2738,7 +2738,7 @@
       "func_name": "<toplevel>",
       "line": 31,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -2852,7 +2852,7 @@
       "func_name": "<toplevel>",
       "line": 22,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -2988,7 +2988,7 @@
       "func_name": "<toplevel>",
       "line": 23,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3124,7 +3124,7 @@
       "func_name": "<toplevel>",
       "line": 24,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3262,7 +3262,7 @@
       "func_name": "<toplevel>",
       "line": 32,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -3376,7 +3376,7 @@
       "func_name": "<toplevel>",
       "line": 13,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3510,7 +3510,7 @@
       "func_name": "<toplevel>",
       "line": 14,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3644,7 +3644,7 @@
       "func_name": "<toplevel>",
       "line": 15,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -3780,7 +3780,7 @@
       "func_name": "<toplevel>",
       "line": 33,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -3894,7 +3894,7 @@
       "func_name": "<toplevel>",
       "line": 19,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4028,7 +4028,7 @@
       "func_name": "<toplevel>",
       "line": 20,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4162,7 +4162,7 @@
       "func_name": "<toplevel>",
       "line": 21,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4298,7 +4298,7 @@
       "func_name": "<toplevel>",
       "line": 34,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -4412,7 +4412,7 @@
       "func_name": "<toplevel>",
       "line": 9,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4552,7 +4552,7 @@
       "func_name": "<toplevel>",
       "line": 10,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4692,7 +4692,7 @@
       "func_name": "<toplevel>",
       "line": 11,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4836,7 +4836,7 @@
       "func_name": "<toplevel>",
       "line": 12,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4982,7 +4982,7 @@
       "func_name": "<toplevel>",
       "line": 35,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -5107,7 +5107,7 @@
       "func_name": "<toplevel>",
       "line": 36,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n#<TestVar:0x007faeca8cefd0 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n#<TestVar:0x007f66e0ad5900 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -5232,7 +5232,7 @@
       "func_name": "<toplevel>",
       "line": 13,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n#<TestVar:0x007faeca8cefd0 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n#<TestVar:0x007f66e0ad5900 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -5377,7 +5377,7 @@
       "func_name": "<toplevel>",
       "line": 14,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n#<TestVar:0x007faeca8cefd0 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n#<TestVar:0x007f66e0ad5900 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -5522,7 +5522,7 @@
       "func_name": "<toplevel>",
       "line": 15,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n#<TestVar:0x007faeca8cefd0 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n#<TestVar:0x007f66e0ad5900 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -5608,7 +5608,7 @@
             "inst=",
             [
               "REF",
-              161
+              11
             ]
           ],
           [
@@ -5631,7 +5631,7 @@
           "inst",
           ""
         ],
-        "161": [
+        "11": [
           "FUNCTION",
           "inst=",
           ""
@@ -5669,7 +5669,7 @@
       "func_name": "<toplevel>",
       "line": 36,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007faeca6663b0 @inst=3>\n4\n8\n#<TestVar:0x007faeca8cefd0 @inst=17>\n5\n",
+      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n#<TestVar:0x007f66e0ad5900 @inst=17>\n5\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -5712,28 +5712,28 @@
             "self.cla",
             [
               "REF",
-              162
+              161
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              163
+              162
             ]
           ],
           [
             "inst",
             [
               "REF",
-              164
+              163
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              165
+              164
             ]
           ],
           [
@@ -5741,22 +5741,22 @@
             5
           ]
         ],
-        "162": [
+        "161": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "163": [
+        "162": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "164": [
+        "163": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "165": [
+        "164": [
           "FUNCTION",
           "inst=",
           ""
