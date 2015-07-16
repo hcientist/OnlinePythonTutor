@@ -574,6 +574,8 @@ var RUBY_EXAMPLES = {
   rubyPrivateProtectedLink: 'ruby-example-code/class-private-protected.rb',
   rubyInstClassVarsComplexLink: 'ruby-example-code/inst-class-vars-complex.rb',
   rubyToplevelLink: 'ruby-example-code/toplevel-inst-class-vars.rb',
+  rubyBlocksScoping3Link: 'ruby-example-code/blocks-scoping-3.rb',
+  rubyProcReturnLink: 'ruby-example-code/proc-return.rb',
 };
 
 var chatBox = undefined;
