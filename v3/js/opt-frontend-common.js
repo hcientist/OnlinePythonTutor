@@ -57,12 +57,13 @@ var python2crazy_backend_script = 'web_exec_py2-crazy.py';
 var js_backend_script = 'web_exec_js.py';
 var ts_backend_script = 'web_exec_ts.py';
 var java_backend_script = 'web_exec_java.py';
+var ruby_backend_script = 'web_exec_ruby.py';
 
 // these are the REAL endpoints, accessed via jsonp. code is in ../../v4-cokapi/
 var JS_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_js_jsonp'; // for deployment
 var TS_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_ts_jsonp'; // for deployment
 var JAVA_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_java_jsonp'; // for deployment
-//var JAVA_JSONP_ENDPOINT = 'http://104.237.139.253:5001/exec_java_jsonp'; // for debug
+var RUBY_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_ruby_jsonp'; // for deployment
 
 var domain = "http://pythontutor.com/"; // for deployment
 
@@ -170,7 +171,13 @@ function setAceMode() {
     if (pyInputGetValue() === JAVA_BLANK_TEMPLATE) {
       pyInputSetValue('');
     }
- } else {
+  } else if (selectorVal === 'ruby') {
+    mod = 'ruby';
+    // if it's just a Java skeleton, then reset to blank:
+    if (pyInputGetValue() === JAVA_BLANK_TEMPLATE) {
+      pyInputSetValue('');
+    }
+  } else {
     mod = 'python';
     // if it's just a Java skeleton, then reset to blank:
     if (pyInputGetValue() === JAVA_BLANK_TEMPLATE) {
@@ -1420,6 +1427,8 @@ function executePythonCode(pythonSourceCode,
     clearFrontendError();
     startExecutingCode();
 
+    jsonp_endpoint = null;
+
     // hacky!
     if (backendScript === python2_backend_script) {
       frontendOptionsObj.lang = 'py2';
@@ -1427,35 +1436,24 @@ function executePythonCode(pythonSourceCode,
       frontendOptionsObj.lang = 'py3';
     } else if (backendScript === js_backend_script) {
       frontendOptionsObj.lang = 'js';
+      jsonp_endpoint = JS_JSONP_ENDPOINT;
     } else if (backendScript === ts_backend_script) {
       frontendOptionsObj.lang = 'ts';
+      jsonp_endpoint = TS_JSONP_ENDPOINT;
+    } else if (backendScript === ruby_backend_script) {
+      frontendOptionsObj.lang = 'ruby';
+      jsonp_endpoint = RUBY_JSONP_ENDPOINT;
     } else if (backendScript === java_backend_script) {
       frontendOptionsObj.lang = 'java';
       frontendOptionsObj.disableHeapNesting = true; // never nest Java objects, seems like a good default
+      jsonp_endpoint = JAVA_JSONP_ENDPOINT;
     }
 
-    if (backendScript === js_backend_script || backendScript === ts_backend_script) {
-      // hack for JS execution! should just be a dummy script for logging only
-      $.get(backendScript,
-            {user_script : pythonSourceCode,
-             user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
-             // if we don't have any deltas, then don't bother sending deltaObj:
-             diffs_json: deltaObj && (deltaObj.deltas.length > 0) ? JSON.stringify(deltaObj) : null},
-             function(dat) {} /* don't do anything since this is a dummy call */, "text");
-
-      // the REAL call uses JSONP
-      // some JSONP action!
-      // http://learn.jquery.com/ajax/working-with-jsonp/
-      $.ajax({
-        url: backendScript === ts_backend_script ? TS_JSONP_ENDPOINT : JS_JSONP_ENDPOINT,
-        // The name of the callback parameter, as specified by the YQL service
-        jsonp: "callback",
-        dataType: "jsonp",
-        data: {user_script : pythonSourceCode},
-        success: execCallback,
-      });
-    } else if (backendScript === java_backend_script) {
-      // hack for Java execution! should just be a dummy script for logging only
+    if (backendScript === js_backend_script ||
+        backendScript === ts_backend_script ||
+        backendScript === java_backend_script ||
+        backendScript === ruby_backend_script) {
+      // hack! should just be a dummy script for logging only
       $.get(backendScript,
             {user_script : pythonSourceCode,
              options_json: JSON.stringify(backendOptionsObj),
@@ -1465,10 +1463,10 @@ function executePythonCode(pythonSourceCode,
              function(dat) {} /* don't do anything since this is a dummy call */, "text");
 
       // the REAL call uses JSONP
-      // some JSONP action!
       // http://learn.jquery.com/ajax/working-with-jsonp/
+      assert(jsonp_endpoint);
       $.ajax({
-        url: JAVA_JSONP_ENDPOINT,
+        url: jsonp_endpoint,
         // The name of the callback parameter, as specified by the YQL service
         jsonp: "callback",
         dataType: "jsonp",
@@ -1477,6 +1475,7 @@ function executePythonCode(pythonSourceCode,
         success: execCallback,
       });
     } else {
+      // Python 2 or 3
       $.get(backendScript,
             {user_script : pythonSourceCode,
              raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
