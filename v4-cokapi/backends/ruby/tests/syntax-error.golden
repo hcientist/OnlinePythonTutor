@@ -1,7 +1,3 @@
-SyntaxError -- blarrrggg!!!
-(eval):3: syntax error, unexpected tIDENTIFIER, expecting end-of-input
-3
-syntax error, unexpected tIDENTIFIER, expecting end-of-input
 {
   "code": "x = 1\ny = 2\nz = 3x\nq = x + y\n",
   "trace": [
