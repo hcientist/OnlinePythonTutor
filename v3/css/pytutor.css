@@ -358,8 +358,8 @@ div.ExecutionVisualizer table.classTbl td.classKey {
 div.ExecutionVisualizer table.dictTbl td.dictVal,
 div.ExecutionVisualizer table.instTbl td.instVal,
 div.ExecutionVisualizer table.classTbl td.classVal {
-  padding-top: 12px /*15px*/;
-  padding-bottom: 5px;
+  padding-top: 6px; /*15px*/;
+  padding-bottom: 6px;
   padding-right: 10px;
   padding-left: 4px;
 }
