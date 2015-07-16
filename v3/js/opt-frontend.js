@@ -571,6 +571,8 @@ var RUBY_EXAMPLES = {
   rubyProcLink: 'ruby-example-code/proc-basic.rb',
   rubyProcScopingLink: 'ruby-example-code/proc-scoping.rb',
   rubySymbolsLink: 'ruby-example-code/symbols.rb',
+  rubyPrivateProtectedLink: 'ruby-example-code/class-private-protected.rb',
+  rubyInstClassVarsComplexLink: 'ruby-example-code/inst-class-vars-complex.rb',
   rubyToplevelLink: 'ruby-example-code/toplevel-inst-class-vars.rb',
 };
 
