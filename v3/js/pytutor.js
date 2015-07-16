@@ -654,7 +654,7 @@ ExecutionVisualizer.prototype.render = function() {
   // (note that we need to keep #globals_area separate from #stack for d3 to work its magic)
   this.domRoot.find("#globals_area").append('<div class="stackFrame" id="'
     + myViz.generateID('globals') + '"><div id="' + myViz.generateID('globals_header')
-    + '" class="stackFrameHeader">Global frame</div><table class="stackFrameVarTable" id="'
+    + '" class="stackFrameHeader">' + this.getRealLabel('Global frame') + '</div><table class="stackFrameVarTable" id="'
     + myViz.generateID('global_table') + '"></table></div>');
 
 
@@ -3220,17 +3220,17 @@ ExecutionVisualizer.prototype.renderPrimitiveObject = function(obj, d3DomElement
   var typ = typeof obj;
 
   if (obj == null) {
-    d3DomElement.append('<span class="nullObj">None</span>');
+    d3DomElement.append('<span class="nullObj">' + this.getRealLabel('None') + '</span>');
   }
   else if (typ == "number") {
     d3DomElement.append('<span class="numberObj">' + obj + '</span>');
   }
   else if (typ == "boolean") {
     if (obj) {
-      d3DomElement.append('<span class="boolObj">True</span>');
+      d3DomElement.append('<span class="boolObj">' + this.getRealLabel('True') + '</span>');
     }
     else {
-      d3DomElement.append('<span class="boolObj">False</span>');
+      d3DomElement.append('<span class="boolObj">' + this.getRealLabel('False') + '</span>');
     }
   }
   else if (typ == "string") {
@@ -3419,11 +3419,7 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
     assert(obj.length >= headerLength);
 
     if (isInstance) {
-      if (obj.length === headerLength) {
-        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' empty ' + myViz.getRealLabel('instance') + '</div>');
-      } else {
-        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' ' + myViz.getRealLabel('instance') + '</div>');
-      }
+      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' ' + myViz.getRealLabel('instance') + '</div>');
     }
     else {
       var superclassStr = '';
@@ -3523,7 +3519,7 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
     var parentFrameID = obj[2]; // optional
 
     if (!myViz.compactFuncLabels) {
-      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + 'function</div>');
+      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + myViz.getRealLabel('function') + '</div>');
     }
 
     var funcPrefix = myViz.compactFuncLabels ? 'func' : '';
@@ -3613,14 +3609,24 @@ ExecutionVisualizer.prototype.getRealLabel = function(label) {
       return 'array';
     } else if (label === 'instance') {
       return 'object';
+    } else if (label === 'True') {
+      return 'true';
+    } else if (label === 'False') {
+      return 'false';
     }
   }
 
   if (this.params.lang === 'ruby') {
     if (label === 'dict') {
       return 'hash';
+    } else if (label === 'set') {
+      return 'Set'; // the Ruby Set class is capitalized
     } else if (label === 'function') {
       return 'method';
+    } else if (label === 'None') {
+      return 'nil';
+    } else if (label === 'Global frame') {
+      return 'Global Object';
     }
   }
 
@@ -3715,6 +3721,8 @@ String.prototype.rtrim = function() {
 // also some variable names are like '.0' (for generator expressions),
 // and '.' seems to be illegal.
 //
+// also '!' and '?' are common in Ruby, so escape those as well
+//
 // also spaces are illegal, so convert to '_'
 // TODO: what other characters are illegal???
 var lbRE = new RegExp('\\[|{|\\(|<', 'g');
@@ -3724,6 +3732,8 @@ function varnameToCssID(varname) {
   // rather than just replacing the first entry
   return varname.replace(lbRE, 'LeftB_')
                 .replace(rbRE, '_RightB')
+                .replace(/[!]/g, '_BANG_')
+                .replace(/[?]/g, '_QUES_')
                 .replace(/[:]/g, '_COLON_')
                 .replace(/[.]/g, '_DOT_')
                 .replace(/ /g, '_');
