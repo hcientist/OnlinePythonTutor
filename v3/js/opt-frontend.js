@@ -559,6 +559,21 @@ var PY3_EXAMPLES = {
   nonlocalLink: "example-code/nonlocal.txt",
 }
 
+var RUBY_EXAMPLES = {
+  rubyBlocksLink: 'ruby-example-code/blocks-basic.rb',
+  rubyBlocksScopingLink: 'ruby-example-code/blocks-scoping-2.rb',
+  rubyInheritanceLink: 'ruby-example-code/class-inheritance.rb',
+  rubyConstantsLink: 'ruby-example-code/constants-4.rb',
+  rubyContainersLink: 'ruby-example-code/container-data-types.rb',
+  rubyGlobalsLink: 'ruby-example-code/globals.rb',
+  rubyLambdaScopingLink: 'ruby-example-code/lambda-scoping-2.rb',
+  rubyMegagreeterLink: 'ruby-example-code/megagreeter.rb',
+  rubyProcLink: 'ruby-example-code/proc-basic.rb',
+  rubyProcScopingLink: 'ruby-example-code/proc-scoping.rb',
+  rubySymbolsLink: 'ruby-example-code/symbols.rb',
+  rubyToplevelLink: 'ruby-example-code/toplevel-inst-class-vars.rb',
+};
+
 var chatBox = undefined;
 function createChatBox() {
   assert(!chatBox);
@@ -639,6 +654,9 @@ $(document).ready(function() {
     } else if (JAVA_EXAMPLES[myId] !== undefined) {
       exFile = JAVA_EXAMPLES[myId];
       lang = 'java';
+    } else if (RUBY_EXAMPLES[myId] !== undefined) {
+      exFile = RUBY_EXAMPLES[myId];
+      lang = 'ruby';
     } else if (PY2_EXAMPLES[myId] !== undefined) {
       exFile = PY2_EXAMPLES[myId];
 
