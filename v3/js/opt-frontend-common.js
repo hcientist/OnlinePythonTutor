@@ -153,6 +153,7 @@ var JAVA_BLANK_TEMPLATE = 'public class YourClassNameHere {\n\
 function setAceMode() {
   var selectorVal = $('#pythonVersionSelector').val();
   var mod;
+  var tabSize = 2;
   if (selectorVal === 'java') {
     mod = 'java';
     // if blank empty, then initialize to a Java skeleton:
@@ -179,6 +180,7 @@ function setAceMode() {
     }
   } else {
     mod = 'python';
+    tabSize = 4; // PEP8
     // if it's just a Java skeleton, then reset to blank:
     if (pyInputGetValue() === JAVA_BLANK_TEMPLATE) {
       pyInputSetValue('');
@@ -188,6 +190,8 @@ function setAceMode() {
 
   var s = pyInputAceEditor.getSession();
   s.setMode("ace/mode/" + mod);
+  s.setTabSize(tabSize);
+  s.setUseSoftTabs(true);
 
   // clear all error displays when switching modes
   var s = pyInputAceEditor.getSession();
