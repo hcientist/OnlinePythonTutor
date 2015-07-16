@@ -61,6 +61,10 @@ table#pyOutputPane {
   border: 1px solid #ddd;
 }
 
+#codeInputWarnings {
+  margin-bottom: 8px;
+}
+
 button.smallBtn {
   font-size: 10pt;
   padding: 3px;
