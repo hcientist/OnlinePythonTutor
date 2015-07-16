@@ -27,10 +27,10 @@
 #   - relabel "Global frame" as "Globals" or something
 #   - display None values as 'nil'
 #   - display booleans as 'true' and 'false'
-#   - rename 'list' to 'array'
-#   - rename 'dict' to 'hash'
-#   - rename 'instance' to 'object'
-#   - rename 'function' to 'method'
+#   - rename 'list' to 'array' - check
+#   - rename 'dict' to 'hash' - check
+#   - rename 'instance' to 'object' - check
+#   - rename 'function' to 'method' - check
 # - display private and protected attributes
 #
 # Limitations/quirks:
