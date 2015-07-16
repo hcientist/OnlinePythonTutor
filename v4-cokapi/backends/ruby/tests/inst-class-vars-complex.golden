@@ -409,9 +409,21 @@
             7
           ],
           [
+            "initialize [private]",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
             "@@cla",
             6
           ]
+        ],
+        "2": [
+          "FUNCTION",
+          "initialize",
+          ""
         ]
       },
       "globals": {
@@ -487,7 +499,14 @@
             "self.cla",
             [
               "REF",
-              2
+              3
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              4
             ]
           ],
           [
@@ -495,9 +514,14 @@
             6
           ]
         ],
-        "2": [
+        "3": [
           "FUNCTION",
           "cla",
+          ""
+        ],
+        "4": [
+          "FUNCTION",
+          "initialize",
           ""
         ]
       },
@@ -574,14 +598,21 @@
             "self.cla",
             [
               "REF",
-              3
+              5
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              4
+              6
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              7
             ]
           ],
           [
@@ -589,14 +620,19 @@
             6
           ]
         ],
-        "3": [
+        "5": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "4": [
+        "6": [
           "FUNCTION",
           "cla=",
+          ""
+        ],
+        "7": [
+          "FUNCTION",
+          "initialize",
           ""
         ]
       },
@@ -673,21 +709,28 @@
             "self.cla",
             [
               "REF",
-              5
+              8
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              6
+              9
             ]
           ],
           [
             "inst",
             [
               "REF",
-              7
+              10
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              11
             ]
           ],
           [
@@ -695,19 +738,24 @@
             6
           ]
         ],
-        "5": [
+        "8": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "6": [
+        "9": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "7": [
+        "10": [
           "FUNCTION",
           "inst",
+          ""
+        ],
+        "11": [
+          "FUNCTION",
+          "initialize",
           ""
         ]
       },
@@ -784,28 +832,35 @@
             "self.cla",
             [
               "REF",
-              8
+              12
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              9
+              13
             ]
           ],
           [
             "inst",
             [
               "REF",
-              10
+              14
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              11
+              15
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              16
             ]
           ],
           [
@@ -813,24 +868,29 @@
             6
           ]
         ],
-        "8": [
+        "12": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "9": [
+        "13": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "10": [
+        "14": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "11": [
+        "15": [
           "FUNCTION",
           "inst=",
+          ""
+        ],
+        "16": [
+          "FUNCTION",
+          "initialize",
           ""
         ]
       },
@@ -887,28 +947,35 @@
             "self.cla",
             [
               "REF",
-              12
+              17
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              13
+              18
             ]
           ],
           [
             "inst",
             [
               "REF",
-              14
+              19
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              15
+              20
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              21
             ]
           ],
           [
@@ -916,24 +983,29 @@
             6
           ]
         ],
-        "12": [
+        "17": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "13": [
+        "18": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "14": [
+        "19": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "15": [
+        "20": [
           "FUNCTION",
           "inst=",
+          ""
+        ],
+        "21": [
+          "FUNCTION",
+          "initialize",
           ""
         ]
       },
@@ -990,28 +1062,35 @@
             "self.cla",
             [
               "REF",
-              16
+              22
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              17
+              23
             ]
           ],
           [
             "inst",
             [
               "REF",
-              18
+              24
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              19
+              25
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              26
             ]
           ],
           [
@@ -1019,24 +1098,29 @@
             6
           ]
         ],
-        "16": [
+        "22": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "17": [
+        "23": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "18": [
+        "24": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "19": [
+        "25": [
           "FUNCTION",
           "inst=",
+          ""
+        ],
+        "26": [
+          "FUNCTION",
+          "initialize",
           ""
         ]
       },
@@ -1095,7 +1179,7 @@
             "x": 3,
             "self": [
               "REF",
-              24
+              32
             ]
           }
         }
@@ -1115,28 +1199,35 @@
             "self.cla",
             [
               "REF",
-              20
+              27
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              21
+              28
             ]
           ],
           [
             "inst",
             [
               "REF",
-              22
+              29
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              23
+              30
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              31
             ]
           ],
           [
@@ -1144,27 +1235,32 @@
             6
           ]
         ],
-        "20": [
+        "27": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "21": [
+        "28": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "22": [
+        "29": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "23": [
+        "30": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "31": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar"
         ]
@@ -1224,7 +1320,7 @@
             "x": 3,
             "self": [
               "REF",
-              24
+              32
             ]
           }
         }
@@ -1244,28 +1340,35 @@
             "self.cla",
             [
               "REF",
-              25
+              33
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              26
+              34
             ]
           ],
           [
             "inst",
             [
               "REF",
-              27
+              35
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              28
+              36
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              37
             ]
           ],
           [
@@ -1273,27 +1376,32 @@
             6
           ]
         ],
-        "25": [
+        "33": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "26": [
+        "34": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "27": [
+        "35": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "28": [
+        "36": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "37": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar"
         ]
@@ -1353,7 +1461,7 @@
             "x": 3,
             "self": [
               "REF",
-              24
+              32
             ]
           }
         }
@@ -1373,28 +1481,35 @@
             "self.cla",
             [
               "REF",
-              29
+              38
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              30
+              39
             ]
           ],
           [
             "inst",
             [
               "REF",
-              31
+              40
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              32
+              41
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              42
             ]
           ],
           [
@@ -1402,27 +1517,32 @@
             6
           ]
         ],
-        "29": [
+        "38": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "30": [
+        "39": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "31": [
+        "40": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "32": [
+        "41": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "42": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -1487,7 +1607,7 @@
             "x": 3,
             "self": [
               "REF",
-              24
+              32
             ],
             "__return__": 7
           }
@@ -1508,28 +1628,35 @@
             "self.cla",
             [
               "REF",
-              33
+              43
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              34
+              44
             ]
           ],
           [
             "inst",
             [
               "REF",
-              35
+              45
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              36
+              46
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              47
             ]
           ],
           [
@@ -1537,27 +1664,32 @@
             7
           ]
         ],
-        "33": [
+        "43": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "34": [
+        "44": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "35": [
+        "45": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "36": [
+        "46": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "47": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -1601,7 +1733,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": null
           }
@@ -1622,28 +1754,35 @@
             "self.cla",
             [
               "REF",
-              37
+              48
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              38
+              49
             ]
           ],
           [
             "inst",
             [
               "REF",
-              39
+              50
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              40
+              51
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              52
             ]
           ],
           [
@@ -1651,27 +1790,32 @@
             7
           ]
         ],
-        "37": [
+        "48": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "38": [
+        "49": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "39": [
+        "50": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "40": [
+        "51": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "52": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -1715,7 +1859,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": null
           }
@@ -1738,390 +1882,6 @@
               "REF",
               1
             ]
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
-            [
-              "REF",
-              41
-            ]
-          ],
-          [
-            "self.cla=",
-            [
-              "REF",
-              42
-            ]
-          ],
-          [
-            "inst",
-            [
-              "REF",
-              43
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              44
-            ]
-          ],
-          [
-            "@@cla",
-            7
-          ]
-        ],
-        "41": [
-          "FUNCTION",
-          "cla",
-          ""
-        ],
-        "42": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "43": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "44": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            3
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 14,
-      "event": "step_line",
-      "stdout": "5\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": false,
-          "func_name": "<main>:28",
-          "frame_id": 1,
-          "unique_hash": "<main>:28_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
-            ],
-            "other": null
-          }
-        },
-        {
-          "is_highlighted": true,
-          "func_name": "cla:14",
-          "frame_id": 2,
-          "unique_hash": "cla:14_f2",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "self"
-          ],
-          "encoded_locals": {
-            "self": [
-              "REF",
-              1
-            ]
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
-            [
-              "REF",
-              45
-            ]
-          ],
-          [
-            "self.cla=",
-            [
-              "REF",
-              46
-            ]
-          ],
-          [
-            "inst",
-            [
-              "REF",
-              47
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              48
-            ]
-          ],
-          [
-            "@@cla",
-            7
-          ]
-        ],
-        "45": [
-          "FUNCTION",
-          "cla",
-          ""
-        ],
-        "46": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "47": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "48": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            3
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 15,
-      "event": "return",
-      "stdout": "5\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": false,
-          "func_name": "<main>:28",
-          "frame_id": 1,
-          "unique_hash": "<main>:28_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
-            ],
-            "other": null
-          }
-        },
-        {
-          "is_highlighted": true,
-          "func_name": "cla:15",
-          "frame_id": 2,
-          "unique_hash": "cla:15_f2",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "self",
-            "__return__"
-          ],
-          "encoded_locals": {
-            "self": [
-              "REF",
-              1
-            ],
-            "__return__": 7
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
-            [
-              "REF",
-              49
-            ]
-          ],
-          [
-            "self.cla=",
-            [
-              "REF",
-              50
-            ]
-          ],
-          [
-            "inst",
-            [
-              "REF",
-              51
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              52
-            ]
-          ],
-          [
-            "@@cla",
-            7
-          ]
-        ],
-        "49": [
-          "FUNCTION",
-          "cla",
-          ""
-        ],
-        "50": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "51": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "52": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            3
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 29,
-      "event": "step_line",
-      "stdout": "5\n7\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": true,
-          "func_name": "<main>:29",
-          "frame_id": 1,
-          "unique_hash": "<main>:29_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
-            ],
-            "other": null
           }
         }
       ],
@@ -2165,6 +1925,13 @@
             ]
           ],
           [
+            "initialize [private]",
+            [
+              "REF",
+              57
+            ]
+          ],
+          [
             "@@cla",
             7
           ]
@@ -2189,7 +1956,432 @@
           "inst=",
           ""
         ],
-        "24": [
+        "57": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "5\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:28",
+          "frame_id": 1,
+          "unique_hash": "<main>:28_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla:14",
+          "frame_id": 2,
+          "unique_hash": "cla:14_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              58
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              59
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              60
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              61
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              62
+            ]
+          ],
+          [
+            "@@cla",
+            7
+          ]
+        ],
+        "58": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "59": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "60": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "61": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "62": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
+      "event": "return",
+      "stdout": "5\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:28",
+          "frame_id": 1,
+          "unique_hash": "<main>:28_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla:15",
+          "frame_id": 2,
+          "unique_hash": "cla:15_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ],
+            "__return__": 7
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              63
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              64
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              65
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              66
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              67
+            ]
+          ],
+          [
+            "@@cla",
+            7
+          ]
+        ],
+        "63": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "64": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "65": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "66": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "67": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 29,
+      "event": "step_line",
+      "stdout": "5\n7\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:29",
+          "frame_id": 1,
+          "unique_hash": "<main>:29_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              68
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              69
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              70
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              71
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              72
+            ]
+          ],
+          [
+            "@@cla",
+            7
+          ]
+        ],
+        "68": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "69": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "70": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "71": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "72": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -2214,7 +2406,7 @@
       "func_name": "<toplevel>",
       "line": 30,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -2233,531 +2425,7 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
-            ],
-            "other": null
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
-            [
-              "REF",
-              57
-            ]
-          ],
-          [
-            "self.cla=",
-            [
-              "REF",
-              58
-            ]
-          ],
-          [
-            "inst",
-            [
-              "REF",
-              59
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              60
-            ]
-          ],
-          [
-            "@@cla",
-            7
-          ]
-        ],
-        "57": [
-          "FUNCTION",
-          "cla",
-          ""
-        ],
-        "58": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "59": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "60": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            3
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 16,
-      "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": false,
-          "func_name": "<main>:30",
-          "frame_id": 1,
-          "unique_hash": "<main>:30_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
-            ],
-            "other": null
-          }
-        },
-        {
-          "is_highlighted": true,
-          "func_name": "cla=:16",
-          "frame_id": 2,
-          "unique_hash": "cla=:16_f2",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "self",
-            "y"
-          ],
-          "encoded_locals": {
-            "y": 4,
-            "self": [
-              "REF",
-              1
-            ]
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
-            [
-              "REF",
-              61
-            ]
-          ],
-          [
-            "self.cla=",
-            [
-              "REF",
-              62
-            ]
-          ],
-          [
-            "inst",
-            [
-              "REF",
-              63
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              64
-            ]
-          ],
-          [
-            "@@cla",
-            7
-          ]
-        ],
-        "61": [
-          "FUNCTION",
-          "cla",
-          ""
-        ],
-        "62": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "63": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "64": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            3
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 17,
-      "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": false,
-          "func_name": "<main>:30",
-          "frame_id": 1,
-          "unique_hash": "<main>:30_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
-            ],
-            "other": null
-          }
-        },
-        {
-          "is_highlighted": true,
-          "func_name": "cla=:17",
-          "frame_id": 2,
-          "unique_hash": "cla=:17_f2",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "self",
-            "y"
-          ],
-          "encoded_locals": {
-            "y": 4,
-            "self": [
-              "REF",
-              1
-            ]
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
-            [
-              "REF",
-              65
-            ]
-          ],
-          [
-            "self.cla=",
-            [
-              "REF",
-              66
-            ]
-          ],
-          [
-            "inst",
-            [
-              "REF",
-              67
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              68
-            ]
-          ],
-          [
-            "@@cla",
-            7
-          ]
-        ],
-        "65": [
-          "FUNCTION",
-          "cla",
-          ""
-        ],
-        "66": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "67": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "68": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            3
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 18,
-      "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": false,
-          "func_name": "<main>:30",
-          "frame_id": 1,
-          "unique_hash": "<main>:30_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
-            ],
-            "other": null
-          }
-        },
-        {
-          "is_highlighted": true,
-          "func_name": "cla=:18",
-          "frame_id": 2,
-          "unique_hash": "cla=:18_f2",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "self",
-            "y",
-            "__return__"
-          ],
-          "encoded_locals": {
-            "y": 4,
-            "self": [
-              "REF",
-              1
-            ],
-            "__return__": 4
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
-            [
-              "REF",
-              69
-            ]
-          ],
-          [
-            "self.cla=",
-            [
-              "REF",
-              70
-            ]
-          ],
-          [
-            "inst",
-            [
-              "REF",
-              71
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              72
-            ]
-          ],
-          [
-            "@@cla",
-            4
-          ]
-        ],
-        "69": [
-          "FUNCTION",
-          "cla",
-          ""
-        ],
-        "70": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "71": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "72": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            3
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 31,
-      "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": true,
-          "func_name": "<main>:31",
-          "frame_id": 1,
-          "unique_hash": "<main>:31_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
+              32
             ],
             "other": null
           }
@@ -2803,8 +2471,15 @@
             ]
           ],
           [
+            "initialize [private]",
+            [
+              "REF",
+              77
+            ]
+          ],
+          [
             "@@cla",
-            4
+            7
           ]
         ],
         "73": [
@@ -2827,7 +2502,12 @@
           "inst=",
           ""
         ],
-        "24": [
+        "77": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -2850,15 +2530,15 @@
     },
     {
       "func_name": "<toplevel>",
-      "line": 22,
+      "line": 16,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
-          "func_name": "<main>:31",
+          "func_name": "<main>:30",
           "frame_id": 1,
-          "unique_hash": "<main>:31_f1",
+          "unique_hash": "<main>:30_f1",
           "is_parent": false,
           "is_zombie": false,
           "parent_frame_id_list": [
@@ -2871,16 +2551,16 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": null
           }
         },
         {
           "is_highlighted": true,
-          "func_name": "inst=:22",
+          "func_name": "cla=:16",
           "frame_id": 2,
-          "unique_hash": "inst=:22_f2",
+          "unique_hash": "cla=:16_f2",
           "is_parent": false,
           "is_zombie": false,
           "parent_frame_id_list": [
@@ -2888,13 +2568,13 @@
           ],
           "ordered_varnames": [
             "self",
-            "i"
+            "y"
           ],
           "encoded_locals": {
-            "i": 8,
+            "y": 4,
             "self": [
               "REF",
-              24
+              1
             ]
           }
         }
@@ -2912,194 +2592,70 @@
           ],
           [
             "self.cla",
-            [
-              "REF",
-              77
-            ]
-          ],
-          [
-            "self.cla=",
             [
               "REF",
               78
             ]
           ],
           [
-            "inst",
+            "self.cla=",
             [
               "REF",
               79
             ]
           ],
           [
-            "inst=",
+            "inst",
             [
               "REF",
               80
             ]
           ],
           [
-            "@@cla",
-            4
-          ]
-        ],
-        "77": [
-          "FUNCTION",
-          "cla",
-          ""
-        ],
-        "78": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "79": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "80": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            3
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 23,
-      "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": false,
-          "func_name": "<main>:31",
-          "frame_id": 1,
-          "unique_hash": "<main>:31_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
-            ],
-            "other": null
-          }
-        },
-        {
-          "is_highlighted": true,
-          "func_name": "inst=:23",
-          "frame_id": 2,
-          "unique_hash": "inst=:23_f2",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "self",
-            "i"
-          ],
-          "encoded_locals": {
-            "i": 8,
-            "self": [
-              "REF",
-              24
-            ]
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
+            "inst=",
             [
               "REF",
               81
             ]
           ],
           [
-            "self.cla=",
+            "initialize [private]",
             [
               "REF",
               82
             ]
           ],
           [
-            "inst",
-            [
-              "REF",
-              83
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              84
-            ]
-          ],
-          [
             "@@cla",
-            4
+            7
           ]
         ],
-        "81": [
+        "78": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "82": [
+        "79": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "83": [
+        "80": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "84": [
+        "81": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "82": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -3122,15 +2678,15 @@
     },
     {
       "func_name": "<toplevel>",
-      "line": 24,
-      "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
+      "line": 17,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
-          "func_name": "<main>:31",
+          "func_name": "<main>:30",
           "frame_id": 1,
-          "unique_hash": "<main>:31_f1",
+          "unique_hash": "<main>:30_f1",
           "is_parent": false,
           "is_zombie": false,
           "parent_frame_id_list": [
@@ -3143,16 +2699,16 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": null
           }
         },
         {
           "is_highlighted": true,
-          "func_name": "inst=:24",
+          "func_name": "cla=:17",
           "frame_id": 2,
-          "unique_hash": "inst=:24_f2",
+          "unique_hash": "cla=:17_f2",
           "is_parent": false,
           "is_zombie": false,
           "parent_frame_id_list": [
@@ -3160,16 +2716,14 @@
           ],
           "ordered_varnames": [
             "self",
-            "i",
-            "__return__"
+            "y"
           ],
           "encoded_locals": {
-            "i": 8,
+            "y": 4,
             "self": [
               "REF",
-              24
-            ],
-            "__return__": 8
+              1
+            ]
           }
         }
       ],
@@ -3188,61 +2742,73 @@
             "self.cla",
             [
               "REF",
-              85
+              83
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              86
+              84
             ]
           ],
           [
             "inst",
             [
               "REF",
-              87
+              85
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              88
+              86
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              87
             ]
           ],
           [
             "@@cla",
-            4
+            7
           ]
         ],
-        "85": [
+        "83": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "86": [
+        "84": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "87": [
+        "85": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "88": [
+        "86": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "87": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
             "@inst",
-            8
+            3
           ]
         ]
       },
@@ -3260,15 +2826,15 @@
     },
     {
       "func_name": "<toplevel>",
-      "line": 32,
-      "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
+      "line": 18,
+      "event": "return",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n",
       "stack_to_render": [
         {
-          "is_highlighted": true,
-          "func_name": "<main>:32",
+          "is_highlighted": false,
+          "func_name": "<main>:30",
           "frame_id": 1,
-          "unique_hash": "<main>:32_f1",
+          "unique_hash": "<main>:30_f1",
           "is_parent": false,
           "is_zombie": false,
           "parent_frame_id_list": [
@@ -3281,9 +2847,33 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla=:18",
+          "frame_id": 2,
+          "unique_hash": "cla=:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "y",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "y": 4,
+            "self": [
+              "REF",
+              1
+            ],
+            "__return__": 4
           }
         }
       ],
@@ -3302,25 +2892,32 @@
             "self.cla",
             [
               "REF",
-              89
+              88
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              90
+              89
             ]
           ],
           [
             "inst",
             [
               "REF",
-              91
+              90
             ]
           ],
           [
             "inst=",
+            [
+              "REF",
+              91
+            ]
+          ],
+          [
+            "initialize [private]",
             [
               "REF",
               92
@@ -3331,32 +2928,37 @@
             4
           ]
         ],
-        "89": [
+        "88": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "90": [
+        "89": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "91": [
+        "90": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "92": [
+        "91": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "92": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
             "@inst",
-            8
+            3
           ]
         ]
       },
@@ -3374,15 +2976,15 @@
     },
     {
       "func_name": "<toplevel>",
-      "line": 13,
-      "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
+      "line": 31,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n",
       "stack_to_render": [
         {
-          "is_highlighted": false,
-          "func_name": "<main>:32",
+          "is_highlighted": true,
+          "func_name": "<main>:31",
           "frame_id": 1,
-          "unique_hash": "<main>:32_f1",
+          "unique_hash": "<main>:31_f1",
           "is_parent": false,
           "is_zombie": false,
           "parent_frame_id_list": [
@@ -3395,29 +2997,9 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": null
-          }
-        },
-        {
-          "is_highlighted": true,
-          "func_name": "cla:13",
-          "frame_id": 2,
-          "unique_hash": "cla:13_f2",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "self"
-          ],
-          "encoded_locals": {
-            "self": [
-              "REF",
-              1
-            ]
           }
         }
       ],
@@ -3461,6 +3043,13 @@
             ]
           ],
           [
+            "initialize [private]",
+            [
+              "REF",
+              97
+            ]
+          ],
+          [
             "@@cla",
             4
           ]
@@ -3485,146 +3074,17 @@
           "inst=",
           ""
         ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            8
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 14,
-      "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": false,
-          "func_name": "<main>:32",
-          "frame_id": 1,
-          "unique_hash": "<main>:32_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
-            ],
-            "other": null
-          }
-        },
-        {
-          "is_highlighted": true,
-          "func_name": "cla:14",
-          "frame_id": 2,
-          "unique_hash": "cla:14_f2",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "self"
-          ],
-          "encoded_locals": {
-            "self": [
-              "REF",
-              1
-            ]
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
-            [
-              "REF",
-              97
-            ]
-          ],
-          [
-            "self.cla=",
-            [
-              "REF",
-              98
-            ]
-          ],
-          [
-            "inst",
-            [
-              "REF",
-              99
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              100
-            ]
-          ],
-          [
-            "@@cla",
-            4
-          ]
-        ],
         "97": [
           "FUNCTION",
-          "cla",
+          "initialize",
           ""
         ],
-        "98": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "99": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "100": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "24": [
+        "32": [
           "INSTANCE",
           "TestVar",
           [
             "@inst",
-            8
+            3
           ]
         ]
       },
@@ -3642,15 +3102,15 @@
     },
     {
       "func_name": "<toplevel>",
-      "line": 15,
-      "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n",
+      "line": 22,
+      "event": "call",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
-          "func_name": "<main>:32",
+          "func_name": "<main>:31",
           "frame_id": 1,
-          "unique_hash": "<main>:32_f1",
+          "unique_hash": "<main>:31_f1",
           "is_parent": false,
           "is_zombie": false,
           "parent_frame_id_list": [
@@ -3663,16 +3123,16 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": null
           }
         },
         {
           "is_highlighted": true,
-          "func_name": "cla:15",
+          "func_name": "inst=:22",
           "frame_id": 2,
-          "unique_hash": "cla:15_f2",
+          "unique_hash": "inst=:22_f2",
           "is_parent": false,
           "is_zombie": false,
           "parent_frame_id_list": [
@@ -3680,14 +3140,14 @@
           ],
           "ordered_varnames": [
             "self",
-            "__return__"
+            "i"
           ],
           "encoded_locals": {
+            "i": 8,
             "self": [
               "REF",
-              1
-            ],
-            "__return__": 4
+              32
+            ]
           }
         }
       ],
@@ -3704,63 +3164,75 @@
           ],
           [
             "self.cla",
+            [
+              "REF",
+              98
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              99
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              100
+            ]
+          ],
+          [
+            "inst=",
             [
               "REF",
               101
             ]
           ],
           [
-            "self.cla=",
+            "initialize [private]",
             [
               "REF",
               102
             ]
           ],
           [
-            "inst",
-            [
-              "REF",
-              103
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              104
-            ]
-          ],
-          [
             "@@cla",
             4
           ]
         ],
-        "101": [
+        "98": [
           "FUNCTION",
           "cla",
+          ""
+        ],
+        "99": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "100": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "101": [
+          "FUNCTION",
+          "inst=",
           ""
         ],
         "102": [
           "FUNCTION",
-          "cla=",
+          "initialize",
           ""
         ],
-        "103": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "104": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "24": [
+        "32": [
           "INSTANCE",
           "TestVar",
           [
             "@inst",
-            8
+            3
           ]
         ]
       },
@@ -3778,129 +3250,15 @@
     },
     {
       "func_name": "<toplevel>",
-      "line": 33,
+      "line": 23,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": true,
-          "func_name": "<main>:33",
-          "frame_id": 1,
-          "unique_hash": "<main>:33_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
-            ],
-            "other": null
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
-            [
-              "REF",
-              105
-            ]
-          ],
-          [
-            "self.cla=",
-            [
-              "REF",
-              106
-            ]
-          ],
-          [
-            "inst",
-            [
-              "REF",
-              107
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              108
-            ]
-          ],
-          [
-            "@@cla",
-            4
-          ]
-        ],
-        "105": [
-          "FUNCTION",
-          "cla",
-          ""
-        ],
-        "106": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "107": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "108": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            8
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 19,
-      "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
-          "func_name": "<main>:33",
+          "func_name": "<main>:31",
           "frame_id": 1,
-          "unique_hash": "<main>:33_f1",
+          "unique_hash": "<main>:31_f1",
           "is_parent": false,
           "is_zombie": false,
           "parent_frame_id_list": [
@@ -3913,28 +3271,30 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": null
           }
         },
         {
           "is_highlighted": true,
-          "func_name": "inst:19",
+          "func_name": "inst=:23",
           "frame_id": 2,
-          "unique_hash": "inst:19_f2",
+          "unique_hash": "inst=:23_f2",
           "is_parent": false,
           "is_zombie": false,
           "parent_frame_id_list": [
 
           ],
           "ordered_varnames": [
-            "self"
+            "self",
+            "i"
           ],
           "encoded_locals": {
+            "i": 8,
             "self": [
               "REF",
-              24
+              32
             ]
           }
         }
@@ -3954,25 +3314,182 @@
             "self.cla",
             [
               "REF",
-              109
+              103
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              110
+              104
             ]
           ],
           [
             "inst",
             [
               "REF",
-              111
+              105
             ]
           ],
           [
             "inst=",
+            [
+              "REF",
+              106
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              107
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "103": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "104": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "105": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "106": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "107": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            3
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 24,
+      "event": "return",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:31",
+          "frame_id": 1,
+          "unique_hash": "<main>:31_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "inst=:24",
+          "frame_id": 2,
+          "unique_hash": "inst=:24_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "i",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "i": 8,
+            "self": [
+              "REF",
+              32
+            ],
+            "__return__": 8
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              108
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              109
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              110
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              111
+            ]
+          ],
+          [
+            "initialize [private]",
             [
               "REF",
               112
@@ -3983,27 +3500,32 @@
             4
           ]
         ],
-        "109": [
+        "108": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "110": [
+        "109": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "111": [
+        "110": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "112": [
+        "111": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "112": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -4026,15 +3548,15 @@
     },
     {
       "func_name": "<toplevel>",
-      "line": 20,
+      "line": 32,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n",
       "stack_to_render": [
         {
-          "is_highlighted": false,
-          "func_name": "<main>:33",
+          "is_highlighted": true,
+          "func_name": "<main>:32",
           "frame_id": 1,
-          "unique_hash": "<main>:33_f1",
+          "unique_hash": "<main>:32_f1",
           "is_parent": false,
           "is_zombie": false,
           "parent_frame_id_list": [
@@ -4047,29 +3569,9 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": null
-          }
-        },
-        {
-          "is_highlighted": true,
-          "func_name": "inst:20",
-          "frame_id": 2,
-          "unique_hash": "inst:20_f2",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "self"
-          ],
-          "encoded_locals": {
-            "self": [
-              "REF",
-              24
-            ]
           }
         }
       ],
@@ -4113,6 +3615,13 @@
             ]
           ],
           [
+            "initialize [private]",
+            [
+              "REF",
+              117
+            ]
+          ],
+          [
             "@@cla",
             4
           ]
@@ -4137,7 +3646,12 @@
           "inst=",
           ""
         ],
-        "24": [
+        "117": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -4160,9 +3674,575 @@
     },
     {
       "func_name": "<toplevel>",
-      "line": 21,
+      "line": 13,
+      "event": "call",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:32",
+          "frame_id": 1,
+          "unique_hash": "<main>:32_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla:13",
+          "frame_id": 2,
+          "unique_hash": "cla:13_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              118
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              119
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              120
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              121
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              122
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "118": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "119": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "120": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "121": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "122": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:32",
+          "frame_id": 1,
+          "unique_hash": "<main>:32_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla:14",
+          "frame_id": 2,
+          "unique_hash": "cla:14_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              123
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              124
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              125
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              126
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              127
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "123": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "124": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "125": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "126": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "127": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:32",
+          "frame_id": 1,
+          "unique_hash": "<main>:32_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "cla:15",
+          "frame_id": 2,
+          "unique_hash": "cla:15_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ],
+            "__return__": 4
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              128
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              129
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              130
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              131
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              132
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "128": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "129": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "130": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "131": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "132": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 33,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:33",
+          "frame_id": 1,
+          "unique_hash": "<main>:33_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              133
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              134
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              135
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              136
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              137
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "133": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "134": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "135": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "136": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "137": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 19,
+      "event": "call",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -4181,707 +4261,29 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": null
           }
         },
         {
           "is_highlighted": true,
-          "func_name": "inst:21",
+          "func_name": "inst:19",
           "frame_id": 2,
-          "unique_hash": "inst:21_f2",
+          "unique_hash": "inst:19_f2",
           "is_parent": false,
           "is_zombie": false,
           "parent_frame_id_list": [
 
           ],
           "ordered_varnames": [
-            "self",
-            "__return__"
+            "self"
           ],
           "encoded_locals": {
             "self": [
               "REF",
-              24
-            ],
-            "__return__": 8
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
-            [
-              "REF",
-              117
+              32
             ]
-          ],
-          [
-            "self.cla=",
-            [
-              "REF",
-              118
-            ]
-          ],
-          [
-            "inst",
-            [
-              "REF",
-              119
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              120
-            ]
-          ],
-          [
-            "@@cla",
-            4
-          ]
-        ],
-        "117": [
-          "FUNCTION",
-          "cla",
-          ""
-        ],
-        "118": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "119": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "120": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            8
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 34,
-      "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": true,
-          "func_name": "<main>:34",
-          "frame_id": 1,
-          "unique_hash": "<main>:34_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
-            ],
-            "other": null
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
-            [
-              "REF",
-              121
-            ]
-          ],
-          [
-            "self.cla=",
-            [
-              "REF",
-              122
-            ]
-          ],
-          [
-            "inst",
-            [
-              "REF",
-              123
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              124
-            ]
-          ],
-          [
-            "@@cla",
-            4
-          ]
-        ],
-        "121": [
-          "FUNCTION",
-          "cla",
-          ""
-        ],
-        "122": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "123": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "124": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            8
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 9,
-      "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": false,
-          "func_name": "<main>:34",
-          "frame_id": 1,
-          "unique_hash": "<main>:34_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
-            ],
-            "other": null
-          }
-        },
-        {
-          "is_highlighted": true,
-          "func_name": "initialize:9",
-          "frame_id": 3,
-          "unique_hash": "initialize:9_f3",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "self",
-            "x"
-          ],
-          "encoded_locals": {
-            "x": 17,
-            "self": [
-              "REF",
-              129
-            ]
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
-            [
-              "REF",
-              125
-            ]
-          ],
-          [
-            "self.cla=",
-            [
-              "REF",
-              126
-            ]
-          ],
-          [
-            "inst",
-            [
-              "REF",
-              127
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              128
-            ]
-          ],
-          [
-            "@@cla",
-            4
-          ]
-        ],
-        "125": [
-          "FUNCTION",
-          "cla",
-          ""
-        ],
-        "126": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "127": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "128": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "129": [
-          "INSTANCE",
-          "TestVar"
-        ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            8
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 10,
-      "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": false,
-          "func_name": "<main>:34",
-          "frame_id": 1,
-          "unique_hash": "<main>:34_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
-            ],
-            "other": null
-          }
-        },
-        {
-          "is_highlighted": true,
-          "func_name": "initialize:10",
-          "frame_id": 3,
-          "unique_hash": "initialize:10_f3",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "self",
-            "x"
-          ],
-          "encoded_locals": {
-            "x": 17,
-            "self": [
-              "REF",
-              129
-            ]
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
-            [
-              "REF",
-              130
-            ]
-          ],
-          [
-            "self.cla=",
-            [
-              "REF",
-              131
-            ]
-          ],
-          [
-            "inst",
-            [
-              "REF",
-              132
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              133
-            ]
-          ],
-          [
-            "@@cla",
-            4
-          ]
-        ],
-        "130": [
-          "FUNCTION",
-          "cla",
-          ""
-        ],
-        "131": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "132": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "133": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "129": [
-          "INSTANCE",
-          "TestVar"
-        ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            8
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 11,
-      "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": false,
-          "func_name": "<main>:34",
-          "frame_id": 1,
-          "unique_hash": "<main>:34_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
-            ],
-            "other": null
-          }
-        },
-        {
-          "is_highlighted": true,
-          "func_name": "initialize:11",
-          "frame_id": 3,
-          "unique_hash": "initialize:11_f3",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "self",
-            "x"
-          ],
-          "encoded_locals": {
-            "x": 17,
-            "self": [
-              "REF",
-              129
-            ]
-          }
-        }
-      ],
-      "heap": {
-        "1": [
-          "CLASS",
-          "TestVar",
-          [
-
-          ],
-          [
-            "CONST_VAL",
-            7
-          ],
-          [
-            "self.cla",
-            [
-              "REF",
-              134
-            ]
-          ],
-          [
-            "self.cla=",
-            [
-              "REF",
-              135
-            ]
-          ],
-          [
-            "inst",
-            [
-              "REF",
-              136
-            ]
-          ],
-          [
-            "inst=",
-            [
-              "REF",
-              137
-            ]
-          ],
-          [
-            "@@cla",
-            4
-          ]
-        ],
-        "134": [
-          "FUNCTION",
-          "cla",
-          ""
-        ],
-        "135": [
-          "FUNCTION",
-          "cla=",
-          ""
-        ],
-        "136": [
-          "FUNCTION",
-          "inst",
-          ""
-        ],
-        "137": [
-          "FUNCTION",
-          "inst=",
-          ""
-        ],
-        "129": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            17
-          ]
-        ],
-        "24": [
-          "INSTANCE",
-          "TestVar",
-          [
-            "@inst",
-            8
-          ]
-        ]
-      },
-      "globals": {
-        "$glob": 5,
-        "TestVar": [
-          "REF",
-          1
-        ]
-      },
-      "ordered_globals": [
-        "$glob",
-        "TestVar"
-      ]
-    },
-    {
-      "func_name": "<toplevel>",
-      "line": 12,
-      "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n",
-      "stack_to_render": [
-        {
-          "is_highlighted": false,
-          "func_name": "<main>:34",
-          "frame_id": 1,
-          "unique_hash": "<main>:34_f1",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "test",
-            "other"
-          ],
-          "encoded_locals": {
-            "test": [
-              "REF",
-              24
-            ],
-            "other": null
-          }
-        },
-        {
-          "is_highlighted": true,
-          "func_name": "initialize:12",
-          "frame_id": 3,
-          "unique_hash": "initialize:12_f3",
-          "is_parent": false,
-          "is_zombie": false,
-          "parent_frame_id_list": [
-
-          ],
-          "ordered_varnames": [
-            "self",
-            "x",
-            "__return__"
-          ],
-          "encoded_locals": {
-            "x": 17,
-            "self": [
-              "REF",
-              129
-            ],
-            "__return__": 5
           }
         }
       ],
@@ -4925,8 +4327,15 @@
             ]
           ],
           [
+            "initialize [private]",
+            [
+              "REF",
+              142
+            ]
+          ],
+          [
             "@@cla",
-            5
+            4
           ]
         ],
         "138": [
@@ -4949,7 +4358,884 @@
           "inst=",
           ""
         ],
-        "129": [
+        "142": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 20,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:33",
+          "frame_id": 1,
+          "unique_hash": "<main>:33_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "inst:20",
+          "frame_id": 2,
+          "unique_hash": "inst:20_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              32
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              143
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              144
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              145
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              146
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              147
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "143": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "144": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "145": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "146": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "147": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 21,
+      "event": "return",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:33",
+          "frame_id": 1,
+          "unique_hash": "<main>:33_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "inst:21",
+          "frame_id": 2,
+          "unique_hash": "inst:21_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              32
+            ],
+            "__return__": 8
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              148
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              149
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              150
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              151
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              152
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "148": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "149": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "150": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "151": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "152": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 34,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n8\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:34",
+          "frame_id": 1,
+          "unique_hash": "<main>:34_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              153
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              154
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              155
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              156
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              157
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "153": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "154": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "155": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "156": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "157": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "call",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n8\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:34",
+          "frame_id": 1,
+          "unique_hash": "<main>:34_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:9",
+          "frame_id": 3,
+          "unique_hash": "initialize:9_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 17,
+            "self": [
+              "REF",
+              163
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              158
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              159
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              160
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              161
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              162
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "158": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "159": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "160": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "161": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "162": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "163": [
+          "INSTANCE",
+          "TestVar"
+        ],
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n8\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:34",
+          "frame_id": 1,
+          "unique_hash": "<main>:34_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:10",
+          "frame_id": 3,
+          "unique_hash": "initialize:10_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 17,
+            "self": [
+              "REF",
+              163
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              164
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              165
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              166
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              167
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "164": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "165": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "166": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "9": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "167": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "163": [
+          "INSTANCE",
+          "TestVar"
+        ],
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n8\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:34",
+          "frame_id": 1,
+          "unique_hash": "<main>:34_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:11",
+          "frame_id": 3,
+          "unique_hash": "initialize:11_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 17,
+            "self": [
+              "REF",
+              163
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              168
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              169
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              170
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              171
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              172
+            ]
+          ],
+          [
+            "@@cla",
+            4
+          ]
+        ],
+        "168": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "169": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "170": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "171": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "172": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "163": [
           "INSTANCE",
           "TestVar",
           [
@@ -4957,7 +5243,165 @@
             17
           ]
         ],
-        "24": [
+        "32": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            8
+          ]
+        ]
+      },
+      "globals": {
+        "$glob": 5,
+        "TestVar": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "$glob",
+        "TestVar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 12,
+      "event": "return",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n8\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:34",
+          "frame_id": 1,
+          "unique_hash": "<main>:34_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "test",
+            "other"
+          ],
+          "encoded_locals": {
+            "test": [
+              "REF",
+              32
+            ],
+            "other": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:12",
+          "frame_id": 3,
+          "unique_hash": "initialize:12_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "x",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": 17,
+            "self": [
+              "REF",
+              163
+            ],
+            "__return__": 5
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "TestVar",
+          [
+
+          ],
+          [
+            "CONST_VAL",
+            7
+          ],
+          [
+            "self.cla",
+            [
+              "REF",
+              173
+            ]
+          ],
+          [
+            "self.cla=",
+            [
+              "REF",
+              174
+            ]
+          ],
+          [
+            "inst",
+            [
+              "REF",
+              175
+            ]
+          ],
+          [
+            "inst=",
+            [
+              "REF",
+              176
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              177
+            ]
+          ],
+          [
+            "@@cla",
+            5
+          ]
+        ],
+        "173": [
+          "FUNCTION",
+          "cla",
+          ""
+        ],
+        "174": [
+          "FUNCTION",
+          "cla=",
+          ""
+        ],
+        "175": [
+          "FUNCTION",
+          "inst",
+          ""
+        ],
+        "176": [
+          "FUNCTION",
+          "inst=",
+          ""
+        ],
+        "177": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "163": [
+          "INSTANCE",
+          "TestVar",
+          [
+            "@inst",
+            17
+          ]
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -4982,7 +5426,7 @@
       "func_name": "<toplevel>",
       "line": 35,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n8\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -5001,11 +5445,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": [
               "REF",
-              129
+              163
             ]
           }
         }
@@ -5025,28 +5469,35 @@
             "self.cla",
             [
               "REF",
-              142
+              178
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              143
+              179
             ]
           ],
           [
             "inst",
             [
               "REF",
-              144
+              180
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              145
+              181
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              182
             ]
           ],
           [
@@ -5054,27 +5505,32 @@
             5
           ]
         ],
-        "142": [
+        "178": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "143": [
+        "179": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "144": [
+        "180": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "145": [
+        "181": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "182": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -5082,7 +5538,7 @@
             8
           ]
         ],
-        "129": [
+        "163": [
           "INSTANCE",
           "TestVar",
           [
@@ -5107,7 +5563,7 @@
       "func_name": "<toplevel>",
       "line": 36,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n#<TestVar:0x007f66e0ad5900 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n8\n#<TestVar:0x007ff30fd68b48 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -5126,11 +5582,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": [
               "REF",
-              129
+              163
             ]
           }
         }
@@ -5150,28 +5606,35 @@
             "self.cla",
             [
               "REF",
-              146
+              183
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              147
+              184
             ]
           ],
           [
             "inst",
             [
               "REF",
-              148
+              185
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              149
+              186
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              187
             ]
           ],
           [
@@ -5179,27 +5642,32 @@
             5
           ]
         ],
-        "146": [
+        "183": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "147": [
+        "184": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "148": [
+        "185": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "149": [
+        "186": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "187": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -5207,7 +5675,7 @@
             8
           ]
         ],
-        "129": [
+        "163": [
           "INSTANCE",
           "TestVar",
           [
@@ -5232,7 +5700,7 @@
       "func_name": "<toplevel>",
       "line": 13,
       "event": "call",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n#<TestVar:0x007f66e0ad5900 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n8\n#<TestVar:0x007ff30fd68b48 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -5251,11 +5719,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": [
               "REF",
-              129
+              163
             ]
           }
         },
@@ -5295,28 +5763,35 @@
             "self.cla",
             [
               "REF",
-              150
+              188
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              151
+              189
             ]
           ],
           [
             "inst",
             [
               "REF",
-              152
+              190
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              153
+              191
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              192
             ]
           ],
           [
@@ -5324,27 +5799,32 @@
             5
           ]
         ],
-        "150": [
+        "188": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "151": [
+        "189": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "152": [
+        "190": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "153": [
+        "191": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "192": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -5352,7 +5832,7 @@
             8
           ]
         ],
-        "129": [
+        "163": [
           "INSTANCE",
           "TestVar",
           [
@@ -5377,7 +5857,7 @@
       "func_name": "<toplevel>",
       "line": 14,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n#<TestVar:0x007f66e0ad5900 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n8\n#<TestVar:0x007ff30fd68b48 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -5396,11 +5876,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": [
               "REF",
-              129
+              163
             ]
           }
         },
@@ -5440,28 +5920,35 @@
             "self.cla",
             [
               "REF",
-              154
+              193
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              155
+              194
             ]
           ],
           [
             "inst",
             [
               "REF",
-              156
+              195
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              157
+              196
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              197
             ]
           ],
           [
@@ -5469,27 +5956,32 @@
             5
           ]
         ],
-        "154": [
+        "193": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "155": [
+        "194": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "156": [
+        "195": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "157": [
+        "196": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "197": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -5497,7 +5989,7 @@
             8
           ]
         ],
-        "129": [
+        "163": [
           "INSTANCE",
           "TestVar",
           [
@@ -5522,7 +6014,7 @@
       "func_name": "<toplevel>",
       "line": 15,
       "event": "return",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n#<TestVar:0x007f66e0ad5900 @inst=17>\n",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n8\n#<TestVar:0x007ff30fd68b48 @inst=17>\n",
       "stack_to_render": [
         {
           "is_highlighted": false,
@@ -5541,11 +6033,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": [
               "REF",
-              129
+              163
             ]
           }
         },
@@ -5587,28 +6079,35 @@
             "self.cla",
             [
               "REF",
-              158
+              198
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              159
+              199
             ]
           ],
           [
             "inst",
             [
               "REF",
-              160
+              200
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              11
+              201
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              202
             ]
           ],
           [
@@ -5616,27 +6115,32 @@
             5
           ]
         ],
-        "158": [
+        "198": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "159": [
+        "199": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "160": [
+        "200": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "11": [
+        "201": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "202": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -5644,7 +6148,7 @@
             8
           ]
         ],
-        "129": [
+        "163": [
           "INSTANCE",
           "TestVar",
           [
@@ -5669,7 +6173,7 @@
       "func_name": "<toplevel>",
       "line": 36,
       "event": "step_line",
-      "stdout": "5\n7\n#<TestVar:0x007f66e09bc438 @inst=3>\n4\n8\n#<TestVar:0x007f66e0ad5900 @inst=17>\n5\n",
+      "stdout": "5\n7\n#<TestVar:0x007ff30fcb98c8 @inst=3>\n4\n8\n#<TestVar:0x007ff30fd68b48 @inst=17>\n5\n",
       "stack_to_render": [
         {
           "is_highlighted": true,
@@ -5688,11 +6192,11 @@
           "encoded_locals": {
             "test": [
               "REF",
-              24
+              32
             ],
             "other": [
               "REF",
-              129
+              163
             ]
           }
         }
@@ -5712,28 +6216,35 @@
             "self.cla",
             [
               "REF",
-              161
+              203
             ]
           ],
           [
             "self.cla=",
             [
               "REF",
-              162
+              204
             ]
           ],
           [
             "inst",
             [
               "REF",
-              163
+              205
             ]
           ],
           [
             "inst=",
             [
               "REF",
-              164
+              206
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              207
             ]
           ],
           [
@@ -5741,27 +6252,32 @@
             5
           ]
         ],
-        "161": [
+        "203": [
           "FUNCTION",
           "cla",
           ""
         ],
-        "162": [
+        "204": [
           "FUNCTION",
           "cla=",
           ""
         ],
-        "163": [
+        "205": [
           "FUNCTION",
           "inst",
           ""
         ],
-        "164": [
+        "206": [
           "FUNCTION",
           "inst=",
           ""
         ],
-        "24": [
+        "207": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "32": [
           "INSTANCE",
           "TestVar",
           [
@@ -5769,7 +6285,7 @@
             8
           ]
         ],
-        "129": [
+        "163": [
           "INSTANCE",
           "TestVar",
           [
