@@ -83,6 +83,12 @@ $(document).ready(function() {
   else if (pyState == 'js') {
       backend_script = js_backend_script;
   }
+  else if (pyState == 'ts') {
+      backend_script = ts_backend_script;
+  }
+  else if (pyState == 'ruby') {
+      backend_script = ruby_backend_script;
+  }
   else if (pyState == 'java') {
       backend_script = java_backend_script;
   }
