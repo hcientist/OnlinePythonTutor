@@ -3721,7 +3721,7 @@ String.prototype.rtrim = function() {
 // also some variable names are like '.0' (for generator expressions),
 // and '.' seems to be illegal.
 //
-// also '!' and '?' are common in Ruby, so escape those as well
+// also '=', '!', and '?' are common in Ruby names, so escape those as well
 //
 // also spaces are illegal, so convert to '_'
 // TODO: what other characters are illegal???
@@ -3735,6 +3735,7 @@ function varnameToCssID(varname) {
                 .replace(/[!]/g, '_BANG_')
                 .replace(/[?]/g, '_QUES_')
                 .replace(/[:]/g, '_COLON_')
+                .replace(/[=]/g, '_EQ_')
                 .replace(/[.]/g, '_DOT_')
                 .replace(/ /g, '_');
 }
