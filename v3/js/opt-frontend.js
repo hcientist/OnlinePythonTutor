@@ -645,6 +645,9 @@ $(document).ready(function() {
 
   $("#hideHeaderLink").click(function() {
     $("#experimentalHeader").hide();
+    if (myVisualizer) {
+      myVisualizer.updateOutput(); // redraw arrows
+    }
     return false; // don't reload da page
   });
 
