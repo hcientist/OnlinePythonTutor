@@ -103,9 +103,9 @@ button.surveyBtn {
 
 .togetherjsBtn {
   color: #b80000;
-  font-size: 11pt;
-  padding: 5px;
-  margin-top: 6px;
+  font-size: 10pt;
+  padding: 4px;
+  margin-top: 3px;
 }
 
 #syncBtn {
@@ -114,7 +114,6 @@ button.surveyBtn {
 }
 
 #experimentalHeader {
-  margin-bottom: 10px;
 }
 
 #surveyHeader {

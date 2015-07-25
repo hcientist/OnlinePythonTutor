@@ -545,6 +545,7 @@ function initTogetherJS() {
     console.log("TogetherJS ready");
 
     $("#sharedSessionDisplayDiv").show();
+    $("#adInfo").hide();
     $("#ssDiv").hide();
     $("#adHeader").hide();
 
@@ -576,6 +577,7 @@ function initTogetherJS() {
 
     $("#togetherjsStatus").html(''); // clear it
     $("#sharedSessionDisplayDiv").hide();
+    $("#adInfo").show();
     $("#ssDiv").show();
     $("#adHeader").show();
 
