@@ -643,7 +643,10 @@ $(document).ready(function() {
   $("#getTutorBtn").click(requestTutor);
   */
 
-  $("#hideHeaderLink").click(function() {$("#experimentalHeader").hide();});
+  $("#hideHeaderLink").click(function() {
+    $("#experimentalHeader").hide();
+    return false; // don't reload da page
+  });
 
   // canned examples
   $(".exampleLink").click(function() {
