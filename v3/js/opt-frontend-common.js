@@ -59,11 +59,19 @@ var ts_backend_script = 'web_exec_ts.py';
 var java_backend_script = 'web_exec_java.py';
 var ruby_backend_script = 'web_exec_ruby.py';
 
+// this is customized to my own Linode server:
 // these are the REAL endpoints, accessed via jsonp. code is in ../../v4-cokapi/
-var JS_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_js_jsonp'; // for deployment
-var TS_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_ts_jsonp'; // for deployment
-var JAVA_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_java_jsonp'; // for deployment
-var RUBY_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_ruby_jsonp'; // for deployment
+if (window.location.protocol === 'https:') {
+  var JS_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_js_jsonp';
+  var TS_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_ts_jsonp';
+  var JAVA_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_java_jsonp';
+  var RUBY_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_ruby_jsonp';
+} else {
+  var JS_JSONP_ENDPOINT = 'http://cokapi.com:3000/exec_js_jsonp'; // for deployment
+  var TS_JSONP_ENDPOINT = 'http://cokapi.com:3000/exec_ts_jsonp'; // for deployment
+  var JAVA_JSONP_ENDPOINT = 'http://cokapi.com:3000/exec_java_jsonp'; // for deployment
+  var RUBY_JSONP_ENDPOINT = 'http://cokapi.com:3000/exec_ruby_jsonp'; // for deployment
+}
 
 var domain = "http://pythontutor.com/"; // for deployment
 

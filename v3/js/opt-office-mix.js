@@ -372,14 +372,6 @@ function mixLazyExecuteCode() {
 
 
 $(document).ready(function() {
-  // make sure that this file is included *after* opt-frontend-common.js so
-  // that these definitions override those in opt-frontend-common.js
-  //
-  // use https endpoints since Mix requires https:
-  JS_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_js_jsonp';
-  TS_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_ts_jsonp';
-  JAVA_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_java_jsonp';
-
   $('#pythonVersionSelector').change(setAceMode);
 
   $("#executeBtn").click(function() {
