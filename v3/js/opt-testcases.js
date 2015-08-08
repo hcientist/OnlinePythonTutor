@@ -66,6 +66,35 @@ function initTestcasesPane(parentDivId) {
   $("#addNewTestCase").click(); // for testing
 }
 
+function getCombinedCode(id) {
+  var userCod = pyInputGetValue();
+  var testCod = ace.edit('testCaseEditor_' + id).getValue();
+  // for reporting syntax errors separately for user and test code
+  var userCodNumLines = userCod.split('\n').length;
+
+  var bufferCod = '\n\n### Test code ###\n';
+  var bufferCodNumLines = bufferCod.split('\n').length;
+
+  var combinedCod = userCod + bufferCod + testCod;
+  return {cod: combinedCod,
+          firstTestLine: userCodNumLines + bufferCodNumLines - 1};
+}
+
+function startRunningTest() {
+  $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', true);
+}
+
+function doneRunningTest() {
+  $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', false);
+  $(".runTestCase").html('Run');
+  $(".vizTestCase").html('Visualize');
+}
+
+function runTestFinishSuccessfulExecution() {
+  optFinishSuccessfulExecution();
+  doneRunningTest();
+}
+
 function addTestcase(id) {
   var newTr = $('<tr/>').attr('id', 'testCaseRow_' + id);
   $("#testCasesTable tbody").append(newTr);
@@ -76,9 +105,9 @@ function addTestcase(id) {
   var deleteTd = $('<td/>');
 
   editorTd.append('<div id="testCaseEditor_' + id + '" class="testCaseEditor">');
-  runBtnTd.append('<button id="runTestCase_' + id + '" type="button">Run</button>');
+  runBtnTd.append('<button id="runTestCase_' + id + '" class="runTestCase" type="button">Run</button>');
   outputTd.attr('id', 'outputTd_' + id);
-  visualizeTd.append('<button id="vizTestCase_' + id + '" type="button">Visualize</button>');
+  visualizeTd.append('<button id="vizTestCase_' + id + '" class="vizTestCase" type="button">Visualize</button>');
   deleteTd.append('<a id="delTestCase_' + id + '" href="javascript:void(0);">Delete test</a></td>');
 
   newTr.append(editorTd);
@@ -89,19 +118,42 @@ function addTestcase(id) {
 
   $('#runTestCase_' + id).click(function() {
     $(this).html("Running ...");
-    $(this).attr('disabled', true);
-    startExecutingCode();
-    var userCod = pyInputGetValue();
-    var testCod = ace.edit('testCaseEditor_' + id).getValue();
-    // for reporting syntax errors separately for user and test code
-    var userCodNumLines = userCod.split('\n').length;
-
-    var bufferCod = '\n\n# Test code:\n';
-    var bufferCodNumLines = bufferCod.split('\n').length;
-
-    var combinedCod = userCod + bufferCod + testCod;
-    console.log(combinedCod);
+    startRunningTest();
+    var dat = getCombinedCode(id);
+    console.log(dat.cod);
+    console.log(dat.firstTestLine);
   });
+
+  $('#vizTestCase_' + id).click(function() {
+    $(this).html("Visualizing ...");
+    startRunningTest();
+    var dat = getCombinedCode(id);
+    console.log(dat.cod);
+    console.log(dat.firstTestLine);
+
+    // adapted from executeCode in opt-frontend.js
+    var backend_script = langToBackendScript($('#pythonVersionSelector').val());
+    var backendOptionsObj = getBaseBackendOptionsObj();
+    var frontendOptionsObj = getBaseFrontendOptionsObj();
+    frontendOptionsObj.jumpToEnd = true;
+
+    function runTestHandleUncaughtExceptionFunc(trace) {
+      // TODO: use dat.firstTestLine to see if the syntax error is in
+      // the test code, and if it is, then display error indicator in
+      // the test code gutter and in the 'results' table cell
+      // (remember to clear marks on edit, though)
+      handleUncaughtExceptionFunc(trace);
+      doneRunningTest();
+    }
+
+    executeCodeAndCreateViz(dat.cod,
+                            backend_script, backendOptionsObj,
+                            frontendOptionsObj,
+                            'pyOutputPane',
+                            runTestFinishSuccessfulExecution,
+                            runTestHandleUncaughtExceptionFunc);
+  });
+
 
   $('#delTestCase_' + id).click(function() {
     var res = confirm("Press OK to delete this test.");
