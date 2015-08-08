@@ -72,7 +72,13 @@ function getCombinedCode(id) {
   // for reporting syntax errors separately for user and test code
   var userCodNumLines = userCod.split('\n').length;
 
-  var bufferCod = '\n\n### Test code ###\n';
+  var lang = $('#pythonVersionSelector').val();
+  if (lang === 'ts' || lang === 'js' || lang === 'java') {
+    var bufferCod = '\n\n// Test code //\n';
+  } else {
+    var bufferCod = '\n\n## Test code ##\n';
+  }
+
   var bufferCodNumLines = bufferCod.split('\n').length;
 
   var combinedCod = userCod + bufferCod + testCod;
@@ -80,8 +86,11 @@ function getCombinedCode(id) {
           firstTestLine: userCodNumLines + bufferCodNumLines - 1};
 }
 
-function startRunningTest() {
+function startRunningTest(id) {
   $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', true);
+  var e = ace.edit('testCaseEditor_' + id);
+  e.getSession().clearAnnotations();
+  $('#outputTd_' + id).html('');
 }
 
 function doneRunningTest() {
@@ -153,7 +162,7 @@ function addTestcase(id) {
 
   $('#runTestCase_' + id).click(function() {
     $(this).html("Running ...");
-    startRunningTest();
+    startRunningTest(id);
     var dat = getCombinedCode(id);
     console.log(dat.cod);
     console.log(dat.firstTestLine);
@@ -168,7 +177,7 @@ function addTestcase(id) {
 
   $('#vizTestCase_' + id).click(function() {
     $(this).html("Visualizing ...");
-    startRunningTest();
+    startRunningTest(id);
     var dat = getCombinedCode(id);
     console.log(dat.cod);
     console.log(dat.firstTestLine);
