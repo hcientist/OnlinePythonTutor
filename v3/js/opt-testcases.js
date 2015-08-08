@@ -116,52 +116,6 @@ function addTestcase(id) {
   newTr.append(visualizeTd);
   newTr.append(deleteTd);
 
-  $('#runTestCase_' + id).click(function() {
-    $(this).html("Running ...");
-    startRunningTest();
-    var dat = getCombinedCode(id);
-    console.log(dat.cod);
-    console.log(dat.firstTestLine);
-  });
-
-  $('#vizTestCase_' + id).click(function() {
-    $(this).html("Visualizing ...");
-    startRunningTest();
-    var dat = getCombinedCode(id);
-    console.log(dat.cod);
-    console.log(dat.firstTestLine);
-
-    // adapted from executeCode in opt-frontend.js
-    var backend_script = langToBackendScript($('#pythonVersionSelector').val());
-    var backendOptionsObj = getBaseBackendOptionsObj();
-    var frontendOptionsObj = getBaseFrontendOptionsObj();
-    frontendOptionsObj.jumpToEnd = true;
-
-    function runTestHandleUncaughtExceptionFunc(trace) {
-      // TODO: use dat.firstTestLine to see if the syntax error is in
-      // the test code, and if it is, then display error indicator in
-      // the test code gutter and in the 'results' table cell
-      // (remember to clear marks on edit, though)
-      handleUncaughtExceptionFunc(trace);
-      doneRunningTest();
-    }
-
-    executeCodeAndCreateViz(dat.cod,
-                            backend_script, backendOptionsObj,
-                            frontendOptionsObj,
-                            'pyOutputPane',
-                            runTestFinishSuccessfulExecution,
-                            runTestHandleUncaughtExceptionFunc);
-  });
-
-
-  $('#delTestCase_' + id).click(function() {
-    var res = confirm("Press OK to delete this test.");
-    if (res) {
-      $('#testCaseRow_' + id).remove();
-    }
-    return false; // to prevent link from being followed
-  });
 
   // initialize testCaseEditor with Ace:
   var te = ace.edit('testCaseEditor_' + id);
@@ -195,6 +149,75 @@ function addTestcase(id) {
     mod = 'ruby';
   }
   s.setMode("ace/mode/" + mod);
+
+
+  $('#runTestCase_' + id).click(function() {
+    $(this).html("Running ...");
+    startRunningTest();
+    var dat = getCombinedCode(id);
+    console.log(dat.cod);
+    console.log(dat.firstTestLine);
+
+    // adapted from executeCode in opt-frontend.js
+    var backend_script = langToBackendScript($('#pythonVersionSelector').val());
+    var backendOptionsObj = getBaseBackendOptionsObj();
+    backendOptionsObj.run_test_case = true; // just so we can see this in server logs
+    var frontendOptionsObj = getBaseFrontendOptionsObj();
+    frontendOptionsObj.jumpToEnd = true;
+  });
+
+  $('#vizTestCase_' + id).click(function() {
+    $(this).html("Visualizing ...");
+    startRunningTest();
+    var dat = getCombinedCode(id);
+    console.log(dat.cod);
+    console.log(dat.firstTestLine);
+
+    // adapted from executeCode in opt-frontend.js
+    var backend_script = langToBackendScript($('#pythonVersionSelector').val());
+    var backendOptionsObj = getBaseBackendOptionsObj();
+    backendOptionsObj.viz_test_case = true; // just so we can see this in server logs
+    var frontendOptionsObj = getBaseFrontendOptionsObj();
+    frontendOptionsObj.jumpToEnd = true;
+
+    function runTestHandleUncaughtExceptionFunc(trace) {
+      if (trace.length == 1 && trace[0].line) {
+        var errorLineNo = trace[0].line;
+        // highlight the faulting line in the test case pane itself
+        if (errorLineNo !== undefined &&
+            errorLineNo != NaN &&
+            errorLineNo >= dat.firstTestLine) {
+          var adjustedErrorLineNo = errorLineNo - dat.firstTestLine;
+          s.setAnnotations([{row: adjustedErrorLineNo,
+                             type: 'error',
+                             text: trace[0].exception_msg}]);
+          te.gotoLine(adjustedErrorLineNo + 1 /* one-indexed */);
+
+          $('#outputTd_' + id).html('Error in test code');
+        }
+      }
+
+      handleUncaughtExceptionFunc(trace);
+      doneRunningTest();
+    }
+
+    executeCodeAndCreateViz(dat.cod,
+                            backend_script, backendOptionsObj,
+                            frontendOptionsObj,
+                            'pyOutputPane',
+                            runTestFinishSuccessfulExecution,
+                            runTestHandleUncaughtExceptionFunc);
+  });
+
+
+  $('#delTestCase_' + id).click(function() {
+    var res = confirm("Press OK to delete this test.");
+    if (res) {
+      $('#testCaseRow_' + id).remove();
+    }
+    return false; // to prevent link from being followed
+  });
+
 }
 
 // returns a list of strings, each of which is a test case

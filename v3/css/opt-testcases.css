@@ -2,7 +2,6 @@
   width: 300px;
   height: 90px; /* VERY IMPORTANT so that it works on I.E., ugh! */
   border: 1px solid #ddd;
-  padding: 3px;
 }
 
 #testCasesTable thead td {
