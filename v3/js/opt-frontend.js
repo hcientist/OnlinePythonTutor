@@ -765,5 +765,5 @@ $(document).ready(function() {
     });
   }
 
-  initTestcasesPane('#testCasesPane');
+  //initTestcasesPane('#testCasesPane');
 });
