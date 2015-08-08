@@ -779,4 +779,6 @@ $(document).ready(function() {
       $("#chat_div").chatbox("option", "boxManager").addMsg('Tutor', msg.text);
     });
   }
+
+  initTestcasesPane('#testCasesPane');
 });

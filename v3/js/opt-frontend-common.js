@@ -1054,6 +1054,11 @@ function getAppState() {
   if (ret.curInstr === undefined)
     delete ret.curInstr;
 
+  // different frontends can optionally AUGMENT the app state with
+  // custom fields
+  if (typeof(appStateAugmenter) !== 'undefined') {
+    appStateAugmenter(ret);
+  }
   return ret;
 }
 
