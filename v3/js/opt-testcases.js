@@ -160,32 +160,24 @@ function addTestcase(id) {
   s.setMode("ace/mode/" + mod);
 
 
-  $('#runTestCase_' + id).click(function() {
-    $(this).html("Running ...");
+  function runOrVizTestCase(isViz /* true for visualize, false for run */) {
+    if (isViz) {
+      $('#vizTestCase_' + id).html("Visualizing ...");
+    } else {
+      $('#runTestCase_' + id).html("Running ...");
+    }
+
     startRunningTest(id);
     var dat = getCombinedCode(id);
-    console.log(dat.cod);
-    console.log(dat.firstTestLine);
 
     // adapted from executeCode in opt-frontend.js
     var backend_script = langToBackendScript($('#pythonVersionSelector').val());
     var backendOptionsObj = getBaseBackendOptionsObj();
-    backendOptionsObj.run_test_case = true; // just so we can see this in server logs
-    var frontendOptionsObj = getBaseFrontendOptionsObj();
-    frontendOptionsObj.jumpToEnd = true;
-  });
-
-  $('#vizTestCase_' + id).click(function() {
-    $(this).html("Visualizing ...");
-    startRunningTest(id);
-    var dat = getCombinedCode(id);
-    console.log(dat.cod);
-    console.log(dat.firstTestLine);
-
-    // adapted from executeCode in opt-frontend.js
-    var backend_script = langToBackendScript($('#pythonVersionSelector').val());
-    var backendOptionsObj = getBaseBackendOptionsObj();
-    backendOptionsObj.viz_test_case = true; // just so we can see this in server logs
+    if (isViz) {
+      backendOptionsObj.viz_test_case = true; // just so we can see this in server logs
+    } else {
+      backendOptionsObj.run_test_case = true; // just so we can see this in server logs
+    }
     var frontendOptionsObj = getBaseFrontendOptionsObj();
     frontendOptionsObj.jumpToEnd = true;
 
@@ -210,14 +202,20 @@ function addTestcase(id) {
       doneRunningTest();
     }
 
-    executeCodeAndCreateViz(dat.cod,
-                            backend_script, backendOptionsObj,
-                            frontendOptionsObj,
-                            'pyOutputPane',
-                            runTestFinishSuccessfulExecution,
-                            runTestHandleUncaughtExceptionFunc);
-  });
+    if (isViz) {
+      executeCodeAndCreateViz(dat.cod,
+                              backend_script, backendOptionsObj,
+                              frontendOptionsObj,
+                              'pyOutputPane',
+                              runTestFinishSuccessfulExecution,
+                              runTestHandleUncaughtExceptionFunc);
+    } else {
+      // TODO
+    }
+  }
 
+  $('#runTestCase_' + id).click(runOrVizTestCase.bind(null, false));
+  $('#vizTestCase_' + id).click(runOrVizTestCase.bind(null, true));
 
   $('#delTestCase_' + id).click(function() {
     var res = confirm("Press OK to delete this test.");
