@@ -145,16 +145,16 @@ $(document).ready(function() {
     if (forceStartingInstr) {
       frontendOptionsObj.startingInstruction = forceStartingInstr;
     }
-    executePythonCode(preseededCode,
-                      backend_script, backendOptionsObj,
-                      frontendOptionsObj,
-                      'vizDiv',
-                      function() { // success
-                        if (resizeContainer)
-                            resizeContainerNow();
-                        myVisualizer.redrawConnectors();
-                      },
-                      NOP);
+    executeCodeAndCreateViz(preseededCode,
+                            backend_script, backendOptionsObj,
+                            frontendOptionsObj,
+                            'vizDiv',
+                            function() { // success
+                              if (resizeContainer)
+                                  resizeContainerNow();
+                              myVisualizer.redrawConnectors();
+                            },
+                            NOP);
   }
 
 

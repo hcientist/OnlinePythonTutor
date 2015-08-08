@@ -94,11 +94,11 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                             pyCrazyMode: false, holisticMode: false
                            }
 
-  executePythonCode(pyInputGetValue(),
-                    backend_script, backendOptionsObj,
-                    frontendOptionsObj,
-                    'pyOutputPane',
-                    officeMixFinishSuccessfulExecution, handleUncaughtExceptionFunc);
+  executeCodeAndCreateViz(pyInputGetValue(),
+                          backend_script, backendOptionsObj,
+                          frontendOptionsObj,
+                          'pyOutputPane',
+                          officeMixFinishSuccessfulExecution, handleUncaughtExceptionFunc);
 }
 
 

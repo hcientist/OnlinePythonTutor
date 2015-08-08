@@ -1307,11 +1307,11 @@ function optFinishSuccessfulExecution() {
 
 
 // TODO: cut reliance on the nasty rawInputLst global
-function executePythonCode(pythonSourceCode,
-                           backendScript, backendOptionsObj,
-                           frontendOptionsObj,
-                           outputDiv,
-                           handleSuccessFunc, handleUncaughtExceptionFunc) {
+function executeCodeAndCreateViz(codeToExec,
+                                 backendScript, backendOptionsObj,
+                                 frontendOptionsObj,
+                                 outputDiv,
+                                 handleSuccessFunc, handleUncaughtExceptionFunc) {
 
     function execCallback(dataFromBackend) {
       var trace = dataFromBackend.trace;
@@ -1497,7 +1497,7 @@ function executePythonCode(pythonSourceCode,
         backendScript === ruby_backend_script) {
       // hack! should just be a dummy script for logging only
       $.get(backendScript,
-            {user_script : pythonSourceCode,
+            {user_script : codeToExec,
              options_json: JSON.stringify(backendOptionsObj),
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
              // if we don't have any deltas, then don't bother sending deltaObj:
@@ -1512,14 +1512,14 @@ function executePythonCode(pythonSourceCode,
         // The name of the callback parameter, as specified by the YQL service
         jsonp: "callback",
         dataType: "jsonp",
-        data: {user_script : pythonSourceCode,
+        data: {user_script : codeToExec,
                options_json: JSON.stringify(backendOptionsObj)},
         success: execCallback,
       });
     } else {
       // Python 2 or 3
       $.get(backendScript,
-            {user_script : pythonSourceCode,
+            {user_script : codeToExec,
              raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
              options_json: JSON.stringify(backendOptionsObj),
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,

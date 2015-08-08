@@ -79,11 +79,11 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                               showAllFrameLabels: true,
                              }
 
-    executePythonCode(pyInputGetValue(),
-                      backend_script, backendOptionsObj,
-                      frontendOptionsObj,
-                      'pyOutputPane',
-                      optFinishSuccessfulExecution, handleUncaughtExceptionFunc);
+    executeCodeAndCreateViz(pyInputGetValue(),
+                            backend_script, backendOptionsObj,
+                            frontendOptionsObj,
+                            'pyOutputPane',
+                            optFinishSuccessfulExecution, handleUncaughtExceptionFunc);
 }
 
 $(document).ready(function() {

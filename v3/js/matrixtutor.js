@@ -201,11 +201,11 @@ $(document).ready(function() {
         }
       }
 
-      executePythonCode(allCod,
-                        backend_script, backendOptionsObj,
-                        frontendOptionsObj,
-                        'pyOutputPane',
-                        enterDisplayMode, handleUncaughtExceptionFunc);
+      executeCodeAndCreateViz(allCod,
+                              backend_script, backendOptionsObj,
+                              frontendOptionsObj,
+                              'pyOutputPane',
+                              enterDisplayMode, handleUncaughtExceptionFunc);
   }
 
   function executeCodeFromScratch() {

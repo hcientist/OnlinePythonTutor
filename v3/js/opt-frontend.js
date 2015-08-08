@@ -159,11 +159,11 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
   var frontendOptionsObj = getBaseFrontendOptionsObj();
   frontendOptionsObj.startingInstruction = startingInstruction;
 
-  executePythonCode(pyInputGetValue(),
-                    backend_script, backendOptionsObj,
-                    frontendOptionsObj,
-                    'pyOutputPane',
-                    optFinishSuccessfulExecution, handleUncaughtExceptionFunc);
+  executeCodeAndCreateViz(pyInputGetValue(),
+                          backend_script, backendOptionsObj,
+                          frontendOptionsObj,
+                          'pyOutputPane',
+                          optFinishSuccessfulExecution, handleUncaughtExceptionFunc);
 }
 
 
