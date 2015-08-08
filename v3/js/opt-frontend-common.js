@@ -73,6 +73,29 @@ if (window.location.protocol === 'https:') {
   var RUBY_JSONP_ENDPOINT = 'http://cokapi.com:3000/exec_ruby_jsonp'; // for deployment
 }
 
+
+function langToBackendScript(lang) {
+  var backend_script = null;
+  if (lang == '2') {
+      backend_script = python2_backend_script;
+  } else if (lang == '3') {
+      backend_script = python3_backend_script;
+  } else if (lang == '2crazy') {
+      backend_script = python2crazy_backend_script;
+  } else if (lang == 'js') {
+      backend_script = js_backend_script;
+  } else if (lang == 'ts') {
+      backend_script = ts_backend_script;
+  } else if (lang == 'ruby') {
+      backend_script = ruby_backend_script;
+  } else if (lang == 'java') {
+      backend_script = java_backend_script;
+  }
+  assert(backend_script);
+  return backend_script;
+}
+
+
 var domain = "http://pythontutor.com/"; // for deployment
 
 

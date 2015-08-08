@@ -109,37 +109,7 @@ function TogetherjsCloseHandler() {
   }
 }
 
-
-function executeCode(forceStartingInstr, forceRawInputLst) {
-  if (forceRawInputLst !== undefined) {
-    rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
-  }
-
-  var backend_script = null;
-  if ($('#pythonVersionSelector').val() == '2') {
-      backend_script = python2_backend_script;
-  }
-  else if ($('#pythonVersionSelector').val() == '3') {
-      backend_script = python3_backend_script;
-  }
-  // experimental KRAZY MODE!!!
-  else if ($('#pythonVersionSelector').val() == '2crazy') {
-      backend_script = python2crazy_backend_script;
-  }
-  else if ($('#pythonVersionSelector').val() == 'js') {
-      backend_script = js_backend_script;
-  }
-  else if ($('#pythonVersionSelector').val() == 'ts') {
-      backend_script = ts_backend_script;
-  }
-  else if ($('#pythonVersionSelector').val() == 'ruby') {
-      backend_script = ruby_backend_script;
-  }
-  else if ($('#pythonVersionSelector').val() == 'java') {
-      backend_script = java_backend_script;
-  }
-  assert(backend_script);
-
+function getBaseBackendOptionsObj() {
   var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
                            heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
                            show_only_outputs: false,
@@ -151,10 +121,11 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
     backendOptionsObj.survey = surveyObj;
   }
 
-  var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
+  return backendOptionsObj;
+}
 
-  var frontendOptionsObj = {startingInstruction: startingInstruction,
-                            // tricky: selector 'true' and 'false' values are strings!
+function getBaseFrontendOptionsObj() {
+  var frontendOptionsObj = {// tricky: selector 'true' and 'false' values are strings!
                             disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
                             textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
                             executeCodeWithRawInputFunc: executeCodeWithRawInput,
@@ -172,6 +143,21 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                             pyCrazyMode: ($('#pythonVersionSelector').val() == '2crazy'),
                             holisticMode: ($('#cumulativeModeSelector').val() == 'holistic')
                            }
+  return frontendOptionsObj;
+}
+
+function executeCode(forceStartingInstr, forceRawInputLst) {
+  if (forceRawInputLst !== undefined) {
+    rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
+  }
+
+  var backend_script = langToBackendScript($('#pythonVersionSelector').val());
+  var backendOptionsObj = getBaseBackendOptionsObj();
+
+  var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
+
+  var frontendOptionsObj = getBaseFrontendOptionsObj();
+  frontendOptionsObj.startingInstruction = startingInstruction;
 
   executePythonCode(pyInputGetValue(),
                     backend_script, backendOptionsObj,

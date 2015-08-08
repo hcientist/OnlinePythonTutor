@@ -39,7 +39,7 @@ var testcasesPaneHtml = '\
   <thead>\
   <tr>\
     <td style="width: 310px">Tests</td>\
-    <td><button id="runAllTestsButton" type="button">Run All</button></td>\
+    <td><button id="runAllTestsButton" type="button">Run All Tests</button></td>\
     <td>Results</td>\
     <td></td>\
     <td></td>\
@@ -62,6 +62,8 @@ function initTestcasesPane(parentDivId) {
     curTestcaseId++;
     return false; // to prevent link from being followed
   });
+
+  $("#addNewTestCase").click(); // for testing
 }
 
 function addTestcase(id) {
@@ -84,6 +86,22 @@ function addTestcase(id) {
   newTr.append(outputTd);
   newTr.append(visualizeTd);
   newTr.append(deleteTd);
+
+  $('#runTestCase_' + id).click(function() {
+    $(this).html("Running ...");
+    $(this).attr('disabled', true);
+    startExecutingCode();
+    var userCod = pyInputGetValue();
+    var testCod = ace.edit('testCaseEditor_' + id).getValue();
+    // for reporting syntax errors separately for user and test code
+    var userCodNumLines = userCod.split('\n').length;
+
+    var bufferCod = '\n\n# Test code:\n';
+    var bufferCodNumLines = bufferCod.split('\n').length;
+
+    var combinedCod = userCod + bufferCod + testCod;
+    console.log(combinedCod);
+  });
 
   $('#delTestCase_' + id).click(function() {
     var res = confirm("Press OK to delete this test.");
