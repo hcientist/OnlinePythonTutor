@@ -144,7 +144,7 @@ function addTestcase(initialCod /* optional code to pre-seed this test */) {
   te.setHighlightActiveLine(false);
   te.setShowPrintMargin(false);
   te.setBehavioursEnabled(false);
-  te.setFontSize(10);
+  te.setFontSize(11);
   //te.setReadOnly(true);
 
   if (initialCod) {
