@@ -63,8 +63,6 @@ function initTestcasesPane(parentDivId) {
     return false; // to prevent link from being followed
   });
 
-  $("#addNewTestCase").click(); // for testing
-
   $("#runAllTestsButton").click(function() {
     $(".runTestCase").click();
   });
@@ -268,6 +266,6 @@ function getAllTestcases() {
 function appStateAugmenter(appState) {
   var tc = getAllTestcases();
   if (tc.length > 0) {
-    appState['testCases'] = tc;
+    appState['testCasesJSON'] = JSON.stringify(tc);
   }
 }
