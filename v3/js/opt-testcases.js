@@ -100,6 +100,10 @@ function doneRunningTest() {
 }
 
 function runTestFinishSuccessfulExecution() {
+  doneRunningTest();
+}
+
+function vizTestFinishSuccessfulExecution() {
   optFinishSuccessfulExecution();
   doneRunningTest();
 }
@@ -173,13 +177,17 @@ function addTestcase(id) {
     // adapted from executeCode in opt-frontend.js
     var backend_script = langToBackendScript($('#pythonVersionSelector').val());
     var backendOptionsObj = getBaseBackendOptionsObj();
+    var frontendOptionsObj = getBaseFrontendOptionsObj();
+    frontendOptionsObj.jumpToEnd = true;
+
     if (isViz) {
       backendOptionsObj.viz_test_case = true; // just so we can see this in server logs
     } else {
       backendOptionsObj.run_test_case = true; // just so we can see this in server logs
+      frontendOptionsObj.runTestCaseCallback = function() {
+        console.log('hai!');
+      };
     }
-    var frontendOptionsObj = getBaseFrontendOptionsObj();
-    frontendOptionsObj.jumpToEnd = true;
 
     function runTestHandleUncaughtExceptionFunc(trace) {
       if (trace.length == 1 && trace[0].line) {
@@ -202,16 +210,13 @@ function addTestcase(id) {
       doneRunningTest();
     }
 
-    if (isViz) {
-      executeCodeAndCreateViz(dat.cod,
-                              backend_script, backendOptionsObj,
-                              frontendOptionsObj,
-                              'pyOutputPane',
-                              runTestFinishSuccessfulExecution,
-                              runTestHandleUncaughtExceptionFunc);
-    } else {
-      // TODO
-    }
+    executeCodeAndCreateViz(dat.cod,
+                            backend_script, backendOptionsObj,
+                            frontendOptionsObj,
+                            'pyOutputPane',
+                            isViz ? vizTestFinishSuccessfulExecution :
+                                    runTestFinishSuccessfulExecution,
+                            runTestHandleUncaughtExceptionFunc);
   }
 
   $('#runTestCase_' + id).click(runOrVizTestCase.bind(null, false));
