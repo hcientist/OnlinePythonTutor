@@ -16,6 +16,10 @@
   vertical-align: top;
 }
 
+#testCasesTable td.outputTd {
+  text-align: center;
+}
+
 #testCasesTable {
   margin-bottom: 5px;
 }
