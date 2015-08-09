@@ -1345,7 +1345,10 @@ function executeCodeAndCreateViz(codeToExec,
           frontendOptionsObj.startingInstruction = 0;
         }
 
-        if (frontendOptionsObj.holisticMode) {
+        if (frontendOptionsObj.runTestCaseCallback) {
+          // hacky! DO NOT actually create a visualization! instead call:
+          frontendOptionsObj.runTestCaseCallback(trace);
+        } else if (frontendOptionsObj.holisticMode) {
           // do NOT override, or else bad things will happen with
           // jsPlumb arrows interfering ...
           delete frontendOptionsObj.visualizerIdOverride;
@@ -1400,7 +1403,9 @@ function executeCodeAndCreateViz(codeToExec,
           });
         }
         // SUPER HACK -- slip in backendOptionsObj as an extra field
-        myVisualizer.backendOptionsObj = backendOptionsObj;
+        if (myVisualizer) {
+          myVisualizer.backendOptionsObj = backendOptionsObj;
+        }
 
         handleSuccessFunc();
 
