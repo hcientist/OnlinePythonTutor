@@ -184,8 +184,25 @@ function addTestcase(id) {
       backendOptionsObj.viz_test_case = true; // just so we can see this in server logs
     } else {
       backendOptionsObj.run_test_case = true; // just so we can see this in server logs
-      frontendOptionsObj.runTestCaseCallback = function() {
-        console.log('hai!');
+      frontendOptionsObj.runTestCaseCallback = function(trace) {
+        // scan through the trace to find any exception events. report
+        // the first one if found, otherwise assume test is 'passed'
+        var exceptionMsg = null;
+        trace.forEach(function(e) {
+          if (exceptionMsg) {
+            return;
+          }
+
+          if (e.event === 'exception') {
+            exceptionMsg = e.exception_msg;
+          }
+        });
+
+        if (exceptionMsg) {
+          $('#outputTd_' + id).html('<img src="red-sad-face.jpg"></img>');
+        } else {
+          $('#outputTd_' + id).html('<img src="yellow-happy-face.jpg"></img>');
+        }
       };
     }
 
@@ -201,10 +218,12 @@ function addTestcase(id) {
                              type: 'error',
                              text: trace[0].exception_msg}]);
           te.gotoLine(adjustedErrorLineNo + 1 /* one-indexed */);
-
-          $('#outputTd_' + id).html('Error in test code');
         }
       }
+
+      var msg = trace[0].exception_msg;
+      var trimmedMsg = msg.split(':')[0];
+      $('#outputTd_' + id).html(htmlspecialchars(trimmedMsg));
 
       handleUncaughtExceptionFunc(trace);
       doneRunningTest();
