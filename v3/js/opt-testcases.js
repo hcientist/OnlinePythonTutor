@@ -64,6 +64,10 @@ function initTestcasesPane(parentDivId) {
   });
 
   $("#addNewTestCase").click(); // for testing
+
+  $("#runAllTestsButton").click(function() {
+    $(".runTestCase").click();
+  });
 }
 
 function getCombinedCode(id) {
@@ -120,6 +124,7 @@ function addTestcase(id) {
   editorTd.append('<div id="testCaseEditor_' + id + '" class="testCaseEditor">');
   runBtnTd.append('<button id="runTestCase_' + id + '" class="runTestCase" type="button">Run</button>');
   outputTd.attr('id', 'outputTd_' + id);
+  outputTd.attr('class', 'outputTd');
   visualizeTd.append('<button id="vizTestCase_' + id + '" class="vizTestCase" type="button">Visualize</button>');
   deleteTd.append('<a id="delTestCase_' + id + '" href="javascript:void(0);">Delete test</a></td>');
 
