@@ -1005,6 +1005,14 @@ function parseQueryString() {
     rawInputLst = [];
   }
 
+  if (queryStrOptions.testCasesLst) {
+    $("#createTestsLink").hide();
+    initTestcasesPane('#testCasesPane');
+    queryStrOptions.testCasesLst.forEach(function(e) {
+      addTestcase(e);
+    });
+  }
+
   // ugh tricky -- always start in edit mode by default, and then
   // switch to display mode only after the code successfully executes
   appMode = 'edit';
@@ -1019,6 +1027,7 @@ function parseQueryString() {
 // parsing the URL query string hash
 function getQueryStringOptions() {
   var ril = $.bbq.getState('rawInputLstJSON');
+  var testCasesLstJSON = $.bbq.getState('testCasesJSON');
   // note that any of these can be 'undefined'
   return {preseededCode: $.bbq.getState('code'),
           preseededCurInstr: Number($.bbq.getState('curInstr')),
@@ -1028,7 +1037,8 @@ function getQueryStringOptions() {
           cumulative: $.bbq.getState('cumulative'),
           heapPrimitives: $.bbq.getState('heapPrimitives'),
           textReferences: $.bbq.getState('textReferences'),
-          rawInputLst: ril ? $.parseJSON(ril) : undefined
+          rawInputLst: ril ? $.parseJSON(ril) : undefined,
+          testCasesLst: testCasesLstJSON ? $.parseJSON(testCasesLstJSON) : undefined
           };
 }
 

@@ -52,14 +52,13 @@ var testcasesPaneHtml = '\
 <a href="#" id="addNewTestCase">Add new test</a>\
 '
 
-var curTestcaseId = 1;
-
 function initTestcasesPane(parentDivId) {
+  $(parentDivId).empty(); // just to be paranoid, empty this out
+                          // (and its event handlers, too, supposedly)
   $(parentDivId).html(testcasesPaneHtml);
 
   $("#addNewTestCase").click(function() {
-    addTestcase(curTestcaseId);
-    curTestcaseId++;
+    addTestcase();
     return false; // to prevent link from being followed
   });
 
@@ -110,7 +109,12 @@ function vizTestFinishSuccessfulExecution() {
   doneRunningTest();
 }
 
-function addTestcase(id) {
+
+var curTestcaseId = 1;
+
+function addTestcase(initialCod /* optional code to pre-seed this test */) {
+  var id = curTestcaseId;
+  curTestcaseId++; // nasty global
   var newTr = $('<tr/>').attr('id', 'testCaseRow_' + id);
   $("#testCasesTable tbody").append(newTr);
   var editorTd = $('<td/>');
@@ -142,6 +146,11 @@ function addTestcase(id) {
   te.setBehavioursEnabled(false);
   te.setFontSize(10);
   //te.setReadOnly(true);
+
+  if (initialCod) {
+    te.setValue(initialCod.rtrim() /* kill trailing spaces */,
+                -1 /* do NOT select after setting text */);
+  }
 
   var s = te.getSession();
   s.setTabSize(2);
