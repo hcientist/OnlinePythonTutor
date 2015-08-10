@@ -58,6 +58,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <script type="text/javascript" src="js/codemirror/python.js"></script>
  -->
 
+<!-- test cases -->
+<script type="text/javascript" src="js/opt-testcases.js"></script>
+<link rel="stylesheet" href="css/opt-testcases.css"/>
+
+
 <!-- Ace online code editor -->
 <script type="text/javascript" src="js/ace/src-min-noconflict/ace.js" charset="utf-8"></script>
 
@@ -103,6 +108,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <div id="codeInputPane"></div> <!-- populate with a CodeMirror or Ace code editor instance -->
 <div id="frontendErrorOutput"></div>
 
+<button style="margin-top: 10px;" id="executeBtn" class="bigBtn">???</button>
+
+<p style="margin-top: 20px;">
+  <a href="#" id="createTestsLink">Create test cases</a>
+</p>
+
+<div id="testCasesPane"></div>
+
 </div>
 
 
@@ -110,10 +123,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </div>
 
 <div id="footer">
-
-<p>
-<button id="executeBtn" class="bigBtn">???</button>
-</p>
 
 <p>
 <a href="http://pythontutor.com/" target="_blank">Online Python Tutor</a> supports

@@ -371,11 +371,33 @@ function mixLazyExecuteCode() {
 }
 
 
+// for opt-testcases.js
+function getBaseBackendOptionsObj() {
+  var ret = {cumulative_mode: false,
+             heap_primitives: false,
+             show_only_outputs: false,
+             py_crazy_mode: false,
+             origin: originFrontendJsFile};
+  return ret;
+}
+
+function getBaseFrontendOptionsObj() {
+  ret = {embeddedMode: true};
+  return ret;
+}
+
+
 $(document).ready(function() {
   $('#pythonVersionSelector').change(setAceMode);
 
   $("#executeBtn").click(function() {
     mixLazyExecuteCode();
+  });
+
+  $("#createTestsLink").click(function() {
+    initTestcasesPane('#testCasesPane');
+    $(this).hide();
+    return false;
   });
 
   // To run in https://labsjs.blob.core.windows.net/sdk/LabsJS-1.0.4/labshost.html
@@ -406,7 +428,7 @@ $(document).ready(function() {
   // TODO: in the future, make it flexible height but for now, just make
   // it fixed-height but kinda small-ish
   initAceEditor(200);
-  pyInputAceEditor.setOptions({minLines: 12, maxLines: 1000});
+  pyInputAceEditor.setOptions({minLines: 10, maxLines: 1000});
 
   // no frills footer
   $("#footer").css("margin-top", "0px")
