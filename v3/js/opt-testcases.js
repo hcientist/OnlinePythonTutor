@@ -147,11 +147,6 @@ function addTestcase(initialCod /* optional code to pre-seed this test */) {
   te.setFontSize(11);
   //te.setReadOnly(true);
 
-  if (initialCod) {
-    te.setValue(initialCod.rtrim() /* kill trailing spaces */,
-                -1 /* do NOT select after setting text */);
-  }
-
   var s = te.getSession();
   s.setTabSize(2);
   s.setUseSoftTabs(true);
@@ -164,17 +159,24 @@ function addTestcase(initialCod /* optional code to pre-seed this test */) {
   // TODO: change syntax highlighting mode if the user changes languages:
   var lang = $('#pythonVersionSelector').val();
   var mod = 'python';
+  var defaultVal = '\n# assert <test condition>';
   if (lang === 'java') {
     mod = 'java';
+    defaultVal = '// sorry, Java tests not yet supported';
   } else if (lang === 'js') {
     mod = 'javascript';
+    defaultVal = '\n// console.assert(<test condition>);';
   } else if (lang === 'ts') {
     mod = 'typescript';
+    defaultVal = '\n// console.assert(<test condition>);';
   } else if (lang === 'ruby') {
     mod = 'ruby';
+    defaultVal = "\n# raise 'fail' unless <test condition>";
   }
   s.setMode("ace/mode/" + mod);
 
+  te.setValue(initialCod ? initialCod.rtrim() : defaultVal,
+              -1 /* do NOT select after setting text */);
 
   function runOrVizTestCase(isViz /* true for visualize, false for run */) {
     if (isViz) {
