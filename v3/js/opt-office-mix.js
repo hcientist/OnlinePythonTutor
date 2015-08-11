@@ -259,10 +259,10 @@ function officeMixEnterViewMode() {
       }
 
       if (savedAppState.testCasesJSON) {
-        var testCasesLst = $.parseJSON(savedAppState.testCasesJSON);
+        var testCasesLst = JSON.parse(savedAppState.testCasesJSON);
         $("#createTestsLink").hide();
         initTestcasesPane('#testCasesPane', saveCurrentConfiguration);
-        savedAppState.testCasesLst.forEach(function(e) {
+        testCasesLst.forEach(function(e) {
           addTestcase(e, saveCurrentConfiguration);
         });
       }
@@ -305,10 +305,10 @@ function officeMixEnterEditMode() {
           }
 
           if (savedAppState.testCasesJSON) {
-            var testCasesLst = $.parseJSON(savedAppState.testCasesJSON);
+            var testCasesLst = JSON.parse(savedAppState.testCasesJSON);
             $("#createTestsLink").hide();
             initTestcasesPane('#testCasesPane', saveCurrentConfiguration);
-            savedAppState.testCasesLst.forEach(function(e) {
+            testCasesLst.forEach(function(e) {
               addTestcase(e, saveCurrentConfiguration);
             });
           }
