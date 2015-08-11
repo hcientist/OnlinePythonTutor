@@ -258,6 +258,14 @@ function officeMixEnterViewMode() {
         }
       }
 
+      if (savedAppState.testCasesLst) {
+        $("#createTestsLink").hide();
+        initTestcasesPane('#testCasesPane');
+        savedAppState.testCasesLst.forEach(function(e) {
+          addTestcase(e);
+        });
+      }
+
       if (savedAppState.mode === 'edit') {
         enterOPTEditCodeMode();
       }
@@ -293,6 +301,14 @@ function officeMixEnterEditMode() {
               _savedCurInstr = savedAppState.curInstr; // #crufty
               mixLazyExecuteCode();
             }
+          }
+
+          if (savedAppState.testCasesLst) {
+            $("#createTestsLink").hide();
+            initTestcasesPane('#testCasesPane');
+            savedAppState.testCasesLst.forEach(function(e) {
+              addTestcase(e);
+            });
           }
 
           if (savedAppState.mode === 'edit') {
