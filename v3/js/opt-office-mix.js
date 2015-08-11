@@ -260,9 +260,9 @@ function officeMixEnterViewMode() {
 
       if (savedAppState.testCasesLst) {
         $("#createTestsLink").hide();
-        initTestcasesPane('#testCasesPane');
+        initTestcasesPane('#testCasesPane', saveCurrentConfiguration);
         savedAppState.testCasesLst.forEach(function(e) {
-          addTestcase(e);
+          addTestcase(e, saveCurrentConfiguration);
         });
       }
 
@@ -305,9 +305,9 @@ function officeMixEnterEditMode() {
 
           if (savedAppState.testCasesLst) {
             $("#createTestsLink").hide();
-            initTestcasesPane('#testCasesPane');
+            initTestcasesPane('#testCasesPane', saveCurrentConfiguration);
             savedAppState.testCasesLst.forEach(function(e) {
-              addTestcase(e);
+              addTestcase(e, saveCurrentConfiguration);
             });
           }
 
@@ -411,7 +411,7 @@ $(document).ready(function() {
   });
 
   $("#createTestsLink").click(function() {
-    initTestcasesPane('#testCasesPane');
+    initTestcasesPane('#testCasesPane', saveCurrentConfiguration);
     $(this).hide();
     return false;
   });

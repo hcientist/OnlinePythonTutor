@@ -52,13 +52,13 @@ var testcasesPaneHtml = '\
 <a href="#" id="addNewTestCase">Add new test</a>\
 '
 
-function initTestcasesPane(parentDivId) {
+function initTestcasesPane(parentDivId, onChangeCallback /* optional */) {
   $(parentDivId).empty(); // just to be paranoid, empty this out
                           // (and its event handlers, too, supposedly)
   $(parentDivId).html(testcasesPaneHtml);
 
   $("#addNewTestCase").click(function() {
-    addTestcase();
+    addTestcase(null, onChangeCallback);
     return false; // to prevent link from being followed
   });
 
@@ -112,7 +112,8 @@ function vizTestFinishSuccessfulExecution() {
 
 var curTestcaseId = 1;
 
-function addTestcase(initialCod /* optional code to pre-seed this test */) {
+function addTestcase(initialCod /* optional code to pre-seed this test */,
+                     onChangeCallback /* to be called if this elt changes */) {
   var id = curTestcaseId;
   curTestcaseId++; // nasty global
   var newTr = $('<tr/>').attr('id', 'testCaseRow_' + id);
@@ -174,6 +175,13 @@ function addTestcase(initialCod /* optional code to pre-seed this test */) {
     defaultVal = "\n# raise 'fail' unless <test condition>";
   }
   s.setMode("ace/mode/" + mod);
+
+  // detect when the buffer has changed
+  s.on("change", function() {
+    if (onChangeCallback) {
+      onChangeCallback();
+    }
+  });
 
   te.setValue(initialCod ? initialCod.rtrim() : defaultVal,
               -1 /* do NOT select after setting text */);
@@ -256,13 +264,19 @@ function addTestcase(initialCod /* optional code to pre-seed this test */) {
   $('#vizTestCase_' + id).click(runOrVizTestCase.bind(null, true));
 
   $('#delTestCase_' + id).click(function() {
-    var res = confirm("Press OK to delete this test.");
-    if (res) {
-      $('#testCaseRow_' + id).remove();
+    // confirm() not supported within Office Mix labs :/
+    //var res = confirm("Press OK to delete this test.");
+
+    $('#testCaseRow_' + id).remove();
+    if (onChangeCallback) {
+      onChangeCallback();
     }
     return false; // to prevent link from being followed
   });
 
+  if (onChangeCallback) {
+    onChangeCallback();
+  }
 }
 
 // returns a list of strings, each of which is a test case
