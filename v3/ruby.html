@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Online Python Tutor
+https://github.com/pgbovine/OnlinePythonTutor/
+
+Copyright (C) Philip J. Guo (philip@pgbovine.net)
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ -->
+
+<head>
+  <title>Ruby Tutor - Visualize Ruby code execution</title>
+
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+
+<!-- requirements for pytutor.js -->
+<script type="text/javascript" src="js/d3.v2.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.ba-bbq.min.js"></script> <!-- for handling back button and URL hashes -->
+<script type="text/javascript" src="js/jquery.ba-dotimeout.min.js"></script> <!-- for event debouncing -->
+<script type="text/javascript" src="js/jquery.jsPlumb-1.3.10-all-min.js "></script> <!-- for rendering SVG connectors
+                                                                                         DO NOT UPGRADE ABOVE 1.3.10 OR ELSE BREAKAGE WILL OCCUR -->
+<script type="text/javascript" src="js/diff_match_patch.js"></script>
+
+<script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script> <!-- for sliders and other UI elements -->
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.24.custom.css" rel="stylesheet" />
+
+<!-- adapted from: http://reason.cs.illinois.edu/wenpu1/chatbox.html -->
+<link type="text/css" href="css/jquery.ui.chatbox.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.ui.chatbox.js"></script>
+
+
+<!-- for annotation bubbles -->
+<script type="text/javascript" src="js/jquery.qtip.min.js"></script>
+<link type="text/css" href="css/jquery.qtip.css" rel="stylesheet" />
+
+<script type="text/javascript" src="js/pytutor.js"></script>
+<link rel="stylesheet" href="css/pytutor.css"/>
+
+<script type="text/javascript" src="js/holistic.js"></script>
+<link rel="stylesheet" href="css/holistic.css"/>
+
+<!-- requirements for opt-frontend.js -->
+
+<!-- codemirror.net online code editor -->
+<!--
+<script type="text/javascript" src="js/codemirror/codemirror.js"></script>
+<link type="text/css" href="css/codemirror.css" rel="stylesheet" />
+<script type="text/javascript" src="js/codemirror/python.js"></script>
+ -->
+
+<!-- Ace online code editor -->
+<script type="text/javascript" src="js/ace/src-min-noconflict/ace.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="js/opt-frontend-common.js"></script>
+<script type="text/javascript" src="js/opt-frontend.js"></script>
+<link rel="stylesheet" href="css/opt-frontend.css"/>
+
+<!-- include this AFTER opt-frontend.js so that configuration
+     global variables are already defined at load time -->
+<script type="text/javascript" src="js/togetherjs/togetherjs-min.js"></script>
+
+<script type="text/javascript" src="js/socket.io-client/socket.io.js"></script>
+
+<script type="text/javascript" src="js/opt-testcases.js"></script>
+<link rel="stylesheet" href="css/opt-testcases.css"/>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34795707-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+<body>
+
+<table id="experimentalHeader">
+<tr>
+<td valign="top">
+
+<!--
+
+<div id="adInfo" style="font-size: 8pt; width: 180px; margin-bottom: 15px;">
+
+<a href="#" id="hideHeaderLink">Hide banner ad</a>
+
+<br/><br/>
+This tool is free and <a
+href="https://github.com/pgbovine/OnlinePythonTutor/">open-source</a>.
+Ads pay for web hosting costs.
+
+-->
+
+</div>
+
+<div id="ssDiv">
+  <button id="sharedSessionBtn" type="button" class="togetherjsBtn">
+  Start shared session
+  </button>
+  <div style="font-size: 7pt; margin-left: 2px; margin-top: 3px;">
+  <a href="https://www.youtube.com/watch?v=Z2TIjNArOK4" target="_blank">What are shared sessions?</a>
+  </div>
+</div>
+
+<div>
+<button id="getTutorBtn" type="button" class="togetherjsBtn" style="display: none;">
+Get help from a tutor
+</button>
+</div>
+
+<div id="sharedSessionDisplayDiv" style="display: none;">
+  <button id="stopTogetherJSBtn" type="button" class="togetherjsBtn">
+  End shared session
+  </button>
+
+  <div style="width: 200px; font-size: 8pt; color: #666; margin-top: 5px;">
+  Your chat logs and code may be recorded, anonymized, and analyzed for research.
+  </div>
+</div>
+
+</td>
+<td valign="top">
+
+<div id="togetherjsStatus"></div>
+
+<div id="surveyHeader"></div>
+
+<div id="adHeader" style="margin-left: 15px; margin-bottom: 35px;">
+
+<div id="optHeader" style="font-family: Georgia, Palatino, Times, serif; font-size: 13pt; margin-bottom: 10px;">
+Ruby Tutor - Visualize Ruby code execution
+
+<p style="font-size: 10pt";>
+This tool is part of <a href="visualize.html">Online Python
+Tutor</a>, which visualizes Python, Java, JavaScript, TypeScript, and
+Ruby code.
+</p>
+
+</div>
+
+<!--
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-7519401450079227"
+     data-ad-slot="9796201192"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+-->
+
+</div>
+
+</td>
+</tr>
+</table>
+
+
+<div id="pyInputPane">
+
+<div id="codeInputWarnings">Write code in
+
+  <select id="pythonVersionSelector">
+    <option value="ruby">Ruby</option>
+    <option value="2">Python 2.7</option>
+    <option value="3">Python 3.3</option>
+    <option value="java">Java</option>
+    <option value="js">JavaScript</option>
+    <option value="ts">TypeScript</option>
+  </select>
+
+</div>
+
+<div id="someoneIsTypingDiv" style="color: #e93f34; font-weight: bold; display: none;">Someone is typing ...</div>
+
+<div id="codeInputPane"></div> <!-- populate with a CodeMirror or Ace code editor instance -->
+<div id="frontendErrorOutput"></div>
+<div id="surveyPane"></div>
+
+<p>
+<button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
+</p>
+
+
+<div id="javaOptionsPane" style="margin-top: 20px;">
+[<i>coming soon!</i>] Java options: pass in command-line arguments and feed user input to stdin
+</div>
+
+
+<div id="optionsPane" style="margin-top: 18px; line-height: 150%;">
+  <select id="cumulativeModeSelector" style="display: none;">
+    <option value="false">hide exited frames [default]</option>
+    <option value="true">show exited frames (Python)</option>
+    <option value="holistic">holistic mode (experimental)</option>
+  </select>
+  <select id="heapPrimitivesSelector" style="display: none;">
+    <option value="false">inline primitives &amp; nested objects [default]</option>
+    <option value="true">render all objects on the heap</option>
+  </select>
+  <select id="textualMemoryLabelsSelector">
+    <option value="false">draw pointers as arrows [default]</option>
+    <option value="true">use text labels for pointers</option>
+  </select>
+
+  <!-- hide these for now -->
+  <select id="drawParentPointerSelector" style="display: none;">
+    <option value="false">hide environment parent pointers (default)</option>
+    <!--<option value="true">show environment parent pointers</option>-->
+  </select>
+  <select id="showOnlyOutputsSelector" style="display: none;">
+    <option value="false">show everything (default)</option>
+    <!--<option value="true">show only outputs</option>-->
+  </select>
+</div>
+
+
+<p style="margin-top: 25px;"><a href="#" id="createTestsLink">Create test cases</a></p>
+
+<div id="testCasesPane"></div>
+
+
+<p style="margin-top: 25px; font-weight: bold;">Ruby Examples</p>
+
+<p style="margin-top: 5px;">
+  <a class="exampleLink" id="rubyContainersLink" href="#">Containers</a> |
+  <a class="exampleLink" id="rubyGlobalsLink" href="#">Globals</a> |
+  <a class="exampleLink" id="rubyConstantsLink" href="#">Constants</a> |
+  <a class="exampleLink" id="rubyBlocksLink" href="#">Blocks</a> |
+  <a class="exampleLink" id="rubyBlocksScopingLink" href="#">Block scoping</a> |
+  <a class="exampleLink" id="rubyBlocksScoping3Link" href="#">More block scoping</a>
+  <p/>
+  <a class="exampleLink" id="rubyProcLink" href="#">Proc & Lambda</a> |
+  <a class="exampleLink" id="rubyProcScopingLink" href="#">Proc scoping</a> |
+  <a class="exampleLink" id="rubyProcReturnLink" href="#">Proc return</a> |
+  <a class="exampleLink" id="rubyLambdaScopingLink" href="#">Lambda scoping</a> |
+  <a class="exampleLink" id="rubyInheritanceLink" href="#">Inheritance</a> |
+  <a class="exampleLink" id="rubySymbolsLink" href="#">Symbols</a>
+  <p/>
+  <a class="exampleLink" id="rubyPrivateProtectedLink" href="#">Protected & private</a> |
+  <a class="exampleLink" id="rubyInstClassVarsComplexLink" href="#">Class & instance vars</a> |
+  <a class="exampleLink" id="rubyToplevelLink" href="#">Toplevel defs</a> |
+  <a class="exampleLink" id="rubyMegagreeterLink" href="#">Megagreeter</a>
+</p>
+
+</div>
+
+
+<div id="pyOutputPane">
+</div>
+
+<div id="footer">
+
+<p>
+  <button id="genUrlBtn" class="smallBtn" type="button">Generate permanent link</button> <input type="text" id="urlOutput" size="70"/>
+</p>
+
+<p>Click the button above to create a permanent link to your
+visualization. To report a bug, paste the link along with a brief error
+description in an email addressed to philip@pgbovine.net</p>
+
+<div id="embedLinkDiv">
+<p>
+  <button id="genEmbedBtn" class="smallBtn" type="button">Generate embed code</button> <input type="text" id="embedCodeOutput" size="70"/>
+</p>
+
+<p>To embed this visualization in your webpage, click the 'Generate
+embed code' button above and paste the resulting HTML code into your
+webpage. Adjust the height and width parameters as needed.</p>
+</div>
+
+<p style="margin-top: 25px;">
+<a href="http://pythontutor.com/">Online Python Tutor</a> currently supports five
+languages (despite its name!):</p>
+
+<p>1. Python <a href="http://www.python.org/doc/2.7/">2.7</a> and <a
+href="http://www.python.org/doc/3.3.0/">3.3</a> with limited module
+imports and no file I/O.
+The following modules may be imported: 
+bisect,
+collections,
+datetime,
+functools,
+heapq,
+itertools,
+json,
+math,
+operator,
+random,
+re,
+string.
+<a
+href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3">Backend source code</a>.
+</p>
+
+<p>2. Java using OpenJDK Java 7. The original <a
+href="http://cscircles.cemc.uwaterloo.ca/java_visualize/">Java
+visualizer</a> was created by <a href="https://github.com/daveagp">David Pritchard</a> and Will Gwozdz.
+It supports
+<code><a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdIn.html">StdIn</a></code>, 
+<code><a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdOut.html">StdOut</a></code>, 
+most other <a href="http://introcs.cs.princeton.edu/java/stdlib"><tt>stdlib</tt> libraries</a>,
+<a href="http://introcs.cs.princeton.edu/java/43stack/Stack.java.html"><tt>Stack</tt></a>,
+<a href="http://introcs.cs.princeton.edu/java/43stack/Queue.java.html"><tt>Queue</tt></a>,
+and <a href="http://introcs.cs.princeton.edu/java/44st/ST.java.html"><tt>ST</tt></a>.
+(To access Java's built-in <tt>Stack</tt>/<tt>Queue</tt> classes, write
+<tt>import java.util.Stack;</tt> &mdash; note, <tt>import
+java.util.*;</tt> won't work.)
+Original source
+code: for <a href="https://github.com/daveagp/java_jail/tree/master/cp/traceprinter">the backend</a> and for <a href="https://github.com/daveagp/java_visualize">the frontend and installation
+instructions.</a></p>
+
+<p>3. JavaScript running in Node.js v0.10.25 in ES5 strict mode. <a
+href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript">Backend
+source code</a>.</p>
+
+<p>4. <a href="http://www.typescriptlang.org">TypeScript</a> 1.4.1 running in Node.js v0.10.25. <a
+href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript">Backend
+source code</a>.</p>
+
+<p>5. Ruby 2 using MRI 2.2.2. <a
+href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/ruby">Backend
+source code</a>.</p>
+
+<p style="margin-top: 30px;">Privacy Policy: By using Online Python
+Tutor, your visualized code, options, user interactions, text chats, and
+IP address are logged on our server and may be analyzed for research
+purposes. Nearly all Web services collect this basic information from
+users. However, the Online Python Tutor website (pythontutor.com) does
+not collect any personal information or session state from users, nor
+does it issue any cookies.</p>
+
+<!--
+
+<p>
+
+Third party vendors, including Google, use cookies to serve ads based on a
+user's prior visits to pythontutor.com. Google's use of the DoubleClick cookie
+enables it and its partners to serve ads to your users based on their visit to
+pythontutor.com and/or other sites on the Internet. Users may opt out of the use
+of the DoubleClick cookie by visiting Ads Settings. (Alternatively, users may
+opt out of a third-party vendor's use of cookies for interest based advertising
+by visiting <a href="http://www.aboutads.info/">aboutads.info</a>.) Some of our
+advertising partners may use cookies and web beacons on our site. Our
+advertising partners include Google Adsense. These third-party ad servers or ad
+networks use technology to the advertisements and links that appear on
+pythontutor.com send directly to your browsers. They automatically receive your
+IP address when this occurs. Other technologies (such as cookies, JavaScript,
+or Web Beacons) may also be used by the third-party ad networks to measure the
+effectiveness of their advertisements and / or to personalize the advertising
+content that you see.
+
+pythontutor.com has no access to or control over these cookies that are used by
+third-party advertisers. Consult the respective privacy policies of these
+third-party ad servers for more detailed information on their practices as well
+as for instructions about how to opt-out of certain practices. pythontutor.com's
+privacy policy does not apply to, and we cannot control the activities of, such
+other advertisers or web sites. If you wish to disable cookies, you may do so
+through your individual browser options.
+
+</p>
+
+-->
+
+<!--
+
+<p>Join the <a
+href="https://groups.google.com/forum/#!forum/pythontutor-users">pythontutor-users</a>
+mailing list to participate in user discussions and <a
+href="https://groups.google.com/forum/#!forum/pythontutor-announce">pythontutor-announce</a>
+to receive occasional announcements.
+(Your name and email address will be kept private; only the list owner can see them.)</p>
+
+-->
+
+<p style="margin-top: 25px;">
+Copyright &copy; <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
+</p>
+
+</div>
+
+<!-- adapted from: http://reason.cs.illinois.edu/wenpu1/chatbox.html -->
+<div id="chat_div"></div>
+
+</body>
+</html>
