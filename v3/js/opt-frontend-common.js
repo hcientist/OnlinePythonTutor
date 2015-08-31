@@ -1610,8 +1610,7 @@ var survey_v4 = '\n\
 <input type="hidden" id="Q-version" value="v4"/> <!-- for versioning -->\n\
 </p>'
 
-v5: (deployed on 2015-03-01) - target older population
-*/
+v5: (deployed on 2015-03-01, retired on 2015-08-31) - target older population
 var survey_v5 = '\n\
 <p style="margin-top: 10px; line-height: 175%;">\n\
 If you are <span style="color: #333; font-weight: bold;">at least 60 years old</span> and would like to help our research on how older people learn programming, please enter your email address here:\n\
@@ -1619,7 +1618,14 @@ If you are <span style="color: #333; font-weight: bold;">at least 60 years old</
 <input type="hidden" id="Q-version" value="v5"/> <!-- for versioning -->\n\
 </p>'
 
-var survey_html = survey_v5;
+v6: (deployed on 2015-08-31) - use SurveyMonkey links
+*/
+var survey_v6 = '\n\
+<p style="font-size: 9pt; margin-top: 10px; line-height: 175%;">\n\
+Please support our research and keep this tool free by <b><a href="https://www.surveymonkey.com/r/YD7KZ8P" target="_blank">filling out this short survey</a></b>.<br/>\n\
+If you are at least 60 years old, please also <a href="https://www.surveymonkey.com/r/Y9X75HC" target="_blank">fill out this survey</a>.</p>'
+
+var survey_html = survey_v6;
 
 function setSurveyHTML() {
   $('#surveyPane').html(survey_html);
@@ -1707,7 +1713,7 @@ function getSurveyObject() {
   }
   */
 
-  /* v5 */
+  /* v5
   var ret = {
     ver: $('#Q-version').val(),
   }
@@ -1718,6 +1724,9 @@ function getSurveyObject() {
   }
 
   return ret;
+  */
+
+  return null;
 }
 
 
