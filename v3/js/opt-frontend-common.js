@@ -192,6 +192,8 @@ function initAceEditor(height) {
   s.setOption("useWorker", false);
 
   setAceMode();
+
+  pyInputAceEditor.focus();
 }
 
 var JAVA_BLANK_TEMPLATE = 'public class YourClassNameHere {\n\
