@@ -1618,12 +1618,12 @@ If you are <span style="color: #333; font-weight: bold;">at least 60 years old</
 <input type="hidden" id="Q-version" value="v5"/> <!-- for versioning -->\n\
 </p>'
 
-v6: (deployed on 2015-08-31) - use SurveyMonkey links
+v6: (deployed on 2015-08-31) - use Google Forms links
 */
 var survey_v6 = '\n\
 <p style="font-size: 9pt; margin-top: 10px; line-height: 175%;">\n\
-Please support our research and keep this tool free by <b><a href="https://www.surveymonkey.com/r/YD7KZ8P" target="_blank">filling out this short survey</a></b>.<br/>\n\
-If you are at least 60 years old, please also <a href="https://www.surveymonkey.com/r/Y9X75HC" target="_blank">fill out this survey</a>.</p>'
+Please support our research and keep this tool free by <b><a href="https://docs.google.com/forms/d/1-aKilu0PECHZVRSIXHv8vJpEuKUO9uG3MrH864uX56U/viewform" target="_blank">filling out this short survey</a></b>.<br/>\n\
+If you are at least 60 years old, please also <a href="https://docs.google.com/forms/d/1lrXsE04ghfX9wNzTVwm1Wc6gQ5I-B4uw91ACrbDhJs8/viewform" target="_blank">fill out this survey</a>.</p>'
 
 var survey_html = survey_v6;
 
@@ -1750,7 +1750,7 @@ What did you just learn? <input type="text" id="sharedSessionWhatLearned" class=
 </div>'
 
 // deployed on 2015-03-06
-var emailNotificationHtml = '<div style="border: 2px solid #BE554E; padding: 5px; margin-top: 15px; margin-bottom: 15px; line-height: 150%; font-size: 12pt; width: 600px;">If you enjoyed using this <em>shared sessions</em> feature, please take a minute to fill out a <a href="https://www.surveymonkey.com/s/T9XVBHD" target="_blank"><b>three-question survey</b></a> to help our research. Thank you!</div>'
+var emailNotificationHtml = '<div style="border: 2px solid #BE554E; padding: 5px; margin-top: 15px; margin-bottom: 15px; line-height: 150%; font-size: 10pt; width: 600px;">If you enjoyed using this <em>shared sessions</em> feature, please take a minute to fill out a <a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank"><b>three-question survey</b></a> to help our research. Thank you!</div>'
 
 // display-mode survey, which is shown when the user is in 'display' mode
 // As of Version 3, this runs every time code is executed, so make sure event
