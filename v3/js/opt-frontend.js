@@ -241,6 +241,18 @@ function experimentalPopUpSyntaxErrorSurvey() {
 
       var bub = new SyntaxErrorSurveyBubble(myVisualizer, codLineId);
 
+      // if pyCodeOutputDiv is narrower than the current line, then
+      // adjust the x position of the pop-up bubble accordingly to be
+      // flush with the right of pyCodeOutputDiv
+      var pcodWidth = myVisualizer.domRoot.find('#pyCodeOutputDiv').width();
+      var codLineWidth = myVisualizer.domRoot.find('#' + codLineId).parent().width(); // get enclosing 'tr'
+      var adjustX = 0; // default
+
+      // actually nix this for now to keep things simple ...
+      //if (pcodWidth < codLineWidth) {
+      //  adjustX = pcodWidth - codLineWidth; // should be negative!
+      //}
+
       // destroy then create a new tip:
       bub.destroyQTip();
       $(bub.hashID).qtip($.extend({}, qtipShared, {
@@ -250,7 +262,7 @@ function experimentalPopUpSyntaxErrorSurvey() {
           my: bub.my,
           at: bub.at,
           adjust: {
-            x: -6,
+            x: adjustX,
           },
           effect: null, // disable all cutesy animations
         },
