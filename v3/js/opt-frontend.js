@@ -280,7 +280,8 @@ function experimentalPopUpSyntaxErrorSurvey() {
                               </div>'
       */
 
-      var version = 'v2'; // deployed on 2015-04-20
+      /*
+      var version = 'v2'; // deployed on 2015-04-20, revoked on 2015-09-08
       var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
                                 <div id="syntaxErrHeader">You just fixed the following error:</div>\
                                 <div id="syntaxErrCodeDisplay"></div>\
@@ -293,6 +294,23 @@ function experimentalPopUpSyntaxErrorSurvey() {
                                    <a href="#" id="syntaxErrHideAllLink">Hide all pop-ups</a>\
                                 </div>\
                               </div>'
+      */
+
+      var version = 'v3'; // deployed on 2015-09-08
+      var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
+                                <div id="syntaxErrHeader">You just fixed the following error:</div>\
+                                <div id="syntaxErrCodeDisplay"></div>\
+                                <div id="syntaxErrMsg"></div>\
+                                <div id="syntaxErrQuestion">\
+                                  Please help us improve error messages for future users.\
+                                   If you think the above message wasn\'t helpful, what would have been the best message for you here?<br/>\
+                                   <input type="text" id="syntaxErrTxtInput" size=60 maxlength=150/><br/>\
+                                   <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
+                                   <button id="syntaxErrCloseBtn" type="button">Close</button>\
+                                   <a href="#" id="syntaxErrHideAllLink">Hide all of these pop-ups</a>\
+                                </div>\
+                              </div>'
+
 
       $(bub.qTipContentID()).html(surveyBubbleHTML);
 
