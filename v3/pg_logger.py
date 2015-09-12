@@ -199,12 +199,12 @@ input_string_queue = []
 def open_wrapper(*args):
   if is_python3:
       raise Exception('''open() is not supported.
-Instead use io.StringIO() to simulate a file.''')
-#See here for an example: http://www.googl/blahblah''')
+Instead use io.StringIO() to simulate a file.
+Here is an example: http://goo.gl/uNvBGl''')
   else:
       raise Exception('''open() is not supported.
-Instead use StringIO.StringIO() to simulate a file.''')
-#See here for an example: http://www.googl/blahblah''')
+Instead use StringIO.StringIO() to simulate a file.
+Here is an example: http://goo.gl/Q9xQ4p''')
 
 
 class RawInputException(Exception):
