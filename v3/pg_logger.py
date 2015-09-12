@@ -42,6 +42,7 @@ is_python3 = (sys.version_info[0] == 3)
 # NB: don't use cStringIO since it doesn't support unicode!!!
 if is_python3:
   import io as StringIO
+  import io # expose regular io for Python3 users too
 else:
   import StringIO
 import pg_encoder
@@ -114,7 +115,11 @@ else:
 ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'datetime',
                           'functools', 'itertools', 'operator', 'string',
                           'collections', 're', 'json',
-                          'heapq', 'bisect', 'StringIO')
+                          'heapq', 'bisect')
+
+# allow users to import but don't explicitly import it since it's
+# already been done above
+OTHER_STDLIB_WHITELIST = ('StringIO', 'io')
 
 # whitelist of custom modules to import into OPT
 # (TODO: support modules in a subdirectory, but there are various
@@ -151,7 +156,7 @@ def __restricted_import__(*args):
   # subclass str and bypass the 'in' test on the next line
   args = [e for e in args if type(e) is str]
 
-  if args[0] in ALLOWED_STDLIB_MODULE_IMPORTS + CUSTOM_MODULE_IMPORTS:
+  if args[0] in ALLOWED_STDLIB_MODULE_IMPORTS + CUSTOM_MODULE_IMPORTS + OTHER_STDLIB_WHITELIST:
     imported_mod = BUILTIN_IMPORT(*args)
 
     if args[0] in CUSTOM_MODULE_IMPORTS:
@@ -189,6 +194,18 @@ random.seed(0)
 
 # queue of input strings passed from either raw_input or mouse_input
 input_string_queue = []
+
+
+def open_wrapper(*args):
+  if is_python3:
+      raise Exception('''open() is not supported.
+Instead use io.StringIO() to simulate a file.''')
+#See here for an example: http://www.googl/blahblah''')
+  else:
+      raise Exception('''open() is not supported.
+Instead use StringIO.StringIO() to simulate a file.''')
+#See here for an example: http://www.googl/blahblah''')
+
 
 class RawInputException(Exception):
   pass
@@ -1178,7 +1195,9 @@ class PGLogger(bdb.Bdb):
             builtin_items.append((k, getattr(__builtins__, k)))
 
         for (k, v) in builtin_items:
-          if k in BANNED_BUILTINS:
+          if k == 'open': # put this before BANNED_BUILTINS
+            user_builtins[k] = open_wrapper
+          elif k in BANNED_BUILTINS:
             continue
           elif k == '__import__':
             user_builtins[k] = __restricted_import__
