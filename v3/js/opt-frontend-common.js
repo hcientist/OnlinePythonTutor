@@ -159,7 +159,9 @@ function initDeltaObj() {
 
   // v is the version number
   //   1 (version 1 was released on 2014-11-05)
-  deltaObj = {start: pyInputGetValue(), deltas: [], v: 1};
+  //   2 (version 2 was released on 2015-09-16, added a startTime field)
+  deltaObj = {start: pyInputGetValue(), deltas: [], v: 2,
+              startTime = new Date().getTime()};
 }
 
 function initAceEditor(height) {
