@@ -456,8 +456,16 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
         lvs = iseq_local_variables(iseq)
         lvs_val = lvs.inject({}){|r, lv|
           begin
-            v = b.local_variable_get(lv)
-            r[lv] = pg_encoder.encode(v)
+            begin
+              v = b.local_variable_get(lv)
+              r[lv] = pg_encoder.encode(v)
+            rescue
+              # iterating over range values will make 'lv' into
+              # potentially literal values such as integers, so they
+              # don't make sense as keys in local_variable_get
+              #
+              # ignore
+            end
           rescue NameError
             # ignore
           end
