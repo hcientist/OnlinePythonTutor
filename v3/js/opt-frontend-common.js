@@ -1019,8 +1019,15 @@ function genericOptFrontendReady() {
   //initializeDisplayModeSurvey();
 
   // when you leave or reload the page, submit an updateHistoryJSON if you
-  // have one. beforeunload seems to work better than unload()
+  // have one. beforeunload seems to work better than unload(), but it's
+  // still a bit flaky ... TODO: investigate :(
   $(window).on('beforeunload', function(){
+    submitUpdateHistory();
+    return null; // so that no dialog is triggered
+  });
+
+  // just do this as well, even though it might be hella redundant
+  $(window).unload(function(){
     submitUpdateHistory();
     return null; // so that no dialog is triggered
   });
@@ -1031,7 +1038,7 @@ function genericOptFrontendReady() {
   // than nothing.
   setInterval(function() {
     submitUpdateHistory(true);
-  }, 1000 * 60 * 5);
+  }, 1000 * 60);
 }
 
 
