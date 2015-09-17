@@ -1017,6 +1017,21 @@ function genericOptFrontendReady() {
   // for Versions 1 and 2, initialize here. But for version 3+, dynamically
   // generate a survey whenever the user successfully executes a piece of code
   //initializeDisplayModeSurvey();
+
+  // when you leave or reload the page, submit an updateHistoryJSON if you
+  // have one. beforeunload seems to work better than unload()
+  $(window).on('beforeunload', function(){
+    submitUpdateHistory();
+    return null; // so that no dialog is triggered
+  });
+
+  // periodically do submitUpdateHistory() to handle the case when
+  // someone is simply idle on the page without reloading it or
+  // re-editing code; that way, we can still get some signals rather
+  // than nothing.
+  setInterval(function() {
+    submitUpdateHistory(true);
+  }, 1000 * 60 * 5);
 }
 
 
@@ -1590,13 +1605,11 @@ function executeCodeAndCreateViz(codeToExec,
 }
 
 
-function submitUpdateHistory() {
+// isPeriodic means it's an automatically-sent signal rather than one
+// triggered on a specific event such as a page unload or edit mode switch
+function submitUpdateHistory(isPeriodic) {
   if (myVisualizer) {
-    // before submitting, append the FINAL entry to show the current time and position
-    var curTs = new Date().getTime();
-    myVisualizer.updateHistory.push([myVisualizer.curInstr, curTs]);
-
-    // Finally, compress updateHistory before encoding and sending to
+    // Compress updateHistory before encoding and sending to
     // the server so that it takes up less room in the URL. Have each
     // entry except for the first be a delta from the FIRST entry.
     var uh = myVisualizer.updateHistory;
@@ -1609,16 +1622,24 @@ function submitUpdateHistory() {
       encodedUh.push([e[0], e[1] - firstTs]);
     }
 
-    //var uhJSON = JSON.stringify(uh);
+    // finally push a final entry with the current timestamp delta
+    var curTs = new Date().getTime();
+    encodedUh.push([myVisualizer.curInstr, curTs - firstTs]);
+
+    var uhJSON = JSON.stringify(uh);
     var encodedUhJSON = JSON.stringify(encodedUh);
 
-    console.log(encodedUhJSON);
+    //console.log(uhJSON);
+    //console.log(encodedUhJSON);
 
     //console.log(uhJSON.length);
     //console.log(encodedUhJSON.length);
 
     var myArgs = {session_uuid: sessionUUID,
                   updateHistoryJSON: encodedUhJSON};
+    if (isPeriodic) {
+      myArgs.isPeriodic = true;
+    }
     $.get('viz_interaction.py', myArgs, function(dat) {});
   }
 }
