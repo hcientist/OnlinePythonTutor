@@ -1022,13 +1022,13 @@ function genericOptFrontendReady() {
   // have one. beforeunload seems to work better than unload(), but it's
   // still a bit flaky ... TODO: investigate :(
   $(window).on('beforeunload', function(){
-    submitUpdateHistory();
+    submitUpdateHistory('beforeunload');
     return null; // so that no dialog is triggered
   });
 
   // just do this as well, even though it might be hella redundant
   $(window).unload(function(){
-    submitUpdateHistory();
+    submitUpdateHistory('unload');
     return null; // so that no dialog is triggered
   });
 
@@ -1037,7 +1037,7 @@ function genericOptFrontendReady() {
   // re-editing code; that way, we can still get some signals rather
   // than nothing.
   setInterval(function() {
-    submitUpdateHistory(true);
+    submitUpdateHistory('periodic');
   }, 1000 * 60);
 }
 
@@ -1200,7 +1200,7 @@ function updateAppDisplay(newAppMode) {
     // Back button flow
     $("#pyOutputPane").empty();
     // right before destroying, submit the visualizer's updateHistory
-    submitUpdateHistory();
+    submitUpdateHistory('editMode');
     myVisualizer = null;
 
     $(document).scrollTop(0); // scroll to top to make UX better on small monitors
@@ -1614,10 +1614,7 @@ function executeCodeAndCreateViz(codeToExec,
 
 // this feature was deployed on 2015-09-17, so check logs for
 // viz_interaction.py
-//
-// isPeriodic means it's an automatically-sent signal rather than one
-// triggered on a specific event such as a page unload or edit mode switch
-function submitUpdateHistory(isPeriodic) {
+function submitUpdateHistory(why) {
   if (myVisualizer) {
     // Compress updateHistory before encoding and sending to
     // the server so that it takes up less room in the URL. Have each
@@ -1647,8 +1644,8 @@ function submitUpdateHistory(isPeriodic) {
 
     var myArgs = {session_uuid: sessionUUID,
                   updateHistoryJSON: encodedUhJSON};
-    if (isPeriodic) {
-      myArgs.isPeriodic = true;
+    if (why) {
+      myArgs.why = why;
     }
     $.get('viz_interaction.py', myArgs, function(dat) {});
   }
