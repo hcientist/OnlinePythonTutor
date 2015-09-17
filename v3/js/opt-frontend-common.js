@@ -1605,6 +1605,9 @@ function executeCodeAndCreateViz(codeToExec,
 }
 
 
+// this feature was deployed on 2015-09-17, so check logs for
+// viz_interaction.py
+//
 // isPeriodic means it's an automatically-sent signal rather than one
 // triggered on a specific event such as a page unload or edit mode switch
 function submitUpdateHistory(isPeriodic) {
