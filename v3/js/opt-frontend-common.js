@@ -126,6 +126,8 @@ function generateUUID(){
     return uuid;
 };
 
+var sessionUUID = generateUUID(); // remains constant throughout one page load ("session")
+
 
 // OMG nasty wtf?!?
 
@@ -961,6 +963,10 @@ function genericOptFrontendReady() {
       return; // get out early
     }
 
+    if (settings.url.indexOf('viz_interaction.py') > -1) {
+      return; // get out early
+    }
+
     /*
       This jqxhr.responseText might be indicative of the URL being too
       long, since the error message returned by the server is something
@@ -1171,6 +1177,8 @@ function updateAppDisplay(newAppMode) {
     // conceptual model but breaks the browser's expected Forward and
     // Back button flow
     $("#pyOutputPane").empty();
+    // right before destroying, submit the visualizer's updateHistory
+    submitUpdateHistory();
     myVisualizer = null;
 
     $(document).scrollTop(0); // scroll to top to make UX better on small monitors
@@ -1548,6 +1556,7 @@ function executeCodeAndCreateViz(codeToExec,
             {user_script : codeToExec,
              options_json: JSON.stringify(backendOptionsObj),
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+             session_uuid: sessionUUID,
              // if we don't have any deltas, then don't bother sending deltaObj:
              diffs_json: deltaObj && (deltaObj.deltas.length > 0) ? JSON.stringify(deltaObj) : null},
              function(dat) {} /* don't do anything since this is a dummy call */, "text");
@@ -1571,12 +1580,47 @@ function executeCodeAndCreateViz(codeToExec,
              raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
              options_json: JSON.stringify(backendOptionsObj),
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+             session_uuid: sessionUUID,
              // if we don't have any deltas, then don't bother sending deltaObj:
              diffs_json: deltaObj && (deltaObj.deltas.length > 0) ? JSON.stringify(deltaObj) : null},
              execCallback, "json");
     }
 
     initDeltaObj(); // clear deltaObj to start counting over again
+}
+
+
+function submitUpdateHistory() {
+  if (myVisualizer) {
+    // before submitting, append the FINAL entry to show the current time and position
+    var curTs = new Date().getTime();
+    myVisualizer.updateHistory.push([myVisualizer.curInstr, curTs]);
+
+    // Finally, compress updateHistory before encoding and sending to
+    // the server so that it takes up less room in the URL. Have each
+    // entry except for the first be a delta from the FIRST entry.
+    var uh = myVisualizer.updateHistory;
+    var encodedUh = [];
+    encodedUh.push(uh[0]);
+
+    var firstTs = uh[0][1];
+    for (var i = 1; i < uh.length; i++) {
+      var e = uh[i];
+      encodedUh.push([e[0], e[1] - firstTs]);
+    }
+
+    //var uhJSON = JSON.stringify(uh);
+    var encodedUhJSON = JSON.stringify(encodedUh);
+
+    console.log(encodedUhJSON);
+
+    //console.log(uhJSON.length);
+    //console.log(encodedUhJSON.length);
+
+    var myArgs = {session_uuid: sessionUUID,
+                  updateHistoryJSON: encodedUhJSON};
+    $.get('viz_interaction.py', myArgs, function(dat) {});
+  }
 }
 
 
