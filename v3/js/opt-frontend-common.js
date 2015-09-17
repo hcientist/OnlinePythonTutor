@@ -1319,13 +1319,23 @@ function optFinishSuccessfulExecution() {
   enterDisplayMode(); // do this first!
 
   // 2014-05-25: implemented more detailed tracing for surveys
-  myVisualizer.creationTime = new Date();
+  myVisualizer.creationTime = new Date().getTime();
   // each element will be a two-element list consisting of:
-  // [step number, milliseconds elapsed since creationTime]
-  // ("debounce" entries that are less than 1 second apart to
+  // [step number, timestamp]
+  // (debounce entries that are less than 1 second apart to
   // compress the logs a bit when there's rapid scrubbing or scrolling)
+  //
+  // the first entry has a THIRD field:
+  // [step number, timestamp, total # steps]
+  //
+  // subsequent entries don't need it since it will always be the same.
+  // the invariant is that step number < total # steps (since it's
+  // zero-indexed
   myVisualizer.updateHistory = [];
-  myVisualizer.updateHistory.push([myVisualizer.curInstr, 0]); // seed it!
+  myVisualizer.updateHistory.push([myVisualizer.curInstr,
+                                   myVisualizer.creationTime,
+                                   myVisualizer.curTrace.length]);
+  //console.log(JSON.stringify(myVisualizer.updateHistory));
 
   // For version 3+, dynamically generate a survey whenever the user
   // successfully executes a piece of code
@@ -1418,18 +1428,18 @@ function executeCodeAndCreateViz(codeToExec,
 
             // 2014-05-25: implemented more detailed tracing for surveys
             if (args.myViz.creationTime) {
-              var deltaMs = (new Date()) - args.myViz.creationTime;
+              var curTs = new Date().getTime();
 
               var uh = args.myViz.updateHistory;
               assert(uh.length > 0); // should already be seeded with an initial value
-              var lastDeltaMs = uh[uh.length - 1][1];
+              var lastTs = uh[uh.length - 1][1];
 
-              // ("debounce" entries that are less than 1 second apart to
+              // (debounce entries that are less than 1 second apart to
               // compress the logs a bit when there's rapid scrubbing or scrolling)
-              if ((deltaMs - lastDeltaMs) < 1000) {
+              if ((curTs - lastTs) < 1000) {
                 uh.pop(); // get rid of last entry before pushing a new entry
               }
-              uh.push([args.myViz.curInstr, deltaMs]);
+              uh.push([args.myViz.curInstr, curTs]);
               //console.log(JSON.stringify(uh));
             }
             return [false]; // pass through to let other hooks keep handling
