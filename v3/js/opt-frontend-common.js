@@ -1036,8 +1036,16 @@ function genericOptFrontendReady() {
   // someone is simply idle on the page without reloading it or
   // re-editing code; that way, we can still get some signals rather
   // than nothing.
+  var lastSubmittedUpdateHistoryLength = 0;
   setInterval(function() {
-    submitUpdateHistory('periodic');
+    if (myVisualizer) {
+      var uh = myVisualizer.updateHistory;
+      // don't submit identical entries repeatedly since that's redundant
+      if (uh.length != lastSubmittedUpdateHistoryLength) {
+        lastSubmittedUpdateHistoryLength = uh.length;
+        submitUpdateHistory('periodic');
+      }
+    }
   }, 1000 * 60);
 }
 
