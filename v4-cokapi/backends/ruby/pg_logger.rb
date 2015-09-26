@@ -454,6 +454,9 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
         # these include only your own frame's locals
         lvs = iseq_local_variables(iseq)
+        # filter out weird Fixnum local variable names, which seem to be
+        # created when iterating over Range values ... weird?!?
+        lvs = lvs.select{ |e| !e.is_a? Fixnum}
         lvs_val = lvs.inject({}){|r, lv|
           begin
             begin
