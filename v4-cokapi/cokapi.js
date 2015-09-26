@@ -291,7 +291,7 @@ var fs = require('fs');
 
 var options = {
   key: fs.readFileSync('cokapi.com.key'),
-  cert: fs.readFileSync('cokapi.com.crt'),
+  cert: fs.readFileSync('cokapi.com-BUNDLE.crt')
 };
 
 var args = process.argv.slice(2);

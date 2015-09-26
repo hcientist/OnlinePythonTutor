@@ -596,9 +596,10 @@
 
           ],
           "ordered_varnames": [
-
+            "parent:y"
           ],
           "encoded_locals": {
+            "parent:y": 42
           }
         }
       ],
@@ -696,9 +697,10 @@
 
           ],
           "ordered_varnames": [
-
+            "parent:y"
           ],
           "encoded_locals": {
+            "parent:y": 42
           }
         }
       ],
@@ -796,9 +798,10 @@
 
           ],
           "ordered_varnames": [
-
+            "parent:y"
           ],
           "encoded_locals": {
+            "parent:y": 42
           }
         }
       ],
@@ -896,9 +899,10 @@
 
           ],
           "ordered_varnames": [
-
+            "parent:y"
           ],
           "encoded_locals": {
+            "parent:y": 42
           }
         }
       ],
@@ -996,9 +1000,10 @@
 
           ],
           "ordered_varnames": [
-
+            "parent:y"
           ],
           "encoded_locals": {
+            "parent:y": 1042
           }
         }
       ],
@@ -1096,9 +1101,11 @@
 
           ],
           "ordered_varnames": [
+            "parent:y",
             "__return__"
           ],
           "encoded_locals": {
+            "parent:y": 1042,
             "__return__": null
           }
         }

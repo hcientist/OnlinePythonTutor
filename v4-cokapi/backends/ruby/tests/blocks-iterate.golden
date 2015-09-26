@@ -7541,7 +7541,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -7551,7 +7551,7 @@
         }
       ],
       "heap": {
-        "386": [
+        "182": [
           "Proc",
           "Proc on line 23"
         ],
@@ -7612,7 +7612,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -7622,7 +7622,7 @@
         }
       ],
       "heap": {
-        "386": [
+        "182": [
           "Proc",
           "Proc on line 23"
         ],
@@ -7683,7 +7683,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -7704,11 +7704,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 1,
             "i": 0,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -7717,16 +7722,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           1,
           4,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -7778,7 +7783,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -7799,11 +7804,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 1,
             "i": 0,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -7812,16 +7822,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           1,
           4,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -7873,7 +7883,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -7894,11 +7904,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 1,
             "i": 0,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -7924,16 +7939,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           1,
           4,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -7985,7 +8000,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -8006,11 +8021,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 1,
             "i": 0,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -8036,16 +8056,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           1,
           4,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -8097,7 +8117,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -8118,11 +8138,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 1,
             "i": 0,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -8150,16 +8175,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           1,
           4,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -8211,7 +8236,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -8233,11 +8258,16 @@
             "self",
             "n",
             "i",
+            "parent:cod",
             "__return__"
           ],
           "encoded_locals": {
             "n": 1,
             "i": 0,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -8247,16 +8277,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           4,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -8308,7 +8338,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -8329,11 +8359,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 4,
             "i": 1,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -8342,16 +8377,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           4,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -8403,7 +8438,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -8424,11 +8459,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 4,
             "i": 1,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -8437,16 +8477,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           4,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -8498,7 +8538,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -8519,11 +8559,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 4,
             "i": 1,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -8549,16 +8594,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           4,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -8610,7 +8655,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -8631,11 +8676,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 4,
             "i": 1,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -8661,16 +8711,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           4,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -8722,7 +8772,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -8743,11 +8793,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 4,
             "i": 1,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -8775,16 +8830,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           4,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -8836,7 +8891,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -8858,11 +8913,16 @@
             "self",
             "n",
             "i",
+            "parent:cod",
             "__return__"
           ],
           "encoded_locals": {
             "n": 4,
             "i": 1,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -8872,16 +8932,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           104,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -8933,7 +8993,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -8954,11 +9014,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 9,
             "i": 2,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -8967,16 +9032,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           104,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -9028,7 +9093,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -9049,11 +9114,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 9,
             "i": 2,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -9062,16 +9132,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           104,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -9123,7 +9193,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -9144,11 +9214,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 9,
             "i": 2,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -9174,16 +9249,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           104,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -9235,7 +9310,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -9256,11 +9331,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 9,
             "i": 2,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -9286,16 +9366,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           104,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -9347,7 +9427,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -9368,11 +9448,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 9,
             "i": 2,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -9400,16 +9485,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           104,
           9,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -9461,7 +9546,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -9483,11 +9568,16 @@
             "self",
             "n",
             "i",
+            "parent:cod",
             "__return__"
           ],
           "encoded_locals": {
             "n": 9,
             "i": 2,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -9497,16 +9587,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           104,
           109,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -9558,7 +9648,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -9579,11 +9669,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 16,
             "i": 3,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -9592,16 +9687,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           104,
           109,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -9653,7 +9748,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -9674,11 +9769,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 16,
             "i": 3,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -9687,16 +9787,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           104,
           109,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -9748,7 +9848,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -9769,11 +9869,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 16,
             "i": 3,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -9799,16 +9904,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           104,
           109,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -9860,7 +9965,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -9881,11 +9986,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 16,
             "i": 3,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -9911,16 +10021,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           104,
           109,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -9972,7 +10082,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -9993,11 +10103,16 @@
           "ordered_varnames": [
             "self",
             "n",
-            "i"
+            "i",
+            "parent:cod"
           ],
           "encoded_locals": {
             "n": 16,
             "i": 3,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -10025,16 +10140,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           104,
           109,
           16
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -10086,7 +10201,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -10108,11 +10223,16 @@
             "self",
             "n",
             "i",
+            "parent:cod",
             "__return__"
           ],
           "encoded_locals": {
             "n": 16,
             "i": 3,
+            "parent:cod": [
+              "REF",
+              182
+            ],
             "self": [
               "REF",
               385
@@ -10122,16 +10242,16 @@
         }
       ],
       "heap": {
+        "182": [
+          "Proc",
+          "Proc on line 23"
+        ],
         "385": [
           "LIST",
           101,
           104,
           109,
           116
-        ],
-        "386": [
-          "Proc",
-          "Proc on line 23"
         ]
       },
       "globals": {
@@ -10184,7 +10304,7 @@
           "encoded_locals": {
             "cod": [
               "REF",
-              386
+              182
             ],
             "self": [
               "REF",
@@ -10205,7 +10325,7 @@
           109,
           116
         ],
-        "386": [
+        "182": [
           "Proc",
           "Proc on line 23"
         ]
