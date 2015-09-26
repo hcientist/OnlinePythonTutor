@@ -28,9 +28,27 @@ ENDC  = '\033[0m'  # end color
 import re
 memaddr_RE = re.compile('0x[0-9a-f]+')
 
+# canonicalize all object IDs, such as "206":
+# since they sometimes vary across executions due to different memory
+# layout and such
+objid_RE = re.compile('"\d+":')
+
+# also canonicalize the corresponding reference IDs, such as "REF",\n386
+# (but note that this must be run on all lines together, not just
+# individual lines, since it spans two lines)
+objrefid_RE = re.compile('"REF",\s+\d+')
+
 def filter_output(lines):
   # substitute memory addresses with 0xADDR to prevent spurious diffs
-  return [memaddr_RE.sub('0xADDR', s) for s in lines]
+  x = [memaddr_RE.sub('0xADDR', s) for s in lines]
+  x = [objid_RE.sub('"ID":', s) for s in x]
+
+  # hack: string it all together into one giant string before doing a
+  # multi-line comparison
+  fullstr = ''.join(x) # don't need an extra newline since all lines are already separated by newline chars
+  fullstr = objrefid_RE.sub('"REF", ID', fullstr)
+  ret = fullstr.split('\n') # split again to get a list of lines
+  return ret
 
 
 def execute(input_filename):
@@ -82,6 +100,18 @@ def golden_differs_from_out(golden_file):
   return out_s_filtered != golden_s_filtered
 
 
+# for sanity checking
+def print_filtered_outfile(test_name):
+  (base, ext) = os.path.splitext(test_name)
+  outfile = base + OUTPUT_FILE_EXTENSION
+  assert os.path.isfile(outfile)
+
+  out_s = open(outfile).readlines()
+  out_s_filtered = filter_output(out_s)
+  for line in out_s_filtered:
+    print line
+
+
 def diff_test_output(test_name):
   (base, ext) = os.path.splitext(test_name)
 
@@ -102,7 +132,7 @@ def diff_test_output(test_name):
     if first_line:
       print # print an extra line to ease readability
       first_line = False
-    print line,
+    print line
 
 
 def run_test(input_filename, clobber_golden=False):
@@ -150,6 +180,8 @@ if __name__ == "__main__":
                     help="Run one test")
   parser.add_option("--difftest", dest="diff_test_name",
                     help="Diff against golden file for one test")
+  parser.add_option("--print-filtered-output", dest="print_test_name",
+                    help="Print the filtered output for one test")
   parser.add_option("--diffall", action="store_true", dest="diff_all",
                     help="Diff against golden file for all tests")
   (options, args) = parser.parse_args()
@@ -173,6 +205,9 @@ if __name__ == "__main__":
 
   elif options.diff_all:
     diff_all_test_outputs()
+  elif options.print_test_name:
+    assert options.print_test_name in ALL_TESTS
+    print_filtered_outfile(options.print_test_name)
   elif options.diff_test_name:
     assert options.diff_test_name in ALL_TESTS
     diff_test_output(options.diff_test_name)
