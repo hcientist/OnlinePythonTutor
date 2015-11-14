@@ -496,7 +496,8 @@ function pgLogWrite(logObj) {
       pgLogFile.end();
     }
     var filename = 'log_' + logObj.date + '.json';
-    pgLogFile = fs.createWriteStream(filename,
+    var pathname = require('path').resolve(__dirname, filename);
+    pgLogFile = fs.createWriteStream(pathname,
                                      {flags: 'w',
                                       mode: parseInt('644', 8),
                                       encoding: "UTF-8"});
