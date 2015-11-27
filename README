@@ -38,7 +38,7 @@ All documentation is viewable online at:
 
 https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3/docs
 
-The v3/ sub-directory contains the latest version of the code.
+The v3/ sub-directory contains the latest version of the frontend code.
 
 ---
 History:
@@ -70,6 +70,12 @@ v1-v2/
   pg
   '''
 
+  [From Jan 2010 until Oct 2011, v1 was deployed online on my personal
+  and MIT servers, and it barely had any real users. From a technical
+  standpoint, it rendered all data structures as HTML tables and had no
+  pointers. It was basically a proof-of-concept side project that I had
+  fun hacking on and showing off to people.]
+
 
   Online Python Tutor version 2 - released on October 4, 2011
   "Release" email to 13 friends:
@@ -94,6 +100,14 @@ v1-v2/
 
   pg
   '''
+
+  [From Oct 2011 until Sep 2012, v2 was deployed online and launched as
+  www.onlinepythontutor.com. The biggest technical advance over v1 was
+  the use of pointers (rather than copying with identical object IDs) to
+  better visualize aliasing. However, pointers could point only from
+  names to objects (i.e., from within a frame to the heap); heap-to-heap
+  pointers weren't implemented yet. During this time period, MOOCs
+  started taking off, and the usage of Python Tutor grew organically.]
 
 
 v3/
@@ -147,6 +161,16 @@ v3/
   Python programs now!
   '''
 
+  [The biggest advance of v3 over v2 was more sophisticated pointer
+  visualizations and layout, including heap-to-heap pointers. It also
+  marked the launch of the crisper pythontutor.com domain rather than
+  the older and more clunky www.onlinepythontutor.com domain used for
+  v2. In mid-2014, the "shared sessions" feature (a.k.a. Codechella) was
+  launched onto the site, which enables multiple users to simultaneously
+  join a shared session. During the period of v3, this tool experienced
+  a significant growth in user numbers to well beyond 1 million users
+  and 10 million visualized pieces of code!]
+
 
 v4-cokapi/
 
@@ -154,6 +178,13 @@ v4-cokapi/
   Online Python Tutor to support multiple languages such as JavaScript
   and Java. Note that this contains only backend code, so we still rely
   on v3/ for the frontend (and the original Python backend)
+
+  [v4 was purely a backend advancement; the v3 code is still used for
+  the frontend. By the end of 2015, six new languages had been added:
+  Java (from David Pritchard's backend), JavaScript, TypeScript, Ruby,
+  C, and C++. In short, 2015 was the year of adding new languages to
+  expand this tool's scope beyond just Python and hopefully making it
+  into a more generally-useful tool in the coming years.]
 
 ---
 Acknowledgments
