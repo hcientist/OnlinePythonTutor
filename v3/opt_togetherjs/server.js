@@ -2,6 +2,12 @@
 // togetherjs/hub/server.js and started making modifications marked by
 // 'pgbovine' in comments
 
+// Try to run with the following options to (hopefully!) prevent it from
+// mysteriously crashing and failing to restart (use --spinSleepTime to
+// wait a bit longer before attempting to restart it upon a crash)
+//
+// forever -a -l togetherjs.log --spinSleepTime 30000 -o togetherjs.out -e togetherjs.err start /home/pgbovine/OnlinePythonTutor/v3/opt_togetherjs/server.js --host 0.0.0.0 --port 30035
+
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
