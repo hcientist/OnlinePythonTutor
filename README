@@ -162,14 +162,21 @@ v3/
   '''
 
   [The biggest advance of v3 over v2 was more sophisticated pointer
-  visualizations and layout, including heap-to-heap pointers. It also
-  marked the launch of the crisper pythontutor.com domain rather than
-  the older and more clunky www.onlinepythontutor.com domain used for
-  v2. In mid-2014, the "shared sessions" feature (a.k.a. Codechella) was
-  launched onto the site, which enables multiple users to simultaneously
-  join a shared session. During the period of v3, this tool experienced
-  a significant growth in user numbers to well beyond 1 million users
-  and 10 million visualized pieces of code!]
+  visualizations and layout, including heap-to-heap pointers. Another
+  major advance is that each visualizer instance is now encapsulated
+  into a self-contained JavaScript object; thus, multiple visualizers
+  can now be embedded within a single web page. (in v1 and v2, only a
+  single visualizer could be displayed on a given page, since there was
+  no encapsulation; all state was global, eek!) Also, all state is
+  encapsulated in a simple URL, so that it's easily sharable or
+  iframe-embeddable, which is very useful! v3 also marked the launch of
+  the crisper pythontutor.com domain rather than the older and more
+  clunky www.onlinepythontutor.com domain used for v2. In mid-2014, the
+  "shared sessions" feature (a.k.a. Codechella) was launched onto the
+  site, which enables multiple users to simultaneously join a shared
+  session. During the period of v3, this tool experienced a significant
+  growth in user numbers to well beyond 1 million users and 10 million
+  visualized pieces of code!]
 
 
 v4-cokapi/
