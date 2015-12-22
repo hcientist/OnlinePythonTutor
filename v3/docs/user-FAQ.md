@@ -32,11 +32,6 @@ http://pythontutor.com/visualize.html#heapPrimitives=true&textReferences=true
 The possibilities are endless! (or 2^6 or something.)
 
 
-#### Unicode strings look weird or broken
-
-Yep, that's a known bug; Online Python Tutor currently doesn't have great Unicode support.
-
-
 #### Did you know that stepping through code with generators looks weird when "display frames of exited functions" is selected?
 
 Yep, this is a known bug, but sadly the fix isn't straightforward at the moment.
