@@ -40,12 +40,14 @@ ranging from smartphones to tablets to laptops to giant desktop monitors.
 
 ## Frontend
 
-### IPython Notebook integration
+### IPython (Jupyter) Notebook integration
 
 It would be awesome to integrate OPT with the [IPython Notebook](http://ipython.org/notebook.html) so that visualizations
 can be displayed inline within a notebook using, say, a `%visualize` magic keyword.
 
 In late 2012, I started messing around with a prototype but didn't get too far.
+
+Sep 2013: I've created a first prototype integrating the [IPython shell with OPT](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/opt-ipy.py) but not the notebook yet.
 
 
 ### Rich user input widgets
@@ -298,7 +300,6 @@ opt-in to allowing the instructor to access such interaction data, then that cou
 help the instructor improve future lectures. For instance, if 80% of students are silently diverging from
 the live example at a certain point in lecture, then perhaps that part requires further clarification.
 
-**Update in Sept 2013**: I've created a first prototype integrating the [IPython shell with OPT](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/opt-ipy.py).
 
 Watch this [YouTube video demo](http://www.youtube.com/watch?v=y3sVN7uaxDM) for an example of shared sessions.
 
@@ -317,6 +318,8 @@ And the OPT frontend should be able to visualize it!
 
 
 ### Skulpt (Python-in-JavaScript) backend
+
+[This idea is good as a proof-of-concept, but probably not practical for deployment; I strongly belive in running the real language runtimes on the server rather than a JS emulation. One exception is if we can get the real runtimes compiled to JS using Emscripten or something, so that they run in the browser. But for now, that's not really practical due to libraries and other external dependencies.]
 
 This project is appropriate for someone with advanced knowledge of hacking a Python interpreter
 who is willing to make a substantive time commitment.
@@ -358,7 +361,6 @@ However, handling `stdin` is really kludgy and works well only on Chrome/Safari 
 And it's unclear how to get the CPython code to communicate with the custom JS viz code ... so this is still not a shoo-in yet :/ The technology is still not there, ugh!
 
 
-
 ### Hack CPython to enable sub-expression-level tracing
 
 Right now OPT uses [bdb](http://docs.python.org/2/library/bdb.html) to trace at line-level granularity.
@@ -379,20 +381,10 @@ doesn't really use C modules. (Update in July 2013 -- it seems like hacks to CPy
 intrusive enough to preclude C module object compatibility. But that's not a big deal.)
 
 
-#### Early Prototype (July 2013)
+#### Early Prototype (July 2013) - now deprecated
 
 In early July 2013, I made some initial steps toward this goal as a proof-of-concept and am
-encouraged by my findings so far.
-
-[**Try the prototype now**](http://pythontutor.com/visualize.html#py=2crazy) by selecting
-"2.crazy" as the Python version.
-
-Specifically, try the prototype on a <a href="http://pythontutor.com/visualize.html#code=def+foo()%3A%0A++return+True%0A%0Ax+%3D+3%0Ay+%3D+5%0A%0Aif+foo()+and+(x+%2B+y+%3E+7)%3A%0A++print+'YES'%0Aelse%3A%0A++print+'NO'&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=2crazy&curInstr=0"><b>simple example</b></a>.
-
-And see the underlying [Py2crazy](https://github.com/pgbovine/Py2crazy/) project for more details.
-
-Note that the (approximate) tokens corresponding to the
-currently-executing bytecode instruction is highlighed are yellow.
+encouraged by my findings so far. See the underlying [Py2crazy](https://github.com/pgbovine/Py2crazy/) project for more details.
 
 In short, I think that with enough elbow grease to hack on CPython innards,
 you can get pretty good line/column number information into bytecodes;
@@ -431,9 +423,6 @@ Ok, that seems simpler as a starting point, and it will still teach you about lo
 
 Then comes the question of why this offline mode might be useful (beyond being a good learning exercise). After all, just by following the directions in the developer overview docs, you've essentially set up OPT to run offline without an Internet connection. So my plan above doesn't give you any extra functionality. However, I think the potential lies in integrating with a real debugger such as pdb, so that you can run large Python programs, pause execution, and then visualize selected data structures (rather than all data structures in the program, which can get overwhelming).
 
-Ok sorry that was mostly me thinking out loud.
-
 }
 
 Ha, I guess you can call this **"Offline Python Tutor"**!
-
