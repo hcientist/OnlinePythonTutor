@@ -81,6 +81,6 @@ to redraw the SVG arrows when page elements are resized or moved.
 Let's attempt to go [literate programming](http://en.wikipedia.org/wiki/Literate_programming) style now ... load up
 [embedding-demo.html](http://pythontutor.com/embedding-demo.html) in
 your browser to see a demo. And then view its [source code](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/embedding-demo.html) and follow the instructions there,
-which should then lead you to `v3/embedding-demo.js`.
+which should then lead you to [`v3/embedding-demo.js`](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/embedding-demo.js).
 
 Everything you need to know should be in the demo code!
