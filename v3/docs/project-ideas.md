@@ -5,8 +5,11 @@ Online Python Tutor (thereafter abbreviated as OPT). View it online at:
 
 https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/project-ideas.md
 
-Email philip@pgbovine.net if you're interested in working on anything here, or if you have other
-project ideas.
+Look at the Git history to see when this document was last updated; the more time
+elapsed since that date, the more likely things are out-of-date.
+
+Email philip@pgbovine.net if you're interested in working on anything
+here, or if you have other project ideas.
 
 
 ## Stylistic
@@ -300,41 +303,17 @@ the live example at a certain point in lecture, then perhaps that part requires 
 Watch this [YouTube video demo](http://www.youtube.com/watch?v=y3sVN7uaxDM) for an example of shared sessions.
 
 
-### Visualizing different programming languages (especially JavaScript!)
+### Visualizing different programming languages
 
 This project is great for someone who likes to hack on language implementations and runtimes.
 
-The OPT frontend can visualize programs written in any mainstream language, not just Python.
-This project involves creating a backend for another language (e.g., Ruby, Java, JavaScript, C, C++, Scheme).
+The OPT frontend can visualize programs written in any language, not just Python.
+This project involves creating a backend for another language.
 All the backend needs to do is to generate an execution trace in the following format:
 
 https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-format.md
 
 And the OPT frontend should be able to visualize it!
-
-In particular, I think a **JavaScript backend** would be amazing.
-By hacking the [narcissus](https://github.com/mozilla/narcissus) meta-circular JavaScript interpreter,
-you should be able to implement a JavaScript visualizer purely in the browser. You get the benefits of
-low latency, offline access, and no security concerns that plague traditional server-side apps. How cool is that?!?
-
-Check out backends that other people have already written:
-
-- [Online JavaScript Tutor](http://jstutor.herokuapp.com/) by Hung Doan
-- [Online Java Tutor](http://cscircles.cemc.uwaterloo.ca/java_visualize/) by David Pritchard
-- [Online Ruby Tutor](http://www.onlinerubytutor.com/) by Daniel Stutzman
-- [Blockly + OPT](http://epleweb.appspot.com/) by Pier Giuliano Nioi
-
-Other misc. implementation notes:
-
-- The [Chicory Java trace generator for Daikon](http://groups.csail.mit.edu/pag/daikon/download/doc/daikon_manual_html/daikon_7.html#SEC69)
-might be a good basis for writing a Java backend for OPT. Or take a look at [jdb](http://docs.oracle.com/javase/1.3/docs/tooldocs/solaris/jdb.html), which
-should be similar to how Online Python Tutor uses Python's pdb module to generate traces.
-
-- My [master's thesis](http://pgbovine.net/projects/pubs/guo-mixedlevel-mengthesis.pdf) from 2006
-describes one possible technique for building a C-language backend based upon the [Valgrind](http://www.valgrind.org)
-tool. More importantly, it describes the difficulties involved in creating a robust execution
-trace generator for C and C++.
-It should be much easier to build a backend for a memory- and type-safe language, though :)
 
 
 ### Skulpt (Python-in-JavaScript) backend
