@@ -77,7 +77,7 @@ algorithms involving more sophisticated data structures such as binary trees and
 The goal of this project is to create a set of effective custom renderers for data structures
 such as:
 
-- trees
+- trees (maybe see [twyg library](http://www.johnnovak.net/twyg/quickstart/) for inspiration? or GraphViz, or even d3?)
 - graphs
 - numerical matrices
 - simple 2D graphical worlds (e.g., for Pac-Man or Conway’s Game of Life)
