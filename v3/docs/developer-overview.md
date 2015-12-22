@@ -9,13 +9,12 @@ Look at the Git history to see when this document was last updated; the more tim
 elapsed since that date, the more likely things are out-of-date.
 
 I'm assuming that you're competent in Python, JavaScript, command-line-fu, and Google-fu,
+and general [command-line BS](http://www.pgbovine.net/command-line-bullshittery.htm),
 so I won't do much hand-holding in these directions.
 
 This guide isn't meant to be comprehensive; rather, it's just a starting point for learning about the code
 and development workflow. You will undoubtedly still be confused about details after reading it, so
 feel free to email philip@pgbovine.net if you have questions.
-
-And please excuse the sloppy writing; I'm not trying to win any style awards here :)
 
 
 ## Getting Started: Running OPT locally on your machine using Bottle:
@@ -30,7 +29,8 @@ And then run:
     cd OnlinePythonTutor/v3/
     python bottle_server.py
 
-(use `python3` if you want to test the Python 3 backend.)
+(Use `python3` if you want to test the Python 3 backend. Note that when you run bottle, you will **always trigger the backend for the version of Python used to invoke it**, so the Python 2/3 toggle selector on the frontend is meaningless. You will also not be able to test other language backends locally.)
+
 
 If all goes well, when you visit this URL, you should see the Python Tutor visualizer:
 
@@ -38,33 +38,7 @@ If all goes well, when you visit this URL, you should see the Python Tutor visua
 
 Note that you can run bottle with both Python 2 and 3.
 
-However, **only** run this app locally for testing, not in production, since security checks are disabled.
-
-
-## Alternative: Using Google App Engine (deprecated)
-
-When you check out OPT from GitHub, it's configured by default to run on Google App Engine
-(but it can also run fine on a CGI-enabled webserver such as Apache).
-
-To run a local instance, download/install
-the Google App Engine [Python SDK](https://developers.google.com/appengine/downloads)
-for your OS and then run:
-
-    cd OnlinePythonTutor/
-    dev_appserver.py v3/
-
-Now if you visit http://localhost:8080/ on your browser, you should see the main OPT editor screen.
-
-Congrats! Now you can edit any code in `OnlinePythonTutor/v3/` and reload the page to test your changes.
-You don't need to shut down and restart the local webserver after every edit.
-
-btw, using the default configuration, http://localhost:8080/ is actually loading the `v3/visualize.html` HTML file.
-(See `v3/pythontutor.py` for details.)
-
-The benefit of running OPT locally is that you can test all changes without going online. So even
-if you're eventually going to deploy on something other than Google App Engine, it still makes sense to install locally
-for development and testing. The main caveat here is that Google App Engine currently runs Python 2.7,
-so you won't be able to test Python 3 locally this way.
+However, **only** run this app locally for testing, not in production, since all security checks are disabled.
 
 
 ## Overall system architecture
@@ -114,11 +88,12 @@ app.yaml, pythontutor.py - files for deploying on Google App Engine
 web_exec.py - example CGI script for deploying backend on CGI-enabled webservers
 ```        
 
-The backend works with both Python 2 and 3.
+The backend works with both Python 2 and 3. (Other language backends are located in [v4-cokapi/](https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi), not in v3/)
+
 
 ## Hacking the backend
 
-To modify the backend, you will mainly need to understand `pg_logger.py` and `pg_encoder.py`.
+To modify the Python backend, you will mainly need to understand `pg_logger.py` and `pg_encoder.py`.
 
 
 ### Two quick tips for starters
