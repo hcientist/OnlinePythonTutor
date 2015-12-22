@@ -1,3 +1,5 @@
+[This document was written by Peter Robinson (pjr@itee.uq.edu.au), the creator of make_visualizations.py]
+
 # Using make_visualizations.py to build visualization embeddings
 
 The program `make_visualizations.py` can be used to simplify the task of building visualization embeddings. The user can describe the required details as a `.json` file (a 'Makefile') and `make_visualizations.py` is a 'make' program that will build all the required visualizations and supporting bookkeeping. 
