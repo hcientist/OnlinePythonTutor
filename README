@@ -1,14 +1,15 @@
-Online Python Tutor is a free educational tool created by Philip Guo
-that helps people overcome a fundamental barrier to learning
-programming: understanding what happens as the computer executes each
-line of a program's source code. Using this tool, you
-can write Python, Java, JavaScript, TypeScript, and Ruby code in your
-Web browser and visualize what the computer is doing step-by-step as
-it executes that code.
+Online Python Tutor -- http://pythontutor.com/ -- helps people overcome
+a fundamental barrier to learning programming: understanding what
+happens as the computer executes each line of a program's source code.
+Using this tool, you can write Python, Java, JavaScript, TypeScript,
+Ruby, C, and C++ programs in your Web browser and visualize what the
+computer is doing step-by-step as it executes those programs.
 
-http://pythontutor.com/
+All documentation is viewable online at:
+https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3/docs
 
 https://github.com/pgbovine/OnlinePythonTutor/
+The v3/ sub-directory contains the latest version of the frontend code.
 
 ======
 
@@ -34,16 +35,19 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ======
-All documentation is viewable online at:
 
-https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3/docs
-
-The v3/ sub-directory contains the latest version of the frontend code.
-
----
-History:
+Project history:
 
 v1-v2/
+
+  [Project created in December 2009; I first wanted to make a JavaScript
+  run-time visualizer for education since it could all be in-browser,
+  but then realized that I couldn't easily hook into the JS debugger in
+  the browser to do single-stepping without making the user install
+  plug-ins; then I switched to a server-side solution and picked Python
+  as the target language. That turned out to be a wise choice in
+  hindsight since Python was poised to really take off as a CS1 language
+  in both traditional courses and MOOCs, starting around 2011.]
 
   Online Python Tutor version 1 - released on January 19, 2010
   "Release" email to 15 friends:
@@ -70,12 +74,16 @@ v1-v2/
   pg
   '''
 
-  [From Jan 2010 until Oct 2011, v1 was deployed online on my personal
-  and MIT servers, and it barely had any real users. From a technical
+  [From Jan 2010 until Aug 2011, v1 was deployed online on my personal
+  and MIT servers, and it barely had any users. From a technical
   standpoint, it rendered all data structures as HTML tables and had no
-  pointers. It was basically a proof-of-concept side project that I had
-  fun hacking on and showing off to people.]
+  pointers, so aliased data were duplicated. It was a proof-of-concept
+  side project that I had fun hacking on and showing off to people.]
 
+  [In Sep-Oct 2011, I majorly brushed up OPT into v2 since a few power
+  users started using it more seriously and making feature requests
+  (e.g., Brad Miller, Suzanne Rivoire, Peter Wentworth), and
+  Python-based MOOCs were also just starting to take off ...]
 
   Online Python Tutor version 2 - released on October 4, 2011
   "Release" email to 13 friends:
@@ -103,18 +111,22 @@ v1-v2/
 
   [From Oct 2011 until Sep 2012, v2 was deployed online and launched as
   www.onlinepythontutor.com. The biggest technical advance over v1 was
-  the use of pointers (rather than copying with identical object IDs) to
-  better visualize aliasing. However, pointers could point only from
-  names to objects (i.e., from within a frame to the heap); heap-to-heap
-  pointers weren't implemented yet. During this time period, MOOCs
-  started taking off, and the usage of Python Tutor grew organically.]
+  the use of pointers (rather than duplicating objects with identical
+  object IDs) to better visualize aliasing. However, pointers could
+  point only from names to objects (i.e., from within a frame to the
+  heap); heap-to-heap pointers weren't implemented yet. During this time
+  period, MOOCs started taking off, and the usage of Python Tutor grew
+  organically.]
 
 
 v3/
 
+  [In July-Sep 2012, I made a giant push to release v3, working closely
+  with John DeNero and others at Google and beyond ... awesome times!]
+
   Online Python Tutor version 3 - Released on September 18, 2012
-  to 153,000+ people on Google+:
-    https://plus.google.com/+ResearchatGoogle/posts/cseo9qi7LWq
+  to 153,000+ people who followed the official Research@Google Google+
+  account: https://plus.google.com/+ResearchatGoogle/posts/cseo9qi7LWq
 
   "Release" announcement from the Research @ Google G+ account:
   '''
@@ -161,6 +173,11 @@ v3/
   Python programs now!
   '''
 
+  [This official publicity provided a big initial PUSH that spurred
+  worldwide usage of the tool, and it kept growing organically from
+  there thanks to momentum and also MOOCs and other online learning
+  resources quickly rising in popularity around 2012-2013.]
+
   [The biggest advance of v3 over v2 was more sophisticated pointer
   visualizations and layout, including heap-to-heap pointers. Another
   major advance is that each visualizer instance is now encapsulated
@@ -194,13 +211,13 @@ v4-cokapi/
   into a more generally-useful tool in the coming years.]
 
 ---
-Acknowledgments
+Contributor acknowledgments:
 
 John DeNero - for helping with the official Python 3 port and LOTS of code patches
 Chris Horne - https://github.com/lahwran - for security tips
 Joshua Landau - joshua@landau.ws - for security tips
 Peter Wentworth and his students - for working on the original Python 3 fork circa 2011
-Brad Miller - for adding pop-up question dialogs to visualizations
+Brad Miller - for adding pop-up question dialogs to visualizations, and other bug fixes
 David Pritchard and Will Gwozdz - for the Java frontend and other frontend enhancements
 Peter Robinson - for v3/make_visualizations.py
 Chris Meyers - for custom visualizations such as v3/matrix.py and v3/htmlFrame.py
@@ -211,6 +228,7 @@ For advice and feedback from an instructor's perspective:
 
 Jennifer Campbell
 John Dalbey
+John DeNero
 Fredo Durand
 Michael Ernst
 David Evans
@@ -224,6 +242,7 @@ Peter Norvig
 Andrew Petersen
 David Pritchard
 Suzanne Rivoire
+Peter Wentworth
 David Wilkins
 
-... and many more!
+... and many, many more!
