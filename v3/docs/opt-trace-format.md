@@ -14,15 +14,14 @@ Look at the Git history to see when this document was last updated; the
 more time elapsed since that date, the more likely things are
 out-of-date.
 
-I'm assuming that you're competent in Python, JSON, command-line-fu, and
-Google-fu. Feel free to email philip@pgbovine.net if you have questions.
-
-And please excuse the sloppy writing; I'm not trying to win any style awards here :)
+I'm assuming that you're competent in Python, JavaScript, command-line-fu, and Google-fu,
+and general [command-line BS](http://www.pgbovine.net/command-line-bullshittery.htm),
+so I won't do much hand-holding in these directions.
 
 
 ## Trace Overview
 
-Before you continue reading, I suggest for you to first skim the Overview for Developers doc:
+Before reading this file, I suggest for you to first read the Overview for Developers doc:
 https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/developer-overview.md
 
 Pay particular attention to what `generate_json_trace.py` is and how to run it:
