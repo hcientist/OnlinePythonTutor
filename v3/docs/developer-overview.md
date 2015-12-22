@@ -34,7 +34,7 @@ And then run:
 
 If all goes well, when you visit this URL, you should see the Python Tutor visualizer:
 
-    http://localhost:8080/visualize.html
+    http://localhost:8003/visualize.html
 
 Note that you can run bottle with both Python 2 and 3.
 
