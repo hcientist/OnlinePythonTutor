@@ -603,7 +603,7 @@ def baz(c):
 result = foo(1, 2, 3)
 ```
 
-Let's jump straight to <a href="http://pythontutor.com/visualize.html#code=def+foo(x,+y,+z)%3A%0A++return+bar(x,+y)%0A++%0Adef+bar(a,+b)%3A%0A++return+baz(a)%0A++%0Adef+baz(c)%3A%0A++return+c%0A++%0Aresult+%3D+foo(1,+2,+3)%0A&mode=display&cumulative=false&py=2&curInstr=7">Step 8 of 10</a>,
+Let's jump straight to <a href="http://pythontutor.com/visualize.html#code=def+foo(x,+y,+z)%3A%0A++return+bar(x,+y)%0A++%0Adef+bar(a,+b)%3A%0A++return+baz(a)%0A++%0Adef+baz(c)%3A%0A++return+c%0A++%0Aresult+%3D+foo(1,+2,+3)%0A&mode=display&cumulative=false&py=2&curInstr=10">Step 11 of 13</a>,
 when the program is about to return from the call to `baz`.
 
 Study the visualization for a bit. Note that there are four frames currently on the stack: globals, `foo`, `bar`, and `baz`.
