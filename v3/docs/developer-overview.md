@@ -240,8 +240,7 @@ https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-form
 
 ### Backend regression tests
 
-If you're paranoid about your backend changes breaking stuff, please bug me, and I'll write up docs
-on how to run the regression test suite.
+To run the Python backend tests, cd into `v3/tests/` and run `run-all-tests.sh` -- you will need the exact Python versions mentioned in the script itself. Run `python golden_test.py` to see individual test case options. Note that there might be minor diffs that show up on your machine, so the test suite isn't completely deterministic.
 
 
 ## Hacking the frontend
