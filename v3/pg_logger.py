@@ -198,19 +198,19 @@ input_string_queue = []
 
 def open_wrapper(*args):
   if is_python3:
-      raise Exception('''open() is not supported.
+      raise Exception('''open() is not supported by Python Tutor.
 Instead use io.StringIO() to simulate a file.
 Here is an example: http://goo.gl/uNvBGl''')
   else:
-      raise Exception('''open() is not supported.
+      raise Exception('''open() is not supported by Python Tutor.
 Instead use StringIO.StringIO() to simulate a file.
 Here is an example: http://goo.gl/Q9xQ4p''')
 
-
-# use a wrapper to prevent bdb from diving 'inside' of these functions
-# and causing massive confusion
-def eval_wrapper(*args):
-  return eval(*args)
+# create a more sensible error message for unsupported features
+def create_banned_builtins_wrapper(fn_name):
+  def err_func(*args):
+    raise Exception("'" fn_name + "' is not supported by Python Tutor.")
+  return err_func
 
 
 class RawInputException(Exception):
@@ -252,14 +252,10 @@ def mouse_input_wrapper(prompt=''):
 
 # blacklist of builtins
 BANNED_BUILTINS = ['reload', 'open', 'compile',
-                   'file', 'exec', 'execfile',
+                   'file', 'eval', 'exec', 'execfile',
                    'exit', 'quit', 'help',
                    'dir', 'globals', 'locals', 'vars']
 # Peter says 'apply' isn't dangerous, so don't ban it
-#
-# April 2016: don't ban 'eval' (or Python 2 'input') since this tool is
-# already eval-ing user-inputted code, so might as well support more user code
-
 
 IGNORE_VARS = set(('__user_stdout__', '__OPT_toplevel__', '__builtins__', '__name__', '__exception__', '__doc__', '__package__'))
 
@@ -1214,10 +1210,8 @@ class PGLogger(bdb.Bdb):
         for (k, v) in builtin_items:
           if k == 'open': # put this before BANNED_BUILTINS
             user_builtins[k] = open_wrapper
-          elif k == 'eval':
-            user_builtins[k] = eval_wrapper
           elif k in BANNED_BUILTINS:
-            continue
+            user_builtins[k] = create_banned_builtins_wrapper(k)
           elif k == '__import__':
             user_builtins[k] = __restricted_import__
           else:
