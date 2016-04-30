@@ -1632,9 +1632,7 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
       if (prevIsReturn) {
         var idx = myViz.curInstr - 1;
         var retStack = myViz.curTrace[idx].stack_to_render;
-
         assert(retStack.length > 0);
-
         var retFrameId = retStack[retStack.length - 1].frame_id;
 
         // now go backwards until we find a 'call' to this frame
