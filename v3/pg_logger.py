@@ -207,8 +207,13 @@ Instead use StringIO.StringIO() to simulate a file.
 Here is an example: http://goo.gl/Q9xQ4p''')
 
 
+# use a wrapper to prevent bdb from diving 'inside' of these functions
+# and causing massive confusion
 def eval_wrapper(*args):
   return eval(*args)
+
+def exec_wrapper(*args):
+  return exec(*args)
 
 
 class RawInputException(Exception):
@@ -1201,6 +1206,8 @@ class PGLogger(bdb.Bdb):
             user_builtins[k] = open_wrapper
           elif k == 'eval':
             user_builtins[k] = eval_wrapper
+          elif k == 'exec':
+            user_builtins[k] = exec_wrapper
           elif k in BANNED_BUILTINS:
             continue
           elif k == '__import__':
