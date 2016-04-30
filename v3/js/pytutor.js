@@ -1629,7 +1629,8 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
          think that looks more sensible, since line 4 was the previous
          line that executed *in this function's frame*.
       */
-      if (prevIsReturn) {
+      if (prevIsReturn &&
+          retStack.length > 0 /* don't try this hack when returning from an external function such as Python eval() that's not visualized */) {
         var idx = myViz.curInstr - 1;
         var retStack = myViz.curTrace[idx].stack_to_render;
         assert(retStack.length > 0);
