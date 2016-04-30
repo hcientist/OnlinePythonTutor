@@ -1633,9 +1633,7 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
         var idx = myViz.curInstr - 1;
         var retStack = myViz.curTrace[idx].stack_to_render;
 
-        /* don't try this hack when returning from an external function
-           such as Python eval() that's not visualized */
-        if (retStack.length > 0) {
+        assert(retStack.length > 0);
 
         var retFrameId = retStack[retStack.length - 1].frame_id;
 
@@ -1659,8 +1657,6 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
           prevLineNumber = callingEntry.line; // WOOHOO!!!
           prevIsReturn = false; // this is now a call site, not a return
           smoothTransition = false;
-        }
-
         }
       }
 
