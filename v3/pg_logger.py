@@ -209,7 +209,7 @@ Here is an example: http://goo.gl/Q9xQ4p''')
 # create a more sensible error message for unsupported features
 def create_banned_builtins_wrapper(fn_name):
   def err_func(*args):
-    raise Exception("'" fn_name + "' is not supported by Python Tutor.")
+    raise Exception("'" + fn_name + "' is not supported by Python Tutor.")
   return err_func
 
 
