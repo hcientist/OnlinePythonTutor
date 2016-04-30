@@ -207,6 +207,10 @@ Instead use StringIO.StringIO() to simulate a file.
 Here is an example: http://goo.gl/Q9xQ4p''')
 
 
+def eval_wrapper(*args):
+  return eval(*args)
+
+
 class RawInputException(Exception):
   pass
 
@@ -1195,6 +1199,8 @@ class PGLogger(bdb.Bdb):
         for (k, v) in builtin_items:
           if k == 'open': # put this before BANNED_BUILTINS
             user_builtins[k] = open_wrapper
+          elif k == 'eval':
+            user_builtins[k] = eval_wrapper
           elif k in BANNED_BUILTINS:
             continue
           elif k == '__import__':
