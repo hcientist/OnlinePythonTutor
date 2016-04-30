@@ -233,15 +233,13 @@ def mouse_input_wrapper(prompt=''):
 
 # blacklist of builtins
 BANNED_BUILTINS = ['reload', 'open', 'compile',
-                   'file', 'eval', 'exec', 'execfile',
+                   'file', 'execfile',
                    'exit', 'quit', 'help',
                    'dir', 'globals', 'locals', 'vars']
 # Peter says 'apply' isn't dangerous, so don't ban it
-
-# ban input() in Python 2 since it does an eval!
-# (Python 3 input is Python 2 raw_input, so we're okay)
-if not is_python3:
-  BANNED_BUILTINS.append('input')
+#
+# April 2016: don't ban 'eval' or 'exec' (or Python 2 'input') since this tool
+# is eval-ing user-inputted code anyway, so might as well support more user code
 
 
 IGNORE_VARS = set(('__user_stdout__', '__OPT_toplevel__', '__builtins__', '__name__', '__exception__', '__doc__', '__package__'))
