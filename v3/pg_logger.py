@@ -227,6 +227,19 @@ def raw_input_wrapper(prompt=''):
     return input_str
   raise RawInputException(str(prompt)) # always convert prompt into a string
 
+
+# Python 2 input() does eval(raw_input())
+def python2_input_wrapper(prompt=''):
+  if input_string_queue:
+    input_str = input_string_queue.pop(0)
+
+    # write the prompt and user input to stdout, to emulate what happens
+    # at the terminal
+    sys.stdout.write(str(prompt)) # always convert prompt into a string
+    sys.stdout.write(input_str + "\n") # newline to simulate the user hitting Enter
+    return eval(input_str) # remember to eval!
+  raise RawInputException(str(prompt)) # always convert prompt into a string
+
 class MouseInputException(Exception):
   pass
 
@@ -1210,9 +1223,12 @@ class PGLogger(bdb.Bdb):
           else:
             if k == 'raw_input':
               user_builtins[k] = raw_input_wrapper
-            elif k == 'input' and is_python3:
-              # Python 3 input() is Python 2 raw_input()
-              user_builtins[k] = raw_input_wrapper
+            elif k == 'input':
+              if is_python3:
+                # Python 3 input() is Python 2 raw_input()
+                user_builtins[k] = raw_input_wrapper
+              else:
+                user_builtins[k] = python2_input_wrapper
             else:
               user_builtins[k] = v
 
