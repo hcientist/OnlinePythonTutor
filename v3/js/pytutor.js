@@ -1629,11 +1629,14 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
          think that looks more sensible, since line 4 was the previous
          line that executed *in this function's frame*.
       */
-      if (prevIsReturn &&
-          retStack.length > 0 /* don't try this hack when returning from an external function such as Python eval() that's not visualized */) {
+      if (prevIsReturn) {
         var idx = myViz.curInstr - 1;
         var retStack = myViz.curTrace[idx].stack_to_render;
-        assert(retStack.length > 0);
+
+        /* don't try this hack when returning from an external function
+           such as Python eval() that's not visualized */
+        if (retStack.length > 0) {
+
         var retFrameId = retStack[retStack.length - 1].frame_id;
 
         // now go backwards until we find a 'call' to this frame
@@ -1656,6 +1659,8 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
           prevLineNumber = callingEntry.line; // WOOHOO!!!
           prevIsReturn = false; // this is now a call site, not a return
           smoothTransition = false;
+        }
+
         }
       }
 
