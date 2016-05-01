@@ -52,7 +52,8 @@ import pg_encoder
 
 # upper-bound on the number of executed lines, in order to guard against
 # infinite loops
-MAX_EXECUTED_LINES = 300
+#MAX_EXECUTED_LINES = 300
+MAX_EXECUTED_LINES = 1000 # on 2016-05-01, I increased the limit from 300 to 1000 for Python due to popular user demand! and I also improved the warning message
 
 #DEBUG = False
 DEBUG = True
@@ -1157,7 +1158,7 @@ class PGLogger(bdb.Bdb):
 
 
         if len(self.trace) >= MAX_EXECUTED_LINES:
-          self.trace.append(dict(event='instruction_limit_reached', exception_msg='(stopped after ' + str(MAX_EXECUTED_LINES) + ' steps to prevent possible infinite loop)'))
+          self.trace.append(dict(event='instruction_limit_reached', exception_msg='Stopped after ' + str(MAX_EXECUTED_LINES) + ' steps. Please shorten your code, since Python Tutor is not designed to handle long-running code.'))
           self.force_terminate()
 
         self.forget()
