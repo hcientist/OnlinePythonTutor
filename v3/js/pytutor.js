@@ -84,6 +84,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   embeddedMode         - shortcut for hideOutput=true, allowEditAnnotations=false,
 //                                       codeDivWidth=this.DEFAULT_EMBEDDED_CODE_DIV_WIDTH,
 //                                       codeDivHeight=this.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT
+//                          (and don't activate keyboard shortcuts!)
 //   disableHeapNesting   - if true, then render all heap objects at the top level (i.e., no nested objects)
 //   drawParentPointers   - if true, then draw environment diagram parent pointers for all frames
 //                          WARNING: there are hard-to-debug MEMORY LEAKS associated with activating this option
@@ -570,6 +571,7 @@ ExecutionVisualizer.prototype.render = function() {
   this.domRoot.find('#stepAnnotationEditor').hide();
 
   if (this.params.embeddedMode) {
+    this.embeddedMode = true;
     this.params.hideOutput = true; // put this before hideOutput handler
 
     // don't override if they've already been set!

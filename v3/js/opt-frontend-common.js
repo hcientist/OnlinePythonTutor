@@ -1483,6 +1483,22 @@ function executeCodeAndCreateViz(codeToExec,
             }
             return [false]; // pass through to let other hooks keep handling
           });
+
+
+          // bind keyboard shortcuts if we're not in embedded mode
+          // (i.e., in an iframe)
+          if (!myVisualizer.embeddedMode) {
+            $(document).off('keydown'); // clear first before rebinding, just to be paranoid
+            $(document).keydown(function(e) {
+              if (myVisualizer) {
+                if (e.keyCode === 37) { // left
+                  myVisualizer.stepBack();
+                } else if (e.keyCode === 39) { // right
+                  myVisualizer.stepForward();
+                }
+              }
+            });
+          }
         }
         // SUPER HACK -- slip in backendOptionsObj as an extra field
         if (myVisualizer) {
