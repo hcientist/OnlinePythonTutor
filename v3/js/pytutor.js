@@ -396,6 +396,7 @@ ExecutionVisualizer.prototype.render = function() {
        <div id="pyCodeOutputDiv"/>\
        <div id="editCodeLinkDiv"><a id="editBtn">Edit code</a></div>\
        <div id="executionSlider"/>\
+       <div id="executionSliderFooter"/>\
        <div id="vcrControls">\
          <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
          <button id="jmpStepBack", type="button">&lt; Back</button>\
@@ -640,6 +641,7 @@ ExecutionVisualizer.prototype.render = function() {
       myViz.domRoot.find("#pyStdout").css("width", $(this).width() - 20 /* wee tweaks */);
 
       myViz.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
+      myViz.renderSliderBreakpoints(); // update breakpoint display accordingly on resize
       if (myViz.params.updateOutputCallback) // report size change
         myViz.params.updateOutputCallback(this);
     }});
@@ -1103,6 +1105,42 @@ ExecutionVisualizer.prototype.stepBack = function() {
 }
 
 
+ExecutionVisualizer.prototype.renderSliderBreakpoints = function() {
+  var myViz = this; // to prevent confusion of 'this' inside of nested functions
+
+  myViz.domRoot.find("#executionSliderFooter").empty();
+  var w = myViz.domRoot.find('#executionSlider').width();
+
+  // I originally didn't want to delete and re-create this overlay every time,
+  // but if I don't do so, there are weird flickering artifacts with clearing
+  // the SVG container; so it's best to just delete and re-create the container each time
+  var sliderOverlay = myViz.domRootD3.select('#executionSliderFooter')
+    .append('svg')
+    .attr('id', 'sliderOverlay')
+    .attr('width', w)
+    .attr('height', 12);
+
+  var xrange = d3.scale.linear()
+    .domain([0, myViz.curTrace.length - 1])
+    .range([0, w]);
+
+  sliderOverlay.selectAll('rect')
+    .data(myViz.sortedBreakpointsList)
+    .enter().append('rect')
+    .attr('x', function(d, i) {
+      // make edge case of 0 look decent:
+      return (d === 0) ? 0 : xrange(d) - 2;
+    })
+    .attr('y', 0)
+    .attr('width', 2)
+    .attr('height', 12)
+    .style('fill', function(d) {
+       return breakpointColor;
+    });
+}
+
+
+
 ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
@@ -1118,48 +1156,6 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
   //   'executionPoints' - an ordered array of zero-indexed execution points where this line was executed
   //   'breakpointHere' - has a breakpoint been set here?
   this.codeOutputLines = [];
-
-
-  function renderSliderBreakpoints() {
-    myViz.domRoot.find("#executionSliderFooter").empty();
-
-    // I originally didn't want to delete and re-create this overlay every time,
-    // but if I don't do so, there are weird flickering artifacts with clearing
-    // the SVG container; so it's best to just delete and re-create the container each time
-    var sliderOverlay = myViz.domRootD3.select('#executionSliderFooter')
-      .append('svg')
-      .attr('id', 'sliderOverlay')
-      .attr('width', myViz.domRoot.find('#executionSlider').width())
-      .attr('height', 12);
-
-    var xrange = d3.scale.linear()
-      .domain([0, myViz.curTrace.length - 1])
-      .range([0, myViz.domRoot.find('#executionSlider').width()]);
-
-    sliderOverlay.selectAll('rect')
-      .data(myViz.sortedBreakpointsList)
-      .enter().append('rect')
-      .attr('x', function(d, i) {
-        // make the edge cases look decent
-        if (d == 0) {
-          return 0;
-        }
-        else {
-          return xrange(d) - 3;
-        }
-      })
-      .attr('y', 0)
-      .attr('width', 2)
-      .attr('height', 12)
-      .style('fill', function(d) {
-         if (myViz.hoverBreakpoints.has(d)) {
-           return hoverBreakpointColor;
-         }
-         else {
-           return breakpointColor;
-         }
-      });
-  }
 
   function _getSortedBreakpointsList() {
     var ret = [];
@@ -1184,65 +1180,20 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
     myViz.sortedBreakpointsList = _getSortedBreakpointsList();
   }
 
-
-  function setHoverBreakpoint(t) {
-    var exePts = d3.select(t).datum().executionPoints;
-
-    // don't do anything if exePts is empty
-    // (i.e., this line was never executed)
-    if (!exePts || exePts.length == 0) {
-      return;
-    }
-
-    myViz.hoverBreakpoints = d3.map();
-    $.each(exePts, function(i, ep) {
-      // don't add redundant entries
-      if (!myViz.breakpoints.has(ep)) {
-        myViz.hoverBreakpoints.set(ep, 1);
-      }
-    });
-
-    addToBreakpoints(exePts);
-    renderSliderBreakpoints();
-  }
-
-
-  function setBreakpoint(t) {
-    var exePts = d3.select(t).datum().executionPoints;
-
-    // don't do anything if exePts is empty
-    // (i.e., this line was never executed)
-    if (!exePts || exePts.length == 0) {
-      return;
-    }
-
-    addToBreakpoints(exePts);
-
-    // remove from hoverBreakpoints so that slider display immediately changes color
-    $.each(exePts, function(i, ep) {
-      myViz.hoverBreakpoints.remove(ep);
-    });
-
+  function setBreakpoint(t, d) {
+    addToBreakpoints(d.executionPoints);
     d3.select(t.parentNode).select('td.lineNo').style('color', breakpointColor);
     d3.select(t.parentNode).select('td.lineNo').style('font-weight', 'bold');
-
-    renderSliderBreakpoints();
+    d3.select(t.parentNode).select('td.cod').style('color', breakpointColor);
+    myViz.renderSliderBreakpoints();
   }
 
-  function unsetBreakpoint(t) {
-    var exePts = d3.select(t).datum().executionPoints;
-
-    // don't do anything if exePts is empty
-    // (i.e., this line was never executed)
-    if (!exePts || exePts.length == 0) {
-      return;
-    }
-
-    removeFromBreakpoints(exePts);
-
-    var lineNo = d3.select(t).datum().lineNumber;
-
-    renderSliderBreakpoints();
+  function unsetBreakpoint(t, d) {
+    removeFromBreakpoints(d.executionPoints);
+    d3.select(t.parentNode).select('td.lineNo').style('color', '');
+    d3.select(t.parentNode).select('td.lineNo').style('font-weight', '');
+    d3.select(t.parentNode).select('td.cod').style('color', '');
+    myViz.renderSliderBreakpoints();
   }
 
   var lines = this.curInputCode.split('\n');
@@ -1340,47 +1291,32 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
   }
 
   // 2012-09-05: Disable breakpoints for now to simplify UX
-  /*
-  if (!this.params.embeddedMode) {
-    codeOutputD3.style('cursor', function(d, i) {return 'pointer'})
-    .on('mouseover', function() {
-      setHoverBreakpoint(this);
-    })
-    .on('mouseout', function() {
-      myViz.hoverBreakpoints = d3.map();
-
-      var breakpointHere = d3.select(this).datum().breakpointHere;
-
-      if (!breakpointHere) {
-        unsetBreakpoint(this);
+  // 2016-05-01: Revive breakpoint functionality
+  codeOutputD3
+    .style('cursor', function(d, i) {
+      // don't do anything if exePts empty (i.e., this line was never executed)
+      var exePts = d.executionPoints;
+      if (!exePts || exePts.length == 0) {
+        return;
+      } else {
+        return 'pointer'
       }
-
-      renderSliderBreakpoints(); // get rid of hover breakpoint colors
     })
-    .on('mousedown', function() {
-      // don't do anything if exePts is empty
-      // (i.e., this line was never executed)
-      var exePts = d3.select(this).datum().executionPoints;
+    .on('click', function(d, i) {
+      // don't do anything if exePts empty (i.e., this line was never executed)
+      var exePts = d.executionPoints;
       if (!exePts || exePts.length == 0) {
         return;
       }
 
-      // toggle breakpoint
-      d3.select(this).datum().breakpointHere = !d3.select(this).datum().breakpointHere;
-
-      var breakpointHere = d3.select(this).datum().breakpointHere;
-      if (breakpointHere) {
-        setBreakpoint(this);
+      d.breakpointHere = !d.breakpointHere; // toggle
+      if (d.breakpointHere) {
+        setBreakpoint(this, d);
       }
       else {
-        unsetBreakpoint(this);
+        unsetBreakpoint(this, d);
       }
     });
-
-    renderSliderBreakpoints(); // renders breakpoints written in as code comments
-  }
-  */
-
 }
 
 
@@ -3656,7 +3592,6 @@ var connectorInactiveColor = '#cccccc';
 var errorColor = brightRed;
 
 var breakpointColor = brightRed;
-var hoverBreakpointColor = connectorBaseColor;
 
 
 // Unicode arrow types: '\u21d2', '\u21f0', '\u2907'

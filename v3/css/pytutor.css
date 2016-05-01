@@ -548,10 +548,8 @@ div.ExecutionVisualizer #executionSlider {
   margin-top: 15px;
   margin-bottom: 5px;
 
-  margin-left: auto;
-  margin-right: auto;
-
-  width: 95%;
+  /* DON'T center this, since we need breakpoints in executionSliderFooter to be well aligned */
+  width: 98%;
 }
 
 div.ExecutionVisualizer #executionSliderCaption {
