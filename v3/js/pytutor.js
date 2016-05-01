@@ -239,7 +239,6 @@ function ExecutionVisualizer(domRootID, dat, params) {
   this.codeOutputLines = null;
   this.breakpoints = null;           // set of execution points to set as breakpoints
   this.sortedBreakpointsList = null; // sorted and synced with breakpointLines
-  this.hoverBreakpoints = null;      // set of breakpoints because we're HOVERING over a given line
 
   this.classAttrsHidden = {}; // kludgy hack for 'show/hide attributes' for class objects
 
@@ -1129,7 +1128,7 @@ ExecutionVisualizer.prototype.renderSliderBreakpoints = function() {
     .enter().append('rect')
     .attr('x', function(d, i) {
       // make edge case of 0 look decent:
-      return (d === 0) ? 0 : xrange(d) - 2;
+      return (d === 0) ? 0 : xrange(d) - 1;
     })
     .attr('y', 0)
     .attr('width', 2)
@@ -1148,7 +1147,6 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
   // initialize!
   this.breakpoints = d3.map();
   this.sortedBreakpointsList = [];
-  this.hoverBreakpoints = d3.map();
 
   // an array of objects with the following fields:
   //   'text' - the text of the line of code
