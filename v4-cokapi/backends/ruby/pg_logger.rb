@@ -67,7 +67,8 @@ ordered_frame_ids = {}
 stdout_buffer = StringIO.new
 
 n_steps = 0
-MAX_STEPS = 300
+#MAX_STEPS = 300
+MAX_STEPS = 1000 # on 2016-05-01, I increased the limit from 300 to 1000 for Ruby due to popular user demand! and I also improved the warning message
 
 n_lines_added = nil
 
@@ -600,7 +601,7 @@ rescue MaxStepsException
   # take the final trace entry & make it into a instruction_limit_reached event
   if cur_trace.length > 0
     cur_trace[-1]['event'] = 'instruction_limit_reached'
-    cur_trace[-1]['exception_msg'] = "(stopped after %d steps to prevent possible infinite loop)" % MAX_STEPS
+    cur_trace[-1]['exception_msg'] = "Stopped after running %d steps. Please shorten your code,\nsince Python Tutor is not designed to handle long-running code." % MAX_STEPS
   end
 rescue
   $stdout = STDOUT
