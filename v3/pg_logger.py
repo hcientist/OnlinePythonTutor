@@ -115,7 +115,7 @@ else:
 ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'datetime',
                           'functools', 'itertools', 'operator', 'string',
                           'collections', 're', 'json',
-                          'heapq', 'bisect', 'copy')
+                          'heapq', 'bisect', 'copy', 'hashlib')
 
 # allow users to import but don't explicitly import it since it's
 # already been done above
