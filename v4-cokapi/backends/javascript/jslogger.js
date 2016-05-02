@@ -752,6 +752,8 @@ function listener(event, execState, eventData, data) {
         // 2: With
         // 3: Closure
         // 4: Catch
+        // 5: ??? block scope for ES6 let (?) (only in Node v6)
+        // 6: ??? (only in Node v6)
         scopeType = sc.details_.details_[0];
         var e;
         // DON'T grab globals again since it's redundant
@@ -792,6 +794,9 @@ function listener(event, execState, eventData, data) {
           }
 
           nParentScopes++;
+        } else if (scopeType === 5) { // block scope for ES6 let (?) only in Node v6
+          // TODO: handle me. how do we uniquely identify this block? by
+          // line or other code location?
         } else {
           assert(scopeType === 0 ||
                  scopeType === 6 /* wtf?!? in Node v6.0.0, there's sometimes a
