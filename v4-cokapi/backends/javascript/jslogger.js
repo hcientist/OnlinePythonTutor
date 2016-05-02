@@ -3,6 +3,8 @@
 JS logger backend for Online Python Tutor runtime visualizer
 
 First version created on: 2015-01-02 by Philip Guo
+- originally made for Node v0.10.25
+- on 2016-05-01, ported over to also work on Node v6.0.0
 
 Run as:
 node --expose-debug-as=Debug jslogger.js
@@ -446,6 +448,9 @@ function listener(event, execState, eventData, data) {
   var script   = eventData.func().script().name();
   var line     = eventData.sourceLine() + 1;
   var col      = eventData.sourceColumn();
+
+  if (!script) return; // in Node 6.0, sometimes script is null, so skip it
+
   assert(line >= 2);
   line -= 2; // to account for wrapUserscript() adding extra lines
 
@@ -788,7 +793,9 @@ function listener(event, execState, eventData, data) {
 
           nParentScopes++;
         } else {
-          assert(scopeType === 0);
+          assert(scopeType === 0 ||
+                 scopeType === 6 /* wtf?!? in Node v6.0.0, there's sometimes a
+                                    scopeType of 6, which is mysterious, so skip it */);
         }
       }
 

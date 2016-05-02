@@ -131,7 +131,8 @@ function exec_js_handler(useJSONP /* use bind first */, isTypescript /* use bind
     // this needs to match the docker setup in Dockerfile
     exeFile = '/usr/bin/docker'; // absolute path to docker executable
     args.push('run', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi:v1',
-              'node',
+              //'node', // built-in Node.js version
+              '/tmp/javascript/node-v6.0.0-linux-x64/bin/node', // custom Node.js version
               '--expose-debug-as=Debug',
               '/tmp/javascript/jslogger.js');
   } else {

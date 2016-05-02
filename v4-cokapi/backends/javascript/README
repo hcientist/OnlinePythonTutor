@@ -1,1 +1,4 @@
 Run 'make deps' to install node dependencies in here
+
+and also untar node-v6.0.0-linux-x64.tar.xz so that the proper node
+binary is available

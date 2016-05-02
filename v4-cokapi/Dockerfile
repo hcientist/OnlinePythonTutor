@@ -64,7 +64,9 @@ RUN mkdir /tmp/python
 # IMPORTANT: make sure to run 'make deps' in backends/javascript first
 # to install the proper node modules inside of here via npm before
 # creating this Docker container, since it's a pain to install npm and
-# modules within the container
+# modules within the container. Also untar node-v6.0.0-linux-x64.tar.xz
+# (or the proper version of Node so that the proper binary is within the
+# directory already before copying into container)
 ADD backends/javascript /tmp/javascript
 ADD backends/python /tmp/python
 
