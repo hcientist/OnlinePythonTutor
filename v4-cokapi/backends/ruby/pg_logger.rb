@@ -23,7 +23,7 @@
 #   manifests in other languages as well.
 
 # 2016-05-01: super hacky -- prefaced all global variables with a munged
-# name prefix like '__opt_ruby_global__' to prevent name clashes with
+# name prefix like '__opt_global__' to prevent name clashes with
 # the user's script. right now the script is apparently eval'ed in the
 # same scope as the tracer, so it can shadow the tracer's variables,
 # leading to bad results. the real fix is to get the bindings right, but
@@ -37,52 +37,54 @@ require 'stringio'
 
 require 'debug_inspector' # gem install debug_inspector, use on Ruby 2.X
 
-trace_output_fn = 'stdout' # default
-script_name = nil
-cod = nil
+# always preface globals with __opt_global__ (hacky!)
+__opt_global__trace_output_fn = 'stdout' # default
+__opt_global__script_name = nil
+__opt_global__cod = nil
 
 OptionParser.new do |opts|
   opts.banner = "Usage: ./ruby pg_logger.rb [options]"
 
   opts.on("-t", "--tracefile", "Create a test-trace.js trace file") do |t|
-    trace_output_fn = "../../../v3/test-trace.js" if t
+    __opt_global__trace_output_fn = "../../../v3/test-trace.js" if t
   end
 
   opts.on("-f", "--file FILE", "Execute a .rb file") do |s|
-    script_name = s
+    __opt_global__script_name = s
   end
 
   opts.on("-c", "--code CODE", String, "Execute Ruby code from string") do |c|
-    cod = c
+    __opt_global__cod = c
   end
 
 end.parse!
 
 # -c gets precedence over -f
-if !cod
-  cod = File.open(script_name).read
+if !__opt_global__cod
+  __opt_global__cod = File.open(__opt_global__script_name).read
 end
 
-cur_trace = []
-res = {'code' => cod.dup, # make a snapshot of the code NOW before it's modified
-       'trace' => cur_trace}
+# always preface globals with __opt_global__ (hacky!)
+__opt_global__cur_trace = []
+__opt_global__res = {'code' => __opt_global__cod.dup, # make a snapshot of the code NOW before it's modified
+       'trace' => __opt_global__cur_trace}
 
 # canonicalize to pretty-print
-cur_frame_id = 1
-ordered_frame_ids = {}
+__opt_global__cur_frame_id = 1
+__opt_global__ordered_frame_ids = {}
 
-stdout_buffer = StringIO.new
+__opt_global__stdout_buffer = StringIO.new
 
-n_steps = 0
-#MAX_STEPS = 300
-MAX_STEPS = 1000 # on 2016-05-01, I increased the limit from 300 to 1000 for Ruby due to popular user demand! and I also improved the warning message
+__opt_global__n_steps = 0
+#__opt_global__MAX_STEPS = 300
+__opt_global__MAX_STEPS = 1000 # on 2016-05-01, I increased the limit from 300 to 1000 for Ruby due to popular user demand! and I also improved the warning message
 
-n_lines_added = nil
+__opt_global__n_lines_added = nil
 
 class MaxStepsException < RuntimeError
 end
 
-PRIMITIVES = [Fixnum, Float, String, TrueClass, FalseClass, NilClass]
+OPT_GLOBAL_PRIMITIVES = [Fixnum, Float, String, TrueClass, FalseClass, NilClass]
 
 # ported from ../../../v3/pg_encoder.py
 class ObjectEncoder
@@ -109,7 +111,7 @@ class ObjectEncoder
   # return either a primitive object or an object reference;
   # and as a side effect, update encoded_heap_objects
   def encode(dat)
-    if PRIMITIVES.include? dat.class
+    if OPT_GLOBAL_PRIMITIVES.include? dat.class
       if dat.class == Float
         if dat == Float::INFINITY
           return ['SPECIAL_FLOAT', 'Infinity']
@@ -305,7 +307,7 @@ end
 
 # do NOT rename this anything other than pg_encoder since we refer to it
 # later by name
-pg_encoder = ObjectEncoder.new
+__opt_global__pg_encoder = ObjectEncoder.new
 
 
 # end all of my own definitions here so that I can set the following vars ...
@@ -319,21 +321,21 @@ base_class_vars_set = Object.class_variables # toplevel class variables are set 
 base_methods_set  = Object.private_methods # toplevel defined methods are set on 'Object'
 
 
-# do NOT rename this anything other than pg_tracer since we refer to it
+# do NOT rename this anything other than __opt_global__pg_tracer since we refer to it
 # later by name
-pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_return) do |tp|
+__opt_global__pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_return) do |tp|
   next if tp.path != '(eval)' # 'next' is a 'return' from a block
 
-  raise MaxStepsException if n_steps > MAX_STEPS
+  raise MaxStepsException if __opt_global__n_steps > __opt_global__MAX_STEPS
 
   # TODO: look into tp.defined_class and tp.method_id attrs
 
-  pg_encoder.reset_heap() # VERY VERY VERY IMPORTANT, or else we won't properly
+  __opt_global__pg_encoder.reset_heap() # VERY VERY VERY IMPORTANT, or else we won't properly
                           # capture heap object mutations in the trace!
 
   retval = nil
   if tp.event == :return || tp.event == :b_return
-    retval = pg_encoder.encode(tp.return_value)
+    retval = __opt_global__pg_encoder.encode(tp.return_value)
   end
 
   evt_type = case tp.event
@@ -350,11 +352,11 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   entry['event'] = evt_type
 
   # make a copy to take a snapshot at this point in time
-  entry['stdout'] = stdout_buffer.string.dup
+  entry['stdout'] = __opt_global__stdout_buffer.string.dup
 
   stack = []
   entry['stack_to_render'] = stack
-  entry['heap'] = pg_encoder.get_heap
+  entry['heap'] = __opt_global__pg_encoder.get_heap
 
   # globals
   globals = {}
@@ -365,7 +367,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
   true_globals.each.with_index do |varname, i|
     val = eval(varname.to_s) # TODO: is there a better way? this seems hacky!
-    globals[varname.to_s] = pg_encoder.encode(val)
+    globals[varname.to_s] = __opt_global__pg_encoder.encode(val)
   end
 
   # toplevel constants (stuff them in globals)
@@ -373,7 +375,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   entry['ordered_globals'].concat(toplevel_constants.map { |e| e.to_s })
   toplevel_constants.each do |varname|
     val = Module.const_get(varname)
-    globals[varname.to_s] = pg_encoder.encode(val)
+    globals[varname.to_s] = __opt_global__pg_encoder.encode(val)
   end
 
   # toplevel methods, class vars, and instance vars
@@ -391,17 +393,17 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
   toplevel_methods.each do |varname|
     val = Object.method(varname)
-    globals[varname.to_s] = pg_encoder.encode(val)
+    globals[varname.to_s] = __opt_global__pg_encoder.encode(val)
   end
 
   toplevel_class_vars.each do |varname|
     val = Object.class_variable_get(varname)
-    globals[varname.to_s] = pg_encoder.encode(val)
+    globals[varname.to_s] = __opt_global__pg_encoder.encode(val)
   end
 
   toplevel_inst_vars.each do |varname|
     val = self.instance_variable_get(varname)
-    globals[varname.to_s] = pg_encoder.encode(val)
+    globals[varname.to_s] = __opt_global__pg_encoder.encode(val)
   end
 
   if tp.event == :raise
@@ -438,11 +440,11 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
         b = dc.frame_binding(i)
 
         # frame_id field exists only in my hacked Ruby interpreter!
-        canonical_fid = ordered_frame_ids[b.frame_id]
+        canonical_fid = __opt_global__ordered_frame_ids[b.frame_id]
         if !canonical_fid
-          canonical_fid = cur_frame_id
-          ordered_frame_ids[b.frame_id] = cur_frame_id
-          cur_frame_id += 1
+          canonical_fid = __opt_global__cur_frame_id
+          __opt_global__ordered_frame_ids[b.frame_id] = __opt_global__cur_frame_id
+          __opt_global__cur_frame_id += 1
         end
 
         # special-case handling for the toplevel '<main>' frame
@@ -469,7 +471,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
           begin
             begin
               v = b.local_variable_get(lv)
-              r[lv] = pg_encoder.encode(v)
+              r[lv] = __opt_global__pg_encoder.encode(v)
             rescue
               # iterating over range values will make 'lv' into
               # potentially literal values such as integers, so they
@@ -492,18 +494,18 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
 
         # OK this is RIDICULOUSLY RIDICULOUSLY hacky. if this frame is
         # defined at the toplevel, then its parent frame will include
-        # pg_tracer and pg_encoder, which is defined in THIS VERY FILE!!!
+        # __opt_global__pg_tracer and __opt_global__pg_encoder, which is defined in THIS VERY FILE!!!
         # if that's the case, then totally punt since we don't want to
         # print out spurious data that's not even in the user's program.
         # ughhh this is sooooooo hacky!
-        if (!all_local_vars.include?(:pg_tracer) &&
-            !all_local_vars.include?(:pg_encoder))
+        if (!all_local_vars.include?(:__opt_global__pg_tracer) &&
+            !all_local_vars.include?(:__opt_global__pg_encoder))
           parent_frame_local_vars = (all_local_vars - lvs)
           parent_lvs_val = parent_frame_local_vars.inject(lvs_val){|r, lv|
             begin
               varname = 'parent:' + lv.to_s
               v = b.local_variable_get(lv)
-              r[varname] = pg_encoder.encode(v)
+              r[varname] = __opt_global__pg_encoder.encode(v)
               stack_entry['ordered_varnames'] << varname
             rescue NameError
               # ignore
@@ -516,7 +518,7 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
         my_self = b.eval('self')
         if my_self != self # ignore default global 'self' for brevity
           stack_entry['ordered_varnames'].insert(0, 'self') # insert at front
-          stack_entry['encoded_locals']['self'] = pg_encoder.encode(my_self)
+          stack_entry['encoded_locals']['self'] = __opt_global__pg_encoder.encode(my_self)
         end
 
         # just fold everything into globals rather than creating a
@@ -550,31 +552,31 @@ pg_tracer = TracePoint.new(:line,:class,:end,:call,:return,:raise,:b_call,:b_ret
   # now REVERSE the stack so that it grows downward
   stack.reverse!
 
-  n_steps += 1
+  __opt_global__n_steps += 1
 
-  cur_trace << entry
+  __opt_global__cur_trace << entry
 end
 
 
 begin
   # we are redirecting stdout so we need to print all warnings to stderr!
-  pg_tracer.enable
-  $stdout = stdout_buffer
+  __opt_global__pg_tracer.enable
+  $stdout = __opt_global__stdout_buffer
 
   # super-hack: add an extra 'nil' line to execute at the end so that the
   # tracer can easily pick up on the final executed line in '(eval)'
   # - this isn't a 'real' line number in the user's code since we've
   #   inserted an extra line
-  if cod[-1] == "\n"
-    cod << "nil"
-    n_lines_added = 1
+  if __opt_global__cod[-1] == "\n"
+    __opt_global__cod << "nil"
+    __opt_global__n_lines_added = 1
   else
-    cod << "\nnil"
-    n_lines_added = 1 # pretty sure this is 1 and not 2
+    __opt_global__cod << "\nnil"
+    __opt_global__n_lines_added = 1 # pretty sure this is 1 and not 2
   end
 
-  eval(cod) # the filename of the user's code is '(eval)'
-  pg_tracer.disable
+  eval(__opt_global__cod) # the filename of the user's code is '(eval)'
+  __opt_global__pg_tracer.disable
 rescue SyntaxError
   $stdout = STDOUT
   exc_object = $!
@@ -596,9 +598,9 @@ rescue SyntaxError
   # display exception_msg there. So if you want to indicate a syntax error,
   # then create a trace with exactly ONE entry that's an uncaught_exception.
   singleton_entry = {}
-  # mutate cur_trace in place rather than reassigning, since res already includes it
-  cur_trace.clear
-  cur_trace << singleton_entry
+  # mutate __opt_global__cur_trace in place rather than reassigning, since __opt_global__res already includes it
+  __opt_global__cur_trace.clear
+  __opt_global__cur_trace << singleton_entry
   singleton_entry['event'] = 'uncaught_exception'
   singleton_entry['line'] = lineno
   singleton_entry['exception_msg'] = exc_message
@@ -606,9 +608,9 @@ rescue MaxStepsException
   $stdout = STDOUT
 
   # take the final trace entry & make it into a instruction_limit_reached event
-  if cur_trace.length > 0
-    cur_trace[-1]['event'] = 'instruction_limit_reached'
-    cur_trace[-1]['exception_msg'] = "Stopped after running %d steps. Please shorten your code,\nsince Python Tutor is not designed to handle long-running code." % MAX_STEPS
+  if __opt_global__cur_trace.length > 0
+    __opt_global__cur_trace[-1]['event'] = 'instruction_limit_reached'
+    __opt_global__cur_trace[-1]['exception_msg'] = "Stopped after running %d steps. Please shorten your code,\nsince Python Tutor is not designed to handle long-running code." % __opt_global__MAX_STEPS
   end
 rescue
   $stdout = STDOUT
@@ -623,18 +625,18 @@ ensure
   # final instruction's line number to the last line of the file
   # (only do this if the trace isn't a single element, which likely
   # indicates some sort of uncaught_exception)
-  if cur_trace.length > 1 && n_lines_added
-    cur_trace[-1]['line'] -= n_lines_added
+  if __opt_global__cur_trace.length > 1 && __opt_global__n_lines_added
+    __opt_global__cur_trace[-1]['line'] -= __opt_global__n_lines_added
   end
 
   # postprocessing into a trace
-  trace_json = JSON.pretty_generate(res)
-  if trace_output_fn == 'stdout'
+  trace_json = JSON.pretty_generate(__opt_global__res)
+  if __opt_global__trace_output_fn == 'stdout'
     STDOUT.write(trace_json)
   else
-    File.open(trace_output_fn, 'w') do |f|
+    File.open(__opt_global__trace_output_fn, 'w') do |f|
       f.write('var trace = ' + trace_json)
     end
-    puts "Trace written to " + trace_output_fn
+    puts "Trace written to " + __opt_global__trace_output_fn
   end
 end
