@@ -605,13 +605,30 @@ function listener(event, execState, eventData, data) {
     // inspect only the top "global" frame to grab globals
     for (ii = 0; ii < topFrame.scopeCount(); ii++) {
       sc = topFrame.scope(ii);
-      // According to https://code.google.com/p/v8-wiki/wiki/DebuggerProtocol
-      //
-      // 0: Global
-      // 1: Local
-      // 2: With
-      // 3: Closure
-      // 4: Catch
+
+      /* From v8/src/debug/debug-scopes.h
+
+         enum ScopeType {
+           ScopeTypeGlobal = 0,
+           ScopeTypeLocal,
+           ScopeTypeWith,
+           ScopeTypeClosure,
+           ScopeTypeCatch,
+           ScopeTypeBlock,
+           ScopeTypeScript,
+           ScopeTypeModule
+         };
+
+         0: Global
+         1: Local
+         2: With
+         3: Closure
+         4: Catch
+         5: Block scope for ES6 let (only in Node v6)
+         6: Script (only in Node v6)
+         7: Module (only in Node v6)
+
+      */
       scopeType = sc.details_.details_[0];
       if (scopeType === 0) { // Global -- to handle global variables
         scopeObj = sc.details_.details_[1];
@@ -625,8 +642,7 @@ function listener(event, execState, eventData, data) {
             curTraceEntry.globals[globalVarname] = encodeObject(globalVal);
           }
         }
-      }
-      else if (scopeType === 4) { // Catch -- to handle global exception blocks
+      } else if (scopeType === 4) { // Catch -- to handle global exception blocks
         scopeObj = sc.details_.details_[1];
 
         var globalCatchScopePairs = _.pairs(scopeObj);
@@ -637,6 +653,10 @@ function listener(event, execState, eventData, data) {
           assert(!_.has(curTraceEntry.globals, globalCatchVarname));
           curTraceEntry.globals[globalCatchVarname] = encodeObject(globalCatchVal);
         }
+      } else if (scopeType === 5) { // Block -- handle global ES6 let-style blocks
+        // TODO: handle me. how do we uniquely identify this block? by
+        // line or other code location? look up GetNestedScopeChain in
+        // v8 source code
       }
     }
 
@@ -744,15 +764,29 @@ function listener(event, execState, eventData, data) {
            ii++) {
         sc = f.scope(ii);
 
-        // According to https://code.google.com/p/v8-wiki/wiki/DebuggerProtocol
-        //
-        // 0: Global
-        // 1: Local
-        // 2: With
-        // 3: Closure
-        // 4: Catch
-        // 5: ??? block scope for ES6 let (?) (only in Node v6)
-        // 6: ??? (only in Node v6)
+        /* From v8/src/debug/debug-scopes.h
+
+           enum ScopeType {
+             ScopeTypeGlobal = 0,
+             ScopeTypeLocal,
+             ScopeTypeWith,
+             ScopeTypeClosure,
+             ScopeTypeCatch,
+             ScopeTypeBlock,
+             ScopeTypeScript,
+             ScopeTypeModule
+           };
+
+           0: Global
+           1: Local
+           2: With
+           3: Closure
+           4: Catch
+           5: Block scope for ES6 let (only in Node v6)
+           6: Script (only in Node v6)
+           7: Module (only in Node v6)
+
+        */
         scopeType = sc.details_.details_[0];
         var e;
         // DON'T grab globals again since it's redundant
@@ -795,11 +829,12 @@ function listener(event, execState, eventData, data) {
           nParentScopes++;
         } else if (scopeType === 5) { // block scope for ES6 let (?) only in Node v6
           // TODO: handle me. how do we uniquely identify this block? by
-          // line or other code location?
+          // line or other code location? look up GetNestedScopeChain in
+          // v8 source code
         } else {
           assert(scopeType === 0 ||
-                 scopeType === 6 /* wtf?!? in Node v6.0.0, there's sometimes a
-                                    scopeType of 6, which is mysterious, so skip it */);
+                 scopeType === 6 ||
+                 scopeType === 7);
         }
       }
 
