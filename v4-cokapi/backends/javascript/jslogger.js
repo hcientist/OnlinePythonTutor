@@ -135,7 +135,8 @@ var IGNORE_GLOBAL_VARS = {'ArrayBuffer': true,
                           'module': true};
 
 
-var MAX_EXECUTED_LINES = 300;
+//var MAX_EXECUTED_LINES = 300;
+var MAX_EXECUTED_LINES = 1000; // on 2016-05-01, I increased the limit from 300 to 1000 due to popular user demand! and I also improved the warning message
 
 String.prototype.rtrim = function() {
   return this.replace(/\s*$/g, "");
@@ -823,7 +824,7 @@ function listener(event, execState, eventData, data) {
   // do this at the VERY END of this function, or else weird stuff happens
   if (curTrace.length >= MAX_EXECUTED_LINES) {
     curTrace.push({event: 'instruction_limit_reached',
-                   exception_msg: '(stopped after ' + MAX_EXECUTED_LINES + ' steps to prevent possible infinite loop)'});
+                   exception_msg: 'Stopped after running ' + MAX_EXECUTED_LINES + ' steps. Please shorten your code,\nsince Python Tutor is not designed to handle long-running code.'});
 
     finalize();
     // GET OUTTA HERE so that the user's script doesn't keep infinite looping
