@@ -44,7 +44,7 @@ public class JSONTracingThread extends Thread {
     
     private JDI2JSON jdi2json;
 
-    static int MAX_STEPS = 256;
+    static int MAX_STEPS = 1000; // 2016-05-01: modified by pgbovine to up from 256 to 1000
 
     static double MAX_WALLTIME_SECONDS = 15; // modified by pgbovine
 
@@ -118,7 +118,7 @@ public class JSONTracingThread extends Thread {
                     //        System.out.println(currentTimeMillis());
                     if (System.currentTimeMillis() > MAX_WALLTIME_SECONDS * 1000 + InMemory.startTime) {
                         output.add(Json.createObjectBuilder()
-                                   .add("exception_msg", "<exceeded max visualizer time limit>")
+                                   .add("exception_msg", "Stopped after running for " + String.valueOf(MAX_WALLTIME_SECONDS) + " seconds. Please shorten your code,\nsince Python Tutor is not designed to handle long-running code.")
                                    .add("event", "instruction_limit_reached"));
                         
                         try { 
@@ -233,13 +233,13 @@ public class JSONTracingThread extends Thread {
                         boolean quit = false;
                         if (stackSize >= MAX_STACK_SIZE) {
                             output.add(Json.createObjectBuilder()
-                                       .add("exception_msg", "<exceeded max visualizer stack size>")
+                                       .add("exception_msg", "Stopped after the stack exceeded " + String.valueOf(MAX_STACK_SIZE) + " frames.\nPlease shorten your code.")
                                        .add("event", "instruction_limit_reached"));
                             quit = true;
                         }
 			if (steps == MAX_STEPS) {
                             output.add(Json.createObjectBuilder()
-                                       .add("exception_msg", "<exceeded max visualizer step limit>")
+                                       .add("exception_msg", "Stopped after running " + String.valueOf(MAX_STEPS) + " steps. Please shorten your code,\nsince Python Tutor is not designed to handle long-running code.")
                                        .add("event", "instruction_limit_reached"));
 			    quit = true;
 			}

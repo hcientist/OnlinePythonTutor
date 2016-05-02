@@ -55,7 +55,7 @@ RUN mkdir /tmp/java_jail/cp
 ADD backends/java/java_jail/cp/ /tmp/java_jail/cp
 
 # compile all Java files within cp/
-RUN cd /tmp/java_jail/cp && find . -name "*.java" -print | xargs javac -Xlint:unchecked -cp .:javax.json-1.0.jar:/usr/lib/jvm/java-7-openjdk-amd64/lib/tools.jar
+RUN cd /tmp/java_jail/cp && find . -name "*.java" -print | xargs javac -cp .:javax.json-1.0.jar:/usr/lib/jvm/java-7-openjdk-amd64/lib/tools.jar
 
 # JS and Python backends
 RUN mkdir /tmp/javascript
