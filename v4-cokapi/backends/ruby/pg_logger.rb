@@ -22,6 +22,13 @@
 #   with way too many attributes. this is a general problem that
 #   manifests in other languages as well.
 
+# 2016-05-01: super hacky -- prefaced all global variables with a munged
+# name prefix like '__opt_ruby_global__' to prevent name clashes with
+# the user's script. right now the script is apparently eval'ed in the
+# same scope as the tracer, so it can shadow the tracer's variables,
+# leading to bad results. the real fix is to get the bindings right, but
+# for now, this kludgy hack will have to do.
+
 
 require 'json'
 require 'optparse'
