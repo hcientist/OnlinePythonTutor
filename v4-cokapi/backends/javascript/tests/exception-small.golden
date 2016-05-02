@@ -37,7 +37,7 @@
        col: 4,
        event: 'step_line',
        heap: { '1': [ 'INSTANCE_PPRINT', 'object', 'Error: oops' ] } },
-     { stdout: 'Error: oops\n    at Error (native)\n    at userscript.js:4:11\n    at ContextifyScript.Script.runInNewContext (vm.js:18:15)\n    at module.exports (/home/pgbovine/OnlinePythonTutor/v4-cokapi/backends/javascript/node_modules/eval/eval.js:56:8)\n    at Object.<anonymous> (/home/pgbovine/OnlinePythonTutor/v4-cokapi/backends/javascript/jslogger.js:952:3)\n    at Module._compile (module.js:541:32)\n    at Object.Module._extensions..js (module.js:550:10)\n    at Module.load (module.js:456:32)\n    at tryModuleLoad (module.js:415:12)\n    at Function.Module._load (module.js:407:3)\n',
+     { stdout: 'Error: oops\n    at Error (native)\n    at userscript.js:4:11\n    at ContextifyScript.Script.runInNewContext (vm.js:18:15)\n    at module.exports (/home/pgbovine/OnlinePythonTutor/v4-cokapi/backends/javascript/node_modules/eval/eval.js:56:8)\n    at Object.<anonymous> (/home/pgbovine/OnlinePythonTutor/v4-cokapi/backends/javascript/jslogger.js:951:3)\n    at Module._compile (module.js:541:32)\n    at Object.Module._extensions..js (module.js:550:10)\n    at Module.load (module.js:456:32)\n    at tryModuleLoad (module.js:415:12)\n    at Function.Module._load (module.js:407:3)\n',
        func_name: '',
        stack_to_render: [],
        globals: { xxx: 1 },

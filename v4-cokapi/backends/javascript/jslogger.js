@@ -31,7 +31,6 @@ https://code.google.com/p/v8-wiki/wiki/DebuggerProtocol
 Prereqs:
 npm install eval
 npm install underscore
-npm install esprima
 npm install minimist
 
 For TypeScript support:
@@ -89,7 +88,6 @@ TypeScript TODOs:
 "use strict";
 
 var _eval = require('eval');
-var esprima = require('esprima');
 var util = require('util');
 var fs = require('fs');
 var _ = require('underscore');
@@ -210,6 +208,7 @@ function assert(cond) {
 }
 
 
+var NUM_ADDED_LINES = 2; // match up with how many lines we added ...
 function wrapUserscript(userscript) {
   var s = "\"use strict\";\ndebugger;\n";
   s += userscript.rtrim();
@@ -451,8 +450,8 @@ function listener(event, execState, eventData, data) {
 
   if (!script) return; // in Node 6.0, sometimes script is null, so skip it
 
-  assert(line >= 2);
-  line -= 2; // to account for wrapUserscript() adding extra lines
+  assert(line >= NUM_ADDED_LINES);
+  line -= NUM_ADDED_LINES; // to account for wrapUserscript() adding extra lines
 
   // if what we're currently executing isn't inside of userscript.js,
   // then PUNT, since we're probably in the first line of console.log()
@@ -969,35 +968,19 @@ catch (e) {
     // likely a compile error since nothing executed yet; trace is empty
 
     var originalErrorMsg = e.toString();
+    var stackTrace = e.stack;
+
+    // grab the first line
+    var firstLine = stackTrace.split('\n')[0];
+    var lineNo = Number(_.last(firstLine.split(':')));
 
     var errorTraceEntry = {};
     errorTraceEntry.event = 'uncaught_exception';
-
-    // OK now try to parse the user's original code using esprima, not
-    // node's compiler/parser, since esprima gives precise line/column
-    // numbers for errors while node doesn't.
-    //
-    // the main caveat here is that the error messages might be slightly
-    // different, and also out of sync, since we're using a different
-    // parser. so beware!!!
-
-    var hasEsprimaErr = false;
-
-    try {
-      esprima.parse(cod);
-    }
-    catch (esprimaErr) {
-      hasEsprimaErr = true;
-      errorTraceEntry.exception_msg = esprimaErr.description;
-      errorTraceEntry.line = esprimaErr.lineNumber;
-      errorTraceEntry.col = esprimaErr.column;
-    }
-
-    if (!hasEsprimaErr) {
-      // crap, esprima didn't find a parse error, so just go with
-      // originalErrorMsg and throw up our hands since we can't pinpoint
-      // the location of the error.
-      errorTraceEntry.exception_msg = originalErrorMsg + "\n(sorry, tool can't find the line number)";
+    errorTraceEntry.exception_msg = originalErrorMsg;
+    if (isNaN(lineNo)) {
+      errorTraceEntry.exception_msg = originalErrorMsg + "\n(sorry, we can't find the line number)";
+    } else {
+      errorTraceEntry.line = lineNo - NUM_ADDED_LINES; // adjust to account for code that we injected -- subtle!
     }
 
     curTrace.push(errorTraceEntry);
