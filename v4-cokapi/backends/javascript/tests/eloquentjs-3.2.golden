@@ -102,7 +102,7 @@
        globals: { isEven: [ 'REF', 1 ] },
        ordered_globals: [ 'isEven' ],
        line: 9,
-       col: 11,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -234,7 +234,7 @@
        globals: { isEven: [ 'REF', 1 ] },
        ordered_globals: [ 'isEven' ],
        line: 9,
-       col: 11,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -402,7 +402,7 @@
        globals: { isEven: [ 'REF', 1 ] },
        ordered_globals: [ 'isEven' ],
        line: 9,
-       col: 11,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -606,7 +606,7 @@
        globals: { isEven: [ 'REF', 1 ] },
        ordered_globals: [ 'isEven' ],
        line: 9,
-       col: 11,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -846,7 +846,7 @@
        globals: { isEven: [ 'REF', 1 ] },
        ordered_globals: [ 'isEven' ],
        line: 9,
-       col: 11,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 

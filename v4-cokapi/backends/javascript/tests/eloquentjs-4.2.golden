@@ -82,7 +82,42 @@
           arrayValue: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 3,
-       col: 2,
+       col: 7,
+       event: 'step_line',
+       heap: 
+        { '1': 
+           [ 'JS_FUNCTION',
+             'reverseArray',
+             'function reverseArray(array) {\n  var output = [];\n  for (var i = array.length - 1; i >= 0; i--)\n    output.push(array[i]);\n  return output;\n}',
+             null,
+             null ],
+          '2': 
+           [ 'JS_FUNCTION',
+             'reverseArrayInPlace',
+             'function reverseArrayInPlace(array) {\n  for (var i = 0; i < Math.floor(array.length / 2); i++) {\n    var old = array[i];\n    array[i] = array[array.length - 1 - i];\n    array[array.length - 1 - i] = old;\n  }\n  return array;\n}',
+             null,
+             null ],
+          '3': [ 'LIST', 'A', 'B', 'C' ],
+          '4': [ 'LIST' ] } },
+     { stdout: '',
+       func_name: 'reverseArray',
+       stack_to_render: 
+        [ { func_name: 'reverseArray',
+            frame_id: 2,
+            is_highlighted: true,
+            is_parent: false,
+            is_zombie: false,
+            parent_frame_id_list: [],
+            unique_hash: 'reverseArray_f2',
+            ordered_varnames: [ 'array', 'output', 'i' ],
+            encoded_locals: { array: [ 'REF', 3 ], output: [ 'REF', 4 ], i: 2 } } ],
+       globals: 
+        { reverseArray: [ 'REF', 1 ],
+          reverseArrayInPlace: [ 'REF', 2 ],
+          arrayValue: [ 'JS_SPECIAL_VAL', 'undefined' ] },
+       ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
+       line: 3,
+       col: 35,
        event: 'step_line',
        heap: 
         { '1': 
@@ -117,7 +152,7 @@
           arrayValue: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 4,
-       col: 21,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -145,6 +180,41 @@
             parent_frame_id_list: [],
             unique_hash: 'reverseArray_f2',
             ordered_varnames: [ 'array', 'output', 'i' ],
+            encoded_locals: { array: [ 'REF', 3 ], output: [ 'REF', 4 ], i: 2 } } ],
+       globals: 
+        { reverseArray: [ 'REF', 1 ],
+          reverseArrayInPlace: [ 'REF', 2 ],
+          arrayValue: [ 'JS_SPECIAL_VAL', 'undefined' ] },
+       ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
+       line: 3,
+       col: 42,
+       event: 'step_line',
+       heap: 
+        { '1': 
+           [ 'JS_FUNCTION',
+             'reverseArray',
+             'function reverseArray(array) {\n  var output = [];\n  for (var i = array.length - 1; i >= 0; i--)\n    output.push(array[i]);\n  return output;\n}',
+             null,
+             null ],
+          '2': 
+           [ 'JS_FUNCTION',
+             'reverseArrayInPlace',
+             'function reverseArrayInPlace(array) {\n  for (var i = 0; i < Math.floor(array.length / 2); i++) {\n    var old = array[i];\n    array[i] = array[array.length - 1 - i];\n    array[array.length - 1 - i] = old;\n  }\n  return array;\n}',
+             null,
+             null ],
+          '3': [ 'LIST', 'A', 'B', 'C' ],
+          '4': [ 'LIST', 'C' ] } },
+     { stdout: '',
+       func_name: 'reverseArray',
+       stack_to_render: 
+        [ { func_name: 'reverseArray',
+            frame_id: 2,
+            is_highlighted: true,
+            is_parent: false,
+            is_zombie: false,
+            parent_frame_id_list: [],
+            unique_hash: 'reverseArray_f2',
+            ordered_varnames: [ 'array', 'output', 'i' ],
             encoded_locals: { array: [ 'REF', 3 ], output: [ 'REF', 4 ], i: 1 } } ],
        globals: 
         { reverseArray: [ 'REF', 1 ],
@@ -152,7 +222,7 @@
           arrayValue: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 3,
-       col: 2,
+       col: 35,
        event: 'step_line',
        heap: 
         { '1': 
@@ -187,7 +257,7 @@
           arrayValue: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 4,
-       col: 21,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -215,6 +285,41 @@
             parent_frame_id_list: [],
             unique_hash: 'reverseArray_f2',
             ordered_varnames: [ 'array', 'output', 'i' ],
+            encoded_locals: { array: [ 'REF', 3 ], output: [ 'REF', 4 ], i: 1 } } ],
+       globals: 
+        { reverseArray: [ 'REF', 1 ],
+          reverseArrayInPlace: [ 'REF', 2 ],
+          arrayValue: [ 'JS_SPECIAL_VAL', 'undefined' ] },
+       ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
+       line: 3,
+       col: 42,
+       event: 'step_line',
+       heap: 
+        { '1': 
+           [ 'JS_FUNCTION',
+             'reverseArray',
+             'function reverseArray(array) {\n  var output = [];\n  for (var i = array.length - 1; i >= 0; i--)\n    output.push(array[i]);\n  return output;\n}',
+             null,
+             null ],
+          '2': 
+           [ 'JS_FUNCTION',
+             'reverseArrayInPlace',
+             'function reverseArrayInPlace(array) {\n  for (var i = 0; i < Math.floor(array.length / 2); i++) {\n    var old = array[i];\n    array[i] = array[array.length - 1 - i];\n    array[array.length - 1 - i] = old;\n  }\n  return array;\n}',
+             null,
+             null ],
+          '3': [ 'LIST', 'A', 'B', 'C' ],
+          '4': [ 'LIST', 'C', 'B' ] } },
+     { stdout: '',
+       func_name: 'reverseArray',
+       stack_to_render: 
+        [ { func_name: 'reverseArray',
+            frame_id: 2,
+            is_highlighted: true,
+            is_parent: false,
+            is_zombie: false,
+            parent_frame_id_list: [],
+            unique_hash: 'reverseArray_f2',
+            ordered_varnames: [ 'array', 'output', 'i' ],
             encoded_locals: { array: [ 'REF', 3 ], output: [ 'REF', 4 ], i: 0 } } ],
        globals: 
         { reverseArray: [ 'REF', 1 ],
@@ -222,7 +327,7 @@
           arrayValue: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 3,
-       col: 2,
+       col: 35,
        event: 'step_line',
        heap: 
         { '1': 
@@ -257,7 +362,7 @@
           arrayValue: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 4,
-       col: 21,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -274,6 +379,41 @@
              null ],
           '3': [ 'LIST', 'A', 'B', 'C' ],
           '4': [ 'LIST', 'C', 'B' ] } },
+     { stdout: '',
+       func_name: 'reverseArray',
+       stack_to_render: 
+        [ { func_name: 'reverseArray',
+            frame_id: 2,
+            is_highlighted: true,
+            is_parent: false,
+            is_zombie: false,
+            parent_frame_id_list: [],
+            unique_hash: 'reverseArray_f2',
+            ordered_varnames: [ 'array', 'output', 'i' ],
+            encoded_locals: { array: [ 'REF', 3 ], output: [ 'REF', 4 ], i: 0 } } ],
+       globals: 
+        { reverseArray: [ 'REF', 1 ],
+          reverseArrayInPlace: [ 'REF', 2 ],
+          arrayValue: [ 'JS_SPECIAL_VAL', 'undefined' ] },
+       ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
+       line: 3,
+       col: 42,
+       event: 'step_line',
+       heap: 
+        { '1': 
+           [ 'JS_FUNCTION',
+             'reverseArray',
+             'function reverseArray(array) {\n  var output = [];\n  for (var i = array.length - 1; i >= 0; i--)\n    output.push(array[i]);\n  return output;\n}',
+             null,
+             null ],
+          '2': 
+           [ 'JS_FUNCTION',
+             'reverseArrayInPlace',
+             'function reverseArrayInPlace(array) {\n  for (var i = 0; i < Math.floor(array.length / 2); i++) {\n    var old = array[i];\n    array[i] = array[array.length - 1 - i];\n    array[array.length - 1 - i] = old;\n  }\n  return array;\n}',
+             null,
+             null ],
+          '3': [ 'LIST', 'A', 'B', 'C' ],
+          '4': [ 'LIST', 'C', 'B', 'A' ] } },
      { stdout: '',
        func_name: 'reverseArray',
        stack_to_render: 
@@ -292,7 +432,7 @@
           arrayValue: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 3,
-       col: 2,
+       col: 35,
        event: 'step_line',
        heap: 
         { '1': 
@@ -440,6 +580,80 @@
           arrayValue: [ 'REF', 5 ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 20,
+       col: 0,
+       event: 'step_line',
+       heap: 
+        { '1': 
+           [ 'JS_FUNCTION',
+             'reverseArray',
+             'function reverseArray(array) {\n  var output = [];\n  for (var i = array.length - 1; i >= 0; i--)\n    output.push(array[i]);\n  return output;\n}',
+             null,
+             null ],
+          '2': 
+           [ 'JS_FUNCTION',
+             'reverseArrayInPlace',
+             'function reverseArrayInPlace(array) {\n  for (var i = 0; i < Math.floor(array.length / 2); i++) {\n    var old = array[i];\n    array[i] = array[array.length - 1 - i];\n    array[array.length - 1 - i] = old;\n  }\n  return array;\n}',
+             null,
+             null ],
+          '5': [ 'LIST', 1, 2, 3, 4, 5 ] } },
+     { stdout: '[ \'C\', \'B\', \'A\' ]\n',
+       func_name: 'reverseArrayInPlace',
+       stack_to_render: 
+        [ { func_name: 'reverseArrayInPlace',
+            frame_id: 3,
+            is_highlighted: true,
+            is_parent: false,
+            is_zombie: false,
+            parent_frame_id_list: [],
+            unique_hash: 'reverseArrayInPlace_f3',
+            ordered_varnames: [ 'array', 'i', 'old' ],
+            encoded_locals: 
+             { array: [ 'REF', 5 ],
+               i: [ 'JS_SPECIAL_VAL', 'undefined' ],
+               old: [ 'JS_SPECIAL_VAL', 'undefined' ] } } ],
+       globals: 
+        { reverseArray: [ 'REF', 1 ],
+          reverseArrayInPlace: [ 'REF', 2 ],
+          arrayValue: [ 'REF', 5 ] },
+       ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
+       line: 9,
+       col: 7,
+       event: 'call',
+       heap: 
+        { '1': 
+           [ 'JS_FUNCTION',
+             'reverseArray',
+             'function reverseArray(array) {\n  var output = [];\n  for (var i = array.length - 1; i >= 0; i--)\n    output.push(array[i]);\n  return output;\n}',
+             null,
+             null ],
+          '2': 
+           [ 'JS_FUNCTION',
+             'reverseArrayInPlace',
+             'function reverseArrayInPlace(array) {\n  for (var i = 0; i < Math.floor(array.length / 2); i++) {\n    var old = array[i];\n    array[i] = array[array.length - 1 - i];\n    array[array.length - 1 - i] = old;\n  }\n  return array;\n}',
+             null,
+             null ],
+          '5': [ 'LIST', 1, 2, 3, 4, 5 ] } },
+     { stdout: '[ \'C\', \'B\', \'A\' ]\n',
+       func_name: 'reverseArrayInPlace',
+       stack_to_render: 
+        [ { func_name: 'reverseArrayInPlace',
+            frame_id: 3,
+            is_highlighted: true,
+            is_parent: false,
+            is_zombie: false,
+            parent_frame_id_list: [],
+            unique_hash: 'reverseArrayInPlace_f3',
+            ordered_varnames: [ 'array', 'i', 'old' ],
+            encoded_locals: 
+             { array: [ 'REF', 5 ],
+               i: 0,
+               old: [ 'JS_SPECIAL_VAL', 'undefined' ] } } ],
+       globals: 
+        { reverseArray: [ 'REF', 1 ],
+          reverseArrayInPlace: [ 'REF', 2 ],
+          arrayValue: [ 'REF', 5 ] },
+       ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
+       line: 9,
        col: 20,
        event: 'step_line',
        heap: 
@@ -476,43 +690,6 @@
           reverseArrayInPlace: [ 'REF', 2 ],
           arrayValue: [ 'REF', 5 ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
-       line: 9,
-       col: 22,
-       event: 'call',
-       heap: 
-        { '1': 
-           [ 'JS_FUNCTION',
-             'reverseArray',
-             'function reverseArray(array) {\n  var output = [];\n  for (var i = array.length - 1; i >= 0; i--)\n    output.push(array[i]);\n  return output;\n}',
-             null,
-             null ],
-          '2': 
-           [ 'JS_FUNCTION',
-             'reverseArrayInPlace',
-             'function reverseArrayInPlace(array) {\n  for (var i = 0; i < Math.floor(array.length / 2); i++) {\n    var old = array[i];\n    array[i] = array[array.length - 1 - i];\n    array[array.length - 1 - i] = old;\n  }\n  return array;\n}',
-             null,
-             null ],
-          '5': [ 'LIST', 1, 2, 3, 4, 5 ] } },
-     { stdout: '[ \'C\', \'B\', \'A\' ]\n',
-       func_name: 'reverseArrayInPlace',
-       stack_to_render: 
-        [ { func_name: 'reverseArrayInPlace',
-            frame_id: 3,
-            is_highlighted: true,
-            is_parent: false,
-            is_zombie: false,
-            parent_frame_id_list: [],
-            unique_hash: 'reverseArrayInPlace_f3',
-            ordered_varnames: [ 'array', 'i', 'old' ],
-            encoded_locals: 
-             { array: [ 'REF', 5 ],
-               i: 0,
-               old: [ 'JS_SPECIAL_VAL', 'undefined' ] } } ],
-       globals: 
-        { reverseArray: [ 'REF', 1 ],
-          reverseArrayInPlace: [ 'REF', 2 ],
-          arrayValue: [ 'REF', 5 ] },
-       ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 10,
        col: 4,
        event: 'step_line',
@@ -548,7 +725,7 @@
           arrayValue: [ 'REF', 5 ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 11,
-       col: 26,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -582,7 +759,7 @@
           arrayValue: [ 'REF', 5 ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 12,
-       col: 15,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -609,6 +786,40 @@
             parent_frame_id_list: [],
             unique_hash: 'reverseArrayInPlace_f3',
             ordered_varnames: [ 'array', 'i', 'old' ],
+            encoded_locals: { array: [ 'REF', 5 ], i: 0, old: 1 } } ],
+       globals: 
+        { reverseArray: [ 'REF', 1 ],
+          reverseArrayInPlace: [ 'REF', 2 ],
+          arrayValue: [ 'REF', 5 ] },
+       ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
+       line: 9,
+       col: 53,
+       event: 'step_line',
+       heap: 
+        { '1': 
+           [ 'JS_FUNCTION',
+             'reverseArray',
+             'function reverseArray(array) {\n  var output = [];\n  for (var i = array.length - 1; i >= 0; i--)\n    output.push(array[i]);\n  return output;\n}',
+             null,
+             null ],
+          '2': 
+           [ 'JS_FUNCTION',
+             'reverseArrayInPlace',
+             'function reverseArrayInPlace(array) {\n  for (var i = 0; i < Math.floor(array.length / 2); i++) {\n    var old = array[i];\n    array[i] = array[array.length - 1 - i];\n    array[array.length - 1 - i] = old;\n  }\n  return array;\n}',
+             null,
+             null ],
+          '5': [ 'LIST', 5, 2, 3, 4, 1 ] } },
+     { stdout: '[ \'C\', \'B\', \'A\' ]\n',
+       func_name: 'reverseArrayInPlace',
+       stack_to_render: 
+        [ { func_name: 'reverseArrayInPlace',
+            frame_id: 3,
+            is_highlighted: true,
+            is_parent: false,
+            is_zombie: false,
+            parent_frame_id_list: [],
+            unique_hash: 'reverseArrayInPlace_f3',
+            ordered_varnames: [ 'array', 'i', 'old' ],
             encoded_locals: { array: [ 'REF', 5 ], i: 1, old: 1 } } ],
        globals: 
         { reverseArray: [ 'REF', 1 ],
@@ -616,7 +827,7 @@
           arrayValue: [ 'REF', 5 ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 9,
-       col: 22,
+       col: 20,
        event: 'step_line',
        heap: 
         { '1': 
@@ -684,7 +895,7 @@
           arrayValue: [ 'REF', 5 ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 11,
-       col: 26,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -718,7 +929,7 @@
           arrayValue: [ 'REF', 5 ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 12,
-       col: 15,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -745,6 +956,40 @@
             parent_frame_id_list: [],
             unique_hash: 'reverseArrayInPlace_f3',
             ordered_varnames: [ 'array', 'i', 'old' ],
+            encoded_locals: { array: [ 'REF', 5 ], i: 1, old: 2 } } ],
+       globals: 
+        { reverseArray: [ 'REF', 1 ],
+          reverseArrayInPlace: [ 'REF', 2 ],
+          arrayValue: [ 'REF', 5 ] },
+       ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
+       line: 9,
+       col: 53,
+       event: 'step_line',
+       heap: 
+        { '1': 
+           [ 'JS_FUNCTION',
+             'reverseArray',
+             'function reverseArray(array) {\n  var output = [];\n  for (var i = array.length - 1; i >= 0; i--)\n    output.push(array[i]);\n  return output;\n}',
+             null,
+             null ],
+          '2': 
+           [ 'JS_FUNCTION',
+             'reverseArrayInPlace',
+             'function reverseArrayInPlace(array) {\n  for (var i = 0; i < Math.floor(array.length / 2); i++) {\n    var old = array[i];\n    array[i] = array[array.length - 1 - i];\n    array[array.length - 1 - i] = old;\n  }\n  return array;\n}',
+             null,
+             null ],
+          '5': [ 'LIST', 5, 4, 3, 2, 1 ] } },
+     { stdout: '[ \'C\', \'B\', \'A\' ]\n',
+       func_name: 'reverseArrayInPlace',
+       stack_to_render: 
+        [ { func_name: 'reverseArrayInPlace',
+            frame_id: 3,
+            is_highlighted: true,
+            is_parent: false,
+            is_zombie: false,
+            parent_frame_id_list: [],
+            unique_hash: 'reverseArrayInPlace_f3',
+            ordered_varnames: [ 'array', 'i', 'old' ],
             encoded_locals: { array: [ 'REF', 5 ], i: 2, old: 2 } } ],
        globals: 
         { reverseArray: [ 'REF', 1 ],
@@ -752,7 +997,7 @@
           arrayValue: [ 'REF', 5 ] },
        ordered_globals: [ 'reverseArray', 'reverseArrayInPlace', 'arrayValue' ],
        line: 9,
-       col: 22,
+       col: 20,
        event: 'step_line',
        heap: 
         { '1': 

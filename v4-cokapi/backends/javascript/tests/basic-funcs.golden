@@ -71,7 +71,33 @@
           i: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'global_x', 'global_y', 'foo', 'bar', 'i' ],
        line: 19,
-       col: 0,
+       col: 5,
+       event: 'step_line',
+       heap: 
+        { '1': 
+           [ 'JS_FUNCTION',
+             'bar',
+             'function bar(i) {\n  var obj_lst = [i, {foo: i+1, poop: [1, 2, 3]}, {bar: i+2}];\n}',
+             null,
+             null ],
+          '2': 
+           [ 'JS_FUNCTION',
+             '',
+             'function (i) {\n  var local_x = 42;\n  var local_y = "hello world";\n  var local_z = true;\n  var local_w = false;\n  var local_q = null;\n  console.log(\'foo:\', i*i);\n  bar(i);\n  return (local_x * local_x);\n}',
+             null,
+             null ] } },
+     { stdout: '',
+       func_name: '',
+       stack_to_render: [],
+       globals: 
+        { global_x: 5,
+          global_y: 10,
+          foo: [ 'REF', 2 ],
+          bar: [ 'REF', 1 ],
+          i: 0 },
+       ordered_globals: [ 'global_x', 'global_y', 'foo', 'bar', 'i' ],
+       line: 19,
+       col: 15,
        event: 'step_line',
        heap: 
         { '1': 
@@ -97,7 +123,7 @@
           i: 0 },
        ordered_globals: [ 'global_x', 'global_y', 'foo', 'bar', 'i' ],
        line: 20,
-       col: 6,
+       col: 2,
        event: 'step_line',
        heap: 
         { '1': 
@@ -607,7 +633,33 @@
           i: 0 },
        ordered_globals: [ 'global_x', 'global_y', 'foo', 'bar', 'i' ],
        line: 19,
-       col: 19,
+       col: 20,
+       event: 'step_line',
+       heap: 
+        { '1': 
+           [ 'JS_FUNCTION',
+             'bar',
+             'function bar(i) {\n  var obj_lst = [i, {foo: i+1, poop: [1, 2, 3]}, {bar: i+2}];\n}',
+             null,
+             null ],
+          '2': 
+           [ 'JS_FUNCTION',
+             '',
+             'function (i) {\n  var local_x = 42;\n  var local_y = "hello world";\n  var local_z = true;\n  var local_w = false;\n  var local_q = null;\n  console.log(\'foo:\', i*i);\n  bar(i);\n  return (local_x * local_x);\n}',
+             null,
+             null ] } },
+     { stdout: 'foo: 0\n',
+       func_name: '',
+       stack_to_render: [],
+       globals: 
+        { global_x: 5,
+          global_y: 10,
+          foo: [ 'REF', 2 ],
+          bar: [ 'REF', 1 ],
+          i: 1 },
+       ordered_globals: [ 'global_x', 'global_y', 'foo', 'bar', 'i' ],
+       line: 19,
+       col: 15,
        event: 'step_line',
        heap: 
         { '1': 
@@ -633,7 +685,7 @@
           i: 1 },
        ordered_globals: [ 'global_x', 'global_y', 'foo', 'bar', 'i' ],
        line: 20,
-       col: 6,
+       col: 2,
        event: 'step_line',
        heap: 
         { '1': 
@@ -1143,7 +1195,33 @@
           i: 1 },
        ordered_globals: [ 'global_x', 'global_y', 'foo', 'bar', 'i' ],
        line: 19,
-       col: 19,
+       col: 20,
+       event: 'step_line',
+       heap: 
+        { '1': 
+           [ 'JS_FUNCTION',
+             'bar',
+             'function bar(i) {\n  var obj_lst = [i, {foo: i+1, poop: [1, 2, 3]}, {bar: i+2}];\n}',
+             null,
+             null ],
+          '2': 
+           [ 'JS_FUNCTION',
+             '',
+             'function (i) {\n  var local_x = 42;\n  var local_y = "hello world";\n  var local_z = true;\n  var local_w = false;\n  var local_q = null;\n  console.log(\'foo:\', i*i);\n  bar(i);\n  return (local_x * local_x);\n}',
+             null,
+             null ] } },
+     { stdout: 'foo: 0\nfoo: 1\n',
+       func_name: '',
+       stack_to_render: [],
+       globals: 
+        { global_x: 5,
+          global_y: 10,
+          foo: [ 'REF', 2 ],
+          bar: [ 'REF', 1 ],
+          i: 2 },
+       ordered_globals: [ 'global_x', 'global_y', 'foo', 'bar', 'i' ],
+       line: 19,
+       col: 15,
        event: 'step_line',
        heap: 
         { '1': 
@@ -1169,7 +1247,7 @@
           i: 2 },
        ordered_globals: [ 'global_x', 'global_y', 'foo', 'bar', 'i' ],
        line: 20,
-       col: 6,
+       col: 2,
        event: 'step_line',
        heap: 
         { '1': 
@@ -1679,7 +1757,33 @@
           i: 2 },
        ordered_globals: [ 'global_x', 'global_y', 'foo', 'bar', 'i' ],
        line: 19,
-       col: 19,
+       col: 20,
+       event: 'step_line',
+       heap: 
+        { '1': 
+           [ 'JS_FUNCTION',
+             'bar',
+             'function bar(i) {\n  var obj_lst = [i, {foo: i+1, poop: [1, 2, 3]}, {bar: i+2}];\n}',
+             null,
+             null ],
+          '2': 
+           [ 'JS_FUNCTION',
+             '',
+             'function (i) {\n  var local_x = 42;\n  var local_y = "hello world";\n  var local_z = true;\n  var local_w = false;\n  var local_q = null;\n  console.log(\'foo:\', i*i);\n  bar(i);\n  return (local_x * local_x);\n}',
+             null,
+             null ] } },
+     { stdout: 'foo: 0\nfoo: 1\nfoo: 4\n',
+       func_name: '',
+       stack_to_render: [],
+       globals: 
+        { global_x: 5,
+          global_y: 10,
+          foo: [ 'REF', 2 ],
+          bar: [ 'REF', 1 ],
+          i: 3 },
+       ordered_globals: [ 'global_x', 'global_y', 'foo', 'bar', 'i' ],
+       line: 19,
+       col: 15,
        event: 'step_line',
        heap: 
         { '1': 

@@ -63,37 +63,6 @@
           SpaceShip: [ 'REF', 2 ],
           s: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'Actor', 'SpaceShip', 's' ],
-       line: 17,
-       col: 20,
-       event: 'step_line',
-       heap: 
-        { '1': 
-           [ 'JS_FUNCTION',
-             'Actor',
-             'function Actor(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ [ 'prototype', [ 'REF', 3 ] ] ],
-             null ],
-          '2': 
-           [ 'JS_FUNCTION',
-             'SpaceShip',
-             'function SpaceShip(x, y) {\n  Actor.call(this, x, y);\n  this.points = 0;\n}',
-             null,
-             null ],
-          '3': [ 'INSTANCE', '', [ 'moveTo', [ 'REF', 4 ] ] ],
-          '4': 
-           [ 'JS_FUNCTION',
-             '',
-             'function (x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             null,
-             null ] } },
-     { stdout: '',
-       func_name: '',
-       stack_to_render: [],
-       globals: 
-        { Actor: [ 'REF', 1 ],
-          SpaceShip: [ 'REF', 2 ],
-          s: [ 'JS_SPECIAL_VAL', 'undefined' ] },
-       ordered_globals: [ 'Actor', 'SpaceShip', 's' ],
        line: 18,
        col: 0,
        event: 'step_line',
@@ -277,7 +246,7 @@
           s: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'Actor', 'SpaceShip', 's' ],
        line: 3,
-       col: 9,
+       col: 2,
        event: 'call',
        heap: 
         { '1': 
@@ -339,7 +308,7 @@
           s: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'Actor', 'SpaceShip', 's' ],
        line: 4,
-       col: 9,
+       col: 2,
        event: 'step_line',
        heap: 
         { '1': 
@@ -463,7 +432,7 @@
           s: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'Actor', 'SpaceShip', 's' ],
        line: 14,
-       col: 14,
+       col: 2,
        event: 'step_line',
        heap: 
         { '1': 
@@ -624,7 +593,7 @@
        globals: { Actor: [ 'REF', 1 ], SpaceShip: [ 'REF', 2 ], s: [ 'REF', 7 ] },
        ordered_globals: [ 'Actor', 'SpaceShip', 's' ],
        line: 8,
-       col: 9,
+       col: 2,
        event: 'call',
        heap: 
         { '1': 
@@ -680,7 +649,7 @@
        globals: { Actor: [ 'REF', 1 ], SpaceShip: [ 'REF', 2 ], s: [ 'REF', 7 ] },
        ordered_globals: [ 'Actor', 'SpaceShip', 's' ],
        line: 9,
-       col: 9,
+       col: 2,
        event: 'step_line',
        heap: 
         { '1': 
@@ -843,7 +812,7 @@
        globals: { Actor: [ 'REF', 1 ], SpaceShip: [ 'REF', 2 ], s: [ 'REF', 7 ] },
        ordered_globals: [ 'Actor', 'SpaceShip', 's' ],
        line: 20,
-       col: 6,
+       col: 2,
        event: 'call',
        heap: 
         { '1': 
@@ -1004,7 +973,7 @@
        globals: { Actor: [ 'REF', 1 ], SpaceShip: [ 'REF', 2 ], s: [ 'REF', 7 ] },
        ordered_globals: [ 'Actor', 'SpaceShip', 's' ],
        line: 20,
-       col: 6,
+       col: 2,
        event: 'call',
        heap: 
         { '1': 

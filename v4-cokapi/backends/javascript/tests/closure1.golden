@@ -46,8 +46,8 @@
             is_zombie: false,
             parent_frame_id_list: [],
             unique_hash: 'foo_f2',
-            ordered_varnames: [ 'y', 'bar' ],
-            encoded_locals: { y: 1, bar: [ 'REF', 2 ] } } ],
+            ordered_varnames: [ 'bar', 'y' ],
+            encoded_locals: { bar: [ 'REF', 2 ], y: 1 } } ],
        globals: 
         { globalZ: 10,
           foo: [ 'REF', 1 ],
@@ -79,8 +79,8 @@
             is_zombie: false,
             parent_frame_id_list: [],
             unique_hash: 'foo_f2',
-            ordered_varnames: [ 'y', 'bar', '__return__' ],
-            encoded_locals: { y: 1, bar: [ 'REF', 2 ], __return__: [ 'REF', 2 ] } } ],
+            ordered_varnames: [ 'bar', 'y', '__return__' ],
+            encoded_locals: { bar: [ 'REF', 2 ], y: 1, __return__: [ 'REF', 2 ] } } ],
        globals: 
         { globalZ: 10,
           foo: [ 'REF', 1 ],

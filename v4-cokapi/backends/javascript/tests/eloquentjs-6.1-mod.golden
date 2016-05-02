@@ -136,7 +136,7 @@
           v3: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'Vector', 'v1', 'v2', 'v3' ],
        line: 2,
-       col: 9,
+       col: 2,
        event: 'call',
        heap: 
         { '1': 
@@ -162,12 +162,7 @@
              'function (other) {\n  return new Vector(this.x - other.x, this.y - other.y);\n}',
              null,
              null ],
-          '5': 
-           [ 'INSTANCE',
-             '',
-             [ 'x', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
-             [ 'y', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
-             [ '__proto__', [ 'REF', 2 ] ] ] } },
+          '5': [ 'INSTANCE', '', [ '__proto__', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: 'Vector',
        stack_to_render: 
@@ -187,7 +182,7 @@
           v3: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'Vector', 'v1', 'v2', 'v3' ],
        line: 3,
-       col: 9,
+       col: 2,
        event: 'step_line',
        heap: 
         { '1': 
@@ -213,12 +208,7 @@
              'function (other) {\n  return new Vector(this.x - other.x, this.y - other.y);\n}',
              null,
              null ],
-          '5': 
-           [ 'INSTANCE',
-             '',
-             [ 'x', 1 ],
-             [ 'y', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
-             [ '__proto__', [ 'REF', 2 ] ] ] } },
+          '5': [ 'INSTANCE', '', [ 'x', 1 ], [ '__proto__', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: 'Vector',
        stack_to_render: 
@@ -331,7 +321,7 @@
           v3: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'Vector', 'v1', 'v2', 'v3' ],
        line: 2,
-       col: 9,
+       col: 2,
        event: 'call',
        heap: 
         { '1': 
@@ -363,12 +353,7 @@
              [ 'x', 1 ],
              [ 'y', 2 ],
              [ '__proto__', [ 'REF', 2 ] ] ],
-          '6': 
-           [ 'INSTANCE',
-             '',
-             [ 'x', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
-             [ 'y', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
-             [ '__proto__', [ 'REF', 2 ] ] ] } },
+          '6': [ 'INSTANCE', '', [ '__proto__', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: 'Vector',
        stack_to_render: 
@@ -388,7 +373,7 @@
           v3: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'Vector', 'v1', 'v2', 'v3' ],
        line: 3,
-       col: 9,
+       col: 2,
        event: 'step_line',
        heap: 
         { '1': 
@@ -420,12 +405,7 @@
              [ 'x', 1 ],
              [ 'y', 2 ],
              [ '__proto__', [ 'REF', 2 ] ] ],
-          '6': 
-           [ 'INSTANCE',
-             '',
-             [ 'x', 2 ],
-             [ 'y', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
-             [ '__proto__', [ 'REF', 2 ] ] ] } },
+          '6': [ 'INSTANCE', '', [ 'x', 2 ], [ '__proto__', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: 'Vector',
        stack_to_render: 
@@ -550,7 +530,7 @@
           v3: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'Vector', 'v1', 'v2', 'v3' ],
        line: 7,
-       col: 13,
+       col: 2,
        event: 'call',
        heap: 
         { '1': 
@@ -616,7 +596,7 @@
           v3: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'Vector', 'v1', 'v2', 'v3' ],
        line: 2,
-       col: 9,
+       col: 2,
        event: 'call',
        heap: 
         { '1': 
@@ -654,12 +634,7 @@
              [ 'x', 2 ],
              [ 'y', 3 ],
              [ '__proto__', [ 'REF', 2 ] ] ],
-          '7': 
-           [ 'INSTANCE',
-             '',
-             [ 'x', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
-             [ 'y', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
-             [ '__proto__', [ 'REF', 2 ] ] ] } },
+          '7': [ 'INSTANCE', '', [ '__proto__', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: 'Vector',
        stack_to_render: 
@@ -688,7 +663,7 @@
           v3: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'Vector', 'v1', 'v2', 'v3' ],
        line: 3,
-       col: 9,
+       col: 2,
        event: 'step_line',
        heap: 
         { '1': 
@@ -726,12 +701,7 @@
              [ 'x', 2 ],
              [ 'y', 3 ],
              [ '__proto__', [ 'REF', 2 ] ] ],
-          '7': 
-           [ 'INSTANCE',
-             '',
-             [ 'x', 3 ],
-             [ 'y', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
-             [ '__proto__', [ 'REF', 2 ] ] ] } },
+          '7': [ 'INSTANCE', '', [ 'x', 3 ], [ '__proto__', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: 'Vector',
        stack_to_render: 
@@ -924,7 +894,7 @@
              [ 'x', 3 ],
              [ 'y', 5 ],
              [ '__proto__', [ 'REF', 2 ] ] ] } },
-     { stdout: '{ x: 3, y: 5 }\n',
+     { stdout: 'Vector { x: 3, y: 5 }\n',
        func_name: '',
        stack_to_render: [],
        globals: 

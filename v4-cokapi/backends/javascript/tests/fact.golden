@@ -54,7 +54,7 @@
        globals: { fact: [ 'REF', 1 ] },
        ordered_globals: [ 'fact' ],
        line: 6,
-       col: 15,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -120,7 +120,7 @@
        globals: { fact: [ 'REF', 1 ] },
        ordered_globals: [ 'fact' ],
        line: 6,
-       col: 15,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -204,7 +204,7 @@
        globals: { fact: [ 'REF', 1 ] },
        ordered_globals: [ 'fact' ],
        line: 6,
-       col: 15,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -519,7 +519,7 @@
        globals: { fact: [ 'REF', 1 ] },
        ordered_globals: [ 'fact' ],
        line: 6,
-       col: 15,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -585,7 +585,7 @@
        globals: { fact: [ 'REF', 1 ] },
        ordered_globals: [ 'fact' ],
        line: 6,
-       col: 15,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
@@ -669,7 +669,7 @@
        globals: { fact: [ 'REF', 1 ] },
        ordered_globals: [ 'fact' ],
        line: 6,
-       col: 15,
+       col: 4,
        event: 'step_line',
        heap: 
         { '1': 
