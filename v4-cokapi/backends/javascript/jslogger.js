@@ -3,7 +3,7 @@
 JS logger backend for Online Python Tutor runtime visualizer
 
 First version created on: 2015-01-02 by Philip Guo
-- originally made for Node v0.10.25
+- originally made for Node v0.10.25 (Jan 2015)
 - on 2016-05-01, ported over to also work on Node v6.0.0
 
 Run as:

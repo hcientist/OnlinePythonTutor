@@ -61,7 +61,7 @@
           v2: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'Vector', 'v1', 'v2' ],
        line: 2,
-       col: 9,
+       col: 2,
        event: 'call',
        heap: 
         { '1': 
@@ -77,12 +77,7 @@
              'function (other) {\n  return new Vector(this.x + other.x, this.y + other.y);\n}',
              null,
              null ],
-          '4': 
-           [ 'INSTANCE',
-             '',
-             [ 'x', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
-             [ 'y', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
-             [ '__proto__', [ 'REF', 2 ] ] ] } },
+          '4': [ 'INSTANCE', '', [ '__proto__', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: 'Vector',
        stack_to_render: 
@@ -101,7 +96,7 @@
           v2: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'Vector', 'v1', 'v2' ],
        line: 3,
-       col: 9,
+       col: 2,
        event: 'step_line',
        heap: 
         { '1': 
@@ -117,12 +112,7 @@
              'function (other) {\n  return new Vector(this.x + other.x, this.y + other.y);\n}',
              null,
              null ],
-          '4': 
-           [ 'INSTANCE',
-             '',
-             [ 'x', 1 ],
-             [ 'y', [ 'JS_SPECIAL_VAL', 'undefined' ] ],
-             [ '__proto__', [ 'REF', 2 ] ] ] } },
+          '4': [ 'INSTANCE', '', [ 'x', 1 ], [ '__proto__', [ 'REF', 2 ] ] ] } },
      { stdout: '',
        func_name: 'Vector',
        stack_to_render: 
@@ -212,7 +202,7 @@
           v2: [ 'JS_SPECIAL_VAL', 'undefined' ] },
        ordered_globals: [ 'Vector', 'v1', 'v2' ],
        line: 2,
-       col: 9,
+       col: 2,
        event: 'call',
        heap: 
         { '1': 
@@ -234,7 +224,8 @@
              [ 'x', 1 ],
              [ 'y', 2 ],
              [ '__proto__', [ 'REF', 2 ] ] ] } },
-     { stdout: '',
+     { exception_msg: 'TypeError: Cannot set property \'x\' of undefined',
+       stdout: '',
        func_name: 'Vector',
        stack_to_render: 
         [ { func_name: 'Vector',
@@ -249,87 +240,11 @@
        globals: 
         { Vector: [ 'REF', 1 ],
           v1: [ 'REF', 4 ],
-          v2: [ 'JS_SPECIAL_VAL', 'undefined' ],
-          x: 20 },
-       ordered_globals: [ 'Vector', 'v1', 'v2', 'x' ],
-       line: 3,
+          v2: [ 'JS_SPECIAL_VAL', 'undefined' ] },
+       ordered_globals: [ 'Vector', 'v1', 'v2' ],
+       line: 2,
        col: 9,
-       event: 'step_line',
-       heap: 
-        { '1': 
-           [ 'JS_FUNCTION',
-             'Vector',
-             'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ [ 'prototype', [ 'REF', 2 ] ] ],
-             null ],
-          '2': [ 'INSTANCE', '', [ 'plus', [ 'REF', 3 ] ] ],
-          '3': 
-           [ 'JS_FUNCTION',
-             '',
-             'function (other) {\n  return new Vector(this.x + other.x, this.y + other.y);\n}',
-             null,
-             null ],
-          '4': 
-           [ 'INSTANCE',
-             '',
-             [ 'x', 1 ],
-             [ 'y', 2 ],
-             [ '__proto__', [ 'REF', 2 ] ] ] } },
-     { stdout: '',
-       func_name: 'Vector',
-       stack_to_render: 
-        [ { func_name: 'Vector',
-            frame_id: 3,
-            is_highlighted: true,
-            is_parent: false,
-            is_zombie: false,
-            parent_frame_id_list: [],
-            unique_hash: 'Vector_f3',
-            ordered_varnames: [ 'x', 'y', '__return__' ],
-            encoded_locals: { x: 20, y: 30, __return__: [ 'JS_SPECIAL_VAL', 'undefined' ] } } ],
-       globals: 
-        { Vector: [ 'REF', 1 ],
-          v1: [ 'REF', 4 ],
-          v2: [ 'JS_SPECIAL_VAL', 'undefined' ],
-          x: 20,
-          y: 30 },
-       ordered_globals: [ 'Vector', 'v1', 'v2', 'x', 'y' ],
-       line: 3,
-       col: 0,
-       event: 'return',
-       heap: 
-        { '1': 
-           [ 'JS_FUNCTION',
-             'Vector',
-             'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}',
-             [ [ 'prototype', [ 'REF', 2 ] ] ],
-             null ],
-          '2': [ 'INSTANCE', '', [ 'plus', [ 'REF', 3 ] ] ],
-          '3': 
-           [ 'JS_FUNCTION',
-             '',
-             'function (other) {\n  return new Vector(this.x + other.x, this.y + other.y);\n}',
-             null,
-             null ],
-          '4': 
-           [ 'INSTANCE',
-             '',
-             [ 'x', 1 ],
-             [ 'y', 2 ],
-             [ '__proto__', [ 'REF', 2 ] ] ] } },
-     { stdout: '',
-       func_name: '',
-       stack_to_render: [],
-       globals: 
-        { Vector: [ 'REF', 1 ],
-          v1: [ 'REF', 4 ],
-          v2: [ 'JS_SPECIAL_VAL', 'undefined' ],
-          x: 20,
-          y: 30 },
-       ordered_globals: [ 'Vector', 'v1', 'v2', 'x', 'y' ],
-       line: 11,
-       col: 48,
-       event: 'step_line',
+       event: 'exception',
        heap: 
         { '1': 
            [ 'JS_FUNCTION',
