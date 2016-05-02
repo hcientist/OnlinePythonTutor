@@ -835,7 +835,7 @@ function listener(event, execState, eventData, data) {
 
     finalize();
     // GET OUTTA HERE so that the user's script doesn't keep infinite looping
-    process.exit();
+    process.exit(); // NB: on Node v6 this will CUT OFF the stdout output to terminal (but OK if redirected to file), ergh :(
   } else {
     assert(stepType !== undefined);
     execState.prepareStep(stepType); // set debugger to stop at next step
@@ -922,7 +922,7 @@ if (argv.typescript) {
     errorTraceEntry.line = firstErr.line;
     curTrace.push(errorTraceEntry);
     finalize();
-    process.exit(); // bail out early!!!
+    process.exit(); // bail out early!!! // NB: on Node v6 this will CUT OFF the stdout output to terminal (but OK if redirected to file), ergh :(
   } else {
     // strip off the final line, which should say something like:
     //   '//# sourceMappingURL=file.js.map'
@@ -949,6 +949,7 @@ try {
 catch (e) {
   // for some reason, the node debugger doesn't allow us to keep going
   // after an uncaught exception to, say, execute 'finally' clauses.
+  // NB: is this still true for Node v6.0? Maybe not.
   if (curTrace.length > 0) {
     // do a NOP for now ... it's weird to issue an uncaught_exception since
     // that's usually reserved for syntax errors
