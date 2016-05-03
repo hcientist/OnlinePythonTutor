@@ -3,8 +3,8 @@
 JS logger backend for Online Python Tutor runtime visualizer
 
 First version created on: 2015-01-02 by Philip Guo
-- originally made for Node v0.10.25 (Jan 2015)
-- on 2016-05-01, ported over to also work on Node v6.0.0
+- originally made for Node v0.10.25, which supports ES5 (Jan 2015)
+- on 2016-05-01, ported over to also work on Node v6.0.0, which supports ES6
 
 Run as:
 node --expose-debug-as=Debug jslogger.js
@@ -299,6 +299,9 @@ function encodeObject(o) {
   } else if (_.isString(o)) {
     return o;
   } else if (_.isBoolean(o) || _.isNull(o) || _.isUndefined(o)) {
+    return ['JS_SPECIAL_VAL', String(o)];
+  } else if (typeof o === 'symbol') {
+    // ES6 symbol
     return ['JS_SPECIAL_VAL', String(o)];
   } else {
     // render these as heap objects
