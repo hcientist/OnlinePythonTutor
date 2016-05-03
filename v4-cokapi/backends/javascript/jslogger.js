@@ -434,7 +434,7 @@ var prevStack = null;
 
 function listener(event, execState, eventData, data) {
   var stepType, i, n;
-  var ii, jj, sc, scopeType, scopeObj;
+  var ii, jj, sc, scopeType, scopeObj, scopeIdx;
   var f;
 
   // TODO: catch CompileError and maybe other events too
@@ -525,6 +525,8 @@ function listener(event, execState, eventData, data) {
     }
     prevStack = curStack;
 
+    //log('======');
+    //log('all_userscript_frames.length:', all_userscript_frames.length);
     var topFrame = all_userscript_frames[0];
     var topIsReturn = topFrame.isAtReturn();
     if (topIsReturn) {
@@ -602,67 +604,12 @@ function listener(event, execState, eventData, data) {
     curTraceEntry.event = logEventType;
     curTraceEntry.heap = getHeap();
 
-    // inspect only the top "global" frame to grab globals
-    for (ii = 0; ii < topFrame.scopeCount(); ii++) {
-      sc = topFrame.scope(ii);
-
-      /* From v8/src/debug/debug-scopes.h
-
-         enum ScopeType {
-           ScopeTypeGlobal = 0,
-           ScopeTypeLocal,
-           ScopeTypeWith,
-           ScopeTypeClosure,
-           ScopeTypeCatch,
-           ScopeTypeBlock,
-           ScopeTypeScript,
-           ScopeTypeModule
-         };
-
-         0: Global
-         1: Local
-         2: With
-         3: Closure
-         4: Catch
-         5: Block scope for ES6 let (only in Node v6)
-         6: Script (only in Node v6)
-         7: Module (only in Node v6)
-
-      */
-      scopeType = sc.details_.details_[0];
-      if (scopeType === 0) { // Global -- to handle global variables
-        scopeObj = sc.details_.details_[1];
-        var globalScopePairs = _.pairs(scopeObj);
-        for (jj = 0; jj < globalScopePairs.length; jj++) {
-          var globalVarname = globalScopePairs[jj][0];
-          var globalVal = globalScopePairs[jj][1];
-          if (!_.has(IGNORE_GLOBAL_VARS, globalVarname)) {
-            curTraceEntry.ordered_globals.push(globalVarname);
-            assert(!_.has(curTraceEntry.globals, globalVarname));
-            curTraceEntry.globals[globalVarname] = encodeObject(globalVal);
-          }
-        }
-      } else if (scopeType === 4) { // Catch -- to handle global exception blocks
-        scopeObj = sc.details_.details_[1];
-
-        var globalCatchScopePairs = _.pairs(scopeObj);
-        for (jj = 0; jj < globalCatchScopePairs.length; jj++) {
-          var globalCatchVarname = globalCatchScopePairs[jj][0];
-          var globalCatchVal = globalCatchScopePairs[jj][1];
-          curTraceEntry.ordered_globals.push(globalCatchVarname);
-          assert(!_.has(curTraceEntry.globals, globalCatchVarname));
-          curTraceEntry.globals[globalCatchVarname] = encodeObject(globalCatchVal);
-        }
-      } else if (scopeType === 5) { // Block -- handle global ES6 let-style blocks
-        // TODO: handle me. how do we uniquely identify this block? by
-        // line or other code location? look up GetNestedScopeChain in
-        // v8 source code
-      }
-    }
+    var hasLocalBlock = false;
 
     for (i = 0;
-         i < all_userscript_frames.length - 1; /* last frame is fake 'top-level' frame */
+         i < all_userscript_frames.length - 1; /* last frame is fake 'top-level' global frame */
          i++) {
+      //log('all_userscript_frames[' + i + ']');
       var traceStackEntry = {};
 
       f = all_userscript_frames[i];
@@ -758,10 +705,13 @@ function listener(event, execState, eventData, data) {
       }
       */
 
+      //log('  f.scopeCount()', f.scopeCount());
       var nParentScopes = 1;
-      for (ii = 0;
-           ii < f.scopeCount();
-           ii++) {
+      // trick: go through the scopes BACKWARDS so that nested blocks
+      // are displayed in order (outer blocks before inner blocks)
+      for (ii = f.scopeCount() - 1;
+           ii >= 0;
+           ii--) {
         sc = f.scope(ii);
 
         /* From v8/src/debug/debug-scopes.h
@@ -788,6 +738,7 @@ function listener(event, execState, eventData, data) {
 
         */
         scopeType = sc.details_.details_[0];
+        //log('    scopeType:', scopeType);
         var e;
         // DON'T grab globals again since it's redundant
         if (scopeType === 1 || scopeType === 4) { // Local or Catch (for exceptions)
@@ -796,6 +747,7 @@ function listener(event, execState, eventData, data) {
           scopeObj = sc.details_.details_[1];
           assert(_.isObject(scopeObj));
           var localScopePairs = _.pairs(scopeObj);
+          //log('Local vars:', util.inspect(scopeObj));
           for (jj = 0; jj < localScopePairs.length; jj++) {
             e = localScopePairs[jj];
             traceStackEntry.ordered_varnames.push(e[0]);
@@ -827,13 +779,27 @@ function listener(event, execState, eventData, data) {
           }
 
           nParentScopes++;
+        } else if (scopeType === 6) { // Script
+          // ignore since we'll extract the Script block data from the
+          // toplevel scope (see below); it should all be pointing to
+          // the same object anyhow
         } else if (scopeType === 5) { // block scope for ES6 let (?) only in Node v6
-          // TODO: handle me. how do we uniquely identify this block? by
-          // line or other code location? look up GetNestedScopeChain in
-          // v8 source code
+          scopeIdx = sc.scope_index_ + 1; // uniquely identify this block (+1 for human readability)
+          scopeObj = sc.details_.details_[1];
+          assert(_.isObject(scopeObj));
+          //log('Local block:', scopeIdx, util.inspect(sc, {showHidden: true, depth: null}));
+          hasLocalBlock = true;
+
+          var localScopePairs = _.pairs(scopeObj);
+          for (jj = 0; jj < localScopePairs.length; jj++) {
+            var mungedVarName = e[0] + ' (block ' + scopeIdx + ')';
+            e = localScopePairs[jj];
+            traceStackEntry.ordered_varnames.push(mungedVarName);
+            assert(!_.has(traceStackEntry.encoded_locals, mungedVarName));
+            traceStackEntry.encoded_locals[mungedVarName] = encodeObject(e[1]);
+          }
         } else {
           assert(scopeType === 0 ||
-                 scopeType === 6 ||
                  scopeType === 7);
         }
       }
@@ -849,6 +815,91 @@ function listener(event, execState, eventData, data) {
       curTraceEntry.stack_to_render.unshift(traceStackEntry);
     }
 
+    //log('  topFrame.scopeCount()', topFrame.scopeCount());
+    // finally, inspect only the top-level "global" frame to grab globals
+    for (ii = 0; ii < topFrame.scopeCount(); ii++) {
+      sc = topFrame.scope(ii);
+
+      /* From v8/src/debug/debug-scopes.h
+
+         enum ScopeType {
+           ScopeTypeGlobal = 0,
+           ScopeTypeLocal,
+           ScopeTypeWith,
+           ScopeTypeClosure,
+           ScopeTypeCatch,
+           ScopeTypeBlock,
+           ScopeTypeScript,
+           ScopeTypeModule
+         };
+
+         0: Global
+         1: Local
+         2: With
+         3: Closure
+         4: Catch
+         5: Block scope for ES6 let (only in Node v6)
+         6: Script (only in Node v6)
+         7: Module (only in Node v6)
+
+      */
+      scopeType = sc.details_.details_[0];
+      //log('    G scopeType:', scopeType);
+      if (scopeType === 0 || scopeType === 6) {
+        // 0: Global -- global variables declared with 'var' (not let/const)
+        // 6: Script -- top-level globals declared with 'let' and 'const'
+        //              (i.e., not within a nested block)
+        //
+        // I think it's fine to handle both scopes here since variable
+        // names should not collide. i.e., you can't declare a var and
+        // let/const variable with the SAME NAME in the top-level global scope
+        scopeObj = sc.details_.details_[1];
+        var globalScopePairs = _.pairs(scopeObj);
+        //log(scopeType, _.keys(scopeObj));
+        for (jj = 0; jj < globalScopePairs.length; jj++) {
+          var globalVarname = globalScopePairs[jj][0];
+          var globalVal = globalScopePairs[jj][1];
+          if (!_.has(IGNORE_GLOBAL_VARS, globalVarname)) {
+            curTraceEntry.ordered_globals.push(globalVarname);
+            assert(!_.has(curTraceEntry.globals, globalVarname));
+            curTraceEntry.globals[globalVarname] = encodeObject(globalVal);
+          }
+        }
+      } else if (scopeType === 4) { // Catch -- to handle global exception blocks
+        scopeObj = sc.details_.details_[1];
+
+        var globalCatchScopePairs = _.pairs(scopeObj);
+        for (jj = 0; jj < globalCatchScopePairs.length; jj++) {
+          var globalCatchVarname = globalCatchScopePairs[jj][0];
+          var globalCatchVal = globalCatchScopePairs[jj][1];
+          curTraceEntry.ordered_globals.push(globalCatchVarname);
+          assert(!_.has(curTraceEntry.globals, globalCatchVarname));
+          curTraceEntry.globals[globalCatchVarname] = encodeObject(globalCatchVal);
+        }
+      } else if (scopeType === 5 && !hasLocalBlock) { // Block -- handle global ES6 let-style blocks
+        // we do a hasLocalBlock check since for some WEIRD WEIRD WEIRD
+        // reason, if there's a block scope in a function's frame, then
+        // that block scope gets DUPLICATED in the global frame, which
+        // ends up being redundant and super confusing. hasLocalBlock is
+        // a hack to elide that problem.
+
+        scopeIdx = sc.scope_index_ + 1; // uniquely identify this block (+1 for human readability)
+        scopeObj = sc.details_.details_[1];
+        assert(_.isObject(scopeObj));
+        //log('Global block:', util.inspect(sc, {showHidden: true, depth: null}));
+        var globalScopePairs = _.pairs(scopeObj);
+        //log(scopeType, _.keys(scopeObj));
+        for (jj = 0; jj < globalScopePairs.length; jj++) {
+          var globalVarname = globalScopePairs[jj][0] + ' (block ' + scopeIdx + ')';
+          var globalVal = globalScopePairs[jj][1];
+          if (!_.has(IGNORE_GLOBAL_VARS, globalVarname)) {
+            curTraceEntry.ordered_globals.push(globalVarname);
+            assert(!_.has(curTraceEntry.globals, globalVarname));
+            curTraceEntry.globals[globalVarname] = encodeObject(globalVal);
+          }
+        }
+      }
+    }
 
     // check whether the top frame is currently returning, and if so,
     // update frameIdCalls. it's VERY IMPORTANT to do this update at
