@@ -281,6 +281,10 @@ function resetHeap() {
   encodedHeapObjects = {};
 }
 
+// for some weird reason, doing an 'instanceof' test doesn't work :/
+var canonicalSet = new Set();
+var canonicalMap = new Map();
+
 // modeled after:
 // https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/pg_encoder.py
 //
@@ -303,6 +307,20 @@ function encodeObject(o) {
   } else if (typeof o === 'symbol') {
     // ES6 symbol
     return ['JS_SPECIAL_VAL', String(o)];
+  } else if (o.__proto__.toString() === canonicalSet.__proto__.toString()) {
+    var ret = ['SET'];
+    // ES6 Set (TODO: add WeakSet)
+    for (let item of o) {
+      ret.push(encodeObject(item));
+    }
+    return ret;
+  } else if (o.__proto__.toString() === canonicalMap.__proto__.toString()) {
+    // ES6 Map (TODO: add WeakMap)
+    var ret = ['DICT'];
+    for (var [key, value] of o) {
+      ret.push([encodeObject(key), encodeObject(value)]);
+    }
+    return ret;
   } else {
     // render these as heap objects
 
