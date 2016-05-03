@@ -705,10 +705,22 @@ function listener(event, execState, eventData, data) {
       }
       */
 
-      //log('  f.scopeCount()', f.scopeCount());
+      // first calculate the total number of block scopes so that we can
+      // number them properly to maintain their identities (tricky hack)
+      var nBlockScopes = 0;
+      for (ii = 0; ii < f.scopeCount(); ii++) {
+        sc = f.scope(ii);
+        scopeType = sc.details_.details_[0];
+        if (scopeType === 5) {
+          nBlockScopes++;
+        }
+      }
+
+      //log('  f.scopeCount()', f.scopeCount(), ', nBlockScopes:', nBlockScopes);
+
       var nParentScopes = 1;
-      // trick: go through the scopes BACKWARDS so that nested blocks
-      // are displayed in order (outer blocks before inner blocks)
+      // TODO: for some weird reason, it doesn't work when I iterate
+      // forwards, strange
       for (ii = f.scopeCount() - 1;
            ii >= 0;
            ii--) {
@@ -738,7 +750,7 @@ function listener(event, execState, eventData, data) {
 
         */
         scopeType = sc.details_.details_[0];
-        //log('    scopeType:', scopeType);
+        //log('    scopeType:', scopeType, ii);
         var e;
         // DON'T grab globals again since it's redundant
         if (scopeType === 1 || scopeType === 4) { // Local or Catch (for exceptions)
@@ -784,7 +796,9 @@ function listener(event, execState, eventData, data) {
           // toplevel scope (see below); it should all be pointing to
           // the same object anyhow
         } else if (scopeType === 5) { // block scope for ES6 let (?) only in Node v6
-          scopeIdx = sc.scope_index_ + 1; // uniquely identify this block (+1 for human readability)
+          // uniquely identify this block (need to subtract from nBlockScopes
+          // to get the right number when there are multiple nested blocks (tricky weird!)
+          scopeIdx = nBlockScopes - sc.scope_index_;
           scopeObj = sc.details_.details_[1];
           assert(_.isObject(scopeObj));
           //log('Local block:', scopeIdx, util.inspect(sc, {showHidden: true, depth: null}));
@@ -815,9 +829,23 @@ function listener(event, execState, eventData, data) {
       curTraceEntry.stack_to_render.unshift(traceStackEntry);
     }
 
+    // first calculate the total number of block scopes so that we can
+    // number them properly to maintain their identities (tricky hack)
+    var nGlobalBlockScopes = 0;
+    for (ii = 0; ii < topFrame.scopeCount(); ii++) {
+      sc = topFrame.scope(ii);
+      scopeType = sc.details_.details_[0];
+      if (scopeType === 5) {
+        nGlobalBlockScopes++;
+      }
+    }
+
     //log('  topFrame.scopeCount()', topFrame.scopeCount());
     // finally, inspect only the top-level "global" frame to grab globals
-    for (ii = 0; ii < topFrame.scopeCount(); ii++) {
+    // go backwards to make things a bit more human-readable
+    for (ii = topFrame.scopeCount() - 1;
+         ii >= 0;
+         ii--) {
       sc = topFrame.scope(ii);
 
       /* From v8/src/debug/debug-scopes.h
@@ -883,7 +911,9 @@ function listener(event, execState, eventData, data) {
         // ends up being redundant and super confusing. hasLocalBlock is
         // a hack to elide that problem.
 
-        scopeIdx = sc.scope_index_ + 1; // uniquely identify this block (+1 for human readability)
+        // uniquely identify this block (need to subtract from nGlobalBlockScopes
+        // to get the right number when there are multiple nested blocks (tricky weird!)
+        scopeIdx = nGlobalBlockScopes - sc.scope_index_;
         scopeObj = sc.details_.details_[1];
         assert(_.isObject(scopeObj));
         //log('Global block:', util.inspect(sc, {showHidden: true, depth: null}));
