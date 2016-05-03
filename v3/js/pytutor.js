@@ -3555,6 +3555,14 @@ ExecutionVisualizer.prototype.getRealLabel = function(label) {
     }
   }
 
+  if (this.params.lang === 'js') {
+    if (label === 'dict') {
+      return 'Map';
+    } else if (label === 'set') {
+      return 'Set';
+    }
+  }
+
   if (this.params.lang === 'ruby') {
     if (label === 'dict') {
       return 'hash';
