@@ -20,6 +20,6 @@ diffall:
 	jshint jslogger.js && python golden_test.py --diffall
 
 deps:
-	npm install eval underscore esprima minimist source-map
+	npm install eval underscore minimist source-map
 	sudo npm install typescript # ugh need sudo
 	#sudo npm link typescript # (maybe needed so that require('typescript') will work
