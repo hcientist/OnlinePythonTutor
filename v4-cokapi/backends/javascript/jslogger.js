@@ -307,20 +307,6 @@ function encodeObject(o) {
   } else if (typeof o === 'symbol') {
     // ES6 symbol
     return ['JS_SPECIAL_VAL', String(o)];
-  } else if (o.__proto__.toString() === canonicalSet.__proto__.toString()) {
-    var ret = ['SET'];
-    // ES6 Set (TODO: add WeakSet)
-    for (let item of o) {
-      ret.push(encodeObject(item));
-    }
-    return ret;
-  } else if (o.__proto__.toString() === canonicalMap.__proto__.toString()) {
-    // ES6 Map (TODO: add WeakMap)
-    var ret = ['DICT'];
-    for (var [key, value] of o) {
-      ret.push([encodeObject(key), encodeObject(value)]);
-    }
-    return ret;
   } else {
     // render these as heap objects
 
@@ -412,6 +398,18 @@ function bar(x) {
         newEncodedObj.push('LIST');
         for (i = 0; i < o.length; i++) {
           newEncodedObj.push(encodeObject(o[i]));
+        }
+      } else if (o.__proto__.toString() === canonicalSet.__proto__.toString()) { // dunno why 'instanceof' doesn't work :(
+        newEncodedObj.push('SET');
+        // ES6 Set (TODO: add WeakSet)
+        for (let item of o) {
+          newEncodedObj.push(encodeObject(item));
+        }
+      } else if (o.__proto__.toString() === canonicalMap.__proto__.toString()) { // dunno why 'instanceof' doesn't work :(
+        // ES6 Map (TODO: add WeakMap)
+        newEncodedObj.push('DICT'); // use the Python 'DICT' type since it's close enough; adjust display in frontend
+        for (let [key, value] of o) {
+          newEncodedObj.push([encodeObject(key), encodeObject(value)]);
         }
       } else {
         // a true object
