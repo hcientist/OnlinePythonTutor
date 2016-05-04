@@ -149,7 +149,8 @@ function getBaseFrontendOptionsObj() {
 function executeCode(forceStartingInstr, forceRawInputLst) {
   var selectorVal = $('#pythonVersionSelector').val();
   if (selectorVal !== '2' && selectorVal !== '3') {
-    alert("Sorry, the " + selectorVal + " server is currently down for maintenance :( Please try again tomorrow.");
+    alert("Sorry, the " + selectorVal + " server is currently down for maintenance :( Please try again tomorrow or visualize some Python code.");
+    return;
   }
 
   if (forceRawInputLst !== undefined) {
