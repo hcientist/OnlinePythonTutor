@@ -63,9 +63,9 @@ var JAVA_TIMEOUT_SECS = 15; // the Java backend is SUPER SLOW :/
 
 // bind() res and useJSONP before using
 function postExecHandler(res, useJSONP, err, stdout, stderr) {
+  var errTrace;
   if (err) {
     console.log('postExecHandler', util.inspect(err, {depth: null}));
-    var errTrace;
     if (err.killed) {
       // timeout!
       errTrace = {code: '', trace: [{'event': 'uncaught_exception',

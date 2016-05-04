@@ -18,7 +18,6 @@ MAINTAINER Philip Guo <philip@pgbovine.net>
 #
 # lots of packages required especially to build ruby and to use the compiled version of 'gem'
 RUN apt-get update && apt-get install -y \
-  nodejs \
   openjdk-7-jdk \
   python \
   build-essential \
@@ -26,10 +25,6 @@ RUN apt-get update && apt-get install -y \
   zlib1g \
   zlib1g-dev \
   libssl-dev
-
-
-# ugh ubuntu calls node 'nodejs'
-RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 
 # Ruby backend: pretty complex setup since we need to compile and
@@ -78,7 +73,7 @@ RUN chmod a+x /tmp/run-java-backend.sh
 COPY backends/ruby/pg_logger.rb /tmp/ruby/
 RUN cd /tmp/ruby && ln -s ruby-2.2.2-custom-OPT/bin/ruby
 
-# To properly run Ruby tests, become root:
+# To properly run Ruby tests, become root since it needs to write files (maybe ?):
 # $ docker run -t -i --rm --net=none --cap-drop all pgbovine/cokapi:v1 bash
 #COPY backends/ruby/golden_test.py /tmp/ruby/
 #RUN mkdir /tmp/ruby/tests

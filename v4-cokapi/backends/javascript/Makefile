@@ -19,7 +19,7 @@ test:
 diffall:
 	jshint jslogger.js && python golden_test.py --diffall
 
+# run this before creating any Docker containers
 deps:
-	npm install eval underscore minimist source-map
-	sudo npm install typescript # ugh need sudo
-	#sudo npm link typescript # (maybe needed so that require('typescript') will work
+	npm install eval underscore minimist source-map typescript
+	tar -xvf node-v6.0.0-linux-x64.tar.xz
