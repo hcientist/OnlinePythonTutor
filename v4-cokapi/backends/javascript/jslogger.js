@@ -1090,7 +1090,13 @@ try {
   debug.setBreakOnException(); // for exception handling
   //debug.setBreakOnUncaughtException(); // doesn't seem to do anything :/
 
-  _eval(wrappedCod, 'userscript.js', {} /* scope */, true /* includeGlobals */);
+  var overrideScope = {
+    setInterval: () => {throw 'Error: setInterval() is not supported by Python Tutor'},
+    setTimeout: () => {throw 'Error: setTimeout() is not supported by Python Tutor'},
+    setImmediate: () => {throw 'Error: setImmediate() is not supported by Python Tutor'},
+  }
+
+  _eval(wrappedCod, 'userscript.js', overrideScope /* scope */, true /* includeGlobals */);
 }
 catch (e) {
   // for some reason, the node debugger doesn't allow us to keep going
