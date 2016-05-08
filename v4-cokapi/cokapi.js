@@ -59,6 +59,7 @@ var PYTHON3_BIN = '/usr/local/bin/python3.3';
 
 var TIMEOUT_SECS = 3;
 var JAVA_TIMEOUT_SECS = 15; // the Java backend is SUPER SLOW :/
+var CPP_TIMEOUT_SECS = 15; // the C/C++ backend is also SUPER SLOW :/
 
 
 // bind() res and useJSONP before using
@@ -240,6 +241,42 @@ function exec_ruby_handler(useJSONP /* use bind first */, req, res) {
                           killSignal: 'SIGINT'},
                          postExecHandler.bind(null, res, useJSONP));
 }
+
+app.get('/exec_c', exec_cpp_handler.bind(null, false, false));
+app.get('/exec_c_jsonp', exec_cpp_handler.bind(null, false, true));
+app.get('/exec_cpp', exec_cpp_handler.bind(null, true, false));
+app.get('/exec_cpp_jsonp', exec_cpp_handler.bind(null, true, true));
+
+function exec_cpp_handler(useCPP /* use bind first */, useJSONP /* use bind first */, req, res) {
+  var usrCod = req.query.user_script;
+
+  var exeFile;
+  var args = [];
+
+  if (USE_DOCKER_SANDBOX) {
+    // this needs to match the docker setup in Dockerfile
+    exeFile = '/usr/bin/docker'; // absolute path to docker executable
+    args.push('run', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/opt-cpp-backend:v1',
+              '/tmp/opt-cpp-backend/run-cpp-backend.sh',
+              usrCod,
+              useCPP ? 'cpp' : 'c');
+  } else {
+    assert(false);
+    // must use Docker
+  }
+
+  child_process.execFile(exeFile, args,
+                         {timeout: CPP_TIMEOUT_SECS * 1000 /* milliseconds */,
+                          maxBuffer: 5000 * 1024 /* 5MB data max */,
+                          // make SURE docker gets the kill signal;
+                          // this signal seems to allow docker to clean
+                          // up after itself to --rm the container, but
+                          // double-check with 'docker ps -a'
+                          killSignal: 'SIGINT'},
+                         postExecHandler.bind(null, res, useJSONP));
+}
+
+
 
 function executePython(pyVer, req, res) {
   var parsedOptions = JSON.parse(req.query.options_json);
