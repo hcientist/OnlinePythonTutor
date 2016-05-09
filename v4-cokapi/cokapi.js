@@ -57,8 +57,11 @@ var NODE_BIN = '/usr/local/bin/node';
 var PYTHON2_BIN = '/usr/bin/python';
 var PYTHON3_BIN = '/usr/local/bin/python3.3';
 
-var TIMEOUT_SECS = 3;
+var TIMEOUT_SECS = 5;
 var JAVA_TIMEOUT_SECS = 15; // the Java backend is SUPER SLOW :/
+var CPP_TIMEOUT_SECS = 15; // the C/C++ backend is also SUPER SLOW :/
+
+var MAX_BUFFER_SIZE = 10 * 1024 * 1024;
 
 
 // bind() res and useJSONP before using
@@ -149,7 +152,7 @@ function exec_js_handler(useJSONP /* use bind first */, isTypescript /* use bind
 
   child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
-                          maxBuffer: 5000 * 1024 /* 5MB data max */,
+                          maxBuffer: MAX_BUFFER_SIZE,
                           // make SURE docker gets the kill signal;
                           // this signal seems to allow docker to clean
                           // up after itself to --rm the container, but
@@ -199,7 +202,7 @@ function exec_java_handler(useJSONP /* use bind first */, req, res) {
 
   child_process.execFile(exeFile, args,
                          {timeout: JAVA_TIMEOUT_SECS * 1000 /* milliseconds */,
-                          maxBuffer: 5000 * 1024 /* 10MB data max */,
+                          maxBuffer: MAX_BUFFER_SIZE,
                           // make SURE docker gets the kill signal;
                           // this signal seems to allow docker to clean
                           // up after itself to --rm the container, but
@@ -232,7 +235,7 @@ function exec_ruby_handler(useJSONP /* use bind first */, req, res) {
 
   child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
-                          maxBuffer: 5000 * 1024 /* 5MB data max */,
+                          maxBuffer: MAX_BUFFER_SIZE,
                           // make SURE docker gets the kill signal;
                           // this signal seems to allow docker to clean
                           // up after itself to --rm the container, but
@@ -240,6 +243,42 @@ function exec_ruby_handler(useJSONP /* use bind first */, req, res) {
                           killSignal: 'SIGINT'},
                          postExecHandler.bind(null, res, useJSONP));
 }
+
+app.get('/exec_c', exec_cpp_handler.bind(null, false, false));
+app.get('/exec_c_jsonp', exec_cpp_handler.bind(null, false, true));
+app.get('/exec_cpp', exec_cpp_handler.bind(null, true, false));
+app.get('/exec_cpp_jsonp', exec_cpp_handler.bind(null, true, true));
+
+function exec_cpp_handler(useCPP /* use bind first */, useJSONP /* use bind first */, req, res) {
+  var usrCod = req.query.user_script;
+
+  var exeFile;
+  var args = [];
+
+  if (USE_DOCKER_SANDBOX) {
+    // this needs to match the docker setup in Dockerfile
+    exeFile = '/usr/bin/docker'; // absolute path to docker executable
+    args.push('run', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/opt-cpp-backend:v1',
+              '/tmp/opt-cpp-backend/run-cpp-backend.sh',
+              usrCod,
+              useCPP ? 'cpp' : 'c');
+  } else {
+    assert(false);
+    // must use Docker
+  }
+
+  child_process.execFile(exeFile, args,
+                         {timeout: CPP_TIMEOUT_SECS * 1000 /* milliseconds */,
+                          maxBuffer: MAX_BUFFER_SIZE,
+                          // make SURE docker gets the kill signal;
+                          // this signal seems to allow docker to clean
+                          // up after itself to --rm the container, but
+                          // double-check with 'docker ps -a'
+                          killSignal: 'SIGINT'},
+                         postExecHandler.bind(null, res, useJSONP));
+}
+
+
 
 function executePython(pyVer, req, res) {
   var parsedOptions = JSON.parse(req.query.options_json);
@@ -277,7 +316,7 @@ function executePython(pyVer, req, res) {
 
   child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
-                          maxBuffer: 5000 * 1024 /* 5MB data max */,
+                          maxBuffer: MAX_BUFFER_SIZE,
                           // make SURE docker gets the kill signal;
                           // this signal seems to allow docker to clean
                           // up after itself to --rm the container, but

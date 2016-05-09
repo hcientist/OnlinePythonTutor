@@ -3,6 +3,9 @@
 all:
 	jshint server.js && node server.js --host 0.0.0.0 --port 30035
 
+deps:
+	npm install websocket optimist
+
 prod:
 	#jshint server.js && forever -l togetherjs_server.log server.js --host 0.0.0.0 --port 30035
 	# on Linode:

@@ -87,6 +87,13 @@ TypeScript TODOs:
 /* global Debug */
 "use strict";
 
+// super weird -- need eval@0.1.0 or else line numbers don't show up on syntax errors!
+// A HA! see this option in the vm module (https://nodejs.org/api/vm.html),
+// which the new version of eval turns to false:
+//   displayErrors: if true, on error, attach the line of code that
+//   caused the error to the stack trace. Applies only to syntax errors
+//   compiling the code; errors while running the code are controlled by
+//   the options to the script's methods.
 var _eval = require('eval');
 var util = require('util');
 var fs = require('fs');
@@ -1083,7 +1090,13 @@ try {
   debug.setBreakOnException(); // for exception handling
   //debug.setBreakOnUncaughtException(); // doesn't seem to do anything :/
 
-  _eval(wrappedCod, 'userscript.js', {} /* scope */, true /* includeGlobals */);
+  var overrideScope = {
+    setInterval: () => {throw 'Error: setInterval() is not supported by Python Tutor'},
+    setTimeout: () => {throw 'Error: setTimeout() is not supported by Python Tutor'},
+    setImmediate: () => {throw 'Error: setImmediate() is not supported by Python Tutor'},
+  }
+
+  _eval(wrappedCod, 'userscript.js', overrideScope /* scope */, true /* includeGlobals */);
 }
 catch (e) {
   // for some reason, the node debugger doesn't allow us to keep going
