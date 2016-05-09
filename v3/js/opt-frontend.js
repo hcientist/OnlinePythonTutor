@@ -421,6 +421,8 @@ function experimentalPopUpSyntaxErrorSurvey() {
         mod = 'typescript';
       } else if (lang === 'ruby') {
         mod = 'ruby';
+      } else if (lang === 'c' || lang === 'cpp') {
+        mod = 'c_cpp';
       }
       s.setMode("ace/mode/" + mod);
 

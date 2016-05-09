@@ -290,6 +290,61 @@ div.ExecutionVisualizer table.listTbl td.listElt {
   border-left: 1px solid #555555; /* must match td.listHeader border */
 }
 
+
+/* for C and C++ visualizations */
+
+/* make this slightly more compact than listTbl since arrays can be
+   rendered on the stack so we want to kinda conserve space */
+div.ExecutionVisualizer table.cArrayTbl {
+  background-color: #ffffc6;
+  padding-left: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 8pt;
+  color: #777;
+  text-align: left;
+  border: 0px solid black;
+  border-spacing: 0px;
+}
+
+div.ExecutionVisualizer table.cArrayTbl td.cArrayHeader {
+  padding-left: 5px;
+  padding-top: 0px;
+  padding-bottom: 2px;
+  font-size: 6pt;
+  color: #777;
+  text-align: left;
+  border-bottom: 0px solid black; /* override whatever we're nested in */
+}
+
+div.ExecutionVisualizer table.cArrayTbl td.cArrayElt {
+  border-bottom: 1px solid #888;
+  border-left: 1px solid #888;
+  border-top: 0px solid black;
+  color: black;
+
+  padding-top: 2px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 4px;
+  vertical-align: bottom;
+}
+
+div.ExecutionVisualizer .cdataHeader {
+  font-size: 6pt;
+  color: #555;
+  padding-bottom: 2px;
+}
+
+div.ExecutionVisualizer .cdataElt {
+  font-size: 10pt;
+}
+
+div.ExecutionVisualizer .cdataUninit {
+  color: #888;
+}
+
+
 div.ExecutionVisualizer table.tupleTbl td.tupleElt {
   border-left: 1px solid #555555; /* must match td.tupleHeader border */
 }

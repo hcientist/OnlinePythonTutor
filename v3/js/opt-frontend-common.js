@@ -58,6 +58,8 @@ var js_backend_script = 'web_exec_js.py';
 var ts_backend_script = 'web_exec_ts.py';
 var java_backend_script = 'web_exec_java.py';
 var ruby_backend_script = 'web_exec_ruby.py';
+var c_backend_script = 'web_exec_c.py';
+var cpp_backend_script = 'web_exec_cpp.py';
 
 // this is customized to my own Linode server:
 // these are the REAL endpoints, accessed via jsonp. code is in ../../v4-cokapi/
@@ -67,11 +69,15 @@ if (window.location.protocol === 'https:') {
   var TS_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_ts_jsonp';
   var JAVA_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_java_jsonp';
   var RUBY_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_ruby_jsonp';
+  var C_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_c_jsonp';
+  var CPP_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_cpp_jsonp';
 } else {
   var JS_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_js_jsonp'; // for deployment
   var TS_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_ts_jsonp'; // for deployment
   var JAVA_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_java_jsonp'; // for deployment
   var RUBY_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_ruby_jsonp'; // for deployment
+  var C_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_c_jsonp'; // for deployment
+  var CPP_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_cpp_jsonp'; // for deployment
 }
 
 
@@ -91,6 +97,10 @@ function langToBackendScript(lang) {
       backend_script = ruby_backend_script;
   } else if (lang == 'java') {
       backend_script = java_backend_script;
+  } else if (lang == 'c') {
+      backend_script = c_backend_script;
+  } else if (lang == 'cpp') {
+      backend_script = cpp_backend_script;
   }
   assert(backend_script);
   return backend_script;
@@ -231,6 +241,12 @@ function setAceMode() {
     }
   } else if (selectorVal === 'ruby') {
     mod = 'ruby';
+    // if it's just a Java skeleton, then reset to blank:
+    if (pyInputGetValue() === JAVA_BLANK_TEMPLATE) {
+      pyInputSetValue('');
+    }
+  } else if (selectorVal === 'c' || selectorVal == 'cpp') {
+    mod = 'c_cpp';
     // if it's just a Java skeleton, then reset to blank:
     if (pyInputGetValue() === JAVA_BLANK_TEMPLATE) {
       pyInputSetValue('');
@@ -1592,12 +1608,20 @@ function executeCodeAndCreateViz(codeToExec,
       frontendOptionsObj.lang = 'java';
       frontendOptionsObj.disableHeapNesting = true; // never nest Java objects, seems like a good default
       jsonp_endpoint = JAVA_JSONP_ENDPOINT;
+    } else if (backendScript === c_backend_script) {
+      frontendOptionsObj.lang = 'c';
+      jsonp_endpoint = C_JSONP_ENDPOINT;
+    } else if (backendScript === cpp_backend_script) {
+      frontendOptionsObj.lang = 'cpp';
+      jsonp_endpoint = CPP_JSONP_ENDPOINT;
     }
 
     if (backendScript === js_backend_script ||
         backendScript === ts_backend_script ||
         backendScript === java_backend_script ||
-        backendScript === ruby_backend_script) {
+        backendScript === ruby_backend_script ||
+        backendScript === c_backend_script ||
+        backendScript === cpp_backend_script) {
       // hack! should just be a dummy script for logging only
       $.get(backendScript,
             {user_script : codeToExec,
