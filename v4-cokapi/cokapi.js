@@ -259,7 +259,8 @@ function exec_cpp_handler(useCPP /* use bind first */, useJSONP /* use bind firs
     // this needs to match the docker setup in Dockerfile
     exeFile = '/usr/bin/docker'; // absolute path to docker executable
     args.push('run', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/opt-cpp-backend:v1',
-              '/tmp/opt-cpp-backend/run-cpp-backend.sh',
+              'python',
+              '/tmp/opt-cpp-backend/run_cpp_backend.py',
               usrCod,
               useCPP ? 'cpp' : 'c');
   } else {
