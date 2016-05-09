@@ -50,7 +50,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /* Coding gotchas:
 
-- NEVER use naked $(__) or d3.select(__) statements to select DOM elements.
+- NEVER use raw $(__) or d3.select(__) statements to select DOM elements.
 
   ALWAYS use myViz.domRoot or myViz.domRootD3 for jQuery and D3, respectively.
 
@@ -113,8 +113,9 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   hideCode - hide the code display and show only the data structure viz
 //   tabularView - render a tabular view of ALL steps at once (EXPERIMENTAL)
 //   lang - to render labels in a style appropriate for other languages,
-//          and to display the proper language in langDisplayDiv
-//          e.g., 'py2' for Python 2, 'py3' for Python 3, 'js' for JavaScript, 'java' for Java, 'ts' for TypeScript, 'ruby' for Ruby
+//          and to display the proper language in langDisplayDiv:
+//          'py2' for Python 2, 'py3' for Python 3, 'js' for JavaScript, 'java' for Java,
+//          'ts' for TypeScript, 'ruby' for Ruby, 'c' for C, 'cpp' for C++
 //          [default is Python-style labels]
 //   debugMode - some extra debugging printouts
 function ExecutionVisualizer(domRootID, dat, params) {
@@ -224,7 +225,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
 
 
   // the root elements for jQuery and D3 selections, respectively.
-  // ALWAYS use these and never use naked $(__) or d3.select(__)
+  // ALWAYS use these and never use raw $(__) or d3.select(__)
   this.domRoot = $('#' + domRootID);
   this.domRoot.data("vis",this);  // bnm store a reference to this as div data for use later.
   this.domRootD3 = d3.select('#' + domRootID);
@@ -524,6 +525,10 @@ ExecutionVisualizer.prototype.render = function() {
       pyVer = 'java';
     } else if (this.params.lang === 'py3') {
       pyVer = '3';
+    } else if (this.params.lang === 'c') {
+      pyVer = 'c';
+    } else if (this.params.lang === 'cpp') {
+      pyVer = 'cpp';
     }
 
     var urlStr = $.param.fragment(this.params.editCodeBaseURL,
@@ -550,6 +555,10 @@ ExecutionVisualizer.prototype.render = function() {
       this.domRoot.find('#langDisplayDiv').html('Python 2.7');
     } else if (this.params.lang === 'py3') {
       this.domRoot.find('#langDisplayDiv').html('Python 3.3');
+    } else if (this.params.lang === 'c') {
+      this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, experimental)');
+    } else if (this.params.lang === 'cpp') {
+      this.domRoot.find('#langDisplayDiv').html('C++ (g++ 4.8, experimental)');
     } else {
       this.domRoot.find('#langDisplayDiv').hide();
     }
@@ -1457,6 +1466,7 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
 
   if (myViz.params.debugMode) {
     console.log('updateOutputFull', curEntry);
+    myViz.debugMode = true;
   }
 
   // render VCR controls:
@@ -1906,6 +1916,15 @@ ExecutionVisualizer.prototype.renderStep = function(step) {
 }
 
 
+// is this visualizer in C or C++ mode? the eventual goal is to remove
+// this special-case kludge check altogether and have the entire
+// codebase be unified. but for now, keep C/C++ separate because I don't
+// want to risk screwing up the visualizations for the other languages
+ExecutionVisualizer.prototype.isCppMode = function() {
+  return (this.params.lang === 'c' || this.params.lang === 'cpp');
+}
+
+
 // Pre-compute the layout of top-level heap objects for ALL execution
 // points as soon as a trace is first loaded. The reason why we want to
 // do this is so that when the user steps through execution points, the
@@ -1984,7 +2003,16 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
       // heuristic for laying out 1-D linked data structures: check for enclosing elements that are
       // structurally identical and then lay them out as siblings in the same "row"
       var heapObj = curEntry.heap[id];
-      assert(heapObj);
+
+      if (myViz.isCppMode()) {
+        // soften this assumption since C-style pointers might not point
+        // to the heap; they can point to any piece of data!
+        if (!heapObj) {
+          return;
+        }
+      } else {
+        assert(heapObj);
+      }
 
       if (isLinearObj(heapObj)) {
         $.each(heapObj, function(ind, child) {
@@ -2056,6 +2084,9 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
             }
           }
         });
+      }
+      else if ((heapObj[0] == 'C_ARRAY') || (heapObj[0] == 'C_STRUCT')) {
+        updateCurLayoutAndRecurse(heapObj);
       }
     }
 
@@ -2160,13 +2191,45 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
     }
 
 
+    function updateCurLayoutAndRecurse(elt) {
+      if (!elt) return; // early bail out
+
+      if (isHeapRef(elt, curEntry.heap)) {
+        var id = getRefID(elt);
+        updateCurLayout(id, null, []);
+      }
+      recurseIntoCStructArray(elt);
+    }
+
+    // traverse inside of C structs and arrays to find whether they
+    // (recursively) contain any references to heap objects within
+    // themselves. be able to handle arbitrary nesting!
+    function recurseIntoCStructArray(val) {
+      if (val[0] === 'C_ARRAY') {
+        $.each(val, function(ind, elt) {
+          if (ind < 2) return;
+          updateCurLayoutAndRecurse(elt);
+        });
+      } else if (val[0] === 'C_STRUCT') {
+        $.each(val, function(ind, kvPair) {
+          if (ind < 3) return;
+          updateCurLayoutAndRecurse(kvPair[1]);
+        });
+      }
+    }
+
     // iterate through all globals and ordered stack frames and call updateCurLayout
     $.each(curEntry.ordered_globals, function(i, varname) {
       var val = curEntry.globals[varname];
       if (val !== undefined) { // might not be defined at this line, which is OKAY!
-        if (!myViz.isPrimitiveType(val)) {
-          var id = getRefID(val);
-          updateCurLayout(id, null, []);
+        // TODO: try to unify this behavior between C/C++ and other languages:
+        if (myViz.isCppMode()) {
+          updateCurLayoutAndRecurse(val);
+        } else {
+          if (!myViz.isPrimitiveType(val)) {
+            var id = getRefID(val);
+            updateCurLayout(id, null, []);
+          }
         }
       }
     });
@@ -2174,10 +2237,14 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
     $.each(curEntry.stack_to_render, function(i, frame) {
       $.each(frame.ordered_varnames, function(xxx, varname) {
         var val = frame.encoded_locals[varname];
-
-        if (!myViz.isPrimitiveType(val)) {
-          var id = getRefID(val);
-          updateCurLayout(id, null, []);
+        // TODO: try to unify this behavior between C/C++ and other languages:
+        if (myViz.isCppMode()) {
+          updateCurLayoutAndRecurse(val);
+        } else {
+          if (!myViz.isPrimitiveType(val)) {
+            var id = getRefID(val);
+            updateCurLayout(id, null, []);
+          }
         }
       });
     });
@@ -2348,7 +2415,16 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
       // TODO: add a smoother transition in the future
       // Right now, just delete the old element and render a new one in its place
       $(this).empty();
-      myViz.renderCompoundObject(objID, myViz.curInstr, $(this), true);
+
+      if (myViz.isCppMode()) {
+        // TODO: why might this be undefined?!? because the object
+        // disappeared from the heap all of a sudden?!?
+        if (curEntry.heap[objID] !== undefined) {
+          myViz.renderCompoundObject(objID, myViz.curInstr, $(this), true);
+        }
+      } else {
+        myViz.renderCompoundObject(objID, myViz.curInstr, $(this), true);
+      }
     });
 
   // delete a toplevelHeapObject
@@ -2466,6 +2542,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
         var val = curEntry.globals[varname];
         if (myViz.isPrimitiveType(val)) {
           myViz.renderPrimitiveObject(val, $(this));
+        }
+        else if (val[0] === 'C_STRUCT' || val[0] === 'C_ARRAY') {
+          // C structs and arrays can be inlined in frames
+          myViz.renderCStructArray(val, myViz.curInstr, $(this));
         }
         else {
           var heapObjID = myViz.generateHeapObjID(getRefID(val), myViz.curInstr);
@@ -2641,7 +2721,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
         // this hack ... http://bost.ocks.org/mike/nest/
         return frame.ordered_varnames.map(function(varname) {return {varname:varname, frame:frame};});
       },
-      function(d) {return d.varname;} // use variable name as key
+      function(d) {
+        // TODO: why would d ever be null?!? weird
+        if (d) {
+          return d.varname; // use variable name as key
+        }
+      }
     );
 
   stackVarTable
@@ -2690,6 +2775,10 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
         var val = frame.encoded_locals[varname];
         if (myViz.isPrimitiveType(val)) {
           myViz.renderPrimitiveObject(val, $(this));
+        }
+        else if (val[0] === 'C_STRUCT' || val[0] === 'C_ARRAY') {
+          // C structs and arrays can be inlined in frames
+          myViz.renderCStructArray(val, myViz.curInstr, $(this));
         }
         else {
           var heapObjID = myViz.generateHeapObjID(getRefID(val), myViz.curInstr);
@@ -2875,7 +2964,18 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
 
   // use jsPlumb scopes to keep the different kinds of pointers separated
   function renderVarValueConnector(varID, valueID) {
-    myViz.jsPlumbInstance.connect({source: varID, target: valueID, scope: 'varValuePointer'});
+    // special-case handling for C/C++ pointers, just to keep from rocking
+    // the boat on my existing (battle-tested) code
+    if (myViz.isCppMode()) {
+      if (myViz.domRoot.find('#' + valueID).length) {
+        myViz.jsPlumbInstance.connect({source: varID, target: valueID, scope: 'varValuePointer'});
+      } else {
+        // pointer isn't pointing to anything valid; put a poo emoji here
+        myViz.domRoot.find('#' + varID).html('\uD83D\uDCA9' /* pile of poo emoji */);
+      }
+    } else {
+      myViz.jsPlumbInstance.connect({source: varID, target: valueID, scope: 'varValuePointer'});
+    }
   }
 
 
@@ -2908,7 +3008,13 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
 
   if (!myViz.textualMemoryLabels) {
     // re-render existing connectors and then ...
-    existingConnectionEndpointIDs.forEach(renderVarValueConnector);
+    //
+    // NB: in C/C++ mode, to keep things simple, don't try to redraw
+    // existingConnectionEndpointIDs since we want to redraw all arrows
+    // each and every time.
+    if (!myViz.isCppMode()) {
+      existingConnectionEndpointIDs.forEach(renderVarValueConnector);
+    }
     // add all the NEW connectors that have arisen in this call to renderDataStructures
     myViz.jsPlumbManager.connectionEndpointIDs.forEach(renderVarValueConnector);
   }
@@ -2944,8 +3050,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function(curEntry, curTople
       else if (myViz.jsPlumbManager.heapConnectionEndpointIDs.has(c.endpoints[0].elementId)) {
         // NOP since it's already the color and style we set by default
       }
-      else {
+      // TODO: maybe this needs special consideration for C/C++ code? dunno
+      else if (stackFrameDiv.length > 0) {
         // else unhighlight it
+        // (only if c.source actually belongs to a stackFrameDiv (i.e.,
+        //  it originated from the stack). for instance, in C there are
+        //  heap pointers, but we doen't use heapConnectionEndpointIDs)
         c.setPaintStyle({lineWidth:1, strokeStyle: connectorInactiveColor});
         c.endpoints[0].setPaintStyle({fillStyle: connectorInactiveColor});
         //c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
@@ -3153,6 +3263,8 @@ ExecutionVisualizer.prototype.renderTabularView = function() {
 // rendering functions, which all take a d3 dom element to anchor the
 // new element to render
 ExecutionVisualizer.prototype.renderPrimitiveObject = function(obj, d3DomElement) {
+  var myViz = this; // to prevent confusion of 'this' inside of nested functions
+
   if (this.try_hook("renderPrimitiveObject", {obj:obj, d3DomElement:d3DomElement})[0])
     return;
 
@@ -3185,8 +3297,93 @@ ExecutionVisualizer.prototype.renderPrimitiveObject = function(obj, d3DomElement
     d3DomElement.append('<span class="stringObj">' + literalStr + '</span>');
   }
   else if (typ == "object") {
-    assert(obj[0] == 'SPECIAL_FLOAT' || obj[0] == 'JS_SPECIAL_VAL');
-    d3DomElement.append('<span class="numberObj">' + obj[1] + '</span>');
+    if (obj[0] == 'C_DATA') {
+      var typeName = obj[2];
+      // special cases for brevity:
+      if (typeName === 'short int') {
+        typeName = 'short';
+      } else if (typeName === 'short unsigned int') {
+        typeName = 'unsigned short';
+      } else if (typeName === 'long int') {
+        typeName = 'long';
+      } else if (typeName === 'long long int') {
+        typeName = 'long long';
+      } else if (typeName === 'long unsigned int') {
+        typeName = 'unsigned long';
+      } else if (typeName === 'long long unsigned int') {
+        typeName = 'unsigned long long int';
+      }
+
+      var isValidPtr = ((typeName === 'pointer') &&
+                        (obj[3] !== '<UNINITIALIZED>') &&
+                        (obj[3] !== '<UNALLOCATED>'));
+
+      var addr = obj[1];
+      var leader = '';
+      if (myViz.debugMode) {
+        leader = addr + '<br/>'; // prepend address
+      }
+
+      // prefix with 'cdata_' so that we can distinguish this from a
+      // top-level heap ID generated by generateHeapObjID
+      var cdataId = myViz.generateHeapObjID('cdata_' + addr, myViz.curInstr);
+
+      if (isValidPtr) {
+        // for pointers, put cdataId in the header
+        d3DomElement.append('<div id="' + cdataId + '" class="cdataHeader">' + leader + typeName + '</div>');
+
+        var ptrVal = obj[3];
+
+        // add a stub so that we can connect it with a connector later.
+        // IE needs this div to be NON-EMPTY in order to properly
+        // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
+        var ptrSrcId = myViz.generateHeapObjID('ptrSrc_' + addr, myViz.curInstr);
+        var ptrTargetId = myViz.generateHeapObjID('cdata_' + ptrVal, myViz.curInstr); // don't forget cdata_ prefix!
+
+        var debugInfo = '';
+        if (myViz.debugMode) {
+          debugInfo = ptrTargetId;
+        }
+
+        // make it really narrow so that the div doesn't STRETCH too wide
+        d3DomElement.append('<div style="width: 10px;" id="' + ptrSrcId + '" class="cdataElt">&nbsp;' + debugInfo + '</div>');
+
+        assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(ptrSrcId));
+        myViz.jsPlumbManager.connectionEndpointIDs.set(ptrSrcId, ptrTargetId);
+        //console.log(ptrSrcId, '->', ptrTargetId);
+      } else {
+        // for non-pointers, put cdataId on the element itself, so that
+        // pointers can point directly at the element, not the header
+        d3DomElement.append('<div class="cdataHeader">' + leader + typeName + '</div>');
+
+        var rep = '';
+        if (typeof obj[3] === 'string') {
+          var literalStr = obj[3];
+          if (literalStr === '<UNINITIALIZED>') {
+            rep = '<span class="cdataUninit">?</span>';
+            //rep = '\uD83D\uDCA9'; // pile of poo emoji
+          } else if (literalStr == '<UNALLOCATED>') {
+            rep = '\uD83D\uDC80'; // skull emoji
+          } else {
+            // a regular string
+            literalStr = literalStr.replace(new RegExp("\n", 'g'), '\\n'); // replace ALL
+            literalStr = literalStr.replace(new RegExp("\t", 'g'), '\\t'); // replace ALL
+            literalStr = literalStr.replace(new RegExp('\"', 'g'), '\\"'); // replace ALL
+
+            // print as a SINGLE-quoted string literal (to emulate C-style chars)
+            literalStr = "'" + literalStr + "'";
+            rep = htmlspecialchars(literalStr);
+          }
+        } else {
+          rep = htmlspecialchars(obj[3]);
+        }
+
+        d3DomElement.append('<div id="' + cdataId + '" class="cdataElt">' + rep + '</div>');
+      }
+    } else {
+      assert(obj[0] == 'SPECIAL_FLOAT' || obj[0] == 'JS_SPECIAL_VAL');
+      d3DomElement.append('<span class="numberObj">' + obj[1] + '</span>');
+    }
   }
   else {
     assert(false);
@@ -3199,8 +3396,13 @@ ExecutionVisualizer.prototype.renderNestedObject = function(obj, stepNum, d3DomE
     this.renderPrimitiveObject(obj, d3DomElement);
   }
   else {
-    // obj is a ["REF", <int>] so dereference the 'pointer' to render that object
-    this.renderCompoundObject(getRefID(obj), stepNum, d3DomElement, false);
+    if (obj[0] === 'REF') {
+      // obj is a ["REF", <int>] so dereference the 'pointer' to render that object
+      this.renderCompoundObject(getRefID(obj), stepNum, d3DomElement, false);
+    } else {
+      assert(obj[0] === 'C_STRUCT' || obj[0] === 'C_ARRAY');
+      this.renderCStructArray(obj, stepNum, d3DomElement);
+    }
   }
 }
 
@@ -3416,7 +3618,7 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
       // element, which should be okay since IDs should be globally
       // unique on a page, even with multiple ExecutionVisualizer
       // instances ... but still feels dirty to me since it violates
-      // my "no using naked $(__) selectors for jQuery" convention :/
+      // my "no using raw $(__) selectors for jQuery" convention :/
       $(d3DomElement.selector + ' .typeLabel #attrToggleLink').click(function() {
         var elt = $(d3DomElement.selector + ' .classTbl');
         elt.toggle();
@@ -3522,6 +3724,9 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
     d3DomElement.find('div.heapPrimitive').append('<div class="typeLabel">' + typeLabelPrefix + typeName + '</div>');
     myViz.renderPrimitiveObject(primitiveVal, d3DomElement.find('div.heapPrimitive'));
   }
+  else if (obj[0] == 'C_STRUCT' || obj[0] == 'C_ARRAY') {
+    myViz.renderCStructArray(obj, stepNum, d3DomElement);
+  }
   else {
     // render custom data type
     assert(obj.length == 2);
@@ -3536,6 +3741,79 @@ function(objID, stepNum, d3DomElement, isTopLevel) {
   }
 }
 
+ExecutionVisualizer.prototype.renderCStructArray = function(obj, stepNum, d3DomElement) {
+  var myViz = this; // to prevent confusion of 'this' inside of nested functions
+
+  if (obj[0] == 'C_STRUCT') {
+    assert(obj.length >= 3);
+    var addr = obj[1];
+    var typename = obj[2];
+
+    var leader = '';
+    if (myViz.debugMode) {
+      leader = addr + '<br/>';
+    }
+    if (myViz.params.lang === 'cpp') {
+      // call it 'object' instead of 'struct'
+      d3DomElement.append('<div class="typeLabel">' + leader + 'object ' + typename + '</div>');
+    } else {
+      d3DomElement.append('<div class="typeLabel">' + leader + 'struct ' + typename + '</div>');
+    }
+
+    if (obj.length > 3) {
+      d3DomElement.append('<table class="instTbl"></table>');
+
+      var tbl = d3DomElement.children('table');
+
+      $.each(obj, function(ind, kvPair) {
+        if (ind < 3) return; // skip header tags
+
+        tbl.append('<tr class="instEntry"><td class="instKey"></td><td class="instVal"></td></tr>');
+
+        var newRow = tbl.find('tr:last');
+        var keyTd = newRow.find('td:first');
+        var valTd = newRow.find('td:last');
+
+        // the keys should always be strings, so render them directly (and without quotes):
+        // (actually this isn't the case when strings are rendered on the heap)
+        assert(typeof kvPair[0] == "string");
+        // common case ...
+        var attrnameStr = htmlspecialchars(kvPair[0]);
+        keyTd.append('<span class="keyObj">' + attrnameStr + '</span>');
+
+        // values can be arbitrary objects, so recurse:
+        myViz.renderNestedObject(kvPair[1], stepNum, valTd);
+      });
+    }
+  } else {
+    assert(obj[0] == 'C_ARRAY');
+    assert(obj.length >= 2);
+    var addr = obj[1];
+
+    var leader = '';
+    if (myViz.debugMode) {
+      leader = addr + '<br/>';
+    }
+    d3DomElement.append('<div class="typeLabel">' + leader + 'array</div>');
+    d3DomElement.append('<table class="cArrayTbl"></table>');
+    var tbl = d3DomElement.children('table');
+
+    tbl.append('<tr></tr><tr></tr>');
+    var headerTr = tbl.find('tr:first');
+    var contentTr = tbl.find('tr:last');
+    $.each(obj, function(ind, val) {
+      if (ind < 2) return; // skip 'C_ARRAY' and addr
+
+      // add a new column and then pass in that newly-added column
+      // as d3DomElement to the recursive call to child:
+      headerTr.append('<td class="cArrayHeader"></td>');
+      headerTr.find('td:last').append(ind - 2 /* adjust */);
+
+      contentTr.append('<td class="cArrayElt"></td>');
+      myViz.renderNestedObject(val, stepNum, contentTr.find('td:last'));
+    });
+  }
+}
 
 ExecutionVisualizer.prototype.redrawConnectors = function() {
   this.jsPlumbInstance.repaintEverything();
@@ -3750,7 +4028,8 @@ ExecutionVisualizer.prototype.isPrimitiveType = function(obj) {
 
   if (typeof obj == "object") {
     // kludge: only 'SPECIAL_FLOAT' objects count as primitives
-    return (obj[0] == 'SPECIAL_FLOAT' || obj[0] == 'JS_SPECIAL_VAL');
+    return (obj[0] == 'SPECIAL_FLOAT' || obj[0] == 'JS_SPECIAL_VAL' ||
+            obj[0] == 'C_DATA' /* TODO: is this right?!? */);
   }
   else {
     // non-objects are primitives
@@ -3758,9 +4037,28 @@ ExecutionVisualizer.prototype.isPrimitiveType = function(obj) {
   }
 }
 
+function isHeapRef(obj, heap) {
+  // ordinary REF
+  if (obj[0] === 'REF') {
+    return (heap[obj[1]] !== undefined);
+  } else if (obj[0] === 'C_DATA' && obj[2] === 'pointer') {
+    // C-style pointer that has a valid value
+    if (obj[3] != '<UNINITIALIZED>' && obj[3] != '<UNALLOCATED>') {
+      return (heap[obj[3]] !== undefined);
+    }
+  }
+
+  return false;
+}
+
 function getRefID(obj) {
-  assert(obj[0] == 'REF');
-  return obj[1];
+  if (obj[0] == 'REF') {
+    return obj[1];
+  } else {
+    assert (obj[0] === 'C_DATA' && obj[2] === 'pointer');
+    assert (obj[3] != '<UNINITIALIZED>' && obj[3] != '<UNALLOCATED>');
+    return obj[3]; // pointed-to address
+  }
 }
 
 
