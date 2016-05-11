@@ -556,9 +556,9 @@ ExecutionVisualizer.prototype.render = function() {
     } else if (this.params.lang === 'py3') {
       this.domRoot.find('#langDisplayDiv').html('Python 3.3');
     } else if (this.params.lang === 'c') {
-      this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, experimental)');
+      this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11) <font color="#e93f34">EXPERIMENTAL!</font>');
     } else if (this.params.lang === 'cpp') {
-      this.domRoot.find('#langDisplayDiv').html('C++ (g++ 4.8, experimental)');
+      this.domRoot.find('#langDisplayDiv').html('C++ (gcc 4.8, C++11) <font color="#e93f34">EXPERIMENTAL!</font>');
     } else {
       this.domRoot.find('#langDisplayDiv').hide();
     }
