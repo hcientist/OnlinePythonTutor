@@ -556,9 +556,9 @@ ExecutionVisualizer.prototype.render = function() {
     } else if (this.params.lang === 'py3') {
       this.domRoot.find('#langDisplayDiv').html('Python 3.3');
     } else if (this.params.lang === 'c') {
-      this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11) <font color="#e93f34">EXPERIMENTAL!</font><br/>please report bugs to philip@pgbovine.net');
+      this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
     } else if (this.params.lang === 'cpp') {
-      this.domRoot.find('#langDisplayDiv').html('C++ (gcc 4.8, C++11) <font color="#e93f34">EXPERIMENTAL!</font><br/>please report bugs to philip@pgbovine.net');
+      this.domRoot.find('#langDisplayDiv').html('C++ (gcc 4.8, C++11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
     } else {
       this.domRoot.find('#langDisplayDiv').hide();
     }
