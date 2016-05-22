@@ -217,47 +217,42 @@ var JAVA_BLANK_TEMPLATE = 'public class YourClassNameHere {\n\
     }\n\
 }'
 
+var CPP_BLANK_TEMPLATE = 'int main {\n\
+\n\
+  return 0;\n\
+}'
+
+
 function setAceMode() {
   var selectorVal = $('#pythonVersionSelector').val();
   var mod;
   var tabSize = 2;
+  var editorVal = $.trim(pyInputGetValue());
+
+  if (editorVal === JAVA_BLANK_TEMPLATE || editorVal === CPP_BLANK_TEMPLATE) {
+    editorVal = '';
+    pyInputSetValue(editorVal);
+  }
+
   if (selectorVal === 'java') {
     mod = 'java';
-    // if blank empty, then initialize to a Java skeleton:
-    if ($.trim(pyInputGetValue()) === '') {
+    if (editorVal === '') {
       pyInputSetValue(JAVA_BLANK_TEMPLATE);
     }
   } else if (selectorVal === 'js') {
     mod = 'javascript';
-    // if it's just a Java skeleton, then reset to blank:
-    if (pyInputGetValue() === JAVA_BLANK_TEMPLATE) {
-      pyInputSetValue('');
-    }
   } else if (selectorVal === 'ts') {
     mod = 'typescript';
-    // if it's just a Java skeleton, then reset to blank:
-    if (pyInputGetValue() === JAVA_BLANK_TEMPLATE) {
-      pyInputSetValue('');
-    }
   } else if (selectorVal === 'ruby') {
     mod = 'ruby';
-    // if it's just a Java skeleton, then reset to blank:
-    if (pyInputGetValue() === JAVA_BLANK_TEMPLATE) {
-      pyInputSetValue('');
-    }
   } else if (selectorVal === 'c' || selectorVal == 'cpp') {
     mod = 'c_cpp';
-    // if it's just a Java skeleton, then reset to blank:
-    if (pyInputGetValue() === JAVA_BLANK_TEMPLATE) {
-      pyInputSetValue('');
+    if (editorVal === '') {
+      pyInputSetValue(CPP_BLANK_TEMPLATE);
     }
   } else {
     mod = 'python';
     tabSize = 4; // PEP8
-    // if it's just a Java skeleton, then reset to blank:
-    if (pyInputGetValue() === JAVA_BLANK_TEMPLATE) {
-      pyInputSetValue('');
-    }
   }
   assert(mod);
 
