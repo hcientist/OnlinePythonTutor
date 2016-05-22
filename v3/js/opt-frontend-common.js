@@ -217,7 +217,7 @@ var JAVA_BLANK_TEMPLATE = 'public class YourClassNameHere {\n\
     }\n\
 }'
 
-var CPP_BLANK_TEMPLATE = 'int main {\n\
+var CPP_BLANK_TEMPLATE = 'int main() {\n\
 \n\
   return 0;\n\
 }'
