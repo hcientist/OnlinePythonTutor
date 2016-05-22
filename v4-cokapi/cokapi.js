@@ -63,6 +63,8 @@ var CPP_TIMEOUT_SECS = 15; // the C/C++ backend is also SUPER SLOW :/
 
 var MAX_BUFFER_SIZE = 10 * 1024 * 1024;
 
+var MEM_LIMIT = "256M";
+
 
 // bind() res and useJSONP before using
 function postExecHandler(res, useJSONP, err, stdout, stderr) {
@@ -133,7 +135,7 @@ function exec_js_handler(useJSONP /* use bind first */, isTypescript /* use bind
   if (USE_DOCKER_SANDBOX) {
     // this needs to match the docker setup in Dockerfile
     exeFile = '/usr/bin/docker'; // absolute path to docker executable
-    args.push('run', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi:v1',
+    args.push('run', '-m', MEM_LIMIT, '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi:v1',
               //'node', // built-in Node.js version
               '/tmp/javascript/node-v6.0.0-linux-x64/bin/node', // custom Node.js version
               '--expose-debug-as=Debug',
@@ -193,7 +195,7 @@ function exec_java_handler(useJSONP /* use bind first */, req, res) {
   if (USE_DOCKER_SANDBOX) {
     // this needs to match the docker setup in Dockerfile
     exeFile = '/usr/bin/docker'; // absolute path to docker executable
-    args.push('run', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi:v1',
+    args.push('run', '-m', MEM_LIMIT, '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi:v1',
               '/tmp/run-java-backend.sh',
               inputObjJSON);
   } else {
@@ -223,7 +225,7 @@ function exec_ruby_handler(useJSONP /* use bind first */, req, res) {
   if (USE_DOCKER_SANDBOX) {
     // this needs to match the docker setup in Dockerfile
     exeFile = '/usr/bin/docker'; // absolute path to docker executable
-    args.push('run', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi:v1',
+    args.push('run', '-m', MEM_LIMIT, '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi:v1',
               '/tmp/ruby/ruby',
               '/tmp/ruby/pg_logger.rb',
               '-c',
@@ -258,7 +260,7 @@ function exec_cpp_handler(useCPP /* use bind first */, useJSONP /* use bind firs
   if (USE_DOCKER_SANDBOX) {
     // this needs to match the docker setup in Dockerfile
     exeFile = '/usr/bin/docker'; // absolute path to docker executable
-    args.push('run', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/opt-cpp-backend:v1',
+    args.push('run', '-m', MEM_LIMIT, '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/opt-cpp-backend:v1',
               'python',
               '/tmp/opt-cpp-backend/run_cpp_backend.py',
               usrCod,
@@ -295,7 +297,7 @@ function executePython(pyVer, req, res) {
   if (USE_DOCKER_SANDBOX) {
     // this needs to match the docker setup in Dockerfile
     exeFile = '/usr/bin/docker'; // absolute path to docker executable
-    args.push('run', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi:v1',
+    args.push('run', '-m', MEM_LIMIT, '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi:v1',
               (pyVer == 'py2' ? 'python' : 'python3'),
               '/tmp/python/generate_json_trace.py');
   } else {
