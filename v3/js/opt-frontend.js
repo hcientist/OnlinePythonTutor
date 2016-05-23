@@ -595,6 +595,31 @@ var RUBY_EXAMPLES = {
   rubyProcReturnLink: 'ruby-example-code/proc-return.rb',
 };
 
+var C_EXAMPLES = {
+  cArrOverflowLink: 'c-example-code/array-overflow.c',
+  cArrParamLink: 'c-example-code/array-param.c',
+  cNestedStructLink: 'c-example-code/fjalar-NestedStructTest.c',
+  cPtrLevelsLink: 'c-example-code/fjalar-pointer-levels.c',
+  cStringArraysLink: 'c-example-code/fjalar-string-arrays.c',
+  cGlobalsLink: 'c-example-code/globals.c',
+  cMengThesisLink: 'c-example-code/meng-thesis-example.c',
+  cPtrChainLink: 'c-example-code/pointer-chain.c',
+  cPtrWildLink: 'c-example-code/pointers-gone-wild.c',
+  cStringRevLink: 'c-example-code/string-reverse-inplace.c',
+  cStructLink: 'c-example-code/struct-basic.c',
+  cTypedefLink: 'c-example-code/typedef-test.c',
+}
+
+var CPP_EXAMPLES = {
+  cppClassLink: 'cpp-example-code/cpp-class-basic.cpp',
+  cppDateLink: 'cpp-example-code/cpp-class-date.cpp',
+  cppClassPtrLink: 'cpp-example-code/cpp-class-pointers.cpp',
+  cppFirstLink: 'cpp-example-code/cpp-first.cpp',
+  cppInheritLink: 'cpp-example-code/cpp-inheritance.cpp',
+  cppPassRefLink: 'cpp-example-code/cpp-pass-by-ref.cpp',
+  cppVirtualLink: 'cpp-example-code/cpp-virtual-method.cpp',
+}
+
 var chatBox = undefined;
 function createChatBox() {
   assert(!chatBox);
@@ -685,6 +710,12 @@ $(document).ready(function() {
     } else if (RUBY_EXAMPLES[myId] !== undefined) {
       exFile = RUBY_EXAMPLES[myId];
       lang = 'ruby';
+    } else if (C_EXAMPLES[myId] !== undefined) {
+      exFile = C_EXAMPLES[myId];
+      lang = 'c';
+    } else if (CPP_EXAMPLES[myId] !== undefined) {
+      exFile = CPP_EXAMPLES[myId];
+      lang = 'cpp';
     } else if (PY2_EXAMPLES[myId] !== undefined) {
       exFile = PY2_EXAMPLES[myId];
 
