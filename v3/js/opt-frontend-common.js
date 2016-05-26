@@ -1619,7 +1619,7 @@ function executeCodeAndCreateViz(codeToExec,
       // the URL way too long. in that case, just make it null and don't
       // send a delta. we'll lose some info but at least the URL will
       // hopefully not overflow:
-      if (deltaObjStringified.length > 4096) {
+      if (deltaObjStringified.length > 100000 /*4096*/) {
         console.log('deltaObjStringified.length:', deltaObjStringified.length, '| too long, so set to null');
         deltaObjStringified = null;
       } else {
