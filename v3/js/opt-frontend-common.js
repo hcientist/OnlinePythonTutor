@@ -1620,13 +1620,13 @@ function executeCodeAndCreateViz(codeToExec,
       // send a delta. we'll lose some info but at least the URL will
       // hopefully not overflow:
       if (deltaObjStringified.length > 4096) {
-        console.log('deltaObjStringified.length:', deltaObjStringified.length, '| too long, so set to null');
+        //console.log('deltaObjStringified.length:', deltaObjStringified.length, '| too long, so set to null');
         deltaObjStringified = null;
       } else {
-        console.log('deltaObjStringified.length:', deltaObjStringified.length);
+        //console.log('deltaObjStringified.length:', deltaObjStringified.length);
       }
     } else {
-      console.log('deltaObjStringified is null');
+      //console.log('deltaObjStringified is null');
     }
 
 
