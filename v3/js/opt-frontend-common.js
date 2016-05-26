@@ -1006,6 +1006,7 @@ function genericOptFrontendReady() {
       // message and give up.
       if (num414Tries === 0) {
         num414Tries++;
+        startExecutingCode(); // TODO: does this work?
         $("#executeBtn").click();
       } else {
         num414Tries = 0;
@@ -1611,6 +1612,24 @@ function executeCodeAndCreateViz(codeToExec,
       jsonp_endpoint = CPP_JSONP_ENDPOINT;
     }
 
+    // if we don't have any deltas, then don't bother sending deltaObj:
+    var deltaObjStringified = (deltaObj && (deltaObj.deltas.length > 0)) ? JSON.stringify(deltaObj) : null;
+    if (deltaObjStringified) {
+      // if deltaObjStringified is too long, then that will likely make
+      // the URL way too long. in that case, just make it null and don't
+      // send a delta. we'll lose some info but at least the URL will
+      // hopefully not overflow:
+      if (deltaObjStringified.length > 4096) {
+        console.log('deltaObjStringified.length:', deltaObjStringified.length, '| too long, so set to null');
+        deltaObjStringified = null;
+      } else {
+        console.log('deltaObjStringified.length:', deltaObjStringified.length);
+      }
+    } else {
+      console.log('deltaObjStringified is null');
+    }
+
+
     if (backendScript === js_backend_script ||
         backendScript === ts_backend_script ||
         backendScript === java_backend_script ||
@@ -1623,8 +1642,7 @@ function executeCodeAndCreateViz(codeToExec,
              options_json: JSON.stringify(backendOptionsObj),
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
              session_uuid: sessionUUID,
-             // if we don't have any deltas, then don't bother sending deltaObj:
-             diffs_json: deltaObj && (deltaObj.deltas.length > 0) ? JSON.stringify(deltaObj) : null},
+             diffs_json: deltaObjStringified},
              function(dat) {} /* don't do anything since this is a dummy call */, "text");
 
       // the REAL call uses JSONP
@@ -1647,8 +1665,7 @@ function executeCodeAndCreateViz(codeToExec,
              options_json: JSON.stringify(backendOptionsObj),
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
              session_uuid: sessionUUID,
-             // if we don't have any deltas, then don't bother sending deltaObj:
-             diffs_json: deltaObj && (deltaObj.deltas.length > 0) ? JSON.stringify(deltaObj) : null},
+             diffs_json: deltaObjStringified},
              execCallback, "json");
     }
 
