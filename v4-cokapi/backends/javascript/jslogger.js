@@ -980,8 +980,13 @@ function listener(event, execState, eventData, data) {
                    exception_msg: 'Stopped after running ' + MAX_EXECUTED_LINES + ' steps. Please shorten your code,\nsince Python Tutor is not designed to handle long-running code.'});
 
     finalize();
+
     // GET OUTTA HERE so that the user's script doesn't keep infinite looping
-    process.exit(); // NB: on Node v6 this will CUT OFF the stdout output to terminal (but OK if redirected to file), ergh :(
+
+    // SUPER HACKY SHADY WAY TO FLUSH stdout before forcing an exit, OMG!!!
+    // https://groups.google.com/forum/#!topic/nodejs-dev/Tj_HNQbvtZs
+    while (!process.stdout.flush());
+    process.exit();
   } else {
     assert(stepType !== undefined);
     execState.prepareStep(stepType); // set debugger to stop at next step
