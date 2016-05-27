@@ -82,7 +82,7 @@ function postExecHandler(res, useJSONP, err, stdout, stderr) {
       }
     } else {
       errTrace = {code: '', trace: [{'event': 'uncaught_exception',
-                                     'exception_msg': "Unknown error. Report a bug to philip@pgbovine.net by clicking on the\n'Generate URL' button at the bottom and including a URL in your email."}]};
+                                     'exception_msg': "Unknown error. Report a bug to philip@pgbovine.net by clicking on the\n'Generate permanent link' button at the bottom and including a URL in your email."}]};
       if (useJSONP) {
         res.jsonp(errTrace /* return an actual object, not a string */);
       } else {
@@ -97,7 +97,7 @@ function postExecHandler(res, useJSONP, err, stdout, stderr) {
         res.jsonp(stdoutParsed /* return an actual object, not a string */);
       } catch(e) {
         errTrace = {code: '', trace: [{'event': 'uncaught_exception',
-                                     'exception_msg': "Unknown error, possibly because your code ran for too long. Try to shorten your code,\nand if that doesn't work then report a bug to philip@pgbovine.net by clicking on the\n'Generate URL' button at the bottom and including a URL in your email."}]};
+                                     'exception_msg': "Unknown error, possibly because your code ran for too long. Try to shorten your code,\nand if that doesn't work then report a bug to philip@pgbovine.net by clicking on the\n'Generate permanent link' button at the bottom and including a URL in your email."}]};
         res.jsonp(errTrace /* return an actual object, not a string */);
       }
     } else {
