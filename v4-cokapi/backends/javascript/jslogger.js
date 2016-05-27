@@ -979,14 +979,13 @@ function listener(event, execState, eventData, data) {
     curTrace.push({event: 'instruction_limit_reached',
                    exception_msg: 'Stopped after running ' + MAX_EXECUTED_LINES + ' steps. Please shorten your code,\nsince Python Tutor is not designed to handle long-running code.'});
 
-    finalize();
-
     // GET OUTTA HERE so that the user's script doesn't keep infinite looping
 
     // SUPER HACKY SHADY WAY TO FLUSH stdout before forcing an exit, OMG!!!
     // https://groups.google.com/forum/#!topic/nodejs-dev/Tj_HNQbvtZs
-    while (!process.stdout.flush());
-    process.exit();
+    while (!process.stdout.flush()); // flush before finalize; for some weird reason it works, ergh
+    finalize();
+    process.exit(0 /* don't use an error exit code so that we don't trigger error handlers later on */);
   } else {
     assert(stepType !== undefined);
     execState.prepareStep(stepType); // set debugger to stop at next step
@@ -1163,6 +1162,7 @@ function finalize() {
     log('Wrote trace to', argv.jsfile);
   } else if (argv.jsondump) {
     console.log(JSON.stringify(blob));
+    //console.log(JSON.stringify(blob, null, '  '));
   } else if (argv.prettydump) {
     console.log(util.inspect(blob, {depth: null}));
   }
