@@ -981,9 +981,11 @@ function listener(event, execState, eventData, data) {
 
     // GET OUTTA HERE so that the user's script doesn't keep infinite looping
 
+    // ugh, on second thought, don't do this, since it locks up sometimes:
     // SUPER HACKY SHADY WAY TO FLUSH stdout before forcing an exit, OMG!!!
     // https://groups.google.com/forum/#!topic/nodejs-dev/Tj_HNQbvtZs
-    while (!process.stdout.flush()); // flush before finalize; for some weird reason it works, ergh
+    //while (!process.stdout.flush()); // flush before finalize; for some weird reason it works, ergh
+
     finalize();
     process.exit(0 /* don't use an error exit code so that we don't trigger error handlers later on */);
   } else {
@@ -1162,7 +1164,9 @@ function finalize() {
     log('Wrote trace to', argv.jsfile);
   } else if (argv.jsondump) {
     console.log(JSON.stringify(blob));
-    //console.log(JSON.stringify(blob, null, '  '));
+    // maybe this will work? do an exit after stdout flushes? still not
+    // fully working, though, ergh
+    //process.stdout.write(JSON.stringify(blob), process.exit.bind(null, 0));
   } else if (argv.prettydump) {
     console.log(util.inspect(blob, {depth: null}));
   }
