@@ -221,6 +221,15 @@ function experimentalPopUpSyntaxErrorSurvey() {
       return; // get out early!
     }
 
+    // if we've switched languages between the previous error and this
+    // run, then DON'T pop up a survey since the point is moot anyhow;
+    // there's no point in asking the question when the language has
+    // changed :)
+    var curState = getAppState();
+    if (prevExecutionExceptionObj.myAppState.py != curState.py) {
+      return;
+    }
+
     // make sure jquery.qtip has been imported
 
     var codelineIDs = [];
