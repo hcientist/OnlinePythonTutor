@@ -124,7 +124,9 @@ var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
 var prevExecutionExceptionObjLst = [];
 
 
-var codeopticonSocketIO = undefined; // socket.io instance -- OPTIONAL: not all frontends use it
+// OPTIONAL for Codeopticon - not all frontends use these:
+var codeopticonSocketIO = undefined; // socket.io instance
+var codeopticonSession = undefined;
 
 // From http://stackoverflow.com/a/8809472
 function generateUUID(){
@@ -1077,6 +1079,10 @@ function parseQueryString() {
     rawInputLst = [];
   }
 
+  if (queryStrOptions.codeopticonSession) {
+    codeopticonSession = queryStrOptions.codeopticonSession; // GLOBAL!
+  }
+
   if (queryStrOptions.testCasesLst) {
     $("#createTestsLink").hide();
     initTestcasesPane('#testCasesPane');
@@ -1110,6 +1116,7 @@ function getQueryStringOptions() {
           heapPrimitives: $.bbq.getState('heapPrimitives'),
           textReferences: $.bbq.getState('textReferences'),
           rawInputLst: ril ? $.parseJSON(ril) : undefined,
+          codeopticonSession: $.bbq.getState('codeopticon'),
           testCasesLst: testCasesLstJSON ? $.parseJSON(testCasesLstJSON) : undefined
           };
 }

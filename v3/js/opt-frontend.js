@@ -633,6 +633,11 @@ function chatBoxToggled(visible) {
 }
 
 function initCodeopticon() {
+  // only initialize if you have a valid session ID
+  if (!codeopticonSession) {
+    return;
+  }
+
   // connect on-demand in logEventCodeopticon(), not here
   //codeopticonSocketIO = io('http://104.237.139.253:5000/userlog'); // PRODUCTION_PORT
   //codeopticonSocketIO = io('http://104.237.139.253:5001/userlog'); // DEBUG_PORT
