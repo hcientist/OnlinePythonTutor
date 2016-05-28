@@ -81,8 +81,15 @@ function postExecHandler(res, useJSONP, err, stdout, stderr) {
         res.send(JSON.stringify(errTrace));
       }
     } else {
-      errTrace = {code: '', trace: [{'event': 'uncaught_exception',
-                                     'exception_msg': "Unknown error. Report a bug to philip@pgbovine.net by clicking on the\n'Generate permanent link' button at the bottom and including a URL in your email."}]};
+      if (err.code === 42) {
+        // special error code for instruction_limit_reached in jslogger.js
+        errTrace = {code: '', trace: [{'event': 'uncaught_exception',
+                                       'exception_msg': 'Stopped after running 1000 steps. Please shorten your code,\nsince Python Tutor is not designed to handle long-running code.'}]};
+      } else {
+        errTrace = {code: '', trace: [{'event': 'uncaught_exception',
+                                       'exception_msg': "Unknown error. Report a bug to philip@pgbovine.net by clicking on the\n'Generate permanent link' button at the bottom and including a URL in your email."}]};
+      }
+
       if (useJSONP) {
         res.jsonp(errTrace /* return an actual object, not a string */);
       } else {
@@ -97,7 +104,7 @@ function postExecHandler(res, useJSONP, err, stdout, stderr) {
         res.jsonp(stdoutParsed /* return an actual object, not a string */);
       } catch(e) {
         errTrace = {code: '', trace: [{'event': 'uncaught_exception',
-                                     'exception_msg': "Unknown error, possibly because your code ran for too long. Try to shorten your code,\nand if that doesn't work then report a bug to philip@pgbovine.net by clicking on the\n'Generate permanent link' button at the bottom and including a URL in your email."}]};
+                                       'exception_msg': "Unknown error. Report a bug to philip@pgbovine.net by clicking on the\n'Generate permanent link' button at the bottom and including a URL in your email."}]};
         res.jsonp(errTrace /* return an actual object, not a string */);
       }
     } else {
@@ -135,7 +142,7 @@ function exec_js_handler(useJSONP /* use bind first */, isTypescript /* use bind
   if (USE_DOCKER_SANDBOX) {
     // this needs to match the docker setup in Dockerfile
     exeFile = '/usr/bin/docker'; // absolute path to docker executable
-    args.push('run', '-m', MEM_LIMIT, '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi:v1',
+    args.push('run', '-m', MEM_LIMIT, '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi-js:v1',
               //'node', // built-in Node.js version
               '/tmp/javascript/node-v6.0.0-linux-x64/bin/node', // custom Node.js version
               '--expose-debug-as=Debug',

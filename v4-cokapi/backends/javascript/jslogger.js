@@ -987,7 +987,7 @@ function listener(event, execState, eventData, data) {
     //while (!process.stdout.flush()); // flush before finalize; for some weird reason it works, ergh
 
     finalize();
-    process.exit(0 /* don't use an error exit code so that we don't trigger error handlers later on */);
+    process.exit(42 /* use a weird error code to indicate instruction_limit_reached so cokapi.js can parse it */);
   } else {
     assert(stepType !== undefined);
     execState.prepareStep(stepType); // set debugger to stop at next step

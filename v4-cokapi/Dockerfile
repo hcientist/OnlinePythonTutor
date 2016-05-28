@@ -1,3 +1,6 @@
+# TODO: gradually peel off backends from here into their own separate
+# Docker images. right now this is for the Java and Ruby backends
+
 # to build:
 # docker build -t="pgbovine/cokapi:v1" .
 #
@@ -51,19 +54,6 @@ ADD backends/java/java_jail/cp/ /tmp/java_jail/cp
 
 # compile all Java files within cp/
 RUN cd /tmp/java_jail/cp && find . -name "*.java" -print | xargs javac -cp .:javax.json-1.0.jar:/usr/lib/jvm/java-7-openjdk-amd64/lib/tools.jar
-
-# JS and Python backends
-RUN mkdir /tmp/javascript
-RUN mkdir /tmp/python
-
-# IMPORTANT: make sure to run 'make deps' in backends/javascript first
-# to install the proper node modules inside of here via npm before
-# creating this Docker container, since it's a pain to install npm and
-# modules within the container. Also untar node-v6.0.0-linux-x64.tar.xz
-# (or the proper version of Node so that the proper binary is within the
-# directory already before copying into container)
-ADD backends/javascript /tmp/javascript
-ADD backends/python /tmp/python
 
 COPY backends/java/run-java-backend.sh /tmp/
 RUN chmod a+x /tmp/run-java-backend.sh

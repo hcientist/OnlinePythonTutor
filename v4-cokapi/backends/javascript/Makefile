@@ -24,3 +24,9 @@ diffall:
 deps:
 	npm install eval@0.1.0 underscore minimist source-map typescript@1.4
 	tar -xvf node-v6.0.0-linux-x64.tar.xz
+
+docker:
+	docker build -t="pgbovine/cokapi-js:v1" .
+
+dockerbash:
+	docker run -t -i --rm --user=netuser --net=none --cap-drop all pgbovine/cokapi-js:v1 bash
