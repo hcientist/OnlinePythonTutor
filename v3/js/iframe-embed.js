@@ -92,6 +92,10 @@ $(document).ready(function() {
   }
   else if (pyState == 'java') {
       backend_script = java_backend_script;
+  } else if (lang == 'c') {
+      backend_script = c_backend_script;
+  } else if (lang == 'cpp') {
+      backend_script = cpp_backend_script;
   }
   assert(backend_script);
 
