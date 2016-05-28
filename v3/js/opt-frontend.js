@@ -638,15 +638,17 @@ function initCodeopticon() {
     return;
   }
 
-  // hide header elements
-  $("#ssDiv,#surveyHeader,#sharedSessionDisplayDiv").hide();
-  $("#togetherjsStatus").css("font-size", "8pt");
-  $("#togetherjsStatus").html("Codeopticon session " + codeopticonSession);
+  // hide header elements only if we're not doing CODEOPTICON_TESTING
+  if (codeopticonSession !== 'CODEOPTICON_TESTING') {
+    $("#ssDiv,#surveyHeader,#sharedSessionDisplayDiv").hide();
+    $("#togetherjsStatus").css("font-size", "8pt");
+    $("#togetherjsStatus").html("Codeopticon session " + codeopticonSession);
+  }
 
   // connect on-demand in logEventCodeopticon(), not here
-  //codeopticonSocketIO = io('http://104.237.139.253:5000/userlog'); // PRODUCTION_PORT
+  codeopticonSocketIO = io('http://104.237.139.253:5000/userlog'); // PRODUCTION_PORT
   //codeopticonSocketIO = io('http://104.237.139.253:5001/userlog'); // DEBUG_PORT
-  codeopticonSocketIO = io('http://localhost:5000/userlog'); // localhost debugging
+  //codeopticonSocketIO = io('http://localhost:5000/userlog'); // localhost debugging
 
   if (codeopticonSocketIO) {
     codeopticonSocketIO.on('connect', function() {

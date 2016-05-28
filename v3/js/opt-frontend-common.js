@@ -127,6 +127,7 @@ var prevExecutionExceptionObjLst = [];
 // OPTIONAL for Codeopticon - not all frontends use these:
 var codeopticonSocketIO = undefined; // socket.io instance
 var codeopticonSession = undefined;
+//var codeopticonSession = 'CODEOPTICON_TESTING'; // to turn all monitoring on
 
 // From http://stackoverflow.com/a/8809472
 function generateUUID(){
