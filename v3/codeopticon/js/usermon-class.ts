@@ -286,7 +286,9 @@ class UserMon {
     }
 
     // expand the slider's width
-    this.sliderDiv.slider('option', 'max', this.events.length - 1)
+    this.sliderDiv
+        .slider() // add in an extra call to prevent weird "jquery-1.8.2.min.js:2 Uncaught Error: cannot call methods on slider prior to initialization" errors, but is that right?!?
+        .slider('option', 'max', this.events.length - 1)
         .slider('value', this.idx); // move it back to its original value
 
     // only jump to end if you're currently at the penultimate entry --
@@ -787,6 +789,12 @@ class UserMon {
     } else if (lang === "ts") {
       langSpan.html("TypeScript");
       newMode = 'typescript';
+    } else if (lang === "c") {
+      langSpan.html("C");
+      newMode = 'c_cpp';
+    } else if (lang === "cpp") {
+      langSpan.html("C++");
+      newMode = 'c_cpp';
     } else {
       console.assert(false);
     }
