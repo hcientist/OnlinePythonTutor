@@ -124,7 +124,7 @@ var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
 var prevExecutionExceptionObjLst = [];
 
 
-var loggingSocketIO = undefined; // socket.io instance -- OPTIONAL: not all frontends use it
+var codeopticonSocketIO = undefined; // socket.io instance -- OPTIONAL: not all frontends use it
 
 // From http://stackoverflow.com/a/8809472
 function generateUUID(){
@@ -284,7 +284,7 @@ function snapshotCodeDiff() {
     deltaObj.deltas.push(delta);
 
     curCode = newCode;
-    logEvent({type: 'editCode', delta: delta});
+    logEventCodeopticon({type: 'editCode', delta: delta});
 
     if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
       TogetherJS.send({type: "editCode", delta: delta});
@@ -1288,7 +1288,7 @@ function updateAppDisplay(newAppMode) {
   $('#urlOutput,#embedCodeOutput').val(''); // clear to avoid stale values
 
   // log at the end after appMode gets canonicalized
-  logEvent({type: 'updateAppDisplay', mode: appMode, appState: getAppState()});
+  logEventCodeopticon({type: 'updateAppDisplay', mode: appMode, appState: getAppState()});
 }
 
 
@@ -1474,7 +1474,7 @@ function executeCodeAndCreateViz(codeToExec,
               if (args.myViz.prevLineIsReturn) {
                 obj.prevLineIsReturn = true;
               }
-              logEvent(obj);
+              logEventCodeopticon(obj);
             });
 
             // 2014-05-25: implemented more detailed tracing for surveys
@@ -1533,7 +1533,7 @@ function executeCodeAndCreateViz(codeToExec,
       // and don't do it for iframe-embed.js since getAppState doesn't
       // work in that case ...
       if (originFrontendJsFile !== 'iframe-embed.js') {
-        logEvent({type: 'doneExecutingCode',
+        logEventCodeopticon({type: 'doneExecutingCode',
                   appState: getAppState(),
                   // enough to reconstruct the ExecutionVisualizer object
                   backendDataJSON: JSON.stringify(dataFromBackend), // for easier transport and compression
@@ -2128,7 +2128,7 @@ display a brief "Thanks!" note]
 
     $.get('survey.py', myArgs, function(dat) {});
 
-    logEvent({type: 'survey',
+    logEventCodeopticon({type: 'survey',
               appState: getAppState(),
               surveyQuestion: myArgs.surveyQuestion,
               surveyResponse: myArgs.surveyResponse,
@@ -2168,7 +2168,7 @@ display a brief "Thanks!" note]
       $("#iJustLearnedThanks").fadeOut(1000);
     });
 
-    logEvent({type: 'survey',
+    logEventCodeopticon({type: 'survey',
               appState: getAppState(),
               surveyQuestion: myArgs.surveyQuestion,
               surveyResponse: myArgs.surveyResponse,
@@ -2181,27 +2181,27 @@ display a brief "Thanks!" note]
 
 
 // using socket.io:
-function logEvent(obj) {
+function logEventCodeopticon(obj) {
   //console.log(obj);
-  if (loggingSocketIO) {
-    if (supports_html5_storage()) {
-      obj.user_uuid = localStorage.getItem('opt_uuid');
-    }
+  if (codeopticonSocketIO) {
+    obj.user_uuid = supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+    obj.session_uuid = sessionUUID;
+
     // this probably won't match the server time due to time zones, etc.
     obj.clientTime = new Date().getTime();
 
-    if (loggingSocketIO.connected) {
-      loggingSocketIO.emit('opt-client-event', obj);
+    if (codeopticonSocketIO.connected) {
+      codeopticonSocketIO.emit('opt-client-event', obj);
       //console.log('emitted opt-client-event:', obj);
     } else {
-      // TODO: be careful about this getting HUGE if loggingSocketIO
+      // TODO: be careful about this getting HUGE if codeopticonSocketIO
       // never connects properly ...
       logEventQueue.push(obj); // queue this up to be logged when the client
                                // finishes successfully connecting to the server
 
       // we're not yet connected, or we've been disconnected by the
       // server, so try to connect/reconnect first before emitting the event
-      loggingSocketIO.connect(); // will trigger the .on('connect', ...) handler
+      codeopticonSocketIO.connect(); // will trigger the .on('connect', ...) handler
     }
   }
 }

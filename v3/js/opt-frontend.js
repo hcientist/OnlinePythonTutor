@@ -629,6 +629,9 @@ var CPP_EXAMPLES = {
   cppVirtualLink: 'cpp-example-code/cpp-virtual-method.cpp',
 }
 
+
+// BEGIN -- Codeopticon learner interface
+
 var chatBox = undefined;
 function createChatBox() {
   assert(!chatBox);
@@ -645,12 +648,18 @@ function createChatBox() {
 
 function chatMsgSent(id, user, msg) {
   $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
-  logEvent({type: 'opt-client-chat', text: msg, sid: loggingSocketIO ? loggingSocketIO.id : undefined});
+  logEventCodeopticon({type: 'opt-client-chat',
+                       text: msg,
+                       sid: codeopticonSocketIO ? codeopticonSocketIO.id : undefined
+                      });
 }
 
 // only called when the user hits the X button to explicitly close the chat box
 function chatBoxClosed(id) {
-  logEvent({type: 'opt-client-chat', text: '[closed chat box]', sid: loggingSocketIO ? loggingSocketIO.id : undefined});
+  logEventCodeopticon({type: 'opt-client-chat',
+                       text: '[closed chat box]',
+                       sid: codeopticonSocketIO ? codeopticonSocketIO.id : undefined
+                      });
 }
 
 // called when the user toggles the chat box open or close
@@ -659,8 +668,55 @@ function chatBoxToggled(visible) {
   if (visible) {
     msg = '[maximized chat box]';
   }
-  logEvent({type: 'opt-client-chat', text: msg, sid: loggingSocketIO ? loggingSocketIO.id : undefined});
+  logEventCodeopticon({type: 'opt-client-chat',
+                       text: msg,
+                       sid: codeopticonSocketIO ? codeopticonSocketIO.id : undefined
+                      });
 }
+
+function initCodeopticon() {
+  // connect on-demand in logEventCodeopticon(), not here
+  //codeopticonSocketIO = io('http://104.237.139.253:5000/userlog'); // PRODUCTION_PORT
+  //codeopticonSocketIO = io('http://104.237.139.253:5001/userlog'); // DEBUG_PORT
+  codeopticonSocketIO = io('http://localhost:5000/userlog'); // localhost debugging
+
+  if (codeopticonSocketIO) {
+    codeopticonSocketIO.on('connect', function() {
+      //console.log('CONNECTED and emitting', logEventQueue.length, 'events');
+
+      if (logEventQueue.length > 0) {
+        // the reconnectAttempts field that denotes how many times you've
+        // attempted to reconnect (which is also how many times you've
+        // been kicked off by the logging server for, say, being idle).
+        // add this as an extra field on the FIRST event
+        if (reconnectAttempts > 0) {
+          logEventQueue[0].reconnectAttempts = reconnectAttempts;
+        }
+
+        while (logEventQueue.length > 0) {
+          codeopticonSocketIO.emit('opt-client-event', logEventQueue.pop());
+        }
+      }
+      assert(logEventQueue.length === 0);
+
+      reconnectAttempts++;
+    });
+
+    codeopticonSocketIO.on('opt-codeopticon-observer-chat', function(msg) {
+      if (!chatBox) {
+        createChatBox();
+      } else {
+        $("#chat_div").chatbox("option", "hidden", false);
+        $("#chat_div").chatbox("showContent");
+      }
+
+      $("#chat_div").chatbox("option", "boxManager").addMsg('Tutor', msg.text);
+    });
+  }
+}
+
+// END -- Codeopticon learner interface
+
 
 $(document).ready(function() {
   setSurveyHTML();
@@ -798,44 +854,7 @@ $(document).ready(function() {
 
   initAceAndOptions(); // do this after genericOptFrontendReady
 
-  // connect on-demand in logEvent(), not here
-  //loggingSocketIO = io('http://104.237.139.253:5000/userlog'); // PRODUCTION_PORT
-  //loggingSocketIO = io('http://104.237.139.253:5001/userlog'); // DEBUG_PORT
-
-
-  if (loggingSocketIO) {
-    loggingSocketIO.on('connect', function() {
-      //console.log('CONNECTED and emitting', logEventQueue.length, 'events');
-
-      if (logEventQueue.length > 0) {
-        // the reconnectAttempts field that denotes how many times you've
-        // attempted to reconnect (which is also how many times you've
-        // been kicked off by the logging server for, say, being idle).
-        // add this as an extra field on the FIRST event
-        if (reconnectAttempts > 0) {
-          logEventQueue[0].reconnectAttempts = reconnectAttempts;
-        }
-
-        while (logEventQueue.length > 0) {
-          loggingSocketIO.emit('opt-client-event', logEventQueue.pop());
-        }
-      }
-      assert(logEventQueue.length === 0);
-
-      reconnectAttempts++;
-    });
-
-    loggingSocketIO.on('opt-codeopticon-observer-chat', function(msg) {
-      if (!chatBox) {
-        createChatBox();
-      } else {
-        $("#chat_div").chatbox("option", "hidden", false);
-        $("#chat_div").chatbox("showContent");
-      }
-
-      $("#chat_div").chatbox("option", "boxManager").addMsg('Tutor', msg.text);
-    });
-  }
+  initCodeopticon();
 
   $("#createTestsLink").click(function() {
     initTestcasesPane('#testCasesPane');
