@@ -2191,6 +2191,9 @@ display a brief "Thanks!" note]
 function logEventCodeopticon(obj) {
   //console.log(obj);
   if (codeopticonSocketIO) {
+    assert(codeopticonSession);
+    obj.codeopticonSession = codeopticonSession;
+
     obj.user_uuid = supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
     obj.session_uuid = sessionUUID;
 

@@ -638,6 +638,11 @@ function initCodeopticon() {
     return;
   }
 
+  // hide header elements
+  $("#ssDiv,#surveyHeader,#sharedSessionDisplayDiv").hide();
+  $("#togetherjsStatus").css("font-size", "8pt");
+  $("#togetherjsStatus").html("Codeopticon session " + codeopticonSession);
+
   // connect on-demand in logEventCodeopticon(), not here
   //codeopticonSocketIO = io('http://104.237.139.253:5000/userlog'); // PRODUCTION_PORT
   //codeopticonSocketIO = io('http://104.237.139.253:5001/userlog'); // DEBUG_PORT
