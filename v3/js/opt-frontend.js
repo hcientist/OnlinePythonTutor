@@ -609,7 +609,7 @@ var C_EXAMPLES = {
   cArrParamLink: 'c-example-code/array-param.c',
   cNestedStructLink: 'c-example-code/fjalar-NestedStructTest.c',
   cPtrLevelsLink: 'c-example-code/fjalar-pointer-levels.c',
-  cStringArraysLink: 'c-example-code/fjalar-string-arrays.c',
+  //cStringArraysLink: 'c-example-code/fjalar-string-arrays.c',
   cGlobalsLink: 'c-example-code/globals.c',
   cMengThesisLink: 'c-example-code/meng-thesis-example.c',
   cPtrChainLink: 'c-example-code/pointer-chain.c',
