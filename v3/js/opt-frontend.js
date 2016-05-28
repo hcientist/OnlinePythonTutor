@@ -41,69 +41,24 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // should all be imported BEFORE this file
 
 
-// NASTY GLOBALS for socket.io!
-var reconnectAttempts = 0;
-var logEventQueue = []; // TODO: make sure this doesn't grow too large if socketio isn't enabled
-
-
 var originFrontendJsFile = 'opt-frontend.js';
-
-// for OPT live chat tutoring interface
-var tutorRequested = false;
-var helpQueueSize = 0;
-var tutorAvailable = false;
-var tutorWaitText = 'Please wait for the next available tutor.';
 
 var activateSyntaxErrorSurvey = true; // true;
 
-function setHelpQueueSizeLabel() {
-  if (helpQueueSize == 1) {
-    $("#helpQueueText").html('There is 1 person in line.');
-  }
-  else if (helpQueueSize == 0 || helpQueueSize > 1) {
-    $("#helpQueueText").html('There are ' + helpQueueSize + ' people in line.');
-  }
-}
-
-function requestTutor() {
-  $("#getTutorBtn,#ssDiv,#surveyHeader").hide(); // hide ASAP!
-  $("#togetherjsStatus").html("Please wait ... requesting a tutor");
-  tutorRequested = true;
-  TogetherJS();
-}
-
 function startSharedSession() { // override default
-  $("#getTutorBtn,#ssDiv,#surveyHeader").hide(); // hide ASAP!
+  $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
   $("#adHeader").hide(); // hide ASAP!
   $("#togetherjsStatus").html("Please wait ... loading shared session");
-  tutorRequested = false;
   TogetherJS();
 }
 
 
 function TogetherjsReadyHandler() {
-  $("#getTutorBtn,#surveyHeader").hide();
-
-  if (tutorRequested) {
-    $.get(TogetherJSConfig_hubBase + 'request-help',
-          {url: TogetherJS.shareUrl(), id: TogetherJS.shareId()},
-          null /* don't use a callback; rely on SSE */);
-
-    $("#togetherjsStatus").html('<div style="font-size: 11pt; margin-bottom: 5pt;">\
-                                 Please wait for the next available tutor. \
-                                 <span id="helpQueueText"></span></div>');
-    setHelpQueueSizeLabel(); // run after creating span#helpQueueText
-  }
-  else {
-    populateTogetherJsShareUrl();
-  }
+  $("#surveyHeader").hide();
+  populateTogetherJsShareUrl();
 }
 
 function TogetherjsCloseHandler() {
-  if (tutorAvailable) {
-    $("#getTutorBtn").show();
-  }
-
   if (appMode == "display") {
     $("#surveyHeader").show();
   }
@@ -632,7 +587,10 @@ var CPP_EXAMPLES = {
 
 // BEGIN -- Codeopticon learner interface
 
+var reconnectAttempts = 0;
+var logEventQueue = []; // TODO: make sure this doesn't grow too large if socketio isn't enabled
 var chatBox = undefined;
+
 function createChatBox() {
   assert(!chatBox);
   chatBox = $("#chat_div").chatbox({id: "Me",
@@ -720,35 +678,6 @@ function initCodeopticon() {
 
 $(document).ready(function() {
   setSurveyHTML();
-
-  // for OPT live chat tutoring interface -- DEPRECATED FOR NOW
-  /*
-  try {
-    var source = new EventSource(TogetherJSConfig_hubBase + 'learner-SSE');
-    source.onmessage = function(e) {
-      var dat = JSON.parse(e.data);
-
-      // nasty globals
-      helpQueueSize = dat.helpQueueUrls;
-      tutorAvailable = dat.helpAvailable;
-
-      setHelpQueueSizeLabel();
-
-      if (tutorAvailable && !TogetherJS.running) {
-        $("#getTutorBtn").fadeIn(750, redrawConnectors);
-      }
-      else {
-        $("#getTutorBtn").fadeOut(750, redrawConnectors);
-      }
-    };
-  }
-  catch(err) {
-    // ugh, SSE doesn't seem to work in Safari
-    console.warn("Sad ... EventSource not supported :(");
-  }
-
-  $("#getTutorBtn").click(requestTutor);
-  */
 
   $("#hideHeaderLink").click(function() {
     $("#experimentalHeader").hide();
