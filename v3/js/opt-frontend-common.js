@@ -1423,13 +1423,13 @@ function executeCodeAndCreateViz(codeToExec,
           killerException = trace[0]; // killer!
           setFronendError([trace[0].exception_msg]);
         }
-        else if (trace[trace.length - 1].exception_msg) {
+        else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
           killerException = trace[trace.length - 1]; // killer!
           setFronendError([trace[trace.length - 1].exception_msg]);
         }
         else {
-          setFronendError(["Unknown error. Reload the page and try again.",
-                           "Report a bug to philip@pgbovine.net by clicking on the 'Generate URL'",
+          setFronendError(["Unknown error. Reload the page and try again. Or report a bug to",
+                           "philip@pgbovine.net by clicking on the 'Generate permanent link'",
                            "button at the bottom and including a URL in your email."]);
         }
       }
@@ -1556,7 +1556,7 @@ function executeCodeAndCreateViz(codeToExec,
 
     if (!backendScript) {
       setFronendError(["Server configuration error: No backend script",
-                       "Report a bug to philip@pgbovine.net by clicking on the 'Generate URL'",
+                       "Report a bug to philip@pgbovine.net by clicking on the 'Generate permanent link'",
                        "button at the bottom and including a URL in your email."]);
       return;
     }
