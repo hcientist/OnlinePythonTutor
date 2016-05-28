@@ -84,7 +84,7 @@ function postExecHandler(res, useJSONP, err, stdout, stderr) {
       if (err.code === 42) {
         // special error code for instruction_limit_reached in jslogger.js
         errTrace = {code: '', trace: [{'event': 'uncaught_exception',
-                                       'exception_msg': 'Stopped after running 1000 steps. Please shorten your code,\nsince Python Tutor is not designed to handle long-running code.'}]};
+                                       'exception_msg': 'Error: stopped after running 1000 steps and cannot display visualization.\nShorten your code, since Python Tutor is not designed to handle long-running code.'}]};
       } else {
         errTrace = {code: '', trace: [{'event': 'uncaught_exception',
                                        'exception_msg': "Unknown error. Report a bug to philip@pgbovine.net by clicking on the\n'Generate permanent link' button at the bottom and including a URL in your email."}]};
