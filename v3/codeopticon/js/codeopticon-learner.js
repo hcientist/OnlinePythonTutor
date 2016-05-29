@@ -8,6 +8,7 @@
 var codeopticonSocketIO = undefined; // socket.io instance
 var codeopticonSession = undefined;
 //var codeopticonSession = 'CODEOPTICON_TESTING'; // to turn all monitoring on
+var codeopticonUsername = undefined; // what should your username appear as in the observer's display?
 
 var reconnectAttempts = 0;
 var logEventQueue = []; // TODO: make sure this doesn't grow too large if socketio isn't enabled

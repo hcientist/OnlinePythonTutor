@@ -1078,6 +1078,7 @@ function parseQueryString() {
 
   if (queryStrOptions.codeopticonSession) {
     codeopticonSession = queryStrOptions.codeopticonSession; // GLOBAL defined in codeopticon-learner.js
+    codeopticonUsername = queryStrOptions.codeopticonUsername; // GLOBAL defined in codeopticon-learner.js
   }
 
   if (queryStrOptions.testCasesLst) {
@@ -1113,7 +1114,8 @@ function getQueryStringOptions() {
           heapPrimitives: $.bbq.getState('heapPrimitives'),
           textReferences: $.bbq.getState('textReferences'),
           rawInputLst: ril ? $.parseJSON(ril) : undefined,
-          codeopticonSession: $.bbq.getState('codeopticon'),
+          codeopticonSession: $.bbq.getState('cosession'),
+          codeopticonUsername: $.bbq.getState('couser'),
           testCasesLst: testCasesLstJSON ? $.parseJSON(testCasesLstJSON) : undefined
           };
 }
@@ -1230,7 +1232,11 @@ function updateAppDisplay(newAppMode) {
 
     $(document).scrollTop(0); // scroll to top to make UX better on small monitors
 
-    $.bbq.pushState({ mode: 'edit' }, 2 /* completely override other hash strings to keep URL clean */);
+    var s = { mode: 'edit' };
+    // keep these persistent so that they survive page reloads
+    if (codeopticonSession) {s.cosession = codeopticonSession;}
+    if (codeopticonUsername) {s.couser = codeopticonUsername;}
+    $.bbq.pushState(s, 2 /* completely override other hash strings to keep URL clean */);
   }
   else if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
     assert(myVisualizer);
@@ -1283,7 +1289,11 @@ function updateAppDisplay(newAppMode) {
       });
     });
 
-    $.bbq.pushState({ mode: 'display' }, 2 /* completely override other hash strings to keep URL clean */);
+    var s = { mode: 'display' };
+    // keep these persistent so that they survive page reloads
+    if (codeopticonSession) {s.cosession = codeopticonSession;}
+    if (codeopticonUsername) {s.couser = codeopticonUsername;}
+    $.bbq.pushState(s, 2 /* completely override other hash strings to keep URL clean */);
   }
   else {
     assert(false);
