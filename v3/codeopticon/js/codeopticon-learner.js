@@ -7,10 +7,6 @@
 
 /* TODOs:
 
-- look into whether logEventQueue is being popped in the right order or
-  whether it's being popped backwards; if so, that's bad because that
-  causes events to be emitted out of order, eeek!
-
 */
 
 var codeopticonSocketIO = undefined; // socket.io instance
@@ -96,7 +92,7 @@ function initCodeopticon() {
         }
 
         while (logEventQueue.length > 0) {
-          codeopticonSocketIO.emit('opt-client-event', logEventQueue.pop());
+          codeopticonSocketIO.emit('opt-client-event', logEventQueue.shift() /* FIFO */);
         }
       }
       assert(logEventQueue.length === 0);
