@@ -5,6 +5,14 @@
 // preferably on the BOTTOM.
 // also requires jquery.ui.chatbox-LEARNER.js and jquery.ui.chatbox-LEARNER.css
 
+/* TODOs:
+
+- look into whether logEventQueue is being popped in the right order or
+  whether it's being popped backwards; if so, that's bad because that
+  causes events to be emitted out of order, eeek!
+
+*/
+
 var codeopticonSocketIO = undefined; // socket.io instance
 var codeopticonSession = undefined;
 //var codeopticonSession = 'CODEOPTICON_TESTING'; // to turn all monitoring on
