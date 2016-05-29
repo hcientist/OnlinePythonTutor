@@ -1234,8 +1234,9 @@ function updateAppDisplay(newAppMode) {
 
     var s = { mode: 'edit' };
     // keep these persistent so that they survive page reloads
-    if (codeopticonSession) {s.cosession = codeopticonSession;}
-    if (codeopticonUsername) {s.couser = codeopticonUsername;}
+    // keep these persistent so that they survive page reloads
+    if (typeof codeopticonSession !== "undefined") {s.cosession = codeopticonSession;}
+    if (typeof codeopticonUsername !== "undefined") {s.couser = codeopticonUsername;}
     $.bbq.pushState(s, 2 /* completely override other hash strings to keep URL clean */);
   }
   else if (appMode == 'display' || appMode == 'visualize' /* 'visualize' is deprecated */) {
@@ -1291,8 +1292,8 @@ function updateAppDisplay(newAppMode) {
 
     var s = { mode: 'display' };
     // keep these persistent so that they survive page reloads
-    if (codeopticonSession) {s.cosession = codeopticonSession;}
-    if (codeopticonUsername) {s.couser = codeopticonUsername;}
+    if (typeof codeopticonSession !== "undefined") {s.cosession = codeopticonSession;}
+    if (typeof codeopticonUsername !== "undefined") {s.couser = codeopticonUsername;}
     $.bbq.pushState(s, 2 /* completely override other hash strings to keep URL clean */);
   }
   else {

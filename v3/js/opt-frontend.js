@@ -691,7 +691,9 @@ $(document).ready(function() {
 
   initAceAndOptions(); // do this after genericOptFrontendReady
 
-  initCodeopticon(); // defined in codeopticon-learner.js
+  if (typeof initCodeopticon !== "undefined") {
+    initCodeopticon(); // defined in codeopticon-learner.js
+  }
 
   $("#createTestsLink").click(function() {
     initTestcasesPane('#testCasesPane');
