@@ -124,11 +124,6 @@ var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
 var prevExecutionExceptionObjLst = [];
 
 
-// OPTIONAL for Codeopticon - not all frontends use these:
-var codeopticonSocketIO = undefined; // socket.io instance
-var codeopticonSession = undefined;
-//var codeopticonSession = 'CODEOPTICON_TESTING'; // to turn all monitoring on
-
 // From http://stackoverflow.com/a/8809472
 function generateUUID(){
     var d = new Date().getTime();
@@ -191,6 +186,7 @@ function initAceEditor(height) {
   pyInputAceEditor.setHighlightActiveLine(false);
   pyInputAceEditor.setShowPrintMargin(false);
   pyInputAceEditor.setBehavioursEnabled(false);
+  pyInputAceEditor.$blockScrolling = Infinity; // kludgy to shut up weird warnings
 
   // auto-grow height as fit
   pyInputAceEditor.setOptions({minLines: 18, maxLines: 1000});
@@ -1081,7 +1077,7 @@ function parseQueryString() {
   }
 
   if (queryStrOptions.codeopticonSession) {
-    codeopticonSession = queryStrOptions.codeopticonSession; // GLOBAL!
+    codeopticonSession = queryStrOptions.codeopticonSession; // GLOBAL defined in codeopticon-learner.js
   }
 
   if (queryStrOptions.testCasesLst) {
@@ -2187,32 +2183,6 @@ display a brief "Thanks!" note]
   */
 }
 
-
-// using socket.io:
-function logEventCodeopticon(obj) {
-  //console.log(obj);
-  if (codeopticonSocketIO) {
-    assert(codeopticonSession);
-    obj.codeopticonSession = codeopticonSession;
-
-    obj.user_uuid = supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
-    obj.session_uuid = sessionUUID;
-
-    // this probably won't match the server time due to time zones, etc.
-    obj.clientTime = new Date().getTime();
-
-    if (codeopticonSocketIO.connected) {
-      codeopticonSocketIO.emit('opt-client-event', obj);
-      //console.log('emitted opt-client-event:', obj);
-    } else {
-      // TODO: be careful about this getting HUGE if codeopticonSocketIO
-      // never connects properly ...
-      logEventQueue.push(obj); // queue this up to be logged when the client
-                               // finishes successfully connecting to the server
-
-      // we're not yet connected, or we've been disconnected by the
-      // server, so try to connect/reconnect first before emitting the event
-      codeopticonSocketIO.connect(); // will trigger the .on('connect', ...) handler
-    }
-  }
-}
+// empty stub so that our code doesn't crash.
+// override this with a version in codeopticon-learner.js if needed
+function logEventCodeopticon(obj) {}

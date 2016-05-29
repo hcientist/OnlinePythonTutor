@@ -364,9 +364,8 @@ function experimentalPopUpSyntaxErrorSurvey() {
       bubbleAceEditor.setHighlightActiveLine(false);
       bubbleAceEditor.setShowPrintMargin(false);
       bubbleAceEditor.setBehavioursEnabled(false);
-
       bubbleAceEditor.setFontSize(10);
-
+      bubbleAceEditor.$blockScrolling = Infinity; // kludgy to shut up weird warnings
 
       $('#syntaxErrCodeDisplay').css('width', '320px');
       $('#syntaxErrCodeDisplay').css('height', '90px'); // VERY IMPORTANT so that it works on I.E., ugh!
@@ -585,109 +584,6 @@ var CPP_EXAMPLES = {
 }
 
 
-// BEGIN -- Codeopticon learner interface
-
-var reconnectAttempts = 0;
-var logEventQueue = []; // TODO: make sure this doesn't grow too large if socketio isn't enabled
-var chatBox = undefined;
-
-function createChatBox() {
-  assert(!chatBox);
-  chatBox = $("#chat_div").chatbox({id: "Me",
-                                    user: {key : "value"},
-                                    title: "Live Chat With Tutor",
-                                    width: 250,
-                                    offset: 2, // offset from right edge
-                                    messageSent: chatMsgSent,
-                                    boxClosed: chatBoxClosed,
-                                    chatboxToggled: chatBoxToggled,
-                                  });
-}
-
-function chatMsgSent(id, user, msg) {
-  $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
-  logEventCodeopticon({type: 'opt-client-chat',
-                       text: msg,
-                       sid: codeopticonSocketIO ? codeopticonSocketIO.id : undefined
-                      });
-}
-
-// only called when the user hits the X button to explicitly close the chat box
-function chatBoxClosed(id) {
-  logEventCodeopticon({type: 'opt-client-chat',
-                       text: '[closed chat box]',
-                       sid: codeopticonSocketIO ? codeopticonSocketIO.id : undefined
-                      });
-}
-
-// called when the user toggles the chat box open or close
-function chatBoxToggled(visible) {
-  var msg = '[minimized chat box]';
-  if (visible) {
-    msg = '[maximized chat box]';
-  }
-  logEventCodeopticon({type: 'opt-client-chat',
-                       text: msg,
-                       sid: codeopticonSocketIO ? codeopticonSocketIO.id : undefined
-                      });
-}
-
-function initCodeopticon() {
-  // only initialize if you have a valid session ID
-  if (!codeopticonSession) {
-    return;
-  }
-
-  // hide header elements only if we're not doing CODEOPTICON_TESTING
-  if (codeopticonSession !== 'CODEOPTICON_TESTING') {
-    $("#ssDiv,#surveyHeader,#sharedSessionDisplayDiv").hide();
-    $("#togetherjsStatus").css("font-size", "8pt");
-    $("#togetherjsStatus").html("Codeopticon session " + codeopticonSession);
-  }
-
-  // connect on-demand in logEventCodeopticon(), not here
-  codeopticonSocketIO = io('http://104.237.139.253:5000/userlog'); // PRODUCTION_PORT
-  //codeopticonSocketIO = io('http://104.237.139.253:5001/userlog'); // DEBUG_PORT
-  //codeopticonSocketIO = io('http://localhost:5000/userlog'); // localhost debugging
-
-  if (codeopticonSocketIO) {
-    codeopticonSocketIO.on('connect', function() {
-      //console.log('CONNECTED and emitting', logEventQueue.length, 'events');
-
-      if (logEventQueue.length > 0) {
-        // the reconnectAttempts field that denotes how many times you've
-        // attempted to reconnect (which is also how many times you've
-        // been kicked off by the logging server for, say, being idle).
-        // add this as an extra field on the FIRST event
-        if (reconnectAttempts > 0) {
-          logEventQueue[0].reconnectAttempts = reconnectAttempts;
-        }
-
-        while (logEventQueue.length > 0) {
-          codeopticonSocketIO.emit('opt-client-event', logEventQueue.pop());
-        }
-      }
-      assert(logEventQueue.length === 0);
-
-      reconnectAttempts++;
-    });
-
-    codeopticonSocketIO.on('opt-codeopticon-observer-chat', function(msg) {
-      if (!chatBox) {
-        createChatBox();
-      } else {
-        $("#chat_div").chatbox("option", "hidden", false);
-        $("#chat_div").chatbox("showContent");
-      }
-
-      $("#chat_div").chatbox("option", "boxManager").addMsg('Tutor', msg.text);
-    });
-  }
-}
-
-// END -- Codeopticon learner interface
-
-
 $(document).ready(function() {
   setSurveyHTML();
 
@@ -795,7 +691,7 @@ $(document).ready(function() {
 
   initAceAndOptions(); // do this after genericOptFrontendReady
 
-  initCodeopticon();
+  initCodeopticon(); // defined in codeopticon-learner.js
 
   $("#createTestsLink").click(function() {
     initTestcasesPane('#testCasesPane');

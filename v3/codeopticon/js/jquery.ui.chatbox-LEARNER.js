@@ -1,4 +1,5 @@
-/* customized by Philip Guo */
+/* customized by Philip Guo for using with codeopticon-learner.js
+   (learner chat box) */
 
 /*
  * Copyright 2010, Wen Pu (dexterpu at gmail dot com)
@@ -104,9 +105,6 @@
         showContent: function(event) {
             this.uiChatboxContent.show();
         },
-        isVisible: function(event) {
-            return this.uiChatboxContent.is(":visible");
-        },
         widget: function() {
             return this.uiChatbox
         },
@@ -116,7 +114,7 @@
             title = options.title || "No Title",
             // chatbox
             uiChatbox = (self.uiChatbox = $('<div></div>'))
-                .appendTo(this.options.parentDiv) // added by pgbovine
+                .appendTo(document.body)
                 .addClass('ui-widget ' +
                           'ui-corner-top ' +
                           'ui-chatbox'
@@ -151,12 +149,11 @@
                 .attr('role', 'button')
                 .hover(function() { uiChatboxTitlebarClose.addClass('ui-state-hover'); },
                        function() { uiChatboxTitlebarClose.removeClass('ui-state-hover'); })
-                // pgbovine - disable 'close' behavior
-                //.click(function(event) {
-                //    uiChatbox.hide();
-                //    self.options.boxClosed(self.options.id);
-                //    return false;
-                //})
+                .click(function(event) {
+                    uiChatbox.hide();
+                    self.options.boxClosed(self.options.id);
+                    return false;
+                })
                 .appendTo(uiChatboxTitlebar),
             uiChatboxTitlebarCloseText = $('<span></span>')
                 .addClass('ui-icon ' +
@@ -185,30 +182,21 @@
                 .addClass('ui-widget-content ' +
                           'ui-chatbox-content '
                          )
-                .appendTo(uiChatbox);
-
-            var uiChatboxInput = (self.uiChatboxInput = $('<div></div>'))
-                            .addClass('ui-widget-content ' +
-                                      'ui-chatbox-input'
-                                     )
-                            .click(function(event) {
-                                // anything?
-                            });
-
-            var uiChatboxLog = (self.uiChatboxLog = self.element)
+                .appendTo(uiChatbox),
+            uiChatboxLog = (self.uiChatboxLog = self.element)
                 .addClass('ui-widget-content ' +
                           'ui-chatbox-log'
-                         );
-
-            if (self.options.chatInputOnTop) {
-                uiChatboxInput.appendTo(uiChatboxContent);
-                uiChatboxLog.appendTo(uiChatboxContent);
-            } else {
-                uiChatboxLog.appendTo(uiChatboxContent);
-                uiChatboxInput.appendTo(uiChatboxContent);
-            }
-
-            var uiChatboxInputBox = (self.uiChatboxInputBox = $('<textarea></textarea>'))
+                         )
+                .appendTo(uiChatboxContent),
+            uiChatboxInput = (self.uiChatboxInput = $('<div></div>'))
+                .addClass('ui-widget-content ' +
+                          'ui-chatbox-input'
+                         )
+                .click(function(event) {
+                    // anything?
+                })
+                .appendTo(uiChatboxContent),
+            uiChatboxInputBox = (self.uiChatboxInputBox = $('<textarea></textarea>'))
                 .addClass('ui-widget-content ' +
                           'ui-chatbox-input-box ' +
                           'ui-corner-all'
@@ -226,11 +214,7 @@
                 })
                 .focusin(function() {
                     uiChatboxInputBox.addClass('ui-chatbox-input-focus');
-                    if (self.options.chatInputOnTop) {
-                      var box = $(this).parent().next(); // pgbovine
-                    } else {
-                      var box = $(this).parent().prev(); // original
-                    }
+                    var box = $(this).parent().prev();
                     box.scrollTop(box.get(0).scrollHeight);
                 })
                 .focusout(function() {

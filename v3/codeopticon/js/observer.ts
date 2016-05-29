@@ -65,6 +65,7 @@ var warningBorderColor = 'green';
 var lockedBorderColor = '#E66767'; // make it reddish
 
 
+// TODO: can get rid of ... only for user study for backup
 function logCoEvent(evt) {
   evt.dt = new Date().getTime();
   allCoEvents.push(evt);
