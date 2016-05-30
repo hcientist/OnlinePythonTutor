@@ -1919,8 +1919,8 @@ What did you just learn? <input type="text" id="sharedSessionWhatLearned" class=
 <span id="sharedSessionWhatLearnedThanks" style="color: #e93f34; font-weight: bold; font-size: 10pt; display: none;">Thanks!</span>\n\
 </div>'
 
-// deployed on 2015-03-06
-var emailNotificationHtml = '<div style="border: 2px solid #BE554E; padding: 5px; margin-top: 15px; margin-bottom: 15px; line-height: 150%; font-size: 10pt; width: 600px;">If you enjoyed using this <em>shared sessions</em> feature, please take a minute to fill out a <a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank"><b>three-question survey</b></a> to help our research. Thank you!</div>'
+// deployed on 2015-03-06, simplified request on 2016-05-30
+var emailNotificationHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt; width: 350px;"><a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs and feedback</a> on this shared sessions feature.</div>'
 
 // display-mode survey, which is shown when the user is in 'display' mode
 // As of Version 3, this runs every time code is executed, so make sure event
