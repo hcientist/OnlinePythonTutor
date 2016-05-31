@@ -358,7 +358,7 @@ TogetherJSConfig_ignoreForms = ['.togetherjsIgnore']; // do NOT sync these eleme
 
 
 function requestSync() {
-  if (TogetherJS.running) {
+  if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
     togetherjsSyncRequested = true;
     TogetherJS.send({type: "requestSync"});
   }
@@ -387,6 +387,10 @@ function syncAppState(appState) {
 
 // get OPT ready for integration with TogetherJS
 function initTogetherJS() {
+  if (typeof TogetherJS === "undefined") {
+    return;
+  }
+
   if (togetherjsInUrl) {
     $("#ssDiv").hide(); // hide ASAP!
     $("#togetherjsStatus").html("Please wait ... loading shared session");
@@ -828,7 +832,7 @@ function genericOptFrontendReady() {
       updateAppDisplay(newMode);
     }
 
-    if (TogetherJS.running && !isExecutingCode) {
+    if (typeof TogetherJS !== 'undefined' && TogetherJS.running && !isExecutingCode) {
       TogetherJS.send({type: "hashchange",
                        appMode: appMode,
                        codeInputScrollTop: pyInputGetScrollTop(),
@@ -859,7 +863,7 @@ function genericOptFrontendReady() {
     pyInputCodeMirror.on("change", function(cm, change) {
       // only trigger when the user explicitly typed something
       if (change.origin != 'setValue') {
-        if (TogetherJS.running) {
+        if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
           TogetherJS.send({type: "codemirror-edit"});
         }
       }
@@ -869,7 +873,7 @@ function genericOptFrontendReady() {
     pyInputAceEditor.getSession().on("change", function(e) {
       // unfortunately, Ace doesn't detect whether a change was caused
       // by a setValue call
-      if (TogetherJS.running) {
+      if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
         TogetherJS.send({type: "codemirror-edit"});
       }
     });
@@ -878,7 +882,7 @@ function genericOptFrontendReady() {
 
   if (useCodeMirror) {
     $(codeMirrorScroller).scroll(function(e) {
-      if (TogetherJS.running) {
+      if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
         var elt = $(this);
         $.doTimeout('codeInputScroll', 100, function() { // debounce
           // note that this will send a signal back and forth both ways
@@ -895,7 +899,7 @@ function genericOptFrontendReady() {
     // don't sync for Ace since I can't get it working properly yet
     /*
     pyInputAceEditor.getSession().on('changeScrollTop', function() {
-      if (TogetherJS.running) {
+      if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
         $.doTimeout('codeInputScroll', 100, function() { // debounce
           // note that this will send a signal back and forth both ways
           // (there's no easy way to prevent this), but it shouldn't keep
@@ -1053,7 +1057,7 @@ function genericOptFrontendReady() {
     if (myVisualizer) {
       var uh = myVisualizer.updateHistory;
       // don't submit identical entries repeatedly since that's redundant
-      if (uh.length != lastSubmittedUpdateHistoryLength) {
+      if (uh && (uh.length != lastSubmittedUpdateHistoryLength)) {
         lastSubmittedUpdateHistoryLength = uh.length;
         submitUpdateHistory('periodic');
       }
@@ -1697,26 +1701,21 @@ function submitUpdateHistory(why) {
     // entry except for the first be a delta from the FIRST entry.
     var uh = myVisualizer.updateHistory;
     var encodedUh = [];
-    encodedUh.push(uh[0]);
+    if (uh) {
+      encodedUh.push(uh[0]);
 
-    var firstTs = uh[0][1];
-    for (var i = 1; i < uh.length; i++) {
-      var e = uh[i];
-      encodedUh.push([e[0], e[1] - firstTs]);
+      var firstTs = uh[0][1];
+      for (var i = 1; i < uh.length; i++) {
+        var e = uh[i];
+        encodedUh.push([e[0], e[1] - firstTs]);
+      }
+
+      // finally push a final entry with the current timestamp delta
+      var curTs = new Date().getTime();
+      encodedUh.push([myVisualizer.curInstr, curTs - firstTs]);
     }
 
-    // finally push a final entry with the current timestamp delta
-    var curTs = new Date().getTime();
-    encodedUh.push([myVisualizer.curInstr, curTs - firstTs]);
-
-    var uhJSON = JSON.stringify(uh);
     var encodedUhJSON = JSON.stringify(encodedUh);
-
-    //console.log(uhJSON);
-    //console.log(encodedUhJSON);
-
-    //console.log(uhJSON.length);
-    //console.log(encodedUhJSON.length);
 
     var myArgs = {session_uuid: sessionUUID,
                   updateHistoryJSON: encodedUhJSON};
