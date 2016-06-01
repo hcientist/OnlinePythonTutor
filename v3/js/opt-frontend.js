@@ -361,6 +361,7 @@ function experimentalPopUpSyntaxErrorSurvey() {
       s.setUseSoftTabs(true);
       // disable extraneous indicators:
       s.setFoldStyle('manual'); // no code folding indicators
+      s.getDocument().setNewLineMode('unix'); // canonicalize all newlines to unix format
       bubbleAceEditor.setHighlightActiveLine(false);
       bubbleAceEditor.setShowPrintMargin(false);
       bubbleAceEditor.setBehavioursEnabled(false);

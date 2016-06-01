@@ -183,6 +183,7 @@ function initAceEditor(height) {
   s.setUseSoftTabs(true);
   // disable extraneous indicators:
   s.setFoldStyle('manual'); // no code folding indicators
+  s.getDocument().setNewLineMode('unix'); // canonicalize all newlines to unix format
   pyInputAceEditor.setHighlightActiveLine(false);
   pyInputAceEditor.setShowPrintMargin(false);
   pyInputAceEditor.setBehavioursEnabled(false);
