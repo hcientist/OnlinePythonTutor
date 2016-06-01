@@ -78,6 +78,19 @@ function updateSliderLabels() {
   } else {
     $("#curInstr").html("Step " + String(myVisualizer.curInstr + 1) + " of " + String(totalInstrs-1));
   }
+
+  // render error (if applicable):
+  var curEntry = myVisualizer.curTrace[myVisualizer.curInstr];
+  if (curEntry.event == 'exception' ||
+      curEntry.event == 'uncaught_exception') {
+    assert(curEntry.exception_msg);
+    if (curEntry.exception_msg == "Unknown error") {
+      $("#frontendErrorOutput").html('Unknown error: Please email a bug report to philip@pgbovine.net');
+    } else {
+      $("#frontendErrorOutput").html(htmlspecialchars(curEntry.exception_msg));
+    }
+    $("#frontendErrorOutput").show();
+  }
 }
 
 
