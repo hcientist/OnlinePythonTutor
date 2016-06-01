@@ -40,6 +40,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     x~=1
      ^
 
+- [later] add a codeopticon-style history slider of the user's past
+  edits
+
 - slightly gray out the visualization when there's a syntax error, to
   indicate to user that it's not indicative of the current code
 
@@ -59,11 +62,60 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 var originFrontendJsFile = 'opt-live.js';
 
+
+function updateSliderLabels() {
+  assert(myVisualizer);
+  var totalInstrs = myVisualizer.curTrace.length;
+  var isLastInstr = myVisualizer.curInstr == (totalInstrs-1);
+  if (isLastInstr) {
+    if (myVisualizer.promptForUserInput || myVisualizer.promptForMouseInput) {
+      $("#curInstr").html('<b><font color="' + brightRed + '">Enter user input:</font></b>');
+    } else if (myVisualizer.instrLimitReached) {
+      $("#curInstr").html("Instruction limit reached");
+    } else {
+      $("#curInstr").html("Program terminated");
+    }
+  } else {
+    $("#curInstr").html("Step " + String(myVisualizer.curInstr + 1) + " of " + String(totalInstrs-1));
+  }
+}
+
+
 function optliveFinishSuccessfulExecution() {
   assert(myVisualizer);
   $("#pyOutputPane").show();
-
   doneExecutingCode();
+
+  // set up execution slider, code inspired by pytutor.js:
+  var sliderDiv = $('#executionSlider');
+  sliderDiv.slider({min: 0, max: myVisualizer.curTrace.length - 1, step: 1});
+  //disable keyboard actions on the slider itself (to prevent double-firing of events)
+  sliderDiv.find(".ui-slider-handle").unbind('keydown');
+  // make skinnier and taller
+  sliderDiv.find(".ui-slider-handle").css('width', '0.8em');
+  sliderDiv.find(".ui-slider-handle").css('height', '1.4em');
+  $(".ui-widget-content").css('font-size', '0.9em');
+
+  sliderDiv.bind('slide', function(evt, ui) {
+    // this is SUPER subtle. if this value was changed programmatically,
+    // then evt.originalEvent will be undefined. however, if this value
+    // was changed by a user-initiated event, then this code should be
+    // executed ...
+    if (evt.originalEvent) {
+      myVisualizer.renderStep(ui.value);
+      updateSliderLabels();
+    }
+  });
+
+  myVisualizer.add_pytutor_hook(
+    "end_updateOutput",
+    function(args) {
+      // PROGRAMMATICALLY change the value, so evt.originalEvent should be undefined
+      $('#executionSlider').slider('value', args.myViz.curInstr);
+      updateSliderLabels();
+      return [false];
+    }
+  );
 
   // do this AFTER making #pyOutputPane visible, or else
   // jsPlumb connectors won't render properly
