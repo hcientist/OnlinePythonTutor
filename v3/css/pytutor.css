@@ -132,7 +132,7 @@ div.ExecutionVisualizer table#pyCodeOutput .cod {
 }
 
 div.ExecutionVisualizer div#progOutputs {
-  margin-left: 10px;
+  margin-left: 13px; /* line up with heap visualizations */
   margin-bottom: 3px;
 }
 
