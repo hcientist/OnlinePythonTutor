@@ -27,14 +27,26 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 // OPT live programming prototype started on 2016-05-30
+// ... inspired by my explorations with IPython shell + OPT for REPL
+// visualizations in August 2013 (opt-ipy.py), and Irene Chen's holistic
+// visualizations (2013-2014 UROP), inspired by Bret Victor's stuff
 
 /* TODOs:
 
-- display run-time exceptions properly -- right now display-mode code is
-hidden, so no exceptions displayed either
+- detect exact position of syntax error and put a squiggly line below it
+  with something like:
 
-- when there's a syntax error, the ace code editor snaps cursor back to
-  beginning of column at the marked line, which is annoying
+  File "<string>", line 1
+    x~=1
+     ^
+
+- slightly gray out the visualization when there's a syntax error, to
+  indicate to user that it's not indicative of the current code
+
+- display run-time exceptions properly -- right now display-mode code is
+  hidden, so no exceptions displayed either
+
+- also display stdout too
 
 */
 
@@ -58,6 +70,18 @@ function optliveFinishSuccessfulExecution() {
   myVisualizer.updateOutput();
 }
 
+function optliveHandleUncaughtExceptionFunc(trace) {
+  if (trace.length == 1 && trace[0].line) {
+    var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
+    if (errorLineNo !== undefined && errorLineNo != NaN) {
+      var s = pyInputAceEditor.getSession();
+      s.setAnnotations([{row: errorLineNo,
+                         type: 'error',
+                         text: trace[0].exception_msg}]);
+    }
+  }
+}
+
 // override the one in opt-frontend-common.js
 function initAceEditor(height) {
   pyInputAceEditor = ace.edit('codeInputPane');
@@ -78,12 +102,16 @@ function initAceEditor(height) {
   // auto-grow height as fit
   pyInputAceEditor.setOptions({minLines: 18, maxLines: 1000});
 
-  $('#codeInputPane').css('width', '500px');
+  $('#codeInputPane').css('width', '450px');
   $('#codeInputPane').css('height', height + 'px'); // VERY IMPORTANT so that it works on I.E., ugh!
 
   pyInputAceEditor.on('change', function(e) {
     $.doTimeout('pyInputAceEditorChange', 500, function() {
-      executeCodeFromScratch();    
+      // don't execute empty string:
+      if ($.trim(pyInputGetValue()) === '') {
+        return;
+      }
+      executeCode();
     }); // debounce
     clearFrontendError();
     s.clearAnnotations();
@@ -179,7 +207,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                             frontendOptionsObj,
                             'pyOutputPane',
                             optliveFinishSuccessfulExecution,
-                            handleUncaughtExceptionFunc);
+                            optliveHandleUncaughtExceptionFunc);
 }
 
 $(document).ready(function() {

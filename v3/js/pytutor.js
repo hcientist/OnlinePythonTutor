@@ -35,8 +35,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <script type="text/javascript" src="js/jquery.ba-bbq.min.js"></script> <!-- for handling back button and URL hashes -->
 <script type="text/javascript" src="js/jquery.jsPlumb-1.3.10-all-min.js "></script> <!-- for rendering SVG connectors
                                                                                          DO NOT UPGRADE ABOVE 1.3.10 OR ELSE BREAKAGE WILL OCCUR -->
-<script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script> <!-- for sliders and other UI elements -->
-<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.24.custom.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery-ui-1.11.4/jquery-ui.min.js"></script> <!-- for sliders and other UI elements -->
+<link type="text/css" href="js/jquery-ui-1.11.4/jquery-ui.css" rel="stylesheet" />
 
 <!-- for annotation bubbles -->
 <script type="text/javascript" src="js/jquery.qtip.min.js"></script>
@@ -81,7 +81,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   codeDivWidth  - maximum width  of #pyCodeOutputDiv (in integer pixels)
 //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code' (if null, then 'Edit code' link hidden)
 //   allowEditAnnotations - allow user to edit per-step annotations (default: false)
-//   embeddedMode         - shortcut for hideOutput=true, allowEditAnnotations=false,
+//   embeddedMode         - shortcut for allowEditAnnotations=false,
 //                                       codeDivWidth=this.DEFAULT_EMBEDDED_CODE_DIV_WIDTH,
 //                                       codeDivHeight=this.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT
 //                          (and don't activate keyboard shortcuts!)
@@ -251,6 +251,22 @@ function ExecutionVisualizer(domRootID, dat, params) {
     this.activateJavaFrontend(); // ohhhh yeah!
   }
 
+  // how many lines does curTrace print to stdout max?
+  this.numStdoutLines = 0;
+  // go backwards from the end ... sometimes the final entry doesn't
+  // have an stdout
+  var lastStdout;
+  for (var i = this.curTrace.length-1; i >= 0; i--) {
+    lastStdout = this.curTrace[i].stdout;
+    if (lastStdout) {
+      break;
+    }
+  }
+
+  if (lastStdout) {
+    this.numStdoutLines = lastStdout.rtrim().split('\n').length;
+  }
+
   this.try_hook("end_constructor", {myViz:this});
 
   this.hasRendered = false;
@@ -388,7 +404,6 @@ ExecutionVisualizer.prototype.render = function() {
     return;
   }
 
-
   var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
   var codeDisplayHTML =
@@ -423,8 +438,8 @@ ExecutionVisualizer.prototype.render = function() {
   var outputsHTML =
     '<div id="htmlOutputDiv"></div>\
      <div id="progOutputs">\
-       Program output:<br/>\
-       <textarea id="pyStdout" cols="50" rows="10" wrap="off" readonly></textarea>\
+       <div id="printOutputDocs">Print output (drag lower right corner to resize)</div>\n\
+       <textarea id="pyStdout" cols="40" rows="5" wrap="off" readonly></textarea>\
      </div>';
 
   var codeVizHTML =
@@ -482,7 +497,25 @@ ExecutionVisualizer.prototype.render = function() {
     }
   }
   else {
-    this.domRoot.find('#vizLayoutTdFirst').append(outputsHTML);
+    var stdoutHeight = '75px';
+    // heuristic for code with really small outputs
+    if (this.numStdoutLines <= 3) {
+      stdoutHeight = (18 * this.numStdoutLines) + 'px';
+    }
+    if (this.params.embeddedMode) {
+      stdoutHeight = '45px';
+    }
+
+    // position this under the code:
+    //this.domRoot.find('#vizLayoutTdFirst').append(outputsHTML);
+
+    // position this above visualization (started trying this on 2016-06-01)
+    this.domRoot.find('#vizLayoutTdSecond').prepend(outputsHTML);
+
+    // do this only after adding to DOM
+    this.domRoot.find('#pyStdout').width('350px')
+                                  .height(stdoutHeight)
+                                  .resizable();
   }
 
   if (this.params.arrowLines) {
@@ -582,7 +615,8 @@ ExecutionVisualizer.prototype.render = function() {
 
   if (this.params.embeddedMode) {
     this.embeddedMode = true;
-    this.params.hideOutput = true; // put this before hideOutput handler
+    // nix this for now ...
+    //this.params.hideOutput = true; // put this before hideOutput handler
 
     // don't override if they've already been set!
     if (this.params.codeDivWidth === undefined) {
@@ -642,7 +676,7 @@ ExecutionVisualizer.prototype.render = function() {
     this.domRoot.find('#codeDisplayDiv').width(this.params.codeDivWidth);
     // it will propagate to the slider
 
-    this.domRoot.find("#pyStdout").css("width", this.params.codeDivWidth - 20 /* wee tweaks */);
+    //this.domRoot.find("#pyStdout").css("width", this.params.codeDivWidth - 20 /* wee tweaks */);
   }
 
   // enable left-right draggable pane resizer (originally from David Pritchard)
@@ -651,7 +685,7 @@ ExecutionVisualizer.prototype.render = function() {
     minWidth: 100, //otherwise looks really goofy
     resize: function(event, ui) { // old name: syncStdoutWidth, now not appropriate
       // resize stdout box in unison
-      myViz.domRoot.find("#pyStdout").css("width", $(this).width() - 20 /* wee tweaks */);
+      //myViz.domRoot.find("#pyStdout").css("width", $(this).width() - 20 /* wee tweaks */);
 
       myViz.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
       myViz.renderSliderBreakpoints(); // update breakpoint display accordingly on resize
@@ -1358,6 +1392,27 @@ function htmlWithHighlight(inputStr, highlightInd, extent, highlightCssClass) {
 }
 
 
+ExecutionVisualizer.prototype.renderStdout = function() {
+  var curEntry = this.curTrace[this.curInstr];
+
+  // if there isn't anything in curEntry.stdout, don't even bother
+  // displaying the pane (but this may cause jumpiness later)
+  if (!this.params.hideOutput && (this.numStdoutLines > 0)) {
+    this.domRoot.find('#progOutputs').show();
+
+    var pyStdout = this.domRoot.find("#pyStdout");
+
+    // keep original horizontal scroll level:
+    var oldLeft = pyStdout.scrollLeft();
+    pyStdout.val(curEntry.stdout.rtrim() /* trim trailing spaces */);
+    pyStdout.scrollLeft(oldLeft);
+    pyStdout.scrollTop(pyStdout[0].scrollHeight); // scroll to bottom, though
+  }
+  else {
+    this.domRoot.find('#progOutputs').hide();
+  }
+}
+
 // This function is called every time the display needs to be updated
 // smoothTransition is OPTIONAL!
 ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
@@ -1367,6 +1422,7 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
   else {
     this.updateOutputFull(smoothTransition);
   }
+  this.renderStdout();
   this.try_hook("end_updateOutput", {myViz:this});
 }
 
@@ -1824,26 +1880,6 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
   if (curEntry.line) {
     highlightCodeLine();
   }
-
-  // render stdout:
-
-  // if there isn't anything in curEntry.stdout, don't even bother
-  // displaying the pane
-  if (curEntry.stdout) {
-    this.domRoot.find('#progOutputs').show();
-
-    // keep original horizontal scroll level:
-    var oldLeft = myViz.domRoot.find("#pyStdout").scrollLeft();
-    myViz.domRoot.find("#pyStdout").val(curEntry.stdout);
-
-    myViz.domRoot.find("#pyStdout").scrollLeft(oldLeft);
-    // scroll to bottom, though:
-    myViz.domRoot.find("#pyStdout").scrollTop(myViz.domRoot.find("#pyStdout")[0].scrollHeight);
-  }
-  else {
-    this.domRoot.find('#progOutputs').hide();
-  }
-
 
   // inject user-specified HTML/CSS/JS output:
   // YIKES -- HUGE CODE INJECTION VULNERABILITIES :O
@@ -4535,8 +4571,10 @@ ExecutionVisualizer.prototype.activateJavaFrontend = function() {
     "end_render",
     function(args) {
       var myViz = args.myViz;
+
+      // uhh, dunno what this was for ...
       //myViz.domRoot.find('#pyStdout').attr('cols', 1); // commented out by pgbovine
-      myViz.domRoot.find('#pyStdout').attr('rows', Math.min(10, myViz.stdoutLines));
+      //myViz.domRoot.find('#pyStdout').attr('rows', Math.min(10, myViz.stdoutLines));
       
       if (myViz.params.stdin && myViz.params.stdin != "") {
         var stdinHTML = '<div id="stdinWrap">stdin:<pre id="stdinShow" style="border:1px solid gray"></pre></div>';

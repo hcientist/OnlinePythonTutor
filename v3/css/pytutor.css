@@ -57,7 +57,7 @@ div.ExecutionVisualizer td#heap_td {
 }
 
 div.ExecutionVisualizer #dataViz {
-  margin-left: 25px;
+  /*margin-left: 25px;*/
 }
 
 div.ExecutionVisualizer div#codeDisplayDiv {
@@ -132,7 +132,8 @@ div.ExecutionVisualizer table#pyCodeOutput .cod {
 }
 
 div.ExecutionVisualizer div#progOutputs {
-  margin-top: 8px;
+  margin-left: 10px;
+  margin-bottom: 3px;
 }
 
 div.ExecutionVisualizer div#legendDiv {
@@ -207,8 +208,8 @@ div.ExecutionVisualizer #vcrControls #curInstr {
 
 div.ExecutionVisualizer #pyStdout {
   border: 1px solid #999999;
-  font-size: 12pt;
-  padding: 4px;
+  font-size: 10pt;
+  padding: 3px;
   font-family: Andale mono, monospace;
 
   overflow: auto; /* to look pretty on IE */
@@ -617,14 +618,18 @@ div.ExecutionVisualizer #executionSliderFooter {
   margin-top: -7px; /* make it butt up against #executionSlider */
 }
 
-div.ExecutionVisualizer #executionSliderDocs {
-  margin-top: 5px;
-  margin-bottom: 12px;
-  width: 95%;
+div.ExecutionVisualizer #executionSliderDocs,
+div.ExecutionVisualizer #printOutputDocs {
+  margin-bottom: 3px;
   font-size: 8pt;
   color: #666;
 }
 
+div.ExecutionVisualizer #executionSliderDocs {
+  margin-top: 5px;
+  margin-bottom: 12px;
+  width: 95%;
+}
 
 /* darken slider handle a bit */
 div.ExecutionVisualizer .ui-slider .ui-slider-handle {
