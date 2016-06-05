@@ -1413,6 +1413,97 @@ ExecutionVisualizer.prototype.renderStdout = function() {
   }
 }
 
+
+// update some fields corresponding to the current and previously
+// executed lines in the trace so that they can be highlighted
+// copied and pasted from highlightCodeLine, which is hacky :/
+ExecutionVisualizer.prototype.updateCurPrevLines = function() {
+  var myViz = this;
+  var totalInstrs = myViz.curTrace.length;
+  var isLastInstr = myViz.curInstr === (totalInstrs-1);
+
+  /* if instrLimitReached, then treat like a normal non-terminating line */
+  var isTerminated = (!myViz.instrLimitReached && isLastInstr);
+
+  var curLineNumber = null;
+  var prevLineNumber = null;
+
+  var curEntry = myViz.curTrace[myViz.curInstr];
+  var hasError = false;
+
+  var curIsReturn = (curEntry.event == 'return');
+  var prevIsReturn = false;
+
+  if (myViz.curInstr > 0) {
+    prevLineNumber = myViz.curTrace[myViz.curInstr - 1].line;
+    prevIsReturn = (myViz.curTrace[myViz.curInstr - 1].event == 'return');
+
+    /* kinda nutsy hack: if the previous line is a return line, don't
+       highlight it. instead, highlight the line in the enclosing
+       function that called this one (i.e., the call site). e.g.,:
+
+       1. def foo(lst):
+       2.   return len(lst)
+       3.
+       4. y = foo([1,2,3])
+       5. print y
+
+       If prevLineNumber is 2 and prevIsReturn, then curLineNumber is
+       5, since that's the line that executes right after line 2
+       finishes. However, this looks confusing to the user since what
+       actually happened here was that the return value of foo was
+       assigned to y on line 4. I want to have prevLineNumber be line
+       4 so that it gets highlighted. There's no ideal solution, but I
+       think that looks more sensible, since line 4 was the previous
+       line that executed *in this function's frame*.
+    */
+    if (prevIsReturn) {
+      var idx = myViz.curInstr - 1;
+      var retStack = myViz.curTrace[idx].stack_to_render;
+      assert(retStack.length > 0);
+      var retFrameId = retStack[retStack.length - 1].frame_id;
+
+      // now go backwards until we find a 'call' to this frame
+      while (idx >= 0) {
+        var entry = myViz.curTrace[idx];
+        if (entry.event == 'call' && entry.stack_to_render) {
+          var topFrame = entry.stack_to_render[entry.stack_to_render.length - 1];
+          if (topFrame.frame_id == retFrameId) {
+            break; // DONE, we found the call that corresponds to this return
+          }
+        }
+        idx--;
+      }
+
+      // now idx is the index of the 'call' entry. we need to find the
+      // entry before that, which is the instruction before the call.
+      // THAT's the line of the call site.
+      if (idx > 0) {
+        var callingEntry = myViz.curTrace[idx - 1];
+        prevLineNumber = callingEntry.line; // WOOHOO!!!
+        prevIsReturn = false; // this is now a call site, not a return
+      }
+    }
+  }
+
+  curLineNumber = curEntry.line;
+
+  // edge case for the final instruction :0
+  if (isTerminated && !hasError) {
+    // don't show redundant arrows on the same line when terminated ...
+    if (prevLineNumber == curLineNumber) {
+      curLineNumber = null;
+    }
+  }
+
+  // add these fields to myViz, which is the point of this function!
+  myViz.curLineNumber = curLineNumber;
+  myViz.prevLineNumber = prevLineNumber;
+  myViz.curLineIsReturn = curIsReturn;
+  myViz.prevLineIsReturn = prevIsReturn;
+}
+
+
 // This function is called every time the display needs to be updated
 // smoothTransition is OPTIONAL!
 ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {

@@ -62,8 +62,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 var originFrontendJsFile = 'opt-live.js';
 
-
-function updateSliderLabels() {
+function updateStepLabels() {
   assert(myVisualizer);
   var totalInstrs = myVisualizer.curTrace.length;
   var isLastInstr = myVisualizer.curInstr == (totalInstrs-1);
@@ -91,8 +90,32 @@ function updateSliderLabels() {
     }
     $("#frontendErrorOutput").show();
   }
-}
 
+
+  // TODO: what happens on syntax error?!?
+
+  // update gutter arrows too
+  myVisualizer.updateCurPrevLines();
+  console.log(myVisualizer.curLineNumber, myVisualizer.prevLineNumber);
+
+  var s = pyInputAceEditor.getSession();
+  var d = s.getDocument();
+
+  // clear all first
+  for (var i = 0; i < d.getLength(); i++) {
+    s.removeGutterDecoration(i, 'curLineStepGutter');
+    s.removeGutterDecoration(i, 'prevLineStepGutter');
+  }
+
+  if (myVisualizer.curLineNumber) {
+    s.addGutterDecoration(myVisualizer.curLineNumber-1, 'curLineStepGutter');
+  }
+
+  if (myVisualizer.prevLineNumber) {
+    s.addGutterDecoration(myVisualizer.prevLineNumber-1, 'prevLineStepGutter');
+  }
+
+}
 
 function optliveFinishSuccessfulExecution() {
   assert(myVisualizer);
@@ -116,7 +139,7 @@ function optliveFinishSuccessfulExecution() {
     // executed ...
     if (evt.originalEvent) {
       myVisualizer.renderStep(ui.value);
-      updateSliderLabels();
+      updateStepLabels();
     }
   });
 
@@ -125,7 +148,6 @@ function optliveFinishSuccessfulExecution() {
     function(args) {
       // PROGRAMMATICALLY change the value, so evt.originalEvent should be undefined
       $('#executionSlider').slider('value', args.myViz.curInstr);
-      updateSliderLabels();
       return [false];
     }
   );
@@ -133,6 +155,7 @@ function optliveFinishSuccessfulExecution() {
   // do this AFTER making #pyOutputPane visible, or else
   // jsPlumb connectors won't render properly
   myVisualizer.updateOutput();
+  updateStepLabels(); // do it once
 }
 
 function optliveHandleUncaughtExceptionFunc(trace) {
@@ -163,6 +186,10 @@ function initAceEditor(height) {
   pyInputAceEditor.setHighlightActiveLine(false);
   pyInputAceEditor.setShowPrintMargin(false);
   pyInputAceEditor.setBehavioursEnabled(false);
+
+  pyInputAceEditor.setHighlightGutterLine(false); // to avoid gray highlight over gutter of active line
+  pyInputAceEditor.setDisplayIndentGuides(false); // to avoid annoying gray vertical lines
+
   pyInputAceEditor.$blockScrolling = Infinity; // kludgy to shut up weird warnings
 
   // auto-grow height as fit
@@ -187,6 +214,17 @@ function initAceEditor(height) {
   // https://github.com/ajaxorg/ace/wiki/Syntax-validation
   s.setOption("useWorker", false);
   pyInputAceEditor.focus();
+
+  // custom gutter renderer, make it wider to accomodate arrows on left
+  // http://stackoverflow.com/a/28404331
+  s.gutterRenderer = {
+    getWidth: function(session, lastLineNumber, config) {
+      return (lastLineNumber.toString().length * config.characterWidth) + 6;
+    },
+    getText: function(session, row) {
+      return (row+1);
+    }
+  };
 }
 
 // based on executeCodeAndCreateViz

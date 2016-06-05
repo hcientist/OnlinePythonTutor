@@ -1,0 +1,20 @@
+.curLineStepGutter {
+  background-image: url("redarrow.png");
+}
+
+.prevLineStepGutter {
+  background-image: url("lightgreenarrow.png");
+}
+
+/* override Ace defaults */
+.ace_gutter {
+}
+
+.ace_gutter-cell {
+}
+
+.ace_gutter-layer {
+  background-color: white;
+  margin-right: 2px;
+  color: #aaa;
+}
