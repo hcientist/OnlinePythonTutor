@@ -49,8 +49,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 - display run-time exceptions properly -- right now display-mode code is
   hidden, so no exceptions displayed either
 
-- also display stdout too
-
 */
 
 // Pre-reqs:
@@ -61,6 +59,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // should all be imported BEFORE this file
 
 var originFrontendJsFile = 'opt-live.js';
+
+function removeAllGutterDecorations() {
+  var s = pyInputAceEditor.getSession();
+  var d = s.getDocument();
+
+  for (var i = 0; i < d.getLength(); i++) {
+    s.removeGutterDecoration(i, 'curLineStepGutter');
+    s.removeGutterDecoration(i, 'prevLineStepGutter');
+  }
+}
+
 
 function updateStepLabels() {
   assert(myVisualizer);
@@ -91,22 +100,12 @@ function updateStepLabels() {
     $("#frontendErrorOutput").show();
   }
 
+  removeAllGutterDecorations();
 
-  // TODO: what happens on syntax error?!?
-
-  // update gutter arrows too
+  // update gutter arrows
   myVisualizer.updateCurPrevLines();
-  console.log(myVisualizer.curLineNumber, myVisualizer.prevLineNumber);
 
   var s = pyInputAceEditor.getSession();
-  var d = s.getDocument();
-
-  // clear all first
-  for (var i = 0; i < d.getLength(); i++) {
-    s.removeGutterDecoration(i, 'curLineStepGutter');
-    s.removeGutterDecoration(i, 'prevLineStepGutter');
-  }
-
   if (myVisualizer.curLineNumber) {
     s.addGutterDecoration(myVisualizer.curLineNumber-1, 'curLineStepGutter');
   }
@@ -114,13 +113,14 @@ function updateStepLabels() {
   if (myVisualizer.prevLineNumber) {
     s.addGutterDecoration(myVisualizer.prevLineNumber-1, 'prevLineStepGutter');
   }
-
 }
 
 function optliveFinishSuccessfulExecution() {
   assert(myVisualizer);
   $("#pyOutputPane").show();
   doneExecutingCode();
+
+  $("#dataViz").removeClass('dimmed'); // un-dim the visualization
 
   // set up execution slider, code inspired by pytutor.js:
   var sliderDiv = $('#executionSlider');
@@ -162,6 +162,8 @@ function optliveHandleUncaughtExceptionFunc(trace) {
   if (trace.length == 1 && trace[0].line) {
     var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
     if (errorLineNo !== undefined && errorLineNo != NaN) {
+      removeAllGutterDecorations();
+      $("#dataViz").addClass('dimmed'); // dim the visualization until we fix the error
       var s = pyInputAceEditor.getSession();
       s.setAnnotations([{row: errorLineNo,
                          type: 'error',
