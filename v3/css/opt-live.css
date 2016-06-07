@@ -6,6 +6,28 @@
   background-image: url("lightgreenarrow.png");
 }
 
+.curPrevOverlapLineStepGutter {
+  background-image: url("redgreenarrow.png");
+}
+
+.errorLine {
+  position: absolute;
+  z-index: 20;
+  border-top: 1px solid #e93f34;
+  border-bottom: 1px solid #e93f34;
+  /*background: rgba(200, 0, 0, 0.15);*/
+}
+
+#sliderStuff {
+  padding-top: 3px;
+}
+
+#curInstr {
+  padding: 6px;
+  margin: 6px auto;
+  text-align: center;
+}
+
 /* translucent dimmed div: http://stackoverflow.com/a/21457838 */
 .dimmed {
   position: relative;
@@ -20,7 +42,7 @@
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(200, 0, 0, 0.15);
 }
 
 /* augment */

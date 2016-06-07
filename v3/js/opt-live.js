@@ -33,21 +33,29 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /* TODOs:
 
-- detect exact position of syntax error and put a squiggly line below it
-  with something like:
+- [later] detect exact position of syntax error and put a squiggly line below
+  it with something like:
 
   File "<string>", line 1
     x~=1
      ^
+- make Ace editor resizable width-wise using jQuery resizable
+  (stackoverflow has some tips for how to do that)
+
+- add toggles for language choices
+
+- support pasting in code via URL, which will be important for
+  transporting the user from regular OPT to live mode
+
+- make sure server logging works properly, esp. session and user IDs,
+  and slider interactions
+  - have separate web_exec_live executor scripts for logging live mode
+
+- if these Ace enhancements look good, then I can also use them for
+  Codeopticon as well!
 
 - [later] add a codeopticon-style history slider of the user's past
-  edits
-
-- slightly gray out the visualization when there's a syntax error, to
-  indicate to user that it's not indicative of the current code
-
-- display run-time exceptions properly -- right now display-mode code is
-  hidden, so no exceptions displayed either
+  edits (but that might be confusing)
 
 */
 
@@ -60,6 +68,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 var originFrontendJsFile = 'opt-live.js';
 
+var prevVisualizer = null; // the visualizer object from the previous execution
+
+var aceEditorWidth = '600px';
+
+var allMarkerIds = [];
+
 function removeAllGutterDecorations() {
   var s = pyInputAceEditor.getSession();
   var d = s.getDocument();
@@ -67,21 +81,29 @@ function removeAllGutterDecorations() {
   for (var i = 0; i < d.getLength(); i++) {
     s.removeGutterDecoration(i, 'curLineStepGutter');
     s.removeGutterDecoration(i, 'prevLineStepGutter');
+    s.removeGutterDecoration(i, 'curPrevOverlapLineStepGutter');
   }
 }
 
-
 function updateStepLabels() {
   assert(myVisualizer);
+  myVisualizer.updateCurPrevLines(); // do this first to update the right fields
+
+  var s = pyInputAceEditor.getSession();
+  allMarkerIds.forEach(function(e) {
+    s.removeMarker(e);
+  });
+  allMarkerIds = [];
+
   var totalInstrs = myVisualizer.curTrace.length;
-  var isLastInstr = myVisualizer.curInstr == (totalInstrs-1);
+  var isLastInstr = myVisualizer.curInstr === (totalInstrs-1);
   if (isLastInstr) {
     if (myVisualizer.promptForUserInput || myVisualizer.promptForMouseInput) {
       $("#curInstr").html('<b><font color="' + brightRed + '">Enter user input:</font></b>');
     } else if (myVisualizer.instrLimitReached) {
-      $("#curInstr").html("Instruction limit reached");
+      $("#curInstr").html("Instruction limit reached (" + String(totalInstrs-1) + " steps)");
     } else {
-      $("#curInstr").html("Program terminated");
+      $("#curInstr").html("Program terminated (" + String(totalInstrs-1) + " steps)");
     }
   } else {
     $("#curInstr").html("Step " + String(myVisualizer.curInstr + 1) + " of " + String(totalInstrs-1));
@@ -98,20 +120,32 @@ function updateStepLabels() {
       $("#frontendErrorOutput").html(htmlspecialchars(curEntry.exception_msg));
     }
     $("#frontendErrorOutput").show();
+
+    if (myVisualizer.curLineNumber) {
+      var Range = ace.require('ace/range').Range;
+      var markerId = s.addMarker(new Range(myVisualizer.curLineNumber - 1, 0,
+                                           myVisualizer.curLineNumber - 1, 1), "errorLine", "fullLine");
+      allMarkerIds.push(markerId);
+    }
+  } else {
+    $("#frontendErrorOutput").html(''); // clear it
   }
 
   removeAllGutterDecorations();
 
-  // update gutter arrows
-  myVisualizer.updateCurPrevLines();
-
-  var s = pyInputAceEditor.getSession();
-  if (myVisualizer.curLineNumber) {
-    s.addGutterDecoration(myVisualizer.curLineNumber-1, 'curLineStepGutter');
-  }
-
-  if (myVisualizer.prevLineNumber) {
-    s.addGutterDecoration(myVisualizer.prevLineNumber-1, 'prevLineStepGutter');
+  // special case if both arrows overlap
+  if ( myVisualizer.curLineNumber &&
+      (myVisualizer.curLineNumber === myVisualizer.prevLineNumber)) {
+    s.addGutterDecoration(myVisualizer.curLineNumber-1,
+                          'curPrevOverlapLineStepGutter');
+  } else {
+    // render separately
+    if (myVisualizer.curLineNumber) {
+      s.addGutterDecoration(myVisualizer.curLineNumber-1, 'curLineStepGutter');
+    }
+    if (myVisualizer.prevLineNumber) {
+      s.addGutterDecoration(myVisualizer.prevLineNumber-1, 'prevLineStepGutter');
+    }
   }
 }
 
@@ -120,7 +154,7 @@ function optliveFinishSuccessfulExecution() {
   $("#pyOutputPane").show();
   doneExecutingCode();
 
-  $("#dataViz").removeClass('dimmed'); // un-dim the visualization
+  $("#dataViz,#curInstr").removeClass('dimmed'); // un-dim the visualization
 
   // set up execution slider, code inspired by pytutor.js:
   var sliderDiv = $('#executionSlider');
@@ -154,7 +188,25 @@ function optliveFinishSuccessfulExecution() {
 
   // do this AFTER making #pyOutputPane visible, or else
   // jsPlumb connectors won't render properly
-  myVisualizer.updateOutput();
+
+  // try to "match" the same position as the previous visualizer so that
+  // the display isn't jerky
+  if (prevVisualizer) {
+    var prevVizInstr = prevVisualizer.curInstr;
+    var prevVizIsFinalInstr = (prevVisualizer.curInstr === (prevVisualizer.curTrace.length-1));
+
+    // match the previous step if it we weren't on the last one, and the new
+    // trace is at least as long
+    if (!prevVizIsFinalInstr &&
+        (myVisualizer.curTrace.length >= prevVisualizer.curTrace.length)) {
+      myVisualizer.renderStep(prevVizInstr);
+    } else {
+      myVisualizer.updateOutput();
+    }
+  } else {
+    myVisualizer.updateOutput();
+  }
+
   updateStepLabels(); // do it once
 }
 
@@ -163,7 +215,12 @@ function optliveHandleUncaughtExceptionFunc(trace) {
     var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
     if (errorLineNo !== undefined && errorLineNo != NaN) {
       removeAllGutterDecorations();
-      $("#dataViz").addClass('dimmed'); // dim the visualization until we fix the error
+
+      if (myVisualizer) {
+        $("#dataViz,#curInstr").addClass('dimmed'); // dim the visualization until we fix the error
+        myVisualizer.updateOutput(); // to update arrows
+      }
+
       var s = pyInputAceEditor.getSession();
       s.setAnnotations([{row: errorLineNo,
                          type: 'error',
@@ -195,9 +252,9 @@ function initAceEditor(height) {
   pyInputAceEditor.$blockScrolling = Infinity; // kludgy to shut up weird warnings
 
   // auto-grow height as fit
-  pyInputAceEditor.setOptions({minLines: 18, maxLines: 1000});
+  pyInputAceEditor.setOptions({minLines: 20, maxLines: 20});
 
-  $('#codeInputPane').css('width', '450px');
+  $("#pyInputPane,#codeInputPane").css('width', aceEditorWidth);
   $('#codeInputPane').css('height', height + 'px'); // VERY IMPORTANT so that it works on I.E., ugh!
 
   pyInputAceEditor.on('change', function(e) {
@@ -259,6 +316,7 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
         }
       }
       else {
+        prevVisualizer = myVisualizer;
         myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
         handleSuccessFunc();
       }
@@ -303,7 +361,6 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
     var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
     var frontendOptionsObj = {startingInstruction: startingInstruction,
                               executeCodeWithRawInputFunc: executeCodeWithRawInput,
-                              updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
                               hideCode: true,
                               jumpToEnd: true,
                              }

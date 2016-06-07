@@ -1486,6 +1486,13 @@ ExecutionVisualizer.prototype.updateCurPrevLines = function() {
     }
   }
 
+  if (curEntry.event == 'exception' ||
+      curEntry.event == 'uncaught_exception') {
+    assert(curEntry.exception_msg);
+    hasError = true;
+    myViz.curLineExceptionMsg = curEntry.exception_msg;
+  }
+
   curLineNumber = curEntry.line;
 
   // edge case for the final instruction :0
@@ -1831,8 +1838,8 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
 
     // on 'return' events, give a bit more of a vertical nudge to show that
     // the arrow is aligned with the 'bottom' of the line ...
-    var prevVerticalNudge = prevIsReturn ? Math.floor(myViz.codeRowHeight / 2) : 0;
-    var curVerticalNudge  = curIsReturn  ? Math.floor(myViz.codeRowHeight / 2) : 0;
+    var prevVerticalNudge = prevIsReturn ? Math.floor(myViz.codeRowHeight / 3) : 0;
+    var curVerticalNudge  = curIsReturn  ? Math.floor(myViz.codeRowHeight / 3) : 0;
 
 
     // edge case for the final instruction :0
