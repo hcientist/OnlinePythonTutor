@@ -46,11 +46,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 - support pasting in code via URL, which will be important for
   transporting the user from regular OPT to live mode
+  - add "Generate permanent link" button, but no need for iframe embed btn
 
 - make sure server logging works properly, esp. session and user IDs,
   and slider interactions
-
-- add "Generate permanent link" button, but no need for iframe embed btn
 
 - if these Ace enhancements look good, then I can also use them for
   Codeopticon as well!
