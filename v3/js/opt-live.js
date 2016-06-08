@@ -98,7 +98,7 @@ var originFrontendJsFile = 'opt-live.js';
 
 var prevVisualizer = null; // the visualizer object from the previous execution
 
-var aceEditorWidth = '600px';
+var aceEditorWidth = '550px';
 
 var hasSyntaxError = false;
 function toggleSyntaxError(x) {
@@ -337,7 +337,8 @@ function initAceEditor(height) {
 
   pyInputAceEditor.on('change', function(e) {
     $.doTimeout('pyInputAceEditorChange',
-                CODE_SNAPSHOT_DEBOUNCE_MS /* match the value in opt-frontend-common.js for consistency and easy apples-to-apples comparisons later on */,
+                500, /* go a bit faster than CODE_SNAPSHOT_DEBOUNCE_MS to feel more snappy */
+                //CODE_SNAPSHOT_DEBOUNCE_MS /* match the value in opt-frontend-common.js for consistency and easy apples-to-apples comparisons later on */,
                 executeCode); // debounce
     clearFrontendError();
     s.clearAnnotations();
