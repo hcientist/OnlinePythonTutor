@@ -440,10 +440,11 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
     // don't bother if we're currently on a syntax error since the
     // displayed visualization is no longer relevant
     var prevUpdateHistoryJSON = undefined;
-    if (myVisualizer && !hasSyntaxError) {
+    if (hasSyntaxError) {
+      prevUpdateHistoryJSON = 'hasSyntaxError'; // hacky
+    } else if (myVisualizer) {
       var encodedUh = compressUpdateHistoryList(myVisualizer);
       prevUpdateHistoryJSON = JSON.stringify(encodedUh);
-      console.log('prevUpdateHistoryJSON', prevUpdateHistoryJSON);
     }
 
     if (backendScript === js_backend_script ||

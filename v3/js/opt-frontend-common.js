@@ -1662,7 +1662,6 @@ function executeCodeAndCreateViz(codeToExec,
              options_json: JSON.stringify(backendOptionsObj),
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
              session_uuid: sessionUUID,
-             exeTime: new Date().getTime(),
              diffs_json: deltaObjStringified},
              function(dat) {} /* don't do anything since this is a dummy call */, "text");
 
@@ -1686,7 +1685,6 @@ function executeCodeAndCreateViz(codeToExec,
              options_json: JSON.stringify(backendOptionsObj),
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
              session_uuid: sessionUUID,
-             exeTime: new Date().getTime(),
              diffs_json: deltaObjStringified},
              execCallback, "json");
     }
