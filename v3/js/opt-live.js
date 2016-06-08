@@ -45,12 +45,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 - also add in general directions about live mode and a switchback option
   to regular mode
 
-- add footer
-
-- support pasting in code via URL, which will be important for
-  transporting the user from regular OPT to live mode
-  - add "Generate permanent link" button, but no need for iframe embed btn
-
 - if these Ace enhancements look good, then I can also use them for
   Codeopticon as well!
 
@@ -492,8 +486,9 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
 }
 
 function executeCode(forceStartingInstr, forceRawInputLst) {
-    var cod = pyInputGetValue();
+    $('#urlOutput').val(''); // clear to avoid stale values
 
+    var cod = pyInputGetValue();
     // don't run empty code
     if ($.trim(cod) === '') {
       return;
