@@ -34,6 +34,12 @@
   min-height: 40px;
 }
 
+#liveModeHeader {
+  margin-left: 3px;
+  margin-bottom: 12px;
+  color: #888;
+}
+
 /* copied from pytutor.css */
 div#legendDiv {
   margin-top: 8px;
