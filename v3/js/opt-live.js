@@ -27,6 +27,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 // OPT live programming prototype started on 2016-05-30
+// first launched as a "Live Programming Mode" button on main OPT site
+// on 2016-06-08, working for Python 2/3 and JavaScript for starters
+//
 // ... inspired by my explorations with IPython shell + OPT for REPL
 // visualizations in August 2013 (opt-ipy.py), and Irene Chen's holistic
 // visualizations (2013-2014 UROP), inspired by Bret Victor's stuff
