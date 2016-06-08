@@ -24,8 +24,8 @@ import urllib2
 def web_exec(name):
     return 'OK'
 
-@route('/web_exec_LIVE_<name:re:.+>.py')
-def web_exec_live(name):
+@route('/LIVE_exec_<name:re:.+>.py')
+def live_exec(name):
     return 'OK'
 
 

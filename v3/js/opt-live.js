@@ -39,6 +39,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   File "<string>", line 1
     x~=1
      ^
+- for slower frontends, add an unobtrusive "running ..." indicator
+
 - make Ace editor resizable width-wise using jQuery resizable
   (stackoverflow has some tips for how to do that)
 
@@ -47,7 +49,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 - make sure server logging works properly, esp. session and user IDs,
   and slider interactions
-  - have separate web_exec_live executor scripts for logging live mode
 
 - add "Generate permanent link" button, but no need for iframe embed btn
 
@@ -81,20 +82,20 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // -rwxr-xr-x 1 pgbovine pgbovine 2.5K Jul  5 22:46 web_exec_py2.py*
 // (most notably, only the owner of the file should have write
 //  permissions)
-//var python2_backend_script = 'web_exec_LIVE_py2.py';
-//var python3_backend_script = 'web_exec_LIVE_py3.py';
+//var python2_backend_script = 'LIVE_exec_py2.py';
+//var python3_backend_script = 'LIVE_exec_py3.py';
 
 // uncomment below if you're running on Google App Engine using the built-in app.yaml
 var python2_backend_script = 'exec';
 var python3_backend_script = 'exec';
 
 // empty dummy just to do logging on the Apache's server
-var js_backend_script = 'web_exec_LIVE_js.py';
-var ts_backend_script = 'web_exec_LIVE_ts.py';
-var java_backend_script = 'web_exec_LIVE_java.py';
-var ruby_backend_script = 'web_exec_LIVE_ruby.py';
-var c_backend_script = 'web_exec_LIVE_c.py';
-var cpp_backend_script = 'web_exec_LIVE_cpp.py';
+var js_backend_script = 'LIVE_exec_js.py';
+var ts_backend_script = 'LIVE_exec_ts.py';
+var java_backend_script = 'LIVE_exec_java.py';
+var ruby_backend_script = 'LIVE_exec_ruby.py';
+var c_backend_script = 'LIVE_exec_c.py';
+var cpp_backend_script = 'LIVE_exec_cpp.py';
 
 
 var originFrontendJsFile = 'opt-live.js';
@@ -265,10 +266,6 @@ function initAceEditor(height) {
   pyInputAceEditor = ace.edit('codeInputPane');
 
   var s = pyInputAceEditor.getSession();
-  s.setMode("ace/mode/python");
-  // tab -> 4 spaces
-  s.setTabSize(4);
-  s.setUseSoftTabs(true);
 
   // disable extraneous indicators:
   s.setFoldStyle('manual'); // no code folding indicators
@@ -389,13 +386,42 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
       assert(false);
     }
 
-    $.get(backendScript,
-          {user_script : codeToExec,
-           raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
-           options_json: JSON.stringify(backendOptionsObj),
-           user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
-           session_uuid: sessionUUID},
-           execCallback, "json");
+    if (backendScript === js_backend_script ||
+        backendScript === ts_backend_script ||
+        backendScript === java_backend_script ||
+        backendScript === ruby_backend_script ||
+        backendScript === c_backend_script ||
+        backendScript === cpp_backend_script) {
+      // hack! should just be a dummy script for logging only
+      $.get(backendScript,
+            {user_script : codeToExec,
+             options_json: JSON.stringify(backendOptionsObj),
+             user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+             session_uuid: sessionUUID},
+             function(dat) {} /* don't do anything since this is a dummy call */, "text");
+
+      // the REAL call uses JSONP
+      // http://learn.jquery.com/ajax/working-with-jsonp/
+      assert(jsonp_endpoint);
+      $.ajax({
+        url: jsonp_endpoint,
+        // The name of the callback parameter, as specified by the YQL service
+        jsonp: "callback",
+        dataType: "jsonp",
+        data: {user_script : codeToExec,
+               options_json: JSON.stringify(backendOptionsObj)},
+        success: execCallback,
+      });
+    } else {
+      // Python 2 or 3
+      $.get(backendScript,
+            {user_script : codeToExec,
+             raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
+             options_json: JSON.stringify(backendOptionsObj),
+             user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+             session_uuid: sessionUUID},
+             execCallback, "json");
+    }
 }
 
 function executeCode(forceStartingInstr, forceRawInputLst) {
@@ -430,9 +456,11 @@ $(document).ready(function() {
   genericOptFrontendReady();
 
   $('#pythonVersionSelector').change(function() {
+    setAceMode();
     // force a recompile on a toggle switch
     executeCode();
   });
 
+  setAceMode(); // set syntax highlighting at the end
   $("#pyOutputPane").show();
 });
