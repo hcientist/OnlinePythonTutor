@@ -123,6 +123,8 @@ var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
 // a list of previous consecutive executions with "compile"-time exceptions
 var prevExecutionExceptionObjLst = [];
 
+var CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
+
 
 // From http://stackoverflow.com/a/8809472
 function generateUUID(){
@@ -197,7 +199,7 @@ function initAceEditor(height) {
 
   initDeltaObj();
   pyInputAceEditor.on('change', function(e) {
-    $.doTimeout('pyInputAceEditorChange', 1000, snapshotCodeDiff); // debounce
+    $.doTimeout('pyInputAceEditorChange', CODE_SNAPSHOT_DEBOUNCE_MS, snapshotCodeDiff); // debounce
     clearFrontendError();
     s.clearAnnotations();
   });
@@ -745,11 +747,10 @@ function redrawConnectors() {
 
 function setFronendError(lines) {
   $("#frontendErrorOutput").html(lines.map(htmlspecialchars).join('<br/>'));
-  $("#frontendErrorOutput").show();
 }
 
 function clearFrontendError() {
-  $("#frontendErrorOutput").hide();
+  $("#frontendErrorOutput").html('');
 }
 
 

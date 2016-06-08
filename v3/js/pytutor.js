@@ -413,6 +413,8 @@ ExecutionVisualizer.prototype.render = function() {
        <div id="langDisplayDiv"></div>\
        <div id="pyCodeOutputDiv"/>\
        <div id="editCodeLinkDiv"><a id="editBtn">Edit code</a></div>\
+       <div id="legendDiv"/>\
+       <div id="executionSliderDocs"><font color="#e93f34">NEW!</font> Click on a line of code to set a <b>breakpoint</b> where you want to jump. Then use the <b>Left</b> and <b>Right</b> arrow keys and the Back and Forward buttons to jump there.</div>\
        <div id="executionSlider"/>\
        <div id="executionSliderFooter"/>\
        <div id="vcrControls">\
@@ -422,14 +424,12 @@ ExecutionVisualizer.prototype.render = function() {
          <button id="jmpStepFwd", type="button">Forward &gt;</button>\
          <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
        </div>\
-       <div id="executionSliderDocs"><font color="#e93f34">NEW!</font> Click on a line of code to set a <b>breakpoint</b> where you want to jump. Then use the <b>Left</b> and <b>Right</b> arrow keys and the Back and Forward buttons to jump there.</div>\
        <div id="rawUserInputDiv">\
          <span id="userInputPromptStr"/>\
          <input type="text" id="raw_input_textbox" size="30"/>\
          <button id="raw_input_submit_btn">Submit</button>\
        </div>\
        <div id="errorOutput"/>\
-       <div id="legendDiv"/>\
        <div id="stepAnnotationDiv">\
          <textarea class="annotationText" id="stepAnnotationEditor" cols="60" rows="3"></textarea>\
          <div class="annotationText" id="stepAnnotationViewer"></div>\

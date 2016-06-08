@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  -->
 
 <head>
-  <title>OPT Live Programming Prototype</title>
+  <title>Python Tutor Live - Live Programming and Visualizations</title>
   <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
 
 <!-- requirements for pytutor.js -->
@@ -89,6 +89,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           </div>
 
           <div id="codeInputPane"></div>
+          <div id="legendDiv"></div>
           <div id="executionSlider" style="margin-top: 10px;"></div>
           <div id="curInstr"></div>
           <div id="frontendErrorOutput"></div>
@@ -99,5 +100,43 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </td>
     </tr>
   </table>
+
+<div id="footer">
+
+<p>
+  <button id="genUrlBtn" class="smallBtn" type="button">Generate permanent link</button> <input type="text" id="urlOutput" size="70"/>
+</p>
+
+<p>Click the button above to create a permanent link to your
+visualization. To report a bug, paste the link along with a brief error
+description in an email addressed to philip@pgbovine.net</p>
+
+<p style="margin-top: 35px;">
+This live programming version of
+<a href="http://pythontutor.com/">Python Tutor</a> (<a href="https://github.com/pgbovine/OnlinePythonTutor">code on GitHub</a>) supports three
+languages: Python <a href="http://www.python.org/doc/2.7/">2.7</a> and <a
+href="http://www.python.org/doc/3.3.0/">3.3</a> with limited module
+imports and no file I/O, and
+JavaScript running in Node.js v6.0.0 with limited support for ES6.
+</p>
+
+<p>Try the regular
+<a href="http://pythontutor.com/">Python Tutor</a>
+tool for additional language support.</p>
+
+<p style="margin-top: 30px;">Privacy Policy: By using Online Python
+Tutor, your visualized code, options, user interactions, text chats, and
+IP address are logged on our server and may be analyzed for research
+purposes. Nearly all Web services collect this basic information from
+users. However, the Online Python Tutor website (pythontutor.com) does
+not collect any personal information or session state from users, nor
+does it issue any cookies.</p>
+
+<p style="margin-top: 25px;">
+Copyright &copy; <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
+</p>
+
+</div>
+
 </body>
 </html>

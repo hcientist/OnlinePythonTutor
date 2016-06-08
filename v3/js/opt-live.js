@@ -42,6 +42,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 - make Ace editor resizable width-wise using jQuery resizable
   (stackoverflow has some tips for how to do that)
 
+- also add in general directions about live mode and a switchback option
+  to regular mode
+
+- add footer
+
 - support pasting in code via URL, which will be important for
   transporting the user from regular OPT to live mode
   - add "Generate permanent link" button, but no need for iframe embed btn
@@ -106,6 +111,8 @@ function toggleSyntaxError(x) {
   } else {
     hasSyntaxError = false;
     $("#dataViz,#curInstr").removeClass('dimmed'); // un-dim the visualization
+    var s = pyInputAceEditor.getSession();
+    s.clearAnnotations(); // remove any lingering syntax error labels in gutter
   }
 }
 
@@ -156,7 +163,6 @@ function updateStepLabels() {
     } else {
       $("#frontendErrorOutput").html(htmlspecialchars(curEntry.exception_msg));
     }
-    $("#frontendErrorOutput").show();
 
     if (myVisualizer.curLineNumber) {
       var Range = ace.require('ace/range').Range;
@@ -333,13 +339,9 @@ function initAceEditor(height) {
   $('#codeInputPane').css('height', height + 'px'); // VERY IMPORTANT so that it works on I.E., ugh!
 
   pyInputAceEditor.on('change', function(e) {
-    $.doTimeout('pyInputAceEditorChange', 500, function() {
-      // don't execute empty string:
-      if ($.trim(pyInputGetValue()) === '') {
-        return;
-      }
-      executeCode();
-    }); // debounce
+    $.doTimeout('pyInputAceEditorChange',
+                CODE_SNAPSHOT_DEBOUNCE_MS /* match the value in opt-frontend-common.js for consistency and easy apples-to-apples comparisons later on */,
+                executeCode); // debounce
     clearFrontendError();
     s.clearAnnotations();
   });
@@ -490,6 +492,13 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
 }
 
 function executeCode(forceStartingInstr, forceRawInputLst) {
+    var cod = pyInputGetValue();
+
+    // don't run empty code
+    if ($.trim(cod) === '') {
+      return;
+    }
+
     if (forceRawInputLst !== undefined) {
         rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
     }
@@ -509,7 +518,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                               jumpToEnd: true,
                              }
 
-    optliveExecuteCodeAndCreateViz(pyInputGetValue(),
+    optliveExecuteCodeAndCreateViz(cod,
                             backend_script, backendOptionsObj,
                             frontendOptionsObj,
                             'pyOutputPane',
@@ -519,6 +528,20 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 
 $(document).ready(function() {
   genericOptFrontendReady();
+
+  $('#legendDiv')
+    .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
+    .append('<p style="margin-top: 4px"><svg id="curLegendArrowSVG"/> next line to execute</p>');
+
+  d3.select('svg#prevLegendArrowSVG')
+      .append('polygon')
+      .attr('points', SVG_ARROW_POLYGON)
+      .attr('fill', lightArrowColor);
+
+  d3.select('svg#curLegendArrowSVG')
+      .append('polygon')
+      .attr('points', SVG_ARROW_POLYGON)
+      .attr('fill', darkArrowColor);
 
   $('#pythonVersionSelector').change(function() {
     setAceMode();

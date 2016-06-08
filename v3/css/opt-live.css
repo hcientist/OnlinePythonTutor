@@ -28,6 +28,28 @@
   text-align: center;
 }
 
+/* keep it a fixed min height so that footer below it doesn't jiggle up
+   and down */
+#frontendErrorOutput {
+  min-height: 40px;
+}
+
+/* copied from pytutor.css */
+div#legendDiv {
+  margin-top: 8px;
+  padding: 0px;
+  text-align: left;
+  color: #666;
+  font-size: 9pt;
+  width: 500px;
+}
+
+#prevLegendArrowSVG, #curLegendArrowSVG {
+  width: 18px;
+  height: 10px;
+}
+
+
 /* translucent dimmed div: http://stackoverflow.com/a/21457838 */
 .dimmed {
   position: relative;
