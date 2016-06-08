@@ -63,7 +63,36 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <tr>
       <td valign="top">
         <div id="pyInputPane">
-          <div id="codeInputWarnings">Write Python code here:</div>
+          <div id="codeInputWarnings">Write code in
+            <select id="pythonVersionSelector">
+              <option value="2">Python 2.7</option>
+              <option value="3">Python 3.3</option>
+              <option value="java">Java 7</option>
+              <option value="js">JavaScript ES6</option>
+              <option value="ts">TypeScript 1.4</option>
+              <option value="ruby">Ruby 2.2</option>
+              <option value="c">C (gcc 4.8, C11) EXPERIMENTAL</option>
+              <option value="cpp">C++ (gcc 4.8, C++11) EXPERIMENTAL</option>
+            </select>
+          </div>
+
+          <!-- keep this here but hide so that opt-frontend-common.js stuff works -->
+          <div id="optionsPane" style="margin-top: 18px; line-height: 150%; display: none;">
+            <select id="cumulativeModeSelector">
+              <option value="false">hide exited frames [default]</option>
+              <option value="true">show exited frames (Python)</option>
+              <!-- <option value="holistic">holistic mode (experimental)</option> -->
+            </select>
+            <select id="heapPrimitivesSelector">
+              <option value="false">inline primitives &amp; nested objects [default]</option>
+              <option value="true">render all objects on the heap</option>
+            </select>
+            <select id="textualMemoryLabelsSelector">
+              <option value="false">draw pointers as arrows [default]</option>
+              <option value="true">use text labels for pointers</option>
+            </select>
+          </div>
+
           <div id="codeInputPane"></div>
           <div id="executionSlider" style="margin-top: 10px;"></div>
           <div id="curInstr"></div>

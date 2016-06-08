@@ -42,14 +42,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 - make Ace editor resizable width-wise using jQuery resizable
   (stackoverflow has some tips for how to do that)
 
-- add toggles for language choices
-
 - support pasting in code via URL, which will be important for
   transporting the user from regular OPT to live mode
 
 - make sure server logging works properly, esp. session and user IDs,
   and slider interactions
   - have separate web_exec_live executor scripts for logging live mode
+
+- add "Generate permanent link" button, but no need for iframe embed btn
 
 - if these Ace enhancements look good, then I can also use them for
   Codeopticon as well!
@@ -59,12 +59,43 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
+
 // Pre-reqs:
 // - pytutor.js
 // - jquery.ba-bbq.min.js
 // - jquery.ba-dotimeout.min.js // for event debouncing: http://benalman.com/code/projects/jquery-dotimeout/examples/debouncing/
 // - opt-frontend-common.js
 // should all be imported BEFORE this file
+
+
+// these scripts override the versions defined in opt-frontend-common.js
+
+// backend scripts to execute (Python 2 and 3 variants, if available)
+// make two copies of ../web_exec.py and give them the following names,
+// then change the first line (starting with #!) to the proper version
+// of the Python interpreter (i.e., Python 2 or Python 3).
+// Note that your hosting provider might have stringent rules for what
+// kind of scripts are allowed to execute. For instance, my provider
+// (Webfaction) seems to let scripts execute only if permissions are
+// something like:
+// -rwxr-xr-x 1 pgbovine pgbovine 2.5K Jul  5 22:46 web_exec_py2.py*
+// (most notably, only the owner of the file should have write
+//  permissions)
+//var python2_backend_script = 'web_exec_LIVE_py2.py';
+//var python3_backend_script = 'web_exec_LIVE_py3.py';
+
+// uncomment below if you're running on Google App Engine using the built-in app.yaml
+var python2_backend_script = 'exec';
+var python3_backend_script = 'exec';
+
+// empty dummy just to do logging on the Apache's server
+var js_backend_script = 'web_exec_LIVE_js.py';
+var ts_backend_script = 'web_exec_LIVE_ts.py';
+var java_backend_script = 'web_exec_LIVE_java.py';
+var ruby_backend_script = 'web_exec_LIVE_ruby.py';
+var c_backend_script = 'web_exec_LIVE_c.py';
+var cpp_backend_script = 'web_exec_LIVE_cpp.py';
+
 
 var originFrontendJsFile = 'opt-live.js';
 
@@ -328,10 +359,32 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
     clearFrontendError();
     startExecutingCode();
 
+    jsonp_endpoint = null;
+
+    // hacky!
     if (backendScript === python2_backend_script) {
       frontendOptionsObj.lang = 'py2';
     } else if (backendScript === python3_backend_script) {
       frontendOptionsObj.lang = 'py3';
+    } else if (backendScript === js_backend_script) {
+      frontendOptionsObj.lang = 'js';
+      jsonp_endpoint = JS_JSONP_ENDPOINT;
+    } else if (backendScript === ts_backend_script) {
+      frontendOptionsObj.lang = 'ts';
+      jsonp_endpoint = TS_JSONP_ENDPOINT;
+    } else if (backendScript === ruby_backend_script) {
+      frontendOptionsObj.lang = 'ruby';
+      jsonp_endpoint = RUBY_JSONP_ENDPOINT;
+    } else if (backendScript === java_backend_script) {
+      frontendOptionsObj.lang = 'java';
+      frontendOptionsObj.disableHeapNesting = true; // never nest Java objects, seems like a good default
+      jsonp_endpoint = JAVA_JSONP_ENDPOINT;
+    } else if (backendScript === c_backend_script) {
+      frontendOptionsObj.lang = 'c';
+      jsonp_endpoint = C_JSONP_ENDPOINT;
+    } else if (backendScript === cpp_backend_script) {
+      frontendOptionsObj.lang = 'cpp';
+      jsonp_endpoint = CPP_JSONP_ENDPOINT;
     } else {
       assert(false);
     }
@@ -350,7 +403,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
         rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
     }
 
-    backend_script = python2_backend_script;
+    var backend_script = langToBackendScript($('#pythonVersionSelector').val());
 
     var backendOptionsObj = {cumulative_mode: false,
                              heap_primitives: false,
@@ -374,6 +427,12 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 }
 
 $(document).ready(function() {
-  genericOptFrontendReady(); // initialize at the very end
+  genericOptFrontendReady();
+
+  $('#pythonVersionSelector').change(function() {
+    // force a recompile on a toggle switch
+    executeCode();
+  });
+
   $("#pyOutputPane").show();
 });

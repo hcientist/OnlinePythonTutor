@@ -19,6 +19,15 @@ import pg_logger
 import urllib
 import urllib2
 
+# dummy routes for testing only
+@route('/web_exec_<name:re:.+>.py')
+def web_exec(name):
+    return 'OK'
+
+@route('/web_exec_LIVE_<name:re:.+>.py')
+def web_exec_live(name):
+    return 'OK'
+
 
 @route('/<filepath:path>')
 def index(filepath):
