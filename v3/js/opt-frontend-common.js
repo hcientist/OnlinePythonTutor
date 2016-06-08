@@ -1268,6 +1268,17 @@ function updateAppDisplay(newAppMode) {
     $('#pyOutputPane #editBtn').click(function() {
       enterEditMode();
     });
+    var v = $('#pythonVersionSelector').val();
+    if (v === 'js' || v === '2' || v === '3') {
+      var myArgs = getAppState();
+      var urlStr = $.param.fragment('live.html', myArgs, 2 /* clobber all */);
+      $("#pyOutputPane #liveModeSpan").show();
+      $('#pyOutputPane #editLiveModeBtn')
+        .attr('href', urlStr)
+        .attr('target', '_blank');
+    } else {
+      $("#pyOutputPane #liveModeSpan").hide();
+    }
 
     $(document).scrollTop(0); // scroll to top to make UX better on small monitors
 

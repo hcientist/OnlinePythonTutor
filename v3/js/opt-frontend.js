@@ -434,7 +434,7 @@ function initAceAndOptions() {
   }
   setAceMode(); // update syntax highlighting mode
 
-  if (v === 'js' || v == '2' || v == '3') {
+  if (v === 'js' || v === '2' || v === '3') {
     $("#liveModeBtn").show();
   } else {
     $("#liveModeBtn").hide();
