@@ -426,12 +426,19 @@ function experimentalPopUpSyntaxErrorSurvey() {
 
 
 function initAceAndOptions() {
-  if ($('#pythonVersionSelector').val() === 'java') {
+  var v = $('#pythonVersionSelector').val();
+  if (v === 'java') {
     $("#javaOptionsPane").show();
   } else {
     $("#javaOptionsPane").hide();
   }
   setAceMode(); // update syntax highlighting mode
+
+  if (v === 'js' || v == '2' || v == '3') {
+    $("#liveModeBtn").show();
+  } else {
+    $("#liveModeBtn").hide();
+  }
 }
 
 
@@ -700,5 +707,12 @@ $(document).ready(function() {
     initTestcasesPane('#testCasesPane');
     $(this).hide();
     return false;
+  });
+
+  $("#liveModeBtn").click(function() {
+    var myArgs = getAppState();
+    var urlStr = $.param.fragment('live.html', myArgs, 2 /* clobber all */);
+    //window.location = urlStr; // open in same tab
+    window.open(urlStr); // open in new tab (TODO: what about pop-up blockers?)
   });
 });
