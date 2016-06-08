@@ -1503,15 +1503,15 @@ function executeCodeAndCreateViz(codeToExec,
 
               var uh = args.myViz.updateHistory;
               assert(uh.length > 0); // should already be seeded with an initial value
-              var lastTs = uh[uh.length - 1][1];
-
-              // (debounce entries that are less than 1 second apart to
-              // compress the logs a bit when there's rapid scrubbing or scrolling)
-              if ((curTs - lastTs) < 1000) {
-                uh.pop(); // get rid of last entry before pushing a new entry
+              if (uh.length > 1) { // don't try to "compress" the very first entry
+                var lastTs = uh[uh.length - 1][1];
+                // (debounce entries that are less than 1 second apart to
+                // compress the logs a bit when there's rapid scrubbing or scrolling)
+                if ((curTs - lastTs) < 1000) {
+                  uh.pop(); // get rid of last entry before pushing a new entry
+                }
               }
               uh.push([args.myViz.curInstr, curTs]);
-              //console.log(JSON.stringify(uh));
             }
             return [false]; // pass through to let other hooks keep handling
           });
@@ -1662,6 +1662,7 @@ function executeCodeAndCreateViz(codeToExec,
              options_json: JSON.stringify(backendOptionsObj),
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
              session_uuid: sessionUUID,
+             exeTime: new Date().getTime(),
              diffs_json: deltaObjStringified},
              function(dat) {} /* don't do anything since this is a dummy call */, "text");
 
@@ -1685,6 +1686,7 @@ function executeCodeAndCreateViz(codeToExec,
              options_json: JSON.stringify(backendOptionsObj),
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
              session_uuid: sessionUUID,
+             exeTime: new Date().getTime(),
              diffs_json: deltaObjStringified},
              execCallback, "json");
     }
@@ -1693,29 +1695,34 @@ function executeCodeAndCreateViz(codeToExec,
 }
 
 
+// Compress updateHistory before encoding and sending to
+// the server so that it takes up less room in the URL. Have each
+// entry except for the first be a delta from the FIRST entry.
+function compressUpdateHistoryList(myVisualizer) {
+  assert(myVisualizer);
+  var uh = myVisualizer.updateHistory;
+  var encodedUh = [];
+  if (uh) {
+    encodedUh.push(uh[0]);
+
+    var firstTs = uh[0][1];
+    for (var i = 1; i < uh.length; i++) {
+      var e = uh[i];
+      encodedUh.push([e[0], e[1] - firstTs]);
+    }
+
+    // finally push a final entry with the current timestamp delta
+    var curTs = new Date().getTime();
+    encodedUh.push([myVisualizer.curInstr, curTs - firstTs]);
+  }
+  return encodedUh;
+}
+
 // this feature was deployed on 2015-09-17, so check logs for
 // viz_interaction.py
 function submitUpdateHistory(why) {
   if (myVisualizer) {
-    // Compress updateHistory before encoding and sending to
-    // the server so that it takes up less room in the URL. Have each
-    // entry except for the first be a delta from the FIRST entry.
-    var uh = myVisualizer.updateHistory;
-    var encodedUh = [];
-    if (uh) {
-      encodedUh.push(uh[0]);
-
-      var firstTs = uh[0][1];
-      for (var i = 1; i < uh.length; i++) {
-        var e = uh[i];
-        encodedUh.push([e[0], e[1] - firstTs]);
-      }
-
-      // finally push a final entry with the current timestamp delta
-      var curTs = new Date().getTime();
-      encodedUh.push([myVisualizer.curInstr, curTs - firstTs]);
-    }
-
+    var encodedUh = compressUpdateHistoryList(myVisualizer);
     var encodedUhJSON = JSON.stringify(encodedUh);
 
     var myArgs = {session_uuid: sessionUUID,

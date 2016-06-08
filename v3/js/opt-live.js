@@ -39,17 +39,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   File "<string>", line 1
     x~=1
      ^
-- for slower frontends, add an unobtrusive "running ..." indicator
-
 - make Ace editor resizable width-wise using jQuery resizable
   (stackoverflow has some tips for how to do that)
 
 - support pasting in code via URL, which will be important for
   transporting the user from regular OPT to live mode
   - add "Generate permanent link" button, but no need for iframe embed btn
-
-- make sure server logging works properly, esp. session and user IDs,
-  and slider interactions
 
 - if these Ace enhancements look good, then I can also use them for
   Codeopticon as well!
@@ -103,6 +98,17 @@ var prevVisualizer = null; // the visualizer object from the previous execution
 
 var aceEditorWidth = '600px';
 
+var hasSyntaxError = false;
+function toggleSyntaxError(x) {
+  if (x) {
+    hasSyntaxError = true;
+    $("#dataViz,#curInstr").addClass('dimmed'); // dim the visualization until we fix the error
+  } else {
+    hasSyntaxError = false;
+    $("#dataViz,#curInstr").removeClass('dimmed'); // un-dim the visualization
+  }
+}
+
 var allMarkerIds = [];
 
 function removeAllGutterDecorations() {
@@ -130,7 +136,7 @@ function updateStepLabels() {
   var isLastInstr = myVisualizer.curInstr === (totalInstrs-1);
   if (isLastInstr) {
     if (myVisualizer.promptForUserInput || myVisualizer.promptForMouseInput) {
-      $("#curInstr").html('<b><font color="' + brightRed + '">Enter user input:</font></b>');
+      $("#curInstr").html('<font color="' + brightRed + '">input/raw_input not supported in live editor</font>');
     } else if (myVisualizer.instrLimitReached) {
       $("#curInstr").html("Instruction limit reached (" + String(totalInstrs-1) + " steps)");
     } else {
@@ -185,7 +191,7 @@ function optliveFinishSuccessfulExecution() {
   $("#pyOutputPane").show();
   doneExecutingCode();
 
-  $("#dataViz,#curInstr").removeClass('dimmed'); // un-dim the visualization
+  toggleSyntaxError(false);
 
   // set up execution slider, code inspired by pytutor.js:
   var sliderDiv = $('#executionSlider');
@@ -207,15 +213,6 @@ function optliveFinishSuccessfulExecution() {
       updateStepLabels();
     }
   });
-
-  myVisualizer.add_pytutor_hook(
-    "end_updateOutput",
-    function(args) {
-      // PROGRAMMATICALLY change the value, so evt.originalEvent should be undefined
-      $('#executionSlider').slider('value', args.myViz.curInstr);
-      return [false];
-    }
-  );
 
   // do this AFTER making #pyOutputPane visible, or else
   // jsPlumb connectors won't render properly
@@ -239,8 +236,59 @@ function optliveFinishSuccessfulExecution() {
   }
 
   updateStepLabels(); // do it once
+
+
+  // initialize this at the VERY END after jumping to the proper initial step
+  // above, perhaps using renderStep()
+
+  // copied from opt-frontend-common.js
+  myVisualizer.creationTime = new Date().getTime();
+  // each element will be a two-element list consisting of:
+  // [step number, timestamp]
+  // (debounce entries that are less than 1 second apart to
+  // compress the logs a bit when there's rapid scrubbing or scrolling)
+  //
+  // the first entry has a THIRD field:
+  // [step number, timestamp, total # steps]
+  //
+  // subsequent entries don't need it since it will always be the same.
+  // the invariant is that step number < total # steps (since it's
+  // zero-indexed
+  myVisualizer.updateHistory = [];
+  myVisualizer.updateHistory.push([myVisualizer.curInstr,
+                                   myVisualizer.creationTime,
+                                   myVisualizer.curTrace.length]);
+
+  // add this hook at the VERY END after jumping to the proper initial step
+  // above, perhaps using renderStep()
+  myVisualizer.add_pytutor_hook(
+    "end_updateOutput",
+    function(args) {
+      // copied from opt-frontend-common.js
+      if (args.myViz.creationTime) {
+        var curTs = new Date().getTime();
+
+        var uh = args.myViz.updateHistory;
+        assert(uh.length > 0); // should already be seeded with an initial value
+        if (uh.length > 1) { // don't try to "compress" the very first entry
+          var lastTs = uh[uh.length - 1][1];
+          // (debounce entries that are less than 1 second apart to
+          // compress the logs a bit when there's rapid scrubbing or scrolling)
+          if ((curTs - lastTs) < 1000) {
+            uh.pop(); // get rid of last entry before pushing a new entry
+          }
+        }
+        uh.push([args.myViz.curInstr, curTs]);
+      }
+
+      return [false];
+    }
+  );
+
+  $('#executionSlider').slider('value', myVisualizer.curInstr); // update slider
 }
 
+// a syntax-/compile-time error, rather than a runtime error
 function optliveHandleUncaughtExceptionFunc(trace) {
   if (trace.length == 1 && trace[0].line) {
     var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
@@ -248,7 +296,7 @@ function optliveHandleUncaughtExceptionFunc(trace) {
       removeAllGutterDecorations();
 
       if (myVisualizer) {
-        $("#dataViz,#curInstr").addClass('dimmed'); // dim the visualization until we fix the error
+        toggleSyntaxError(true);
         myVisualizer.updateOutput(); // to update arrows
       }
 
@@ -323,7 +371,6 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
     function execCallback(dataFromBackend) {
       var trace = dataFromBackend.trace;
 
-      // don't enter visualize mode if there are killer errors:
       if (!trace ||
           (trace.length == 0) ||
           (trace[trace.length - 1].event == 'uncaught_exception')) {
@@ -355,6 +402,8 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
     clearFrontendError();
     startExecutingCode();
 
+    setFronendError(['Running your code ...']);
+
     jsonp_endpoint = null;
 
     // hacky!
@@ -385,6 +434,18 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
       assert(false);
     }
 
+    // submit update history of the "previous" visualizer whenever you
+    // run the code and hopefully get a new visualizer back
+    //
+    // don't bother if we're currently on a syntax error since the
+    // displayed visualization is no longer relevant
+    var prevUpdateHistoryJSON = undefined;
+    if (myVisualizer && !hasSyntaxError) {
+      var encodedUh = compressUpdateHistoryList(myVisualizer);
+      prevUpdateHistoryJSON = JSON.stringify(encodedUh);
+      console.log('prevUpdateHistoryJSON', prevUpdateHistoryJSON);
+    }
+
     if (backendScript === js_backend_script ||
         backendScript === ts_backend_script ||
         backendScript === java_backend_script ||
@@ -396,7 +457,9 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
             {user_script : codeToExec,
              options_json: JSON.stringify(backendOptionsObj),
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
-             session_uuid: sessionUUID},
+             session_uuid: sessionUUID,
+             prevUpdateHistoryJSON: prevUpdateHistoryJSON,
+             exeTime: new Date().getTime()},
              function(dat) {} /* don't do anything since this is a dummy call */, "text");
 
       // the REAL call uses JSONP
@@ -418,7 +481,9 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
              raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
              options_json: JSON.stringify(backendOptionsObj),
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
-             session_uuid: sessionUUID},
+             session_uuid: sessionUUID,
+             prevUpdateHistoryJSON: prevUpdateHistoryJSON,
+             exeTime: new Date().getTime()},
              execCallback, "json");
     }
 }
