@@ -22,10 +22,22 @@
   padding-top: 3px;
 }
 
-#curInstr {
-  padding: 6px;
-  margin: 6px auto;
+/* copied from pytutor.css */
+/* VCR control buttons for stepping through execution */
+#vcrControls {
+  margin: 15px auto;
+  /*width: 100%;*/
   text-align: center;
+}
+
+#vcrControls button {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+#curInstr {
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 /* keep it a fixed min height so that footer below it doesn't jiggle up

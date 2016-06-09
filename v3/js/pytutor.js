@@ -242,7 +242,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
   // initialize in renderPyCodeOutput()
   this.codeOutputLines = null;
   this.breakpoints = null;           // set of execution points to set as breakpoints
-  this.sortedBreakpointsList = null; // sorted and synced with breakpointLines
+  this.sortedBreakpointsList = [];   // sorted and synced with breakpointLines
 
   this.classAttrsHidden = {}; // kludgy hack for 'show/hide attributes' for class objects
 

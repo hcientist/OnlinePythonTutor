@@ -140,11 +140,11 @@ function updateStepLabels() {
   var isLastInstr = myVisualizer.curInstr === (totalInstrs-1);
   if (isLastInstr) {
     if (myVisualizer.promptForUserInput || myVisualizer.promptForMouseInput) {
-      $("#curInstr").html('<font color="' + brightRed + '">input/raw_input not supported in live editor</font>');
+      $("#curInstr").html('<font color="' + brightRed + '">input()/raw_input() not supported in live mode; use the <a href="visualize.html" target="_blank">regular visualizer</a></font>');
     } else if (myVisualizer.instrLimitReached) {
       $("#curInstr").html("Instruction limit reached (" + String(totalInstrs-1) + " steps)");
     } else {
-      $("#curInstr").html("Program terminated (" + String(totalInstrs-1) + " steps)");
+      $("#curInstr").html("Program terminated");
     }
   } else {
     $("#curInstr").html("Step " + String(myVisualizer.curInstr + 1) + " of " + String(totalInstrs-1));
@@ -283,6 +283,8 @@ function optliveFinishSuccessfulExecution() {
         }
         uh.push([args.myViz.curInstr, curTs]);
       }
+
+      $('#executionSlider').slider('value', myVisualizer.curInstr); // update slider
 
       return [false];
     }
@@ -553,4 +555,21 @@ $(document).ready(function() {
 
   setAceMode(); // set syntax highlighting at the end
   $("#pyOutputPane").show();
+
+
+  $("#jmpFirstInstr").click(function() {
+    if (myVisualizer) {myVisualizer.renderStep(0);}
+  });
+
+  $("#jmpLastInstr").click(function() {
+    if (myVisualizer) {myVisualizer.renderStep(myVisualizer.curTrace.length - 1);}
+  });
+
+  $("#jmpStepBack").click(function() {
+    if (myVisualizer) {myVisualizer.stepBack();}
+  });
+
+  $("#jmpStepFwd").click(function() {
+    if (myVisualizer) {myVisualizer.stepForward();}
+  });
 });
