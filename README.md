@@ -14,7 +14,7 @@ By far the most preferred way to use Python Tutor is via the official website: h
 
 You can use [iframe embedding](v3/docs/embedding-HOWTO.md) to quickly embed visualizations on your webpage.
 
-It can be hard to run your own version locally for non-Python languages, since there are complex Docker-related setups in v4-cokapi/ that I haven't yet cleanly packaged up.
+It can be hard to run your own version locally for non-Python languages, since there are complex Docker-related details in v4-cokapi/ that I haven't yet cleanly packaged up.
 
 To run Python visualizations on localhost:
 
@@ -35,13 +35,13 @@ For further directions, see [Overview for Developers](v3/docs/developer-overview
 
 For code or security contributions
 
-- John DeNero - for helping with the official Python 3 port and LOTS of code patches
+- John DeNero - for helping with the official Python 3 port and lots of code patches
 - Chris Horne - https://github.com/lahwran - for security tips
 - Joshua Landau - joshua@landau.ws - for security tips
 - David Wyde - https://davidwyde.com/ - for security tips
-- Peter Wentworth and his students - for working on the original Python 3 fork circa 2011
+- Peter Wentworth and his students - for working on the original Python 3 fork circa 2010/2011
 - Brad Miller - for adding pop-up question dialogs to visualizations, and other bug fixes
-- David Pritchard and Will Gwozdz - for the Java frontend and other frontend enhancements
+- David Pritchard and Will Gwozdz - for the Java visualizer and other frontend enhancements
 - Peter Robinson - for v3/make_visualizations.py
 - Chris Meyers - for custom visualizations such as v3/matrix.py and v3/htmlFrame.py
 - Irene Chen - for holistic visualization mode -- v3/js/holistic.js
