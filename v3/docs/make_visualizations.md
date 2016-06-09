@@ -1,4 +1,4 @@
-[This document was written by Peter Robinson (pjr@itee.uq.edu.au), the creator of make_visualizations.py]
+[This document was written in June 2013 by Peter Robinson (pjr@itee.uq.edu.au), the creator of make_visualizations.py]
 
 # Using make_visualizations.py to build visualization embeddings
 
