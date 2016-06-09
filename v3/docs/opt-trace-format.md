@@ -15,8 +15,9 @@ more time elapsed since that date, the more likely things are
 out-of-date.
 
 I'm assuming that you're competent in Python, JavaScript, command-line-fu, and Google-fu,
-and general [command-line BS](http://www.pgbovine.net/command-line-bullshittery.htm),
-so I won't do much hand-holding in these directions.
+and [command-line BS](http://www.pgbovine.net/command-line-bullshittery.htm).
+You may still be confused about details after reading this doc, so
+feel free to email philip@pgbovine.net if you have questions.
 
 
 ## Trace Overview
@@ -812,3 +813,5 @@ for i in enumerate(choices):
 ```
 
 Thus, this is one target for optimization if deemed necessary down the line. However, I'm hesitant to optimize the trace since it makes trace-handling code in the frontend and backend more complicated :/
+
+(One elegant way to optimize is to simply store the completed `stdout` buffer ONCE in the trace. And then within each execution point, store a byte index into the buffer. Thus, to render the stdout contents for each point, all we do is slice the buffer from the start to that index.)
