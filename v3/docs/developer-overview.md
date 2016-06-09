@@ -9,15 +9,14 @@ Look at the Git history to see when this document was last updated; the more tim
 elapsed since that date, the more likely things are out-of-date.
 
 I'm assuming that you're competent in Python, JavaScript, command-line-fu, and Google-fu,
-and general [command-line BS](http://www.pgbovine.net/command-line-bullshittery.htm),
-so I won't do much hand-holding in these directions.
+and [command-line BS](http://www.pgbovine.net/command-line-bullshittery.htm).
 
-This guide isn't meant to be comprehensive; rather, it's just a starting point for learning about the code
-and development workflow. You will undoubtedly still be confused about details after reading it, so
+This guide isn't meant to be comprehensive; rather, it's a starting point for learning about the code
+and development workflow. You may still be confused about details after reading it, so
 feel free to email philip@pgbovine.net if you have questions.
 
 
-## Getting Started: Running OPT locally on your machine using Bottle:
+## Running Python Tutor locally on your machine using Bottle:
 
 First install the [bottle](http://bottlepy.org/) micro web framework:
 
@@ -28,15 +27,14 @@ And then run:
 
     cd OnlinePythonTutor/v3/
     python bottle_server.py
+    # python3 bottle_server.py # if you want to run for Python 3
 
-(Use `python3` if you want to test the Python 3 backend. Note that when you run bottle, you will **always trigger the backend for the version of Python used to invoke it**, so the Python 2/3 toggle selector on the frontend is meaningless. You will also not be able to test other language backends locally.)
+Use `python3` if you want to test the Python 3 backend. Note that when you run with bottle, you will **always trigger the backend for the version of Python used to invoke it**, so the Python 2/3 language toggle selector on the frontend is meaningless. You will also not be able to test other language backends locally.
 
 
-If all goes well, when you visit this URL, you should see the Python Tutor visualizer:
+If all goes well, when you visit this URL, you should see the Python Tutor visualizer: http://localhost:8003/visualize.html
 
-    http://localhost:8003/visualize.html
-
-Note that you can run bottle with both Python 2 and 3.
+And the live programming mode is here: http://localhost:8003/live.html
 
 However, **only** run this app locally for testing, not in production, since all security checks are disabled.
 
@@ -44,10 +42,10 @@ However, **only** run this app locally for testing, not in production, since all
 ## Overall system architecture
 
 OPT consists of a pure-Python backend and an HTML/CSS/JavaScript frontend.
-Here is a typical user interaction sequence:
+Here is a typical user interaction sequence for Python (this will differ for other languages):
 
 1. The user visits [visualize.html](http://pythontutor.com/visualize.html) and types in Python code in the web-based text editor.
-2. The user hits the "Visualize execution" button.
+2. The user hits the "Visualize Execution" button.
 3. The OPT frontend sends the user's Python code as a string to the backend by making an Ajax GET request.
 4. The backend executes the Python code under the supervision of the Python [bdb](http://docs.python.org/library/bdb.html) debugger, produces an execution trace, and sends that trace back to the frontend in JSON format.
 5. The frontend switches to a visualization display, parses the execution trace, and renders the appropriate stack frames, heap objects, and pointers.
@@ -60,6 +58,7 @@ The frontend consists of:
 visualize.html
 css/opt-frontend.css
 js/opt-frontend.js
+js/opt-frontend-common.js
 css/pytutor.css
 js/pytutor.js
 <a bunch of auxiliary css and js files such as libraries>
@@ -79,19 +78,19 @@ to embed on the same webpage without them interfering with one another.
 `opt-frontend.[js|css]` contain code that is specific to the `visualize.html` page and doesn't make sense for, say,
 embedding OPT visualizations into other webpages.
 
-The backend consists of:
+The Python backend consists of:
 ```
 pg_logger.py  - the main entry point to the OPT backend
 pg_encoder.py - encodes the trace format into JSON to send to frontend
 generate_json_trace.py - script to test the backend independent of the frontend
-app.yaml, pythontutor.py - files for deploying on Google App Engine
+app.yaml, pythontutor.py - files for deploying on Google App Engine (obsolete)
 web_exec.py - example CGI script for deploying backend on CGI-enabled webservers
 ```        
 
-The backend works with both Python 2 and 3. (Other language backends are located in [v4-cokapi/](https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi), not in v3/)
+This backend works with both Python 2 and 3. (Other language backends are located in [v4-cokapi/](https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi), not in v3/)
 
 
-## Hacking the backend
+## Hacking the Python backend
 
 To modify the Python backend, you will mainly need to understand `pg_logger.py` and `pg_encoder.py`.
 
@@ -115,7 +114,7 @@ This data is exactly what the backend sends to the frontend.
 But for testing purposes, I've made the trace more human-readable.)
 
 Second, when you're "print debugging" in the backend, you can't simply print to stdout, since `pg_logger.py`
-*redirects* stdout to a buffer. Instead, you need to write all of your print statements as:
+*redirects* stdout to a buffer. Instead, you need to write all of your print statements (in Python 2) as:
 
 ```python
 print >> sys.stderr, <your debug message>
@@ -124,7 +123,7 @@ print >> sys.stderr, <your debug message>
 so that the output goes to stderr.
 
 The easiest way to debug or investigate how some part of the code works is to **insert in print statements (to stderr)
-and then run `generate_json_trace.py` on small code examples**. Trust me -- being able to do this is way more
+and then run `generate_json_trace.py` on small code examples**. Trust me -- being able to do this well is way more
 effective than memorizing detailed documentation (which could be outdated by the time you read it).
 
 
@@ -227,6 +226,7 @@ Every time bdb pauses the user's program's execution and dispatches to `interact
 entry is created. At the end of execution, `self.trace` contains as many trace entries as there were "steps"
 in the user's program execution. Each step more-or-less corresponds to one line being executed.
 (To guard against infinite loops, `PGLogger` terminates execution when `MAX_EXECUTED_LINES` steps have been executed.)
+
 
 ### Execution Trace Format
 

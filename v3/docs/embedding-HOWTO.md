@@ -9,17 +9,14 @@ Look at the Git history to see when this document was last updated; the more tim
 elapsed since that date, the more likely things are out-of-date.
 
 I'm assuming that you're competent in Python, JavaScript, command-line-fu, and Google-fu,
-and general [command-line BS](http://www.pgbovine.net/command-line-bullshittery.htm),
-so I won't do much hand-holding in these directions.
-
-This guide isn't meant to be comprehensive; you will undoubtedly still
+and [command-line BS](http://www.pgbovine.net/command-line-bullshittery.htm). This guide isn't meant to be comprehensive; you may still
 be confused about details after reading it, so feel free to email
 philip@pgbovine.net if you have questions.
 
 
 ## iframe embedding
 
-An easy (although somewhat limited) way to embed an OPT visualization on your website is to enclose it within an [iframe](http://www.w3schools.com/tags/tag_iframe.asp).
+An easy way to embed an OPT visualization on your website is to enclose it within an [iframe](http://www.w3schools.com/tags/tag_iframe.asp).
 
 If you generate a visualization (e.g., <a href="http://pythontutor.com/visualize.html#code=x+%3D+5%0Ay+%3D+10%0Az+%3D+x+%2B+y&mode=display&cumulative=false&py=2&curInstr=3">click here</a>)
 and then click the "Generate embed code" button at the bottom of the page, the following code will be generated:
@@ -32,7 +29,9 @@ and then click the "Generate embed code" button at the bottom of the page, the f
 
 If you copy-and-paste the above code into your HTML webpage, then it will embed the given visualization as an iframe.
 
-See `v3/iframe-embed-demo.html` for a working demo showing several embedded iframes ([online here](http://pythontutor.com/iframe-embed-demo.html)).
+Change `http://` to `https://` in the `src` attribute if you want to embed it in a webpage served over https.
+
+See [v3/iframe-embed-demo.html](../iframe-embed-demo.html) for a working demo showing several embedded iframes ([online here](http://pythontutor.com/iframe-embed-demo.html)).
 
 
 ### iframe embedding parameters
@@ -42,7 +41,7 @@ after the hash mark (`#` character) in the `src=` URL string. Note that OPT uses
 question mark `?` query string. Here are the currently-supported parameters:
 
 - `code` - The Python code to visualize (mandatory: URL-encoded string)
-- `py` - Python interpreter version (mandatory: `2` for Python 2.7 or `3` for Python 3.2)
+- `py` - Language version (mandatory: `2` for Python 2.7 or `3` for Python 3.3, other languages: js, ts, ruby, java, c, cpp)
 - `verticalStack` - Set to `true` if you want the code and visualization to stack atop one another (optional)
 - `curInstr` - A (zero-indexed) integer of the execution point to directly jump to in the visualization (optional)
 - `cumulative` - Set to `true` if you want exited functions to be displayed (optional)
@@ -75,6 +74,7 @@ or, say, a USB drive), they can play with the visualization without an Internet 
 
 Finally, multiple visualizations can be embedded in a single HTML webpage, although you need to be careful
 to redraw the SVG arrows when page elements are resized or moved.
+
 
 ### The Nitty-Gritty
 
