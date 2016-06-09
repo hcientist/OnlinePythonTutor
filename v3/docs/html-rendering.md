@@ -1,5 +1,7 @@
 # HTML rendering in Online Python Tutor
 
+[Warning: this doc hasn't been updated since 2013, so not sure how stale it is.]
+
 As of May 2013, Online Python Tutor contains an experimental magic
 `setHTML` function that lets your scripts render HTML to the canvas (and
 accompanying `setJS` and `setCSS` functions for JavaScript and CSS,
