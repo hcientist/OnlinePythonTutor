@@ -10,11 +10,13 @@ if we were truly faithful to Python's semantics, that would result in far too ma
 However, note that since primitives are **immutable** and thus behave identically regardless of aliasing,
 it doesn't matter whether they're rendered in the stack or heap.
 
-Update on 2013-01-06: I'veadded a drop-down menu option with two choices:
+Update on 2013-01-06: I've added a drop-down menu option with two choices:
 "inline primitives and nested objects" versus "render all objects on the heap".
 If you want to render all objects on the heap, select the latter option.
 To avoid too many arrows being drawn, also toggle the default "draw references using arrows" option
-to "use text labels for references".
+to "use text labels for references". Here is a direct link to activate those two settings:
+
+http://pythontutor.com/visualize.html#heapPrimitives=true&textReferences=true
 
 
 #### I don't like your default toggle options. Can I set different defaults?
@@ -26,15 +28,11 @@ http://pythontutor.com/visualize.html#cumulative=false&heapPrimitives=false&draw
 For example, if you want to default to Python 3, visit:
 http://pythontutor.com/visualize.html#&py=3
 
+Or Java:
+http://pythontutor.com/visualize.html#&py=java
+
 Or if you want to render all objects on the heap and use text label references, visit:
 http://pythontutor.com/visualize.html#heapPrimitives=true&textReferences=true
-
-The possibilities are endless! (or 2^6 or something.)
-
-
-#### Did you know that stepping through code with generators looks weird when "display frames of exited functions" is selected?
-
-Yep, this is a known bug, but sadly the fix isn't straightforward at the moment.
 
 
 #### Can I run my own version offline without Internet access?
@@ -52,4 +50,14 @@ Hard to say :/ But here are some possible reasons:
 - Infinite loops (although that should usually result in a better error message)
 - Python input() and raw_input() support may not be the most robust
 - Python bytearray support is also spotty
+
+
+#### I think I found a bug! Where can I see and file bug reports?
+
+The simplest way is to email them to me: philip@pgbovine.net 
+
+You can also file bugs in the issue tracker:
+
+- [Main Python Tutor issue tracker](https://github.com/pgbovine/OnlinePythonTutor/issues)
+- [C/C++ backends issue tracker](https://github.com/pgbovine/opt-cpp-backend/issues)
 
