@@ -285,6 +285,7 @@ function optliveFinishSuccessfulExecution() {
       }
 
       $('#executionSlider').slider('value', myVisualizer.curInstr); // update slider
+      updateStepLabels();
 
       return [false];
     }
