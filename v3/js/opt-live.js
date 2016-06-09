@@ -191,7 +191,7 @@ function updateStepLabels() {
 
 function optliveFinishSuccessfulExecution() {
   assert(myVisualizer);
-  $("#pyOutputPane").show();
+  $("#pyOutputPane,#vcrControls").show();
   doneExecutingCode();
 
   toggleSyntaxError(false);
