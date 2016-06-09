@@ -37,7 +37,7 @@ http://pythontutor.com/visualize.html#heapPrimitives=true&textReferences=true
 
 #### Can I run my own version offline without Internet access?
 
-Yes, if you care about only Python. See the directions in [Overview for Developers](developer-overview.md#getting-started-running-opt-locally-on-your-machine-using-bottle). Unfortunately, this is much harder to do for other languages, since they use backends that are in v4-cokapi/ that communicate with the visualizer in more complex ways.
+Yes, if you care about only Python. See the directions in [Overview for Developers](developer-overview.md). Unfortunately, this is much harder to do for other languages, since they use backends that are in v4-cokapi/ that communicate with the visualizer in more complex ways.
 
 
 #### Why am I getting a server error or unknown error?
