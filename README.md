@@ -2,7 +2,7 @@ Python Tutor -- http://pythontutor.com/ -- helps people overcome a fundamental b
 
 Using this tool, you can write Python, Java, JavaScript, TypeScript, Ruby, C, and C++ programs in your Web browser and visualize what the computer is doing step-by-step as it executes those programs. So far, over 1.5 million people in over 180 countries have used Python Tutor to visualize over 15 million pieces of code, often as a supplement to textbooks, lecture notes, and online programming tutorials.
 
-This tool was created by Philip Guo in January 2010. [See project history](history.txt).
+This tool was created by [Philip Guo](http://pgbovine.net/) in January 2010. [See project history](history.txt).
 
 All documentation is viewable online at:
 https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3/docs
