@@ -213,8 +213,8 @@ function optliveFinishSuccessfulExecution() {
     // executed ...
     if (evt.originalEvent) {
       myVisualizer.renderStep(ui.value);
-      updateStepLabels();
     }
+    updateStepLabels();
   });
 
   // do this AFTER making #pyOutputPane visible, or else
