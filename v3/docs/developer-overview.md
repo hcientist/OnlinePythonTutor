@@ -9,15 +9,14 @@ Look at the Git history to see when this document was last updated; the more tim
 elapsed since that date, the more likely things are out-of-date.
 
 I'm assuming that you're competent in Python, JavaScript, command-line-fu, and Google-fu,
-and general [command-line BS](http://www.pgbovine.net/command-line-bullshittery.htm),
-so I won't do much hand-holding in these directions.
+and [command-line BS](http://www.pgbovine.net/command-line-bullshittery.htm).
 
-This guide isn't meant to be comprehensive; rather, it's just a starting point for learning about the code
+This guide isn't meant to be comprehensive; rather, it's a starting point for learning about the code
 and development workflow. You will undoubtedly still be confused about details after reading it, so
 feel free to email philip@pgbovine.net if you have questions.
 
 
-## Getting Started: Running OPT locally on your machine using Bottle:
+## Running Python Tutor locally on your machine using Bottle:
 
 First install the [bottle](http://bottlepy.org/) micro web framework:
 
@@ -28,8 +27,9 @@ And then run:
 
     cd OnlinePythonTutor/v3/
     python bottle_server.py
+    # python3 bottle_server.py # if you want to run for Python 3
 
-(Use `python3` if you want to test the Python 3 backend. Note that when you run bottle, you will **always trigger the backend for the version of Python used to invoke it**, so the Python 2/3 toggle selector on the frontend is meaningless. You will also not be able to test other language backends locally.)
+Use `python3` if you want to test the Python 3 backend. Note that when you run with bottle, you will **always trigger the backend for the version of Python used to invoke it**, so the Python 2/3 language toggle selector on the frontend is meaningless. You will also not be able to test other language backends locally.
 
 
 If all goes well, when you visit this URL, you should see the Python Tutor visualizer:
