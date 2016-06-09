@@ -1,22 +1,20 @@
-Python Tutor -- http://pythontutor.com/ -- helps people overcome a fundamental barrier to learning programming: understanding what happens as the computer executes each line of a program's source code.
-
-Using this tool, you can write Python, Java, JavaScript, TypeScript, Ruby, C, and C++ programs in your Web browser and visualize what the computer is doing step-by-step as it executes those programs. So far, over 1.5 million people in over 180 countries have used Python Tutor to visualize over 15 million pieces of code, often as a supplement to textbooks, lecture notes, and online programming tutorials.
+Python Tutor -- http://pythontutor.com/ -- helps people overcome a fundamental barrier to learning programming: understanding what happens as the computer executes each line of a program's source code. Using this tool, you can write Python, Java, JavaScript, TypeScript, Ruby, C, and C++ programs in your Web browser and visualize what the computer is doing step-by-step as it executes those programs.
 
 This tool was created by [Philip Guo](http://pgbovine.net/) in January 2010. [See project history](history.txt).
 
-All documentation is viewable online at:
-https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3/docs
+- [Frequently Asked Questions](v3/docs/user-FAQ.md)
+- [Overview for Developers](v3/docs/developer-overview.md)
+
+All documentation is viewable online at: https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3/docs
 
 
 ### Quick Start
 
-By far the most preferred way to use Python Tutor is via the official website: http://pythontutor.com/
+BY FAR the most preferred way to use Python Tutor is via the official website, since it contains the latest updates: http://pythontutor.com/
 
-You can use [iframe embedding](v3/docs/embedding-HOWTO.md) to quickly embed visualizations on your webpage.
+You can use [iframe embedding](v3/docs/embedding-HOWTO.md) to easily embed visualizations on your webpage.
 
-It can be hard to run your own version locally for non-Python languages, since there are complex Docker-related details in v4-cokapi/ that I haven't yet cleanly packaged up.
-
-To run Python visualizations on localhost:
+If you want to run locally on your own computer, to run Python visualizations try:
 
 ```
 pip install bottle # make sure the bottle webserver (http://bottlepy.org/) is installed
@@ -27,6 +25,8 @@ python bottle_server.py
 You should see the visualizer at: http://localhost:8003/visualize.html
 
 ... and the live programming environment at: http://localhost:8003/live.html 
+
+However, it can be hard to run your own visualizer locally for non-Python languages, since there are complex setups in v4-cokapi/ that I haven't yet cleanly packaged up.
 
 For further directions, see [Overview for Developers](v3/docs/developer-overview.md) or explore the [rest of the docs](v3/docs/).
 
