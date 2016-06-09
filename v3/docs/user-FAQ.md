@@ -3,17 +3,17 @@
 Email philip@pgbovine.net if you have a question that isn't addressed here.
 
 
-#### I thought all objects in Python are (conceptually) on the heap; why does Online Python Tutor render primitive values (e.g., numbers, strings) inside of stack frames?
+#### I thought all objects in Python are (conceptually) on the heap; why does Python Tutor render primitive values (e.g., numbers, strings) inside of stack frames?
 
 This was a design decision made to keep the display less cluttered;
 if we were truly faithful to Python's semantics, that would result in far too many arrows (pointers) being drawn.
 However, note that since primitives are **immutable** and thus behave identically regardless of aliasing,
 it doesn't matter whether they're rendered in the stack or heap.
 
-Update on 2013-01-06: I've just added a drop-down menu option with two choices:
+Update on 2013-01-06: I'veadded a drop-down menu option with two choices:
 "inline primitives and nested objects" versus "render all objects on the heap".
 If you want to render all objects on the heap, select the latter option.
-To avoid too many arrows being drawn, also toggle the "draw references using arrows" option
+To avoid too many arrows being drawn, also toggle the default "draw references using arrows" option
 to "use text labels for references".
 
 
@@ -35,3 +35,21 @@ The possibilities are endless! (or 2^6 or something.)
 #### Did you know that stepping through code with generators looks weird when "display frames of exited functions" is selected?
 
 Yep, this is a known bug, but sadly the fix isn't straightforward at the moment.
+
+
+#### Can I run my own version offline without Internet access?
+
+Yes, if you care about only Python. See the directions in [Overview for Developers](developer-overview.md#getting-started-running-opt-locally-on-your-machine-using-bottle). Unfortunately, this is much harder to do for other languages, since they use backends that are in v4-cokapi/ that communicate with the visualizer in more complex ways.
+
+
+#### Why am I getting a server error or unknown error?
+
+Hard to say :/ But here are some possible reasons:
+
+- Your script is too big, size-wise (bigger than ~4,000 bytes or so). Python Tutor isn't meant to debug giant pieces of code. Shorten your code to visualize only the snippet you really care about.
+- Your code might have certain non-ASCII characters that trip up the server. Basic Unicode support works, but I am not an internationalization expert, so some weird things may happen when coding in non-English languages.
+- Out of memory: if your code allocates a lot of memory very quickly (e.g., `x**x`)
+- Infinite loops (although that should usually result in a better error message)
+- Python input() and raw_input() support may not be the most robust
+- Python bytearray support is also spotty
+
