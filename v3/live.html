@@ -84,23 +84,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             </select>
           </div>
 
-          <!-- keep this here but hide so that opt-frontend-common.js stuff works -->
-          <div id="optionsPane" style="margin-top: 18px; line-height: 150%; display: none;">
-            <select id="cumulativeModeSelector">
-              <option value="false">hide exited frames [default]</option>
-              <option value="true">show exited frames (Python)</option>
-              <!-- <option value="holistic">holistic mode (experimental)</option> -->
-            </select>
-            <select id="heapPrimitivesSelector">
-              <option value="false">inline primitives &amp; nested objects [default]</option>
-              <option value="true">render all objects on the heap</option>
-            </select>
-            <select id="textualMemoryLabelsSelector">
-              <option value="false">draw pointers as arrows [default]</option>
-              <option value="true">use text labels for pointers</option>
-            </select>
-          </div>
-
           <div id="codeInputPane"></div>
           <div id="legendDiv"></div>
           <div id="executionSlider" style="margin-top: 10px;"></div>
@@ -115,6 +98,22 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   </table>
 
 <div id="footer">
+
+<div id="optionsPane" style="margin-top: 10px; padding-bottom: 15px; line-height: 150%;">
+  <select id="cumulativeModeSelector">
+    <option value="false">hide exited frames [default]</option>
+    <option value="true">show exited frames (Python)</option>
+    <!-- <option value="holistic">holistic mode (experimental)</option> -->
+  </select>
+  <select id="heapPrimitivesSelector">
+    <option value="false">inline primitives &amp; nested objects [default]</option>
+    <option value="true">render all objects on the heap (Python)</option>
+  </select>
+  <select id="textualMemoryLabelsSelector">
+    <option value="false">draw pointers as arrows [default]</option>
+    <option value="true">use text labels for pointers</option>
+  </select>
+</div>
 
 <p>
   <button id="genUrlBtn" class="smallBtn" type="button">Generate permanent link</button> <input type="text" id="urlOutput" size="70"/>

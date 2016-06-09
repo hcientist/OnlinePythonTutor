@@ -504,8 +504,8 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 
     var backend_script = langToBackendScript($('#pythonVersionSelector').val());
 
-    var backendOptionsObj = {cumulative_mode: false,
-                             heap_primitives: false,
+    var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
+                             heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
                              show_only_outputs: false,
                              py_crazy_mode: false,
                              origin: originFrontendJsFile};
@@ -513,6 +513,9 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
     var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
     var frontendOptionsObj = {startingInstruction: startingInstruction,
                               executeCodeWithRawInputFunc: executeCodeWithRawInput,
+                              // tricky tricky
+                              disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
+                              textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
                               hideCode: true,
                               jumpToEnd: true,
                              }
@@ -542,7 +545,7 @@ $(document).ready(function() {
       .attr('points', SVG_ARROW_POLYGON)
       .attr('fill', darkArrowColor);
 
-  $('#pythonVersionSelector').change(function() {
+  $('#cumulativeModeSelector,#heapPrimitivesSelector,#textualMemoryLabelsSelector,#pythonVersionSelector').change(function() {
     setAceMode();
     // force a recompile on a toggle switch
     executeCode();
