@@ -44,9 +44,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
      ^
 - make Ace editor resizable width-wise using jQuery resizable
   (stackoverflow has some tips for how to do that)
-
-- also add in general directions about live mode and a switchback option
-  to regular mode
+  - users want this!
 
 - if these Ace enhancements look good, then I can also use them for
   Codeopticon as well!
