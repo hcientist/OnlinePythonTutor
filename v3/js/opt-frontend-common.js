@@ -1531,6 +1531,12 @@ function executeCodeAndCreateViz(codeToExec,
 
           // bind keyboard shortcuts if we're not in embedded mode
           // (i.e., in an iframe)
+          //
+          // on second thought, eliminate keyboard shortcuts for now
+          // since it's kind of annoying to be pressing left/right to move
+          // the page horizontally and then also have the visualizer jump.
+          // ugh there isn't a perfect solution here for now:
+          /*
           if (!myVisualizer.embeddedMode) {
             $(document).off('keydown'); // clear first before rebinding, just to be paranoid
             $(document).keydown(function(e) {
@@ -1543,6 +1549,7 @@ function executeCodeAndCreateViz(codeToExec,
               }
             });
           }
+          */
         }
         // SUPER HACK -- slip in backendOptionsObj as an extra field
         if (myVisualizer) {
