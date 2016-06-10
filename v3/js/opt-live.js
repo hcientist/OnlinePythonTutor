@@ -49,6 +49,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 - if these Ace enhancements look good, then I can also use them for
   Codeopticon as well!
 
+- get input/raw_input working
+
 - [later] add a codeopticon-style history slider of the user's past
   edits (but that might be confusing)
 
@@ -490,6 +492,7 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
     }
 }
 
+// overrides the version in opt-frontend.js
 function executeCode(forceStartingInstr, forceRawInputLst) {
     $('#urlOutput').val(''); // clear to avoid stale values
 

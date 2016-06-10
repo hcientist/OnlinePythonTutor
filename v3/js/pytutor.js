@@ -78,6 +78,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //               there's no error, or if there's an error, jump to the
 //               FIRST ENTRY with an error
 //   startingInstruction - the (zero-indexed) execution point to display upon rendering
+//                         if this is set, then it *overrides* jumpToEnd
 //   hideOutput - hide "Program output" display
 //   codeDivHeight - maximum height of #pyCodeOutputDiv (in integer pixels)
 //   codeDivWidth  - maximum width  of #pyCodeOutputDiv (in integer pixels)
@@ -773,6 +774,8 @@ ExecutionVisualizer.prototype.render = function() {
   });
 
   if (this.params.startingInstruction) {
+    this.params.jumpToEnd = false; // override! make sure to handle FIRST
+
     // weird special case for something like:
     // e=raw_input(raw_input("Enter something:"))
     if (this.params.startingInstruction == this.curTrace.length) {
