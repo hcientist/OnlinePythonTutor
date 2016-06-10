@@ -782,6 +782,14 @@ ExecutionVisualizer.prototype.render = function() {
       this.params.startingInstruction--;
     }
 
+    // fail-soft with out-of-bounds startingInstruction values:
+    if (this.params.startingInstruction < 0) {
+      this.params.startingInstruction = 0;
+    }
+    if (this.params.startingInstruction >= this.curTrace.length) {
+      this.params.startingInstruction = this.curTrace.length - 1;
+    }
+
     assert(0 <= this.params.startingInstruction &&
            this.params.startingInstruction < this.curTrace.length);
     this.curInstr = this.params.startingInstruction;

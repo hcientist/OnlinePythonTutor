@@ -36,12 +36,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /* TODOs:
 
-- [later] detect exact position of syntax error and put a squiggly line below
-  it with something like:
-
-  File "<string>", line 1
-    x~=1
-     ^
 - make Ace editor resizable width-wise using jQuery resizable
   (stackoverflow has some tips for how to do that)
   - users want this!
@@ -53,6 +47,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 - [later] add a codeopticon-style history slider of the user's past
   edits (but that might be confusing)
+
+- [later] detect exact position of syntax error and put a squiggly line below
+  it with something like:
+
+  File "<string>", line 1
+    x~=1
+     ^
+
+  (do this for the OPT classic editor too. and for other language backends)
 
 */
 
