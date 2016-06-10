@@ -532,6 +532,11 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                             optliveHandleUncaughtExceptionFunc);
 }
 
+// see getAppState to see where it calls out to this function:
+function appStateAugmenter(appState) {
+  appState.mode = 'display'; // super hack so that when you generate URLs, it will say 'display' mode
+}
+
 $(document).ready(function() {
   genericOptFrontendReady();
 
