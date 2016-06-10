@@ -1273,9 +1273,13 @@ function updateAppDisplay(newAppMode) {
       var myArgs = getAppState();
       var urlStr = $.param.fragment('live.html', myArgs, 2 /* clobber all */);
       $("#pyOutputPane #liveModeSpan").show();
-      $('#pyOutputPane #editLiveModeBtn')
-        .attr('href', urlStr)
-        .attr('target', '_blank');
+      $('#pyOutputPane #editLiveModeBtn').click(function() {
+        var myArgs = getAppState();
+        var urlStr = $.param.fragment('live.html', myArgs, 2 /* clobber all */);
+        window.open(urlStr); // open in new tab
+
+        return false; // to prevent default "a href" click action
+      });
     } else {
       $("#pyOutputPane #liveModeSpan").hide();
     }

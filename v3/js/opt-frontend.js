@@ -712,7 +712,6 @@ $(document).ready(function() {
   $("#liveModeBtn").click(function() {
     var myArgs = getAppState();
     var urlStr = $.param.fragment('live.html', myArgs, 2 /* clobber all */);
-    //window.location = urlStr; // open in same tab
-    window.open(urlStr); // open in new tab (TODO: what about pop-up blockers?)
+    window.open(urlStr); // open in new tab
   });
 });
