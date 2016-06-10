@@ -43,8 +43,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 - if these Ace enhancements look good, then I can also use them for
   Codeopticon as well!
 
-- get input/raw_input working
-
 - [later] add a codeopticon-style history slider of the user's past
   edits (but that might be confusing)
 
@@ -143,7 +141,7 @@ function updateStepLabels() {
   var isLastInstr = myVisualizer.curInstr === (totalInstrs-1);
   if (isLastInstr) {
     if (myVisualizer.promptForUserInput || myVisualizer.promptForMouseInput) {
-      $("#curInstr").html('<font color="' + brightRed + '">input()/raw_input() not supported in live mode; use the <a href="visualize.html" target="_blank">regular visualizer</a></font>');
+      $("#curInstr").html('<b><font color="' + brightRed + '">Enter user input below:</font></b>');
     } else if (myVisualizer.instrLimitReached) {
       $("#curInstr").html("Instruction limit reached (" + String(totalInstrs-1) + " steps)");
     } else {
@@ -151,6 +149,27 @@ function updateStepLabels() {
     }
   } else {
     $("#curInstr").html("Step " + String(myVisualizer.curInstr + 1) + " of " + String(totalInstrs-1));
+  }
+
+  // handle raw user input
+  // copied from pytutor.js -- TODO: integrate this code better
+  var ruiDiv = $('#rawUserInputDiv');
+  if (isLastInstr && myVisualizer.executeCodeWithRawInputFunc &&
+      myVisualizer.promptForUserInput) {
+    ruiDiv.show();
+    ruiDiv.find('#userInputPromptStr').html(myVisualizer.userInputPromptStr);
+    ruiDiv.find('#raw_input_textbox').val('');
+
+    // first UNBIND handler so that we don't build up multiple click events
+    ruiDiv.find('#raw_input_submit_btn')
+      .unbind('click')
+      .click(function() {
+        var userInput = ruiDiv.find('#raw_input_textbox').val();
+        // advance instruction count by 1 to get to the NEXT instruction
+        myVisualizer.executeCodeWithRawInputFunc(userInput, myVisualizer.curInstr + 1);
+      });
+  } else {
+    ruiDiv.hide(); // hide by default
   }
 
   // render error (if applicable):
@@ -345,7 +364,7 @@ function initAceEditor(height) {
     $.doTimeout('pyInputAceEditorChange',
                 500, /* go a bit faster than CODE_SNAPSHOT_DEBOUNCE_MS to feel more snappy */
                 //CODE_SNAPSHOT_DEBOUNCE_MS /* match the value in opt-frontend-common.js for consistency and easy apples-to-apples comparisons later on */,
-                executeCode); // debounce
+                executeCodeFromScratch); // debounce
     clearFrontendError();
     s.clearAnnotations();
   });
@@ -559,8 +578,8 @@ $(document).ready(function() {
 
   $('#cumulativeModeSelector,#heapPrimitivesSelector,#textualMemoryLabelsSelector,#pythonVersionSelector').change(function() {
     setAceMode();
-    // force a recompile on a toggle switch
-    executeCode();
+    // force a re-execute on a toggle switch
+    executeCodeFromScratch();
   });
 
   setAceMode(); // set syntax highlighting at the end

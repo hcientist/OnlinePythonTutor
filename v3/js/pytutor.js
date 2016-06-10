@@ -1662,7 +1662,7 @@ ExecutionVisualizer.prototype.updateOutputFull = function(smoothTransition) {
 
   if (isLastInstr) {
     if (this.promptForUserInput || this.promptForMouseInput) {
-      vcrControls.find("#curInstr").html('<b><font color="' + brightRed + '">Enter user input:</font></b>');
+      vcrControls.find("#curInstr").html('<b><font color="' + brightRed + '">Enter user input below:</font></b>');
     }
     else if (this.instrLimitReached) {
       vcrControls.find("#curInstr").html("Instruction limit reached");

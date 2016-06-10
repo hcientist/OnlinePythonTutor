@@ -90,12 +90,21 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           <div id="legendDiv"></div>
           <div id="executionSlider" style="margin-top: 10px;"></div>
 
+          <!-- copied and pasted from pytutor.js
+               TODO: integrate all this together and modularize -->
+
           <div id="vcrControls" style="display: none;">
             <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>
             <button id="jmpStepBack", type="button">&lt; Back</button>
             <span id="curInstr"></span>
             <button id="jmpStepFwd", type="button">Forward &gt;</button>
             <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>
+          </div>
+
+          <div id="rawUserInputDiv" style="display: none;">
+            <span id="userInputPromptStr"></span>
+            <input type="text" id="raw_input_textbox" size="30"/>
+            <button id="raw_input_submit_btn">Submit</button>
           </div>
 
           <div id="frontendErrorOutput"></div>

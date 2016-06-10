@@ -22,7 +22,7 @@
   padding-top: 3px;
 }
 
-/* copied from pytutor.css */
+/* copied from pytutor.css - TODO: integrate and merge together */
 /* VCR control buttons for stepping through execution */
 #vcrControls {
   margin: 15px auto;
@@ -39,6 +39,15 @@
   margin-left: 4px;
   margin-right: 4px;
 }
+
+div#rawUserInputDiv {
+  padding: 5px;
+  width: 95%;
+  margin: 5px auto;
+  text-align: center;
+  border: 1px #e93f34 solid;
+}
+
 
 /* keep it a fixed min height so that footer below it doesn't jiggle up
    and down */
