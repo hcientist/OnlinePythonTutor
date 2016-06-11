@@ -330,7 +330,6 @@ function optliveFinishSuccessfulExecution() {
   );
 
   $('#executionSlider').slider('value', myVisualizer.curInstr); // update slider
-  disableRowScrolling = false; // hacky global
 }
 
 // a syntax-/compile-time error, rather than a runtime error
@@ -448,8 +447,9 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
         handleSuccessFunc();
       }
 
+      // run this all at the VERY END after all the dust has settled
       doneExecutingCode(); // rain or shine, we're done executing!
-      // run this at the VERY END after all the dust has settled
+      disableRowScrolling = false;
     }
 
     clearFrontendError();
