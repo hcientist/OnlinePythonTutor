@@ -417,7 +417,7 @@ ExecutionVisualizer.prototype.render = function() {
        <span id="liveModeSpan" style="display: none;">| <a id="editLiveModeBtn" href="#">Live programming</a></a>\
        </div>\
        <div id="legendDiv"/>\
-       <div id="executionSliderDocs"><font color="#e93f34">NEW!</font> Click on a line of code to set a <b>breakpoint</b> where you want to jump. Then use the <b>Left</b> and <b>Right</b> arrow keys and the Back and Forward buttons to jump there.</div>\
+       <div id="executionSliderDocs"><font color="#e93f34">NEW!</font> Click on a line of code to set a breakpoint. Then use the Forward and Back buttons to jump there.</div>\
        <div id="executionSlider"/>\
        <div id="executionSliderFooter"/>\
        <div id="vcrControls">\
