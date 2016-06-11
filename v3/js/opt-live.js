@@ -36,9 +36,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /* TODOs:
 
-- make Ace editor resizable width-wise using jQuery resizable
-  (stackoverflow has some tips for how to do that)
-  - users want this!
+- abstract out components within pytutor.js to prevent ugly code
+  duplication with stuff in this file
 
 - if these Ace enhancements look good, then I can also use them for
   Codeopticon as well!
@@ -130,6 +129,8 @@ function removeAllGutterDecorations() {
 function updateStepLabels() {
   assert(myVisualizer);
   myVisualizer.updateCurPrevLines(); // do this first to update the right fields
+
+  $('#urlOutput').val(''); // prevent stale URLs
 
   var s = pyInputAceEditor.getSession();
   allMarkerIds.forEach(function(e) {
