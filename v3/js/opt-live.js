@@ -42,12 +42,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 - if these Ace enhancements look good, then I can also use them for
   Codeopticon as well!
 
-- match the behavior of the regular visualizer -- when you step, scroll
-  vertically to center the current line. but be careful about not doing it
-  too much since that might make the display look jarring
-
-  pyInputAceEditor.scrollToLine(myVisualizer.curLineNumber, true);
-
 - [later] add a codeopticon-style history slider of the user's past
   edits (but that might be confusing)
 
@@ -105,6 +99,7 @@ var originFrontendJsFile = 'opt-live.js';
 var prevVisualizer = null; // the visualizer object from the previous execution
 
 var aceEditorWidth = '550px';
+var disableRowScrolling = false; // really hacky global, ugh
 
 var hasSyntaxError = false;
 function toggleSyntaxError(x) {
@@ -216,6 +211,19 @@ function updateStepLabels() {
       s.addGutterDecoration(myVisualizer.prevLineNumber-1, 'prevLineStepGutter');
     }
   }
+
+  // scroll the Ace editor to try to center the current line, but make
+  // sure not to appear jarring, so apply some heuristics here
+  // such as disableRowScrolling and checking to see if the current line
+  // is visible
+  if (myVisualizer.curLineNumber && !disableRowScrolling) {
+    var firstVisible = pyInputAceEditor.getFirstVisibleRow() + 1; // +1 to be more accurate
+    var lastVisible = pyInputAceEditor.getLastVisibleRow();
+    if (myVisualizer.curLineNumber < firstVisible ||
+        myVisualizer.curLineNumber > lastVisible) {
+      pyInputAceEditor.scrollToLine(myVisualizer.curLineNumber, true /* try to center */);
+    }
+  }
 }
 
 function optliveFinishSuccessfulExecution() {
@@ -235,7 +243,8 @@ function optliveFinishSuccessfulExecution() {
   sliderDiv.find(".ui-slider-handle").css('height', '1.4em');
   $(".ui-widget-content").css('font-size', '0.9em');
 
-  sliderDiv.bind('slide', function(evt, ui) {
+  // unbind first to prevent multiple bindings
+  sliderDiv.unbind('slide').bind('slide', function(evt, ui) {
     // this is SUPER subtle. if this value was changed programmatically,
     // then evt.originalEvent will be undefined. however, if this value
     // was changed by a user-initiated event, then this code should be
@@ -243,7 +252,7 @@ function optliveFinishSuccessfulExecution() {
     if (evt.originalEvent) {
       myVisualizer.renderStep(ui.value);
     }
-    updateStepLabels();
+    //updateStepLabels(); // I don't think we need this anymore
   });
 
   // do this AFTER making #pyOutputPane visible, or else
@@ -321,6 +330,7 @@ function optliveFinishSuccessfulExecution() {
   );
 
   $('#executionSlider').slider('value', myVisualizer.curInstr); // update slider
+  disableRowScrolling = false; // hacky global
 }
 
 // a syntax-/compile-time error, rather than a runtime error
@@ -382,7 +392,7 @@ function initAceEditor(height) {
     $.doTimeout('pyInputAceEditorChange',
                 500, /* go a bit faster than CODE_SNAPSHOT_DEBOUNCE_MS to feel more snappy */
                 //CODE_SNAPSHOT_DEBOUNCE_MS /* match the value in opt-frontend-common.js for consistency and easy apples-to-apples comparisons later on */,
-                executeCodeFromScratch); // debounce
+                optliveExecuteCodeFromScratch); // debounce
     clearFrontendError();
     s.clearAnnotations();
   });
@@ -577,6 +587,11 @@ function appStateAugmenter(appState) {
   appState.mode = 'display'; // super hack so that when you generate URLs, it will say 'display' mode
 }
 
+function optliveExecuteCodeFromScratch() {
+  disableRowScrolling = true; // annoying hacky global
+  executeCodeFromScratch();
+}
+
 $(document).ready(function() {
   genericOptFrontendReady();
 
@@ -597,7 +612,7 @@ $(document).ready(function() {
   $('#cumulativeModeSelector,#heapPrimitivesSelector,#textualMemoryLabelsSelector,#pythonVersionSelector').change(function() {
     setAceMode();
     // force a re-execute on a toggle switch
-    executeCodeFromScratch();
+    optliveExecuteCodeFromScratch();
   });
 
   setAceMode(); // set syntax highlighting at the end
