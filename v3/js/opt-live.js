@@ -357,7 +357,8 @@ function initAceEditor(height) {
 
   $("#pyInputPane,#codeInputPane")
     .css('width', aceEditorWidth)
-    .css('min-width', '250px');
+    .css('min-width', '250px')
+    .css('max-width', '700px'); // don't let it get too ridiculously wide
   $('#codeInputPane').css('height', height + 'px'); // VERY IMPORTANT so that it works on I.E., ugh!
 
   // make it resizable!
