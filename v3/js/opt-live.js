@@ -212,16 +212,23 @@ function updateStepLabels() {
     }
   }
 
+  var lineToScrollTo = null;
+  if (myVisualizer.curLineNumber) {
+    lineToScrollTo = myVisualizer.curLineNumber;
+  } else if (myVisualizer.prevLineNumber) {
+    lineToScrollTo = myVisualizer.prevLineNumber;
+  }
+
   // scroll the Ace editor to try to center the current line, but make
   // sure not to appear jarring, so apply some heuristics here
   // such as disableRowScrolling and checking to see if the current line
   // is visible
-  if (myVisualizer.curLineNumber && !disableRowScrolling) {
+  if (lineToScrollTo && !disableRowScrolling) {
     var firstVisible = pyInputAceEditor.getFirstVisibleRow() + 1; // +1 to be more accurate
     var lastVisible = pyInputAceEditor.getLastVisibleRow();
-    if (myVisualizer.curLineNumber < firstVisible ||
-        myVisualizer.curLineNumber > lastVisible) {
-      pyInputAceEditor.scrollToLine(myVisualizer.curLineNumber, true /* try to center */);
+    if (lineToScrollTo < firstVisible ||
+        lineToScrollTo > lastVisible) {
+      pyInputAceEditor.scrollToLine(lineToScrollTo, true /* try to center */);
     }
   }
 }
