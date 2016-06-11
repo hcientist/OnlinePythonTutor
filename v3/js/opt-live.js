@@ -42,6 +42,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 - if these Ace enhancements look good, then I can also use them for
   Codeopticon as well!
 
+- match the behavior of the regular visualizer -- when you step, scroll
+  vertically to center the current line. but be careful about not doing it
+  too much since that might make the display look jarring
+
+  pyInputAceEditor.scrollToLine(myVisualizer.curLineNumber, true);
+
 - [later] add a codeopticon-style history slider of the user's past
   edits (but that might be confusing)
 

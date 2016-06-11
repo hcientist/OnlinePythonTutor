@@ -113,7 +113,7 @@ else:
 
 
 # whitelist of module imports
-ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'datetime',
+ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'time', 'datetime',
                           'functools', 'itertools', 'operator', 'string',
                           'collections', 're', 'json',
                           'heapq', 'bisect', 'copy', 'hashlib')
