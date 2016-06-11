@@ -325,7 +325,7 @@ function optliveHandleUncaughtExceptionFunc(trace) {
 
       if (myVisualizer) {
         toggleSyntaxError(true);
-        myVisualizer.updateOutput(); // to update arrows
+        myVisualizer.redrawConnectors();
       }
 
       var s = pyInputAceEditor.getSession();
@@ -354,11 +354,21 @@ function initAceEditor(height) {
 
   pyInputAceEditor.$blockScrolling = Infinity; // kludgy to shut up weird warnings
 
-  // auto-grow height as fit
-  pyInputAceEditor.setOptions({minLines: 20, maxLines: 20});
-
-  $("#pyInputPane,#codeInputPane").css('width', aceEditorWidth);
+  $("#pyInputPane,#codeInputPane")
+    .css('width', aceEditorWidth)
+    .css('min-width', '250px');
   $('#codeInputPane').css('height', height + 'px'); // VERY IMPORTANT so that it works on I.E., ugh!
+
+  // make it resizable!
+  $("#codeInputPane").resizable({
+    resize: function(evt, ui) {
+      pyInputAceEditor.resize(); // to keep Ace internals happy
+      $("#pyInputPane").width($("#codeInputPane").width()); // to keep parent happy
+      if (myVisualizer) {
+        myVisualizer.redrawConnectors(); // to keep visualizations happy
+      }
+    }
+  });
 
   pyInputAceEditor.on('change', function(e) {
     $.doTimeout('pyInputAceEditorChange',
