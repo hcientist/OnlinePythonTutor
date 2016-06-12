@@ -145,7 +145,7 @@ function updateStepLabels() {
     if (myVisualizer.promptForUserInput || myVisualizer.promptForMouseInput) {
       $("#curInstr").html('<b><font color="' + brightRed + '">Enter user input below:</font></b>');
     } else if (myVisualizer.instrLimitReached) {
-      $("#curInstr").html("Instruction limit reached (" + String(totalInstrs-1) + " steps)");
+      $("#curInstr").html("Instruction limit reached");
     } else {
       $("#curInstr").html("Program terminated");
     }
