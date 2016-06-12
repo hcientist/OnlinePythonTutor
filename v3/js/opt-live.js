@@ -147,7 +147,7 @@ function updateStepLabels() {
     } else if (myVisualizer.instrLimitReached) {
       $("#curInstr").html("Instruction limit reached");
     } else {
-      $("#curInstr").html("Program terminated");
+      $("#curInstr").html("Done running (" + String(totalInstrs) + " steps)");
     }
   } else {
     $("#curInstr").html("Step " + String(myVisualizer.curInstr + 1) + " of " + String(totalInstrs-1));
