@@ -191,6 +191,8 @@ function updateStepLabels() {
                                            myVisualizer.curLineNumber - 1, 1), "errorLine", "fullLine");
       allMarkerIds.push(markerId);
     }
+  } else if (myVisualizer.instrLimitReached) {
+    $("#frontendErrorOutput").html(htmlspecialchars(myVisualizer.instrLimitReachedWarningMsg));
   } else {
     $("#frontendErrorOutput").html(''); // clear it
   }

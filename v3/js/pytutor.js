@@ -748,6 +748,7 @@ ExecutionVisualizer.prototype.render = function() {
   if (this.instrLimitReached) {
     this.curTrace.pop() // kill last entry
     var warningMsg = lastEntry.exception_msg;
+    this.instrLimitReachedWarningMsg = warningMsg;
     myViz.domRoot.find("#errorOutput").html(htmlspecialchars(warningMsg));
     myViz.domRoot.find("#errorOutput").show();
   }
