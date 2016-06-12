@@ -1,0 +1,19 @@
+{
+  "name": "v5-unity",
+  "version": "1.0.0",
+  "description": "OPT v5",
+  "main": "bundle.js",
+  "repository": "https://github.com/pgbovine/OnlinePythonTutor",
+  "license": "BSD-3-Clause",
+
+  "scripts": {
+    "start": "webpack-dev-server --hot --inline",
+    "webpack": "webpack --progress --colors --watch"
+  },
+
+  "dependencies" : {
+    "css-loader" : "",
+    "style-loader" : "",
+    "file-loader" : ""
+  }
+}
