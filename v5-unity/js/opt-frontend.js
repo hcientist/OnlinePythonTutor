@@ -623,11 +623,9 @@ $(document).ready(function() {
       lang = 'cpp';
     } else if (PY2_EXAMPLES[myId] !== undefined) {
       exFile = PY2_EXAMPLES[myId];
-
-      // only switch Python mode to 2 if we're not on '2' or '3'; otherwise
-      // leave as-is so as not to rock the boat
-      if ($('#pythonVersionSelector').val() !== '2' &&
-          $('#pythonVersionSelector').val() !== '3') {
+      if ($('#pythonVersionSelector').val() === '3') {
+        lang = '3';
+      } else {
         lang = '2';
       }
     } else {
@@ -635,11 +633,8 @@ $(document).ready(function() {
       assert(exFile !== undefined);
       lang = '3';
     }
-
-
-    if (lang) {
-      $('#pythonVersionSelector').val(lang);
-    }
+    assert(lang);
+    $('#pythonVersionSelector').val(lang);
 
     if (lang === '2' || lang === '3') {
       exFile = 'example-code/python/' + exFile;
