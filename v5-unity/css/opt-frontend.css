@@ -1,0 +1,228 @@
+/* CSS accompanying ../visualize.html */
+
+h1 {
+  font-weight: normal;
+  font-size: 20pt;
+  font-family: georgia, serif;
+  line-height: 1em;  /* enforce single spacing so that Georgia works */
+
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-size: 12pt;
+  font-weight: normal;
+  font-family: georgia, serif;
+  line-height: 1.1em; /* enforce single spacing so that Georgia works */
+
+  margin-top: 2px;
+  margin-bottom: 20px;
+}
+
+
+body {
+  background-color: white;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 10pt;
+}
+
+a,
+a:visited,
+a:hover {
+  color: #3D58A2;
+}
+
+span {
+  padding: 0px;
+}
+
+table#pyOutputPane {
+  padding: 10px;
+}
+
+#pyInputPane, #loadingPane {
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+  max-width: 700px;
+  /* center align */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#loadingPane {
+  margin-bottom: 5px;
+}
+
+#codeInputPane {
+  margin-top: 5px;
+  font-size: 12pt;
+  border: 1px solid #ddd;
+}
+
+#codeInputWarnings {
+  margin-bottom: 8px;
+}
+
+button.smallBtn {
+  font-size: 10pt;
+  padding: 3px;
+}
+
+button.bigBtn {
+  font-size: 12pt;
+  padding: 6px;
+  margin-top: 0px;
+}
+
+button.surveyBtn {
+  font-size: 8pt;
+  margin-top: 8px;
+}
+
+#footer {
+  color: #999;
+  font-size: 9pt;
+  border-top: 1px solid #bbbbbb;
+  padding-top: 5px;
+  margin-top: 5px;
+
+  max-width: 700px;
+  /* center align */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#frontendErrorOutput {
+  color: #e93f34; /* should match brightRed JavaScript variable */
+  font-size: 12pt;
+  line-height: 1.5em;
+  margin-top: 8px;
+}
+
+.togetherjsBtn {
+  color: #b80000;
+  font-size: 9pt;
+  padding: 4px;
+  margin-top: 3px;
+}
+
+#syncBtn {
+ font-size: 8pt;
+ margin-left: 10px;
+}
+
+#experimentalHeader {
+}
+
+#surveyHeader {
+  margin-left: 100px;
+}
+
+.surveyQ {
+  font-size: 9pt;
+  padding: 2px;
+}
+
+/* necessary for CodeMirror error line highlighting to work! */
+.CodeMirror .errorLine { background: #ffff3f !important; }
+
+
+/* from http://rog.ie/blog/css-star-rater */
+.star-rating {
+  font-size: 0;
+  white-space: nowrap;
+  display: inline-block;
+  /* pgbovine - scale this appropriately with a 5:1 ratio */
+  width: 100px;
+  height: 20px;
+  overflow: hidden;
+  position: relative;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+}
+.star-rating i {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 20%;
+  z-index: 1;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+}
+.star-rating input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  opacity: 0;
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  position: relative;
+}
+.star-rating input:hover + i,
+.star-rating input:checked + i {
+  opacity: 1;
+}
+.star-rating i ~ i {
+  width: 40%;
+}
+.star-rating i ~ i ~ i {
+  width: 60%;
+}
+.star-rating i ~ i ~ i ~ i {
+  width: 80%;
+}
+.star-rating i ~ i ~ i ~ i ~ i {
+  width: 100%;
+}
+
+
+#syntaxErrBubbleContents {
+  font-size: 9pt;
+  cursor: default;
+}
+
+#syntaxErrHeader {
+  margin-bottom: 3pt;
+}
+
+#syntaxErrCodeDisplay {
+  border: 1px solid #ddd;
+}
+
+#syntaxErrMsg {
+  color: #e93f34; /* should match brightRed JavaScript variable */
+  font-size: 10pt;
+  margin-top: 3pt;
+  margin-bottom: 2pt;
+}
+
+#syntaxErrQuestion {
+  margin-top: 12px;
+}
+
+#syntaxErrTxtInput {
+  margin-top: 3px;
+  margin-bottom: 6px;
+  padding: 2px;
+}
+
+#syntaxErrSubmitBtn, #syntaxErrCloseBtn {
+  margin-right: 8px;
+}
+
+#syntaxErrHideAllLink {
+  font-size: 8pt;
+}
+
+#testCasesPane {
+ margin-top: 5px;
+ padding-bottom: 10px;
+ border-bottom: 1px solid #ccc;
+}

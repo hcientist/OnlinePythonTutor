@@ -28,7 +28,9 @@ module.exports = {
     },
 
     output: {
-        path: __dirname + "/webpack-output/",
+        // keep output in this directory so that the server can easily
+        // find images and other static assets (though it pollutes pwd)
+        path: __dirname, // + "/webpack-output/",
         // TODO: use 'bundle.[hash].js' for fingerprint hashing
         // to create unique filenames for releases:
         // https://webpack.github.io/docs/long-term-caching.html

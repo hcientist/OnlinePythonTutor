@@ -20,9 +20,25 @@ Requires these global installations:
   npm install webpack -g
   npm install webpack-dev-server -g
 
-If you run:
-webpack-dev-server --progress --colors
+If you run: webpack-dev-server --progress --colors
 
 then your code will automatically recompile and be refreshed here:
-http://localhost:8080/webpack-dev-server/
+http://localhost:8080/webpack-dev-server/visualize.html
+(but this is kinda flaky, ugh)
+
+Instead, use this to continually compile:
+webpack --watch
+
+and run the server with Bottle:
+python bottle_server.py
+
+
+---
+
+https://github.com/petehunt/webpack-howto
+
+    'webpack' for building once for development
+    'webpack -p' for building once for production (minification)
+    'webpack --watch' for continuous incremental build in development (fast!)
+    'webpack -d' to include source maps
 
