@@ -1041,13 +1041,13 @@ function genericOptFrontendReady() {
   // still a bit flaky ... TODO: investigate :(
   $(window).on('beforeunload', function(){
     submitUpdateHistory('beforeunload');
-    return null; // so that no dialog is triggered
+    // don't return anything, or a modal dialog box might pop up
   });
 
   // just do this as well, even though it might be hella redundant
   $(window).unload(function(){
     submitUpdateHistory('unload');
-    return null; // so that no dialog is triggered
+    // don't return anything, or a modal dialog box might pop up
   });
 
   // periodically do submitUpdateHistory() to handle the case when
