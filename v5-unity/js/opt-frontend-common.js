@@ -6,7 +6,7 @@
 require('./diff_match_patch.js');
 //require('./jquery-1.8.2.min.js');
 require('./jquery-3.0.0.min.js');
-require('./jquery.ba-bbq.js');
+require('./jquery.ba-bbq.js'); // contains slight pgbovine modifications
 
 var pytutor = require('./pytutor.js');
 var assert = pytutor.assert;
@@ -33,7 +33,7 @@ module.exports = {
   appMode: appMode,
 }
 
-var originFrontendJsFile = undefined; // STENT
+var originFrontendJsFile = undefined; // init in initializeFrontend
 
 function initializeFrontend(params) {
   originFrontendJsFile = params.originFrontendJsFile;
@@ -1070,11 +1070,13 @@ function genericOptFrontendReady() {
   // still a bit flaky ... TODO: investigate :(
   $(window).on('beforeunload', function(){
     submitUpdateHistory('beforeunload');
+    // don't return anything, or a modal dialog box might pop up
   });
 
   // just do this as well, even though it might be hella redundant
   $(window).on('unload', function(){
     submitUpdateHistory('unload');
+    // don't return anything, or a modal dialog box might pop up
   });
 
   // periodically do submitUpdateHistory() to handle the case when

@@ -5,7 +5,7 @@
 // use Webpack to automatically package up these dependencies
 //require('./jquery-1.8.2.min.js');
 require('./jquery-3.0.0.min.js');
-require('./jquery.ba-bbq.js');
+require('./jquery.ba-bbq.js'); // contains slight pgbovine modifications
 require('./ace/src-min-noconflict/ace.js');
 
 // TODO: can we avoid explicitly including all Ace modes and lazy-load instead?
@@ -19,6 +19,8 @@ require('./ace/src-min-noconflict/mode-ruby.js');
 var optCommon = require('./opt-frontend-common.js');
 var pytutor = require('./pytutor.js');
 var assert = pytutor.assert;
+
+// TODO: copy in yellow-happy-face.jpg and red-sad-face.jpg, and test this
 require('./opt-testcases.js');
 
 require('../css/opt-frontend.css');
@@ -430,152 +432,152 @@ function initAceAndOptions() {
 
 
 var JS_EXAMPLES = {
-  jsFactExLink: 'js-example-code/fact.js',
-  jsDatatypesExLink: 'js-example-code/data-types.js',
-  jsExceptionExLink: 'js-example-code/caught-exception.js',
-  jsClosureExLink: 'js-example-code/closure1.js',
-  jsShadowingExLink: 'js-example-code/var-shadowing2.js',
-  jsConstructorExLink: 'js-example-code/constructor.js',
-  jsInhExLink: 'js-example-code/inheritance.js',
+  jsFactExLink: 'fact.js',
+  jsDatatypesExLink: 'data-types.js',
+  jsExceptionExLink: 'caught-exception.js',
+  jsClosureExLink: 'closure1.js',
+  jsShadowingExLink: 'var-shadowing2.js',
+  jsConstructorExLink: 'constructor.js',
+  jsInhExLink: 'inheritance.js',
 };
 
 var TS_EXAMPLES = {
-  tsHelloExLink: 'ts-example-code/hello.ts',
-  tsGreeterExLink: 'ts-example-code/greeter.ts',
-  tsGreeterGenericsExLink: 'ts-example-code/greeter-generics.ts',
-  tsInheritanceExLink: 'ts-example-code/inheritance.ts',
+  tsHelloExLink: 'hello.ts',
+  tsGreeterExLink: 'greeter.ts',
+  tsGreeterGenericsExLink: 'greeter-generics.ts',
+  tsInheritanceExLink: 'inheritance.ts',
 };
 
 var JAVA_EXAMPLES = {
-  javaVarLink: 'java-example-code/Variables.java',
-  javaCFLink: 'java-example-code/ControlFlow.java',
-  javaSqrtLink: 'java-example-code/Sqrt.java',
-  javaExecLimitLink: 'java-example-code/ExecLimit.java',
-  javaStringsLink: 'java-example-code/Strings.java',
+  javaVarLink: 'Variables.java',
+  javaCFLink: 'ControlFlow.java',
+  javaSqrtLink: 'Sqrt.java',
+  javaExecLimitLink: 'ExecLimit.java',
+  javaStringsLink: 'Strings.java',
 
-  javaPassByValLink: 'java-example-code/PassByValue.java',
-  javaRecurLink: 'java-example-code/Recursion.java',
-  javaSOLink: 'java-example-code/StackOverflow.java',
+  javaPassByValLink: 'PassByValue.java',
+  javaRecurLink: 'Recursion.java',
+  javaSOLink: 'StackOverflow.java',
 
-  javaRolexLink: 'java-example-code/Rolex.java',
-  javaPersonLink: 'java-example-code/Person.java',
-  javaComplexLink: 'java-example-code/Complex.java',
-  javaCastingLink: 'java-example-code/Casting.java',
+  javaRolexLink: 'Rolex.java',
+  javaPersonLink: 'Person.java',
+  javaComplexLink: 'Complex.java',
+  javaCastingLink: 'Casting.java',
 
-  javaLLLink: 'java-example-code/LinkedList.java',
-  javaStackQueueLink: 'java-example-code/StackQueue.java',
-  javaPostfixLink: 'java-example-code/Postfix.java',
-  javaSTLink: 'java-example-code/SymbolTable.java',
+  javaLLLink: 'LinkedList.java',
+  javaStackQueueLink: 'StackQueue.java',
+  javaPostfixLink: 'Postfix.java',
+  javaSTLink: 'SymbolTable.java',
 
-  javaToStringLink: 'java-example-code/ToString.java',
-  javaReflectLink: 'java-example-code/Reflect.java',
-  javaExceptionLink: 'java-example-code/Exception.java',
-  javaExceptionFlowLink: 'java-example-code/ExceptionFlow.java',
-  javaTwoClassesLink: 'java-example-code/TwoClasses.java',
+  javaToStringLink: 'ToString.java',
+  javaReflectLink: 'Reflect.java',
+  javaExceptionLink: 'Exception.java',
+  javaExceptionFlowLink: 'ExceptionFlow.java',
+  javaTwoClassesLink: 'TwoClasses.java',
 
-  javaForestLink: 'java-example-code/Forest.java',
-  javaKnapsackLink: 'java-example-code/Knapsack.java',
-  javaStaticInitLink: 'java-example-code/StaticInitializer.java',
-  javaSyntheticLink: 'java-example-code/Synthetic.java',
+  javaForestLink: 'Forest.java',
+  javaKnapsackLink: 'Knapsack.java',
+  javaStaticInitLink: 'StaticInitializer.java',
+  javaSyntheticLink: 'Synthetic.java',
 };
 
 var PY2_EXAMPLES = {
-  tutorialExampleLink: "example-code/py_tutorial.txt",
-  strtokExampleLink: "example-code/strtok.txt",
-  listCompLink: "example-code/list-comp.txt",
-  compsLink: "example-code/comprehensions.txt",
-  fibonacciExampleLink: "example-code/fib.txt",
-  memoFibExampleLink: "example-code/memo_fib.txt",
-  factExampleLink: "example-code/fact.txt",
-  filterExampleLink: "example-code/filter.txt",
-  insSortExampleLink: "example-code/ins_sort.txt",
-  aliasExampleLink: "example-code/aliasing.txt",
-  happyExampleLink: "example-code/happy.txt",
-  newtonExampleLink: "example-code/sqrt.txt",
-  oopSmallExampleLink: "example-code/oop_small.txt",
-  mapExampleLink: "example-code/map.txt",
-  rawInputExampleLink: "example-code/raw_input.txt",
-  oop1ExampleLink: "example-code/oop_1.txt",
-  oop2ExampleLink: "example-code/oop_2.txt",
-  inheritanceExampleLink: "example-code/oop_inherit.txt",
-  sumExampleLink: "example-code/sum.txt",
-  pwGcdLink: "example-code/wentworth_gcd.txt",
-  pwSumListLink: "example-code/wentworth_sumList.txt",
-  towersOfHanoiLink: "example-code/towers_of_hanoi.txt",
-  pwTryFinallyLink: "example-code/wentworth_try_finally.txt",
-  sumCubesLink: "example-code/sum-cubes.txt",
-  decoratorsLink: "example-code/decorators.txt",
-  genPrimesLink: "example-code/gen_primes.txt",
-  genExprLink: "example-code/genexpr.txt",
-  closure1Link: "example-code/closures/closure1.txt",
-  closure2Link: "example-code/closures/closure2.txt",
-  closure3Link: "example-code/closures/closure3.txt",
-  closure4Link: "example-code/closures/closure4.txt",
-  closure5Link: "example-code/closures/closure5.txt",
-  lambdaParamLink: "example-code/closures/lambda-param.txt",
-  aliasing1Link: "example-code/aliasing/aliasing1.txt",
-  aliasing2Link: "example-code/aliasing/aliasing2.txt",
-  aliasing3Link: "example-code/aliasing/aliasing3.txt",
-  aliasing4Link: "example-code/aliasing/aliasing4.txt",
-  aliasing5Link: "example-code/aliasing/aliasing5.txt",
-  aliasing6Link: "example-code/aliasing/aliasing6.txt",
-  aliasing7Link: "example-code/aliasing/aliasing7.txt",
-  aliasing8Link: "example-code/aliasing/aliasing8.txt",
-  ll1Link: "example-code/linked-lists/ll1.txt",
-  ll2Link: "example-code/linked-lists/ll2.txt",
-  sumListLink: "example-code/sum-list.txt",
-  varargsLink: "example-code/varargs.txt",
-  forElseLink: "example-code/for-else.txt",
-  metaclassLink: "example-code/metaclass.txt",
+  tutorialExampleLink: "py_tutorial.txt",
+  strtokExampleLink: "strtok.txt",
+  listCompLink: "list-comp.txt",
+  compsLink: "comprehensions.txt",
+  fibonacciExampleLink: "fib.txt",
+  memoFibExampleLink: "memo_fib.txt",
+  factExampleLink: "fact.txt",
+  filterExampleLink: "filter.txt",
+  insSortExampleLink: "ins_sort.txt",
+  aliasExampleLink: "aliasing.txt",
+  happyExampleLink: "happy.txt",
+  newtonExampleLink: "sqrt.txt",
+  oopSmallExampleLink: "oop_small.txt",
+  mapExampleLink: "map.txt",
+  rawInputExampleLink: "raw_input.txt",
+  oop1ExampleLink: "oop_1.txt",
+  oop2ExampleLink: "oop_2.txt",
+  inheritanceExampleLink: "oop_inherit.txt",
+  sumExampleLink: "sum.txt",
+  pwGcdLink: "wentworth_gcd.txt",
+  pwSumListLink: "wentworth_sumList.txt",
+  towersOfHanoiLink: "towers_of_hanoi.txt",
+  pwTryFinallyLink: "wentworth_try_finally.txt",
+  sumCubesLink: "sum-cubes.txt",
+  decoratorsLink: "decorators.txt",
+  genPrimesLink: "gen_primes.txt",
+  genExprLink: "genexpr.txt",
+  closure1Link: "closures/closure1.txt",
+  closure2Link: "closures/closure2.txt",
+  closure3Link: "closures/closure3.txt",
+  closure4Link: "closures/closure4.txt",
+  closure5Link: "closures/closure5.txt",
+  lambdaParamLink: "closures/lambda-param.txt",
+  aliasing1Link: "aliasing/aliasing1.txt",
+  aliasing2Link: "aliasing/aliasing2.txt",
+  aliasing3Link: "aliasing/aliasing3.txt",
+  aliasing4Link: "aliasing/aliasing4.txt",
+  aliasing5Link: "aliasing/aliasing5.txt",
+  aliasing6Link: "aliasing/aliasing6.txt",
+  aliasing7Link: "aliasing/aliasing7.txt",
+  aliasing8Link: "aliasing/aliasing8.txt",
+  ll1Link: "linked-lists/ll1.txt",
+  ll2Link: "linked-lists/ll2.txt",
+  sumListLink: "sum-list.txt",
+  varargsLink: "varargs.txt",
+  forElseLink: "for-else.txt",
+  metaclassLink: "metaclass.txt",
 }
 
 var PY3_EXAMPLES = {
-  tortureLink: "example-code/closures/student-torture.txt",
-  nonlocalLink: "example-code/nonlocal.txt",
+  tortureLink: "closures/student-torture.txt",
+  nonlocalLink: "nonlocal.txt",
 }
 
 var RUBY_EXAMPLES = {
-  rubyBlocksLink: 'ruby-example-code/blocks-basic.rb',
-  rubyBlocksScopingLink: 'ruby-example-code/blocks-scoping-2.rb',
-  rubyInheritanceLink: 'ruby-example-code/class-inheritance.rb',
-  rubyConstantsLink: 'ruby-example-code/constants-4.rb',
-  rubyContainersLink: 'ruby-example-code/container-data-types.rb',
-  rubyGlobalsLink: 'ruby-example-code/globals.rb',
-  rubyLambdaScopingLink: 'ruby-example-code/lambda-scoping-2.rb',
-  rubyMegagreeterLink: 'ruby-example-code/megagreeter.rb',
-  rubyProcLink: 'ruby-example-code/proc-basic.rb',
-  rubyProcScopingLink: 'ruby-example-code/proc-scoping.rb',
-  rubySymbolsLink: 'ruby-example-code/symbols.rb',
-  rubyPrivateProtectedLink: 'ruby-example-code/class-private-protected.rb',
-  rubyInstClassVarsComplexLink: 'ruby-example-code/inst-class-vars-complex.rb',
-  rubyToplevelLink: 'ruby-example-code/toplevel-inst-class-vars.rb',
-  rubyBlocksScoping3Link: 'ruby-example-code/blocks-scoping-3.rb',
-  rubyProcReturnLink: 'ruby-example-code/proc-return.rb',
+  rubyBlocksLink: 'blocks-basic.rb',
+  rubyBlocksScopingLink: 'blocks-scoping-2.rb',
+  rubyInheritanceLink: 'class-inheritance.rb',
+  rubyConstantsLink: 'constants-4.rb',
+  rubyContainersLink: 'container-data-types.rb',
+  rubyGlobalsLink: 'globals.rb',
+  rubyLambdaScopingLink: 'lambda-scoping-2.rb',
+  rubyMegagreeterLink: 'megagreeter.rb',
+  rubyProcLink: 'proc-basic.rb',
+  rubyProcScopingLink: 'proc-scoping.rb',
+  rubySymbolsLink: 'symbols.rb',
+  rubyPrivateProtectedLink: 'class-private-protected.rb',
+  rubyInstClassVarsComplexLink: 'inst-class-vars-complex.rb',
+  rubyToplevelLink: 'toplevel-inst-class-vars.rb',
+  rubyBlocksScoping3Link: 'blocks-scoping-3.rb',
+  rubyProcReturnLink: 'proc-return.rb',
 };
 
 var C_EXAMPLES = {
-  cArrOverflowLink: 'c-example-code/array-overflow.c',
-  cArrParamLink: 'c-example-code/array-param.c',
-  cNestedStructLink: 'c-example-code/fjalar-NestedStructTest.c',
-  cPtrLevelsLink: 'c-example-code/fjalar-pointer-levels.c',
-  //cStringArraysLink: 'c-example-code/fjalar-string-arrays.c',
-  cGlobalsLink: 'c-example-code/globals.c',
-  cMengThesisLink: 'c-example-code/meng-thesis-example.c',
-  cPtrChainLink: 'c-example-code/pointer-chain.c',
-  cPtrWildLink: 'c-example-code/pointers-gone-wild.c',
-  cStringRevLink: 'c-example-code/string-reverse-inplace.c',
-  cStructLink: 'c-example-code/struct-basic.c',
-  cTypedefLink: 'c-example-code/typedef-test.c',
+  cArrOverflowLink: 'array-overflow.c',
+  cArrParamLink: 'array-param.c',
+  cNestedStructLink: 'fjalar-NestedStructTest.c',
+  cPtrLevelsLink: 'fjalar-pointer-levels.c',
+  //cStringArraysLink: 'fjalar-string-arrays.c',
+  cGlobalsLink: 'globals.c',
+  cMengThesisLink: 'meng-thesis-example.c',
+  cPtrChainLink: 'pointer-chain.c',
+  cPtrWildLink: 'pointers-gone-wild.c',
+  cStringRevLink: 'string-reverse-inplace.c',
+  cStructLink: 'struct-basic.c',
+  cTypedefLink: 'typedef-test.c',
 }
 
 var CPP_EXAMPLES = {
-  cppClassLink: 'cpp-example-code/cpp-class-basic.cpp',
-  cppDateLink: 'cpp-example-code/cpp-class-date.cpp',
-  cppClassPtrLink: 'cpp-example-code/cpp-class-pointers.cpp',
-  cppFirstLink: 'cpp-example-code/cpp-first.cpp',
-  cppInheritLink: 'cpp-example-code/cpp-inheritance.cpp',
-  cppPassRefLink: 'cpp-example-code/cpp-pass-by-ref.cpp',
-  cppVirtualLink: 'cpp-example-code/cpp-virtual-method.cpp',
+  cppClassLink: 'cpp-class-basic.cpp',
+  cppDateLink: 'cpp-class-date.cpp',
+  cppClassPtrLink: 'cpp-class-pointers.cpp',
+  cppFirstLink: 'cpp-first.cpp',
+  cppInheritLink: 'cpp-inheritance.cpp',
+  cppPassRefLink: 'cpp-pass-by-ref.cpp',
+  cppVirtualLink: 'cpp-virtual-method.cpp',
 }
 
 
@@ -637,6 +639,12 @@ $(document).ready(function() {
 
     if (lang) {
       $('#pythonVersionSelector').val(lang);
+    }
+
+    if (lang === '2' || lang === '3') {
+      exFile = 'example-code/python/' + exFile;
+    } else {
+      exFile = 'example-code/' + lang + '/' + exFile;
     }
 
     $.get(exFile, function(dat) {
