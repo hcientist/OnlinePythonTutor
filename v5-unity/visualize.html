@@ -16,13 +16,10 @@
        https://webpack.github.io/docs/long-term-caching.html -->
   <script type="text/javascript" src="bundle.js" charset="utf-8"></script>
 
-  <!-- include these AFTER opt-frontend.js so that configuration
+  <!-- include this AFTER opt-frontend.js so that configuration
        global variables are already defined at load time.
-
-       Also, it's too hard to figure out how to include these in Webpack,
-       so just include them externally -->
+       It's too hard to figure out how to load this within Webpack -->
   <script type="text/javascript" src="js/togetherjs/togetherjs-min.js"></script>
-  <script type="text/javascript" src="js/socket.io-client/socket.io.js"></script>
 
 <!-- insert google-analytics.txt contents here -->
 

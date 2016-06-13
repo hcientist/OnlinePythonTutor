@@ -6,25 +6,26 @@
 //require('./jquery-1.8.2.min.js');
 require('./jquery-3.0.0.min.js');
 require('./jquery.ba-bbq.js'); // contains slight pgbovine modifications
-require('./ace/src-min-noconflict/ace.js');
 
-// TODO: can we avoid explicitly including all Ace modes and lazy-load instead?
-require('./ace/src-min-noconflict/mode-python.js');
-require('./ace/src-min-noconflict/mode-javascript.js');
-require('./ace/src-min-noconflict/mode-typescript.js');
-require('./ace/src-min-noconflict/mode-c_cpp.js');
-require('./ace/src-min-noconflict/mode-java.js');
-require('./ace/src-min-noconflict/mode-ruby.js');
+// just punt and use global script dependencies
+require("script!./ace/src-min-noconflict/ace.js");
+require('script!./ace/src-min-noconflict/mode-python.js');
+require('script!./ace/src-min-noconflict/mode-javascript.js');
+require('script!./ace/src-min-noconflict/mode-typescript.js');
+require('script!./ace/src-min-noconflict/mode-c_cpp.js');
+require('script!./ace/src-min-noconflict/mode-java.js');
+require('script!./ace/src-min-noconflict/mode-ruby.js');
+
+require('script!./socket.io-client/socket.io.js');
+
 
 var optCommon = require('./opt-frontend-common.js');
 var pytutor = require('./pytutor.js');
 var assert = pytutor.assert;
 
-// TODO: copy in yellow-happy-face.jpg and red-sad-face.jpg, and test this
-require('./opt-testcases.js');
+var optTests = require('./opt-testcases.js');
 
 require('../css/opt-frontend.css');
-require('../css/opt-testcases.css');
 
 // TODO: add Codeopticon dependencies later
 
@@ -52,54 +53,17 @@ function TogetherjsCloseHandler() {
   }
 }
 
-function getBaseBackendOptionsObj() {
-  var ret = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
-             heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
-             show_only_outputs: false,
-             py_crazy_mode: ($('#pythonVersionSelector').val() == '2crazy'),
-             origin: originFrontendJsFile};
-
-  var surveyObj = optCommon.getSurveyObject();
-  if (surveyObj) {
-    ret.survey = surveyObj;
-  }
-
-  return ret;
-}
-
-function getBaseFrontendOptionsObj() {
-  var ret = {// tricky: selector 'true' and 'false' values are strings!
-              disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
-              textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
-              executeCodeWithRawInputFunc: optCommon.executeCodeWithRawInput,
-
-              // always use the same visualizer ID for all
-              // instantiated ExecutionVisualizer objects,
-              // so that they can sync properly across
-              // multiple clients using TogetherJS. this
-              // shouldn't lead to problems since only ONE
-              // ExecutionVisualizer will be shown at a time
-              visualizerIdOverride: '1',
-              updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
-
-              // undocumented experimental modes:
-              pyCrazyMode: ($('#pythonVersionSelector').val() == '2crazy'),
-              holisticMode: ($('#cumulativeModeSelector').val() == 'holistic')
-            };
-  return ret;
-}
-
 function executeCode(forceStartingInstr, forceRawInputLst) {
   if (forceRawInputLst !== undefined) {
     rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
   }
 
   var backend_script = optCommon.langToBackendScript($('#pythonVersionSelector').val());
-  var backendOptionsObj = getBaseBackendOptionsObj();
+  var backendOptionsObj = optCommon.getBaseBackendOptionsObj();
 
   var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
 
-  var frontendOptionsObj = getBaseFrontendOptionsObj();
+  var frontendOptionsObj = optCommon.getBaseFrontendOptionsObj();
   frontendOptionsObj.startingInstruction = startingInstruction;
 
   optCommon.executeCodeAndCreateViz(optCommon.pyInputGetValue(),
@@ -700,7 +664,7 @@ $(document).ready(function() {
   }
 
   $("#createTestsLink").click(function() {
-    initTestcasesPane('#testCasesPane');
+    optTests.initTestcasesPane('#testCasesPane');
     $(this).hide();
     return false;
   });

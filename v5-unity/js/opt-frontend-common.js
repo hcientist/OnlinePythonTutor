@@ -31,6 +31,8 @@ module.exports = {
   populateTogetherJsShareUrl: populateTogetherJsShareUrl,
   getAppState: getAppState,
   appMode: appMode,
+  getBaseBackendOptionsObj: getBaseBackendOptionsObj,
+  getBaseFrontendOptionsObj: getBaseFrontendOptionsObj,
 }
 
 var originFrontendJsFile = undefined; // init in initializeFrontend
@@ -1783,6 +1785,46 @@ function submitUpdateHistory(why) {
     $.get('viz_interaction.py', myArgs, function(dat) {});
   }
 }
+
+
+function getBaseBackendOptionsObj() {
+  var ret = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
+             heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
+             show_only_outputs: false,
+             py_crazy_mode: ($('#pythonVersionSelector').val() == '2crazy'),
+             origin: originFrontendJsFile};
+
+  var surveyObj = getSurveyObject();
+  if (surveyObj) {
+    ret.survey = surveyObj;
+  }
+
+  return ret;
+}
+
+function getBaseFrontendOptionsObj() {
+  var ret = {// tricky: selector 'true' and 'false' values are strings!
+              disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
+              textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
+              executeCodeWithRawInputFunc: executeCodeWithRawInput,
+
+              // always use the same visualizer ID for all
+              // instantiated ExecutionVisualizer objects,
+              // so that they can sync properly across
+              // multiple clients using TogetherJS. this
+              // shouldn't lead to problems since only ONE
+              // ExecutionVisualizer will be shown at a time
+              visualizerIdOverride: '1',
+              updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
+
+              // undocumented experimental modes:
+              pyCrazyMode: ($('#pythonVersionSelector').val() == '2crazy'),
+              holisticMode: ($('#cumulativeModeSelector').val() == 'holistic')
+            };
+  return ret;
+}
+
+
 
 
 /* For survey questions:

@@ -1,37 +1,20 @@
-/*
+// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+// Copyright (C) Philip Guo (philip@pgbovine.net)
+// LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-Online Python Tutor
-https://github.com/pgbovine/OnlinePythonTutor/
+// use Webpack to automatically package up these dependencies
+require('../css/opt-testcases.css');
 
-Copyright (C) Philip J. Guo (philip@pgbovine.net)
+var optCommon = require('./opt-frontend-common.js');
+var pytutor = require('./pytutor.js');
 
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+var redSadFace = require('./images/red-sad-face.jpg');
+var yellowHappyFace = require('./images/yellow-happy-face.jpg');
 
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-*/
-
-// Pre-reqs:
-// - jquery-1.8.2.min.js
-// - pytutor.js
-// - opt-frontend-common.js
-// - ace/src-min-noconflict/ace.js
-// should all be imported BEFORE this file
+// TODO: abstract this better
+module.exports = {
+  initTestcasesPane: initTestcasesPane,
+}
 
 
 var testcasesPaneHtml = '\
@@ -68,7 +51,7 @@ function initTestcasesPane(parentDivId, onChangeCallback /* optional */) {
 }
 
 function getCombinedCode(id) {
-  var userCod = pyInputGetValue();
+  var userCod = optCommon.pyInputGetValue();
   var testCod = ace.edit('testCaseEditor_' + id).getValue();
   // for reporting syntax errors separately for user and test code
   var userCodNumLines = userCod.split('\n').length;
@@ -105,7 +88,7 @@ function runTestFinishSuccessfulExecution() {
 }
 
 function vizTestFinishSuccessfulExecution() {
-  optFinishSuccessfulExecution();
+  optCommon.optFinishSuccessfulExecution();
   doneRunningTest();
 }
 
@@ -146,6 +129,7 @@ function addTestcase(initialCod /* optional code to pre-seed this test */,
   te.setShowPrintMargin(false);
   te.setBehavioursEnabled(false);
   te.setFontSize(11);
+  te.$blockScrolling = Infinity; // kludgy to shut up weird warnings
   //te.setReadOnly(true);
 
   var s = te.getSession();
@@ -185,6 +169,7 @@ function addTestcase(initialCod /* optional code to pre-seed this test */,
 
   te.setValue(initialCod ? initialCod.rtrim() : defaultVal,
               -1 /* do NOT select after setting text */);
+  te.focus();
 
   function runOrVizTestCase(isViz /* true for visualize, false for run */) {
     if (isViz) {
@@ -197,9 +182,9 @@ function addTestcase(initialCod /* optional code to pre-seed this test */,
     var dat = getCombinedCode(id);
 
     // adapted from executeCode in opt-frontend.js
-    var backend_script = langToBackendScript($('#pythonVersionSelector').val());
-    var backendOptionsObj = getBaseBackendOptionsObj();
-    var frontendOptionsObj = getBaseFrontendOptionsObj();
+    var backend_script = optCommon.langToBackendScript($('#pythonVersionSelector').val());
+    var backendOptionsObj = optCommon.getBaseBackendOptionsObj();
+    var frontendOptionsObj = optCommon.getBaseFrontendOptionsObj();
     frontendOptionsObj.jumpToEnd = true;
 
     if (isViz) {
@@ -221,9 +206,9 @@ function addTestcase(initialCod /* optional code to pre-seed this test */,
         });
 
         if (exceptionMsg) {
-          $('#outputTd_' + id).html('<img src="red-sad-face.jpg"></img>');
+          $('#outputTd_' + id).html('<img src="' + redSadFace + '"></img>');
         } else {
-          $('#outputTd_' + id).html('<img src="yellow-happy-face.jpg"></img>');
+          $('#outputTd_' + id).html('<img src="' + yellowHappyFace + '"></img>');
         }
       };
     }
@@ -245,13 +230,13 @@ function addTestcase(initialCod /* optional code to pre-seed this test */,
 
       var msg = trace[0].exception_msg;
       var trimmedMsg = msg.split(':')[0];
-      $('#outputTd_' + id).html(htmlspecialchars(trimmedMsg));
+      $('#outputTd_' + id).html(pytutor.htmlspecialchars(trimmedMsg));
 
-      handleUncaughtExceptionFunc(trace);
+      optCommon.handleUncaughtExceptionFunc(trace);
       doneRunningTest();
     }
 
-    executeCodeAndCreateViz(dat.cod,
+    optCommon.executeCodeAndCreateViz(dat.cod,
                             backend_script, backendOptionsObj,
                             frontendOptionsObj,
                             'pyOutputPane',
