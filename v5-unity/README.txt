@@ -33,9 +33,23 @@ and run the server with Bottle:
 python bottle_server.py
 
 
-# to start using npm:
-npm start
-npm run webpack
+to start using npm:
+
+  npm start
+  npm run webpack
+
+---
+For developing using TypeScript:
+  sudo npm install -g typescript # install globally
+  npm link typescript            # link to the local node_modules/ dir
+  npm install tsd -g             # tsd type definitions manager
+  tsd install require --save
+  tsd install jQuery --save
+  tsd install jquery.bbq --save
+  [then in the future, run 'tsd install' to install definition modules
+   saved in tsd.json]
+
+Currenly using: Version 1.8.10
 
 ---
 

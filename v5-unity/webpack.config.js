@@ -28,7 +28,7 @@ module.exports = {
     entry: {
         'opt-frontend': "./js/opt-frontend.js",
         'opt-live': "./js/opt-live.js",
-        'iframe-embed': "./js/iframe-embed.js",
+        'iframe-embed': "./js/iframe-embed.ts",
     },
 
     output: {
@@ -44,8 +44,9 @@ module.exports = {
 
     module: {
         loaders: [
-            { test: /\.css$/, loader: "style!css" },
-            { test: /\.(png|jpg)$/, loader: 'url-loader' }
+            { test: /\.css$/, loader: "style!css" }, // CSS
+            { test: /\.(png|jpg)$/, loader: 'url-loader' }, // images
+            { test: /\.ts$/, loader: 'ts-loader' } // TypeScript
         ]
     },
 

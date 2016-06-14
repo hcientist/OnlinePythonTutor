@@ -1,4 +1,5 @@
 node_modules/
+typings/
 *.bundle.*
 # ignore *.png only in this directory
 /*.png
