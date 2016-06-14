@@ -5,6 +5,10 @@
 // TODO: using myVisualizer here borrowed from opt-frontend-common.js is
 // very dicey and dangerous due to scoping issues!
 
+// TODO: overriding backend_script from opt-frontend-common.js is also dicey, ergh
+// so it currently doesn't work for JavaScript
+
+
 // use Webpack to automatically package up these dependencies
 
 require('../css/opt-frontend.css');
@@ -569,6 +573,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
     }
 
     var backend_script = optCommon.langToBackendScript($('#pythonVersionSelector').val());
+    console.log('backend_script:', backend_script);
 
     var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
                              heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
