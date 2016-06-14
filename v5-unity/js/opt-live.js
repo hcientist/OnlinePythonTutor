@@ -5,12 +5,6 @@
 // TODO: using myVisualizer here borrowed from opt-frontend-common.js is
 // very dicey and dangerous due to scoping issues!
 
-// TODO: overriding backend_script from opt-frontend-common.js is also dicey, ergh
-// so it currently doesn't work for JavaScript. also it logs the WRONG
-// SCRIPT for Python since it uses the script names from
-// opt-frontend-common.js
-
-
 // use Webpack to automatically package up these dependencies
 
 require('../css/opt-frontend.css');
@@ -146,7 +140,7 @@ function updateStepLabels() {
   var isLastInstr = myVisualizer.curInstr === (totalInstrs-1);
   if (isLastInstr) {
     if (myVisualizer.promptForUserInput || myVisualizer.promptForMouseInput) {
-      $("#curInstr").html('<b><font color="' + brightRed + '">Enter user input below:</font></b>');
+      $("#curInstr").html('<b><font color="' + pytutor.brightRed + '">Enter user input below:</font></b>');
     } else if (myVisualizer.instrLimitReached) {
       $("#curInstr").html("Instruction limit reached");
     } else {
@@ -487,23 +481,7 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
       frontendOptionsObj.lang = 'py3';
     } else if (backendScript === js_backend_script) {
       frontendOptionsObj.lang = 'js';
-      jsonp_endpoint = JS_JSONP_ENDPOINT;
-    } else if (backendScript === ts_backend_script) {
-      frontendOptionsObj.lang = 'ts';
-      jsonp_endpoint = TS_JSONP_ENDPOINT;
-    } else if (backendScript === ruby_backend_script) {
-      frontendOptionsObj.lang = 'ruby';
-      jsonp_endpoint = RUBY_JSONP_ENDPOINT;
-    } else if (backendScript === java_backend_script) {
-      frontendOptionsObj.lang = 'java';
-      frontendOptionsObj.disableHeapNesting = true; // never nest Java objects, seems like a good default
-      jsonp_endpoint = JAVA_JSONP_ENDPOINT;
-    } else if (backendScript === c_backend_script) {
-      frontendOptionsObj.lang = 'c';
-      jsonp_endpoint = C_JSONP_ENDPOINT;
-    } else if (backendScript === cpp_backend_script) {
-      frontendOptionsObj.lang = 'cpp';
-      jsonp_endpoint = CPP_JSONP_ENDPOINT;
+      jsonp_endpoint = optCommon.JS_JSONP_ENDPOINT;
     } else {
       assert(false);
     }
@@ -565,6 +543,35 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
     }
 }
 
+
+// override the version in opt-frontend-common.js called
+// langToBackendScript; kinda bad!
+function optliveLangToBackendScript(lang) {
+  var backend_script = null;
+  if (lang == '2') {
+      backend_script = python2_backend_script;
+  } else if (lang == '3') {
+      backend_script = python3_backend_script;
+  } else if (lang == '2crazy') {
+      backend_script = python2crazy_backend_script;
+  } else if (lang == 'js') {
+      backend_script = js_backend_script;
+  } else if (lang == 'ts') {
+      backend_script = ts_backend_script;
+  } else if (lang == 'ruby') {
+      backend_script = ruby_backend_script;
+  } else if (lang == 'java') {
+      backend_script = java_backend_script;
+  } else if (lang == 'c') {
+      backend_script = c_backend_script;
+  } else if (lang == 'cpp') {
+      backend_script = cpp_backend_script;
+  }
+  assert(backend_script);
+  return backend_script;
+}
+
+
 // overrides the version in opt-frontend.js
 function executeCode(forceStartingInstr, forceRawInputLst) {
     $('#urlOutput').val(''); // clear to avoid stale values
@@ -579,7 +586,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
         optCommon.setRawInputLst(forceRawInputLst); // UGLY global across modules, FIXME
     }
 
-    var backend_script = optCommon.langToBackendScript($('#pythonVersionSelector').val());
+    var backend_script = optliveLangToBackendScript($('#pythonVersionSelector').val());
     console.log('backend_script:', backend_script);
 
     var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),

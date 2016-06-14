@@ -11,9 +11,7 @@ var prevExecutionExceptionObjLst = [];
 
 
 // use Webpack to automatically package up these dependencies
-//require('./jquery-1.8.2.min.js');
 require('./jquery-3.0.0.min.js');
-require('./jquery.ba-bbq.js'); // contains slight pgbovine modifications
 require('./jquery.qtip.min.js');
 require('../css/jquery.qtip.css');
 

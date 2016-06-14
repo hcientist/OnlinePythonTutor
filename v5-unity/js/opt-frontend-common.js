@@ -4,51 +4,12 @@
 
 // use Webpack to automatically package up these dependencies
 require('./diff_match_patch.js');
-//require('./jquery-1.8.2.min.js');
 require('./jquery-3.0.0.min.js');
 require('./jquery.ba-bbq.js'); // contains slight pgbovine modifications
+require('./jquery.ba-dotimeout.min.js');
 
 var pytutor = require('./pytutor.js');
 var assert = pytutor.assert;
-
-// TODO: abstract this better
-// only export methods and NOT objects, since they're copied by value
-module.exports = {
-  setSurveyHTML: setSurveyHTML,
-  genericOptFrontendReady: genericOptFrontendReady,
-  supports_html5_storage: supports_html5_storage,
-  setAceMode: setAceMode,
-  pyInputSetValue: pyInputSetValue,
-  pyInputGetValue: pyInputGetValue,
-  pyInputSetScrollTop: pyInputSetScrollTop,
-  pyInputGetScrollTop: pyInputGetScrollTop,
-  langToBackendScript: langToBackendScript,
-  getSurveyObject: getSurveyObject,
-  executeCodeWithRawInput: executeCodeWithRawInput,
-  executeCodeAndCreateViz: executeCodeAndCreateViz,
-  optFinishSuccessfulExecution: optFinishSuccessfulExecution,
-  handleUncaughtExceptionFunc: handleUncaughtExceptionFunc,
-  populateTogetherJsShareUrl: populateTogetherJsShareUrl,
-  getAppState: getAppState,
-  getAppMode: getAppMode,
-  getBaseBackendOptionsObj: getBaseBackendOptionsObj,
-  getBaseFrontendOptionsObj: getBaseFrontendOptionsObj,
-  getVisualizer: getVisualizer,
-  setVisualizer: setVisualizer,
-  getRawInputLst: getRawInputLst,
-  setRawInputLst: setRawInputLst,
-  executeCodeFromScratch: executeCodeFromScratch,
-  setFronendError: setFronendError,
-  clearFrontendError: clearFrontendError,
-  startExecutingCode: startExecutingCode,
-  doneExecutingCode: doneExecutingCode,
-  getSessionUUID: getSessionUUID,
-  getAceEditor: getAceEditor,
-  setAceEditor: setAceEditor,
-  compressUpdateHistoryList: compressUpdateHistoryList,
-  getQueryStringOptions: getQueryStringOptions,
-  initializeFrontendParams: initializeFrontendParams,
-}
 
 var originFrontendJsFile = undefined;
 
@@ -2308,3 +2269,46 @@ display a brief "Thanks!" note]
 // empty stub so that our code doesn't crash.
 // override this with a version in codeopticon-learner.js if needed
 function logEventCodeopticon(obj) {}
+
+
+// TODO: abstract this better
+// only export methods and NOT objects, since they're copied by value
+// (unless they're constants, in which case they can be exported at the
+// end after they've been initialized)
+module.exports = {
+  setSurveyHTML: setSurveyHTML,
+  genericOptFrontendReady: genericOptFrontendReady,
+  supports_html5_storage: supports_html5_storage,
+  setAceMode: setAceMode,
+  pyInputSetValue: pyInputSetValue,
+  pyInputGetValue: pyInputGetValue,
+  pyInputSetScrollTop: pyInputSetScrollTop,
+  pyInputGetScrollTop: pyInputGetScrollTop,
+  langToBackendScript: langToBackendScript,
+  getSurveyObject: getSurveyObject,
+  executeCodeWithRawInput: executeCodeWithRawInput,
+  executeCodeAndCreateViz: executeCodeAndCreateViz,
+  optFinishSuccessfulExecution: optFinishSuccessfulExecution,
+  handleUncaughtExceptionFunc: handleUncaughtExceptionFunc,
+  populateTogetherJsShareUrl: populateTogetherJsShareUrl,
+  getAppState: getAppState,
+  getAppMode: getAppMode,
+  getBaseBackendOptionsObj: getBaseBackendOptionsObj,
+  getBaseFrontendOptionsObj: getBaseFrontendOptionsObj,
+  getVisualizer: getVisualizer,
+  setVisualizer: setVisualizer,
+  getRawInputLst: getRawInputLst,
+  setRawInputLst: setRawInputLst,
+  executeCodeFromScratch: executeCodeFromScratch,
+  setFronendError: setFronendError,
+  clearFrontendError: clearFrontendError,
+  startExecutingCode: startExecutingCode,
+  doneExecutingCode: doneExecutingCode,
+  getSessionUUID: getSessionUUID,
+  getAceEditor: getAceEditor,
+  setAceEditor: setAceEditor,
+  compressUpdateHistoryList: compressUpdateHistoryList,
+  getQueryStringOptions: getQueryStringOptions,
+  initializeFrontendParams: initializeFrontendParams,
+  JS_JSONP_ENDPOINT: JS_JSONP_ENDPOINT,
+}

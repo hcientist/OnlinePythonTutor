@@ -4,9 +4,7 @@
 
 // use Webpack to automatically package up these dependencies
 require('./d3.v2.min.js');
-//require('./jquery-1.8.2.min.js');
 require('./jquery-3.0.0.min.js');
-require('./jquery.ba-dotimeout.min.js');
 require('./jquery.jsPlumb-1.3.10-all-min.js'); // DO NOT UPGRADE ABOVE 1.3.10 OR ELSE BREAKAGE WILL OCCUR 
 require('./jquery-ui-1.11.4/jquery-ui.js');
 require('./jquery-ui-1.11.4/jquery-ui.css');
@@ -4825,4 +4823,5 @@ module.exports = {
   SVG_ARROW_POLYGON: SVG_ARROW_POLYGON,
   darkArrowColor: darkArrowColor,
   lightArrowColor: lightArrowColor,
+  brightRed: brightRed,
 }
