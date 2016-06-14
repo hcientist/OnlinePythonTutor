@@ -49,7 +49,7 @@ function iframeHandleUncaughtException(trace) {
   else {
     excMsg = "Unknown error. Reload the page and try again. Or report a bug to philip@pgbovine.net";
   }
-  $("#vizDiv").html(pytutor.htmlspecialchars(excMsg));
+  $("#vizDiv").html(htmlspecialchars(excMsg));
 }
 
 
