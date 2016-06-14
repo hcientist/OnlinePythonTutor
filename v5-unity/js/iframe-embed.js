@@ -17,6 +17,19 @@ var originFrontendJsFile = 'iframe-embed.js';
 
 function NOP() {};
 
+function iframeHandleUncaughtException(trace) {
+  var excMsg = null;
+  if (trace.length == 1) {
+    excMsg = trace[0].exception_msg; // killer!
+  }
+  else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
+    excMsg = trace[trace.length - 1].exception_msg;
+  }
+  else {
+    excMsg = "Unknown error. Reload the page and try again. Or report a bug to philip@pgbovine.net";
+  }
+  $("#vizDiv").html(pytutor.htmlspecialchars(excMsg));
+}
 
 $(document).ready(function() {
   optCommon.initializeFrontendParams({originFrontendJsFile: originFrontendJsFile,
@@ -117,7 +130,7 @@ $(document).ready(function() {
                               var myVisualizer = optCommon.getVisualizer();
                               myVisualizer.redrawConnectors();
                             },
-                            NOP);
+                            iframeHandleUncaughtException);
   }
 
 
