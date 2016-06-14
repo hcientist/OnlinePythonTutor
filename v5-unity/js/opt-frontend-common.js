@@ -46,6 +46,8 @@ module.exports = {
   getAceEditor: getAceEditor,
   setAceEditor: setAceEditor,
   compressUpdateHistoryList: compressUpdateHistoryList,
+  getQueryStringOptions: getQueryStringOptions,
+  initializeFrontendParams: initializeFrontendParams,
 }
 
 var originFrontendJsFile = undefined;
@@ -143,9 +145,6 @@ function getAceEditor() {return pyInputAceEditor;}
 function setAceEditor(e) {pyInputAceEditor = e;}
 
 var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
-
-// a list of previous consecutive executions with "compile"-time exceptions
-var prevExecutionExceptionObjLst = [];
 
 var CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
 
@@ -848,31 +847,31 @@ function pyInputSetScrollTop(st) {
 }
 
 
+function initializeFrontendParams(params) {
+  originFrontendJsFile = params.originFrontendJsFile;
+  executeCode = params.executeCode;
+  assert(originFrontendJsFile);
+  assert(executeCode);
+
+  // optional
+  if (params.TogetherjsReadyHandler) {
+    TogetherjsReadyHandler = params.TogetherjsReadyHandler;
+  }
+  if (params.TogetherjsCloseHandler) {
+    TogetherjsCloseHandler = params.TogetherjsCloseHandler;
+  }
+  if (params.initAceEditor) {
+    initAceEditor = params.initAceEditor;
+  }
+}
+
+
 var num414Tries = 0; // hacky global
 
 // run at the END so that everything else can be initialized first
 function genericOptFrontendReady(params) {
   assert(params);
-
-  function initializeFrontend(params) {
-    originFrontendJsFile = params.originFrontendJsFile;
-    executeCode = params.executeCode;
-    assert(originFrontendJsFile);
-    assert(executeCode);
-
-    // optional
-    if (params.TogetherjsReadyHandler) {
-      TogetherjsReadyHandler = params.TogetherjsReadyHandler;
-    }
-    if (params.TogetherjsCloseHandler) {
-      TogetherjsCloseHandler = params.TogetherjsCloseHandler;
-    }
-    if (params.initAceEditor) {
-      initAceEditor = params.initAceEditor;
-    }
-  }
-  initializeFrontend(params);
-
+  initializeFrontendParams(params);
   initTogetherJS(); // initialize early
 
 
@@ -1387,7 +1386,7 @@ function updateAppDisplay(newAppMode) {
 
 function executeCodeFromScratch() {
   // don't execute empty string:
-  if ($.trim(pyInputGetValue()) == '') {
+  if (pyInputAceEditor && $.trim(pyInputGetValue()) == '') {
     setFronendError(["Type in some code to visualize."]);
     return;
   }
@@ -1484,12 +1483,6 @@ function optFinishSuccessfulExecution() {
   // For version 3+, dynamically generate a survey whenever the user
   // successfully executes a piece of code
   initializeDisplayModeSurvey();
-
-  if (typeof(activateSyntaxErrorSurvey) !== 'undefined' &&
-      activateSyntaxErrorSurvey &&
-      experimentalPopUpSyntaxErrorSurvey) {
-    experimentalPopUpSyntaxErrorSurvey();
-  }
 }
 
 
@@ -1641,13 +1634,6 @@ function executeCodeAndCreateViz(codeToExec,
                   backendOptionsObj: backendOptionsObj,
                   killerException: killerException, // if there's, say, a syntax error
                   });
-      }
-
-      if (killerException) {
-        var excObj = {killerException: killerException, myAppState: getAppState()};
-        prevExecutionExceptionObjLst.push(excObj);
-      } else {
-        prevExecutionExceptionObjLst = []; // reset!!!
       }
 
       // tricky hacky reset

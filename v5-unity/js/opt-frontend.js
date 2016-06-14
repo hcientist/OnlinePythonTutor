@@ -2,10 +2,20 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
+// TODOs:
+// qtip doesn't work with Webpack, so experimentalPopUpSyntaxErrorSurvey DOESN'T WORK
+// deactivate it for now
+var activateSyntaxErrorSurvey = false; // true;
+// a list of previous consecutive executions with "compile"-time exceptions
+var prevExecutionExceptionObjLst = [];
+
+
 // use Webpack to automatically package up these dependencies
 //require('./jquery-1.8.2.min.js');
 require('./jquery-3.0.0.min.js');
 require('./jquery.ba-bbq.js'); // contains slight pgbovine modifications
+require('./jquery.qtip.min.js');
+require('../css/jquery.qtip.css');
 
 // just punt and use global script dependencies
 require("script!./ace/src-min-noconflict/ace.js");
@@ -32,7 +42,6 @@ require('../css/opt-frontend.css');
 
 var originFrontendJsFile = 'opt-frontend.js';
 
-var activateSyntaxErrorSurvey = true; // true;
 
 function startSharedSession() { // override default
   $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
@@ -70,8 +79,38 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
                           backend_script, backendOptionsObj,
                           frontendOptionsObj,
                           'pyOutputPane',
-                          optCommon.optFinishSuccessfulExecution,
-                          optCommon.handleUncaughtExceptionFunc);
+                          optFrontendFinishSuccessfulExecution,
+                          optFrontendHandleUncaughtException);
+}
+
+function optFrontendFinishSuccessfulExecution() {
+  optCommon.optFinishSuccessfulExecution();
+
+  if (typeof(activateSyntaxErrorSurvey) !== 'undefined' &&
+      activateSyntaxErrorSurvey &&
+      experimentalPopUpSyntaxErrorSurvey) {
+    experimentalPopUpSyntaxErrorSurvey();
+  }
+}
+
+function optFrontendHandleUncaughtException(trace) {
+  optCommon.handleUncaughtExceptionFunc(trace);
+
+  var killerException = null;
+
+  if (trace.length == 1) {
+    killerException = trace[0]; // killer!
+  }
+  else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
+    killerException = trace[trace.length - 1]; // killer!
+  }
+
+  if (killerException) {
+    var excObj = {killerException: killerException, myAppState: optCommon.getAppState()};
+    prevExecutionExceptionObjLst.push(excObj);
+  } else {
+    prevExecutionExceptionObjLst = []; // reset!!!
+  }
 }
 
 
@@ -173,7 +212,7 @@ function experimentalPopUpSyntaxErrorSurvey() {
 
       // destroy then create a new tip:
       bub.destroyQTip();
-      $(bub.hashID).qtip($.extend({}, qtipShared, {
+      $(bub.hashID).qtip($.extend({}, pytutor.qtipShared, {
         content: ' ', // can't be empty!
         id: bub.domID,
         position: {
