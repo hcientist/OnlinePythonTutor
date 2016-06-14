@@ -33,6 +33,10 @@ and run the server with Bottle:
 python bottle_server.py
 
 
+# to start using npm:
+npm start
+npm run webpack
+
 ---
 
 https://github.com/petehunt/webpack-howto

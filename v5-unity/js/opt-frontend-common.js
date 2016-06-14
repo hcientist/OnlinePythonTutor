@@ -12,6 +12,7 @@ var pytutor = require('./pytutor.js');
 var assert = pytutor.assert;
 
 // TODO: abstract this better
+// only export methods and NOT objects, since they're copied by value
 module.exports = {
   setSurveyHTML: setSurveyHTML,
   genericOptFrontendReady: genericOptFrontendReady,
@@ -30,9 +31,12 @@ module.exports = {
   handleUncaughtExceptionFunc: handleUncaughtExceptionFunc,
   populateTogetherJsShareUrl: populateTogetherJsShareUrl,
   getAppState: getAppState,
-  appMode: appMode,
+  getAppMode: getAppMode,
   getBaseBackendOptionsObj: getBaseBackendOptionsObj,
   getBaseFrontendOptionsObj: getBaseFrontendOptionsObj,
+  getVisualizer: getVisualizer,
+  getRawInputLst: getRawInputLst,
+  setRawInputLst: setRawInputLst,
 }
 
 var originFrontendJsFile = undefined; // init in initializeFrontend
@@ -127,13 +131,14 @@ function langToBackendScript(lang) {
 }
 
 
-var domain = "http://pythontutor.com/"; // for deployment
-
-
 var isExecutingCode = false; // nasty, nasty global
 
 var appMode = 'edit'; // 'edit' or 'display'. also support
                       // 'visualize' for backward compatibility (same as 'display')
+
+function getAppMode() {
+  return appMode;
+}
 
 var pyInputCodeMirror; // CodeMirror object that contains the input code
 var pyInputAceEditor; // Ace editor object that contains the input code
@@ -756,8 +761,11 @@ function populateTogetherJsShareUrl() {
 
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
+function getVisualizer() {return myVisualizer;}
 
 var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
+function getRawInputLst() {return rawInputLst;}
+function setRawInputLst(lst) {rawInputLst = lst;}
 
 
 // each frontend must implement its own executeCode function

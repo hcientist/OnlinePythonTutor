@@ -7,7 +7,7 @@
   "license": "BSD-3-Clause",
 
   "scripts": {
-    "start": "webpack-dev-server --hot --inline",
+    "start": "python bottle_server.py",
     "webpack": "webpack --progress --colors --watch"
   },
 

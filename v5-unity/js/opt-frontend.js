@@ -48,14 +48,14 @@ function TogetherjsReadyHandler() {
 }
 
 function TogetherjsCloseHandler() {
-  if (optCommon.appMode == "display") {
+  if (optCommon.getAppMode() == "display") {
     $("#surveyHeader").show();
   }
 }
 
 function executeCode(forceStartingInstr, forceRawInputLst) {
   if (forceRawInputLst !== undefined) {
-    rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
+    optCommon.setRawInputLst(forceRawInputLst); // UGLY global across modules, FIXME
   }
 
   var backend_script = optCommon.langToBackendScript($('#pythonVersionSelector').val());
@@ -139,6 +139,7 @@ function experimentalPopUpSyntaxErrorSurvey() {
     }
 
     // make sure jquery.qtip has been imported
+    var myVisualizer = optCommon.getVisualizer();
 
     var codelineIDs = [];
     $.each(myVisualizer.domRoot.find('#pyCodeOutput .cod'), function(i, e) {
@@ -556,6 +557,7 @@ $(document).ready(function() {
 
   $("#hideHeaderLink").click(function() {
     $("#experimentalHeader").hide();
+    var myVisualizer = optCommon.getVisualizer();
     if (myVisualizer) {
       myVisualizer.updateOutput(); // redraw arrows
     }
@@ -613,6 +615,7 @@ $(document).ready(function() {
       // very subtle! for TogetherJS to sync #pythonVersionSelector
       // properly, we must manually send a sync request event:
       if (TogetherJS && TogetherJS.running) {
+        var myVisualizer = optCommon.getVisualizer();
         TogetherJS.send({type: "syncAppState",
                          myAppState: optCommon.getAppState(),
                          codeInputScrollTop: optCommon.pyInputGetScrollTop(),
@@ -628,12 +631,14 @@ $(document).ready(function() {
 
 
   $('#genEmbedBtn').bind('click', function() {
-    assert(optCommon.appMode == 'display' || optCommon.appMode == 'visualize' /* 'visualize' is deprecated */);
+    assert(optCommon.getAppMode() == 'display' || optCommon.getAppMode() == 'visualize' /* 'visualize' is deprecated */);
     var myArgs = optCommon.getAppState();
     delete myArgs.mode;
+    var myVisualizer = optCommon.getVisualizer();
     myArgs.codeDivWidth = myVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
     myArgs.codeDivHeight = myVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
 
+    var domain = "http://pythontutor.com/"; // for deployment
     var embedUrlStr = $.param.fragment(domain + "iframe-embed.html", myArgs, 2 /* clobber all */);
     embedUrlStr = embedUrlStr.replace(/\)/g, '%29') // replace ) with %29 so that links embed well in Markdown
     var iframeStr = '<iframe width="800" height="500" frameborder="0" src="' + embedUrlStr + '"> </iframe>';

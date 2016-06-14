@@ -15,6 +15,7 @@ require('../css/jquery.qtip.css');
 require('../css/pytutor.css');
 
 // TODO: abstract this better
+// only export methods and NOT objects, since they're copied by value
 module.exports = {
   assert: assert,
   htmlspecialchars: htmlspecialchars,
