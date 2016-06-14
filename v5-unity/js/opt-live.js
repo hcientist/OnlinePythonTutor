@@ -99,7 +99,7 @@ function toggleSyntaxError(x) {
   } else {
     hasSyntaxError = false;
     $("#dataViz,#curInstr").removeClass('dimmed'); // un-dim the visualization
-    var s = pyInputAceEditor.getSession();
+    var s = optCommon.getAceEditor().getSession();
     s.clearAnnotations(); // remove any lingering syntax error labels in gutter
   }
 }
@@ -107,7 +107,7 @@ function toggleSyntaxError(x) {
 var allMarkerIds = [];
 
 function removeAllGutterDecorations() {
-  var s = pyInputAceEditor.getSession();
+  var s = optCommon.getAceEditor().getSession();
   var d = s.getDocument();
 
   for (var i = 0; i < d.getLength(); i++) {
@@ -124,6 +124,7 @@ function updateStepLabels() {
 
   $('#urlOutput').val(''); // prevent stale URLs
 
+  var pyInputAceEditor = optCommon.getAceEditor();
   var s = pyInputAceEditor.getSession();
   allMarkerIds.forEach(function(e) {
     s.removeMarker(e);
@@ -174,7 +175,7 @@ function updateStepLabels() {
     if (curEntry.exception_msg == "Unknown error") {
       $("#frontendErrorOutput").html('Unknown error: Please email a bug report to philip@pgbovine.net');
     } else {
-      $("#frontendErrorOutput").html(htmlspecialchars(curEntry.exception_msg));
+      $("#frontendErrorOutput").html(pytutor.htmlspecialchars(curEntry.exception_msg));
     }
 
     if (myVisualizer.curLineNumber) {
@@ -231,7 +232,7 @@ function optliveFinishSuccessfulExecution() {
   var myVisualizer = optCommon.getVisualizer();
   assert(myVisualizer);
   $("#pyOutputPane,#vcrControls").show();
-  doneExecutingCode();
+  optCommon.doneExecutingCode();
 
   toggleSyntaxError(false);
 
@@ -349,7 +350,7 @@ function optliveHandleUncaughtExceptionFunc(trace) {
         myVisualizer.redrawConnectors();
       }
 
-      var s = pyInputAceEditor.getSession();
+      var s = optCommon.getAceEditor().getSession();
       s.setAnnotations([{row: errorLineNo,
                          type: 'error',
                          text: trace[0].exception_msg}]);
@@ -359,7 +360,8 @@ function optliveHandleUncaughtExceptionFunc(trace) {
 
 // override the one in opt-frontend-common.js
 function initAceEditor(height) {
-  pyInputAceEditor = ace.edit('codeInputPane');
+  var pyInputAceEditor = ace.edit('codeInputPane');
+  optCommon.setAceEditor(pyInputAceEditor); // don't forget this!
 
   var s = pyInputAceEditor.getSession();
 
@@ -398,7 +400,7 @@ function initAceEditor(height) {
                 500, /* go a bit faster than CODE_SNAPSHOT_DEBOUNCE_MS to feel more snappy */
                 //CODE_SNAPSHOT_DEBOUNCE_MS /* match the value in opt-frontend-common.js for consistency and easy apples-to-apples comparisons later on */,
                 optliveExecuteCodeFromScratch); // debounce
-    clearFrontendError();
+    optCommon.clearFrontendError();
     s.clearAnnotations();
   });
 
@@ -436,13 +438,13 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
         handleUncaughtExceptionFunc(trace);
 
         if (trace.length == 1) {
-          setFronendError([trace[0].exception_msg]);
+          optCommon.setFronendError([trace[0].exception_msg]);
         }
         else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
-          setFronendError([trace[trace.length - 1].exception_msg]);
+          optCommon.setFronendError([trace[trace.length - 1].exception_msg]);
         }
         else {
-          setFronendError(["Unknown error. Reload the page and try again. Or report a bug to",
+          optCommon.setFronendError(["Unknown error. Reload the page and try again. Or report a bug to",
                            "philip@pgbovine.net by clicking on the 'Generate permanent link'",
                            "button at the bottom and including a URL in your email."]);
         }
@@ -450,20 +452,20 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
       else {
         var myVisualizer = optCommon.getVisualizer();
         prevVisualizer = myVisualizer;
-        var v = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
+        var v = new pytutor.ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
         optCommon.setVisualizer(v);
         handleSuccessFunc();
       }
 
       // run this all at the VERY END after all the dust has settled
-      doneExecutingCode(); // rain or shine, we're done executing!
+      optCommon.doneExecutingCode(); // rain or shine, we're done executing!
       disableRowScrolling = false;
     }
 
-    clearFrontendError();
-    startExecutingCode();
+    optCommon.clearFrontendError();
+    optCommon.startExecutingCode();
 
-    setFronendError(['Running your code ...']);
+    optCommon.setFronendError(['Running your code ...']);
 
     jsonp_endpoint = null;
 
@@ -505,7 +507,7 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
     if (hasSyntaxError) {
       prevUpdateHistoryJSON = 'hasSyntaxError'; // hacky
     } else if (myVisualizer) {
-      var encodedUh = compressUpdateHistoryList(myVisualizer);
+      var encodedUh = optCommon.compressUpdateHistoryList(myVisualizer);
       prevUpdateHistoryJSON = JSON.stringify(encodedUh);
     }
 
@@ -519,8 +521,8 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
       $.get(backendScript,
             {user_script : codeToExec,
              options_json: JSON.stringify(backendOptionsObj),
-             user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
-             session_uuid: sessionUUID,
+             user_uuid: optCommon.supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+             session_uuid: optCommon.getSessionUUID(),
              prevUpdateHistoryJSON: prevUpdateHistoryJSON,
              exeTime: new Date().getTime()},
              function(dat) {} /* don't do anything since this is a dummy call */, "text");
@@ -539,12 +541,13 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
       });
     } else {
       // Python 2 or 3
+      var rawInputLst = optCommon.getRawInputLst();
       $.get(backendScript,
             {user_script : codeToExec,
              raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
              options_json: JSON.stringify(backendOptionsObj),
-             user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
-             session_uuid: sessionUUID,
+             user_uuid: optCommon.supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+             session_uuid: optCommon.getSessionUUID(),
              prevUpdateHistoryJSON: prevUpdateHistoryJSON,
              exeTime: new Date().getTime()},
              execCallback, "json");
@@ -555,17 +558,17 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
 function executeCode(forceStartingInstr, forceRawInputLst) {
     $('#urlOutput').val(''); // clear to avoid stale values
 
-    var cod = pyInputGetValue();
+    var cod = optCommon.pyInputGetValue();
     // don't run empty code
     if ($.trim(cod) === '') {
       return;
     }
 
     if (forceRawInputLst !== undefined) {
-        rawInputLst = forceRawInputLst; // UGLY global across modules, FIXME
+        optCommon.setRawInputLst(forceRawInputLst); // UGLY global across modules, FIXME
     }
 
-    var backend_script = langToBackendScript($('#pythonVersionSelector').val());
+    var backend_script = optCommon.langToBackendScript($('#pythonVersionSelector').val());
 
     var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
                              heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
@@ -575,7 +578,7 @@ function executeCode(forceStartingInstr, forceRawInputLst) {
 
     var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
     var frontendOptionsObj = {startingInstruction: startingInstruction,
-                              executeCodeWithRawInputFunc: executeCodeWithRawInput,
+                              executeCodeWithRawInputFunc: optCommon.executeCodeWithRawInput,
                               // tricky tricky
                               disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
                               textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
@@ -598,11 +601,14 @@ function appStateAugmenter(appState) {
 
 function optliveExecuteCodeFromScratch() {
   disableRowScrolling = true; // annoying hacky global
-  executeCodeFromScratch();
+  optCommon.executeCodeFromScratch();
 }
 
 $(document).ready(function() {
-  optCommon.genericOptFrontendReady();
+  optCommon.genericOptFrontendReady({originFrontendJsFile: originFrontendJsFile,
+                                     executeCode: executeCode,
+                                     initAceEditor: initAceEditor,
+                                    });
 
   $('#legendDiv')
     .append('<svg id="prevLegendArrowSVG"/> line that has just executed')

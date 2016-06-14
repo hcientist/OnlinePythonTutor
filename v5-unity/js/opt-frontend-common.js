@@ -22,7 +22,6 @@ module.exports = {
   pyInputGetValue: pyInputGetValue,
   pyInputSetScrollTop: pyInputSetScrollTop,
   pyInputGetScrollTop: pyInputGetScrollTop,
-  initializeFrontend: initializeFrontend,
   langToBackendScript: langToBackendScript,
   getSurveyObject: getSurveyObject,
   executeCodeWithRawInput: executeCodeWithRawInput,
@@ -38,21 +37,18 @@ module.exports = {
   setVisualizer: setVisualizer,
   getRawInputLst: getRawInputLst,
   setRawInputLst: setRawInputLst,
+  executeCodeFromScratch: executeCodeFromScratch,
+  setFronendError: setFronendError,
+  clearFrontendError: clearFrontendError,
+  startExecutingCode: startExecutingCode,
+  doneExecutingCode: doneExecutingCode,
+  getSessionUUID: getSessionUUID,
+  getAceEditor: getAceEditor,
+  setAceEditor: setAceEditor,
+  compressUpdateHistoryList: compressUpdateHistoryList,
 }
 
-var originFrontendJsFile = undefined; // init in initializeFrontend
-
-function initializeFrontend(params) {
-  originFrontendJsFile = params.originFrontendJsFile;
-  executeCode = params.executeCode;
-  TogetherjsReadyHandler = params.TogetherjsReadyHandler;
-  TogetherjsCloseHandler = params.TogetherjsCloseHandler;
-
-  assert(originFrontendJsFile);
-  assert(executeCode);
-  assert(TogetherjsReadyHandler);
-  assert(TogetherjsCloseHandler);
-}
+var originFrontendJsFile = undefined;
 
 // backend scripts to execute (Python 2 and 3 variants, if available)
 // make two copies of ../web_exec.py and give them the following names,
@@ -143,6 +139,8 @@ function getAppMode() {
 
 var pyInputCodeMirror; // CodeMirror object that contains the input code
 var pyInputAceEditor; // Ace editor object that contains the input code
+function getAceEditor() {return pyInputAceEditor;}
+function setAceEditor(e) {pyInputAceEditor = e;}
 
 var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
 
@@ -164,6 +162,7 @@ function generateUUID(){
 };
 
 var sessionUUID = generateUUID(); // remains constant throughout one page load ("session")
+function getSessionUUID() {return sessionUUID;}
 
 
 // OMG nasty wtf?!?
@@ -686,9 +685,6 @@ function initTogetherJS() {
   });
 }
 
-var TogetherjsReadyHandler = undefined;
-var TogetherjsCloseHandler = undefined;
-/*
 function TogetherjsReadyHandler() {
   alert("ERROR: need to override TogetherjsReadyHandler()");
 }
@@ -696,7 +692,6 @@ function TogetherjsReadyHandler() {
 function TogetherjsCloseHandler() {
   alert("ERROR: need to override TogetherjsCloseHandler()");
 }
-*/
 
 function startSharedSession() {
   $("#ssDiv").hide(); // hide ASAP!
@@ -856,7 +851,28 @@ function pyInputSetScrollTop(st) {
 var num414Tries = 0; // hacky global
 
 // run at the END so that everything else can be initialized first
-function genericOptFrontendReady() {
+function genericOptFrontendReady(params) {
+  assert(params);
+
+  function initializeFrontend(params) {
+    originFrontendJsFile = params.originFrontendJsFile;
+    executeCode = params.executeCode;
+    assert(originFrontendJsFile);
+    assert(executeCode);
+
+    // optional
+    if (params.TogetherjsReadyHandler) {
+      TogetherjsReadyHandler = params.TogetherjsReadyHandler;
+    }
+    if (params.TogetherjsCloseHandler) {
+      TogetherjsCloseHandler = params.TogetherjsCloseHandler;
+    }
+    if (params.initAceEditor) {
+      initAceEditor = params.initAceEditor;
+    }
+  }
+  initializeFrontend(params);
+
   initTogetherJS(); // initialize early
 
 

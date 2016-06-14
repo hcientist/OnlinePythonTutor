@@ -547,12 +547,6 @@ var CPP_EXAMPLES = {
 
 
 $(document).ready(function() {
-  optCommon.initializeFrontend({originFrontendJsFile: originFrontendJsFile,
-                                executeCode: executeCode,
-                                TogetherjsReadyHandler: TogetherjsReadyHandler,
-                                TogetherjsCloseHandler: TogetherjsCloseHandler,
-                               });
-
   optCommon.setSurveyHTML();
 
   $("#hideHeaderLink").click(function() {
@@ -645,7 +639,11 @@ $(document).ready(function() {
     $('#embedCodeOutput').val(iframeStr);
   });
 
-  optCommon.genericOptFrontendReady(); // initialize at the end
+  optCommon.genericOptFrontendReady({originFrontendJsFile: originFrontendJsFile,
+                                     executeCode: executeCode,
+                                     TogetherjsReadyHandler: TogetherjsReadyHandler,
+                                     TogetherjsCloseHandler: TogetherjsCloseHandler,
+                                    }); // initialize at the end
 
 
   // deployed on 2015-03-12, taken down on 2015-03-16
