@@ -1586,7 +1586,7 @@ function executeCodeAndCreateViz(codeToExec,
                   });
       }
 
-      if (killerException) {
+      if (killerException && (originFrontendJsFile !== 'iframe-embed.js')) {
         var excObj = {killerException: killerException, myAppState: getAppState()};
         prevExecutionExceptionObjLst.push(excObj);
       } else {
