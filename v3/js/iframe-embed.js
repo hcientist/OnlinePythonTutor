@@ -38,6 +38,21 @@ var originFrontendJsFile = 'iframe-embed.js';
 
 function NOP() {};
 
+function iframeHandleUncaughtException(trace) {
+  var excMsg = null;
+  if (trace.length == 1) {
+    excMsg = trace[0].exception_msg; // killer!
+  }
+  else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
+    excMsg = trace[trace.length - 1].exception_msg;
+  }
+  else {
+    excMsg = "Unknown error. Reload the page and try again. Or report a bug to philip@pgbovine.net";
+  }
+  $("#vizDiv").html(pytutor.htmlspecialchars(excMsg));
+}
+
+
 
 $(document).ready(function() {
   var queryStrOptions = getQueryStringOptions();
@@ -71,32 +86,7 @@ $(document).ready(function() {
     startingInstruction = 0;
   }
 
-  var backend_script = null;
-  if (pyState == '2') {
-      backend_script = python2_backend_script;
-  }
-  else if (pyState == '3') {
-      backend_script = python3_backend_script;
-  }
-  else if (pyState == '2crazy') {
-      backend_script = python2crazy_backend_script;
-  }
-  else if (pyState == 'js') {
-      backend_script = js_backend_script;
-  }
-  else if (pyState == 'ts') {
-      backend_script = ts_backend_script;
-  }
-  else if (pyState == 'ruby') {
-      backend_script = ruby_backend_script;
-  }
-  else if (pyState == 'java') {
-      backend_script = java_backend_script;
-  } else if (pyState == 'c') {
-      backend_script = c_backend_script;
-  } else if (pyState == 'cpp') {
-      backend_script = cpp_backend_script;
-  }
+  var backend_script = langToBackendScript(pyState);
   assert(backend_script);
 
   // David Pritchard's code for resizeContainer option ...
@@ -159,7 +149,7 @@ $(document).ready(function() {
                                   resizeContainerNow();
                               myVisualizer.redrawConnectors();
                             },
-                            NOP);
+                            iframeHandleUncaughtException);
   }
 
 
