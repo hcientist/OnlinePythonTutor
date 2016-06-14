@@ -8,7 +8,7 @@ require('./jquery-3.0.0.min.js');
 require('./jquery.ba-bbq.js'); // contains slight pgbovine modifications
 require('./jquery.ba-dotimeout.min.js');
 
-var pytutor = require('./pytutor.js');
+var pytutor = require('./pytutor.ts');
 var assert = pytutor.assert;
 
 var originFrontendJsFile = undefined;

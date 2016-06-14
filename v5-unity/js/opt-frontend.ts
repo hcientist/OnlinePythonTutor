@@ -27,11 +27,11 @@ require('script!./ace/src-min-noconflict/mode-ruby.js');
 require('script!./socket.io-client/socket.io.js');
 
 
-var optCommon = require('./opt-frontend-common.js');
-var pytutor = require('./pytutor.js');
+var optCommon = require('./opt-frontend-common.ts');
+var pytutor = require('./pytutor.ts');
 var assert = pytutor.assert;
 
-var optTests = require('./opt-testcases.js');
+var optTests = require('./opt-testcases.ts');
 
 require('../css/opt-frontend.css');
 

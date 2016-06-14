@@ -5,8 +5,8 @@
 // use Webpack to automatically package up these dependencies
 require('../css/opt-testcases.css');
 
-var optCommon = require('./opt-frontend-common.js');
-var pytutor = require('./pytutor.js');
+var optCommon = require('./opt-frontend-common.ts');
+var pytutor = require('./pytutor.ts');
 
 var redSadFace = require('./images/red-sad-face.jpg');
 var yellowHappyFace = require('./images/yellow-happy-face.jpg');

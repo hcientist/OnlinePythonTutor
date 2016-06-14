@@ -6,8 +6,8 @@
 require('./jquery-3.0.0.min.js');
 require('./jquery.ba-bbq.js'); // contains slight pgbovine modifications
 
-var optCommon = require('./opt-frontend-common.js');
-var pytutor = require('./pytutor.js');
+var optCommon = require('./opt-frontend-common.ts');
+var pytutor = require('./pytutor.ts');
 var assert = pytutor.assert;
 
 require('../css/opt-frontend.css');

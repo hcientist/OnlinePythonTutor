@@ -26,8 +26,8 @@ module.exports = {
     },
 
     entry: {
-        'opt-frontend': "./js/opt-frontend.js",
-        'opt-live': "./js/opt-live.js",
+        'opt-frontend': "./js/opt-frontend.ts",
+        'opt-live': "./js/opt-live.ts",
         'iframe-embed': "./js/iframe-embed.ts",
     },
 

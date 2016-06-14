@@ -39,6 +39,8 @@ to start using npm:
   npm run webpack
 
 ---
+Ported the code base over to TypeScript for enhanced static checking
+
 For developing using TypeScript:
   sudo npm install -g typescript # install globally
   npm link typescript            # link to the local node_modules/ dir
@@ -46,8 +48,15 @@ For developing using TypeScript:
   tsd install require --save
   tsd install jQuery --save
   tsd install jquery.bbq --save
-  [then in the future, run 'tsd install' to install definition modules
-   saved in tsd.json]
+  tsd install ace --save
+  tsd install qtip2 --save
+  tsd install jqueryui --save
+  tsd install d3 --save
+  tsd install diff-match-patch --save
+  tsd install jquery.simplemodal --save
+
+  (then in the future, simply run 'tsd install' to install definition
+   modules saved in tsd.json)
 
 Currenly using: Version 1.8.10
 

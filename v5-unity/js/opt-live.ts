@@ -10,8 +10,8 @@
 require('../css/opt-frontend.css');
 require('../css/opt-live.css');
 
-var optCommon = require('./opt-frontend-common.js');
-var pytutor = require('./pytutor.js');
+var optCommon = require('./opt-frontend-common.ts');
+var pytutor = require('./pytutor.ts');
 var assert = pytutor.assert;
 
 // just punt and use global script dependencies
