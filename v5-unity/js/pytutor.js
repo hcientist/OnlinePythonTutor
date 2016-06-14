@@ -14,14 +14,6 @@ require('./jquery.qtip.min.js');
 require('../css/jquery.qtip.css');
 require('../css/pytutor.css');
 
-// TODO: abstract this better
-// only export methods and NOT objects, since they're copied by value
-module.exports = {
-  assert: assert,
-  htmlspecialchars: htmlspecialchars,
-  ExecutionVisualizer: ExecutionVisualizer,
-}
-
 /* Coding gotchas:
 
 - NEVER use raw $(__) or d3.select(__) statements to select DOM elements.
@@ -4819,4 +4811,18 @@ ExecutionVisualizer.prototype.activateJavaFrontend = function() {
       });
   };
 
+}
+
+
+// TODO: abstract this better
+// only export methods and NOT objects, since they're copied by value
+module.exports = {
+  assert: assert,
+  htmlspecialchars: htmlspecialchars,
+  ExecutionVisualizer: ExecutionVisualizer,
+  // OK since these are constants, but make sure they're defined first
+  // (still hacky, though!)
+  SVG_ARROW_POLYGON: SVG_ARROW_POLYGON,
+  darkArrowColor: darkArrowColor,
+  lightArrowColor: lightArrowColor,
 }

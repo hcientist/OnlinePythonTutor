@@ -35,6 +35,7 @@ module.exports = {
   getBaseBackendOptionsObj: getBaseBackendOptionsObj,
   getBaseFrontendOptionsObj: getBaseFrontendOptionsObj,
   getVisualizer: getVisualizer,
+  setVisualizer: setVisualizer,
   getRawInputLst: getRawInputLst,
   setRawInputLst: setRawInputLst,
 }
@@ -762,6 +763,7 @@ function populateTogetherJsShareUrl() {
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 function getVisualizer() {return myVisualizer;}
+function setVisualizer(v) {myVisualizer = v;}
 
 var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
 function getRawInputLst() {return rawInputLst;}

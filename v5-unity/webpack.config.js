@@ -1,8 +1,6 @@
 var webpack = require('webpack');
 
 module.exports = {
-    entry: "./js/opt-frontend.js",
-
     plugins: [
       // http://stackoverflow.com/questions/29080148/expose-jquery-to-real-window-object-with-webpack
       new webpack.ProvidePlugin({
@@ -27,6 +25,11 @@ module.exports = {
         }
     },
 
+    entry: {
+        'opt-frontend': "./js/opt-frontend.js",
+        'opt-live': "./js/opt-live.js",
+    },
+
     output: {
         // keep output in this directory so that the server can easily
         // find images and other static assets (though it pollutes pwd)
@@ -34,7 +37,7 @@ module.exports = {
         // TODO: use 'bundle.[hash].js' for fingerprint hashing
         // to create unique filenames for releases:
         // https://webpack.github.io/docs/long-term-caching.html
-        filename: "bundle.js",
+        filename: "[name].bundle.js",
         sourceMapFilename: "[file].map",
     },
 

@@ -1,30 +1,28 @@
-/*
+// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+// Copyright (C) Philip Guo (philip@pgbovine.net)
+// LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-Online Python Tutor
-https://github.com/pgbovine/OnlinePythonTutor/
+// TODO: using myVisualizer here borrowed from opt-frontend-common.js is
+// very dicey and dangerous due to scoping issues!
 
-Copyright (C) Philip J. Guo (philip@pgbovine.net)
+// use Webpack to automatically package up these dependencies
 
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+require('../css/opt-frontend.css');
+require('../css/opt-live.css');
 
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
+var optCommon = require('./opt-frontend-common.js');
+var pytutor = require('./pytutor.js');
+var assert = pytutor.assert;
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// just punt and use global script dependencies
+require("script!./ace/src-min-noconflict/ace.js");
+require('script!./ace/src-min-noconflict/mode-python.js');
+require('script!./ace/src-min-noconflict/mode-javascript.js');
+require('script!./ace/src-min-noconflict/mode-typescript.js');
+require('script!./ace/src-min-noconflict/mode-c_cpp.js');
+require('script!./ace/src-min-noconflict/mode-java.js');
+require('script!./ace/src-min-noconflict/mode-ruby.js');
 
-*/
 
 // OPT live programming prototype started on 2016-05-30
 // first launched as a "Live Programming Mode" button on main OPT site
@@ -55,14 +53,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   (do this for the OPT classic editor too. and for other language backends)
 
 */
-
-
-// Pre-reqs:
-// - pytutor.js
-// - jquery.ba-bbq.min.js
-// - jquery.ba-dotimeout.min.js // for event debouncing: http://benalman.com/code/projects/jquery-dotimeout/examples/debouncing/
-// - opt-frontend-common.js
-// should all be imported BEFORE this file
 
 
 // these scripts override the versions defined in opt-frontend-common.js
@@ -128,6 +118,7 @@ function removeAllGutterDecorations() {
 }
 
 function updateStepLabels() {
+  var myVisualizer = optCommon.getVisualizer();
   assert(myVisualizer);
   myVisualizer.updateCurPrevLines(); // do this first to update the right fields
 
@@ -167,6 +158,7 @@ function updateStepLabels() {
       .unbind('click')
       .click(function() {
         var userInput = ruiDiv.find('#raw_input_textbox').val();
+        var myVisualizer = optCommon.getVisualizer();
         // advance instruction count by 1 to get to the NEXT instruction
         myVisualizer.executeCodeWithRawInputFunc(userInput, myVisualizer.curInstr + 1);
       });
@@ -236,6 +228,7 @@ function updateStepLabels() {
 }
 
 function optliveFinishSuccessfulExecution() {
+  var myVisualizer = optCommon.getVisualizer();
   assert(myVisualizer);
   $("#pyOutputPane,#vcrControls").show();
   doneExecutingCode();
@@ -259,6 +252,7 @@ function optliveFinishSuccessfulExecution() {
     // was changed by a user-initiated event, then this code should be
     // executed ...
     if (evt.originalEvent) {
+      var myVisualizer = optCommon.getVisualizer();
       myVisualizer.renderStep(ui.value);
     }
     //updateStepLabels(); // I don't think we need this anymore
@@ -331,6 +325,7 @@ function optliveFinishSuccessfulExecution() {
         uh.push([args.myViz.curInstr, curTs]);
       }
 
+      var myVisualizer = optCommon.getVisualizer();
       $('#executionSlider').slider('value', myVisualizer.curInstr); // update slider
       updateStepLabels();
 
@@ -348,6 +343,7 @@ function optliveHandleUncaughtExceptionFunc(trace) {
     if (errorLineNo !== undefined && errorLineNo != NaN) {
       removeAllGutterDecorations();
 
+      var myVisualizer = optCommon.getVisualizer();
       if (myVisualizer) {
         toggleSyntaxError(true);
         myVisualizer.redrawConnectors();
@@ -390,6 +386,7 @@ function initAceEditor(height) {
     resize: function(evt, ui) {
       pyInputAceEditor.resize(); // to keep Ace internals happy
       $("#pyInputPane").width($("#codeInputPane").width()); // to keep parent happy
+      var myVisualizer = optCommon.getVisualizer();
       if (myVisualizer) {
         myVisualizer.redrawConnectors(); // to keep visualizations happy
       }
@@ -451,8 +448,10 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
         }
       }
       else {
+        var myVisualizer = optCommon.getVisualizer();
         prevVisualizer = myVisualizer;
-        myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
+        var v = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
+        optCommon.setVisualizer(v);
         handleSuccessFunc();
       }
 
@@ -496,6 +495,7 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
       assert(false);
     }
 
+    var myVisualizer = optCommon.getVisualizer();
     // submit update history of the "previous" visualizer whenever you
     // run the code and hopefully get a new visualizer back
     //
@@ -602,7 +602,7 @@ function optliveExecuteCodeFromScratch() {
 }
 
 $(document).ready(function() {
-  genericOptFrontendReady();
+  optCommon.genericOptFrontendReady();
 
   $('#legendDiv')
     .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
@@ -610,37 +610,41 @@ $(document).ready(function() {
 
   d3.select('svg#prevLegendArrowSVG')
       .append('polygon')
-      .attr('points', SVG_ARROW_POLYGON)
-      .attr('fill', lightArrowColor);
+      .attr('points', pytutor.SVG_ARROW_POLYGON)
+      .attr('fill', pytutor.lightArrowColor);
 
   d3.select('svg#curLegendArrowSVG')
       .append('polygon')
-      .attr('points', SVG_ARROW_POLYGON)
-      .attr('fill', darkArrowColor);
+      .attr('points', pytutor.SVG_ARROW_POLYGON)
+      .attr('fill', pytutor.darkArrowColor);
 
   $('#cumulativeModeSelector,#heapPrimitivesSelector,#textualMemoryLabelsSelector,#pythonVersionSelector').change(function() {
-    setAceMode();
+    optCommon.setAceMode();
     // force a re-execute on a toggle switch
     optliveExecuteCodeFromScratch();
   });
 
-  setAceMode(); // set syntax highlighting at the end
+  optCommon.setAceMode(); // set syntax highlighting at the end
   $("#pyOutputPane").show();
 
 
   $("#jmpFirstInstr").click(function() {
+    var myVisualizer = optCommon.getVisualizer();
     if (myVisualizer) {myVisualizer.renderStep(0);}
   });
 
   $("#jmpLastInstr").click(function() {
+    var myVisualizer = optCommon.getVisualizer();
     if (myVisualizer) {myVisualizer.renderStep(myVisualizer.curTrace.length - 1);}
   });
 
   $("#jmpStepBack").click(function() {
+    var myVisualizer = optCommon.getVisualizer();
     if (myVisualizer) {myVisualizer.stepBack();}
   });
 
   $("#jmpStepFwd").click(function() {
+    var myVisualizer = optCommon.getVisualizer();
     if (myVisualizer) {myVisualizer.stepForward();}
   });
 });
