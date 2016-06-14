@@ -1,38 +1,17 @@
-/*
+// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+// Copyright (C) Philip Guo (philip@pgbovine.net)
+// LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-Online Python Tutor
-https://github.com/pgbovine/OnlinePythonTutor/
+// use Webpack to automatically package up these dependencies
+require('./jquery-3.0.0.min.js');
+require('./jquery.ba-bbq.js'); // contains slight pgbovine modifications
 
-Copyright (C) Philip J. Guo (philip@pgbovine.net)
+var optCommon = require('./opt-frontend-common.js');
+var pytutor = require('./pytutor.js');
+var assert = pytutor.assert;
 
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+require('../css/opt-frontend.css');
 
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-*/
-
-
-// Pre-reqs:
-// - pytutor.js
-// - jquery.ba-bbq.min.js
-// - jquery.ba-dotimeout.min.js // for event debouncing: http://benalman.com/code/projects/jquery-dotimeout/examples/debouncing/
-// - opt-frontend-common.js
-// should all be imported BEFORE this file
 
 var originFrontendJsFile = 'iframe-embed.js';
 
@@ -40,7 +19,10 @@ function NOP() {};
 
 
 $(document).ready(function() {
-  var queryStrOptions = getQueryStringOptions();
+  optCommon.initializeFrontendParams({originFrontendJsFile: originFrontendJsFile,
+                                      executeCode: executeCode});
+
+  var queryStrOptions = optCommon.getQueryStringOptions();
 
   var preseededCode = queryStrOptions.preseededCode;
   var pyState = queryStrOptions.py;
@@ -71,32 +53,7 @@ $(document).ready(function() {
     startingInstruction = 0;
   }
 
-  var backend_script = null;
-  if (pyState == '2') {
-      backend_script = python2_backend_script;
-  }
-  else if (pyState == '3') {
-      backend_script = python3_backend_script;
-  }
-  else if (pyState == '2crazy') {
-      backend_script = python2crazy_backend_script;
-  }
-  else if (pyState == 'js') {
-      backend_script = js_backend_script;
-  }
-  else if (pyState == 'ts') {
-      backend_script = ts_backend_script;
-  }
-  else if (pyState == 'ruby') {
-      backend_script = ruby_backend_script;
-  }
-  else if (pyState == 'java') {
-      backend_script = java_backend_script;
-  } else if (pyState == 'c') {
-      backend_script = c_backend_script;
-  } else if (pyState == 'cpp') {
-      backend_script = cpp_backend_script;
-  }
+  var backend_script = optCommon.langToBackendScript(pyState);
   assert(backend_script);
 
   // David Pritchard's code for resizeContainer option ...
@@ -136,7 +93,7 @@ $(document).ready(function() {
                             drawParentPointers: drawParentPointerBool,
                             textualMemoryLabels: textRefsBool,
                             showOnlyOutputs: showOnlyOutputsBool,
-                            executeCodeWithRawInputFunc: executeCodeWithRawInput,
+                            executeCodeWithRawInputFunc: optCommon.executeCodeWithRawInput,
                             heightChangeCallback: (resizeContainer ? resizeContainerNow : NOP),
 
                             // undocumented experimental modes:
@@ -150,29 +107,17 @@ $(document).ready(function() {
     if (forceStartingInstr) {
       frontendOptionsObj.startingInstruction = forceStartingInstr;
     }
-    executeCodeAndCreateViz(preseededCode,
+    optCommon.executeCodeAndCreateViz(preseededCode,
                             backend_script, backendOptionsObj,
                             frontendOptionsObj,
                             'vizDiv',
                             function() { // success
                               if (resizeContainer)
                                   resizeContainerNow();
+                              var myVisualizer = optCommon.getVisualizer();
                               myVisualizer.redrawConnectors();
                             },
                             NOP);
-  }
-
-
-  function executeCodeFromScratch() {
-    // reset these globals
-    rawInputLst = [];
-    executeCode();
-  }
-
-  function executeCodeWithRawInput(rawInputStr, curInstr) {
-    // set some globals
-    rawInputLst.push(rawInputStr);
-    executeCode(curInstr);
   }
 
 
@@ -184,9 +129,10 @@ $(document).ready(function() {
 
   // redraw connector arrows on window resize
   $(window).resize(function() {
+    var myVisualizer = optCommon.getVisualizer();
     myVisualizer.redrawConnectors();
   });
 
 
-  executeCodeFromScratch(); // finally, execute code and display visualization
+  optCommon.executeCodeFromScratch(); // finally, execute code and display visualization
 });

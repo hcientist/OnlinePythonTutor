@@ -6,7 +6,9 @@
 // very dicey and dangerous due to scoping issues!
 
 // TODO: overriding backend_script from opt-frontend-common.js is also dicey, ergh
-// so it currently doesn't work for JavaScript
+// so it currently doesn't work for JavaScript. also it logs the WRONG
+// SCRIPT for Python since it uses the script names from
+// opt-frontend-common.js
 
 
 // use Webpack to automatically package up these dependencies
@@ -58,6 +60,11 @@ require('script!./ace/src-min-noconflict/mode-ruby.js');
 
 */
 
+
+// TODO: overriding backend_script from opt-frontend-common.js is also dicey, ergh
+// so it currently doesn't work for JavaScript. also it logs the WRONG
+// SCRIPT for Python since it uses the script names from
+// opt-frontend-common.js
 
 // these scripts override the versions defined in opt-frontend-common.js
 
