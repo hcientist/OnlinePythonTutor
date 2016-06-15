@@ -32,7 +32,7 @@ var testcasesPaneHtml = '\
 <a href="#" id="addNewTestCase">Add new test</a>\
 '
 
-export function initTestcasesPane(parentDivId, onChangeCallback /* optional */) {
+export function initTestcasesPane(parentDivId, onChangeCallback=null /* optional */) {
   $(parentDivId).empty(); // just to be paranoid, empty this out
                           // (and its event handlers, too, supposedly)
   $(parentDivId).html(testcasesPaneHtml);
@@ -93,7 +93,7 @@ function vizTestFinishSuccessfulExecution() {
 var curTestcaseId = 1;
 
 function addTestcase(initialCod /* optional code to pre-seed this test */,
-                     onChangeCallback /* to be called if this elt changes */) {
+                     onChangeCallback=null /* to be called if this elt changes */) {
   var id = curTestcaseId;
   curTestcaseId++; // nasty global
   var newTr = $('<tr/>').attr('id', 'testCaseRow_' + id);
@@ -271,9 +271,17 @@ function getAllTestcases() {
 }
 
 // see getAppState to see where it calls out to this function:
-function appStateAugmenter(appState) {
+export function appStateAugmenter(appState) {
   var tc = getAllTestcases();
   if (tc.length > 0) {
     appState['testCasesJSON'] = JSON.stringify(tc);
   }
+}
+
+export function loadTestcasesIntoPane(testCasesLst) {
+  $("#createTestsLink").hide();
+  initTestcasesPane('#testCasesPane');
+  testCasesLst.forEach(function(e) {
+    addTestcase(e);
+  });
 }

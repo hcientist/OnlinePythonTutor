@@ -618,8 +618,8 @@ function optLiveExecuteCode(forceStartingInstr, forceRawInputLst) {
 }
 
 // see getAppState to see where it calls out to this function:
-function appStateAugmenter(appState) {
-  appState.mode = 'display'; // super hack so that when you generate URLs, it will say 'display' mode
+function optLiveAppStateAugmenter(appState) {
+  appState.mode = 'display'; // super hack so that when you generate URLs, it will say 'display' mode since we want to jump to curInstr, and that happens only in 'display' mode
 }
 
 function optliveExecuteCodeFromScratch() {
@@ -631,6 +631,7 @@ $(document).ready(function() {
   optCommon.genericOptFrontendReady({originFrontendJsFile: originFrontendJsFile,
                                      executeCode: optLiveExecuteCode,
                                      initAceEditor: optLiveInitAceEditor,
+                                     appStateAugmenter: optLiveAppStateAugmenter,
                                     });
 
   $('#legendDiv')

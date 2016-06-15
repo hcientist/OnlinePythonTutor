@@ -165,12 +165,12 @@ export function ExecutionVisualizer(domRootID, dat, params) {
   this.codeRowHeight = undefined;
 
   // avoid 'undefined' state
-  this.disableHeapNesting = (this.params.disableHeapNesting == true);
-  this.drawParentPointers = (this.params.drawParentPointers == true);
-  this.textualMemoryLabels = (this.params.textualMemoryLabels == true);
-  this.showOnlyOutputs = (this.params.showOnlyOutputs == true);
-  this.tabularView = (this.params.tabularView == true);
-  this.showAllFrameLabels = (this.params.showAllFrameLabels == true);
+  this.disableHeapNesting = (this.params.disableHeapNesting === true);
+  this.drawParentPointers = (this.params.drawParentPointers === true);
+  this.textualMemoryLabels = (this.params.textualMemoryLabels === true);
+  this.showOnlyOutputs = (this.params.showOnlyOutputs === true);
+  this.tabularView = (this.params.tabularView === true);
+  this.showAllFrameLabels = (this.params.showAllFrameLabels === true);
 
   this.executeCodeWithRawInputFunc = this.params.executeCodeWithRawInputFunc;
 

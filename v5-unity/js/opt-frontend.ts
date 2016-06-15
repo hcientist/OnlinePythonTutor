@@ -688,6 +688,8 @@ $(document).ready(function() {
                                      TogetherjsReadyHandler: optFrontendTogetherjsReadyHandler,
                                      TogetherjsCloseHandler: optFrontendTogetherjsCloseHandler,
                                      startSharedSession: optFrontendStartSharedSession,
+                                     appStateAugmenter: optTests.appStateAugmenter,
+                                     loadTestCases: optTests.loadTestcasesIntoPane,
                                     }); // initialize at the end
 
 

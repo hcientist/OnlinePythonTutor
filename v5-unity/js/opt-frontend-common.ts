@@ -8,7 +8,6 @@ require('./jquery-3.0.0.min.js');
 require('./jquery.ba-bbq.js'); // contains slight pgbovine modifications
 require('./jquery.ba-dotimeout.min.js');
 
-var optTests = require('./opt-testcases.ts');
 var pytutor = require('./pytutor.ts');
 var assert = pytutor.assert;
 
@@ -45,6 +44,9 @@ declare namespace AceAjax {
 
 
 var originFrontendJsFile: string = undefined;
+
+var appStateAugmenter: any = undefined; // super hacky! fixme
+var loadTestCases: any = undefined; // super hacky! fixme
 
 // backend scripts to execute (Python 2 and 3 variants, if available)
 // make two copies of ../web_exec.py and give them the following names,
@@ -349,6 +351,8 @@ var togetherjsInUrl = ($.bbq.getState('togetherjs') !== undefined);
 var TogetherJSConfig_hubBase = "http://localhost:30035/"; // local
 
 // TogetherJS common configuration
+// TODO: xxx these aren't 'exported' so they're no longer visible to TogetherJS
+// ... thus, these will NOT SET TogetherJS configuration options. ergh!!!
 var TogetherJSConfig_disableWebRTC = true;
 var TogetherJSConfig_suppressJoinConfirmation = true;
 var TogetherJSConfig_dontShowClicks = false;
@@ -810,6 +814,7 @@ function pyInputSetScrollTop(st) {
 }
 
 
+// TODO: fixme, this is all very hacky and inelegant
 function initializeFrontendParams(params) {
   originFrontendJsFile = params.originFrontendJsFile;
   executeCode = params.executeCode;
@@ -828,6 +833,12 @@ function initializeFrontendParams(params) {
   }
   if (params.initAceEditor) {
     initAceEditor = params.initAceEditor;
+  }
+  if (params.appStateAugmenter) {
+    appStateAugmenter = params.appStateAugmenter;
+  }
+  if (params.loadTestCases) {
+    loadTestCases = params.loadTestCases;
   }
 }
 
@@ -1064,12 +1075,8 @@ function parseQueryString() {
     codeopticonUsername = queryStrOptions.codeopticonUsername; // GLOBAL defined in codeopticon-learner.js
   }
 
-  if (queryStrOptions.testCasesLst) {
-    $("#createTestsLink").hide();
-    optTests.initTestcasesPane('#testCasesPane');
-    queryStrOptions.testCasesLst.forEach(function(e) {
-      optTests.addTestcase(e);
-    });
+  if (queryStrOptions.testCasesLst && typeof(loadTestCases) !== 'undefined') {
+    loadTestCases(queryStrOptions.testCasesLst);
   }
 
   // ugh tricky -- always start in edit mode by default, and then
