@@ -368,7 +368,7 @@ function optliveHandleUncaughtExceptionFunc(trace) {
 }
 
 // override the one in opt-frontend-common.js
-function initAceEditor(height) {
+function optLiveInitAceEditor(height) {
   var pyInputAceEditor = ace.edit('codeInputPane');
   optCommon.setAceEditor(pyInputAceEditor); // don't forget this!
 
@@ -577,7 +577,7 @@ function optliveLangToBackendScript(lang) {
 
 
 // overrides the version in opt-frontend.js
-function executeCode(forceStartingInstr, forceRawInputLst) {
+function optLiveExecuteCode(forceStartingInstr, forceRawInputLst) {
     $('#urlOutput').val(''); // clear to avoid stale values
 
     var cod = optCommon.pyInputGetValue();
@@ -629,8 +629,8 @@ function optliveExecuteCodeFromScratch() {
 
 $(document).ready(function() {
   optCommon.genericOptFrontendReady({originFrontendJsFile: originFrontendJsFile,
-                                     executeCode: executeCode,
-                                     initAceEditor: initAceEditor,
+                                     executeCode: optLiveExecuteCode,
+                                     initAceEditor: optLiveInitAceEditor,
                                     });
 
   $('#legendDiv')

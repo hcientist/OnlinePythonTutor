@@ -45,7 +45,7 @@ require('../css/opt-frontend.css');
 var originFrontendJsFile = 'opt-frontend.js';
 
 
-function startSharedSession() { // override default
+function optFrontendStartSharedSession() { // override default
   $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
   $("#adHeader").hide(); // hide ASAP!
   $("#togetherjsStatus").html("Please wait ... loading shared session");
@@ -53,18 +53,18 @@ function startSharedSession() { // override default
 }
 
 
-function TogetherjsReadyHandler() {
+function optFrontendTogetherjsReadyHandler() {
   $("#surveyHeader").hide();
   optCommon.populateTogetherJsShareUrl();
 }
 
-function TogetherjsCloseHandler() {
+function optFrontendTogetherjsCloseHandler() {
   if (optCommon.getAppMode() == "display") {
     $("#surveyHeader").show();
   }
 }
 
-function executeCode(forceStartingInstr, forceRawInputLst) {
+function optFrontendExecuteCode(forceStartingInstr, forceRawInputLst) {
   if (forceRawInputLst !== undefined) {
     optCommon.setRawInputLst(forceRawInputLst); // UGLY global across modules, FIXME
   }
@@ -684,9 +684,10 @@ $(document).ready(function() {
   });
 
   optCommon.genericOptFrontendReady({originFrontendJsFile: originFrontendJsFile,
-                                     executeCode: executeCode,
-                                     TogetherjsReadyHandler: TogetherjsReadyHandler,
-                                     TogetherjsCloseHandler: TogetherjsCloseHandler,
+                                     executeCode: optFrontendExecuteCode,
+                                     TogetherjsReadyHandler: optFrontendTogetherjsReadyHandler,
+                                     TogetherjsCloseHandler: optFrontendTogetherjsCloseHandler,
+                                     startSharedSession: optFrontendStartSharedSession,
                                     }); // initialize at the end
 
 

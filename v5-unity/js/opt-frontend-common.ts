@@ -679,7 +679,7 @@ var TogetherjsCloseHandler = function() {
   alert("ERROR: need to override TogetherjsCloseHandler()");
 }
 
-function startSharedSession() {
+var startSharedSession = function() {
   $("#ssDiv").hide(); // hide ASAP!
   $("#togetherjsStatus").html("Please wait ... loading shared session");
   TogetherJS();
@@ -823,6 +823,9 @@ function initializeFrontendParams(params) {
   if (params.TogetherjsCloseHandler) {
     TogetherjsCloseHandler = params.TogetherjsCloseHandler;
   }
+  if (params.startSharedSession) {
+    startSharedSession = params.startSharedSession;
+  }
   if (params.initAceEditor) {
     initAceEditor = params.initAceEditor;
   }
@@ -835,7 +838,7 @@ var num414Tries = 0; // hacky global
 function genericOptFrontendReady(params) {
   assert(params);
   initializeFrontendParams(params);
-  initTogetherJS(); // initialize early
+  initTogetherJS(); // initialize early but after initializeFrontendParams
 
 
   // be friendly to the browser's forward and back buttons
