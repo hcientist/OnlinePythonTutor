@@ -8,10 +8,18 @@ require('./jquery-3.0.0.min.js');
 require('./jquery.ba-bbq.js'); // contains slight pgbovine modifications
 require('./jquery.ba-dotimeout.min.js');
 
+var optTests = require('./opt-testcases.ts');
 var pytutor = require('./pytutor.ts');
 var assert = pytutor.assert;
 
-var originFrontendJsFile = undefined;
+// for TypeScript
+declare var TogetherJS: any;
+declare var TogetherJSConfig_ignoreForms: any;
+declare var diff_match_patch: any;
+declare var codeopticonUsername: string; // FIX later when porting Codeopticon
+declare var codeopticonSession: string;  // FIX later when porting Codeopticon
+
+var originFrontendJsFile: string = undefined;
 
 // backend scripts to execute (Python 2 and 3 variants, if available)
 // make two copies of ../web_exec.py and give them the following names,
@@ -100,12 +108,9 @@ function getAppMode() {
   return appMode;
 }
 
-var pyInputCodeMirror; // CodeMirror object that contains the input code
 var pyInputAceEditor; // Ace editor object that contains the input code
 function getAceEditor() {return pyInputAceEditor;}
 function setAceEditor(e) {pyInputAceEditor = e;}
-
-var useCodeMirror = false; // true -> use CodeMirror, false -> use Ace
 
 var CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
 
@@ -134,10 +139,10 @@ function getSessionUUID() {return sessionUUID;}
 // to avoid the entire page breaking, without having to do a check at each usage of Storage.
 if (typeof localStorage === 'object') {
     try {
-        localStorage.setItem('localStorage', 1);
+        localStorage.setItem('localStorage', '1');
         localStorage.removeItem('localStorage');
     } catch (e) {
-        Storage.prototype._setItem = Storage.prototype.setItem;
+        (Storage as any /* TS too strict */).prototype._setItem = Storage.prototype.setItem;
         Storage.prototype.setItem = function() {};
         alert('Your web browser does not support storing settings locally. In Safari, the most common cause of this is using "Private Browsing Mode". Some settings may not save or some features may not work properly for you.');
     }
@@ -151,7 +156,7 @@ var deltaObj = undefined;
 function initDeltaObj() {
   // make sure the editor already exists
   // (editor doesn't exist when you're, say, doing an iframe embed)
-  if (!pyInputAceEditor && !pyInputCodeMirror) {
+  if (!pyInputAceEditor) {
     return;
   }
 
@@ -169,7 +174,7 @@ function initAceEditor(height) {
   s.setTabSize(4);
   s.setUseSoftTabs(true);
   // disable extraneous indicators:
-  s.setFoldStyle('manual'); // no code folding indicators
+  (s as any /* TS too strict */).setFoldStyle('manual'); // no code folding indicators
   s.getDocument().setNewLineMode('unix'); // canonicalize all newlines to unix format
   pyInputAceEditor.setHighlightActiveLine(false);
   pyInputAceEditor.setShowPrintMargin(false);
@@ -184,7 +189,7 @@ function initAceEditor(height) {
 
   initDeltaObj();
   pyInputAceEditor.on('change', function(e) {
-    $.doTimeout('pyInputAceEditorChange', CODE_SNAPSHOT_DEBOUNCE_MS, snapshotCodeDiff); // debounce
+    ($ as any /* TS too strict */).doTimeout('pyInputAceEditorChange', CODE_SNAPSHOT_DEBOUNCE_MS, snapshotCodeDiff); // debounce
     clearFrontendError();
     s.clearAnnotations();
   });
@@ -480,7 +485,7 @@ function initTogetherJS() {
       if (appMode == 'edit' && msg.codeInputScrollTop !== undefined &&
           pyInputGetScrollTop() != msg.codeInputScrollTop) {
         // hack: give it a bit of time to settle first ...
-        $.doTimeout('pyInputCodeMirrorInit', 200, function() {
+        ($ as any /* TS too strict */).doTimeout('pyInputCodeMirrorInit', 200, function() {
           pyInputSetScrollTop(msg.codeInputScrollTop);
         });
       }
@@ -493,7 +498,7 @@ function initTogetherJS() {
     $("#codeInputWarnings").hide();
     $("#someoneIsTypingDiv").show();
 
-    $.doTimeout('codeMirrorWarningTimeout', 1000, function() { // debounce
+    ($ as any /* TS too strict */).doTimeout('codeMirrorWarningTimeout', 1000, function() { // debounce
       $("#codeInputWarnings").show();
       $("#someoneIsTypingDiv").hide();
     });
@@ -562,10 +567,10 @@ function initTogetherJS() {
     }
 
     if (msg.codeInputScrollTop !== undefined) {
-      // give pyInputCodeMirror/pyInputAceEditor a bit of time to settle with
+      // give pyInputAceEditor a bit of time to settle with
       // its new value. this is hacky; ideally we have a callback function for
       // when setValue() completes.
-      $.doTimeout('pyInputCodeMirrorInit', 200, function() {
+      ($ as any /* TS too strict */).doTimeout('pyInputCodeMirrorInit', 200, function() {
         pyInputSetScrollTop(msg.codeInputScrollTop);
       });
     }
@@ -578,12 +583,8 @@ function initTogetherJS() {
   TogetherJS.hub.on("codeInputScroll", function(msg) {
     // do NOT use a msg.sameUrl guard since that will miss some signals
     // due to our funky URLs
-    if (useCodeMirror) {
-      pyInputSetScrollTop(msg.scrollTop);
-    }
-    else {
-      // don't sync for Ace since I can't get it working properly yet
-    }
+
+    // don't sync for Ace since I can't get it working properly yet
   });
 
   TogetherJS.hub.on("pyCodeOutputDivScroll", function(msg) {
@@ -705,7 +706,7 @@ function populateTogetherJsShareUrl() {
 
       $("#sharedSessionWhatLearned").val('');
       $("#sharedSessionWhatLearnedThanks").show();
-      $.doTimeout('sharedSessionWhatLearnedThanksFadeOut', 1000, function() {
+      ($ as any).doTimeout('sharedSessionWhatLearnedThanksFadeOut', 1000, function() {
         $("#sharedSessionWhatLearnedThanks").fadeOut(2000);
       });
     }
@@ -759,25 +760,13 @@ function supports_html5_storage() {
   }
 }
 
-// abstraction so that we can use either CodeMirror or Ace as our code editor
 function pyInputGetValue() {
-  if (useCodeMirror) {
-    return pyInputCodeMirror.getValue();
-  }
-  else {
-    return pyInputAceEditor.getValue();
-  }
+  return pyInputAceEditor.getValue();
 }
 
 function pyInputSetValue(dat) {
-  if (useCodeMirror) {
-    pyInputCodeMirror.setValue(dat.rtrim() /* kill trailing spaces */);
-  }
-  else {
-    pyInputAceEditor.setValue(dat.rtrim() /* kill trailing spaces */,
-                              -1 /* do NOT select after setting text */);
-  }
-
+  pyInputAceEditor.setValue(dat.rtrim() /* kill trailing spaces */,
+                            -1 /* do NOT select after setting text */);
   $('#urlOutput,#embedCodeOutput').val('');
 
   clearFrontendError();
@@ -787,24 +776,12 @@ function pyInputSetValue(dat) {
 }
 
 
-var codeMirrorScroller = '#codeInputPane .CodeMirror-scroll';
-
 function pyInputGetScrollTop() {
-  if (useCodeMirror) {
-    return $(codeMirrorScroller).scrollTop();
-  }
-  else {
-    return pyInputAceEditor.getSession().getScrollTop();
-  }
+  return pyInputAceEditor.getSession().getScrollTop();
 }
 
 function pyInputSetScrollTop(st) {
-  if (useCodeMirror) {
-    $(codeMirrorScroller).scrollTop(st);
-  }
-  else {
-    pyInputAceEditor.getSession().setScrollTop(st);
-  }
+  pyInputAceEditor.getSession().setScrollTop(st);
 }
 
 
@@ -860,77 +837,31 @@ function genericOptFrontendReady(params) {
   });
 
 
-  if (useCodeMirror) {
-    pyInputCodeMirror = CodeMirror(document.getElementById('codeInputPane'), {
-      mode: 'python',
-      lineNumbers: true,
-      tabSize: 4,
-      indentUnit: 4,
-      // convert tab into four spaces:
-      extraKeys: {Tab: function(cm) {cm.replaceSelection("    ", "end");}}
-    });
-
-    pyInputCodeMirror.setSize(null, '420px');
-  }
-  else {
-    initAceEditor(420);
-  }
+  initAceEditor(420);
+  pyInputAceEditor.getSession().on("change", function(e) {
+    // unfortunately, Ace doesn't detect whether a change was caused
+    // by a setValue call
+    if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+      TogetherJS.send({type: "codemirror-edit"});
+    }
+  });
 
 
-  if (useCodeMirror) {
-    // for shared sessions
-    pyInputCodeMirror.on("change", function(cm, change) {
-      // only trigger when the user explicitly typed something
-      if (change.origin != 'setValue') {
-        if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
-          TogetherJS.send({type: "codemirror-edit"});
-        }
-      }
-    });
-  }
-  else {
-    pyInputAceEditor.getSession().on("change", function(e) {
-      // unfortunately, Ace doesn't detect whether a change was caused
-      // by a setValue call
-      if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
-        TogetherJS.send({type: "codemirror-edit"});
-      }
-    });
-  }
-
-
-  if (useCodeMirror) {
-    $(codeMirrorScroller).scroll(function(e) {
-      if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
-        var elt = $(this);
-        $.doTimeout('codeInputScroll', 100, function() { // debounce
-          // note that this will send a signal back and forth both ways
-          // (there's no easy way to prevent this), but it shouldn't keep
-          // bouncing back and forth indefinitely since no the second signal
-          // causes no additional scrolling
-          TogetherJS.send({type: "codeInputScroll",
-                           scrollTop: elt.scrollTop()});
-        });
-      }
-    });
-  }
-  else {
-    // don't sync for Ace since I can't get it working properly yet
-    /*
-    pyInputAceEditor.getSession().on('changeScrollTop', function() {
-      if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
-        $.doTimeout('codeInputScroll', 100, function() { // debounce
-          // note that this will send a signal back and forth both ways
-          // (there's no easy way to prevent this), but it shouldn't keep
-          // bouncing back and forth indefinitely since no the second signal
-          // causes no additional scrolling
-          TogetherJS.send({type: "codeInputScroll",
-                           scrollTop: pyInputGetScrollTop()});
-        });
-      }
-    });
-    */
-  }
+  // don't sync for Ace since I can't get it working properly yet
+  /*
+  pyInputAceEditor.getSession().on('changeScrollTop', function() {
+    if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+      ($ as any).doTimeout('codeInputScroll', 100, function() { // debounce
+        // note that this will send a signal back and forth both ways
+        // (there's no easy way to prevent this), but it shouldn't keep
+        // bouncing back and forth indefinitely since no the second signal
+        // causes no additional scrolling
+        TogetherJS.send({type: "codeInputScroll",
+                         scrollTop: pyInputGetScrollTop()});
+      });
+    }
+  });
+  */
 
 
   // first initialize options from HTML LocalStorage. very important
@@ -1046,7 +977,7 @@ function genericOptFrontendReady(params) {
   clearFrontendError();
 
   $("#embedLinkDiv").hide();
-  $("#executeBtn").attr('disabled', false);
+  $("#executeBtn").attr('disabled', (false as any /* TS too strict */));
   $("#executeBtn").click(executeCodeFromScratch);
 
   // for Versions 1 and 2, initialize here. But for version 3+, dynamically
@@ -1100,15 +1031,16 @@ function parseQueryString() {
   }
 
   if (queryStrOptions.codeopticonSession) {
+    assert(false); // TODO: this won't currently work with Webpack, so fix it later
     codeopticonSession = queryStrOptions.codeopticonSession; // GLOBAL defined in codeopticon-learner.js
     codeopticonUsername = queryStrOptions.codeopticonUsername; // GLOBAL defined in codeopticon-learner.js
   }
 
   if (queryStrOptions.testCasesLst) {
     $("#createTestsLink").hide();
-    initTestcasesPane('#testCasesPane');
+    optTests.initTestcasesPane('#testCasesPane');
     queryStrOptions.testCasesLst.forEach(function(e) {
-      addTestcase(e);
+      optTests.addTestcase(e);
     });
   }
 
@@ -1255,7 +1187,7 @@ function updateAppDisplay(newAppMode) {
 
     $(document).scrollTop(0); // scroll to top to make UX better on small monitors
 
-    var s = { mode: 'edit' };
+    var s: any = { mode: 'edit' };
     // keep these persistent so that they survive page reloads
     // keep these persistent so that they survive page reloads
     if (typeof codeopticonSession !== "undefined") {s.cosession = codeopticonSession;}
@@ -1310,13 +1242,13 @@ function updateAppDisplay(newAppMode) {
       pendingCodeOutputScrollTop = null;
     }
 
-    $.doTimeout('pyCodeOutputDivScroll'); // cancel any prior scheduled calls
+    ($ as any /* TS too strict */).doTimeout('pyCodeOutputDivScroll'); // cancel any prior scheduled calls
 
     // TODO: this might interfere with experimentalPopUpSyntaxErrorSurvey (2015-04-19)
     myVisualizer.domRoot.find('#pyCodeOutputDiv').scroll(function(e) {
       var elt = $(this);
       // debounce
-      $.doTimeout('pyCodeOutputDivScroll', 100, function() {
+      ($ as any /* TS too strict */).doTimeout('pyCodeOutputDivScroll', 100, function() {
         // note that this will send a signal back and forth both ways
         if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
           // (there's no easy way to prevent this), but it shouldn't keep
@@ -1328,7 +1260,7 @@ function updateAppDisplay(newAppMode) {
       });
     });
 
-    var s = { mode: 'display' };
+    var s: any = { mode: 'display' };
     // keep these persistent so that they survive page reloads
     if (typeof codeopticonSession !== "undefined") {s.cosession = codeopticonSession;}
     if (typeof codeopticonUsername !== "undefined") {s.couser = codeopticonUsername;}
@@ -1365,47 +1297,35 @@ function executeCodeWithRawInput(rawInputStr, curInstr) {
 
 function handleUncaughtExceptionFunc(trace) {
   if (trace.length == 1 && trace[0].line) {
-    var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
+    var errorLineNo = trace[0].line - 1; /* Ace lines are zero-indexed */
     if (errorLineNo !== undefined && errorLineNo != NaN) {
       // highlight the faulting line
-      if (useCodeMirror) {
-        pyInputCodeMirror.focus();
-        pyInputCodeMirror.setCursor(errorLineNo, 0);
-        pyInputCodeMirror.addLineClass(errorLineNo, null, 'errorLine');
-
-        function f() {
-          pyInputCodeMirror.removeLineClass(errorLineNo, null, 'errorLine'); // reset line back to normal
-          pyInputCodeMirror.off('change', f);
-        }
-        pyInputCodeMirror.on('change', f);
+      var s = pyInputAceEditor.getSession();
+      s.setAnnotations([{row: errorLineNo,
+                         column: null, /* for TS typechecking */
+                         type: 'error',
+                         text: trace[0].exception_msg}]);
+      pyInputAceEditor.gotoLine(errorLineNo + 1 /* one-indexed */);
+      // if we have both a line and column number, then move over to
+      // that column. (going to the line first prevents weird
+      // highlighting bugs)
+      if (trace[0].col !== undefined) {
+        pyInputAceEditor.moveCursorTo(errorLineNo, trace[0].col);
       }
-      else {
-        var s = pyInputAceEditor.getSession();
-        s.setAnnotations([{row: errorLineNo,
-                           type: 'error',
-                           text: trace[0].exception_msg}]);
-        pyInputAceEditor.gotoLine(errorLineNo + 1 /* one-indexed */);
-        // if we have both a line and column number, then move over to
-        // that column. (going to the line first prevents weird
-        // highlighting bugs)
-        if (trace[0].col !== undefined) {
-          pyInputAceEditor.moveCursorTo(errorLineNo, trace[0].col);
-        }
-        pyInputAceEditor.focus();
-      }
+      pyInputAceEditor.focus();
     }
   }
 }
 
 function startExecutingCode() {
   $('#executeBtn').html("Please wait ... executing (takes up to 10 seconds)");
-  $('#executeBtn').attr('disabled', true);
+  $('#executeBtn').attr('disabled', (true as any /* TS too strict */));
   isExecutingCode = true; // nasty global
 }
 
 function doneExecutingCode() {
   $('#executeBtn').html("Visualize Execution");
-  $('#executeBtn').attr('disabled', false);
+  $('#executeBtn').attr('disabled', (false as any /* TS too strict */));
   isExecutingCode = false; // nasty global
 }
 
@@ -1489,12 +1409,6 @@ function executeCodeAndCreateViz(codeToExec,
         if (frontendOptionsObj.runTestCaseCallback) {
           // hacky! DO NOT actually create a visualization! instead call:
           frontendOptionsObj.runTestCaseCallback(trace);
-        } else if (frontendOptionsObj.holisticMode) {
-          // do NOT override, or else bad things will happen with
-          // jsPlumb arrows interfering ...
-          delete frontendOptionsObj.visualizerIdOverride;
-
-          myVisualizer = new HolisticVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
         } else {
           myVisualizer = new pytutor.ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
 
@@ -1507,8 +1421,8 @@ function executeCodeAndCreateViz(codeToExec,
             }
 
             // debounce to compress a bit ... 250ms feels "right"
-            $.doTimeout('updateOutputLogEvent', 250, function() {
-              var obj = {type: 'updateOutput', step: args.myViz.curInstr,
+            ($ as any /* TS too strict */).doTimeout('updateOutputLogEvent', 250, function() {
+              var obj: any = {type: 'updateOutput', step: args.myViz.curInstr,
                          curline: args.myViz.curLineNumber,
                          prevline: args.myViz.prevLineNumber};
               // optional fields
@@ -1750,7 +1664,7 @@ function submitUpdateHistory(why) {
     var encodedUh = compressUpdateHistoryList(myVisualizer);
     var encodedUhJSON = JSON.stringify(encodedUh);
 
-    var myArgs = {session_uuid: sessionUUID,
+    var myArgs: any = {session_uuid: sessionUUID,
                   updateHistoryJSON: encodedUhJSON};
     if (why) {
       myArgs.why = why;
@@ -1769,7 +1683,7 @@ function getBaseBackendOptionsObj() {
 
   var surveyObj = getSurveyObject();
   if (surveyObj) {
-    ret.survey = surveyObj;
+    (ret as any /* TS too strict */).survey = surveyObj;
   }
 
   return ret;
@@ -1789,10 +1703,6 @@ function getBaseFrontendOptionsObj() {
               // ExecutionVisualizer will be shown at a time
               visualizerIdOverride: '1',
               updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
-
-              // undocumented experimental modes:
-              pyCrazyMode: ($('#pythonVersionSelector').val() == '2crazy'),
-              holisticMode: ($('#cumulativeModeSelector').val() == 'holistic')
             };
   return ret;
 }
@@ -2100,7 +2010,7 @@ display a brief "Thanks!" note]
 
     $("#iJustLearnedInput").val('');
     $("#iJustLearnedThanks").show();
-    $.doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
+    ($ as any).doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
       $("#iJustLearnedThanks").fadeOut(1000);
     });
   });
@@ -2251,7 +2161,7 @@ display a brief "Thanks!" note]
 
     $("#iJustLearnedInput").val('');
     $("#iJustLearnedThanks").show();
-    $.doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
+    ($ as any).doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
       $("#iJustLearnedThanks").fadeOut(1000);
     });
 

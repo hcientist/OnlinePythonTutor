@@ -2,6 +2,8 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
+// TODO: add better abstractions so we don't need to 'export' so much stuff
+
 // use Webpack to automatically package up these dependencies
 require('../css/opt-testcases.css');
 
@@ -10,11 +12,6 @@ var pytutor = require('./pytutor.ts');
 
 var redSadFace = require('./images/red-sad-face.jpg');
 var yellowHappyFace = require('./images/yellow-happy-face.jpg');
-
-// TODO: abstract this better
-module.exports = {
-  initTestcasesPane: initTestcasesPane,
-}
 
 
 var testcasesPaneHtml = '\
@@ -35,7 +32,7 @@ var testcasesPaneHtml = '\
 <a href="#" id="addNewTestCase">Add new test</a>\
 '
 
-function initTestcasesPane(parentDivId, onChangeCallback /* optional */) {
+export function initTestcasesPane(parentDivId, onChangeCallback /* optional */) {
   $(parentDivId).empty(); // just to be paranoid, empty this out
                           // (and its event handlers, too, supposedly)
   $(parentDivId).html(testcasesPaneHtml);
@@ -71,14 +68,14 @@ function getCombinedCode(id) {
 }
 
 function startRunningTest(id) {
-  $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', true);
+  $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', (true as any) /* TS too strict */);
   var e = ace.edit('testCaseEditor_' + id);
   e.getSession().clearAnnotations();
   $('#outputTd_' + id).html('');
 }
 
 function doneRunningTest() {
-  $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', false);
+  $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', (false as any) /* TS too strict */);
   $(".runTestCase").html('Run');
   $(".vizTestCase").html('Visualize');
 }
@@ -128,7 +125,7 @@ function addTestcase(initialCod /* optional code to pre-seed this test */,
   te.setHighlightActiveLine(false);
   te.setShowPrintMargin(false);
   te.setBehavioursEnabled(false);
-  te.setFontSize(11);
+  te.setFontSize('11px');
   te.$blockScrolling = Infinity; // kludgy to shut up weird warnings
   //te.setReadOnly(true);
 
@@ -136,10 +133,10 @@ function addTestcase(initialCod /* optional code to pre-seed this test */,
   s.setTabSize(2);
   s.setUseSoftTabs(true);
   // disable extraneous indicators:
-  s.setFoldStyle('manual'); // no code folding indicators
+  (s as any /* TS too strict */).setFoldStyle('manual'); // no code folding indicators
   // don't do real-time syntax checks:
   // https://github.com/ajaxorg/ace/wiki/Syntax-validation
-  s.setOption("useWorker", false);
+  (s as any /* TS too strict */).setOption("useWorker", false);
 
   // TODO: change syntax highlighting mode if the user changes languages:
   var lang = $('#pythonVersionSelector').val();
@@ -222,6 +219,7 @@ function addTestcase(initialCod /* optional code to pre-seed this test */,
             errorLineNo >= dat.firstTestLine) {
           var adjustedErrorLineNo = errorLineNo - dat.firstTestLine;
           s.setAnnotations([{row: adjustedErrorLineNo,
+                             column: null, /* for TS typechecking */
                              type: 'error',
                              text: trace[0].exception_msg}]);
           te.gotoLine(adjustedErrorLineNo + 1 /* one-indexed */);

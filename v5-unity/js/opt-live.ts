@@ -24,6 +24,10 @@ require('script!./ace/src-min-noconflict/mode-java.js');
 require('script!./ace/src-min-noconflict/mode-ruby.js');
 
 
+// for TypeScript
+declare var jsonp_endpoint: string;
+
+
 // OPT live programming prototype started on 2016-05-30
 // first launched as a "Live Programming Mode" button on main OPT site
 // on 2016-06-08, working for Python 2/3 and JavaScript for starters
@@ -190,7 +194,7 @@ function updateStepLabels() {
       allMarkerIds.push(markerId);
     }
   } else if (myVisualizer.instrLimitReached) {
-    $("#frontendErrorOutput").html(htmlspecialchars(myVisualizer.instrLimitReachedWarningMsg));
+    $("#frontendErrorOutput").html(pytutor.htmlspecialchars(myVisualizer.instrLimitReachedWarningMsg));
   } else {
     $("#frontendErrorOutput").html(''); // clear it
   }
@@ -345,7 +349,7 @@ function optliveFinishSuccessfulExecution() {
 // a syntax-/compile-time error, rather than a runtime error
 function optliveHandleUncaughtExceptionFunc(trace) {
   if (trace.length == 1 && trace[0].line) {
-    var errorLineNo = trace[0].line - 1; /* CodeMirror lines are zero-indexed */
+    var errorLineNo = trace[0].line - 1; /* Ace lines are zero-indexed */
     if (errorLineNo !== undefined && errorLineNo != NaN) {
       removeAllGutterDecorations();
 
@@ -371,14 +375,14 @@ function initAceEditor(height) {
   var s = pyInputAceEditor.getSession();
 
   // disable extraneous indicators:
-  s.setFoldStyle('manual'); // no code folding indicators
+  (s as any /* TS too strict */).setFoldStyle('manual'); // no code folding indicators
   s.getDocument().setNewLineMode('unix'); // canonicalize all newlines to unix format
   pyInputAceEditor.setHighlightActiveLine(false);
   pyInputAceEditor.setShowPrintMargin(false);
   pyInputAceEditor.setBehavioursEnabled(false);
 
-  pyInputAceEditor.setHighlightGutterLine(false); // to avoid gray highlight over gutter of active line
-  pyInputAceEditor.setDisplayIndentGuides(false); // to avoid annoying gray vertical lines
+  (pyInputAceEditor as any /* TS too strict */).setHighlightGutterLine(false); // to avoid gray highlight over gutter of active line
+  (pyInputAceEditor as any /* TS too strict */).setDisplayIndentGuides(false); // to avoid annoying gray vertical lines
 
   pyInputAceEditor.$blockScrolling = Infinity; // kludgy to shut up weird warnings
 
@@ -400,8 +404,8 @@ function initAceEditor(height) {
     }
   });
 
-  pyInputAceEditor.on('change', function(e) {
-    $.doTimeout('pyInputAceEditorChange',
+  (pyInputAceEditor as any /* TS too strict*/).on('change', function(e) {
+    ($ as any /* TS too strict */).doTimeout('pyInputAceEditorChange',
                 500, /* go a bit faster than CODE_SNAPSHOT_DEBOUNCE_MS to feel more snappy */
                 //CODE_SNAPSHOT_DEBOUNCE_MS /* match the value in opt-frontend-common.js for consistency and easy apples-to-apples comparisons later on */,
                 optliveExecuteCodeFromScratch); // debounce
@@ -411,12 +415,12 @@ function initAceEditor(height) {
 
   // don't do real-time syntax checks:
   // https://github.com/ajaxorg/ace/wiki/Syntax-validation
-  s.setOption("useWorker", false);
+  (s as any /* TS too strict */).setOption("useWorker", false);
   pyInputAceEditor.focus();
 
   // custom gutter renderer, make it wider to accomodate arrows on left
   // http://stackoverflow.com/a/28404331
-  s.gutterRenderer = {
+  (s as any /* TS too strict*/).gutterRenderer = {
     getWidth: function(session, lastLineNumber, config) {
       return (lastLineNumber.toString().length * config.characterWidth) + 6;
     },

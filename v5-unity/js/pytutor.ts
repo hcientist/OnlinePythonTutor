@@ -2,6 +2,8 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
+// TODO: add better abstractions so we don't need to 'export' so much stuff
+
 // use Webpack to automatically package up these dependencies
 require('./d3.v2.min.js');
 require('./jquery-3.0.0.min.js');
@@ -11,6 +13,11 @@ require('./jquery-ui-1.11.4/jquery-ui.css');
 require('./jquery.qtip.min.js');
 require('../css/jquery.qtip.css');
 require('../css/pytutor.css');
+
+// for TypeScript
+declare var jQuery: JQueryStatic;
+declare var jsPlumb: any;
+
 
 /* Coding gotchas:
 
@@ -27,7 +34,7 @@ require('../css/pytutor.css');
 
 */
 
-var SVG_ARROW_POLYGON = '0,3 12,3 12,0 18,5 12,10 12,7 0,7';
+export var SVG_ARROW_POLYGON = '0,3 12,3 12,0 18,5 12,10 12,7 0,7';
 var SVG_ARROW_HEIGHT = 10; // must match height of SVG_ARROW_POLYGON
 
 var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer instance
@@ -85,7 +92,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //          'ts' for TypeScript, 'ruby' for Ruby, 'c' for C, 'cpp' for C++
 //          [default is Python-style labels]
 //   debugMode - some extra debugging printouts
-function ExecutionVisualizer(domRootID, dat, params) {
+export function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
   this.curTrace = dat.trace;
 
@@ -1242,7 +1249,7 @@ ExecutionVisualizer.prototype.renderPyCodeOutput = function() {
   for (var i = 0; i < lines.length; i++) {
     var cod = lines[i];
 
-    var n = {};
+    var n: any = {};
     n.text = cod;
     n.lineNumber = i + 1;
     n.executionPoints = [];
@@ -2381,9 +2388,9 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 
     // iterate through remaining elements of idsToRemove and REMOVE them from curLayout
     idsToRemove.forEach(function(id, xxx) {
-      id = Number(id); // keys are stored as strings, so convert!!!
+      var idInt = Number(id); // keys are stored as strings, so convert!!!
       $.each(curLayout, function(rownum, row) {
-        var ind = row.indexOf(id);
+        var ind = row.indexOf(idInt);
         if (ind > 0) { // remember that index 0 of the row is the row ID tag
           row.splice(ind, 1);
         }
@@ -3363,7 +3370,7 @@ ExecutionVisualizer.prototype.renderTabularView = function() {
       var step = parseInt($(this).closest('tr').attr('step'));
 
       if (i == 0) {
-        $(this).html(step + 1); // one-indexed for readability
+        $(this).html(String(step + 1)); // one-indexed for readability
       }
       else {
         if (obj === undefined) {
@@ -4001,7 +4008,7 @@ var highlightedLineLighterColor = '#e8fff0';
 
 var funcCallLineColor = '#a2eebd';
 
-var brightRed = '#e93f34';
+export var brightRed = '#e93f34';
 
 var connectorBaseColor = '#005583';
 var connectorHighlightColor = brightRed;
@@ -4013,11 +4020,11 @@ var breakpointColor = brightRed;
 
 
 // Unicode arrow types: '\u21d2', '\u21f0', '\u2907'
-var darkArrowColor = brightRed;
-var lightArrowColor = '#c9e6ca';
+export var darkArrowColor = brightRed;
+export var lightArrowColor = '#c9e6ca';
 
 
-function assert(cond) {
+export function assert(cond) {
   if (!cond) {
     alert("Assertion Failure (see console log for backtrace)");
     throw 'Assertion Failure';
@@ -4025,7 +4032,7 @@ function assert(cond) {
 }
 
 // taken from http://www.toao.net/32-my-htmlspecialchars-function-for-javascript
-function htmlspecialchars(str) {
+export function htmlspecialchars(str) {
   if (typeof(str) == "string") {
     str = str.replace(/&/g, "&amp;"); /* must do &amp; first */
 
@@ -4059,7 +4066,8 @@ function htmlsanitize(str) {
 }
 
 
-String.prototype.rtrim = function() {
+// silence TS typechecker here:
+(String.prototype as any).rtrim = function() {
   return this.replace(/\s*$/g, "");
 }
 
@@ -4496,7 +4504,7 @@ AnnotationBubble.prototype.redrawBubble = function() {
 
 
 // NB: copy-and-paste from isOutputLineVisible with some minor tweaks
-function isOutputLineVisibleForBubbles(lineDivID) {
+export function isOutputLineVisibleForBubbles(lineDivID) {
   var pcod = $('#pyCodeOutputDiv');
 
   var lineNoTd = $('#' + lineDivID);
@@ -4526,10 +4534,10 @@ function traceQCheckMe(inputId, divId, answer) {
    var ans = $('#'+inputId).val()
    var attrs = answer.split(".")
    var correctAns = curEntry;
-   for (j in attrs) {
+   for (var j in attrs) {
        correctAns = correctAns[attrs[j]]
    }
-   feedbackElement = $("#" + divId + "_feedbacktext")
+   var feedbackElement = $("#" + divId + "_feedbacktext")
    if (ans.length > 0 && ans == correctAns) {
        feedbackElement.html('Correct')
    } else {
@@ -4718,7 +4726,7 @@ ExecutionVisualizer.prototype.activateJavaFrontend = function() {
         
         // i: actual index in json object; ind: apparent index
         for (var i=1, ind=0; i<obj.length; i++) {
-          val = obj[i];
+          var val = obj[i];
           var elide = val instanceof Array && val[0] == 'ELIDE';
           
           // add a new column and then pass in that newly-added column
@@ -4809,19 +4817,4 @@ ExecutionVisualizer.prototype.activateJavaFrontend = function() {
       });
   };
 
-}
-
-
-// TODO: abstract this better
-// only export methods and NOT objects, since they're copied by value
-module.exports = {
-  assert: assert,
-  htmlspecialchars: htmlspecialchars,
-  ExecutionVisualizer: ExecutionVisualizer,
-  // OK since these are constants, but make sure they're defined first
-  // (still hacky, though!)
-  SVG_ARROW_POLYGON: SVG_ARROW_POLYGON,
-  darkArrowColor: darkArrowColor,
-  lightArrowColor: lightArrowColor,
-  brightRed: brightRed,
 }

@@ -4562,10 +4562,10 @@ function traceQCheckMe(inputId, divId, answer) {
    var ans = $('#'+inputId).val()
    var attrs = answer.split(".")
    var correctAns = curEntry;
-   for (j in attrs) {
+   for (var j in attrs) {
        correctAns = correctAns[attrs[j]]
    }
-   feedbackElement = $("#" + divId + "_feedbacktext")
+   var feedbackElement = $("#" + divId + "_feedbacktext")
    if (ans.length > 0 && ans == correctAns) {
        feedbackElement.html('Correct')
    } else {
@@ -4754,7 +4754,7 @@ ExecutionVisualizer.prototype.activateJavaFrontend = function() {
         
         // i: actual index in json object; ind: apparent index
         for (var i=1, ind=0; i<obj.length; i++) {
-          val = obj[i];
+          var val = obj[i];
           var elide = val instanceof Array && val[0] == 'ELIDE';
           
           // add a new column and then pass in that newly-added column

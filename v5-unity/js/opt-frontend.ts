@@ -10,6 +10,10 @@ var activateSyntaxErrorSurvey = false; // true;
 var prevExecutionExceptionObjLst = [];
 
 
+// for TypeScript
+declare var initCodeopticon: any; // FIX later when porting Codeopticon
+
+
 // use Webpack to automatically package up these dependencies
 require('./jquery-3.0.0.min.js');
 require('./jquery.qtip.min.js');
@@ -130,7 +134,7 @@ SyntaxErrorSurveyBubble.prototype.destroyQTip = function() {
 }
 
 SyntaxErrorSurveyBubble.prototype.redrawCodelineBubble = function() {
-  if (isOutputLineVisibleForBubbles(this.domID)) {
+  if (pytutor.isOutputLineVisibleForBubbles(this.domID)) {
     if (this.qtipHidden) {
       $(this.hashID).qtip('show');
     }
@@ -351,12 +355,12 @@ function experimentalPopUpSyntaxErrorSurvey() {
       s.setTabSize(4);
       s.setUseSoftTabs(true);
       // disable extraneous indicators:
-      s.setFoldStyle('manual'); // no code folding indicators
+      (s as any /* TS too strict */).setFoldStyle('manual'); // no code folding indicators
       s.getDocument().setNewLineMode('unix'); // canonicalize all newlines to unix format
       bubbleAceEditor.setHighlightActiveLine(false);
       bubbleAceEditor.setShowPrintMargin(false);
       bubbleAceEditor.setBehavioursEnabled(false);
-      bubbleAceEditor.setFontSize(10);
+      bubbleAceEditor.setFontSize('10px');
       bubbleAceEditor.$blockScrolling = Infinity; // kludgy to shut up weird warnings
 
       $('#syntaxErrCodeDisplay').css('width', '320px');
@@ -364,7 +368,7 @@ function experimentalPopUpSyntaxErrorSurvey() {
 
       // don't do real-time syntax checks:
       // https://github.com/ajaxorg/ace/wiki/Syntax-validation
-      s.setOption("useWorker", false);
+      (s as any /* TS too strict*/).setOption("useWorker", false);
 
       var lang = prevExecutionExceptionObj.myAppState.py;
       var mod = 'python';
@@ -384,14 +388,17 @@ function experimentalPopUpSyntaxErrorSurvey() {
       bubbleAceEditor.setReadOnly(true);
 
       s.setAnnotations([{row: offendingLine - 1 /* zero-indexed */,
+                         column: null, /* for TS typechecking */
                          type: 'error',
                          text: prevExecutionExceptionObj.killerException.exception_msg}]);
 
       // scroll down to the line where the error occurred, trying to center it
       // by subtracing 3 from it (which should center it, assuming we're
       // displaying 5 lines of context)
+      // TODO: maybe use the 'center' parameter of scrollToLine to make
+      // it automatically look centered, instead of this hack:
       if ((offendingLine - 3) > 0) {
-        bubbleAceEditor.scrollToLine(offendingLine - 3);
+        (bubbleAceEditor as any /* TS too strict */).scrollToLine(offendingLine - 3);
       }
 
       // don't forget htmlspecialchars
