@@ -19,6 +19,31 @@ declare var diff_match_patch: any;
 declare var codeopticonUsername: string; // FIX later when porting Codeopticon
 declare var codeopticonSession: string;  // FIX later when porting Codeopticon
 
+// augment existing interface definitions from typings/
+interface JQuery {
+  // attr can also take a boolean as a second argument
+  attr(attributeName: string, b: boolean): JQuery;
+}
+
+interface JQueryStatic {
+  doTimeout: any;
+}
+
+declare namespace AceAjax {
+  interface IEditSession {
+    setFoldStyle: any;
+    setOption: any;
+    gutterRenderer: any;
+  }
+
+  interface Editor {
+    setHighlightGutterLine: any;
+    setDisplayIndentGuides: any;
+    on: any;
+  }
+}
+
+
 var originFrontendJsFile: string = undefined;
 
 // backend scripts to execute (Python 2 and 3 variants, if available)
@@ -167,14 +192,14 @@ function initDeltaObj() {
               startTime: new Date().getTime()};
 }
 
-function initAceEditor(height) {
+var initAceEditor = function(height) {
   pyInputAceEditor = ace.edit('codeInputPane');
   var s = pyInputAceEditor.getSession();
   // tab -> 4 spaces
   s.setTabSize(4);
   s.setUseSoftTabs(true);
   // disable extraneous indicators:
-  (s as any /* TS too strict */).setFoldStyle('manual'); // no code folding indicators
+  s.setFoldStyle('manual'); // no code folding indicators
   s.getDocument().setNewLineMode('unix'); // canonicalize all newlines to unix format
   pyInputAceEditor.setHighlightActiveLine(false);
   pyInputAceEditor.setShowPrintMargin(false);
@@ -189,7 +214,7 @@ function initAceEditor(height) {
 
   initDeltaObj();
   pyInputAceEditor.on('change', function(e) {
-    ($ as any /* TS too strict */).doTimeout('pyInputAceEditorChange', CODE_SNAPSHOT_DEBOUNCE_MS, snapshotCodeDiff); // debounce
+    $.doTimeout('pyInputAceEditorChange', CODE_SNAPSHOT_DEBOUNCE_MS, snapshotCodeDiff); // debounce
     clearFrontendError();
     s.clearAnnotations();
   });
@@ -485,7 +510,7 @@ function initTogetherJS() {
       if (appMode == 'edit' && msg.codeInputScrollTop !== undefined &&
           pyInputGetScrollTop() != msg.codeInputScrollTop) {
         // hack: give it a bit of time to settle first ...
-        ($ as any /* TS too strict */).doTimeout('pyInputCodeMirrorInit', 200, function() {
+        $.doTimeout('pyInputCodeMirrorInit', 200, function() {
           pyInputSetScrollTop(msg.codeInputScrollTop);
         });
       }
@@ -498,7 +523,7 @@ function initTogetherJS() {
     $("#codeInputWarnings").hide();
     $("#someoneIsTypingDiv").show();
 
-    ($ as any /* TS too strict */).doTimeout('codeMirrorWarningTimeout', 1000, function() { // debounce
+    $.doTimeout('codeMirrorWarningTimeout', 1000, function() { // debounce
       $("#codeInputWarnings").show();
       $("#someoneIsTypingDiv").hide();
     });
@@ -570,7 +595,7 @@ function initTogetherJS() {
       // give pyInputAceEditor a bit of time to settle with
       // its new value. this is hacky; ideally we have a callback function for
       // when setValue() completes.
-      ($ as any /* TS too strict */).doTimeout('pyInputCodeMirrorInit', 200, function() {
+      $.doTimeout('pyInputCodeMirrorInit', 200, function() {
         pyInputSetScrollTop(msg.codeInputScrollTop);
       });
     }
@@ -646,11 +671,11 @@ function initTogetherJS() {
   });
 }
 
-function TogetherjsReadyHandler() {
+var TogetherjsReadyHandler = function() {
   alert("ERROR: need to override TogetherjsReadyHandler()");
 }
 
-function TogetherjsCloseHandler() {
+var TogetherjsCloseHandler = function() {
   alert("ERROR: need to override TogetherjsCloseHandler()");
 }
 
@@ -706,7 +731,7 @@ function populateTogetherJsShareUrl() {
 
       $("#sharedSessionWhatLearned").val('');
       $("#sharedSessionWhatLearnedThanks").show();
-      ($ as any).doTimeout('sharedSessionWhatLearnedThanksFadeOut', 1000, function() {
+      $.doTimeout('sharedSessionWhatLearnedThanksFadeOut', 1000, function() {
         $("#sharedSessionWhatLearnedThanks").fadeOut(2000);
       });
     }
@@ -851,7 +876,7 @@ function genericOptFrontendReady(params) {
   /*
   pyInputAceEditor.getSession().on('changeScrollTop', function() {
     if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
-      ($ as any).doTimeout('codeInputScroll', 100, function() { // debounce
+      $.doTimeout('codeInputScroll', 100, function() { // debounce
         // note that this will send a signal back and forth both ways
         // (there's no easy way to prevent this), but it shouldn't keep
         // bouncing back and forth indefinitely since no the second signal
@@ -977,7 +1002,7 @@ function genericOptFrontendReady(params) {
   clearFrontendError();
 
   $("#embedLinkDiv").hide();
-  $("#executeBtn").attr('disabled', (false as any /* TS too strict */));
+  $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(executeCodeFromScratch);
 
   // for Versions 1 and 2, initialize here. But for version 3+, dynamically
@@ -1242,13 +1267,13 @@ function updateAppDisplay(newAppMode) {
       pendingCodeOutputScrollTop = null;
     }
 
-    ($ as any /* TS too strict */).doTimeout('pyCodeOutputDivScroll'); // cancel any prior scheduled calls
+    $.doTimeout('pyCodeOutputDivScroll'); // cancel any prior scheduled calls
 
     // TODO: this might interfere with experimentalPopUpSyntaxErrorSurvey (2015-04-19)
     myVisualizer.domRoot.find('#pyCodeOutputDiv').scroll(function(e) {
       var elt = $(this);
       // debounce
-      ($ as any /* TS too strict */).doTimeout('pyCodeOutputDivScroll', 100, function() {
+      $.doTimeout('pyCodeOutputDivScroll', 100, function() {
         // note that this will send a signal back and forth both ways
         if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
           // (there's no easy way to prevent this), but it shouldn't keep
@@ -1319,13 +1344,13 @@ function handleUncaughtExceptionFunc(trace) {
 
 function startExecutingCode() {
   $('#executeBtn').html("Please wait ... executing (takes up to 10 seconds)");
-  $('#executeBtn').attr('disabled', (true as any /* TS too strict */));
+  $('#executeBtn').attr('disabled', true);
   isExecutingCode = true; // nasty global
 }
 
 function doneExecutingCode() {
   $('#executeBtn').html("Visualize Execution");
-  $('#executeBtn').attr('disabled', (false as any /* TS too strict */));
+  $('#executeBtn').attr('disabled', false);
   isExecutingCode = false; // nasty global
 }
 
@@ -1421,7 +1446,7 @@ function executeCodeAndCreateViz(codeToExec,
             }
 
             // debounce to compress a bit ... 250ms feels "right"
-            ($ as any /* TS too strict */).doTimeout('updateOutputLogEvent', 250, function() {
+            $.doTimeout('updateOutputLogEvent', 250, function() {
               var obj: any = {type: 'updateOutput', step: args.myViz.curInstr,
                          curline: args.myViz.curLineNumber,
                          prevline: args.myViz.prevLineNumber};
@@ -2010,7 +2035,7 @@ display a brief "Thanks!" note]
 
     $("#iJustLearnedInput").val('');
     $("#iJustLearnedThanks").show();
-    ($ as any).doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
+    $.doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
       $("#iJustLearnedThanks").fadeOut(1000);
     });
   });
@@ -2161,7 +2186,7 @@ display a brief "Thanks!" note]
 
     $("#iJustLearnedInput").val('');
     $("#iJustLearnedThanks").show();
-    ($ as any).doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
+    $.doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
       $("#iJustLearnedThanks").fadeOut(1000);
     });
 
@@ -2185,6 +2210,7 @@ function logEventCodeopticon(obj) {}
 // only export methods and NOT objects, since they're copied by value
 // (unless they're constants, in which case they can be exported at the
 // end after they've been initialized)
+declare var module: any;
 module.exports = {
   setSurveyHTML: setSurveyHTML,
   genericOptFrontendReady: genericOptFrontendReady,

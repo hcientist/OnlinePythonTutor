@@ -4066,8 +4066,7 @@ function htmlsanitize(str) {
 }
 
 
-// silence TS typechecker here:
-(String.prototype as any).rtrim = function() {
+(String.prototype as any /* TS too strict */).rtrim = function() {
   return this.replace(/\s*$/g, "");
 }
 

@@ -355,7 +355,7 @@ function experimentalPopUpSyntaxErrorSurvey() {
       s.setTabSize(4);
       s.setUseSoftTabs(true);
       // disable extraneous indicators:
-      (s as any /* TS too strict */).setFoldStyle('manual'); // no code folding indicators
+      s.setFoldStyle('manual'); // no code folding indicators
       s.getDocument().setNewLineMode('unix'); // canonicalize all newlines to unix format
       bubbleAceEditor.setHighlightActiveLine(false);
       bubbleAceEditor.setShowPrintMargin(false);
@@ -368,7 +368,7 @@ function experimentalPopUpSyntaxErrorSurvey() {
 
       // don't do real-time syntax checks:
       // https://github.com/ajaxorg/ace/wiki/Syntax-validation
-      (s as any /* TS too strict*/).setOption("useWorker", false);
+      s.setOption("useWorker", false);
 
       var lang = prevExecutionExceptionObj.myAppState.py;
       var mod = 'python';

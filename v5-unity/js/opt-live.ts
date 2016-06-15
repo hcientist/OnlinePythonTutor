@@ -256,7 +256,7 @@ function optliveFinishSuccessfulExecution() {
   $(".ui-widget-content").css('font-size', '0.9em');
 
   // unbind first to prevent multiple bindings
-  sliderDiv.unbind('slide').bind('slide', function(evt, ui) {
+  (sliderDiv as any /* TS too strict*/).unbind('slide').bind('slide', function(evt, ui) {
     // this is SUPER subtle. if this value was changed programmatically,
     // then evt.originalEvent will be undefined. however, if this value
     // was changed by a user-initiated event, then this code should be
@@ -375,14 +375,14 @@ function initAceEditor(height) {
   var s = pyInputAceEditor.getSession();
 
   // disable extraneous indicators:
-  (s as any /* TS too strict */).setFoldStyle('manual'); // no code folding indicators
+  s.setFoldStyle('manual'); // no code folding indicators
   s.getDocument().setNewLineMode('unix'); // canonicalize all newlines to unix format
   pyInputAceEditor.setHighlightActiveLine(false);
   pyInputAceEditor.setShowPrintMargin(false);
   pyInputAceEditor.setBehavioursEnabled(false);
 
-  (pyInputAceEditor as any /* TS too strict */).setHighlightGutterLine(false); // to avoid gray highlight over gutter of active line
-  (pyInputAceEditor as any /* TS too strict */).setDisplayIndentGuides(false); // to avoid annoying gray vertical lines
+  pyInputAceEditor.setHighlightGutterLine(false); // to avoid gray highlight over gutter of active line
+  pyInputAceEditor.setDisplayIndentGuides(false); // to avoid annoying gray vertical lines
 
   pyInputAceEditor.$blockScrolling = Infinity; // kludgy to shut up weird warnings
 
@@ -404,8 +404,8 @@ function initAceEditor(height) {
     }
   });
 
-  (pyInputAceEditor as any /* TS too strict*/).on('change', function(e) {
-    ($ as any /* TS too strict */).doTimeout('pyInputAceEditorChange',
+  pyInputAceEditor.on('change', function(e) {
+    $.doTimeout('pyInputAceEditorChange',
                 500, /* go a bit faster than CODE_SNAPSHOT_DEBOUNCE_MS to feel more snappy */
                 //CODE_SNAPSHOT_DEBOUNCE_MS /* match the value in opt-frontend-common.js for consistency and easy apples-to-apples comparisons later on */,
                 optliveExecuteCodeFromScratch); // debounce
@@ -415,12 +415,12 @@ function initAceEditor(height) {
 
   // don't do real-time syntax checks:
   // https://github.com/ajaxorg/ace/wiki/Syntax-validation
-  (s as any /* TS too strict */).setOption("useWorker", false);
+  s.setOption("useWorker", false);
   pyInputAceEditor.focus();
 
   // custom gutter renderer, make it wider to accomodate arrows on left
   // http://stackoverflow.com/a/28404331
-  (s as any /* TS too strict*/).gutterRenderer = {
+  s.gutterRenderer = {
     getWidth: function(session, lastLineNumber, config) {
       return (lastLineNumber.toString().length * config.characterWidth) + 6;
     },

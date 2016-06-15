@@ -68,14 +68,14 @@ function getCombinedCode(id) {
 }
 
 function startRunningTest(id) {
-  $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', (true as any) /* TS too strict */);
+  $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', true);
   var e = ace.edit('testCaseEditor_' + id);
   e.getSession().clearAnnotations();
   $('#outputTd_' + id).html('');
 }
 
 function doneRunningTest() {
-  $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', (false as any) /* TS too strict */);
+  $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', false);
   $(".runTestCase").html('Run');
   $(".vizTestCase").html('Visualize');
 }
@@ -133,10 +133,10 @@ function addTestcase(initialCod /* optional code to pre-seed this test */,
   s.setTabSize(2);
   s.setUseSoftTabs(true);
   // disable extraneous indicators:
-  (s as any /* TS too strict */).setFoldStyle('manual'); // no code folding indicators
+  s.setFoldStyle('manual'); // no code folding indicators
   // don't do real-time syntax checks:
   // https://github.com/ajaxorg/ace/wiki/Syntax-validation
-  (s as any /* TS too strict */).setOption("useWorker", false);
+  s.setOption("useWorker", false);
 
   // TODO: change syntax highlighting mode if the user changes languages:
   var lang = $('#pythonVersionSelector').val();
