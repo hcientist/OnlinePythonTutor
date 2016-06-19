@@ -495,6 +495,10 @@ class PGLogger(bdb.Bdb):
         # Value: parent frame
         self.closures = {}
 
+        # Key:   code object for a lambda
+        # Value: parent frame
+        self.lambda_closures = {}
+
         # set of function objects that were defined in the global scope
         self.globally_defined_funcs = set()
 
@@ -538,9 +542,12 @@ class PGLogger(bdb.Bdb):
 
     # Returns the (lexical) parent of a function value.
     def get_parent_of_function(self, val):
-      if val not in self.closures:
+      if val in self.closures:
+          return self.get_frame_id(self.closures[val])
+      elif val in self.lambda_closures:
+          return self.get_frame_id(self.lambda_closures[val])
+      else:
         return None
-      return self.get_frame_id(self.closures[val])
 
 
     # Returns the (lexical) parent frame of the function that was called
@@ -555,6 +562,7 @@ class PGLogger(bdb.Bdb):
     # to make an educated guess based on the contents of local
     # variables inherited from possible parent frame candidates.
     def get_parent_frame(self, frame):
+      #print >> sys.stderr, 'get_parent_frame: frame.f_code', frame.f_code
       for (func_obj, parent_frame) in self.closures.items():
         # ok, there's a possible match, but let's compare the
         # local variables in parent_frame to those of frame
@@ -574,6 +582,11 @@ class PGLogger(bdb.Bdb):
 
           if all_matched:
             return parent_frame
+
+      for (lambda_code_obj, parent_frame) in self.lambda_closures.items():
+        if lambda_code_obj == frame.f_code:
+          # TODO: should we do more verification like above?!?
+          return parent_frame
 
       return None
 
@@ -688,7 +701,7 @@ class PGLogger(bdb.Bdb):
         print >> sys.stderr, '=== STACK ===', 'curindex:', self.curindex
         for (e,ln) in self.stack:
           print >> sys.stderr, e.f_code.co_name + ' ' + e.f_code.co_filename + ' ' + str(ln)
-        print >> sys.stderr, "top_frame", top_frame.f_code.co_name
+        print >> sys.stderr, "top_frame", top_frame.f_code.co_name, top_frame.f_code
         '''
 
 
@@ -792,6 +805,7 @@ class PGLogger(bdb.Bdb):
 
         # returns a dict with keys: function name, frame id, id of parent frame, encoded_locals dict
         def create_encoded_stack_entry(cur_frame):
+          #print >> sys.stderr, '- create_encoded_stack_entry', cur_frame, self.closures, self.lambda_closures
           ret = {}
 
 
@@ -955,6 +969,21 @@ class PGLogger(bdb.Bdb):
                 self.parent_frames_set.add(chosen_parent_frame) # unequivocally add to this set!!!
                 if not chosen_parent_frame in self.zombie_frames:
                   self.zombie_frames.append(chosen_parent_frame)
+          else:
+            # look for code objects of lambdas defined within this
+            # function, which comes up in cases like line 2 of:
+            # def x(y):
+            #   (lambda z: lambda w: z+y)(y)
+            #
+            # x(42)
+            if top_frame.f_code.co_consts:
+              for e in top_frame.f_code.co_consts:
+                if type(e) == types.CodeType and e.co_name == '<lambda>':
+                  # TODO: what if it's already in lambda_closures?
+                  self.lambda_closures[e] = top_frame
+                  self.parent_frames_set.add(top_frame) # copy-paste from above
+                  if not top_frame in self.zombie_frames:
+                    self.zombie_frames.append(top_frame)
         else:
           # if there is only a global scope visible ...
           for (k, v) in get_user_globals(top_frame).items():
