@@ -81,11 +81,11 @@
             "x": 3
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "f", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "f_f1", 
+          "unique_hash": "f_f1_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -130,11 +130,11 @@
             "x": 3
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "f", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "f_f1", 
+          "unique_hash": "f_f1_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -323,13 +323,13 @@
             "x": 4
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "<lambda> <line 3>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "<lambda> <line 3>_f2", 
+          "unique_hash": "<lambda> <line 3>_f2_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -404,13 +404,13 @@
             "x": 4
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "<lambda> <line 3>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "<lambda> <line 3>_f2", 
+          "unique_hash": "<lambda> <line 3>_f2_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -1018,11 +1018,11 @@
             "x": 1
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "f", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "f_f4", 
+          "unique_hash": "f_f4_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -1124,11 +1124,11 @@
             "x": 1
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "f", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "f_f4", 
+          "unique_hash": "f_f4_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -1366,13 +1366,13 @@
             "x": 2
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "<lambda> <line 3>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             4
           ], 
-          "unique_hash": "<lambda> <line 3>_f5", 
+          "unique_hash": "<lambda> <line 3>_f5_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -1499,13 +1499,13 @@
             "x": 2
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "<lambda> <line 3>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             4
           ], 
-          "unique_hash": "<lambda> <line 3>_f5", 
+          "unique_hash": "<lambda> <line 3>_f5_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -1801,7 +1801,7 @@
           "func_name": "<lambda> <line 3>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            5, 
+            2, 
             4
           ], 
           "unique_hash": "<lambda> <line 3>_f6", 
@@ -1962,7 +1962,7 @@
           "func_name": "<lambda> <line 3>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            5, 
+            2, 
             4
           ], 
           "unique_hash": "<lambda> <line 3>_f6", 
@@ -2124,7 +2124,7 @@
           "func_name": "<lambda> <line 3>", 
           "is_zombie": false, 
           "parent_frame_id_list": [
-            5, 
+            2, 
             4
           ], 
           "unique_hash": "<lambda> <line 3>_f6", 

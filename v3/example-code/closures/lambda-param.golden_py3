@@ -81,11 +81,11 @@
             "x": 10
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f1", 
+          "unique_hash": "foo_f1_p", 
           "ordered_varnames": [
             "x"
           ]
@@ -130,11 +130,11 @@
             "x": 10
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "foo", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "foo_f1", 
+          "unique_hash": "foo_f1_p", 
           "ordered_varnames": [
             "x"
           ]

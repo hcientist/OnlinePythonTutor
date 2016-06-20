@@ -131,11 +131,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]
@@ -196,11 +196,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "halveElements", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "halveElements_f1", 
+          "unique_hash": "halveElements_f1_p", 
           "ordered_varnames": [
             "lst"
           ]

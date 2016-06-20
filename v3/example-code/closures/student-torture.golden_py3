@@ -47,11 +47,11 @@
             "t": 0
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "f", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "f_f1", 
+          "unique_hash": "f_f1_p", 
           "ordered_varnames": [
             "t"
           ]
@@ -86,11 +86,11 @@
             "t": 0
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "f", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "f_f1", 
+          "unique_hash": "f_f1_p", 
           "ordered_varnames": [
             "t"
           ]
@@ -194,13 +194,13 @@
             "t": 0
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "g", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "g_f2", 
+          "unique_hash": "g_f2_p", 
           "ordered_varnames": [
             "t"
           ]
@@ -260,13 +260,13 @@
             "t": 0
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "g", 
           "is_zombie": false, 
           "parent_frame_id_list": [
             1
           ], 
-          "unique_hash": "g_f2", 
+          "unique_hash": "g_f2_p", 
           "ordered_varnames": [
             "t"
           ]

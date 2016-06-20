@@ -82,11 +82,11 @@
             "low": 1
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "sumsquares", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "sumsquares_f1", 
+          "unique_hash": "sumsquares_f1_p", 
           "ordered_varnames": [
             "low", 
             "high"
@@ -133,11 +133,11 @@
             "low": 1
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "sumsquares", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "sumsquares_f1", 
+          "unique_hash": "sumsquares_f1_p", 
           "ordered_varnames": [
             "low", 
             "high"

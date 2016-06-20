@@ -117,11 +117,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "make_italic", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "make_italic_f1", 
+          "unique_hash": "make_italic_f1_p", 
           "ordered_varnames": [
             "fn"
           ]
@@ -174,11 +174,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "make_italic", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "make_italic_f1", 
+          "unique_hash": "make_italic_f1_p", 
           "ordered_varnames": [
             "fn"
           ]
@@ -321,11 +321,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "make_bold", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "make_bold_f2", 
+          "unique_hash": "make_bold_f2_p", 
           "ordered_varnames": [
             "fn"
           ]
@@ -406,11 +406,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "make_bold", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "make_bold_f2", 
+          "unique_hash": "make_bold_f2_p", 
           "ordered_varnames": [
             "fn"
           ]

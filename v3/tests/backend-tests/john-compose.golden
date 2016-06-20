@@ -54,11 +54,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "compose1", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "compose1_f1", 
+          "unique_hash": "compose1_f1_p", 
           "ordered_varnames": [
             "f", 
             "g"
@@ -111,11 +111,11 @@
             ]
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "compose1", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "compose1_f1", 
+          "unique_hash": "compose1_f1_p", 
           "ordered_varnames": [
             "f", 
             "g"

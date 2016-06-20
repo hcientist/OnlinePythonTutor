@@ -26,19 +26,8 @@
       "event": "step_line"
     }, 
     {
-      "ordered_globals": [
-        "prefix"
-      ], 
-      "stdout": "", 
-      "exception_msg": "NameError: name 'input' is not defined", 
-      "func_name": "<module>", 
-      "stack_to_render": [], 
-      "globals": {
-        "prefix": "Hello "
-      }, 
-      "heap": {}, 
-      "line": 4, 
-      "event": "exception"
+      "prompt": "Enter your name", 
+      "event": "raw_input"
     }
   ]
 }

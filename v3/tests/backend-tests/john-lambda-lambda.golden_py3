@@ -159,11 +159,11 @@
             "a": 3
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "<lambda> <line 5>", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "<lambda> <line 5>_f2", 
+          "unique_hash": "<lambda> <line 5>_f2_p", 
           "ordered_varnames": [
             "a"
           ]
@@ -221,11 +221,11 @@
             "a": 3
           }, 
           "is_highlighted": true, 
-          "is_parent": false, 
+          "is_parent": true, 
           "func_name": "<lambda> <line 5>", 
           "is_zombie": false, 
           "parent_frame_id_list": [], 
-          "unique_hash": "<lambda> <line 5>_f2", 
+          "unique_hash": "<lambda> <line 5>_f2_p", 
           "ordered_varnames": [
             "a"
           ]
