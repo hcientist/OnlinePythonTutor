@@ -1815,15 +1815,22 @@ Please support our research and keep this tool free by <b><a href="https://docs.
 If you are at least 60 years old, please also <a href="https://docs.google.com/forms/d/1lrXsE04ghfX9wNzTVwm1Wc6gQ5I-B4uw91ACrbDhJs8/viewform" target="_blank">fill out this survey</a>.</p>'
 
 v7: (deployed on 2016-05-22) - use Google Forms links - emphasize the over-60 survey more, but same links
-*/
 var survey_v7 = '\n\
 <p style="font-size: 10pt; margin-top: 10px; line-height: 175%;">\n\
 If you are <b>at least 60 years old</b>, please support our research by <a href="https://docs.google.com/forms/d/1lrXsE04ghfX9wNzTVwm1Wc6gQ5I-B4uw91ACrbDhJs8/viewform" target="_blank">filling out this short survey</a>.\n\
 <br/>\n\
 <span style="font-size: 9pt;">Everyone else can help keep this tool free by <a href="https://docs.google.com/forms/d/1-aKilu0PECHZVRSIXHv8vJpEuKUO9uG3MrH864uX56U/viewform" target="_blank">filling out this usage survey</a>.</span>\n\
 </p>'
+v8: (deployed on 2016-06-20) - like v7 except emphasize the main usage survey more, and have the over-60 survey as auxiliary
+*/
+var survey_v8 = '\n\
+<p style="font-size: 10pt; margin-top: 10px; margin-bottom: 15px; line-height: 175%;">\n\
+<span>Support our research and keep this tool free by <a href="https://docs.google.com/forms/d/1-aKilu0PECHZVRSIXHv8vJpEuKUO9uG3MrH864uX56U/viewform" target="_blank">filling out this user survey</a>.</span>\n\
+<br/>\n\
+<span style="font-size: 9pt;">If you are <b>at least 60 years old</b>, please also fill out <a href="https://docs.google.com/forms/d/1lrXsE04ghfX9wNzTVwm1Wc6gQ5I-B4uw91ACrbDhJs8/viewform" target="_blank">our survey about learning programming</a>.</span>\n\
+</p>'
 
-var survey_html = survey_v7;
+var survey_html = survey_v8;
 
 function setSurveyHTML() {
   $('#surveyPane').html(survey_html);
