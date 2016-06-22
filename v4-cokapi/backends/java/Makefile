@@ -1,8 +1,10 @@
+# build a docker container
 all:
-	cd java_jail/cp && find . -name "*.java" -print | xargs javac -cp .:javax.json-1.0.jar:/usr/lib/jvm/java-7-openjdk-amd64/lib/tools.jar
+	docker build -t="pgbovine/cokapi-java:v1" .
 
+# test running the Java backend in the docker container on a simple test input JSON passed as a command-line arg:
 test:
-	java -Xmx128M -cp java_jail/cp:java_jail/cp/javax.json-1.0.jar:/usr/lib/jvm/java-7-openjdk-amd64/lib/tools.jar:java_jail/cp/visualizer-stdlib traceprinter.InMemory < java_jail/cp/traceprinter/test-input.txt
+	docker run -m 512M --rm --user=netuser --net=none --cap-drop all pgbovine/cokapi-java:v1 /tmp/run-java-backend.sh '{"usercode": "public class Test { public static void main(String[] args) { int x=42; x+=1; x+=1; x+=1;} }", "options": {}, "args": [], "stdin": ""}'
 
-bigtest:
-	java -Xmx128M -cp java_jail/cp:java_jail/cp/javax.json-1.0.jar:/usr/lib/jvm/java-7-openjdk-amd64/lib/tools.jar:java_jail/cp/visualizer-stdlib traceprinter.InMemory < big-input.txt 
+bash:
+	docker run -m 512M -t -i --rm --user=netuser --net=none --cap-drop all pgbovine/cokapi-java:v1 bash

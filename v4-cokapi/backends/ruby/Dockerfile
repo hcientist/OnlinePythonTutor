@@ -1,11 +1,8 @@
-# 2016-06-22: THIS FILE IS NOW DEPRECATED. See Dockerfiles in backends/
-# for each individual language backend
-
 # to build:
-# docker build -t="pgbovine/cokapi:v1" .
+# docker build -t="pgbovine/cokapi-ruby:v1" .
 #
 # to test:
-# docker run -t -i --rm --user=netuser --net=none --cap-drop all pgbovine/cokapi:v1 bash
+# docker run -t -i --rm --user=netuser --net=none --cap-drop all pgbovine/cokapi-ruby:v1 bash
 #
 # remember --rm or else stale old containers will be left around!
 # use "docker ps -a" to see all containers
@@ -21,7 +18,6 @@ MAINTAINER Philip Guo <philip@pgbovine.net>
 #
 # lots of packages required especially to build ruby and to use the compiled version of 'gem'
 RUN apt-get update && apt-get install -y \
-  openjdk-7-jdk \
   python \
   build-essential \
   zlibc \
@@ -36,8 +32,8 @@ RUN apt-get update && apt-get install -y \
 # run all of this stuff early so that we don't invalidate the cache
 RUN mkdir /tmp/ruby
 # automatically untars
-ADD backends/ruby/custom-ruby-interpreter/ruby-2.2.2.tar.gz /tmp/ruby
-ADD backends/ruby/custom-ruby-interpreter/altered-files /tmp/ruby/ruby-2.2.2
+ADD custom-ruby-interpreter/ruby-2.2.2.tar.gz /tmp/ruby
+ADD custom-ruby-interpreter/altered-files /tmp/ruby/ruby-2.2.2
 RUN mkdir /tmp/ruby/ruby-2.2.2-custom-OPT/
 RUN cd /tmp/ruby/ruby-2.2.2 && ./configure --prefix=/tmp/ruby/ruby-2.2.2-custom-OPT/
 # beware takes a long time! so make sure we cache the build
@@ -45,28 +41,13 @@ RUN cd /tmp/ruby/ruby-2.2.2 && make && make install
 # install custom gem
 RUN /tmp/ruby/ruby-2.2.2-custom-OPT/bin/gem install debug_inspector
 
-
-# Java backend (put early in Dockerfile since it doesn't change as
-# frequently and takes longer to build)
-RUN mkdir /tmp/java_jail
-RUN mkdir /tmp/java_jail/cp
-ADD backends/java/java_jail/cp/ /tmp/java_jail/cp
-
-# compile all Java files within cp/
-RUN cd /tmp/java_jail/cp && find . -name "*.java" -print | xargs javac -cp .:javax.json-1.0.jar:/usr/lib/jvm/java-7-openjdk-amd64/lib/tools.jar
-
-COPY backends/java/run-java-backend.sh /tmp/
-RUN chmod a+x /tmp/run-java-backend.sh
-
-
-# Ruby backend
-COPY backends/ruby/pg_logger.rb /tmp/ruby/
+COPY pg_logger.rb /tmp/ruby/
 RUN cd /tmp/ruby && ln -s ruby-2.2.2-custom-OPT/bin/ruby
 
 # To properly run Ruby tests, become root since it needs to write files (maybe ?):
 # $ docker run -t -i --rm --net=none --cap-drop all pgbovine/cokapi:v1 bash
-#COPY backends/ruby/golden_test.py /tmp/ruby/
+#COPY golden_test.py /tmp/ruby/
 #RUN mkdir /tmp/ruby/tests
-#ADD backends/ruby/tests /tmp/ruby/tests
+#ADD tests /tmp/ruby/tests
 
 RUN useradd netuser
