@@ -45,7 +45,7 @@ COPY pg_logger.rb /tmp/ruby/
 RUN cd /tmp/ruby && ln -s ruby-2.2.2-custom-OPT/bin/ruby
 
 # To properly run Ruby tests, become root since it needs to write files (maybe ?):
-# $ docker run -t -i --rm --net=none --cap-drop all pgbovine/cokapi:v1 bash
+# $ docker run -t -i --rm --net=none --cap-drop all pgbovine/cokapi-ruby:v1 bash
 #COPY golden_test.py /tmp/ruby/
 #RUN mkdir /tmp/ruby/tests
 #ADD tests /tmp/ruby/tests
