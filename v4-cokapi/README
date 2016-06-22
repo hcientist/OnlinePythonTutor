@@ -1,9 +1,38 @@
 2015-01-24 - This is an experimental version of OPT that adds support
-for multiple target languages under one unified app. It relies on node
-for the server and docker for sandboxing (if available).
+for multiple target languages under one unified app. It relies on
+Node.js for the server and docker for sandboxing
 
 To install node dependencies, run 'make deps'
 
 ---
+This directory provides only backends. Look in ../v3/ for frontend code
 
-This directory provides only backends. Look in ../v3/ for the frontend.
+Once you start up the Node.js server, then you can ping it with
+HTTP/HTTPS endpoints such as:
+
+  /exec_java
+  /exec_java_jsonp
+
+to run various language backends, passing arguments in via GET
+parameters. Each set of endpoints comes in a pair that returns either
+regular JSON data (e.g., /exec_java) or JSONP (e.g., /exec_java_jsonp)
+for cross-domain AJAX.
+
+
+Look at variables such as JAVA_JSONP_ENDPOINT in
+../v3/js/opt-frontend-common.js to see how the frontend calls the
+backends via JSONP using jQuery code like:
+
+      // the REAL call uses JSONP
+      // http://learn.jquery.com/ajax/working-with-jsonp/
+      assert(jsonp_endpoint);
+      $.ajax({
+        url: jsonp_endpoint,
+        // The name of the callback parameter, as specified by the YQL service
+        jsonp: "callback",
+        dataType: "jsonp",
+        data: {user_script : codeToExec,
+               options_json: JSON.stringify(backendOptionsObj)},
+        success: execCallback,
+      });
+
