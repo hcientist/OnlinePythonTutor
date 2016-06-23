@@ -1,3 +1,5 @@
+# JavaScript visualizer backend using Node.js
+
 # to build:
 # docker build -t="pgbovine/cokapi-js:v1" .
 #
@@ -22,10 +24,13 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir /tmp/javascript
 
-# IMPORTANT: make sure to run 'make deps' in backends/javascript first
+# IMPORTANT: make sure to run 'make deps' in this directory first
 # to install the proper node modules inside of here via npm before
 # creating this Docker container, since it's a pain to install npm and
 # modules within the container. Also untar node-v6.0.0-linux-x64.tar.xz
 # (or the proper version of Node so that the proper binary is within the
 # directory already before copying into container)
+#
+# TODO: make the above steps unnecessary by installing everything inside
+# of the docker container, for simplicity and reproducibility
 ADD . /tmp/javascript

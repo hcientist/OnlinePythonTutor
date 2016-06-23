@@ -1,3 +1,5 @@
+# Ruby visualizer backend using a custom-compiled version of Ruby (MRI) 2.2
+
 # to build:
 # docker build -t="pgbovine/cokapi-ruby:v1" .
 #
