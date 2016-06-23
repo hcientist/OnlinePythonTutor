@@ -10,6 +10,6 @@
 # echo doesn't work here since it interprets '\n' and other chars
 #
 # TODO: try different -Xmx512m memory settings depending on user needs
-cat <<ENDEND | java -Xmx512m -cp /tmp/java_jail/cp:/tmp/java_jail/cp/javax.json-1.0.jar:/usr/lib/jvm/java-7-openjdk-amd64/lib/tools.jar:/tmp/java_jail/cp/visualizer-stdlib traceprinter.InMemory
+cat <<ENDEND | java -Xmx512m -cp /tmp/java_jail/cp:/tmp/java_jail/cp/javax.json-1.0.jar:/usr/lib/jvm/java-8-oracle/lib/tools.jar:/tmp/java_jail/cp/visualizer-stdlib traceprinter.InMemory
 $1
 ENDEND
