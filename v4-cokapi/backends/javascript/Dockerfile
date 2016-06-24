@@ -10,7 +10,7 @@
 # use "docker ps -a" to see all containers
 
 # don't use 'latest' tag since that might change
-FROM ubuntu:14.04.1
+FROM ubuntu:16.04
 MAINTAINER Philip Guo <philip@pgbovine.net>
 
 RUN useradd netuser
@@ -23,14 +23,20 @@ RUN apt-get update && apt-get install -y \
   python
 
 RUN mkdir /tmp/javascript
+ADD node-v6.0.0-linux-x64.tar.xz /tmp/javascript
 
-# IMPORTANT: make sure to run 'make deps' in this directory first
-# to install the proper node modules inside of here via npm before
-# creating this Docker container, since it's a pain to install npm and
-# modules within the container. Also untar node-v6.0.0-linux-x64.tar.xz
-# (or the proper version of Node so that the proper binary is within the
-# directory already before copying into container)
-#
-# TODO: make the above steps unnecessary by installing everything inside
-# of the docker container, for simplicity and reproducibility
-ADD . /tmp/javascript
+# use this to tell npm what dependencies to install
+ADD package.json /tmp/javascript
+
+# - customize $PATH to run my version of npm
+RUN cd /tmp/javascript/ && PATH=/tmp/javascript/node-v6.0.0-linux-x64/bin/:$PATH npm install
+
+# add tests to container
+ADD golden_test.py /tmp/javascript
+RUN mkdir /tmp/javascript/tests/
+ADD tests/ /tmp/javascript/tests/
+
+
+# do this last so that even if this file changes, everything else
+# earlier in this file doesn't need to be re-run
+ADD jslogger.js /tmp/javascript

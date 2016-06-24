@@ -28,10 +28,13 @@ see v8/src/debug-debugger.js for some of the impl of the API
 v8 debugger protocol:
 https://code.google.com/p/v8-wiki/wiki/DebuggerProtocol
 
-Prereqs:
-npm install eval
-npm install underscore
-npm install minimist
+
+See package.json for dependencies. Right now it's very picky about
+dependency versions, especially the exact versions of:
+
+  "eval": "0.1.0" (or else line numbers don't show up on syntax errors)
+  "typescript": "1.4"
+
 
 For TypeScript support:
 

@@ -1,5 +1,24 @@
-# to run on a specific input file: make infile=tests/fact.js
+# Docker-specific targets
+
+# build a docker container
 all:
+	docker build -t="pgbovine/cokapi-js:v1" .
+
+test:
+	docker run -m 512M -t -i --rm --user=netuser --net=none --cap-drop all pgbovine/cokapi-js:v1 /tmp/javascript/node-v6.0.0-linux-x64/bin/node --expose-debug-as=Debug /tmp/javascript/jslogger.js --jsondump=true --code="var x=1; var y=2; var z=3;"
+
+regtest:
+	# run regression test suite as root
+	docker run -m 512M -t -i --rm --net=none --cap-drop all pgbovine/cokapi-js:v1 sh -c "cd /tmp/javascript && python golden_test.py --all"
+
+bash:
+	docker run -m 512M -t -i --rm --user=netuser --net=none --cap-drop all pgbovine/cokapi-js:v1 bash
+
+
+# older targets
+
+# to run on a specific input file: make infile=tests/fact.js
+run:
 	jshint jslogger.js && node --expose-debug-as=Debug jslogger.js $(infile)
 
 # to run on a specific input file: make trace infile=tests/fact.js
@@ -13,20 +32,12 @@ pretty:
 tspretty:
 	jshint jslogger.js && node --expose-debug-as=Debug jslogger.js --prettydump=true --typescript=true $(infile)
 
-test:
+goldentest:
 	jshint jslogger.js && python golden_test.py --all
 
 diffall:
 	jshint jslogger.js && python golden_test.py --diffall
 
-# run this before creating any Docker containers
-# super weird -- need eval@0.1.0 or else line numbers don't show up on syntax errors!
 deps:
-	npm install eval@0.1.0 underscore minimist source-map typescript@1.4
 	tar -xvf node-v6.0.0-linux-x64.tar.xz
-
-docker:
-	docker build -t="pgbovine/cokapi-js:v1" .
-
-dockerbash:
-	docker run -t -i --rm --user=netuser --net=none --cap-drop all pgbovine/cokapi-js:v1 bash
+	npm install # rely on package.json
