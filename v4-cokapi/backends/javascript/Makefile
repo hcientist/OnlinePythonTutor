@@ -9,7 +9,7 @@ test:
 
 regtest:
 	# run regression test suite as root
-	docker run -m 512M -t -i --rm --net=none --cap-drop all pgbovine/cokapi-js:v1 sh -c "cd /tmp/javascript && python golden_test.py --all"
+	docker run -m 512M -t -i --rm --net=none --cap-drop all -w /tmp/javascript pgbovine/cokapi-js:v1 python golden_test.py --all
 
 bash:
 	docker run -m 512M -t -i --rm --user=netuser --net=none --cap-drop all pgbovine/cokapi-js:v1 bash
