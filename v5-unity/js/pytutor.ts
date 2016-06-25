@@ -2,7 +2,22 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-// TODO: add better abstractions so we don't need to 'export' so much stuff
+/* TODO:
+
+- refactor in ES6 class syntax
+
+- add better abstractions so we don't need to 'export' so much stuff
+  with awkward 'export' statements
+
+- cleanly separate out the data structure visualization from the code
+  display from the slider/vcrControls, so that we can mix and match them
+
+- sub in a non-live version of the live editor from opt-live.js in
+  addition to the janky current version of the editor
+
+- get jquery.qtip working (i dunno if it currently works)
+
+*/
 
 require('./lib/d3.v2.min.js');
 require('./lib/jquery-3.0.0.min.js');
