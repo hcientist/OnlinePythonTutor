@@ -16,12 +16,9 @@ module.exports = {
     // some included libraries reference 'jquery', so point to it:
     resolve : {
         alias: {
-            "jquery": __dirname + "/js/jquery-3.0.0.min.js",
-            "$": __dirname + "/js/jquery-3.0.0.min.js",
-            //"jquery": __dirname + "/js/jquery-1.8.2.min.js",
-            //"$": __dirname + "/js/jquery-1.8.2.min.js",
-
-            "$.bbq": __dirname + "/js/jquery.ba-bbq.js",
+            "jquery": __dirname + "/js/lib/jquery-3.0.0.min.js",
+            "$": __dirname + "/js/lib/jquery-3.0.0.min.js",
+            "$.bbq": __dirname + "/js/lib/jquery.ba-bbq.js",
         }
     },
 
@@ -32,9 +29,7 @@ module.exports = {
     },
 
     output: {
-        // keep output in this directory so that the server can easily
-        // find images and other static assets (though it pollutes pwd)
-        path: __dirname, // + "/webpack-output/",
+        path: __dirname + "/build/",
         // TODO: use 'bundle.[hash].js' for fingerprint hashing
         // to create unique filenames for releases:
         // https://webpack.github.io/docs/long-term-caching.html
@@ -50,5 +45,5 @@ module.exports = {
         ]
     },
 
-    devtool: 'source-map', // VERY important to have source maps for debugging
+    devtool: 'source-map', // source maps are very important to ease debugging
 };

@@ -13,22 +13,20 @@ var prevExecutionExceptionObjLst = [];
 // for TypeScript
 declare var initCodeopticon: any; // FIX later when porting Codeopticon
 
-
-// use Webpack to automatically package up these dependencies
-require('./jquery-3.0.0.min.js');
-require('./jquery.qtip.min.js');
+require('./lib/jquery-3.0.0.min.js');
+require('./lib/jquery.qtip.min.js');
 require('../css/jquery.qtip.css');
 
 // just punt and use global script dependencies
-require("script!./ace/src-min-noconflict/ace.js");
-require('script!./ace/src-min-noconflict/mode-python.js');
-require('script!./ace/src-min-noconflict/mode-javascript.js');
-require('script!./ace/src-min-noconflict/mode-typescript.js');
-require('script!./ace/src-min-noconflict/mode-c_cpp.js');
-require('script!./ace/src-min-noconflict/mode-java.js');
-require('script!./ace/src-min-noconflict/mode-ruby.js');
+require("script!./lib/ace/src-min-noconflict/ace.js");
+require('script!./lib/ace/src-min-noconflict/mode-python.js');
+require('script!./lib/ace/src-min-noconflict/mode-javascript.js');
+require('script!./lib/ace/src-min-noconflict/mode-typescript.js');
+require('script!./lib/ace/src-min-noconflict/mode-c_cpp.js');
+require('script!./lib/ace/src-min-noconflict/mode-java.js');
+require('script!./lib/ace/src-min-noconflict/mode-ruby.js');
 
-require('script!./socket.io-client/socket.io.js');
+require('script!./lib/socket.io-client/socket.io.js');
 
 
 var optCommon = require('./opt-frontend-common.ts');

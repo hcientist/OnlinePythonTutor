@@ -5,8 +5,6 @@
 // TODO: using myVisualizer here borrowed from opt-frontend-common.js is
 // very dicey and dangerous due to scoping issues!
 
-// use Webpack to automatically package up these dependencies
-
 require('../css/opt-frontend.css');
 require('../css/opt-live.css');
 
@@ -15,13 +13,13 @@ var pytutor = require('./pytutor.ts');
 var assert = pytutor.assert;
 
 // just punt and use global script dependencies
-require("script!./ace/src-min-noconflict/ace.js");
-require('script!./ace/src-min-noconflict/mode-python.js');
-require('script!./ace/src-min-noconflict/mode-javascript.js');
-require('script!./ace/src-min-noconflict/mode-typescript.js');
-require('script!./ace/src-min-noconflict/mode-c_cpp.js');
-require('script!./ace/src-min-noconflict/mode-java.js');
-require('script!./ace/src-min-noconflict/mode-ruby.js');
+require("script!./lib/ace/src-min-noconflict/ace.js");
+require('script!./lib/ace/src-min-noconflict/mode-python.js');
+require('script!./lib/ace/src-min-noconflict/mode-javascript.js');
+require('script!./lib/ace/src-min-noconflict/mode-typescript.js');
+require('script!./lib/ace/src-min-noconflict/mode-c_cpp.js');
+require('script!./lib/ace/src-min-noconflict/mode-java.js');
+require('script!./lib/ace/src-min-noconflict/mode-ruby.js');
 
 
 // for TypeScript

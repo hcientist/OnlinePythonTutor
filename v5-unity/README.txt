@@ -14,6 +14,13 @@ legacy code (hopefully)
 
 ---
 
+to start the development environment using npm, run:
+
+  npm start
+  npm run webpack
+
+---
+
 Requires these global installations:
 - Node.js / npm
 - webpack: http://webpack.github.io/ and webpack-dev-server
@@ -31,12 +38,6 @@ webpack --watch
 
 and run the server with Bottle:
 python bottle_server.py
-
-
-to start using npm:
-
-  npm start
-  npm run webpack
 
 ---
 Ported the code base over to TypeScript for enhanced static checking
@@ -73,4 +74,3 @@ TODO: always do webpack -p for deploy to production, and add a unique hash
 
 TODO: consider code splitting to split out common parts (e.g., libraries
 and unchanging parts) from the specific frontends
-

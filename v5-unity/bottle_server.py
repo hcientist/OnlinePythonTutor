@@ -1,5 +1,8 @@
 # Lightweight OPT server that works on both Python 2 and 3
 
+# NOTE that this is meant only for testing and not deployment, since
+# there is no sandboxing
+
 # to invoke, run 'python bottle_server.py'
 # and visit http://localhost:8080/index.html
 #
@@ -8,16 +11,13 @@
 # easy_install pip
 # pip install bottle
 
-# From an OPT user: A couple notes: to get bottle_server.py running,
-# I had to replace cStringIO with io and urllib2 with urllib, for
-# compatibility from 2.x to 3.x Ii was running from /v3/).
-
 from bottle import route, get, request, run, template, static_file
-import StringIO # NB: don't use cStringIO since it doesn't support unicode!!!
+try:
+    import StringIO # NB: don't use cStringIO since it doesn't support unicode!!!
+except:
+    import io as StringIO # py3
 import json
 import pg_logger
-import urllib
-import urllib2
 
 # dummy routes for testing only
 @route('/web_exec_<name:re:.+>.py')
@@ -28,14 +28,17 @@ def web_exec(name):
 def live_exec(name):
     return 'OK'
 
+@route('/viz_interaction.py')
+def viz_interaction():
+    return 'OK'
 
 @route('/<filepath:path>')
 def index(filepath):
-    # special-case for testing name_lookup.py ...
-    if 'name_lookup.py' in filepath:
-        return json.dumps(dict(name='TEST NAME', email='TEST EMAIL'))
     return static_file(filepath, root='.')
 
+
+# Note that this will run either Python 2 or 3, depending on which
+# version of Python you used to start the server.
 @get('/exec')
 def get_exec():
   out_s = StringIO.StringIO()
@@ -55,63 +58,5 @@ def get_exec():
 
   return out_s.getvalue()
 
-
-@get('/load_matrix_problem.py')
-def load_matrix_problem():
-  prob_name = request.query.problem_name
-  assert type(prob_name) in (str, unicode)
-
-  # whitelist
-  assert prob_name in ('python_comprehension-1',)
-
-  fn = 'matrix-demo/' + prob_name + '.py'
-  f = open(fn)
-  cod = f.read()
-  f.close()
-
-  import doctest
-  import sys
-  p = doctest.DocTestParser()
-  examples = p.get_examples(cod)
-  if len(examples):
-    first_ex = examples[0]
-    #print >> sys.stderr, 'Source:', `first_ex.source`
-    testCod = 'result = ' + first_ex.source
-
-  return json.dumps(dict(code=cod, test=testCod))
-
-
-@get('/submit_matrix_problem.py')
-def submit_matrix_problem():
-  user_code = request.query.submitted_code
-  prob_name = request.query.problem_name
-  assert type(prob_name) in (str, unicode)
-
-  # whitelist
-  assert prob_name in ('python_comprehension-1',)
-
-  test_fn = 'matrix-demo/' + prob_name + '.test.py'
-  test_cod = open(test_fn).read()
-
-  # concatenate!
-  script = test_cod + '\n' + user_code + \
-'''
-import doctest
-(n_fail, n_tests) = doctest.testmod(verbose=False)
-if n_fail == 0:
-    print("All %d tests passed!" % n_tests)
-'''
-
-  url = 'http://ec2-107-20-94-197.compute-1.amazonaws.com/cgi-bin/run_code.py'
-  values = {'user_script' : script}
-
-  data = urllib.urlencode(values)
-  req = urllib2.Request(url, data)
-  response = urllib2.urlopen(req)
-  the_page = response.read()
-  return the_page
-
-
 if __name__ == "__main__":
-    #run(host='localhost', port=8080, reloader=True)
-    run(host='0.0.0.0', port=8003, reloader=True) # make it externally visible - DANGER this is very insecure since there's no sandboxing!
+    run(host='localhost', port=8003, reloader=True)

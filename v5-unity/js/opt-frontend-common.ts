@@ -2,11 +2,10 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-// use Webpack to automatically package up these dependencies
-require('./diff_match_patch.js');
-require('./jquery-3.0.0.min.js');
-require('./jquery.ba-bbq.js'); // contains slight pgbovine modifications
-require('./jquery.ba-dotimeout.min.js');
+require('./lib/diff_match_patch.js');
+require('./lib/jquery-3.0.0.min.js');
+require('./lib/jquery.ba-bbq.js'); // contains slight pgbovine modifications
+require('./lib/jquery.ba-dotimeout.min.js');
 
 var pytutor = require('./pytutor.ts');
 var assert = pytutor.assert;

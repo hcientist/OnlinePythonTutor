@@ -52,10 +52,6 @@ var util = require('util');
 // spawn a shell
 // http://nodejs.org/api/child_process.html#child_process_child_process_execfile_file_args_options_callback
 
-var NODE_BIN = '/usr/local/bin/node';
-var PYTHON2_BIN = '/usr/bin/python';
-var PYTHON3_BIN = '/usr/local/bin/python3.3';
-
 var TIMEOUT_SECS = 10;
 var JAVA_TIMEOUT_SECS = 15; // the Java backend is SUPER SLOW :/
 var CPP_TIMEOUT_SECS = 15; // the C/C++ backend is also SUPER SLOW :/
