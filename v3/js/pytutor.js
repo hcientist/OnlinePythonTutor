@@ -4820,7 +4820,9 @@ ExecutionVisualizer.prototype.activateJavaFrontend = function() {
     });
 
   // java synthetics cause things which javascript doesn't like in an id
-  var old_generateID = ExecutionVisualizer.prototype.generateID;
+
+  // VERY important to bind(this) so that when it's called, 'this' is this current object
+  var old_generateID = ExecutionVisualizer.prototype.generateID.bind(this);
   this.generateID = function(original_id) {
     var sanitized = original_id.replace(
         /[^0-9a-zA-Z_]/g,
