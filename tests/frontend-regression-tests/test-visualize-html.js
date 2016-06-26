@@ -1,5 +1,6 @@
-// Run a visual regression test on visualize.html
+// Run a visual regression test on htmlPath, putting outputs in outputDir
 var htmlPath = "http://localhost:8003/visualize.html"
+var outputDir = "/test-visualize-html-outputs"
 
 var fs = require('fs');
 var path = fs.absolute(fs.workingDirectory + '/phantomcss.js');
@@ -12,8 +13,8 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
     // SlimerJS needs explicit knowledge of this Casper, and lots of absolute paths
     casper: casper,
     libraryRoot: fs.absolute( fs.workingDirectory + '' ),
-    screenshotRoot: fs.absolute( fs.workingDirectory + '/screenshots' ),
-    failedComparisonsRoot: fs.absolute( fs.workingDirectory + '/demo/failures' ),
+    screenshotRoot: fs.absolute( fs.workingDirectory + outputDir + '/screenshots' ),
+    failedComparisonsRoot: fs.absolute( fs.workingDirectory + outputDir + '/failures' ),
     addLabelToFailedImage: false,
   });
 
@@ -172,7 +173,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
           casper.click('#jmpLastInstr');
           // slight pause for vis to settle
           this.wait(200, function() {
-            phantomcss.screenshot('#dataViz', 'dataViz' + e);
+            phantomcss.screenshot('#dataViz', 'dataViz_' + e);
           });
         });
       });
@@ -199,7 +200,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
           casper.click('#jmpLastInstr');
           // slight pause for vis to settle
           this.wait(200, function() {
-            phantomcss.screenshot('#dataViz', 'dataViz_CUMULATIVE_' + e);
+            phantomcss.screenshot('#dataViz', 'dataViz_' + e + '_CUMULATIVE');
           });
         });
       });
@@ -226,7 +227,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
           casper.click('#jmpLastInstr');
           // slight pause for vis to settle
           this.wait(200, function() {
-            phantomcss.screenshot('#dataViz', 'dataViz_TEXTLABELS_' + e);
+            phantomcss.screenshot('#dataViz', 'dataViz_' + e + '_TEXTLABELS');
           });
         });
       });
