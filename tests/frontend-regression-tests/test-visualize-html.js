@@ -32,53 +32,28 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
   });
 
   // click on one example code for each language
-  casper.then(function() {
-    casper.click("#aliasExampleLink");
-    phantomcss.screenshot('#pyInputPane', 'pyInputPane');
-  });
+  var exampleLinksToClick = [
+    "#aliasExampleLink",
+    "#tortureLink",
+    "#javaVarLink",
+    "#jsDatatypesExLink",
+    "#tsGreeterExLink",
+    "#rubyConstantsLink",
+    "#cMengThesisLink",
+    "#cppFirstLink"];
 
-  casper.then(function() {
-    casper.click("#tortureLink");
-    phantomcss.screenshot('#pyInputPane', 'pyInputPane');
-  });
-
-  casper.then(function() {
-    casper.click("#javaVarLink");
-    phantomcss.screenshot('#pyInputPane', 'pyInputPane');
-  });
-
-  casper.then(function() {
-    casper.click("#jsDatatypesExLink");
-    phantomcss.screenshot('#pyInputPane', 'pyInputPane');
-  });
-
-  casper.then(function() {
-    casper.click("#tsGreeterExLink");
-    phantomcss.screenshot('#pyInputPane', 'pyInputPane');
-  });
-
-  casper.then(function() {
-    casper.click("#rubyConstantsLink");
-    phantomcss.screenshot('#pyInputPane', 'pyInputPane');
-  });
-
-  casper.then(function() {
-    casper.click("#cMengThesisLink");
-    phantomcss.screenshot('#pyInputPane', 'pyInputPane');
-  });
-
-  casper.then(function() {
-    casper.click("#cppFirstLink");
-    phantomcss.screenshot('#pyInputPane', 'pyInputPane');
+  exampleLinksToClick.forEach(function (e, i) {
+    casper.thenClick(e, function() {
+      phantomcss.screenshot('#pyInputPane', 'pyInputPane');
+    });
   });
 
 
   // now test the visualize mode:
-  casper.then(function() {
-    casper.click("#aliasExampleLink");
+  casper.thenClick("#aliasExampleLink", function() {
     // brief wait for code to load
     this.wait(DELAY_MS, function() {
-      casper.click("#executeBtn");
+      this.click("#executeBtn");
     });
   });
 
@@ -94,8 +69,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
 
   // this example has 31 steps:
   for (var i = 0; i < 31; i++) {
-    casper.then(function() {
-      casper.click("#jmpStepFwd");
+    casper.thenClick("#jmpStepFwd", function() {
       // slight pause for vis to settle
       this.wait(DELAY_MS, function() {
         phantomcss.screenshot('.visualizer', 'visualizer');
@@ -103,13 +77,12 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
     });
   }
 
+
   // for the remaining examples, be brief and take only a snapshot of
   // the FINAL state of the visualization
 
-
   // test instruction limit reached
-  casper.then(function() {
-    casper.click("#genPrimesLink");
+  casper.thenClick("#genPrimesLink", function() {
     // brief wait for code to load
     this.wait(DELAY_MS, function() {
       casper.click("#executeBtn");
@@ -120,17 +93,13 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
         });
       }, function then() {
         casper.click('#jmpLastInstr');
-        // slight pause for vis to settle
-        this.wait(DELAY_MS, function() {
-          phantomcss.screenshot('.visualizer', 'visualizer_instr_limit_reached');
-        });
+        phantomcss.screenshot('.visualizer', 'visualizer_instr_limit_reached');
       });
     });
   });
 
   // test exception
-  casper.then(function() {
-    casper.click("#pwTryFinallyLink");
+  casper.thenClick("#pwTryFinallyLink", function() {
     // brief wait for code to load
     this.wait(DELAY_MS, function() {
       casper.click("#executeBtn");
@@ -141,17 +110,21 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
         });
       }, function then() {
         casper.click('#jmpLastInstr');
-        // slight pause for vis to settle
-        this.wait(DELAY_MS, function() {
-          phantomcss.screenshot('.visualizer', 'visualizer_exception');
-        });
+        phantomcss.screenshot('.visualizer', 'visualizer_exception');
       });
     });
   });
 
 
   // for these examples, just snapshot dataViz to be even briefer:
-  var exampleTestLinks = ['#tutorialExampleLink', '#ll2Link', '#inheritanceExampleLink', '#aliasing2Link', '#aliasing3Link', '#aliasing7Link', '#closure5Link'];
+  var exampleTestLinks = [
+    '#tutorialExampleLink',
+    '#ll2Link',
+    '#inheritanceExampleLink',
+    '#aliasing2Link',
+    '#aliasing3Link',
+    '#aliasing7Link',
+    '#closure5Link'];
 
   exampleTestLinks.forEach(function(e, i) {
     // reset all toggles to test regular visualizer
@@ -173,10 +146,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
           });
         }, function then() {
           casper.click('#jmpLastInstr');
-          // slight pause for vis to settle
-          this.wait(DELAY_MS, function() {
-            phantomcss.screenshot('#dataViz', 'dataViz_' + e);
-          });
+          phantomcss.screenshot('#dataViz', 'dataViz_' + e);
         });
       });
     });
@@ -200,10 +170,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
           });
         }, function then() {
           casper.click('#jmpLastInstr');
-          // slight pause for vis to settle
-          this.wait(DELAY_MS, function() {
-            phantomcss.screenshot('#dataViz', 'dataViz_' + e + '_CUMULATIVE');
-          });
+          phantomcss.screenshot('#dataViz', 'dataViz_' + e + '_CUMULATIVE');
         });
       });
     });
@@ -227,10 +194,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
           });
         }, function then() {
           casper.click('#jmpLastInstr');
-          // slight pause for vis to settle
-          this.wait(DELAY_MS, function() {
-            phantomcss.screenshot('#dataViz', 'dataViz_' + e + '_TEXTLABELS');
-          });
+          phantomcss.screenshot('#dataViz', 'dataViz_' + e + '_TEXTLABELS');
         });
       });
     });

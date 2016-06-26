@@ -7,3 +7,6 @@ coding-the-matrix/
 node_modules/
 google-analytics.txt
 v3/opt_togetherjs/*.json
+# for regression tests
+*.diff.png
+*.fail.png

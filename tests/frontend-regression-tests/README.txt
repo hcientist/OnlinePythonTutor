@@ -13,4 +13,8 @@ Now the 'phantomjs' and 'casperjs' commands should both work
 
 
 Then install resemblejs locally:
+
 npm install resemblejs
+
+and make sure it appears in node_modules/ in this directory (and not in
+a parent directory)
