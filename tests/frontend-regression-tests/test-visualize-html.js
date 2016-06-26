@@ -2,6 +2,8 @@
 var htmlPath = "http://localhost:8003/visualize.html"
 var outputDir = "/test-visualize-html-outputs"
 
+var DELAY_MS = 100;
+
 var fs = require('fs');
 var path = fs.absolute(fs.workingDirectory + '/phantomcss.js');
 var phantomcss = require(path);
@@ -75,7 +77,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
   casper.then(function() {
     casper.click("#aliasExampleLink");
     // brief wait for code to load
-    this.wait(250, function() {
+    this.wait(DELAY_MS, function() {
       casper.click("#executeBtn");
     });
   });
@@ -95,7 +97,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
     casper.then(function() {
       casper.click("#jmpStepFwd");
       // slight pause for vis to settle
-      this.wait(200, function() {
+      this.wait(DELAY_MS, function() {
         phantomcss.screenshot('.visualizer', 'visualizer');
       });
     });
@@ -109,7 +111,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
   casper.then(function() {
     casper.click("#genPrimesLink");
     // brief wait for code to load
-    this.wait(250, function() {
+    this.wait(DELAY_MS, function() {
       casper.click("#executeBtn");
 
       casper.waitFor(function check() {
@@ -119,7 +121,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
       }, function then() {
         casper.click('#jmpLastInstr');
         // slight pause for vis to settle
-        this.wait(200, function() {
+        this.wait(DELAY_MS, function() {
           phantomcss.screenshot('.visualizer', 'visualizer_instr_limit_reached');
         });
       });
@@ -130,7 +132,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
   casper.then(function() {
     casper.click("#pwTryFinallyLink");
     // brief wait for code to load
-    this.wait(250, function() {
+    this.wait(DELAY_MS, function() {
       casper.click("#executeBtn");
 
       casper.waitFor(function check() {
@@ -140,7 +142,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
       }, function then() {
         casper.click('#jmpLastInstr');
         // slight pause for vis to settle
-        this.wait(200, function() {
+        this.wait(DELAY_MS, function() {
           phantomcss.screenshot('.visualizer', 'visualizer_exception');
         });
       });
@@ -159,10 +161,10 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
       document.querySelector('#textualMemoryLabelsSelector').value = "false";
     });
 
-    casper.wait(250, function() {
+    casper.wait(DELAY_MS, function() {
       casper.click(e);
       // brief wait for code to load
-      this.wait(250, function() {
+      this.wait(DELAY_MS, function() {
         casper.click("#executeBtn");
 
         casper.waitFor(function check() {
@@ -172,7 +174,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
         }, function then() {
           casper.click('#jmpLastInstr');
           // slight pause for vis to settle
-          this.wait(200, function() {
+          this.wait(DELAY_MS, function() {
             phantomcss.screenshot('#dataViz', 'dataViz_' + e);
           });
         });
@@ -187,10 +189,10 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
       document.querySelector('#textualMemoryLabelsSelector').value = "false";
     });
 
-    casper.wait(250, function() {
+    casper.wait(DELAY_MS, function() {
       casper.click(e);
       // brief wait for code to load
-      this.wait(250, function() {
+      this.wait(DELAY_MS, function() {
         casper.click("#executeBtn");
         casper.waitFor(function check() {
           return this.evaluate(function() {
@@ -199,7 +201,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
         }, function then() {
           casper.click('#jmpLastInstr');
           // slight pause for vis to settle
-          this.wait(200, function() {
+          this.wait(DELAY_MS, function() {
             phantomcss.screenshot('#dataViz', 'dataViz_' + e + '_CUMULATIVE');
           });
         });
@@ -214,10 +216,10 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
       document.querySelector('#textualMemoryLabelsSelector').value = "true";
     });
 
-    casper.wait(250, function() {
+    casper.wait(DELAY_MS, function() {
       casper.click(e);
       // brief wait for code to load
-      this.wait(250, function() {
+      this.wait(DELAY_MS, function() {
         casper.click("#executeBtn");
         casper.waitFor(function check() {
           return this.evaluate(function() {
@@ -226,7 +228,7 @@ casper.test.begin('Testing ' + htmlPath, function (test) {
         }, function then() {
           casper.click('#jmpLastInstr');
           // slight pause for vis to settle
-          this.wait(200, function() {
+          this.wait(DELAY_MS, function() {
             phantomcss.screenshot('#dataViz', 'dataViz_' + e + '_TEXTLABELS');
           });
         });
