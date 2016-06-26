@@ -1,5 +1,5 @@
 all:
-	casperjs test opt-visualize-html-test.js
+	casperjs test test-visualize-html.js
 
 clean:
 	rm -rf screenshots/
