@@ -5,7 +5,10 @@
 // TODOs:
 // qtip doesn't work with Webpack, so experimentalPopUpSyntaxErrorSurvey DOESN'T WORK
 // deactivate it for now
+//require('./lib/jquery.qtip.min.js');
+//require('../css/jquery.qtip.css');
 var activateSyntaxErrorSurvey = false; // true;
+
 // a list of previous consecutive executions with "compile"-time exceptions
 var prevExecutionExceptionObjLst = [];
 

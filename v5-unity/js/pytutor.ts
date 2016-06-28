@@ -4,16 +4,11 @@
 
 /* TODO:
 
-- add better abstractions so we don't need to 'export' so much stuff
-  with awkward 'export' statements
-
 - cleanly separate out the data structure visualization from the code
   display from the slider/vcrControls, so that we can mix and match them
 
 - sub in a non-live version of the live editor from opt-live.js in
   addition to the janky current version of the editor
-
-- get jquery.qtip working (i dunno if it currently works)
 
 */
 
@@ -41,9 +36,7 @@ require('./lib/jquery-3.0.0.min.js');
 require('./lib/jquery.jsPlumb-1.3.10-all-min.js'); // DO NOT UPGRADE ABOVE 1.3.10 OR ELSE BREAKAGE WILL OCCUR 
 require('./lib/jquery-ui-1.11.4/jquery-ui.js');
 require('./lib/jquery-ui-1.11.4/jquery-ui.css');
-require('./lib/jquery.qtip.min.js');
 require('./lib/jquery.ba-bbq.js'); // contains slight pgbovine modifications
-require('../css/jquery.qtip.css');
 require('../css/pytutor.css');
 
 
@@ -55,18 +48,32 @@ declare var jsPlumb: any;
 export var SVG_ARROW_POLYGON = '0,3 12,3 12,0 18,5 12,10 12,7 0,7';
 var SVG_ARROW_HEIGHT = 10; // must match height of SVG_ARROW_POLYGON
 
+/* colors - see pytutor.css for more colors */
+export var brightRed = '#e93f34';
+var connectorBaseColor = '#005583';
+var connectorHighlightColor = brightRed;
+var connectorInactiveColor = '#cccccc';
+var errorColor = brightRed;
+var breakpointColor = brightRed;
+
+// Unicode arrow types: '\u21d2', '\u21f0', '\u2907'
+export var darkArrowColor = brightRed;
+export var lightArrowColor = '#c9e6ca';
+
 var heapPtrSrcRE = /__heap_pointer_src_/;
 var rightwardNudgeHack = true; // suggested by John DeNero, toggle with global
 
+
+// the main event!
 export class ExecutionVisualizer {
   static curVisualizerID: number = 1;
+  static DEFAULT_EMBEDDED_CODE_DIV_WIDTH: number = 350;
+  static DEFAULT_EMBEDDED_CODE_DIV_HEIGHT: number = 400;
 
-  // TODO: add more precise types
   params: any;
   curInputCode: string;
   curTrace: any[];
-  DEFAULT_EMBEDDED_CODE_DIV_WIDTH: number;
-  DEFAULT_EMBEDDED_CODE_DIV_HEIGHT: number;
+
   promptForUserInput: boolean;
   userInputPromptStr: string;
   promptForMouseInput: boolean;
@@ -76,13 +83,6 @@ export class ExecutionVisualizer {
   leftGutterSvgInitialized: boolean;
   arrowOffsetY: number;
   codeRowHeight: number;
-
-  disableHeapNesting: boolean;
-  drawParentPointers: boolean;
-  textualMemoryLabels: boolean;
-  showOnlyOutputs: boolean;
-  tabularView: boolean;
-  showAllFrameLabels: boolean;
 
   compactFuncLabels: boolean;
   classAttrsHidden: any;
@@ -98,10 +98,10 @@ export class ExecutionVisualizer {
   curTraceLayouts: any[];
 
   codeOutputLines: any[];
-  breakpoints: any;
+  breakpoints: d3.Map<{}>;
   sortedBreakpointsList: any[];
 
-  pytutor_hooks: any;
+  pytutor_hooks: {string?: any[]};
 
   pyCrazyMode: boolean;
   prevLineIsReturn: boolean;
@@ -124,7 +124,9 @@ export class ExecutionVisualizer {
   visualizerID: number;
 
 
+  // Constructor with an ever-growing feature-crepped list of options :)
   // domRootID is the string ID of the root element where to render this instance
+  //
   // dat is data returned by the Python Tutor backend consisting of two fields:
   //   code  - string of executed code
   //   trace - a full execution trace
@@ -180,9 +182,6 @@ export class ExecutionVisualizer {
   constructor(domRootID, dat, params) {
     this.curInputCode = dat.code.rtrim(); // kill trailing spaces
     this.curTrace = dat.trace;
-
-    this.DEFAULT_EMBEDDED_CODE_DIV_WIDTH = 350;
-    this.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT = 400;
 
     // if the final entry is raw_input or mouse_input, then trim it from the trace and
     // set a flag to prompt for user input when execution advances to the
@@ -249,13 +248,13 @@ export class ExecutionVisualizer {
     this.arrowOffsetY = undefined;
     this.codeRowHeight = undefined;
 
-    // avoid 'undefined' state
-    this.disableHeapNesting = (this.params.disableHeapNesting === true);
-    this.drawParentPointers = (this.params.drawParentPointers === true);
-    this.textualMemoryLabels = (this.params.textualMemoryLabels === true);
-    this.showOnlyOutputs = (this.params.showOnlyOutputs === true);
-    this.tabularView = (this.params.tabularView === true);
-    this.showAllFrameLabels = (this.params.showAllFrameLabels === true);
+    // sanitize to avoid nasty 'undefined' states
+    this.params.disableHeapNesting = (this.params.disableHeapNesting === true);
+    this.params.drawParentPointers = (this.params.drawParentPointers === true);
+    this.params.textualMemoryLabels = (this.params.textualMemoryLabels === true);
+    this.params.showOnlyOutputs = (this.params.showOnlyOutputs === true);
+    this.params.tabularView = (this.params.tabularView === true);
+    this.params.showAllFrameLabels = (this.params.showAllFrameLabels === true);
 
     this.executeCodeWithRawInputFunc = this.params.executeCodeWithRawInputFunc;
 
@@ -337,8 +336,8 @@ export class ExecutionVisualizer {
   /* API for adding a hook, created by David Pritchard
      https://github.com/daveagp
 
-  [this documentation is a bit deprecated since Philip made try_hook a
-  method of ExecutionVisualizer, but the general ideas remains]
+    [this documentation is a bit deprecated since Philip made try_hook a
+     method of ExecutionVisualizer, but the general ideas remains]
 
    An external user should call
   add_pytutor_hook("hook_name_here", function(args) {...})
@@ -375,10 +374,8 @@ export class ExecutionVisualizer {
   }
 
 
-  /*
-
-  [this documentation is a bit deprecated since Philip made try_hook a
-  method of ExecutionVisualizer, but the general ideas remains]
+  /*  [this documentation is a bit deprecated since Philip made try_hook a
+       method of ExecutionVisualizer, but the general ideas remains]
 
   try_hook(hook_name, args): how the internal codebase invokes a hook.
    args will be a javascript object with several named properties;
@@ -408,7 +405,6 @@ export class ExecutionVisualizer {
     }
     return [false];
   }
-
 
   // for managing state related to pesky jsPlumb connectors, need to reset
   // before every call to renderDataStructures, or else all hell breaks
@@ -524,7 +520,7 @@ export class ExecutionVisualizer {
        </div>';
 
     // override
-    if (myViz.tabularView) {
+    if (myViz.params.tabularView) {
       codeVizHTML = '<div id="optTabularView"></div>';
     }
 
@@ -547,7 +543,7 @@ export class ExecutionVisualizer {
                         codeVizHTML + '</td></tr></table>');
     }
 
-    if (this.showOnlyOutputs) {
+    if (this.params.showOnlyOutputs) {
       myViz.domRoot.find('#dataViz').hide();
       this.domRoot.find('#vizLayoutTdSecond').append(outputsHTML);
 
@@ -567,9 +563,6 @@ export class ExecutionVisualizer {
       if (this.params.embeddedMode) {
         stdoutHeight = '45px';
       }
-
-      // position this under the code:
-      //this.domRoot.find('#vizLayoutTdFirst').append(outputsHTML);
 
       // position this above visualization (started trying this on 2016-06-01)
       this.domRoot.find('#vizLayoutTdSecond').prepend(outputsHTML);
@@ -677,16 +670,14 @@ export class ExecutionVisualizer {
 
     if (this.params.embeddedMode) {
       this.embeddedMode = true;
-      // nix this for now ...
-      //this.params.hideOutput = true; // put this before hideOutput handler
 
       // don't override if they've already been set!
       if (this.params.codeDivWidth === undefined) {
-        this.params.codeDivWidth = this.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
+        this.params.codeDivWidth = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
       }
 
       if (this.params.codeDivHeight === undefined) {
-        this.params.codeDivHeight = this.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
+        this.params.codeDivHeight = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
       }
       
       this.allowEditAnnotations = false;
@@ -737,8 +728,6 @@ export class ExecutionVisualizer {
       // set width once
       this.domRoot.find('#codeDisplayDiv').width(this.params.codeDivWidth);
       // it will propagate to the slider
-
-      //this.domRoot.find("#pyStdout").css("width", this.params.codeDivWidth - 20 /* wee tweaks */);
     }
 
     // enable left-right draggable pane resizer (originally from David Pritchard)
@@ -746,9 +735,6 @@ export class ExecutionVisualizer {
       handles: "e", 
       minWidth: 100, //otherwise looks really goofy
       resize: function(event, ui) { // old name: syncStdoutWidth, now not appropriate
-        // resize stdout box in unison
-        //myViz.domRoot.find("#pyStdout").css("width", $(this).width() - 20 /* wee tweaks */);
-
         myViz.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
         myViz.renderSliderBreakpoints(); // update breakpoint display accordingly on resize
         if (myViz.params.updateOutputCallback) // report size change
@@ -885,7 +871,7 @@ export class ExecutionVisualizer {
     }
 
     // EXPERIMENTAL!
-    if (this.tabularView) {
+    if (this.params.tabularView) {
       this.renderTabularView();
 
       // scroll vizLayoutTdFirst down to always align with the vertical
@@ -1024,7 +1010,7 @@ export class ExecutionVisualizer {
         if (e.type == 'codeline') {
           e.redrawCodelineBubble();
         }
-      });
+     });
     });
 
     //console.log('initAllAnnotationBubbles', myViz.allAnnotationBubbles.length);
@@ -2210,7 +2196,7 @@ export class ExecutionVisualizer {
               //if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
               //  updateCurLayout(childID, curRow, newRow);
               //}
-              if (myViz.disableHeapNesting) {
+              if (myViz.params.disableHeapNesting) {
                 updateCurLayout(childID, [], []);
               }
               else {
@@ -2223,7 +2209,7 @@ export class ExecutionVisualizer {
           $.each(heapObj, function(ind, child) {
             if (ind < 1) return; // skip type tag
 
-            if (myViz.disableHeapNesting) {
+            if (myViz.params.disableHeapNesting) {
               var dictKey = child[0];
               if (!myViz.isPrimitiveType(dictKey)) {
                 var keyChildID = getRefID(dictKey);
@@ -2237,7 +2223,7 @@ export class ExecutionVisualizer {
               if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
                 updateCurLayout(childID, curRow, newRow);
               }
-              else if (myViz.disableHeapNesting) {
+              else if (myViz.params.disableHeapNesting) {
                 updateCurLayout(childID, [], []);
               }
             }
@@ -2248,7 +2234,7 @@ export class ExecutionVisualizer {
             var headerLength = (heapObj[0] == 'INSTANCE') ? 2 : 3;
             if (ind < headerLength) return;
 
-            if (myViz.disableHeapNesting) {
+            if (myViz.params.disableHeapNesting) {
               var instKey = child[0];
               if (!myViz.isPrimitiveType(instKey)) {
                 var keyChildID = getRefID(instKey);
@@ -2262,7 +2248,7 @@ export class ExecutionVisualizer {
               if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
                 updateCurLayout(childID, curRow, newRow);
               }
-              else if (myViz.disableHeapNesting) {
+              else if (myViz.params.disableHeapNesting) {
                 updateCurLayout(childID, [], []);
               }
             }
@@ -2486,7 +2472,7 @@ export class ExecutionVisualizer {
   renderDataStructures(curEntry, curToplevelLayout) {
     var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
-    if (myViz.tabularView) {
+    if (myViz.params.tabularView) {
       return; // return EARLY!!!
     }
 
@@ -2728,7 +2714,7 @@ export class ExecutionVisualizer {
           else {
             var heapObjID = myViz.generateHeapObjID(getRefID(val), myViz.curInstr);
 
-            if (myViz.textualMemoryLabels) {
+            if (myViz.params.textualMemoryLabels) {
               var labelID = varDivID + '_text_label';
               $(this).append('<div class="objectIdLabel" id="' + labelID + '">id' + getRefID(val) + '</div>');
               $(this).find('div#' + labelID).hover(
@@ -2807,10 +2793,10 @@ export class ExecutionVisualizer {
         return (frame.parent_frame_id_list.length > 0) ? frame.parent_frame_id_list[0] : null;
       })
       .each(function(frame, i) {
-        if (!myViz.drawParentPointers) {
+        if (!myViz.params.drawParentPointers) {
           return;
         }
-        // only run if myViz.drawParentPointers is true ...
+        // only run if myViz.params.drawParentPointers is true ...
 
         var my_CSS_id = $(this).attr('id');
 
@@ -2868,7 +2854,7 @@ export class ExecutionVisualizer {
         var headerLabel = funcName;
 
         // only display if you're someone's parent (unless showAllFrameLabels)
-        if (frame.is_parent || myViz.showAllFrameLabels) {
+        if (frame.is_parent || myViz.params.showAllFrameLabels) {
           headerLabel = 'f' + frame.frame_id + ': ' + headerLabel;
         }
 
@@ -2877,7 +2863,7 @@ export class ExecutionVisualizer {
           var parentFrameID = frame.parent_frame_id_list[0];
           headerLabel = headerLabel + ' [parent=f' + parentFrameID + ']';
         }
-        else if (myViz.showAllFrameLabels) {
+        else if (myViz.params.showAllFrameLabels) {
           headerLabel = headerLabel + ' [parent=Global]';
         }
 
@@ -2960,7 +2946,7 @@ export class ExecutionVisualizer {
           }
           else {
             var heapObjID = myViz.generateHeapObjID(getRefID(val), myViz.curInstr);
-            if (myViz.textualMemoryLabels) {
+            if (myViz.params.textualMemoryLabels) {
               var labelID = varDivID + '_text_label';
               $(this).append('<div class="objectIdLabel" id="' + labelID + '">id' + getRefID(val) + '</div>');
               $(this).find('div#' + labelID).hover(
@@ -3184,7 +3170,7 @@ export class ExecutionVisualizer {
       totalParentPointersRendered++;
     }
 
-    if (!myViz.textualMemoryLabels) {
+    if (!myViz.params.textualMemoryLabels) {
       // re-render existing connectors and then ...
       //
       // NB: in C/C++ mode, to keep things simple, don't try to redraw
@@ -3197,7 +3183,7 @@ export class ExecutionVisualizer {
       myViz.jsPlumbManager.connectionEndpointIDs.forEach(renderVarValueConnector);
     }
     // do the same for environment parent pointers
-    if (myViz.drawParentPointers) {
+    if (myViz.params.drawParentPointers) {
       existingParentPointerConnectionEndpointIDs.forEach(renderParentPointerConnector);
       myViz.jsPlumbManager.parentPointerConnectionEndpointIDs.forEach(renderParentPointerConnector);
     }
@@ -3595,7 +3581,7 @@ export class ExecutionVisualizer {
 
       var dstDivID = heapObjID;
 
-      if (myViz.textualMemoryLabels) {
+      if (myViz.params.textualMemoryLabels) {
         var labelID = srcDivID + '_text_label';
         d3DomElement.append('<div class="objectIdLabel" id="' + labelID + '">id' + objID + '</div>');
 
@@ -3642,7 +3628,7 @@ export class ExecutionVisualizer {
 
     // prepend the type label with a memory address label
     var typeLabelPrefix = '';
-    if (myViz.textualMemoryLabels) {
+    if (myViz.params.textualMemoryLabels) {
       typeLabelPrefix = 'id' + objID + ':';
     }
 
@@ -3844,7 +3830,7 @@ export class ExecutionVisualizer {
       if (parentFrameID) {
         d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + ' [parent=f'+ parentFrameID + ']</div>');
       }
-      else if (myViz.showAllFrameLabels) {
+      else if (myViz.params.showAllFrameLabels) {
         d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + ' [parent=Global]</div>');
       }
       else {
@@ -3860,7 +3846,7 @@ export class ExecutionVisualizer {
       var parentFrameID = obj[4];
 
 
-      if (funcProperties || parentFrameID || myViz.showAllFrameLabels) {
+      if (funcProperties || parentFrameID || myViz.params.showAllFrameLabels) {
         d3DomElement.append('<table class="classTbl"></table>');
         var tbl = d3DomElement.children('table');
         tbl.append('<tr><td class="funcCod" colspan="2"><pre class="funcCode">' + funcCode + '</pre>' + '</td></tr>');
@@ -3880,7 +3866,7 @@ export class ExecutionVisualizer {
         if (parentFrameID) {
           tbl.append('<tr class="classEntry"><td class="classKey">parent</td><td class="classVal">' + 'f' + parentFrameID + '</td></tr>');
         }
-        else if (myViz.showAllFrameLabels) {
+        else if (myViz.params.showAllFrameLabels) {
           tbl.append('<tr class="classEntry"><td class="classKey">parent</td><td class="classVal">' + 'global' + '</td></tr>');
         }
       }
@@ -4380,33 +4366,6 @@ export class ExecutionVisualizer {
 
 
 // Utilities
-// TODO: maybe move into its own module
-
-
-/* colors - see pytutor.css for more colors */
-
-var highlightedLineColor = '#e4faeb';
-var highlightedLineBorderColor = '#005583';
-
-var highlightedLineLighterColor = '#e8fff0';
-
-var funcCallLineColor = '#a2eebd';
-
-export var brightRed = '#e93f34';
-
-var connectorBaseColor = '#005583';
-var connectorHighlightColor = brightRed;
-var connectorInactiveColor = '#cccccc';
-
-var errorColor = brightRed;
-
-var breakpointColor = brightRed;
-
-
-// Unicode arrow types: '\u21d2', '\u21f0', '\u2907'
-export var darkArrowColor = brightRed;
-export var lightArrowColor = '#c9e6ca';
-
 
 export function assert(cond) {
   if (!cond) {
@@ -4484,7 +4443,6 @@ function varnameToCssID(varname) {
                 .replace(/ /g, '_');
 }
 
-
 function isHeapRef(obj, heap) {
   // ordinary REF
   if (obj[0] === 'REF') {
@@ -4509,311 +4467,6 @@ function getRefID(obj) {
   }
 }
 
-
-// Annotation bubbles
-
-var qtipShared = {
-  show: {
-    ready: true, // show on document.ready instead of on mouseenter
-    delay: 0,
-    event: null,
-    effect: function() {$(this).show();}, // don't do any fancy fading because it screws up with scrolling
-  },
-  hide: {
-    fixed: true,
-    event: null,
-    effect: function() {$(this).hide();}, // don't do any fancy fading because it screws up with scrolling
-  },
-  style: {
-    classes: 'ui-tooltip-pgbootstrap', // my own customized version of the bootstrap style
-  },
-};
-
-
-// a speech bubble annotation to attach to:
-//   'codeline' - a line of code
-//   'frame'    - a stack frame
-//   'variable' - a variable within a stack frame
-//   'object'   - an object on the heap
-// (as determined by the 'type' param)
-//
-// domID is the ID of the element to attach to (without the leading '#' sign)
-function AnnotationBubble(parentViz, type, domID) {
-  this.parentViz = parentViz;
-
-  this.domID = domID;
-  this.hashID = '#' + domID;
-
-  this.type = type;
-
-  if (type == 'codeline') {
-    this.my = 'left center';
-    this.at = 'right center';
-  }
-  else if (type == 'frame') {
-    this.my = 'right center';
-    this.at = 'left center';
-  }
-  else if (type == 'variable') {
-    this.my = 'right center';
-    this.at = 'left center';
-  }
-  else if (type == 'object') {
-    this.my = 'bottom left';
-    this.at = 'top center';
-  }
-  else {
-    assert(false);
-  }
-
-  // possible states:
-  //   'invisible'
-  //   'edit'
-  //   'view'
-  //   'minimized'
-  //   'stub'
-  this.state = 'invisible';
-
-  this.text = ''; // the actual contents of the annotation bubble
-
-  this.qtipHidden = false; // is there a qtip object present but hidden? (TODO: kinda confusing)
-}
-
-AnnotationBubble.prototype.showStub = function() {
-  assert(this.state == 'invisible' || this.state == 'edit');
-  assert(this.text == '');
-
-  var myBubble = this; // to avoid name clashes with 'this' in inner scopes
-
-  // destroy then create a new tip:
-  this.destroyQTip();
-  $(this.hashID).qtip($.extend({}, qtipShared, {
-    content: ' ',
-    id: this.domID,
-    position: {
-      my: this.my,
-      at: this.at,
-      adjust: {
-        x: (myBubble.type == 'codeline' ? -6 : 0), // shift codeline tips over a bit for aesthetics
-      },
-      effect: null, // disable all cutesy animations
-    },
-    style: {
-      classes: 'ui-tooltip-pgbootstrap ui-tooltip-pgbootstrap-stub'
-    }
-  }));
-
-
-  $(this.qTipID())
-    .unbind('click') // unbind all old handlers
-    .click(function() {
-      myBubble.showEditor();
-    });
-
-  this.state = 'stub';
-}
-
-AnnotationBubble.prototype.showEditor = function() {
-  assert(this.state == 'stub' || this.state == 'view' || this.state == 'minimized');
-
-  var myBubble = this; // to avoid name clashes with 'this' in inner scopes
-
-  var ta = '<textarea class="bubbleInputText">' + this.text + '</textarea>';
-
-  // destroy then create a new tip:
-  this.destroyQTip();
-  $(this.hashID).qtip($.extend({}, qtipShared, {
-    content: ta,
-    id: this.domID,
-    position: {
-      my: this.my,
-      at: this.at,
-      adjust: {
-        x: (myBubble.type == 'codeline' ? -6 : 0), // shift codeline tips over a bit for aesthetics
-      },
-      effect: null, // disable all cutesy animations
-    }
-  }));
-
-  
-  $(this.qTipContentID()).find('textarea.bubbleInputText')
-    // set handler when the textarea loses focus
-    .blur(function() {
-      myBubble.text = $(this).val().trim(); // strip all leading and trailing spaces
-
-      if (myBubble.text) {
-        myBubble.showViewer();
-      }
-      else {
-        myBubble.showStub();
-      }
-    })
-    .focus(); // grab focus so that the user can start typing right away!
-
-  this.state = 'edit';
-}
-
-
-AnnotationBubble.prototype.bindViewerClickHandler = function() {
-  var myBubble = this;
-
-  $(this.qTipID())
-    .unbind('click') // unbind all old handlers
-    .click(function() {
-      if (myBubble.parentViz.editAnnotationMode) {
-        myBubble.showEditor();
-      }
-      else {
-        myBubble.minimizeViewer();
-      }
-    });
-}
-
-AnnotationBubble.prototype.showViewer = function() {
-  assert(this.state == 'edit' || this.state == 'invisible');
-  assert(this.text); // must be non-empty!
-
-  var myBubble = this;
-  // destroy then create a new tip:
-  this.destroyQTip();
-  $(this.hashID).qtip($.extend({}, qtipShared, {
-    content: htmlsanitize(this.text), // help prevent HTML/JS injection attacks
-    id: this.domID,
-    position: {
-      my: this.my,
-      at: this.at,
-      adjust: {
-        x: (myBubble.type == 'codeline' ? -6 : 0), // shift codeline tips over a bit for aesthetics
-      },
-      effect: null, // disable all cutesy animations
-    }
-  }));
-
-  this.bindViewerClickHandler();
-  this.state = 'view';
-}
-
-
-AnnotationBubble.prototype.minimizeViewer = function() {
-  assert(this.state == 'view');
-
-  var myBubble = this;
-
-  $(this.hashID).qtip('option', 'content.text', ' '); //hack to "minimize" its size
-
-  $(this.qTipID())
-    .unbind('click') // unbind all old handlers
-    .click(function() {
-      if (myBubble.parentViz.editAnnotationMode) {
-        myBubble.showEditor();
-      }
-      else {
-        myBubble.restoreViewer();
-      }
-    });
-
-  this.state = 'minimized';
-}
-
-AnnotationBubble.prototype.restoreViewer = function() {
-  assert(this.state == 'minimized');
-  $(this.hashID).qtip('option', 'content.text', htmlsanitize(this.text)); // help prevent HTML/JS injection attacks
-  this.bindViewerClickHandler();
-  this.state = 'view';
-}
-
-// NB: actually DESTROYS the QTip object
-AnnotationBubble.prototype.makeInvisible = function() {
-  assert(this.state == 'stub' || this.state == 'edit');
-  this.destroyQTip();
-  this.state = 'invisible';
-}
-
-
-AnnotationBubble.prototype.destroyQTip = function() {
-  $(this.hashID).qtip('destroy');
-}
-
-AnnotationBubble.prototype.qTipContentID = function() {
-  return '#ui-tooltip-' + this.domID + '-content';
-}
-
-AnnotationBubble.prototype.qTipID = function() {
-  return '#ui-tooltip-' + this.domID;
-}
-
-
-AnnotationBubble.prototype.enterEditMode = function() {
-  assert(this.parentViz.editAnnotationMode);
-  if (this.state == 'invisible') {
-    this.showStub();
-
-    if (this.type == 'codeline') {
-      this.redrawCodelineBubble();
-    }
-  }
-}
-
-AnnotationBubble.prototype.enterViewMode = function() {
-  assert(!this.parentViz.editAnnotationMode);
-  if (this.state == 'stub') {
-    this.makeInvisible();
-  }
-  else if (this.state == 'edit') {
-    this.text = $(this.qTipContentID()).find('textarea.bubbleInputText').val().trim(); // strip all leading and trailing spaces
-
-    if (this.text) {
-      this.showViewer();
-
-      if (this.type == 'codeline') {
-        this.redrawCodelineBubble();
-      }
-    }
-    else {
-      this.makeInvisible();
-    }
-  }
-  else if (this.state == 'invisible') {
-    // this happens when, say, you first enter View Mode
-    if (this.text) {
-      this.showViewer();
-
-      if (this.type == 'codeline') {
-        this.redrawCodelineBubble();
-      }
-    }
-  }
-}
-
-AnnotationBubble.prototype.preseedText = function(txt) {
-  assert(this.state == 'invisible');
-  this.text = txt;
-}
-
-AnnotationBubble.prototype.redrawCodelineBubble = function() {
-  assert(this.type == 'codeline');
-
-  if (isOutputLineVisibleForBubbles(this.domID)) {
-    if (this.qtipHidden) {
-      $(this.hashID).qtip('show');
-    }
-    else {
-      $(this.hashID).qtip('reposition');
-    }
-
-    this.qtipHidden = false;
-  }
-  else {
-    $(this.hashID).qtip('hide');
-    this.qtipHidden = true;
-  }
-}
-
-AnnotationBubble.prototype.redrawBubble = function() {
-  $(this.hashID).qtip('reposition');
-}
-
-
 // NB: copy-and-paste from isOutputLineVisible with some minor tweaks
 export function isOutputLineVisibleForBubbles(lineDivID) {
   var pcod = $('#pyCodeOutputDiv');
@@ -4827,64 +4480,4 @@ export function isOutputLineVisibleForBubbles(lineDivID) {
 
   // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
   return (PO <= LO) && (LO < (PO + H - 25));
-}
-
-
-// popup question dialog code from Brad Miller
-
-// inputId is the ID of the input element
-// divId is the div that containsthe visualizer
-// answer is a dotted form of an attribute that lives in the curEntry of the trace
-// So if we want to ask for the value of a global variable we would say 'globals.a'
-// this allows us do do curTrace[i].globals.a  But we do it in the loop below using the
-// [] operator.
-function traceQCheckMe(inputId, divId, answer) {
-   var vis = $("#"+divId).data("vis")
-   var i = vis.curInstr
-   var curEntry = vis.curTrace[i+1];
-   var ans = $('#'+inputId).val()
-   var attrs = answer.split(".")
-   var correctAns = curEntry;
-   for (var j in attrs) {
-       correctAns = correctAns[attrs[j]]
-   }
-   var feedbackElement = $("#" + divId + "_feedbacktext")
-   if (ans.length > 0 && ans == correctAns) {
-       feedbackElement.html('Correct')
-   } else {
-       feedbackElement.html(vis.curTrace[i].question.feedback)
-   }
-
-}
-
-function closeModal(divId) {
-    $.modal.close()
-    $("#"+divId).data("vis").stepForward();
-}
-
-
-
-// takes a string inputStr and returns an HTML version with
-// the characters from [highlightIndex, highlightIndex+extent) highlighted with
-// a span of class highlightCssClass
-function htmlWithHighlight(inputStr, highlightInd, extent, highlightCssClass) {
-  var prefix = '';
-  if (highlightInd > 0) {
-    prefix = inputStr.slice(0, highlightInd);
-  }
-
-  var highlightedChars = inputStr.slice(highlightInd, highlightInd + extent);
-
-  var suffix = '';
-  if (highlightInd + extent < inputStr.length) {
-    suffix = inputStr.slice(highlightInd + extent, inputStr.length);
-  }
-
-  // ... then set the current line to lineHTML
-  var lineHTML = htmlspecialchars(prefix) +
-      '<span class="' + highlightCssClass + '">' +
-      htmlspecialchars(highlightedChars) +
-      '</span>' +
-      htmlspecialchars(suffix);
-  return lineHTML;
 }

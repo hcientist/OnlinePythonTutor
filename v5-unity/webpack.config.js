@@ -19,10 +19,6 @@ module.exports = {
       new WebpackOnBuildPlugin(function(stats) {
         console.log("\n");
         exec("cd ../tests/frontend-regression-tests/ && make micro", (error, stdout, stderr) => {
-          if (error) {
-            console.error(`Test exec error: ${error}`);
-            return;
-          }
           console.log(stdout);
           if (stderr) {
             console.log(`Test stderr: ${stderr}`);
