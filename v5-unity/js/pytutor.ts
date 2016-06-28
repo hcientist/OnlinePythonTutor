@@ -103,7 +103,6 @@ export class ExecutionVisualizer {
 
   pytutor_hooks: {string?: any[]};
 
-  pyCrazyMode: boolean;
   prevLineIsReturn: boolean;
   curLineIsReturn: boolean;
   prevLineNumber: number;
@@ -143,8 +142,8 @@ export class ExecutionVisualizer {
   //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code' (if null, then 'Edit code' link hidden)
   //   allowEditAnnotations - allow user to edit per-step annotations (default: false)
   //   embeddedMode         - shortcut for allowEditAnnotations=false,
-  //                                       codeDivWidth=this.DEFAULT_EMBEDDED_CODE_DIV_WIDTH,
-  //                                       codeDivHeight=this.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT
+  //                                       codeDivWidth=DEFAULT_EMBEDDED_CODE_DIV_WIDTH,
+  //                                       codeDivHeight=DEFAULT_EMBEDDED_CODE_DIV_HEIGHT
   //                          (and don't activate keyboard shortcuts!)
   //   disableHeapNesting   - if true, then render all heap objects at the top level (i.e., no nested objects)
   //   drawParentPointers   - if true, then draw environment diagram parent pointers for all frames
@@ -169,10 +168,7 @@ export class ExecutionVisualizer {
   //   arrowLines     - draw arrows pointing to current and previously executed lines (default: true)
   //   compactFuncLabels - render functions with a 'func' prefix and no type label
   //   showAllFrameLabels - display frame and parent frame labels for all functions (default: false)
-  //   pyCrazyMode    - run with Py2crazy, which provides expression-level
-  //                    granularity instead of line-level granularity (HIGHLY EXPERIMENTAL!)
   //   hideCode - hide the code display and show only the data structure viz
-  //   tabularView - render a tabular view of ALL steps at once (EXPERIMENTAL)
   //   lang - to render labels in a style appropriate for other languages,
   //          and to display the proper language in langDisplayDiv:
   //          'py2' for Python 2, 'py3' for Python 3, 'js' for JavaScript, 'java' for Java,
@@ -229,11 +225,6 @@ export class ExecutionVisualizer {
 
     this.compactFuncLabels = this.params.compactFuncLabels;
 
-    // audible!
-    if (this.params.pyCrazyMode) {
-        this.params.arrowLines = this.params.highlightLines = false;
-    }
-
     if (this.params.visualizerIdOverride) {
       this.visualizerID = this.params.visualizerIdOverride;
     }
@@ -253,7 +244,6 @@ export class ExecutionVisualizer {
     this.params.drawParentPointers = (this.params.drawParentPointers === true);
     this.params.textualMemoryLabels = (this.params.textualMemoryLabels === true);
     this.params.showOnlyOutputs = (this.params.showOnlyOutputs === true);
-    this.params.tabularView = (this.params.tabularView === true);
     this.params.showAllFrameLabels = (this.params.showAllFrameLabels === true);
 
     this.executeCodeWithRawInputFunc = this.params.executeCodeWithRawInputFunc;
@@ -519,11 +509,6 @@ export class ExecutionVisualizer {
          </table>\
        </div>';
 
-    // override
-    if (myViz.params.tabularView) {
-      codeVizHTML = '<div id="optTabularView"></div>';
-    }
-
     var vizHeaderHTML =
       '<div id="vizHeader">\
          <textarea class="vizTitleText" id="vizTitleEditor" cols="60" rows="1"></textarea>\
@@ -593,14 +578,6 @@ export class ExecutionVisualizer {
             .append('<span class="highlight-legend highlight-prev">line that has just executed</span> ')
             .append('<span class="highlight-legend highlight-cur">next line to execute</span>')
     }
-    else if (this.params.pyCrazyMode) {
-        myViz.domRoot.find('#legendDiv')
-            .append('<a href="https://github.com/pgbovine/Py2crazy">Py2crazy</a> mode!')
-            .append(' Stepping through (roughly) each executed expression. Color codes:<p/>')
-            .append('<span class="pycrazy-highlight-prev">expression that just executed</span><br/>')
-            .append('<span class="pycrazy-highlight-cur">next expression to execute</span>');
-    }
-
 
     if (this.params.editCodeBaseURL) {
       // kinda kludgy
@@ -657,13 +634,6 @@ export class ExecutionVisualizer {
     }
     else {
       this.allowEditAnnotations = false;
-    }
-
-    if (this.params.pyCrazyMode !== undefined) {
-      this.pyCrazyMode = this.params.pyCrazyMode;
-    }
-    else {
-      this.pyCrazyMode = false;
     }
 
     this.domRoot.find('#stepAnnotationEditor').hide();
@@ -869,32 +839,6 @@ export class ExecutionVisualizer {
     if (!this.params.hideCode) {
       this.renderPyCodeOutput();
     }
-
-    // EXPERIMENTAL!
-    if (this.params.tabularView) {
-      this.renderTabularView();
-
-      // scroll vizLayoutTdFirst down to always align with the vertical
-      // scrolling ...
-      $(window).scroll(function() {
-        var codePane = myViz.domRoot.find('#vizLayoutTdFirst');
-        var docScrollTop = $(document).scrollTop();
-        var offset = codePane.offset().top;
-        var delta = docScrollTop - offset;
-        if (delta < 0) {
-          delta = 0;
-        }
-
-        // don't scroll past the bottom of the optTabularView table:
-        var optTable = myViz.domRoot.find('#optTabularView');
-        var optTableBottom = optTable.height() + optTable.offset().top;
-        var codeDisplayHeight = myViz.domRoot.find('#codeDisplayDiv').height();
-        if (delta - offset < optTableBottom - codeDisplayHeight) {
-          codePane.css('padding-top', delta);
-        }
-      });
-    }
-
 
     var ruiDiv = myViz.domRoot.find('#rawUserInputDiv');
     ruiDiv.find('#userInputPromptStr').html(myViz.userInputPromptStr);
@@ -1737,11 +1681,6 @@ export class ExecutionVisualizer {
       var curLineNumber = null;
       var prevLineNumber = null;
 
-      // only relevant if in myViz.pyCrazyMode
-      var prevColumn = undefined;
-      var prevExprStartCol = undefined;
-      var prevExprWidth = undefined;
-
       var curIsReturn = (curEntry.event == 'return');
       var prevIsReturn = false;
 
@@ -1797,81 +1736,9 @@ export class ExecutionVisualizer {
             smoothTransition = false;
           }
         }
-
-        if (myViz.pyCrazyMode) {
-          var p = myViz.curTrace[myViz.curInstr - 1];
-          prevColumn = p.column;
-          // if these don't exist, set reasonable defaults
-          prevExprStartCol = (p.expr_start_col !== undefined) ? p.expr_start_col : p.column;
-          prevExprWidth = (p.expr_width !== undefined) ? p.expr_width : 1;
-        }
       }
 
       curLineNumber = curEntry.line;
-
-      if (myViz.pyCrazyMode) {
-        var curColumn = curEntry.column;
-
-        // if these don't exist, set reasonable defaults
-        var curExprStartCol = (curEntry.expr_start_col !== undefined) ? curEntry.expr_start_col : curColumn;
-        var curExprWidth = (curEntry.expr_width !== undefined) ? curEntry.expr_width : 1;
-
-        var curLineInfo = myViz.codeOutputLines[curLineNumber - 1];
-        assert(curLineInfo.lineNumber == curLineNumber);
-        var codeAtLine = curLineInfo.text;
-
-        // shotgun approach: reset ALL lines to their natural (unbolded) state
-        $.each(myViz.codeOutputLines, function(i, e) {
-          var d = myViz.generateID('cod' + e.lineNumber);
-          myViz.domRoot.find('#' + d).html(htmlspecialchars(e.text));
-        });
-
-
-        // Three possible cases:
-        // 1. previous and current trace entries are on the SAME LINE
-        // 2. previous and current trace entries are on different lines
-        // 3. there is no previous trace entry
-
-        if (prevLineNumber == curLineNumber) {
-          var curLineHTML = '';
-
-          // tricky tricky!
-          // generate a combined line with both previous and current
-          // columns highlighted
-
-          for (var i = 0; i < codeAtLine.length; i++) {
-            var isCur = (curExprStartCol <= i) && (i < curExprStartCol + curExprWidth);
-            var isPrev = (prevExprStartCol <= i) && (i < prevExprStartCol + prevExprWidth);
-
-            var htmlEscapedChar = htmlspecialchars(codeAtLine[i]);
-
-            if (isCur && isPrev) {
-              curLineHTML += '<span class="pycrazy-highlight-prev-and-cur">' + htmlEscapedChar + '</span>';
-            }
-            else if (isPrev) {
-              curLineHTML += '<span class="pycrazy-highlight-prev">' + htmlEscapedChar + '</span>';
-            }
-            else if (isCur) {
-              curLineHTML += '<span class="pycrazy-highlight-cur">' + htmlEscapedChar + '</span>';
-            }
-            else {
-              curLineHTML += htmlEscapedChar;
-            }
-          }
-
-          assert(curLineHTML);
-          myViz.domRoot.find('#' + myViz.generateID('cod' + curLineNumber)).html(curLineHTML);
-        }
-        else {
-          if (prevLineNumber) {
-            var prevLineInfo = myViz.codeOutputLines[prevLineNumber - 1];
-            var prevLineHTML = htmlWithHighlight(prevLineInfo.text, prevExprStartCol, prevExprWidth, 'pycrazy-highlight-prev');
-            myViz.domRoot.find('#' + myViz.generateID('cod' + prevLineNumber)).html(prevLineHTML);
-          }
-          var curLineHTML = htmlWithHighlight(codeAtLine, curExprStartCol, curExprWidth, 'pycrazy-highlight-cur');
-          myViz.domRoot.find('#' + myViz.generateID('cod' + curLineNumber)).html(curLineHTML);
-        }
-      }
 
       // on 'return' events, give a bit more of a vertical nudge to show that
       // the arrow is aligned with the 'bottom' of the line ...
@@ -2471,10 +2338,6 @@ export class ExecutionVisualizer {
   // multiple times, and a unique ID label was used to identify aliases.
   renderDataStructures(curEntry, curToplevelLayout) {
     var myViz = this; // to prevent confusion of 'this' inside of nested functions
-
-    if (myViz.params.tabularView) {
-      return; // return EARLY!!!
-    }
 
     myViz.resetJsPlumbManager(); // very important!!!
 
@@ -3250,180 +3113,6 @@ export class ExecutionVisualizer {
 
     myViz.try_hook("end_renderDataStructures", {myViz:myViz});
   }
-
-
-  // EXPERIMENTAL!
-  // render a tabular visualization where each row is an execution step,
-  // and each column is a variable
-  renderTabularView = function() {
-    var myViz = this; // to prevent confusion of 'this' inside of nested functions
-
-    myViz.resetJsPlumbManager(); // very important!!!
-
-    var allGlobalVars = [];
-    // Key: function name
-    // Value: list of ordered variables for function
-    var funcNameToOrderedVars = {};
-    var orderedFuncNames = []; // function names in order of appearance
-
-    // iterate through the entire trace and find all global variables, and
-    // all local variables in all functions, in order of appearance in the trace
-    $.each(myViz.curTrace, function(i, elt) {
-      $.each(elt.ordered_globals, function(i, g) {
-        // don't add duplicates into this list,
-        // but need to use a list to maintain ORDERING
-        if ($.inArray(g, allGlobalVars) === -1) {
-          allGlobalVars.push(g);
-        }
-      });
-
-      $.each(elt.stack_to_render, function(i, sf) {
-        var funcVarsList = funcNameToOrderedVars[sf.func_name];
-        if (funcVarsList === undefined) {
-          funcVarsList = [];
-          funcNameToOrderedVars[sf.func_name] = funcVarsList;
-          orderedFuncNames.push(sf.func_name);
-        }
-        $.each(sf.ordered_varnames, function(i, v) {
-          // don't add duplicates into this list,
-          // but need to use a list to maintain ORDERING
-          // (ignore the special __return__ value)
-          if ($.inArray(v, funcVarsList) === -1 && v !== '__return__') {
-            funcVarsList.push(v);
-          }
-        });
-      });
-    });
-
-    /*
-    console.log("allGlobalVars:", allGlobalVars);
-    console.log("orderedFuncNames:", orderedFuncNames);
-    $.each(funcNameToOrderedVars, function(k, v) {
-      console.log("funcNameToOrderedVars[", k, "] =", v);
-    });
-    */
-
-    var allVarNames = ['Step'];
-
-    $.each(allGlobalVars, function(i, e) {
-      allVarNames.push(e);
-    });
-    $.each(orderedFuncNames, function(i, funcName) {
-      $.each(funcNameToOrderedVars[funcName], function(i, v) {
-        allVarNames.push(funcName + ':' + v);
-      });
-    });
-
-    // get the values of all objects in trace entry e
-    function getAllOrderedValues(curEntry) {
-      // HACK! start with a blank sentinel since the first column of the
-      // table is the step number
-      var allVarValues = [''];
-
-      $.each(allGlobalVars, function(i, e) {
-        allVarValues.push(curEntry.globals[e]);
-      });
-
-      // for local variables, grab only the values in the highlighted
-      // frame (if any)
-      var highlightedFrame = null;
-      $.each(curEntry.stack_to_render, function(i, sf) {
-        if (sf.is_highlighted) {
-          highlightedFrame = sf;
-        }
-      });
-
-      $.each(orderedFuncNames, function(i, funcName) {
-        $.each(funcNameToOrderedVars[funcName], function(i, v) {
-          var found = false;
-          if (highlightedFrame && funcName == highlightedFrame.func_name) {
-            var obj = highlightedFrame.encoded_locals[v];
-            if (obj) {
-              allVarValues.push(obj);
-              found = true;
-            }
-          }
-
-          // push an empty value if not found since we want everything to
-          // align with allVarNames
-          if (!found) {
-            allVarValues.push(undefined);
-          }
-        });
-      });
-
-      // TODO: also walk up parent pointers to also display variable
-      // values in enclosing frames
-
-      return allVarValues;
-    }
-
-
-    var tblRoot = myViz.domRootD3.select("#optTabularView");
-    var tbl = tblRoot.append("table");
-    tbl.attr('id', 'optTable');
-
-    var tHead = tbl.append('thead').attr('class', 'stepTableThead').append('tr');
-    tHead.attr('class', 'stepTableTr');
-    tHead.selectAll('thead td')
-      .data(allVarNames)
-      .enter()
-      .append('td')
-      .attr('class', 'stepTableTd')
-      .html(function(d) { return d; })
-
-    var tBody = tbl.append('tbody');
-    tBody.attr('class', 'stepTableTbody');
-
-    var stepsAndTraceEntries = [];
-    $.each(myViz.curTrace, function(i, e) {
-      stepsAndTraceEntries.push([i, e]);
-    });
-
-    var tr = tBody.selectAll('tbody tr')
-      .data(stepsAndTraceEntries)
-      .enter()
-      .append("tr")
-      .attr("step", function(d, i) { return i; })
-      .attr("class", 'stepTableTr');
-
-    var td = tr.selectAll("td")
-      .data(function(e) { return getAllOrderedValues(e[1]); })
-      .enter()
-      .append("td")
-      .attr('class', 'stepTableTd')
-      .each(function(obj, i) {
-        $(this).empty();
-
-        // TODO: fixme -- this is super kludgy; must be a better way
-        var step = parseInt($(this).closest('tr').attr('step'));
-
-        if (i == 0) {
-          $(this).html(String(step + 1)); // one-indexed for readability
-        }
-        else {
-          if (obj === undefined) {
-            // keep this table cell EMPTY
-          }
-          else {
-            myViz.renderNestedObject(obj, step, $(this), 'tabular');
-          }
-        }
-      });
-
-
-    myViz.jsPlumbInstance.reset();
-
-    function renderTableVarValueConnector(varID, valueID) {
-      myViz.jsPlumbInstance.connect({source: varID, target: valueID,
-                                     scope: 'varValuePointer',
-                                     // make it look more aesthetically pleasing:
-                                     anchors: ['TopCenter', 'LeftMiddle']});
-    }
-
-    myViz.jsPlumbManager.connectionEndpointIDs.forEach(renderTableVarValueConnector);
-  }
-
 
   // rendering functions, which all take a d3 dom element to anchor the
   // new element to render
