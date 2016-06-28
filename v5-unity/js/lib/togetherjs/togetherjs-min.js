@@ -158,11 +158,11 @@
       var src = scripts[i].src;
       if (src && src.search(/togetherjs(-min)?.js(\?.*)?$/) !== -1) {
         baseUrl = src.replace(/\/*togetherjs(-min)?.js(\?.*)?$/, "");
-        console.warn("Detected baseUrl as", baseUrl);
+        //console.warn("Detected baseUrl as", baseUrl); // pgbovine commented out
         break;
       } else if (src && src.search(/togetherjs-min.js(\?.*)?$/) !== -1) {
         baseUrl = src.replace(/\/*togetherjs-min.js(\?.*)?$/, "");
-        console.warn("Detected baseUrl as", baseUrl);
+        //console.warn("Detected baseUrl as", baseUrl); // pgbovine commented out
         break;
       }
     }
