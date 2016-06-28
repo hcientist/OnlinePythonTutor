@@ -1,3 +1,7 @@
+var pytutor = require('./pytutor.ts');
+
+// TODO: update the instructions below for v5-unity/
+
 // To embed Online Python Tutor visualizations into embedding-demo.html ...
 
 // 1. Run generate_json_trace.py to generate execution traces as JavaScript variables.
@@ -50,7 +54,7 @@ $(document).ready(function() {
   // that way, you can avoid lots of jarring jumps and (inefficient) redraws.
 
   // Render listSumTrace inside of listSumDiv
-  var listSumVisualizer = new ExecutionVisualizer('listSumDiv', listSumTrace,
+  var listSumVisualizer = new pytutor.ExecutionVisualizer('listSumDiv', listSumTrace,
                                                   {embeddedMode: true,
                                                    heightChangeCallback: redrawAllVisualizerArrows,
                                                    editCodeBaseURL: 'http://pythontutor.com/visualize.html'});
@@ -61,7 +65,7 @@ $(document).ready(function() {
   //
   // verticalStack means to stack the code and visualizations vertically atop one another
   // (rather than side-by-side)
-  var hanoiVisualizer   = new ExecutionVisualizer('hanoiDiv', hanoiTrace,
+  var hanoiVisualizer   = new pytutor.ExecutionVisualizer('hanoiDiv', hanoiTrace,
                                                   {embeddedMode: true,
                                                    startingInstruction: 15,
                                                    verticalStack: true,
@@ -70,7 +74,7 @@ $(document).ready(function() {
 
   // "embeddedMode: false" displays the full visualizer widget with the "Program Output" pane
   // "jumpToEnd: true" means to jump to the end of execution upon loading.
-  var happyVisualizer   = new ExecutionVisualizer('happyDiv', happyTrace,
+  var happyVisualizer   = new pytutor.ExecutionVisualizer('happyDiv', happyTrace,
                                                   {embeddedMode: false,
                                                    jumpToEnd: true,
                                                    codeDivWidth: 450,
@@ -86,6 +90,10 @@ $(document).ready(function() {
     if (happyVisualizer) happyVisualizer.redrawConnectors();
   }
 
+  // display some data:
+  $("#listSumLabel").html("Visualizer ID: " + listSumVisualizer.visualizerID);
+  $("#hanoiLabel").html("Visualizer ID: " + hanoiVisualizer.visualizerID);
+  $("#happyLabel").html("Visualizer ID: " + happyVisualizer.visualizerID);
 
   // Call redrawConnectors() on all visualizers whenever the window is resized,
   // since HTML elements might have moved during a resize. The SVG arrows rendered

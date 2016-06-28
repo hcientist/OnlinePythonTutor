@@ -4,6 +4,8 @@ https://github.com/Huddle/PhantomCSS
 http://tldr.huddle.com/blog/css-testing/
 */
 
+// modifications by Philip Guo labeled with 'pgbovine'
+
 var fs = require( 'fs' );
 
 var _src = '.' + fs.separator + 'screenshots';
@@ -631,8 +633,10 @@ function initClient() {
 }
 
 function _onPass( test ) {
-	console.log( '\n' );
-	casper.test.pass( 'No changes found for screenshot ' + test.filename );
+  // pgbovine - briefer pass msgs
+	//console.log( '\n' );
+	//casper.test.pass( 'No changes found for screenshot ' + test.filename );
+	casper.test.pass('yay');
 }
 
 function _onFail( test ) {
@@ -661,8 +665,9 @@ function _onComplete( tests, noOfFails, noOfErrors ) {
 	} else {
 
 		if ( noOfFails === 0 ) {
-			console.log( "\nPhantomCSS found " + tests.length + " tests, None of them failed. Which is good right?" );
-			console.log( "\nIf you want to make them fail, change some CSS." );
+      // pgbovine
+			//console.log( "\nPhantomCSS found " + tests.length + " tests, None of them failed. Which is good right?" );
+			//console.log( "\nIf you want to make them fail, change some CSS." );
 		} else {
 			console.log( "\nPhantomCSS found " + tests.length + " tests, " + noOfFails + ' of them failed.' );
 			if ( _failures ) {

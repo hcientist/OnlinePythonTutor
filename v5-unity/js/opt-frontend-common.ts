@@ -3,8 +3,6 @@
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
 require('./lib/diff_match_patch.js');
-require('./lib/jquery-3.0.0.min.js');
-require('./lib/jquery.ba-bbq.js'); // contains slight pgbovine modifications
 require('./lib/jquery.ba-dotimeout.min.js');
 
 var pytutor = require('./pytutor.ts');

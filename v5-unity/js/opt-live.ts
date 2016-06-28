@@ -589,7 +589,6 @@ function optLiveExecuteCode(forceStartingInstr, forceRawInputLst) {
     }
 
     var backend_script = optliveLangToBackendScript($('#pythonVersionSelector').val());
-    console.log('backend_script:', backend_script);
 
     var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
                              heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),

@@ -4,8 +4,6 @@
 
 /* TODO:
 
-- refactor in ES6 class syntax
-
 - add better abstractions so we don't need to 'export' so much stuff
   with awkward 'export' statements
 
@@ -19,44 +17,49 @@
 
 */
 
+
+/* pytutor coding gotchas:
+
+- *NEVER* use raw $(__) or d3.select(__) statements to select DOM elements.
+
+  *ALWAYS* use myViz.domRoot or myViz.domRootD3 for jQuery and D3, respectively.
+
+  Otherwise things will break in weird ways when you have more than one
+  visualization embedded within a webpage, due to multiple matches in
+  the global namespace.
+
+
+- always use generateID and generateHeapObjID to generate unique CSS
+  IDs, or else things will break when multiple ExecutionVisualizer
+  instances are on a webpage
+
+*/
+
+
 require('./lib/d3.v2.min.js');
 require('./lib/jquery-3.0.0.min.js');
 require('./lib/jquery.jsPlumb-1.3.10-all-min.js'); // DO NOT UPGRADE ABOVE 1.3.10 OR ELSE BREAKAGE WILL OCCUR 
 require('./lib/jquery-ui-1.11.4/jquery-ui.js');
 require('./lib/jquery-ui-1.11.4/jquery-ui.css');
 require('./lib/jquery.qtip.min.js');
+require('./lib/jquery.ba-bbq.js'); // contains slight pgbovine modifications
 require('../css/jquery.qtip.css');
 require('../css/pytutor.css');
+
 
 // for TypeScript
 declare var jQuery: JQueryStatic;
 declare var jsPlumb: any;
 
 
-/* Coding gotchas:
-
-- NEVER use raw $(__) or d3.select(__) statements to select DOM elements.
-
-  ALWAYS use myViz.domRoot or myViz.domRootD3 for jQuery and D3, respectively.
-
-  Otherwise things will break in weird ways when you have more than one visualization
-  embedded within a webpage, due to multiple matches in the global namespace.
-
-
-- always use generateID to generate unique CSS IDs, or else things will break
-  when multiple ExecutionVisualizer instances are displayed on a webpage
-
-*/
-
 export var SVG_ARROW_POLYGON = '0,3 12,3 12,0 18,5 12,10 12,7 0,7';
 var SVG_ARROW_HEIGHT = 10; // must match height of SVG_ARROW_POLYGON
-
-var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer instance
 
 var heapPtrSrcRE = /__heap_pointer_src_/;
 var rightwardNudgeHack = true; // suggested by John DeNero, toggle with global
 
 export class ExecutionVisualizer {
+  static curVisualizerID: number = 1;
 
   // TODO: add more precise types
   params: any;
@@ -237,10 +240,10 @@ export class ExecutionVisualizer {
     }
     else {
       // needs to be unique!
-      this.visualizerID = curVisualizerID;
-      curVisualizerID++;
+      this.visualizerID = ExecutionVisualizer.curVisualizerID;
+      assert(this.visualizerID > 0);
+      ExecutionVisualizer.curVisualizerID++;
     }
-
 
     this.leftGutterSvgInitialized = false;
     this.arrowOffsetY = undefined;
