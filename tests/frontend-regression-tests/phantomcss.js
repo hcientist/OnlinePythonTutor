@@ -635,8 +635,7 @@ function initClient() {
 function _onPass( test ) {
   // pgbovine - briefer pass msgs
 	//console.log( '\n' );
-	//casper.test.pass( 'No changes found for screenshot ' + test.filename );
-	casper.test.pass('yay');
+	casper.test.pass( 'No changes found for screenshot ' + test.filename );
 }
 
 function _onFail( test ) {
