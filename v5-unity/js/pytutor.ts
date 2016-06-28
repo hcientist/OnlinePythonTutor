@@ -84,7 +84,6 @@ export class ExecutionVisualizer {
   arrowOffsetY: number;
   codeRowHeight: number;
 
-  compactFuncLabels: boolean;
   classAttrsHidden: any;
 
   executeCodeWithRawInputFunc: any;
@@ -111,11 +110,9 @@ export class ExecutionVisualizer {
   instrLimitReached: boolean;
   instrLimitReachedWarningMsg: string;
 
-
   allAnnotationBubbles: any;
   numStdoutLines: number;
   editAnnotationMode: boolean;
-  allowEditAnnotations: boolean;
   embeddedMode: boolean;
 
   hasRendered: boolean;
@@ -140,9 +137,7 @@ export class ExecutionVisualizer {
   //   codeDivHeight - maximum height of #pyCodeOutputDiv (in integer pixels)
   //   codeDivWidth  - maximum width  of #pyCodeOutputDiv (in integer pixels)
   //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code' (if null, then 'Edit code' link hidden)
-  //   allowEditAnnotations - allow user to edit per-step annotations (default: false)
-  //   embeddedMode         - shortcut for allowEditAnnotations=false,
-  //                                       codeDivWidth=DEFAULT_EMBEDDED_CODE_DIV_WIDTH,
+  //   embeddedMode         - shortcut for codeDivWidth=DEFAULT_EMBEDDED_CODE_DIV_WIDTH,
   //                                       codeDivHeight=DEFAULT_EMBEDDED_CODE_DIV_HEIGHT
   //                          (and don't activate keyboard shortcuts!)
   //   disableHeapNesting   - if true, then render all heap objects at the top level (i.e., no nested objects)
@@ -222,8 +217,6 @@ export class ExecutionVisualizer {
         // only highlightLines set
         this.params.arrowLines = !(this.params.highlightLines);
     }
-
-    this.compactFuncLabels = this.params.compactFuncLabels;
 
     if (this.params.visualizerIdOverride) {
       this.visualizerID = this.params.visualizerIdOverride;
@@ -629,13 +622,6 @@ export class ExecutionVisualizer {
       }
     }
 
-    if (this.params.allowEditAnnotations !== undefined) {
-      this.allowEditAnnotations = this.params.allowEditAnnotations;
-    }
-    else {
-      this.allowEditAnnotations = false;
-    }
-
     this.domRoot.find('#stepAnnotationEditor').hide();
 
     if (this.params.embeddedMode) {
@@ -650,8 +636,6 @@ export class ExecutionVisualizer {
         this.params.codeDivHeight = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
       }
       
-      this.allowEditAnnotations = false;
-
       // add an extra label to link back to the main site, so that viewers
       // on the embedded page know that they're seeing an OPT visualization
       this.domRoot.find('#codeDisplayDiv').append('<div style="font-size: 8pt; margin-bottom: 20px;">Visualized using <a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Online Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a></div>');
@@ -660,31 +644,7 @@ export class ExecutionVisualizer {
     }
 
     myViz.editAnnotationMode = false;
-
-    if (this.allowEditAnnotations) {
-      var ab = this.domRoot.find('#annotateBtn');
-
-      ab.click(function() {
-        if (myViz.editAnnotationMode) {
-          myViz.enterViewAnnotationsMode();
-
-          myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider,#editCodeLinkDiv,#stepAnnotationViewer").show();
-          myViz.domRoot.find('#stepAnnotationEditor').hide();
-          ab.html('Annotate this step');
-        }
-        else {
-          myViz.enterEditAnnotationsMode();
-
-          myViz.domRoot.find("#jmpFirstInstr,#jmpLastInstr,#jmpStepBack,#jmpStepFwd,#executionSlider,#editCodeLinkDiv,#stepAnnotationViewer").hide();
-          myViz.domRoot.find('#stepAnnotationEditor').show();
-          ab.html('Done annotating');
-        }
-      });
-    }
-    else {
-      this.domRoot.find('#annotateBtn').hide();
-    }
-
+    this.domRoot.find('#annotateBtn').hide();
     
     // not enough room for these extra buttons ...
     if (this.params.codeDivWidth &&
@@ -1118,10 +1078,6 @@ export class ExecutionVisualizer {
   stepForward() {
     var myViz = this;
 
-    if (myViz.editAnnotationMode) {
-      return;
-    }
-
     if (myViz.curInstr < myViz.curTrace.length - 1) {
       // if there is a next breakpoint, then jump to it ...
       if (myViz.sortedBreakpointsList.length > 0) {
@@ -1144,10 +1100,6 @@ export class ExecutionVisualizer {
   // returns true if action successfully taken
   stepBack() {
     var myViz = this;
-
-    if (myViz.editAnnotationMode) {
-      return;
-    }
 
     if (myViz.curInstr > 0) {
       // if there is a prev breakpoint, then jump to it ...
@@ -1531,17 +1483,7 @@ export class ExecutionVisualizer {
     myViz.prevLineIsReturn = undefined;
     myViz.curLineExceptionMsg = undefined;
 
-
-    // TODO: don't do this since it screws with other stuff, and we're not
-    // activating annotation bubbles right now ...
-    // crucial resets for annotations (TODO: kludgy)
-    //myViz.destroyAllAnnotationBubbles();
-    //myViz.initStepAnnotation();
-
-
     var prevDataVizHeight = myViz.domRoot.find('#dataViz').height();
-
-
     var gutterSVG = myViz.domRoot.find('svg#leftCodeGutterSVG');
 
     // one-time initialization of the left gutter
@@ -1908,7 +1850,6 @@ export class ExecutionVisualizer {
     this.renderDataStructures(curEntry, curToplevelLayout);
 
     this.enterViewAnnotationsMode(); // ... and render optional annotations (if any exist)
-
 
     // call the callback if necessary (BEFORE rendering)
     if (myViz.domRoot.find('#dataViz').height() != prevDataVizHeight) {
@@ -3510,11 +3451,11 @@ export class ExecutionVisualizer {
       var funcName = htmlspecialchars(obj[1]).replace('&lt;lambda&gt;', '\u03bb');
       var parentFrameID = obj[2]; // optional
 
-      if (!myViz.compactFuncLabels) {
+      if (!myViz.params.compactFuncLabels) {
         d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + myViz.getRealLabel('function') + '</div>');
       }
 
-      var funcPrefix = myViz.compactFuncLabels ? 'func' : '';
+      var funcPrefix = myViz.params.compactFuncLabels ? 'func' : '';
 
       if (parentFrameID) {
         d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + ' [parent=f'+ parentFrameID + ']</div>');
