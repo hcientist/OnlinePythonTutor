@@ -1,4 +1,6 @@
 var webpack = require('webpack');
+var WebpackOnBuildPlugin = require('on-build-webpack');
+var exec = require('child_process').exec;
 
 module.exports = {
     plugins: [
@@ -10,7 +12,23 @@ module.exports = {
         jquery: "jquery",
         jQuery: "jquery",
         $: "jquery"
-      })
+      }),
+
+      // run a micro frontend regression test after every webpack build
+      // to sanity-check
+      new WebpackOnBuildPlugin(function(stats) {
+        console.log("\n");
+        exec("cd ../tests/frontend-regression-tests/ && make micro", (error, stdout, stderr) => {
+          if (error) {
+            console.error(`Test exec error: ${error}`);
+            return;
+          }
+          console.log(stdout);
+          if (stderr) {
+            console.log(`Test stderr: ${stderr}`);
+          }
+        });
+      }),
     ],
 
     // some included libraries reference 'jquery', so point to it:

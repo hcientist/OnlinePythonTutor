@@ -5,18 +5,17 @@
   "main": "bundle.js",
   "repository": "https://github.com/pgbovine/OnlinePythonTutor",
   "license": "BSD-3-Clause",
-
   "scripts": {
     "start": "python bottle_server.py",
     "webpack": "webpack --progress --colors --watch",
     "prod": "webpack -p"
   },
-
-  "dependencies" : {
-    "css-loader" : "",
-    "style-loader" : "",
-    "url-loader" : "",
-    "script-loader" : "",
-    "ts-loader" : ""
+  "dependencies": {
+    "css-loader": "",
+    "on-build-webpack": "^0.1.0",
+    "script-loader": "",
+    "style-loader": "",
+    "ts-loader": "",
+    "url-loader": ""
   }
 }
