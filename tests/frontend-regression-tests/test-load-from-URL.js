@@ -44,6 +44,7 @@ casper.test.begin('Testing page loads from URL strings', function (test) {
   // start with a baseline image
   casper.start();
   casper.viewport(1440, 900);
+  casper.options.waitTimeout = 10000; // longer default timeout
 
   casper.each(urlFragments, function then(self, e) {
     var urlFrag = e;
@@ -103,14 +104,13 @@ casper.test.begin('Testing page loads from URL strings', function (test) {
 
 
     self.thenOpen('about:blank');
-    self.echo(liveHtml);
     self.thenOpen(liveHtml, function() {
       casper.waitFor(function check() {
         return this.evaluate(function() {
           return document.querySelectorAll("#dataViz").length > 0;
         });
       }, function then() {
-        phantomcss.screenshot('body', 'testLiveMode'); // full screenshot!
+        phantomcss.screenshot('body', 'testLiveMode'); // full-page screenshot!
       });
     });
   });

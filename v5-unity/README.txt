@@ -27,6 +27,8 @@ Requires these global installations:
   npm install webpack -g
   npm install webpack-dev-server -g
 
+  [you might need to install webpack locally (without the -g) ... weird]
+
 If you run: webpack-dev-server --progress --colors
 
 then your code will automatically recompile and be refreshed here:
