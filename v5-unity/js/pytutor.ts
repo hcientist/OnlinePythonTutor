@@ -7,8 +7,11 @@
 - cleanly separate out the data structure visualization from the code
   display from the slider/vcrControls, so that we can mix and match them
 
-- sub in a non-live version of the live editor from opt-live.js in
-  addition to the janky current version of the editor
+  - e.g., abstract out the "slider" object and the ability to set and
+    display breakpoints on it
+
+- substitute in a non-live version of the live editor from opt-live.js
+  in addition to the janky current version of the editor
 
 */
 
@@ -131,7 +134,6 @@ export class ExecutionVisualizer {
   //               FIRST ENTRY with an error
   //   startingInstruction - the (zero-indexed) execution point to display upon rendering
   //                         if this is set, then it *overrides* jumpToEnd
-  //   hideOutput - hide "Program output" display
   //   codeDivHeight - maximum height of #pyCodeOutputDiv (in integer pixels)
   //   codeDivWidth  - maximum width  of #pyCodeOutputDiv (in integer pixels)
   //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code' (if null, then 'Edit code' link hidden)
@@ -446,8 +448,7 @@ export class ExecutionVisualizer {
        </div>';
 
     var outputsHTML =
-      '<div id="htmlOutputDiv"></div>\
-       <div id="progOutputs">\
+      '<div id="progOutputs">\
          <div id="printOutputDocs">Print output (drag lower right corner to resize)</div>\n\
          <textarea id="pyStdout" cols="40" rows="5" wrap="off" readonly></textarea>\
        </div>';
@@ -472,15 +473,20 @@ export class ExecutionVisualizer {
        </div>';
 
     if (this.params.verticalStack) {
-      this.domRoot.html('<table border="0" class="visualizer"><tr><td class="vizLayoutTd" id="vizLayoutTdFirst"">' +
-                        codeDisplayHTML + '</td></tr><tr><td class="vizLayoutTd" id="vizLayoutTdSecond">' +
-                        codeVizHTML + '</td></tr></table>');
+      this.domRoot.html('<table border="0" class="visualizer">\
+                           <tr><td class="vizLayoutTd" id="vizLayoutTdFirst""></td></tr>\
+                           <tr><td class="vizLayoutTd" id="vizLayoutTdSecond"></td></tr>\
+                         </table>');
     }
     else {
-      this.domRoot.html('<table border="0" class="visualizer"><tr><td class="vizLayoutTd" id="vizLayoutTdFirst">' +
-                        codeDisplayHTML + '</td><td class="vizLayoutTd" id="vizLayoutTdSecond">' +
-                        codeVizHTML + '</td></tr></table>');
+      this.domRoot.html('<table border="0" class="visualizer"><tr>\
+                           <td class="vizLayoutTd" id="vizLayoutTdFirst"></td>\
+                           <td class="vizLayoutTd" id="vizLayoutTdSecond"></td>\
+                         </tr></table>');
     }
+
+    this.domRoot.find('#vizLayoutTdFirst').html(codeDisplayHTML);
+    this.domRoot.find('#vizLayoutTdSecond').html(outputsHTML + codeVizHTML);
 
     var stdoutHeight = '75px';
     // heuristic for code with really small outputs
@@ -490,11 +496,7 @@ export class ExecutionVisualizer {
     if (this.params.embeddedMode) {
       stdoutHeight = '45px';
     }
-
-    // position this above visualization (started trying this on 2016-06-01)
-    this.domRoot.find('#vizLayoutTdSecond').prepend(outputsHTML);
-
-    // do this only after adding to DOM
+    // do this only after adding outputsHTML to the DOM
     this.domRoot.find('#pyStdout').width('350px')
                                   .height(stdoutHeight)
                                   .resizable();
@@ -620,11 +622,6 @@ export class ExecutionVisualizer {
       + '" class="stackFrameHeader">' + this.getRealLabel('Global frame') + '</div><table class="stackFrameVarTable" id="'
       + myViz.generateID('global_table') + '"></table></div>');
 
-
-    if (this.params.hideOutput) {
-      this.domRoot.find('#progOutputs').hide();
-    }
-
     this.domRoot.find("#jmpFirstInstr").click(function() {
       myViz.renderStep(0);
     });
@@ -646,8 +643,6 @@ export class ExecutionVisualizer {
     this.domRoot.find("#vcrControls #jmpStepBack").attr("disabled", true);
     this.domRoot.find("#vcrControls #jmpStepFwd").attr("disabled", true);
     this.domRoot.find("#vcrControls #jmpLastInstr").attr("disabled", true);
-
-
 
     // must postprocess curTrace prior to running precomputeCurTraceLayouts() ...
     var lastEntry = this.curTrace[this.curTrace.length - 1];
@@ -1069,7 +1064,7 @@ export class ExecutionVisualizer {
 
     // if there isn't anything in curEntry.stdout, don't even bother
     // displaying the pane (but this may cause jumpiness later)
-    if (!this.params.hideOutput && (this.numStdoutLines > 0)) {
+    if (this.numStdoutLines > 0) {
       this.domRoot.find('#progOutputs').show();
 
       var pyStdout = this.domRoot.find("#pyStdout");
@@ -1547,25 +1542,6 @@ export class ExecutionVisualizer {
     if (curEntry.line) {
       highlightCodeLine();
     }
-
-    // inject user-specified HTML/CSS/JS output:
-    // YIKES -- HUGE CODE INJECTION VULNERABILITIES :O
-    myViz.domRoot.find("#htmlOutputDiv").empty();
-    if (curEntry.html_output) {
-      if (curEntry.css_output) {
-        myViz.domRoot.find("#htmlOutputDiv").append('<style type="text/css">' + curEntry.css_output + '</style>');
-      }
-      myViz.domRoot.find("#htmlOutputDiv").append(curEntry.html_output);
-
-      // inject and run JS *after* injecting HTML and CSS
-      if (curEntry.js_output) {
-        // NB: when jQuery injects JS, it executes the code immediately
-        // and then removes the entire <script> block from the DOM
-        // http://stackoverflow.com/questions/610995/jquery-cant-append-script-element
-        myViz.domRoot.find("#htmlOutputDiv").append('<script type="text/javascript">' + curEntry.js_output + '</script>');
-      }
-    }
-
 
     // finally, render all of the data structures
     var curEntry = this.curTrace[this.curInstr];
@@ -3562,10 +3538,6 @@ export class ExecutionVisualizer {
       "end_render",
       function(args) {
         var myViz = args.myViz;
-
-        // uhh, dunno what this was for ...
-        //myViz.domRoot.find('#pyStdout').attr('cols', 1); // commented out by pgbovine
-        //myViz.domRoot.find('#pyStdout').attr('rows', Math.min(10, myViz.stdoutLines));
         
         if (myViz.params.stdin && myViz.params.stdin != "") {
           var stdinHTML = '<div id="stdinWrap">stdin:<pre id="stdinShow" style="border:1px solid gray"></pre></div>';

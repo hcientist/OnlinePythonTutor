@@ -86,6 +86,7 @@ class NullDevice():
 
 
 # These could lead to XSS or other code injection attacks, so be careful:
+# these are now deprecated as of 2016-06-28
 __html__ = None
 def setHTML(htmlStr):
   global __html__
@@ -1138,6 +1139,7 @@ class PGLogger(bdb.Bdb):
 
 
         # TODO: refactor into a non-global
+        # these are now deprecated as of 2016-06-28
         global __html__, __css__, __js__
         if __html__:
           trace_entry['html_output'] = __html__
