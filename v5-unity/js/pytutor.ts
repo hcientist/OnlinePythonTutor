@@ -471,7 +471,8 @@ export class ExecutionVisualizer {
     this.domRoot.find('#vizLayoutTdFirst').html(codeDisplayHTML); // TODO: extract codeDisplayHTML to code display class
     this.domRoot.find('#vizLayoutTdSecond').html(outputsHTML); // TODO: extract outputsHTML to stdout class
 
-    this.dataViz = new DataVisualizer(this.domRoot.find('#vizLayoutTdSecond'),
+    this.dataViz = new DataVisualizer(this,
+                                      this.domRoot.find('#vizLayoutTdSecond'),
                                       this.domRootD3.select('#vizLayoutTdSecond'));
 
     var stdoutHeight = '75px';
@@ -599,14 +600,6 @@ export class ExecutionVisualizer {
       this.domRoot.find('#pyCodeOutputDiv')
         .css('max-height', this.params.codeDivHeight + 'px');
     }
-
-
-    // create a persistent globals frame
-    // (note that we need to keep #globals_area separate from #stack for d3 to work its magic)
-    this.domRoot.find("#globals_area").append('<div class="stackFrame" id="'
-      + myViz.generateID('globals') + '"><div id="' + myViz.generateID('globals_header')
-      + '" class="stackFrameHeader">' + this.getRealLabel('Global frame') + '</div><table class="stackFrameVarTable" id="'
-      + myViz.generateID('global_table') + '"></table></div>');
 
     this.domRoot.find("#jmpFirstInstr").click(function() {
       myViz.renderStep(0);
@@ -869,7 +862,6 @@ export class ExecutionVisualizer {
       });
   }
 
-
   // TODO: refactor into code display class
   renderPyCodeOutput() {
     var myViz = this; // to prevent confusion of 'this' inside of nested functions
@@ -1069,7 +1061,6 @@ export class ExecutionVisualizer {
     }
   }
 
-
   // update some fields corresponding to the current and previously
   // executed lines in the trace so that they can be highlighted
   // copied and pasted from highlightCodeLine, which is hacky :/
@@ -1169,7 +1160,6 @@ export class ExecutionVisualizer {
     myViz.prevLineIsReturn = prevIsReturn;
   }
 
-
   // This function is called every time the display needs to be updated
   updateOutput(smoothTransition=false) {
     if (this.params.hideCode) {
@@ -1201,7 +1191,7 @@ export class ExecutionVisualizer {
     myViz.prevLineIsReturn = undefined;
     myViz.curLineExceptionMsg = undefined;
 
-    var prevDataVizHeight = myViz.domRoot.find('#dataViz').height();
+    var prevDataVizHeight = myViz.dataViz.height();
     var gutterSVG = myViz.domRoot.find('svg#leftCodeGutterSVG');
 
     // one-time initialization of the left gutter
@@ -1541,7 +1531,7 @@ export class ExecutionVisualizer {
     this.renderDataStructures(curEntry, curToplevelLayout);
 
     // call the callback if necessary (BEFORE rendering)
-    if (myViz.domRoot.find('#dataViz').height() != prevDataVizHeight) {
+    if (myViz.dataViz.height() != prevDataVizHeight) {
       if (this.params.heightChangeCallback) {
         this.params.heightChangeCallback(this);
       }
@@ -3537,7 +3527,7 @@ export class ExecutionVisualizer {
         
         if (myViz.params.stdin && myViz.params.stdin != "") {
           var stdinHTML = '<div id="stdinWrap">stdin:<pre id="stdinShow" style="border:1px solid gray"></pre></div>';
-          myViz.domRoot.find('#dataViz').append(stdinHTML);
+          myViz.domRoot.find('#dataViz').append(stdinHTML); // TODO: leaky abstraction with #dataViz
         }
 
         myViz.domRoot.find('#'+myViz.generateID('globals_header')).html("Static fields");
@@ -3699,10 +3689,12 @@ export class ExecutionVisualizer {
 
 // implements the data structure visualization
 class DataVisualizer {
+  owner: ExecutionVisualizer;
   domRoot: any;
   domRootD3: any;
 
-  constructor(domRoot, domRootD3) {
+  constructor(owner, domRoot, domRootD3) {
+    this.owner = owner;
     this.domRoot = domRoot;
     this.domRootD3 = domRootD3;
 
@@ -3726,6 +3718,17 @@ class DataVisualizer {
        </div>';
 
     this.domRoot.append(codeVizHTML);
+
+    // create a persistent globals frame
+    // (note that we need to keep #globals_area separate from #stack for d3 to work its magic)
+    this.domRoot.find("#globals_area").append('<div class="stackFrame" id="'
+      + this.owner.generateID('globals') + '"><div id="' + this.owner.generateID('globals_header')
+      + '" class="stackFrameHeader">' + this.owner.getRealLabel('Global frame') + '</div><table class="stackFrameVarTable" id="'
+      + this.owner.generateID('global_table') + '"></table></div>');
+  }
+
+  height() {
+    return this.domRoot.find('#dataViz').height();
   }
 }
 
