@@ -111,7 +111,6 @@ export class ExecutionVisualizer {
   instrLimitReachedWarningMsg: string;
 
   numStdoutLines: number;
-  editAnnotationMode: boolean;
   embeddedMode: boolean;
 
   hasRendered: boolean;
@@ -642,7 +641,6 @@ export class ExecutionVisualizer {
       myViz.domRoot.find('#executionSliderDocs').hide(); // cut out extraneous docs
     }
 
-    myViz.editAnnotationMode = false;
     this.domRoot.find('#annotateBtn').hide();
     
     // not enough room for these extra buttons ...
@@ -865,43 +863,14 @@ export class ExecutionVisualizer {
 
   initAllAnnotationBubbles() {
     var myViz = this;
-
-    // TODO: check for memory leaks
-    //console.log('initAllAnnotationBubbles');
-
     myViz.destroyAllAnnotationBubbles();
-
-    var codelineIDs = [];
-    $.each(this.domRoot.find('#pyCodeOutput .cod'), function(i, e) {
-      codelineIDs.push($(e).attr('id'));
-    });
-
-    var heapObjectIDs = [];
-    $.each(this.domRoot.find('.heapObject'), function(i, e) {
-      heapObjectIDs.push($(e).attr('id'));
-    });
-
-    var variableIDs = [];
-    $.each(this.domRoot.find('.variableTr'), function(i, e) {
-      variableIDs.push($(e).attr('id'));
-    });
-
-    var frameIDs = [];
-    $.each(this.domRoot.find('.stackFrame'), function(i, e) {
-      frameIDs.push($(e).attr('id'));
-    });
-
     this.domRoot.find('#pyCodeOutputDiv').scroll(function() {
     });
   }
 
   enterViewAnnotationsMode() {
-    this.editAnnotationMode = false;
     var curEntry = this.curTrace[this.curInstr];
-
-    // TODO: check for memory leaks!!!
     var myViz = this;
-
     var stepAnnotationEditorVal = myViz.domRoot.find("#stepAnnotationEditor").val().trim();
     if (stepAnnotationEditorVal) {
       curEntry.stepAnnotation = stepAnnotationEditorVal;
@@ -911,40 +880,8 @@ export class ExecutionVisualizer {
     }
 
     myViz.initStepAnnotation();
-
     myViz.showVizHeaderViewMode();
-
-    // redraw all connectors and bubbles in new vertical position ..
     myViz.redrawConnectors();
-    myViz.redrawAllAnnotationBubbles();
-  }
-
-  enterEditAnnotationsMode() {
-    this.editAnnotationMode = true;
-
-    // TODO: check for memory leaks!!!
-    var myViz = this;
-
-    var curEntry = this.curTrace[this.curInstr];
-
-    myViz.initAllAnnotationBubbles();
-
-    if (curEntry.stepAnnotation) {
-      myViz.domRoot.find("#stepAnnotationEditor").val(curEntry.stepAnnotation);
-    }
-    else {
-      myViz.domRoot.find("#stepAnnotationEditor").val('');
-    }
-
-
-    myViz.showVizHeaderEditMode();
-
-    // redraw all connectors and bubbles in new vertical position ..
-    myViz.redrawConnectors();
-    myViz.redrawAllAnnotationBubbles();
-  }
-
-  redrawAllAnnotationBubbles() {
   }
 
   // find the previous/next breakpoint to c or return -1 if it doesn't exist
