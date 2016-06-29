@@ -110,7 +110,6 @@ export class ExecutionVisualizer {
   instrLimitReached: boolean;
   instrLimitReachedWarningMsg: string;
 
-  allAnnotationBubbles: any;
   numStdoutLines: number;
   editAnnotationMode: boolean;
   embeddedMode: boolean;
@@ -848,17 +847,8 @@ export class ExecutionVisualizer {
   destroyAllAnnotationBubbles() {
     var myViz = this;
 
-    // hopefully destroys all old bubbles and reclaims their memory
-    if (myViz.allAnnotationBubbles) {
-      $.each(myViz.allAnnotationBubbles, function(i, e) {
-        e.destroyQTip();
-      });
-    }
-
     // remove this handler as well!
     this.domRoot.find('#pyCodeOutputDiv').unbind('scroll');
-
-    myViz.allAnnotationBubbles = null;
   }
 
   initStepAnnotation() {
@@ -901,23 +891,8 @@ export class ExecutionVisualizer {
       frameIDs.push($(e).attr('id'));
     });
 
-    myViz.allAnnotationBubbles = [];
-
-    $.each(codelineIDs, function(i,e) {myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'codeline', e));});
-    $.each(heapObjectIDs, function(i,e) {myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'object', e));});
-    $.each(variableIDs, function(i,e) {myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'variable', e));});
-    $.each(frameIDs, function(i,e) {myViz.allAnnotationBubbles.push(new AnnotationBubble(myViz, 'frame', e));});
-
-
     this.domRoot.find('#pyCodeOutputDiv').scroll(function() {
-      $.each(myViz.allAnnotationBubbles, function(i, e) {
-        if (e.type == 'codeline') {
-          e.redrawCodelineBubble();
-        }
-     });
     });
-
-    //console.log('initAllAnnotationBubbles', myViz.allAnnotationBubbles.length);
   }
 
   enterViewAnnotationsMode() {
@@ -926,40 +901,6 @@ export class ExecutionVisualizer {
 
     // TODO: check for memory leaks!!!
     var myViz = this;
-
-    if (!myViz.allAnnotationBubbles) {
-      if (curEntry.bubbleAnnotations) {
-        // If there is an existing annotations object, then initiate all annotations bubbles
-        // and display them in 'View' mode
-        myViz.initAllAnnotationBubbles();
-
-        $.each(myViz.allAnnotationBubbles, function(i, e) {
-          var txt = curEntry.bubbleAnnotations[e.domID];
-          if (txt) {
-            e.preseedText(txt);
-          }
-        });
-      }
-    }
-
-
-    if (myViz.allAnnotationBubbles) {
-      var curAnnotations = {};
-
-      $.each(myViz.allAnnotationBubbles, function(i, e) {
-        e.enterViewMode();
-
-        if (e.text) {
-          curAnnotations[e.domID] = e.text;
-        }
-      });
-
-      // Save annotations directly into the current trace entry as an 'annotations' object
-      // directly mapping domID -> text.
-      //
-      // NB: This scheme can break if the functions for generating domIDs are altered.
-      curEntry.bubbleAnnotations = curAnnotations;
-    }
 
     var stepAnnotationEditorVal = myViz.domRoot.find("#stepAnnotationEditor").val().trim();
     if (stepAnnotationEditorVal) {
@@ -986,14 +927,7 @@ export class ExecutionVisualizer {
 
     var curEntry = this.curTrace[this.curInstr];
 
-    if (!myViz.allAnnotationBubbles) {
-      myViz.initAllAnnotationBubbles();
-    }
-
-    $.each(myViz.allAnnotationBubbles, function(i, e) {
-      e.enterEditMode();
-    });
-
+    myViz.initAllAnnotationBubbles();
 
     if (curEntry.stepAnnotation) {
       myViz.domRoot.find("#stepAnnotationEditor").val(curEntry.stepAnnotation);
@@ -1011,13 +945,7 @@ export class ExecutionVisualizer {
   }
 
   redrawAllAnnotationBubbles() {
-    if (this.allAnnotationBubbles) {
-      $.each(this.allAnnotationBubbles, function(i, e) {
-        e.redrawBubble();
-      });
-    }
   }
-
 
   // find the previous/next breakpoint to c or return -1 if it doesn't exist
   findPrevBreakpoint() {
