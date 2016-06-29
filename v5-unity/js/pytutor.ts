@@ -467,10 +467,6 @@ export class ExecutionVisualizer {
            <button id="raw_input_submit_btn">Submit</button>\
          </div>\
          <div id="errorOutput"/>\
-         <div id="stepAnnotationDiv">\
-           <textarea class="annotationText" id="stepAnnotationEditor" cols="60" rows="3"></textarea>\
-           <div class="annotationText" id="stepAnnotationViewer"></div>\
-         </div>\
        </div>';
 
     var outputsHTML =
@@ -610,8 +606,6 @@ export class ExecutionVisualizer {
         this.domRoot.find('#langDisplayDiv').hide();
       }
     }
-
-    this.domRoot.find('#stepAnnotationEditor').hide();
 
     if (this.params.embeddedMode) {
       this.embeddedMode = true;
