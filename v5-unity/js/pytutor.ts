@@ -848,6 +848,7 @@ export class ExecutionVisualizer {
   }
 
 
+  // TODO: refactor into slider class
   renderSliderBreakpoints() {
     var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
@@ -883,6 +884,7 @@ export class ExecutionVisualizer {
   }
 
 
+  // TODO: refactor into code display class
   renderPyCodeOutput() {
     var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
@@ -1059,6 +1061,7 @@ export class ExecutionVisualizer {
       });
   }
 
+  // TODO: refactor into stdout display class
   renderStdout() {
     var curEntry = this.curTrace[this.curInstr];
 
@@ -1084,6 +1087,9 @@ export class ExecutionVisualizer {
   // update some fields corresponding to the current and previously
   // executed lines in the trace so that they can be highlighted
   // copied and pasted from highlightCodeLine, which is hacky :/
+  //
+  // TODO: this is used by opt-live.ts; figure out a way to more cleanly
+  // expose this functionality without as much copy-and-paste grossness
   updateCurPrevLines() {
     var myViz = this;
     var totalInstrs = myViz.curTrace.length;
@@ -1588,6 +1594,7 @@ export class ExecutionVisualizer {
     this.updateOutput();
   }
 
+
   // is this visualizer in C or C++ mode? the eventual goal is to remove
   // this special-case kludge check altogether and have the entire
   // codebase be unified. but for now, keep C/C++ separate because I don't
@@ -1597,6 +1604,8 @@ export class ExecutionVisualizer {
   }
 
 
+  // TODO: refactor into data viz class
+  //
   // Pre-compute the layout of top-level heap objects for ALL execution
   // points as soon as a trace is first loaded. The reason why we want to
   // do this is so that when the user steps through execution points, the
@@ -1604,7 +1613,6 @@ export class ExecutionVisualizer {
   // invariance). Also, if we set up the layout objects properly, then we
   // can take full advantage of d3 to perform rendering and transitions.
   precomputeCurTraceLayouts() {
-
     // curTraceLayouts is a list of top-level heap layout "objects" with the
     // same length as curTrace after it's been fully initialized. Each
     // element of curTraceLayouts is computed from the contents of its
@@ -1943,7 +1951,8 @@ export class ExecutionVisualizer {
     assert (this.curTrace.length == this.curTraceLayouts.length);
   }
 
-
+  // TODO: refactor into data viz class
+  //
   // This is the main event here!!!
   //
   // The "4.0" version of renderDataStructures was refactored to be much
@@ -2750,6 +2759,8 @@ export class ExecutionVisualizer {
     myViz.try_hook("end_renderDataStructures", {myViz:myViz});
   }
 
+  // TODO: refactor into data viz class
+  //
   // rendering functions, which all take a d3 dom element to anchor the
   // new element to render
   renderPrimitiveObject(obj, d3DomElement) {
@@ -3228,6 +3239,7 @@ export class ExecutionVisualizer {
     }
   }
 
+  // special-case kludge for C/C++
   renderCStructArray(obj, stepNum, d3DomElement) {
     var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
@@ -3396,7 +3408,6 @@ export class ExecutionVisualizer {
     }
   }
 
-
   isPrimitiveType(obj) {
     var hook_result = this.try_hook("isPrimitiveType", {obj:obj});
     if (hook_result[0]) return hook_result[1];
@@ -3416,7 +3427,6 @@ export class ExecutionVisualizer {
       return true;
     }
   }
-
 
   // All of the Java frontend code in this function was written by David
   // Pritchard and Will Gwozdz, and integrated by Philip Guo
@@ -3682,6 +3692,7 @@ export class ExecutionVisualizer {
     };
   }
 
+  // TODO: this is used by opt-frontend.ts; find a cleaner way to expose
   // NB: copy-and-paste from isOutputLineVisible with some minor tweaks
   isOutputLineVisibleForBubbles(lineDivID) {
     var pcod = this.domRoot.find('#pyCodeOutputDiv');
