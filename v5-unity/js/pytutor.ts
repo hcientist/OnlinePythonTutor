@@ -93,13 +93,10 @@ export class ExecutionVisualizer {
 
   executeCodeWithRawInputFunc: any;
 
-  jsPlumbInstance: any;
-  jsPlumbManager: any;
   domRoot: any;
   domRootD3: any;
 
   curInstr: number;
-  curTraceLayouts: any[];
 
   codeOutputLines: any[];
   breakpoints: d3.Map<{}>;
@@ -218,25 +215,6 @@ export class ExecutionVisualizer {
     this.params.showAllFrameLabels = (this.params.showAllFrameLabels === true);
 
     this.executeCodeWithRawInputFunc = this.params.executeCodeWithRawInputFunc;
-
-    // cool, we can create a separate jsPlumb instance for each visualization:
-    this.jsPlumbInstance = jsPlumb.getInstance({
-      Endpoint: ["Dot", {radius:3}],
-      EndpointStyles: [{fillStyle: connectorBaseColor}, {fillstyle: null} /* make right endpoint invisible */],
-      Anchors: ["RightMiddle", "LeftMiddle"],
-      PaintStyle: {lineWidth:1, strokeStyle: connectorBaseColor},
-
-      // bezier curve style:
-      //Connector: [ "Bezier", { curviness:15 }], /* too much 'curviness' causes lines to run together */
-      //Overlays: [[ "Arrow", { length: 14, width:10, foldback:0.55, location:0.35 }]],
-
-      // state machine curve style:
-      Connector: [ "StateMachine" ],
-      Overlays: [[ "Arrow", { length: 10, width:7, foldback:0.55, location:1 }]],
-      EndpointHoverStyles: [{fillStyle: connectorHighlightColor}, {fillstyle: null} /* make right endpoint invisible */],
-      HoverPaintStyle: {lineWidth: 1, strokeStyle: connectorHighlightColor},
-    });
-
 
     // true iff trace ended prematurely since maximum instruction limit has
     // been reached
@@ -366,39 +344,6 @@ export class ExecutionVisualizer {
     }
     return [false];
   }
-
-  // for managing state related to pesky jsPlumb connectors, need to reset
-  // before every call to renderDataStructures, or else all hell breaks
-  // loose. yeah, this is kludgy and stateful, but at least all of the
-  // relevant state gets shoved into one unified place
-  resetJsPlumbManager() {
-    this.jsPlumbManager = {
-      heap_pointer_src_id: 1, // increment this to be unique for each heap_pointer_src_*
-
-      // Key:   CSS ID of the div element representing the stack frame variable
-      //        (for stack->heap connections) or heap object (for heap->heap connections)
-      //        the format is: '<this.visualizerID>__heap_pointer_src_<src id>'
-      // Value: CSS ID of the div element representing the value rendered in the heap
-      //        (the format is given by generateHeapObjID())
-      //
-      // The reason we need to prepend this.visualizerID is because jsPlumb needs
-      // GLOBALLY UNIQUE IDs for use as connector endpoints.
-      //
-      // TODO: jsPlumb might be able to directly take DOM elements rather
-      // than IDs, which makes the above point moot. But let's just stick
-      // with this for now until I want to majorly refactor :)
-
-      // the only elements in these sets are NEW elements to be rendered in this
-      // particular call to renderDataStructures.
-      connectionEndpointIDs: d3.map(),
-      heapConnectionEndpointIDs: d3.map(), // subset of connectionEndpointIDs for heap->heap connections
-      // analogous to connectionEndpointIDs, except for environment parent pointers
-      parentPointerConnectionEndpointIDs: d3.map(),
-
-      renderedHeapObjectIDs: d3.map(), // format given by generateHeapObjID()
-    };
-  }
-
 
   // create a unique ID, which is often necessary so that jsPlumb doesn't get confused
   // due to multiple ExecutionVisualizer instances being displayed simultaneously
@@ -704,7 +649,7 @@ export class ExecutionVisualizer {
 
     this.try_hook("end_render", {myViz:this});
 
-    this.precomputeCurTraceLayouts();
+    this.dataViz.precomputeCurTraceLayouts(this.curTrace);
 
     if (!this.params.hideCode) {
       this.renderPyCodeOutput();
@@ -1527,7 +1472,7 @@ export class ExecutionVisualizer {
 
     // finally, render all of the data structures
     var curEntry = this.curTrace[this.curInstr];
-    var curToplevelLayout = this.curTraceLayouts[this.curInstr];
+    var curToplevelLayout = this.dataViz.curTraceLayouts[this.curInstr];
     this.renderDataStructures(curEntry, curToplevelLayout);
 
     // call the callback if necessary (BEFORE rendering)
@@ -1552,7 +1497,7 @@ export class ExecutionVisualizer {
   updateOutputMini() {
     assert(this.params.hideCode);
     var curEntry = this.curTrace[this.curInstr];
-    var curToplevelLayout = this.curTraceLayouts[this.curInstr];
+    var curToplevelLayout = this.dataViz.curTraceLayouts[this.curInstr];
     this.renderDataStructures(curEntry, curToplevelLayout);
   }
 
@@ -1568,363 +1513,6 @@ export class ExecutionVisualizer {
 
     this.curInstr = step;
     this.updateOutput();
-  }
-
-
-  // is this visualizer in C or C++ mode? the eventual goal is to remove
-  // this special-case kludge check altogether and have the entire
-  // codebase be unified. but for now, keep C/C++ separate because I don't
-  // want to risk screwing up the visualizations for the other languages
-  isCppMode() {
-    return (this.params.lang === 'c' || this.params.lang === 'cpp');
-  }
-
-
-  // TODO: refactor into data viz class
-  //
-  // Pre-compute the layout of top-level heap objects for ALL execution
-  // points as soon as a trace is first loaded. The reason why we want to
-  // do this is so that when the user steps through execution points, the
-  // heap objects don't "jiggle around" (i.e., preserving positional
-  // invariance). Also, if we set up the layout objects properly, then we
-  // can take full advantage of d3 to perform rendering and transitions.
-  precomputeCurTraceLayouts() {
-    // curTraceLayouts is a list of top-level heap layout "objects" with the
-    // same length as curTrace after it's been fully initialized. Each
-    // element of curTraceLayouts is computed from the contents of its
-    // immediate predecessor, thus ensuring that objects don't "jiggle
-    // around" between consecutive execution points.
-    //
-    // Each top-level heap layout "object" is itself a LIST of LISTS of
-    // object IDs, where each element of the outer list represents a row,
-    // and each element of the inner list represents columns within a
-    // particular row. Each row can have a different number of columns. Most
-    // rows have exactly ONE column (representing ONE object ID), but rows
-    // containing 1-D linked data structures have multiple columns. Each
-    // inner list element looks something like ['row1', 3, 2, 1] where the
-    // first element is a unique row ID tag, which is used as a key for d3 to
-    // preserve "object constancy" for updates, transitions, etc. The row ID
-    // is derived from the FIRST object ID inserted into the row. Since all
-    // object IDs are unique, all row IDs will also be unique.
-
-    /* This is a good, simple example to test whether objects "jiggle"
-
-    x = [1, [2, [3, None]]]
-    y = [4, [5, [6, None]]]
-
-    x[1][1] = y[1]
-
-    */
-    this.curTraceLayouts = [];
-    this.curTraceLayouts.push([]); // pre-seed with an empty sentinel to simplify the code
-
-    var myViz = this; // to prevent confusion of 'this' inside of nested functions
-
-    assert(this.curTrace.length > 0);
-    $.each(this.curTrace, function(i, curEntry) {
-      var prevLayout = myViz.curTraceLayouts[myViz.curTraceLayouts.length - 1];
-
-      // make a DEEP COPY of prevLayout to use as the basis for curLine
-      var curLayout = $.extend(true /* deep copy */ , [], prevLayout);
-
-      // initialize with all IDs from curLayout
-      var idsToRemove = d3.map();
-      $.each(curLayout, function(i, row) {
-        for (var j = 1 /* ignore row ID tag */; j < row.length; j++) {
-          idsToRemove.set(row[j], 1);
-        }
-      });
-
-      var idsAlreadyLaidOut = d3.map(); // to prevent infinite recursion
-
-      function curLayoutIndexOf(id) {
-        for (var i = 0; i < curLayout.length; i++) {
-          var row = curLayout[i];
-          var index = row.indexOf(id);
-          if (index > 0) { // index of 0 is impossible since it's the row ID tag
-            return {row: row, index: index}
-          }
-        }
-        return null;
-      }
-
-      function isLinearObj(heapObj) {
-        var hook_result = myViz.try_hook("isLinearObj", {heapObj:heapObj});
-        if (hook_result[0]) return hook_result[1];
-
-        return heapObj[0] == 'LIST' || heapObj[0] == 'TUPLE' || heapObj[0] == 'SET';
-      }
-
-      function recurseIntoObject(id, curRow, newRow) {
-        // heuristic for laying out 1-D linked data structures: check for enclosing elements that are
-        // structurally identical and then lay them out as siblings in the same "row"
-        var heapObj = curEntry.heap[id];
-
-        if (myViz.isCppMode()) {
-          // soften this assumption since C-style pointers might not point
-          // to the heap; they can point to any piece of data!
-          if (!heapObj) {
-            return;
-          }
-        } else {
-          assert(heapObj);
-        }
-
-        if (isLinearObj(heapObj)) {
-          $.each(heapObj, function(ind, child) {
-            if (ind < 1) return; // skip type tag
-
-            if (!myViz.isPrimitiveType(child)) {
-              var childID = getRefID(child);
-
-              // comment this out to make "linked lists" that aren't
-              // structurally equivalent look good, e.g.,:
-              //   x = (1, 2, (3, 4, 5, 6, (7, 8, 9, None)))
-              //if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-              //  updateCurLayout(childID, curRow, newRow);
-              //}
-              if (myViz.params.disableHeapNesting) {
-                updateCurLayout(childID, [], []);
-              }
-              else {
-                updateCurLayout(childID, curRow, newRow);
-              }
-            }
-          });
-        }
-        else if (heapObj[0] == 'DICT') {
-          $.each(heapObj, function(ind, child) {
-            if (ind < 1) return; // skip type tag
-
-            if (myViz.params.disableHeapNesting) {
-              var dictKey = child[0];
-              if (!myViz.isPrimitiveType(dictKey)) {
-                var keyChildID = getRefID(dictKey);
-                updateCurLayout(keyChildID, [], []);
-              }
-            }
-
-            var dictVal = child[1];
-            if (!myViz.isPrimitiveType(dictVal)) {
-              var childID = getRefID(dictVal);
-              if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-                updateCurLayout(childID, curRow, newRow);
-              }
-              else if (myViz.params.disableHeapNesting) {
-                updateCurLayout(childID, [], []);
-              }
-            }
-          });
-        }
-        else if (heapObj[0] == 'INSTANCE' || heapObj[0] == 'CLASS') {
-          jQuery.each(heapObj, function(ind, child) {
-            var headerLength = (heapObj[0] == 'INSTANCE') ? 2 : 3;
-            if (ind < headerLength) return;
-
-            if (myViz.params.disableHeapNesting) {
-              var instKey = child[0];
-              if (!myViz.isPrimitiveType(instKey)) {
-                var keyChildID = getRefID(instKey);
-                updateCurLayout(keyChildID, [], []);
-              }
-            }
-
-            var instVal = child[1];
-            if (!myViz.isPrimitiveType(instVal)) {
-              var childID = getRefID(instVal);
-              if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-                updateCurLayout(childID, curRow, newRow);
-              }
-              else if (myViz.params.disableHeapNesting) {
-                updateCurLayout(childID, [], []);
-              }
-            }
-          });
-        }
-        else if ((heapObj[0] == 'C_ARRAY') || (heapObj[0] == 'C_STRUCT')) {
-          updateCurLayoutAndRecurse(heapObj);
-        }
-      }
-
-
-      // a krazy function!
-      // id     - the new object ID to be inserted somewhere in curLayout
-      //          (if it's not already in there)
-      // curRow - a row within curLayout where new linked list
-      //          elements can be appended onto (might be null)
-      // newRow - a new row that might be spliced into curRow or appended
-      //          as a new row in curLayout
-      function updateCurLayout(id, curRow, newRow) {
-        if (idsAlreadyLaidOut.has(id)) {
-          return; // PUNT!
-        }
-
-        var curLayoutLoc = curLayoutIndexOf(id);
-
-        var alreadyLaidOut = idsAlreadyLaidOut.has(id);
-        idsAlreadyLaidOut.set(id, 1); // unconditionally set now
-
-        // if id is already in curLayout ...
-        if (curLayoutLoc) {
-          var foundRow = curLayoutLoc.row;
-          var foundIndex = curLayoutLoc.index;
-
-          idsToRemove.remove(id); // this id is already accounted for!
-
-          // very subtle ... if id hasn't already been handled in
-          // this iteration, then splice newRow into foundRow. otherwise
-          // (later) append newRow onto curLayout as a truly new row
-          if (!alreadyLaidOut) {
-            // splice the contents of newRow right BEFORE foundIndex.
-            // (Think about when you're trying to insert in id=3 into ['row1', 2, 1]
-            //  to represent a linked list 3->2->1. You want to splice the 3
-            //  entry right before the 2 to form ['row1', 3, 2, 1])
-            if (newRow.length > 1) {
-              var args = [foundIndex, 0];
-              for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
-                args.push(newRow[i]);
-                idsToRemove.remove(newRow[i]);
-              }
-              foundRow.splice.apply(foundRow, args);
-
-              // remove ALL elements from newRow since they've all been accounted for
-              // (but don't reassign it away to an empty list, since the
-              // CALLER checks its value. TODO: how to get rid of this gross hack?!?)
-              newRow.splice(0, newRow.length);
-            }
-          }
-
-          // recurse to find more top-level linked entries to append onto foundRow
-          recurseIntoObject(id, foundRow, []);
-        }
-        else {
-          // push id into newRow ...
-          if (newRow.length == 0) {
-            newRow.push('row' + id); // unique row ID (since IDs are unique)
-          }
-          newRow.push(id);
-
-          // recurse to find more top-level linked entries ...
-          recurseIntoObject(id, curRow, newRow);
-
-
-          // if newRow hasn't been spliced into an existing row yet during
-          // a child recursive call ...
-          if (newRow.length > 0) {
-            if (curRow && curRow.length > 0) {
-              // append onto the END of curRow if it exists
-              for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
-                curRow.push(newRow[i]);
-              }
-            }
-            else {
-              // otherwise push to curLayout as a new row
-              //
-              // TODO: this might not always look the best, since we might
-              // sometimes want to splice newRow in the MIDDLE of
-              // curLayout. Consider this example:
-              //
-              // x = [1,2,3]
-              // y = [4,5,6]
-              // x = [7,8,9]
-              //
-              // when the third line is executed, the arrows for x and y
-              // will be crossed (ugly!) since the new row for the [7,8,9]
-              // object is pushed to the end (bottom) of curLayout. The
-              // proper behavior is to push it to the beginning of
-              // curLayout where the old row for 'x' used to be.
-              curLayout.push($.extend(true /* make a deep copy */ , [], newRow));
-            }
-
-            // regardless, newRow is now accounted for, so clear it
-            for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
-              idsToRemove.remove(newRow[i]);
-            }
-            newRow.splice(0, newRow.length); // kill it!
-          }
-
-        }
-      }
-
-
-      function updateCurLayoutAndRecurse(elt) {
-        if (!elt) return; // early bail out
-
-        if (isHeapRef(elt, curEntry.heap)) {
-          var id = getRefID(elt);
-          updateCurLayout(id, null, []);
-        }
-        recurseIntoCStructArray(elt);
-      }
-
-      // traverse inside of C structs and arrays to find whether they
-      // (recursively) contain any references to heap objects within
-      // themselves. be able to handle arbitrary nesting!
-      function recurseIntoCStructArray(val) {
-        if (val[0] === 'C_ARRAY') {
-          $.each(val, function(ind, elt) {
-            if (ind < 2) return;
-            updateCurLayoutAndRecurse(elt);
-          });
-        } else if (val[0] === 'C_STRUCT') {
-          $.each(val, function(ind, kvPair) {
-            if (ind < 3) return;
-            updateCurLayoutAndRecurse(kvPair[1]);
-          });
-        }
-      }
-
-      // iterate through all globals and ordered stack frames and call updateCurLayout
-      $.each(curEntry.ordered_globals, function(i, varname) {
-        var val = curEntry.globals[varname];
-        if (val !== undefined) { // might not be defined at this line, which is OKAY!
-          // TODO: try to unify this behavior between C/C++ and other languages:
-          if (myViz.isCppMode()) {
-            updateCurLayoutAndRecurse(val);
-          } else {
-            if (!myViz.isPrimitiveType(val)) {
-              var id = getRefID(val);
-              updateCurLayout(id, null, []);
-            }
-          }
-        }
-      });
-
-      $.each(curEntry.stack_to_render, function(i, frame) {
-        $.each(frame.ordered_varnames, function(xxx, varname) {
-          var val = frame.encoded_locals[varname];
-          // TODO: try to unify this behavior between C/C++ and other languages:
-          if (myViz.isCppMode()) {
-            updateCurLayoutAndRecurse(val);
-          } else {
-            if (!myViz.isPrimitiveType(val)) {
-              var id = getRefID(val);
-              updateCurLayout(id, null, []);
-            }
-          }
-        });
-      });
-
-
-      // iterate through remaining elements of idsToRemove and REMOVE them from curLayout
-      idsToRemove.forEach(function(id, xxx) {
-        var idInt = Number(id); // keys are stored as strings, so convert!!!
-        $.each(curLayout, function(rownum, row) {
-          var ind = row.indexOf(idInt);
-          if (ind > 0) { // remember that index 0 of the row is the row ID tag
-            row.splice(ind, 1);
-          }
-        });
-      });
-
-      // now remove empty rows (i.e., those with only a row ID tag) from curLayout
-      curLayout = curLayout.filter(function(row) {return row.length > 1});
-
-      myViz.curTraceLayouts.push(curLayout);
-    });
-
-    this.curTraceLayouts.splice(0, 1); // remove seeded empty sentinel element
-    assert (this.curTrace.length == this.curTraceLayouts.length);
   }
 
   // TODO: refactor into data viz class
@@ -1960,7 +1548,7 @@ export class ExecutionVisualizer {
   renderDataStructures(curEntry, curToplevelLayout) {
     var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
-    myViz.resetJsPlumbManager(); // very important!!!
+    myViz.dataViz.resetJsPlumbManager(); // very important!!!
 
     // for simplicity (but sacrificing some performance), delete all
     // connectors and redraw them from scratch. doing so avoids mysterious
@@ -1968,7 +1556,7 @@ export class ExecutionVisualizer {
     // div contains, say, a "position: relative;" CSS tag
     // (which happens in the IPython Notebook)
     var existingConnectionEndpointIDs = d3.map();
-    myViz.jsPlumbInstance.select({scope: 'varValuePointer'}).each(function(c) {
+    myViz.dataViz.jsPlumbInstance.select({scope: 'varValuePointer'}).each(function(c) {
       // This is VERY crude, but to prevent multiple redundant HEAP->HEAP
       // connectors from being drawn with the same source and origin, we need to first
       // DELETE ALL existing HEAP->HEAP connections, and then re-render all of
@@ -1983,7 +1571,7 @@ export class ExecutionVisualizer {
     });
 
     var existingParentPointerConnectionEndpointIDs = d3.map();
-    myViz.jsPlumbInstance.select({scope: 'frameParentPointer'}).each(function(c) {
+    myViz.dataViz.jsPlumbInstance.select({scope: 'frameParentPointer'}).each(function(c) {
       existingParentPointerConnectionEndpointIDs.set(c.sourceId, c.targetId);
     });
 
@@ -1996,7 +1584,7 @@ export class ExecutionVisualizer {
       for (var i = 0; i < row.length; i++) {
         var objID = row[i];
         var heapObjID = myViz.generateHeapObjID(objID, myViz.curInstr);
-        myViz.jsPlumbManager.renderedHeapObjectIDs.set(heapObjID, 1);
+        myViz.dataViz.jsPlumbManager.renderedHeapObjectIDs.set(heapObjID, 1);
       }
     });
 
@@ -2064,7 +1652,7 @@ export class ExecutionVisualizer {
         // Right now, just delete the old element and render a new one in its place
         $(this).empty();
 
-        if (myViz.isCppMode()) {
+        if (myViz.dataViz.isCppMode()) {
           // TODO: why might this be undefined?!? because the object
           // disappeared from the heap all of a sudden?!?
           if (curEntry.heap[objID] !== undefined) {
@@ -2094,10 +1682,10 @@ export class ExecutionVisualizer {
       var stackPtrId = $(this).find('div.stack_pointer').attr('id');
       if (stackPtrId) {
         var foundTargetId = null;
-        myViz.jsPlumbInstance.select({source: stackPtrId}).each(function(c) {foundTargetId = c.targetId;});
+        myViz.dataViz.jsPlumbInstance.select({source: stackPtrId}).each(function(c) {foundTargetId = c.targetId;});
 
         // use foundTargetId to highlight ALL ALIASES
-        myViz.jsPlumbInstance.select().each(function(c) {
+        myViz.dataViz.jsPlumbInstance.select().each(function(c) {
           if (c.targetId == foundTargetId) {
             c.setHover(true);
             $(c.canvas).css("z-index", 2000); // ... and move it to the VERY FRONT
@@ -2110,7 +1698,7 @@ export class ExecutionVisualizer {
     }
 
     function unhighlightAllConnectors(d, i) {
-      myViz.jsPlumbInstance.select().each(function(c) {
+      myViz.dataViz.jsPlumbInstance.select().each(function(c) {
         c.setHover(false);
       });
     }
@@ -2188,7 +1776,7 @@ export class ExecutionVisualizer {
           existingConnectionEndpointIDs.remove(varDivID);
 
           var val = curEntry.globals[varname];
-          if (myViz.isPrimitiveType(val)) {
+          if (myViz.dataViz.isPrimitiveType(val)) {
             myViz.renderPrimitiveObject(val, $(this));
           }
           else if (val[0] === 'C_STRUCT' || val[0] === 'C_ARRAY') {
@@ -2203,11 +1791,11 @@ export class ExecutionVisualizer {
               $(this).append('<div class="objectIdLabel" id="' + labelID + '">id' + getRefID(val) + '</div>');
               $(this).find('div#' + labelID).hover(
                 function() {
-                  myViz.jsPlumbInstance.connect({source: labelID, target: heapObjID,
+                  myViz.dataViz.jsPlumbInstance.connect({source: labelID, target: heapObjID,
                                                  scope: 'varValuePointer'});
                 },
                 function() {
-                  myViz.jsPlumbInstance.select({source: labelID}).detach();
+                  myViz.dataViz.jsPlumbInstance.select({source: labelID}).detach();
                 });
             }
             else {
@@ -2216,8 +1804,8 @@ export class ExecutionVisualizer {
               // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
               $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
 
-              assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(varDivID));
-              myViz.jsPlumbManager.connectionEndpointIDs.set(varDivID, heapObjID);
+              assert(!myViz.dataViz.jsPlumbManager.connectionEndpointIDs.has(varDivID));
+              myViz.dataViz.jsPlumbManager.connectionEndpointIDs.set(varDivID, heapObjID);
               //console.log('STACK->HEAP', varDivID, heapObjID);
             }
           }
@@ -2301,7 +1889,7 @@ export class ExecutionVisualizer {
           myViz.domRoot.find('div#stack [data-frame_id=' + parent_frame_id + ']').each(function(i, e) {
             var parent_CSS_id = $(this).attr('id');
             //console.log('connect', my_CSS_id, parent_CSS_id);
-            myViz.jsPlumbManager.parentPointerConnectionEndpointIDs.set(my_CSS_id, parent_CSS_id);
+            myViz.dataViz.jsPlumbManager.parentPointerConnectionEndpointIDs.set(my_CSS_id, parent_CSS_id);
           });
         }
         else {
@@ -2309,7 +1897,7 @@ export class ExecutionVisualizer {
           //console.log('connect', my_CSS_id, globalsID);
           // only do this if there are actually some global variables to display ...
           if (curEntry.ordered_globals.length > 0) {
-            myViz.jsPlumbManager.parentPointerConnectionEndpointIDs.set(my_CSS_id, globalsID);
+            myViz.dataViz.jsPlumbManager.parentPointerConnectionEndpointIDs.set(my_CSS_id, globalsID);
           }
         }
 
@@ -2321,7 +1909,7 @@ export class ExecutionVisualizer {
         myViz.domRoot.find('div#stack [data-parent_frame_id=' + my_frame_id + ']').each(function(i, e) {
           var child_CSS_id = $(this).attr('id');
           //console.log('connect', child_CSS_id, my_CSS_id);
-          myViz.jsPlumbManager.parentPointerConnectionEndpointIDs.set(child_CSS_id, my_CSS_id);
+          myViz.dataViz.jsPlumbManager.parentPointerConnectionEndpointIDs.set(child_CSS_id, my_CSS_id);
         });
       });
 
@@ -2421,7 +2009,7 @@ export class ExecutionVisualizer {
           existingConnectionEndpointIDs.remove(varDivID);
 
           var val = frame.encoded_locals[varname];
-          if (myViz.isPrimitiveType(val)) {
+          if (myViz.dataViz.isPrimitiveType(val)) {
             myViz.renderPrimitiveObject(val, $(this));
           }
           else if (val[0] === 'C_STRUCT' || val[0] === 'C_ARRAY') {
@@ -2435,11 +2023,11 @@ export class ExecutionVisualizer {
               $(this).append('<div class="objectIdLabel" id="' + labelID + '">id' + getRefID(val) + '</div>');
               $(this).find('div#' + labelID).hover(
                 function() {
-                  myViz.jsPlumbInstance.connect({source: labelID, target: heapObjID,
+                  myViz.dataViz.jsPlumbInstance.connect({source: labelID, target: heapObjID,
                                                  scope: 'varValuePointer'});
                 },
                 function() {
-                  myViz.jsPlumbInstance.select({source: labelID}).detach();
+                  myViz.dataViz.jsPlumbInstance.select({source: labelID}).detach();
                 });
             }
             else {
@@ -2448,8 +2036,8 @@ export class ExecutionVisualizer {
               // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
               $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
 
-              assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(varDivID));
-              myViz.jsPlumbManager.connectionEndpointIDs.set(varDivID, heapObjID);
+              assert(!myViz.dataViz.jsPlumbManager.connectionEndpointIDs.has(varDivID));
+              myViz.dataViz.jsPlumbManager.connectionEndpointIDs.set(varDivID, heapObjID);
               //console.log('STACK->HEAP', varDivID, heapObjID);
             }
           }
@@ -2525,11 +2113,11 @@ export class ExecutionVisualizer {
       // VERY IMPORTANT to sort these connector IDs in ascending order,
       // since I think they're rendered left-to-right, top-to-bottom in ID
       // order, so we want to run the nudging algorithm in that same order.
-      var srcHeapConnectorIDs = myViz.jsPlumbManager.heapConnectionEndpointIDs.keys();
+      var srcHeapConnectorIDs = myViz.dataViz.jsPlumbManager.heapConnectionEndpointIDs.keys();
       srcHeapConnectorIDs.sort();
 
       $.each(srcHeapConnectorIDs, function(i, srcID) {
-        var dstID = myViz.jsPlumbManager.heapConnectionEndpointIDs.get(srcID);
+        var dstID = myViz.dataViz.jsPlumbManager.heapConnectionEndpointIDs.get(srcID);
 
         var srcAnchorObject = myViz.domRoot.find('#' + srcID);
         var srcHeapObject = srcAnchorObject.closest('.heapObject');
@@ -2607,22 +2195,22 @@ export class ExecutionVisualizer {
     // I suspect that this is due to the fact that parent pointers are SIBLINGS
     // of stackFrame divs and not children, so when stackFrame divs get destroyed,
     // their associated parent pointers do NOT.)
-    myViz.jsPlumbInstance.reset();
+    myViz.dataViz.jsPlumbInstance.reset();
 
 
     // use jsPlumb scopes to keep the different kinds of pointers separated
     function renderVarValueConnector(varID, valueID) {
       // special-case handling for C/C++ pointers, just to keep from rocking
       // the boat on my existing (battle-tested) code
-      if (myViz.isCppMode()) {
+      if (myViz.dataViz.isCppMode()) {
         if (myViz.domRoot.find('#' + valueID).length) {
-          myViz.jsPlumbInstance.connect({source: varID, target: valueID, scope: 'varValuePointer'});
+          myViz.dataViz.jsPlumbInstance.connect({source: varID, target: valueID, scope: 'varValuePointer'});
         } else {
           // pointer isn't pointing to anything valid; put a poo emoji here
           myViz.domRoot.find('#' + varID).html('\uD83D\uDCA9' /* pile of poo emoji */);
         }
       } else {
-        myViz.jsPlumbInstance.connect({source: varID, target: valueID, scope: 'varValuePointer'});
+        myViz.dataViz.jsPlumbInstance.connect({source: varID, target: valueID, scope: 'varValuePointer'});
       }
     }
 
@@ -2639,7 +2227,7 @@ export class ExecutionVisualizer {
 
       //console.log('renderParentPointerConnector:', srcID, dstID);
 
-      myViz.jsPlumbInstance.connect({source: srcID, target: dstID,
+      myViz.dataViz.jsPlumbInstance.connect({source: srcID, target: dstID,
                                      anchors: ["LeftMiddle", "LeftMiddle"],
 
                                      // 'horizontally offset' the parent pointers up so that they don't look as ugly ...
@@ -2660,28 +2248,28 @@ export class ExecutionVisualizer {
       // NB: in C/C++ mode, to keep things simple, don't try to redraw
       // existingConnectionEndpointIDs since we want to redraw all arrows
       // each and every time.
-      if (!myViz.isCppMode()) {
+      if (!myViz.dataViz.isCppMode()) {
         existingConnectionEndpointIDs.forEach(renderVarValueConnector);
       }
       // add all the NEW connectors that have arisen in this call to renderDataStructures
-      myViz.jsPlumbManager.connectionEndpointIDs.forEach(renderVarValueConnector);
+      myViz.dataViz.jsPlumbManager.connectionEndpointIDs.forEach(renderVarValueConnector);
     }
     // do the same for environment parent pointers
     if (myViz.params.drawParentPointers) {
       existingParentPointerConnectionEndpointIDs.forEach(renderParentPointerConnector);
-      myViz.jsPlumbManager.parentPointerConnectionEndpointIDs.forEach(renderParentPointerConnector);
+      myViz.dataViz.jsPlumbManager.parentPointerConnectionEndpointIDs.forEach(renderParentPointerConnector);
     }
 
     /*
-    myViz.jsPlumbInstance.select().each(function(c) {
+    myViz.dataViz.jsPlumbInstance.select().each(function(c) {
       console.log('CONN:', c.sourceId, c.targetId);
     });
     */
-    //console.log('---', myViz.jsPlumbInstance.select().length, '---');
+    //console.log('---', myViz.dataViz.jsPlumbInstance.select().length, '---');
 
 
     function highlight_frame(frameID) {
-      myViz.jsPlumbInstance.select().each(function(c) {
+      myViz.dataViz.jsPlumbInstance.select().each(function(c) {
         // find the enclosing .stackFrame ...
         var stackFrameDiv = c.source.closest('.stackFrame');
 
@@ -2695,7 +2283,7 @@ export class ExecutionVisualizer {
           $(c.canvas).css("z-index", 1000); // ... and move it to the VERY FRONT
         }
         // for heap->heap connectors
-        else if (myViz.jsPlumbManager.heapConnectionEndpointIDs.has(c.endpoints[0].elementId)) {
+        else if (myViz.dataViz.jsPlumbManager.heapConnectionEndpointIDs.has(c.endpoints[0].elementId)) {
           // NOP since it's already the color and style we set by default
         }
         // TODO: maybe this needs special consideration for C/C++ code? dunno
@@ -2825,8 +2413,8 @@ export class ExecutionVisualizer {
           // make it really narrow so that the div doesn't STRETCH too wide
           d3DomElement.append('<div style="width: 10px;" id="' + ptrSrcId + '" class="cdataElt">&nbsp;' + debugInfo + '</div>');
 
-          assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(ptrSrcId));
-          myViz.jsPlumbManager.connectionEndpointIDs.set(ptrSrcId, ptrTargetId);
+          assert(!myViz.dataViz.jsPlumbManager.connectionEndpointIDs.has(ptrSrcId));
+          myViz.dataViz.jsPlumbManager.connectionEndpointIDs.set(ptrSrcId, ptrTargetId);
           //console.log(ptrSrcId, '->', ptrTargetId);
         } else {
           // for non-pointers, put cdataId on the element itself, so that
@@ -2868,7 +2456,7 @@ export class ExecutionVisualizer {
   }
 
   renderNestedObject(obj, stepNum, d3DomElement) {
-    if (this.isPrimitiveType(obj)) {
+    if (this.dataViz.isPrimitiveType(obj)) {
       this.renderPrimitiveObject(obj, d3DomElement);
     }
     else {
@@ -2887,9 +2475,9 @@ export class ExecutionVisualizer {
 
     var heapObjID = myViz.generateHeapObjID(objID, stepNum);
 
-    if (!isTopLevel && myViz.jsPlumbManager.renderedHeapObjectIDs.has(heapObjID)) {
-      var srcDivID = myViz.generateID('heap_pointer_src_' + myViz.jsPlumbManager.heap_pointer_src_id);
-      myViz.jsPlumbManager.heap_pointer_src_id++; // just make sure each source has a UNIQUE ID
+    if (!isTopLevel && myViz.dataViz.jsPlumbManager.renderedHeapObjectIDs.has(heapObjID)) {
+      var srcDivID = myViz.generateID('heap_pointer_src_' + myViz.dataViz.jsPlumbManager.heap_pointer_src_id);
+      myViz.dataViz.jsPlumbManager.heap_pointer_src_id++; // just make sure each source has a UNIQUE ID
 
       var dstDivID = heapObjID;
 
@@ -2899,11 +2487,11 @@ export class ExecutionVisualizer {
 
         myViz.domRoot.find('div#' + labelID).hover(
           function() {
-            myViz.jsPlumbInstance.connect({source: labelID, target: dstDivID,
+            myViz.dataViz.jsPlumbInstance.connect({source: labelID, target: dstDivID,
                                            scope: 'varValuePointer'});
           },
           function() {
-            myViz.jsPlumbInstance.select({source: labelID}).detach();
+            myViz.dataViz.jsPlumbInstance.select({source: labelID}).detach();
           });
       }
       else {
@@ -2915,12 +2503,12 @@ export class ExecutionVisualizer {
         // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
         d3DomElement.append('<div id="' + srcDivID + '">&nbsp;</div>');
 
-        assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(srcDivID));
-        myViz.jsPlumbManager.connectionEndpointIDs.set(srcDivID, dstDivID);
+        assert(!myViz.dataViz.jsPlumbManager.connectionEndpointIDs.has(srcDivID));
+        myViz.dataViz.jsPlumbManager.connectionEndpointIDs.set(srcDivID, dstDivID);
         //console.log('HEAP->HEAP', srcDivID, dstDivID);
 
-        assert(!myViz.jsPlumbManager.heapConnectionEndpointIDs.has(srcDivID));
-        myViz.jsPlumbManager.heapConnectionEndpointIDs.set(srcDivID, dstDivID);
+        assert(!myViz.dataViz.jsPlumbManager.heapConnectionEndpointIDs.has(srcDivID));
+        myViz.dataViz.jsPlumbManager.heapConnectionEndpointIDs.set(srcDivID, dstDivID);
       }
 
       return; // early return!
@@ -2932,7 +2520,7 @@ export class ExecutionVisualizer {
     d3DomElement.append('<div class="heapObject" id="' + heapObjID + '"></div>');
     d3DomElement = myViz.domRoot.find('#' + heapObjID); // TODO: maybe inefficient
 
-    myViz.jsPlumbManager.renderedHeapObjectIDs.set(heapObjID, 1);
+    myViz.dataViz.jsPlumbManager.renderedHeapObjectIDs.set(heapObjID, 1);
 
     var curHeap = myViz.curTrace[stepNum].heap;
     var obj = curHeap[objID];
@@ -3291,7 +2879,7 @@ export class ExecutionVisualizer {
   }
 
   redrawConnectors() {
-    this.jsPlumbInstance.repaintEverything();
+    this.dataViz.jsPlumbInstance.repaintEverything();
   }
 
   getRealLabel(label) {
@@ -3333,76 +2921,6 @@ export class ExecutionVisualizer {
     return label;
   }
 
-  // compare two JSON-encoded compound objects for structural equivalence:
-  structurallyEquivalent(obj1, obj2) {
-    // punt if either isn't a compound type
-    if (this.isPrimitiveType(obj1) || this.isPrimitiveType(obj2)) {
-      return false;
-    }
-
-    // must be the same compound type
-    if (obj1[0] != obj2[0]) {
-      return false;
-    }
-
-    // must have the same number of elements or fields
-    if (obj1.length != obj2.length) {
-      return false;
-    }
-
-    // for a list or tuple, same size (e.g., a cons cell is a list/tuple of size 2)
-    if (obj1[0] == 'LIST' || obj1[0] == 'TUPLE') {
-      return true;
-    }
-    else {
-      var startingInd = -1;
-
-      if (obj1[0] == 'DICT') {
-        startingInd = 2;
-      }
-      else if (obj1[0] == 'INSTANCE') {
-        startingInd = 3;
-      }
-      else {
-        return false; // punt on all other types
-      }
-
-      var obj1fields = d3.map();
-
-      // for a dict or object instance, same names of fields (ordering doesn't matter)
-      for (var i = startingInd; i < obj1.length; i++) {
-        obj1fields.set(obj1[i][0], 1); // use as a set
-      }
-
-      for (var i = startingInd; i < obj2.length; i++) {
-        if (!obj1fields.has(obj2[i][0])) {
-          return false;
-        }
-      }
-
-      return true;
-    }
-  }
-
-  isPrimitiveType(obj) {
-    var hook_result = this.try_hook("isPrimitiveType", {obj:obj});
-    if (hook_result[0]) return hook_result[1];
-
-    // null is a primitive
-    if (obj === null) {
-      return true;
-    }
-
-    if (typeof obj == "object") {
-      // kludge: only 'SPECIAL_FLOAT' objects count as primitives
-      return (obj[0] == 'SPECIAL_FLOAT' || obj[0] == 'JS_SPECIAL_VAL' ||
-              obj[0] == 'C_DATA' /* TODO: is this right?!? */);
-    }
-    else {
-      // non-objects are primitives
-      return true;
-    }
-  }
 
   // All of the Java frontend code in this function was written by David
   // Pritchard and Will Gwozdz, and integrated by Philip Guo
@@ -3690,11 +3208,21 @@ export class ExecutionVisualizer {
 // implements the data structure visualization
 class DataVisualizer {
   owner: ExecutionVisualizer;
+  params: any; // aliases owner.params for convenience
+
   domRoot: any;
   domRootD3: any;
 
+  curTraceLayouts: any[];
+
+  jsPlumbInstance: any;
+  jsPlumbManager: any;
+
+
   constructor(owner, domRoot, domRootD3) {
     this.owner = owner;
+    this.params = this.owner.params;
+
     this.domRoot = domRoot;
     this.domRootD3 = domRootD3;
 
@@ -3725,11 +3253,488 @@ class DataVisualizer {
       + this.owner.generateID('globals') + '"><div id="' + this.owner.generateID('globals_header')
       + '" class="stackFrameHeader">' + this.owner.getRealLabel('Global frame') + '</div><table class="stackFrameVarTable" id="'
       + this.owner.generateID('global_table') + '"></table></div>');
+
+
+    this.jsPlumbInstance = jsPlumb.getInstance({
+      Endpoint: ["Dot", {radius:3}],
+      EndpointStyles: [{fillStyle: connectorBaseColor}, {fillstyle: null} /* make right endpoint invisible */],
+      Anchors: ["RightMiddle", "LeftMiddle"],
+      PaintStyle: {lineWidth:1, strokeStyle: connectorBaseColor},
+
+      // bezier curve style:
+      //Connector: [ "Bezier", { curviness:15 }], /* too much 'curviness' causes lines to run together */
+      //Overlays: [[ "Arrow", { length: 14, width:10, foldback:0.55, location:0.35 }]],
+
+      // state machine curve style:
+      Connector: [ "StateMachine" ],
+      Overlays: [[ "Arrow", { length: 10, width:7, foldback:0.55, location:1 }]],
+      EndpointHoverStyles: [{fillStyle: connectorHighlightColor}, {fillstyle: null} /* make right endpoint invisible */],
+      HoverPaintStyle: {lineWidth: 1, strokeStyle: connectorHighlightColor},
+    });
   }
 
   height() {
     return this.domRoot.find('#dataViz').height();
   }
+
+  // for managing state related to pesky jsPlumb connectors, need to reset
+  // before every call to renderDataStructures, or else all hell breaks
+  // loose. yeah, this is kludgy and stateful, but at least all of the
+  // relevant state gets shoved into one unified place
+  resetJsPlumbManager() {
+    this.jsPlumbManager = {
+      heap_pointer_src_id: 1, // increment this to be unique for each heap_pointer_src_*
+
+      // Key:   CSS ID of the div element representing the stack frame variable
+      //        (for stack->heap connections) or heap object (for heap->heap connections)
+      //        the format is: '<this.visualizerID>__heap_pointer_src_<src id>'
+      // Value: CSS ID of the div element representing the value rendered in the heap
+      //        (the format is given by generateHeapObjID())
+      //
+      // The reason we need to prepend this.visualizerID is because jsPlumb needs
+      // GLOBALLY UNIQUE IDs for use as connector endpoints.
+      //
+      // TODO: jsPlumb might be able to directly take DOM elements rather
+      // than IDs, which makes the above point moot. But let's just stick
+      // with this for now until I want to majorly refactor :)
+
+      // the only elements in these sets are NEW elements to be rendered in this
+      // particular call to renderDataStructures.
+      connectionEndpointIDs: d3.map(),
+      heapConnectionEndpointIDs: d3.map(), // subset of connectionEndpointIDs for heap->heap connections
+      // analogous to connectionEndpointIDs, except for environment parent pointers
+      parentPointerConnectionEndpointIDs: d3.map(),
+
+      renderedHeapObjectIDs: d3.map(), // format given by generateHeapObjID()
+    };
+  }
+
+  // this method initializes curTraceLayouts
+  //
+  // Pre-compute the layout of top-level heap objects for ALL execution
+  // points as soon as a trace is first loaded. The reason why we want to
+  // do this is so that when the user steps through execution points, the
+  // heap objects don't "jiggle around" (i.e., preserving positional
+  // invariance). Also, if we set up the layout objects properly, then we
+  // can take full advantage of d3 to perform rendering and transitions.
+  precomputeCurTraceLayouts(curTrace) {
+    // curTraceLayouts is a list of top-level heap layout "objects" with the
+    // same length as curTrace after it's been fully initialized. Each
+    // element of curTraceLayouts is computed from the contents of its
+    // immediate predecessor, thus ensuring that objects don't "jiggle
+    // around" between consecutive execution points.
+    //
+    // Each top-level heap layout "object" is itself a LIST of LISTS of
+    // object IDs, where each element of the outer list represents a row,
+    // and each element of the inner list represents columns within a
+    // particular row. Each row can have a different number of columns. Most
+    // rows have exactly ONE column (representing ONE object ID), but rows
+    // containing 1-D linked data structures have multiple columns. Each
+    // inner list element looks something like ['row1', 3, 2, 1] where the
+    // first element is a unique row ID tag, which is used as a key for d3 to
+    // preserve "object constancy" for updates, transitions, etc. The row ID
+    // is derived from the FIRST object ID inserted into the row. Since all
+    // object IDs are unique, all row IDs will also be unique.
+
+    /* This is a good, simple example to test whether objects "jiggle"
+
+    x = [1, [2, [3, None]]]
+    y = [4, [5, [6, None]]]
+
+    x[1][1] = y[1]
+
+    */
+    this.curTraceLayouts = [];
+    this.curTraceLayouts.push([]); // pre-seed with an empty sentinel to simplify the code
+
+    var myViz = this; // to prevent confusion of 'this' inside of nested functions
+
+    assert(curTrace.length > 0);
+    $.each(curTrace, function(i, curEntry) {
+      var prevLayout = myViz.curTraceLayouts[myViz.curTraceLayouts.length - 1];
+
+      // make a DEEP COPY of prevLayout to use as the basis for curLine
+      var curLayout = $.extend(true /* deep copy */ , [], prevLayout);
+
+      // initialize with all IDs from curLayout
+      var idsToRemove = d3.map();
+      $.each(curLayout, function(i, row) {
+        for (var j = 1 /* ignore row ID tag */; j < row.length; j++) {
+          idsToRemove.set(row[j], 1);
+        }
+      });
+
+      var idsAlreadyLaidOut = d3.map(); // to prevent infinite recursion
+
+      function curLayoutIndexOf(id) {
+        for (var i = 0; i < curLayout.length; i++) {
+          var row = curLayout[i];
+          var index = row.indexOf(id);
+          if (index > 0) { // index of 0 is impossible since it's the row ID tag
+            return {row: row, index: index}
+          }
+        }
+        return null;
+      }
+
+      function isLinearObj(heapObj) {
+        var hook_result = myViz.owner.try_hook("isLinearObj", {heapObj:heapObj});
+        if (hook_result[0]) return hook_result[1];
+
+        return heapObj[0] == 'LIST' || heapObj[0] == 'TUPLE' || heapObj[0] == 'SET';
+      }
+
+      function recurseIntoObject(id, curRow, newRow) {
+        // heuristic for laying out 1-D linked data structures: check for enclosing elements that are
+        // structurally identical and then lay them out as siblings in the same "row"
+        var heapObj = curEntry.heap[id];
+
+        if (myViz.isCppMode()) {
+          // soften this assumption since C-style pointers might not point
+          // to the heap; they can point to any piece of data!
+          if (!heapObj) {
+            return;
+          }
+        } else {
+          assert(heapObj);
+        }
+
+        if (isLinearObj(heapObj)) {
+          $.each(heapObj, function(ind, child) {
+            if (ind < 1) return; // skip type tag
+
+            if (!myViz.isPrimitiveType(child)) {
+              var childID = getRefID(child);
+
+              // comment this out to make "linked lists" that aren't
+              // structurally equivalent look good, e.g.,:
+              //   x = (1, 2, (3, 4, 5, 6, (7, 8, 9, None)))
+              //if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
+              //  updateCurLayout(childID, curRow, newRow);
+              //}
+              if (myViz.params.disableHeapNesting) {
+                updateCurLayout(childID, [], []);
+              }
+              else {
+                updateCurLayout(childID, curRow, newRow);
+              }
+            }
+          });
+        }
+        else if (heapObj[0] == 'DICT') {
+          $.each(heapObj, function(ind, child) {
+            if (ind < 1) return; // skip type tag
+
+            if (myViz.params.disableHeapNesting) {
+              var dictKey = child[0];
+              if (!myViz.isPrimitiveType(dictKey)) {
+                var keyChildID = getRefID(dictKey);
+                updateCurLayout(keyChildID, [], []);
+              }
+            }
+
+            var dictVal = child[1];
+            if (!myViz.isPrimitiveType(dictVal)) {
+              var childID = getRefID(dictVal);
+              if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
+                updateCurLayout(childID, curRow, newRow);
+              }
+              else if (myViz.params.disableHeapNesting) {
+                updateCurLayout(childID, [], []);
+              }
+            }
+          });
+        }
+        else if (heapObj[0] == 'INSTANCE' || heapObj[0] == 'CLASS') {
+          jQuery.each(heapObj, function(ind, child) {
+            var headerLength = (heapObj[0] == 'INSTANCE') ? 2 : 3;
+            if (ind < headerLength) return;
+
+            if (myViz.params.disableHeapNesting) {
+              var instKey = child[0];
+              if (!myViz.isPrimitiveType(instKey)) {
+                var keyChildID = getRefID(instKey);
+                updateCurLayout(keyChildID, [], []);
+              }
+            }
+
+            var instVal = child[1];
+            if (!myViz.isPrimitiveType(instVal)) {
+              var childID = getRefID(instVal);
+              if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
+                updateCurLayout(childID, curRow, newRow);
+              }
+              else if (myViz.params.disableHeapNesting) {
+                updateCurLayout(childID, [], []);
+              }
+            }
+          });
+        }
+        else if ((heapObj[0] == 'C_ARRAY') || (heapObj[0] == 'C_STRUCT')) {
+          updateCurLayoutAndRecurse(heapObj);
+        }
+      }
+
+
+      // a krazy function!
+      // id     - the new object ID to be inserted somewhere in curLayout
+      //          (if it's not already in there)
+      // curRow - a row within curLayout where new linked list
+      //          elements can be appended onto (might be null)
+      // newRow - a new row that might be spliced into curRow or appended
+      //          as a new row in curLayout
+      function updateCurLayout(id, curRow, newRow) {
+        if (idsAlreadyLaidOut.has(id)) {
+          return; // PUNT!
+        }
+
+        var curLayoutLoc = curLayoutIndexOf(id);
+
+        var alreadyLaidOut = idsAlreadyLaidOut.has(id);
+        idsAlreadyLaidOut.set(id, 1); // unconditionally set now
+
+        // if id is already in curLayout ...
+        if (curLayoutLoc) {
+          var foundRow = curLayoutLoc.row;
+          var foundIndex = curLayoutLoc.index;
+
+          idsToRemove.remove(id); // this id is already accounted for!
+
+          // very subtle ... if id hasn't already been handled in
+          // this iteration, then splice newRow into foundRow. otherwise
+          // (later) append newRow onto curLayout as a truly new row
+          if (!alreadyLaidOut) {
+            // splice the contents of newRow right BEFORE foundIndex.
+            // (Think about when you're trying to insert in id=3 into ['row1', 2, 1]
+            //  to represent a linked list 3->2->1. You want to splice the 3
+            //  entry right before the 2 to form ['row1', 3, 2, 1])
+            if (newRow.length > 1) {
+              var args = [foundIndex, 0];
+              for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
+                args.push(newRow[i]);
+                idsToRemove.remove(newRow[i]);
+              }
+              foundRow.splice.apply(foundRow, args);
+
+              // remove ALL elements from newRow since they've all been accounted for
+              // (but don't reassign it away to an empty list, since the
+              // CALLER checks its value. TODO: how to get rid of this gross hack?!?)
+              newRow.splice(0, newRow.length);
+            }
+          }
+
+          // recurse to find more top-level linked entries to append onto foundRow
+          recurseIntoObject(id, foundRow, []);
+        }
+        else {
+          // push id into newRow ...
+          if (newRow.length == 0) {
+            newRow.push('row' + id); // unique row ID (since IDs are unique)
+          }
+          newRow.push(id);
+
+          // recurse to find more top-level linked entries ...
+          recurseIntoObject(id, curRow, newRow);
+
+
+          // if newRow hasn't been spliced into an existing row yet during
+          // a child recursive call ...
+          if (newRow.length > 0) {
+            if (curRow && curRow.length > 0) {
+              // append onto the END of curRow if it exists
+              for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
+                curRow.push(newRow[i]);
+              }
+            }
+            else {
+              // otherwise push to curLayout as a new row
+              //
+              // TODO: this might not always look the best, since we might
+              // sometimes want to splice newRow in the MIDDLE of
+              // curLayout. Consider this example:
+              //
+              // x = [1,2,3]
+              // y = [4,5,6]
+              // x = [7,8,9]
+              //
+              // when the third line is executed, the arrows for x and y
+              // will be crossed (ugly!) since the new row for the [7,8,9]
+              // object is pushed to the end (bottom) of curLayout. The
+              // proper behavior is to push it to the beginning of
+              // curLayout where the old row for 'x' used to be.
+              curLayout.push($.extend(true /* make a deep copy */ , [], newRow));
+            }
+
+            // regardless, newRow is now accounted for, so clear it
+            for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
+              idsToRemove.remove(newRow[i]);
+            }
+            newRow.splice(0, newRow.length); // kill it!
+          }
+
+        }
+      }
+
+
+      function updateCurLayoutAndRecurse(elt) {
+        if (!elt) return; // early bail out
+
+        if (isHeapRef(elt, curEntry.heap)) {
+          var id = getRefID(elt);
+          updateCurLayout(id, null, []);
+        }
+        recurseIntoCStructArray(elt);
+      }
+
+      // traverse inside of C structs and arrays to find whether they
+      // (recursively) contain any references to heap objects within
+      // themselves. be able to handle arbitrary nesting!
+      function recurseIntoCStructArray(val) {
+        if (val[0] === 'C_ARRAY') {
+          $.each(val, function(ind, elt) {
+            if (ind < 2) return;
+            updateCurLayoutAndRecurse(elt);
+          });
+        } else if (val[0] === 'C_STRUCT') {
+          $.each(val, function(ind, kvPair) {
+            if (ind < 3) return;
+            updateCurLayoutAndRecurse(kvPair[1]);
+          });
+        }
+      }
+
+      // iterate through all globals and ordered stack frames and call updateCurLayout
+      $.each(curEntry.ordered_globals, function(i, varname) {
+        var val = curEntry.globals[varname];
+        if (val !== undefined) { // might not be defined at this line, which is OKAY!
+          // TODO: try to unify this behavior between C/C++ and other languages:
+          if (myViz.isCppMode()) {
+            updateCurLayoutAndRecurse(val);
+          } else {
+            if (!myViz.isPrimitiveType(val)) {
+              var id = getRefID(val);
+              updateCurLayout(id, null, []);
+            }
+          }
+        }
+      });
+
+      $.each(curEntry.stack_to_render, function(i, frame) {
+        $.each(frame.ordered_varnames, function(xxx, varname) {
+          var val = frame.encoded_locals[varname];
+          // TODO: try to unify this behavior between C/C++ and other languages:
+          if (myViz.isCppMode()) {
+            updateCurLayoutAndRecurse(val);
+          } else {
+            if (!myViz.isPrimitiveType(val)) {
+              var id = getRefID(val);
+              updateCurLayout(id, null, []);
+            }
+          }
+        });
+      });
+
+
+      // iterate through remaining elements of idsToRemove and REMOVE them from curLayout
+      idsToRemove.forEach(function(id, xxx) {
+        var idInt = Number(id); // keys are stored as strings, so convert!!!
+        $.each(curLayout, function(rownum, row) {
+          var ind = row.indexOf(idInt);
+          if (ind > 0) { // remember that index 0 of the row is the row ID tag
+            row.splice(ind, 1);
+          }
+        });
+      });
+
+      // now remove empty rows (i.e., those with only a row ID tag) from curLayout
+      curLayout = curLayout.filter(function(row) {return row.length > 1});
+
+      myViz.curTraceLayouts.push(curLayout);
+    });
+
+    this.curTraceLayouts.splice(0, 1); // remove seeded empty sentinel element
+    assert (curTrace.length == this.curTraceLayouts.length);
+  }
+
+  // is this visualizer in C or C++ mode? the eventual goal is to remove
+  // this special-case kludge check altogether and have the entire
+  // codebase be unified. but for now, keep C/C++ separate because I don't
+  // want to risk screwing up the visualizations for the other languages
+  isCppMode() {
+    return (this.params.lang === 'c' || this.params.lang === 'cpp');
+  }
+
+  // compare two JSON-encoded compound objects for structural equivalence:
+  structurallyEquivalent(obj1, obj2) {
+    // punt if either isn't a compound type
+    if (this.isPrimitiveType(obj1) || this.isPrimitiveType(obj2)) {
+      return false;
+    }
+
+    // must be the same compound type
+    if (obj1[0] != obj2[0]) {
+      return false;
+    }
+
+    // must have the same number of elements or fields
+    if (obj1.length != obj2.length) {
+      return false;
+    }
+
+    // for a list or tuple, same size (e.g., a cons cell is a list/tuple of size 2)
+    if (obj1[0] == 'LIST' || obj1[0] == 'TUPLE') {
+      return true;
+    }
+    else {
+      var startingInd = -1;
+
+      if (obj1[0] == 'DICT') {
+        startingInd = 2;
+      }
+      else if (obj1[0] == 'INSTANCE') {
+        startingInd = 3;
+      }
+      else {
+        return false; // punt on all other types
+      }
+
+      var obj1fields = d3.map();
+
+      // for a dict or object instance, same names of fields (ordering doesn't matter)
+      for (var i = startingInd; i < obj1.length; i++) {
+        obj1fields.set(obj1[i][0], 1); // use as a set
+      }
+
+      for (var i = startingInd; i < obj2.length; i++) {
+        if (!obj1fields.has(obj2[i][0])) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+  }
+
+  isPrimitiveType(obj) {
+    var hook_result = this.owner.try_hook("isPrimitiveType", {obj:obj});
+    if (hook_result[0]) return hook_result[1];
+
+    // null is a primitive
+    if (obj === null) {
+      return true;
+    }
+
+    if (typeof obj == "object") {
+      // kludge: only 'SPECIAL_FLOAT' objects count as primitives
+      return (obj[0] == 'SPECIAL_FLOAT' || obj[0] == 'JS_SPECIAL_VAL' ||
+              obj[0] == 'C_DATA' /* TODO: is this right?!? */);
+    }
+    else {
+      // non-objects are primitives
+      return true;
+    }
+  }
+
 }
 
 
