@@ -42,7 +42,6 @@ $(document).ready(function() {
 
   // these two are deprecated
   var drawParentPointerBool = (queryStrOptions.drawParentPointers == 'true');
-  var showOnlyOutputsBool = (queryStrOptions.showOnlyOutputs == 'true');
 
   var codeDivWidth = undefined;
   var cdw = $.bbq.getState('codeDivWidth');
@@ -91,7 +90,6 @@ $(document).ready(function() {
   // set up all options in a JS object
   var backendOptionsObj = {cumulative_mode: cumModeBool,
                            heap_primitives: heapPrimitivesBool,
-                           show_only_outputs: showOnlyOutputsBool,
                            py_crazy_mode: (pyState == '2crazy'),
                            origin: originFrontendJsFile};
 
@@ -101,13 +99,8 @@ $(document).ready(function() {
                             disableHeapNesting: heapPrimitivesBool,
                             drawParentPointers: drawParentPointerBool,
                             textualMemoryLabels: textRefsBool,
-                            showOnlyOutputs: showOnlyOutputsBool,
                             executeCodeWithRawInputFunc: optCommon.executeCodeWithRawInput,
                             heightChangeCallback: (resizeContainer ? resizeContainerNow : NOP),
-
-                            // undocumented experimental modes:
-                            pyCrazyMode: (pyState == '2crazy'),
-                            highlightLines: typeof $.bbq.getState("highlightLines") !== "undefined",
                             codeDivWidth: codeDivWidth,
                             codeDivHeight: codeDivHeight,
                            }

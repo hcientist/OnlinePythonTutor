@@ -144,7 +144,6 @@ export class ExecutionVisualizer {
   //   textualMemoryLabels  - render references using textual memory labels rather than as jsPlumb arrows.
   //                          this is good for slow browsers or when used with disableHeapNesting
   //                          to prevent "arrow overload"
-  //   showOnlyOutputs      - show only program outputs and NOT internal data structures
   //   updateOutputCallback - function to call (with 'this' as parameter)
   //                          whenever this.updateOutput() is called
   //                          (BEFORE rendering the output display)
@@ -157,8 +156,6 @@ export class ExecutionVisualizer {
   //                           OR ELSE ARROWS AND OTHER STUFF WILL GO HAYWIRE!)
   //   executeCodeWithRawInputFunc - function to call when you want to re-execute the given program
   //                                 with some new user input (somewhat hacky!)
-  //   highlightLines - highlight current and previously executed lines (default: false)
-  //   arrowLines     - draw arrows pointing to current and previously executed lines (default: true)
   //   compactFuncLabels - render functions with a 'func' prefix and no type label
   //   showAllFrameLabels - display frame and parent frame labels for all functions (default: false)
   //   hideCode - hide the code display and show only the data structure viz
@@ -196,26 +193,6 @@ export class ExecutionVisualizer {
       this.params = {}; // make it an empty object by default
     }
 
-    var arrowLinesDef = (this.params.arrowLines !== undefined);
-    var highlightLinesDef = (this.params.highlightLines !== undefined);
-
-    if (!arrowLinesDef && !highlightLinesDef) {
-        // neither is set
-        this.params.highlightLines = false;
-        this.params.arrowLines = true;
-    }
-    else if (arrowLinesDef && highlightLinesDef) {
-        // both are set, so just use their set values
-    }
-    else if (arrowLinesDef) {
-        // only arrowLines set
-        this.params.highlightLines = !(this.params.arrowLines);
-    }
-    else {
-        // only highlightLines set
-        this.params.arrowLines = !(this.params.highlightLines);
-    }
-
     if (this.params.visualizerIdOverride) {
       this.visualizerID = this.params.visualizerIdOverride;
     }
@@ -234,7 +211,6 @@ export class ExecutionVisualizer {
     this.params.disableHeapNesting = (this.params.disableHeapNesting === true);
     this.params.drawParentPointers = (this.params.drawParentPointers === true);
     this.params.textualMemoryLabels = (this.params.textualMemoryLabels === true);
-    this.params.showOnlyOutputs = (this.params.showOnlyOutputs === true);
     this.params.showAllFrameLabels = (this.params.showAllFrameLabels === true);
 
     this.executeCodeWithRawInputFunc = this.params.executeCodeWithRawInputFunc;
@@ -506,56 +482,36 @@ export class ExecutionVisualizer {
                         codeVizHTML + '</td></tr></table>');
     }
 
-    if (this.params.showOnlyOutputs) {
-      myViz.domRoot.find('#dataViz').hide();
-      this.domRoot.find('#vizLayoutTdSecond').append(outputsHTML);
-
-      if (this.params.verticalStack) {
-        this.domRoot.find('#vizLayoutTdSecond').css('padding-top', '25px');
-      }
-      else {
-        this.domRoot.find('#vizLayoutTdSecond').css('padding-left', '25px');
-      }
+    var stdoutHeight = '75px';
+    // heuristic for code with really small outputs
+    if (this.numStdoutLines <= 3) {
+      stdoutHeight = (18 * this.numStdoutLines) + 'px';
     }
-    else {
-      var stdoutHeight = '75px';
-      // heuristic for code with really small outputs
-      if (this.numStdoutLines <= 3) {
-        stdoutHeight = (18 * this.numStdoutLines) + 'px';
-      }
-      if (this.params.embeddedMode) {
-        stdoutHeight = '45px';
-      }
-
-      // position this above visualization (started trying this on 2016-06-01)
-      this.domRoot.find('#vizLayoutTdSecond').prepend(outputsHTML);
-
-      // do this only after adding to DOM
-      this.domRoot.find('#pyStdout').width('350px')
-                                    .height(stdoutHeight)
-                                    .resizable();
+    if (this.params.embeddedMode) {
+      stdoutHeight = '45px';
     }
 
-    if (this.params.arrowLines) {
-        this.domRoot.find('#legendDiv')
-            .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
-            .append('<p style="margin-top: 4px"><svg id="curLegendArrowSVG"/> next line to execute</p>');
-        
-        myViz.domRootD3.select('svg#prevLegendArrowSVG')
-            .append('polygon')
-            .attr('points', SVG_ARROW_POLYGON)
-            .attr('fill', lightArrowColor);
-        
-        myViz.domRootD3.select('svg#curLegendArrowSVG')
-            .append('polygon')
-            .attr('points', SVG_ARROW_POLYGON)
-            .attr('fill', darkArrowColor);
-    }
-    else if (this.params.highlightLines) {
-        myViz.domRoot.find('#legendDiv')
-            .append('<span class="highlight-legend highlight-prev">line that has just executed</span> ')
-            .append('<span class="highlight-legend highlight-cur">next line to execute</span>')
-    }
+    // position this above visualization (started trying this on 2016-06-01)
+    this.domRoot.find('#vizLayoutTdSecond').prepend(outputsHTML);
+
+    // do this only after adding to DOM
+    this.domRoot.find('#pyStdout').width('350px')
+                                  .height(stdoutHeight)
+                                  .resizable();
+
+    this.domRoot.find('#legendDiv')
+        .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
+        .append('<p style="margin-top: 4px"><svg id="curLegendArrowSVG"/> next line to execute</p>');
+
+    myViz.domRootD3.select('svg#prevLegendArrowSVG')
+        .append('polygon')
+        .attr('points', SVG_ARROW_POLYGON)
+        .attr('fill', lightArrowColor);
+
+    myViz.domRootD3.select('svg#curLegendArrowSVG')
+        .append('polygon')
+        .attr('points', SVG_ARROW_POLYGON)
+        .attr('fill', darkArrowColor);
 
     if (this.params.editCodeBaseURL) {
       // kinda kludgy
@@ -1062,23 +1018,22 @@ export class ExecutionVisualizer {
 
     // create a left-most gutter td that spans ALL rows ...
     // (NB: valign="top" is CRUCIAL for this to work in IE)
-    if (myViz.params.arrowLines) {
-        myViz.domRoot.find('#pyCodeOutput tr:first')
-            .prepend('<td id="gutterTD" valign="top" rowspan="' + this.codeOutputLines.length + '"><svg id="leftCodeGutterSVG"/></td>');
-        
-        // create prevLineArrow and curLineArrow
-        myViz.domRootD3.select('svg#leftCodeGutterSVG')
-            .append('polygon')
-            .attr('id', 'prevLineArrow')
-            .attr('points', SVG_ARROW_POLYGON)
-            .attr('fill', lightArrowColor);
-        
-        myViz.domRootD3.select('svg#leftCodeGutterSVG')
-            .append('polygon')
-            .attr('id', 'curLineArrow')
-            .attr('points', SVG_ARROW_POLYGON)
-            .attr('fill', darkArrowColor);
-    }
+    myViz.domRoot.find('#pyCodeOutput tr:first')
+        .prepend('<td id="gutterTD" valign="top" rowspan="' + this.codeOutputLines.length + '"><svg id="leftCodeGutterSVG"/></td>');
+
+    // create prevLineArrow and curLineArrow
+    myViz.domRootD3.select('svg#leftCodeGutterSVG')
+        .append('polygon')
+        .attr('id', 'prevLineArrow')
+        .attr('points', SVG_ARROW_POLYGON)
+        .attr('fill', lightArrowColor);
+
+    myViz.domRootD3.select('svg#leftCodeGutterSVG')
+        .append('polygon')
+        .attr('id', 'curLineArrow')
+        .attr('points', SVG_ARROW_POLYGON)
+        .attr('fill', darkArrowColor);
+
 
     // 2012-09-05: Disable breakpoints for now to simplify UX
     // 2016-05-01: Revive breakpoint functionality
@@ -1266,7 +1221,7 @@ export class ExecutionVisualizer {
     // (we often can't do this earlier since the entire pane
     //  might be invisible and hence returns a height of zero or NaN
     //  -- the exact format depends on browser)
-    if (!myViz.leftGutterSvgInitialized && myViz.params.arrowLines) {
+    if (!myViz.leftGutterSvgInitialized) {
       // set the gutter's height to match that of its parent
       gutterSVG.height(gutterSVG.parent().height());
 
@@ -1296,11 +1251,9 @@ export class ExecutionVisualizer {
       myViz.leftGutterSvgInitialized = true;
     }
 
-    if (myViz.params.arrowLines) {
-        assert(myViz.arrowOffsetY !== undefined);
-        assert(myViz.codeRowHeight !== undefined);
-        assert(0 <= myViz.arrowOffsetY && myViz.arrowOffsetY <= myViz.codeRowHeight);
-    }
+    assert(myViz.arrowOffsetY !== undefined);
+    assert(myViz.codeRowHeight !== undefined);
+    assert(0 <= myViz.arrowOffsetY && myViz.arrowOffsetY <= myViz.codeRowHeight);
 
     // call the callback if necessary (BEFORE rendering)
     if (this.params.updateOutputCallback) {
@@ -1476,54 +1429,48 @@ export class ExecutionVisualizer {
         }
       }
 
-      if (myViz.params.arrowLines) {
-          if (prevLineNumber) {
-              var pla = myViz.domRootD3.select('#prevLineArrow');
-              var translatePrevCmd = 'translate(0, ' + (((prevLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + prevVerticalNudge) + ')';
-              
-              if (smoothTransition) {
-                  pla 
-                      .transition()
-                      .duration(200)
-                      .attr('fill', 'white')
-                      .each('end', function() {
-                          pla
-                              .attr('transform', translatePrevCmd)
-                              .attr('fill', lightArrowColor);
-                          
-                          gutterSVG.find('#prevLineArrow').show(); // show at the end to avoid flickering
-                      });
-              }
-              else {
-                  pla.attr('transform', translatePrevCmd)
-                  gutterSVG.find('#prevLineArrow').show();
-              }
-              
+      if (prevLineNumber) {
+          var pla = myViz.domRootD3.select('#prevLineArrow');
+          var translatePrevCmd = 'translate(0, ' + (((prevLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + prevVerticalNudge) + ')';
+
+          if (smoothTransition) {
+              pla
+                  .transition()
+                  .duration(200)
+                  .attr('fill', 'white')
+                  .each('end', function() {
+                      pla
+                          .attr('transform', translatePrevCmd)
+                          .attr('fill', lightArrowColor);
+                      gutterSVG.find('#prevLineArrow').show(); // show at the end to avoid flickering
+                  });
           }
           else {
-              gutterSVG.find('#prevLineArrow').hide();
+              pla.attr('transform', translatePrevCmd)
+              gutterSVG.find('#prevLineArrow').show();
           }
-          
-          if (curLineNumber) {
-              var cla = myViz.domRootD3.select('#curLineArrow');
-              var translateCurCmd = 'translate(0, ' + (((curLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + curVerticalNudge) + ')';
-              
-              if (smoothTransition) {
-                  cla 
-                      .transition()
-                      .delay(200)
-                      .duration(250)
-                      .attr('transform', translateCurCmd);
-              }
-              else {
-                  cla.attr('transform', translateCurCmd);
-              }
-              
-              gutterSVG.find('#curLineArrow').show();
+      }
+      else {
+          gutterSVG.find('#prevLineArrow').hide();
+      }
+
+      if (curLineNumber) {
+          var cla = myViz.domRootD3.select('#curLineArrow');
+          var translateCurCmd = 'translate(0, ' + (((curLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + curVerticalNudge) + ')';
+          if (smoothTransition) {
+              cla
+                  .transition()
+                  .delay(200)
+                  .duration(250)
+                  .attr('transform', translateCurCmd);
           }
           else {
-              gutterSVG.find('#curLineArrow').hide();
+              cla.attr('transform', translateCurCmd);
           }
+          gutterSVG.find('#curLineArrow').show();
+      }
+      else {
+          gutterSVG.find('#curLineArrow').hide();
       }
 
       myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
@@ -3761,7 +3708,21 @@ export class ExecutionVisualizer {
           return entityMap[s];
         });
     };
+  }
 
+  // NB: copy-and-paste from isOutputLineVisible with some minor tweaks
+  isOutputLineVisibleForBubbles(lineDivID) {
+    var pcod = this.domRoot.find('#pyCodeOutputDiv');
+
+    var lineNoTd = $('#' + lineDivID);
+    var LO = lineNoTd.offset().top;
+
+    var PO = pcod.offset().top;
+    var ST = pcod.scrollTop();
+    var H = pcod.height();
+
+    // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
+    return (PO <= LO) && (LO < (PO + H - 25));
   }
 
 } // END class ExecutionVisualizer
@@ -3867,19 +3828,4 @@ function getRefID(obj) {
     assert (obj[3] != '<UNINITIALIZED>' && obj[3] != '<UNALLOCATED>');
     return obj[3]; // pointed-to address
   }
-}
-
-// NB: copy-and-paste from isOutputLineVisible with some minor tweaks
-export function isOutputLineVisibleForBubbles(lineDivID) {
-  var pcod = $('#pyCodeOutputDiv');
-
-  var lineNoTd = $('#' + lineDivID);
-  var LO = lineNoTd.offset().top;
-
-  var PO = pcod.offset().top;
-  var ST = pcod.scrollTop();
-  var H = pcod.height();
-
-  // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
-  return (PO <= LO) && (LO < (PO + H - 25));
 }

@@ -135,7 +135,8 @@ SyntaxErrorSurveyBubble.prototype.destroyQTip = function() {
 }
 
 SyntaxErrorSurveyBubble.prototype.redrawCodelineBubble = function() {
-  if (pytutor.isOutputLineVisibleForBubbles(this.domID)) {
+  var myVisualizer = optCommon.getVisualizer();
+  if (myVisualizer.isOutputLineVisibleForBubbles(this.domID)) {
     if (this.qtipHidden) {
       $(this.hashID).qtip('show');
     }
