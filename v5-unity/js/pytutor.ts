@@ -83,6 +83,8 @@ export class ExecutionVisualizer {
 
   debugMode: boolean;
 
+  dataViz: DataVisualizer;
+
   leftGutterSvgInitialized: boolean;
   arrowOffsetY: number;
   codeRowHeight: number;
@@ -453,25 +455,6 @@ export class ExecutionVisualizer {
          <textarea id="pyStdout" cols="40" rows="5" wrap="off" readonly></textarea>\
        </div>';
 
-    var codeVizHTML =
-      '<div id="dataViz">\
-         <table id="stackHeapTable">\
-           <tr>\
-             <td id="stack_td">\
-               <div id="globals_area">\
-                 <div id="stackHeader">Frames</div>\
-               </div>\
-               <div id="stack"></div>\
-             </td>\
-             <td id="heap_td">\
-               <div id="heap">\
-                 <div id="heapHeader">Objects</div>\
-               </div>\
-             </td>\
-           </tr>\
-         </table>\
-       </div>';
-
     if (this.params.verticalStack) {
       this.domRoot.html('<table border="0" class="visualizer">\
                            <tr><td class="vizLayoutTd" id="vizLayoutTdFirst""></td></tr>\
@@ -485,8 +468,11 @@ export class ExecutionVisualizer {
                          </tr></table>');
     }
 
-    this.domRoot.find('#vizLayoutTdFirst').html(codeDisplayHTML);
-    this.domRoot.find('#vizLayoutTdSecond').html(outputsHTML + codeVizHTML);
+    this.domRoot.find('#vizLayoutTdFirst').html(codeDisplayHTML); // TODO: extract codeDisplayHTML to code display class
+    this.domRoot.find('#vizLayoutTdSecond').html(outputsHTML); // TODO: extract outputsHTML to stdout class
+
+    this.dataViz = new DataVisualizer(this.domRoot.find('#vizLayoutTdSecond'),
+                                      this.domRootD3.select('#vizLayoutTdSecond'));
 
     var stdoutHeight = '75px';
     // heuristic for code with really small outputs
@@ -3709,6 +3695,39 @@ export class ExecutionVisualizer {
   }
 
 } // END class ExecutionVisualizer
+
+
+// implements the data structure visualization
+class DataVisualizer {
+  domRoot: any;
+  domRootD3: any;
+
+  constructor(domRoot, domRootD3) {
+    this.domRoot = domRoot;
+    this.domRootD3 = domRootD3;
+
+    var codeVizHTML =
+      '<div id="dataViz">\
+         <table id="stackHeapTable">\
+           <tr>\
+             <td id="stack_td">\
+               <div id="globals_area">\
+                 <div id="stackHeader">Frames</div>\
+               </div>\
+               <div id="stack"></div>\
+             </td>\
+             <td id="heap_td">\
+               <div id="heap">\
+                 <div id="heapHeader">Objects</div>\
+               </div>\
+             </td>\
+           </tr>\
+         </table>\
+       </div>';
+
+    this.domRoot.append(codeVizHTML);
+  }
+}
 
 
 // Utilities
