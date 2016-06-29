@@ -508,12 +508,12 @@ export class ExecutionVisualizer {
       </div>';
 
     if (this.params.verticalStack) {
-      this.domRoot.html(vizHeaderHTML + '<table border="0" class="visualizer"><tr><td class="vizLayoutTd" id="vizLayoutTdFirst"">' +
+      this.domRoot.html('<table border="0" class="visualizer"><tr><td class="vizLayoutTd" id="vizLayoutTdFirst"">' +
                         codeDisplayHTML + '</td></tr><tr><td class="vizLayoutTd" id="vizLayoutTdSecond">' +
                         codeVizHTML + '</td></tr></table>');
     }
     else {
-      this.domRoot.html(vizHeaderHTML + '<table border="0" class="visualizer"><tr><td class="vizLayoutTd" id="vizLayoutTdFirst">' +
+      this.domRoot.html('<table border="0" class="visualizer"><tr><td class="vizLayoutTd" id="vizLayoutTdFirst">' +
                         codeDisplayHTML + '</td><td class="vizLayoutTd" id="vizLayoutTdSecond">' +
                         codeVizHTML + '</td></tr></table>');
     }
@@ -808,28 +808,6 @@ export class ExecutionVisualizer {
     this.hasRendered = true;
   }
 
-
-  showVizHeaderViewMode() {
-    var titleVal = this.domRoot.find('#vizTitleEditor').val().trim();
-    var  descVal = this.domRoot.find('#vizDescriptionEditor').val().trim();
-
-    this.domRoot.find('#vizTitleEditor,#vizDescriptionEditor').hide();
-
-    if (!titleVal && !descVal) {
-      this.domRoot.find('#vizHeader').hide();
-    }
-    else {
-      this.domRoot.find('#vizHeader,#vizTitleViewer,#vizDescriptionViewer').show();
-      if (titleVal) {
-        this.domRoot.find('#vizTitleViewer').html(htmlsanitize(titleVal)); // help prevent HTML/JS injection attacks
-      }
-
-      if (descVal) {
-        this.domRoot.find('#vizDescriptionViewer').html(htmlsanitize(descVal)); // help prevent HTML/JS injection attacks
-      }
-    }
-  }
-
   destroyAllAnnotationBubbles() {
     var myViz = this;
 
@@ -849,13 +827,6 @@ export class ExecutionVisualizer {
     }
   }
 
-  initAllAnnotationBubbles() {
-    var myViz = this;
-    myViz.destroyAllAnnotationBubbles();
-    this.domRoot.find('#pyCodeOutputDiv').scroll(function() {
-    });
-  }
-
   enterViewAnnotationsMode() {
     var curEntry = this.curTrace[this.curInstr];
     var myViz = this;
@@ -868,7 +839,7 @@ export class ExecutionVisualizer {
     }
 
     myViz.initStepAnnotation();
-    myViz.showVizHeaderViewMode();
+    this.domRoot.find('#vizHeader,#vizTitleEditor,#vizDescriptionEditor').hide();
     myViz.redrawConnectors();
   }
 
