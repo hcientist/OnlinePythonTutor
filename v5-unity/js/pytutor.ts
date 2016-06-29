@@ -4,9 +4,6 @@
 
 /* TODO:
 
-- remove as many occurrences of 'owner' from DataVisualizer as possible,
-  since that signals leaky abstractions
-
 - cleanly separate out the data structure visualization from the code
   display from the slider/vcrControls, so that we can mix and match them
 
@@ -639,7 +636,7 @@ export class ExecutionVisualizer {
 
     this.try_hook("end_render", {myViz:this});
 
-    this.dataViz.precomputeCurTraceLayouts(this.curTrace);
+    this.dataViz.precomputeCurTraceLayouts();
 
     if (!this.params.hideCode) {
       this.renderPyCodeOutput();
@@ -658,7 +655,6 @@ export class ExecutionVisualizer {
 
     this.hasRendered = true;
   }
-
 
   // find the previous/next breakpoint to c or return -1 if it doesn't exist
   findPrevBreakpoint() {
@@ -714,7 +710,6 @@ export class ExecutionVisualizer {
     }
   }
 
-
   // returns true if action successfully taken
   stepForward() {
     var myViz = this;
@@ -760,7 +755,6 @@ export class ExecutionVisualizer {
 
     return false;
   }
-
 
   // TODO: refactor into slider class
   renderSliderBreakpoints() {
@@ -994,105 +988,6 @@ export class ExecutionVisualizer {
     else {
       this.domRoot.find('#progOutputs').hide();
     }
-  }
-
-  // update some fields corresponding to the current and previously
-  // executed lines in the trace so that they can be highlighted
-  // copied and pasted from highlightCodeLine, which is hacky :/
-  //
-  // TODO: this is used by opt-live.ts; figure out a way to more cleanly
-  // expose this functionality without as much copy-and-paste grossness
-  updateCurPrevLines() {
-    var myViz = this;
-    var totalInstrs = myViz.curTrace.length;
-    var isLastInstr = myViz.curInstr === (totalInstrs-1);
-
-    /* if instrLimitReached, then treat like a normal non-terminating line */
-    var isTerminated = (!myViz.instrLimitReached && isLastInstr);
-
-    var curLineNumber = null;
-    var prevLineNumber = null;
-
-    var curEntry = myViz.curTrace[myViz.curInstr];
-    var hasError = false;
-
-    var curIsReturn = (curEntry.event == 'return');
-    var prevIsReturn = false;
-
-    if (myViz.curInstr > 0) {
-      prevLineNumber = myViz.curTrace[myViz.curInstr - 1].line;
-      prevIsReturn = (myViz.curTrace[myViz.curInstr - 1].event == 'return');
-
-      /* kinda nutsy hack: if the previous line is a return line, don't
-         highlight it. instead, highlight the line in the enclosing
-         function that called this one (i.e., the call site). e.g.,:
-
-         1. def foo(lst):
-         2.   return len(lst)
-         3.
-         4. y = foo([1,2,3])
-         5. print y
-
-         If prevLineNumber is 2 and prevIsReturn, then curLineNumber is
-         5, since that's the line that executes right after line 2
-         finishes. However, this looks confusing to the user since what
-         actually happened here was that the return value of foo was
-         assigned to y on line 4. I want to have prevLineNumber be line
-         4 so that it gets highlighted. There's no ideal solution, but I
-         think that looks more sensible, since line 4 was the previous
-         line that executed *in this function's frame*.
-      */
-      if (prevIsReturn) {
-        var idx = myViz.curInstr - 1;
-        var retStack = myViz.curTrace[idx].stack_to_render;
-        assert(retStack.length > 0);
-        var retFrameId = retStack[retStack.length - 1].frame_id;
-
-        // now go backwards until we find a 'call' to this frame
-        while (idx >= 0) {
-          var entry = myViz.curTrace[idx];
-          if (entry.event == 'call' && entry.stack_to_render) {
-            var topFrame = entry.stack_to_render[entry.stack_to_render.length - 1];
-            if (topFrame.frame_id == retFrameId) {
-              break; // DONE, we found the call that corresponds to this return
-            }
-          }
-          idx--;
-        }
-
-        // now idx is the index of the 'call' entry. we need to find the
-        // entry before that, which is the instruction before the call.
-        // THAT's the line of the call site.
-        if (idx > 0) {
-          var callingEntry = myViz.curTrace[idx - 1];
-          prevLineNumber = callingEntry.line; // WOOHOO!!!
-          prevIsReturn = false; // this is now a call site, not a return
-        }
-      }
-    }
-
-    if (curEntry.event == 'exception' ||
-        curEntry.event == 'uncaught_exception') {
-      assert(curEntry.exception_msg);
-      hasError = true;
-      myViz.curLineExceptionMsg = curEntry.exception_msg;
-    }
-
-    curLineNumber = curEntry.line;
-
-    // edge case for the final instruction :0
-    if (isTerminated && !hasError) {
-      // don't show redundant arrows on the same line when terminated ...
-      if (prevLineNumber == curLineNumber) {
-        curLineNumber = null;
-      }
-    }
-
-    // add these fields to myViz, which is the point of this function!
-    myViz.curLineNumber = curLineNumber;
-    myViz.prevLineNumber = prevLineNumber;
-    myViz.curLineIsReturn = curIsReturn;
-    myViz.prevLineIsReturn = prevIsReturn;
   }
 
   // This function is called every time the display needs to be updated
@@ -1456,9 +1351,7 @@ export class ExecutionVisualizer {
     }
 
     // finally, render all of the data structures
-    var curEntry = this.curTrace[this.curInstr];
-    var curToplevelLayout = this.dataViz.curTraceLayouts[this.curInstr];
-    this.dataViz.renderDataStructures(curEntry, curToplevelLayout);
+    this.dataViz.renderDataStructures(this.curInstr);
 
     // call the callback if necessary (BEFORE rendering)
     if (myViz.dataViz.height() != prevDataVizHeight) {
@@ -1481,11 +1374,8 @@ export class ExecutionVisualizer {
 
   updateOutputMini() {
     assert(this.params.hideCode);
-    var curEntry = this.curTrace[this.curInstr];
-    var curToplevelLayout = this.dataViz.curTraceLayouts[this.curInstr];
-    this.dataViz.renderDataStructures(curEntry, curToplevelLayout);
+    this.dataViz.renderDataStructures(this.curInstr);
   }
-
 
   renderStep(step) {
     assert(0 <= step);
@@ -1507,7 +1397,7 @@ export class ExecutionVisualizer {
   // All of the Java frontend code in this function was written by David
   // Pritchard and Will Gwozdz, and integrated by Philip Guo
   //
-  // TODO: test on v5-unity/ after my massive refactorings
+  // TODO: test to make sure everything works after my MASSIVE refactorings
   activateJavaFrontend() {
     // super hack by Philip that reverses the direction of the stack so
     // that it grows DOWN and renders the same way as the Python and JS
@@ -1770,6 +1660,106 @@ export class ExecutionVisualizer {
     };
   }
 
+
+  // update some fields corresponding to the current and previously
+  // executed lines in the trace so that they can be highlighted
+  // copied and pasted from highlightCodeLine, which is hacky :/
+  //
+  // TODO: this is used by opt-live.ts; figure out a way to more cleanly
+  // expose this functionality without as much copy-and-paste grossness
+  updateCurPrevLines() {
+    var myViz = this;
+    var totalInstrs = myViz.curTrace.length;
+    var isLastInstr = myViz.curInstr === (totalInstrs-1);
+
+    /* if instrLimitReached, then treat like a normal non-terminating line */
+    var isTerminated = (!myViz.instrLimitReached && isLastInstr);
+
+    var curLineNumber = null;
+    var prevLineNumber = null;
+
+    var curEntry = myViz.curTrace[myViz.curInstr];
+    var hasError = false;
+
+    var curIsReturn = (curEntry.event == 'return');
+    var prevIsReturn = false;
+
+    if (myViz.curInstr > 0) {
+      prevLineNumber = myViz.curTrace[myViz.curInstr - 1].line;
+      prevIsReturn = (myViz.curTrace[myViz.curInstr - 1].event == 'return');
+
+      /* kinda nutsy hack: if the previous line is a return line, don't
+         highlight it. instead, highlight the line in the enclosing
+         function that called this one (i.e., the call site). e.g.,:
+
+         1. def foo(lst):
+         2.   return len(lst)
+         3.
+         4. y = foo([1,2,3])
+         5. print y
+
+         If prevLineNumber is 2 and prevIsReturn, then curLineNumber is
+         5, since that's the line that executes right after line 2
+         finishes. However, this looks confusing to the user since what
+         actually happened here was that the return value of foo was
+         assigned to y on line 4. I want to have prevLineNumber be line
+         4 so that it gets highlighted. There's no ideal solution, but I
+         think that looks more sensible, since line 4 was the previous
+         line that executed *in this function's frame*.
+      */
+      if (prevIsReturn) {
+        var idx = myViz.curInstr - 1;
+        var retStack = myViz.curTrace[idx].stack_to_render;
+        assert(retStack.length > 0);
+        var retFrameId = retStack[retStack.length - 1].frame_id;
+
+        // now go backwards until we find a 'call' to this frame
+        while (idx >= 0) {
+          var entry = myViz.curTrace[idx];
+          if (entry.event == 'call' && entry.stack_to_render) {
+            var topFrame = entry.stack_to_render[entry.stack_to_render.length - 1];
+            if (topFrame.frame_id == retFrameId) {
+              break; // DONE, we found the call that corresponds to this return
+            }
+          }
+          idx--;
+        }
+
+        // now idx is the index of the 'call' entry. we need to find the
+        // entry before that, which is the instruction before the call.
+        // THAT's the line of the call site.
+        if (idx > 0) {
+          var callingEntry = myViz.curTrace[idx - 1];
+          prevLineNumber = callingEntry.line; // WOOHOO!!!
+          prevIsReturn = false; // this is now a call site, not a return
+        }
+      }
+    }
+
+    if (curEntry.event == 'exception' ||
+        curEntry.event == 'uncaught_exception') {
+      assert(curEntry.exception_msg);
+      hasError = true;
+      myViz.curLineExceptionMsg = curEntry.exception_msg;
+    }
+
+    curLineNumber = curEntry.line;
+
+    // edge case for the final instruction :0
+    if (isTerminated && !hasError) {
+      // don't show redundant arrows on the same line when terminated ...
+      if (prevLineNumber == curLineNumber) {
+        curLineNumber = null;
+      }
+    }
+
+    // add these fields to myViz, which is the point of this function!
+    myViz.curLineNumber = curLineNumber;
+    myViz.prevLineNumber = prevLineNumber;
+    myViz.curLineIsReturn = curIsReturn;
+    myViz.prevLineIsReturn = prevIsReturn;
+  }
+
   // TODO: this is used by opt-frontend.ts; find a cleaner way to expose
   // NB: copy-and-paste from isOutputLineVisible with some minor tweaks
   isOutputLineVisibleForBubbles(lineDivID) {
@@ -1789,10 +1779,11 @@ export class ExecutionVisualizer {
 } // END class ExecutionVisualizer
 
 
-// implements the data structure visualization
+// implements the data structure visualization for an entire trace
 class DataVisualizer {
   owner: ExecutionVisualizer;
   params: any; // aliases owner.params for convenience
+  curTrace: any[]; // aliases owner.curTrace
 
   domRoot: any;
   domRootD3: any;
@@ -1807,6 +1798,7 @@ class DataVisualizer {
   constructor(owner, domRoot, domRootD3) {
     this.owner = owner;
     this.params = this.owner.params;
+    this.curTrace = this.owner.curTrace;
 
     this.domRoot = domRoot;
     this.domRootD3 = domRootD3;
@@ -1948,7 +1940,7 @@ class DataVisualizer {
   // heap objects don't "jiggle around" (i.e., preserving positional
   // invariance). Also, if we set up the layout objects properly, then we
   // can take full advantage of d3 to perform rendering and transitions.
-  precomputeCurTraceLayouts(curTrace) {
+  precomputeCurTraceLayouts() {
     // curTraceLayouts is a list of top-level heap layout "objects" with the
     // same length as curTrace after it's been fully initialized. Each
     // element of curTraceLayouts is computed from the contents of its
@@ -1980,8 +1972,8 @@ class DataVisualizer {
 
     var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
-    assert(curTrace.length > 0);
-    $.each(curTrace, function(i, curEntry) {
+    assert(this.curTrace && this.curTrace.length > 0);
+    $.each(this.curTrace, function(i, curEntry) {
       var prevLayout = myViz.curTraceLayouts[myViz.curTraceLayouts.length - 1];
 
       // make a DEEP COPY of prevLayout to use as the basis for curLine
@@ -2284,7 +2276,7 @@ class DataVisualizer {
     });
 
     this.curTraceLayouts.splice(0, 1); // remove seeded empty sentinel element
-    assert (curTrace.length == this.curTraceLayouts.length);
+    assert (this.curTrace.length == this.curTraceLayouts.length);
   }
 
   // is this visualizer in C or C++ mode? the eventual goal is to remove
@@ -2394,8 +2386,11 @@ class DataVisualizer {
   // INLINE within each stack frame without any explicit representation
   // of data structure aliasing. That is, aliased objects were rendered
   // multiple times, and a unique ID label was used to identify aliases.
-  renderDataStructures(curEntry, curToplevelLayout) {
+  renderDataStructures(curInstr: number) {
     var myViz = this; // to prevent confusion of 'this' inside of nested functions
+
+    var curEntry = this.curTrace[curInstr];
+    var curToplevelLayout = this.curTraceLayouts[curInstr];
 
     myViz.resetJsPlumbManager(); // very important!!!
 
@@ -2432,7 +2427,7 @@ class DataVisualizer {
     $.each(curToplevelLayout, function(xxx, row) {
       for (var i = 0; i < row.length; i++) {
         var objID = row[i];
-        var heapObjID = myViz.generateHeapObjID(objID, myViz.owner.curInstr);
+        var heapObjID = myViz.generateHeapObjID(objID, curInstr);
         myViz.jsPlumbManager.renderedHeapObjectIDs.set(heapObjID, 1);
       }
     });
@@ -2503,10 +2498,10 @@ class DataVisualizer {
           // TODO: why might this be undefined?!? because the object
           // disappeared from the heap all of a sudden?!?
           if (curEntry.heap[objID] !== undefined) {
-            myViz.renderCompoundObject(objID, myViz.owner.curInstr, $(this), true);
+            myViz.renderCompoundObject(objID, curInstr, $(this), true);
           }
         } else {
-          myViz.renderCompoundObject(objID, myViz.owner.curInstr, $(this), true);
+          myViz.renderCompoundObject(objID, curInstr, $(this), true);
         }
       });
 
@@ -2549,7 +2544,6 @@ class DataVisualizer {
         c.setHover(false);
       });
     }
-
 
 
     // TODO: coalesce code for rendering globals and stack frames,
@@ -2624,14 +2618,14 @@ class DataVisualizer {
 
           var val = curEntry.globals[varname];
           if (myViz.isPrimitiveType(val)) {
-            myViz.renderPrimitiveObject(val, $(this));
+            myViz.renderPrimitiveObject(val, $(this), curInstr);
           }
           else if (val[0] === 'C_STRUCT' || val[0] === 'C_ARRAY') {
             // C structs and arrays can be inlined in frames
-            myViz.renderCStructArray(val, myViz.owner.curInstr, $(this));
+            myViz.renderCStructArray(val, curInstr, $(this));
           }
           else {
-            var heapObjID = myViz.generateHeapObjID(getRefID(val), myViz.owner.curInstr);
+            var heapObjID = myViz.generateHeapObjID(getRefID(val), curInstr);
 
             if (myViz.params.textualMemoryLabels) {
               var labelID = varDivID + '_text_label';
@@ -2857,14 +2851,14 @@ class DataVisualizer {
 
           var val = frame.encoded_locals[varname];
           if (myViz.isPrimitiveType(val)) {
-            myViz.renderPrimitiveObject(val, $(this));
+            myViz.renderPrimitiveObject(val, $(this), curInstr);
           }
           else if (val[0] === 'C_STRUCT' || val[0] === 'C_ARRAY') {
             // C structs and arrays can be inlined in frames
-            myViz.renderCStructArray(val, myViz.owner.curInstr, $(this));
+            myViz.renderCStructArray(val, curInstr, $(this));
           }
           else {
-            var heapObjID = myViz.generateHeapObjID(getRefID(val), myViz.owner.curInstr);
+            var heapObjID = myViz.generateHeapObjID(getRefID(val), curInstr);
             if (myViz.params.textualMemoryLabels) {
               var labelID = varDivID + '_text_label';
               $(this).append('<div class="objectIdLabel" id="' + labelID + '">id' + getRefID(val) + '</div>');
@@ -3172,7 +3166,7 @@ class DataVisualizer {
 
   // rendering functions, which all take a d3 dom element to anchor the
   // new element to render
-  renderPrimitiveObject(obj, d3DomElement) {
+  renderPrimitiveObject(obj, d3DomElement, stepNum) {
     var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
     if (this.owner.try_hook("renderPrimitiveObject", {obj:obj, d3DomElement:d3DomElement})[0])
@@ -3233,7 +3227,7 @@ class DataVisualizer {
 
         // prefix with 'cdata_' so that we can distinguish this from a
         // top-level heap ID generated by generateHeapObjID
-        var cdataId = myViz.generateHeapObjID('cdata_' + addr, myViz.owner.curInstr);
+        var cdataId = myViz.generateHeapObjID('cdata_' + addr, stepNum);
 
         if (isValidPtr) {
           // for pointers, put cdataId in the header
@@ -3244,8 +3238,8 @@ class DataVisualizer {
           // add a stub so that we can connect it with a connector later.
           // IE needs this div to be NON-EMPTY in order to properly
           // render jsPlumb endpoints, so that's why we add an "&nbsp;"!
-          var ptrSrcId = myViz.generateHeapObjID('ptrSrc_' + addr, myViz.owner.curInstr);
-          var ptrTargetId = myViz.generateHeapObjID('cdata_' + ptrVal, myViz.owner.curInstr); // don't forget cdata_ prefix!
+          var ptrSrcId = myViz.generateHeapObjID('ptrSrc_' + addr, stepNum);
+          var ptrTargetId = myViz.generateHeapObjID('cdata_' + ptrVal, stepNum); // don't forget cdata_ prefix!
 
           var debugInfo = '';
 
@@ -3296,7 +3290,7 @@ class DataVisualizer {
 
   renderNestedObject(obj, stepNum, d3DomElement) {
     if (this.isPrimitiveType(obj)) {
-      this.renderPrimitiveObject(obj, d3DomElement);
+      this.renderPrimitiveObject(obj, d3DomElement, stepNum);
     }
     else {
       if (obj[0] === 'REF') {
@@ -3361,7 +3355,7 @@ class DataVisualizer {
 
     myViz.jsPlumbManager.renderedHeapObjectIDs.set(heapObjID, 1);
 
-    var curHeap = myViz.owner.curTrace[stepNum].heap; // weird leaky abstraction
+    var curHeap = myViz.curTrace[stepNum].heap;
     var obj = curHeap[objID];
     assert($.isArray(obj));
 
@@ -3623,7 +3617,7 @@ class DataVisualizer {
       // add a bit of padding to heap primitives, for aesthetics
       d3DomElement.append('<div class="heapPrimitive"></div>');
       d3DomElement.find('div.heapPrimitive').append('<div class="typeLabel">' + typeLabelPrefix + typeName + '</div>');
-      myViz.renderPrimitiveObject(primitiveVal, d3DomElement.find('div.heapPrimitive'));
+      myViz.renderPrimitiveObject(primitiveVal, d3DomElement.find('div.heapPrimitive'), stepNum);
     }
     else if (obj[0] == 'C_STRUCT' || obj[0] == 'C_ARRAY') {
       myViz.renderCStructArray(obj, stepNum, d3DomElement);
