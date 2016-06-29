@@ -2618,7 +2618,7 @@ class DataVisualizer {
 
           var val = curEntry.globals[varname];
           if (myViz.isPrimitiveType(val)) {
-            myViz.renderPrimitiveObject(val, $(this), curInstr);
+            myViz.renderPrimitiveObject(val, curInstr, $(this));
           }
           else if (val[0] === 'C_STRUCT' || val[0] === 'C_ARRAY') {
             // C structs and arrays can be inlined in frames
@@ -2851,7 +2851,7 @@ class DataVisualizer {
 
           var val = frame.encoded_locals[varname];
           if (myViz.isPrimitiveType(val)) {
-            myViz.renderPrimitiveObject(val, $(this), curInstr);
+            myViz.renderPrimitiveObject(val, curInstr, $(this));
           }
           else if (val[0] === 'C_STRUCT' || val[0] === 'C_ARRAY') {
             // C structs and arrays can be inlined in frames
@@ -3166,7 +3166,7 @@ class DataVisualizer {
 
   // rendering functions, which all take a d3 dom element to anchor the
   // new element to render
-  renderPrimitiveObject(obj, d3DomElement, stepNum) {
+  renderPrimitiveObject(obj, stepNum: number, d3DomElement) {
     var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
     if (this.owner.try_hook("renderPrimitiveObject", {obj:obj, d3DomElement:d3DomElement})[0])
@@ -3288,9 +3288,9 @@ class DataVisualizer {
     }
   }
 
-  renderNestedObject(obj, stepNum, d3DomElement) {
+  renderNestedObject(obj, stepNum: number, d3DomElement) {
     if (this.isPrimitiveType(obj)) {
-      this.renderPrimitiveObject(obj, d3DomElement, stepNum);
+      this.renderPrimitiveObject(obj, stepNum, d3DomElement);
     }
     else {
       if (obj[0] === 'REF') {
@@ -3303,7 +3303,7 @@ class DataVisualizer {
     }
   }
 
-  renderCompoundObject(objID, stepNum, d3DomElement, isTopLevel) {
+  renderCompoundObject(objID, stepNum: number, d3DomElement, isTopLevel) {
     var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
     var heapObjID = myViz.generateHeapObjID(objID, stepNum);
@@ -3617,7 +3617,7 @@ class DataVisualizer {
       // add a bit of padding to heap primitives, for aesthetics
       d3DomElement.append('<div class="heapPrimitive"></div>');
       d3DomElement.find('div.heapPrimitive').append('<div class="typeLabel">' + typeLabelPrefix + typeName + '</div>');
-      myViz.renderPrimitiveObject(primitiveVal, d3DomElement.find('div.heapPrimitive'), stepNum);
+      myViz.renderPrimitiveObject(primitiveVal, stepNum, d3DomElement.find('div.heapPrimitive'));
     }
     else if (obj[0] == 'C_STRUCT' || obj[0] == 'C_ARRAY') {
       myViz.renderCStructArray(obj, stepNum, d3DomElement);
