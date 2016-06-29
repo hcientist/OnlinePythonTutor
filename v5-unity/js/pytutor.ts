@@ -499,14 +499,6 @@ export class ExecutionVisualizer {
          </table>\
        </div>';
 
-    var vizHeaderHTML =
-      '<div id="vizHeader">\
-         <textarea class="vizTitleText" id="vizTitleEditor" cols="60" rows="1"></textarea>\
-         <div class="vizTitleText" id="vizTitleViewer"></div>\
-         <textarea class="vizDescriptionText" id="vizDescriptionEditor" cols="75" rows="2"></textarea>\
-         <div class="vizDescriptionText" id="vizDescriptionViewer"></div>\
-      </div>';
-
     if (this.params.verticalStack) {
       this.domRoot.html('<table border="0" class="visualizer"><tr><td class="vizLayoutTd" id="vizLayoutTdFirst"">' +
                         codeDisplayHTML + '</td></tr><tr><td class="vizLayoutTd" id="vizLayoutTdSecond">' +
@@ -808,40 +800,6 @@ export class ExecutionVisualizer {
     this.hasRendered = true;
   }
 
-  destroyAllAnnotationBubbles() {
-    var myViz = this;
-
-    // remove this handler as well!
-    this.domRoot.find('#pyCodeOutputDiv').unbind('scroll');
-  }
-
-  initStepAnnotation() {
-    var curEntry = this.curTrace[this.curInstr];
-    if (curEntry.stepAnnotation) {
-      this.domRoot.find("#stepAnnotationViewer").html(htmlsanitize(curEntry.stepAnnotation)); // help prevent HTML/JS injection attacks
-      this.domRoot.find("#stepAnnotationEditor").val(curEntry.stepAnnotation);
-    }
-    else {
-      this.domRoot.find("#stepAnnotationViewer").html('');
-      this.domRoot.find("#stepAnnotationEditor").val('');
-    }
-  }
-
-  enterViewAnnotationsMode() {
-    var curEntry = this.curTrace[this.curInstr];
-    var myViz = this;
-    var stepAnnotationEditorVal = myViz.domRoot.find("#stepAnnotationEditor").val().trim();
-    if (stepAnnotationEditorVal) {
-      curEntry.stepAnnotation = stepAnnotationEditorVal;
-    }
-    else {
-      delete curEntry.stepAnnotation; // go as far as to DELETE this field entirely
-    }
-
-    myViz.initStepAnnotation();
-    this.domRoot.find('#vizHeader,#vizTitleEditor,#vizDescriptionEditor').hide();
-    myViz.redrawConnectors();
-  }
 
   // find the previous/next breakpoint to c or return -1 if it doesn't exist
   findPrevBreakpoint() {
@@ -1673,8 +1631,6 @@ export class ExecutionVisualizer {
     var curToplevelLayout = this.curTraceLayouts[this.curInstr];
     this.renderDataStructures(curEntry, curToplevelLayout);
 
-    this.enterViewAnnotationsMode(); // ... and render optional annotations (if any exist)
-
     // call the callback if necessary (BEFORE rendering)
     if (myViz.domRoot.find('#dataViz').height() != prevDataVizHeight) {
       if (this.params.heightChangeCallback) {
@@ -1699,8 +1655,6 @@ export class ExecutionVisualizer {
     var curEntry = this.curTrace[this.curInstr];
     var curToplevelLayout = this.curTraceLayouts[this.curInstr];
     this.renderDataStructures(curEntry, curToplevelLayout);
-
-    this.enterViewAnnotationsMode(); // ... and render optional annotations (if any exist)
   }
 
 

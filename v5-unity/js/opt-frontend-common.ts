@@ -1203,11 +1203,6 @@ function updateAppDisplay(newAppMode) {
 
     $(".surveyQ").val(''); // clear all survey results when user hits forward/back
 
-    // destroy all annotation bubbles (NB: kludgy)
-    if (myVisualizer) {
-      myVisualizer.destroyAllAnnotationBubbles();
-    }
-
     // Potentially controversial: when you enter edit mode, DESTROY any
     // existing visualizer object. note that this simplifies the app's
     // conceptual model but breaks the browser's expected Forward and
