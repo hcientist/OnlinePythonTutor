@@ -471,7 +471,6 @@ export class ExecutionVisualizer {
            <textarea class="annotationText" id="stepAnnotationEditor" cols="60" rows="3"></textarea>\
            <div class="annotationText" id="stepAnnotationViewer"></div>\
          </div>\
-         <div id="annotateLinkDiv"><button id="annotateBtn" type="button">Annotate this step</button></div>\
        </div>';
 
     var outputsHTML =
@@ -641,8 +640,6 @@ export class ExecutionVisualizer {
       myViz.domRoot.find('#executionSliderDocs').hide(); // cut out extraneous docs
     }
 
-    this.domRoot.find('#annotateBtn').hide();
-    
     // not enough room for these extra buttons ...
     if (this.params.codeDivWidth &&
         this.params.codeDivWidth < 470) {
@@ -833,15 +830,6 @@ export class ExecutionVisualizer {
     }
   }
 
-  showVizHeaderEditMode() {
-    this.domRoot.find('#vizHeader').show();
-
-    this.domRoot.find('#vizTitleViewer,#vizDescriptionViewer').hide();
-    this.domRoot.find('#vizTitleEditor,#vizDescriptionEditor').show();
-  }
-
-  
-  // TODO: move annotation bubbles into a separate class
   destroyAllAnnotationBubbles() {
     var myViz = this;
 
