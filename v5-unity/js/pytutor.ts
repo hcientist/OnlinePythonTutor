@@ -500,7 +500,6 @@ export class ExecutionVisualizer {
   }
 
   // does a LOT of stuff, called by updateOutput
-  // TODO: refactor parts into CodeDisplay class (and a future slider class)
   updateOutputFull(smoothTransition) {
     assert(this.curTrace);
     assert(!this.params.hideCode);
@@ -520,48 +519,8 @@ export class ExecutionVisualizer {
     myViz.curLineExceptionMsg = undefined;
 
     var prevDataVizHeight = myViz.dataViz.height();
-    var gutterSVG = myViz.domRoot.find('svg#leftCodeGutterSVG');
 
-    // TODO: move this into CodeDisplay
-
-    // one-time initialization of the left gutter
-    // (we often can't do this earlier since the entire pane
-    //  might be invisible and hence returns a height of zero or NaN
-    //  -- the exact format depends on browser)
-    if (!myViz.codDisplay.leftGutterSvgInitialized) {
-      // set the gutter's height to match that of its parent
-      gutterSVG.height(gutterSVG.parent().height());
-
-      var firstRowOffsetY = myViz.domRoot.find('table#pyCodeOutput tr:first').offset().top;
-
-      // first take care of edge case when there's only one line ...
-      myViz.codDisplay.codeRowHeight = myViz.domRoot.find('table#pyCodeOutput td.cod:first').height();
-
-      // ... then handle the (much more common) multi-line case ...
-      // this weird contortion is necessary to get the accurate row height on Internet Explorer
-      // (simpler methods work on all other major browsers, erghhhhhh!!!)
-      if (this.codDisplay.codeOutputLines && this.codDisplay.codeOutputLines.length > 1) {
-        var secondRowOffsetY = myViz.domRoot.find('table#pyCodeOutput tr:nth-child(2)').offset().top;
-        myViz.codDisplay.codeRowHeight = secondRowOffsetY - firstRowOffsetY;
-      }
-
-      assert(myViz.codDisplay.codeRowHeight > 0);
-
-      var gutterOffsetY = gutterSVG.offset().top;
-      var teenyAdjustment = gutterOffsetY - firstRowOffsetY;
-
-      // super-picky detail to adjust the vertical alignment of arrows so that they line up
-      // well with the pointed-to code text ...
-      // (if you want to manually adjust tableTop, then ~5 is a reasonable number)
-      myViz.codDisplay.arrowOffsetY = Math.floor((myViz.codDisplay.codeRowHeight / 2) - (SVG_ARROW_HEIGHT / 2)) - teenyAdjustment;
-
-      myViz.codDisplay.leftGutterSvgInitialized = true;
-    }
-
-    assert(myViz.codDisplay.arrowOffsetY !== undefined);
-    assert(myViz.codDisplay.codeRowHeight !== undefined);
-    assert(0 <= myViz.codDisplay.arrowOffsetY && myViz.codDisplay.arrowOffsetY <= myViz.codDisplay.codeRowHeight);
-
+    this.codDisplay.updateCodOutput();
 
     // call the callback if necessary (BEFORE rendering)
     if (this.params.updateOutputCallback) {
@@ -570,6 +529,8 @@ export class ExecutionVisualizer {
 
     var curEntry = this.curTrace[this.curInstr];
     var hasError = false;
+
+    // TODO: move into CodeDisplay
 
     // render VCR controls:
     var totalInstrs = this.curTrace.length;
@@ -633,8 +594,8 @@ export class ExecutionVisualizer {
       }
     }
 
-
     function highlightCodeLine() {
+      var gutterSVG = myViz.domRoot.find('svg#leftCodeGutterSVG');
       /* if instrLimitReached, then treat like a normal non-terminating line */
       var isTerminated = (!myViz.instrLimitReached && isLastInstr);
 
@@ -833,7 +794,6 @@ export class ExecutionVisualizer {
 
     } // end of highlightCodeLine
 
-
     // render code output:
     if (curEntry.line) {
       highlightCodeLine();
@@ -858,7 +818,6 @@ export class ExecutionVisualizer {
         ruiDiv.show();
       }
     }
-
   } // end of updateOutputFull
 
   updateOutputMini() {
@@ -3704,6 +3663,49 @@ class CodeDisplay {
          return breakpointColor;
       });
   }
+
+  updateCodOutput() {
+    var gutterSVG = this.domRoot.find('svg#leftCodeGutterSVG');
+
+    // one-time initialization of the left gutter
+    // (we often can't do this earlier since the entire pane
+    //  might be invisible and hence returns a height of zero or NaN
+    //  -- the exact format depends on browser)
+    if (!this.leftGutterSvgInitialized) {
+      // set the gutter's height to match that of its parent
+      gutterSVG.height(gutterSVG.parent().height());
+
+      var firstRowOffsetY = this.domRoot.find('table#pyCodeOutput tr:first').offset().top;
+
+      // first take care of edge case when there's only one line ...
+      this.codeRowHeight = this.domRoot.find('table#pyCodeOutput td.cod:first').height();
+
+      // ... then handle the (much more common) multi-line case ...
+      // this weird contortion is necessary to get the accurate row height on Internet Explorer
+      // (simpler methods work on all other major browsers, erghhhhhh!!!)
+      if (this.codeOutputLines && this.codeOutputLines.length > 1) {
+        var secondRowOffsetY = this.domRoot.find('table#pyCodeOutput tr:nth-child(2)').offset().top;
+        this.codeRowHeight = secondRowOffsetY - firstRowOffsetY;
+      }
+
+      assert(this.codeRowHeight > 0);
+
+      var gutterOffsetY = gutterSVG.offset().top;
+      var teenyAdjustment = gutterOffsetY - firstRowOffsetY;
+
+      // super-picky detail to adjust the vertical alignment of arrows so that they line up
+      // well with the pointed-to code text ...
+      // (if you want to manually adjust tableTop, then ~5 is a reasonable number)
+      this.arrowOffsetY = Math.floor((this.codeRowHeight / 2) - (SVG_ARROW_HEIGHT / 2)) - teenyAdjustment;
+
+      this.leftGutterSvgInitialized = true;
+    }
+
+    assert(this.arrowOffsetY !== undefined);
+    assert(this.codeRowHeight !== undefined);
+    assert(0 <= this.arrowOffsetY && this.arrowOffsetY <= this.codeRowHeight);
+  }
+
 } // END class CodeDisplay
 
 
