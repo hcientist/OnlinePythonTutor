@@ -476,12 +476,7 @@ export class ExecutionVisualizer {
       return;
     }
 
-    // reset
-    myViz.curLineNumber = undefined;
-    myViz.prevLineNumber = undefined;
-    myViz.curLineIsReturn = undefined;
-    myViz.prevLineIsReturn = undefined;
-    myViz.curLineExceptionMsg = undefined;
+    myViz.updateLineAndExceptionInfo(); // very important to call this before rendering code (argh order dependency)
 
     var prevDataVizHeight = myViz.dataViz.height();
 
@@ -491,8 +486,6 @@ export class ExecutionVisualizer {
     if (this.params.updateOutputCallback) {
       this.params.updateOutputCallback(this);
     }
-
-    var curEntry = this.curTrace[this.curInstr];
 
     var totalInstrs = this.curTrace.length;
     var isFirstInstr = (this.curInstr == 0);
@@ -512,21 +505,14 @@ export class ExecutionVisualizer {
     this.codDisplay.setSliderVal(this.curInstr);
 
     // render error (if applicable):
-    if (curEntry.event == 'exception' ||
-        curEntry.event == 'uncaught_exception') {
-      assert(curEntry.exception_msg);
-      if (curEntry.exception_msg == "Unknown error") {
+    if (myViz.curLineExceptionMsg) {
+      if (myViz.curLineExceptionMsg === "Unknown error") {
         myViz.codDisplay.showError('Unknown error: Please email a bug report to philip@pgbovine.net');
+      } else {
+        myViz.codDisplay.showError(myViz.curLineExceptionMsg);
       }
-      else {
-        myViz.codDisplay.showError(curEntry.exception_msg);
-      }
-      myViz.curLineExceptionMsg = curEntry.exception_msg;
-    }
-    else {
-      if (!this.instrLimitReached) { // ugly, I know :/
-        myViz.codDisplay.showError(null);
-      }
+    } else if (!this.instrLimitReached) { // ugly, I know :/
+      myViz.codDisplay.showError(null);
     }
 
     // finally, render all of the data structures
@@ -838,16 +824,19 @@ export class ExecutionVisualizer {
   }
 
 
-  // update some fields corresponding to the current and previously
-  // executed lines in the trace so that they can be highlighted
-  // copied and pasted from highlightCodeLine, which is hacky :/
-  //
-  // TODO: this is used by opt-live.ts; figure out a way to more cleanly
-  // expose this functionality without as much copy-and-paste grossness
-  updateCurPrevLines() {
+  // update fields corresponding to the current and previously executed lines
+  // in the trace so that they can be properly highlighted; must call before
+  // rendering code output (NB: argh pesky ordering dependency)
+  updateLineAndExceptionInfo() {
     var myViz = this;
     var totalInstrs = myViz.curTrace.length;
     var isLastInstr = myViz.curInstr === (totalInstrs-1);
+
+    myViz.curLineNumber = undefined;
+    myViz.prevLineNumber = undefined;
+    myViz.curLineIsReturn = undefined;
+    myViz.prevLineIsReturn = undefined;
+    myViz.curLineExceptionMsg = undefined;
 
     /* if instrLimitReached, then treat like a normal non-terminating line */
     var isTerminated = (!myViz.instrLimitReached && isLastInstr);
@@ -913,8 +902,7 @@ export class ExecutionVisualizer {
     }
 
     var hasError = false;
-    if (curEntry.event == 'exception' ||
-        curEntry.event == 'uncaught_exception') {
+    if (curEntry.event === 'exception' || curEntry.event === 'uncaught_exception') {
       assert(curEntry.exception_msg);
       hasError = true;
       myViz.curLineExceptionMsg = curEntry.exception_msg;
@@ -3442,7 +3430,8 @@ class CodeDisplay {
     assert(this.codeRowHeight !== undefined);
     assert(0 <= this.arrowOffsetY && this.arrowOffsetY <= this.codeRowHeight);
 
-    // TODO: find out how to integrate this code with updateCurPrevLines
+    // TODO: find out how to integrate this code with
+    // updateLineAndExceptionInfo
     // to avoid unnecessary duplication
     var highlightCodeLine = () => {
       // TODO: get rid of this pesky 'owner' dependency

@@ -127,7 +127,7 @@ function removeAllGutterDecorations() {
 function updateStepLabels() {
   var myVisualizer = optCommon.getVisualizer();
   assert(myVisualizer);
-  myVisualizer.updateCurPrevLines(); // do this first to update the right fields
+  myVisualizer.updateLineAndExceptionInfo(); // do this first to update the right fields
 
   $('#urlOutput').val(''); // prevent stale URLs
 
