@@ -103,6 +103,7 @@ export class ExecutionVisualizer {
   // keys, hook names; values, list of functions
   pytutor_hooks: {string?: any[]} = {};
 
+  // opt-live.js depends on these, ergh
   prevLineIsReturn: boolean;
   curLineIsReturn: boolean;
   prevLineNumber: number;
@@ -3469,21 +3470,21 @@ class CodeDisplay {
       return ret;
     });
 
-    function addToBreakpoints(executionPoints) {
+    var addToBreakpoints = (executionPoints) => {
       $.each(executionPoints, (i, ep) => {
         this.breakpoints.set(ep, 1);
       });
       this.sortedBreakpointsList = _getSortedBreakpointsList();
     }
 
-    function removeFromBreakpoints(executionPoints) {
+    var removeFromBreakpoints = (executionPoints) => {
       $.each(executionPoints, (i, ep) => {
         this.breakpoints.remove(ep);
       });
       this.sortedBreakpointsList = _getSortedBreakpointsList();
     }
 
-    function setBreakpoint(t, d) {
+    var setBreakpoint = (t, d) => {
       addToBreakpoints(d.executionPoints);
       d3.select(t.parentNode).select('td.lineNo').style('color', breakpointColor);
       d3.select(t.parentNode).select('td.lineNo').style('font-weight', 'bold');
@@ -3491,7 +3492,7 @@ class CodeDisplay {
       this.renderSliderBreakpoints();
     }
 
-    function unsetBreakpoint(t, d) {
+    var unsetBreakpoint = (t, d) => {
       removeFromBreakpoints(d.executionPoints);
       d3.select(t.parentNode).select('td.lineNo').style('color', '');
       d3.select(t.parentNode).select('td.lineNo').style('font-weight', '');
