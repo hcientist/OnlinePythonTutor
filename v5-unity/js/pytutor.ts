@@ -491,54 +491,29 @@ export class ExecutionVisualizer {
     }
 
     var curEntry = this.curTrace[this.curInstr];
-    var hasError = false;
 
-    // TODO: move into CodeDisplay
-
-    // render VCR controls:
     var totalInstrs = this.curTrace.length;
+    var isFirstInstr = (this.curInstr == 0);
     var isLastInstr = (this.curInstr == (totalInstrs-1));
-    var vcrControls = myViz.domRoot.find("#vcrControls");
-
+    var msg = "Step " + String(this.curInstr + 1) + " of " + String(totalInstrs-1);
     if (isLastInstr) {
       if (this.promptForUserInput || this.promptForMouseInput) {
-        vcrControls.find("#curInstr").html('<b><font color="' + brightRed + '">Enter user input below:</font></b>');
+        msg = '<b><font color="' + brightRed + '">Enter user input below:</font></b>';
+      } else if (this.instrLimitReached) {
+        msg = "Instruction limit reached";
+      } else {
+        msg = "Program terminated";
       }
-      else if (this.instrLimitReached) {
-        vcrControls.find("#curInstr").html("Instruction limit reached");
-      }
-      else {
-        vcrControls.find("#curInstr").html("Program terminated");
-      }
-    } else {
-      vcrControls.find("#curInstr").html("Step " +
-                                         String(this.curInstr + 1) +
-                                         " of " + String(totalInstrs-1));
     }
 
-    vcrControls.find("#jmpFirstInstr").attr("disabled", false);
-    vcrControls.find("#jmpStepBack").attr("disabled", false);
-    vcrControls.find("#jmpStepFwd").attr("disabled", false);
-    vcrControls.find("#jmpLastInstr").attr("disabled", false);
-
-    if (this.curInstr == 0) {
-      vcrControls.find("#jmpFirstInstr").attr("disabled", true);
-      vcrControls.find("#jmpStepBack").attr("disabled", true);
-    }
-    if (isLastInstr) {
-      vcrControls.find("#jmpLastInstr").attr("disabled", true);
-      vcrControls.find("#jmpStepFwd").attr("disabled", true);
-    }
-
-    // PROGRAMMATICALLY change the value, so evt.originalEvent should be undefined
-    myViz.domRoot.find('#executionSlider').slider('value', this.curInstr);
-
+    this.codDisplay.setVcrControls(msg, isFirstInstr, isLastInstr);
+    this.codDisplay.setSliderVal(this.curInstr);
 
     // render error (if applicable):
+    var hasError = false;
     if (curEntry.event == 'exception' ||
         curEntry.event == 'uncaught_exception') {
       assert(curEntry.exception_msg);
-
       if (curEntry.exception_msg == "Unknown error") {
         myViz.codDisplay.showError('Unknown error: Please email a bug report to philip@pgbovine.net');
       }
@@ -554,6 +529,7 @@ export class ExecutionVisualizer {
       }
     }
 
+    // TODO: refactor into CodeDisplay class
     function highlightCodeLine() {
       var gutterSVG = myViz.domRoot.find('svg#leftCodeGutterSVG');
       /* if instrLimitReached, then treat like a normal non-terminating line */
@@ -566,7 +542,6 @@ export class ExecutionVisualizer {
 
       var curIsReturn = (curEntry.event == 'return');
       var prevIsReturn = false;
-
 
       if (myViz.curInstr > 0) {
         prevLineNumber = myViz.curTrace[myViz.curInstr - 1].line;
@@ -717,7 +692,6 @@ export class ExecutionVisualizer {
         return (PO <= LO) && (LO < (PO + H - 30));
       }
 
-
       // smoothly scroll pyCodeOutputDiv so that the given line is at the center
       function scrollCodeOutputToLine(lineNo) {
         var lineNoTd = myViz.domRoot.find('#lineNo' + lineNo);
@@ -740,18 +714,16 @@ export class ExecutionVisualizer {
               myViz.domRoot.find('#'+myViz.generateID('cod'+prevLineNumber)).addClass('highlight-prev');      
       }
 
-
       // smoothly scroll code display
       if (!isOutputLineVisible(curEntry.line)) {
         scrollCodeOutputToLine(curEntry.line);
       }
 
-      // add these fields to myViz
+      // add these fields to myViz as a side effect
       myViz.curLineNumber = curLineNumber;
       myViz.prevLineNumber = prevLineNumber;
       myViz.curLineIsReturn = curIsReturn;
       myViz.prevLineIsReturn = prevIsReturn;
-
     } // end of highlightCodeLine
 
     // render code output:
@@ -762,7 +734,7 @@ export class ExecutionVisualizer {
     // finally, render all of the data structures
     this.dataViz.renderDataStructures(this.curInstr);
 
-    // call the callback if necessary (BEFORE rendering)
+    // call the callback if necessary (AFTER rendering)
     if (myViz.dataViz.height() != prevDataVizHeight) {
       if (this.params.heightChangeCallback) {
         this.params.heightChangeCallback(this);
@@ -3696,6 +3668,29 @@ class CodeDisplay {
         this.owner.renderStep(ui.value);
       }
     });
+  }
+
+  setVcrControls(msg: string, isFirstInstr: boolean, isLastInstr: boolean) {
+    var vcrControls = this.domRoot.find("#vcrControls");
+    vcrControls.find("#curInstr").html(msg);
+    vcrControls.find("#jmpFirstInstr").attr("disabled", false);
+    vcrControls.find("#jmpStepBack").attr("disabled", false);
+    vcrControls.find("#jmpStepFwd").attr("disabled", false);
+    vcrControls.find("#jmpLastInstr").attr("disabled", false);
+
+    if (isFirstInstr) {
+      vcrControls.find("#jmpFirstInstr").attr("disabled", true);
+      vcrControls.find("#jmpStepBack").attr("disabled", true);
+    }
+    if (isLastInstr) {
+      vcrControls.find("#jmpLastInstr").attr("disabled", true);
+      vcrControls.find("#jmpStepFwd").attr("disabled", true);
+    }
+  }
+
+  setSliderVal(v: number) {
+    // PROGRAMMATICALLY change the value, so evt.originalEvent should be undefined
+    this.domRoot.find('#executionSlider').slider('value', v);
   }
 
 } // END class CodeDisplay
