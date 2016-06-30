@@ -3430,211 +3430,117 @@ class CodeDisplay {
     assert(this.codeRowHeight !== undefined);
     assert(0 <= this.arrowOffsetY && this.arrowOffsetY <= this.codeRowHeight);
 
-    // TODO: find out how to integrate this code with
-    // updateLineAndExceptionInfo
-    // to avoid unnecessary duplication
-    var highlightCodeLine = () => {
-      // TODO: get rid of this pesky 'owner' dependency
-      var myViz = this.owner;
-      var isLastInstr = (myViz.curInstr === (myViz.curTrace.length-1));
-      var curEntry = myViz.curTrace[myViz.curInstr];
-      var hasError = (curEntry.event === 'exception' || curEntry.event === 'uncaught_exception');
+    // assumes that this.owner.updateLineAndExceptionInfo has already
+    // been run, so line number info is up-to-date!
 
-      /* if instrLimitReached, then treat like a normal non-terminating line */
-      var isTerminated = (!myViz.instrLimitReached && isLastInstr);
+    // TODO: get rid of this pesky 'owner' dependency
+    var myViz = this.owner;
+    var isLastInstr = (myViz.curInstr === (myViz.curTrace.length-1));
+    var curEntry = myViz.curTrace[myViz.curInstr];
+    var hasError = (curEntry.event === 'exception' || curEntry.event === 'uncaught_exception');
+    var isTerminated = (!myViz.instrLimitReached && isLastInstr);
+    var pcod = this.domRoot.find('#pyCodeOutputDiv');
 
-      var pcod = this.domRoot.find('#pyCodeOutputDiv');
+    var prevVerticalNudge = myViz.prevLineIsReturn ? Math.floor(this.codeRowHeight / 3) : 0;
+    var curVerticalNudge  = myViz.curLineIsReturn  ? Math.floor(this.codeRowHeight / 3) : 0;
 
-      var curLineNumber = null;
-      var prevLineNumber = null;
-
-      var curIsReturn = (curEntry.event == 'return');
-      var prevIsReturn = false;
-
-      if (myViz.curInstr > 0) {
-        prevLineNumber = myViz.curTrace[myViz.curInstr - 1].line;
-        prevIsReturn = (myViz.curTrace[myViz.curInstr - 1].event == 'return');
-
-        /* kinda nutsy hack: if the previous line is a return line, don't
-           highlight it. instead, highlight the line in the enclosing
-           function that called this one (i.e., the call site). e.g.,:
-
-           1. def foo(lst):
-           2.   return len(lst)
-           3.
-           4. y = foo([1,2,3])
-           5. print y
-
-           If prevLineNumber is 2 and prevIsReturn, then curLineNumber is
-           5, since that's the line that executes right after line 2
-           finishes. However, this looks confusing to the user since what
-           actually happened here was that the return value of foo was
-           assigned to y on line 4. I want to have prevLineNumber be line
-           4 so that it gets highlighted. There's no ideal solution, but I
-           think that looks more sensible, since line 4 was the previous
-           line that executed *in this function's frame*.
-        */
-        if (prevIsReturn) {
-          var idx = myViz.curInstr - 1;
-          var retStack = myViz.curTrace[idx].stack_to_render;
-          assert(retStack.length > 0);
-          var retFrameId = retStack[retStack.length - 1].frame_id;
-
-          // now go backwards until we find a 'call' to this frame
-          while (idx >= 0) {
-            var entry = myViz.curTrace[idx];
-            if (entry.event == 'call' && entry.stack_to_render) {
-              var topFrame = entry.stack_to_render[entry.stack_to_render.length - 1];
-              if (topFrame.frame_id == retFrameId) {
-                break; // DONE, we found the call that corresponds to this return
-              }
-            }
-            idx--;
-          }
-
-          // now idx is the index of the 'call' entry. we need to find the
-          // entry before that, which is the instruction before the call.
-          // THAT's the line of the call site.
-          if (idx > 0) {
-            var callingEntry = myViz.curTrace[idx - 1];
-            prevLineNumber = callingEntry.line; // WOOHOO!!!
-            prevIsReturn = false; // this is now a call site, not a return
-            smoothTransition = false;
-          }
-        }
+    // ugly edge case for the final instruction :0
+    if (isTerminated && !hasError) {
+      if (myViz.prevLineNumber !== myViz.curLineNumber) {
+        curVerticalNudge = curVerticalNudge - 2;
       }
+    }
 
-      curLineNumber = curEntry.line;
+    if (myViz.prevLineNumber) {
+      var pla = this.domRootD3.select('#prevLineArrow');
+      var translatePrevCmd = 'translate(0, ' + (((myViz.prevLineNumber - 1) * this.codeRowHeight) + this.arrowOffsetY + prevVerticalNudge) + ')';
+      if (smoothTransition) {
+        pla
+          .transition()
+          .duration(200)
+          .attr('fill', 'white')
+          .each('end', function() {
+                pla
+                  .attr('transform', translatePrevCmd)
+                  .attr('fill', lightArrowColor);
+                gutterSVG.find('#prevLineArrow').show(); // show at the end to avoid flickering
+            });
+      }
+      else {
+        pla.attr('transform', translatePrevCmd)
+        gutterSVG.find('#prevLineArrow').show();
+      }
+    } else {
+      gutterSVG.find('#prevLineArrow').hide();
+    }
 
-      // on 'return' events, give a bit more of a vertical nudge to show that
-      // the arrow is aligned with the 'bottom' of the line ...
-      var prevVerticalNudge = prevIsReturn ? Math.floor(this.codeRowHeight / 3) : 0;
-      var curVerticalNudge  = curIsReturn  ? Math.floor(this.codeRowHeight / 3) : 0;
+    if (myViz.curLineNumber) {
+      var cla = this.domRootD3.select('#curLineArrow');
+      var translateCurCmd = 'translate(0, ' + (((myViz.curLineNumber - 1) * this.codeRowHeight) + this.arrowOffsetY + curVerticalNudge) + ')';
+      if (smoothTransition) {
+        cla
+          .transition()
+          .delay(200)
+          .duration(250)
+          .attr('transform', translateCurCmd);
+      } else {
+        cla.attr('transform', translateCurCmd);
+      }
+      gutterSVG.find('#curLineArrow').show();
+    }
+    else {
+      gutterSVG.find('#curLineArrow').hide();
+    }
 
-
-      // edge case for the final instruction :0
-      if (isTerminated && !hasError) {
-        // don't show redundant arrows on the same line when terminated ...
-        if (prevLineNumber == curLineNumber) {
-          curLineNumber = null;
+    this.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
+      .style('border-top', function(d) {
+        if (hasError && (d.lineNumber == curEntry.line)) {
+          return '1px solid ' + errorColor;
         }
-        // otherwise have a smaller vertical nudge (to fit at bottom of display table)
         else {
-          curVerticalNudge = curVerticalNudge - 2;
+          return '';
         }
-      }
+      })
+      .style('border-bottom', function(d) {
+        // COPY AND PASTE ALERT!
+        if (hasError && (d.lineNumber == curEntry.line)) {
+          return '1px solid ' + errorColor;
+        }
+        else {
+          return '';
+        }
+      });
 
-      if (prevLineNumber) {
-          var pla = myViz.domRootD3.select('#prevLineArrow');
-          var translatePrevCmd = 'translate(0, ' + (((prevLineNumber - 1) * this.codeRowHeight) + this.arrowOffsetY + prevVerticalNudge) + ')';
+    // returns True iff lineNo is visible in pyCodeOutputDiv
+    var isOutputLineVisible = (lineNo) => {
+      var lineNoTd = this.domRoot.find('#lineNo' + lineNo);
+      var LO = lineNoTd.offset().top;
 
-          if (smoothTransition) {
-              pla
-                  .transition()
-                  .duration(200)
-                  .attr('fill', 'white')
-                  .each('end', function() {
-                      pla
-                          .attr('transform', translatePrevCmd)
-                          .attr('fill', lightArrowColor);
-                      gutterSVG.find('#prevLineArrow').show(); // show at the end to avoid flickering
-                  });
-          }
-          else {
-              pla.attr('transform', translatePrevCmd)
-              gutterSVG.find('#prevLineArrow').show();
-          }
-      }
-      else {
-          gutterSVG.find('#prevLineArrow').hide();
-      }
+      var PO = pcod.offset().top;
+      var ST = pcod.scrollTop();
+      var H = pcod.height();
 
-      if (curLineNumber) {
-          var cla = myViz.domRootD3.select('#curLineArrow');
-          var translateCurCmd = 'translate(0, ' + (((curLineNumber - 1) * this.codeRowHeight) + this.arrowOffsetY + curVerticalNudge) + ')';
-          if (smoothTransition) {
-              cla
-                  .transition()
-                  .delay(200)
-                  .duration(250)
-                  .attr('transform', translateCurCmd);
-          }
-          else {
-              cla.attr('transform', translateCurCmd);
-          }
-          gutterSVG.find('#curLineArrow').show();
-      }
-      else {
-          gutterSVG.find('#curLineArrow').hide();
-      }
+      // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
+      return (PO <= LO) && (LO < (PO + H - 30));
+    }
 
-      myViz.domRootD3.selectAll('#pyCodeOutputDiv td.cod')
-        .style('border-top', function(d) {
-          if (hasError && (d.lineNumber == curEntry.line)) {
-            return '1px solid ' + errorColor;
-          }
-          else {
-            return '';
-          }
-        })
-        .style('border-bottom', function(d) {
-          // COPY AND PASTE ALERT!
-          if (hasError && (d.lineNumber == curEntry.line)) {
-            return '1px solid ' + errorColor;
-          }
-          else {
-            return '';
-          }
-        });
+    // smoothly scroll pyCodeOutputDiv so that the given line is at the center
+    var scrollCodeOutputToLine = (lineNo) => {
+      var lineNoTd = this.domRoot.find('#lineNo' + lineNo);
+      var LO = lineNoTd.offset().top;
 
-      // returns True iff lineNo is visible in pyCodeOutputDiv
-      function isOutputLineVisible(lineNo) {
-        var lineNoTd = myViz.domRoot.find('#lineNo' + lineNo);
-        var LO = lineNoTd.offset().top;
+      var PO = pcod.offset().top;
+      var ST = pcod.scrollTop();
+      var H = pcod.height();
 
-        var PO = pcod.offset().top;
-        var ST = pcod.scrollTop();
-        var H = pcod.height();
+      pcod.stop(); // first stop all previously-queued animations
+      pcod.animate({scrollTop: (ST + (LO - PO - (Math.round(H / 2))))}, 300);
+    }
 
-        // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
-        return (PO <= LO) && (LO < (PO + H - 30));
-      }
-
-      // smoothly scroll pyCodeOutputDiv so that the given line is at the center
-      function scrollCodeOutputToLine(lineNo) {
-        var lineNoTd = myViz.domRoot.find('#lineNo' + lineNo);
-        var LO = lineNoTd.offset().top;
-
-        var PO = pcod.offset().top;
-        var ST = pcod.scrollTop();
-        var H = pcod.height();
-
-        pcod.stop(); // first stop all previously-queued animations
-        pcod.animate({scrollTop: (ST + (LO - PO - (Math.round(H / 2))))}, 300);
-      }
-
-      if (myViz.params.highlightLines) {
-          myViz.domRoot.find('#pyCodeOutputDiv td.cod').removeClass('highlight-prev');
-          myViz.domRoot.find('#pyCodeOutputDiv td.cod').removeClass('highlight-cur');
-          if (curLineNumber)
-              myViz.domRoot.find('#'+myViz.generateID('cod'+curLineNumber)).addClass('highlight-cur');
-          if (prevLineNumber)
-              myViz.domRoot.find('#'+myViz.generateID('cod'+prevLineNumber)).addClass('highlight-prev');
-      }
-
-      // smoothly scroll code display
-      if (!isOutputLineVisible(curEntry.line)) {
-        scrollCodeOutputToLine(curEntry.line);
-      }
-
-      // add these fields to myViz as a side effect
-      myViz.curLineNumber = curLineNumber;
-      myViz.prevLineNumber = prevLineNumber;
-      myViz.curLineIsReturn = curIsReturn;
-      myViz.prevLineIsReturn = prevIsReturn;
-    } // end of highlightCodeLine
-
-    highlightCodeLine();
+    // smoothly scroll code display
+    if (!isOutputLineVisible(curEntry.line)) {
+      scrollCodeOutputToLine(curEntry.line);
+    }
   }
 
   setupSlider(maxSliderVal: number) {
