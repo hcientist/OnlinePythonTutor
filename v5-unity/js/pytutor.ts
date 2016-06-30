@@ -7,7 +7,7 @@
 - get rid of 'owner' field as much as possible since that signals a
   leaky abstraction
 
-- test breakpoint functionality after refactorings
+- test breakpoint and stdin user input functionality after refactorings
 
 - cleanly separate out the data structure visualization from the code
   display from the slider/vcrControls, so that we can mix and match them
@@ -92,24 +92,26 @@ export class ExecutionVisualizer {
   outputBox: ProgramOutputBox;
   dataViz: DataVisualizer;
 
-  executeCodeWithRawInputFunc: any;
-
   domRoot: any;
   domRootD3: any;
 
-  curInstr: number;
+  curInstr: number = 0;
 
   // API for adding a hook, created by David Pritchard
   // keys, hook names; values, list of functions
   pytutor_hooks: {string?: any[]} = {};
 
-  // opt-live.js depends on these, ergh
+  // represent the current state of the visualizer object; i.e., which
+  // step is it currently visualizing?
   prevLineIsReturn: boolean;
   curLineIsReturn: boolean;
   prevLineNumber: number;
   curLineNumber: number;
   curLineExceptionMsg: string;
-  instrLimitReached: boolean;
+
+  // true iff trace ended prematurely since maximum instruction limit has
+  // been reached
+  instrLimitReached: boolean = false;
   instrLimitReachedWarningMsg: string;
 
   hasRendered: boolean = false;
@@ -164,34 +166,38 @@ export class ExecutionVisualizer {
   //          [default is Python-style labels]
   constructor(domRootID, dat, params) {
     this.curInputCode = dat.code.rtrim(); // kill trailing spaces
+    this.params = params;
     this.curTrace = dat.trace;
 
-    // if the final entry is raw_input or mouse_input, then trim it from the trace and
-    // set a flag to prompt for user input when execution advances to the
-    // end of the trace
+    // postprocess the trace
     if (this.curTrace.length > 0) {
       var lastEntry = this.curTrace[this.curTrace.length - 1];
-      if (lastEntry.event == 'raw_input') {
+
+      // if the final entry is raw_input or mouse_input, then trim it from the trace and
+      // set a flag to prompt for user input when execution advances to the
+      // end of the trace
+      if (lastEntry.event === 'raw_input') {
         this.promptForUserInput = true;
         this.userInputPromptStr = htmlspecialchars(lastEntry.prompt);
         this.curTrace.pop() // kill last entry so that it doesn't get displayed
       }
-      else if (lastEntry.event == 'mouse_input') {
+      else if (lastEntry.event === 'mouse_input') {
         this.promptForMouseInput = true;
         this.userInputPromptStr = htmlspecialchars(lastEntry.prompt);
         this.curTrace.pop() // kill last entry so that it doesn't get displayed
       }
+      else if (lastEntry.event === 'instruction_limit_reached') {
+        this.instrLimitReached = true;
+        this.instrLimitReachedWarningMsg = lastEntry.exception_msg;
+        this.curTrace.pop() // postprocess to kill last entry
+      }
     }
 
-    this.curInstr = 0;
-
-    this.params = params;
-
+    // if you have multiple ExecutionVisualizer on a page, their IDs
+    // better be unique or else you'll run into rendering problems
     if (this.params.visualizerIdOverride) {
       this.visualizerID = this.params.visualizerIdOverride;
-    }
-    else {
-      // needs to be unique!
+    } else {
       this.visualizerID = ExecutionVisualizer.curVisualizerID;
       assert(this.visualizerID > 0);
       ExecutionVisualizer.curVisualizerID++;
@@ -203,25 +209,15 @@ export class ExecutionVisualizer {
     this.params.textualMemoryLabels = (this.params.textualMemoryLabels === true);
     this.params.showAllFrameLabels = (this.params.showAllFrameLabels === true);
 
-    this.executeCodeWithRawInputFunc = this.params.executeCodeWithRawInputFunc;
-
-    // true iff trace ended prematurely since maximum instruction limit has
-    // been reached
-    var instrLimitReached = false;
-
+    // insert ExecutionVisualizer into domRootID in the DOM
+    var tmpRoot = $('#' + domRootID);
+    var tmpRootD3 = d3.select('#' + domRootID);
+    tmpRoot.html('<div class="ExecutionVisualizer"></div>');
 
     // the root elements for jQuery and D3 selections, respectively.
     // ALWAYS use these and never use raw $(__) or d3.select(__)
-    this.domRoot = $('#' + domRootID);
-    this.domRoot.data("vis",this);  // bnm store a reference to this as div data for use later.
-    this.domRootD3 = d3.select('#' + domRootID);
-
-    // stick a new div.ExecutionVisualizer within domRoot and make that
-    // the new domRoot:
-    this.domRoot.html('<div class="ExecutionVisualizer"></div>');
-
-    this.domRoot = this.domRoot.find('div.ExecutionVisualizer');
-    this.domRootD3 = this.domRootD3.select('div.ExecutionVisualizer');
+    this.domRoot = tmpRoot.find('div.ExecutionVisualizer');
+    this.domRootD3 = tmpRootD3.select('div.ExecutionVisualizer');
 
     if (this.params.lang === 'java') {
       this.activateJavaFrontend(); // ohhhh yeah!
@@ -230,7 +226,6 @@ export class ExecutionVisualizer {
     this.try_hook("end_constructor", {myViz:this});
     this.render(); // go for it!
   }
-
 
   /* API for adding a hook, created by David Pritchard
      https://github.com/daveagp
@@ -336,45 +331,13 @@ export class ExecutionVisualizer {
     this.codDisplay = new CodeDisplay(this,
                                       this.domRoot.find('#vizLayoutTdFirst'),
                                       this.domRootD3.select('#vizLayoutTdFirst'));
-
     this.outputBox = new ProgramOutputBox(this, this.domRoot.find('#vizLayoutTdSecond'));
     this.dataViz = new DataVisualizer(this,
                                       this.domRoot.find('#vizLayoutTdSecond'),
                                       this.domRootD3.select('#vizLayoutTdSecond'));
 
-    // must postprocess curTrace prior to running precomputeCurTraceLayouts() ...
-    var lastEntry = this.curTrace[this.curTrace.length - 1];
-
-    this.instrLimitReached = (lastEntry.event == 'instruction_limit_reached');
-
-    if (this.instrLimitReached) {
-      this.curTrace.pop() // kill last entry
-      var warningMsg = lastEntry.exception_msg;
-      this.instrLimitReachedWarningMsg = warningMsg;
-      myViz.domRoot.find("#errorOutput").html(htmlspecialchars(warningMsg));
-      myViz.domRoot.find("#errorOutput").show();
-    }
-
-    // set up slider after postprocessing curTrace
-
-    var sliderDiv = this.domRoot.find('#executionSlider');
-    sliderDiv.slider({min: 0, max: this.curTrace.length - 1, step: 1});
-    //disable keyboard actions on the slider itself (to prevent double-firing of events)
-    sliderDiv.find(".ui-slider-handle").unbind('keydown');
-    // make skinnier and taller
-    sliderDiv.find(".ui-slider-handle").css('width', '0.8em');
-    sliderDiv.find(".ui-slider-handle").css('height', '1.4em');
-    this.domRoot.find(".ui-widget-content").css('font-size', '0.9em');
-
-    this.domRoot.find('#executionSlider').bind('slide', function(evt, ui) {
-      // this is SUPER subtle. if this value was changed programmatically,
-      // then evt.originalEvent will be undefined. however, if this value
-      // was changed by a user-initiated event, then this code should be
-      // executed ...
-      if (evt.originalEvent) {
-        myViz.renderStep(ui.value);
-      }
-    });
+    myViz.codDisplay.showError(this.instrLimitReachedWarningMsg);
+    myViz.codDisplay.setupSlider(this.curTrace.length - 1);
 
     if (this.params.startingInstruction) {
       this.params.jumpToEnd = false; // override! make sure to handle FIRST
@@ -434,7 +397,7 @@ export class ExecutionVisualizer {
     ruiDiv.find('#raw_input_submit_btn').click(function() {
       var userInput = ruiDiv.find('#raw_input_textbox').val();
       // advance instruction count by 1 to get to the NEXT instruction
-      myViz.executeCodeWithRawInputFunc(userInput, myViz.curInstr + 1);
+      myViz.params.executeCodeWithRawInputFunc(userInput, myViz.curInstr + 1);
     });
 
     this.updateOutput();
@@ -577,20 +540,17 @@ export class ExecutionVisualizer {
       assert(curEntry.exception_msg);
 
       if (curEntry.exception_msg == "Unknown error") {
-        myViz.domRoot.find("#errorOutput").html('Unknown error: Please email a bug report to philip@pgbovine.net');
+        myViz.codDisplay.showError('Unknown error: Please email a bug report to philip@pgbovine.net');
       }
       else {
-        myViz.domRoot.find("#errorOutput").html(htmlspecialchars(curEntry.exception_msg));
+        myViz.codDisplay.showError(curEntry.exception_msg);
       }
-
-      myViz.domRoot.find("#errorOutput").show();
-
       hasError = true;
       myViz.curLineExceptionMsg = curEntry.exception_msg;
     }
     else {
       if (!this.instrLimitReached) { // ugly, I know :/
-        myViz.domRoot.find("#errorOutput").hide();
+        myViz.codDisplay.showError(null);
       }
     }
 
@@ -813,7 +773,7 @@ export class ExecutionVisualizer {
     var ruiDiv = myViz.domRoot.find('#rawUserInputDiv');
     ruiDiv.hide(); // hide by default
 
-    if (isLastInstr && myViz.executeCodeWithRawInputFunc) {
+    if (isLastInstr && myViz.params.executeCodeWithRawInputFunc) {
       if (myViz.promptForUserInput) {
         ruiDiv.show();
       }
@@ -3408,6 +3368,14 @@ class CodeDisplay {
     this.domRoot.find("#vcrControls #jmpLastInstr").attr("disabled", true);
   }
 
+  showError(msg: string) {
+    if (msg) {
+      this.domRoot.find("#errorOutput").html(htmlspecialchars(msg)).show();
+    } else {
+      this.domRoot.find("#errorOutput").hide();
+    }
+  }
+
   renderPyCodeOutput() {
     // initialize!
     this.breakpoints = d3.map();
@@ -3704,6 +3672,30 @@ class CodeDisplay {
     assert(this.arrowOffsetY !== undefined);
     assert(this.codeRowHeight !== undefined);
     assert(0 <= this.arrowOffsetY && this.arrowOffsetY <= this.codeRowHeight);
+  }
+
+  setupSlider(maxSliderVal: number) {
+    assert(maxSliderVal > 0);
+    var sliderDiv = this.domRoot.find('#executionSlider');
+    sliderDiv.slider({min: 0, max: maxSliderVal, step: 1});
+    // disable keyboard actions on the slider itself (to prevent double-firing
+    // of events), and make skinnier and taller
+    sliderDiv
+      .find(".ui-slider-handle")
+      .unbind('keydown')
+      .css('width', '0.8em')
+      .css('height', '1.4em');
+
+    this.domRoot.find(".ui-widget-content").css('font-size', '0.9em');
+    this.domRoot.find('#executionSlider').bind('slide', (evt, ui) => {
+      // this is SUPER subtle. if this value was changed programmatically,
+      // then evt.originalEvent will be undefined. however, if this value
+      // was changed by a user-initiated event, then this code should be
+      // executed ...
+      if (evt.originalEvent) {
+        this.owner.renderStep(ui.value);
+      }
+    });
   }
 
 } // END class CodeDisplay
