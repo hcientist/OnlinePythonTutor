@@ -4,6 +4,11 @@
 
 /* TODO:
 
+- get rid of 'owner' field as much as possible since that signals a
+  leaky abstraction
+
+- test breakpoint functionality after refactorings
+
 - cleanly separate out the data structure visualization from the code
   display from the slider/vcrControls, so that we can mix and match them
 
@@ -75,7 +80,7 @@ export class ExecutionVisualizer {
   static DEFAULT_EMBEDDED_CODE_DIV_WIDTH: number = 350;
   static DEFAULT_EMBEDDED_CODE_DIV_HEIGHT: number = 400;
 
-  params: any;
+  params: any = {};
   curInputCode: string;
   curTrace: any[];
 
@@ -83,12 +88,9 @@ export class ExecutionVisualizer {
   userInputPromptStr: string;
   promptForMouseInput: boolean;
 
+  codDisplay: CodeDisplay;
   outputBox: ProgramOutputBox;
   dataViz: DataVisualizer;
-
-  leftGutterSvgInitialized: boolean;
-  arrowOffsetY: number;
-  codeRowHeight: number;
 
   executeCodeWithRawInputFunc: any;
 
@@ -97,11 +99,9 @@ export class ExecutionVisualizer {
 
   curInstr: number;
 
-  codeOutputLines: any[];
-  breakpoints: d3.Map<{}>;
-  sortedBreakpointsList: any[];
-
-  pytutor_hooks: {string?: any[]};
+  // API for adding a hook, created by David Pritchard
+  // keys, hook names; values, list of functions
+  pytutor_hooks: {string?: any[]} = {};
 
   prevLineIsReturn: boolean;
   curLineIsReturn: boolean;
@@ -111,9 +111,7 @@ export class ExecutionVisualizer {
   instrLimitReached: boolean;
   instrLimitReachedWarningMsg: string;
 
-  embeddedMode: boolean;
-
-  hasRendered: boolean;
+  hasRendered: boolean = false;
 
   visualizerID: number;
 
@@ -187,9 +185,6 @@ export class ExecutionVisualizer {
     this.curInstr = 0;
 
     this.params = params;
-    if (!this.params) {
-      this.params = {}; // make it an empty object by default
-    }
 
     if (this.params.visualizerIdOverride) {
       this.visualizerID = this.params.visualizerIdOverride;
@@ -200,10 +195,6 @@ export class ExecutionVisualizer {
       assert(this.visualizerID > 0);
       ExecutionVisualizer.curVisualizerID++;
     }
-
-    this.leftGutterSvgInitialized = false;
-    this.arrowOffsetY = undefined;
-    this.codeRowHeight = undefined;
 
     // sanitize to avoid nasty 'undefined' states
     this.params.disableHeapNesting = (this.params.disableHeapNesting === true);
@@ -231,22 +222,11 @@ export class ExecutionVisualizer {
     this.domRoot = this.domRoot.find('div.ExecutionVisualizer');
     this.domRootD3 = this.domRootD3.select('div.ExecutionVisualizer');
 
-    // initialize in renderPyCodeOutput()
-    this.codeOutputLines = null;
-    this.breakpoints = null;           // set of execution points to set as breakpoints
-    this.sortedBreakpointsList = [];   // sorted and synced with breakpointLines
-
-    // API for adding a hook, created by David Pritchard
-    this.pytutor_hooks = {}; // keys, hook names; values, list of functions
-
     if (this.params.lang === 'java') {
       this.activateJavaFrontend(); // ohhhh yeah!
     }
 
     this.try_hook("end_constructor", {myViz:this});
-
-    this.hasRendered = false;
-
     this.render(); // go for it!
   }
 
@@ -339,32 +319,6 @@ export class ExecutionVisualizer {
 
     var myViz = this; // to prevent confusion of 'this' inside of nested functions
 
-    var codeDisplayHTML =
-      '<div id="codeDisplayDiv">\
-         <div id="langDisplayDiv"></div>\
-         <div id="pyCodeOutputDiv"/>\
-         <div id="editCodeLinkDiv"><a id="editBtn">Edit code</a>\
-         <span id="liveModeSpan" style="display: none;">| <a id="editLiveModeBtn" href="#">Live programming</a></a>\
-         </div>\
-         <div id="legendDiv"/>\
-         <div id="executionSliderDocs"><font color="#e93f34">NEW!</font> Click on a line of code to set a breakpoint. Then use the Forward and Back buttons to jump there.</div>\
-         <div id="executionSlider"/>\
-         <div id="executionSliderFooter"/>\
-         <div id="vcrControls">\
-           <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
-           <button id="jmpStepBack", type="button">&lt; Back</button>\
-           <span id="curInstr">Step ? of ?</span>\
-           <button id="jmpStepFwd", type="button">Forward &gt;</button>\
-           <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
-         </div>\
-         <div id="rawUserInputDiv">\
-           <span id="userInputPromptStr"/>\
-           <input type="text" id="raw_input_textbox" size="30"/>\
-           <button id="raw_input_submit_btn">Submit</button>\
-         </div>\
-         <div id="errorOutput"/>\
-       </div>';
-
     if (this.params.verticalStack) {
       this.domRoot.html('<table border="0" class="visualizer">\
                            <tr><td class="vizLayoutTd" id="vizLayoutTdFirst""></td></tr>\
@@ -378,147 +332,14 @@ export class ExecutionVisualizer {
                          </tr></table>');
     }
 
-    this.domRoot.find('#vizLayoutTdFirst').html(codeDisplayHTML); // TODO: extract codeDisplayHTML to code display class
+    this.codDisplay = new CodeDisplay(this,
+                                      this.domRoot.find('#vizLayoutTdFirst'),
+                                      this.domRootD3.select('#vizLayoutTdFirst'));
 
     this.outputBox = new ProgramOutputBox(this, this.domRoot.find('#vizLayoutTdSecond'));
     this.dataViz = new DataVisualizer(this,
                                       this.domRoot.find('#vizLayoutTdSecond'),
                                       this.domRootD3.select('#vizLayoutTdSecond'));
-
-    this.domRoot.find('#legendDiv')
-        .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
-        .append('<p style="margin-top: 4px"><svg id="curLegendArrowSVG"/> next line to execute</p>');
-
-    myViz.domRootD3.select('svg#prevLegendArrowSVG')
-        .append('polygon')
-        .attr('points', SVG_ARROW_POLYGON)
-        .attr('fill', lightArrowColor);
-
-    myViz.domRootD3.select('svg#curLegendArrowSVG')
-        .append('polygon')
-        .attr('points', SVG_ARROW_POLYGON)
-        .attr('fill', darkArrowColor);
-
-    if (this.params.editCodeBaseURL) {
-      // kinda kludgy
-      var pyVer = '2'; // default
-      if (this.params.lang === 'js') {
-        pyVer = 'js';
-      } else if (this.params.lang === 'ts') {
-        pyVer = 'ts';
-      } else if (this.params.lang === 'java') {
-        pyVer = 'java';
-      } else if (this.params.lang === 'py3') {
-        pyVer = '3';
-      } else if (this.params.lang === 'c') {
-        pyVer = 'c';
-      } else if (this.params.lang === 'cpp') {
-        pyVer = 'cpp';
-      }
-
-      var urlStr = $.param.fragment(this.params.editCodeBaseURL,
-                                    {code: this.curInputCode, py: pyVer},
-                                    2);
-      this.domRoot.find('#editBtn').attr('href', urlStr);
-    }
-    else {
-      this.domRoot.find('#editCodeLinkDiv').hide(); // just hide for simplicity!
-      this.domRoot.find('#editBtn').attr('href', "#");
-      this.domRoot.find('#editBtn').click(function(){return false;}); // DISABLE the link!
-    }
-
-    if (this.params.lang !== undefined) {
-      if (this.params.lang === 'js') {
-        this.domRoot.find('#langDisplayDiv').html('JavaScript');
-      } else if (this.params.lang === 'ts') {
-        this.domRoot.find('#langDisplayDiv').html('TypeScript');
-      } else if (this.params.lang === 'ruby') {
-        this.domRoot.find('#langDisplayDiv').html('Ruby');
-      } else if (this.params.lang === 'java') {
-        this.domRoot.find('#langDisplayDiv').html('Java');
-      } else if (this.params.lang === 'py2') {
-        this.domRoot.find('#langDisplayDiv').html('Python 2.7');
-      } else if (this.params.lang === 'py3') {
-        this.domRoot.find('#langDisplayDiv').html('Python 3.3');
-      } else if (this.params.lang === 'c') {
-        this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
-      } else if (this.params.lang === 'cpp') {
-        this.domRoot.find('#langDisplayDiv').html('C++ (gcc 4.8, C++11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
-      } else {
-        this.domRoot.find('#langDisplayDiv').hide();
-      }
-    }
-
-    if (this.params.embeddedMode) {
-      this.embeddedMode = true;
-
-      // don't override if they've already been set!
-      if (this.params.codeDivWidth === undefined) {
-        this.params.codeDivWidth = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
-      }
-
-      if (this.params.codeDivHeight === undefined) {
-        this.params.codeDivHeight = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
-      }
-      
-      // add an extra label to link back to the main site, so that viewers
-      // on the embedded page know that they're seeing an OPT visualization
-      this.domRoot.find('#codeDisplayDiv').append('<div style="font-size: 8pt; margin-bottom: 20px;">Visualized using <a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Online Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a></div>');
-
-      myViz.domRoot.find('#executionSliderDocs').hide(); // cut out extraneous docs
-    }
-
-    // not enough room for these extra buttons ...
-    if (this.params.codeDivWidth &&
-        this.params.codeDivWidth < 470) {
-      this.domRoot.find('#jmpFirstInstr').hide();
-      this.domRoot.find('#jmpLastInstr').hide();
-    }
-
-
-    if (this.params.codeDivWidth) {
-      // set width once
-      this.domRoot.find('#codeDisplayDiv').width(this.params.codeDivWidth);
-      // it will propagate to the slider
-    }
-
-    // enable left-right draggable pane resizer (originally from David Pritchard)
-    this.domRoot.find('#codeDisplayDiv').resizable({
-      handles: "e", 
-      minWidth: 100, //otherwise looks really goofy
-      resize: function(event, ui) {
-        myViz.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
-        myViz.renderSliderBreakpoints(); // update breakpoint display accordingly on resize
-        if (myViz.params.updateOutputCallback) // report size change
-          myViz.params.updateOutputCallback(this);
-      }});
-
-    if (this.params.codeDivHeight) {
-      this.domRoot.find('#pyCodeOutputDiv')
-        .css('max-height', this.params.codeDivHeight + 'px');
-    }
-
-    this.domRoot.find("#jmpFirstInstr").click(function() {
-      myViz.renderStep(0);
-    });
-
-    this.domRoot.find("#jmpLastInstr").click(function() {
-      myViz.renderStep(myViz.curTrace.length - 1);
-    });
-
-    this.domRoot.find("#jmpStepBack").click(function() {
-      myViz.stepBack();
-    });
-
-    this.domRoot.find("#jmpStepFwd").click(function() {
-      myViz.stepForward();
-    });
-
-    // disable controls initially ...
-    this.domRoot.find("#vcrControls #jmpFirstInstr").attr("disabled", true);
-    this.domRoot.find("#vcrControls #jmpStepBack").attr("disabled", true);
-    this.domRoot.find("#vcrControls #jmpStepFwd").attr("disabled", true);
-    this.domRoot.find("#vcrControls #jmpLastInstr").attr("disabled", true);
 
     // must postprocess curTrace prior to running precomputeCurTraceLayouts() ...
     var lastEntry = this.curTrace[this.curTrace.length - 1];
@@ -604,7 +425,7 @@ export class ExecutionVisualizer {
     this.dataViz.precomputeCurTraceLayouts();
 
     if (!this.params.hideCode) {
-      this.renderPyCodeOutput();
+      this.codDisplay.renderPyCodeOutput();
     }
 
     var ruiDiv = myViz.domRoot.find('#rawUserInputDiv');
@@ -615,64 +436,8 @@ export class ExecutionVisualizer {
       myViz.executeCodeWithRawInputFunc(userInput, myViz.curInstr + 1);
     });
 
-
     this.updateOutput();
-
     this.hasRendered = true;
-  }
-
-  // find the previous/next breakpoint to c or return -1 if it doesn't exist
-  findPrevBreakpoint() {
-    var myViz = this;
-    var c = myViz.curInstr;
-
-    if (myViz.sortedBreakpointsList.length == 0) {
-      return -1;
-    }
-    else {
-      for (var i = 1; i < myViz.sortedBreakpointsList.length; i++) {
-        var prev = myViz.sortedBreakpointsList[i-1];
-        var cur = myViz.sortedBreakpointsList[i];
-        if (c <= prev)
-          return -1;
-        if (cur >= c)
-          return prev;
-      }
-
-      // final edge case:
-      var lastElt = myViz.sortedBreakpointsList[myViz.sortedBreakpointsList.length - 1];
-      return (lastElt < c) ? lastElt : -1;
-    }
-  }
-
-  findNextBreakpoint() {
-    var myViz = this;
-    var c = myViz.curInstr;
-
-    if (myViz.sortedBreakpointsList.length == 0) {
-      return -1;
-    }
-    // usability hack: if you're currently on a breakpoint, then
-    // single-step forward to the next execution point, NOT the next
-    // breakpoint. it's often useful to see what happens when the line
-    // at a breakpoint executes.
-    else if ($.inArray(c, myViz.sortedBreakpointsList) >= 0) {
-      return c + 1;
-    }
-    else {
-      for (var i = 0; i < myViz.sortedBreakpointsList.length - 1; i++) {
-        var cur = myViz.sortedBreakpointsList[i];
-        var next = myViz.sortedBreakpointsList[i+1];
-        if (c < cur)
-          return cur;
-        if (cur <= c && c < next) // subtle
-          return next;
-      }
-
-      // final edge case:
-      var lastElt = myViz.sortedBreakpointsList[myViz.sortedBreakpointsList.length - 1];
-      return (lastElt > c) ? lastElt : -1;
-    }
   }
 
   // returns true if action successfully taken
@@ -681,8 +446,8 @@ export class ExecutionVisualizer {
 
     if (myViz.curInstr < myViz.curTrace.length - 1) {
       // if there is a next breakpoint, then jump to it ...
-      if (myViz.sortedBreakpointsList.length > 0) {
-        var nextBreakpoint = myViz.findNextBreakpoint();
+      if (myViz.codDisplay.sortedBreakpointsList.length > 0) {
+        var nextBreakpoint = myViz.codDisplay.findNextBreakpoint();
         if (nextBreakpoint != -1)
           myViz.curInstr = nextBreakpoint;
         else
@@ -704,8 +469,8 @@ export class ExecutionVisualizer {
 
     if (myViz.curInstr > 0) {
       // if there is a prev breakpoint, then jump to it ...
-      if (myViz.sortedBreakpointsList.length > 0) {
-        var prevBreakpoint = myViz.findPrevBreakpoint();
+      if (myViz.codDisplay.sortedBreakpointsList.length > 0) {
+        var prevBreakpoint = myViz.codDisplay.findPrevBreakpoint();
         if (prevBreakpoint != -1)
           myViz.curInstr = prevBreakpoint;
         else
@@ -721,218 +486,6 @@ export class ExecutionVisualizer {
     return false;
   }
 
-  // TODO: refactor into slider class
-  renderSliderBreakpoints() {
-    var myViz = this; // to prevent confusion of 'this' inside of nested functions
-
-    myViz.domRoot.find("#executionSliderFooter").empty();
-    var w = myViz.domRoot.find('#executionSlider').width();
-
-    // I originally didn't want to delete and re-create this overlay every time,
-    // but if I don't do so, there are weird flickering artifacts with clearing
-    // the SVG container; so it's best to just delete and re-create the container each time
-    var sliderOverlay = myViz.domRootD3.select('#executionSliderFooter')
-      .append('svg')
-      .attr('id', 'sliderOverlay')
-      .attr('width', w)
-      .attr('height', 12);
-
-    var xrange = d3.scale.linear()
-      .domain([0, myViz.curTrace.length - 1])
-      .range([0, w]);
-
-    sliderOverlay.selectAll('rect')
-      .data(myViz.sortedBreakpointsList)
-      .enter().append('rect')
-      .attr('x', function(d, i) {
-        // make edge case of 0 look decent:
-        return (d === 0) ? 0 : xrange(d) - 1;
-      })
-      .attr('y', 0)
-      .attr('width', 2)
-      .attr('height', 12)
-      .style('fill', function(d) {
-         return breakpointColor;
-      });
-  }
-
-  // TODO: refactor into code display class
-  renderPyCodeOutput() {
-    var myViz = this; // to prevent confusion of 'this' inside of nested functions
-
-
-    // initialize!
-    this.breakpoints = d3.map();
-    this.sortedBreakpointsList = [];
-
-    // an array of objects with the following fields:
-    //   'text' - the text of the line of code
-    //   'lineNumber' - one-indexed (always the array index + 1)
-    //   'executionPoints' - an ordered array of zero-indexed execution points where this line was executed
-    //   'breakpointHere' - has a breakpoint been set here?
-    this.codeOutputLines = [];
-
-    function _getSortedBreakpointsList() {
-      var ret = [];
-      myViz.breakpoints.forEach(function(k, v) {
-        ret.push(Number(k)); // these should be NUMBERS, not strings
-      });
-      ret.sort(function(x,y){return x-y}); // WTF, javascript sort is lexicographic by default!
-      return ret;
-    }
-
-    function addToBreakpoints(executionPoints) {
-      $.each(executionPoints, function(i, ep) {
-        myViz.breakpoints.set(ep, 1);
-      });
-      myViz.sortedBreakpointsList = _getSortedBreakpointsList();
-    }
-
-    function removeFromBreakpoints(executionPoints) {
-      $.each(executionPoints, function(i, ep) {
-        myViz.breakpoints.remove(ep);
-      });
-      myViz.sortedBreakpointsList = _getSortedBreakpointsList();
-    }
-
-    function setBreakpoint(t, d) {
-      addToBreakpoints(d.executionPoints);
-      d3.select(t.parentNode).select('td.lineNo').style('color', breakpointColor);
-      d3.select(t.parentNode).select('td.lineNo').style('font-weight', 'bold');
-      d3.select(t.parentNode).select('td.cod').style('color', breakpointColor);
-      myViz.renderSliderBreakpoints();
-    }
-
-    function unsetBreakpoint(t, d) {
-      removeFromBreakpoints(d.executionPoints);
-      d3.select(t.parentNode).select('td.lineNo').style('color', '');
-      d3.select(t.parentNode).select('td.lineNo').style('font-weight', '');
-      d3.select(t.parentNode).select('td.cod').style('color', '');
-      myViz.renderSliderBreakpoints();
-    }
-
-    var lines = this.curInputCode.split('\n');
-
-    for (var i = 0; i < lines.length; i++) {
-      var cod = lines[i];
-
-      var n: any = {};
-      n.text = cod;
-      n.lineNumber = i + 1;
-      n.executionPoints = [];
-      n.breakpointHere = false;
-
-      $.each(this.curTrace, function(j, elt) {
-        if (elt.line == n.lineNumber) {
-          n.executionPoints.push(j);
-        }
-      });
-
-   
-      // if there is a comment containing 'breakpoint' and this line was actually executed,
-      // then set a breakpoint on this line
-      var breakpointInComment = false;
-      var toks = cod.split('#');
-      for (var j = 1 /* start at index 1, not 0 */; j < toks.length; j++) {
-        if (toks[j].indexOf('breakpoint') != -1) {
-          breakpointInComment = true;
-        }
-      }
-
-      if (breakpointInComment && n.executionPoints.length > 0) {
-        n.breakpointHere = true;
-        addToBreakpoints(n.executionPoints);
-      }
-
-      this.codeOutputLines.push(n);
-    }
-
-
-    myViz.domRoot.find('#pyCodeOutputDiv').empty();
-
-    // maps this.codeOutputLines to both table columns
-    var codeOutputD3 = this.domRootD3.select('#pyCodeOutputDiv')
-      .append('table')
-      .attr('id', 'pyCodeOutput')
-      .selectAll('tr')
-      .data(this.codeOutputLines)
-      .enter().append('tr')
-      .selectAll('td')
-      .data(function(d, i){return [d, d] /* map full data item down both columns */;})
-      .enter().append('td')
-      .attr('class', function(d, i) {
-        if (i == 0) {
-          return 'lineNo';
-        }
-        else {
-          return 'cod';
-        }
-      })
-      .attr('id', function(d, i) {
-        if (i == 0) {
-          return 'lineNo' + d.lineNumber;
-        }
-        else {
-          return myViz.generateID('cod' + d.lineNumber); // make globally unique (within the page)
-        }
-      })
-      .html(function(d, i) {
-        if (i == 0) {
-          return d.lineNumber;
-        }
-        else {
-          return htmlspecialchars(d.text);
-        }
-      });
-
-    // create a left-most gutter td that spans ALL rows ...
-    // (NB: valign="top" is CRUCIAL for this to work in IE)
-    myViz.domRoot.find('#pyCodeOutput tr:first')
-        .prepend('<td id="gutterTD" valign="top" rowspan="' + this.codeOutputLines.length + '"><svg id="leftCodeGutterSVG"/></td>');
-
-    // create prevLineArrow and curLineArrow
-    myViz.domRootD3.select('svg#leftCodeGutterSVG')
-        .append('polygon')
-        .attr('id', 'prevLineArrow')
-        .attr('points', SVG_ARROW_POLYGON)
-        .attr('fill', lightArrowColor);
-
-    myViz.domRootD3.select('svg#leftCodeGutterSVG')
-        .append('polygon')
-        .attr('id', 'curLineArrow')
-        .attr('points', SVG_ARROW_POLYGON)
-        .attr('fill', darkArrowColor);
-
-
-    // 2012-09-05: Disable breakpoints for now to simplify UX
-    // 2016-05-01: Revive breakpoint functionality
-    codeOutputD3
-      .style('cursor', function(d, i) {
-        // don't do anything if exePts empty (i.e., this line was never executed)
-        var exePts = d.executionPoints;
-        if (!exePts || exePts.length == 0) {
-          return;
-        } else {
-          return 'pointer'
-        }
-      })
-      .on('click', function(d, i) {
-        // don't do anything if exePts empty (i.e., this line was never executed)
-        var exePts = d.executionPoints;
-        if (!exePts || exePts.length == 0) {
-          return;
-        }
-
-        d.breakpointHere = !d.breakpointHere; // toggle
-        if (d.breakpointHere) {
-          setBreakpoint(this, d);
-        }
-        else {
-          unsetBreakpoint(this, d);
-        }
-      });
-  }
-
   // This function is called every time the display needs to be updated
   updateOutput(smoothTransition=false) {
     if (this.params.hideCode) {
@@ -946,6 +499,7 @@ export class ExecutionVisualizer {
   }
 
   // does a LOT of stuff, called by updateOutput
+  // TODO: refactor parts into CodeDisplay class (and a future slider class)
   updateOutputFull(smoothTransition) {
     assert(this.curTrace);
     assert(!this.params.hideCode);
@@ -967,28 +521,30 @@ export class ExecutionVisualizer {
     var prevDataVizHeight = myViz.dataViz.height();
     var gutterSVG = myViz.domRoot.find('svg#leftCodeGutterSVG');
 
+    // TODO: move this into CodeDisplay
+
     // one-time initialization of the left gutter
     // (we often can't do this earlier since the entire pane
     //  might be invisible and hence returns a height of zero or NaN
     //  -- the exact format depends on browser)
-    if (!myViz.leftGutterSvgInitialized) {
+    if (!myViz.codDisplay.leftGutterSvgInitialized) {
       // set the gutter's height to match that of its parent
       gutterSVG.height(gutterSVG.parent().height());
 
       var firstRowOffsetY = myViz.domRoot.find('table#pyCodeOutput tr:first').offset().top;
 
       // first take care of edge case when there's only one line ...
-      myViz.codeRowHeight = myViz.domRoot.find('table#pyCodeOutput td.cod:first').height();
+      myViz.codDisplay.codeRowHeight = myViz.domRoot.find('table#pyCodeOutput td.cod:first').height();
 
       // ... then handle the (much more common) multi-line case ...
       // this weird contortion is necessary to get the accurate row height on Internet Explorer
       // (simpler methods work on all other major browsers, erghhhhhh!!!)
-      if (this.codeOutputLines && this.codeOutputLines.length > 1) {
+      if (this.codDisplay.codeOutputLines && this.codDisplay.codeOutputLines.length > 1) {
         var secondRowOffsetY = myViz.domRoot.find('table#pyCodeOutput tr:nth-child(2)').offset().top;
-        myViz.codeRowHeight = secondRowOffsetY - firstRowOffsetY;
+        myViz.codDisplay.codeRowHeight = secondRowOffsetY - firstRowOffsetY;
       }
 
-      assert(myViz.codeRowHeight > 0);
+      assert(myViz.codDisplay.codeRowHeight > 0);
 
       var gutterOffsetY = gutterSVG.offset().top;
       var teenyAdjustment = gutterOffsetY - firstRowOffsetY;
@@ -996,35 +552,27 @@ export class ExecutionVisualizer {
       // super-picky detail to adjust the vertical alignment of arrows so that they line up
       // well with the pointed-to code text ...
       // (if you want to manually adjust tableTop, then ~5 is a reasonable number)
-      myViz.arrowOffsetY = Math.floor((myViz.codeRowHeight / 2) - (SVG_ARROW_HEIGHT / 2)) - teenyAdjustment;
+      myViz.codDisplay.arrowOffsetY = Math.floor((myViz.codDisplay.codeRowHeight / 2) - (SVG_ARROW_HEIGHT / 2)) - teenyAdjustment;
 
-      myViz.leftGutterSvgInitialized = true;
+      myViz.codDisplay.leftGutterSvgInitialized = true;
     }
 
-    assert(myViz.arrowOffsetY !== undefined);
-    assert(myViz.codeRowHeight !== undefined);
-    assert(0 <= myViz.arrowOffsetY && myViz.arrowOffsetY <= myViz.codeRowHeight);
+    assert(myViz.codDisplay.arrowOffsetY !== undefined);
+    assert(myViz.codDisplay.codeRowHeight !== undefined);
+    assert(0 <= myViz.codDisplay.arrowOffsetY && myViz.codDisplay.arrowOffsetY <= myViz.codDisplay.codeRowHeight);
+
 
     // call the callback if necessary (BEFORE rendering)
     if (this.params.updateOutputCallback) {
       this.params.updateOutputCallback(this);
     }
 
-
     var curEntry = this.curTrace[this.curInstr];
     var hasError = false;
-    // bnm  Render a question
-    if (curEntry.question) {
-        //alert(curEntry.question.text);
-        
-        $('#'+curEntry.question.div).modal({position:["25%","50%"]});
-    }
 
     // render VCR controls:
     var totalInstrs = this.curTrace.length;
-
     var isLastInstr = (this.curInstr == (totalInstrs-1));
-
     var vcrControls = myViz.domRoot.find("#vcrControls");
 
     if (isLastInstr) {
@@ -1037,13 +585,11 @@ export class ExecutionVisualizer {
       else {
         vcrControls.find("#curInstr").html("Program terminated");
       }
-    }
-    else {
+    } else {
       vcrControls.find("#curInstr").html("Step " +
                                          String(this.curInstr + 1) +
                                          " of " + String(totalInstrs-1));
     }
-
 
     vcrControls.find("#jmpFirstInstr").attr("disabled", false);
     vcrControls.find("#jmpStepBack").attr("disabled", false);
@@ -1058,7 +604,6 @@ export class ExecutionVisualizer {
       vcrControls.find("#jmpLastInstr").attr("disabled", true);
       vcrControls.find("#jmpStepFwd").attr("disabled", true);
     }
-
 
     // PROGRAMMATICALLY change the value, so evt.originalEvent should be undefined
     myViz.domRoot.find('#executionSlider').slider('value', this.curInstr);
@@ -1158,8 +703,8 @@ export class ExecutionVisualizer {
 
       // on 'return' events, give a bit more of a vertical nudge to show that
       // the arrow is aligned with the 'bottom' of the line ...
-      var prevVerticalNudge = prevIsReturn ? Math.floor(myViz.codeRowHeight / 3) : 0;
-      var curVerticalNudge  = curIsReturn  ? Math.floor(myViz.codeRowHeight / 3) : 0;
+      var prevVerticalNudge = prevIsReturn ? Math.floor(myViz.codDisplay.codeRowHeight / 3) : 0;
+      var curVerticalNudge  = curIsReturn  ? Math.floor(myViz.codDisplay.codeRowHeight / 3) : 0;
 
 
       // edge case for the final instruction :0
@@ -1176,7 +721,7 @@ export class ExecutionVisualizer {
 
       if (prevLineNumber) {
           var pla = myViz.domRootD3.select('#prevLineArrow');
-          var translatePrevCmd = 'translate(0, ' + (((prevLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + prevVerticalNudge) + ')';
+          var translatePrevCmd = 'translate(0, ' + (((prevLineNumber - 1) * myViz.codDisplay.codeRowHeight) + myViz.codDisplay.arrowOffsetY + prevVerticalNudge) + ')';
 
           if (smoothTransition) {
               pla
@@ -1201,7 +746,7 @@ export class ExecutionVisualizer {
 
       if (curLineNumber) {
           var cla = myViz.domRootD3.select('#curLineArrow');
-          var translateCurCmd = 'translate(0, ' + (((curLineNumber - 1) * myViz.codeRowHeight) + myViz.arrowOffsetY + curVerticalNudge) + ')';
+          var translateCurCmd = 'translate(0, ' + (((curLineNumber - 1) * myViz.codDisplay.codeRowHeight) + myViz.codDisplay.arrowOffsetY + curVerticalNudge) + ')';
           if (smoothTransition) {
               cla
                   .transition()
@@ -3727,6 +3272,438 @@ class ProgramOutputBox {
   }
 
 } // END class ProgramOutputBox
+
+// TODO: split out navigation slider stuff into a separate class
+class CodeDisplay {
+  owner: ExecutionVisualizer;
+  params: any; // aliases owner.params for convenience
+
+  domRoot: any;
+  domRootD3: any;
+
+  // initialize in renderPyCodeOutput()
+  codeOutputLines: any[];
+  breakpoints: d3.Map<{}>;           // set of execution points to set as breakpoints
+  sortedBreakpointsList: any[] = []; // sorted and synced with breakpointLines
+
+  leftGutterSvgInitialized: boolean = false;
+  arrowOffsetY: number;
+  codeRowHeight: number;
+
+  constructor(owner, domRoot, domRootD3) {
+    this.owner = owner;
+    this.params = this.owner.params;
+
+    this.domRoot = domRoot;
+    this.domRootD3 = domRootD3;
+
+    var codeDisplayHTML =
+      '<div id="codeDisplayDiv">\
+         <div id="langDisplayDiv"></div>\
+         <div id="pyCodeOutputDiv"/>\
+         <div id="editCodeLinkDiv"><a id="editBtn">Edit code</a>\
+         <span id="liveModeSpan" style="display: none;">| <a id="editLiveModeBtn" href="#">Live programming</a></a>\
+         </div>\
+         <div id="legendDiv"/>\
+         <div id="executionSliderDocs"><font color="#e93f34">NEW!</font> Click on a line of code to set a breakpoint. Then use the Forward and Back buttons to jump there.</div>\
+         <div id="executionSlider"/>\
+         <div id="executionSliderFooter"/>\
+         <div id="vcrControls">\
+           <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
+           <button id="jmpStepBack", type="button">&lt; Back</button>\
+           <span id="curInstr">Step ? of ?</span>\
+           <button id="jmpStepFwd", type="button">Forward &gt;</button>\
+           <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
+         </div>\
+         <div id="rawUserInputDiv">\
+           <span id="userInputPromptStr"/>\
+           <input type="text" id="raw_input_textbox" size="30"/>\
+           <button id="raw_input_submit_btn">Submit</button>\
+         </div>\
+         <div id="errorOutput"/>\
+       </div>';
+
+    this.domRoot.append(codeDisplayHTML);
+
+    this.domRoot.find('#legendDiv')
+        .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
+        .append('<p style="margin-top: 4px"><svg id="curLegendArrowSVG"/> next line to execute</p>');
+
+    this.domRootD3.select('svg#prevLegendArrowSVG')
+        .append('polygon')
+        .attr('points', SVG_ARROW_POLYGON)
+        .attr('fill', lightArrowColor);
+
+    this.domRootD3.select('svg#curLegendArrowSVG')
+        .append('polygon')
+        .attr('points', SVG_ARROW_POLYGON)
+        .attr('fill', darkArrowColor);
+
+    if (this.params.editCodeBaseURL) {
+      // kinda kludgy
+      var pyVer = '2'; // default
+      if (this.params.lang === 'js') {
+        pyVer = 'js';
+      } else if (this.params.lang === 'ts') {
+        pyVer = 'ts';
+      } else if (this.params.lang === 'java') {
+        pyVer = 'java';
+      } else if (this.params.lang === 'py3') {
+        pyVer = '3';
+      } else if (this.params.lang === 'c') {
+        pyVer = 'c';
+      } else if (this.params.lang === 'cpp') {
+        pyVer = 'cpp';
+      }
+
+      var urlStr = $.param.fragment(this.params.editCodeBaseURL,
+                                    {code: this.owner.curInputCode, py: pyVer},
+                                    2);
+      this.domRoot.find('#editBtn').attr('href', urlStr);
+    }
+    else {
+      this.domRoot.find('#editCodeLinkDiv').hide(); // just hide for simplicity!
+      this.domRoot.find('#editBtn').attr('href', "#");
+      this.domRoot.find('#editBtn').click(function(){return false;}); // DISABLE the link!
+    }
+
+    if (this.params.lang !== undefined) {
+      if (this.params.lang === 'js') {
+        this.domRoot.find('#langDisplayDiv').html('JavaScript');
+      } else if (this.params.lang === 'ts') {
+        this.domRoot.find('#langDisplayDiv').html('TypeScript');
+      } else if (this.params.lang === 'ruby') {
+        this.domRoot.find('#langDisplayDiv').html('Ruby');
+      } else if (this.params.lang === 'java') {
+        this.domRoot.find('#langDisplayDiv').html('Java');
+      } else if (this.params.lang === 'py2') {
+        this.domRoot.find('#langDisplayDiv').html('Python 2.7');
+      } else if (this.params.lang === 'py3') {
+        this.domRoot.find('#langDisplayDiv').html('Python 3.3');
+      } else if (this.params.lang === 'c') {
+        this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
+      } else if (this.params.lang === 'cpp') {
+        this.domRoot.find('#langDisplayDiv').html('C++ (gcc 4.8, C++11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
+      } else {
+        this.domRoot.find('#langDisplayDiv').hide();
+      }
+    }
+
+    if (this.params.embeddedMode) {
+      // don't override if they've already been set!
+      if (this.params.codeDivWidth === undefined) {
+        this.params.codeDivWidth = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
+      }
+
+      if (this.params.codeDivHeight === undefined) {
+        this.params.codeDivHeight = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
+      }
+
+      // add an extra label to link back to the main site, so that viewers
+      // on the embedded page know that they're seeing an OPT visualization
+      this.domRoot.find('#codeDisplayDiv').append('<div style="font-size: 8pt; margin-bottom: 20px;">Visualized using <a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Online Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a></div>');
+
+      this.domRoot.find('#executionSliderDocs').hide(); // cut out extraneous docs
+    }
+
+    // not enough room for these extra buttons ...
+    if (this.params.codeDivWidth &&
+        this.params.codeDivWidth < 470) {
+      this.domRoot.find('#jmpFirstInstr').hide();
+      this.domRoot.find('#jmpLastInstr').hide();
+    }
+
+    if (this.params.codeDivWidth) {
+      // set width once
+      this.domRoot.find('#codeDisplayDiv').width(this.params.codeDivWidth);
+      // it will propagate to the slider
+    }
+
+    // enable left-right draggable pane resizer (originally from David Pritchard)
+    this.domRoot.find('#codeDisplayDiv').resizable({
+      handles: "e",
+      minWidth: 100, //otherwise looks really goofy
+      resize: (event, ui) => {
+        this.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
+        this.renderSliderBreakpoints(); // update breakpoint display accordingly on resize
+        if (this.params.updateOutputCallback) // report size change
+          this.params.updateOutputCallback(this);
+      }});
+
+    if (this.params.codeDivHeight) {
+      this.domRoot.find('#pyCodeOutputDiv')
+        .css('max-height', this.params.codeDivHeight + 'px');
+    }
+
+    // TODO: refactor to get rid of 'owner'
+    this.domRoot.find("#jmpFirstInstr").click(() => {this.owner.renderStep(0);});
+    this.domRoot.find("#jmpLastInstr").click(() => {this.owner.renderStep(this.owner.curTrace.length - 1);});
+    this.domRoot.find("#jmpStepBack").click(() => {this.owner.stepBack();});
+    this.domRoot.find("#jmpStepFwd").click(() => {this.owner.stepForward();});
+
+    // disable controls initially ...
+    this.domRoot.find("#vcrControls #jmpFirstInstr").attr("disabled", true);
+    this.domRoot.find("#vcrControls #jmpStepBack").attr("disabled", true);
+    this.domRoot.find("#vcrControls #jmpStepFwd").attr("disabled", true);
+    this.domRoot.find("#vcrControls #jmpLastInstr").attr("disabled", true);
+  }
+
+  renderPyCodeOutput() {
+    // initialize!
+    this.breakpoints = d3.map();
+    this.sortedBreakpointsList = [];
+
+    // an array of objects with the following fields:
+    //   'text' - the text of the line of code
+    //   'lineNumber' - one-indexed (always the array index + 1)
+    //   'executionPoints' - an ordered array of zero-indexed execution points where this line was executed
+    //   'breakpointHere' - has a breakpoint been set here?
+    this.codeOutputLines = [];
+
+    var _getSortedBreakpointsList = (() => {
+      var ret = [];
+      this.breakpoints.forEach(function(k, v) {
+        ret.push(Number(k)); // these should be NUMBERS, not strings
+      });
+      ret.sort(function(x,y){return x-y}); // WTF, javascript sort is lexicographic by default!
+      return ret;
+    });
+
+    function addToBreakpoints(executionPoints) {
+      $.each(executionPoints, (i, ep) => {
+        this.breakpoints.set(ep, 1);
+      });
+      this.sortedBreakpointsList = _getSortedBreakpointsList();
+    }
+
+    function removeFromBreakpoints(executionPoints) {
+      $.each(executionPoints, (i, ep) => {
+        this.breakpoints.remove(ep);
+      });
+      this.sortedBreakpointsList = _getSortedBreakpointsList();
+    }
+
+    function setBreakpoint(t, d) {
+      addToBreakpoints(d.executionPoints);
+      d3.select(t.parentNode).select('td.lineNo').style('color', breakpointColor);
+      d3.select(t.parentNode).select('td.lineNo').style('font-weight', 'bold');
+      d3.select(t.parentNode).select('td.cod').style('color', breakpointColor);
+      this.renderSliderBreakpoints();
+    }
+
+    function unsetBreakpoint(t, d) {
+      removeFromBreakpoints(d.executionPoints);
+      d3.select(t.parentNode).select('td.lineNo').style('color', '');
+      d3.select(t.parentNode).select('td.lineNo').style('font-weight', '');
+      d3.select(t.parentNode).select('td.cod').style('color', '');
+      this.renderSliderBreakpoints();
+    }
+
+    var lines = this.owner.curInputCode.split('\n');
+
+    for (var i = 0; i < lines.length; i++) {
+      var cod = lines[i];
+
+      var n: any = {};
+      n.text = cod;
+      n.lineNumber = i + 1;
+      n.executionPoints = [];
+      n.breakpointHere = false;
+
+      $.each(this.owner.curTrace, function(j, elt) {
+        if (elt.line == n.lineNumber) {
+          n.executionPoints.push(j);
+        }
+      });
+
+      // if there is a comment containing 'breakpoint' and this line was actually executed,
+      // then set a breakpoint on this line
+      var breakpointInComment = false;
+      var toks = cod.split('#');
+      for (var j = 1 /* start at index 1, not 0 */; j < toks.length; j++) {
+        if (toks[j].indexOf('breakpoint') != -1) {
+          breakpointInComment = true;
+        }
+      }
+
+      if (breakpointInComment && n.executionPoints.length > 0) {
+        n.breakpointHere = true;
+        addToBreakpoints(n.executionPoints);
+      }
+
+      this.codeOutputLines.push(n);
+    }
+
+
+    this.domRoot.find('#pyCodeOutputDiv').empty();
+
+    // maps this.codeOutputLines to both table columns
+    var codeOutputD3 = this.domRootD3.select('#pyCodeOutputDiv')
+      .append('table')
+      .attr('id', 'pyCodeOutput')
+      .selectAll('tr')
+      .data(this.codeOutputLines)
+      .enter().append('tr')
+      .selectAll('td')
+      .data(function(d, i){return [d, d] /* map full data item down both columns */;})
+      .enter().append('td')
+      .attr('class', function(d, i) {
+        if (i == 0) {
+          return 'lineNo';
+        }
+        else {
+          return 'cod';
+        }
+      })
+      .attr('id', (d, i) => {
+        if (i == 0) {
+          return 'lineNo' + d.lineNumber;
+        }
+        else {
+          return this.owner.generateID('cod' + d.lineNumber); // make globally unique (within the page)
+        }
+      })
+      .html(function(d, i) {
+        if (i == 0) {
+          return d.lineNumber;
+        }
+        else {
+          return htmlspecialchars(d.text);
+        }
+      });
+
+    // create a left-most gutter td that spans ALL rows ...
+    // (NB: valign="top" is CRUCIAL for this to work in IE)
+    this.domRoot.find('#pyCodeOutput tr:first')
+        .prepend('<td id="gutterTD" valign="top" rowspan="' + this.codeOutputLines.length + '"><svg id="leftCodeGutterSVG"/></td>');
+
+    // create prevLineArrow and curLineArrow
+    this.domRootD3.select('svg#leftCodeGutterSVG')
+        .append('polygon')
+        .attr('id', 'prevLineArrow')
+        .attr('points', SVG_ARROW_POLYGON)
+        .attr('fill', lightArrowColor);
+
+    this.domRootD3.select('svg#leftCodeGutterSVG')
+        .append('polygon')
+        .attr('id', 'curLineArrow')
+        .attr('points', SVG_ARROW_POLYGON)
+        .attr('fill', darkArrowColor);
+
+
+    // 2012-09-05: Disable breakpoints for now to simplify UX
+    // 2016-05-01: Revive breakpoint functionality
+    codeOutputD3
+      .style('cursor', function(d, i) {
+        // don't do anything if exePts empty (i.e., this line was never executed)
+        var exePts = d.executionPoints;
+        if (!exePts || exePts.length == 0) {
+          return;
+        } else {
+          return 'pointer'
+        }
+      })
+      .on('click', function(d, i) {
+        // don't do anything if exePts empty (i.e., this line was never executed)
+        var exePts = d.executionPoints;
+        if (!exePts || exePts.length == 0) {
+          return;
+        }
+
+        d.breakpointHere = !d.breakpointHere; // toggle
+        if (d.breakpointHere) {
+          setBreakpoint(this, d);
+        }
+        else {
+          unsetBreakpoint(this, d);
+        }
+      });
+  }
+
+  // find the previous/next breakpoint to c or return -1 if it doesn't exist
+  findPrevBreakpoint() {
+    var c = this.owner.curInstr;
+
+    if (this.sortedBreakpointsList.length == 0) {
+      return -1;
+    }
+    else {
+      for (var i = 1; i < this.sortedBreakpointsList.length; i++) {
+        var prev = this.sortedBreakpointsList[i-1];
+        var cur = this.sortedBreakpointsList[i];
+        if (c <= prev)
+          return -1;
+        if (cur >= c)
+          return prev;
+      }
+
+      // final edge case:
+      var lastElt = this.sortedBreakpointsList[this.sortedBreakpointsList.length - 1];
+      return (lastElt < c) ? lastElt : -1;
+    }
+  }
+
+  findNextBreakpoint() {
+    var c = this.owner.curInstr;
+
+    if (this.sortedBreakpointsList.length == 0) {
+      return -1;
+    }
+    // usability hack: if you're currently on a breakpoint, then
+    // single-step forward to the next execution point, NOT the next
+    // breakpoint. it's often useful to see what happens when the line
+    // at a breakpoint executes.
+    else if ($.inArray(c, this.sortedBreakpointsList) >= 0) {
+      return c + 1;
+    }
+    else {
+      for (var i = 0; i < this.sortedBreakpointsList.length - 1; i++) {
+        var cur = this.sortedBreakpointsList[i];
+        var next = this.sortedBreakpointsList[i+1];
+        if (c < cur)
+          return cur;
+        if (cur <= c && c < next) // subtle
+          return next;
+      }
+
+      // final edge case:
+      var lastElt = this.sortedBreakpointsList[this.sortedBreakpointsList.length - 1];
+      return (lastElt > c) ? lastElt : -1;
+    }
+  }
+
+  renderSliderBreakpoints() {
+    this.domRoot.find("#executionSliderFooter").empty();
+    var w = this.domRoot.find('#executionSlider').width();
+
+    // I originally didn't want to delete and re-create this overlay every time,
+    // but if I don't do so, there are weird flickering artifacts with clearing
+    // the SVG container; so it's best to just delete and re-create the container each time
+    var sliderOverlay = this.domRootD3.select('#executionSliderFooter')
+      .append('svg')
+      .attr('id', 'sliderOverlay')
+      .attr('width', w)
+      .attr('height', 12);
+
+    var xrange = d3.scale.linear()
+      .domain([0, this.owner.curTrace.length - 1])
+      .range([0, w]);
+
+    sliderOverlay.selectAll('rect')
+      .data(this.sortedBreakpointsList)
+      .enter().append('rect')
+      .attr('x', function(d, i) {
+        // make edge case of 0 look decent:
+        return (d === 0) ? 0 : xrange(d) - 1;
+      })
+      .attr('y', 0)
+      .attr('width', 2)
+      .attr('height', 12)
+      .style('fill', function(d) {
+         return breakpointColor;
+      });
+  }
+} // END class CodeDisplay
 
 
 // Utilities
