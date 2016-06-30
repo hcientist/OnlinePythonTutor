@@ -384,14 +384,13 @@ export class ExecutionVisualizer {
       this.domRoot.find('#vizLayoutTdFirst').hide(); // gigantic hack!
     }
 
-    this.try_hook("end_render", {myViz:this});
-
     this.dataViz.precomputeCurTraceLayouts();
 
     if (!this.params.hideCode) {
       this.codDisplay.renderPyCodeOutput();
     }
 
+    // TODO: refactor into CodeDisplay class
     var ruiDiv = myViz.domRoot.find('#rawUserInputDiv');
     ruiDiv.find('#userInputPromptStr').html(myViz.userInputPromptStr);
     ruiDiv.find('#raw_input_submit_btn').click(function() {
@@ -402,6 +401,7 @@ export class ExecutionVisualizer {
 
     this.updateOutput();
     this.hasRendered = true;
+    this.try_hook("end_render", {myViz:this});
   }
 
   // returns true if action successfully taken
@@ -741,6 +741,7 @@ export class ExecutionVisualizer {
       }
     }
 
+    // TODO: refactor into CodeDisplay class
     // handle raw user input
     var ruiDiv = myViz.domRoot.find('#rawUserInputDiv');
     ruiDiv.hide(); // hide by default
