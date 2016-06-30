@@ -83,6 +83,7 @@ export class ExecutionVisualizer {
   userInputPromptStr: string;
   promptForMouseInput: boolean;
 
+  outputBox: ProgramOutputBox;
   dataViz: DataVisualizer;
 
   leftGutterSvgInitialized: boolean;
@@ -110,7 +111,6 @@ export class ExecutionVisualizer {
   instrLimitReached: boolean;
   instrLimitReachedWarningMsg: string;
 
-  numStdoutLines: number;
   embeddedMode: boolean;
 
   hasRendered: boolean;
@@ -243,22 +243,6 @@ export class ExecutionVisualizer {
       this.activateJavaFrontend(); // ohhhh yeah!
     }
 
-    // how many lines does curTrace print to stdout max?
-    this.numStdoutLines = 0;
-    // go backwards from the end ... sometimes the final entry doesn't
-    // have an stdout
-    var lastStdout;
-    for (var i = this.curTrace.length-1; i >= 0; i--) {
-      lastStdout = this.curTrace[i].stdout;
-      if (lastStdout) {
-        break;
-      }
-    }
-
-    if (lastStdout) {
-      this.numStdoutLines = lastStdout.rtrim().split('\n').length;
-    }
-
     this.try_hook("end_constructor", {myViz:this});
 
     this.hasRendered = false;
@@ -381,12 +365,6 @@ export class ExecutionVisualizer {
          <div id="errorOutput"/>\
        </div>';
 
-    var outputsHTML =
-      '<div id="progOutputs">\
-         <div id="printOutputDocs">Print output (drag lower right corner to resize)</div>\n\
-         <textarea id="pyStdout" cols="40" rows="5" wrap="off" readonly></textarea>\
-       </div>';
-
     if (this.params.verticalStack) {
       this.domRoot.html('<table border="0" class="visualizer">\
                            <tr><td class="vizLayoutTd" id="vizLayoutTdFirst""></td></tr>\
@@ -401,24 +379,11 @@ export class ExecutionVisualizer {
     }
 
     this.domRoot.find('#vizLayoutTdFirst').html(codeDisplayHTML); // TODO: extract codeDisplayHTML to code display class
-    this.domRoot.find('#vizLayoutTdSecond').html(outputsHTML); // TODO: extract outputsHTML to stdout class
 
+    this.outputBox = new ProgramOutputBox(this, this.domRoot.find('#vizLayoutTdSecond'));
     this.dataViz = new DataVisualizer(this,
                                       this.domRoot.find('#vizLayoutTdSecond'),
                                       this.domRootD3.select('#vizLayoutTdSecond'));
-
-    var stdoutHeight = '75px';
-    // heuristic for code with really small outputs
-    if (this.numStdoutLines <= 3) {
-      stdoutHeight = (18 * this.numStdoutLines) + 'px';
-    }
-    if (this.params.embeddedMode) {
-      stdoutHeight = '45px';
-    }
-    // do this only after adding outputsHTML to the DOM
-    this.domRoot.find('#pyStdout').width('350px')
-                                  .height(stdoutHeight)
-                                  .resizable();
 
     this.domRoot.find('#legendDiv')
         .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
@@ -521,7 +486,7 @@ export class ExecutionVisualizer {
     this.domRoot.find('#codeDisplayDiv').resizable({
       handles: "e", 
       minWidth: 100, //otherwise looks really goofy
-      resize: function(event, ui) { // old name: syncStdoutWidth, now not appropriate
+      resize: function(event, ui) {
         myViz.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
         myViz.renderSliderBreakpoints(); // update breakpoint display accordingly on resize
         if (myViz.params.updateOutputCallback) // report size change
@@ -968,28 +933,6 @@ export class ExecutionVisualizer {
       });
   }
 
-  // TODO: refactor into stdout display class
-  renderStdout() {
-    var curEntry = this.curTrace[this.curInstr];
-
-    // if there isn't anything in curEntry.stdout, don't even bother
-    // displaying the pane (but this may cause jumpiness later)
-    if (this.numStdoutLines > 0) {
-      this.domRoot.find('#progOutputs').show();
-
-      var pyStdout = this.domRoot.find("#pyStdout");
-
-      // keep original horizontal scroll level:
-      var oldLeft = pyStdout.scrollLeft();
-      pyStdout.val(curEntry.stdout.rtrim() /* trim trailing spaces */);
-      pyStdout.scrollLeft(oldLeft);
-      pyStdout.scrollTop(pyStdout[0].scrollHeight); // scroll to bottom, though
-    }
-    else {
-      this.domRoot.find('#progOutputs').hide();
-    }
-  }
-
   // This function is called every time the display needs to be updated
   updateOutput(smoothTransition=false) {
     if (this.params.hideCode) {
@@ -998,7 +941,7 @@ export class ExecutionVisualizer {
     else {
       this.updateOutputFull(smoothTransition);
     }
-    this.renderStdout();
+    this.outputBox.renderOutput(this.curTrace[this.curInstr].stdout);
     this.try_hook("end_updateOutput", {myViz:this});
   }
 
@@ -3710,6 +3653,80 @@ class DataVisualizer {
   }
 
 } // END class DataVisualizer
+
+class ProgramOutputBox {
+  owner: ExecutionVisualizer;
+  params: any; // aliases owner.params for convenience
+  domRoot: any;
+
+  // how many *maximum* lines get printed to stdout in the entire trace?
+  numStdoutLines: number = 0;
+
+  constructor(owner, domRoot) {
+    this.owner = owner;
+    this.params = this.owner.params;
+    this.domRoot = domRoot;
+
+    var outputsHTML =
+      '<div id="progOutputs">\
+         <div id="printOutputDocs">Print output (drag lower right corner to resize)</div>\n\
+         <textarea id="pyStdout" cols="40" rows="5" wrap="off" readonly></textarea>\
+       </div>';
+
+    this.domRoot.append(outputsHTML);
+
+    // go backwards from the end ... sometimes the final entry doesn't
+    // have an stdout
+    var lastStdout;
+    for (var i = this.owner.curTrace.length-1; i >= 0; i--) {
+      lastStdout = this.owner.curTrace[i].stdout;
+      if (lastStdout) {
+        break;
+      }
+    }
+
+    if (lastStdout) {
+      this.numStdoutLines = lastStdout.rtrim().split('\n').length;
+    }
+
+    var stdoutHeight = '75px';
+    // heuristic for code with really small outputs
+    if (this.numStdoutLines <= 3) {
+      stdoutHeight = (18 * this.numStdoutLines) + 'px';
+    }
+    if (this.params.embeddedMode) {
+      stdoutHeight = '45px';
+    }
+    // do this only after adding outputsHTML to the DOM
+    this.domRoot.find('#pyStdout').width('350px')
+                                  .height(stdoutHeight)
+                                  .resizable();
+  }
+
+  renderOutput(stdoutStr: string) {
+    if (!stdoutStr) {
+      stdoutStr = '';
+    }
+
+    // if there isn't anything to display, don't even bother
+    // displaying the pane (but this may cause jumpiness later)
+    if (this.numStdoutLines > 0) {
+      this.domRoot.find('#progOutputs').show();
+
+      var pyStdout = this.domRoot.find("#pyStdout");
+
+      // keep original horizontal scroll level:
+      var oldLeft = pyStdout.scrollLeft();
+      pyStdout.val((stdoutStr as any).rtrim() /* trim trailing spaces */);
+      pyStdout.scrollLeft(oldLeft);
+      pyStdout.scrollTop(pyStdout[0].scrollHeight); // scroll to bottom, though
+    }
+    else {
+      this.domRoot.find('#progOutputs').hide();
+    }
+  }
+
+} // END class ProgramOutputBox
 
 
 // Utilities
