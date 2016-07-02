@@ -3147,30 +3147,28 @@ class CodeDisplay {
       this.domRoot.find('#editBtn').click(function(){return false;}); // DISABLE the link!
     }
 
-    var langLabel = null;
-    if (lang === 'js') {
-      langLabel = 'JavaScript';
-    } else if (lang === 'ts') {
-      langLabel = 'TypeScript';
-    } else if (lang === 'ruby') {
-      langLabel = 'Ruby';
-    } else if (lang === 'java') {
-      langLabel = 'Java';
-    } else if (lang === 'py2') {
-      langLabel = 'Python 2.7';
-    } else if (lang === 'py3') {
-      langLabel = 'Python 3.3';
-    } else if (lang === 'c') {
-      langLabel = 'C (gcc 4.8, C11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net';
-    } else if (lang === 'cpp') {
-      langLabel = 'C++ (gcc 4.8, C++11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net';
+    if (lang !== undefined) {
+      if (lang === 'js') {
+        this.domRoot.find('#langDisplayDiv').html('JavaScript');
+      } else if (lang === 'ts') {
+        this.domRoot.find('#langDisplayDiv').html('TypeScript');
+      } else if (lang === 'ruby') {
+        this.domRoot.find('#langDisplayDiv').html('Ruby');
+      } else if (lang === 'java') {
+        this.domRoot.find('#langDisplayDiv').html('Java');
+      } else if (lang === 'py2') {
+        this.domRoot.find('#langDisplayDiv').html('Python 2.7');
+      } else if (lang === 'py3') {
+        this.domRoot.find('#langDisplayDiv').html('Python 3.3');
+      } else if (lang === 'c') {
+        this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
+      } else if (lang === 'cpp') {
+        this.domRoot.find('#langDisplayDiv').html('C++ (gcc 4.8, C++11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
+      } else {
+        this.domRoot.find('#langDisplayDiv').hide();
+      }
     }
 
-    if (langLabel) {
-      this.domRoot.find('#langDisplayDiv').html(langLabel);
-    } else {
-      this.domRoot.find('#langDisplayDiv').hide();
-    }
   }
 
   renderPyCodeOutput() {
