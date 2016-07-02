@@ -7,6 +7,8 @@
 - get rid of 'owner' field as much as possible since that signals a
   leaky abstraction
 
+- make components as stateless and naive as possible (in React style)
+
 - test breakpoint and stdin raw_input functionality after refactorings
 
 - substitute in a non-live version of the live editor from opt-live.js
@@ -333,7 +335,8 @@ export class ExecutionVisualizer {
     var base = this.domRoot.find('#vizLayoutTdFirst #codAndNav');
     var baseD3 = this.domRootD3.select('#vizLayoutTdFirst #codAndNav');
 
-    this.codDisplay = new CodeDisplay(this, base, baseD3);
+    this.codDisplay = new CodeDisplay(this, base, baseD3,
+                                      this.curInputCode, this.params.lang, this.params.editCodeBaseURL);
     this.navControls = new NavigationController(this, base, baseD3);
 
     if (this.params.embeddedMode) {
@@ -3073,10 +3076,10 @@ class ProgramOutputBox {
 
 class CodeDisplay {
   owner: ExecutionVisualizer;
-  params: any; // aliases owner.params for convenience
-
   domRoot: any;
   domRootD3: any;
+
+  codToDisplay: string;
 
   // initialize in renderPyCodeOutput()
   codeOutputLines: any[];
@@ -3085,12 +3088,12 @@ class CodeDisplay {
   arrowOffsetY: number;
   codeRowHeight: number;
 
-  constructor(owner, domRoot, domRootD3) {
+  constructor(owner, domRoot, domRootD3,
+              codToDisplay: string, lang: string, editCodeBaseURL: string) {
     this.owner = owner;
-    this.params = this.owner.params;
-
     this.domRoot = domRoot;
     this.domRootD3 = domRootD3;
+    this.codToDisplay = codToDisplay;
 
     var codeDisplayHTML =
       '<div id="codeDisplayDiv">\
@@ -3116,25 +3119,25 @@ class CodeDisplay {
         .attr('points', SVG_ARROW_POLYGON)
         .attr('fill', darkArrowColor);
 
-    if (this.params.editCodeBaseURL) {
+    if (editCodeBaseURL) {
       // kinda kludgy
       var pyVer = '2'; // default
-      if (this.params.lang === 'js') {
+      if (lang === 'js') {
         pyVer = 'js';
-      } else if (this.params.lang === 'ts') {
+      } else if (lang === 'ts') {
         pyVer = 'ts';
-      } else if (this.params.lang === 'java') {
+      } else if (lang === 'java') {
         pyVer = 'java';
-      } else if (this.params.lang === 'py3') {
+      } else if (lang === 'py3') {
         pyVer = '3';
-      } else if (this.params.lang === 'c') {
+      } else if (lang === 'c') {
         pyVer = 'c';
-      } else if (this.params.lang === 'cpp') {
+      } else if (lang === 'cpp') {
         pyVer = 'cpp';
       }
 
-      var urlStr = $.param.fragment(this.params.editCodeBaseURL,
-                                    {code: this.owner.curInputCode, py: pyVer},
+      var urlStr = $.param.fragment(editCodeBaseURL,
+                                    {code: this.codToDisplay, py: pyVer},
                                     2);
       this.domRoot.find('#editBtn').attr('href', urlStr);
     }
@@ -3144,28 +3147,30 @@ class CodeDisplay {
       this.domRoot.find('#editBtn').click(function(){return false;}); // DISABLE the link!
     }
 
-    if (this.params.lang !== undefined) {
-      if (this.params.lang === 'js') {
-        this.domRoot.find('#langDisplayDiv').html('JavaScript');
-      } else if (this.params.lang === 'ts') {
-        this.domRoot.find('#langDisplayDiv').html('TypeScript');
-      } else if (this.params.lang === 'ruby') {
-        this.domRoot.find('#langDisplayDiv').html('Ruby');
-      } else if (this.params.lang === 'java') {
-        this.domRoot.find('#langDisplayDiv').html('Java');
-      } else if (this.params.lang === 'py2') {
-        this.domRoot.find('#langDisplayDiv').html('Python 2.7');
-      } else if (this.params.lang === 'py3') {
-        this.domRoot.find('#langDisplayDiv').html('Python 3.3');
-      } else if (this.params.lang === 'c') {
-        this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
-      } else if (this.params.lang === 'cpp') {
-        this.domRoot.find('#langDisplayDiv').html('C++ (gcc 4.8, C++11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
-      } else {
-        this.domRoot.find('#langDisplayDiv').hide();
-      }
+    var langLabel = null;
+    if (lang === 'js') {
+      langLabel = 'JavaScript';
+    } else if (lang === 'ts') {
+      langLabel = 'TypeScript';
+    } else if (lang === 'ruby') {
+      langLabel = 'Ruby';
+    } else if (lang === 'java') {
+      langLabel = 'Java';
+    } else if (lang === 'py2') {
+      langLabel = 'Python 2.7';
+    } else if (lang === 'py3') {
+      langLabel = 'Python 3.3';
+    } else if (lang === 'c') {
+      langLabel = 'C (gcc 4.8, C11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net';
+    } else if (lang === 'cpp') {
+      langLabel = 'C++ (gcc 4.8, C++11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net';
     }
 
+    if (langLabel) {
+      this.domRoot.find('#langDisplayDiv').html(langLabel);
+    } else {
+      this.domRoot.find('#langDisplayDiv').hide();
+    }
   }
 
   renderPyCodeOutput() {
@@ -3178,7 +3183,7 @@ class CodeDisplay {
     //   'breakpointHere' - has a breakpoint been set here?
     this.codeOutputLines = [];
 
-    var lines = this.owner.curInputCode.split('\n');
+    var lines = this.codToDisplay.split('\n');
 
     for (var i = 0; i < lines.length; i++) {
       var cod = lines[i];
