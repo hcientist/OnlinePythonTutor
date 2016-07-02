@@ -384,7 +384,8 @@ export class ExecutionVisualizer {
           this.params.updateOutputCallback(this);
       }});
 
-    this.outputBox = new ProgramOutputBox(this, this.domRoot.find('#vizLayoutTdSecond'));
+    this.outputBox = new ProgramOutputBox(this, this.domRoot.find('#vizLayoutTdSecond'),
+                                          this.params.embeddedMode ? '45px' : null);
     this.dataViz = new DataVisualizer(this,
                                       this.domRoot.find('#vizLayoutTdSecond'),
                                       this.domRootD3.select('#vizLayoutTdSecond'));
@@ -3002,15 +3003,13 @@ class DataVisualizer {
 
 class ProgramOutputBox {
   owner: ExecutionVisualizer;
-  params: any; // aliases owner.params for convenience
   domRoot: any;
 
   // how many *maximum* lines get printed to stdout in the entire trace?
   numStdoutLines: number = 0;
 
-  constructor(owner, domRoot) {
+  constructor(owner, domRoot, heightOverride=null) {
     this.owner = owner;
-    this.params = this.owner.params;
     this.domRoot = domRoot;
 
     var outputsHTML =
@@ -3040,8 +3039,8 @@ class ProgramOutputBox {
     if (this.numStdoutLines <= 3) {
       stdoutHeight = (18 * this.numStdoutLines) + 'px';
     }
-    if (this.params.embeddedMode) {
-      stdoutHeight = '45px';
+    if (heightOverride) {
+      stdoutHeight = heightOverride;
     }
     // do this only after adding outputsHTML to the DOM
     this.domRoot.find('#pyStdout').width('350px')
@@ -3466,15 +3465,11 @@ class CodeDisplay {
 
 class NavigationController {
   owner: ExecutionVisualizer;
-  params: any; // aliases owner.params for convenience
-
   domRoot: any;
   domRootD3: any;
 
   constructor(owner, domRoot, domRootD3) {
     this.owner = owner;
-    this.params = this.owner.params;
-
     this.domRoot = domRoot;
     this.domRootD3 = domRootD3;
 
