@@ -8,14 +8,9 @@
   leaky abstraction
 
 - further extract out components of CodeDisplay into additional classes
+  such as a slider class
 
-- test breakpoint and stdin user input functionality after refactorings
-
-- cleanly separate out the data structure visualization from the code
-  display from the slider/vcrControls, so that we can mix and match them
-
-  - e.g., abstract out the "slider" object and the ability to set and
-    display breakpoints on it
+- test breakpoint and stdin raw_input functionality after refactorings
 
 - substitute in a non-live version of the live editor from opt-live.js
   in addition to the janky current version of the editor
@@ -23,7 +18,7 @@
 - test out try_hook now that i've ripped code apart into different
   classes
 
-- test Java after massive refactorings!!!
+- test Java after massive refactorings
 
 */
 
@@ -2940,7 +2935,6 @@ class ProgramOutputBox {
 
 } // END class ProgramOutputBox
 
-// TODO: split out navigation slider stuff into a separate class
 class CodeDisplay {
   owner: ExecutionVisualizer;
   params: any; // aliases owner.params for convenience
@@ -2972,8 +2966,8 @@ class CodeDisplay {
          <span id="liveModeSpan" style="display: none;">| <a id="editLiveModeBtn" href="#">Live programming</a></a>\
          </div>\
          <div id="legendDiv"/>\
+         <div id="executionSliderDocs"><font color="#e93f34">NEW!</font> Click on a line of code to set a breakpoint. Then use the Forward and Back buttons to jump there.</div>\
          <div id="sliderParent">\
-           <div id="executionSliderDocs"><font color="#e93f34">NEW!</font> Click on a line of code to set a breakpoint. Then use the Forward and Back buttons to jump there.</div>\
            <div id="executionSlider"/>\
            <div id="executionSliderFooter"/>\
            <div id="vcrControls">\
@@ -3598,6 +3592,22 @@ class CodeDisplay {
     this.domRoot.find('#rawUserInputDiv').show();
   }
 } // END class CodeDisplay
+
+class NavigationControls {
+  owner: ExecutionVisualizer;
+  params: any; // aliases owner.params for convenience
+
+  domRoot: any;
+  domRootD3: any;
+
+  constructor(owner, domRoot, domRootD3) {
+    this.owner = owner;
+    this.params = this.owner.params;
+
+    this.domRoot = domRoot;
+    this.domRootD3 = domRootD3;
+  }
+} // END class NavigationControls
 
 
 // Utilities
