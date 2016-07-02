@@ -4,11 +4,11 @@
 
 /* TODO:
 
+- move breakpoints and sortedBreakpointsList into top-level
+  ExecutionVisualizer
+
 - get rid of 'owner' field as much as possible since that signals a
   leaky abstraction
-
-- further extract out components of CodeDisplay into additional classes
-  such as a slider class
 
 - test breakpoint and stdin raw_input functionality after refactorings
 
@@ -88,6 +88,7 @@ export class ExecutionVisualizer {
   promptForMouseInput: boolean;
 
   codDisplay: CodeDisplay;
+  navControls: NavigationController;
   outputBox: ProgramOutputBox;
   dataViz: DataVisualizer;
 
@@ -327,16 +328,68 @@ export class ExecutionVisualizer {
                          </tr></table>');
     }
 
-    this.codDisplay = new CodeDisplay(this,
-                                      this.domRoot.find('#vizLayoutTdFirst'),
-                                      this.domRootD3.select('#vizLayoutTdFirst'));
+    // create a container for a resizable slider to encompass
+    // both CodeDisplay and NavigationController
+    this.domRoot.find('#vizLayoutTdFirst').append('<div id="codAndNav" style="width: 550px;"/>');
+    var base = this.domRoot.find('#vizLayoutTdFirst #codAndNav');
+    var baseD3 = this.domRootD3.select('#vizLayoutTdFirst #codAndNav');
+
+    this.codDisplay = new CodeDisplay(this, base, baseD3);
+    this.navControls = new NavigationController(this, base, baseD3);
+
+    if (this.params.embeddedMode) {
+      // don't override if they've already been set!
+      if (this.params.codeDivWidth === undefined) {
+        this.params.codeDivWidth = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
+      }
+
+      if (this.params.codeDivHeight === undefined) {
+        this.params.codeDivHeight = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
+      }
+
+      // add an extra label to link back to the main site, so that viewers
+      // on the embedded page know that they're seeing an OPT visualization
+      base.append('<div style="font-size: 8pt; margin-bottom: 20px;">Visualized using <a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Online Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a></div>');
+      base.find('#codeFooterDocs').hide(); // cut out extraneous docs
+    }
+
+    // not enough room for these extra buttons ...
+    if (this.params.codeDivWidth &&
+        this.params.codeDivWidth < 470) {
+      this.domRoot.find('#jmpFirstInstr').hide();
+      this.domRoot.find('#jmpLastInstr').hide();
+    }
+
+    if (this.params.codeDivWidth) {
+      this.domRoot.find('#codeDisplayDiv').width(this.params.codeDivWidth);
+      this.domRoot.find('#navControlsDiv').width(this.params.codeDivWidth);
+      this.domRoot.find('#codAndNav').width(this.params.codeDivWidth);
+    }
+
+    if (this.params.codeDivHeight) {
+      this.domRoot.find('#pyCodeOutputDiv')
+        .css('max-height', this.params.codeDivHeight + 'px');
+    }
+
+    // enable left-right draggable pane resizer (originally from David Pritchard)
+    base.resizable({
+      handles: "e", // "east" (i.e., right)
+      minWidth: 100, //otherwise looks really goofy
+      resize: (event, ui) => {
+        this.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
+        // TODO: move sortedBreakpointsList and breakpoints up to this class
+        this.navControls.renderSliderBreakpoints(this.codDisplay.sortedBreakpointsList); // update breakpoint display accordingly on resize
+        if (this.params.updateOutputCallback) // report size change
+          this.params.updateOutputCallback(this);
+      }});
+
     this.outputBox = new ProgramOutputBox(this, this.domRoot.find('#vizLayoutTdSecond'));
     this.dataViz = new DataVisualizer(this,
                                       this.domRoot.find('#vizLayoutTdSecond'),
                                       this.domRootD3.select('#vizLayoutTdSecond'));
 
-    myViz.codDisplay.showError(this.instrLimitReachedWarningMsg);
-    myViz.codDisplay.setupSlider(this.curTrace.length - 1);
+    myViz.navControls.showError(this.instrLimitReachedWarningMsg);
+    myViz.navControls.setupSlider(this.curTrace.length - 1);
 
     if (this.params.startingInstruction) {
       this.params.jumpToEnd = false; // override! make sure to handle FIRST
@@ -489,18 +542,18 @@ export class ExecutionVisualizer {
       }
     }
 
-    this.codDisplay.setVcrControls(msg, isFirstInstr, isLastInstr);
-    this.codDisplay.setSliderVal(this.curInstr);
+    this.navControls.setVcrControls(msg, isFirstInstr, isLastInstr);
+    this.navControls.setSliderVal(this.curInstr);
 
     // render error (if applicable):
     if (myViz.curLineExceptionMsg) {
       if (myViz.curLineExceptionMsg === "Unknown error") {
-        myViz.codDisplay.showError('Unknown error: Please email a bug report to philip@pgbovine.net');
+        myViz.navControls.showError('Unknown error: Please email a bug report to philip@pgbovine.net');
       } else {
-        myViz.codDisplay.showError(myViz.curLineExceptionMsg);
+        myViz.navControls.showError(myViz.curLineExceptionMsg);
       }
     } else if (!this.instrLimitReached) { // ugly, I know :/
-      myViz.codDisplay.showError(null);
+      myViz.navControls.showError(null);
     }
 
     // finally, render all of the data structures
@@ -516,9 +569,9 @@ export class ExecutionVisualizer {
     if (isLastInstr &&
         myViz.params.executeCodeWithRawInputFunc &&
         myViz.promptForUserInput) {
-      this.codDisplay.showUserInputDiv();
+      this.navControls.showUserInputDiv();
     } else {
-      this.codDisplay.hideUserInputDiv();
+      this.navControls.hideUserInputDiv();
     }
   } // end of updateOutputFull
 
@@ -2945,7 +2998,7 @@ class CodeDisplay {
   // initialize in renderPyCodeOutput()
   codeOutputLines: any[];
   breakpoints: d3.Map<{}>;           // set of execution points to set as breakpoints
-  sortedBreakpointsList: any[] = []; // sorted and synced with breakpointLines
+  sortedBreakpointsList: any[] = []; // sorted and synced with breakpoints
 
   leftGutterSvgInitialized: boolean = false;
   arrowOffsetY: number;
@@ -2966,37 +3019,17 @@ class CodeDisplay {
          <span id="liveModeSpan" style="display: none;">| <a id="editLiveModeBtn" href="#">Live programming</a></a>\
          </div>\
          <div id="legendDiv"/>\
-         <div id="executionSliderDocs"><font color="#e93f34">NEW!</font> Click on a line of code to set a breakpoint. Then use the Forward and Back buttons to jump there.</div>\
-         <div id="sliderParent">\
-           <div id="executionSlider"/>\
-           <div id="executionSliderFooter"/>\
-           <div id="vcrControls">\
-             <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
-             <button id="jmpStepBack", type="button">&lt; Back</button>\
-             <span id="curInstr">Step ? of ?</span>\
-             <button id="jmpStepFwd", type="button">Forward &gt;</button>\
-             <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
-           </div>\
-         </div>\
-         <div id="rawUserInputDiv">\
-           <span id="userInputPromptStr"/>\
-           <input type="text" id="raw_input_textbox" size="30"/>\
-           <button id="raw_input_submit_btn">Submit</button>\
-         </div>\
-         <div id="errorOutput"/>\
+         <div id="codeFooterDocs"><font color="#e93f34">NEW!</font> Click on a line of code to set a breakpoint. Then use the Forward and Back buttons to jump there.</div>\
        </div>';
 
     this.domRoot.append(codeDisplayHTML);
-
     this.domRoot.find('#legendDiv')
         .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
         .append('<p style="margin-top: 4px"><svg id="curLegendArrowSVG"/> next line to execute</p>');
-
     this.domRootD3.select('svg#prevLegendArrowSVG')
         .append('polygon')
         .attr('points', SVG_ARROW_POLYGON)
         .attr('fill', lightArrowColor);
-
     this.domRootD3.select('svg#curLegendArrowSVG')
         .append('polygon')
         .attr('points', SVG_ARROW_POLYGON)
@@ -3052,79 +3085,6 @@ class CodeDisplay {
       }
     }
 
-    if (this.params.embeddedMode) {
-      // don't override if they've already been set!
-      if (this.params.codeDivWidth === undefined) {
-        this.params.codeDivWidth = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
-      }
-
-      if (this.params.codeDivHeight === undefined) {
-        this.params.codeDivHeight = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
-      }
-
-      // add an extra label to link back to the main site, so that viewers
-      // on the embedded page know that they're seeing an OPT visualization
-      this.domRoot.find('#codeDisplayDiv').append('<div style="font-size: 8pt; margin-bottom: 20px;">Visualized using <a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Online Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a></div>');
-
-      this.domRoot.find('#executionSliderDocs').hide(); // cut out extraneous docs
-    }
-
-    // not enough room for these extra buttons ...
-    if (this.params.codeDivWidth &&
-        this.params.codeDivWidth < 470) {
-      this.domRoot.find('#jmpFirstInstr').hide();
-      this.domRoot.find('#jmpLastInstr').hide();
-    }
-
-    if (this.params.codeDivWidth) {
-      // set width once
-      this.domRoot.find('#codeDisplayDiv').width(this.params.codeDivWidth);
-      // it will propagate to the slider
-    }
-
-    // enable left-right draggable pane resizer (originally from David Pritchard)
-    this.domRoot.find('#codeDisplayDiv').resizable({
-      handles: "e",
-      minWidth: 100, //otherwise looks really goofy
-      resize: (event, ui) => {
-        this.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
-        this.renderSliderBreakpoints(); // update breakpoint display accordingly on resize
-        if (this.params.updateOutputCallback) // report size change
-          this.params.updateOutputCallback(this);
-      }});
-
-    if (this.params.codeDivHeight) {
-      this.domRoot.find('#pyCodeOutputDiv')
-        .css('max-height', this.params.codeDivHeight + 'px');
-    }
-
-    // TODO: refactor to get rid of 'owner'
-    this.domRoot.find("#jmpFirstInstr").click(() => {this.owner.renderStep(0);});
-    this.domRoot.find("#jmpLastInstr").click(() => {this.owner.renderStep(this.owner.curTrace.length - 1);});
-    this.domRoot.find("#jmpStepBack").click(() => {this.owner.stepBack();});
-    this.domRoot.find("#jmpStepFwd").click(() => {this.owner.stepForward();});
-
-    // disable controls initially ...
-    this.domRoot.find("#vcrControls #jmpFirstInstr").attr("disabled", true);
-    this.domRoot.find("#vcrControls #jmpStepBack").attr("disabled", true);
-    this.domRoot.find("#vcrControls #jmpStepFwd").attr("disabled", true);
-    this.domRoot.find("#vcrControls #jmpLastInstr").attr("disabled", true);
-
-    var ruiDiv = this.domRoot.find('#rawUserInputDiv');
-    ruiDiv.find('#userInputPromptStr').html(this.owner.userInputPromptStr);
-    ruiDiv.find('#raw_input_submit_btn').click(() => {
-      var userInput = ruiDiv.find('#raw_input_textbox').val();
-      // advance instruction count by 1 to get to the NEXT instruction
-      this.owner.params.executeCodeWithRawInputFunc(userInput, this.owner.curInstr + 1);
-    });
-  }
-
-  showError(msg: string) {
-    if (msg) {
-      this.domRoot.find("#errorOutput").html(htmlspecialchars(msg)).show();
-    } else {
-      this.domRoot.find("#errorOutput").hide();
-    }
   }
 
   renderPyCodeOutput() {
@@ -3167,7 +3127,7 @@ class CodeDisplay {
       d3.select(t.parentNode).select('td.lineNo').style('color', breakpointColor);
       d3.select(t.parentNode).select('td.lineNo').style('font-weight', 'bold');
       d3.select(t.parentNode).select('td.cod').style('color', breakpointColor);
-      this.renderSliderBreakpoints();
+      this.owner.navControls.renderSliderBreakpoints(this.sortedBreakpointsList); // TODO: fix this super ugly leaky abstraction
     }
 
     var unsetBreakpoint = (t, d) => {
@@ -3175,7 +3135,7 @@ class CodeDisplay {
       d3.select(t.parentNode).select('td.lineNo').style('color', '');
       d3.select(t.parentNode).select('td.lineNo').style('font-weight', '');
       d3.select(t.parentNode).select('td.cod').style('color', '');
-      this.renderSliderBreakpoints();
+      this.owner.navControls.renderSliderBreakpoints(this.sortedBreakpointsList); // TODO: fix this super ugly leaky abstraction
     }
 
     var lines = this.owner.curInputCode.split('\n');
@@ -3351,38 +3311,6 @@ class CodeDisplay {
     }
   }
 
-  renderSliderBreakpoints() {
-    this.domRoot.find("#executionSliderFooter").empty();
-    var w = this.domRoot.find('#executionSlider').width();
-
-    // I originally didn't want to delete and re-create this overlay every time,
-    // but if I don't do so, there are weird flickering artifacts with clearing
-    // the SVG container; so it's best to just delete and re-create the container each time
-    var sliderOverlay = this.domRootD3.select('#executionSliderFooter')
-      .append('svg')
-      .attr('id', 'sliderOverlay')
-      .attr('width', w)
-      .attr('height', 12);
-
-    var xrange = d3.scale.linear()
-      .domain([0, this.owner.curTrace.length - 1])
-      .range([0, w]);
-
-    sliderOverlay.selectAll('rect')
-      .data(this.sortedBreakpointsList)
-      .enter().append('rect')
-      .attr('x', function(d, i) {
-        // make edge case of 0 look decent:
-        return (d === 0) ? 0 : xrange(d) - 1;
-      })
-      .attr('y', 0)
-      .attr('width', 2)
-      .attr('height', 12)
-      .style('fill', function(d) {
-         return breakpointColor;
-      });
-  }
-
   updateCodOutput(smoothTransition=false) {
     var gutterSVG = this.domRoot.find('svg#leftCodeGutterSVG');
 
@@ -3537,6 +3465,94 @@ class CodeDisplay {
     }
   }
 
+} // END class CodeDisplay
+
+class NavigationController {
+  owner: ExecutionVisualizer;
+  params: any; // aliases owner.params for convenience
+
+  domRoot: any;
+  domRootD3: any;
+
+  constructor(owner, domRoot, domRootD3) {
+    this.owner = owner;
+    this.params = this.owner.params;
+
+    this.domRoot = domRoot;
+    this.domRootD3 = domRootD3;
+
+    var navHTML = '<div id="navControlsDiv">\
+                     <div id="executionSlider"/>\
+                     <div id="executionSliderFooter"/>\
+                     <div id="vcrControls">\
+                       <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
+                       <button id="jmpStepBack", type="button">&lt; Back</button>\
+                       <span id="curInstr">Step ? of ?</span>\
+                       <button id="jmpStepFwd", type="button">Forward &gt;</button>\
+                       <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
+                     </div>\
+                     <div id="rawUserInputDiv">\
+                       <span id="userInputPromptStr"/>\
+                       <input type="text" id="raw_input_textbox" size="30"/>\
+                       <button id="raw_input_submit_btn">Submit</button>\
+                     </div>\
+                     <div id="errorOutput"/>\
+                   </div>';
+
+    this.domRoot.append(navHTML);
+
+    // TODO: refactor to get rid of 'owner'
+    this.domRoot.find("#jmpFirstInstr").click(() => {this.owner.renderStep(0);});
+    this.domRoot.find("#jmpLastInstr").click(() => {this.owner.renderStep(this.owner.curTrace.length - 1);});
+    this.domRoot.find("#jmpStepBack").click(() => {this.owner.stepBack();});
+    this.domRoot.find("#jmpStepFwd").click(() => {this.owner.stepForward();});
+
+    // disable controls initially ...
+    this.domRoot.find("#vcrControls #jmpFirstInstr").attr("disabled", true);
+    this.domRoot.find("#vcrControls #jmpStepBack").attr("disabled", true);
+    this.domRoot.find("#vcrControls #jmpStepFwd").attr("disabled", true);
+    this.domRoot.find("#vcrControls #jmpLastInstr").attr("disabled", true);
+
+    var ruiDiv = this.domRoot.find('#rawUserInputDiv');
+    ruiDiv.find('#userInputPromptStr').html(this.owner.userInputPromptStr);
+    ruiDiv.find('#raw_input_submit_btn').click(() => {
+      var userInput = ruiDiv.find('#raw_input_textbox').val();
+      // advance instruction count by 1 to get to the NEXT instruction
+      this.owner.params.executeCodeWithRawInputFunc(userInput, this.owner.curInstr + 1);
+    });
+  }
+
+  hideUserInputDiv() {
+    this.domRoot.find('#rawUserInputDiv').hide();
+  }
+
+  showUserInputDiv() {
+    this.domRoot.find('#rawUserInputDiv').show();
+  }
+
+  setSliderVal(v: number) {
+    // PROGRAMMATICALLY change the value, so evt.originalEvent should be undefined
+    this.domRoot.find('#executionSlider').slider('value', v);
+  }
+
+  setVcrControls(msg: string, isFirstInstr: boolean, isLastInstr: boolean) {
+    var vcrControls = this.domRoot.find("#vcrControls");
+    vcrControls.find("#curInstr").html(msg);
+    vcrControls.find("#jmpFirstInstr").attr("disabled", false);
+    vcrControls.find("#jmpStepBack").attr("disabled", false);
+    vcrControls.find("#jmpStepFwd").attr("disabled", false);
+    vcrControls.find("#jmpLastInstr").attr("disabled", false);
+
+    if (isFirstInstr) {
+      vcrControls.find("#jmpFirstInstr").attr("disabled", true);
+      vcrControls.find("#jmpStepBack").attr("disabled", true);
+    }
+    if (isLastInstr) {
+      vcrControls.find("#jmpLastInstr").attr("disabled", true);
+      vcrControls.find("#jmpStepFwd").attr("disabled", true);
+    }
+  }
+
   setupSlider(maxSliderVal: number) {
     assert(maxSliderVal > 0);
     var sliderDiv = this.domRoot.find('#executionSlider');
@@ -3561,53 +3577,47 @@ class CodeDisplay {
     });
   }
 
-  setVcrControls(msg: string, isFirstInstr: boolean, isLastInstr: boolean) {
-    var vcrControls = this.domRoot.find("#vcrControls");
-    vcrControls.find("#curInstr").html(msg);
-    vcrControls.find("#jmpFirstInstr").attr("disabled", false);
-    vcrControls.find("#jmpStepBack").attr("disabled", false);
-    vcrControls.find("#jmpStepFwd").attr("disabled", false);
-    vcrControls.find("#jmpLastInstr").attr("disabled", false);
+  renderSliderBreakpoints(sortedBreakpointsList) {
+    this.domRoot.find("#executionSliderFooter").empty();
+    var w = this.domRoot.find('#executionSlider').width();
 
-    if (isFirstInstr) {
-      vcrControls.find("#jmpFirstInstr").attr("disabled", true);
-      vcrControls.find("#jmpStepBack").attr("disabled", true);
+    // I originally didn't want to delete and re-create this overlay every time,
+    // but if I don't do so, there are weird flickering artifacts with clearing
+    // the SVG container; so it's best to just delete and re-create the container each time
+    var sliderOverlay = this.domRootD3.select('#executionSliderFooter')
+      .append('svg')
+      .attr('id', 'sliderOverlay')
+      .attr('width', w)
+      .attr('height', 12);
+
+    var xrange = d3.scale.linear()
+      .domain([0, this.owner.curTrace.length - 1])
+      .range([0, w]);
+
+    sliderOverlay.selectAll('rect')
+      .data(sortedBreakpointsList)
+      .enter().append('rect')
+      .attr('x', function(d, i) {
+        // make edge case of 0 look decent:
+        return (d === 0) ? 0 : xrange(d) - 1;
+      })
+      .attr('y', 0)
+      .attr('width', 2)
+      .attr('height', 12)
+      .style('fill', function(d) {
+         return breakpointColor;
+      });
+  }
+
+  showError(msg: string) {
+    if (msg) {
+      this.domRoot.find("#errorOutput").html(htmlspecialchars(msg)).show();
+    } else {
+      this.domRoot.find("#errorOutput").hide();
     }
-    if (isLastInstr) {
-      vcrControls.find("#jmpLastInstr").attr("disabled", true);
-      vcrControls.find("#jmpStepFwd").attr("disabled", true);
-    }
   }
 
-  setSliderVal(v: number) {
-    // PROGRAMMATICALLY change the value, so evt.originalEvent should be undefined
-    this.domRoot.find('#executionSlider').slider('value', v);
-  }
-
-  hideUserInputDiv() {
-    this.domRoot.find('#rawUserInputDiv').hide();
-  }
-
-  showUserInputDiv() {
-    this.domRoot.find('#rawUserInputDiv').show();
-  }
-} // END class CodeDisplay
-
-class NavigationControls {
-  owner: ExecutionVisualizer;
-  params: any; // aliases owner.params for convenience
-
-  domRoot: any;
-  domRootD3: any;
-
-  constructor(owner, domRoot, domRootD3) {
-    this.owner = owner;
-    this.params = this.owner.params;
-
-    this.domRoot = domRoot;
-    this.domRootD3 = domRootD3;
-  }
-} // END class NavigationControls
+} // END class NavigationController
 
 
 // Utilities

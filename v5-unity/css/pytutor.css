@@ -60,10 +60,11 @@ div.ExecutionVisualizer #dataViz {
   /*margin-left: 25px;*/
 }
 
+/*
 div.ExecutionVisualizer div#codeDisplayDiv {
-  /* set this as default unless user specifies a custom size */
   width: 550px;
 }
+*/
 
 div.ExecutionVisualizer div#pyCodeOutputDiv {
   /*max-width: 550px;*/
@@ -617,14 +618,14 @@ div.ExecutionVisualizer #executionSliderFooter {
   margin-top: -7px; /* make it butt up against #executionSlider */
 }
 
-div.ExecutionVisualizer #executionSliderDocs,
+div.ExecutionVisualizer #codeFooterDocs,
 div.ExecutionVisualizer #printOutputDocs {
   margin-bottom: 3px;
   font-size: 8pt;
   color: #666;
 }
 
-div.ExecutionVisualizer #executionSliderDocs {
+div.ExecutionVisualizer #codeFooterDocs {
   margin-top: 5px;
   margin-bottom: 12px;
   width: 95%;
