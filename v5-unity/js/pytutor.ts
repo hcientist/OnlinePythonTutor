@@ -4,10 +4,7 @@
 
 /* TODO:
 
-- get rid of 'owner' field as much as possible since that signals a
-  leaky abstraction
-
-- make components as stateless and naive as possible (in React style)
+- BUG: resizing doesn't work in embedded mode but works in regular mode
 
 - test breakpoint and stdin raw_input functionality after refactorings
 
@@ -337,7 +334,7 @@ export class ExecutionVisualizer {
 
     this.codDisplay = new CodeDisplay(this, base, baseD3,
                                       this.curInputCode, this.params.lang, this.params.editCodeBaseURL);
-    this.navControls = new NavigationController(this, base, baseD3);
+    this.navControls = new NavigationController(this, base, baseD3, this.curTrace.length);
 
     if (this.params.embeddedMode) {
       // don't override if they've already been set!
@@ -3182,6 +3179,8 @@ class CodeDisplay {
 
     var lines = this.codToDisplay.split('\n');
 
+    // TODO: maybe parse breakpoints in comments in ExecutionVisualizer
+    // instead of here in CodeDisplay?
     for (var i = 0; i < lines.length; i++) {
       var cod = lines[i];
 
@@ -3214,7 +3213,6 @@ class CodeDisplay {
 
       this.codeOutputLines.push(n);
     }
-
 
     this.domRoot.find('#pyCodeOutputDiv').empty();
 
@@ -3467,11 +3465,13 @@ class NavigationController {
   owner: ExecutionVisualizer;
   domRoot: any;
   domRootD3: any;
+  nSteps: number;
 
-  constructor(owner, domRoot, domRootD3) {
+  constructor(owner, domRoot, domRootD3, nSteps) {
     this.owner = owner;
     this.domRoot = domRoot;
     this.domRootD3 = domRootD3;
+    this.nSteps = nSteps;
 
     var navHTML = '<div id="navControlsDiv">\
                      <div id="executionSlider"/>\
@@ -3493,9 +3493,8 @@ class NavigationController {
 
     this.domRoot.append(navHTML);
 
-    // TODO: refactor to get rid of 'owner'
     this.domRoot.find("#jmpFirstInstr").click(() => {this.owner.renderStep(0);});
-    this.domRoot.find("#jmpLastInstr").click(() => {this.owner.renderStep(this.owner.curTrace.length - 1);});
+    this.domRoot.find("#jmpLastInstr").click(() => {this.owner.renderStep(this.nSteps - 1);});
     this.domRoot.find("#jmpStepBack").click(() => {this.owner.stepBack();});
     this.domRoot.find("#jmpStepFwd").click(() => {this.owner.stepForward();});
 
@@ -3583,7 +3582,7 @@ class NavigationController {
       .attr('height', 12);
 
     var xrange = d3.scale.linear()
-      .domain([0, this.owner.curTrace.length - 1])
+      .domain([0, this.nSteps - 1])
       .range([0, w]);
 
     sliderOverlay.selectAll('rect')
