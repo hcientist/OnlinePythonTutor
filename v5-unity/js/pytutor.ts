@@ -7,6 +7,8 @@
 - get rid of 'owner' field as much as possible since that signals a
   leaky abstraction
 
+- further extract out components of CodeDisplay into additional classes
+
 - test breakpoint and stdin user input functionality after refactorings
 
 - cleanly separate out the data structure visualization from the code
@@ -392,15 +394,6 @@ export class ExecutionVisualizer {
       this.codDisplay.renderPyCodeOutput();
     }
 
-    // TODO: refactor into CodeDisplay class
-    var ruiDiv = myViz.domRoot.find('#rawUserInputDiv');
-    ruiDiv.find('#userInputPromptStr').html(myViz.userInputPromptStr);
-    ruiDiv.find('#raw_input_submit_btn').click(function() {
-      var userInput = ruiDiv.find('#raw_input_textbox').val();
-      // advance instruction count by 1 to get to the NEXT instruction
-      myViz.params.executeCodeWithRawInputFunc(userInput, myViz.curInstr + 1);
-    });
-
     this.updateOutput();
     this.hasRendered = true;
     this.try_hook("end_render", {myViz:this});
@@ -525,15 +518,12 @@ export class ExecutionVisualizer {
       }
     }
 
-    // TODO: refactor into CodeDisplay class
-    // handle raw user input
-    var ruiDiv = myViz.domRoot.find('#rawUserInputDiv');
-    ruiDiv.hide(); // hide by default
-
-    if (isLastInstr && myViz.params.executeCodeWithRawInputFunc) {
-      if (myViz.promptForUserInput) {
-        ruiDiv.show();
-      }
+    if (isLastInstr &&
+        myViz.params.executeCodeWithRawInputFunc &&
+        myViz.promptForUserInput) {
+      this.codDisplay.showUserInputDiv();
+    } else {
+      this.codDisplay.hideUserInputDiv();
     }
   } // end of updateOutputFull
 
@@ -2982,15 +2972,17 @@ class CodeDisplay {
          <span id="liveModeSpan" style="display: none;">| <a id="editLiveModeBtn" href="#">Live programming</a></a>\
          </div>\
          <div id="legendDiv"/>\
-         <div id="executionSliderDocs"><font color="#e93f34">NEW!</font> Click on a line of code to set a breakpoint. Then use the Forward and Back buttons to jump there.</div>\
-         <div id="executionSlider"/>\
-         <div id="executionSliderFooter"/>\
-         <div id="vcrControls">\
-           <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
-           <button id="jmpStepBack", type="button">&lt; Back</button>\
-           <span id="curInstr">Step ? of ?</span>\
-           <button id="jmpStepFwd", type="button">Forward &gt;</button>\
-           <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
+         <div id="sliderParent">\
+           <div id="executionSliderDocs"><font color="#e93f34">NEW!</font> Click on a line of code to set a breakpoint. Then use the Forward and Back buttons to jump there.</div>\
+           <div id="executionSlider"/>\
+           <div id="executionSliderFooter"/>\
+           <div id="vcrControls">\
+             <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
+             <button id="jmpStepBack", type="button">&lt; Back</button>\
+             <span id="curInstr">Step ? of ?</span>\
+             <button id="jmpStepFwd", type="button">Forward &gt;</button>\
+             <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
+           </div>\
          </div>\
          <div id="rawUserInputDiv">\
            <span id="userInputPromptStr"/>\
@@ -3123,6 +3115,14 @@ class CodeDisplay {
     this.domRoot.find("#vcrControls #jmpStepBack").attr("disabled", true);
     this.domRoot.find("#vcrControls #jmpStepFwd").attr("disabled", true);
     this.domRoot.find("#vcrControls #jmpLastInstr").attr("disabled", true);
+
+    var ruiDiv = this.domRoot.find('#rawUserInputDiv');
+    ruiDiv.find('#userInputPromptStr').html(this.owner.userInputPromptStr);
+    ruiDiv.find('#raw_input_submit_btn').click(() => {
+      var userInput = ruiDiv.find('#raw_input_textbox').val();
+      // advance instruction count by 1 to get to the NEXT instruction
+      this.owner.params.executeCodeWithRawInputFunc(userInput, this.owner.curInstr + 1);
+    });
   }
 
   showError(msg: string) {
@@ -3590,6 +3590,13 @@ class CodeDisplay {
     this.domRoot.find('#executionSlider').slider('value', v);
   }
 
+  hideUserInputDiv() {
+    this.domRoot.find('#rawUserInputDiv').hide();
+  }
+
+  showUserInputDiv() {
+    this.domRoot.find('#rawUserInputDiv').show();
+  }
 } // END class CodeDisplay
 
 
