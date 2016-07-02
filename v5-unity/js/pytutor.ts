@@ -4,9 +4,6 @@
 
 /* TODO:
 
-- move breakpoints and sortedBreakpointsList into top-level
-  ExecutionVisualizer
-
 - get rid of 'owner' field as much as possible since that signals a
   leaky abstraction
 
@@ -118,6 +115,8 @@ export class ExecutionVisualizer {
 
   visualizerID: number;
 
+  breakpoints: d3.Map<{}> = d3.map(); // set of execution points to set as breakpoints
+  sortedBreakpointsList: any[] = [];  // sorted and synced with breakpoints
 
   // Constructor with an ever-growing feature-crepped list of options :)
   // domRootID is the string ID of the root element where to render this instance
@@ -377,8 +376,7 @@ export class ExecutionVisualizer {
       minWidth: 100, //otherwise looks really goofy
       resize: (event, ui) => {
         this.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
-        // TODO: move sortedBreakpointsList and breakpoints up to this class
-        this.navControls.renderSliderBreakpoints(this.codDisplay.sortedBreakpointsList); // update breakpoint display accordingly on resize
+        this.navControls.renderSliderBreakpoints(this.sortedBreakpointsList); // update breakpoint display accordingly on resize
         if (this.params.updateOutputCallback) // report size change
           this.params.updateOutputCallback(this);
       }});
@@ -447,14 +445,99 @@ export class ExecutionVisualizer {
     this.try_hook("end_render", {myViz:this});
   }
 
+  _getSortedBreakpointsList() {
+    var ret = [];
+    this.breakpoints.forEach(function(k, v) {
+      ret.push(Number(k)); // these should be NUMBERS, not strings
+    });
+    ret.sort(function(x,y){return x-y}); // WTF, javascript sort is lexicographic by default!
+    return ret;
+  }
+
+  addToBreakpoints(executionPoints) {
+    $.each(executionPoints, (i, ep) => {
+      this.breakpoints.set(ep, 1);
+    });
+    this.sortedBreakpointsList = this._getSortedBreakpointsList(); // keep synced!
+  }
+
+  removeFromBreakpoints(executionPoints) {
+    $.each(executionPoints, (i, ep) => {
+      this.breakpoints.remove(ep);
+    });
+    this.sortedBreakpointsList = this._getSortedBreakpointsList(); // keep synced!
+  }
+
+  setBreakpoint(d) {
+    this.addToBreakpoints(d.executionPoints);
+    this.navControls.renderSliderBreakpoints(this.sortedBreakpointsList);
+  }
+
+  unsetBreakpoint(d) {
+    this.removeFromBreakpoints(d.executionPoints);
+    this.navControls.renderSliderBreakpoints(this.sortedBreakpointsList);
+  }
+
+  // find the previous/next breakpoint to c or return -1 if it doesn't exist
+  findPrevBreakpoint() {
+    var c = this.curInstr;
+
+    if (this.sortedBreakpointsList.length == 0) {
+      return -1;
+    }
+    else {
+      for (var i = 1; i < this.sortedBreakpointsList.length; i++) {
+        var prev = this.sortedBreakpointsList[i-1];
+        var cur = this.sortedBreakpointsList[i];
+        if (c <= prev)
+          return -1;
+        if (cur >= c)
+          return prev;
+      }
+
+      // final edge case:
+      var lastElt = this.sortedBreakpointsList[this.sortedBreakpointsList.length - 1];
+      return (lastElt < c) ? lastElt : -1;
+    }
+  }
+
+  findNextBreakpoint() {
+    var c = this.curInstr;
+
+    if (this.sortedBreakpointsList.length == 0) {
+      return -1;
+    }
+    // usability hack: if you're currently on a breakpoint, then
+    // single-step forward to the next execution point, NOT the next
+    // breakpoint. it's often useful to see what happens when the line
+    // at a breakpoint executes.
+    else if ($.inArray(c, this.sortedBreakpointsList) >= 0) {
+      return c + 1;
+    }
+    else {
+      for (var i = 0; i < this.sortedBreakpointsList.length - 1; i++) {
+        var cur = this.sortedBreakpointsList[i];
+        var next = this.sortedBreakpointsList[i+1];
+        if (c < cur)
+          return cur;
+        if (cur <= c && c < next) // subtle
+          return next;
+      }
+
+      // final edge case:
+      var lastElt = this.sortedBreakpointsList[this.sortedBreakpointsList.length - 1];
+      return (lastElt > c) ? lastElt : -1;
+    }
+  }
+
   // returns true if action successfully taken
   stepForward() {
     var myViz = this;
 
     if (myViz.curInstr < myViz.curTrace.length - 1) {
       // if there is a next breakpoint, then jump to it ...
-      if (myViz.codDisplay.sortedBreakpointsList.length > 0) {
-        var nextBreakpoint = myViz.codDisplay.findNextBreakpoint();
+      if (myViz.sortedBreakpointsList.length > 0) {
+        var nextBreakpoint = myViz.findNextBreakpoint();
         if (nextBreakpoint != -1)
           myViz.curInstr = nextBreakpoint;
         else
@@ -476,8 +559,8 @@ export class ExecutionVisualizer {
 
     if (myViz.curInstr > 0) {
       // if there is a prev breakpoint, then jump to it ...
-      if (myViz.codDisplay.sortedBreakpointsList.length > 0) {
-        var prevBreakpoint = myViz.codDisplay.findPrevBreakpoint();
+      if (myViz.sortedBreakpointsList.length > 0) {
+        var prevBreakpoint = myViz.findPrevBreakpoint();
         if (prevBreakpoint != -1)
           myViz.curInstr = prevBreakpoint;
         else
@@ -2997,8 +3080,6 @@ class CodeDisplay {
 
   // initialize in renderPyCodeOutput()
   codeOutputLines: any[];
-  breakpoints: d3.Map<{}>;           // set of execution points to set as breakpoints
-  sortedBreakpointsList: any[] = []; // sorted and synced with breakpoints
 
   leftGutterSvgInitialized: boolean = false;
   arrowOffsetY: number;
@@ -3088,9 +3169,7 @@ class CodeDisplay {
   }
 
   renderPyCodeOutput() {
-    // initialize!
-    this.breakpoints = d3.map();
-    this.sortedBreakpointsList = [];
+    var myCodOutput = this; // capture
 
     // an array of objects with the following fields:
     //   'text' - the text of the line of code
@@ -3098,45 +3177,6 @@ class CodeDisplay {
     //   'executionPoints' - an ordered array of zero-indexed execution points where this line was executed
     //   'breakpointHere' - has a breakpoint been set here?
     this.codeOutputLines = [];
-
-    var _getSortedBreakpointsList = (() => {
-      var ret = [];
-      this.breakpoints.forEach(function(k, v) {
-        ret.push(Number(k)); // these should be NUMBERS, not strings
-      });
-      ret.sort(function(x,y){return x-y}); // WTF, javascript sort is lexicographic by default!
-      return ret;
-    });
-
-    var addToBreakpoints = (executionPoints) => {
-      $.each(executionPoints, (i, ep) => {
-        this.breakpoints.set(ep, 1);
-      });
-      this.sortedBreakpointsList = _getSortedBreakpointsList();
-    }
-
-    var removeFromBreakpoints = (executionPoints) => {
-      $.each(executionPoints, (i, ep) => {
-        this.breakpoints.remove(ep);
-      });
-      this.sortedBreakpointsList = _getSortedBreakpointsList();
-    }
-
-    var setBreakpoint = (t, d) => {
-      addToBreakpoints(d.executionPoints);
-      d3.select(t.parentNode).select('td.lineNo').style('color', breakpointColor);
-      d3.select(t.parentNode).select('td.lineNo').style('font-weight', 'bold');
-      d3.select(t.parentNode).select('td.cod').style('color', breakpointColor);
-      this.owner.navControls.renderSliderBreakpoints(this.sortedBreakpointsList); // TODO: fix this super ugly leaky abstraction
-    }
-
-    var unsetBreakpoint = (t, d) => {
-      removeFromBreakpoints(d.executionPoints);
-      d3.select(t.parentNode).select('td.lineNo').style('color', '');
-      d3.select(t.parentNode).select('td.lineNo').style('font-weight', '');
-      d3.select(t.parentNode).select('td.cod').style('color', '');
-      this.owner.navControls.renderSliderBreakpoints(this.sortedBreakpointsList); // TODO: fix this super ugly leaky abstraction
-    }
 
     var lines = this.owner.curInputCode.split('\n');
 
@@ -3167,7 +3207,7 @@ class CodeDisplay {
 
       if (breakpointInComment && n.executionPoints.length > 0) {
         n.breakpointHere = true;
-        addToBreakpoints(n.executionPoints);
+        this.owner.addToBreakpoints(n.executionPoints);
       }
 
       this.codeOutputLines.push(n);
@@ -3251,64 +3291,18 @@ class CodeDisplay {
 
         d.breakpointHere = !d.breakpointHere; // toggle
         if (d.breakpointHere) {
-          setBreakpoint(this, d);
+          myCodOutput.owner.setBreakpoint(d);
+          d3.select(this.parentNode).select('td.lineNo').style('color', breakpointColor);
+          d3.select(this.parentNode).select('td.lineNo').style('font-weight', 'bold');
+          d3.select(this.parentNode).select('td.cod').style('color', breakpointColor);
         }
         else {
-          unsetBreakpoint(this, d);
+          myCodOutput.owner.unsetBreakpoint(d);
+          d3.select(this.parentNode).select('td.lineNo').style('color', '');
+          d3.select(this.parentNode).select('td.lineNo').style('font-weight', '');
+          d3.select(this.parentNode).select('td.cod').style('color', '');
         }
       });
-  }
-
-  // find the previous/next breakpoint to c or return -1 if it doesn't exist
-  findPrevBreakpoint() {
-    var c = this.owner.curInstr;
-
-    if (this.sortedBreakpointsList.length == 0) {
-      return -1;
-    }
-    else {
-      for (var i = 1; i < this.sortedBreakpointsList.length; i++) {
-        var prev = this.sortedBreakpointsList[i-1];
-        var cur = this.sortedBreakpointsList[i];
-        if (c <= prev)
-          return -1;
-        if (cur >= c)
-          return prev;
-      }
-
-      // final edge case:
-      var lastElt = this.sortedBreakpointsList[this.sortedBreakpointsList.length - 1];
-      return (lastElt < c) ? lastElt : -1;
-    }
-  }
-
-  findNextBreakpoint() {
-    var c = this.owner.curInstr;
-
-    if (this.sortedBreakpointsList.length == 0) {
-      return -1;
-    }
-    // usability hack: if you're currently on a breakpoint, then
-    // single-step forward to the next execution point, NOT the next
-    // breakpoint. it's often useful to see what happens when the line
-    // at a breakpoint executes.
-    else if ($.inArray(c, this.sortedBreakpointsList) >= 0) {
-      return c + 1;
-    }
-    else {
-      for (var i = 0; i < this.sortedBreakpointsList.length - 1; i++) {
-        var cur = this.sortedBreakpointsList[i];
-        var next = this.sortedBreakpointsList[i+1];
-        if (c < cur)
-          return cur;
-        if (cur <= c && c < next) // subtle
-          return next;
-      }
-
-      // final edge case:
-      var lastElt = this.sortedBreakpointsList[this.sortedBreakpointsList.length - 1];
-      return (lastElt > c) ? lastElt : -1;
-    }
   }
 
   updateCodOutput(smoothTransition=false) {
