@@ -554,8 +554,6 @@ function optliveLangToBackendScript(lang) {
       backend_script = python2_backend_script;
   } else if (lang == '3') {
       backend_script = python3_backend_script;
-  } else if (lang == '2crazy') {
-      backend_script = python2crazy_backend_script;
   } else if (lang == 'js') {
       backend_script = js_backend_script;
   } else if (lang == 'ts') {

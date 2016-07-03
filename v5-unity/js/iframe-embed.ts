@@ -90,7 +90,6 @@ $(document).ready(function() {
   // set up all options in a JS object
   var backendOptionsObj = {cumulative_mode: cumModeBool,
                            heap_primitives: heapPrimitivesBool,
-                           py_crazy_mode: (pyState == '2crazy'),
                            origin: originFrontendJsFile};
 
   var frontendOptionsObj = {startingInstruction: startingInstruction,

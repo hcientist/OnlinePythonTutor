@@ -2,6 +2,17 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
+/* TODO
+
+- put shared session stuff into a separate codechella module, maybe?
+
+- encapsulate all of the global variables into a frontend state object
+  that can be exported wholesale to other modules
+
+  - look for initializeFrontendParams as a potential abstraction point
+
+*/
+
 require('./lib/diff_match_patch.js');
 require('./lib/jquery.ba-dotimeout.min.js');
 
@@ -40,10 +51,33 @@ declare namespace AceAjax {
 }
 
 
+// constants
+const JAVA_BLANK_TEMPLATE = 'public class YourClassNameHere {\n\
+    public static void main(String[] args) {\n\
+\n\
+    }\n\
+}'
+
+const CPP_BLANK_TEMPLATE = 'int main() {\n\
+\n\
+  return 0;\n\
+}'
+
+
+var myVisualizer = null; // singleton ExecutionVisualizer instance
+function getVisualizer() {return myVisualizer;}
+function setVisualizer(v) {myVisualizer = v;}
+
+var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
+function getRawInputLst() {return rawInputLst;}
+function setRawInputLst(lst) {rawInputLst = lst;}
+
+
 var originFrontendJsFile: string = undefined;
 
 var appStateAugmenter: any = undefined; // super hacky! fixme
 var loadTestCases: any = undefined; // super hacky! fixme
+
 
 // backend scripts to execute (Python 2 and 3 variants, if available)
 // make two copies of ../web_exec.py and give them the following names,
@@ -62,12 +96,6 @@ var loadTestCases: any = undefined; // super hacky! fixme
 // uncomment below if you're running on Google App Engine using the built-in app.yaml
 var python2_backend_script = 'exec';
 var python3_backend_script = 'exec';
-
-// KRAZY experimental KODE!!! Use a custom hacked CPython interpreter
-var python2crazy_backend_script = 'web_exec_py2-crazy.py';
-// On Google App Engine, simply run dev_appserver.py with the
-// crazy custom py2crazy CPython interpreter to get 2crazy mode
-//var python2crazy_backend_script = 'exec';
 
 // empty dummy just to do logging on the Apache's server
 var js_backend_script = 'web_exec_js.py';
@@ -103,8 +131,6 @@ function langToBackendScript(lang) {
       backend_script = python2_backend_script;
   } else if (lang == '3') {
       backend_script = python3_backend_script;
-  } else if (lang == '2crazy') {
-      backend_script = python2crazy_backend_script;
   } else if (lang == 'js') {
       backend_script = js_backend_script;
   } else if (lang == 'ts') {
@@ -227,18 +253,6 @@ var initAceEditor = function(height) {
   pyInputAceEditor.focus();
 }
 
-var JAVA_BLANK_TEMPLATE = 'public class YourClassNameHere {\n\
-    public static void main(String[] args) {\n\
-\n\
-    }\n\
-}'
-
-var CPP_BLANK_TEMPLATE = 'int main() {\n\
-\n\
-  return 0;\n\
-}'
-
-
 function setAceMode() {
   var selectorVal = $('#pythonVersionSelector').val();
   var mod;
@@ -308,6 +322,8 @@ function snapshotCodeDiff() {
   }
 }
 
+// for reference only
+/*
 function reconstructCode() {
   var cur = '';
 
@@ -337,6 +353,7 @@ function reconstructCode() {
   //x = dmp.patch_fromText("@@ -1,5 +1,12 @@\n x = 1\n+%0Ax = 2%0A\n")
   //dmp.patch_apply(x, 'x = 1')
 }
+*/
 
 
 // BEGIN - shared session stuff
@@ -707,58 +724,16 @@ function populateTogetherJsShareUrl() {
   $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
   $("#syncBtn").click(requestSync);
 
-  // deployed on 2015-03-06
+  // deployed on 2015-03-06, simplified request on 2016-05-30
+  var emailNotificationHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt; width: 350px;"><a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs and feedback</a> on this shared sessions feature.</div>'
   $("#togetherjsStatus").append(emailNotificationHtml);
-
-  // append post shared session survey
-  //
-  // survey for shared sessions, deployed on 2014-06-06, taken down on
-  // 2015-03-06 due to lack of useful responses
-  /*
-  $("#togetherjsStatus").append(postSessionSurvey);
-  $('.star-rating :radio').change(function() {
-    if (TogetherJS.running) {
-      TogetherJS.send({type: "surveyHowUsefulStars",
-                       stars: Number(this.value)});
-    }
-  });
-
-  $('#submitSessionSurveyBtn').click(function() {
-    var resp = $('#sharedSessionWhatLearned').val();
-    if (TogetherJS.running && resp) {
-      TogetherJS.send({type: "surveyFreetextQuestion",
-                       question: "What did you just learn?",
-                       answer: $('#sharedSessionWhatLearned').val()});
-
-      $("#sharedSessionWhatLearned").val('');
-      $("#sharedSessionWhatLearnedThanks").show();
-      $.doTimeout('sharedSessionWhatLearnedThanksFadeOut', 1000, function() {
-        $("#sharedSessionWhatLearnedThanks").fadeOut(2000);
-      });
-    }
-  });
-  */
 }
 
 // END - shared session stuff
 
 
-var myVisualizer = null; // singleton ExecutionVisualizer instance
-function getVisualizer() {return myVisualizer;}
-function setVisualizer(v) {myVisualizer = v;}
-
-var rawInputLst = []; // a list of strings inputted by the user in response to raw_input or mouse_input events
-function getRawInputLst() {return rawInputLst;}
-function setRawInputLst(lst) {rawInputLst = lst;}
-
-
 // each frontend must implement its own executeCode function
 var executeCode = undefined;
-/*
-function executeCode() {
-  alert("Configuration error. Need to override executeCode(). This is an empty stub.");
-}
-*/
 
 function redrawConnectors() {
   if (appMode == 'display' || appMode == 'visualize' /* deprecated */) {
@@ -775,7 +750,6 @@ function setFronendError(lines) {
 function clearFrontendError() {
   $("#frontendErrorOutput").html('');
 }
-
 
 // From http://diveintohtml5.info/storage.html
 function supports_html5_storage() {
@@ -813,8 +787,8 @@ function pyInputSetScrollTop(st) {
 
 // TODO: fixme, this is all very hacky and inelegant
 function initializeFrontendParams(params) {
-  originFrontendJsFile = params.originFrontendJsFile;
-  executeCode = params.executeCode;
+  originFrontendJsFile = params.originFrontendJsFile; // nasty global
+  executeCode = params.executeCode; // nasty global
   assert(originFrontendJsFile);
   assert(executeCode);
 
@@ -1015,10 +989,6 @@ function genericOptFrontendReady(params) {
   $("#embedLinkDiv").hide();
   $("#executeBtn").attr('disabled', false);
   $("#executeBtn").click(executeCodeFromScratch);
-
-  // for Versions 1 and 2, initialize here. But for version 3+, dynamically
-  // generate a survey whenever the user successfully executes a piece of code
-  //initializeDisplayModeSurvey();
 
   // when you leave or reload the page, submit an updateHistoryJSON if you
   // have one. beforeunload seems to work better than unload(), but it's
@@ -1356,7 +1326,6 @@ function doneExecutingCode() {
   isExecutingCode = false; // nasty global
 }
 
-
 function enterDisplayMode() {
   updateAppDisplay('display');
 }
@@ -1386,11 +1355,6 @@ function optFinishSuccessfulExecution() {
   myVisualizer.updateHistory.push([myVisualizer.curInstr,
                                    myVisualizer.creationTime,
                                    myVisualizer.curTrace.length]);
-  //console.log(JSON.stringify(myVisualizer.updateHistory));
-
-  // For version 3+, dynamically generate a survey whenever the user
-  // successfully executes a piece of code
-  initializeDisplayModeSurvey();
 }
 
 
@@ -1483,29 +1447,6 @@ function executeCodeAndCreateViz(codeToExec,
             }
             return [false]; // pass through to let other hooks keep handling
           });
-
-
-          // bind keyboard shortcuts if we're not in embedded mode
-          // (i.e., in an iframe)
-          //
-          // on second thought, eliminate keyboard shortcuts for now
-          // since it's kind of annoying to be pressing left/right to move
-          // the page horizontally and then also have the visualizer jump.
-          // ugh there isn't a perfect solution here for now:
-          /*
-          if (!myVisualizer.embeddedMode) {
-            $(document).off('keydown'); // clear first before rebinding, just to be paranoid
-            $(document).keydown(function(e) {
-              if (myVisualizer) {
-                if (e.keyCode === 37) { // left
-                  myVisualizer.stepBack();
-                } else if (e.keyCode === 39) { // right
-                  myVisualizer.stepForward();
-                }
-              }
-            });
-          }
-          */
         }
         // SUPER HACK -- slip in backendOptionsObj as an extra field
         if (myVisualizer) {
@@ -1705,7 +1646,6 @@ function getBaseBackendOptionsObj() {
   var ret = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
              heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
              show_only_outputs: false,
-             py_crazy_mode: ($('#pythonVersionSelector').val() == '2crazy'),
              origin: originFrontendJsFile};
 
   var surveyObj = getSurveyObject();
@@ -1914,301 +1854,6 @@ function getSurveyObject() {
   return null;
 }
 
-
-// survey for shared sessions, deployed on 2014-06-06, taken down on
-// 2015-03-06 due to lack of useful responses
-var postSessionSurvey = '\n\
-<div id="postSessionSurveyDiv" style="border: 1px solid #BE554E; padding: 5px; margin-top: 5px; line-height: 175%;">\n\
-<span style="font-size: 8pt; color: #666;">Support our research by giving anonymous feedback before ending your session.</span><br/>\n\
-How useful was this particular session? (click star to rate)\n\
-<span class="star-rating togetherjsIgnore">\n\
-  <input type="radio" class="togetherjsIgnore" name="rating" value="1"/><i></i>\n\
-  <input type="radio" class="togetherjsIgnore" name="rating" value="2"/><i></i>\n\
-  <input type="radio" class="togetherjsIgnore" name="rating" value="3"/><i></i>\n\
-  <input type="radio" class="togetherjsIgnore" name="rating" value="4"/><i></i>\n\
-  <input type="radio" class="togetherjsIgnore" name="rating" value="5"/><i></i>\n\
-</span>\n\
-<br/>\
-What did you just learn? <input type="text" id="sharedSessionWhatLearned" class="surveyQ togetherjsIgnore" size=60 maxlength=140/>\n\
-<button id="submitSessionSurveyBtn" type="button" style="font-size: 8pt;">Submit</button>\n\
-<span id="sharedSessionWhatLearnedThanks" style="color: #e93f34; font-weight: bold; font-size: 10pt; display: none;">Thanks!</span>\n\
-</div>'
-
-// deployed on 2015-03-06, simplified request on 2016-05-30
-var emailNotificationHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt; width: 350px;"><a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs and feedback</a> on this shared sessions feature.</div>'
-
-// display-mode survey, which is shown when the user is in 'display' mode
-// As of Version 3, this runs every time code is executed, so make sure event
-// handlers don't unnecessarily stack up
-function initializeDisplayModeSurvey() {
-  /* Version 1 - started experiment on 2014-04-09, put on hold on 2014-05-02
-
-Hard-coded HTML in surveyHeader:
-
-<div id="surveyHeader" style="margin-bottom: 5pt; display: none;">
-  <div id="vizSurveyLabel" style="font-size: 8pt; color: #666;">
-  Support our research by clicking a button when you see something interesting in the visualization.<br/>
-  </div>
-  <div>
-    <button class="surveyBtn" type="button">Eureka! Now I understand.</button>
-    <button class="surveyBtn" type="button">I learned something new!</button>
-    <button class="surveyBtn" type="button">I found the bug in my code!</button>
-    <button class="surveyBtn" type="button">This looks confusing.</button>
-    <button class="surveyBtn" type="button">I have another comment.</button>
-  </div>
-</div>
-
-[when any button is clicked a pop-up modal prompt tells the user to type
-in some details elaborating on what they just clicked]
-
-  $('.surveyBtn').click(function(e) {
-    // wow, massive copy-and-paste action from above!
-    var myArgs = getAppState();
-
-    var buttonPrompt = $(this).html();
-    var res = prompt('"' + buttonPrompt + '"' + '\nPlease elaborate if you can and hit OK to submit:');
-    // don't do ajax call when Cancel button is pressed
-    // (note that if OK button is pressed with no response, then an
-    // empty string will still be sent to the server
-    if (res !== null) {
-      myArgs.surveyQuestion = buttonPrompt;
-      myArgs.surveyResponse = res;
-      $.get('survey.py', myArgs, function(dat) {});
-    }
-  });
-
-  */
-
-  /* Version 2 - greatly simplified and deployed on 2014-05-24, revoked on 2014-07-13
-
-Hard-coded HTML in surveyHeader:
-
-<div id="surveyHeader" style="display: none;">
-  <div id="vizSurveyLabel" style="font-size: 8pt; color: #666; margin-bottom: 5pt;">
-    <!-- 2014-06-04 tagline -->
-    Support our research and help future learners by describing what you are learning.
-
-    <!-- 2014-05-28 tagline
-    Help future learners by describing what you just learned.
-    -->
-
-    <!-- 2014-05-25 tagline
-    Help future learners by writing about what you are learning.
-    Submit as often as you like!
-    -->
-
-    <!-- 2014-05-24 original tagline
-    Help future learners by filling in this blank whenever you learn
-    something new from the visualization:
-     -->
-  </div>
-  <div style="font-size: 10pt; margin-bottom: 5pt; padding: 1pt;">
-    <!-- this phrasing retired on 2014-06-04: "I just learned that" -->
-    What did you just learn?
-    <input style="font-size: 10pt; padding: 1pt;" type="text" id="iJustLearnedInput" size="60" maxlength=300/>
-
-    <button id="iJustLearnedSubmission" type="button" style="font-size: 10pt;">Submit</button>
-
-    <span id="iJustLearnedThanks"
-          style="color: #e93f34; font-weight: bold; font-size: 11pt; display: none;">
-      Thanks!
-    </span>
-  </div>
-</div>
-
-[when the user clicks the "Submit" button, send results to survey.py and
-display a brief "Thanks!" note]
-
-  $('#iJustLearnedSubmission').click(function(e) {
-    var resp = $("#iJustLearnedInput").val();
-
-    if (!$.trim(resp)) {
-      return;
-    }
-
-    // wow, massive copy-and-paste action from above!
-    var myArgs = getAppState();
-
-    // myArgs.surveyQuestion = "I just learned that ..."; // retired on 2014-06-04
-    myArgs.surveyQuestion = "What did you just learn?";
-    myArgs.surveyResponse = resp;
-    myArgs.surveyVersion = 'v2';
-
-    // 2014-05-25: implemented more detailed tracing for surveys
-    if (myVisualizer) {
-      myArgs.updateHistoryJSON = JSON.stringify(myVisualizer.updateHistory);
-    }
-
-    $.get('survey.py', myArgs, function(dat) {});
-
-    $("#iJustLearnedInput").val('');
-    $("#iJustLearnedThanks").show();
-    $.doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
-      $("#iJustLearnedThanks").fadeOut(1000);
-    });
-  });
-
-  */
-
-  /* Version 3 - deployed on 2014-07-13, revoked on 2015-03-01 (revoked
-     along with v4 of the "Visualize Execution" survey)
-
-  Display one of 3 display-mode surveys, depending on the contents of
-  myVisualizer.backendOptionsObj.survey.testing_group
-
-  'a' / 'b' -- A/B testing of two kinds of surveys
-
-  'c' -- if the user has filled in an answer to 'What do you hope to
-  learn by visualizing this code?' when hitting "Visualize Execution",
-  then echo that phrase back to them and display a custom survey
-
-  if (!myVisualizer || !myVisualizer.backendOptionsObj.survey) {
-    return;
-  }
-
-  var surveyObj = myVisualizer.backendOptionsObj.survey;
-
-  var display_mode_survey_v3a = '\n\
-      <div id="vizSurveyLabel">\n\
-      Support our research by clicking a button whenever you learn something.<br/>\n\
-      </div>\n\
-      <div>\n\
-        <button class="surveyBtn" type="button">I learned something new!</button>\n\
-        <button class="surveyBtn" type="button">I found a bug in my code!</button>\n\
-        <button class="surveyBtn" type="button">I cleared up a misunderstanding!</button>\n\
-      </div>\n\
-    </div>\n';
-
-  var display_mode_survey_v3b = '\n\
-      <div id="vizSurveyLabel">\n\
-        Support our research and help future learners by describing what you are learning.\n\
-      </div>\n\
-      <div style="font-size: 10pt; margin-bottom: 5pt; padding: 1pt;">\n\
-        What did you just learn?\n\
-        <input style="font-size: 10pt; padding: 1pt;" type="text" id="iJustLearnedInput" size="60" maxlength=300/>\n\
-        <button id="iJustLearnedSubmission" type="button" style="font-size: 10pt;">Submit</button>\n\
-        <span id="iJustLearnedThanks"\n\
-              style="color: #e93f34; font-weight: bold; font-size: 11pt; display: none;">\n\
-          Thanks!\n\
-        </span>\n\
-      </div>';
-
-  var display_mode_survey_v3c = '\n\
-      <div id="vizSurveyLabel">\n\
-      Support our research by clicking a button whenever you learn something.<br/>\n\
-      </div>\n\
-      <div style="margin-top: 12px;">\n\
-        You hoped to learn:\n\
-        "<span id="userHopeLearn"></span>"<br/>\n\
-        <button class="surveyBtn" type="button">I just learned something about that topic!</button>\n\
-        <button class="surveyBtn" type="button">I just learned something else new!</button>\n\
-      </div>\n\
-    </div>\n';
-
-  var testingGroup = surveyObj.testing_group;
-
-  var display_mode_survey_HTML = '';
-  if (testingGroup == 'a') {
-    display_mode_survey_HTML = display_mode_survey_v3a;
-  } else if (testingGroup == 'b') {
-    display_mode_survey_HTML = display_mode_survey_v3b;
-  } else if (testingGroup == 'c') {
-    display_mode_survey_HTML = display_mode_survey_v3c;
-  } else {
-    assert(false);
-  }
-
-  $("#surveyHeader").html(display_mode_survey_HTML);
-
-  $("#vizSurveyLabel").css('font-size', '8pt')
-                      .css('color', '#666')
-                      .css('margin-bottom', '5pt');
-  $(".surveyBtn").css('margin-right', '6px');
-
-  if (testingGroup == 'c') {
-    $("#userHopeLearn").html(htmlspecialchars(surveyObj.what_learn_Q));
-  }
-
-
-  // testingGroup == 'a' || testingGroup == 'c'
-  // use unbind first so that this function is idempotent
-  $('.surveyBtn').unbind().click(function(e) {
-    var buttonPrompt = $(this).html();
-    var res = prompt('You said, "' + buttonPrompt + '"' + '\nPlease describe what you just learned:');
-
-    if (!$.trim(res)) {
-      return;
-    }
-
-    var myArgs = getAppState();
-    myArgs.surveyQuestion = buttonPrompt;
-    myArgs.surveyResponse = res;
-    myArgs.surveyVersion = 'v3';
-    myArgs.testing_group = testingGroup; // use underscore for consistency
-
-    myArgs.updateHistoryJSON = JSON.stringify(myVisualizer.updateHistory);
-
-    if (surveyObj.what_learn_Q) {
-      myArgs.what_learn_Q = surveyObj.what_learn_Q;
-    }
-
-    if (supports_html5_storage()) {
-      myArgs.user_uuid = localStorage.getItem('opt_uuid');
-    }
-
-    $.get('survey.py', myArgs, function(dat) {});
-
-    logEventCodeopticon({type: 'survey',
-              appState: getAppState(),
-              surveyQuestion: myArgs.surveyQuestion,
-              surveyResponse: myArgs.surveyResponse,
-              surveyVersion: myArgs.surveyVersion,
-              testing_group: myArgs.testing_group,
-              what_learn_Q: myArgs.what_learn_Q,
-              });
-  });
-
-  // testingGroup == 'b'
-  // use unbind first so that this function is idempotent
-  $('#iJustLearnedSubmission').unbind().click(function(e) {
-    var resp = $("#iJustLearnedInput").val();
-
-    if (!$.trim(resp)) {
-      return;
-    }
-
-    var myArgs = getAppState();
-    myArgs.surveyQuestion = "What did you just learn?";
-    myArgs.surveyResponse = resp;
-    myArgs.surveyVersion = 'v3';
-    myArgs.testing_group = testingGroup; // use underscore for consistency
-
-    myArgs.updateHistoryJSON = JSON.stringify(myVisualizer.updateHistory);
-
-    if (supports_html5_storage()) {
-      myArgs.user_uuid = localStorage.getItem('opt_uuid');
-    }
-
-    $.get('survey.py', myArgs, function(dat) {});
-
-
-    $("#iJustLearnedInput").val('');
-    $("#iJustLearnedThanks").show();
-    $.doTimeout('iJustLearnedThanksFadeOut', 1200, function() {
-      $("#iJustLearnedThanks").fadeOut(1000);
-    });
-
-    logEventCodeopticon({type: 'survey',
-              appState: getAppState(),
-              surveyQuestion: myArgs.surveyQuestion,
-              surveyResponse: myArgs.surveyResponse,
-              surveyVersion: myArgs.surveyVersion,
-              testing_group: myArgs.testing_group,
-              });
-  });
-  */
-}
-
 // empty stub so that our code doesn't crash.
 // override this with a version in codeopticon-learner.js if needed
 function logEventCodeopticon(obj) {}
@@ -2222,7 +1867,7 @@ declare var module: any;
 module.exports = {
   setSurveyHTML: setSurveyHTML,
   genericOptFrontendReady: genericOptFrontendReady,
-  supports_html5_storage: supports_html5_storage,
+  supports_html5_storage: supports_html5_storage, // maybe move into a utils.js?
   setAceMode: setAceMode,
   pyInputSetValue: pyInputSetValue,
   pyInputGetValue: pyInputGetValue,
