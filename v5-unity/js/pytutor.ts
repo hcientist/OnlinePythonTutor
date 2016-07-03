@@ -726,6 +726,7 @@ export class ExecutionVisualizer {
       function(args) {
         var obj = args.obj, d3DomElement = args.d3DomElement;
         var typ = typeof obj;
+        // TODO: can probably simplify with default handling and getRealLabel:
         if (obj == null) 
           d3DomElement.append('<span class="nullObj">null</span>');
         else if (typ == "number") 
@@ -797,32 +798,6 @@ export class ExecutionVisualizer {
           myViz.domRoot.find('#stdinShow').html(stdinContent);
         }
         return [false]; 
-      });
-
-    this.add_pytutor_hook(
-      "end_constructor",
-      function(args) {
-        var myViz = args.myViz;
-        if ((myViz.curTrace.length > 0)
-            && myViz.curTrace[myViz.curTrace.length-1]
-            && myViz.curTrace[myViz.curTrace.length-1].stdout) {
-          myViz.hasStdout = true;
-          myViz.stdoutLines = myViz.curTrace[myViz.curTrace.length-1].stdout.split("\n").length;
-        }
-        // if last frame is a step limit
-        else if ((myViz.curTrace.length > 1)
-                 && myViz.curTrace[myViz.curTrace.length-2]
-                 && myViz.curTrace[myViz.curTrace.length-2].stdout) {
-          myViz.hasStdout = true;
-          myViz.stdoutLines = myViz.curTrace[myViz.curTrace.length-2].stdout.split("\n").length;
-        }
-        else {
-          myViz.stdoutLines = -1;
-        }
-        if (myViz.hasStdout)
-          for (var i=0; i<myViz.curTrace.length; i++)
-            if (!(myViz.curTrace[i].stdout))
-                myViz.curTrace[i].stdout=" "; // always show it, if it's ever used      
       });
 
     this.add_pytutor_hook(
@@ -972,7 +947,6 @@ export class ExecutionVisualizer {
         });
     };
   }
-
 
   // update fields corresponding to the current and previously executed lines
   // in the trace so that they can be properly highlighted; must call before
