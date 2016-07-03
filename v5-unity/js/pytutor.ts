@@ -79,6 +79,13 @@ export class ExecutionVisualizer {
   curInputCode: string;
   curTrace: any[];
 
+  // an array of objects with the following fields:
+  //   'text' - the text of the line of code
+  //   'lineNumber' - one-indexed (always the array index + 1)
+  //   'executionPoints' - an ordered array of zero-indexed execution points where this line was executed
+  //   'breakpointHere' - has a breakpoint been set here?
+  codeOutputLines: {text: string, lineNumber: number, executionPoints: number[], breakpointHere: boolean}[] = [];
+
   promptForUserInput: boolean;
   userInputPromptStr: string;
   promptForMouseInput: boolean;
@@ -219,6 +226,40 @@ export class ExecutionVisualizer {
 
     if (this.params.lang === 'java') {
       this.activateJavaFrontend(); // ohhhh yeah!
+    }
+
+    var lines = this.curInputCode.split('\n');
+    for (var i = 0; i < lines.length; i++) {
+      var cod = lines[i];
+      var n: {text: string, lineNumber: number, executionPoints: number[], breakpointHere: boolean} = {
+        text: cod,
+        lineNumber: i + 1,
+        executionPoints: [],
+        breakpointHere: false,
+      };
+
+      $.each(this.curTrace, function(j, elt) {
+        if (elt.line === n.lineNumber) {
+          n.executionPoints.push(j);
+        }
+      });
+
+      // if there is a comment containing 'breakpoint' and this line was actually executed,
+      // then set a breakpoint on this line
+      var breakpointInComment = false;
+      var toks = cod.split('#');
+      for (var j = 1 /* start at index 1, not 0 */; j < toks.length; j++) {
+        if (toks[j].indexOf('breakpoint') != -1) {
+          breakpointInComment = true;
+        }
+      }
+
+      if (breakpointInComment && n.executionPoints.length > 0) {
+        n.breakpointHere = true;
+        this.addToBreakpoints(n.executionPoints);
+      }
+
+      this.codeOutputLines.push(n);
     }
 
     this.try_hook("end_constructor", {myViz:this});
@@ -3075,14 +3116,6 @@ class CodeDisplay {
 
   codToDisplay: string;
 
-  // initialize in renderPyCodeOutput()
-  // an array of objects with the following fields:
-  //   'text' - the text of the line of code
-  //   'lineNumber' - one-indexed (always the array index + 1)
-  //   'executionPoints' - an ordered array of zero-indexed execution points where this line was executed
-  //   'breakpointHere' - has a breakpoint been set here?
-  codeOutputLines: {text: string, lineNumber: number, executionPoints: number[], breakpointHere: boolean}[];
-
   leftGutterSvgInitialized: boolean = false;
   arrowOffsetY: number;
   codeRowHeight: number;
@@ -3172,53 +3205,15 @@ class CodeDisplay {
 
   renderPyCodeOutput() {
     var myCodOutput = this; // capture
-    this.codeOutputLines = [];
-
-    var lines = this.codToDisplay.split('\n');
-
-    // TODO: maybe parse breakpoints in comments in ExecutionVisualizer
-    // instead of here in CodeDisplay?
-    for (var i = 0; i < lines.length; i++) {
-      var cod = lines[i];
-      var n: {text: string, lineNumber: number, executionPoints: number[], breakpointHere: boolean} = {
-        text: cod,
-        lineNumber: i + 1,
-        executionPoints: [],
-        breakpointHere: false,
-      };
-
-      $.each(this.owner.curTrace, function(j, elt) {
-        if (elt.line == n.lineNumber) {
-          n.executionPoints.push(j);
-        }
-      });
-
-      // if there is a comment containing 'breakpoint' and this line was actually executed,
-      // then set a breakpoint on this line
-      var breakpointInComment = false;
-      var toks = cod.split('#');
-      for (var j = 1 /* start at index 1, not 0 */; j < toks.length; j++) {
-        if (toks[j].indexOf('breakpoint') != -1) {
-          breakpointInComment = true;
-        }
-      }
-
-      if (breakpointInComment && n.executionPoints.length > 0) {
-        n.breakpointHere = true;
-        this.owner.addToBreakpoints(n.executionPoints);
-      }
-
-      this.codeOutputLines.push(n);
-    }
-
     this.domRoot.find('#pyCodeOutputDiv').empty();
 
-    // maps this.codeOutputLines to both table columns
+    // maps codeOutputLines down both table columns
+    // TODO: get rid of pesky owner dependency
     var codeOutputD3 = this.domRootD3.select('#pyCodeOutputDiv')
       .append('table')
       .attr('id', 'pyCodeOutput')
       .selectAll('tr')
-      .data(this.codeOutputLines)
+      .data(this.owner.codeOutputLines)
       .enter().append('tr')
       .selectAll('td')
       .data(function(d, i){return [d, d] /* map full data item down both columns */;})
@@ -3251,7 +3246,7 @@ class CodeDisplay {
     // create a left-most gutter td that spans ALL rows ...
     // (NB: valign="top" is CRUCIAL for this to work in IE)
     this.domRoot.find('#pyCodeOutput tr:first')
-        .prepend('<td id="gutterTD" valign="top" rowspan="' + this.codeOutputLines.length + '"><svg id="leftCodeGutterSVG"/></td>');
+        .prepend('<td id="gutterTD" valign="top" rowspan="' + this.owner.codeOutputLines.length + '"><svg id="leftCodeGutterSVG"/></td>');
 
     // create prevLineArrow and curLineArrow
     this.domRootD3.select('svg#leftCodeGutterSVG')
@@ -3321,7 +3316,7 @@ class CodeDisplay {
       // ... then handle the (much more common) multi-line case ...
       // this weird contortion is necessary to get the accurate row height on Internet Explorer
       // (simpler methods work on all other major browsers, erghhhhhh!!!)
-      if (this.codeOutputLines && this.codeOutputLines.length > 1) {
+      if (this.owner.codeOutputLines.length > 1) {
         var secondRowOffsetY = this.domRoot.find('table#pyCodeOutput tr:nth-child(2)').offset().top;
         this.codeRowHeight = secondRowOffsetY - firstRowOffsetY;
       }
