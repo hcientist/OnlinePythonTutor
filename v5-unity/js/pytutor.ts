@@ -13,6 +13,10 @@
   https://github.com/daveagp/java_visualize/blob/1489078712310eda44391f09405e0f71b2b190c9/jv-frontend.js#L101
 
   - implement other missing Java functionality while i'm at it :0
+    - also implement these options and stdin support too:
+      var optionNames = ['showStringsAsObjects', 'showAllFields', 'disableNesting'];
+
+  [probably do this in the FRONTEND and not in pytutor.js]
 
 */
 
