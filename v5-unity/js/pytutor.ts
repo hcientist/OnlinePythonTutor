@@ -9,6 +9,11 @@
 
 - test Java after massive refactorings
 
+- parse Java viz_options in users' java code:
+  https://github.com/daveagp/java_visualize/blob/1489078712310eda44391f09405e0f71b2b190c9/jv-frontend.js#L101
+
+  - implement other missing Java functionality while i'm at it :0
+
 */
 
 
