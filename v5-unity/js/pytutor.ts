@@ -1047,8 +1047,6 @@ export class ExecutionVisualizer {
     myViz.prevLineIsReturn = prevIsReturn;
   }
 
-  // TODO: this is used by opt-frontend.ts; find a cleaner way to expose
-  // NB: copy-and-paste from isOutputLineVisible with some minor tweaks
   isOutputLineVisibleForBubbles(lineDivID) {
     var pcod = this.domRoot.find('#pyCodeOutputDiv');
 
@@ -3078,7 +3076,12 @@ class CodeDisplay {
   codToDisplay: string;
 
   // initialize in renderPyCodeOutput()
-  codeOutputLines: any[];
+  // an array of objects with the following fields:
+  //   'text' - the text of the line of code
+  //   'lineNumber' - one-indexed (always the array index + 1)
+  //   'executionPoints' - an ordered array of zero-indexed execution points where this line was executed
+  //   'breakpointHere' - has a breakpoint been set here?
+  codeOutputLines: {text: string, lineNumber: number, executionPoints: number[], breakpointHere: boolean}[];
 
   leftGutterSvgInitialized: boolean = false;
   arrowOffsetY: number;
@@ -3169,12 +3172,6 @@ class CodeDisplay {
 
   renderPyCodeOutput() {
     var myCodOutput = this; // capture
-
-    // an array of objects with the following fields:
-    //   'text' - the text of the line of code
-    //   'lineNumber' - one-indexed (always the array index + 1)
-    //   'executionPoints' - an ordered array of zero-indexed execution points where this line was executed
-    //   'breakpointHere' - has a breakpoint been set here?
     this.codeOutputLines = [];
 
     var lines = this.codToDisplay.split('\n');
@@ -3183,12 +3180,12 @@ class CodeDisplay {
     // instead of here in CodeDisplay?
     for (var i = 0; i < lines.length; i++) {
       var cod = lines[i];
-
-      var n: any = {};
-      n.text = cod;
-      n.lineNumber = i + 1;
-      n.executionPoints = [];
-      n.breakpointHere = false;
+      var n: {text: string, lineNumber: number, executionPoints: number[], breakpointHere: boolean} = {
+        text: cod,
+        lineNumber: i + 1,
+        executionPoints: [],
+        breakpointHere: false,
+      };
 
       $.each(this.owner.curTrace, function(j, elt) {
         if (elt.line == n.lineNumber) {
