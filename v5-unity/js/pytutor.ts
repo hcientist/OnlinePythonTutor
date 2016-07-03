@@ -7,17 +7,6 @@
 - substitute in a non-live version of the live editor from opt-live.js
   in addition to the janky current version of the editor
 
-- test Java after massive refactorings
-
-- parse Java viz_options in users' java code:
-  https://github.com/daveagp/java_visualize/blob/1489078712310eda44391f09405e0f71b2b190c9/jv-frontend.js#L101
-
-  - implement other missing Java functionality while i'm at it :0
-    - also implement these options and stdin support too:
-      var optionNames = ['showStringsAsObjects', 'showAllFields', 'disableNesting'];
-
-  [probably do this in the FRONTEND and not in pytutor.js]
-
 */
 
 
@@ -735,18 +724,7 @@ export class ExecutionVisualizer {
       function(args) {
         var obj = args.obj, d3DomElement = args.d3DomElement;
         var typ = typeof obj;
-        // TODO: can probably simplify with default handling and getRealLabel:
-        if (obj == null) 
-          d3DomElement.append('<span class="nullObj">null</span>');
-        else if (typ == "number") 
-          d3DomElement.append('<span class="numberObj">' + obj + '</span>');
-        else if (typ == "boolean") {
-          if (obj) 
-            d3DomElement.append('<span class="boolObj">true</span>');
-          else 
-            d3DomElement.append('<span class="boolObj">false</span>');
-        }
-        else if (obj instanceof Array && obj[0] == "VOID") {
+        if (obj instanceof Array && obj[0] == "VOID") {
           d3DomElement.append('<span class="voidObj">void</span>');
         }
         else if (obj instanceof Array && obj[0] == "NUMBER-LITERAL") {
@@ -1176,9 +1154,7 @@ class DataVisualizer {
       } else if (label === 'set') {
         return 'Set';
       }
-    }
-
-    if (this.params.lang === 'ruby') {
+    } else if (this.params.lang === 'ruby') {
       if (label === 'dict') {
         return 'hash';
       } else if (label === 'set') {
@@ -1190,9 +1166,17 @@ class DataVisualizer {
       } else if (label === 'Global frame') {
         return 'Global Object';
       }
+    } else if (this.params.lang === 'java') {
+      if (label === 'None') {
+        return 'null';
+      } else if (label === 'True') {
+        return 'true';
+      } else if (label === 'False') {
+        return 'false';
+      }
     }
 
-    // default fallthrough case
+    // default fallthrough case if no matches above
     return label;
   }
 

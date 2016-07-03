@@ -2,11 +2,25 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-// TODOs:
-// qtip doesn't work with Webpack, so experimentalPopUpSyntaxErrorSurvey DOESN'T WORK
-// deactivate it for now
-//require('./lib/jquery.qtip.min.js');
-//require('../css/jquery.qtip.css');
+/* TODO:
+
+- parse Java viz_options in users' java code:
+  https://github.com/daveagp/java_visualize/blob/1489078712310eda44391f09405e0f71b2b190c9/jv-frontend.js#L101
+
+  - implement other missing Java functionality while i'm at it :0
+    - also implement these options and stdin support too:
+      var optionNames = ['showStringsAsObjects', 'showAllFields', 'disableNesting'];
+
+  [probably do this in the FRONTEND and not in pytutor.js]
+
+- qtip doesn't work with Webpack, so experimentalPopUpSyntaxErrorSurvey
+  DOESN'T WORK deactivate it for now
+
+require('./lib/jquery.qtip.min.js');
+require('../css/jquery.qtip.css');
+
+*/
+
 var activateSyntaxErrorSurvey = false; // true;
 
 // a list of previous consecutive executions with "compile"-time exceptions

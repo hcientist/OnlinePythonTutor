@@ -10,7 +10,7 @@ micro:
 	@casperjs test --concise test-micro.js
 
 java:
-	@casperjs test --concise test-java.js
+	@casperjs test test-java.js
 
 verbose:
 	@casperjs test test-micro.js
