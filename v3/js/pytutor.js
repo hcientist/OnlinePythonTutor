@@ -4583,13 +4583,22 @@ function closeModal(divId) {
 // All of the Java frontend code in this function was written by David
 // Pritchard and Will Gwozdz, and integrated by Philip Guo
 ExecutionVisualizer.prototype.activateJavaFrontend = function() {
-  // super hack by Philip that reverses the direction of the stack so
-  // that it grows DOWN and renders the same way as the Python and JS
-  // visualizer stacks
+  var prevLine = null;
   this.curTrace.forEach(function(e, i) {
+    // ugh the Java backend doesn't attach line numbers to exception
+    // events, so just take the previous line number as our best guess
+    if (e.event === 'exception' && !e.line) {
+      e.line = prevLine;
+    }
+
+    // super hack by Philip that reverses the direction of the stack so
+    // that it grows DOWN and renders the same way as the Python and JS
+    // visualizer stacks
     if (e.stack_to_render !== undefined) {
       e.stack_to_render.reverse();
     }
+
+    prevLine = e.line;
   });
 
   this.add_pytutor_hook(

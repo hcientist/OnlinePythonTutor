@@ -216,8 +216,9 @@ export class ExecutionVisualizer {
     this.domRootD3 = tmpRootD3.select('div.ExecutionVisualizer');
 
     if (this.params.lang === 'java') {
-      this.activateJavaFrontend(); // ohhhh yeah!
+      this.activateJavaFrontend(); // ohhhh yeah! do this before initializing codeOutputLines (ugh order dependency)
     }
+
 
     var lines = this.curInputCode.split('\n');
     for (var i = 0; i < lines.length; i++) {
@@ -710,13 +711,22 @@ export class ExecutionVisualizer {
   // All of the Java frontend code in this function was written by David
   // Pritchard and Will Gwozdz, and integrated into pytutor.js by Philip Guo
   activateJavaFrontend() {
-    // super hack by Philip that reverses the direction of the stack so
-    // that it grows DOWN and renders the same way as the Python and JS
-    // visualizer stacks
-    this.curTrace.forEach(function(e, i) {
+    var prevLine = null;
+    this.curTrace.forEach((e, i) => {
+      // ugh the Java backend doesn't attach line numbers to exception
+      // events, so just take the previous line number as our best guess
+      if (e.event === 'exception' && !e.line) {
+        e.line = prevLine;
+      }
+
+      // super hack by Philip that reverses the direction of the stack so
+      // that it grows DOWN and renders the same way as the Python and JS
+      // visualizer stacks
       if (e.stack_to_render !== undefined) {
         e.stack_to_render.reverse();
       }
+
+      prevLine = e.line;
     });
 
     this.add_pytutor_hook(
