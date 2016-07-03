@@ -79,6 +79,9 @@ var appStateAugmenter: any = undefined; // super hacky! fixme
 var loadTestCases: any = undefined; // super hacky! fixme
 
 
+// note that these settings are all customized for my own server setup,
+// so you will need to customize for your own server:
+
 // backend scripts to execute (Python 2 and 3 variants, if available)
 // make two copies of ../web_exec.py and give them the following names,
 // then change the first line (starting with #!) to the proper version
@@ -90,14 +93,10 @@ var loadTestCases: any = undefined; // super hacky! fixme
 // -rwxr-xr-x 1 pgbovine pgbovine 2.5K Jul  5 22:46 web_exec_py2.py*
 // (most notably, only the owner of the file should have write
 //  permissions)
-//var python2_backend_script = 'web_exec_py2.py';
-//var python3_backend_script = 'web_exec_py3.py';
+var python2_backend_script = 'web_exec_py2.py';
+var python3_backend_script = 'web_exec_py3.py';
 
-// uncomment below if you're running on Google App Engine using the built-in app.yaml
-var python2_backend_script = 'exec';
-var python3_backend_script = 'exec';
-
-// empty dummy just to do logging on the Apache's server
+// empty dummy just to do logging on Apache server
 var js_backend_script = 'web_exec_js.py';
 var ts_backend_script = 'web_exec_ts.py';
 var java_backend_script = 'web_exec_java.py';
@@ -123,6 +122,11 @@ if (window.location.protocol === 'https:') {
   var C_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_c_jsonp'; // for deployment
   var CPP_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_cpp_jsonp'; // for deployment
 }
+
+var serverRoot = (window.location.protocol === 'https:') ?
+                  'https://cokapi.com:8001/' :
+                  'http://104.237.139.253:3000/';
+
 
 
 function langToBackendScript(lang) {

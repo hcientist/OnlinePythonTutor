@@ -19,17 +19,11 @@ except:
 import json
 import pg_logger
 
-# dummy routes for testing only
+
 @route('/web_exec_<name:re:.+>.py')
-def web_exec(name):
-    return 'OK'
-
 @route('/LIVE_exec_<name:re:.+>.py')
-def live_exec(name):
-    return 'OK'
-
 @route('/viz_interaction.py')
-def viz_interaction():
+def dummy_ok(name=None):
     return 'OK'
 
 @route('/<filepath:path>')
@@ -38,9 +32,13 @@ def index(filepath):
 
 
 # Note that this will run either Python 2 or 3, depending on which
-# version of Python you used to start the server.
-@get('/exec')
-def get_exec():
+# version of Python you used to start the server, REGARDLESS of which
+# route was taken:
+@route('/web_exec_py2.py')
+@route('/web_exec_py3.py')
+@route('/LIVE_exec_py2.py')
+@route('/LIVE_exec_py3.py')
+def get_py_exec():
   out_s = StringIO.StringIO()
 
   def json_finalizer(input_code, output_trace):
@@ -57,6 +55,7 @@ def get_exec():
                                   json_finalizer)
 
   return out_s.getvalue()
+
 
 if __name__ == "__main__":
     run(host='localhost', port=8003, reloader=True)

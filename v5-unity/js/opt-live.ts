@@ -75,12 +75,8 @@ declare var jsonp_endpoint: string;
 // -rwxr-xr-x 1 pgbovine pgbovine 2.5K Jul  5 22:46 web_exec_py2.py*
 // (most notably, only the owner of the file should have write
 //  permissions)
-//var python2_backend_script = 'LIVE_exec_py2.py';
-//var python3_backend_script = 'LIVE_exec_py3.py';
-
-// uncomment below if you're running on Google App Engine using the built-in app.yaml
-var python2_backend_script = 'exec';
-var python3_backend_script = 'exec';
+var python2_backend_script = 'LIVE_exec_py2.py';
+var python3_backend_script = 'LIVE_exec_py3.py';
 
 // empty dummy just to do logging on the Apache's server
 var js_backend_script = 'LIVE_exec_js.py';
