@@ -4,13 +4,8 @@
 
 /* TODO:
 
-- test breakpoint and stdin raw_input functionality after refactorings
-
 - substitute in a non-live version of the live editor from opt-live.js
   in addition to the janky current version of the editor
-
-- test out try_hook now that i've ripped code apart into different
-  classes
 
 - test Java after massive refactorings
 
@@ -268,10 +263,10 @@ export class ExecutionVisualizer {
      https://github.com/daveagp
 
     [this documentation is a bit deprecated since Philip made try_hook a
-     method of ExecutionVisualizer, but the general ideas remains]
+     method of ExecutionVisualizer, but the general ideas remain]
 
    An external user should call
-  add_pytutor_hook("hook_name_here", function(args) {...})
+     add_pytutor_hook("hook_name_here", function(args) {...})
    args will be a javascript object with several named properties;
    this is meant to be similar to Python's keyword arguments.
 
@@ -295,8 +290,7 @@ export class ExecutionVisualizer {
    Hook callbacks can return false or undefined (i.e. no return
    value) in lieu of [false].
 
-   NB: If multiple functions are added to a hook, the oldest goes first.
-  */
+   NB: If multiple functions are added to a hook, the oldest goes first. */
   add_pytutor_hook(hook_name, func) {
     if (this.pytutor_hooks[hook_name])
       this.pytutor_hooks[hook_name].push(func);
@@ -304,28 +298,25 @@ export class ExecutionVisualizer {
       this.pytutor_hooks[hook_name] = [func];
   }
 
-
   /*  [this documentation is a bit deprecated since Philip made try_hook a
-       method of ExecutionVisualizer, but the general ideas remains]
+       method of ExecutionVisualizer, but the general ideas remain]
 
   try_hook(hook_name, args): how the internal codebase invokes a hook.
-   args will be a javascript object with several named properties;
-   this is meant to be similar to Python's keyword arguments.
-   E.g.,
+
+  args will be a javascript object with several named properties;
+  this is meant to be similar to Python's keyword arguments. E.g.,
 
   function isPrimitiveType(obj) {
     var hook_result = try_hook("isPrimitiveType", {obj:obj});
     if (hook_result[0]) return hook_result[1];
     // go on as normal if the hook didn't handle it
 
-   Although add_pytutor_hook allows the hooked function to
-   return false or undefined, try_hook will always return
-   something with the strict format [false], [true] or [true, ...].
-  */
+  Although add_pytutor_hook allows the hooked function to
+  return false or undefined, try_hook will always return
+  something with the strict format [false], [true] or [true, ...]. */
   try_hook(hook_name, args) {
     if (this.pytutor_hooks[hook_name]) {
       for (var i=0; i<this.pytutor_hooks[hook_name].length; i++) {
-
         // apply w/o "this", and pack sole arg into array as required by apply
         var handled_and_result
           = this.pytutor_hooks[hook_name][i].apply(null, [args]);
@@ -719,7 +710,7 @@ export class ExecutionVisualizer {
   }
 
   // All of the Java frontend code in this function was written by David
-  // Pritchard and Will Gwozdz, and integrated by Philip Guo
+  // Pritchard and Will Gwozdz, and integrated into pytutor.js by Philip Guo
   activateJavaFrontend() {
     // super hack by Philip that reverses the direction of the stack so
     // that it grows DOWN and renders the same way as the Python and JS
