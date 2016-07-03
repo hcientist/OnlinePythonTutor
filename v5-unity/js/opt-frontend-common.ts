@@ -11,6 +11,8 @@
 
   - look for initializeFrontendParams as a potential abstraction point
 
+  - e.g., getAppState and appStateEq, etc., can be in an AppState class
+
 */
 
 require('./lib/diff_match_patch.js');
@@ -1652,11 +1654,6 @@ function getBaseBackendOptionsObj() {
              show_only_outputs: false,
              origin: originFrontendJsFile};
 
-  var surveyObj = getSurveyObject();
-  if (surveyObj) {
-    (ret as any /* TS too strict */).survey = surveyObj;
-  }
-
   return ret;
 }
 
@@ -1677,8 +1674,6 @@ function getBaseFrontendOptionsObj() {
             };
   return ret;
 }
-
-
 
 
 /* For survey questions:
@@ -1746,6 +1741,7 @@ If you are <b>at least 60 years old</b>, please support our research by <a href=
 <br/>\n\
 <span style="font-size: 9pt;">Everyone else can help keep this tool free by <a href="https://docs.google.com/forms/d/1-aKilu0PECHZVRSIXHv8vJpEuKUO9uG3MrH864uX56U/viewform" target="_blank">filling out this usage survey</a>.</span>\n\
 </p>'
+v8: (deployed on 2016-06-20) - like v7 except emphasize the main usage survey more, and have the over-60 survey as auxiliary
 */
 var survey_v8 = '\n\
 <p style="font-size: 10pt; margin-top: 10px; margin-bottom: 15px; line-height: 175%;">\n\
@@ -1758,104 +1754,6 @@ var survey_html = survey_v8;
 
 function setSurveyHTML() {
   $('#surveyPane').html(survey_html);
-}
-
-function getSurveyObject() {
-  /* v1
-  var code_origin_Q_val = $('#code-origin-Q').val();
-  var what_learn_Q_val = $('#what-learn-Q').val();
-  var how_find_Q_val = $('#how-find-Q').val();
-
-  var ret = null;
-
-  if (code_origin_Q_val || what_learn_Q_val || how_find_Q_val) {
-    ret = {
-      ver: $('#Q-version').val(),
-      code_origin_Q: code_origin_Q_val,
-      what_learn_Q: what_learn_Q_val,
-      how_find_Q: how_find_Q_val,
-    }
-  }
-  */
-
-  /* v2
-  var what_learn_Q_val = $('#what-learn-Q').val();
-  var course_website_Q_val = $('#course-website-Q').val();
-
-  var ret = null;
-
-  if (what_learn_Q_val || course_website_Q_val) {
-    ret = {
-      ver: $('#Q-version').val(),
-      what_learn_Q: what_learn_Q_val,
-      course_website_Q: course_website_Q_val,
-    }
-  }
-  */
-
-  /* v3
-  var code_origin_Q_val = $('#code-origin-Q').val();
-  var what_learn_Q_val = $('#what-learn-Q').val();
-
-  var ret = null;
-
-  if (code_origin_Q_val || what_learn_Q_val) {
-    ret = {
-      ver: $('#Q-version').val(),
-      code_origin_Q: code_origin_Q_val,
-      what_learn_Q: what_learn_Q_val,
-    }
-  }
-  */
-
-  /* v4 */
-  /*
-  var ret = {
-    ver: $('#Q-version').val(),
-  }
-
-  var what_learn_Q_val = $('#what-learn-Q').val();
-  if ($.trim(what_learn_Q_val)) {
-    ret.what_learn_Q = what_learn_Q_val;
-    ret.testing_group = 'c'; // special group for users who have filled out this
-                             // execution-time survey
-  } else {
-    // assign to 'a' or 'b' group for A/B testing:
-    var grp = 'ERROR'; // default error sentinel
-
-    // if we have localStorage, then get/set a testing_group field to ensure
-    // some consistency across different sessions from the same user.
-    // of course, this isn't foolproof by any means, but it's a start
-    if (supports_html5_storage()) {
-      var saved_grp = localStorage.getItem('testing_group');
-      if (saved_grp) {
-        grp = saved_grp;
-      } else {
-        grp = (Math.random() < 0.5) ? 'a' : 'b';
-        localStorage.setItem('testing_group', grp);
-      }
-    } else {
-      grp = (Math.random() < 0.5) ? 'a' : 'b';
-    }
-
-    ret.testing_group = grp;
-  }
-  */
-
-  /* v5
-  var ret = {
-    ver: $('#Q-version').val(),
-  }
-
-  var email_Q_val = $('#email-addr-Q').val();
-  if ($.trim(email_Q_val)) {
-    ret.email_Q_val = email_Q_val;
-  }
-
-  return ret;
-  */
-
-  return null;
 }
 
 // empty stub so that our code doesn't crash.
@@ -1878,7 +1776,6 @@ module.exports = {
   pyInputSetScrollTop: pyInputSetScrollTop,
   pyInputGetScrollTop: pyInputGetScrollTop,
   langToBackendScript: langToBackendScript,
-  getSurveyObject: getSurveyObject,
   executeCodeWithRawInput: executeCodeWithRawInput,
   executeCodeAndCreateViz: executeCodeAndCreateViz,
   optFinishSuccessfulExecution: optFinishSuccessfulExecution,
