@@ -4,8 +4,6 @@
 
 /* TODO:
 
-- BUG: resizing doesn't work in embedded mode but works in regular mode
-
 - test breakpoint and stdin raw_input functionality after refactorings
 
 - substitute in a non-live version of the live editor from opt-live.js
@@ -401,8 +399,6 @@ export class ExecutionVisualizer {
     }
 
     if (this.params.codeDivWidth) {
-      this.domRoot.find('#codeDisplayDiv').width(this.params.codeDivWidth);
-      this.domRoot.find('#navControlsDiv').width(this.params.codeDivWidth);
       this.domRoot.find('#codAndNav').width(this.params.codeDivWidth);
     }
 
