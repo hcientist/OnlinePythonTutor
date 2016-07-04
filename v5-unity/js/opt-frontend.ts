@@ -84,7 +84,6 @@ function optFrontendExecuteCode(forceStartingInstr, forceRawInputLst) {
     optCommon.setRawInputLst(forceRawInputLst); // UGLY global across modules, FIXME
   }
 
-  var backend_script = optCommon.langToBackendScript($('#pythonVersionSelector').val());
   var backendOptionsObj = optCommon.getBaseBackendOptionsObj();
 
   var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
@@ -93,7 +92,7 @@ function optFrontendExecuteCode(forceStartingInstr, forceRawInputLst) {
   frontendOptionsObj.startingInstruction = startingInstruction;
 
   optCommon.executeCodeAndCreateViz(optCommon.pyInputGetValue(),
-                          backend_script, backendOptionsObj,
+                          $('#pythonVersionSelector').val(), backendOptionsObj,
                           frontendOptionsObj,
                           'pyOutputPane',
                           optFrontendFinishSuccessfulExecution,

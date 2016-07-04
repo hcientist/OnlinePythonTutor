@@ -61,9 +61,6 @@ $(document).ready(function() {
     startingInstruction = 0;
   }
 
-  var backend_script = optCommon.langToBackendScript(pyState);
-  assert(backend_script);
-
   // David Pritchard's code for resizeContainer option ...
   var resizeContainer = ($.bbq.getState('resizeContainer') == 'true');
     
@@ -109,7 +106,7 @@ $(document).ready(function() {
       frontendOptionsObj.startingInstruction = forceStartingInstr;
     }
     optCommon.executeCodeAndCreateViz(preseededCode,
-                            backend_script, backendOptionsObj,
+                            pyState, backendOptionsObj,
                             frontendOptionsObj,
                             'vizDiv',
                             function() { // success

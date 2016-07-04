@@ -57,6 +57,8 @@ declare var jsonp_endpoint: string;
 */
 
 
+// TODO: refactor me below
+
 // TODO: overriding backend_script from opt-frontend-common.js is also dicey, ergh
 // so it currently doesn't work for JavaScript. also it logs the WRONG
 // SCRIPT for Python since it uses the script names from
@@ -544,6 +546,8 @@ function optliveExecuteCodeAndCreateViz(codeToExec,
 
 // override the version in opt-frontend-common.js called
 // langToBackendScript; kinda bad!
+//
+// TODO: refactor a ton, bad bad bad
 function optliveLangToBackendScript(lang) {
   var backend_script = null;
   if (lang == '2') {

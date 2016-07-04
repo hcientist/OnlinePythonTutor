@@ -179,7 +179,6 @@ function addTestcase(initialCod /* optional code to pre-seed this test */,
     var dat = getCombinedCode(id);
 
     // adapted from executeCode in opt-frontend.js
-    var backend_script = optCommon.langToBackendScript($('#pythonVersionSelector').val());
     var backendOptionsObj = optCommon.getBaseBackendOptionsObj();
     var frontendOptionsObj = optCommon.getBaseFrontendOptionsObj();
     frontendOptionsObj.jumpToEnd = true;
@@ -235,7 +234,7 @@ function addTestcase(initialCod /* optional code to pre-seed this test */,
     }
 
     optCommon.executeCodeAndCreateViz(dat.cod,
-                            backend_script, backendOptionsObj,
+                            $('#pythonVersionSelector').val(), backendOptionsObj,
                             frontendOptionsObj,
                             'pyOutputPane',
                             isViz ? vizTestFinishSuccessfulExecution :

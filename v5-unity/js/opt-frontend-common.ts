@@ -81,78 +81,50 @@ var appStateAugmenter: any = undefined; // super hacky! fixme
 var loadTestCases: any = undefined; // super hacky! fixme
 
 
-// note that these settings are all customized for my own server setup,
-// so you will need to customize for your own server:
-
-// backend scripts to execute (Python 2 and 3 variants, if available)
-// make two copies of ../web_exec.py and give them the following names,
-// then change the first line (starting with #!) to the proper version
-// of the Python interpreter (i.e., Python 2 or Python 3).
-// Note that your hosting provider might have stringent rules for what
-// kind of scripts are allowed to execute. For instance, my provider
-// (Webfaction) seems to let scripts execute only if permissions are
-// something like:
-// -rwxr-xr-x 1 pgbovine pgbovine 2.5K Jul  5 22:46 web_exec_py2.py*
-// (most notably, only the owner of the file should have write
-//  permissions)
-var python2_backend_script = 'web_exec_py2.py';
-var python3_backend_script = 'web_exec_py3.py';
-
-// empty dummy just to do logging on Apache server
-var js_backend_script = 'web_exec_js.py';
-var ts_backend_script = 'web_exec_ts.py';
-var java_backend_script = 'web_exec_java.py';
-var ruby_backend_script = 'web_exec_ruby.py';
-var c_backend_script = 'web_exec_c.py';
-var cpp_backend_script = 'web_exec_cpp.py';
-
-// this is customized to my own Linode server:
-// these are the REAL endpoints, accessed via jsonp. code is in ../../v4-cokapi/
-if (window.location.protocol === 'https:') {
-  // my certificate for https is registered via cokapi.com, so use it for now:
-  var JS_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_js_jsonp';
-  var TS_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_ts_jsonp';
-  var JAVA_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_java_jsonp';
-  var RUBY_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_ruby_jsonp';
-  var C_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_c_jsonp';
-  var CPP_JSONP_ENDPOINT = 'https://cokapi.com:8001/exec_cpp_jsonp';
-} else {
-  var JS_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_js_jsonp'; // for deployment
-  var TS_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_ts_jsonp'; // for deployment
-  var JAVA_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_java_jsonp'; // for deployment
-  var RUBY_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_ruby_jsonp'; // for deployment
-  var C_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_c_jsonp'; // for deployment
-  var CPP_JSONP_ENDPOINT = 'http://104.237.139.253:3000/exec_cpp_jsonp'; // for deployment
-}
-
+// these settings are all customized for my own server setup,
+// so you will need to customize for your server:
 var serverRoot = (window.location.protocol === 'https:') ?
-                  'https://cokapi.com:8001/' :
+                  'https://cokapi.com:8001/' : // my certificate for https is registered via cokapi.com, so use it for now
                   'http://104.237.139.253:3000/';
 
+var JS_JSONP_ENDPOINT = serverRoot + 'exec_js_jsonp'; // TODO: get rid of this dependency in opt-live.ts
 
+// note that we use '2' and '3' instead of 'py2' and 'py3' due to legacy reasons
+var langSettingToBackendScript = {
+  // backend scripts to execute (Python 2 and 3 variants, if available)
+  // make two copies of ../web_exec.py and give them the following names,
+  // then change the first line (starting with #!) to the proper version
+  // of the Python interpreter (i.e., Python 2 or Python 3).
+  // Note that your hosting provider might have stringent rules for what
+  // kind of scripts are allowed to execute. For instance, my provider
+  // (Webfaction) seems to let scripts execute only if permissions are
+  // something like:
+  // -rwxr-xr-x 1 pgbovine pgbovine 2.5K Jul  5 22:46 web_exec_py2.py*
+  // (most notably, only the owner of the file should have write
+  //  permissions)
+  '2': 'web_exec_py2.py',
+  '3': 'web_exec_py3.py',
 
-function langToBackendScript(lang) {
-  var backend_script = null;
-  if (lang == '2') {
-      backend_script = python2_backend_script;
-  } else if (lang == '3') {
-      backend_script = python3_backend_script;
-  } else if (lang == 'js') {
-      backend_script = js_backend_script;
-  } else if (lang == 'ts') {
-      backend_script = ts_backend_script;
-  } else if (lang == 'ruby') {
-      backend_script = ruby_backend_script;
-  } else if (lang == 'java') {
-      backend_script = java_backend_script;
-  } else if (lang == 'c') {
-      backend_script = c_backend_script;
-  } else if (lang == 'cpp') {
-      backend_script = cpp_backend_script;
-  }
-  assert(backend_script);
-  return backend_script;
-}
+  // empty dummy scripts just to do logging on Apache server
+  'js':   'web_exec_js.py',
+  'ts':   'web_exec_ts.py',
+  'java': 'web_exec_java.py',
+  'ruby': 'web_exec_ruby.py',
+  'c':   'web_exec_c.py',
+  'cpp': 'web_exec_cpp.py',
+};
+
+// see ../../v4-cokapi/cokapi.js for details
+var langSettingToJsonpEndpoint = {
+  '2':    null,
+  '3':    null,
+  'js':   serverRoot + 'exec_js_jsonp',
+  'ts':   serverRoot + 'exec_ts_jsonp',
+  'java': serverRoot + 'exec_java_jsonp',
+  'ruby': serverRoot + 'exec_ruby_jsonp',
+  'c':    serverRoot + 'exec_c_jsonp',
+  'cpp':  serverRoot + 'exec_cpp_jsonp',
+};
 
 
 var isExecutingCode = false; // nasty, nasty global
@@ -1366,10 +1338,13 @@ function optFinishSuccessfulExecution() {
 
 // TODO: cut reliance on the nasty rawInputLst global
 function executeCodeAndCreateViz(codeToExec,
-                                 backendScript, backendOptionsObj,
+                                 pyState, backendOptionsObj,
                                  frontendOptionsObj,
                                  outputDiv,
                                  handleSuccessFunc, handleUncaughtExceptionFunc) {
+    var backendScript = langSettingToBackendScript[pyState];
+    assert(backendScript);
+    var jsonp_endpoint = langSettingToJsonpEndpoint[pyState]; // maybe null
 
     function execCallback(dataFromBackend) {
       var trace = dataFromBackend.trace;
@@ -1519,32 +1494,14 @@ function executeCodeAndCreateViz(codeToExec,
     clearFrontendError();
     startExecutingCode();
 
-    jsonp_endpoint = null;
-
-    // hacky!
-    if (backendScript === python2_backend_script) {
+    frontendOptionsObj.lang = pyState;
+    // kludgy exceptions
+    if (pyState === '2') {
       frontendOptionsObj.lang = 'py2';
-    } else if (backendScript === python3_backend_script) {
+    } else if (pyState === '3') {
       frontendOptionsObj.lang = 'py3';
-    } else if (backendScript === js_backend_script) {
-      frontendOptionsObj.lang = 'js';
-      jsonp_endpoint = JS_JSONP_ENDPOINT;
-    } else if (backendScript === ts_backend_script) {
-      frontendOptionsObj.lang = 'ts';
-      jsonp_endpoint = TS_JSONP_ENDPOINT;
-    } else if (backendScript === ruby_backend_script) {
-      frontendOptionsObj.lang = 'ruby';
-      jsonp_endpoint = RUBY_JSONP_ENDPOINT;
-    } else if (backendScript === java_backend_script) {
-      frontendOptionsObj.lang = 'java';
+    } else if (pyState === 'java') {
       frontendOptionsObj.disableHeapNesting = true; // never nest Java objects, seems like a good default
-      jsonp_endpoint = JAVA_JSONP_ENDPOINT;
-    } else if (backendScript === c_backend_script) {
-      frontendOptionsObj.lang = 'c';
-      jsonp_endpoint = C_JSONP_ENDPOINT;
-    } else if (backendScript === cpp_backend_script) {
-      frontendOptionsObj.lang = 'cpp';
-      jsonp_endpoint = CPP_JSONP_ENDPOINT;
     }
 
     // if we don't have any deltas, then don't bother sending deltaObj:
@@ -1565,12 +1522,8 @@ function executeCodeAndCreateViz(codeToExec,
     }
 
 
-    if (backendScript === js_backend_script ||
-        backendScript === ts_backend_script ||
-        backendScript === java_backend_script ||
-        backendScript === ruby_backend_script ||
-        backendScript === c_backend_script ||
-        backendScript === cpp_backend_script) {
+    if (jsonp_endpoint) {
+      assert (pyState !== '2' && pyState !== '3');
       // hack! should just be a dummy script for logging only
       $.get(backendScript,
             {user_script : codeToExec,
@@ -1582,7 +1535,6 @@ function executeCodeAndCreateViz(codeToExec,
 
       // the REAL call uses JSONP
       // http://learn.jquery.com/ajax/working-with-jsonp/
-      assert(jsonp_endpoint);
       $.ajax({
         url: jsonp_endpoint,
         // The name of the callback parameter, as specified by the YQL service
@@ -1594,6 +1546,7 @@ function executeCodeAndCreateViz(codeToExec,
       });
     } else {
       // Python 2 or 3
+      assert (pyState === '2' || pyState === '3');
       $.get(backendScript,
             {user_script : codeToExec,
              raw_input_json: rawInputLst.length > 0 ? JSON.stringify(rawInputLst) : '',
@@ -1775,7 +1728,6 @@ module.exports = {
   pyInputGetValue: pyInputGetValue,
   pyInputSetScrollTop: pyInputSetScrollTop,
   pyInputGetScrollTop: pyInputGetScrollTop,
-  langToBackendScript: langToBackendScript,
   executeCodeWithRawInput: executeCodeWithRawInput,
   executeCodeAndCreateViz: executeCodeAndCreateViz,
   optFinishSuccessfulExecution: optFinishSuccessfulExecution,
@@ -1800,5 +1752,5 @@ module.exports = {
   compressUpdateHistoryList: compressUpdateHistoryList,
   getQueryStringOptions: getQueryStringOptions,
   initializeFrontendParams: initializeFrontendParams,
-  JS_JSONP_ENDPOINT: JS_JSONP_ENDPOINT,
+  JS_JSONP_ENDPOINT: JS_JSONP_ENDPOINT, // TODO: get rid of me
 }
