@@ -70,6 +70,66 @@ const CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
 const SUBMIT_UPDATE_HISTORY_INTERVAL_MS = 1000 * 60;
 
 
+class OptFrontend {
+  sessionUUID: string = generateUUID(); // remains constant throughout one page load ("session")
+
+  myVisualizer; // singleton ExecutionVisualizer instance from pytutor.ts
+
+  // 'edit' or 'display'. also support 'visualize' for backward
+  // compatibility (same as 'display')
+  appMode: string = 'edit';
+
+  // inputted by user for raw_input / mouse_input events
+  rawInputLst: string[] = [];
+
+  isExecutingCode: boolean = false;
+
+  originFrontendJsFile: string;
+  appStateAugmenter: any; // super hacky! fixme
+  loadTestCases: any; // super hacky! fixme
+
+  executeCode: (forceStartingInstr: number, forceRawInputLst: string[]) => void;
+
+  pyInputAceEditor; // Ace editor object that contains the input code
+
+  dmp = new diff_match_patch();
+  curCode = ''; // TODO: do we need this?
+  deltaObj : {start: string, deltas: any[], v: number, startTime: number, executeTime?: number} = undefined;
+
+  num414Tries = 0;
+
+  constructor(originFrontendJsFile: string,
+              executeCode: (forceStartingInstr: number, forceRawInputLst: string[]) => void,
+              params=null) {
+    this.originFrontendJsFile = originFrontendJsFile;
+    this.executeCode = executeCode;
+
+    // optional params -- TODO: handle later
+    /*
+    if (params.TogetherjsReadyHandler) {
+      TogetherjsReadyHandler = params.TogetherjsReadyHandler;
+    }
+    if (params.TogetherjsCloseHandler) {
+      TogetherjsCloseHandler = params.TogetherjsCloseHandler;
+    }
+    if (params.startSharedSession) {
+      startSharedSession = params.startSharedSession;
+    }
+    if (params.initAceEditor) {
+      initAceEditor = params.initAceEditor;
+    }
+    if (params.appStateAugmenter) {
+      appStateAugmenter = params.appStateAugmenter;
+    }
+    if (params.loadTestCases) {
+      loadTestCases = params.loadTestCases;
+    }
+    */
+  }
+
+} // END class OptFrontend
+
+
 // TODO: encapsulate tons of globals into a class of some sort:
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
@@ -175,7 +235,6 @@ function supports_html5_storage() {
     return false;
   }
 }
-
 
 function initDeltaObj() {
   // make sure the editor already exists
