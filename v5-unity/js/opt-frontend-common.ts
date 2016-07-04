@@ -167,24 +167,15 @@ function generateUUID(){
     return uuid;
 };
 
-
-// OMG nasty wtf?!?
-
-// From: http://stackoverflow.com/questions/21159301/quotaexceedederror-dom-exception-22-an-attempt-was-made-to-add-something-to-st
-
-// Safari, in Private Browsing Mode, looks like it supports localStorage but all calls to setItem
-// throw QuotaExceededError. We're going to detect this and just silently drop any calls to setItem
-// to avoid the entire page breaking, without having to do a check at each usage of Storage.
-if (typeof localStorage === 'object') {
-    try {
-        localStorage.setItem('localStorage', '1');
-        localStorage.removeItem('localStorage');
-    } catch (e) {
-        (Storage as any /* TS too strict */).prototype._setItem = Storage.prototype.setItem;
-        Storage.prototype.setItem = function() {};
-        alert('Your web browser does not support storing settings locally. In Safari, the most common cause of this is using "Private Browsing Mode". Some settings may not save or some features may not work properly for you.');
-    }
+// From http://diveintohtml5.info/storage.html
+function supports_html5_storage() {
+  try {
+    return 'localStorage' in window && window['localStorage'] !== null;
+  } catch (e) {
+    return false;
+  }
 }
+
 
 function initDeltaObj() {
   // make sure the editor already exists
@@ -232,7 +223,6 @@ var initAceEditor = function(height) {
   s.setOption("useWorker", false);
 
   setAceMode();
-
   pyInputAceEditor.focus();
 }
 
@@ -264,8 +254,9 @@ function setAceMode() {
       pyInputSetValue(CPP_BLANK_TEMPLATE);
     }
   } else {
+    assert(selectorVal === '2' || selectorVal == '3')
     mod = 'python';
-    tabSize = 4; // PEP8
+    tabSize = 4; // PEP8 style standards
   }
   assert(mod);
 
@@ -402,7 +393,6 @@ function syncAppState(appState) {
     rawInputLst = [];
   }
 }
-
 
 // get OPT ready for integration with TogetherJS
 function initTogetherJS() {
@@ -672,13 +662,8 @@ function initTogetherJS() {
   });
 }
 
-var TogetherjsReadyHandler = function() {
-  alert("ERROR: need to override TogetherjsReadyHandler()");
-}
-
-var TogetherjsCloseHandler = function() {
-  alert("ERROR: need to override TogetherjsCloseHandler()");
-}
+var TogetherjsReadyHandler = undefined; // need to override in frontend
+var TogetherjsCloseHandler = undefined; // need to override in frontend
 
 var startSharedSession = function() {
   $("#ssDiv").hide(); // hide ASAP!
@@ -716,7 +701,8 @@ function populateTogetherJsShareUrl() {
 
 
 function redrawConnectors() {
-  if (appMode == 'display' || appMode == 'visualize' /* deprecated */) {
+  if (appMode == 'display' ||
+      appMode == 'visualize' /* deprecated */) {
     if (myVisualizer) {
       myVisualizer.redrawConnectors();
     }
@@ -729,15 +715,6 @@ function setFronendError(lines) {
 
 function clearFrontendError() {
   $("#frontendErrorOutput").html('');
-}
-
-// From http://diveintohtml5.info/storage.html
-function supports_html5_storage() {
-  try {
-    return 'localStorage' in window && window['localStorage'] !== null;
-  } catch (e) {
-    return false;
-  }
 }
 
 function pyInputGetValue() {
@@ -849,6 +826,23 @@ function genericOptFrontendReady(params) {
   */
 
 
+  // OMG nasty wtf?!?
+  // From: http://stackoverflow.com/questions/21159301/quotaexceedederror-dom-exception-22-an-attempt-was-made-to-add-something-to-st
+  // Safari, in Private Browsing Mode, looks like it supports localStorage but all calls to setItem
+  // throw QuotaExceededError. We're going to detect this and just silently drop any calls to setItem
+  // to avoid the entire page breaking, without having to do a check at each usage of Storage.
+  if (typeof localStorage === 'object') {
+      try {
+          localStorage.setItem('localStorage', '1');
+          localStorage.removeItem('localStorage');
+      } catch (e) {
+          (Storage as any /* TS too strict */).prototype._setItem = Storage.prototype.setItem;
+          Storage.prototype.setItem = function() {};
+          alert('Your web browser does not support storing settings locally. In Safari, the most common cause of this is using "Private Browsing Mode". Some features may not work properly for you.');
+      }
+  }
+
+
   // first initialize options from HTML LocalStorage. very important
   // that this code runs FIRST so that options get overridden by query
   // string options and anything else the user wants to override with.
@@ -907,7 +901,7 @@ function genericOptFrontendReady(params) {
     // ugh other idiosyncratic errors to ignore
     if ((settings.url.indexOf('name_lookup.py') > -1) ||
         (settings.url.indexOf('syntax_err_survey.py') > -1) ||
-        (settings.url.indexOf('viz_interaction.py') > -1) {
+        (settings.url.indexOf('viz_interaction.py') > -1)) {
       return; // get out early
     }
 
