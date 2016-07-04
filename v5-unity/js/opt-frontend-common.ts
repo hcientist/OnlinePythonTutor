@@ -10,8 +10,9 @@
   that can be exported wholesale to other modules
 
   - look for initializeFrontendParams as a potential abstraction point
-
   - e.g., getAppState and appStateEq, etc., can be in an AppState class
+
+- figure out how to avoid unnecessary duplication with opt-live.js
 
 */
 
@@ -65,6 +66,11 @@ const CPP_BLANK_TEMPLATE = 'int main() {\n\
   return 0;\n\
 }'
 
+const CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
+const SUBMIT_UPDATE_HISTORY_INTERVAL_MS = 1000 * 60;
+
+
+// TODO: encapsulate tons of globals into a class of some sort:
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 function getVisualizer() {return myVisualizer;}
@@ -74,11 +80,34 @@ var rawInputLst = []; // a list of strings inputted by the user in response to r
 function getRawInputLst() {return rawInputLst;}
 function setRawInputLst(lst) {rawInputLst = lst;}
 
+var isExecutingCode = false; // nasty, nasty global
+
+var appMode = 'edit'; // 'edit' or 'display'. also support
+                      // 'visualize' for backward compatibility (same as 'display')
+function getAppMode() {
+  return appMode;
+}
+
+var sessionUUID = generateUUID(); // remains constant throughout one page load ("session")
+function getSessionUUID() {return sessionUUID;}
 
 var originFrontendJsFile: string = undefined;
 
 var appStateAugmenter: any = undefined; // super hacky! fixme
 var loadTestCases: any = undefined; // super hacky! fixme
+
+var pyInputAceEditor; // Ace editor object that contains the input code
+function getAceEditor() {return pyInputAceEditor;}
+function setAceEditor(e) {pyInputAceEditor = e;}
+
+var dmp = new diff_match_patch();
+var curCode = '';
+var deltaObj : {start: string, deltas: any[], v: number, startTime: number, executeTime?: number} = undefined;
+
+var num414Tries = 0; // SUPER hacky global, ergh
+
+// each frontend must implement its own executeCode function
+var executeCode = undefined;
 
 
 // these settings are all customized for my own server setup,
@@ -127,22 +156,6 @@ var langSettingToJsonpEndpoint = {
 };
 
 
-var isExecutingCode = false; // nasty, nasty global
-
-var appMode = 'edit'; // 'edit' or 'display'. also support
-                      // 'visualize' for backward compatibility (same as 'display')
-
-function getAppMode() {
-  return appMode;
-}
-
-var pyInputAceEditor; // Ace editor object that contains the input code
-function getAceEditor() {return pyInputAceEditor;}
-function setAceEditor(e) {pyInputAceEditor = e;}
-
-var CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
-
-
 // From http://stackoverflow.com/a/8809472
 function generateUUID(){
     var d = new Date().getTime();
@@ -153,9 +166,6 @@ function generateUUID(){
     });
     return uuid;
 };
-
-var sessionUUID = generateUUID(); // remains constant throughout one page load ("session")
-function getSessionUUID() {return sessionUUID;}
 
 
 // OMG nasty wtf?!?
@@ -175,11 +185,6 @@ if (typeof localStorage === 'object') {
         alert('Your web browser does not support storing settings locally. In Safari, the most common cause of this is using "Private Browsing Mode". Some settings may not save or some features may not work properly for you.');
     }
 }
-
-
-var dmp = new diff_match_patch();
-var curCode = '';
-var deltaObj = undefined;
 
 function initDeltaObj() {
   // make sure the editor already exists
@@ -710,9 +715,6 @@ function populateTogetherJsShareUrl() {
 // END - shared session stuff
 
 
-// each frontend must implement its own executeCode function
-var executeCode = undefined;
-
 function redrawConnectors() {
   if (appMode == 'display' || appMode == 'visualize' /* deprecated */) {
     if (myVisualizer) {
@@ -764,6 +766,8 @@ function pyInputSetScrollTop(st) {
 
 
 // TODO: fixme, this is all very hacky and inelegant
+// this is a good candidate for a constructor, and these fields are ones
+// that can be overriden or something :)
 function initializeFrontendParams(params) {
   originFrontendJsFile = params.originFrontendJsFile; // nasty global
   executeCode = params.executeCode; // nasty global
@@ -791,18 +795,12 @@ function initializeFrontendParams(params) {
   }
 }
 
-
-var num414Tries = 0; // hacky global
-
 // run at the END so that everything else can be initialized first
 function genericOptFrontendReady(params) {
   assert(params);
   initializeFrontendParams(params);
   initTogetherJS(); // initialize early but after initializeFrontendParams
 
-
-  // be friendly to the browser's forward and back buttons
-  // thanks to http://benalman.com/projects/jquery-bbq-plugin/
   $(window).bind("hashchange", function(e) {
     // if you've got some preseeded code, then parse the entire query
     // string from scratch just like a page reload
@@ -834,7 +832,6 @@ function genericOptFrontendReady(params) {
     }
   });
 
-
   // don't sync for Ace since I can't get it working properly yet
   /*
   pyInputAceEditor.getSession().on('changeScrollTop', function() {
@@ -853,7 +850,7 @@ function genericOptFrontendReady(params) {
 
 
   // first initialize options from HTML LocalStorage. very important
-  // that this code runs first so that options get overridden by query
+  // that this code runs FIRST so that options get overridden by query
   // string options and anything else the user wants to override with.
   if (supports_html5_storage()) {
     var lsKeys = ['cumulative',
@@ -907,20 +904,15 @@ function genericOptFrontendReady(params) {
       return; // get out early
     }
 
-    // ugh other idiosyncratic stuff
-    if (settings.url.indexOf('name_lookup.py') > -1) {
+    // ugh other idiosyncratic errors to ignore
+    if ((settings.url.indexOf('name_lookup.py') > -1) ||
+        (settings.url.indexOf('syntax_err_survey.py') > -1) ||
+        (settings.url.indexOf('viz_interaction.py') > -1) {
       return; // get out early
     }
 
-    if (settings.url.indexOf('syntax_err_survey.py') > -1) {
-      return; // get out early
-    }
+    /* On my server ...
 
-    if (settings.url.indexOf('viz_interaction.py') > -1) {
-      return; // get out early
-    }
-
-    /*
       This jqxhr.responseText might be indicative of the URL being too
       long, since the error message returned by the server is something
       like this in nginx:
@@ -958,7 +950,6 @@ function genericOptFrontendReady(params) {
                        "Report a bug to philip@pgbovine.net by clicking the 'Generate permanent link' button",
                        "at the bottom of this page and including a URL in your email."]);
     }
-
     doneExecutingCode();
   });
 
@@ -996,9 +987,8 @@ function genericOptFrontendReady(params) {
         submitUpdateHistory('periodic');
       }
     }
-  }, 1000 * 60);
+  }, SUBMIT_UPDATE_HISTORY_INTERVAL_MS);
 }
-
 
 // sets globals such as rawInputLst, code input box, and toggle options
 function parseQueryString() {
@@ -1629,71 +1619,10 @@ function getBaseFrontendOptionsObj() {
 }
 
 
-/* For survey questions:
+/* For survey questions. Versions of survey wording:
 
-Versions of survey wording:
+[see ../../v3/js/opt-frontend-common.js for older versions of survey wording - v1 to v7]
 
-v1: (deployed around 2014-04-09, revoked on 2014-06-20)
-
-var survey_v1 = '\n\
-<p style="margin-top: 10px; line-height: 175%;">\n\
-[Optional] Please answer these questions to support our research and to help improve this tool.<br/>\n\
-Where is your code from? <input type="text" id="code-origin-Q" class="surveyQ" size=60 maxlength=140/><br/>\n\
-What do you hope to learn by visualizing it? <input type="text" id="what-learn-Q" class="surveyQ" size=55 maxlength=140/><br/>\n\
-How did you find this web site? <input type="text" id="how-find-Q" class="surveyQ" size=60 maxlength=140/>\n\
-<input type="hidden" id="Q-version" value="v1"/> <!-- for versioning -->\n\
-</p>'
-
-v2: (deployed on 2014-06-20, revoked on 2014-06-28)
-
-var survey_v2 = '\n\
-<p style="margin-top: 10px; line-height: 175%;">\n\
-[Optional] Please answer these questions to support our research and to help improve this tool.<br/>\n\
-What do you hope to learn by visualizing this code? <input type="text" id="what-learn-Q" class="surveyQ" size=60 maxlength=200/><br/>\n\
-Paste a website link to a course that uses Python: <input type="text" id="course-website-Q" class="surveyQ" size=55 maxlength=300/><br/>\n\
-<span style="font-size: 8pt; color: #666;">(This could be a course that you\'re taking or teaching in school, or that you\'ve taken or taught in the past.)</span>\n\
-<input type="hidden" id="Q-version" value="v2"/> <!-- for versioning -->\n\
-</p>'
-
-v3: (deployed on 2014-06-28, revoked on 2014-07-13) [it's a simplified version of v1]
-var survey_v3 = '\n\
-<p style="margin-top: 10px; line-height: 175%;">\n\
-[Optional] Please answer these questions to support our research and to help improve this tool.<br/>\n\
-Where is your code from? <input type="text" id="code-origin-Q" class="surveyQ" size=60 maxlength=140/><br/>\n\
-What do you hope to learn by visualizing it? <input type="text" id="what-learn-Q" class="surveyQ" size=55 maxlength=140/><br/>\n\
-<input type="hidden" id="Q-version" value="v3"/> <!-- for versioning -->\n\
-</p>'
-
-v4: (deployed on 2014-07-13, revoked on 2015-03-01)
-[an even more simplified version of v1 just to focus on ONE important question]
-var survey_v4 = '\n\
-<p style="margin-top: 10px; line-height: 175%;">\n\
-[Optional] What do you hope to learn by visualizing this code?<br/>\n\
-<input type="text" id="what-learn-Q" class="surveyQ" size=80 maxlength=300/><br/>\n\
-<input type="hidden" id="Q-version" value="v4"/> <!-- for versioning -->\n\
-</p>'
-
-v5: (deployed on 2015-03-01, retired on 2015-08-31) - target older population
-var survey_v5 = '\n\
-<p style="margin-top: 10px; line-height: 175%;">\n\
-If you are <span style="color: #333; font-weight: bold;">at least 60 years old</span> and would like to help our research on how older people learn programming, please enter your email address here:\n\
-<input type="text" id="email-addr-Q" class="surveyQ" size=30 maxlength=300/><br/>\n\
-<input type="hidden" id="Q-version" value="v5"/> <!-- for versioning -->\n\
-</p>'
-
-v6: (deployed on 2015-08-31) - use Google Forms links
-var survey_v6 = '\n\
-<p style="font-size: 9pt; margin-top: 10px; line-height: 175%;">\n\
-Please support our research and keep this tool free by <b><a href="https://docs.google.com/forms/d/1-aKilu0PECHZVRSIXHv8vJpEuKUO9uG3MrH864uX56U/viewform" target="_blank">filling out this short survey</a></b>.<br/>\n\
-If you are at least 60 years old, please also <a href="https://docs.google.com/forms/d/1lrXsE04ghfX9wNzTVwm1Wc6gQ5I-B4uw91ACrbDhJs8/viewform" target="_blank">fill out this survey</a>.</p>'
-
-v7: (deployed on 2016-05-22) - use Google Forms links - emphasize the over-60 survey more, but same links
-var survey_v7 = '\n\
-<p style="font-size: 10pt; margin-top: 10px; line-height: 175%;">\n\
-If you are <b>at least 60 years old</b>, please support our research by <a href="https://docs.google.com/forms/d/1lrXsE04ghfX9wNzTVwm1Wc6gQ5I-B4uw91ACrbDhJs8/viewform" target="_blank">filling out this short survey</a>.\n\
-<br/>\n\
-<span style="font-size: 9pt;">Everyone else can help keep this tool free by <a href="https://docs.google.com/forms/d/1-aKilu0PECHZVRSIXHv8vJpEuKUO9uG3MrH864uX56U/viewform" target="_blank">filling out this usage survey</a>.</span>\n\
-</p>'
 v8: (deployed on 2016-06-20) - like v7 except emphasize the main usage survey more, and have the over-60 survey as auxiliary
 */
 var survey_v8 = '\n\
@@ -1703,10 +1632,8 @@ var survey_v8 = '\n\
 <span style="font-size: 9pt;">If you are <b>at least 60 years old</b>, please also fill out <a href="https://docs.google.com/forms/d/1lrXsE04ghfX9wNzTVwm1Wc6gQ5I-B4uw91ACrbDhJs8/viewform" target="_blank">our survey about learning programming</a>.</span>\n\
 </p>'
 
-var survey_html = survey_v8;
-
 function setSurveyHTML() {
-  $('#surveyPane').html(survey_html);
+  $('#surveyPane').html(survey_v8);
 }
 
 // empty stub so that our code doesn't crash.
