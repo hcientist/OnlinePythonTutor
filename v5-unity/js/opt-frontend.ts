@@ -161,6 +161,7 @@ class OptFrontend extends AbstractBaseFrontend {
       }
     });
 
+    // also fires when you resize the jQuery UI slider, interesting!
     $(window).resize(this.redrawConnectors.bind(this));
 
     $('#genUrlBtn').bind('click', () => {

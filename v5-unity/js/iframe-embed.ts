@@ -4,8 +4,6 @@
 
 /* TODO
 
-- when you SLIDE the center vertical divider, visualizer arrows don't redraw :(
-
 - test the resizeContainer option
 
 */
@@ -27,6 +25,7 @@ class IframeEmbedFrontend extends AbstractBaseFrontend {
   constructor(resizeContainer) {
     super();
     this.resizeContainer = resizeContainer;
+    this.appMode = 'display'; // peg to display mode by default so that redrawConnectors can work
   }
 
   executeCode(forceStartingInstr=undefined, forceRawInputLst=undefined) {
@@ -89,7 +88,7 @@ class IframeEmbedFrontend extends AbstractBaseFrontend {
     if (this.resizeContainer) {
       this.resizeContainerNow();
     }
-    this.myVisualizer.redrawConnectors();
+    this.redrawConnectors();
   }
 
   handleUncaughtException(trace) {
@@ -120,10 +119,8 @@ $(document).ready(function() {
   var resizeContainer = ($.bbq.getState('resizeContainer') == 'true');
   optFrontend = new IframeEmbedFrontend(resizeContainer);
 
-  // redraw connector arrows on window resize
-  $(window).resize(function() {
-    optFrontend.redrawConnectors();
-  });
+  // also fires when you resize the jQuery UI slider, interesting!
+  $(window).resize(optFrontend.redrawConnectors.bind(optFrontend));
 
   optFrontend.executeCodeFromScratch(); // finally, execute code and display visualization
 });

@@ -21,3 +21,4 @@ verbose:
 
 clean:
 	find . -name '*.diff.png' | xargs rm -f
+	find . -name '*.fail.png' | xargs rm -f
