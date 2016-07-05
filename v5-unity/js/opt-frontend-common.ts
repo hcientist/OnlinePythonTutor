@@ -4,12 +4,8 @@
 
 /* TODO
 
-- figure out how to avoid unnecessary duplication with opt-live.js
-
 - we're always referring to top-level CSS selectors on the page; maybe
   use a this.domRoot pattern like in pytutor.ts?
-
-- NB: i moved the shared sessions stuff into cruft/shared-sessions.js
 
 - test session_uuid, user_uuid, and other stuff stored to localStorage
 

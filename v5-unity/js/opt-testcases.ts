@@ -2,8 +2,6 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-// TODO: refactor to work with new opt-frontend-common.ts and opt-frontend.ts
-
 // TODO: add better abstractions so we don't need to 'export' so much stuff
 
 // use Webpack to automatically package up these dependencies

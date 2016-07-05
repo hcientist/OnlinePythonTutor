@@ -2,8 +2,6 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-// TODO: refactor to work with new opt-frontend-common.ts and opt-frontend.ts
-
 // TODO: using myVisualizer here borrowed from opt-frontend-common.js is
 // very dicey and dangerous due to scoping issues!
 

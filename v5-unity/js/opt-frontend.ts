@@ -13,6 +13,8 @@
 
   [probably do this in the FRONTEND and not in pytutor.js]
 
+- test logging via viz_interaction.py and updateHistory
+
 - make sure the "add test cases" feature still works
 
 - we're referring to top-level CSS selectors on the page; maybe use a
