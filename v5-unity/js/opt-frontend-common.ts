@@ -4,12 +4,6 @@
 
 /* TODO
 
-- work genericOptFrontendReady into the constructor, with possible
-  subclass overriding goodness
-
-- encapsulate all of the global variables into a frontend state object
-  that can be exported wholesale to other modules
-
 - figure out how to avoid unnecessary duplication with opt-live.js
 
 - we're always referring to top-level CSS selectors on the page; maybe
@@ -108,8 +102,10 @@ var pendingCodeOutputScrollTop = null;
 //
 // NB: this still relies on global state such as localStorage and the
 // browser URL hash string, so you can't quite have more than one
-// OptFrontend per page; it still should be instantiated as a singleton
-export class OptFrontend {
+// of these objects per page; it still should be instantiated as a singleton
+//
+// this should also be treated like an Abstract Base Class
+export class AbstractBaseFrontend {
   sessionUUID: string = generateUUID(); // remains constant throughout one page load ("session")
 
   myVisualizer; // singleton ExecutionVisualizer instance from pytutor.ts
@@ -123,12 +119,6 @@ export class OptFrontend {
 
   isExecutingCode: boolean = false;
 
-  originFrontendJsFile: string;
-  appStateAugmenter: (appState: any) => void;   // super hacky! fixme
-  loadTestCases: (testCasesLst: any[]) => void; // super hacky! fixme
-
-  executeCode: (forceStartingInstr?: number, forceRawInputLst?: string[]) => void;
-
   pyInputAceEditor; // Ace editor object that contains the input code
 
   dmp = new diff_match_patch();
@@ -137,12 +127,7 @@ export class OptFrontend {
 
   num414Tries = 0;
 
-  constructor(originFrontendJsFile: string,
-              executeCode: (forceStartingInstr?: number, forceRawInputLst?: string[]) => void,
-              params=null) {
-    this.originFrontendJsFile = originFrontendJsFile;
-    this.executeCode = executeCode;
-
+  constructor(params=null) {
     // optional params -- TODO: handle later
     /*
     if (params.TogetherjsReadyHandler) {
@@ -365,6 +350,12 @@ export class OptFrontend {
       }
     }, SUBMIT_UPDATE_HISTORY_INTERVAL_MS);
   }
+
+  executeCode(forceStartingInstr=undefined, forceRawInputLst=undefined) {
+    assert("FAIL! subclass must override executeCode");
+  }
+  appStateAugmenter(appState) { }
+  loadTestCases(testCasesLst) { }
 
   redrawConnectors() {
     if (this.myVisualizer &&
@@ -803,8 +794,7 @@ export class OptFrontend {
   executeCodeAndCreateViz(codeToExec,
                           pyState,
                           backendOptionsObj, frontendOptionsObj,
-                          outputDiv,
-                          handleSuccessFunc, handleUncaughtExceptionFunc) {
+                          outputDiv) {
       var backendScript = langSettingToBackendScript[pyState];
       assert(backendScript);
       var jsonp_endpoint = langSettingToJsonpEndpoint[pyState]; // maybe null
@@ -817,7 +807,7 @@ export class OptFrontend {
             (trace.length == 0) ||
             (trace[trace.length - 1].event == 'uncaught_exception')) {
 
-          handleUncaughtExceptionFunc(trace);
+          this.handleUncaughtExceptionFunc(trace);
 
           if (trace.length == 1) {
             killerException = trace[0]; // killer!
@@ -896,7 +886,7 @@ export class OptFrontend {
             this.myVisualizer.backendOptionsObj = backendOptionsObj;
           }
 
-          handleSuccessFunc();
+          this.optFinishSuccessfulExecution();
 
           // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
           // and sync any new elements that are now inside myVisualizer
@@ -1135,7 +1125,7 @@ export class OptFrontend {
   setSurveyHTML() {
     $('#surveyPane').html(survey_v8);
   }
-} // END class OptFrontend
+} // END class AbstractBaseFrontend
 
 
 /* For survey questions. Versions of survey wording:

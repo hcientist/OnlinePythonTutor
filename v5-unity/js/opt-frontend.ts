@@ -54,8 +54,6 @@ require('../css/opt-frontend.css');
 
 var optFrontend; // singleton OptFrontend object
 
-var originFrontendJsFile = 'opt-frontend.js';
-
 // a list of previous consecutive executions with "compile"-time exceptions
 var prevExecutionExceptionObjLst = [];
 
@@ -80,56 +78,6 @@ function optFrontendTogetherjsCloseHandler() {
   }
 }
 */
-
-function optFrontendExecuteCode(forceStartingInstr, forceRawInputLst) {
-  if (forceRawInputLst !== undefined) {
-    optFrontend.rawInputLst = forceRawInputLst; // UGLY leak across modules
-  }
-
-  var backendOptionsObj = optFrontend.getBaseBackendOptionsObj();
-  var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
-
-  var frontendOptionsObj = optFrontend.getBaseFrontendOptionsObj();
-  frontendOptionsObj.startingInstruction = startingInstruction;
-
-  optFrontend.executeCodeAndCreateViz(optFrontend.pyInputGetValue(),
-                          $('#pythonVersionSelector').val(),
-                          backendOptionsObj,
-                          frontendOptionsObj,
-                          'pyOutputPane',
-                          optFrontendFinishSuccessfulExecution,
-                          optFrontendHandleUncaughtException);
-}
-
-function optFrontendFinishSuccessfulExecution() {
-  optFrontend.optFinishSuccessfulExecution();
-
-  /*
-  if (typeof(activateSyntaxErrorSurvey) !== 'undefined' &&
-      activateSyntaxErrorSurvey &&
-      experimentalPopUpSyntaxErrorSurvey) {
-    experimentalPopUpSyntaxErrorSurvey();
-  }
-  */
-}
-
-function optFrontendHandleUncaughtException(trace) {
-  optFrontend.handleUncaughtExceptionFunc(trace);
-
-  var killerException = null;
-  if (trace.length == 1) {
-    killerException = trace[0]; // killer!
-  } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
-    killerException = trace[trace.length - 1]; // killer!
-  }
-
-  if (killerException) {
-    var excObj = {killerException: killerException, myAppState: optFrontend.getAppState()};
-    prevExecutionExceptionObjLst.push(excObj);
-  } else {
-    prevExecutionExceptionObjLst = []; // reset!!!
-  }
-}
 
 function initAceAndOptions() {
   var v = $('#pythonVersionSelector').val();
@@ -285,7 +233,7 @@ var C_EXAMPLES = {
   cStringRevLink: 'string-reverse-inplace.c',
   cStructLink: 'struct-basic.c',
   cTypedefLink: 'typedef-test.c',
-}
+};
 
 var CPP_EXAMPLES = {
   cppClassLink: 'cpp-class-basic.cpp',
@@ -295,16 +243,74 @@ var CPP_EXAMPLES = {
   cppInheritLink: 'cpp-inheritance.cpp',
   cppPassRefLink: 'cpp-pass-by-ref.cpp',
   cppVirtualLink: 'cpp-virtual-method.cpp',
-}
+};
+
+
+class OptFrontend extends optCommon.AbstractBaseFrontend {
+  originFrontendJsFile: string = 'opt-frontend.js';
+
+  constructor(params) {
+    super(params);
+  }
+
+  executeCode(forceStartingInstr=undefined, forceRawInputLst=undefined) {
+    if (forceRawInputLst !== undefined) {
+      this.rawInputLst = forceRawInputLst;
+    }
+
+    var backendOptionsObj = this.getBaseBackendOptionsObj();
+    var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
+
+    var frontendOptionsObj = this.getBaseFrontendOptionsObj();
+    frontendOptionsObj.startingInstruction = startingInstruction;
+
+    this.executeCodeAndCreateViz(this.pyInputGetValue(),
+                                 $('#pythonVersionSelector').val(),
+                                 backendOptionsObj,
+                                 frontendOptionsObj,
+                                 'pyOutputPane');
+  }
+
+  optFinishSuccessfulExecution() {
+    super.optFinishSuccessfulExecution();
+    /*
+    if (typeof(activateSyntaxErrorSurvey) !== 'undefined' &&
+        activateSyntaxErrorSurvey &&
+        experimentalPopUpSyntaxErrorSurvey) {
+      experimentalPopUpSyntaxErrorSurvey();
+    }
+    */
+  }
+
+  handleUncaughtExceptionFunc(trace) {
+    super.handleUncaughtExceptionFunc(trace);
+
+    var killerException = null;
+    if (trace.length == 1) {
+      killerException = trace[0]; // killer!
+    } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
+      killerException = trace[trace.length - 1]; // killer!
+    }
+
+    if (killerException) {
+      var excObj = {killerException: killerException, myAppState: optFrontend.getAppState()};
+      prevExecutionExceptionObjLst.push(excObj);
+    } else {
+      prevExecutionExceptionObjLst = []; // reset!!!
+    }
+  }
+} // END class OptFrontend
 
 
 $(document).ready(function() {
-  optFrontend = new optCommon.OptFrontend(originFrontendJsFile, optFrontendExecuteCode,
-                                          {/*TogetherjsReadyHandler: optFrontendTogetherjsReadyHandler,
-                                           TogetherjsCloseHandler: optFrontendTogetherjsCloseHandler,
-                                           startSharedSession: optFrontendStartSharedSession,*/
-                                           appStateAugmenter: optTests.appStateAugmenter,
-                                           loadTestCases: optTests.loadTestcasesIntoPane});
+  optFrontend = new OptFrontend({
+                                  /*TogetherjsReadyHandler: optFrontendTogetherjsReadyHandler,
+                                    TogetherjsCloseHandler: optFrontendTogetherjsCloseHandler,
+                                    startSharedSession: optFrontendStartSharedSession,
+                                  */
+                                  appStateAugmenter: optTests.appStateAugmenter,
+                                  loadTestCases: optTests.loadTestcasesIntoPane,
+                                });
   optFrontend.setSurveyHTML();
 
   $("#hideHeaderLink").click(function() {
