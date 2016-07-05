@@ -587,11 +587,10 @@ class OptFrontend extends AbstractBaseFrontend {
     this.updateAppDisplay('edit');
   }
 
+  // try to make this function as idempotent as possible, so that
+  // repeated calls with same params don't do anything bad
   updateAppDisplay(newAppMode) {
-    // idempotence is VERY important here
-    if (newAppMode == this.appMode) {
-      return;
-    }
+    //console.log('updateAppDisplay', newAppMode);
 
     this.appMode = newAppMode;
 
@@ -636,9 +635,12 @@ class OptFrontend extends AbstractBaseFrontend {
       // jsPlumb connectors won't render properly
       this.myVisualizer.updateOutput();
 
+      // use .off() to remove all handlers first, to prevent accidental
+      // multiple attaches ...
+
       // customize edit button click functionality AFTER rendering myVisualizer
       $('#pyOutputPane #editCodeLinkDiv').show();
-      $('#pyOutputPane #editBtn').click(() => {
+      $('#pyOutputPane #editBtn').off().click(() => {
         this.enterEditMode();
       });
       var v = $('#pythonVersionSelector').val();
@@ -646,7 +648,7 @@ class OptFrontend extends AbstractBaseFrontend {
         var myArgs = this.getAppState();
         var urlStr = $.param.fragment('live.html', myArgs, 2 /* clobber all */);
         $("#pyOutputPane #liveModeSpan").show();
-        $('#pyOutputPane #editLiveModeBtn').click(this.openLiveModeUrl.bind(this));
+        $('#pyOutputPane #editLiveModeBtn').off().click(this.openLiveModeUrl.bind(this));
       } else {
         $("#pyOutputPane #liveModeSpan").hide();
       }
