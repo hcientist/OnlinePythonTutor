@@ -25,6 +25,8 @@
 
 // for TypeScript
 declare var initCodeopticon: any; // FIX later when porting Codeopticon
+declare var codeopticonUsername: string; // FIX later when porting Codeopticon
+declare var codeopticonSession: string;  // FIX later when porting Codeopticon
 
 require('./lib/jquery-3.0.0.min.js');
 require('./lib/jquery.qtip.min.js');
@@ -42,7 +44,7 @@ require('script!./lib/ace/src-min-noconflict/mode-ruby.js');
 require('script!./lib/socket.io-client/socket.io.js');
 
 // need to directly import the class for typechecking to work
-import {AbstractBaseFrontend} from './opt-frontend-common.ts';
+import {AbstractBaseFrontend, generateUUID, supports_html5_storage} from './opt-frontend-common.ts';
 
 var pytutor = require('./pytutor.ts');
 var assert = pytutor.assert;
@@ -52,6 +54,22 @@ var optTests = require('./opt-testcases.ts');
 require('../css/opt-frontend.css');
 
 // TODO: add Codeopticon dependencies later
+
+var pendingCodeOutputScrollTop = null; // for shared sessions; put back later
+
+const JAVA_BLANK_TEMPLATE = 'public class YourClassNameHere {\n\
+    public static void main(String[] args) {\n\
+\n\
+    }\n\
+}'
+
+const CPP_BLANK_TEMPLATE = 'int main() {\n\
+\n\
+  return 0;\n\
+}'
+
+const CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
+
 
 var optFrontend; // singleton OptFrontend object
 
@@ -80,6 +98,7 @@ function optFrontendTogetherjsCloseHandler() {
 }
 */
 
+// TODO: integrate into setAceMode (?)
 function initAceAndOptions() {
   var v = $('#pythonVersionSelector').val();
   if (v === 'java') {
@@ -249,9 +268,232 @@ var CPP_EXAMPLES = {
 
 class OptFrontend extends AbstractBaseFrontend {
   originFrontendJsFile: string = 'opt-frontend.js';
+  pyInputAceEditor; // Ace editor object that contains the input code
 
   constructor(params) {
     super(params);
+
+    this.initAceEditor(420);
+    this.pyInputAceEditor.getSession().on("change", (e) => {
+      // unfortunately, Ace doesn't detect whether a change was caused
+      // by a setValue call
+      if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+        TogetherJS.send({type: "codemirror-edit"});
+      }
+    });
+
+    // NB: don't sync changeScrollTop for Ace since I can't get it working yet
+    //pyInputAceEditor.getSession().on('changeScrollTop', () => {
+    //  if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+    //    $.doTimeout('codeInputScroll', 100, function() { // debounce
+    //      // note that this will send a signal back and forth both ways
+    //      // (there's no easy way to prevent this), but it shouldn't keep
+    //      // bouncing back and forth indefinitely since no the second signal
+    //      // causes no additional scrolling
+    //      TogetherJS.send({type: "codeInputScroll",
+    //                       scrollTop: pyInputGetScrollTop()});
+    //    });
+    //  }
+    //});
+
+    //initTogetherJS(); // initialize early but after initializeFrontendParams -- TODO: rethink
+
+    $(window).bind("hashchange", function(e) {
+      // if you've got some preseeded code, then parse the entire query
+      // string from scratch just like a page reload
+      if ($.bbq.getState('code')) {
+        this.parseQueryString();
+      } else {
+        // otherwise just do an incremental update
+        var newMode = $.bbq.getState('mode');
+        //console.log('hashchange:', newMode, window.location.hash);
+        this.updateAppDisplay(newMode);
+      }
+
+      if (typeof TogetherJS !== 'undefined' && TogetherJS.running && !this.isExecutingCode) {
+        TogetherJS.send({type: "hashchange",
+                         appMode: this.appMode,
+                         codeInputScrollTop: this.pyInputGetScrollTop(),
+                         myAppState: this.getAppState()});
+      }
+    });
+
+    $(window).resize(this.redrawConnectors.bind(this));
+
+    $('#genUrlBtn').bind('click', () => {
+      var myArgs = this.getAppState();
+      var urlStr = $.param.fragment(window.location.href, myArgs, 2); // 2 means 'override'
+      urlStr = urlStr.replace(/\)/g, '%29') // replace ) with %29 so that links embed well in Markdown
+      $('#urlOutput').val(urlStr);
+    });
+
+    // OMG nasty wtf?!?
+    // From: http://stackoverflow.com/questions/21159301/quotaexceedederror-dom-exception-22-an-attempt-was-made-to-add-something-to-st
+    // Safari, in Private Browsing Mode, looks like it supports localStorage but all calls to setItem
+    // throw QuotaExceededError. We're going to detect this and just silently drop any calls to setItem
+    // to avoid the entire page breaking, without having to do a check at each usage of Storage.
+    if (typeof localStorage === 'object') {
+      try {
+        localStorage.setItem('localStorage', '1');
+        localStorage.removeItem('localStorage');
+      } catch (e) {
+        (Storage as any).prototype._setItem = Storage.prototype.setItem;
+        Storage.prototype.setItem = function() {}; // make it a NOP
+        alert('Your web browser does not support storing settings locally. In Safari, the most common cause of this is using "Private Browsing Mode". Some features may not work properly for you.');
+      }
+    }
+
+    // first initialize options from HTML LocalStorage. very important
+    // that this code runs FIRST so that options get overridden by query
+    // string options and anything else the user wants to override with.
+    if (supports_html5_storage()) {
+      var lsKeys = ['cumulative',
+                    'heapPrimitives',
+                    'py',
+                    'textReferences'];
+      // restore toggleState if available
+      var lsOptions = {};
+      $.each(lsKeys, function(i, k) {
+        var v = localStorage.getItem(k);
+        if (v) {
+          lsOptions[k] = v;
+        }
+      });
+      this.setToggleOptions(lsOptions);
+
+      // store in localStorage whenever user explicitly changes any toggle option:
+      $('#cumulativeModeSelector,#heapPrimitivesSelector,#textualMemoryLabelsSelector,#pythonVersionSelector').change(() => {
+        var ts = this.getToggleState();
+        $.each(ts, function(k, v) {
+          localStorage.setItem(k, v);
+        });
+      });
+
+      // generate a unique UUID per "user" (as indicated by a single browser
+      // instance on a user's machine, which can be more precise than IP
+      // addresses due to sharing of IP addresses within, say, a school
+      // computer lab)
+      // added on 2015-01-27 for more precise user identification
+      if (!localStorage.getItem('opt_uuid')) {
+        localStorage.setItem('opt_uuid', generateUUID());
+      }
+    }
+
+    this.parseQueryString(); // do this at the end after Ace editor initialized
+  }
+
+  initAceEditor(height: number) {
+    this.pyInputAceEditor = ace.edit('codeInputPane');
+    var s = this.pyInputAceEditor.getSession();
+    // tab -> 4 spaces
+    s.setTabSize(4);
+    s.setUseSoftTabs(true);
+    // disable extraneous indicators:
+    s.setFoldStyle('manual'); // no code folding indicators
+    s.getDocument().setNewLineMode('unix'); // canonicalize all newlines to unix format
+    this.pyInputAceEditor.setHighlightActiveLine(false);
+    this.pyInputAceEditor.setShowPrintMargin(false);
+    this.pyInputAceEditor.setBehavioursEnabled(false);
+    this.pyInputAceEditor.$blockScrolling = Infinity; // kludgy to shut up weird warnings
+
+    // auto-grow height as fit
+    this.pyInputAceEditor.setOptions({minLines: 18, maxLines: 1000});
+
+    // TODO: we're referring to top-level CSS selectors on the page;
+    // maybe use a this.domRoot pattern like in pytutor.ts?
+    $('#codeInputPane').css('width', '700px');
+    $('#codeInputPane').css('height', height + 'px'); // VERY IMPORTANT so that it works on I.E., ugh!
+
+    this.initDeltaObj();
+    this.pyInputAceEditor.on('change', (e) => {
+      $.doTimeout('pyInputAceEditorChange', CODE_SNAPSHOT_DEBOUNCE_MS, this.snapshotCodeDiff.bind(this)); // debounce
+      this.clearFrontendError();
+      s.clearAnnotations();
+    });
+
+    // don't do real-time syntax checks:
+    // https://github.com/ajaxorg/ace/wiki/Syntax-validation
+    s.setOption("useWorker", false);
+
+    this.setAceMode();
+    this.pyInputAceEditor.focus();
+  }
+
+  setAceMode() {
+    var selectorVal = $('#pythonVersionSelector').val();
+    var mod;
+    var tabSize = 2;
+    var editorVal = $.trim(this.pyInputGetValue());
+
+    if (editorVal === JAVA_BLANK_TEMPLATE || editorVal === CPP_BLANK_TEMPLATE) {
+      editorVal = '';
+      this.pyInputSetValue(editorVal);
+    }
+
+    if (selectorVal === 'java') {
+      mod = 'java';
+      if (editorVal === '') {
+        this.pyInputSetValue(JAVA_BLANK_TEMPLATE);
+      }
+    } else if (selectorVal === 'js') {
+      mod = 'javascript';
+    } else if (selectorVal === 'ts') {
+      mod = 'typescript';
+    } else if (selectorVal === 'ruby') {
+      mod = 'ruby';
+    } else if (selectorVal === 'c' || selectorVal == 'cpp') {
+      mod = 'c_cpp';
+      if (editorVal === '') {
+        this.pyInputSetValue(CPP_BLANK_TEMPLATE);
+      }
+    } else {
+      assert(selectorVal === '2' || selectorVal == '3')
+      mod = 'python';
+      tabSize = 4; // PEP8 style standards
+    }
+    assert(mod);
+
+    var s = this.pyInputAceEditor.getSession();
+    s.setMode("ace/mode/" + mod);
+    s.setTabSize(tabSize);
+    s.setUseSoftTabs(true);
+
+    // clear all error displays when switching modes
+    var s = this.pyInputAceEditor.getSession();
+    s.clearAnnotations();
+
+    this.clearFrontendError();
+  }
+
+  pyInputGetValue() {
+    return this.pyInputAceEditor.getValue();
+  }
+
+  pyInputSetValue(dat) {
+    this.pyInputAceEditor.setValue(dat.rtrim() /* kill trailing spaces */,
+                                   -1 /* do NOT select after setting text */);
+    $('#urlOutput,#embedCodeOutput').val('');
+    this.clearFrontendError();
+    // also scroll to top to make the UI more usable on smaller monitors
+    // TODO: this has a global impact on the document, so breaks modularity?
+    $(document).scrollTop(0);
+  }
+
+  pyInputGetScrollTop() {
+    return this.pyInputAceEditor.getSession().getScrollTop();
+  }
+
+  pyInputSetScrollTop(st) {
+    this.pyInputAceEditor.getSession().setScrollTop(st);
+  }
+
+  executeCodeFromScratch() {
+    // don't execute empty string:
+    if (this.pyInputAceEditor && $.trim(this.pyInputGetValue()) == '') {
+      this.setFronendError(["Type in some code to visualize."]);
+      return;
+    }
+    super.executeCodeFromScratch();
   }
 
   executeCode(forceStartingInstr=undefined, forceRawInputLst=undefined) {
@@ -265,14 +507,24 @@ class OptFrontend extends AbstractBaseFrontend {
     var frontendOptionsObj = this.getBaseFrontendOptionsObj();
     frontendOptionsObj.startingInstruction = startingInstruction;
 
+    this.snapshotCodeDiff(); // do ONE MORE snapshot before we execute, or else
+                             // we'll miss a diff if the user hits Visualize Execution
+                             // very shortly after finishing coding
+    if (this.deltaObj) {
+      this.deltaObj.executeTime = new Date().getTime();
+    }
+
     this.executeCodeAndCreateViz(this.pyInputGetValue(),
                                  $('#pythonVersionSelector').val(),
                                  backendOptionsObj,
                                  frontendOptionsObj,
                                  'pyOutputPane');
+
+    this.initDeltaObj(); // clear deltaObj to start counting over again
   }
 
   optFinishSuccessfulExecution() {
+    this.enterDisplayMode(); // do this first!
     super.optFinishSuccessfulExecution();
     /*
     if (typeof(activateSyntaxErrorSurvey) !== 'undefined' &&
@@ -284,7 +536,25 @@ class OptFrontend extends AbstractBaseFrontend {
   }
 
   handleUncaughtExceptionFunc(trace) {
-    super.handleUncaughtExceptionFunc(trace);
+    if (trace.length == 1 && trace[0].line) {
+      var errorLineNo = trace[0].line - 1; /* Ace lines are zero-indexed */
+      if (errorLineNo !== undefined && errorLineNo != NaN) {
+        // highlight the faulting line
+        var s = this.pyInputAceEditor.getSession();
+        s.setAnnotations([{row: errorLineNo,
+                           column: null, /* for TS typechecking */
+                           type: 'error',
+                           text: trace[0].exception_msg}]);
+        this.pyInputAceEditor.gotoLine(errorLineNo + 1 /* one-indexed */);
+        // if we have both a line and column number, then move over to
+        // that column. (going to the line first prevents weird
+        // highlighting bugs)
+        if (trace[0].col !== undefined) {
+          this.pyInputAceEditor.moveCursorTo(errorLineNo, trace[0].col);
+        }
+        this.pyInputAceEditor.focus();
+      }
+    }
 
     var killerException = null;
     if (trace.length == 1) {
@@ -300,6 +570,223 @@ class OptFrontend extends AbstractBaseFrontend {
       prevExecutionExceptionObjLst = []; // reset!!!
     }
   }
+
+  initDeltaObj() {
+    // make sure the editor already exists
+    // (editor doesn't exist when you're, say, doing an iframe embed)
+    if (!this.pyInputAceEditor) {
+      return;
+    }
+
+    // v is the version number
+    //   1 (version 1 was released on 2014-11-05)
+    //   2 (version 2 was released on 2015-09-16, added a startTime field)
+    this.deltaObj = {start: this.pyInputGetValue(), deltas: [], v: 2,
+                     startTime: new Date().getTime()};
+  }
+
+  snapshotCodeDiff() {
+    assert(this.deltaObj);
+    var newCode = this.pyInputGetValue();
+    var timestamp = new Date().getTime();
+
+    //console.log('Orig:', curCode);
+    //console.log('New:', newCode);
+    if (this.curCode != newCode) {
+      var diff = this.dmp.diff_toDelta(this.dmp.diff_main(this.curCode, newCode));
+      //var patch = this.dmp.patch_toText(this.dmp.patch_make(this.curCode, newCode));
+      var delta = {t: timestamp, d: diff};
+      this.deltaObj.deltas.push(delta);
+
+      this.curCode = newCode;
+      this.logEventCodeopticon({type: 'editCode', delta: delta});
+
+      if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+        TogetherJS.send({type: "editCode", delta: delta});
+      }
+    }
+  }
+
+  enterDisplayMode() {
+    this.updateAppDisplay('display');
+  }
+
+  enterEditMode() {
+    this.updateAppDisplay('edit');
+  }
+
+  updateAppDisplay(newAppMode) {
+    // idempotence is VERY important here
+    if (newAppMode == this.appMode) {
+      return;
+    }
+
+    this.appMode = newAppMode;
+
+    if (this.appMode === undefined || this.appMode == 'edit' ||
+        !this.myVisualizer /* subtle -- if no visualizer, default to edit mode */) {
+      this.appMode = 'edit'; // canonicalize
+
+      $("#pyInputPane").show();
+      $("#pyOutputPane,#embedLinkDiv").hide();
+
+      // Potentially controversial: when you enter edit mode, DESTROY any
+      // existing visualizer object. note that this simplifies the app's
+      // conceptual model but breaks the browser's expected Forward and
+      // Back button flow
+      $("#pyOutputPane").empty();
+      // right before destroying, submit the visualizer's updateHistory
+      this.submitUpdateHistory('editMode');
+      this.myVisualizer = null; // yikes!
+
+      $(document).scrollTop(0); // scroll to top to make UX better on small monitors
+
+      var s: any = { mode: 'edit' };
+      // keep these persistent so that they survive page reloads
+      // keep these persistent so that they survive page reloads
+      if (typeof codeopticonSession !== "undefined") {s.cosession = codeopticonSession;}
+      if (typeof codeopticonUsername !== "undefined") {s.couser = codeopticonUsername;}
+      $.bbq.pushState(s, 2 /* completely override other hash strings to keep URL clean */);
+    } else if (this.appMode == 'display' || this.appMode == 'visualize' /* 'visualize' is deprecated */) {
+      assert(this.myVisualizer);
+      this.appMode = 'display'; // canonicalize
+
+      $("#pyInputPane").hide();
+      $("#pyOutputPane,#embedLinkDiv").show();
+
+      if (typeof TogetherJS === 'undefined' || !TogetherJS.running) {
+        $("#surveyHeader").show();
+      }
+
+      this.doneExecutingCode();
+
+      // do this AFTER making #pyOutputPane visible, or else
+      // jsPlumb connectors won't render properly
+      this.myVisualizer.updateOutput();
+
+      // customize edit button click functionality AFTER rendering (NB: awkward!)
+      $('#pyOutputPane #editCodeLinkDiv').show();
+      $('#pyOutputPane #editBtn').click(() => {
+        this.enterEditMode();
+      });
+      var v = $('#pythonVersionSelector').val();
+      if (v === 'js' || v === '2' || v === '3') {
+        var myArgs = this.getAppState();
+        var urlStr = $.param.fragment('live.html', myArgs, 2 /* clobber all */);
+        $("#pyOutputPane #liveModeSpan").show();
+        $('#pyOutputPane #editLiveModeBtn').click(() => {
+          var myArgs = this.getAppState();
+          var urlStr = $.param.fragment('live.html', myArgs, 2 /* clobber all */);
+          window.open(urlStr); // open in new tab
+          return false; // to prevent default "a href" click action
+        });
+      } else {
+        $("#pyOutputPane #liveModeSpan").hide();
+      }
+
+      $(document).scrollTop(0); // scroll to top to make UX better on small monitors
+
+      // NASTY global for shared sessions
+      if (pendingCodeOutputScrollTop) {
+        this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(pendingCodeOutputScrollTop);
+        pendingCodeOutputScrollTop = null;
+      }
+
+      $.doTimeout('pyCodeOutputDivScroll'); // cancel any prior scheduled calls
+
+      // TODO: this might interfere with experimentalPopUpSyntaxErrorSurvey (2015-04-19)
+      this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scroll(function(e) {
+        var elt = $(this);
+        // debounce
+        $.doTimeout('pyCodeOutputDivScroll', 100, function() {
+          // note that this will send a signal back and forth both ways
+          if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+            // (there's no easy way to prevent this), but it shouldn't keep
+            // bouncing back and forth indefinitely since no the second signal
+            // causes no additional scrolling
+            TogetherJS.send({type: "pyCodeOutputDivScroll",
+                             scrollTop: elt.scrollTop()});
+          }
+        });
+      });
+
+      var s: any = { mode: 'display' };
+      // keep these persistent so that they survive page reloads
+      if (typeof codeopticonSession !== "undefined") {s.cosession = codeopticonSession;}
+      if (typeof codeopticonUsername !== "undefined") {s.couser = codeopticonUsername;}
+      $.bbq.pushState(s, 2 /* completely override other hash strings to keep URL clean */);
+    } else {
+      assert(false);
+    }
+
+    $('#urlOutput,#embedCodeOutput').val(''); // clear to avoid stale values
+
+    // log at the end after appMode gets canonicalized
+    this.logEventCodeopticon({type: 'updateAppDisplay', mode: this.appMode, appState: this.getAppState()});
+  }
+
+  // get the ENTIRE current state of the app
+  getAppState() {
+    assert(this.originFrontendJsFile);
+
+    var ret = {code: this.pyInputGetValue(),
+               mode: this.appMode,
+               origin: this.originFrontendJsFile,
+               cumulative: $('#cumulativeModeSelector').val(),
+               heapPrimitives: $('#heapPrimitivesSelector').val(),
+               textReferences: $('#textualMemoryLabelsSelector').val(),
+               py: $('#pythonVersionSelector').val(),
+               /* ALWAYS JSON serialize rawInputLst, even if it's empty! */
+               rawInputLstJSON: JSON.stringify(this.rawInputLst),
+               curInstr: this.myVisualizer ? this.myVisualizer.curInstr : undefined};
+
+    // keep this really clean by avoiding undefined values
+    if (ret.cumulative === undefined)
+      delete ret.cumulative;
+    if (ret.heapPrimitives === undefined)
+      delete ret.heapPrimitives;
+    if (ret.textReferences === undefined)
+      delete ret.textReferences;
+    if (ret.py === undefined)
+      delete ret.py;
+    if (ret.rawInputLstJSON === undefined)
+      delete ret.rawInputLstJSON;
+    if (ret.curInstr === undefined)
+      delete ret.curInstr;
+
+    // different frontends can optionally AUGMENT the app state with
+    // custom fields
+    if (this.appStateAugmenter) {
+      this.appStateAugmenter(ret);
+    }
+    return ret;
+  }
+
+  // return whether two states match, except don't worry about curInstr
+  static appStateEq(s1, s2) {
+    assert(s1.origin == s2.origin); // sanity check!
+
+    return (s1.code == s2.code &&
+            s1.mode == s2.mode &&
+            s1.cumulative == s2.cumulative &&
+            s1.heapPrimitives == s1.heapPrimitives &&
+            s1.textReferences == s2.textReferences &&
+            s1.py == s2.py &&
+            s1.rawInputLstJSON == s2.rawInputLstJSON);
+  }
+
+  // strip it down to the bare minimum
+  getToggleState() {
+    var x = this.getAppState();
+    delete x.code;
+    delete x.mode;
+    delete x.rawInputLstJSON;
+    delete x.curInstr;
+    return x;
+  }
+
+
+
 } // END class OptFrontend
 
 

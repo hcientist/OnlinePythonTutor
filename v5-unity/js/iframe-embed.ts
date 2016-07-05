@@ -27,6 +27,7 @@ class IframeEmbedFrontend extends AbstractBaseFrontend {
   constructor(resizeContainer) {
     super();
     this.resizeContainer = resizeContainer;
+    this.parseQueryString(); // do this at the end, eek!
   }
 
   executeCode(forceStartingInstr=undefined, forceRawInputLst=undefined) {
