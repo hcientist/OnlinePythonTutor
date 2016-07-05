@@ -6,8 +6,6 @@
 
 - test the resizeContainer option
 
-- ah, there's no Ace editor in iframe-embed.ts, so how to deal with this?!?
-
 */
 
 var pytutor = require('./pytutor.ts');
@@ -27,7 +25,6 @@ class IframeEmbedFrontend extends AbstractBaseFrontend {
   constructor(resizeContainer) {
     super();
     this.resizeContainer = resizeContainer;
-    this.parseQueryString(); // do this at the end, eek!
   }
 
   executeCode(forceStartingInstr=undefined, forceRawInputLst=undefined) {
@@ -69,7 +66,7 @@ class IframeEmbedFrontend extends AbstractBaseFrontend {
                               disableHeapNesting: heapPrimitivesBool,
                               drawParentPointers: drawParentPointerBool,
                               textualMemoryLabels: textRefsBool,
-                              executeCodeWithRawInputFunc: optCommon.executeCodeWithRawInput,
+                              executeCodeWithRawInputFunc: this.executeCodeWithRawInput.bind(this),
                               heightChangeCallback: (this.resizeContainer ?
                                                      this.resizeContainerNow.bind(this) : undefined),
                               codeDivWidth: codeDivWidth,
@@ -128,11 +125,6 @@ class IframeEmbedFrontend extends AbstractBaseFrontend {
 $(document).ready(function() {
   var resizeContainer = ($.bbq.getState('resizeContainer') == 'true');
   optFrontend = new IframeEmbedFrontend(resizeContainer);
-
-  // log a generic AJAX error handler
-  $(document).ajaxError(function() {
-    alert("Ugh, Online Python Tutor server error :( Email philip@pgbovine.net");
-  });
 
   // redraw connector arrows on window resize
   $(window).resize(function() {
