@@ -13,6 +13,8 @@
 
   [probably do this in the FRONTEND and not in pytutor.js]
 
+- make sure the add test cases feature still works
+
 - qtip doesn't work with Webpack, so experimentalPopUpSyntaxErrorSurvey
   DOESN'T WORK deactivate it for now
   - reinstate SyntaxErrorSurveyBubble later from cruft/syntax-error-bubble.js
@@ -270,8 +272,14 @@ class OptFrontend extends AbstractBaseFrontend {
   originFrontendJsFile: string = 'opt-frontend.js';
   pyInputAceEditor; // Ace editor object that contains the input code
 
+  appStateAugmenter;
+  loadTestCases;
+
   constructor(params) {
     super(params);
+
+    this.appStateAugmenter = optTests.appStateAugmenter;
+    this.loadTestCases = optTests.loadTestcasesIntoPane;
 
     this.initAceEditor(420);
     this.pyInputAceEditor.getSession().on("change", (e) => {
@@ -786,7 +794,6 @@ class OptFrontend extends AbstractBaseFrontend {
   }
 
 
-
 } // END class OptFrontend
 
 
@@ -796,8 +803,7 @@ $(document).ready(function() {
                                     TogetherjsCloseHandler: optFrontendTogetherjsCloseHandler,
                                     startSharedSession: optFrontendStartSharedSession,
                                   */
-                                  appStateAugmenter: optTests.appStateAugmenter,
-                                  loadTestCases: optTests.loadTestcasesIntoPane,
+
                                 });
   optFrontend.setSurveyHTML();
 

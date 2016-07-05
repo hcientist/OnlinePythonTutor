@@ -131,13 +131,6 @@ export abstract class AbstractBaseFrontend {
     }
     */
 
-    if (params.appStateAugmenter) {
-      this.appStateAugmenter = params.appStateAugmenter;
-    }
-    if (params.loadTestCases) {
-      this.loadTestCases = params.loadTestCases;
-    }
-
     // register a generic AJAX error handler
     $(document).ajaxError(function(evt, jqxhr, settings, exception) {
       // ignore errors related to togetherjs stuff:
@@ -237,8 +230,8 @@ export abstract class AbstractBaseFrontend {
 
   abstract executeCode(forceStartingInstr?: number, forceRawInputLst?: string[]) : any;
   abstract handleUncaughtExceptionFunc(trace: any[]) : any;
-  appStateAugmenter(appState) { } // NOP
-  loadTestCases(testCasesLst) { } // NOP
+  appStateAugmenter: (appState) => {} // NOP
+  loadTestCases: (testCasesLst) => {} // NOP
 
   setFronendError(lines) {
     $("#frontendErrorOutput").html(lines.map(pytutor.htmlspecialchars).join('<br/>'));
