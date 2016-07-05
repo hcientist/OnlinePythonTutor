@@ -388,12 +388,6 @@ export abstract class AbstractBaseFrontend {
       }
       */
 
-      // if you're in display mode, kick back into edit mode before
-      // executing or else the display might not refresh properly ... ugh
-      // krufty FIXME
-      // NB: let's nix this and see if things still work :)
-      //this.enterEditMode();
-
       this.clearFrontendError();
       this.startExecutingCode();
 

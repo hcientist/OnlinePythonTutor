@@ -411,6 +411,12 @@ class OptFrontend extends AbstractBaseFrontend {
   }
 
   executeCode(forceStartingInstr=0, forceRawInputLst=undefined) {
+    // if you're in display mode, kick back into edit mode before executing
+    // or else the display might not refresh properly ... ugh krufty
+    if (this.appMode != 'edit') {
+      this.enterEditMode();
+    }
+
     if (forceRawInputLst !== undefined && forceRawInputLst !== null) {
       this.rawInputLst = forceRawInputLst;
     }
@@ -783,11 +789,6 @@ class OptFrontend extends AbstractBaseFrontend {
     if (queryStrOptions.testCasesLst && this.loadTestCases) {
       this.loadTestCases(queryStrOptions.testCasesLst);
     }
-
-    // ugh tricky -- always start in edit mode by default, and then
-    // switch to display mode only after the code successfully executes
-    // TODO: nix this and see if things still work
-    //this.appMode = 'edit';
 
     if ((queryStrOptions.appMode == 'display' ||
          queryStrOptions.appMode == 'visualize' /* deprecated */) &&
