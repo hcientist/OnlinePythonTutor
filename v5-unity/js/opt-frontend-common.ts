@@ -117,6 +117,9 @@ export abstract class AbstractBaseFrontend {
 
   num414Tries = 0;
 
+  abstract executeCode(forceStartingInstr?: number, forceRawInputLst?: string[]) : any;
+  abstract handleUncaughtExceptionFunc(trace: any[]) : any;
+
   constructor(params: any = {}) {
     // optional params -- TODO: handle later
     /*
@@ -227,18 +230,32 @@ export abstract class AbstractBaseFrontend {
   // override this with a version in codeopticon-learner.js if needed
   logEventCodeopticon(obj) { } // NOP
 
-
-  abstract executeCode(forceStartingInstr?: number, forceRawInputLst?: string[]) : any;
-  abstract handleUncaughtExceptionFunc(trace: any[]) : any;
-  appStateAugmenter: (appState) => {} // NOP
-  loadTestCases: (testCasesLst) => {} // NOP
-
   setFronendError(lines) {
     $("#frontendErrorOutput").html(lines.map(pytutor.htmlspecialchars).join('<br/>'));
   }
 
   clearFrontendError() {
     $("#frontendErrorOutput").html('');
+  }
+
+  // parsing the URL query string hash
+  getQueryStringOptions() {
+    var ril = $.bbq.getState('rawInputLstJSON');
+    var testCasesLstJSON = $.bbq.getState('testCasesJSON');
+    // note that any of these can be 'undefined'
+    return {preseededCode: $.bbq.getState('code'),
+            preseededCurInstr: Number($.bbq.getState('curInstr')),
+            verticalStack: $.bbq.getState('verticalStack'),
+            appMode: $.bbq.getState('mode'),
+            py: $.bbq.getState('py'),
+            cumulative: $.bbq.getState('cumulative'),
+            heapPrimitives: $.bbq.getState('heapPrimitives'),
+            textReferences: $.bbq.getState('textReferences'),
+            rawInputLst: ril ? $.parseJSON(ril) : undefined,
+            codeopticonSession: $.bbq.getState('cosession'),
+            codeopticonUsername: $.bbq.getState('couser'),
+            testCasesLst: testCasesLstJSON ? $.parseJSON(testCasesLstJSON) : undefined
+            };
   }
 
   redrawConnectors() {
@@ -536,78 +553,6 @@ export abstract class AbstractBaseFrontend {
                diffs_json: deltaObjStringified},
                execCallback.bind(this) /* tricky! */, "json");
       }
-  }
-
-  pyInputSetValue(s: string) { }; // NOP unless subclass overrides
-
-  parseQueryString() {
-    var queryStrOptions = this.getQueryStringOptions();
-    this.setToggleOptions(queryStrOptions);
-    if (queryStrOptions.preseededCode) {
-      this.pyInputSetValue(queryStrOptions.preseededCode);
-    }
-    if (queryStrOptions.rawInputLst) {
-      this.rawInputLst = queryStrOptions.rawInputLst; // global
-    }
-    else {
-      this.rawInputLst = [];
-    }
-
-    if (queryStrOptions.codeopticonSession) {
-      assert(false); // TODO: this won't currently work with Webpack, so fix it later
-      codeopticonSession = queryStrOptions.codeopticonSession; // GLOBAL defined in codeopticon-learner.js
-      codeopticonUsername = queryStrOptions.codeopticonUsername; // GLOBAL defined in codeopticon-learner.js
-    }
-
-    if (queryStrOptions.testCasesLst && this.loadTestCases) {
-      this.loadTestCases(queryStrOptions.testCasesLst);
-    }
-
-    // ugh tricky -- always start in edit mode by default, and then
-    // switch to display mode only after the code successfully executes
-    this.appMode = 'edit';
-    if ((queryStrOptions.appMode == 'display' ||
-         queryStrOptions.appMode == 'visualize' /* 'visualize' is deprecated */) &&
-        queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
-      this.executeCode(queryStrOptions.preseededCurInstr); // will switch to 'display' mode
-    }
-    $.bbq.removeState(); // clean up the URL no matter what
-  }
-
-  // parsing the URL query string hash
-  getQueryStringOptions() {
-    var ril = $.bbq.getState('rawInputLstJSON');
-    var testCasesLstJSON = $.bbq.getState('testCasesJSON');
-    // note that any of these can be 'undefined'
-    return {preseededCode: $.bbq.getState('code'),
-            preseededCurInstr: Number($.bbq.getState('curInstr')),
-            verticalStack: $.bbq.getState('verticalStack'),
-            appMode: $.bbq.getState('mode'),
-            py: $.bbq.getState('py'),
-            cumulative: $.bbq.getState('cumulative'),
-            heapPrimitives: $.bbq.getState('heapPrimitives'),
-            textReferences: $.bbq.getState('textReferences'),
-            rawInputLst: ril ? $.parseJSON(ril) : undefined,
-            codeopticonSession: $.bbq.getState('cosession'),
-            codeopticonUsername: $.bbq.getState('couser'),
-            testCasesLst: testCasesLstJSON ? $.parseJSON(testCasesLstJSON) : undefined
-            };
-  }
-
-  setToggleOptions(dat) {
-    // ugh, ugly tristate due to the possibility of each being undefined
-    if (dat.py !== undefined) {
-      $('#pythonVersionSelector').val(dat.py);
-    }
-    if (dat.cumulative !== undefined) {
-      $('#cumulativeModeSelector').val(dat.cumulative);
-    }
-    if (dat.heapPrimitives !== undefined) {
-      $('#heapPrimitivesSelector').val(dat.heapPrimitives);
-    }
-    if (dat.textReferences !== undefined) {
-      $('#textualMemoryLabelsSelector').val(dat.textReferences);
-    }
   }
 
   // Compress updateHistory before encoding and sending to

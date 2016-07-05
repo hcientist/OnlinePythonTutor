@@ -272,8 +272,8 @@ class OptFrontend extends AbstractBaseFrontend {
   originFrontendJsFile: string = 'opt-frontend.js';
   pyInputAceEditor; // Ace editor object that contains the input code
 
-  appStateAugmenter;
-  loadTestCases;
+  appStateAugmenter: (appState: any) => void;
+  loadTestCases: (testCasesLst: any[]) => void;
 
   constructor(params) {
     super(params);
@@ -793,6 +793,55 @@ class OptFrontend extends AbstractBaseFrontend {
     return x;
   }
 
+  setToggleOptions(dat) {
+    // ugh, ugly tristate due to the possibility of each being undefined
+    if (dat.py !== undefined) {
+      $('#pythonVersionSelector').val(dat.py);
+    }
+    if (dat.cumulative !== undefined) {
+      $('#cumulativeModeSelector').val(dat.cumulative);
+    }
+    if (dat.heapPrimitives !== undefined) {
+      $('#heapPrimitivesSelector').val(dat.heapPrimitives);
+    }
+    if (dat.textReferences !== undefined) {
+      $('#textualMemoryLabelsSelector').val(dat.textReferences);
+    }
+  }
+
+  parseQueryString() {
+    var queryStrOptions = this.getQueryStringOptions();
+    this.setToggleOptions(queryStrOptions);
+    if (queryStrOptions.preseededCode) {
+      this.pyInputSetValue(queryStrOptions.preseededCode);
+    }
+    if (queryStrOptions.rawInputLst) {
+      this.rawInputLst = queryStrOptions.rawInputLst; // global
+    }
+    else {
+      this.rawInputLst = [];
+    }
+
+    if (queryStrOptions.codeopticonSession) {
+      assert(false); // TODO: this won't currently work with Webpack, so fix it later
+      codeopticonSession = queryStrOptions.codeopticonSession; // GLOBAL defined in codeopticon-learner.js
+      codeopticonUsername = queryStrOptions.codeopticonUsername; // GLOBAL defined in codeopticon-learner.js
+    }
+
+    if (queryStrOptions.testCasesLst && this.loadTestCases) {
+      this.loadTestCases(queryStrOptions.testCasesLst);
+    }
+
+    // ugh tricky -- always start in edit mode by default, and then
+    // switch to display mode only after the code successfully executes
+    this.appMode = 'edit';
+    if ((queryStrOptions.appMode == 'display' ||
+         queryStrOptions.appMode == 'visualize' /* 'visualize' is deprecated */) &&
+        queryStrOptions.preseededCode /* jump to display only with pre-seeded code */) {
+      this.executeCode(queryStrOptions.preseededCurInstr); // will switch to 'display' mode
+    }
+    $.bbq.removeState(); // clean up the URL no matter what
+  }
 
 } // END class OptFrontend
 
