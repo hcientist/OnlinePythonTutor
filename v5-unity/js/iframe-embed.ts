@@ -2,135 +2,141 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-var optCommon = require('./opt-frontend-common.ts');
+/* TODO
+
+- test the resizeContainer option
+
+- ah, there's no Ace editor in iframe-embed.ts, so how to deal with this?!?
+
+*/
+
 var pytutor = require('./pytutor.ts');
 var assert = pytutor.assert;
 
 require('../css/opt-frontend.css');
 
+// need to directly import the class for typechecking to work
+import {AbstractBaseFrontend} from './opt-frontend-common.ts';
 
-var originFrontendJsFile = 'iframe-embed.js';
+var optFrontend; // singleton IframeEmbedFrontend object
 
-function NOP() {};
+class IframeEmbedFrontend extends AbstractBaseFrontend {
+  originFrontendJsFile: string = 'iframe-embed.js';
+  resizeContainer: boolean = false;
 
-function iframeHandleUncaughtException(trace) {
-  var excMsg = null;
-  if (trace.length == 1) {
-    excMsg = trace[0].exception_msg; // killer!
-  }
-  else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
-    excMsg = trace[trace.length - 1].exception_msg;
-  }
-  else {
-    excMsg = "Unknown error. Reload the page and try again. Or report a bug to philip@pgbovine.net";
-  }
-  $("#vizDiv").html(pytutor.htmlspecialchars(excMsg));
-}
-
-$(document).ready(function() {
-  optCommon.initializeFrontendParams({originFrontendJsFile: originFrontendJsFile,
-                                      executeCode: executeCode});
-
-  var queryStrOptions = optCommon.getQueryStringOptions();
-
-  var preseededCode = queryStrOptions.preseededCode;
-  var pyState = queryStrOptions.py;
-  var verticalStackBool = (queryStrOptions.verticalStack == 'true');
-  var heapPrimitivesBool = (queryStrOptions.heapPrimitives == 'true');
-  var textRefsBool = (queryStrOptions.textReferences == 'true');
-  var cumModeBool = (queryStrOptions.cumulative == 'true');
-
-  // these two are deprecated
-  var drawParentPointerBool = (queryStrOptions.drawParentPointers == 'true');
-
-  var codeDivWidth = undefined;
-  var cdw = $.bbq.getState('codeDivWidth');
-  if (cdw) {
-    codeDivWidth = Number(cdw);
+  constructor(resizeContainer) {
+    super();
+    this.resizeContainer = resizeContainer;
   }
 
-  var codeDivHeight = undefined;
-  var cdh = $.bbq.getState('codeDivHeight');
-  if (cdh) {
-    codeDivHeight = Number(cdh);
-  }
+  executeCode(forceStartingInstr=undefined, forceRawInputLst=undefined) {
+    var queryStrOptions = optFrontend.getQueryStringOptions();
 
+    var preseededCode = queryStrOptions.preseededCode;
+    var pyState = queryStrOptions.py;
+    var verticalStackBool = (queryStrOptions.verticalStack == 'true');
+    var heapPrimitivesBool = (queryStrOptions.heapPrimitives == 'true');
+    var textRefsBool = (queryStrOptions.textReferences == 'true');
+    var cumModeBool = (queryStrOptions.cumulative == 'true');
+    var drawParentPointerBool = (queryStrOptions.drawParentPointers == 'true');
 
-  var startingInstruction = queryStrOptions.preseededCurInstr;
-  if (!startingInstruction) {
-    startingInstruction = 0;
-  }
+    var codeDivWidth = undefined;
+    var cdw = $.bbq.getState('codeDivWidth');
+    if (cdw) {
+      codeDivWidth = Number(cdw);
+    }
 
-  // David Pritchard's code for resizeContainer option ...
-  var resizeContainer = ($.bbq.getState('resizeContainer') == 'true');
-    
-  if (resizeContainer) {
-      function findContainer() {
-          var ifs = window.top.document.getElementsByTagName("iframe");
-          for(var i = 0, len = ifs.length; i < len; i++)  {
-              var f = ifs[i];
-              var fDoc = f.contentDocument || f.contentWindow.document;
-              if(fDoc === document)   {
-                  return f;
-              }
-          }
-      }
-      
-      var container = findContainer();
-      
-      function resizeContainerNow() {
-          $(container).height($("html").height());
-      };
-  }
+    var codeDivHeight = undefined;
+    var cdh = $.bbq.getState('codeDivHeight');
+    if (cdh) {
+      codeDivHeight = Number(cdh);
+    }
 
+    var startingInstruction = queryStrOptions.preseededCurInstr;
+    if (!startingInstruction) {
+      startingInstruction = 0;
+    }
 
-  // set up all options in a JS object
-  var backendOptionsObj = {cumulative_mode: cumModeBool,
-                           heap_primitives: heapPrimitivesBool,
-                           origin: originFrontendJsFile};
+    // set up all options in a JS object
+    var backendOptionsObj = {cumulative_mode: cumModeBool,
+                             heap_primitives: heapPrimitivesBool,
+                             origin: this.originFrontendJsFile};
 
-  var frontendOptionsObj = {startingInstruction: startingInstruction,
-                            embeddedMode: true,
-                            verticalStack: verticalStackBool,
-                            disableHeapNesting: heapPrimitivesBool,
-                            drawParentPointers: drawParentPointerBool,
-                            textualMemoryLabels: textRefsBool,
-                            executeCodeWithRawInputFunc: optCommon.executeCodeWithRawInput,
-                            heightChangeCallback: (resizeContainer ? resizeContainerNow : NOP),
-                            codeDivWidth: codeDivWidth,
-                            codeDivHeight: codeDivHeight,
-                           }
+    var frontendOptionsObj = {startingInstruction: startingInstruction,
+                              embeddedMode: true,
+                              verticalStack: verticalStackBool,
+                              disableHeapNesting: heapPrimitivesBool,
+                              drawParentPointers: drawParentPointerBool,
+                              textualMemoryLabels: textRefsBool,
+                              executeCodeWithRawInputFunc: optCommon.executeCodeWithRawInput,
+                              heightChangeCallback: (this.resizeContainer ?
+                                                     this.resizeContainerNow.bind(this) : undefined),
+                              codeDivWidth: codeDivWidth,
+                              codeDivHeight: codeDivHeight,
+                             }
 
-  function executeCode(forceStartingInstr) {
     if (forceStartingInstr) {
       frontendOptionsObj.startingInstruction = forceStartingInstr;
     }
-    optCommon.executeCodeAndCreateViz(preseededCode,
-                            pyState, backendOptionsObj,
-                            frontendOptionsObj,
-                            'vizDiv',
-                            function() { // success
-                              if (resizeContainer)
-                                  resizeContainerNow();
-                              var myVisualizer = optCommon.getVisualizer();
-                              myVisualizer.redrawConnectors();
-                            },
-                            iframeHandleUncaughtException);
+
+    this.executeCodeAndCreateViz(preseededCode,
+                                 pyState, backendOptionsObj,
+                                 frontendOptionsObj,
+                                 'vizDiv');
   }
 
+  optFinishSuccessfulExecution() {
+    if (this.resizeContainer) {
+      this.resizeContainerNow();
+    }
+    this.myVisualizer.redrawConnectors();
+  }
+
+  handleUncaughtExceptionFunc(trace) {
+    var excMsg = null;
+    if (trace.length == 1) {
+      excMsg = trace[0].exception_msg; // killer!
+    } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
+      excMsg = trace[trace.length - 1].exception_msg;
+    } else {
+      excMsg = "Unknown error. Reload the page and try again. Or report a bug to philip@pgbovine.net";
+    }
+    $("#vizDiv").html(pytutor.htmlspecialchars(excMsg));
+  }
+
+  // David Pritchard's code for resizeContainer option ...
+  resizeContainerNow() {
+    function findContainer() {
+      var ifs = window.top.document.getElementsByTagName("iframe");
+      for(var i = 0, len = ifs.length; i < len; i++)  {
+        var f = ifs[i];
+        var fDoc = f.contentDocument || f.contentWindow.document;
+        if (fDoc === document) {
+          return f;
+        }
+      }
+    }
+
+    var container = findContainer();
+    $(container).height($("html").height());
+  }
+
+} // END class IframeEmbedFrontend
+
+
+$(document).ready(function() {
+  var resizeContainer = ($.bbq.getState('resizeContainer') == 'true');
+  optFrontend = new IframeEmbedFrontend(resizeContainer);
 
   // log a generic AJAX error handler
   $(document).ajaxError(function() {
     alert("Ugh, Online Python Tutor server error :( Email philip@pgbovine.net");
   });
 
-
   // redraw connector arrows on window resize
   $(window).resize(function() {
-    var myVisualizer = optCommon.getVisualizer();
-    myVisualizer.redrawConnectors();
+    optFrontend.redrawConnectors();
   });
 
-
-  optCommon.executeCodeFromScratch(); // finally, execute code and display visualization
+  optFrontend.executeCodeFromScratch(); // finally, execute code and display visualization
 });

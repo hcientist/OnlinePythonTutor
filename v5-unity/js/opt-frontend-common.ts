@@ -128,7 +128,7 @@ export abstract class AbstractBaseFrontend {
 
   num414Tries = 0;
 
-  constructor(params) {
+  constructor(params: any = {}) {
     // optional params -- TODO: handle later
     /*
     if (params.TogetherjsReadyHandler) {
