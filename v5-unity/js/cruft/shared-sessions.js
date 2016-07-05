@@ -2,6 +2,23 @@
 // maybe put into a separate codechella module?
 /*
 
+
+  // return whether two states match, except don't worry about curInstr
+  /*
+  static appStateEq(s1, s2) {
+    assert(s1.origin == s2.origin); // sanity check!
+
+    return (s1.code == s2.code &&
+            s1.mode == s2.mode &&
+            s1.cumulative == s2.cumulative &&
+            s1.heapPrimitives == s1.heapPrimitives &&
+            s1.textReferences == s2.textReferences &&
+            s1.py == s2.py &&
+            s1.rawInputLstJSON == s2.rawInputLstJSON);
+  }
+  */
+
+
 // grab this as early as possible before TogetherJS munges the URL
 var togetherjsInUrl = ($.bbq.getState('togetherjs') !== undefined);
 

@@ -81,17 +81,15 @@ const langSettingToJsonpEndpoint = {
 
 
 // for shared sessions ... put back in later
-var executeCodeSignalFromRemote = false;
-var togetherjsSyncRequested = false;
+//var executeCodeSignalFromRemote = false;
+//var togetherjsSyncRequested = false;
 
 
 // the main event!
 //
 // NB: this still relies on global state such as localStorage and the
-// browser URL hash string, so you can't quite have more than one
-// of these objects per page; it still should be instantiated as a singleton
-//
-// this should also be treated like an Abstract Base Class
+// browser URL hash string, so you still can't have more than one of these
+// objects per page; should still be instantiated as a SINGLETON
 export abstract class AbstractBaseFrontend {
   sessionUUID: string = generateUUID(); // remains constant throughout one page load ("session")
 
@@ -116,7 +114,7 @@ export abstract class AbstractBaseFrontend {
 
   abstract executeCode(forceStartingInstr?: number, forceRawInputLst?: string[]) : any;
   abstract finishSuccessfulExecution() : any;
-  abstract handleUncaughtExceptionFunc(trace: any[]) : any;
+  abstract handleUncaughtException(trace: any[]) : any;
 
   constructor(params: any = {}) {
     // optional params -- TODO: handle later
@@ -131,6 +129,17 @@ export abstract class AbstractBaseFrontend {
       startSharedSession = params.startSharedSession;
     }
     */
+
+    if (supports_html5_storage()) {
+      // generate a unique UUID per "user" (as indicated by a single browser
+      // instance on a user's machine, which can be more precise than IP
+      // addresses due to sharing of IP addresses within, say, a school
+      // computer lab)
+      // added on 2015-01-27 for more precise user identification
+      if (!localStorage.getItem('opt_uuid')) {
+        localStorage.setItem('opt_uuid', generateUUID());
+      }
+    }
 
     // register a generic AJAX error handler
     $(document).ajaxError(function(evt, jqxhr, settings, exception) {
@@ -172,7 +181,6 @@ export abstract class AbstractBaseFrontend {
         // message and give up.
         if (this.num414Tries === 0) {
           this.num414Tries++;
-          this.startExecutingCode(); // TODO: does this work?
           $("#executeBtn").click();
         } else {
           this.num414Tries = 0;
@@ -188,15 +196,14 @@ export abstract class AbstractBaseFrontend {
     });
 
     this.clearFrontendError();
-
     $("#embedLinkDiv").hide();
-    $("#executeBtn").attr('disabled', false);
-    $("#executeBtn").click(this.executeCodeFromScratch.bind(this));
-
+    $("#executeBtn")
+      .attr('disabled', false)
+      .click(this.executeCodeFromScratch.bind(this));
   }
 
   // empty stub so that our code doesn't crash.
-  // override this with a version in codeopticon-learner.js if needed
+  // TODO: override this with a version in codeopticon-learner.js if needed
   logEventCodeopticon(obj) { } // NOP
 
   setFronendError(lines) {
@@ -293,8 +300,6 @@ export abstract class AbstractBaseFrontend {
       assert(backendScript);
       var jsonp_endpoint = langSettingToJsonpEndpoint[pyState]; // maybe null
 
-      var _me = this;
-
       var execCallback = (dataFromBackend) => {
         var trace = dataFromBackend.trace;
         var killerException = null;
@@ -302,18 +307,15 @@ export abstract class AbstractBaseFrontend {
         if (!trace ||
             (trace.length == 0) ||
             (trace[trace.length - 1].event == 'uncaught_exception')) {
-
-          this.handleUncaughtExceptionFunc(trace);
+          this.handleUncaughtException(trace);
 
           if (trace.length == 1) {
             killerException = trace[0]; // killer!
             this.setFronendError([trace[0].exception_msg]);
-          }
-          else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
+          } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
             killerException = trace[trace.length - 1]; // killer!
             this.setFronendError([trace[trace.length - 1].exception_msg]);
-          }
-          else {
+          } else {
             this.setFronendError(
                             ["Unknown error. Reload the page and try again. Or report a bug to",
                              "philip@pgbovine.net by clicking on the 'Generate permanent link'",
@@ -334,7 +336,7 @@ export abstract class AbstractBaseFrontend {
             // SUPER HACK -- slip in backendOptionsObj as an extra field
             // NB: why do we do this? for more detailed logging?
             this.myVisualizer.backendOptionsObj = backendOptionsObj;
-            this.finishSuccessfulExecution(); // TODO: should we do this even if we're calling runTestCaseCallback?
+            this.finishSuccessfulExecution(); // TODO: should we also run this if we're calling runTestCaseCallback?
           }
 
           // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
@@ -344,10 +346,11 @@ export abstract class AbstractBaseFrontend {
           }
         }
 
-        this.doneExecutingCode(); // rain or shine, we're done executing!
         // run this at the VERY END after all the dust has settled
+        this.doneExecutingCode(); // rain or shine, we're done executing!
 
-        // do logging at the VERY END after the dust settles ...
+        // do logging at the VERY END after the dust settles ... maybe
+        // move into opt-frontend.js?
         // and don't do it for iframe-embed.js since getAppState doesn't
         // work in that case ...
         /*
@@ -405,6 +408,7 @@ export abstract class AbstractBaseFrontend {
       }
 
       // if we don't have any deltas, then don't bother sending deltaObj:
+      // NB: not all subclasses will initialize this.deltaObj
       var deltaObjStringified = (this.deltaObj && (this.deltaObj.deltas.length > 0)) ? JSON.stringify(this.deltaObj) : null;
       if (deltaObjStringified) {
         // if deltaObjStringified is too long, then that will likely make
@@ -444,7 +448,7 @@ export abstract class AbstractBaseFrontend {
           success: execCallback.bind(this) /* tricky! */,
         });
       } else {
-        // Python 2 or 3
+        // for Python 2 or 3, directly execute backendScript
         assert (pyState === '2' || pyState === '3');
         $.get(backendScript,
               {user_script : codeToExec,

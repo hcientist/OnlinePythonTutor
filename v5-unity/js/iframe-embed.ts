@@ -92,16 +92,8 @@ class IframeEmbedFrontend extends AbstractBaseFrontend {
     this.myVisualizer.redrawConnectors();
   }
 
-  handleUncaughtExceptionFunc(trace) {
-    var excMsg = null;
-    if (trace.length == 1) {
-      excMsg = trace[0].exception_msg; // killer!
-    } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
-      excMsg = trace[trace.length - 1].exception_msg;
-    } else {
-      excMsg = "Unknown error. Reload the page and try again. Or report a bug to philip@pgbovine.net";
-    }
-    $("#vizDiv").html(pytutor.htmlspecialchars(excMsg));
+  handleUncaughtException(trace) {
+    // NOP
   }
 
   // David Pritchard's code for resizeContainer option ...
