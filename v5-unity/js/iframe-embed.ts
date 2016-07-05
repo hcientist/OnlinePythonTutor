@@ -4,6 +4,8 @@
 
 /* TODO
 
+- when you SLIDE the center vertical divider, visualizer arrows don't redraw :(
+
 - test the resizeContainer option
 
 */
@@ -83,7 +85,7 @@ class IframeEmbedFrontend extends AbstractBaseFrontend {
                                  'vizDiv');
   }
 
-  optFinishSuccessfulExecution() {
+  finishSuccessfulExecution() {
     if (this.resizeContainer) {
       this.resizeContainerNow();
     }

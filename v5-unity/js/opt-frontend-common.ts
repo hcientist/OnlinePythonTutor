@@ -34,8 +34,6 @@ var pytutor = require('./pytutor.ts');
 var assert = pytutor.assert;
 
 
-const SUBMIT_UPDATE_HISTORY_INTERVAL_MS = 1000 * 60;
-
 // these settings are all customized for my own server setup,
 // so you will need to customize for your server:
 const serverRoot = (window.location.protocol === 'https:') ?
@@ -83,7 +81,6 @@ const langSettingToJsonpEndpoint = {
 
 
 // for shared sessions ... put back in later
-var updateOutputSignalFromRemote = false;
 var executeCodeSignalFromRemote = false;
 var togetherjsSyncRequested = false;
 
@@ -118,6 +115,7 @@ export abstract class AbstractBaseFrontend {
   num414Tries = 0;
 
   abstract executeCode(forceStartingInstr?: number, forceRawInputLst?: string[]) : any;
+  abstract finishSuccessfulExecution() : any;
   abstract handleUncaughtExceptionFunc(trace: any[]) : any;
 
   constructor(params: any = {}) {
@@ -195,35 +193,6 @@ export abstract class AbstractBaseFrontend {
     $("#executeBtn").attr('disabled', false);
     $("#executeBtn").click(this.executeCodeFromScratch.bind(this));
 
-    // when you leave or reload the page, submit an updateHistoryJSON if you
-    // have one. beforeunload seems to work better than unload(), but it's
-    // still a bit flaky ... TODO: investigate :(
-    $(window).on('beforeunload', () => {
-      this.submitUpdateHistory('beforeunload');
-      // don't return anything, or a modal dialog box might pop up
-    });
-
-    // just do this as well, even though it might be hella redundant
-    $(window).on('unload', () => {
-      this.submitUpdateHistory('unload');
-      // don't return anything, or a modal dialog box might pop up
-    });
-
-    // periodically do submitUpdateHistory() to handle the case when
-    // someone is simply idle on the page without reloading it or
-    // re-editing code; that way, we can still get some signals rather
-    // than nothing.
-    var lastSubmittedUpdateHistoryLength = 0;
-    setInterval(function() {
-      if (this.myVisualizer) {
-        var uh = this.myVisualizer.updateHistory;
-        // don't submit identical entries repeatedly since that's redundant
-        if (uh && (uh.length != lastSubmittedUpdateHistoryLength)) {
-          lastSubmittedUpdateHistoryLength = uh.length;
-          this.submitUpdateHistory('periodic');
-        }
-      }
-    }, SUBMIT_UPDATE_HISTORY_INTERVAL_MS);
   }
 
   // empty stub so that our code doesn't crash.
@@ -316,26 +285,6 @@ export abstract class AbstractBaseFrontend {
     this.isExecutingCode = false;
   }
 
-  optFinishSuccessfulExecution() {
-    // 2014-05-25: implemented more detailed tracing for surveys
-    this.myVisualizer.creationTime = new Date().getTime();
-    // each element will be a two-element list consisting of:
-    // [step number, timestamp]
-    // (debounce entries that are less than 1 second apart to
-    // compress the logs a bit when there's rapid scrubbing or scrolling)
-    //
-    // the first entry has a THIRD field:
-    // [step number, timestamp, total # steps]
-    //
-    // subsequent entries don't need it since it will always be the same.
-    // the invariant is that step number < total # steps (since it's
-    // zero-indexed
-    this.myVisualizer.updateHistory = [];
-    this.myVisualizer.updateHistory.push([this.myVisualizer.curInstr,
-                                          this.myVisualizer.creationTime,
-                                          this.myVisualizer.curTrace.length]);
-  }
-
   executeCodeAndCreateViz(codeToExec,
                           pyState,
                           backendOptionsObj, frontendOptionsObj,
@@ -382,58 +331,11 @@ export abstract class AbstractBaseFrontend {
           } else {
             // success!
             this.myVisualizer = new pytutor.ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
-
-            this.myVisualizer.add_pytutor_hook("end_updateOutput", function(args) {
-              if (updateOutputSignalFromRemote) {
-                return;
-              }
-              if (typeof TogetherJS !== 'undefined' && TogetherJS.running && !this.isExecutingCode) {
-                TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
-              }
-
-              // debounce to compress a bit ... 250ms feels "right"
-              $.doTimeout('updateOutputLogEvent', 250, () => {
-                var obj: any = {type: 'updateOutput', step: args.myViz.curInstr,
-                           curline: args.myViz.curLineNumber,
-                           prevline: args.myViz.prevLineNumber};
-                // optional fields
-                if (args.myViz.curLineExceptionMsg) {
-                  obj.exception = args.myViz.curLineExceptionMsg;
-                }
-                if (args.myViz.curLineIsReturn) {
-                  obj.curLineIsReturn = true;
-                }
-                if (args.myViz.prevLineIsReturn) {
-                  obj.prevLineIsReturn = true;
-                }
-                _me.logEventCodeopticon(obj);
-              });
-
-              // 2014-05-25: implemented more detailed tracing for surveys
-              if (args.myViz.creationTime) {
-                var curTs = new Date().getTime();
-
-                var uh = args.myViz.updateHistory;
-                assert(uh.length > 0); // should already be seeded with an initial value
-                if (uh.length > 1) { // don't try to "compress" the very first entry
-                  var lastTs = uh[uh.length - 1][1];
-                  // (debounce entries that are less than 1 second apart to
-                  // compress the logs a bit when there's rapid scrubbing or scrolling)
-                  if ((curTs - lastTs) < 1000) {
-                    uh.pop(); // get rid of last entry before pushing a new entry
-                  }
-                }
-                uh.push([args.myViz.curInstr, curTs]);
-              }
-              return [false]; // pass through to let other hooks keep handling
-            });
-          }
-          // SUPER HACK -- slip in backendOptionsObj as an extra field
-          if (this.myVisualizer) {
+            // SUPER HACK -- slip in backendOptionsObj as an extra field
+            // NB: why do we do this? for more detailed logging?
             this.myVisualizer.backendOptionsObj = backendOptionsObj;
+            this.finishSuccessfulExecution(); // TODO: should we do this even if we're calling runTestCaseCallback?
           }
-
-          this.optFinishSuccessfulExecution();
 
           // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
           // and sync any new elements that are now inside myVisualizer
@@ -553,45 +455,6 @@ export abstract class AbstractBaseFrontend {
                diffs_json: deltaObjStringified},
                execCallback.bind(this) /* tricky! */, "json");
       }
-  }
-
-  // Compress updateHistory before encoding and sending to
-  // the server so that it takes up less room in the URL. Have each
-  // entry except for the first be a delta from the FIRST entry.
-  compressUpdateHistoryList() {
-    assert(this.myVisualizer);
-    var uh = this.myVisualizer.updateHistory;
-    var encodedUh = [];
-    if (uh) {
-      encodedUh.push(uh[0]);
-
-      var firstTs = uh[0][1];
-      for (var i = 1; i < uh.length; i++) {
-        var e = uh[i];
-        encodedUh.push([e[0], e[1] - firstTs]);
-      }
-
-      // finally push a final entry with the current timestamp delta
-      var curTs = new Date().getTime();
-      encodedUh.push([this.myVisualizer.curInstr, curTs - firstTs]);
-    }
-    return encodedUh;
-  }
-
-  // this feature was deployed on 2015-09-17, so check logs for
-  // viz_interaction.py
-  submitUpdateHistory(why) {
-    if (this.myVisualizer) {
-      var encodedUh = this.compressUpdateHistoryList();
-      var encodedUhJSON = JSON.stringify(encodedUh);
-
-      var myArgs: any = {session_uuid: this.sessionUUID,
-                         updateHistoryJSON: encodedUhJSON};
-      if (why) {
-        myArgs.why = why;
-      }
-      $.get('viz_interaction.py', myArgs, function(dat) {});
-    }
   }
 
   setSurveyHTML() {
