@@ -11,6 +11,8 @@
 
 - NB: i moved the shared sessions stuff into cruft/shared-sessions.js
 
+- test session_uuid, user_uuid, and other stuff stored to localStorage
+
 */
 
 /// <reference path="_references.ts" />
@@ -232,7 +234,7 @@ export abstract class AbstractBaseFrontend {
       this.setToggleOptions(lsOptions);
 
       // store in localStorage whenever user explicitly changes any toggle option:
-      $('#cumulativeModeSelector,#heapPrimitivesSelector,#textualMemoryLabelsSelector,#pythonVersionSelector').change(function() {
+      $('#cumulativeModeSelector,#heapPrimitivesSelector,#textualMemoryLabelsSelector,#pythonVersionSelector').change(() => {
         var ts = this.getToggleState();
         $.each(ts, function(k, v) {
           localStorage.setItem(k, v);
