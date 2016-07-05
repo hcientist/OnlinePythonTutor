@@ -41,8 +41,9 @@ require('script!./lib/ace/src-min-noconflict/mode-ruby.js');
 
 require('script!./lib/socket.io-client/socket.io.js');
 
+// need to directly import the class for typechecking to work
+import {AbstractBaseFrontend} from './opt-frontend-common.ts';
 
-var optCommon = require('./opt-frontend-common.ts');
 var pytutor = require('./pytutor.ts');
 var assert = pytutor.assert;
 
@@ -246,7 +247,7 @@ var CPP_EXAMPLES = {
 };
 
 
-class OptFrontend extends optCommon.AbstractBaseFrontend {
+class OptFrontend extends AbstractBaseFrontend {
   originFrontendJsFile: string = 'opt-frontend.js';
 
   constructor(params) {
@@ -254,7 +255,7 @@ class OptFrontend extends optCommon.AbstractBaseFrontend {
   }
 
   executeCode(forceStartingInstr=undefined, forceRawInputLst=undefined) {
-    if (forceRawInputLst !== undefined) {
+    if (forceRawInputLst !== undefined && forceRawInputLst !== null) { // ergh
       this.rawInputLst = forceRawInputLst;
     }
 
@@ -375,8 +376,8 @@ $(document).ready(function() {
       if (TogetherJS && TogetherJS.running) {
         var myVisualizer = optFrontend.myVisualizer;
         TogetherJS.send({type: "syncAppState",
-                         myAppState: optCommon.getAppState(),
-                         codeInputScrollTop: optCommon.pyInputGetScrollTop(),
+                         myAppState: optFrontend.getAppState(),
+                         codeInputScrollTop: optFrontend.pyInputGetScrollTop(),
                          pyCodeOutputDivScrollTop: myVisualizer ?
                                                    myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop() :
                                                    undefined});

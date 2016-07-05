@@ -105,10 +105,11 @@ var pendingCodeOutputScrollTop = null;
 // of these objects per page; it still should be instantiated as a singleton
 //
 // this should also be treated like an Abstract Base Class
-export class AbstractBaseFrontend {
+export abstract class AbstractBaseFrontend {
   sessionUUID: string = generateUUID(); // remains constant throughout one page load ("session")
 
   myVisualizer; // singleton ExecutionVisualizer instance from pytutor.ts
+  originFrontendJsFile: string; // "abstract" -- must override in subclass
 
   // 'edit' or 'display'. also support 'visualize' for backward
   // compatibility (same as 'display')
@@ -127,7 +128,7 @@ export class AbstractBaseFrontend {
 
   num414Tries = 0;
 
-  constructor(params=null) {
+  constructor(params) {
     // optional params -- TODO: handle later
     /*
     if (params.TogetherjsReadyHandler) {
@@ -351,11 +352,9 @@ export class AbstractBaseFrontend {
     }, SUBMIT_UPDATE_HISTORY_INTERVAL_MS);
   }
 
-  executeCode(forceStartingInstr=undefined, forceRawInputLst=undefined) {
-    assert("FAIL! subclass must override executeCode");
-  }
-  appStateAugmenter(appState) { }
-  loadTestCases(testCasesLst) { }
+  abstract executeCode(forceStartingInstr?: number, forceRawInputLst?: string[]) : any;
+  appStateAugmenter(appState) { } // NOP
+  loadTestCases(testCasesLst) { } // NOP
 
   redrawConnectors() {
     if (this.myVisualizer &&
@@ -536,6 +535,7 @@ export class AbstractBaseFrontend {
                 // ExecutionVisualizer will be shown at a time
                 visualizerIdOverride: '1',
                 updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
+                startingInstruction: 0,
               };
     return ret;
   }

@@ -7,6 +7,9 @@
 - substitute in a non-live version of the live editor from opt-live.js
   in addition to the janky current version of the editor
 
+- the 'hide attributes' link on objects don't work; also, while i'm at
+  it, maybe i can keep those changes persistent over time? err or not :/
+
 */
 
 
