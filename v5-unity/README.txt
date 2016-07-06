@@ -73,6 +73,3 @@ https://github.com/petehunt/webpack-howto
     'webpack -d' to include source maps
 
 TODO: always do webpack -p for deploy to production, and add a unique hash
-
-TODO: consider code splitting to split out common parts (e.g., libraries
-and unchanging parts) from the specific frontends

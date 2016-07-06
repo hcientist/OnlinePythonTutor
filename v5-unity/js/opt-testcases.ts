@@ -185,6 +185,7 @@ function addTestcase(initialCod /* optional code to pre-seed this test */,
 
     if (isViz) {
       backendOptionsObj.viz_test_case = true; // just so we can see this in server logs
+      activateSyntaxErrorSurvey = false; // NASTY global! disable this survey when running test cases since it gets confusing
     } else {
       backendOptionsObj.run_test_case = true; // just so we can see this in server logs
       frontendOptionsObj.runTestCaseCallback = function(trace) {

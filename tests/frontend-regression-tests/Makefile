@@ -4,6 +4,7 @@ all:
 	@casperjs test --concise test-load-from-URL.js
 	@casperjs test --concise test-embedding-demo.js
 	@casperjs test --concise test-java.js
+	@casperjs test --concise test-testcases.js
 
 # a micro-test that can run super quickly during development
 micro:
@@ -18,6 +19,7 @@ verbose:
 	@casperjs test test-load-from-URL.js
 	@casperjs test test-embedding-demo.js
 	@casperjs test test-java.js
+	@casperjs test test-testcases.js
 
 clean:
 	find . -name '*.diff.png' | xargs rm -f
