@@ -57,9 +57,8 @@ import {AbstractBaseFrontend, generateUUID, supports_html5_storage} from './opt-
 var pytutor = require('./pytutor.ts');
 var assert = pytutor.assert;
 
-var optTests = require('./opt-testcases.ts');
-
 require('../css/opt-frontend.css');
+require('../css/opt-testcases.css');
 
 
 const JAVA_BLANK_TEMPLATE = 'public class YourClassNameHere {\n\
@@ -75,6 +74,27 @@ const CPP_BLANK_TEMPLATE = 'int main() {\n\
 
 const CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
 const SUBMIT_UPDATE_HISTORY_INTERVAL_MS = 1000 * 60;
+
+const redSadFace = require('./images/red-sad-face.jpg');
+const yellowHappyFace = require('./images/yellow-happy-face.jpg');
+
+const testcasesPaneHtml = '\
+<table id="testCasesTable">\
+  <thead>\
+  <tr>\
+    <td style="width: 310px">Tests</td>\
+    <td><button id="runAllTestsButton" type="button">Run All Tests</button></td>\
+    <td>Results</td>\
+    <td></td>\
+    <td></td>\
+  </tr>\
+  </thead>\
+  <tbody>\
+  </tbody>\
+</table>\
+\
+<a href="#" id="addNewTestCase">Add new test</a>\
+'
 
 
 var optFrontend; // singleton OptFrontend object
@@ -107,16 +127,10 @@ class OptFrontend extends AbstractBaseFrontend {
   originFrontendJsFile: string = 'opt-frontend.js';
   pyInputAceEditor; // Ace editor object that contains the user's code
 
-  appStateAugmenter: (appState: any) => void;
-  loadTestCases: (testCasesLst: any[]) => void;
-
   prevExecutionExceptionObjLst = []; // previous consecutive executions with "compile"-time exceptions
 
   constructor(params) {
     super(params);
-
-    this.appStateAugmenter = optTests.appStateAugmenter;
-    this.loadTestCases = optTests.loadTestcasesIntoPane;
 
     this.initAceEditor(420);
     this.pyInputAceEditor.getSession().on("change", (e) => {
@@ -710,6 +724,8 @@ class OptFrontend extends AbstractBaseFrontend {
     return false; // to prevent default "a href" click action
   }
 
+  appStateAugmenter(x) { }; // NOP for now
+
   // get the ENTIRE current state of the app
   getAppState() {
     assert(this.originFrontendJsFile);
@@ -739,11 +755,8 @@ class OptFrontend extends AbstractBaseFrontend {
     if (ret.curInstr === undefined)
       delete ret.curInstr;
 
-    // different frontends can optionally AUGMENT the app state with
-    // custom fields
-    if (this.appStateAugmenter) {
-      this.appStateAugmenter(ret);
-    }
+    // frontends can optionally AUGMENT the app state with custom fields
+    this.appStateAugmenter(ret);
     return ret;
   }
 
@@ -788,10 +801,6 @@ class OptFrontend extends AbstractBaseFrontend {
       codeopticonUsername = queryStrOptions.codeopticonUsername; // GLOBAL defined in codeopticon-learner.js
     }
 
-    if (queryStrOptions.testCasesLst && this.loadTestCases) {
-      this.loadTestCases(queryStrOptions.testCasesLst);
-    }
-
     if ((queryStrOptions.appMode == 'display' ||
          queryStrOptions.appMode == 'visualize' /* deprecated */) &&
         queryStrOptions.preseededCode /* jump to 'display' mode only with preseeded code */) {
@@ -801,6 +810,288 @@ class OptFrontend extends AbstractBaseFrontend {
   }
 
 } // END class OptFrontend
+
+
+// Like OptFrontend but augmented with an "add test cases" pane
+class OptFrontendWithTestcases extends OptFrontend {
+  curTestcaseId: number = 1;
+
+  constructor(params) {
+    super(params);
+    this.initTestcasesPane();
+  }
+
+  parseQueryString() {
+    var queryStrOptions = this.getQueryStringOptions();
+    if (queryStrOptions.testCasesLst) {
+      this.loadTestCases(queryStrOptions.testCasesLst);
+    }
+    super.parseQueryString();
+  }
+
+  initTestcasesPane(onChangeCallback=null /* optional */) {
+    var _me = this;
+    $("#testCasesParent")
+      .empty() // just to be paranoid, empty this out (and its event handlers, too, supposedly)
+      .append('<p style="margin-top: 25px;"><a href="#" id="createTestsLink">Create test cases</a></p><div id="testCasesPane"></div>');
+
+    $("#testCasesParent #createTestsLink").click(function() {
+      _me.initTestcasesPane();
+      $(this).hide();
+      return false;
+    });
+
+    $("#testCasesParent #testCasesPane")
+      .empty() // just to be paranoid, empty this out (and its event handlers, too, supposedly)
+      .html(testcasesPaneHtml);
+
+    $("#addNewTestCase").click(function() {
+      _me.addTestcase(null, onChangeCallback);
+      return false; // to prevent link from being followed
+    });
+
+    $("#runAllTestsButton").click(function() {
+      $(".runTestCase").click();
+    });
+  }
+
+  loadTestCases(lst: string[]) {
+    var _me = this;
+    $("#createTestsLink").hide();
+    this.initTestcasesPane();
+    lst.forEach(function(e) {
+      _me.addTestcase(e);
+    });
+  }
+
+  addTestcase(initialCod /* optional code to pre-seed this test */,
+              onChangeCallback=null /* to be called if this elt changes */) {
+    var _me = this;
+
+    var id = this.curTestcaseId;
+    this.curTestcaseId++;
+    var newTr = $('<tr/>').attr('id', 'testCaseRow_' + id);
+    $("#testCasesParent #testCasesTable tbody").append(newTr);
+    var editorTd = $('<td/>');
+    var runBtnTd = $('<td/>');
+    var outputTd = $('<td/>');
+    var visualizeTd = $('<td/>');
+    var deleteTd = $('<td/>');
+
+    editorTd.append('<div id="testCaseEditor_' + id + '" class="testCaseEditor">');
+    runBtnTd.append('<button id="runTestCase_' + id + '" class="runTestCase" type="button">Run</button>');
+    outputTd.attr('id', 'outputTd_' + id);
+    outputTd.attr('class', 'outputTd');
+    visualizeTd.append('<button id="vizTestCase_' + id + '" class="vizTestCase" type="button">Visualize</button>');
+    deleteTd.append('<a id="delTestCase_' + id + '" href="javascript:void(0);">Delete test</a></td>');
+
+    newTr.append(editorTd);
+    newTr.append(runBtnTd);
+    newTr.append(outputTd);
+    newTr.append(visualizeTd);
+    newTr.append(deleteTd);
+
+    // initialize testCaseEditor with Ace:
+    var te = ace.edit('testCaseEditor_' + id);
+    // set the size and value ASAP to get alignment working well ...
+    te.setOptions({minLines: 2, maxLines: 4}); // keep this SMALL
+    te.setHighlightActiveLine(false);
+    te.setShowPrintMargin(false);
+    te.setBehavioursEnabled(false);
+    te.setFontSize('11px');
+    te.$blockScrolling = Infinity; // kludgy to shut up weird warnings
+
+    var s = te.getSession();
+    s.setTabSize(2);
+    s.setUseSoftTabs(true);
+    // disable extraneous indicators:
+    s.setFoldStyle('manual'); // no code folding indicators
+    // don't do real-time syntax checks:
+    // https://github.com/ajaxorg/ace/wiki/Syntax-validation
+    s.setOption("useWorker", false);
+
+    // TODO: change syntax highlighting mode if the user changes languages:
+    var lang = $('#pythonVersionSelector').val();
+    var mod = 'python';
+    var defaultVal = '\n# assert <test condition>';
+    if (lang === 'java') {
+      mod = 'java';
+      defaultVal = '// sorry, Java tests not yet supported';
+    } else if (lang === 'c' || lang === 'cpp') {
+      mod = 'c_cpp';
+      defaultVal = '// sorry, C/C++ tests not yet supported';
+    } else if (lang === 'js') {
+      mod = 'javascript';
+      defaultVal = '\n// console.assert(<test condition>);';
+    } else if (lang === 'ts') {
+      mod = 'typescript';
+      defaultVal = '\n// console.assert(<test condition>);';
+    } else if (lang === 'ruby') {
+      mod = 'ruby';
+      defaultVal = "\n# raise 'fail' unless <test condition>";
+    }
+    s.setMode("ace/mode/" + mod);
+
+    // detect when the buffer has changed
+    s.on("change", function() {
+      if (onChangeCallback) {
+        onChangeCallback();
+      }
+    });
+
+    te.setValue(initialCod ? initialCod.rtrim() : defaultVal,
+                -1 /* do NOT select after setting text */);
+    te.focus();
+
+    function runOrVizTestCase(isViz /* true for visualize, false for run */) {
+      if (isViz) {
+        $('#vizTestCase_' + id).html("Visualizing ...");
+      } else {
+        $('#runTestCase_' + id).html("Running ...");
+      }
+
+      $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', true);
+      var e = ace.edit('testCaseEditor_' + id);
+      e.getSession().clearAnnotations();
+      $('#outputTd_' + id).html('');
+
+      var dat = _me.getCombinedCode(id);
+
+      // adapted from executeCode in opt-frontend.js
+      var backendOptionsObj = _me.getBaseBackendOptionsObj();
+      var frontendOptionsObj = _me.getBaseFrontendOptionsObj();
+      (frontendOptionsObj as any).jumpToEnd = true;
+
+      if (isViz) {
+        (backendOptionsObj as any).viz_test_case = true; // just so we can see this in server logs
+        //this.activateSyntaxErrorSurvey = false; // disable survey when running test cases since it gets confusing
+      } else {
+        (backendOptionsObj as any).run_test_case = true; // just so we can see this in server logs
+        (frontendOptionsObj as any).runTestCaseCallback = function(trace) {
+          // scan through the trace to find any exception events. report
+          // the first one if found, otherwise assume test is 'passed'
+          var exceptionMsg = null;
+          trace.forEach(function(e) {
+            if (exceptionMsg) {
+              return;
+            }
+
+            if (e.event === 'exception') {
+              exceptionMsg = e.exception_msg;
+            }
+          });
+
+          if (exceptionMsg) {
+            $('#outputTd_' + id).html('<img src="' + redSadFace + '"></img>');
+          } else {
+            $('#outputTd_' + id).html('<img src="' + yellowHappyFace + '"></img>');
+          }
+        };
+      }
+
+      function runTestHandleUncaughtExceptionFunc(trace) {
+        if (trace.length == 1 && trace[0].line) {
+          var errorLineNo = trace[0].line;
+          // highlight the faulting line in the test case pane itself
+          if (errorLineNo !== undefined &&
+              errorLineNo != NaN &&
+              errorLineNo >= dat.firstTestLine) {
+            var adjustedErrorLineNo = errorLineNo - dat.firstTestLine;
+            s.setAnnotations([{row: adjustedErrorLineNo,
+                               column: null, /* for TS typechecking */
+                               type: 'error',
+                               text: trace[0].exception_msg}]);
+            te.gotoLine(adjustedErrorLineNo + 1 /* one-indexed */);
+          }
+        }
+
+        var msg = trace[0].exception_msg;
+        var trimmedMsg = msg.split(':')[0];
+        $('#outputTd_' + id).html(pytutor.htmlspecialchars(trimmedMsg));
+
+        optCommon.handleUncaughtExceptionFunc(trace);
+        doneRunningTest();
+      }
+    }
+
+    this.executeCodeAndCreateViz(dat.cod,
+                            $('#pythonVersionSelector').val(),
+                            backendOptionsObj,
+                            frontendOptionsObj,
+                            'pyOutputPane');
+                            /*
+                            isViz ? vizTestFinishSuccessfulExecution :
+                                    runTestFinishSuccessfulExecution,
+                            runTestHandleUncaughtExceptionFunc);
+                            */
+
+    $('#runTestCase_' + id).click(runOrVizTestCase.bind(this, false));
+    $('#vizTestCase_' + id).click(runOrVizTestCase.bind(this, true));
+
+    $('#delTestCase_' + id).click(function() {
+      $('#testCaseRow_' + id).remove();
+      if (onChangeCallback) {
+        onChangeCallback();
+      }
+      return false; // to prevent link from being followed
+    });
+
+    if (onChangeCallback) {
+      onChangeCallback();
+    }
+  }
+
+  /*
+  doneRunningTest() {
+    $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', false);
+    $(".runTestCase").html('Run');
+    $(".vizTestCase").html('Visualize');
+  }
+
+  finishSuccessfulExecution() {
+    if (this.isViz) {
+      super.optFinishSuccessfulExecution();
+    }
+    doneRunningTest();
+  }
+  */
+
+  getCombinedCode(id) {
+    var userCod = this.pyInputGetValue();
+    var testCod = ace.edit('testCaseEditor_' + id).getValue();
+    // for reporting syntax errors separately for user and test code
+    var userCodNumLines = userCod.split('\n').length;
+
+    var lang = $('#pythonVersionSelector').val();
+    if (lang === 'ts' || lang === 'js' || lang === 'java' || lang === 'c' || lang === 'cpp') {
+      var bufferCod = '\n\n// Test code //\n';
+    } else {
+      var bufferCod = '\n\n## Test code ##\n';
+    }
+
+    var bufferCodNumLines = bufferCod.split('\n').length;
+
+    var combinedCod = userCod + bufferCod + testCod;
+    return {cod: combinedCod,
+            firstTestLine: userCodNumLines + bufferCodNumLines - 1};
+  }
+
+  appStateAugmenter(appState) {
+    // returns a list of strings, each of which is a test case
+    function getAllTestcases() {
+      return $.map($("#testCasesParent #testCasesTable .testCaseEditor"), function(e) {
+        var editor = ace.edit($(e).attr('id'));
+        return editor.getValue();
+      });
+    }
+
+    var tc = getAllTestcases();
+    if (tc.length > 0) {
+      appState['testCasesJSON'] = JSON.stringify(tc);
+    }
+  }
+
+} // END class OptFrontendWithTestcases
 
 
 var JS_EXAMPLES = {
@@ -1046,12 +1337,6 @@ $(document).ready(function() {
   if (typeof initCodeopticon !== "undefined") {
     initCodeopticon(); // defined in codeopticon-learner.js
   }
-
-  $("#createTestsLink").click(function() {
-    optTests.initTestcasesPane('#testCasesPane');
-    $(this).hide();
-    return false;
-  });
 
   $("#liveModeBtn").click(optFrontend.openLiveModeUrl.bind(optFrontend));
 });
