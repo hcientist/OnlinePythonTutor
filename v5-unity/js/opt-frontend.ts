@@ -4,6 +4,15 @@
 
 /* TODO:
 
+- ERGH, the OptFrontendWithTestcases subclassing thing is awkward since
+  we're overriding handleUncaughtException and finishSuccessfulExecution
+  so that we're conflating whether we're running tests or regular ole'
+  OPT code, ergh.
+  - maybe instead have Testcases extend AbstractBaseFrontend and then
+    have a Testcases field within OptFrontend?
+  - also change appStateAugmenter to this.testcases.appStateAugmenter or
+    something
+
 - parse Java viz_options in users' java code:
   https://github.com/daveagp/java_visualize/blob/1489078712310eda44391f09405e0f71b2b190c9/jv-frontend.js#L101
 
@@ -724,7 +733,7 @@ class OptFrontend extends AbstractBaseFrontend {
     return false; // to prevent default "a href" click action
   }
 
-  appStateAugmenter(x) { }; // NOP for now
+  appStateAugmenter(x) { }; // NOP
 
   // get the ENTIRE current state of the app
   getAppState() {
@@ -818,7 +827,12 @@ class OptFrontendWithTestcases extends OptFrontend {
 
   constructor(params) {
     super(params);
-    this.initTestcasesPane();
+    $("#testCasesParent")
+      .append('<p style="margin-top: 25px;"><a href="#" id="createTestsLink">Create test cases</a></p><div id="testCasesPane"></div>');
+    $("#testCasesParent #createTestsLink").click(() => {
+      this.initTestcasesPane();
+      return false;
+    });
   }
 
   parseQueryString() {
@@ -829,24 +843,15 @@ class OptFrontendWithTestcases extends OptFrontend {
     super.parseQueryString();
   }
 
-  initTestcasesPane(onChangeCallback=null /* optional */) {
+  initTestcasesPane() {
+    $("#testCasesParent #createTestsLink").hide();
     var _me = this;
-    $("#testCasesParent")
-      .empty() // just to be paranoid, empty this out (and its event handlers, too, supposedly)
-      .append('<p style="margin-top: 25px;"><a href="#" id="createTestsLink">Create test cases</a></p><div id="testCasesPane"></div>');
-
-    $("#testCasesParent #createTestsLink").click(function() {
-      _me.initTestcasesPane();
-      $(this).hide();
-      return false;
-    });
-
     $("#testCasesParent #testCasesPane")
       .empty() // just to be paranoid, empty this out (and its event handlers, too, supposedly)
       .html(testcasesPaneHtml);
 
     $("#addNewTestCase").click(function() {
-      _me.addTestcase(null, onChangeCallback);
+      _me.addTestcase(null);
       return false; // to prevent link from being followed
     });
 
@@ -856,16 +861,13 @@ class OptFrontendWithTestcases extends OptFrontend {
   }
 
   loadTestCases(lst: string[]) {
-    var _me = this;
-    $("#createTestsLink").hide();
     this.initTestcasesPane();
-    lst.forEach(function(e) {
-      _me.addTestcase(e);
+    lst.forEach((e) => {
+      this.addTestcase(e);
     });
   }
 
-  addTestcase(initialCod /* optional code to pre-seed this test */,
-              onChangeCallback=null /* to be called if this elt changes */) {
+  addTestcase(initialCod /* optional code to pre-seed this test */) {
     var _me = this;
 
     var id = this.curTestcaseId;
@@ -932,13 +934,6 @@ class OptFrontendWithTestcases extends OptFrontend {
     }
     s.setMode("ace/mode/" + mod);
 
-    // detect when the buffer has changed
-    s.on("change", function() {
-      if (onChangeCallback) {
-        onChangeCallback();
-      }
-    });
-
     te.setValue(initialCod ? initialCod.rtrim() : defaultVal,
                 -1 /* do NOT select after setting text */);
     te.focus();
@@ -989,70 +984,59 @@ class OptFrontendWithTestcases extends OptFrontend {
         };
       }
 
-      function runTestHandleUncaughtExceptionFunc(trace) {
-        if (trace.length == 1 && trace[0].line) {
-          var errorLineNo = trace[0].line;
-          // highlight the faulting line in the test case pane itself
-          if (errorLineNo !== undefined &&
-              errorLineNo != NaN &&
-              errorLineNo >= dat.firstTestLine) {
-            var adjustedErrorLineNo = errorLineNo - dat.firstTestLine;
-            s.setAnnotations([{row: adjustedErrorLineNo,
-                               column: null, /* for TS typechecking */
-                               type: 'error',
-                               text: trace[0].exception_msg}]);
-            te.gotoLine(adjustedErrorLineNo + 1 /* one-indexed */);
-          }
-        }
-
-        var msg = trace[0].exception_msg;
-        var trimmedMsg = msg.split(':')[0];
-        $('#outputTd_' + id).html(pytutor.htmlspecialchars(trimmedMsg));
-
-        optCommon.handleUncaughtExceptionFunc(trace);
-        doneRunningTest();
-      }
     }
 
     this.executeCodeAndCreateViz(dat.cod,
-                            $('#pythonVersionSelector').val(),
-                            backendOptionsObj,
-                            frontendOptionsObj,
-                            'pyOutputPane');
-                            /*
-                            isViz ? vizTestFinishSuccessfulExecution :
-                                    runTestFinishSuccessfulExecution,
-                            runTestHandleUncaughtExceptionFunc);
-                            */
+                                 $('#pythonVersionSelector').val(),
+                                 backendOptionsObj,
+                                 frontendOptionsObj,
+                                 'pyOutputPane');
 
     $('#runTestCase_' + id).click(runOrVizTestCase.bind(this, false));
     $('#vizTestCase_' + id).click(runOrVizTestCase.bind(this, true));
 
     $('#delTestCase_' + id).click(function() {
       $('#testCaseRow_' + id).remove();
-      if (onChangeCallback) {
-        onChangeCallback();
-      }
       return false; // to prevent link from being followed
     });
-
-    if (onChangeCallback) {
-      onChangeCallback();
-    }
   }
 
-  /*
   doneRunningTest() {
     $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', false);
     $(".runTestCase").html('Run');
     $(".vizTestCase").html('Visualize');
   }
 
+  /* crap overriding doesn't work well, try composition instead 
   finishSuccessfulExecution() {
-    if (this.isViz) {
-      super.optFinishSuccessfulExecution();
+    if (this.isViz) { // TODO; stent
+      super.finishSuccessfulExecution();
     }
-    doneRunningTest();
+    this.doneRunningTest();
+  }
+
+  handleUncaughtException(trace) {
+    if (trace.length == 1 && trace[0].line) {
+      var errorLineNo = trace[0].line;
+      // highlight the faulting line in the test case pane itself
+      if (errorLineNo !== undefined &&
+          errorLineNo != NaN &&
+          errorLineNo >= dat.firstTestLine) {
+        var adjustedErrorLineNo = errorLineNo - dat.firstTestLine;
+        s.setAnnotations([{row: adjustedErrorLineNo,
+                           column: null, // for TS typechecking
+                           type: 'error',
+                           text: trace[0].exception_msg}]);
+        te.gotoLine(adjustedErrorLineNo + 1); // one-indexed
+      }
+    }
+
+    var msg = trace[0].exception_msg;
+    var trimmedMsg = msg.split(':')[0];
+    $('#outputTd_' + id).html(pytutor.htmlspecialchars(trimmedMsg));
+
+    optCommon.handleUncaughtExceptionFunc(trace);
+    this.doneRunningTest();
   }
   */
 
@@ -1079,7 +1063,8 @@ class OptFrontendWithTestcases extends OptFrontend {
   appStateAugmenter(appState) {
     // returns a list of strings, each of which is a test case
     function getAllTestcases() {
-      return $.map($("#testCasesParent #testCasesTable .testCaseEditor"), function(e) {
+      return $.map($("#testCasesParent #testCasesTable .testCaseEditor"),
+      (e) => {
         var editor = ace.edit($(e).attr('id'));
         return editor.getValue();
       });
@@ -1245,7 +1230,7 @@ var CPP_EXAMPLES = {
 
 
 $(document).ready(function() {
-  optFrontend = new OptFrontend({
+  optFrontend = new OptFrontendWithTestcases({
                                   /*TogetherjsReadyHandler: optFrontendTogetherjsReadyHandler,
                                     TogetherjsCloseHandler: optFrontendTogetherjsCloseHandler,
                                     startSharedSession: optFrontendStartSharedSession,
