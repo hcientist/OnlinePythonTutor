@@ -10,6 +10,10 @@
   OPT code, ergh.
   - maybe instead have Testcases extend AbstractBaseFrontend and then
     have a Testcases field within OptFrontend?
+  - also add a executeCodeAndReturnTrace function or something to
+    opt-frontend-common.ts, which DOES NOT create a visualization; that
+    way, we can separately use it for a Testcases class that doesn't need
+    a visualization
   - also change appStateAugmenter to this.testcases.appStateAugmenter or
     something
 

@@ -13,19 +13,52 @@ appropriate versions of libraries to match, without breaking crufty
 legacy code (hopefully)
 
 ---
+To get started, install:
 
-to start the development environment using npm, run:
+1.) Node.js / npm
+2.) Global dependency installs:
 
-  npm start
-  npm run webpack
+  sudo npm install webpack -g
+  sudo npm install webpack-dev-server -g
+  sudo npm install -g typescript
+  sudo npm install -g tsd
+
+3.) Run "npm install" in this directory to install node dependencies
+
+4.) Run "tsd install" in this directory to install TypeScript definition files
+
+5.) Bottle.py for the local webserver
+
+  sudo pip install bottle
+
+6.) Follow ../tests/frontend-regression-tests/README.txt to install
+    dependencies for visual regression testing
 
 ---
+
+To start the development environment using npm, run:
+
+  npm run webpack
+
+
+To start the webserver, run:
+
+  npm start
+
+
+then visit:
+
+  http://localhost:8003/visualize.html
+
+
+======
+Older notes:
 
 Requires these global installations:
 - Node.js / npm
 - webpack: http://webpack.github.io/ and webpack-dev-server
-  npm install webpack -g
-  npm install webpack-dev-server -g
+  sudo npm install webpack -g
+  sudo npm install webpack-dev-server -g
 
   [you might need to install webpack locally (without the -g) ... weird]
 
