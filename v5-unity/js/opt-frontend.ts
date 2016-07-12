@@ -9,11 +9,9 @@
   so that we're conflating whether we're running tests or regular ole'
   OPT code, ergh.
   - maybe instead have Testcases extend AbstractBaseFrontend and then
-    have a Testcases field within OptFrontend?
-  - also add a executeCodeAndReturnTrace function or something to
-    opt-frontend-common.ts, which DOES NOT create a visualization; that
-    way, we can separately use it for a Testcases class that doesn't need
-    a visualization
+    have a Testcases field within OptFrontend
+  - then use executeCodeAndRunCallback in Testcases to NOT create a viz
+    and instead run a test case; TODO: what about visualizing a test case?
   - also change appStateAugmenter to this.testcases.appStateAugmenter or
     something
 
@@ -1234,7 +1232,7 @@ var CPP_EXAMPLES = {
 
 
 $(document).ready(function() {
-  optFrontend = new OptFrontendWithTestcases({
+  optFrontend = new OptFrontend({
                                   /*TogetherjsReadyHandler: optFrontendTogetherjsReadyHandler,
                                     TogetherjsCloseHandler: optFrontendTogetherjsCloseHandler,
                                     startSharedSession: optFrontendStartSharedSession,

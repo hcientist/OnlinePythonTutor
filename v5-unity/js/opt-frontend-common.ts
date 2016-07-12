@@ -109,8 +109,8 @@ export abstract class AbstractBaseFrontend {
   num414Tries = 0;
 
   abstract executeCode(forceStartingInstr?: number, forceRawInputLst?: string[]) : any;
-  abstract finishSuccessfulExecution() : any;
-  abstract handleUncaughtException(trace: any[]) : any;
+  abstract finishSuccessfulExecution() : any; // called by executeCodeAndCreateViz
+  abstract handleUncaughtException(trace: any[]) : any; // called by executeCodeAndCreateViz
 
   constructor(params: any = {}) {
     // optional params -- TODO: handle later
@@ -288,15 +288,13 @@ export abstract class AbstractBaseFrontend {
     this.isExecutingCode = false;
   }
 
+  // execute codeToExec and create a new pytutor.ExecutionVisualizer
+  // object with outputDiv as its DOM parent
   executeCodeAndCreateViz(codeToExec,
                           pyState,
                           backendOptionsObj, frontendOptionsObj,
                           outputDiv) {
-      var backendScript = langSettingToBackendScript[pyState];
-      assert(backendScript);
-      var jsonp_endpoint = langSettingToJsonpEndpoint[pyState]; // maybe null
-
-      var execCallback = (dataFromBackend) => {
+      var vizCallback = (dataFromBackend) => {
         var trace = dataFromBackend.trace;
         var killerException = null;
         // don't enter visualize mode if there are killer errors:
@@ -365,6 +363,22 @@ export abstract class AbstractBaseFrontend {
         // tricky hacky reset
         this.num414Tries = 0;
       }
+
+    this.executeCodeAndRunCallback(codeToExec,
+                                   pyState,
+                                   backendOptionsObj, frontendOptionsObj,
+                                   vizCallback);
+  }
+
+  // execute code and call the execCallback function when the server
+  // returns data via Ajax
+  executeCodeAndRunCallback(codeToExec,
+                            pyState,
+                            backendOptionsObj, frontendOptionsObj,
+                            execCallback) {
+      var backendScript = langSettingToBackendScript[pyState];
+      assert(backendScript);
+      var jsonp_endpoint = langSettingToJsonpEndpoint[pyState]; // maybe null
 
       if (!backendScript) {
         this.setFronendError(
