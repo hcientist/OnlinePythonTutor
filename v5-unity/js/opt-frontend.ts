@@ -830,24 +830,53 @@ class OptFrontendWithTestcases extends OptFrontend {
 
     var runTestCaseCallback = (dat) => {
       var trace = dat.trace;
-      // scan through the trace to find any exception events. report
-      // the first one if found, otherwise assume test is 'passed'
-      var exceptionMsg = null;
-      trace.forEach(function(e) {
-        if (exceptionMsg) {
-          return;
+
+      if (trace.length == 1 && trace[0].event === 'uncaught_exception') {
+        // e.g., syntax errors / compile errors
+        var errorLineNo = trace[0].line;
+        if (errorLineNo) {
+          // highlight the faulting line in the test case pane itself
+          if (errorLineNo !== undefined &&
+              errorLineNo != NaN &&
+              errorLineNo >= dat.firstTestLine) {
+            var adjustedErrorLineNo = errorLineNo - dat.firstTestLine;
+
+            var te = ace.edit('testCaseEditor_' + id);
+            var s = te.getSession();
+
+            s.setAnnotations([{row: adjustedErrorLineNo,
+                               column: null, // for TS typechecking
+                               type: 'error',
+                               text: trace[0].exception_msg}]);
+            te.gotoLine(adjustedErrorLineNo + 1); // one-indexed
+          }
         }
 
-        if (e.event === 'exception') {
-          exceptionMsg = e.exception_msg;
-        }
-      });
-
-      if (exceptionMsg) {
-        $('#outputTd_' + id).html('<img src="' + redSadFace + '"></img>');
+        var msg = trace[0].exception_msg;
+        var trimmedMsg = msg.split(':')[0];
+        $('#outputTd_' + id).html(pytutor.htmlspecialchars(trimmedMsg));
       } else {
-        $('#outputTd_' + id).html('<img src="' + yellowHappyFace + '"></img>');
+        // scan through the trace to find any exception events. report
+        // the first one if found, otherwise assume test is 'passed'
+        var exceptionMsg = null;
+        trace.forEach(function(e) {
+          if (exceptionMsg) {
+            return;
+          }
+
+          if (e.event === 'exception') {
+            exceptionMsg = e.exception_msg;
+          }
+        });
+
+        if (exceptionMsg) {
+          $('#outputTd_' + id).html('<img src="' + redSadFace + '"></img>');
+        } else {
+          $('#outputTd_' + id).html('<img src="' + yellowHappyFace + '"></img>');
+        }
       }
+
+      this.optTests.doneRunningTest();
     };
 
     this.executeCodeAndRunCallback(codeToExec,
@@ -1029,39 +1058,6 @@ class OptTestcases {
     $(".runTestCase").html('Run');
     $(".vizTestCase").html('Visualize');
   }
-
-  /* crap overriding doesn't work well, try composition instead 
-  finishSuccessfulExecution() {
-    if (this.isViz) { // TODO; stent
-      super.finishSuccessfulExecution();
-    }
-    this.doneRunningTest();
-  }
-
-  handleUncaughtException(trace) {
-    if (trace.length == 1 && trace[0].line) {
-      var errorLineNo = trace[0].line;
-      // highlight the faulting line in the test case pane itself
-      if (errorLineNo !== undefined &&
-          errorLineNo != NaN &&
-          errorLineNo >= dat.firstTestLine) {
-        var adjustedErrorLineNo = errorLineNo - dat.firstTestLine;
-        s.setAnnotations([{row: adjustedErrorLineNo,
-                           column: null, // for TS typechecking
-                           type: 'error',
-                           text: trace[0].exception_msg}]);
-        te.gotoLine(adjustedErrorLineNo + 1); // one-indexed
-      }
-    }
-
-    var msg = trace[0].exception_msg;
-    var trimmedMsg = msg.split(':')[0];
-    $('#outputTd_' + id).html(pytutor.htmlspecialchars(trimmedMsg));
-
-    optCommon.handleUncaughtExceptionFunc(trace);
-    this.doneRunningTest();
-  }
-  */
 
   getCombinedCode(id) {
     var userCod = this.parent.pyInputGetValue();
