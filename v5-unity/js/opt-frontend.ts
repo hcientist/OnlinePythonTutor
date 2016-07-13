@@ -826,7 +826,6 @@ class OptFrontendWithTestcases extends OptFrontend {
     var frontendOptionsObj = this.getBaseFrontendOptionsObj();
 
     (backendOptionsObj as any).run_test_case = true; // just so we can see this in server logs
-    (frontendOptionsObj as any).jumpToEnd = true;
 
     var runTestCaseCallback = (dat) => {
       var trace = dat.trace;
@@ -885,7 +884,21 @@ class OptFrontendWithTestcases extends OptFrontend {
                                    runTestCaseCallback.bind(this));
   }
 
-  // TODO: add vizTestCase
+  vizTestCase(id, codeToExec) {
+    // adapted from executeCode in opt-frontend.js
+    var backendOptionsObj = this.getBaseBackendOptionsObj();
+    var frontendOptionsObj = this.getBaseFrontendOptionsObj();
+
+    (backendOptionsObj as any).viz_test_case = true; // just so we can see this in server logs
+    //activateSyntaxErrorSurvey = false; // NASTY global! disable this survey when running test cases since it gets       confusing
+    (frontendOptionsObj as any).jumpToEnd = true;
+
+    this.executeCodeAndCreateViz(codeToExec,
+                                 $('#pythonVersionSelector').val(),
+                                 backendOptionsObj, frontendOptionsObj,
+                                 'pyOutputPane');
+    this.optTests.doneRunningTest(); // this will run before the callback in executeCodeAndCreateViz, but oh wells
+  }
 
 } // END Class OptFrontendWithTestcases
 
