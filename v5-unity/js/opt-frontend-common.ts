@@ -294,75 +294,75 @@ export abstract class AbstractBaseFrontend {
                           pyState,
                           backendOptionsObj, frontendOptionsObj,
                           outputDiv) {
-      var vizCallback = (dataFromBackend) => {
-        var trace = dataFromBackend.trace;
-        var killerException = null;
-        // don't enter visualize mode if there are killer errors:
-        if (!trace ||
-            (trace.length == 0) ||
-            (trace[trace.length - 1].event == 'uncaught_exception')) {
-          this.handleUncaughtException(trace);
+    var vizCallback = (dataFromBackend) => {
+      var trace = dataFromBackend.trace;
+      var killerException = null;
+      // don't enter visualize mode if there are killer errors:
+      if (!trace ||
+          (trace.length == 0) ||
+          (trace[trace.length - 1].event == 'uncaught_exception')) {
+        this.handleUncaughtException(trace);
 
-          if (trace.length == 1) {
-            killerException = trace[0]; // killer!
-            this.setFronendError([trace[0].exception_msg]);
-          } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
-            killerException = trace[trace.length - 1]; // killer!
-            this.setFronendError([trace[trace.length - 1].exception_msg]);
-          } else {
-            this.setFronendError(
-                            ["Unknown error. Reload the page and try again. Or report a bug to",
-                             "philip@pgbovine.net by clicking on the 'Generate permanent link'",
-                             "button at the bottom and including a URL in your email."]);
-          }
+        if (trace.length == 1) {
+          killerException = trace[0]; // killer!
+          this.setFronendError([trace[0].exception_msg]);
+        } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
+          killerException = trace[trace.length - 1]; // killer!
+          this.setFronendError([trace[trace.length - 1].exception_msg]);
         } else {
-          // fail-soft to prevent running off of the end of trace
-          if (frontendOptionsObj.startingInstruction >= trace.length) {
-            frontendOptionsObj.startingInstruction = 0;
-          }
-
-          if (frontendOptionsObj.runTestCaseCallback) {
-            // hacky! DO NOT actually create a visualization! instead call:
-            frontendOptionsObj.runTestCaseCallback(trace);
-          } else {
-            // success!
-            this.myVisualizer = new pytutor.ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
-            // SUPER HACK -- slip in backendOptionsObj as an extra field
-            // NB: why do we do this? for more detailed logging?
-            this.myVisualizer.backendOptionsObj = backendOptionsObj;
-            this.finishSuccessfulExecution(); // TODO: should we also run this if we're calling runTestCaseCallback?
-          }
-
-          // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
-          // and sync any new elements that are now inside myVisualizer
-          if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
-            TogetherJS.reinitialize();
-          }
+          this.setFronendError(
+                          ["Unknown error. Reload the page and try again. Or report a bug to",
+                           "philip@pgbovine.net by clicking on the 'Generate permanent link'",
+                           "button at the bottom and including a URL in your email."]);
+        }
+      } else {
+        // fail-soft to prevent running off of the end of trace
+        if (frontendOptionsObj.startingInstruction >= trace.length) {
+          frontendOptionsObj.startingInstruction = 0;
         }
 
-        // run this at the VERY END after all the dust has settled
-        this.doneExecutingCode(); // rain or shine, we're done executing!
-
-        // do logging at the VERY END after the dust settles ... maybe
-        // move into opt-frontend.js?
-        // and don't do it for iframe-embed.js since getAppState doesn't
-        // work in that case ...
-        /*
-        if (this.originFrontendJsFile !== 'iframe-embed.js') {
-          this.logEventCodeopticon({type: 'doneExecutingCode',
-                    appState: this.getAppState(),
-                    // enough to reconstruct the ExecutionVisualizer object
-                    backendDataJSON: JSON.stringify(dataFromBackend), // for easier transport and compression
-                    frontendOptionsObj: frontendOptionsObj,
-                    backendOptionsObj: backendOptionsObj,
-                    killerException: killerException, // if there's, say, a syntax error
-                    });
+        if (frontendOptionsObj.runTestCaseCallback) {
+          // hacky! DO NOT actually create a visualization! instead call:
+          frontendOptionsObj.runTestCaseCallback(trace);
+        } else {
+          // success!
+          this.myVisualizer = new pytutor.ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
+          // SUPER HACK -- slip in backendOptionsObj as an extra field
+          // NB: why do we do this? for more detailed logging?
+          this.myVisualizer.backendOptionsObj = backendOptionsObj;
+          this.finishSuccessfulExecution(); // TODO: should we also run this if we're calling runTestCaseCallback?
         }
-        */
 
-        // tricky hacky reset
-        this.num414Tries = 0;
+        // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
+        // and sync any new elements that are now inside myVisualizer
+        if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+          TogetherJS.reinitialize();
+        }
       }
+
+      // run this at the VERY END after all the dust has settled
+      this.doneExecutingCode(); // rain or shine, we're done executing!
+
+      // do logging at the VERY END after the dust settles ... maybe
+      // move into opt-frontend.js?
+      // and don't do it for iframe-embed.js since getAppState doesn't
+      // work in that case ...
+      /*
+      if (this.originFrontendJsFile !== 'iframe-embed.js') {
+        this.logEventCodeopticon({type: 'doneExecutingCode',
+                  appState: this.getAppState(),
+                  // enough to reconstruct the ExecutionVisualizer object
+                  backendDataJSON: JSON.stringify(dataFromBackend), // for easier transport and compression
+                  frontendOptionsObj: frontendOptionsObj,
+                  backendOptionsObj: backendOptionsObj,
+                  killerException: killerException, // if there's, say, a syntax error
+                  });
+      }
+      */
+
+      // tricky hacky reset
+      this.num414Tries = 0;
+    }
 
     this.executeCodeAndRunCallback(codeToExec,
                                    pyState,
