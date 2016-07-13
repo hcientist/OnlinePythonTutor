@@ -962,6 +962,7 @@ class OptTestcases {
 
   loadTestCases(lst: string[]) {
     this.initTestcasesPane();
+    $("#testCasesParent #createTestsLink").hide();
     lst.forEach((e) => {
       this.addTestcase(e);
     });
