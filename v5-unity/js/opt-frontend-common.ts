@@ -340,11 +340,8 @@ export abstract class AbstractBaseFrontend {
         }
       }
 
-      // run this at the VERY END after all the dust has settled
-      this.doneExecutingCode(); // rain or shine, we're done executing!
-
-      // do logging at the VERY END after the dust settles ... maybe
-      // move into opt-frontend.js?
+      // do Codeopticon logging at the VERY END after the dust settles ...
+      // maybe move into opt-frontend.js?
       // and don't do it for iframe-embed.js since getAppState doesn't
       // work in that case ...
       /*
@@ -359,15 +356,12 @@ export abstract class AbstractBaseFrontend {
                   });
       }
       */
-
-      // tricky hacky reset
-      this.num414Tries = 0;
     }
 
     this.executeCodeAndRunCallback(codeToExec,
                                    pyState,
                                    backendOptionsObj, frontendOptionsObj,
-                                   vizCallback);
+                                   vizCallback.bind(this) /* very important to bind! */);
   }
 
   // execute code and call the execCallback function when the server
@@ -376,6 +370,15 @@ export abstract class AbstractBaseFrontend {
                             pyState,
                             backendOptionsObj, frontendOptionsObj,
                             execCallback) {
+      var callbackWrapper = (dataFromBackend) => {
+        execCallback(dataFromBackend); // call the main event first
+
+        // run this at the VERY END after all the dust has settled
+        this.doneExecutingCode(); // rain or shine, we're done executing!
+        // tricky hacky reset
+        this.num414Tries = 0;
+      };
+
       var backendScript = langSettingToBackendScript[pyState];
       assert(backendScript);
       var jsonp_endpoint = langSettingToJsonpEndpoint[pyState]; // maybe null
@@ -449,7 +452,7 @@ export abstract class AbstractBaseFrontend {
           dataType: "jsonp",
           data: {user_script : codeToExec,
                  options_json: JSON.stringify(backendOptionsObj)},
-          success: execCallback.bind(this) /* tricky! */,
+          success: callbackWrapper,
         });
       } else {
         // for Python 2 or 3, directly execute backendScript
@@ -461,7 +464,7 @@ export abstract class AbstractBaseFrontend {
                user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
                session_uuid: this.sessionUUID,
                diffs_json: deltaObjStringified},
-               execCallback.bind(this) /* tricky! */, "json");
+               callbackWrapper, "json");
       }
   }
 
