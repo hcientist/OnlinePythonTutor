@@ -820,7 +820,7 @@ class OptFrontendWithTestcases extends OptFrontend {
     this.optTests.appStateAugmenter(appState);
   }
 
-  runTestCase(id, codeToExec) {
+  runTestCase(id, codeToExec, firstTestLine) {
     // adapted from executeCode in opt-frontend.js
     var backendOptionsObj = this.getBaseBackendOptionsObj();
     var frontendOptionsObj = this.getBaseFrontendOptionsObj();
@@ -837,8 +837,8 @@ class OptFrontendWithTestcases extends OptFrontend {
           // highlight the faulting line in the test case pane itself
           if (errorLineNo !== undefined &&
               errorLineNo != NaN &&
-              errorLineNo >= dat.firstTestLine) {
-            var adjustedErrorLineNo = errorLineNo - dat.firstTestLine;
+              errorLineNo >= firstTestLine) {
+            var adjustedErrorLineNo = errorLineNo - firstTestLine;
 
             var te = ace.edit('testCaseEditor_' + id);
             var s = te.getSession();
@@ -884,7 +884,10 @@ class OptFrontendWithTestcases extends OptFrontend {
                                    runTestCaseCallback.bind(this));
   }
 
-  vizTestCase(id, codeToExec) {
+  // TODO: properly handle and display errors when there's a syntax
+  // error ... right now it displays as a syntax error in the main pane,
+  // which can be confusing
+  vizTestCase(id, codeToExec, firstTestLine) {
     // adapted from executeCode in opt-frontend.js
     var backendOptionsObj = this.getBaseBackendOptionsObj();
     var frontendOptionsObj = this.getBaseFrontendOptionsObj();
@@ -1050,14 +1053,13 @@ class OptTestcases {
 
       var dat = _me.getCombinedCode(id);
       var cod = dat.cod;
-      var firstTestLine = dat.firstTestLine; // TODO: use me later
 
       if (isViz) {
         $('#vizTestCase_' + id).html("Visualizing ...");
-        _me.parent.vizTestCase(id, cod);
+        _me.parent.vizTestCase(id, cod, dat.firstTestLine);
       } else {
         $('#runTestCase_' + id).html("Running ...");
-        _me.parent.runTestCase(id, cod);
+        _me.parent.runTestCase(id, cod, dat.firstTestLine);
       }
     }
 
