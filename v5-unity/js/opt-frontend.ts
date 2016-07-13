@@ -998,6 +998,9 @@ class OptTestcases {
     // don't do real-time syntax checks:
     // https://github.com/ajaxorg/ace/wiki/Syntax-validation
     s.setOption("useWorker", false);
+    s.on("change", (e) => {
+      $('#outputTd_' + id).empty(); // remove all test output indicators
+    });
 
     // TODO: change syntax highlighting mode if the user changes languages:
     var lang = $('#pythonVersionSelector').val();
