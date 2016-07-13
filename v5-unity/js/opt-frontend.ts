@@ -4,16 +4,7 @@
 
 /* TODO:
 
-- ERGH, the OptFrontendWithTestcases subclassing thing is awkward since
-  we're overriding handleUncaughtException and finishSuccessfulExecution
-  so that we're conflating whether we're running tests or regular ole'
-  OPT code, ergh.
-  - maybe instead have Testcases extend AbstractBaseFrontend and then
-    have a Testcases field within OptFrontend
-  - then use executeCodeAndRunCallback in Testcases to NOT create a viz
-    and instead run a test case; TODO: what about visualizing a test case?
-  - also change appStateAugmenter to this.testcases.appStateAugmenter or
-    something
+- make sure the "create test cases" feature still works
 
 - parse Java viz_options in users' java code:
   https://github.com/daveagp/java_visualize/blob/1489078712310eda44391f09405e0f71b2b190c9/jv-frontend.js#L101
@@ -25,8 +16,6 @@
   [probably do this in the FRONTEND and not in pytutor.js]
 
 - test logging via viz_interaction.py and updateHistory
-
-- make sure the "add test cases" feature still works
 
 - we're referring to top-level CSS selectors on the page; maybe use a
   this.domRoot pattern like in pytutor.ts?
@@ -86,29 +75,7 @@ const CPP_BLANK_TEMPLATE = 'int main() {\n\
 const CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
 const SUBMIT_UPDATE_HISTORY_INTERVAL_MS = 1000 * 60;
 
-const redSadFace = require('./images/red-sad-face.jpg');
-const yellowHappyFace = require('./images/yellow-happy-face.jpg');
-
-const testcasesPaneHtml = '\
-<table id="testCasesTable">\
-  <thead>\
-  <tr>\
-    <td style="width: 310px">Tests</td>\
-    <td><button id="runAllTestsButton" type="button">Run All Tests</button></td>\
-    <td>Results</td>\
-    <td></td>\
-    <td></td>\
-  </tr>\
-  </thead>\
-  <tbody>\
-  </tbody>\
-</table>\
-\
-<a href="#" id="addNewTestCase">Add new test</a>\
-'
-
-
-var optFrontend; // singleton OptFrontend object
+var optFrontend: OptFrontend;
 
 // TODO: reinstate shared session stuff later
 var TogetherJS; // temporary stent
@@ -823,30 +790,111 @@ class OptFrontend extends AbstractBaseFrontend {
 } // END class OptFrontend
 
 
-// Like OptFrontend but augmented with an "add test cases" pane
+// OptFrontend augmented with a "Create test cases" pane
 class OptFrontendWithTestcases extends OptFrontend {
-  curTestcaseId: number = 1;
+  optTests: OptTestcases;
 
   constructor(params) {
     super(params);
-    $("#testCasesParent")
-      .append('<p style="margin-top: 25px;"><a href="#" id="createTestsLink">Create test cases</a></p><div id="testCasesPane"></div>');
-    $("#testCasesParent #createTestsLink").click(() => {
-      this.initTestcasesPane();
-      return false;
-    });
+    this.optTests = new OptTestcases(this);
   }
 
   parseQueryString() {
     var queryStrOptions = this.getQueryStringOptions();
     if (queryStrOptions.testCasesLst) {
-      this.loadTestCases(queryStrOptions.testCasesLst);
+      this.optTests.loadTestCases(queryStrOptions.testCasesLst);
     }
     super.parseQueryString();
   }
 
+  appStateAugmenter(appState) {
+    this.optTests.appStateAugmenter(appState);
+  }
+
+  runTestCase(id, codeToExec) {
+    // adapted from executeCode in opt-frontend.js
+    var backendOptionsObj = this.getBaseBackendOptionsObj();
+    var frontendOptionsObj = this.getBaseFrontendOptionsObj();
+
+    (backendOptionsObj as any).run_test_case = true; // just so we can see this in server logs
+    (frontendOptionsObj as any).jumpToEnd = true;
+
+    var runTestCaseCallback = (dat) => {
+      var trace = dat.trace;
+      console.log(dat);
+      // scan through the trace to find any exception events. report
+      // the first one if found, otherwise assume test is 'passed'
+      var exceptionMsg = null;
+      trace.forEach(function(e) {
+        if (exceptionMsg) {
+          return;
+        }
+
+        if (e.event === 'exception') {
+          exceptionMsg = e.exception_msg;
+        }
+      });
+
+      if (exceptionMsg) {
+        $('#outputTd_' + id).html('<img src="' + redSadFace + '"></img>');
+      } else {
+        $('#outputTd_' + id).html('<img src="' + yellowHappyFace + '"></img>');
+      }
+    };
+
+    this.executeCodeAndRunCallback(codeToExec,
+                                   $('#pythonVersionSelector').val(),
+                                   backendOptionsObj, frontendOptionsObj,
+                                   runTestCaseCallback.bind(this));
+  }
+
+  // TODO: add vizTestCase
+
+} // END Class OptFrontendWithTestcases
+
+
+
+// TODO: maybe extract to a new file called opt-testcases.ts ?
+
+const redSadFace = require('./images/red-sad-face.jpg');
+const yellowHappyFace = require('./images/yellow-happy-face.jpg');
+
+const testcasesPaneHtml = '\
+<table id="testCasesTable">\
+  <thead>\
+  <tr>\
+    <td style="width: 310px">Tests</td>\
+    <td><button id="runAllTestsButton" type="button">Run All Tests</button></td>\
+    <td>Results</td>\
+    <td></td>\
+    <td></td>\
+  </tr>\
+  </thead>\
+  <tbody>\
+  </tbody>\
+</table>\
+\
+<a href="#" id="addNewTestCase">Add new test</a>\
+'
+
+class OptTestcases {
+  parent: OptFrontendWithTestcases;
+  curTestcaseId: number = 1;
+
+  constructor(parent) {
+    this.parent = parent;
+    $("#testCasesParent")
+      .empty() // just to be paranoid, empty this out (and its event handlers, too, supposedly)
+      .html('<p style="margin-top: 25px;"><a href="#" id="createTestsLink">Create test cases</a></p><div id="testCasesPane"></div>');
+
+    $("#testCasesParent #createTestsLink").click(() => {
+      this.initTestcasesPane();
+      $("#testCasesParent #createTestsLink").hide();
+      return false;
+    });
+  }
+
   initTestcasesPane() {
-    $("#testCasesParent #createTestsLink").hide();
     var _me = this;
     $("#testCasesParent #testCasesPane")
       .empty() // just to be paranoid, empty this out (and its event handlers, too, supposedly)
@@ -941,58 +989,23 @@ class OptFrontendWithTestcases extends OptFrontend {
     te.focus();
 
     function runOrVizTestCase(isViz /* true for visualize, false for run */) {
-      if (isViz) {
-        $('#vizTestCase_' + id).html("Visualizing ...");
-      } else {
-        $('#runTestCase_' + id).html("Running ...");
-      }
-
       $("#runAllTestsButton,.runTestCase,.vizTestCase").attr('disabled', true);
       var e = ace.edit('testCaseEditor_' + id);
       e.getSession().clearAnnotations();
       $('#outputTd_' + id).html('');
 
       var dat = _me.getCombinedCode(id);
-
-      // adapted from executeCode in opt-frontend.js
-      var backendOptionsObj = _me.getBaseBackendOptionsObj();
-      var frontendOptionsObj = _me.getBaseFrontendOptionsObj();
-      (frontendOptionsObj as any).jumpToEnd = true;
+      var cod = dat.cod;
+      var firstTestLine = dat.firstTestLine; // TODO: use me later
 
       if (isViz) {
-        (backendOptionsObj as any).viz_test_case = true; // just so we can see this in server logs
-        //this.activateSyntaxErrorSurvey = false; // disable survey when running test cases since it gets confusing
+        $('#vizTestCase_' + id).html("Visualizing ...");
+        _me.parent.vizTestCase(id, cod);
       } else {
-        (backendOptionsObj as any).run_test_case = true; // just so we can see this in server logs
-        (frontendOptionsObj as any).runTestCaseCallback = function(trace) {
-          // scan through the trace to find any exception events. report
-          // the first one if found, otherwise assume test is 'passed'
-          var exceptionMsg = null;
-          trace.forEach(function(e) {
-            if (exceptionMsg) {
-              return;
-            }
-
-            if (e.event === 'exception') {
-              exceptionMsg = e.exception_msg;
-            }
-          });
-
-          if (exceptionMsg) {
-            $('#outputTd_' + id).html('<img src="' + redSadFace + '"></img>');
-          } else {
-            $('#outputTd_' + id).html('<img src="' + yellowHappyFace + '"></img>');
-          }
-        };
+        $('#runTestCase_' + id).html("Running ...");
+        _me.parent.runTestCase(id, cod);
       }
-
     }
-
-    this.executeCodeAndCreateViz(dat.cod,
-                                 $('#pythonVersionSelector').val(),
-                                 backendOptionsObj,
-                                 frontendOptionsObj,
-                                 'pyOutputPane');
 
     $('#runTestCase_' + id).click(runOrVizTestCase.bind(this, false));
     $('#vizTestCase_' + id).click(runOrVizTestCase.bind(this, true));
@@ -1043,7 +1056,7 @@ class OptFrontendWithTestcases extends OptFrontend {
   */
 
   getCombinedCode(id) {
-    var userCod = this.pyInputGetValue();
+    var userCod = this.parent.pyInputGetValue();
     var testCod = ace.edit('testCaseEditor_' + id).getValue();
     // for reporting syntax errors separately for user and test code
     var userCodNumLines = userCod.split('\n').length;
@@ -1078,7 +1091,7 @@ class OptFrontendWithTestcases extends OptFrontend {
     }
   }
 
-} // END class OptFrontendWithTestcases
+} // END class OptTestcases
 
 
 var JS_EXAMPLES = {
@@ -1232,7 +1245,7 @@ var CPP_EXAMPLES = {
 
 
 $(document).ready(function() {
-  optFrontend = new OptFrontend({
+  optFrontend = new OptFrontendWithTestcases({
                                   /*TogetherjsReadyHandler: optFrontendTogetherjsReadyHandler,
                                     TogetherjsCloseHandler: optFrontendTogetherjsCloseHandler,
                                     startSharedSession: optFrontendStartSharedSession,

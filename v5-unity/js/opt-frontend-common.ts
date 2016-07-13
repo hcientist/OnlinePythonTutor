@@ -361,7 +361,7 @@ export abstract class AbstractBaseFrontend {
     this.executeCodeAndRunCallback(codeToExec,
                                    pyState,
                                    backendOptionsObj, frontendOptionsObj,
-                                   vizCallback.bind(this) /* very important to bind! */);
+                                   vizCallback.bind(this));
   }
 
   // execute code and call the execCallback function when the server
