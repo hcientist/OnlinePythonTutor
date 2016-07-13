@@ -797,14 +797,23 @@ class OptFrontendWithTestcases extends OptFrontend {
   constructor(params) {
     super(params);
     this.optTests = new OptTestcases(this);
-  }
 
-  parseQueryString() {
     var queryStrOptions = this.getQueryStringOptions();
     if (queryStrOptions.testCasesLst) {
       this.optTests.loadTestCases(queryStrOptions.testCasesLst);
     }
+    // TRICKY: call superclass's parseQueryString ONLY AFTER initializing optTests
     super.parseQueryString();
+  }
+
+  parseQueryString() {
+    // TRICKY: if optTests isn't initialized yet, this means we're calling this
+    // from the constructor, so do a NOP and then manually parse the query
+    // string at the end of the constructor ONLY AFTER initializing optTests.
+    // otherwise delegate to super.parseQueryString()
+    if (this.optTests) {
+      super.parseQueryString();
+    }
   }
 
   appStateAugmenter(appState) {
@@ -821,7 +830,6 @@ class OptFrontendWithTestcases extends OptFrontend {
 
     var runTestCaseCallback = (dat) => {
       var trace = dat.trace;
-      console.log(dat);
       // scan through the trace to find any exception events. report
       // the first one if found, otherwise assume test is 'passed'
       var exceptionMsg = null;
