@@ -29,52 +29,6 @@ require('./lib/jquery.ba-dotimeout.min.js');
 // need to directly import the class for type checking to work
 import {ExecutionVisualizer, assert, htmlspecialchars} from './pytutor.ts';
 
-// these settings are all customized for my own server setup,
-// so you will need to customize for your server:
-const serverRoot = (window.location.protocol === 'https:') ?
-                    'https://cokapi.com:8001/' : // my certificate for https is registered via cokapi.com, so use it for now
-                    'http://104.237.139.253:3000/';
-
-export const JS_JSONP_ENDPOINT = serverRoot + 'exec_js_jsonp'; // TODO: get rid of this dependency in opt-live.ts
-
-// note that we use '2' and '3' instead of 'py2' and 'py3' due to legacy reasons
-const langSettingToBackendScript = {
-  // backend scripts to execute (Python 2 and 3 variants, if available)
-  // make two copies of ../web_exec.py and give them the following names,
-  // then change the first line (starting with #!) to the proper version
-  // of the Python interpreter (i.e., Python 2 or Python 3).
-  // Note that your hosting provider might have stringent rules for what
-  // kind of scripts are allowed to execute. For instance, my provider
-  // (Webfaction) seems to let scripts execute only if permissions are
-  // something like:
-  // -rwxr-xr-x 1 pgbovine pgbovine 2.5K Jul  5 22:46 web_exec_py2.py*
-  // (most notably, only the owner of the file should have write
-  //  permissions)
-  '2': 'web_exec_py2.py',
-  '3': 'web_exec_py3.py',
-
-  // empty dummy scripts just to do logging on Apache server
-  'js':   'web_exec_js.py',
-  'ts':   'web_exec_ts.py',
-  'java': 'web_exec_java.py',
-  'ruby': 'web_exec_ruby.py',
-  'c':   'web_exec_c.py',
-  'cpp': 'web_exec_cpp.py',
-};
-
-// see ../../v4-cokapi/cokapi.js for details
-const langSettingToJsonpEndpoint = {
-  '2':    null,
-  '3':    null,
-  'js':   serverRoot + 'exec_js_jsonp',
-  'ts':   serverRoot + 'exec_ts_jsonp',
-  'java': serverRoot + 'exec_java_jsonp',
-  'ruby': serverRoot + 'exec_ruby_jsonp',
-  'c':    serverRoot + 'exec_c_jsonp',
-  'cpp':  serverRoot + 'exec_cpp_jsonp',
-};
-
-
 // for shared sessions ... put back in later
 //var executeCodeSignalFromRemote = false;
 //var togetherjsSyncRequested = false;
@@ -106,6 +60,49 @@ export abstract class AbstractBaseFrontend {
   deltaObj : {start: string, deltas: any[], v: number, startTime: number, executeTime?: number} = undefined;
 
   num414Tries = 0;
+
+  // note that we use '2' and '3' instead of 'py2' and 'py3' due to legacy reasons
+  langSettingToBackendScript = {
+    // backend scripts to execute (Python 2 and 3 variants, if available)
+    // make two copies of ../web_exec.py and give them the following names,
+    // then change the first line (starting with #!) to the proper version
+    // of the Python interpreter (i.e., Python 2 or Python 3).
+    // Note that your hosting provider might have stringent rules for what
+    // kind of scripts are allowed to execute. For instance, my provider
+    // (Webfaction) seems to let scripts execute only if permissions are
+    // something like:
+    // -rwxr-xr-x 1 pgbovine pgbovine 2.5K Jul  5 22:46 web_exec_py2.py*
+    // (most notably, only the owner of the file should have write
+    //  permissions)
+    '2': 'web_exec_py2.py',
+    '3': 'web_exec_py3.py',
+
+    // empty dummy scripts just to do logging on Apache server
+    'js':   'web_exec_js.py',
+    'ts':   'web_exec_ts.py',
+    'java': 'web_exec_java.py',
+    'ruby': 'web_exec_ruby.py',
+    'c':   'web_exec_c.py',
+    'cpp': 'web_exec_cpp.py',
+  };
+
+  // these settings are all customized for my own server setup,
+  // so you will need to customize for your server:
+  serverRoot = (window.location.protocol === 'https:') ?
+                'https://cokapi.com:8001/' : // my certificate for https is registered via cokapi.com, so use it for now
+                'http://104.237.139.253:3000/';
+
+  // see ../../v4-cokapi/cokapi.js for details
+  langSettingToJsonpEndpoint = {
+    '2':    null,
+    '3':    null,
+    'js':   this.serverRoot + 'exec_js_jsonp',
+    'ts':   this.serverRoot + 'exec_ts_jsonp',
+    'java': this.serverRoot + 'exec_java_jsonp',
+    'ruby': this.serverRoot + 'exec_ruby_jsonp',
+    'c':    this.serverRoot + 'exec_c_jsonp',
+    'cpp':  this.serverRoot + 'exec_cpp_jsonp',
+  };
 
   abstract executeCode(forceStartingInstr?: number, forceRawInputLst?: string[]) : any;
   abstract finishSuccessfulExecution() : any; // called by executeCodeAndCreateViz
@@ -378,9 +375,9 @@ export abstract class AbstractBaseFrontend {
         this.num414Tries = 0;
       };
 
-      var backendScript = langSettingToBackendScript[pyState];
+      var backendScript = this.langSettingToBackendScript[pyState];
       assert(backendScript);
-      var jsonp_endpoint = langSettingToJsonpEndpoint[pyState]; // maybe null
+      var jsonp_endpoint = this.langSettingToJsonpEndpoint[pyState]; // maybe null
 
       if (!backendScript) {
         this.setFronendError(

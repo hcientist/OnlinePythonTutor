@@ -63,47 +63,28 @@ export class OptLiveFrontend extends AbstractBaseFrontend {
   originFrontendJsFile: string = 'opt-live.js';
   pyInputAceEditor; // Ace editor object that contains the user's code
 
+  prevVisualizer = null; // the visualizer object from the previous execution
+  aceEditorWidth = '550px';
+  disableRowScrolling = false; // really hacky global, ugh
+  hasSyntaxError = false;
+
+  // override
+  langSettingToBackendScript = {
+    '2': 'LIVE_exec_py2.py',
+    '3': 'LIVE_exec_py3.py',
+    // empty dummy scripts just to do logging on Apache server
+    'js':   'LIVE_exec_js.py',
+    'ts':   'LIVE_exec_ts.py',
+    'java': 'LIVE_exec_java.py',
+    'ruby': 'LIVE_exec_ruby.py',
+    'c':   'LIVE_exec_c.py',
+    'cpp': 'LIVE_exec_cpp.py',
+  };
+
 
 }
 
 
-// TODO: refactor me below
-
-// TODO: overriding backend_script from opt-frontend-common.js is also dicey, ergh
-// so it currently doesn't work for JavaScript. also it logs the WRONG
-// SCRIPT for Python since it uses the script names from
-// opt-frontend-common.js
-
-// these scripts override the versions defined in opt-frontend-common.js
-
-// backend scripts to execute (Python 2 and 3 variants, if available)
-// make two copies of ../web_exec.py and give them the following names,
-// then change the first line (starting with #!) to the proper version
-// of the Python interpreter (i.e., Python 2 or Python 3).
-// Note that your hosting provider might have stringent rules for what
-// kind of scripts are allowed to execute. For instance, my provider
-// (Webfaction) seems to let scripts execute only if permissions are
-// something like:
-// -rwxr-xr-x 1 pgbovine pgbovine 2.5K Jul  5 22:46 web_exec_py2.py*
-// (most notably, only the owner of the file should have write
-//  permissions)
-var python2_backend_script = 'LIVE_exec_py2.py';
-var python3_backend_script = 'LIVE_exec_py3.py';
-
-// empty dummy just to do logging on the Apache's server
-var js_backend_script = 'LIVE_exec_js.py';
-var ts_backend_script = 'LIVE_exec_ts.py';
-var java_backend_script = 'LIVE_exec_java.py';
-var ruby_backend_script = 'LIVE_exec_ruby.py';
-var c_backend_script = 'LIVE_exec_c.py';
-var cpp_backend_script = 'LIVE_exec_cpp.py';
-
-var prevVisualizer = null; // the visualizer object from the previous execution
-
-var aceEditorWidth = '550px';
-var disableRowScrolling = false; // really hacky global, ugh
-
-var hasSyntaxError = false;
 function toggleSyntaxError(x) {
   if (x) {
     hasSyntaxError = true;
