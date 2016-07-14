@@ -8,7 +8,9 @@
 require('../css/opt-frontend.css');
 require('../css/opt-live.css');
 
-var optCommon = require('./opt-frontend-common.ts');
+// need to directly import the class for type checking to work
+import {AbstractBaseFrontend, generateUUID, supports_html5_storage} from './opt-frontend-common.ts';
+
 var pytutor = require('./pytutor.ts');
 var assert = pytutor.assert;
 
@@ -57,6 +59,14 @@ declare var jsonp_endpoint: string;
 */
 
 
+export class OptLiveFrontend extends AbstractBaseFrontend {
+  originFrontendJsFile: string = 'opt-live.js';
+  pyInputAceEditor; // Ace editor object that contains the user's code
+
+
+}
+
+
 // TODO: refactor me below
 
 // TODO: overriding backend_script from opt-frontend-common.js is also dicey, ergh
@@ -87,9 +97,6 @@ var java_backend_script = 'LIVE_exec_java.py';
 var ruby_backend_script = 'LIVE_exec_ruby.py';
 var c_backend_script = 'LIVE_exec_c.py';
 var cpp_backend_script = 'LIVE_exec_cpp.py';
-
-
-var originFrontendJsFile = 'opt-live.js';
 
 var prevVisualizer = null; // the visualizer object from the previous execution
 

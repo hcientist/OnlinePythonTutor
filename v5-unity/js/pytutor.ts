@@ -65,9 +65,10 @@ var rightwardNudgeHack = true; // suggested by John DeNero, toggle with global
 
 // the main event!
 export class ExecutionVisualizer {
-  static curVisualizerID: number = 1;
-  static DEFAULT_EMBEDDED_CODE_DIV_WIDTH: number = 350;
-  static DEFAULT_EMBEDDED_CODE_DIV_HEIGHT: number = 400;
+  static curVisualizerID = 1;
+
+  static DEFAULT_EMBEDDED_CODE_DIV_WIDTH = 350;
+  static DEFAULT_EMBEDDED_CODE_DIV_HEIGHT = 400;
 
   params: any = {};
   curInputCode: string;
@@ -93,6 +94,9 @@ export class ExecutionVisualizer {
   domRootD3: any;
 
   curInstr: number = 0;
+
+  updateHistory: any[];
+  creationTime: number;
 
   // API for adding a hook, created by David Pritchard
   // keys, hook names; values, list of functions

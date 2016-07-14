@@ -26,9 +26,8 @@ declare var codeopticonSession: string;  // FIX later when porting Codeopticon
 require('./lib/diff_match_patch.js');
 require('./lib/jquery.ba-dotimeout.min.js');
 
-var pytutor = require('./pytutor.ts');
-var assert = pytutor.assert;
-
+// need to directly import the class for type checking to work
+import {ExecutionVisualizer, assert, htmlspecialchars} from './pytutor.ts';
 
 // these settings are all customized for my own server setup,
 // so you will need to customize for your server:
@@ -89,7 +88,7 @@ const langSettingToJsonpEndpoint = {
 export abstract class AbstractBaseFrontend {
   sessionUUID: string = generateUUID(); // remains constant throughout one page load ("session")
 
-  myVisualizer; // singleton ExecutionVisualizer instance from pytutor.ts
+  myVisualizer: ExecutionVisualizer;
   originFrontendJsFile: string; // "abstract" -- must override in subclass
 
   // 'edit' or 'display'. also support 'visualize' for backward
@@ -203,7 +202,7 @@ export abstract class AbstractBaseFrontend {
   logEventCodeopticon(obj) { } // NOP
 
   setFronendError(lines) {
-    $("#frontendErrorOutput").html(lines.map(pytutor.htmlspecialchars).join('<br/>'));
+    $("#frontendErrorOutput").html(lines.map(htmlspecialchars).join('<br/>'));
   }
 
   clearFrontendError() {
@@ -288,7 +287,7 @@ export abstract class AbstractBaseFrontend {
     this.isExecutingCode = false;
   }
 
-  // execute codeToExec and create a new pytutor.ExecutionVisualizer
+  // execute codeToExec and create a new ExecutionVisualizer
   // object with outputDiv as its DOM parent
   executeCodeAndCreateViz(codeToExec,
                           pyState,
@@ -326,10 +325,10 @@ export abstract class AbstractBaseFrontend {
           frontendOptionsObj.runTestCaseCallback(trace);
         } else {
           // success!
-          this.myVisualizer = new pytutor.ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
+          this.myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
           // SUPER HACK -- slip in backendOptionsObj as an extra field
           // NB: why do we do this? for more detailed logging?
-          this.myVisualizer.backendOptionsObj = backendOptionsObj;
+          (this.myVisualizer as any).backendOptionsObj = backendOptionsObj;
           this.finishSuccessfulExecution(); // TODO: should we also run this if we're calling runTestCaseCallback?
         }
 

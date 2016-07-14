@@ -11,8 +11,6 @@
     - also implement these options and stdin support too:
       var optionNames = ['showStringsAsObjects', 'showAllFields', 'disableNesting'];
 
-  [probably do this in the FRONTEND and not in pytutor.js]
-
 - test logging via viz_interaction.py and updateHistory
 
 - we're referring to top-level CSS selectors on the page; maybe use a
@@ -52,9 +50,7 @@ require('script!./lib/socket.io-client/socket.io.js');
 // need to directly import the class for type checking to work
 import {AbstractBaseFrontend, generateUUID, supports_html5_storage} from './opt-frontend-common.ts';
 import {OptTestcases, redSadFace, yellowHappyFace} from './opt-testcases.ts';
-
-var pytutor = require('./pytutor.ts');
-var assert = pytutor.assert;
+import {ExecutionVisualizer, assert, htmlspecialchars} from './pytutor.ts';
 
 require('../css/opt-frontend.css');
 require('../css/opt-testcases.css');
@@ -852,7 +848,7 @@ export class OptFrontendWithTestcases extends OptFrontend {
 
         var msg = trace[0].exception_msg;
         var trimmedMsg = msg.split(':')[0];
-        $('#outputTd_' + id).html(pytutor.htmlspecialchars(trimmedMsg));
+        $('#outputTd_' + id).html(htmlspecialchars(trimmedMsg));
       } else {
         // scan through the trace to find any exception events. report
         // the first one if found, otherwise assume test is 'passed'
@@ -1133,8 +1129,8 @@ $(document).ready(function() {
     assert(mod == 'display' || mod == 'visualize' /* deprecated */);
     var myArgs = optFrontend.getAppState();
     delete myArgs.mode;
-    (myArgs as any).codeDivWidth = optFrontend.myVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
-    (myArgs as any).codeDivHeight = optFrontend.myVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
+    (myArgs as any).codeDivWidth = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
+    (myArgs as any).codeDivHeight = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
 
     var domain = "http://pythontutor.com/"; // for deployment
     var embedUrlStr = $.param.fragment(domain + "iframe-embed.html", myArgs, 2 /* clobber all */);

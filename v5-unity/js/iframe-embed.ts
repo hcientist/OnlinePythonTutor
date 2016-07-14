@@ -8,9 +8,6 @@
 
 */
 
-var pytutor = require('./pytutor.ts');
-var assert = pytutor.assert;
-
 require('../css/opt-frontend.css');
 
 // need to directly import the class for typechecking to work
