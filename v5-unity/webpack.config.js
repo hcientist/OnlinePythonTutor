@@ -37,7 +37,7 @@ module.exports = {
     },
 
     entry: {
-        'opt-frontend': "./js/opt-frontend.ts",
+        'visualize': "./js/visualize.ts",
         'opt-live': "./js/opt-live.ts",
         'iframe-embed': "./js/iframe-embed.ts",
         'embedding-demo': "./js/embedding-demo.ts",

@@ -10,8 +10,7 @@ require('../css/opt-live.css');
 
 // need to directly import the class for type checking to work
 import {OptFrontend} from './opt-frontend.ts';
-import {generateUUID, supports_html5_storage} from './opt-frontend-common.ts';
-
+import {supports_html5_storage} from './opt-frontend-common.ts';
 import {ExecutionVisualizer, assert, brightRed, darkArrowColor, lightArrowColor, SVG_ARROW_POLYGON, htmlspecialchars} from './pytutor.ts';
 
 // just punt and use global script dependencies
@@ -23,9 +22,6 @@ require('script!./lib/ace/src-min-noconflict/mode-c_cpp.js');
 require('script!./lib/ace/src-min-noconflict/mode-java.js');
 require('script!./lib/ace/src-min-noconflict/mode-ruby.js');
 
-
-// for TypeScript
-declare var jsonp_endpoint: string;
 
 var optLiveFrontend: OptLiveFrontend;
 
@@ -68,7 +64,7 @@ export class OptLiveFrontend extends OptFrontend {
 
   prevVisualizer = null; // the visualizer object from the previous execution
   aceEditorWidth = '550px';
-  disableRowScrolling = false; // really hacky global, ugh
+  disableRowScrolling = false;
   hasSyntaxError = false;
 
   allMarkerIds: number[] = [];
@@ -183,7 +179,7 @@ export class OptLiveFrontend extends OptFrontend {
     // handle raw user input
     // copied from pytutor.js -- TODO: integrate this code better
     var ruiDiv = $('#rawUserInputDiv');
-    if (isLastInstr && myVisualizer.executeCodeWithRawInputFunc &&
+    if (isLastInstr && myVisualizer.params.executeCodeWithRawInputFunc &&
         myVisualizer.promptForUserInput) {
       ruiDiv.show();
       ruiDiv.find('#userInputPromptStr').html(myVisualizer.userInputPromptStr);
@@ -196,7 +192,7 @@ export class OptLiveFrontend extends OptFrontend {
           var userInput = ruiDiv.find('#raw_input_textbox').val();
           var myVisualizer = this.myVisualizer;
           // advance instruction count by 1 to get to the NEXT instruction
-          myVisualizer.executeCodeWithRawInputFunc(userInput, myVisualizer.curInstr + 1);
+          myVisualizer.params.executeCodeWithRawInputFunc(userInput, myVisualizer.curInstr + 1);
         });
     } else {
       ruiDiv.hide(); // hide by default
@@ -217,7 +213,7 @@ export class OptLiveFrontend extends OptFrontend {
         var Range = ace.require('ace/range').Range;
         var markerId = s.addMarker(new Range(myVisualizer.curLineNumber - 1, 0,
                                              myVisualizer.curLineNumber - 1, 1), "errorLine", "fullLine");
-        allMarkerIds.push(markerId);
+        this.allMarkerIds.push(markerId);
       }
     } else if (myVisualizer.instrLimitReached) {
       $("#frontendErrorOutput").html(htmlspecialchars(myVisualizer.instrLimitReachedWarningMsg));
@@ -253,7 +249,7 @@ export class OptLiveFrontend extends OptFrontend {
     // sure not to appear jarring, so apply some heuristics here
     // such as disableRowScrolling and checking to see if the current line
     // is visible
-    if (lineToScrollTo && !disableRowScrolling) {
+    if (lineToScrollTo && !this.disableRowScrolling) {
       var firstVisible = this.pyInputAceEditor.getFirstVisibleRow() + 1; // +1 to be more accurate
       var lastVisible = this.pyInputAceEditor.getLastVisibleRow();
       if (lineToScrollTo < firstVisible ||
@@ -389,7 +385,7 @@ export class OptLiveFrontend extends OptFrontend {
         this.removeAllGutterDecorations();
 
         if (this.myVisualizer) {
-          toggleSyntaxError(true);
+          this.toggleSyntaxError(true);
           this.myVisualizer.redrawConnectors();
         }
 
@@ -418,7 +414,7 @@ export class OptLiveFrontend extends OptFrontend {
     this.pyInputAceEditor.$blockScrolling = Infinity; // kludgy to shut up weird warnings
 
     $("#pyInputPane,#codeInputPane")
-      .css('width', aceEditorWidth)
+      .css('width', this.aceEditorWidth)
       .css('min-width', '250px')
       .css('max-width', '700px'); // don't let it get too ridiculously wide
     $('#codeInputPane').css('height', height + 'px'); // VERY IMPORTANT so that it works on I.E., ugh!
@@ -461,7 +457,7 @@ export class OptLiveFrontend extends OptFrontend {
   }
 
   executeCodeFromScratch() {
-    this.disableRowScrolling = true; // annoying hacky global
+    this.disableRowScrolling = true;
     super.executeCodeFromScratch();
   }
 
@@ -491,7 +487,7 @@ export class OptLiveFrontend extends OptFrontend {
       } else {
         this.prevVisualizer = this.myVisualizer;
         this.myVisualizer = new ExecutionVisualizer(outputDiv, dataFromBackend, frontendOptionsObj);
-        this.handleSuccessFunc();
+        this.finishSuccessfulExecution();
       }
 
       // run this all at the VERY END after all the dust has settled
@@ -508,12 +504,11 @@ export class OptLiveFrontend extends OptFrontend {
     assert(backendScript);
     var jsonp_endpoint = null;
 
-    // hacky!
-    if (backendScript === python2_backend_script) {
+    if (pyState === '2') {
       frontendOptionsObj.lang = 'py2';
-    } else if (backendScript === python3_backend_script) {
+    } else if (pyState === '3') {
       frontendOptionsObj.lang = 'py3';
-    } else if (backendScript === js_backend_script) {
+    } else if (pyState === 'js') {
       frontendOptionsObj.lang = 'js';
       jsonp_endpoint = this.langSettingToJsonpEndpoint[pyState]; // maybe null
     } else {
@@ -526,10 +521,10 @@ export class OptLiveFrontend extends OptFrontend {
     // don't bother if we're currently on a syntax error since the
     // displayed visualization is no longer relevant
     var prevUpdateHistoryJSON = undefined;
-    if (hasSyntaxError) {
+    if (this.hasSyntaxError) {
       prevUpdateHistoryJSON = 'hasSyntaxError'; // hacky
     } else if (this.myVisualizer) {
-      var encodedUh = this.compressUpdateHistoryList(this.myVisualizer);
+      var encodedUh = this.compressUpdateHistoryList();
       prevUpdateHistoryJSON = JSON.stringify(encodedUh);
     }
 
@@ -542,8 +537,7 @@ export class OptLiveFrontend extends OptFrontend {
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
              session_uuid: this.sessionUUID,
              prevUpdateHistoryJSON: prevUpdateHistoryJSON,
-             exeTime: new Date().getTime(),
-             diffs_json: deltaObjStringified},
+             exeTime: new Date().getTime()},
              function(dat) {} /* don't do anything since this is a dummy call */, "text");
 
       // the REAL call uses JSONP
@@ -567,50 +561,16 @@ export class OptLiveFrontend extends OptFrontend {
              user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
              session_uuid: this.sessionUUID,
              prevUpdateHistoryJSON: prevUpdateHistoryJSON,
-             exeTime: new Date().getTime(),
-             diffs_json: deltaObjStringified},
+             exeTime: new Date().getTime()},
              execCallback, "json");
     }
   }
 
-  executeCode(forceStartingInstr, forceRawInputLst) {
-    $('#urlOutput').val(''); // clear to avoid stale values
-
-    var cod = optCommon.pyInputGetValue();
-    // don't run empty code
-    if ($.trim(cod) === '') {
-      return;
-    }
-
-    if (forceRawInputLst !== undefined) {
-        optCommon.setRawInputLst(forceRawInputLst); // UGLY global across modules, FIXME
-    }
-
-    var backend_script = langSettingToBackendScript[$('#pythonVersionSelector').val()];
-    assert(backend_script);
-
-    var backendOptionsObj = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
-                             heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
-                             show_only_outputs: false,
-                             py_crazy_mode: false,
-                             origin: originFrontendJsFile};
-
-    var startingInstruction = forceStartingInstr ? forceStartingInstr : 0;
-    var frontendOptionsObj = {startingInstruction: startingInstruction,
-                              executeCodeWithRawInputFunc: optCommon.executeCodeWithRawInput,
-                              // tricky tricky
-                              disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
-                              textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
-                              hideCode: true,
-                              jumpToEnd: true,
-                             }
-
-    optliveExecuteCodeAndCreateViz(cod,
-                            backend_script, backendOptionsObj,
-                            frontendOptionsObj,
-                            'pyOutputPane',
-                            optliveFinishSuccessfulExecution,
-                            optliveHandleUncaughtExceptionFunc);
+  getBaseFrontendOptionsObj() {
+    var ret = super.getBaseFrontendOptionsObj();
+    (ret as any).hideCode = true;
+    (ret as any).jumpToEnd = true;
+    return ret;
   }
 
 } // END class OptLiveFrontend
