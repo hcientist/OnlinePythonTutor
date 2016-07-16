@@ -134,7 +134,7 @@ export abstract class AbstractBaseFrontend {
     }
 
     // register a generic AJAX error handler
-    $(document).ajaxError(function(evt, jqxhr, settings, exception) {
+    $(document).ajaxError((evt, jqxhr, settings, exception) => {
       // ignore errors related to togetherjs stuff:
       if (settings.url.indexOf('togetherjs') > -1) {
         return; // get out early
@@ -161,7 +161,7 @@ export abstract class AbstractBaseFrontend {
       //   </html>
       //
       // Note that you'll probably need to customize this check for your server.
-      if (jqxhr && jqxhr.responseText.indexOf('414') >= 0) {
+      if (jqxhr && jqxhr.responseText && jqxhr.responseText.indexOf('414') >= 0) {
         // ok this is an UBER UBER hack. If this happens just once, then
         // force click the "Visualize Execution" button again and re-try.
         // why? what's the difference the second time around? the diffs_json
