@@ -220,7 +220,7 @@ export class OptFrontend extends AbstractBaseFrontend {
     // re-editing code; that way, we can still get some signals rather
     // than nothing.
     var lastSubmittedUpdateHistoryLength = 0;
-    setInterval(function() {
+    setInterval(() => {
       if (this.myVisualizer) {
         var uh = this.myVisualizer.updateHistory;
         // don't submit identical entries repeatedly since that's redundant
@@ -269,7 +269,7 @@ export class OptFrontend extends AbstractBaseFrontend {
       if (why) {
         myArgs.why = why;
       }
-      $.get('viz_interaction.py', myArgs, function(dat) {});
+      $.get('viz_interaction.py', myArgs, (dat) => {});
     }
   }
 

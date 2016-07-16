@@ -98,7 +98,7 @@ export class OptLiveFrontend extends OptFrontend {
         .attr('points', SVG_ARROW_POLYGON)
         .attr('fill', darkArrowColor);
 
-    $('#cumulativeModeSelector,#heapPrimitivesSelector,#textualMemoryLabelsSelector,#pythonVersionSelector').change(function() {
+    $('#cumulativeModeSelector,#heapPrimitivesSelector,#textualMemoryLabelsSelector,#pythonVersionSelector').change(() => {
       this.setAceMode();
       // force a re-execute on a toggle switch
       this.executeCodeFromScratch();
@@ -108,19 +108,19 @@ export class OptLiveFrontend extends OptFrontend {
     $("#pyOutputPane").show();
 
 
-    $("#jmpFirstInstr").click(function() {
+    $("#jmpFirstInstr").click(() => {
       if (this.myVisualizer) {this.myVisualizer.renderStep(0);}
     });
 
-    $("#jmpLastInstr").click(function() {
+    $("#jmpLastInstr").click(() => {
       if (this.myVisualizer) {this.myVisualizer.renderStep(this.myVisualizer.curTrace.length - 1);}
     });
 
-    $("#jmpStepBack").click(function() {
+    $("#jmpStepBack").click(() => {
       if (this.myVisualizer) {this.myVisualizer.stepBack();}
     });
 
-    $("#jmpStepFwd").click(function() {
+    $("#jmpStepFwd").click(() => {
       if (this.myVisualizer) {this.myVisualizer.stepForward();}
     });
   }
@@ -156,7 +156,7 @@ export class OptLiveFrontend extends OptFrontend {
     $('#urlOutput').val(''); // prevent stale URLs
 
     var s = this.pyInputAceEditor.getSession();
-    this.allMarkerIds.forEach(function(e) {
+    this.allMarkerIds.forEach((e) => {
       s.removeMarker(e);
     });
     this.allMarkerIds = [];
@@ -448,10 +448,10 @@ export class OptLiveFrontend extends OptFrontend {
     // custom gutter renderer, make it wider to accomodate arrows on left
     // http://stackoverflow.com/a/28404331
     s.gutterRenderer = {
-      getWidth: function(session, lastLineNumber, config) {
+      getWidth: (session, lastLineNumber, config) => {
         return (lastLineNumber.toString().length * config.characterWidth) + 6;
       },
-      getText: function(session, row) {
+      getText: (session, row) => {
         return (row+1);
       }
     };
@@ -539,7 +539,7 @@ export class OptLiveFrontend extends OptFrontend {
              session_uuid: this.sessionUUID,
              prevUpdateHistoryJSON: prevUpdateHistoryJSON,
              exeTime: new Date().getTime()},
-             function(dat) {} /* don't do anything since this is a dummy call */, "text");
+             (dat) => {} /* don't do anything since this is a dummy call */, "text");
 
       // the REAL call uses JSONP
       // http://learn.jquery.com/ajax/working-with-jsonp/
