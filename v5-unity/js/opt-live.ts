@@ -397,6 +397,8 @@ export class OptLiveFrontend extends OptFrontend {
     }
   }
 
+  snapshotCodeDiff() { } // override with NOP
+
   initAceEditor(height: number) {
     this.pyInputAceEditor = ace.edit('codeInputPane');
     var s = this.pyInputAceEditor.getSession();
