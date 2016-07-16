@@ -63,7 +63,6 @@ export class OptLiveFrontend extends OptFrontend {
   originFrontendJsFile: string = 'opt-live.js';
 
   prevVisualizer = null; // the visualizer object from the previous execution
-  aceEditorWidth = '550px';
   disableRowScrolling = false;
   hasSyntaxError = false;
 
@@ -416,7 +415,7 @@ export class OptLiveFrontend extends OptFrontend {
     this.pyInputAceEditor.$blockScrolling = Infinity; // kludgy to shut up weird warnings
 
     $("#pyInputPane,#codeInputPane")
-      .css('width', this.aceEditorWidth)
+      .css('width', '550px')
       .css('min-width', '250px')
       .css('max-width', '700px'); // don't let it get too ridiculously wide
     $('#codeInputPane').css('height', height + 'px'); // VERY IMPORTANT so that it works on I.E., ugh!
