@@ -3,7 +3,7 @@
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
 import {OptFrontend,OptFrontendWithTestcases} from './opt-frontend.ts';
-import {ExecutionVisualizer, assert, htmlspecialchars} from './pytutor.ts';
+import {assert} from './pytutor.ts';
 
 // for TypeScript
 declare var initCodeopticon: any; // FIX later when porting Codeopticon
@@ -237,23 +237,6 @@ $(document).ready(function() {
     return false; // prevent an HTML 'a' element click from going to a link
   });
   $('#pythonVersionSelector').change(optFrontend.setAceMode.bind(optFrontend));
-
-  // TODO: maybe move into the OptFrontend class?
-  $('#genEmbedBtn').bind('click', () => {
-    var mod = optFrontend.appMode;
-    assert(mod == 'display' || mod == 'visualize' /* deprecated */);
-    var myArgs = optFrontend.getAppState();
-    delete myArgs.mode;
-    (myArgs as any).codeDivWidth = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
-    (myArgs as any).codeDivHeight = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
-
-    var domain = "http://pythontutor.com/"; // for deployment
-    var embedUrlStr = $.param.fragment(domain + "iframe-embed.html", myArgs, 2 /* clobber all */);
-    embedUrlStr = embedUrlStr.replace(/\)/g, '%29') // replace ) with %29 so that links embed well in Markdown
-    var iframeStr = '<iframe width="800" height="500" frameborder="0" src="' + embedUrlStr + '"> </iframe>';
-    $('#embedCodeOutput').val(iframeStr);
-  });
-
   optFrontend.setAceMode();
 
   if (typeof initCodeopticon !== "undefined") {

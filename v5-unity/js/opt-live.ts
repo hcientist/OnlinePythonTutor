@@ -2,29 +2,6 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-// TODO: using myVisualizer here borrowed from opt-frontend-common.js is
-// very dicey and dangerous due to scoping issues!
-
-require('../css/opt-frontend.css');
-require('../css/opt-live.css');
-
-// need to directly import the class for type checking to work
-import {OptFrontend} from './opt-frontend.ts';
-import {supports_html5_storage} from './opt-frontend-common.ts';
-import {ExecutionVisualizer, assert, brightRed, darkArrowColor, lightArrowColor, SVG_ARROW_POLYGON, htmlspecialchars} from './pytutor.ts';
-
-// just punt and use global script dependencies
-require("script!./lib/ace/src-min-noconflict/ace.js");
-require('script!./lib/ace/src-min-noconflict/mode-python.js');
-require('script!./lib/ace/src-min-noconflict/mode-javascript.js');
-require('script!./lib/ace/src-min-noconflict/mode-typescript.js');
-require('script!./lib/ace/src-min-noconflict/mode-c_cpp.js');
-require('script!./lib/ace/src-min-noconflict/mode-java.js');
-require('script!./lib/ace/src-min-noconflict/mode-ruby.js');
-
-
-var optLiveFrontend: OptLiveFrontend;
-
 
 // OPT live programming prototype started on 2016-05-30
 // first launched as a "Live Programming Mode" button on main OPT site
@@ -57,6 +34,26 @@ var optLiveFrontend: OptLiveFrontend;
   (do this for the OPT classic editor too. and for other language backends)
 
 */
+
+require('../css/opt-frontend.css');
+require('../css/opt-live.css');
+
+// need to directly import the class for type checking to work
+import {OptFrontend} from './opt-frontend.ts';
+import {supports_html5_storage} from './opt-frontend-common.ts';
+import {ExecutionVisualizer, assert, brightRed, darkArrowColor, lightArrowColor, SVG_ARROW_POLYGON, htmlspecialchars} from './pytutor.ts';
+
+// just punt and use global script dependencies
+require("script!./lib/ace/src-min-noconflict/ace.js");
+require('script!./lib/ace/src-min-noconflict/mode-python.js');
+require('script!./lib/ace/src-min-noconflict/mode-javascript.js');
+require('script!./lib/ace/src-min-noconflict/mode-typescript.js');
+require('script!./lib/ace/src-min-noconflict/mode-c_cpp.js');
+require('script!./lib/ace/src-min-noconflict/mode-java.js');
+require('script!./lib/ace/src-min-noconflict/mode-ruby.js');
+
+
+var optLiveFrontend: OptLiveFrontend;
 
 
 export class OptLiveFrontend extends OptFrontend {
@@ -99,7 +96,6 @@ export class OptLiveFrontend extends OptFrontend {
         .attr('fill', darkArrowColor);
 
     $('#cumulativeModeSelector,#heapPrimitivesSelector,#textualMemoryLabelsSelector,#pythonVersionSelector').change(() => {
-      // TODO: save and restore settings from localStorage?
       this.setAceMode();
       // force a re-execute on a toggle switch
       this.executeCodeFromScratch();
@@ -109,6 +105,7 @@ export class OptLiveFrontend extends OptFrontend {
     $("#pyOutputPane").show();
 
 
+    // TODO: eliminate redundancies with pytutor.ts
     $("#jmpFirstInstr").click(() => {
       if (this.myVisualizer) {this.myVisualizer.renderStep(0);}
     });

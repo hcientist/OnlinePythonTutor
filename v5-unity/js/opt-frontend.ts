@@ -103,6 +103,23 @@ export class OptFrontend extends AbstractBaseFrontend {
   constructor(params) {
     super(params);
 
+
+    $('#genEmbedBtn').bind('click', () => {
+      var mod = this.appMode;
+      assert(mod == 'display' || mod == 'visualize' /* deprecated */);
+      var myArgs = this.getAppState();
+      delete myArgs.mode;
+      (myArgs as any).codeDivWidth = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
+      (myArgs as any).codeDivHeight = ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
+
+      var domain = "http://pythontutor.com/"; // for deployment
+      var embedUrlStr = $.param.fragment(domain + "iframe-embed.html", myArgs, 2 /* clobber all */);
+      embedUrlStr = embedUrlStr.replace(/\)/g, '%29') // replace ) with %29 so that links embed well in Markdown
+      var iframeStr = '<iframe width="800" height="500" frameborder="0" src="' + embedUrlStr + '"> </iframe>';
+      $('#embedCodeOutput').val(iframeStr);
+    });
+
+
     this.initAceEditor(420);
     this.pyInputAceEditor.getSession().on("change", (e) => {
       // unfortunately, Ace doesn't detect whether a change was caused
