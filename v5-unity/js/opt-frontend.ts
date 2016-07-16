@@ -96,7 +96,7 @@ function optFrontendTogetherjsCloseHandler() {
 
 export class OptFrontend extends AbstractBaseFrontend {
   originFrontendJsFile: string = 'opt-frontend.js';
-  pyInputAceEditor; // Ace editor object that contains the user's code
+  pyInputAceEditor = undefined; // Ace editor object that contains the user's code
 
   prevExecutionExceptionObjLst = []; // previous consecutive executions with "compile"-time exceptions
 
@@ -274,6 +274,7 @@ export class OptFrontend extends AbstractBaseFrontend {
   }
 
   initAceEditor(height: number) {
+    assert(!this.pyInputAceEditor);
     this.pyInputAceEditor = ace.edit('codeInputPane');
     var s = this.pyInputAceEditor.getSession();
     // tab -> 4 spaces

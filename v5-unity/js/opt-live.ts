@@ -36,7 +36,7 @@ var optLiveFrontend: OptLiveFrontend;
 
 /* TODOs:
 
-- make sure raw_input works
+- make sure raw_input works in live mode (it currently doesn't!)
 
 - abstract out components within pytutor.js to prevent ugly code
   duplication with stuff in this file
@@ -99,6 +99,7 @@ export class OptLiveFrontend extends OptFrontend {
         .attr('fill', darkArrowColor);
 
     $('#cumulativeModeSelector,#heapPrimitivesSelector,#textualMemoryLabelsSelector,#pythonVersionSelector').change(() => {
+      // TODO: save and restore settings from localStorage?
       this.setAceMode();
       // force a re-execute on a toggle switch
       this.executeCodeFromScratch();
@@ -113,7 +114,7 @@ export class OptLiveFrontend extends OptFrontend {
     });
 
     $("#jmpLastInstr").click(() => {
-      if (this.myVisualizer) {this.myVisualizer.renderStep(this.myVisualizer.curTrace.length - 1);}
+      if (this.myVisualizer) {this.myVisualizer.renderStep(this.myVisualizer.curTrace.length-1);}
     });
 
     $("#jmpStepBack").click(() => {
@@ -161,6 +162,7 @@ export class OptLiveFrontend extends OptFrontend {
     });
     this.allMarkerIds = [];
 
+    // TODO: prevent copy and paste with pytutor.ts
     var totalInstrs = myVisualizer.curTrace.length;
     var isLastInstr = myVisualizer.curInstr === (totalInstrs-1);
     if (isLastInstr) {
@@ -191,7 +193,7 @@ export class OptLiveFrontend extends OptFrontend {
           var userInput = ruiDiv.find('#raw_input_textbox').val();
           var myVisualizer = this.myVisualizer;
           // advance instruction count by 1 to get to the NEXT instruction
-          myVisualizer.params.executeCodeWithRawInputFunc(userInput, myVisualizer.curInstr + 1);
+          myVisualizer.params.executeCodeWithRawInputFunc(userInput, myVisualizer.curInstr+1);
         });
     } else {
       ruiDiv.hide(); // hide by default
@@ -223,7 +225,7 @@ export class OptLiveFrontend extends OptFrontend {
     this.removeAllGutterDecorations();
 
     // special case if both arrows overlap
-    if ( myVisualizer.curLineNumber &&
+    if (myVisualizer.curLineNumber &&
         (myVisualizer.curLineNumber === myVisualizer.prevLineNumber)) {
       s.addGutterDecoration(myVisualizer.curLineNumber-1,
                             'curPrevOverlapLineStepGutter');
@@ -286,7 +288,7 @@ export class OptLiveFrontend extends OptFrontend {
     $(".ui-widget-content").css('font-size', '0.9em');
 
     // unbind first to prevent multiple bindings
-    (sliderDiv as any /* TS too strict*/).unbind('slide').bind('slide', (evt, ui) => {
+    (sliderDiv as any).unbind('slide').bind('slide', (evt, ui) => {
       // this is SUPER subtle. if this value was changed programmatically,
       // then evt.originalEvent will be undefined. however, if this value
       // was changed by a user-initiated event, then this code should be
@@ -294,7 +296,6 @@ export class OptLiveFrontend extends OptFrontend {
       if (evt.originalEvent) {
         this.myVisualizer.renderStep(ui.value);
       }
-      //updateStepLabels(); // I don't think we need this anymore
     });
 
     // do this AFTER making #pyOutputPane visible, or else
@@ -324,7 +325,7 @@ export class OptLiveFrontend extends OptFrontend {
     // initialize this at the VERY END after jumping to the proper initial step
     // above, perhaps using renderStep()
 
-    // copied from opt-frontend-common.js
+    // copied from opt-frontend.ts, TODO: remove redundancy
     myVisualizer.creationTime = new Date().getTime();
     // each element will be a two-element list consisting of:
     // [step number, timestamp]
@@ -342,7 +343,7 @@ export class OptLiveFrontend extends OptFrontend {
                                      myVisualizer.creationTime,
                                      myVisualizer.curTrace.length]);
 
-    // TODO: check taht this logging works properly ...
+    // TODO: check that this logging works properly ...
 
     // add this hook at the VERY END after jumping to the proper initial step
     // above, perhaps using renderStep()
@@ -396,9 +397,11 @@ export class OptLiveFrontend extends OptFrontend {
     }
   }
 
-  snapshotCodeDiff() { } // override with NOP
+  // override with NOP to disable diff snapshots in live mode
+  snapshotCodeDiff() { }
 
   initAceEditor(height: number) {
+    assert(!this.pyInputAceEditor);
     this.pyInputAceEditor = ace.edit('codeInputPane');
     var s = this.pyInputAceEditor.getSession();
 
@@ -434,7 +437,6 @@ export class OptLiveFrontend extends OptFrontend {
     this.pyInputAceEditor.on('change', (e) => {
       $.doTimeout('pyInputAceEditorChange',
                   500, /* go a bit faster than CODE_SNAPSHOT_DEBOUNCE_MS to feel more snappy */
-                  //CODE_SNAPSHOT_DEBOUNCE_MS /* match the value in opt-frontend-common.js for consistency and easy apples-to-apples comparisons later on */,
                   this.executeCodeFromScratch.bind(this)); // debounce
       this.clearFrontendError();
       s.clearAnnotations();
@@ -473,7 +475,6 @@ export class OptLiveFrontend extends OptFrontend {
       if (!trace ||
           (trace.length === 0) ||
           (trace[trace.length - 1].event === 'uncaught_exception')) {
-
         this.handleUncaughtException(trace);
 
         if (trace.length === 1) {
@@ -539,7 +540,7 @@ export class OptLiveFrontend extends OptFrontend {
              session_uuid: this.sessionUUID,
              prevUpdateHistoryJSON: prevUpdateHistoryJSON,
              exeTime: new Date().getTime()},
-             (dat) => {} /* don't do anything since this is a dummy call */, "text");
+             (dat) => {}, "text"); // NOP handler since it's a dummy
 
       // the REAL call uses JSONP
       // http://learn.jquery.com/ajax/working-with-jsonp/
@@ -575,6 +576,7 @@ export class OptLiveFrontend extends OptFrontend {
   }
 
 } // END class OptLiveFrontend
+
 
 $(document).ready(function() {
   optLiveFrontend = new OptLiveFrontend({
