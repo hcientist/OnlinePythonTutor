@@ -268,7 +268,6 @@ export abstract class AbstractBaseFrontend {
 
   executeCodeWithRawInput(rawInputStr, curInstr) {
     this.rawInputLst.push(rawInputStr);
-    console.log('executeCodeWithRawInput', rawInputStr, curInstr, this.rawInputLst);
     this.executeCode(curInstr);
   }
 

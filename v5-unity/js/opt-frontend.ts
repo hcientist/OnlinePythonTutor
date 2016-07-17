@@ -11,7 +11,9 @@
     - also implement these options and stdin support too:
       var optionNames = ['showStringsAsObjects', 'showAllFields', 'disableNesting'];
 
-- test logging via viz_interaction.py and updateHistory
+- make sure all logging works properly. e.g.,:
+  - diffs_json snapshots
+  - viz_interaction.py and updateHistory
 
 - we're referring to top-level CSS selectors on the page; maybe use a
   this.domRoot pattern like in pytutor.ts?
