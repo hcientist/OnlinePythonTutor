@@ -13,7 +13,9 @@
 
 /* TODOs:
 
-- make sure raw_input works in live mode (it currently doesn't!)
+- raw_input doesn't work properly if you preload a URL with rawInputLstJSON
+
+http://localhost:8003/live.html#code=x%20%3D%20%22Enter%20your%20name%3A%20%22%0Ay%20%3D%20raw_input(x%29%0Aprint%20%22Hello%22,%20y%0Az%20%3D%20raw_input(y%20%2B%20%22%20-%3E%20%22%29%0Aprint%20z&cumulative=false&curInstr=5&heapPrimitives=false&mode=display&origin=opt-live.js&py=2&rawInputLstJSON=%5B%22hello%22,%22world%22%5D&textReferences=false
 
 - abstract out components within pytutor.js to prevent ugly code
   duplication with stuff in this file
