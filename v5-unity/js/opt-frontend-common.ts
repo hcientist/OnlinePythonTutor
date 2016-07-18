@@ -9,8 +9,6 @@
 
 - test session_uuid, user_uuid, and other stuff stored to localStorage
 
-- test that deltaObj is being properly updated
-
 */
 
 /// <reference path="_references.ts" />
@@ -415,16 +413,17 @@ export abstract class AbstractBaseFrontend {
       if (deltaObjStringified) {
         // if deltaObjStringified is too long, then that will likely make
         // the URL way too long. in that case, just make it null and don't
-        // send a delta. we'll lose some info but at least the URL will
-        // hopefully not overflow:
-        if (deltaObjStringified.length > 4096) {
-          //console.log('deltaObjStringified.length:', deltaObjStringified.length, '| too long, so set to null');
-          deltaObjStringified = null;
-        } else {
-          //console.log('deltaObjStringified.length:', deltaObjStringified.length);
+        // send a delta (NB: actually set it to a canary value "overflow").
+        // we'll lose some info but at least the URL will hopefully not overflow:
+        if (deltaObjStringified.length > 6000) {
+          deltaObjStringified = "overflow"; // set a canary to overflow
         }
       } else {
-        //console.log('deltaObjStringified is null');
+        // if we got here due to the num414Tries retries hack, set
+        // canary to "overflow"
+        if (this.num414Tries > 0) {
+          deltaObjStringified = "overflow_414";
+        }
       }
 
       if (jsonp_endpoint) {

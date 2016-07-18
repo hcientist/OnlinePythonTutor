@@ -1660,16 +1660,20 @@ function executeCodeAndCreateViz(codeToExec,
     if (deltaObjStringified) {
       // if deltaObjStringified is too long, then that will likely make
       // the URL way too long. in that case, just make it null and don't
-      // send a delta. we'll lose some info but at least the URL will
-      // hopefully not overflow:
-      if (deltaObjStringified.length > 4096) {
-        //console.log('deltaObjStringified.length:', deltaObjStringified.length, '| too long, so set to null');
-        deltaObjStringified = null;
-      } else {
-        //console.log('deltaObjStringified.length:', deltaObjStringified.length);
+      // send a delta (NB: actually make it a canary value "overflow").
+      // we'll lose some info but at least the URL will hopefully not overflow:
+      //
+      // 2016-07-18: added "overflow" canary value for more detailed logging
+      // and increased length limit from 4096 to 6000
+      if (deltaObjStringified.length > 6000) {
+        deltaObjStringified = "overflow";
       }
     } else {
-      //console.log('deltaObjStringified is null');
+      // if we got here due to the num414Tries retries hack, set
+      // canary to "overflow"
+      if (num414Tries > 0) {
+        deltaObjStringified = "overflow_414";
+      }
     }
 
 
