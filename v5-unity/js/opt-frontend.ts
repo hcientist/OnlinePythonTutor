@@ -46,9 +46,7 @@ require('script!./lib/socket.io-client/socket.io.js');
 
 require('script!./lib/togetherjs/togetherjs-min.js');
 
-var TogetherJS = (window as any).TogetherJS;
-// TODO: what to do about the other TogetherJS_* global configuration vars?
-
+export var TogetherJS = (window as any).TogetherJS;
 
 // need to directly import the class for type checking to work
 import {AbstractBaseFrontend, generateUUID, supports_html5_storage} from './opt-frontend-common.ts';
@@ -73,38 +71,24 @@ const CPP_BLANK_TEMPLATE = 'int main() {\n\
 const CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
 const SUBMIT_UPDATE_HISTORY_INTERVAL_MS = 1000 * 60;
 
-// TODO: reinstate shared session stuff later
-var pendingCodeOutputScrollTop = null;
-var updateOutputSignalFromRemote = false;
-/*
-function optFrontendStartSharedSession() { // override default
-  $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
-  $("#adHeader").hide(); // hide ASAP!
-  $("#togetherjsStatus").html("Please wait ... loading shared session");
-  TogetherJS();
-}
-
-function optFrontendTogetherjsReadyHandler() {
-  $("#surveyHeader").hide();
-  optCommon.populateTogetherJsShareUrl();
-}
-
-function optFrontendTogetherjsCloseHandler() {
-  if (optCommon.getAppMode() == "display") {
-    $("#surveyHeader").show();
-  }
-}
-*/
-
 export class OptFrontend extends AbstractBaseFrontend {
   originFrontendJsFile: string = 'opt-frontend.js';
   pyInputAceEditor = undefined; // Ace editor object that contains the user's code
 
   prevExecutionExceptionObjLst = []; // previous consecutive executions with "compile"-time exceptions
 
-  constructor(params) {
+  // for shared sessions with TogetherJS
+  togetherjsInUrl = false;
+  pendingCodeOutputScrollTop = null;
+  updateOutputSignalFromRemote = false;
+  togetherjsSyncRequested = false;
+  executeCodeSignalFromRemote = false;
+
+  constructor(params={}) {
     super(params);
 
+    // TODO: does this work, or do we need to grab the URL *earlier*?
+    this.togetherjsInUrl = ($.bbq.getState('togetherjs') !== undefined);
 
     $('#genEmbedBtn').bind('click', () => {
       var mod = this.appMode;
@@ -147,7 +131,7 @@ export class OptFrontend extends AbstractBaseFrontend {
 
     //initTogetherJS(); // initialize early but after initializeFrontendParams -- TODO: rethink
 
-    $(window).bind("hashchange", function(e) {
+    $(window).bind("hashchange", (e) => {
       // if you've got some preseeded code, then parse the entire query
       // string from scratch just like a page reload
       if ($.bbq.getState('code')) {
@@ -453,7 +437,7 @@ export class OptFrontend extends AbstractBaseFrontend {
 
     if (this.myVisualizer) {
       this.myVisualizer.add_pytutor_hook("end_updateOutput", (args) => {
-        if (updateOutputSignalFromRemote) {
+        if (this.updateOutputSignalFromRemote) {
           return;
         }
         if (typeof TogetherJS !== 'undefined' && TogetherJS.running && !this.isExecutingCode) {
@@ -524,6 +508,12 @@ export class OptFrontend extends AbstractBaseFrontend {
       experimentalPopUpSyntaxErrorSurvey();
     }
     */
+
+    // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
+    // and sync any new elements that are now inside myVisualizer
+    if (TogetherJS.running) {
+      TogetherJS.reinitialize();
+    }
   }
 
   handleUncaughtException(trace) {
@@ -560,6 +550,22 @@ export class OptFrontend extends AbstractBaseFrontend {
     } else {
       this.prevExecutionExceptionObjLst = []; // reset!!!
     }
+  }
+
+  ignoreAjaxError(settings) {
+    // ignore errors related to togetherjs stuff:
+    if (settings.url.indexOf('togetherjs') > -1) {
+      return true;
+    }
+
+    // ugh other idiosyncratic errors to ignore
+    if ((settings.url.indexOf('name_lookup.py') > -1) ||
+        (settings.url.indexOf('syntax_err_survey.py') > -1) ||
+        (settings.url.indexOf('viz_interaction.py') > -1)) {
+      return true;
+    }
+
+    return false;
   }
 
   initDeltaObj() {
@@ -669,10 +675,9 @@ export class OptFrontend extends AbstractBaseFrontend {
 
       $(document).scrollTop(0); // scroll to top to make UX better on small monitors
 
-      // NASTY global for shared sessions
-      if (pendingCodeOutputScrollTop) {
-        this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(pendingCodeOutputScrollTop);
-        pendingCodeOutputScrollTop = null;
+      if (this.pendingCodeOutputScrollTop) {
+        this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(this.pendingCodeOutputScrollTop);
+        this.pendingCodeOutputScrollTop = null;
       }
 
       $.doTimeout('pyCodeOutputDivScroll'); // cancel any prior scheduled calls
@@ -800,6 +805,343 @@ export class OptFrontend extends AbstractBaseFrontend {
     $.bbq.removeState(); // clean up the URL no matter what
   }
 
+
+  // shared sessions (a.k.a. "Codechella") using TogetherJS
+
+  startExecutingCode(startingInstruction=0) {
+    if (TogetherJS.running && !this.executeCodeSignalFromRemote) {
+      TogetherJS.send({type: "executeCode",
+                       myAppState: this.getAppState(),
+                       forceStartingInstr: startingInstruction,
+                       rawInputLst: this.rawInputLst});
+    }
+
+    super.startExecutingCode(startingInstruction);
+  }
+
+  initTogetherJS() {
+    assert(TogetherJS);
+
+    if (this.togetherjsInUrl) {
+      $("#ssDiv").hide(); // hide ASAP!
+      $("#togetherjsStatus").html("Please wait ... loading shared session");
+    }
+
+    // clear your name from the cache every time to prevent privacy leaks
+    if (supports_html5_storage()) {
+      localStorage.removeItem('togetherjs.settings.name');
+    }
+
+    // This event triggers when you first join a session and say 'hello',
+    // and then one of your peers says hello back to you. If they have the
+    // exact same name as you, then change your own name to avoid ambiguity.
+    // Remember, they were here first (that's why they're saying 'hello-back'),
+    // so they keep their own name, but you need to change yours :)
+    TogetherJS.hub.on("togetherjs.hello-back", (msg) => {
+      // do NOT use a msg.sameUrl guard since that will miss some signals
+      // due to our funky URLs
+      var p = TogetherJS.require("peers");
+
+      var peerNames = p.getAllPeers().map(e => e.name);
+
+      if (msg.name == p.Self.name) {
+        var newName = undefined;
+        var toks = msg.name.split(' ');
+        var count = Number(toks[1]);
+
+        // make sure the name is truly unique, incrementing count as necessary
+        do {
+          if (!isNaN(count)) {
+            newName = toks[0] + ' ' + String(count + 1); // e.g., "Tutor 3"
+            count++;
+          }
+          else {
+            // the original name was something like "Tutor", so make
+            // newName into, say, "Tutor 2"
+            newName = p.Self.name + ' 2';
+            count = 2;
+          }
+        } while ($.inArray(newName, peerNames) >= 0); // i.e., is newName in peerNames?
+
+        p.Self.update({name: newName}); // change our own name
+      }
+    });
+
+    // for all TogetherJS.hub functions, do NOT use a msg.sameUrl guard
+    // since that will miss some signals due to our funky URLs
+
+    TogetherJS.hub.on("updateOutput", (msg) => {
+      if (this.isExecutingCode) {
+        return;
+      }
+
+      if (this.myVisualizer) {
+        // to prevent this call to updateOutput from firing its own TogetherJS event
+        this.updateOutputSignalFromRemote = true;
+        try {
+          this.myVisualizer.renderStep(msg.step);
+        }
+        finally {
+          this.updateOutputSignalFromRemote = false;
+        }
+      }
+    });
+
+    TogetherJS.hub.on("executeCode", (msg) => {
+      if (this.isExecutingCode) {
+        return;
+      }
+
+      this.executeCodeSignalFromRemote = true;
+      try {
+        this.executeCode(msg.forceStartingInstr, msg.rawInputLst);
+      }
+      finally {
+        this.executeCodeSignalFromRemote = false;
+      }
+    });
+
+    TogetherJS.hub.on("hashchange", (msg) => {
+      if (this.isExecutingCode) {
+        return;
+      }
+
+      console.log("TogetherJS RECEIVE hashchange", msg.appMode);
+      if (msg.appMode != this.appMode) {
+        this.updateAppDisplay(msg.appMode);
+
+        if (this.appMode == 'edit' && msg.codeInputScrollTop !== undefined &&
+            this.pyInputGetScrollTop() != msg.codeInputScrollTop) {
+          // hack: give it a bit of time to settle first ...
+          $.doTimeout('pyInputCodeMirrorInit', 200, () => {
+            this.pyInputSetScrollTop(msg.codeInputScrollTop);
+          });
+        }
+      }
+    });
+
+    TogetherJS.hub.on("codemirror-edit", (msg) => {
+      $("#codeInputWarnings").hide();
+      $("#someoneIsTypingDiv").show();
+
+      $.doTimeout('codeMirrorWarningTimeout', 1000, () => { // debounce
+        $("#codeInputWarnings").show();
+        $("#someoneIsTypingDiv").hide();
+      });
+    });
+
+    TogetherJS.hub.on("requestSync", (msg) => {
+      if (TogetherJS.running) {
+        TogetherJS.send({type: "myAppState",
+                         myAppState: this.getAppState(),
+                         codeInputScrollTop: this.pyInputGetScrollTop(),
+                         pyCodeOutputDivScrollTop: this.myVisualizer ?
+                                                   this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop() :
+                                                   undefined});
+      }
+    });
+
+    TogetherJS.hub.on("myAppState", (msg) => {
+      // if we didn't explicitly request a sync, then don't do anything
+      if (!this.togetherjsSyncRequested) {
+        return;
+      }
+
+      this.togetherjsSyncRequested = false;
+
+      var learnerAppState = msg.myAppState;
+
+      if (learnerAppState.mode == 'display') {
+        if (OptFrontend.appStateEq(this.getAppState(), learnerAppState)) {
+          // update curInstr only
+          console.log("on:myAppState - app states equal, renderStep", learnerAppState.curInstr);
+          this.myVisualizer.renderStep(learnerAppState.curInstr);
+
+          if (msg.pyCodeOutputDivScrollTop !== undefined) {
+            this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(msg.pyCodeOutputDivScrollTop);
+          }
+        } else if (!this.isExecutingCode) { // if already executing from a prior signal, ignore
+          console.log("on:myAppState - app states unequal, executing", learnerAppState);
+          this.syncAppState(learnerAppState);
+
+          this.executeCodeSignalFromRemote = true;
+          try {
+            if (msg.pyCodeOutputDivScrollTop !== undefined) {
+              this.pendingCodeOutputScrollTop = msg.pyCodeOutputDivScrollTop;
+            }
+            this.executeCode(learnerAppState.curInstr);
+          }
+          finally {
+            this.executeCodeSignalFromRemote = false;
+          }
+        }
+      } else {
+        assert(learnerAppState.mode == 'edit');
+        if (!OptFrontend.appStateEq(this.getAppState(), learnerAppState)) {
+          console.log("on:myAppState - edit mode sync");
+          this.syncAppState(learnerAppState);
+          this.enterEditMode();
+        }
+      }
+
+      if (msg.codeInputScrollTop !== undefined) {
+        // give pyInputAceEditor a bit of time to settle with
+        // its new value. this is hacky; ideally we have a callback for
+        // when setValue() completes.
+        $.doTimeout('pyInputCodeMirrorInit', 200, () => {
+          this.pyInputSetScrollTop(msg.codeInputScrollTop);
+        });
+      }
+    });
+
+    TogetherJS.hub.on("syncAppState", (msg) => {
+      this.syncAppState(msg.myAppState);
+    });
+
+    TogetherJS.hub.on("codeInputScroll", (msg) => {
+      // don't sync for Ace editor since I can't get it working properly yet
+    });
+
+    TogetherJS.hub.on("pyCodeOutputDivScroll", (msg) => {
+      if (this.myVisualizer) {
+        this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(msg.scrollTop);
+      }
+    });
+
+    $("#sharedSessionBtn").click(this.startSharedSession.bind(this));
+    $("#stopTogetherJSBtn").click(TogetherJS); // toggles off
+
+    // fired when TogetherJS is activated. might fire on page load if there's
+    // already an open session from a prior page load in the recent past.
+    TogetherJS.on("ready", () => {
+      console.log("TogetherJS ready");
+
+      $("#sharedSessionDisplayDiv").show();
+      $("#adInfo").hide();
+      $("#ssDiv").hide();
+      $("#adHeader").hide();
+
+      // send this to the server for the purposes of logging, but other
+      // clients shouldn't do anything with this data
+      if (TogetherJS.running) {
+        TogetherJS.send({type: "initialAppState",
+                         myAppState: this.getAppState(),
+                         user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+                         // so that you can tell whether someone else
+                         // shared a TogetherJS URL with you to invite you
+                         // into this shared session:
+                         togetherjsInUrl: this.togetherjsInUrl});
+      }
+
+      this.requestSync(); // immediately try to sync upon startup so that if
+                          // others are already in the session, we will be
+                          // synced up. and if nobody is here, then this is a NOP.
+
+      this.TogetherjsReadyHandler();
+      this.redrawConnectors(); // update all arrows at the end
+    });
+
+    // emitted when TogetherJS is closed. This is not emitted when the
+    // webpage simply closes or navigates elsewhere, ONLY when TogetherJS
+    // is explicitly stopped via a call to TogetherJS()
+    TogetherJS.on("close", () => {
+      console.log("TogetherJS close");
+
+      $("#togetherjsStatus").html(''); // clear it
+      $("#sharedSessionDisplayDiv").hide();
+      $("#adInfo").show();
+      $("#ssDiv").show();
+      $("#adHeader").show();
+
+      this.TogetherjsCloseHandler();
+      this.redrawConnectors(); // update all arrows at the end
+    });
+  }
+
+  requestSync() {
+    if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+      this.togetherjsSyncRequested = true;
+      TogetherJS.send({type: "requestSync"});
+    }
+  }
+
+  syncAppState(appState) {
+    this.setToggleOptions(appState);
+
+    // VERY VERY subtle -- temporarily prevent TogetherJS from sending
+    // form update events while we set the input value. otherwise
+    // this will send an incorrect delta to the other end and screw things
+    // up because the initial states of the two forms aren't equal.
+    var orig = TogetherJS.config.get('ignoreForms');
+    TogetherJS.config('ignoreForms', true);
+    this.pyInputSetValue(appState.code);
+    TogetherJS.config('ignoreForms', orig);
+
+    if (appState.rawInputLst) {
+      this.rawInputLst = $.parseJSON(appState.rawInputLstJSON);
+    } else {
+      this.rawInputLst = [];
+    }
+  }
+
+  TogetherjsReadyHandler() {
+    $("#surveyHeader").hide();
+    this.populateTogetherJsShareUrl();
+  }
+
+  TogetherjsCloseHandler() {
+    if (this.appMode === "display") {
+      $("#surveyHeader").show();
+    }
+  }
+
+  startSharedSession() {
+    $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
+    $("#adHeader").hide(); // hide ASAP!
+    $("#togetherjsStatus").html("Please wait ... loading shared session");
+    TogetherJS();
+  }
+
+  // return whether two states match, except don't worry about curInstr
+  static appStateEq(s1, s2) {
+    assert(s1.origin == s2.origin); // sanity check!
+
+    return (s1.code == s2.code &&
+            s1.mode == s2.mode &&
+            s1.cumulative == s2.cumulative &&
+            s1.heapPrimitives == s1.heapPrimitives &&
+            s1.textReferences == s2.textReferences &&
+            s1.py == s2.py &&
+            s1.rawInputLstJSON == s2.rawInputLstJSON);
+  }
+
+  populateTogetherJsShareUrl() {
+    // without anything after the '#' in the hash
+    var cleanUrl = $.param.fragment(location.href, {}, 2); // 2 means 'override'
+
+    var shareId = TogetherJS.shareId();
+    assert(shareId); // make sure we're not attempting to access shareId before it's set
+
+    var urlToShare = cleanUrl + 'togetherjs=' + shareId;
+    $("#togetherjsStatus").html('<div>\
+                                 Send the URL below to invite someone to join this shared session:\
+                                 </div>\
+                                 <input type="text" style="font-size: 10pt; \
+                                 font-weight: bold; padding: 4px;\
+                                 margin-top: 3pt; \
+                                 margin-bottom: 6pt;" \
+                                 id="togetherjsURL" size="80" readonly="readonly"/>\
+                                 <button id="syncBtn" type="button">Force sync</button>\
+                                 ');
+    $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
+    $("#syncBtn").click(this.requestSync.bind(this));
+
+    // deployed on 2015-03-06, simplified request on 2016-05-30
+    var emailNotificationHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt; width: 350px;"><a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs and feedback</a> on this shared sessions feature.</div>'
+    $("#togetherjsStatus").append(emailNotificationHtml);
+  }
+
+
 } // END class OptFrontend
 
 
@@ -807,7 +1149,7 @@ export class OptFrontend extends AbstractBaseFrontend {
 export class OptFrontendWithTestcases extends OptFrontend {
   optTests: OptTestcases;
 
-  constructor(params) {
+  constructor(params={}) {
     super(params);
     this.optTests = new OptTestcases(this);
 
@@ -871,7 +1213,7 @@ export class OptFrontendWithTestcases extends OptFrontend {
         // scan through the trace to find any exception events. report
         // the first one if found, otherwise assume test is 'passed'
         var exceptionMsg = null;
-        trace.forEach(function(e) {
+        trace.forEach((e) => {
           if (exceptionMsg) {
             return;
           }

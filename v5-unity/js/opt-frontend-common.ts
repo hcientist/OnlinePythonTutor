@@ -14,22 +14,15 @@
 /// <reference path="_references.ts" />
 
 // for TypeScript
-declare var TogetherJS: any;
-declare var TogetherJSConfig_ignoreForms: any;
 declare var diff_match_patch: any;
 declare var codeopticonUsername: string; // FIX later when porting Codeopticon
 declare var codeopticonSession: string;  // FIX later when porting Codeopticon
-
 
 require('./lib/diff_match_patch.js');
 require('./lib/jquery.ba-dotimeout.min.js');
 
 // need to directly import the class for type checking to work
 import {ExecutionVisualizer, assert, htmlspecialchars} from './pytutor.ts';
-
-// for shared sessions ... put back in later
-//var executeCodeSignalFromRemote = false;
-//var togetherjsSyncRequested = false;
 
 
 // the main event!
@@ -107,19 +100,6 @@ export abstract class AbstractBaseFrontend {
   abstract handleUncaughtException(trace: any[]) : any; // called by executeCodeAndCreateViz
 
   constructor(params: any = {}) {
-    // optional params -- TODO: handle later
-    /*
-    if (params.TogetherjsReadyHandler) {
-      TogetherjsReadyHandler = params.TogetherjsReadyHandler;
-    }
-    if (params.TogetherjsCloseHandler) {
-      TogetherjsCloseHandler = params.TogetherjsCloseHandler;
-    }
-    if (params.startSharedSession) {
-      startSharedSession = params.startSharedSession;
-    }
-    */
-
     if (supports_html5_storage()) {
       // generate a unique UUID per "user" (as indicated by a single browser
       // instance on a user's machine, which can be more precise than IP
@@ -133,16 +113,8 @@ export abstract class AbstractBaseFrontend {
 
     // register a generic AJAX error handler
     $(document).ajaxError((evt, jqxhr, settings, exception) => {
-      // ignore errors related to togetherjs stuff:
-      if (settings.url.indexOf('togetherjs') > -1) {
-        return; // get out early
-      }
-
-      // ugh other idiosyncratic errors to ignore
-      if ((settings.url.indexOf('name_lookup.py') > -1) ||
-          (settings.url.indexOf('syntax_err_survey.py') > -1) ||
-          (settings.url.indexOf('viz_interaction.py') > -1)) {
-        return; // get out early
+      if (this.ignoreAjaxError(settings)) {
+        return; // early return!
       }
 
       // On my server ...
@@ -191,6 +163,8 @@ export abstract class AbstractBaseFrontend {
       .attr('disabled', false)
       .click(this.executeCodeFromScratch.bind(this));
   }
+
+  ignoreAjaxError(settings) {return false;} // subclasses should override
 
   // empty stub so that our code doesn't crash.
   // TODO: override this with a version in codeopticon-learner.js if needed
@@ -249,8 +223,8 @@ export abstract class AbstractBaseFrontend {
                 // always use the same visualizer ID for all
                 // instantiated ExecutionVisualizer objects,
                 // so that they can sync properly across
-                // multiple clients using TogetherJS. this
-                // shouldn't lead to problems since only ONE
+                // multiple clients using TogetherJS in shared sessions.
+                // this shouldn't lead to problems since only ONE
                 // ExecutionVisualizer will be shown at a time
                 visualizerIdOverride: '1',
                 updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
@@ -269,7 +243,7 @@ export abstract class AbstractBaseFrontend {
     this.executeCode(curInstr);
   }
 
-  startExecutingCode() {
+  startExecutingCode(startingInstruction=0) {
     $('#executeBtn').html("Please wait ... executing (takes up to 10 seconds)");
     $('#executeBtn').attr('disabled', true);
     this.isExecutingCode = true;
@@ -325,12 +299,6 @@ export abstract class AbstractBaseFrontend {
           (this.myVisualizer as any).backendOptionsObj = backendOptionsObj;
           this.finishSuccessfulExecution(); // TODO: should we also run this if we're calling runTestCaseCallback?
         }
-
-        // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
-        // and sync any new elements that are now inside myVisualizer
-        if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
-          TogetherJS.reinitialize();
-        }
       }
 
       // do Codeopticon logging at the VERY END after the dust settles ...
@@ -384,18 +352,8 @@ export abstract class AbstractBaseFrontend {
         return;
       }
 
-      /*
-      if (typeof TogetherJS !== 'undefined' &&
-          TogetherJS.running && !executeCodeSignalFromRemote) {
-        TogetherJS.send({type: "executeCode",
-                         myAppState: this.getAppState(),
-                         forceStartingInstr: frontendOptionsObj.startingInstruction,
-                         rawInputLst: this.rawInputLst});
-      }
-      */
-
       this.clearFrontendError();
-      this.startExecutingCode();
+      this.startExecutingCode(frontendOptionsObj.startingInstruction);
 
       frontendOptionsObj.lang = pyState;
       // kludgy exceptions

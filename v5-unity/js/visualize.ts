@@ -2,16 +2,13 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-import {OptFrontend,OptFrontendWithTestcases} from './opt-frontend.ts';
+import {OptFrontend,OptFrontendWithTestcases,TogetherJS} from './opt-frontend.ts';
 import {assert} from './pytutor.ts';
 
 // for TypeScript
 declare var initCodeopticon: any; // FIX later when porting Codeopticon
 declare var codeopticonUsername: string; // FIX later when porting Codeopticon
 declare var codeopticonSession: string;  // FIX later when porting Codeopticon
-
-// TODO: reinstate shared session stuff later
-var TogetherJS; // temporary stent -- this WON'T WORK right now, ergh
 
 var optFrontend: OptFrontend;
 
@@ -166,12 +163,7 @@ var CPP_EXAMPLES = {
 
 
 $(document).ready(function() {
-  optFrontend = new OptFrontendWithTestcases({
-                                  /*TogetherjsReadyHandler: optFrontendTogetherjsReadyHandler,
-                                    TogetherjsCloseHandler: optFrontendTogetherjsCloseHandler,
-                                    startSharedSession: optFrontendStartSharedSession,
-                                  */
-                                });
+  optFrontend = new OptFrontendWithTestcases();
   optFrontend.setSurveyHTML();
 
   // canned examples
