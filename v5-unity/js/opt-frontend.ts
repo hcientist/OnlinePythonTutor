@@ -44,6 +44,11 @@ require('script!./lib/ace/src-min-noconflict/mode-ruby.js');
 
 require('script!./lib/socket.io-client/socket.io.js');
 
+require('script!./lib/togetherjs/togetherjs-min.js');
+
+var TogetherJS = (window as any).TogetherJS;
+// TODO: what to do about the other TogetherJS_* global configuration vars?
+
 
 // need to directly import the class for type checking to work
 import {AbstractBaseFrontend, generateUUID, supports_html5_storage} from './opt-frontend-common.ts';
@@ -69,7 +74,6 @@ const CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
 const SUBMIT_UPDATE_HISTORY_INTERVAL_MS = 1000 * 60;
 
 // TODO: reinstate shared session stuff later
-var TogetherJS; // temporary stent
 var pendingCodeOutputScrollTop = null;
 var updateOutputSignalFromRemote = false;
 /*
