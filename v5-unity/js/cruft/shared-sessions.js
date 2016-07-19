@@ -24,6 +24,7 @@ var togetherjsInUrl = ($.bbq.getState('togetherjs') !== undefined);
 
 // XXX: to deploy, substitute in the online TogetherJS server URL here
 var TogetherJSConfig_hubBase = "http://localhost:30035/"; // local
+var TogetherJSConfig_hubBase = "http://104.237.139.253:30035/"; // online
 
 // TogetherJS common configuration
 // TODO: xxx these aren't 'exported' so they're no longer visible to TogetherJS

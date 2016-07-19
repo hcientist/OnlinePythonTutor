@@ -5,13 +5,14 @@
 /*jshint scripturl:true */
 (function () {
 
+  // pgbovine - modify defaultConfiguration and NOT _defaultConfiguration
   var defaultConfiguration = {
     // Disables clicks for a certain element.
     // (e.g., 'canvas' would not show clicks on canvas elements.)
     // Setting this to true will disable clicks globally.
     dontShowClicks: false,
     // Experimental feature to echo clicks to certain elements across clients:
-    cloneClicks: false,
+    cloneClicks: '#pyInputPane select', // pgbovine - clone clicks ONLY in certain elements to keep things simple
     // Enable Mozilla or Google analytics on the page when TogetherJS is activated:
     // FIXME: these don't seem to be working, and probably should be removed in favor
     // of the hub analytics
@@ -40,7 +41,7 @@
     // The name of this tool as provided to users.  The UI is updated to use this.
     // Because of how it is used in text it should be a proper noun, e.g.,
     // "MySite's Collaboration Tool"
-    toolName: null,
+    toolName: "Python Tutor shared sessions", // pgbovine
     // Used to auto-start TogetherJS with a {prefix: pageName, max: participants}
     // Also with findRoom: "roomName" it will connect to the given room name
     findRoom: null,
@@ -48,9 +49,9 @@
     autoStart: false,
     // If true, then the "Join TogetherJS Session?" confirmation dialog
     // won't come up
-    suppressJoinConfirmation: false,
+    suppressJoinConfirmation: true, // pgbovine
     // If true, then the "Invite a friend" window won't automatically come up
-    suppressInvite: false,
+    suppressInvite: true, // pgbovine
     // A room in which to find people to invite to this session,
     inviteFromRoom: null,
     // This is used to keep sessions from crossing over on the same
@@ -63,13 +64,13 @@
     // are considered to be at completely different URLs
     includeHashInUrl: false,
     // When true, the WebRTC-based mic/chat will be disabled
-    disableWebRTC: false,
+    disableWebRTC: true, // pgbovine
     // When true, youTube videos will synchronize
     youtube: true,
     // Ignores the following console messages, disables all messages if set to true
     ignoreMessages: ["cursor-update", "keydown", "scroll-update"],
     // Ignores the following forms (will ignore all forms if set to true):
-    ignoreForms: [":password"],
+    ignoreForms: [":password", '.togetherjsIgnore'], // pgbovine
     fallbackLang: "en_US"
   };
 
@@ -522,7 +523,7 @@
     // Substitution wasn't made
     defaultHubBase = "https://hub.togetherjs.mozillalabs.com";
   }
-  defaultConfiguration.hubBase = defaultHubBase;
+  defaultConfiguration.hubBase = "http://104.237.139.253:30035/"; // pgbovine - online deployment
 
   TogetherJS._configuration = {};
   TogetherJS._defaultConfiguration = {
