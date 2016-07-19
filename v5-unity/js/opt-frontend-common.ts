@@ -415,7 +415,7 @@ export abstract class AbstractBaseFrontend {
         // the URL way too long. in that case, just make it null and don't
         // send a delta (NB: actually set it to a canary value "overflow").
         // we'll lose some info but at least the URL will hopefully not overflow:
-        if (deltaObjStringified.length > 6000) {
+        if (deltaObjStringified.length > 4096) {
           deltaObjStringified = "overflow"; // set a canary to overflow
         }
       } else {

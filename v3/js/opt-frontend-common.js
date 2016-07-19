@@ -1664,8 +1664,7 @@ function executeCodeAndCreateViz(codeToExec,
       // we'll lose some info but at least the URL will hopefully not overflow:
       //
       // 2016-07-18: added "overflow" canary value for more detailed logging
-      // and increased length limit from 4096 to 6000
-      if (deltaObjStringified.length > 6000) {
+      if (deltaObjStringified.length > 4096) {
         deltaObjStringified = "overflow";
       }
     } else {
