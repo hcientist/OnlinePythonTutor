@@ -44,6 +44,14 @@ require('script!./lib/ace/src-min-noconflict/mode-ruby.js');
 
 require('script!./lib/socket.io-client/socket.io.js');
 
+// VERY IMPORTANT to grab the value of  togetherjsInUrl before loading
+// togetherjs-min.js, since loading that file deletes #togetherjs from URL
+// NB: kinda gross global
+var togetherjsInUrl = !!(window.location.hash.match(/^#togetherjs/)); // turn into bool
+if (togetherjsInUrl) {
+  console.log("togetherjsInUrl!");
+}
+
 require('script!./lib/togetherjs/togetherjs-min.js');
 
 export var TogetherJS = (window as any).TogetherJS;
@@ -78,7 +86,6 @@ export class OptFrontend extends AbstractBaseFrontend {
   prevExecutionExceptionObjLst = []; // previous consecutive executions with "compile"-time exceptions
 
   // for shared sessions with TogetherJS
-  togetherjsInUrl = false;
   pendingCodeOutputScrollTop = null;
   updateOutputSignalFromRemote = false;
   togetherjsSyncRequested = false;
@@ -87,8 +94,7 @@ export class OptFrontend extends AbstractBaseFrontend {
   constructor(params={}) {
     super(params);
 
-    // TODO: does this work, or do we need to grab the URL *earlier*?
-    this.togetherjsInUrl = ($.bbq.getState('togetherjs') !== undefined);
+    this.initTogetherJS();
 
     $('#genEmbedBtn').bind('click', () => {
       var mod = this.appMode;
@@ -128,8 +134,6 @@ export class OptFrontend extends AbstractBaseFrontend {
     //    });
     //  }
     //});
-
-    //initTogetherJS(); // initialize early but after initializeFrontendParams -- TODO: rethink
 
     $(window).bind("hashchange", (e) => {
       // if you've got some preseeded code, then parse the entire query
@@ -822,7 +826,7 @@ export class OptFrontend extends AbstractBaseFrontend {
   initTogetherJS() {
     assert(TogetherJS);
 
-    if (this.togetherjsInUrl) {
+    if (togetherjsInUrl) { // kinda gross global
       $("#ssDiv").hide(); // hide ASAP!
       $("#togetherjsStatus").html("Please wait ... loading shared session");
     }
@@ -869,7 +873,6 @@ export class OptFrontend extends AbstractBaseFrontend {
 
     // for all TogetherJS.hub functions, do NOT use a msg.sameUrl guard
     // since that will miss some signals due to our funky URLs
-
     TogetherJS.hub.on("updateOutput", (msg) => {
       if (this.isExecutingCode) {
         return;
@@ -1030,7 +1033,7 @@ export class OptFrontend extends AbstractBaseFrontend {
                          // so that you can tell whether someone else
                          // shared a TogetherJS URL with you to invite you
                          // into this shared session:
-                         togetherjsInUrl: this.togetherjsInUrl});
+                         togetherjsInUrl: togetherjsInUrl}); // kinda gross global
       }
 
       this.requestSync(); // immediately try to sync upon startup so that if

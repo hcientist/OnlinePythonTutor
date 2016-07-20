@@ -171,7 +171,7 @@
   // pgbovine - hacked to make it work within Webpack
   if (! baseUrl) {
     baseUrl = window.location.protocol + '//' + window.location.host + '/js/lib/togetherjs';
-    console.warn("Detected baseUrl as", baseUrl);
+    //console.warn("Detected baseUrl as", baseUrl);
   }
   if (! baseUrl) {
     console.warn("Could not determine TogetherJS's baseUrl (looked for a <script> with togetherjs.js and togetherjs-min.js)");
