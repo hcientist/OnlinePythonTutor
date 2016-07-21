@@ -135,7 +135,9 @@ export class OptFrontend extends AbstractBaseFrontend {
     //  }
     //});
 
-    $(window).bind("hashchange", (e) => {
+    // for some weird reason, jQuery doesn't work here:
+    //   $(window).bind("hashchange"
+    window.addEventListener("hashchange", (e) => {
       // if you've got some preseeded code, then parse the entire query
       // string from scratch just like a page reload
       if ($.bbq.getState('code')) {
@@ -143,11 +145,10 @@ export class OptFrontend extends AbstractBaseFrontend {
       } else {
         // otherwise just do an incremental update
         var newMode = $.bbq.getState('mode');
-        //console.log('hashchange:', newMode, window.location.hash);
         this.updateAppDisplay(newMode);
       }
 
-      if (typeof TogetherJS !== 'undefined' && TogetherJS.running && !this.isExecutingCode) {
+      if (TogetherJS.running && !this.isExecutingCode) {
         TogetherJS.send({type: "hashchange",
                          appMode: this.appMode,
                          codeInputScrollTop: this.pyInputGetScrollTop(),
@@ -614,8 +615,6 @@ export class OptFrontend extends AbstractBaseFrontend {
   // try to make this function as idempotent as possible, so that
   // repeated calls with same params don't do anything bad
   updateAppDisplay(newAppMode) {
-    //console.log('updateAppDisplay', newAppMode);
-
     this.appMode = newAppMode;
 
     if (this.appMode === undefined || this.appMode == 'edit' ||
