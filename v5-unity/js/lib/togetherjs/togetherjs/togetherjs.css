@@ -473,8 +473,8 @@ input.togetherjs-upload-avatar {
   overflow-x: hidden;
   overflow-y: hidden;
   resize: none;
-  font-size: 14px;
-  padding: 4px 6px 5px;
+  font-size: 13px; /* pgbovine - adjusted from 14px */
+  padding: 3px 4px 4px; /* pgbovine - adjusted from 4px 6px 5px */
   border-radius: 4px;
   border: 1px solid #cccccc;
   /*box-shadow: inset 0 2px 2px rgba(0,0,0,0.1);*/
@@ -509,7 +509,7 @@ input.togetherjs-upload-avatar {
 .togetherjs .togetherjs-chat-item {
   padding: 0 0 20px 0;
   font-family: openSansLight, Helvetica, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 14px;
+  font-size: 13px; /* pgbovine - adjusted from 14px */
   padding: 10px 0px;
   margin: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -795,7 +795,7 @@ input.togetherjs-upload-avatar {
 }
 .togetherjs .togetherjs-notification .togetherjs-person-name {
   font-family: openSansRegular, Helvetica Bold, 'Helvetica Neue', Arial;
-  font-size: 14px;
+  font-size: 12px; /* pgbovine - adjusted from 14px */
 }
 .togetherjs .togetherjs-notification button {
   min-width: 47% !important;
@@ -989,7 +989,7 @@ input.togetherjs-upload-avatar {
 #togetherjs-menu {
   width: 216px;
   position: fixed;
-  font-size: 14px;
+  font-size: 12px; /* pgbovine - adjusted from 14px */
   background-color: #fff;
   z-index: 10003;
   border: 1px solid #979797;

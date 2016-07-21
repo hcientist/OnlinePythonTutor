@@ -116,7 +116,7 @@ export class OptFrontend extends AbstractBaseFrontend {
     this.pyInputAceEditor.getSession().on("change", (e) => {
       // unfortunately, Ace doesn't detect whether a change was caused
       // by a setValue call
-      if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+      if (TogetherJS.running) {
         TogetherJS.send({type: "codemirror-edit"});
       }
     });
@@ -445,7 +445,7 @@ export class OptFrontend extends AbstractBaseFrontend {
         if (this.updateOutputSignalFromRemote) {
           return;
         }
-        if (typeof TogetherJS !== 'undefined' && TogetherJS.running && !this.isExecutingCode) {
+        if (TogetherJS.running && !this.isExecutingCode) {
           TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
         }
 
@@ -598,7 +598,7 @@ export class OptFrontend extends AbstractBaseFrontend {
       this.curCode = newCode;
       this.logEventCodeopticon({type: 'editCode', delta: delta});
 
-      if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+      if (TogetherJS.running) {
         TogetherJS.send({type: "editCode", delta: delta});
       }
     }
@@ -691,7 +691,7 @@ export class OptFrontend extends AbstractBaseFrontend {
         // debounce
         $.doTimeout('pyCodeOutputDivScroll', 100, function() {
           // note that this will send a signal back and forth both ways
-          if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+          if (TogetherJS.running) {
             // (there's no easy way to prevent this), but it shouldn't keep
             // bouncing back and forth indefinitely since no the second signal
             // causes no additional scrolling
@@ -809,8 +809,7 @@ export class OptFrontend extends AbstractBaseFrontend {
   }
 
 
-  // shared sessions (a.k.a. "Codechella") using TogetherJS
-
+  // BEGIN - shared sessions (a.k.a. "Codechella") using TogetherJS
   startExecutingCode(startingInstruction=0) {
     if (TogetherJS.running && !this.executeCodeSignalFromRemote) {
       TogetherJS.send({type: "executeCode",
@@ -841,8 +840,7 @@ export class OptFrontend extends AbstractBaseFrontend {
     // Remember, they were here first (that's why they're saying 'hello-back'),
     // so they keep their own name, but you need to change yours :)
     TogetherJS.hub.on("togetherjs.hello-back", (msg) => {
-      // do NOT use a msg.sameUrl guard since that will miss some signals
-      // due to our funky URLs
+      if (!msg.sameUrl) return; // make sure we're on the same page
       var p = TogetherJS.require("peers");
 
       var peerNames = p.getAllPeers().map(e => e.name);
@@ -870,9 +868,8 @@ export class OptFrontend extends AbstractBaseFrontend {
       }
     });
 
-    // for all TogetherJS.hub functions, do NOT use a msg.sameUrl guard
-    // since that will miss some signals due to our funky URLs
     TogetherJS.hub.on("updateOutput", (msg) => {
+      if (!msg.sameUrl) return; // make sure we're on the same page
       if (this.isExecutingCode) {
         return;
       }
@@ -890,6 +887,7 @@ export class OptFrontend extends AbstractBaseFrontend {
     });
 
     TogetherJS.hub.on("executeCode", (msg) => {
+      if (!msg.sameUrl) return; // make sure we're on the same page
       if (this.isExecutingCode) {
         return;
       }
@@ -904,6 +902,7 @@ export class OptFrontend extends AbstractBaseFrontend {
     });
 
     TogetherJS.hub.on("hashchange", (msg) => {
+      if (!msg.sameUrl) return; // make sure we're on the same page
       if (this.isExecutingCode) {
         return;
       }
@@ -923,6 +922,7 @@ export class OptFrontend extends AbstractBaseFrontend {
     });
 
     TogetherJS.hub.on("codemirror-edit", (msg) => {
+      if (!msg.sameUrl) return; // make sure we're on the same page
       $("#codeInputWarnings").hide();
       $("#someoneIsTypingDiv").show();
 
@@ -933,17 +933,28 @@ export class OptFrontend extends AbstractBaseFrontend {
     });
 
     TogetherJS.hub.on("requestSync", (msg) => {
-      if (TogetherJS.running) {
-        TogetherJS.send({type: "myAppState",
-                         myAppState: this.getAppState(),
-                         codeInputScrollTop: this.pyInputGetScrollTop(),
-                         pyCodeOutputDivScrollTop: this.myVisualizer ?
-                                                   this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop() :
-                                                   undefined});
+      // don't use msg.sameUrl guard here or else stuff doesn't work;
+      // instead, rely on originFrontendJsFile to disambiguate
+      if (msg.originFrontendJsFile != this.originFrontendJsFile) {
+        return;
       }
+
+      TogetherJS.send({type: "myAppState",
+                       originFrontendJsFile: this.originFrontendJsFile, // important to disambiguate
+                       myAppState: this.getAppState(),
+                       codeInputScrollTop: this.pyInputGetScrollTop(),
+                       pyCodeOutputDivScrollTop: this.myVisualizer ?
+                                                 this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop() :
+                                                 undefined});
     });
 
     TogetherJS.hub.on("myAppState", (msg) => {
+      // don't use msg.sameUrl guard here or else stuff doesn't work;
+      // instead, rely on originFrontendJsFile to disambiguate
+      if (msg.originFrontendJsFile != this.originFrontendJsFile) {
+        return;
+      }
+
       // if we didn't explicitly request a sync, then don't do anything
       if (!this.togetherjsSyncRequested) {
         return;
@@ -997,14 +1008,17 @@ export class OptFrontend extends AbstractBaseFrontend {
     });
 
     TogetherJS.hub.on("syncAppState", (msg) => {
+      if (!msg.sameUrl) return; // make sure we're on the same page
       this.syncAppState(msg.myAppState);
     });
 
     TogetherJS.hub.on("codeInputScroll", (msg) => {
+      if (!msg.sameUrl) return; // make sure we're on the same page
       // don't sync for Ace editor since I can't get it working properly yet
     });
 
     TogetherJS.hub.on("pyCodeOutputDivScroll", (msg) => {
+      if (!msg.sameUrl) return; // make sure we're on the same page
       if (this.myVisualizer) {
         this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(msg.scrollTop);
       }
@@ -1057,9 +1071,9 @@ export class OptFrontend extends AbstractBaseFrontend {
   }
 
   requestSync() {
-    if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+    if (TogetherJS.running) {
       this.togetherjsSyncRequested = true;
-      TogetherJS.send({type: "requestSync"});
+      TogetherJS.send({type: "requestSync", originFrontendJsFile: this.originFrontendJsFile});
     }
   }
 
@@ -1135,7 +1149,7 @@ export class OptFrontend extends AbstractBaseFrontend {
     $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
     $("#syncBtn").click(this.requestSync.bind(this));
   }
-
+  // END - shared sessions (a.k.a. "Codechella") using TogetherJS
 
 } // END class OptFrontend
 
