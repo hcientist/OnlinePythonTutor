@@ -3190,11 +3190,15 @@ class CodeDisplay {
       .data(function(d, i){return [d, d] /* map full data item down both columns */;})
       .enter().append('td')
       .attr('class', function(d, i) {
+        // add the togetherjsCloneClick class on here so that we can
+        // sync clicks via TogetherJS for setting breakpoints in shared
+        // sessions (kinda leaky abstraction since pytutor.ts shouldn't
+        // need to know about TogetherJS, but oh wells)
         if (i == 0) {
-          return 'lineNo';
+          return 'lineNo togetherjsCloneClick';
         }
         else {
-          return 'cod';
+          return 'cod togetherjsCloneClick';
         }
       })
       .attr('id', (d, i) => {

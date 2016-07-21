@@ -12,7 +12,7 @@
     // Setting this to true will disable clicks globally.
     dontShowClicks: false,
     // Experimental feature to echo clicks to certain elements across clients:
-    cloneClicks: '#pyInputPane select', // pgbovine - clone clicks ONLY in certain elements to keep things simple
+    cloneClicks: '.togetherjsCloneClick', // pgbovine - clone clicks ONLY in these elements
     // Enable Mozilla or Google analytics on the page when TogetherJS is activated:
     // FIXME: these don't seem to be working, and probably should be removed in favor
     // of the hub analytics

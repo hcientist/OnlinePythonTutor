@@ -648,7 +648,7 @@ export class OptFrontend extends AbstractBaseFrontend {
       $("#pyInputPane").hide();
       $("#pyOutputPane,#embedLinkDiv").show();
 
-      if (typeof TogetherJS === 'undefined' || !TogetherJS.running) {
+      if (!TogetherJS.running) {
         $("#surveyHeader").show();
       }
 
@@ -826,7 +826,7 @@ export class OptFrontend extends AbstractBaseFrontend {
     assert(TogetherJS);
 
     if (togetherjsInUrl) { // kinda gross global
-      $("#ssDiv").hide(); // hide ASAP!
+      $("#ssDiv,#surveyHeader,#adHeader").hide(); // hide ASAP!
       $("#togetherjsStatus").html("Please wait ... loading shared session");
     }
 
@@ -1019,9 +1019,7 @@ export class OptFrontend extends AbstractBaseFrontend {
       console.log("TogetherJS ready");
 
       $("#sharedSessionDisplayDiv").show();
-      $("#adInfo").hide();
-      $("#ssDiv").hide();
-      $("#adHeader").hide();
+      $("#adInfo,#ssDiv,#adHeader,#testCasesParent").hide();
 
       // send this to the server for the purposes of logging, but other
       // clients shouldn't do anything with this data
@@ -1051,9 +1049,7 @@ export class OptFrontend extends AbstractBaseFrontend {
 
       $("#togetherjsStatus").html(''); // clear it
       $("#sharedSessionDisplayDiv").hide();
-      $("#adInfo").show();
-      $("#ssDiv").show();
-      $("#adHeader").show();
+      $("#adInfo,#ssDiv,#adHeader,#testCasesParent").show();
 
       this.TogetherjsCloseHandler();
       this.redrawConnectors(); // update all arrows at the end
@@ -1098,8 +1094,7 @@ export class OptFrontend extends AbstractBaseFrontend {
   }
 
   startSharedSession() {
-    $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
-    $("#adHeader").hide(); // hide ASAP!
+    $("#ssDiv,#surveyHeader,#adHeader").hide(); // hide ASAP!
     $("#togetherjsStatus").html("Please wait ... loading shared session");
     TogetherJS();
   }
@@ -1132,15 +1127,13 @@ export class OptFrontend extends AbstractBaseFrontend {
                                  font-weight: bold; padding: 4px;\
                                  margin-top: 3pt; \
                                  margin-bottom: 6pt;" \
-                                 id="togetherjsURL" size="80" readonly="readonly"/>\
-                                 <button id="syncBtn" type="button">Force sync</button>\
-                                 ');
+                                 id="togetherjsURL" size="80" readonly="readonly"/>');
+
+    var extraHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt;">For best results, do not click or move around too quickly, and press "Force sync" if you get out of sync: <button id="syncBtn" type="button">Force sync</button><br/><a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs and feedback</a> on this shared sessions feature.</div>'
+    $("#togetherjsStatus").append(extraHtml);
+
     $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
     $("#syncBtn").click(this.requestSync.bind(this));
-
-    // deployed on 2015-03-06, simplified request on 2016-05-30
-    var emailNotificationHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt; width: 350px;"><a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs and feedback</a> on this shared sessions feature.</div>'
-    $("#togetherjsStatus").append(emailNotificationHtml);
   }
 
 
