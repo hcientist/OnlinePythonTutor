@@ -5,7 +5,8 @@
 import {OptFrontend} from './opt-frontend.ts';
 import {OptFrontendSharedSessions,TogetherJS} from './opt-shared-sessions.ts';
 import {assert,htmlspecialchars} from './pytutor.ts';
-import {OptTestcases, redSadFace, yellowHappyFace} from './opt-testcases.ts';
+import {OptTestcases,redSadFace,yellowHappyFace} from './opt-testcases.ts';
+import {pythonExamples,javaExamples,jsExamples,tsExamples,rubyExamples,cExamples,cppExamples} from './example-links.ts';
 
 
 // for TypeScript
@@ -286,6 +287,15 @@ var CPP_EXAMPLES = {
 $(document).ready(function() {
   optFrontend = new OptFrontendWithTestcases();
   optFrontend.setSurveyHTML();
+
+  $("#exampleSnippets")
+    .append(pythonExamples)
+    .append(javaExamples)
+    .append(jsExamples)
+    .append(tsExamples)
+    .append(rubyExamples)
+    .append(cExamples)
+    .append(cppExamples);
 
   // canned examples
   $(".exampleLink").click(function() {
