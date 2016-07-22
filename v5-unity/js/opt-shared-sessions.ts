@@ -74,13 +74,6 @@ export class OptFrontendSharedSessions extends OptFrontend {
     }
   }
 
-  setAceMode() {
-    super.setAceMode();
-    if (TogetherJS.running) {
-      $("#liveModeBtn").hide();
-    }
-  }
-
   logEditDelta(delta) {
     super.logEditDelta(delta);
     if (TogetherJS.running) {
@@ -108,9 +101,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
     } else if (this.appMode === 'display') {
       assert(this.myVisualizer);
 
-      if (TogetherJS.running) {
-        $("#pyOutputPane #liveModeSpan").hide();
-      } else {
+      if (!TogetherJS.running) {
         $("#surveyHeader").show();
       }
 
@@ -369,7 +360,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
       console.log("TogetherJS ready");
 
       $("#sharedSessionDisplayDiv").show();
-      $("#adInfo,#ssDiv,#adHeader,#testCasesParent,#liveModeBtn,#pyOutputPane #liveModeSpan").hide();
+      $("#adInfo,#ssDiv,#adHeader,#testCasesParent").hide();
 
       // send this to the server for the purposes of logging, but other
       // clients shouldn't do anything with this data
