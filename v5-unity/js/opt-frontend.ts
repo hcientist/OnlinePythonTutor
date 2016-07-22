@@ -85,16 +85,12 @@ export class OptFrontend extends AbstractBaseFrontend {
 
   prevExecutionExceptionObjLst = []; // previous consecutive executions with "compile"-time exceptions
 
-  // for shared sessions with TogetherJS
+  // ergh, some leaky abstractions for shared sessions with TogetherJS, ergh
   pendingCodeOutputScrollTop = null;
   updateOutputSignalFromRemote = false;
-  togetherjsSyncRequested = false;
-  executeCodeSignalFromRemote = false;
 
   constructor(params={}) {
     super(params);
-
-    this.initTogetherJS();
 
     $('#genEmbedBtn').bind('click', () => {
       var mod = this.appMode;
@@ -807,9 +803,19 @@ export class OptFrontend extends AbstractBaseFrontend {
     }
     $.bbq.removeState(); // clean up the URL no matter what
   }
+} // END class OptFrontend
 
 
-  // BEGIN - shared sessions (a.k.a. "Codechella") using TogetherJS
+export class OptFrontendSharedSessions extends OptFrontend {
+  executeCodeSignalFromRemote = false;
+  togetherjsSyncRequested = false;
+
+  constructor(params={}) {
+    super(params);
+    this.initTogetherJS();
+  }
+
+  // override
   startExecutingCode(startingInstruction=0) {
     if (TogetherJS.running && !this.executeCodeSignalFromRemote) {
       TogetherJS.send({type: "executeCode",
@@ -933,14 +939,8 @@ export class OptFrontend extends AbstractBaseFrontend {
     });
 
     TogetherJS.hub.on("requestSync", (msg) => {
-      // don't use msg.sameUrl guard here or else stuff doesn't work;
-      // instead, rely on originFrontendJsFile to disambiguate
-      if (msg.originFrontendJsFile != this.originFrontendJsFile) {
-        return;
-      }
-
+      // DON'T USE msg.sameUrl check here since it doesn't work properly, eek!
       TogetherJS.send({type: "myAppState",
-                       originFrontendJsFile: this.originFrontendJsFile, // important to disambiguate
                        myAppState: this.getAppState(),
                        codeInputScrollTop: this.pyInputGetScrollTop(),
                        pyCodeOutputDivScrollTop: this.myVisualizer ?
@@ -949,11 +949,7 @@ export class OptFrontend extends AbstractBaseFrontend {
     });
 
     TogetherJS.hub.on("myAppState", (msg) => {
-      // don't use msg.sameUrl guard here or else stuff doesn't work;
-      // instead, rely on originFrontendJsFile to disambiguate
-      if (msg.originFrontendJsFile != this.originFrontendJsFile) {
-        return;
-      }
+      // DON'T USE msg.sameUrl check here since it doesn't work properly, eek!
 
       // if we didn't explicitly request a sync, then don't do anything
       if (!this.togetherjsSyncRequested) {
@@ -965,7 +961,7 @@ export class OptFrontend extends AbstractBaseFrontend {
       var learnerAppState = msg.myAppState;
 
       if (learnerAppState.mode == 'display') {
-        if (OptFrontend.appStateEq(this.getAppState(), learnerAppState)) {
+        if (OptFrontendSharedSessions.appStateEq(this.getAppState(), learnerAppState)) {
           // update curInstr only
           console.log("on:myAppState - app states equal, renderStep", learnerAppState.curInstr);
           this.myVisualizer.renderStep(learnerAppState.curInstr);
@@ -990,7 +986,7 @@ export class OptFrontend extends AbstractBaseFrontend {
         }
       } else {
         assert(learnerAppState.mode == 'edit');
-        if (!OptFrontend.appStateEq(this.getAppState(), learnerAppState)) {
+        if (!OptFrontendSharedSessions.appStateEq(this.getAppState(), learnerAppState)) {
           console.log("on:myAppState - edit mode sync");
           this.syncAppState(learnerAppState);
           this.enterEditMode();
@@ -1073,7 +1069,7 @@ export class OptFrontend extends AbstractBaseFrontend {
   requestSync() {
     if (TogetherJS.running) {
       this.togetherjsSyncRequested = true;
-      TogetherJS.send({type: "requestSync", originFrontendJsFile: this.originFrontendJsFile});
+      TogetherJS.send({type: "requestSync"});
     }
   }
 
@@ -1149,13 +1145,11 @@ export class OptFrontend extends AbstractBaseFrontend {
     $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
     $("#syncBtn").click(this.requestSync.bind(this));
   }
-  // END - shared sessions (a.k.a. "Codechella") using TogetherJS
-
-} // END class OptFrontend
+} // END class OptFrontendSharedSessions
 
 
-// OptFrontend augmented with a "Create test cases" pane
-export class OptFrontendWithTestcases extends OptFrontend {
+// augmented with a "Create test cases" pane
+export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
   optTests: OptTestcases;
 
   constructor(params={}) {
