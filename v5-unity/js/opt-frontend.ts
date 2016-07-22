@@ -79,6 +79,7 @@ const CPP_BLANK_TEMPLATE = 'int main() {\n\
 const CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
 const SUBMIT_UPDATE_HISTORY_INTERVAL_MS = 1000 * 60;
 
+// TODO: there are still awkward references to TogetherJS within this class ...
 export class OptFrontend extends AbstractBaseFrontend {
   originFrontendJsFile: string = 'opt-frontend.js';
   pyInputAceEditor = undefined; // Ace editor object that contains the user's code
@@ -362,7 +363,8 @@ export class OptFrontend extends AbstractBaseFrontend {
       $("#javaOptionsPane").hide();
     }
 
-    if (selectorVal === 'js' || selectorVal === '2' || selectorVal === '3') {
+    if ((selectorVal === 'js' || selectorVal === '2' || selectorVal === '3') &&
+        !TogetherJS.running) { // don't allow switch to live mode during shared sessions
       $("#liveModeBtn").show();
     } else {
       $("#liveModeBtn").hide();
@@ -663,7 +665,8 @@ export class OptFrontend extends AbstractBaseFrontend {
         this.enterEditMode();
       });
       var v = $('#pythonVersionSelector').val();
-      if (v === 'js' || v === '2' || v === '3') {
+      if ((v === 'js' || v === '2' || v === '3') &&
+          !TogetherJS.running) { // don't allow switch to live mode during shared sessions
         var myArgs = this.getAppState();
         var urlStr = $.param.fragment('live.html', myArgs, 2 /* clobber all */);
         $("#pyOutputPane #liveModeSpan").show();
@@ -932,7 +935,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
       $("#codeInputWarnings").hide();
       $("#someoneIsTypingDiv").show();
 
-      $.doTimeout('codeMirrorWarningTimeout', 1000, () => { // debounce
+      $.doTimeout('codeMirrorWarningTimeout', 500, () => { // debounce
         $("#codeInputWarnings").show();
         $("#someoneIsTypingDiv").hide();
       });
@@ -1029,7 +1032,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
       console.log("TogetherJS ready");
 
       $("#sharedSessionDisplayDiv").show();
-      $("#adInfo,#ssDiv,#adHeader,#testCasesParent").hide();
+      $("#adInfo,#ssDiv,#adHeader,#testCasesParent,#liveModeBtn,#pyOutputPane #liveModeSpan").hide();
 
       // send this to the server for the purposes of logging, but other
       // clients shouldn't do anything with this data
