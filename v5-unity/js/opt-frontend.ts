@@ -79,16 +79,12 @@ const CPP_BLANK_TEMPLATE = 'int main() {\n\
 const CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
 const SUBMIT_UPDATE_HISTORY_INTERVAL_MS = 1000 * 60;
 
-// TODO: there are still awkward references to TogetherJS within this class ...
+
 export class OptFrontend extends AbstractBaseFrontend {
   originFrontendJsFile: string = 'opt-frontend.js';
   pyInputAceEditor = undefined; // Ace editor object that contains the user's code
 
   prevExecutionExceptionObjLst = []; // previous consecutive executions with "compile"-time exceptions
-
-  // ergh, some leaky abstractions for shared sessions with TogetherJS, ergh
-  pendingCodeOutputScrollTop = null;
-  updateOutputSignalFromRemote = false;
 
   constructor(params={}) {
     super(params);
@@ -108,29 +104,7 @@ export class OptFrontend extends AbstractBaseFrontend {
       $('#embedCodeOutput').val(iframeStr);
     });
 
-
     this.initAceEditor(420);
-    this.pyInputAceEditor.getSession().on("change", (e) => {
-      // unfortunately, Ace doesn't detect whether a change was caused
-      // by a setValue call
-      if (TogetherJS.running) {
-        TogetherJS.send({type: "codemirror-edit"});
-      }
-    });
-
-    // NB: don't sync changeScrollTop for Ace since I can't get it working yet
-    //pyInputAceEditor.getSession().on('changeScrollTop', () => {
-    //  if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
-    //    $.doTimeout('codeInputScroll', 100, function() { // debounce
-    //      // note that this will send a signal back and forth both ways
-    //      // (there's no easy way to prevent this), but it shouldn't keep
-    //      // bouncing back and forth indefinitely since no the second signal
-    //      // causes no additional scrolling
-    //      TogetherJS.send({type: "codeInputScroll",
-    //                       scrollTop: pyInputGetScrollTop()});
-    //    });
-    //  }
-    //});
 
     // for some weird reason, jQuery doesn't work here:
     //   $(window).bind("hashchange"
@@ -143,13 +117,6 @@ export class OptFrontend extends AbstractBaseFrontend {
         // otherwise just do an incremental update
         var newMode = $.bbq.getState('mode');
         this.updateAppDisplay(newMode);
-      }
-
-      if (TogetherJS.running && !this.isExecutingCode) {
-        TogetherJS.send({type: "hashchange",
-                         appMode: this.appMode,
-                         codeInputScrollTop: this.pyInputGetScrollTop(),
-                         myAppState: this.getAppState()});
       }
     });
 
@@ -363,8 +330,7 @@ export class OptFrontend extends AbstractBaseFrontend {
       $("#javaOptionsPane").hide();
     }
 
-    if ((selectorVal === 'js' || selectorVal === '2' || selectorVal === '3') &&
-        !TogetherJS.running) { // don't allow switch to live mode during shared sessions
+    if (selectorVal === 'js' || selectorVal === '2' || selectorVal === '3') {
       $("#liveModeBtn").show();
     } else {
       $("#liveModeBtn").hide();
@@ -440,13 +406,6 @@ export class OptFrontend extends AbstractBaseFrontend {
 
     if (this.myVisualizer) {
       this.myVisualizer.add_pytutor_hook("end_updateOutput", (args) => {
-        if (this.updateOutputSignalFromRemote) {
-          return;
-        }
-        if (TogetherJS.running && !this.isExecutingCode) {
-          TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
-        }
-
         // TODO: implement for codeopticon
         // debounce to compress a bit ... 250ms feels "right"
         $.doTimeout('updateOutputLogEvent', 250, () => {
@@ -511,12 +470,6 @@ export class OptFrontend extends AbstractBaseFrontend {
       experimentalPopUpSyntaxErrorSurvey();
     }
     */
-
-    // VERY SUBTLE -- reinitialize TogetherJS so that it can detect
-    // and sync any new elements that are now inside myVisualizer
-    if (TogetherJS.running) {
-      TogetherJS.reinitialize();
-    }
   }
 
   handleUncaughtException(trace) {
@@ -556,18 +509,12 @@ export class OptFrontend extends AbstractBaseFrontend {
   }
 
   ignoreAjaxError(settings) {
-    // ignore errors related to togetherjs stuff:
-    if (settings.url.indexOf('togetherjs') > -1) {
-      return true;
-    }
-
-    // ugh other idiosyncratic errors to ignore
+    // other idiosyncratic errors to ignore
     if ((settings.url.indexOf('name_lookup.py') > -1) ||
         (settings.url.indexOf('syntax_err_survey.py') > -1) ||
         (settings.url.indexOf('viz_interaction.py') > -1)) {
       return true;
     }
-
     return false;
   }
 
@@ -585,8 +532,6 @@ export class OptFrontend extends AbstractBaseFrontend {
     var newCode = this.pyInputGetValue();
     var timestamp = new Date().getTime();
 
-    //console.log('Orig:', curCode);
-    //console.log('New:', newCode);
     if (this.curCode != newCode) {
       var diff = this.dmp.diff_toDelta(this.dmp.diff_main(this.curCode, newCode));
       //var patch = this.dmp.patch_toText(this.dmp.patch_make(this.curCode, newCode));
@@ -594,12 +539,12 @@ export class OptFrontend extends AbstractBaseFrontend {
       this.deltaObj.deltas.push(delta);
 
       this.curCode = newCode;
-      this.logEventCodeopticon({type: 'editCode', delta: delta});
-
-      if (TogetherJS.running) {
-        TogetherJS.send({type: "editCode", delta: delta});
-      }
+      this.logEditDelta(delta);
     }
+  }
+
+  logEditDelta(delta) {
+    this.logEventCodeopticon({type: 'editCode', delta: delta});
   }
 
   enterDisplayMode() {
@@ -646,10 +591,6 @@ export class OptFrontend extends AbstractBaseFrontend {
       $("#pyInputPane").hide();
       $("#pyOutputPane,#embedLinkDiv").show();
 
-      if (!TogetherJS.running) {
-        $("#surveyHeader").show();
-      }
-
       this.doneExecutingCode();
 
       // do this AFTER making #pyOutputPane visible, or else
@@ -665,8 +606,7 @@ export class OptFrontend extends AbstractBaseFrontend {
         this.enterEditMode();
       });
       var v = $('#pythonVersionSelector').val();
-      if ((v === 'js' || v === '2' || v === '3') &&
-          !TogetherJS.running) { // don't allow switch to live mode during shared sessions
+      if (v === 'js' || v === '2' || v === '3') {
         var myArgs = this.getAppState();
         var urlStr = $.param.fragment('live.html', myArgs, 2 /* clobber all */);
         $("#pyOutputPane #liveModeSpan").show();
@@ -676,29 +616,6 @@ export class OptFrontend extends AbstractBaseFrontend {
       }
 
       $(document).scrollTop(0); // scroll to top to make UX better on small monitors
-
-      if (this.pendingCodeOutputScrollTop) {
-        this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(this.pendingCodeOutputScrollTop);
-        this.pendingCodeOutputScrollTop = null;
-      }
-
-      $.doTimeout('pyCodeOutputDivScroll'); // cancel any prior scheduled calls
-
-      // TODO: this might interfere with experimentalPopUpSyntaxErrorSurvey (2015-04-19)
-      this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scroll(function(e) {
-        var elt = $(this);
-        // debounce
-        $.doTimeout('pyCodeOutputDivScroll', 100, function() {
-          // note that this will send a signal back and forth both ways
-          if (TogetherJS.running) {
-            // (there's no easy way to prevent this), but it shouldn't keep
-            // bouncing back and forth indefinitely since no the second signal
-            // causes no additional scrolling
-            TogetherJS.send({type: "pyCodeOutputDivScroll",
-                             scrollTop: elt.scrollTop()});
-          }
-        });
-      });
 
       var s: any = { mode: 'display' };
       // keep these persistent so that they survive page reloads
@@ -713,6 +630,7 @@ export class OptFrontend extends AbstractBaseFrontend {
 
     // log at the end after appMode gets canonicalized
     this.logEventCodeopticon({type: 'updateAppDisplay', mode: this.appMode, appState: this.getAppState()});
+    assert(this.appMode === 'edit' || this.appMode === 'display'); // postcondition
   }
 
   openLiveModeUrl() {
@@ -806,19 +724,76 @@ export class OptFrontend extends AbstractBaseFrontend {
     }
     $.bbq.removeState(); // clean up the URL no matter what
   }
+
 } // END class OptFrontend
 
 
 export class OptFrontendSharedSessions extends OptFrontend {
   executeCodeSignalFromRemote = false;
   togetherjsSyncRequested = false;
+  pendingCodeOutputScrollTop = null;
+  updateOutputSignalFromRemote = false;
 
   constructor(params={}) {
     super(params);
     this.initTogetherJS();
+
+    this.pyInputAceEditor.getSession().on("change", (e) => {
+      // unfortunately, Ace doesn't detect whether a change was caused
+      // by a setValue call
+      if (TogetherJS.running) {
+        TogetherJS.send({type: "codemirror-edit"});
+      }
+    });
+
+    // NB: don't sync changeScrollTop for Ace since I can't get it working yet
+    //this.pyInputAceEditor.getSession().on('changeScrollTop', () => {
+    //  if (typeof TogetherJS !== 'undefined' && TogetherJS.running) {
+    //    $.doTimeout('codeInputScroll', 100, function() { // debounce
+    //      // note that this will send a signal back and forth both ways
+    //      // (there's no easy way to prevent this), but it shouldn't keep
+    //      // bouncing back and forth indefinitely since no the second signal
+    //      // causes no additional scrolling
+    //      TogetherJS.send({type: "codeInputScroll",
+    //                       scrollTop: pyInputGetScrollTop()});
+    //    });
+    //  }
+    //});
+
+    // add an additional listener in addition to whatever the superclass/ added
+    window.addEventListener("hashchange", (e) => {
+      if (TogetherJS.running && !this.isExecutingCode) {
+        TogetherJS.send({type: "hashchange",
+                         appMode: this.appMode,
+                         codeInputScrollTop: this.pyInputGetScrollTop(),
+                         myAppState: this.getAppState()});
+      }
+    });
   }
 
-  // override
+  // important overrides to inject in pieces of TogetherJS functionality
+  ignoreAjaxError(settings) {
+    if (settings.url.indexOf('togetherjs') > -1) {
+      return true;
+    } else {
+      return super.ignoreAjaxError(settings);
+    }
+  }
+
+  setAceMode() {
+    super.setAceMode();
+    if (TogetherJS.running) {
+      $("#liveModeBtn").hide();
+    }
+  }
+
+  logEditDelta(delta) {
+    super.logEditDelta(delta);
+    if (TogetherJS.running) {
+      TogetherJS.send({type: "editCode", delta: delta});
+    }
+  }
+
   startExecutingCode(startingInstruction=0) {
     if (TogetherJS.running && !this.executeCodeSignalFromRemote) {
       TogetherJS.send({type: "executeCode",
@@ -829,6 +804,74 @@ export class OptFrontendSharedSessions extends OptFrontend {
 
     super.startExecutingCode(startingInstruction);
   }
+
+  updateAppDisplay(newAppMode) {
+    super.updateAppDisplay(newAppMode); // do this first!
+
+    // now this.appMode should be canonicalized to either 'edit' or 'display'
+    if (this.appMode === 'edit') {
+      // pass
+    } else if (this.appMode === 'display') {
+      assert(this.myVisualizer);
+
+      if (TogetherJS.running) {
+        $("#pyOutputPane #liveModeSpan").hide();
+      } else {
+        $("#surveyHeader").show();
+      }
+
+      if (this.pendingCodeOutputScrollTop) {
+        this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop(this.pendingCodeOutputScrollTop);
+        this.pendingCodeOutputScrollTop = null;
+      }
+
+      $.doTimeout('pyCodeOutputDivScroll'); // cancel any prior scheduled calls
+
+      // TODO: this might interfere with experimentalPopUpSyntaxErrorSurvey (2015-04-19)
+      this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scroll(function(e) {
+        var elt = $(this);
+        // debounce
+        $.doTimeout('pyCodeOutputDivScroll', 100, function() {
+          // note that this will send a signal back and forth both ways
+          if (TogetherJS.running) {
+            // (there's no easy way to prevent this), but it shouldn't keep
+            // bouncing back and forth indefinitely since no the second signal
+            // causes no additional scrolling
+            TogetherJS.send({type: "pyCodeOutputDivScroll",
+                             scrollTop: elt.scrollTop()});
+          }
+        });
+      });
+    } else {
+      assert(false);
+    }
+  }
+
+  finishSuccessfulExecution() {
+    assert (this.myVisualizer);
+
+    this.myVisualizer.add_pytutor_hook("end_updateOutput", (args) => {
+      if (this.updateOutputSignalFromRemote) {
+        return [true]; // die early; no more hooks should run after this one!
+      }
+
+      if (TogetherJS.running && !this.isExecutingCode) {
+        TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
+      }
+      return [false]; // pass through to let other hooks keep handling
+    });
+
+    // do this late since we want the hook in this function to be installed
+    // FIRST so that it can run before the hook installed by our superclass
+    super.finishSuccessfulExecution();
+
+    // VERY SUBTLE -- reinitialize TogetherJS at the END so that it can detect
+    // and sync any new elements that are now inside myVisualizer
+    if (TogetherJS.running) {
+      TogetherJS.reinitialize();
+    }
+  }
+
 
   initTogetherJS() {
     assert(TogetherJS);
