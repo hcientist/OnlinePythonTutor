@@ -5,7 +5,6 @@
 export const redSadFace = require('./images/red-sad-face.jpg');
 export const yellowHappyFace = require('./images/yellow-happy-face.jpg');
 
-import {OptFrontendWithTestcases} from './opt-frontend.ts';
 
 const testcasesPaneHtml = '\
 <table id="testCasesTable">\
@@ -26,7 +25,7 @@ const testcasesPaneHtml = '\
 '
 
 export class OptTestcases {
-  parent: OptFrontendWithTestcases;
+  parent: any; // type: OptFrontendWithTestcases
   curTestcaseId: number = 1;
 
   constructor(parent) {

@@ -2,15 +2,136 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-import {OptFrontend,OptFrontendWithTestcases,TogetherJS} from './opt-frontend.ts';
-import {assert} from './pytutor.ts';
+import {OptFrontend} from './opt-frontend.ts';
+import {OptFrontendSharedSessions,TogetherJS} from './opt-shared-sessions.ts';
+import {assert,htmlspecialchars} from './pytutor.ts';
+import {OptTestcases, redSadFace, yellowHappyFace} from './opt-testcases.ts';
+
 
 // for TypeScript
 declare var initCodeopticon: any; // FIX later when porting Codeopticon
 declare var codeopticonUsername: string; // FIX later when porting Codeopticon
 declare var codeopticonSession: string;  // FIX later when porting Codeopticon
 
+
 var optFrontend: OptFrontend;
+
+
+// augment with a "Create test cases" pane
+export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
+  optTests: OptTestcases;
+
+  constructor(params={}) {
+    super(params);
+    this.optTests = new OptTestcases(this);
+
+    var queryStrOptions = this.getQueryStringOptions();
+    if (queryStrOptions.testCasesLst) {
+      this.optTests.loadTestCases(queryStrOptions.testCasesLst);
+    }
+    // TRICKY: call superclass's parseQueryString ONLY AFTER initializing optTests
+    super.parseQueryString();
+  }
+
+  parseQueryString() {
+    // TRICKY: if optTests isn't initialized yet, this means we're calling this
+    // from the constructor, so do a NOP and then manually parse the query
+    // string at the end of the constructor ONLY AFTER initializing optTests.
+    // otherwise delegate to super.parseQueryString()
+    if (this.optTests) {
+      super.parseQueryString();
+    }
+  }
+
+  appStateAugmenter(appState) {
+    this.optTests.appStateAugmenter(appState);
+  }
+
+  runTestCase(id, codeToExec, firstTestLine) {
+    // adapted from executeCode in opt-frontend.js
+    var backendOptionsObj = this.getBaseBackendOptionsObj();
+    var frontendOptionsObj = this.getBaseFrontendOptionsObj();
+
+    (backendOptionsObj as any).run_test_case = true; // just so we can see this in server logs
+
+    var runTestCaseCallback = (dat) => {
+      var trace = dat.trace;
+
+      if (trace.length == 1 && trace[0].event === 'uncaught_exception') {
+        // e.g., syntax errors / compile errors
+        var errorLineNo = trace[0].line;
+        if (errorLineNo) {
+          // highlight the faulting line in the test case pane itself
+          if (errorLineNo !== undefined &&
+              errorLineNo != NaN &&
+              errorLineNo >= firstTestLine) {
+            var adjustedErrorLineNo = errorLineNo - firstTestLine;
+
+            var te = ace.edit('testCaseEditor_' + id);
+            var s = te.getSession();
+
+            s.setAnnotations([{row: adjustedErrorLineNo,
+                               column: null, // for TS typechecking
+                               type: 'error',
+                               text: trace[0].exception_msg}]);
+            te.gotoLine(adjustedErrorLineNo + 1); // one-indexed
+          }
+        }
+
+        var msg = trace[0].exception_msg;
+        var trimmedMsg = msg.split(':')[0];
+        $('#outputTd_' + id).html(htmlspecialchars(trimmedMsg));
+      } else {
+        // scan through the trace to find any exception events. report
+        // the first one if found, otherwise assume test is 'passed'
+        var exceptionMsg = null;
+        trace.forEach((e) => {
+          if (exceptionMsg) {
+            return;
+          }
+
+          if (e.event === 'exception') {
+            exceptionMsg = e.exception_msg;
+          }
+        });
+
+        if (exceptionMsg) {
+          $('#outputTd_' + id).html('<img src="' + redSadFace + '"></img>');
+        } else {
+          $('#outputTd_' + id).html('<img src="' + yellowHappyFace + '"></img>');
+        }
+      }
+
+      this.optTests.doneRunningTest();
+    };
+
+    this.executeCodeAndRunCallback(codeToExec,
+                                   $('#pythonVersionSelector').val(),
+                                   backendOptionsObj, frontendOptionsObj,
+                                   runTestCaseCallback.bind(this));
+  }
+
+  // TODO: properly handle and display errors when there's a syntax
+  // error ... right now it displays as a syntax error in the main pane,
+  // which can be confusing
+  vizTestCase(id, codeToExec, firstTestLine) {
+    // adapted from executeCode in opt-frontend.js
+    var backendOptionsObj = this.getBaseBackendOptionsObj();
+    var frontendOptionsObj = this.getBaseFrontendOptionsObj();
+
+    (backendOptionsObj as any).viz_test_case = true; // just so we can see this in server logs
+    //activateSyntaxErrorSurvey = false; // NASTY global! disable this survey when running test cases since it gets       confusing
+    (frontendOptionsObj as any).jumpToEnd = true;
+
+    this.executeCodeAndCreateViz(codeToExec,
+                                 $('#pythonVersionSelector').val(),
+                                 backendOptionsObj, frontendOptionsObj,
+                                 'pyOutputPane');
+    this.optTests.doneRunningTest(); // this will run before the callback in executeCodeAndCreateViz, but oh wells
+  }
+
+} // END Class OptFrontendWithTestcases
+
 
 var JS_EXAMPLES = {
   jsFactExLink: 'fact.js',
@@ -110,12 +231,12 @@ var PY2_EXAMPLES = {
   varargsLink: "varargs.txt",
   forElseLink: "for-else.txt",
   metaclassLink: "metaclass.txt",
-}
+};
 
 var PY3_EXAMPLES = {
   tortureLink: "closures/student-torture.txt",
   nonlocalLink: "nonlocal.txt",
-}
+};
 
 var RUBY_EXAMPLES = {
   rubyBlocksLink: 'blocks-basic.rb',
