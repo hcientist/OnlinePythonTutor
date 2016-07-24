@@ -7,8 +7,6 @@
 - we're always referring to top-level CSS selectors on the page; maybe
   use a this.domRoot pattern like in pytutor.ts?
 
-- test session_uuid, user_uuid, and other stuff stored to localStorage
-
 */
 
 /// <reference path="_references.ts" />
@@ -32,6 +30,7 @@ import {ExecutionVisualizer, assert, htmlspecialchars} from './pytutor.ts';
 // objects per page; should still be instantiated as a SINGLETON
 export abstract class AbstractBaseFrontend {
   sessionUUID: string = generateUUID(); // remains constant throughout one page load ("session")
+  userUUID: string; // remains constant for a particular "user" throughout multiple page loads (stored in localStorage on a particular browser)
 
   myVisualizer: ExecutionVisualizer;
   originFrontendJsFile: string; // "abstract" -- must override in subclass
@@ -125,6 +124,11 @@ export abstract class AbstractBaseFrontend {
       if (!localStorage.getItem('opt_uuid')) {
         localStorage.setItem('opt_uuid', generateUUID());
       }
+
+      this.userUUID = localStorage.getItem('opt_uuid');
+      assert(this.userUUID);
+    } else {
+      this.userUUID = undefined;
     }
 
     // register a generic AJAX error handler
@@ -406,7 +410,7 @@ export abstract class AbstractBaseFrontend {
         $.get(backendScript,
               {user_script : codeToExec,
                options_json: JSON.stringify(backendOptionsObj),
-               user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+               user_uuid: this.userUUID,
                session_uuid: this.sessionUUID,
                diffs_json: deltaObjStringified},
                function(dat) {} /* don't do anything since this is a dummy call */, "text");
@@ -429,7 +433,7 @@ export abstract class AbstractBaseFrontend {
               {user_script : codeToExec,
                raw_input_json: this.rawInputLst.length > 0 ? JSON.stringify(this.rawInputLst) : '',
                options_json: JSON.stringify(backendOptionsObj),
-               user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+               user_uuid: this.userUUID,
                session_uuid: this.sessionUUID,
                diffs_json: deltaObjStringified},
                callbackWrapper, "json");

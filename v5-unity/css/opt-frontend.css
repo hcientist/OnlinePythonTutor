@@ -183,6 +183,35 @@ button.surveyBtn {
 }
 
 
+.qtip-content {
+  padding: 8px 8px;
+
+	color: #333;
+	background-color: #ffffff;
+
+	max-width: 250px;
+	min-width: 10px;
+
+	border: 2px solid #4284D3;
+
+  cursor: pointer;
+
+	*border-right-width: 2px;
+	*border-bottom-width: 2px;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+	-webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+}
+
 #syntaxErrBubbleContents {
   font-size: 9pt;
   cursor: default;

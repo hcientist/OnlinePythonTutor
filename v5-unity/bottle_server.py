@@ -23,6 +23,7 @@ import pg_logger
 @route('/web_exec_<name:re:.+>.py')
 @route('/LIVE_exec_<name:re:.+>.py')
 @route('/viz_interaction.py')
+@route('/syntax_err_survey.py')
 def dummy_ok(name=None):
     return 'OK'
 

@@ -54,7 +54,6 @@ require('../css/opt-live.css');
 
 // need to directly import the class for type checking to work
 import {OptFrontend} from './opt-frontend.ts';
-import {supports_html5_storage} from './opt-frontend-common.ts';
 import {ExecutionVisualizer, assert, brightRed, darkArrowColor, lightArrowColor, SVG_ARROW_POLYGON, htmlspecialchars} from './pytutor.ts';
 
 // just punt and use global script dependencies
@@ -547,7 +546,7 @@ export class OptLiveFrontend extends OptFrontend {
       $.get(backendScript,
             {user_script : codeToExec,
              options_json: JSON.stringify(backendOptionsObj),
-             user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+             user_uuid: this.userUUID,
              session_uuid: this.sessionUUID,
              prevUpdateHistoryJSON: prevUpdateHistoryJSON,
              exeTime: new Date().getTime()},
@@ -571,7 +570,7 @@ export class OptLiveFrontend extends OptFrontend {
             {user_script : codeToExec,
              raw_input_json: this.rawInputLst.length > 0 ? JSON.stringify(this.rawInputLst) : '',
              options_json: JSON.stringify(backendOptionsObj),
-             user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+             user_uuid: this.userUUID,
              session_uuid: this.sessionUUID,
              prevUpdateHistoryJSON: prevUpdateHistoryJSON,
              exeTime: new Date().getTime()},

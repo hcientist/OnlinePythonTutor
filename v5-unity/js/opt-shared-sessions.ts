@@ -367,7 +367,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
       if (TogetherJS.running) {
         TogetherJS.send({type: "initialAppState",
                          myAppState: this.getAppState(),
-                         user_uuid: supports_html5_storage() ? localStorage.getItem('opt_uuid') : undefined,
+                         user_uuid: this.userUUID,
                          // so that you can tell whether someone else
                          // shared a TogetherJS URL with you to invite you
                          // into this shared session:

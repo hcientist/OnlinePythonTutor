@@ -14,13 +14,6 @@
 - we're referring to top-level CSS selectors on the page; maybe use a
   this.domRoot pattern like in pytutor.ts?
 
-- qtip doesn't work with Webpack, so experimentalPopUpSyntaxErrorSurvey
-  DOESN'T WORK deactivate it for now
-  - reinstate SyntaxErrorSurveyBubble later from cruft/syntax-error-bubble.js
-
-    require('./lib/jquery.qtip.min.js');
-    require('../css/jquery.qtip.css');
-
 */
 
 
@@ -30,8 +23,6 @@ declare var codeopticonUsername: string; // FIX later when porting Codeopticon
 declare var codeopticonSession: string;  // FIX later when porting Codeopticon
 
 require('./lib/jquery-3.0.0.min.js');
-require('./lib/jquery.qtip.min.js');
-require('../css/jquery.qtip.css');
 
 // just punt and use global script dependencies
 require("script!./lib/ace/src-min-noconflict/ace.js");
@@ -435,13 +426,6 @@ export class OptFrontend extends AbstractBaseFrontend {
     this.myVisualizer.updateHistory.push([this.myVisualizer.curInstr,
                                           this.myVisualizer.creationTime,
                                           this.myVisualizer.curTrace.length]);
-    /*
-    if (typeof(activateSyntaxErrorSurvey) !== 'undefined' &&
-        activateSyntaxErrorSurvey &&
-        experimentalPopUpSyntaxErrorSurvey) {
-      experimentalPopUpSyntaxErrorSurvey();
-    }
-    */
   }
 
   handleUncaughtException(trace) {
