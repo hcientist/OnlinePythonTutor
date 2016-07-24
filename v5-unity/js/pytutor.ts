@@ -3582,6 +3582,7 @@ class NavigationController {
 
 export function assert(cond) {
   if (!cond) {
+    console.trace();
     alert("Assertion Failure (see console log for backtrace)");
     throw 'Assertion Failure';
   }

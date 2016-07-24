@@ -1,4 +1,10 @@
-export var pythonExamples = `<p style="margin-top: 25px; font-weight: bold;">Python Examples</p>
+export var exampleHeaderHtml = `<p>The examples below illustrate some of
+this tool's visualization capabilities but are <em>not</em> meant as
+standalone programming lessons. For effective learning, people often use
+this tool as a supplement to textbooks, lecture notes, and online
+programming tutorials.</p>`
+
+export var pythonExamplesHtml = `<p style="margin-top: 25px; font-weight: bold;">Python Examples</p>
 
 <p style="margin-top: 10px;">Basic:
 
@@ -77,8 +83,63 @@ export var pythonExamples = `<p style="margin-top: 25px; font-weight: bold;">Pyt
 <a class="exampleLink" id="nonlocalLink" href="#">nonlocal</a>
 </p>`;
 
+export var PY2_EXAMPLES = {
+  tutorialExampleLink: "py_tutorial.txt",
+  strtokExampleLink: "strtok.txt",
+  listCompLink: "list-comp.txt",
+  compsLink: "comprehensions.txt",
+  fibonacciExampleLink: "fib.txt",
+  memoFibExampleLink: "memo_fib.txt",
+  factExampleLink: "fact.txt",
+  filterExampleLink: "filter.txt",
+  insSortExampleLink: "ins_sort.txt",
+  aliasExampleLink: "aliasing.txt",
+  happyExampleLink: "happy.txt",
+  newtonExampleLink: "sqrt.txt",
+  oopSmallExampleLink: "oop_small.txt",
+  mapExampleLink: "map.txt",
+  rawInputExampleLink: "raw_input.txt",
+  oop1ExampleLink: "oop_1.txt",
+  oop2ExampleLink: "oop_2.txt",
+  inheritanceExampleLink: "oop_inherit.txt",
+  sumExampleLink: "sum.txt",
+  pwGcdLink: "wentworth_gcd.txt",
+  pwSumListLink: "wentworth_sumList.txt",
+  towersOfHanoiLink: "towers_of_hanoi.txt",
+  pwTryFinallyLink: "wentworth_try_finally.txt",
+  sumCubesLink: "sum-cubes.txt",
+  decoratorsLink: "decorators.txt",
+  genPrimesLink: "gen_primes.txt",
+  genExprLink: "genexpr.txt",
+  closure1Link: "closures/closure1.txt",
+  closure2Link: "closures/closure2.txt",
+  closure3Link: "closures/closure3.txt",
+  closure4Link: "closures/closure4.txt",
+  closure5Link: "closures/closure5.txt",
+  lambdaParamLink: "closures/lambda-param.txt",
+  aliasing1Link: "aliasing/aliasing1.txt",
+  aliasing2Link: "aliasing/aliasing2.txt",
+  aliasing3Link: "aliasing/aliasing3.txt",
+  aliasing4Link: "aliasing/aliasing4.txt",
+  aliasing5Link: "aliasing/aliasing5.txt",
+  aliasing6Link: "aliasing/aliasing6.txt",
+  aliasing7Link: "aliasing/aliasing7.txt",
+  aliasing8Link: "aliasing/aliasing8.txt",
+  ll1Link: "linked-lists/ll1.txt",
+  ll2Link: "linked-lists/ll2.txt",
+  sumListLink: "sum-list.txt",
+  varargsLink: "varargs.txt",
+  forElseLink: "for-else.txt",
+  metaclassLink: "metaclass.txt",
+};
 
-export var javaExamples = `<p style="margin-top: 25px; font-weight: bold;">Java Examples</p>
+export var PY3_EXAMPLES = {
+  tortureLink: "closures/student-torture.txt",
+  nonlocalLink: "nonlocal.txt",
+};
+
+
+export var javaExamplesHtml = `<p style="margin-top: 25px; font-weight: bold;">Java Examples</p>
 
 <p>
 Basic:
@@ -131,8 +192,41 @@ Misc:
 
 <p style="margin-top: 5px;">(All Java examples created by <a href="https://github.com/daveagp">David Pritchard</a>)</p>`;
 
+export var JAVA_EXAMPLES = {
+  javaVarLink: 'Variables.java',
+  javaCFLink: 'ControlFlow.java',
+  javaSqrtLink: 'Sqrt.java',
+  javaExecLimitLink: 'ExecLimit.java',
+  javaStringsLink: 'Strings.java',
 
-export var jsExamples = `<p style="margin-top: 25px; font-weight: bold;">JavaScript Examples</p>
+  javaPassByValLink: 'PassByValue.java',
+  javaRecurLink: 'Recursion.java',
+  javaSOLink: 'StackOverflow.java',
+
+  javaRolexLink: 'Rolex.java',
+  javaPersonLink: 'Person.java',
+  javaComplexLink: 'Complex.java',
+  javaCastingLink: 'Casting.java',
+
+  javaLLLink: 'LinkedList.java',
+  javaStackQueueLink: 'StackQueue.java',
+  javaPostfixLink: 'Postfix.java',
+  javaSTLink: 'SymbolTable.java',
+
+  javaToStringLink: 'ToString.java',
+  javaReflectLink: 'Reflect.java',
+  javaExceptionLink: 'Exception.java',
+  javaExceptionFlowLink: 'ExceptionFlow.java',
+  javaTwoClassesLink: 'TwoClasses.java',
+
+  javaForestLink: 'Forest.java',
+  javaKnapsackLink: 'Knapsack.java',
+  javaStaticInitLink: 'StaticInitializer.java',
+  javaSyntheticLink: 'Synthetic.java',
+};
+
+
+export var jsExamplesHtml = `<p style="margin-top: 25px; font-weight: bold;">JavaScript Examples</p>
 
 <p style="margin-top: 5px;">
   <a class="exampleLink" id="jsFactExLink" href="#">factorial</a> |
@@ -144,8 +238,18 @@ export var jsExamples = `<p style="margin-top: 25px; font-weight: bold;">JavaScr
   <a class="exampleLink" id="jsInhExLink" href="#">inheritance</a>
 </p>`;
 
+export var JS_EXAMPLES = {
+  jsFactExLink: 'fact.js',
+  jsDatatypesExLink: 'data-types.js',
+  jsExceptionExLink: 'caught-exception.js',
+  jsClosureExLink: 'closure1.js',
+  jsShadowingExLink: 'var-shadowing2.js',
+  jsConstructorExLink: 'constructor.js',
+  jsInhExLink: 'inheritance.js',
+};
 
-export var tsExamples = `<p style="margin-top: 25px; font-weight: bold;">TypeScript Examples</p>
+
+export var tsExamplesHtml = `<p style="margin-top: 25px; font-weight: bold;">TypeScript Examples</p>
 
 <p style="margin-top: 5px;">
   <a class="exampleLink" id="tsHelloExLink" href="#">hello</a> |
@@ -154,8 +258,15 @@ export var tsExamples = `<p style="margin-top: 25px; font-weight: bold;">TypeScr
   <a class="exampleLink" id="tsGreeterGenericsExLink" href="#">generics</a>
 </p>`;
 
+export var TS_EXAMPLES = {
+  tsHelloExLink: 'hello.ts',
+  tsGreeterExLink: 'greeter.ts',
+  tsGreeterGenericsExLink: 'greeter-generics.ts',
+  tsInheritanceExLink: 'inheritance.ts',
+};
 
-export var rubyExamples = `<p style="margin-top: 25px; font-weight: bold;">Ruby Examples</p>
+
+export var rubyExamplesHtml = `<p style="margin-top: 25px; font-weight: bold;">Ruby Examples</p>
 
 <p style="margin-top: 5px;">
   <a class="exampleLink" id="rubyContainersLink" href="#">Containers</a> |
@@ -178,8 +289,27 @@ export var rubyExamples = `<p style="margin-top: 25px; font-weight: bold;">Ruby 
   <a class="exampleLink" id="rubyMegagreeterLink" href="#">Megagreeter</a>
 </p>`;
 
+export var RUBY_EXAMPLES = {
+  rubyBlocksLink: 'blocks-basic.rb',
+  rubyBlocksScopingLink: 'blocks-scoping-2.rb',
+  rubyInheritanceLink: 'class-inheritance.rb',
+  rubyConstantsLink: 'constants-4.rb',
+  rubyContainersLink: 'container-data-types.rb',
+  rubyGlobalsLink: 'globals.rb',
+  rubyLambdaScopingLink: 'lambda-scoping-2.rb',
+  rubyMegagreeterLink: 'megagreeter.rb',
+  rubyProcLink: 'proc-basic.rb',
+  rubyProcScopingLink: 'proc-scoping.rb',
+  rubySymbolsLink: 'symbols.rb',
+  rubyPrivateProtectedLink: 'class-private-protected.rb',
+  rubyInstClassVarsComplexLink: 'inst-class-vars-complex.rb',
+  rubyToplevelLink: 'toplevel-inst-class-vars.rb',
+  rubyBlocksScoping3Link: 'blocks-scoping-3.rb',
+  rubyProcReturnLink: 'proc-return.rb',
+};
 
-export var cExamples = `<p style="margin-top: 25px; font-weight: bold;">C Examples</p>
+
+export var cExamplesHtml = `<p style="margin-top: 25px; font-weight: bold;">C Examples</p>
 
 <p style="margin-top: 5px;">
   <a class="exampleLink" id="cMengThesisLink" href="#">Thesis</a> |
@@ -196,8 +326,23 @@ export var cExamples = `<p style="margin-top: 25px; font-weight: bold;">C Exampl
   <a class="exampleLink" id="cTypedefLink" href="#">Typedef</a>
 </p>`;
 
+export var C_EXAMPLES = {
+  cArrOverflowLink: 'array-overflow.c',
+  cArrParamLink: 'array-param.c',
+  cNestedStructLink: 'fjalar-NestedStructTest.c',
+  cPtrLevelsLink: 'fjalar-pointer-levels.c',
+  //cStringArraysLink: 'fjalar-string-arrays.c',
+  cGlobalsLink: 'globals.c',
+  cMengThesisLink: 'meng-thesis-example.c',
+  cPtrChainLink: 'pointer-chain.c',
+  cPtrWildLink: 'pointers-gone-wild.c',
+  cStringRevLink: 'string-reverse-inplace.c',
+  cStructLink: 'struct-basic.c',
+  cTypedefLink: 'typedef-test.c',
+};
 
-export var cppExamples = `<p style="margin-top: 25px; font-weight: bold;">C++ Examples</p>
+
+export var cppExamplesHtml = `<p style="margin-top: 25px; font-weight: bold;">C++ Examples</p>
 
 <p style="margin-top: 5px;">
   <a class="exampleLink" id="cppFirstLink" href="#">Basic</a> |
@@ -208,3 +353,13 @@ export var cppExamples = `<p style="margin-top: 25px; font-weight: bold;">C++ Ex
   <a class="exampleLink" id="cppInheritLink" href="#">Inheritance</a> |
   <a class="exampleLink" id="cppVirtualLink" href="#">Virtual method</a>
 </p>`;
+
+export var CPP_EXAMPLES = {
+  cppClassLink: 'cpp-class-basic.cpp',
+  cppDateLink: 'cpp-class-date.cpp',
+  cppClassPtrLink: 'cpp-class-pointers.cpp',
+  cppFirstLink: 'cpp-first.cpp',
+  cppInheritLink: 'cpp-inheritance.cpp',
+  cppPassRefLink: 'cpp-pass-by-ref.cpp',
+  cppVirtualLink: 'cpp-virtual-method.cpp',
+};

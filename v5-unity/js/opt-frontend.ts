@@ -136,7 +136,11 @@ export class OptFrontend extends AbstractBaseFrontend {
     // first initialize options from HTML LocalStorage. very important
     // that this code runs FIRST so that options get overridden by query
     // string options and anything else the user wants to override with.
-    if (supports_html5_storage()) {
+    //
+    // super hacky using window.optOverride global -- if that's in
+    // effect, then don't load/save from HTML5 storage so that we don't
+    // mess up the overridden settings
+    if (supports_html5_storage() && typeof (window as any).optOverride === 'undefined') {
       var lsKeys = ['cumulative',
                     'heapPrimitives',
                     'py',

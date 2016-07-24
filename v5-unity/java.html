@@ -8,9 +8,14 @@
 -->
 
 <head>
-  <title>Visualize Python, Java, JavaScript, TypeScript, and Ruby code execution</title>
+  <title>Java Tutor - Visualize Java code execution to learn Java online</title>
 
   <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+
+<script type="text/javascript">
+window.optOverride = {}
+window.optOverride.frontendLang = 'java'; // hacky override before including visualize.bundle.js
+</script>
 
   <!-- let Webpack take care of everything. Use the [hash] feature to
        create unique filenames for releases:
@@ -63,14 +68,7 @@
 <div id="codeInputWarnings">Write code in
 
   <select id="pythonVersionSelector">
-    <option value="2">Python 2.7</option>
-    <option value="3">Python 3.3</option>
     <option value="java">Java 8</option>
-    <option value="js">JavaScript ES6</option>
-    <option value="ts">TypeScript 1.4</option>
-    <option value="ruby">Ruby 2.2</option>
-    <option value="c">C (gcc 4.8, C11) EXPERIMENTAL</option>
-    <option value="cpp">C++ (gcc 4.8, C++11) EXPERIMENTAL</option>
   </select>
 
 </div>
@@ -93,7 +91,7 @@
 
 
 <div id="optionsPane" style="margin-top: 20px; line-height: 150%;">
-  <select id="cumulativeModeSelector">
+  <select id="cumulativeModeSelector" style="display: none;">
     <option value="false">hide exited frames [default]</option>
     <option value="true">show all frames (Python)</option>
   </select>
