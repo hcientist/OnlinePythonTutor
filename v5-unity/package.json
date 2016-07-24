@@ -7,8 +7,8 @@
   "license": "BSD-3-Clause",
   "scripts": {
     "start": "python bottle_server.py",
-    "webpack": "webpack --progress --colors --watch",
-    "prod": "webpack -p"
+    "webpack": "webpack --devtool sourcemap --progress --colors --watch",
+    "build-prod": "rm -f build/* && webpack --optimize-minimize"
   },
   "dependencies": {
     "css-loader": "",

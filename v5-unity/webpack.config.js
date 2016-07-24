@@ -63,5 +63,7 @@ module.exports = {
         ]
     },
 
-    devtool: 'source-map', // source maps are very important to ease debugging
+    //devtool: 'source-map', // source maps are very important to ease debugging
+    // nix this, and use the command-line option "--devtool sourcemap" to create
+    // source maps in a debugging build
 };
