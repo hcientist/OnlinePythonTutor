@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+  Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+  Copyright (C) Philip Guo (philip@pgbovine.net)
+  LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
+-->
+
+<head>
+  <title>Online Python Tutor - csc108h with shared sessions</title>
+
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+  <script type="text/javascript" src="build/csc108h.bundle.js" charset="utf-8"></script>
+
+<!-- insert google-analytics.txt contents here -->
+
+</head>
+
+<body>
+
+<table id="experimentalHeader">
+<tr>
+<td valign="top">
+
+<div id="ssDiv">
+  <button id="sharedSessionBtn" type="button" class="togetherjsBtn">
+  Start shared session
+  </button>
+  <div style="font-size: 7pt; margin-left: 2px; margin-top: 3px;">
+  <a href="https://www.youtube.com/watch?v=Z2TIjNArOK4" target="_blank">What are shared sessions?</a>
+  </div>
+</div>
+
+<div id="sharedSessionDisplayDiv" style="display: none;">
+  <button id="stopTogetherJSBtn" type="button" class="togetherjsBtn">
+  End shared session
+  </button>
+
+  <div style="width: 200px; font-size: 8pt; color: #666; margin-top: 5px;">
+  Your chat logs and code may be recorded, anonymized, and analyzed for research.
+  </div>
+</div>
+
+</td>
+<td valign="top">
+
+<div id="togetherjsStatus"></div>
+
+<div id="surveyHeader"></div>
+
+</td>
+</tr>
+</table>
+
+
+<div id="pyInputPane">
+
+<div id="codeInputWarnings">Write code in
+
+  <select id="pythonVersionSelector">
+    <option value="3">Python 3.3</option>
+  </select>
+
+</div>
+
+<div id="someoneIsTypingDiv" style="color: #e93f34; font-weight: bold; display: none;">Someone is typing ...</div>
+
+<div id="codeInputPane"></div> <!-- populate with Ace code editor instance -->
+<div id="frontendErrorOutput"></div>
+<div id="surveyPane"></div>
+
+<p>
+<button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
+<button style="margin-left: 20px;" id="liveModeBtn" class="bigBtn" type="button">Live Programming Mode <font color="#e93f34">(NEW!)</font></button>
+</p>
+
+<div id="exampleSnippets"></div>
+
+</div>
+
+<div id="pyOutputPane"></div>
+
+<div id="footer"></div>
+
+</body>
+</html>

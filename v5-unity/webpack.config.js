@@ -42,6 +42,7 @@ module.exports = {
         'iframe-embed': "./js/iframe-embed.ts",
         'embedding-demo': "./js/embedding-demo.ts",
         'composingprograms': "./js/composingprograms.ts",
+        'csc108h': "./js/csc108h.ts",
     },
 
     output: {
