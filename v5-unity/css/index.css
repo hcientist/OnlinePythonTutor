@@ -67,6 +67,7 @@ div.activityPane {
   padding: 15px 0px /* make right padding ZERO and just right-pad 'p' */ 5px 20px;
   text-align: left;
   border: 3px solid #005583;
+  border-radius: 15px; /* for rounded corners */
 }
 
 div.activityPane p {
