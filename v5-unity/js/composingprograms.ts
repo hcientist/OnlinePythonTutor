@@ -2,36 +2,54 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-import {OptFrontend} from './opt-frontend.ts';
-import {OptFrontendSharedSessions,TogetherJS} from './opt-shared-sessions.ts';
+import {OptFrontendSharedSessions} from './opt-shared-sessions.ts';
 import {assert,htmlspecialchars} from './pytutor.ts';
 import {footerHtml} from './footer-html.ts';
-
-// for TypeScript
-declare var initCodeopticon: any; // FIX later when porting Codeopticon
-declare var codeopticonUsername: string; // FIX later when porting Codeopticon
-declare var codeopticonSession: string;  // FIX later when porting Codeopticon
-
-
-var optFrontend: OptFrontend;
-
 
 // augment with a "Create test cases" pane
 export class OptFrontendComposingprograms extends OptFrontendSharedSessions {
   constructor(params={}) {
-    params.disableLocalStorageToggles = true;
+    (params as any).disableLocalStorageToggles = true;
     super(params);
     this.originFrontendJsFile = 'composingprograms.js';
   }
 
-} // END Class OptFrontendComposingprograms
+  getBaseBackendOptionsObj() {
+    var ret = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
+               heap_primitives: false,
+               show_only_outputs: false,
+               origin: this.originFrontendJsFile};
+    return ret;
+  }
 
+  getBaseFrontendOptionsObj() {
+    var ret = { compactFuncLabels: true,
+                showAllFrameLabels: true,
+
+                disableHeapNesting: false,
+                textualMemoryLabels: false,
+
+                executeCodeWithRawInputFunc: this.executeCodeWithRawInput.bind(this),
+                updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
+                startingInstruction: 0,
+
+                // always use the same visualizer ID for all
+                // instantiated ExecutionVisualizer objects,
+                // so that they can sync properly across
+                // multiple clients using TogetherJS in shared sessions.
+                // this shouldn't lead to problems since only ONE
+                // ExecutionVisualizer will be shown at a time
+                visualizerIdOverride: '1',
+              };
+    return ret;
+  }
+
+} // END Class OptFrontendComposingprograms
 
 $(document).ready(function() {
   // initialize all HTML elements before creating optFrontend object
   $("#footer").append(footerHtml);
 
-  optFrontend = new OptFrontendComposingprograms();
+  var optFrontend = new OptFrontendComposingprograms();
   optFrontend.setSurveyHTML();
-  optFrontend.setAceMode();
 });
