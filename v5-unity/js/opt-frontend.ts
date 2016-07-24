@@ -117,30 +117,11 @@ export class OptFrontend extends AbstractBaseFrontend {
       $('#urlOutput').val(urlStr);
     });
 
-    // OMG nasty wtf?!?
-    // From: http://stackoverflow.com/questions/21159301/quotaexceedederror-dom-exception-22-an-attempt-was-made-to-add-something-to-st
-    // Safari, in Private Browsing Mode, looks like it supports localStorage but all calls to setItem
-    // throw QuotaExceededError. We're going to detect this and just silently drop any calls to setItem
-    // to avoid the entire page breaking, without having to do a check at each usage of Storage.
-    if (typeof localStorage === 'object') {
-      try {
-        localStorage.setItem('localStorage', '1');
-        localStorage.removeItem('localStorage');
-      } catch (e) {
-        (Storage as any).prototype._setItem = Storage.prototype.setItem;
-        Storage.prototype.setItem = function() {}; // make it a NOP
-        alert('Your web browser does not support storing settings locally. In Safari, the most common cause of this is using "Private Browsing Mode". Some features may not work properly for you.');
-      }
-    }
 
     // first initialize options from HTML LocalStorage. very important
     // that this code runs FIRST so that options get overridden by query
     // string options and anything else the user wants to override with.
-    //
-    // super hacky using window.optOverride global -- if that's in
-    // effect, then don't load/save from HTML5 storage so that we don't
-    // mess up the overridden settings
-    if (supports_html5_storage() && typeof (window as any).optOverride === 'undefined') {
+    if (supports_html5_storage() && !params.disableLocalStorageToggles) {
       var lsKeys = ['cumulative',
                     'heapPrimitives',
                     'py',

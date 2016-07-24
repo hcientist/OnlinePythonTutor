@@ -146,9 +146,12 @@ $(document).ready(function() {
   $("#exampleSnippets")
     .append(exampleHeaderHtml);
 
+  var params = {};
   var optOverride = (window as any).optOverride;
   // super hacky!
   if (optOverride) {
+    (params as any).disableLocalStorageToggles = true;
+
     if (optOverride.frontendLang === 'java') {
       $("#exampleSnippets").append(javaExamplesHtml);
     } else if (optOverride.frontendLang === 'js') {
@@ -175,7 +178,7 @@ $(document).ready(function() {
   $("#footer").append(footerHtml);
 
 
-  optFrontend = new OptFrontendWithTestcases();
+  optFrontend = new OptFrontendWithTestcases(params);
   optFrontend.setSurveyHTML();
 
   // canned examples

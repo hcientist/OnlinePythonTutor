@@ -19,6 +19,7 @@ var optFrontend: OptFrontend;
 // augment with a "Create test cases" pane
 export class OptFrontendComposingprograms extends OptFrontendSharedSessions {
   constructor(params={}) {
+    params.disableLocalStorageToggles = true;
     super(params);
     this.originFrontendJsFile = 'composingprograms.js';
   }
@@ -32,7 +33,5 @@ $(document).ready(function() {
 
   optFrontend = new OptFrontendComposingprograms();
   optFrontend.setSurveyHTML();
-
-  $('#pythonVersionSelector').change(optFrontend.setAceMode.bind(optFrontend));
   optFrontend.setAceMode();
 });
