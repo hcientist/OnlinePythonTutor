@@ -501,8 +501,7 @@ export class OptFrontend extends AbstractBaseFrontend {
 
   ignoreAjaxError(settings) {
     // other idiosyncratic errors to ignore
-    if ((settings.url.indexOf('name_lookup.py') > -1) ||
-        (settings.url.indexOf('syntax_err_survey.py') > -1) ||
+    if ((settings.url.indexOf('syntax_err_survey.py') > -1) ||
         (settings.url.indexOf('viz_interaction.py') > -1)) {
       return true;
     }

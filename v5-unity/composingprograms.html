@@ -8,19 +8,18 @@
 -->
 
 <head>
-  <title>Java Tutor - Visualize Java code execution to learn Java online</title>
+  <title>Online Python Tutor - Composing Programs - Python 3</title>
 
   <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
 
 <script type="text/javascript">
 window.optOverride = {}
-window.optOverride.frontendLang = 'java'; // hacky override before including visualize.bundle.js
 </script>
 
   <!-- let Webpack take care of everything. Use the [hash] feature to
        create unique filenames for releases:
        https://webpack.github.io/docs/long-term-caching.html -->
-  <script type="text/javascript" src="build/visualize.bundle.js" charset="utf-8"></script>
+  <script type="text/javascript" src="build/composingprograms.bundle.js" charset="utf-8"></script>
 
 <!-- insert google-analytics.txt contents here -->
 
@@ -58,24 +57,6 @@ window.optOverride.frontendLang = 'java'; // hacky override before including vis
 
 <div id="surveyHeader"></div>
 
-<div id="optHeader" style="font-family: Georgia, Palatino, Times, serif; font-size: 13pt; margin-bottom: 16px; margin-left: 16px;">
-Java Tutor - Visualize Java code execution to learn Java online
-
-<p style="font-size: 10pt";>
-(also visualize
-<a href="visualize.html#py=2">Python</a>,
-<a href="java.html">Java</a>,
-<a href="javascript.html">JavaScript</a>,
-<a href="typescript.html">TypeScript</a>,
-<a href="ruby.html">Ruby</a>,
-<a href="c.html">C</a>,
-and
-<a href="cpp.html">C++</a>
-code)
-</p>
-
-</div>
-
 </td>
 </tr>
 </table>
@@ -86,8 +67,16 @@ code)
 <div id="codeInputWarnings">Write code in
 
   <select id="pythonVersionSelector">
-    <option value="java">Java 8</option>
+    <option value="3">Python 3.3</option>
   </select>
+
+  and
+
+  <select id="cumulativeModeSelector">
+    <option value="true">display frames of exited functions.</option>
+    <option value="false">don't display exited functions.</option>
+  </select>
+
 
 </div>
 
@@ -101,27 +90,6 @@ code)
 <button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
 <button style="margin-left: 20px;" id="liveModeBtn" class="bigBtn" type="button">Live Programming Mode <font color="#e93f34">(NEW!)</font></button>
 </p>
-
-
-<div id="javaOptionsPane" style="margin-top: 20px;">
-[<i>coming soon!</i>] Java options: pass in command-line arguments and feed user input to stdin
-</div>
-
-
-<div id="optionsPane" style="margin-top: 20px; line-height: 150%;">
-  <select id="cumulativeModeSelector" style="display: none;">
-    <option value="false">hide exited frames [default]</option>
-    <option value="true">show all frames (Python)</option>
-  </select>
-  <select id="heapPrimitivesSelector">
-    <option value="false">inline primitives &amp; nested objects [default]</option>
-    <option value="true">render all objects on the heap (Python/Java)</option>
-  </select>
-  <select id="textualMemoryLabelsSelector">
-    <option value="false">draw pointers as arrows [default]</option>
-    <option value="true">use text labels for pointers</option>
-  </select>
-</div>
 
 <div id="exampleSnippets"></div>
 

@@ -8,13 +8,13 @@
 -->
 
 <head>
-  <title>Java Tutor - Visualize Java code execution to learn Java online</title>
+  <title>TypeScript Tutor - Visualize TypeScript code execution to learn TypeScript online</title>
 
   <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
 
 <script type="text/javascript">
 window.optOverride = {}
-window.optOverride.frontendLang = 'java'; // hacky override before including visualize.bundle.js
+window.optOverride.frontendLang = 'ts'; // hacky override before including visualize.bundle.js
 </script>
 
   <!-- let Webpack take care of everything. Use the [hash] feature to
@@ -59,7 +59,7 @@ window.optOverride.frontendLang = 'java'; // hacky override before including vis
 <div id="surveyHeader"></div>
 
 <div id="optHeader" style="font-family: Georgia, Palatino, Times, serif; font-size: 13pt; margin-bottom: 16px; margin-left: 16px;">
-Java Tutor - Visualize Java code execution to learn Java online
+TypeScript Tutor - Visualize TypeScript code execution to learn TypeScript online
 
 <p style="font-size: 10pt";>
 (also visualize
@@ -86,7 +86,7 @@ code)
 <div id="codeInputWarnings">Write code in
 
   <select id="pythonVersionSelector">
-    <option value="java">Java 8</option>
+    <option value="ts">TypeScript 1.4</option>
   </select>
 
 </div>
@@ -103,21 +103,16 @@ code)
 </p>
 
 
-<div id="javaOptionsPane" style="margin-top: 20px;">
-[<i>coming soon!</i>] Java options: pass in command-line arguments and feed user input to stdin
-</div>
-
-
 <div id="optionsPane" style="margin-top: 20px; line-height: 150%;">
   <select id="cumulativeModeSelector" style="display: none;">
     <option value="false">hide exited frames [default]</option>
     <option value="true">show all frames (Python)</option>
   </select>
-  <select id="heapPrimitivesSelector">
+  <select id="heapPrimitivesSelector" style="display: none;">
     <option value="false">inline primitives &amp; nested objects [default]</option>
     <option value="true">render all objects on the heap (Python/Java)</option>
   </select>
-  <select id="textualMemoryLabelsSelector">
+  <select id="textualMemoryLabelsSelector" style="display: none;">
     <option value="false">draw pointers as arrows [default]</option>
     <option value="true">use text labels for pointers</option>
   </select>
