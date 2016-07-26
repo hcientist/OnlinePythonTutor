@@ -183,29 +183,6 @@ button.surveyBtn {
 }
 
 
-.qtip-content {
-  padding: 8px 8px;
-
-	background-color: #ffffff;
-
-	width: 350px;
-	max-width: 350px;
-	min-width: 10px;
-
-	/*border: 2px solid #4284D3;*/
-  border: 1px solid #e93f34; /* should match brightRed JavaScript variable */
-
-  cursor: pointer;
-
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-
-	-webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
-	box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
-}
-
 #syntaxErrBubbleContents {
   font-size: 9pt;
   cursor: default;
@@ -248,4 +225,40 @@ button.surveyBtn {
  margin-top: 5px;
  padding-bottom: 10px;
  border-bottom: 1px solid #ccc;
+}
+
+
+/* for SyntaxErrorSurveyBubble */
+
+textarea.bubbleInputText {
+  font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 9pt;
+	line-height: 1.3em;
+}
+
+.qtip-content {
+	color: #333;
+	background-color: #ffffff;
+
+	max-width: 350px;
+	width: 350px;
+
+	border: 2px solid #e93f34;
+
+  cursor: pointer;
+
+	*border-right-width: 2px;
+	*border-bottom-width: 2px;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+	-webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
 }
