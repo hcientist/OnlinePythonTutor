@@ -29,21 +29,6 @@ declare var initCodeopticon: any; // FIX later when porting Codeopticon
 */
 
 
-// TODO: squish
-var qtipShared = {
-  show: {
-    ready: true, // show on document.ready instead of on mouseenter
-    delay: 0,
-    event: null,
-    effect: function() {$(this).show();}, // don't do any fancy fading because it screws up with scrolling
-  },
-  hide: {
-    fixed: true,
-    event: null,
-    effect: function() {$(this).hide();}, // don't do any fancy fading because it screws up with scrolling
-  },
-};
-
 // TODO: refactor into ES6 class format
 
 // domID is the ID of the element to attach to (without the leading '#' sign)
@@ -64,8 +49,7 @@ SyntaxErrorSurveyBubble.prototype.destroyQTip = function() {
 }
 
 SyntaxErrorSurveyBubble.prototype.redrawCodelineBubble = function() {
-  var myVisualizer = this.parentViz;
-  if (myVisualizer.isOutputLineVisibleForBubbles(this.domID)) {
+  if (this.parentViz.isOutputLineVisibleForBubbles(this.domID)) {
     if (this.qtipHidden) {
       $(this.hashID).qtip('show');
     }
@@ -256,6 +240,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
         // if pyCodeOutputDiv is narrower than the current line, then
         // adjust the x position of the pop-up bubble accordingly to be
         // flush with the right of pyCodeOutputDiv
+        /*
         var pcodWidth = myVisualizer.domRoot.find('#pyCodeOutputDiv').width();
         var codLineWidth = myVisualizer.domRoot.find('#' + codLineId).parent().width(); // get enclosing 'tr'
         var adjustX = 0; // default
@@ -264,24 +249,36 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
         //if (pcodWidth < codLineWidth) {
         //  adjustX = pcodWidth - codLineWidth; // should be negative!
         //}
+        */
 
         // destroy then create a new tip:
         bub.destroyQTip();
-        $(bub.hashID).qtip($.extend({}, qtipShared, {
+        $(bub.hashID).qtip({
+          show: {
+            ready: true, // show on document.ready instead of on mouseenter
+            delay: 0,
+            event: null,
+            effect: function() {$(this).show();}, // don't do any fancy fading because it screws up with scrolling
+          },
+          hide: {
+            fixed: true,
+            event: null,
+            effect: function() {$(this).hide();}, // don't do any fancy fading because it screws up with scrolling
+          },
+
           content: ' ', // can't be empty!
           id: bub.domID,
           position: {
             my: bub.my,
             at: bub.at,
-            adjust: {
-              x: adjustX,
-            },
-            effect: null, // disable all cutesy animations
+            //adjust: {
+            //  x: adjustX,
+            //},
           },
           style: {
             classes: 'qtip-light',
           }
-        }));
+        });
 
         var myUuid = this.userUUID;
 
@@ -366,8 +363,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
         bubbleAceEditor.$blockScrolling = Infinity; // kludgy to shut up weird warnings
         // set the size and value ASAP to get alignment working well ...
         bubbleAceEditor.setOptions({minLines: 1, maxLines: 5}); // keep this SMALL
-        bubbleAceEditor.setValue(prevExecutionExceptionObj.myAppState.code.rtrim() /* kill trailing spaces */,
-                                 -1 /* do NOT select after setting text */);
+        bubbleAceEditor.setValue(prevExecutionExceptionObj.myAppState.code.rtrim(), -1);
 
         var s = bubbleAceEditor.getSession();
         // tab -> 4 spaces
@@ -405,12 +401,12 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
 
         bubbleAceEditor.setReadOnly(true);
 
-        s.setAnnotations([{row: offendingLine - 1 /* zero-indexed */,
-                           column: null, /* for TS typechecking */
+        s.setAnnotations([{row: offendingLine - 1,
+                           column: null,
                            type: 'error',
                            text: prevExecutionExceptionObj.killerException.exception_msg}]);
 
-        (bubbleAceEditor as any /* TS too strict */).scrollToLine(offendingLine - 1, true /* try to center */);
+        (bubbleAceEditor as any).scrollToLine(offendingLine - 1, true);
 
         // don't forget htmlspecialchars
         $("#syntaxErrMsg").html(htmlspecialchars(prevExecutionExceptionObj.killerException.exception_msg));
