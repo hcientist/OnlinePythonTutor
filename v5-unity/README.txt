@@ -3,6 +3,32 @@ Online Python Tutor v5 "unity" -- the goal for this version is to
 significantly clean up, modernize, and modularize the OPT codebase to
 ease future development.
 
+---
+
+After everything has been installed properly (see below):
+
+To start the Webpack file watching and compilation environment, run:
+
+  npm run webpack
+
+
+To start the webserver, run:
+
+  npm start
+
+
+then visit here to load an HTML page in your browser:
+
+  http://localhost:8003/visualize.html
+
+
+To make a production (minified, cache-busted) build for deployment, run:
+
+  npm run production-build
+
+---
+History:
+
 I started porting v3/ over to v5-unity/ on 2016-06-12 since the headache
 of manually maintaining so many JS/CSS files and their intricate
 dependencies was starting to get out of hand ... i've waited for years
@@ -11,13 +37,6 @@ to port to a more sustainable and modern development setup ...
 I decided to go with Webpack for the module system and to upgrade the
 appropriate versions of libraries to match, without breaking crufty
 legacy code (hopefully)
-
----
-
-To create a production build after everything has been installed
-properly, run:
-
-npm run production-build
 
 ---
 To get started, install:
@@ -40,23 +59,6 @@ To get started, install:
 
 6.) Follow ../tests/frontend-regression-tests/README.txt to install
     dependencies for visual regression testing
-
----
-
-To start the development environment using npm, run:
-
-  npm run webpack
-
-
-To start the webserver, run:
-
-  npm start
-
-
-then visit:
-
-  http://localhost:8003/visualize.html
-
 
 ======
 Older notes:
@@ -101,15 +103,4 @@ For developing using TypeScript:
   (then in the future, simply run 'tsd install' to install definition
    modules saved in tsd.json)
 
-Currenly using: Version 1.8.10
-
----
-
-https://github.com/petehunt/webpack-howto
-
-    'webpack' for building once for development
-    'webpack -p' for building once for production (minification)
-    'webpack --watch' for continuous incremental build in development (fast!)
-    'webpack -d' to include source maps
-
-TODO: always do webpack -p for deploy to production, and add a unique hash
+Currently using: Version 1.8.10
