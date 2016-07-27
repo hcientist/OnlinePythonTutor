@@ -183,3 +183,10 @@ v4-cokapi/
 
 June 2016 - launched OPT live programming mode at:
 http://pythontutor.com/live.html
+
+
+v5-unity/
+
+  2016-07-27 - deployed v5-unity/ onto pythontutor.com to replace v3/,
+  which was deployed in September 2012. From now on, active development
+  will take place in v5-unity/ and *not* v3/.
