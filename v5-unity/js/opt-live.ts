@@ -372,6 +372,7 @@ export class OptLiveFrontend extends OptFrontend {
     );
 
     $('#executionSlider').slider('value', myVisualizer.curInstr); // update slider
+    this.myVisualizer.redrawConnectors(); // to get everything aligned well
   }
 
   // a syntax-/compile-time error, rather than a runtime error
