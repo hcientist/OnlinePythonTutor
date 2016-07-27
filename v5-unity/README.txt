@@ -13,6 +13,13 @@ appropriate versions of libraries to match, without breaking crufty
 legacy code (hopefully)
 
 ---
+
+To create a production build after everything has been installed
+properly, run:
+
+npm run production-build
+
+---
 To get started, install:
 
 1.) Node.js / npm

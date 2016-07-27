@@ -2,7 +2,7 @@
 * http://craigsworks.com/projects/qtip2/
 * Copyright (c) 2012 Craig Michael Thompson; Licensed MIT, GPL */
 
-// modified by pgbovine (using "pgbovine" comments)
+// modified by pgbovine (using "pgbovine" comments) to get it working with jQuery 3.0.0
 
 /*jslint browser: true, onevar: true, undef: true, nomen: true, bitwise: true, regexp: true, newcap: true, immed: true, strict: true */
 /*global window: false, jQuery: false, console: false, define: false */
