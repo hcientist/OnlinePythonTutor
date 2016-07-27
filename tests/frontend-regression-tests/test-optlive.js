@@ -4,9 +4,14 @@ var outputDir = "/test-optlive-outputs"
 
 var baseUrl = 'http://localhost:8003/';
 
-// test visualize.html (mode=edit, mode=display), iframe-embed.html, and live.html
 var urlFragments = [
-  'http://localhost:8003/live.html#code=x%20%3D%20%22Enter%20your%20name%3A%20%22%0Ay%20%3D%20raw_input(x%29%0Aprint%20%22Hello%22,%20%20y%0Az%20%3D%20raw_input(y%20%2B%20%22%20-%3E%20%22%29%0Aprint%20z&cumulative=false&curInstr=1&heapPrimitives=true&mode=display&origin=opt-live.js&py=2&rawInputLstJSON=%5B%5D&textReferences=false'
+  'http://localhost:8003/live.html#code=x%20%3D%20%22Enter%20your%20name%3A%20%22%0Ay%20%3D%20raw_input(x%29%0Aprint%20%22Hello%22,%20%20y%0Az%20%3D%20raw_input(y%20%2B%20%22%20-%3E%20%22%29%0Aprint%20z&cumulative=false&curInstr=1&heapPrimitives=true&mode=display&origin=opt-live.js&py=2&rawInputLstJSON=%5B%5D&textReferences=false',
+
+  // with curInstr=69
+  'http://localhost:8003/live.html#code=%23%20Higher-order%20functions%0A%23%20Adapted%20from%20MIT%206.01%20course%20notes%20(Section%20A.2.2%29%0A%23%20http%3A//mit.edu/6.01/mercurial/spring10/www/handouts/readings.pdf%0A%0Adef%20summation(low,%20high,%20f,%20%20next%29%3A%0A%20%20%20%20s%20%3D%200%0A%20%20%20%20x%20%3D%20low%0A%20%20%20%20while%20x%20%3C%3D%20high%3A%0A%20%20%20%20%20%20%20%20s%20%3D%20s%20%2B%20f(x%29%0A%20%20%20%20%20%20%20%20x%20%3D%20next(x%29%0A%20%20%20%20return%20s%0A%0Adef%20sumsquares(low,%20%20high%29%3A%0A%20%20%20%20return%20summation(low,%20high,%20lambda%20x%3A%20x**2,%20lambda%20x%3A%20x%2B1%29%0A%0Aprint(sumsquares(1,%20%2010%29%29&cumulative=false&curInstr=69&heapPrimitives=false&mode=display&origin=opt-live.js&py=2&rawInputLstJSON=%5B%5D&textReferences=false',
+
+  // with rawInputLstJSON (and curInstr)
+  'http://localhost:8003/live.html#code=x%20%3D%20%22Enter%20your%20name%3A%20%22%0Ay%20%3D%20raw_input(x%29%0Aprint%20%22Hello%22,%20y%0Az%20%3D%20raw_input(y%20%2B%20%22%20-%3E%20%22%29%0Aprint%20z&cumulative=false&curInstr=5&heapPrimitives=false&mode=display&origin=opt-live.js&py=2&rawInputLstJSON=%5B%22hello%22,%22world%22%5D&textReferences=false',
 ]
 
 

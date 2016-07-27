@@ -62,6 +62,8 @@ export class OptFrontend extends AbstractBaseFrontend {
   originFrontendJsFile: string = 'opt-frontend.js';
   pyInputAceEditor = undefined; // Ace editor object that contains the user's code
 
+  preseededCurInstr: number = undefined;
+
   prevExecutionExceptionObjLst = []; // previous consecutive executions with "compile"-time exceptions
 
   constructor(params={}) {
@@ -665,6 +667,10 @@ export class OptFrontend extends AbstractBaseFrontend {
     }
 
     this.rawInputLst = queryStrOptions.rawInputLst ? queryStrOptions.rawInputLst : [];
+    this.preseededCurInstr = queryStrOptions.preseededCurInstr;
+    if (isNaN(this.preseededCurInstr)) {
+      this.preseededCurInstr = undefined;
+    }
 
     if (queryStrOptions.codeopticonSession) {
       assert(false); // TODO: this won't currently work with Webpack, so fix it later
@@ -675,7 +681,7 @@ export class OptFrontend extends AbstractBaseFrontend {
     if ((queryStrOptions.appMode == 'display' ||
          queryStrOptions.appMode == 'visualize' /* deprecated */) &&
         queryStrOptions.preseededCode /* jump to 'display' mode only with preseeded code */) {
-      this.executeCode(queryStrOptions.preseededCurInstr); // will switch to 'display' mode
+      this.executeCode(this.preseededCurInstr); // will switch to 'display' mode
     }
     $.bbq.removeState(); // clean up the URL no matter what
   }
