@@ -3512,7 +3512,7 @@ class NavigationController {
   }
 
   setupSlider(maxSliderVal: number) {
-    assert(maxSliderVal > 0);
+    assert(maxSliderVal >= 0);
     var sliderDiv = this.domRoot.find('#executionSlider');
     sliderDiv.slider({min: 0, max: maxSliderVal, step: 1});
     // disable keyboard actions on the slider itself (to prevent double-firing
