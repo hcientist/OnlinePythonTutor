@@ -56,6 +56,7 @@ class IframeEmbedFrontend extends AbstractBaseFrontend {
     // set up all options in a JS object
     var backendOptionsObj = {cumulative_mode: cumModeBool,
                              heap_primitives: heapPrimitivesBool,
+                             show_only_outputs: false, // necessary for legacy reasons, ergh!
                              origin: this.originFrontendJsFile};
 
     var frontendOptionsObj = {startingInstruction: startingInstruction,

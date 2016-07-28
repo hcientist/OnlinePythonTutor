@@ -229,7 +229,7 @@ export abstract class AbstractBaseFrontend {
   getBaseBackendOptionsObj() {
     var ret = {cumulative_mode: ($('#cumulativeModeSelector').val() == 'true'),
                heap_primitives: ($('#heapPrimitivesSelector').val() == 'true'),
-               show_only_outputs: false,
+               show_only_outputs: false, // necessary for legacy reasons, ergh!
                origin: this.originFrontendJsFile};
     return ret;
   }
