@@ -73,6 +73,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
   optTests: OptTestcases;
 
   activateSyntaxErrorSurvey: boolean = true;
+  prevExecutionExceptionObjLst = []; // previous consecutive executions with "compile"-time exceptions
 
   constructor(params={}) {
     super(params);
@@ -183,12 +184,29 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
     this.optTests.doneRunningTest(); // this will run before the callback in executeCodeAndCreateViz, but oh wells
   }
 
+  handleUncaughtException(trace) {
+    super.handleUncaughtException(trace); // do this first
+
+    var killerException = null;
+    if (trace.length == 1) {
+      killerException = trace[0];
+    } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
+      killerException = trace[trace.length - 1];
+    }
+
+    // "compile"-time error
+    if (killerException) {
+      var excObj = {killerException: killerException, myAppState: this.getAppState()};
+      this.prevExecutionExceptionObjLst.push(excObj);
+    }
+  }
 
   finishSuccessfulExecution() {
     super.finishSuccessfulExecution(); // do this first
     if (this.activateSyntaxErrorSurvey) {
       this.experimentalPopUpSyntaxErrorSurvey();
     }
+    this.prevExecutionExceptionObjLst = []; // reset
   }
 
   // created on 2015-04-18
@@ -262,7 +280,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
       $(bub.qTipContentID() + ' #syntaxErrSubmitBtn').click(() => {
         var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
         var resObj = {appState: this.getAppState(),
-                      exc: prevExecutionExceptionObj, // note that prevExecutionExceptionObjLst is BLOWN AWAY by now
+                      exc: prevExecutionExceptionObj,
                       opt_uuid: this.userUUID,
                       session_uuid: this.sessionUUID,
                       reply: res,
@@ -277,7 +295,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
         // grab the value anyways in case the learner wrote something decent ...
         var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
         var resObj = {appState: this.getAppState(),
-                      exc: prevExecutionExceptionObj, // note that prevExecutionExceptionObjLst is BLOWN AWAY by now
+                      exc: prevExecutionExceptionObj,
                       opt_uuid: this.userUUID,
                       session_uuid: this.sessionUUID,
                       reply: res,
@@ -292,7 +310,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
         // grab the value anyways in case the learner wrote something decent ...
         var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
         var resObj = {appState: this.getAppState(),
-                      exc: prevExecutionExceptionObj, // note that prevExecutionExceptionObjLst is BLOWN AWAY by now
+                      exc: prevExecutionExceptionObj,
                       opt_uuid: this.userUUID,
                       session_uuid: this.sessionUUID,
                       reply: res,

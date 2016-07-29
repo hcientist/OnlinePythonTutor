@@ -64,8 +64,6 @@ export class OptFrontend extends AbstractBaseFrontend {
 
   preseededCurInstr: number = undefined;
 
-  prevExecutionExceptionObjLst = []; // previous consecutive executions with "compile"-time exceptions
-
   constructor(params={}) {
     super(params);
 
@@ -449,20 +447,6 @@ export class OptFrontend extends AbstractBaseFrontend {
         }
         this.pyInputAceEditor.focus();
       }
-    }
-
-    var killerException = null;
-    if (trace.length == 1) {
-      killerException = trace[0];
-    } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
-      killerException = trace[trace.length - 1];
-    }
-
-    if (killerException) {
-      var excObj = {killerException: killerException, myAppState: this.getAppState()};
-      this.prevExecutionExceptionObjLst.push(excObj);
-    } else {
-      this.prevExecutionExceptionObjLst = []; // reset!!!
     }
   }
 
