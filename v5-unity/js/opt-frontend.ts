@@ -200,6 +200,7 @@ export class OptFrontend extends AbstractBaseFrontend {
       var encodedUhJSON = JSON.stringify(encodedUh);
 
       var myArgs: any = {session_uuid: this.sessionUUID,
+                         user_uuid: this.userUUID,
                          updateHistoryJSON: encodedUhJSON};
       if (why) {
         myArgs.why = why;
