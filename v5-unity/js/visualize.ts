@@ -440,6 +440,8 @@ $(document).ready(function() {
   var optFrontend = new OptFrontendWithTestcases(params);
   optFrontend.setSurveyHTML();
 
+  (window as any).optFrontend = optFrontend; // purposely leak to globals to ease debugging!!!
+
   // canned examples
   $(".exampleLink").click(function() {
     var myId = $(this).attr('id');
