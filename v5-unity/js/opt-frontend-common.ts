@@ -441,7 +441,7 @@ export abstract class AbstractBaseFrontend {
   }
 
   setSurveyHTML() {
-    $('#surveyPane').html(survey_v8);
+    $('#surveyPane').html(survey_v9);
   }
 } // END class AbstractBaseFrontend
 
@@ -451,7 +451,6 @@ export abstract class AbstractBaseFrontend {
 [see ../../v3/js/opt-frontend-common.js for older versions of survey wording - v1 to v7]
 
 v8: (deployed on 2016-06-20) - like v7 except emphasize the main usage survey more, and have the over-60 survey as auxiliary
-*/
 const survey_v8 = '\n\
 <p style="font-size: 10pt; margin-top: 10px; margin-bottom: 15px; line-height: 175%;">\n\
 <span>Support our research and keep this tool free by <a href="https://docs.google.com/forms/d/1-aKilu0PECHZVRSIXHv8vJpEuKUO9uG3MrH864uX56U/viewform" target="_blank">filling out this user survey</a>.</span>\n\
@@ -459,6 +458,12 @@ const survey_v8 = '\n\
 <span style="font-size: 9pt;">If you are <b>at least 60 years old</b>, please also fill out <a href="https://docs.google.com/forms/d/1lrXsE04ghfX9wNzTVwm1Wc6gQ5I-B4uw91ACrbDhJs8/viewform" target="_blank">our survey about learning programming</a>.</span>\n\
 </p>'
 
+v9: (deployed on 2016-08-14) - only put up the "older adults" survey except generalize it to ALL ages, take down the OPT usage survey for now
+*/
+const survey_v9 = '\n\
+<p style="font-size: 10pt; margin-top: 10px; margin-bottom: 15px; line-height: 175%;">\n\
+<span>Support our research and keep this tool free by <a href="https://docs.google.com/forms/d/1lrXsE04ghfX9wNzTVwm1Wc6gQ5I-B4uw91ACrbDhJs8/viewform" target="_blank"><b>filling out this user survey</b></a>.</span>\n\
+</p>'
 
 // misc utilities:
 
