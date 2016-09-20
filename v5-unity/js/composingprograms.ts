@@ -48,7 +48,7 @@ export class OptFrontendComposingprograms extends OptFrontendSharedSessions {
 } // END Class OptFrontendComposingprograms
 
 $(document).ready(function() {
+  $("#footer").append(footerHtml); // initialize all HTML before creating OptFrontend object
   var optFrontend = new OptFrontendComposingprograms();
   optFrontend.setSurveyHTML();
-  $("#footer").append(footerHtml);
 });
