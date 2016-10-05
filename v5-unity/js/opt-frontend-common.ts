@@ -171,7 +171,8 @@ export abstract class AbstractBaseFrontend {
       } else {
         this.setFronendError(
                         ["Server error! Your code might be taking too much time to run or using too much memory.",
-                         "Report a bug to philip@pgbovine.net by clicking the 'Generate permanent link' button",
+                         "Or the server has CRASHED due to too many people using it at once. Try again later or",
+                         "report a bug to philip@pgbovine.net by clicking the 'Generate permanent link' button",
                          "at the bottom of this page and including a URL in your email."]);
       }
       this.doneExecutingCode();
