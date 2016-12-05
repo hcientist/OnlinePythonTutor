@@ -442,7 +442,14 @@ export abstract class AbstractBaseFrontend {
   }
 
   setSurveyHTML() {
-    $('#surveyPane').html(survey_v9);
+    // use ${this.userUUID} within the string ...
+    var survey_v10 = '\n\
+    <p style="font-size: 10pt; margin-top: 10px; margin-bottom: 15px; line-height: 175%;">\n\
+    <span><font style="font-weight: bold;" color="#e93f34">[NEW!]</font> Support our research and keep this tool free by <a href="https://docs.google.com/forms/d/e/1FAIpQLSe48NsBZPvu1hrTBwc8-aSic7nPSxpsxFqpUxV5AN4LwnyJWg/viewform?entry.956368502=';
+    survey_v10 += this.userUUID;
+    survey_v10 += '" target="_blank"><b>filling out this NEW survey on how your native language affects learning programming</b></a>. We need more non-native English speakers.</span></p>';
+
+    $('#surveyPane').html(survey_v10);
   }
 } // END class AbstractBaseFrontend
 
@@ -459,12 +466,15 @@ const survey_v8 = '\n\
 <span style="font-size: 9pt;">If you are <b>at least 60 years old</b>, please also fill out <a href="https://docs.google.com/forms/d/1lrXsE04ghfX9wNzTVwm1Wc6gQ5I-B4uw91ACrbDhJs8/viewform" target="_blank">our survey about learning programming</a>.</span>\n\
 </p>'
 
-v9: (deployed on 2016-08-14) - only put up the "older adults" survey except generalize it to ALL ages, take down the OPT usage survey for now
-*/
+v9: (deployed on 2016-08-14, taken down 2016-12-05) - only put up the "older adults" survey except generalize it to ALL ages, take down the OPT usage survey for now
 const survey_v9 = '\n\
 <p style="font-size: 10pt; margin-top: 10px; margin-bottom: 15px; line-height: 175%;">\n\
 <span>Support our research and keep this tool free by <a href="https://docs.google.com/forms/d/1lrXsE04ghfX9wNzTVwm1Wc6gQ5I-B4uw91ACrbDhJs8/viewform" target="_blank"><b>filling out this user survey</b></a>.</span>\n\
 </p>'
+
+v10: (deployed on 2016-12-05) - survey of how native languages affects learning programming
+[see survey_v10 variable above]
+*/
 
 // misc utilities:
 
