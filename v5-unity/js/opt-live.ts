@@ -590,5 +590,5 @@ $(document).ready(function() {
                                     startSharedSession: optFrontendStartSharedSession,
                                   */
                                 });
-
+  optLiveFrontend.setSurveyHTML();
 });

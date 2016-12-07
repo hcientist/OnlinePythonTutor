@@ -45,8 +45,10 @@ To get started, install:
 2.) Global dependency installs:
 
   sudo npm install webpack -g
+  npm link webpack            # link to the local node_modules/ dir
   sudo npm install webpack-dev-server -g
   sudo npm install -g typescript
+  npm link typescript         # link to the local node_modules/ dir
   sudo npm install -g tsd
 
 3.) Run "npm install" in this directory to install node dependencies

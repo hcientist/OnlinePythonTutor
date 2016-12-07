@@ -559,10 +559,11 @@
 	    AbstractBaseFrontend.prototype.setSurveyHTML = function () {
 	        // use ${this.userUUID} within the string ...
 	        var survey_v10 = '\n\
-	    <p style="font-size: 10pt; margin-top: 10px; margin-bottom: 15px; line-height: 175%;">\n\
+	    <p style="font-size: 10pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">\n\
 	    <span><font style="font-weight: bold;" color="#e93f34">[NEW!]</font> Support our research and keep this tool free by <a href="https://docs.google.com/forms/d/e/1FAIpQLSe48NsBZPvu1hrTBwc8-aSic7nPSxpsxFqpUxV5AN4LwnyJWg/viewform?entry.956368502=';
 	        survey_v10 += this.userUUID;
-	        survey_v10 += '" target="_blank"><b>filling out this NEW survey on how your native language affects learning programming</b></a>. We need more non-native English speakers.</span></p>';
+	        survey_v10 += '" target="_blank"><b>filling out this NEW survey</b> on how your native spoken language affects how you learn programming</a>.</span></p>';
+	        //"We need more non-native English speakers."
 	        $('#surveyPane').html(survey_v10);
 	    };
 	    return AbstractBaseFrontend;
