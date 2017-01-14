@@ -1424,8 +1424,14 @@ class PGLogger(bdb.Bdb):
 import json
 
 # the MAIN meaty function!!!
-def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func):
-  options = json.loads(options_json)
+def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func,
+                    custom_globals=None):
+  if options_json:
+    options = json.loads(options_json)
+  else:
+    # defaults
+    options = {'cumulative_mode': False,
+               'heap_primitives': False, 'show_only_outputs': False}
 
   py_crazy_mode = ('py_crazy_mode' in options and options['py_crazy_mode'])
 
@@ -1443,7 +1449,7 @@ def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func
   __html__, __css__, __js__ = None, None, None
 
   try:
-    logger._runscript(script_str)
+    logger._runscript(script_str, custom_globals)
   except bdb.BdbQuit:
     pass
   finally:
@@ -1453,7 +1459,8 @@ def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func
 # disables security check and returns the result of finalizer_func
 # WARNING: ONLY RUN THIS LOCALLY and never over the web, since
 # security checks are disabled
-def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func):
+def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func,
+                          custom_globals=None):
   # TODO: add py_crazy_mode option here too ...
   logger = PGLogger(cumulative_mode, heap_primitives, False, finalizer_func, disable_security_checks=True)
 
@@ -1468,13 +1475,14 @@ def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_
   __html__, __css__, __js__ = None, None, None
 
   try:
-    logger._runscript(script_str)
+    logger._runscript(script_str, custom_globals)
   except bdb.BdbQuit:
     pass
   finally:
     return logger.finalize()
 
 
+# deprecated?!?
 def exec_str_with_user_ns(script_str, user_ns, finalizer_func):
   logger = PGLogger(False, False, False, finalizer_func, disable_security_checks=True)
 
