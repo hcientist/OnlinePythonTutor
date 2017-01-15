@@ -260,7 +260,7 @@ BANNED_BUILTINS = ['reload', 'open', 'compile',
                    'dir', 'globals', 'locals', 'vars']
 # Peter says 'apply' isn't dangerous, so don't ban it
 
-IGNORE_VARS = set(('__user_stdout__', '__OPT_toplevel__', '__builtins__', '__name__', '__exception__', '__doc__', '__package__'))
+IGNORE_VARS = set(('__user_stdout__', '__builtins__', '__name__', '__exception__', '__doc__', '__package__'))
 
 def get_user_stdout(frame):
   my_user_stdout = frame.f_globals['__user_stdout__']
@@ -728,10 +728,9 @@ class PGLogger(bdb.Bdb):
         if top_frame.f_code.co_name == '__repr__':
           return
 
-        # if top_frame.f_globals doesn't contain the sentinel '__OPT_toplevel__',
-        # then we're in another global scope altogether, so skip it!
+        # if we're not in a module that we are explicitly tracing, skip:
         # (this comes up in tests/backend-tests/namedtuple.txt)
-        if '__OPT_toplevel__' not in top_frame.f_globals:
+        if top_frame.f_globals['__name__'] != '__main__':
           return
 
 
@@ -1285,9 +1284,7 @@ class PGLogger(bdb.Bdb):
         # update AFTER custom_globals so that custom_globals doesn't clobber us
         user_globals.update({"__name__"    : "__main__",
                              "__builtins__" : user_builtins,
-                             "__user_stdout__" : user_stdout,
-                             # sentinel value for frames deriving from a top-level module
-                             "__OPT_toplevel__": True})
+                             "__user_stdout__" : user_stdout})
 
         try:
           # enforce resource limits RIGHT BEFORE running script_str

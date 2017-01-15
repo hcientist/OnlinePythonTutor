@@ -4661,7 +4661,7 @@
           4
         ], 
         "middleName": "Birchard", 
-        "lastName": "Hayes", 
+        "s2": "Rutherford Birchard Hayes", 
         "age": 26, 
         "orderedUniqueAges": [
           "REF", 
@@ -4678,7 +4678,7 @@
         "person": "Tom Cruise", 
         "s": "Rutherford Birchard Hayes", 
         "b": "Ringo", 
-        "s2": "Rutherford Birchard Hayes", 
+        "lastName": "Hayes", 
         "thisAge": 28, 
         "pi": 3.142, 
         "worth": 40000000
