@@ -29,7 +29,7 @@
 # of all in-scope data structures after each executed instruction.
 
 
-
+import imp
 import sys
 import bdb # the KEY import here!
 import re
@@ -435,9 +435,11 @@ def visit_function_obj(v, ids_seen_set):
 
 
 class PGLogger(bdb.Bdb):
-
     # if custom_modules is non-empty, it should be a dict mapping module
-    # names to the python source code of that module
+    # names to the python source code of each module. when _runscript is
+    # called, it will do "from <module> import *" for all modules in
+    # custom_modules before running the user's script and then trace all
+    # code within custom_modules
     def __init__(self, cumulative_mode, heap_primitives, show_only_outputs, finalizer_func,
                  disable_security_checks=False, crazy_mode=False,
                  custom_modules=None, globals_to_ignore=None):
@@ -453,7 +455,7 @@ class PGLogger(bdb.Bdb):
         # Value: module's python code as a string
         self.custom_modules = custom_modules
         if self.custom_modules:
-            for module_name, module_codestr in self.custom_modules.iteritems():
+            for module_name in self.custom_modules:
                 self.modules_to_trace.add(module_name)
 
         self.disable_security_checks = disable_security_checks
@@ -1206,7 +1208,7 @@ class PGLogger(bdb.Bdb):
         self.forget()
 
 
-    def _runscript(self, script_str, custom_globals=None):
+    def _runscript(self, script_str):
         self.executed_script = script_str
         self.executed_script_lines = self.executed_script.splitlines()
 
@@ -1289,10 +1291,17 @@ class PGLogger(bdb.Bdb):
         #sys.stderr = NullDevice # silence errors
 
         user_globals = {}
-        if custom_globals:
-            user_globals.update(custom_globals)
 
-        # update AFTER custom_globals so that custom_globals doesn't clobber us
+        # if there are custom_modules, 'import' them into user_globals,
+        # which emulates "from <module> import *"
+        if self.custom_modules:
+            for mn in self.custom_modules:
+                # http://code.activestate.com/recipes/82234-importing-a-dynamically-generated-module/
+                new_m = imp.new_module(mn)
+                exec(self.custom_modules[mn], new_m.__dict__) # exec in custom globals
+                user_globals.update(new_m.__dict__)
+
+        # do this LAST to get precedence over custom_modules
         user_globals.update({"__name__"    : "__main__",
                              "__builtins__" : user_builtins})
 

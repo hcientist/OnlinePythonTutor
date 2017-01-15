@@ -31,10 +31,10 @@ def opt_run_doctest(doctest, example_number, student_code):
 
     # import student_code as a module
     # http://code.activestate.com/recipes/82234-importing-a-dynamically-generated-module/
-    student_module = imp.new_module(module_name)
-    exec student_code in student_module.__dict__
+    #student_module = imp.new_module(module_name)
+    #exec student_code in student_module.__dict__
+    #student_globals = student_module.__dict__
 
-    student_globals = student_module.__dict__
     if example_number != 'all':
         assert 0 <= example_number < len(t.examples)
         # run a single example
@@ -51,7 +51,6 @@ def opt_run_doctest(doctest, example_number, student_code):
         # works
         opt_doctest_exec_script_str(example_to_run.source,
                                     my_finalizer,
-                                    custom_globals=student_globals,
                                     custom_modules={module_name: student_code})
     else:
         raise NotImplementedError # not implemented yet!
@@ -70,12 +69,12 @@ def my_finalizer(input_code, output_trace):
 # disables security check and returns the result of finalizer_func
 # WARNING: ONLY RUN THIS LOCALLY and never over the web, since
 # security checks are disabled
-def opt_doctest_exec_script_str(script_str, finalizer_func, custom_globals, custom_modules):
+def opt_doctest_exec_script_str(script_str, finalizer_func, custom_modules):
   logger = pg_logger.PGLogger(False, False, False, finalizer_func,
                               disable_security_checks=True,
                               custom_modules=custom_modules)
   try:
-    logger._runscript(script_str, custom_globals)
+    logger._runscript(script_str)
   except bdb.BdbQuit:
     pass
   finally:
