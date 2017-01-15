@@ -452,10 +452,17 @@ def visit_function_obj(v, ids_seen_set):
 class PGLogger(bdb.Bdb):
 
     def __init__(self, cumulative_mode, heap_primitives, show_only_outputs, finalizer_func,
-                 disable_security_checks=False, crazy_mode=False):
+                 disable_security_checks=False, crazy_mode=False,
+                 modules_to_trace=None, globals_to_ignore=None):
         bdb.Bdb.__init__(self)
         self.mainpyfile = ''
         self._wait_for_mainpyfile = 0
+
+        # TODO: put globals_to_ignore to good use
+
+        self.modules_to_trace = set(['__main__']) # always trace __main__!
+        if modules_to_trace:
+            self.modules_to_trace.update(modules_to_trace)
 
         self.disable_security_checks = disable_security_checks
 
@@ -717,20 +724,15 @@ class PGLogger(bdb.Bdb):
 
         # Look only at the "topmost" frame on the stack ...
 
-        # it seems like user-written code has a filename of '<string>',
-        # but maybe there are false positives too?
-        if self.canonic(top_frame.f_code.co_filename) != '<string>':
+        # if we're not in a module that we are explicitly tracing, skip:
+        # (this comes up in tests/backend-tests/namedtuple.txt)
+        if top_frame.f_globals['__name__'] not in self.modules_to_trace:
           return
         # also don't trace inside of the magic "constructor" code
         if top_frame.f_code.co_name == '__new__':
           return
         # or __repr__, which is often called when running print statements
         if top_frame.f_code.co_name == '__repr__':
-          return
-
-        # if we're not in a module that we are explicitly tracing, skip:
-        # (this comes up in tests/backend-tests/namedtuple.txt)
-        if top_frame.f_globals['__name__'] != '__main__':
           return
 
 
