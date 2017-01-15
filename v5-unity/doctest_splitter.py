@@ -1,6 +1,20 @@
+'''
+Input:
+
+- sys.argv[1] - filename of a Python file in a Labyrinth lab format (e.g., lab1.py)
+
+Outputs (if you pass in, say, lab1.py to this script):
+- lab1_skeleton.py - a skeleton lab1.py file with all docstrings stripped out
+- lab1_doctests.pickle - a pickle file containing a list of doctest.DocTest
+                         objects extracted from lab1.py
+  - the first element of this list contains the docstring for the top-level
+    module (which you can parse to get a lab overview description); all
+    remaining eleemnts are docstrings for functions
+
+'''
+
 import cPickle
 import doctest
-import imp
 import os
 import sys
 
@@ -18,8 +32,10 @@ if __name__ == "__main__":
     # won't work because of package imports.
     dirname, filename = os.path.split(fullpath)
     sys.path.insert(0, dirname)
-    m = __import__(filename[:-3]) # TODO: what about importing from a string -- exec'ing?
+    bn, ext = os.path.splitext(filename)
+    m = __import__(filename[:-3])
     del sys.path[0]
+
     dtf = doctest.DocTestFinder()
     tests = dtf.find(m)
     for t in tests:
@@ -37,26 +53,8 @@ if __name__ == "__main__":
         if i not in lines_to_skip:
             stripped_filelines.append(line)
 
-    stripped_filestr = '\n'.join(stripped_filelines)
-    tests_pickled = cPickle.dumps(tests)
-
-
-    # test only for injecting stuff BACK into student code
-    loaded_tests = cPickle.loads(tests_pickled)
-
-    # TEST student code, load from a STRING
-    fullpath = sys.argv[2]
-    assert fullpath.endswith(".py")
-
-    # http://code.activestate.com/recipes/82234-importing-a-dynamically-generated-module/
-    student_code_str = open(fullpath).read()
-    student_module = imp.new_module('labtiny')
-    exec student_code_str in student_module.__dict__
-    #print student_module.slow_multiply.__module__
-    #print student_module.slow_multiply.__name__
-    student_module.slow_multiply.__doc__ = loaded_tests[1].docstring
-
-    dtf2 = doctest.DocTestFinder()
-    student_tests = dtf2.find(m)
-    for t in student_tests:
-        print t, t.examples
+    with open(bn + '_skeleton.py', 'w') as f:
+        stripped_filestr = '\n'.join(stripped_filelines)
+        f.write(stripped_filestr)
+    with open(bn + '_doctests.pickle', 'w') as f:
+        cPickle.dump(tests, f, protocol=2)

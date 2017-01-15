@@ -451,18 +451,25 @@ def visit_function_obj(v, ids_seen_set):
 
 class PGLogger(bdb.Bdb):
 
+    # if custom_modules is non-empty, it should be a dict mapping module
+    # names to the python source code of that module
     def __init__(self, cumulative_mode, heap_primitives, show_only_outputs, finalizer_func,
                  disable_security_checks=False, crazy_mode=False,
-                 modules_to_trace=None, globals_to_ignore=None):
+                 custom_modules=None, globals_to_ignore=None):
         bdb.Bdb.__init__(self)
         self.mainpyfile = ''
         self._wait_for_mainpyfile = 0
 
+        self.modules_to_trace = set(['__main__']) # always trace __main__!
+
         # TODO: put globals_to_ignore to good use
 
-        self.modules_to_trace = set(['__main__']) # always trace __main__!
-        if modules_to_trace:
-            self.modules_to_trace.update(modules_to_trace)
+        # Key: module name
+        # Value: module's python code as a string
+        self.custom_modules = custom_modules
+        if self.custom_modules:
+            for module_name, module_codestr in self.custom_modules.iteritems():
+                self.modules_to_trace.add(module_name)
 
         self.disable_security_checks = disable_security_checks
 
@@ -1409,8 +1416,7 @@ class PGLogger(bdb.Bdb):
 import json
 
 # the MAIN meaty function!!!
-def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func,
-                    custom_globals=None):
+def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func):
   if options_json:
     options = json.loads(options_json)
   else:
@@ -1434,7 +1440,7 @@ def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func
   __html__, __css__, __js__ = None, None, None
 
   try:
-    logger._runscript(script_str, custom_globals)
+    logger._runscript(script_str)
   except bdb.BdbQuit:
     pass
   finally:
@@ -1444,8 +1450,7 @@ def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func
 # disables security check and returns the result of finalizer_func
 # WARNING: ONLY RUN THIS LOCALLY and never over the web, since
 # security checks are disabled
-def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func,
-                          custom_globals=None):
+def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func):
   # TODO: add py_crazy_mode option here too ...
   logger = PGLogger(cumulative_mode, heap_primitives, False, finalizer_func, disable_security_checks=True)
 
@@ -1460,7 +1465,7 @@ def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_
   __html__, __css__, __js__ = None, None, None
 
   try:
-    logger._runscript(script_str, custom_globals)
+    logger._runscript(script_str)
   except bdb.BdbQuit:
     pass
   finally:
