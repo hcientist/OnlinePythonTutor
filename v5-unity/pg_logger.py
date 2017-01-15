@@ -760,7 +760,19 @@ class PGLogger(bdb.Bdb):
           # should already be ensured by the above check for whether we're
           # in user-written code.
           if event_type == 'call':
-            func_line = self.get_script_line(top_frame.f_code.co_firstlineno)
+            first_lineno = top_frame.f_code.co_firstlineno
+            module_name = top_frame.f_globals['__name__']
+            if module_name == "__main__":
+                func_line = self.get_script_line(first_lineno)
+            elif module_name in self.custom_modules:
+                module_code = self.custom_modules[module_name]
+                module_code_lines = module_code.splitlines() # TODO: maybe pre-split lines?
+                func_line = module_code_lines[first_lineno-1]
+            else:
+                # you're hosed
+                func_line = ''
+            #print >> sys.stderr, func_line
+
             if CLASS_RE.match(func_line.lstrip()): # ignore leading spaces
               self.wait_for_return_stack = self.get_stack_code_IDs()
               return
