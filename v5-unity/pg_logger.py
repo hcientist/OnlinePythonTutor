@@ -440,16 +440,20 @@ class PGLogger(bdb.Bdb):
     # called, it will do "from <module> import *" for all modules in
     # custom_modules before running the user's script and then trace all
     # code within custom_modules
+    #
+    # if separate_stdout_by_module, then have a separate stdout stream
+    # for each module rather than all stdout going to a single stream
     def __init__(self, cumulative_mode, heap_primitives, show_only_outputs, finalizer_func,
                  disable_security_checks=False, crazy_mode=False,
-                 custom_modules=None, globals_to_ignore=None):
+                 custom_modules=None, separate_stdout_by_module=False):
         bdb.Bdb.__init__(self)
         self.mainpyfile = ''
         self._wait_for_mainpyfile = 0
 
-        self.modules_to_trace = set(['__main__']) # always trace __main__!
+        self.separate_stdout_by_module = separate_stdout_by_module
+        self.stdout_by_module = {} # Key: module name, Value: StringIO faux-stdout
 
-        # TODO: put globals_to_ignore to good use
+        self.modules_to_trace = set(['__main__']) # always trace __main__!
 
         # Key: module name
         # Value: module's python code as a string
@@ -540,21 +544,29 @@ class PGLogger(bdb.Bdb):
         self.prev_lineno = -1 # keep track of previous line just executed
 
 
-    def get_user_stdout(self, frame):
-        my_user_stdout = self.user_stdout
+    def get_user_stdout(self):
+        def encode_stringio(sio):
+            # This is SUPER KRAZY! In Python 2, the buflist inside of a StringIO
+            # instance can be made up of both str and unicode, so we need to convert
+            # the str to unicode and replace invalid characters with the Unicode '?'
+            # But leave unicode elements alone. This way, EVERYTHING inside buflist
+            # will be unicode. (Note that in Python 3, everything is already unicode,
+            # so we're fine.)
+            if not is_python3:
+                sio.buflist = [(e.decode('utf-8', 'replace')
+                                           if type(e) is str
+                                           else e)
+                                          for e in sio.buflist]
+            return sio.getvalue()
 
-        # This is SUPER KRAZY! In Python 2, the buflist inside of a StringIO
-        # instance can be made up of both str and unicode, so we need to convert
-        # the str to unicode and replace invalid characters with the Unicode '?'
-        # But leave unicode elements alone. This way, EVERYTHING inside buflist
-        # will be unicode. (Note that in Python 3, everything is already unicode,
-        # so we're fine.)
-        if not is_python3:
-            my_user_stdout.buflist = [(e.decode('utf-8', 'replace')
-                                       if type(e) is str
-                                       else e)
-                                      for e in my_user_stdout.buflist]
-        return my_user_stdout.getvalue()
+        if self.separate_stdout_by_module:
+            ret = {}
+            for module_name in self.stdout_by_module:
+                ret[module_name] = encode_stringio(self.stdout_by_module[module_name])
+            return ret
+        else:
+            # common case - single stdout stream
+            return encode_stringio(self.user_stdout)
 
 
     def get_frame_id(self, cur_frame):
@@ -717,6 +729,7 @@ class PGLogger(bdb.Bdb):
         top_frame = tos[0]
         lineno = tos[1]
 
+        topframe_module = top_frame.f_globals['__name__']
 
         # debug ...
         '''
@@ -740,7 +753,7 @@ class PGLogger(bdb.Bdb):
 
         # if we're not in a module that we are explicitly tracing, skip:
         # (this comes up in tests/backend-tests/namedtuple.txt)
-        if top_frame.f_globals['__name__'] not in self.modules_to_trace:
+        if topframe_module not in self.modules_to_trace:
           return
         # also don't trace inside of the magic "constructor" code
         if top_frame.f_code.co_name == '__new__':
@@ -765,11 +778,10 @@ class PGLogger(bdb.Bdb):
           # in user-written code.
           if event_type == 'call':
             first_lineno = top_frame.f_code.co_firstlineno
-            module_name = top_frame.f_globals['__name__']
-            if module_name == "__main__":
+            if topframe_module == "__main__":
                 func_line = self.get_script_line(first_lineno)
-            elif module_name in self.custom_modules:
-                module_code = self.custom_modules[module_name]
+            elif topframe_module in self.custom_modules:
+                module_code = self.custom_modules[topframe_module]
                 module_code_lines = module_code.splitlines() # TODO: maybe pre-split lines?
                 func_line = module_code_lines[first_lineno-1]
             else:
@@ -796,6 +808,27 @@ class PGLogger(bdb.Bdb):
 
           if self.cumulative_mode:
             self.zombie_frames.append(top_frame)
+
+        # kinda tricky to get the timing right -- basically, as soon as you
+        # make a call, set sys.stdout to the stream for the appropriate
+        # module, and as soon as you return, set sys.stdout to the
+        # stream for your caller's module. we need to do this on the
+        # return call since we want to immediately start picking up
+        # prints to stdout *right after* this function returns
+        if self.separate_stdout_by_module:
+          if event_type == 'call':
+            if topframe_module in self.stdout_by_module:
+              sys.stdout = self.stdout_by_module[topframe_module]
+            else:
+              sys.stdout = self.stdout_by_module["<other>"]
+          elif event_type == 'return' and self.curindex > 0:
+            prev_tos = self.stack[self.curindex - 1]
+            prev_topframe = prev_tos[0]
+            prev_topframe_module = prev_topframe.f_globals['__name__']
+            if prev_topframe_module in self.stdout_by_module:
+              sys.stdout = self.stdout_by_module[prev_topframe_module]
+            else:
+              sys.stdout = self.stdout_by_module["<other>"]
 
 
         # only render zombie frames that are NO LONGER on the stack
@@ -1118,7 +1151,7 @@ class PGLogger(bdb.Bdb):
                              ordered_globals=[],
                              stack_to_render=[],
                              heap={},
-                             stdout=self.get_user_stdout(tos[0]))
+                             stdout=self.get_user_stdout())
         else:
           trace_entry = dict(line=lineno,
                              event=event_type,
@@ -1127,7 +1160,7 @@ class PGLogger(bdb.Bdb):
                              ordered_globals=ordered_globals,
                              stack_to_render=stack_to_render,
                              heap=self.encoder.get_heap(),
-                             stdout=self.get_user_stdout(tos[0]))
+                             stdout=self.get_user_stdout())
 
         # optional column numbers for greater precision
         # (only relevant in Py2crazy, a hacked CPython that supports column numbers)
@@ -1147,8 +1180,8 @@ class PGLogger(bdb.Bdb):
 
         # set a 'custom_module_name' field if we're executing in a module
         # that's not the __main__ script:
-        if top_frame.f_globals['__name__'] != "__main__":
-          trace_entry['custom_module_name'] = top_frame.f_globals['__name__']
+        if topframe_module != "__main__":
+          trace_entry['custom_module_name'] = topframe_module
 
         # TODO: refactor into a non-global
         # these are now deprecated as of 2016-06-28
@@ -1280,9 +1313,17 @@ class PGLogger(bdb.Bdb):
         user_builtins['setCSS'] = setCSS
         user_builtins['setJS'] = setJS
 
-        self.user_stdout = StringIO.StringIO()
-
-        sys.stdout = self.user_stdout
+        if self.separate_stdout_by_module:
+          self.stdout_by_module["__main__"] = StringIO.StringIO()
+          if self.custom_modules:
+            for module_name in self.custom_modules:
+              self.stdout_by_module[module_name] = StringIO.StringIO()
+          self.stdout_by_module["<other>"] = StringIO.StringIO() # catch-all for all other modules we're NOT tracing
+          sys.stdout = self.stdout_by_module["<other>"] # start with <other>
+        else:
+          # default -- a single unified stdout stream
+          self.user_stdout = StringIO.StringIO()
+          sys.stdout = self.user_stdout
 
         self.ORIGINAL_STDERR = sys.stderr
 
@@ -1301,7 +1342,7 @@ class PGLogger(bdb.Bdb):
                 exec(self.custom_modules[mn], new_m.__dict__) # exec in custom globals
                 user_globals.update(new_m.__dict__)
 
-        # do this LAST to get precedence over custom_modules
+        # important: do this LAST to get precedence over values in custom_modules
         user_globals.update({"__name__"    : "__main__",
                              "__builtins__" : user_builtins})
 

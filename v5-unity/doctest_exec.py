@@ -9,21 +9,16 @@ Input:
 
 Output:
 
-- a JSON representation of the result of running those tests
+- a JSON representation of the result of running the given example
 
 '''
 
 '''
 TODOs
-- return success/failure/errors/etc.
 
-- because doctests are based on stdout and not semantic value checking ...
-    - there is an ambiguity between 'return-ing' stuff and printing stuff to
-      the terminal. right now if students try to print, it will return None
-      and print an extra None, which could be confusing
-    - when students are trying to do printf-debugging inside of their
-      functions, they will *always* get test failures since doctests are based
-      on prints, not actual return values. hmmm, how do we fix this?!?
+- are people going to brush up against the 1000-instruction execution
+  limit? maybe raise that limit more?
+
 '''
 
 import cPickle
@@ -31,51 +26,44 @@ import imp
 import json
 import sys
 import pg_logger
+from doctest_reader import encode_doctest
+
 import pprint
+pp = pprint.PrettyPrinter()
+
 
 def opt_run_doctest(doctest, example_number, student_code):
+    def my_finalizer(input_code, output_trace):
+        ret = dict(doctest=encode_doctest(doctest),
+                   example_number=example_number,
+                   student_code=student_code,
+                   opt_trace=output_trace)
+        json_output = json.dumps(ret, indent=None) # use indent=None, indent=2 for debugging
+        #print(json_output)
+        pp.pprint(output_trace)
+
+
+    def opt_doctest_exec_script_str(script_str, custom_modules):
+        logger = pg_logger.PGLogger(False, False, False, my_finalizer,
+                                  disable_security_checks=False,
+                                  custom_modules=custom_modules,
+                                  separate_stdout_by_module=True)
+        try:
+            logger._runscript(script_str)
+        except bdb.BdbQuit:
+            pass
+        finally:
+            return logger.finalize()
+
     module_name = doctest.name.split('.')[0] # grab the module part out of the test's name
-
-    # import student_code as a module
-    # http://code.activestate.com/recipes/82234-importing-a-dynamically-generated-module/
-    #student_module = imp.new_module(module_name)
-    #exec student_code in student_module.__dict__
-    #student_globals = student_module.__dict__
-
     if example_number != 'all':
-        assert 0 <= example_number < len(t.examples)
+        assert 0 <= example_number < len(doctest.examples)
         # run a single example
-        example_to_run = t.examples[example_number]
-        #print example_to_run.source
-
-        #exec compile(example_to_run.source, module_name, "single") in student_globals
+        example_to_run = doctest.examples[example_number]
         opt_doctest_exec_script_str(example_to_run.source,
-                                    my_finalizer,
                                     custom_modules={module_name: student_code})
     else:
         raise NotImplementedError # not implemented yet!
-        #for e in t.examples:
-        #    opt_run_doctest_example(t, e, student_code)
-        pass
-
-
-def my_finalizer(input_code, output_trace):
-  #ret = dict(code=input_code, trace=output_trace)
-  #json_output = json.dumps(output_trace, indent=2) # use indent=None for most compact repr
-  #print(json_output)
-  pp = pprint.PrettyPrinter()
-  pp.pprint(output_trace)
-
-def opt_doctest_exec_script_str(script_str, finalizer_func, custom_modules):
-  logger = pg_logger.PGLogger(False, False, False, finalizer_func,
-                              disable_security_checks=False,
-                              custom_modules=custom_modules)
-  try:
-    logger._runscript(script_str)
-  except bdb.BdbQuit:
-    pass
-  finally:
-    return logger.finalize()
 
 
 if __name__ == "__main__":
@@ -94,4 +82,3 @@ if __name__ == "__main__":
             if t.name == test_name:
                 opt_run_doctest(t, example_number, student_code)
                 break
-
