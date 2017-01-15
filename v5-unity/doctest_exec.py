@@ -19,6 +19,8 @@ TODOs
 - are people going to brush up against the 1000-instruction execution
   limit? maybe raise that limit more?
 
+- how do we handle parse/compile errors?
+
 '''
 
 import cPickle
@@ -39,8 +41,8 @@ def opt_run_doctest(doctest, example_number, student_code):
                    student_code=student_code,
                    opt_trace=output_trace)
         json_output = json.dumps(ret, indent=None) # use indent=None, indent=2 for debugging
-        #print(json_output)
-        pp.pprint(output_trace)
+        print(json_output)
+        #pp.pprint(output_trace) # for debugging
 
 
     def opt_doctest_exec_script_str(script_str, custom_modules):

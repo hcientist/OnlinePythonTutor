@@ -1,21 +1,28 @@
-# some examples adapted from https://docs.python.org/2/library/doctest.html
+'''
 
-LAB_NAME = "First doctest lab"
+# My first Labyrinth lab
 
-LAB_DESCRIPTION = '''
-This is my first **lab** in [markdown](https://daringfireball.net/projects/markdown/syntax) format
+This is the lab description -- write whatever you want in here in
+*markdown* format and it will show up as the toplevel docstring for this module
 
 - shawn
 - is
 - cool
 
+1. code code code
+2. write paper
+3. profit $$$
+
 woohoo!
+
 '''
 
 
 def factorial(n):
     """
     Lab part 1
+
+    lab description in markdown format
    
     Return the factorial of n, an exact integer >= 0.
 
@@ -24,25 +31,25 @@ def factorial(n):
 
     ------
 
-    >>> [factorial(n) for n in range(6)]
+    >>> print [factorial(n) for n in range(6)]
     [1, 1, 2, 6, 24, 120]
-    >>> [factorial(long(n)) for n in range(6)]
+    >>> print [factorial(long(n)) for n in range(6)]
     [1, 1, 2, 6, 24, 120]
-    >>> factorial(30)
-    265252859812191058636308480000000L
-    >>> factorial(30L)
-    265252859812191058636308480000000L
-    >>> factorial(-1)
+    >>> print factorial(30)
+    265252859812191058636308480000000
+    >>> print factorial(30L)
+    265252859812191058636308480000000
+    >>> print factorial(-1)
     Traceback (most recent call last):
         ...
     ValueError: n must be >= 0
-    >>> factorial(30.1)
+    >>> print factorial(30.1)
     Traceback (most recent call last):
         ...
     ValueError: n must be exact integer
-    >>> factorial(30.0)
-    265252859812191058636308480000000L
-    >>> factorial(1e100)
+    >>> print factorial(30.0)
+    265252859812191058636308480000000
+    >>> print factorial(1e100)
     Traceback (most recent call last):
         ...
     OverflowError: n too large
@@ -75,15 +82,15 @@ def slow_multiply(a, b):
    
     ------
 
->>> slow_multiply(3, 5)
+>>> print slow_multiply(3, 5)
 15
->>> slow_multiply(5, 3)
+>>> print slow_multiply(5, 3)
 15
->>> slow_multiply(0, 1)
+>>> print slow_multiply(0, 1)
 0
->>> slow_multiply(0, 100)
+>>> print slow_multiply(0, 100)
 0
->>> slow_multiply(-1, 5)
+>>> print slow_multiply(-1, 5)
 -5
 
     """
@@ -95,9 +102,9 @@ def slow_multiply(a, b):
     return prod
 
 
-GLOBAL_DATA = [{'name': 'John', 'age': 21},
-               {'name': 'Jane', 'age': 35},
-               {'name': 'Carol', 'age': 18}]
+GLOBAL_DATA = [{"name": "John",  "age": 21},
+               {"name": "Jane",  "age": 35},
+               {"name": "Carol", "age": 18}]
 
 def find_age(person):
     """
@@ -107,19 +114,19 @@ def find_age(person):
    
     ------
 
->>> find_age('John')
+>>> print find_age('John')
 21
->>> find_age('Carol')
+>>> print find_age('Carol')
 18
->>> find_age('Jane')
+>>> print find_age('Jane')
 35
->>> find_age('jane')
+>>> print find_age('jane')
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
   File "lab1.py", line 114, in find_age
     raise KeyError # not found!
 KeyError
->>> find_age('bobby')
+>>> print find_age('bobby')
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
   File "lab1.py", line 114, in find_age
@@ -127,6 +134,6 @@ Traceback (most recent call last):
 KeyError
     """
     for e in GLOBAL_DATA:
-        if e['name'] == person:
-            return e['age']
+        if e["name"] == person:
+            return e["age"]
     raise KeyError # not found!
