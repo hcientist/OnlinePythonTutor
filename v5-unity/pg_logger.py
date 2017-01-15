@@ -1278,14 +1278,16 @@ class PGLogger(bdb.Bdb):
         # errors, will be silently ignored. WEIRD!
         #sys.stderr = NullDevice # silence errors
 
-        user_globals = {"__name__"    : "__main__",
-                        "__builtins__" : user_builtins,
-                        "__user_stdout__" : user_stdout,
-                        # sentinel value for frames deriving from a top-level module
-                        "__OPT_toplevel__": True}
-
+        user_globals = {}
         if custom_globals:
             user_globals.update(custom_globals)
+
+        # update AFTER custom_globals so that custom_globals doesn't clobber us
+        user_globals.update({"__name__"    : "__main__",
+                             "__builtins__" : user_builtins,
+                             "__user_stdout__" : user_stdout,
+                             # sentinel value for frames deriving from a top-level module
+                             "__OPT_toplevel__": True})
 
         try:
           # enforce resource limits RIGHT BEFORE running script_str

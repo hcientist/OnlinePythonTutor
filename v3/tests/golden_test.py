@@ -11,6 +11,19 @@ Also note that the Python 3 tests aren't as "robust" or as rigorously checked ..
 I've been focusing on Python 2 for now.
 '''
 
+#GEN_JSON_TRACE_PY = '../generate_json_trace.py'
+GEN_JSON_TRACE_PY = '../../v5-unity/generate_json_trace.py'
+
+# no longer supported by v5-unity
+IGNORED_TESTS = [
+    'backend-tests/callback-test.txt',
+    'backend-tests/ttt_min.txt',
+    '../example-code/chris-meyers/optFib.txt',
+    '../example-code/chris-meyers/optMinpath.txt',
+    '../example-code/chris-meyers/optSieve.txt',
+    '../example-code/chris-meyers/optKnapsack.txt',
+]
+
 import itertools
 import os, re, shutil, optparse, difflib
 from subprocess import *
@@ -149,11 +162,11 @@ if __name__ == "__main__":
   INPUT_FILE_EXTENSION = '.txt' # input test files are .txt, NOT .py
 
   if options.py3:
-    PROGRAM = ['python3.2', '../generate_json_trace.py']
+    PROGRAM = ['python3.2', GEN_JSON_TRACE_PY]
     OUTPUT_FILE_EXTENSION = '.out_py3'
     GOLDEN_FILE_EXTENSION = '.golden_py3'
   else:
-    PROGRAM = ['python2.7', '../generate_json_trace.py']
+    PROGRAM = ['python2.7', GEN_JSON_TRACE_PY]
     OUTPUT_FILE_EXTENSION = '.out'
     GOLDEN_FILE_EXTENSION = '.golden'
 
@@ -164,7 +177,8 @@ if __name__ == "__main__":
       (base, ext) = os.path.splitext(f)
       if ext == INPUT_FILE_EXTENSION:
         fullpath = os.path.join(pwd, f)
-        ALL_TESTS.append(fullpath)
+        if fullpath not in IGNORED_TESTS:
+          ALL_TESTS.append(fullpath)
 
 
   if options.run_all:
