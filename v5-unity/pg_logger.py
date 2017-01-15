@@ -123,6 +123,7 @@ ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'time', 'datetime',
 # already been done above
 OTHER_STDLIB_WHITELIST = ('StringIO', 'io')
 
+# TODO: 2017-01-14: this CUSTOM_MODULE_IMPORTS thing is now DEPRECATED ...
 # whitelist of custom modules to import into OPT
 # (TODO: support modules in a subdirectory, but there are various
 # logistical problems with doing so that I can't overcome at the moment,
@@ -260,23 +261,7 @@ BANNED_BUILTINS = ['reload', 'open', 'compile',
                    'dir', 'globals', 'locals', 'vars']
 # Peter says 'apply' isn't dangerous, so don't ban it
 
-IGNORE_VARS = set(('__user_stdout__', '__builtins__', '__name__', '__exception__', '__doc__', '__package__'))
-
-def get_user_stdout(frame):
-  my_user_stdout = frame.f_globals['__user_stdout__']
-
-  # This is SUPER KRAZY! In Python 2, the buflist inside of a StringIO
-  # instance can be made up of both str and unicode, so we need to convert
-  # the str to unicode and replace invalid characters with the Unicode '?'
-  # But leave unicode elements alone. This way, EVERYTHING inside buflist
-  # will be unicode. (Note that in Python 3, everything is already unicode,
-  # so we're fine.)
-  if not is_python3:
-    my_user_stdout.buflist = [(e.decode('utf-8', 'replace')
-                               if type(e) is str
-                               else e)
-                              for e in my_user_stdout.buflist]
-  return my_user_stdout.getvalue()
+IGNORE_VARS = set(('__builtins__', '__name__', '__exception__', '__doc__', '__package__'))
 
 
 '''
@@ -551,6 +536,23 @@ class PGLogger(bdb.Bdb):
         self.breakpoints = []
 
         self.prev_lineno = -1 # keep track of previous line just executed
+
+
+    def get_user_stdout(self, frame):
+        my_user_stdout = self.user_stdout
+
+        # This is SUPER KRAZY! In Python 2, the buflist inside of a StringIO
+        # instance can be made up of both str and unicode, so we need to convert
+        # the str to unicode and replace invalid characters with the Unicode '?'
+        # But leave unicode elements alone. This way, EVERYTHING inside buflist
+        # will be unicode. (Note that in Python 3, everything is already unicode,
+        # so we're fine.)
+        if not is_python3:
+            my_user_stdout.buflist = [(e.decode('utf-8', 'replace')
+                                       if type(e) is str
+                                       else e)
+                                      for e in my_user_stdout.buflist]
+        return my_user_stdout.getvalue()
 
 
     def get_frame_id(self, cur_frame):
@@ -1114,7 +1116,7 @@ class PGLogger(bdb.Bdb):
                              ordered_globals=[],
                              stack_to_render=[],
                              heap={},
-                             stdout=get_user_stdout(tos[0]))
+                             stdout=self.get_user_stdout(tos[0]))
         else:
           trace_entry = dict(line=lineno,
                              event=event_type,
@@ -1123,7 +1125,7 @@ class PGLogger(bdb.Bdb):
                              ordered_globals=ordered_globals,
                              stack_to_render=stack_to_render,
                              heap=self.encoder.get_heap(),
-                             stdout=get_user_stdout(tos[0]))
+                             stdout=self.get_user_stdout(tos[0]))
 
         # optional column numbers for greater precision
         # (only relevant in Py2crazy, a hacked CPython that supports column numbers)
@@ -1141,6 +1143,10 @@ class PGLogger(bdb.Bdb):
               trace_entry['expr_width'] = v.extent
               trace_entry['opcode'] = v.opcode
 
+        # set a 'custom_module_name' field if we're executing in a module
+        # that's not the __main__ script:
+        if top_frame.f_globals['__name__'] != "__main__":
+          trace_entry['custom_module_name'] = top_frame.f_globals['__name__']
 
         # TODO: refactor into a non-global
         # these are now deprecated as of 2016-06-28
@@ -1272,9 +1278,9 @@ class PGLogger(bdb.Bdb):
         user_builtins['setCSS'] = setCSS
         user_builtins['setJS'] = setJS
 
-        user_stdout = StringIO.StringIO()
+        self.user_stdout = StringIO.StringIO()
 
-        sys.stdout = user_stdout
+        sys.stdout = self.user_stdout
 
         self.ORIGINAL_STDERR = sys.stderr
 
@@ -1288,8 +1294,7 @@ class PGLogger(bdb.Bdb):
 
         # update AFTER custom_globals so that custom_globals doesn't clobber us
         user_globals.update({"__name__"    : "__main__",
-                             "__builtins__" : user_builtins,
-                             "__user_stdout__" : user_stdout})
+                             "__builtins__" : user_builtins})
 
         try:
           # enforce resource limits RIGHT BEFORE running script_str
@@ -1422,7 +1427,14 @@ class PGLogger(bdb.Bdb):
 
       self.trace = res
 
-      return self.finalizer_func(self.executed_script, self.trace)
+      if self.custom_modules:
+        # when there's custom_modules, call with a dict as the first parameter
+        return self.finalizer_func(dict(main_code=self.executed_script,
+                                        custom_modules=self.custom_modules),
+                                   self.trace)
+      else:
+        # common case
+        return self.finalizer_func(self.executed_script, self.trace)
 
 
 import json
