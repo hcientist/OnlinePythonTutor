@@ -3752,13 +3752,13 @@
         }
       ], 
       "globals": {
-        "result": [
-          "REF", 
-          9
-        ], 
         "iota": [
           "REF", 
           1
+        ], 
+        "result": [
+          "REF", 
+          9
         ]
       }, 
       "heap": {
