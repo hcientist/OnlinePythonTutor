@@ -58,6 +58,17 @@ if __name__ == "__main__":
         #r.summarize(verbose=True)
         for e in t.examples:
             print e.source
+            # the 'single' mode produces the results to stdout, i think! ahhhhh
+            '''
+            https://docs.python.org/2/library/functions.html#compile
+
+            The mode argument specifies what kind of code must be
+            compiled; it can be 'exec' if source consists of a sequence
+            of statements, 'eval' if it consists of a single expression,
+            or 'single' if it consists of a single interactive statement
+            (in the latter case, expression statements that evaluate to
+            something other than None will be printed).
+            '''
             #exec compile(e.source, filename, "single") in globs # works!
 
             # doesn't work :/ -- maybe resource restrictions because
