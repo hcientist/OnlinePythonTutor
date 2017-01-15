@@ -56,5 +56,7 @@ if __name__ == "__main__":
     with open(bn + '_skeleton.py', 'w') as f:
         stripped_filestr = '\n'.join(stripped_filelines)
         f.write(stripped_filestr)
+        print "Created", bn + '_skeleton.py'
     with open(bn + '_doctests.pickle', 'w') as f:
         cPickle.dump(tests, f, protocol=2)
+        print "Created", bn + '_doctests.pickle'

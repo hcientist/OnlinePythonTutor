@@ -17,6 +17,10 @@ Output:
 TODOs
 - get it running *with* security checks
 - return success/failure/errors/etc.
+
+- when students are trying to do printf-debugging, they will *always*
+  get test failures since doctests are based on prints, not actual return
+  values. hmmm, how do we fix this?!?
 '''
 
 import cPickle
