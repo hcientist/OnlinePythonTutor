@@ -657,8 +657,11 @@ class PGLogger(bdb.Bdb):
         if self.done: return
 
         if self._wait_for_mainpyfile:
-            if (self.canonic(frame.f_code.co_filename) != "<string>" or
+            if ((frame.f_globals['__name__'] not in self.modules_to_trace) or
                 frame.f_lineno <= 0):
+            # older code:
+            #if (self.canonic(frame.f_code.co_filename) != "<string>" or
+            #    frame.f_lineno <= 0):
                 return
             self._wait_for_mainpyfile = 0
         self.interaction(frame, None, 'step_line')
@@ -734,25 +737,6 @@ class PGLogger(bdb.Bdb):
         # or __repr__, which is often called when running print statements
         if top_frame.f_code.co_name == '__repr__':
           return
-
-
-        # OLD CODE -- bail if any element on the stack matches these conditions
-        # note that the old code passes tests/backend-tests/namedtuple.txt
-        # but the new code above doesn't :/
-        '''
-        for (cur_frame, cur_line) in self.stack[1:]:
-          # it seems like user-written code has a filename of '<string>',
-          # but maybe there are false positives too?
-          if self.canonic(cur_frame.f_code.co_filename) != '<string>':
-            return
-          # also don't trace inside of the magic "constructor" code
-          if cur_frame.f_code.co_name == '__new__':
-            return
-          # or __repr__, which is often called when running print statements
-          if cur_frame.f_code.co_name == '__repr__':
-            return
-        '''
-
 
         # don't trace if wait_for_return_stack is non-null ...
         if self.wait_for_return_stack:

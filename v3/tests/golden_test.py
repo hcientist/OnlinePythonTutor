@@ -11,7 +11,7 @@ Also note that the Python 3 tests aren't as "robust" or as rigorously checked ..
 I've been focusing on Python 2 for now.
 '''
 
-#GEN_JSON_TRACE_PY = '../generate_json_trace.py'
+#GEN_JSON_TRACE_PY = '../generate_json_trace.py' # old v3 version
 GEN_JSON_TRACE_PY = '../../v5-unity/generate_json_trace.py'
 
 # no longer supported by v5-unity
