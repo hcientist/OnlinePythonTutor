@@ -9,7 +9,8 @@ Input:
 
 Output:
 
-- a JSON representation of the result of running the given example
+- a JSON representation of the result of running the given example, or a
+  JSON string representing an error
 
 '''
 
@@ -29,6 +30,7 @@ import json
 import sys
 import pg_logger
 from doctest_reader import encode_doctest
+import traceback
 
 import pprint
 pp = pprint.PrettyPrinter()
@@ -59,8 +61,11 @@ def opt_run_doctest(doctest, example_number, student_code):
 
     module_name = doctest.name.split('.')[0] # grab the module part out of the test's name
     if example_number != 'all':
-        assert 0 <= example_number < len(doctest.examples)
-        # run a single example
+        try:
+            assert 0 <= example_number < len(doctest.examples)
+        except AssertionError:
+            print(json.dumps("ERROR - example_number " + str(example_number) + " out of bounds for test " + doctest.name)) # print JSON to stdout
+            traceback.print_exc()
         example_to_run = doctest.examples[example_number]
         opt_doctest_exec_script_str(example_to_run.source,
                                     custom_modules={module_name: student_code})
@@ -75,12 +80,21 @@ if __name__ == "__main__":
     student_code = sys.argv[4]
     if example_number != 'all':
         example_number = int(example_number)
-        assert example_number >= 0
-    assert fullpath.endswith(".pickle")
-    with open(fullpath) as f:
-        tests = cPickle.load(f)
-        for t in tests:
-            # run this test!
-            if t.name == test_name:
-                opt_run_doctest(t, example_number, student_code)
-                break
+
+    try:
+        assert fullpath.endswith(".pickle")
+        with open(fullpath) as f:
+            tests = cPickle.load(f)
+
+            found = False
+            for t in tests:
+                # run this test!
+                if t.name == test_name:
+                    opt_run_doctest(t, example_number, student_code)
+                    found = True
+                    break
+            if not found:
+                print(json.dumps("ERROR - test not found: " + test_name)) # print JSON to stdout
+    except:
+        print(json.dumps("ERROR - invalid lab pickle file: " + fullpath)) # print JSON to stdout
+        traceback.print_exc()
