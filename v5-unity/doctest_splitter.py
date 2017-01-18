@@ -9,11 +9,11 @@ Outputs (if you pass in, say, lab1.py to this script):
                          objects extracted from lab1.py
   - the first element of this list contains the docstring for the top-level
     module (which you can parse to get a lab overview description); all
-    remaining eleemnts are docstrings for functions
+    remaining elements are docstrings for functions
 
 '''
 
-import cPickle
+import pickle
 import doctest
 import os
 import sys
@@ -58,5 +58,5 @@ if __name__ == "__main__":
         f.write(stripped_filestr)
         print "Created", bn + '_skeleton.py'
     with open(bn + '_doctests.pickle', 'w') as f:
-        cPickle.dump(tests, f, protocol=2)
+        pickle.dump(tests, f, protocol=0) # use protocol=0 to work on Windows
         print "Created", bn + '_doctests.pickle'

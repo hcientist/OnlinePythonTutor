@@ -24,7 +24,7 @@ TODOs
 
 '''
 
-import cPickle
+import pickle
 import imp
 import json
 import sys
@@ -84,8 +84,8 @@ if __name__ == "__main__":
 
     try:
         assert fullpath.endswith(".pickle")
-        with open(fullpath) as f:
-            tests = cPickle.load(f)
+        with open(fullpath, 'rU') as f: # use 'U' to work on Windows
+            tests = pickle.load(f)
 
             found = False
             for t in tests:
