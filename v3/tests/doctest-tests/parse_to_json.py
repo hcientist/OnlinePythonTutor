@@ -2,6 +2,7 @@ import ast
 import json
 import pprint
 import pythonparser # requires regex module. try 'pip install pythonparser' or 'sudo pip install pythonparser'
+import os
 import sys
 
 pp = pprint.PrettyPrinter()
@@ -18,10 +19,9 @@ class Visitor:
             if hasattr(obj, 'loc'):
                 loc = {
                     'start': {'line': obj.loc.begin().line(), 'column': obj.loc.begin().column()},
-                    'end':   {'line': obj.loc.end().line(), 'column': obj.loc.end().column()}
+                    'end':   {'line': obj.loc.end().line(),   'column': obj.loc.end().column()}
                 }
-            #print '  ' * level + typ + ' ' + str(obj._fields) + ' ' + str(obj._locs)
-            #print '  ' * level, loc
+            # TODO: check out obj._locs for more details later if needed
 
             d = {}
             d['type'] = typ
@@ -33,11 +33,30 @@ class Visitor:
 
 
 if __name__ == "__main__":
-    try:
-        p = pythonparser.parse(open(sys.argv[1]).read(), filename=sys.argv[1])
-    except pythonparser.Error as e:
-        print e
+    code = sys.argv[1] # can either pass in a string or a filename
+    if os.path.isfile(code):
+        code = open(sys.argv[1]).read()
+    else:
+        # make sure it ends with a newline to get parse() to work:
+        if code[-1] != '\n':
+            code += '\n'
 
-    v = Visitor()
-    res = v.visit(p)
-    print json.dumps(res, indent=2)
+    try:
+        p = pythonparser.parse(code)
+
+        v = Visitor()
+        res = v.visit(p)
+        print json.dumps(res)
+    except pythonparser.diagnostic.Error as e:
+        error_obj = {'type': 'parse_error'}
+        diag = e.diagnostic
+        loc = diag.location
+
+        error_obj['loc'] = {
+                    'start': {'line': loc.begin().line(), 'column': loc.begin().column()},
+                    'end':   {'line': loc.end().line(),   'column': loc.end().column()}
+        }
+
+        error_obj['message'] = diag.message()
+        print json.dumps(error_obj)
+        sys.exit(1)
