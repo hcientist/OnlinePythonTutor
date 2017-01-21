@@ -26,6 +26,7 @@ class Visitor:
             d = {}
             d['type'] = typ
             d['loc'] = loc
+            d['_fields'] = obj._fields
             for field_name in obj._fields:
                 val = self.visit(getattr(obj, field_name), level+1)
                 d[field_name] = val
