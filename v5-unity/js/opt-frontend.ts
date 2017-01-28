@@ -104,7 +104,7 @@ export class OptFrontend extends AbstractBaseFrontend {
     $('#genUrlBtn').bind('click', () => {
       var myArgs = this.getAppState();
       var urlStr = $.param.fragment(window.location.href, myArgs, 2); // 2 means 'override'
-      urlStr = urlStr.replace(/\)/g, '%29') // replace ) with %29 so that links embed well in Markdown
+      urlStr = urlStr.replace(/\(/g, '%28').replace(/\)/g, '%29'); // replace ( with %28 and ) with %29 so that links embed well in Markdown and email clients
       $('#urlOutput').val(urlStr);
     });
 

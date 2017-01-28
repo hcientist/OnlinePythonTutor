@@ -1001,9 +1001,9 @@
 	        // use ${this.userUUID} within the string ...
 	        var survey_v10 = '\n\
 	    <p style="font-size: 10pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">\n\
-	    <span><font style="font-weight: bold;" color="#e93f34">[NEW!]</font> Support our research and keep this tool free by <a href="https://docs.google.com/forms/d/e/1FAIpQLSe48NsBZPvu1hrTBwc8-aSic7nPSxpsxFqpUxV5AN4LwnyJWg/viewform?entry.956368502=';
+	    <span>Support our research and keep this tool free by <a href="https://docs.google.com/forms/d/e/1FAIpQLSe48NsBZPvu1hrTBwc8-aSic7nPSxpsxFqpUxV5AN4LwnyJWg/viewform?entry.956368502=';
 	        survey_v10 += this.userUUID;
-	        survey_v10 += '" target="_blank"><b>filling out this NEW survey</b> on how your native spoken language affects how you learn programming</a>.</span></p>';
+	        survey_v10 += '" target="_blank">filling out this survey on how your native spoken language affects how you learn programming</a>.</span></p>';
 	        //"We need more non-native English speakers."
 	        $('#surveyPane').html(survey_v10);
 	    };
@@ -22762,7 +22762,7 @@
 	        $('#genUrlBtn').bind('click', function () {
 	            var myArgs = _this.getAppState();
 	            var urlStr = $.param.fragment(window.location.href, myArgs, 2); // 2 means 'override'
-	            urlStr = urlStr.replace(/\)/g, '%29'); // replace ) with %29 so that links embed well in Markdown
+	            urlStr = urlStr.replace(/\(/g, '%28').replace(/\)/g, '%29'); // replace ( with %28 and ) with %29 so that links embed well in Markdown and email clients
 	            $('#urlOutput').val(urlStr);
 	        });
 	        // first initialize options from HTML LocalStorage. very important
