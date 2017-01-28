@@ -22671,15 +22671,8 @@
 	var pytutor_ts_1 = __webpack_require__(10);
 	__webpack_require__(52);
 	__webpack_require__(54);
-	var JAVA_BLANK_TEMPLATE = 'public class YourClassNameHere {\n\
-	    public static void main(String[] args) {\n\
-	\n\
-	    }\n\
-	}';
-	var CPP_BLANK_TEMPLATE = 'int main() {\n\
-	\n\
-	  return 0;\n\
-	}';
+	var JAVA_BLANK_TEMPLATE = "public class YourClassNameHere {\n    public static void main(String[] args) {\n\n    }\n}";
+	var CPP_BLANK_TEMPLATE = "int main() {\n\n  return 0;\n}";
 	var CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
 	var SUBMIT_UPDATE_HISTORY_INTERVAL_MS = 1000 * 60;
 	var OptFrontend = (function (_super) {
@@ -22700,7 +22693,7 @@
 	            myArgs.codeDivHeight = pytutor_ts_1.ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
 	            var domain = "http://pythontutor.com/"; // for deployment
 	            var embedUrlStr = $.param.fragment(domain + "iframe-embed.html", myArgs, 2 /* clobber all */);
-	            embedUrlStr = embedUrlStr.replace(/\)/g, '%29'); // replace ) with %29 so that links embed well in Markdown
+	            embedUrlStr = embedUrlStr.replace(/\(/g, '%28').replace(/\)/g, '%29'); // replace ( with %28 and ) with %29 so that links embed well in Markdown and email clients
 	            var iframeStr = '<iframe width="800" height="500" frameborder="0" src="' + embedUrlStr + '"> </iframe>';
 	            $('#embedCodeOutput').val(iframeStr);
 	        });
