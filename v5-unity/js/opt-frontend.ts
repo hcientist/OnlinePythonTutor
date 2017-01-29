@@ -57,6 +57,10 @@ const CPP_BLANK_TEMPLATE = `int main() {
 const CODE_SNAPSHOT_DEBOUNCE_MS = 1000;
 const SUBMIT_UPDATE_HISTORY_INTERVAL_MS = 1000 * 60;
 
+function sanitizeURL(s) {
+  return s.replace(/\(/g, '%28').replace(/\)/g, '%29'); // replace ( with %28 and ) with %29 so that links embed well in Markdown and email clients
+}
+
 
 export class OptFrontend extends AbstractBaseFrontend {
   originFrontendJsFile: string = 'opt-frontend.js';
@@ -77,7 +81,7 @@ export class OptFrontend extends AbstractBaseFrontend {
 
       var domain = "http://pythontutor.com/"; // for deployment
       var embedUrlStr = $.param.fragment(domain + "iframe-embed.html", myArgs, 2 /* clobber all */);
-      embedUrlStr = embedUrlStr.replace(/\(/g, '%28').replace(/\)/g, '%29') // replace ( with %28 and ) with %29 so that links embed well in Markdown and email clients
+      embedUrlStr = sanitizeURL(embedUrlStr);
       var iframeStr = '<iframe width="800" height="500" frameborder="0" src="' + embedUrlStr + '"> </iframe>';
       $('#embedCodeOutput').val(iframeStr);
     });
@@ -104,10 +108,30 @@ export class OptFrontend extends AbstractBaseFrontend {
     $('#genUrlBtn').bind('click', () => {
       var myArgs = this.getAppState();
       var urlStr = $.param.fragment(window.location.href, myArgs, 2); // 2 means 'override'
-      urlStr = urlStr.replace(/\(/g, '%28').replace(/\)/g, '%29'); // replace ( with %28 and ) with %29 so that links embed well in Markdown and email clients
+      urlStr = sanitizeURL(urlStr);
       $('#urlOutput').val(urlStr);
     });
 
+    $('#genUrlShortenedBtn').bind('click', () => {
+      var myArgs = this.getAppState();
+      var urlStr = $.param.fragment(window.location.href, myArgs, 2); // 2 means 'override'
+      urlStr = sanitizeURL(urlStr);
+      // call goo.gl URL shortener
+      //
+      // to test this API from command-line, use:
+      // curl https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyCIjtNqfABbRilub1a3Ta7-qKF3bS9_p1M -H 'Content-Type: application/json' -d '{"longUrl": "http://www.google.com/"}' --referer www.pythontutor.com
+      $.ajax('https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyCIjtNqfABbRilub1a3Ta7-qKF3bS9_p1M',
+             {type: 'POST',
+             contentType: 'application/json',
+             data: JSON.stringify({longUrl: urlStr}), // encode as a string first! #tricky
+             success: function(dat) {
+               $("#urlOutputShortened").val(dat.id);
+             },
+             error: function() {
+               $("#urlOutputShortened").val("Error in URL shortener :(");
+             }
+             });
+    });
 
     // first initialize options from HTML LocalStorage. very important
     // that this code runs FIRST so that options get overridden by query
@@ -316,7 +340,7 @@ export class OptFrontend extends AbstractBaseFrontend {
   pyInputSetValue(dat) {
     this.pyInputAceEditor.setValue(dat.rtrim() /* kill trailing spaces */,
                                    -1 /* do NOT select after setting text */);
-    $('#urlOutput,#embedCodeOutput').val('');
+    $('#urlOutput,#urlOutputShortened,#embedCodeOutput').val('');
     this.clearFrontendError();
     // also scroll to top to make the UI more usable on smaller monitors
     // TODO: this has a global impact on the document, so breaks modularity?
@@ -574,7 +598,7 @@ export class OptFrontend extends AbstractBaseFrontend {
       assert(false);
     }
 
-    $('#urlOutput,#embedCodeOutput').val(''); // clear to avoid stale values
+    $('#urlOutput,#urlOutputShortened,#embedCodeOutput').val(''); // clear to avoid stale values
 
     // log at the end after appMode gets canonicalized
     this.logEventCodeopticon({type: 'updateAppDisplay', mode: this.appMode, appState: this.getAppState()});

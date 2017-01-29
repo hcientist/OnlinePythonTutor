@@ -31,7 +31,7 @@ export class OptFrontendComposingprograms extends OptFrontendSharedSessions {
                 textualMemoryLabels: false,
 
                 executeCodeWithRawInputFunc: this.executeCodeWithRawInput.bind(this),
-                updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
+                updateOutputCallback: function() {$('#urlOutput,#urlOutputShortened,#embedCodeOutput').val('');},
                 startingInstruction: 0,
 
                 // always use the same visualizer ID for all

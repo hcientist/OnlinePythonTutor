@@ -29,7 +29,7 @@ export class OptFrontendCsc108h extends OptFrontendSharedSessions {
                 textualMemoryLabels: true, // use text labels for references
 
                 executeCodeWithRawInputFunc: this.executeCodeWithRawInput.bind(this),
-                updateOutputCallback: function() {$('#urlOutput,#embedCodeOutput').val('');},
+                updateOutputCallback: function() {$('#urlOutput,#urlOutputShortened,#embedCodeOutput').val('');},
                 startingInstruction: 0,
 
                 // always use the same visualizer ID for all

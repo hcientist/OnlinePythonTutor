@@ -2,6 +2,9 @@ export var footerHtml = `
 <p>
   <button id="genUrlBtn" class="smallBtn" type="button">Generate permanent link</button> <input type="text" id="urlOutput" size="70"/>
 </p>
+<p>
+  <button id="genUrlShortenedBtn" class="smallBtn" type="button">Generate shortened link</button> <input type="text" id="urlOutputShortened" size="25"/>
+</p>
 
 <p>Click the button above to create a permanent link to your
 visualization. To report a bug, paste the link along with a brief error

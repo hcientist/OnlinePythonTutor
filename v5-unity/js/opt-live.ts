@@ -151,7 +151,7 @@ export class OptLiveFrontend extends OptFrontend {
     assert(myVisualizer);
     myVisualizer.updateLineAndExceptionInfo(); // do this first to update the right fields
 
-    $('#urlOutput').val(''); // prevent stale URLs
+    $('#urlOutput,#urlOutputShortened').val(''); // prevent stale URLs
 
     var s = this.pyInputAceEditor.getSession();
     this.allMarkerIds.forEach((e) => {
