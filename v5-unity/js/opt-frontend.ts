@@ -118,8 +118,8 @@ export class OptFrontend extends AbstractBaseFrontend {
       urlStr = sanitizeURL(urlStr);
       // call goo.gl URL shortener
       //
-      // to test this API from command-line, use:
-      // curl https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyCIjtNqfABbRilub1a3Ta7-qKF3bS9_p1M -H 'Content-Type: application/json' -d '{"longUrl": "http://www.google.com/"}' --referer www.pythontutor.com
+      // to test this API from command-line, first disable the IP restriction on API credentials, then run:
+      // curl https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyCIjtNqfABbRilub1a3Ta7-qKF3bS9_p1M -H 'Content-Type: application/json' -d '{"longUrl": "http://www.google.com/"}'
       $.ajax('https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyCIjtNqfABbRilub1a3Ta7-qKF3bS9_p1M',
              {type: 'POST',
              contentType: 'application/json',
