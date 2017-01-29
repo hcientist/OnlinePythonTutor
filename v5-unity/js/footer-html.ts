@@ -25,8 +25,8 @@ change the link to <b>https://</b> if needed.</p>
 <a href="http://pythontutor.com/">Python Tutor</a> (<a href="https://github.com/pgbovine/OnlinePythonTutor">code on GitHub</a>) supports seven
 languages (despite its name!):</p>
 
-<p>1. Python <a href="http://www.python.org/doc/2.7/">2.7</a> and <a
-href="http://www.python.org/doc/3.3.0/">3.3</a> with limited module
+<p>1. Python <a href="https://docs.python.org/2.7/">2.7</a> and <a
+href="https://docs.python.org/3.6/">3.6</a> with limited module
 imports and no file I/O.
 The following modules may be imported: 
 bisect,
