@@ -1390,7 +1390,7 @@ class DataVisualizer {
             }
           });
         }
-        else if ((heapObj[0] == 'C_ARRAY') || (heapObj[0] == 'C_STRUCT')) {
+        else if ((heapObj[0] == 'C_ARRAY') || (heapObj[0] == 'C_MULTIDIMENSIONAL_ARRAY') || (heapObj[0] == 'C_STRUCT')) {
           updateCurLayoutAndRecurse(heapObj);
         }
       }
@@ -1512,12 +1512,12 @@ class DataVisualizer {
       function recurseIntoCStructArray(val) {
         if (val[0] === 'C_ARRAY') {
           $.each(val, function(ind, elt) {
-            if (ind < 2) return;
+            if (ind < 2) return; // these have 2 header fields
             updateCurLayoutAndRecurse(elt);
           });
-        } else if (val[0] === 'C_STRUCT') {
+        } else if (val[0] === 'C_MULTIDIMENSIONAL_ARRAY' || val[0] === 'C_STRUCT') {
           $.each(val, function(ind, kvPair) {
-            if (ind < 3) return;
+            if (ind < 3) return; // these have 3 header fields
             updateCurLayoutAndRecurse(kvPair[1]);
           });
         }
@@ -1917,7 +1917,7 @@ class DataVisualizer {
           if (myViz.isPrimitiveType(val)) {
             myViz.renderPrimitiveObject(val, curInstr, $(this));
           }
-          else if (val[0] === 'C_STRUCT' || val[0] === 'C_ARRAY') {
+          else if (val[0] === 'C_STRUCT' || val[0] === 'C_ARRAY' || val[0] === 'C_MULTIDIMENSIONAL_ARRAY') {
             // C structs and arrays can be inlined in frames
             myViz.renderCStructArray(val, curInstr, $(this));
           }
@@ -2150,7 +2150,7 @@ class DataVisualizer {
           if (myViz.isPrimitiveType(val)) {
             myViz.renderPrimitiveObject(val, curInstr, $(this));
           }
-          else if (val[0] === 'C_STRUCT' || val[0] === 'C_ARRAY') {
+          else if (val[0] === 'C_STRUCT' || val[0] === 'C_ARRAY' || val[0] === 'C_MULTIDIMENSIONAL_ARRAY') {
             // C structs and arrays can be inlined in frames
             myViz.renderCStructArray(val, curInstr, $(this));
           }
@@ -2601,7 +2601,7 @@ class DataVisualizer {
         // obj is a ["REF", <int>] so dereference the 'pointer' to render that object
         this.renderCompoundObject(getRefID(obj), stepNum, d3DomElement, false);
       } else {
-        assert(obj[0] === 'C_STRUCT' || obj[0] === 'C_ARRAY');
+        assert(obj[0] === 'C_STRUCT' || obj[0] === 'C_ARRAY' || val[0] === 'C_MULTIDIMENSIONAL_ARRAY');
         this.renderCStructArray(obj, stepNum, d3DomElement);
       }
     }
@@ -2923,7 +2923,7 @@ class DataVisualizer {
       d3DomElement.find('div.heapPrimitive').append('<div class="typeLabel">' + typeLabelPrefix + typeName + '</div>');
       myViz.renderPrimitiveObject(primitiveVal, stepNum, d3DomElement.find('div.heapPrimitive'));
     }
-    else if (obj[0] == 'C_STRUCT' || obj[0] == 'C_ARRAY') {
+    else if (obj[0] == 'C_STRUCT' || obj[0] == 'C_ARRAY' || val[0] === 'C_MULTIDIMENSIONAL_ARRAY') {
       myViz.renderCStructArray(obj, stepNum, d3DomElement);
     }
     else {
@@ -2982,7 +2982,34 @@ class DataVisualizer {
           myViz.renderNestedObject(kvPair[1], stepNum, valTd);
         });
       }
-    } else {
+    } else if (obj[0] == 'C_MULTIDIMENSIONAL_ARRAY') {
+      console.log(obj);
+
+      // TODO: render as multidimensional array:
+      assert(obj.length >= 3);
+      var addr = obj[1];
+
+      var leader = '';
+      d3DomElement.append('<div class="typeLabel">' + leader + 'array</div>');
+      d3DomElement.append('<table class="cArrayTbl"></table>');
+      var tbl = d3DomElement.children('table');
+
+      tbl.append('<tr></tr><tr></tr>');
+      var headerTr = tbl.find('tr:first');
+      var contentTr = tbl.find('tr:last');
+      $.each(obj, function(ind, val) {
+        if (ind < 3) return; // skip headers
+
+        // add a new column and then pass in that newly-added column
+        // as d3DomElement to the recursive call to child:
+        headerTr.append('<td class="cArrayHeader"></td>');
+        headerTr.find('td:last').append(ind - 2 /* adjust */);
+
+        contentTr.append('<td class="cArrayElt"></td>');
+        myViz.renderNestedObject(val, stepNum, contentTr.find('td:last'));
+      });
+    }
+    else {
       assert(obj[0] == 'C_ARRAY');
       assert(obj.length >= 2);
       var addr = obj[1];
