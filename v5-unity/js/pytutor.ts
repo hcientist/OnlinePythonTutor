@@ -2547,7 +2547,7 @@ class DataVisualizer {
           // to distinguish it from all other pointers, since sometimes
           // C/C++ programmers *explicitly* set a pointer to null
           if (ptrVal === '0x0') {
-            $('#' + ptrSrcId).html('NULL');
+            $('#' + ptrSrcId).html('<span class="cdataUninit">NULL</span>');
           } else {
             //console.log(ptrSrcId, '->', ptrTargetId);
             assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(ptrSrcId));
