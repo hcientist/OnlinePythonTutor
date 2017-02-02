@@ -2543,9 +2543,16 @@ class DataVisualizer {
           // make it really narrow so that the div doesn't STRETCH too wide
           d3DomElement.append('<div style="width: 10px;" id="' + ptrSrcId + '" class="cdataElt">&nbsp;' + debugInfo + '</div>');
 
-          assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(ptrSrcId));
-          myViz.jsPlumbManager.connectionEndpointIDs.set(ptrSrcId, ptrTargetId);
-          //console.log(ptrSrcId, '->', ptrTargetId);
+          // special case: display 0x0 address as a NULL pointer value,
+          // to distinguish it from all other pointers, since sometimes
+          // C/C++ programmers *explicitly* set a pointer to null
+          if (ptrVal === '0x0') {
+            $('#' + ptrSrcId).html('NULL');
+          } else {
+            //console.log(ptrSrcId, '->', ptrTargetId);
+            assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(ptrSrcId));
+            myViz.jsPlumbManager.connectionEndpointIDs.set(ptrSrcId, ptrTargetId);
+          }
         } else {
           // for non-pointers, put cdataId on the element itself, so that
           // pointers can point directly at the element, not the header
