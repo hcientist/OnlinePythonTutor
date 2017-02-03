@@ -1094,24 +1094,24 @@ class DataVisualizer {
     this.domRoot = domRoot;
     this.domRootD3 = domRootD3;
 
-    var codeVizHTML =
-      '<div id="dataViz">\
-         <table id="stackHeapTable">\
-           <tr>\
-             <td id="stack_td">\
-               <div id="globals_area">\
-                 <div id="stackHeader">Frames</div>\
-               </div>\
-               <div id="stack"></div>\
-             </td>\
-             <td id="heap_td">\
-               <div id="heap">\
-                 <div id="heapHeader">Objects</div>\
-               </div>\
-             </td>\
-           </tr>\
-         </table>\
-       </div>';
+    var codeVizHTML = `
+      <div id="dataViz">
+         <table id="stackHeapTable">
+           <tr>
+             <td id="stack_td">
+               <div id="globals_area">
+                 <div id="stackHeader">${this.getRealLabel("Frames")}</div>
+               </div>
+               <div id="stack"></div>
+             </td>
+             <td id="heap_td">
+               <div id="heap">
+                 <div id="heapHeader">${this.getRealLabel("Objects")}</div>
+               </div>
+             </td>
+           </tr>
+         </table>
+       </div>`;
 
     this.domRoot.append(codeVizHTML);
 
@@ -1152,6 +1152,7 @@ class DataVisualizer {
     return this.owner.generateID('heap_object_' + objID + '_s' + stepNum);
   }
 
+  // customize labels for each language's preferred vocabulary
   getRealLabel(label) {
     if (this.params.lang === 'js' || this.params.lang === 'ts' || this.params.lang === 'ruby') {
       if (label === 'list') {
@@ -1190,6 +1191,14 @@ class DataVisualizer {
         return 'true';
       } else if (label === 'False') {
         return 'false';
+      }
+    } else if (this.params.lang === 'c' || this.params.lang === 'cpp') {
+      if (label === 'Global frame') {
+        return 'Global variables';
+      } else if (label === 'Frames') {
+        return 'Stack';
+      } else if (label === 'Objects') {
+        return 'Heap';
       }
     }
 
@@ -1739,7 +1748,7 @@ class DataVisualizer {
     // not really using d3 to the fullest, but oh wells!
     myViz.domRoot.find('#heap')
       .empty()
-      .html('<div id="heapHeader">Objects</div>');
+      .html(`<div id="heapHeader">${myViz.getRealLabel("Objects")}</div>`);
 
 
     var heapRows = myViz.domRootD3.select('#heap')
@@ -2601,7 +2610,7 @@ class DataVisualizer {
         // obj is a ["REF", <int>] so dereference the 'pointer' to render that object
         this.renderCompoundObject(getRefID(obj), stepNum, d3DomElement, false);
       } else {
-        assert(obj[0] === 'C_STRUCT' || obj[0] === 'C_ARRAY' || val[0] === 'C_MULTIDIMENSIONAL_ARRAY');
+        assert(obj[0] === 'C_STRUCT' || obj[0] === 'C_ARRAY' || obj[0] === 'C_MULTIDIMENSIONAL_ARRAY');
         this.renderCStructArray(obj, stepNum, d3DomElement);
       }
     }
@@ -2923,7 +2932,7 @@ class DataVisualizer {
       d3DomElement.find('div.heapPrimitive').append('<div class="typeLabel">' + typeLabelPrefix + typeName + '</div>');
       myViz.renderPrimitiveObject(primitiveVal, stepNum, d3DomElement.find('div.heapPrimitive'));
     }
-    else if (obj[0] == 'C_STRUCT' || obj[0] == 'C_ARRAY' || val[0] === 'C_MULTIDIMENSIONAL_ARRAY') {
+    else if (obj[0] == 'C_STRUCT' || obj[0] == 'C_ARRAY' || obj[0] === 'C_MULTIDIMENSIONAL_ARRAY') {
       myViz.renderCStructArray(obj, stepNum, d3DomElement);
     }
     else {
