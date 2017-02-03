@@ -140,7 +140,7 @@ export class ExecutionVisualizer {
   //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code' (if null, then 'Edit code' link hidden)
   //   embeddedMode         - shortcut for codeDivWidth=DEFAULT_EMBEDDED_CODE_DIV_WIDTH,
   //                                       codeDivHeight=DEFAULT_EMBEDDED_CODE_DIV_HEIGHT
-  //                          (and don't activate keyboard shortcuts!)
+  //                          (and hide a bunch of other stuff & don't activate keyboard shortcuts!)
   //   disableHeapNesting   - if true, then render all heap objects at the top level (i.e., no nested objects)
   //   drawParentPointers   - if true, then draw environment diagram parent pointers for all frames
   //                          WARNING: there are hard-to-debug MEMORY LEAKS associated with activating this option
@@ -384,7 +384,7 @@ export class ExecutionVisualizer {
 
       // add an extra label to link back to the main site, so that viewers
       // on the embedded page know that they're seeing an OPT visualization
-      base.append('<div style="font-size: 8pt; margin-bottom: 20px;">Visualized using <a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Online Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a></div>');
+      base.append('<div style="font-size: 8pt; margin-bottom: 10px;">Visualized using <a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a></div>');
       base.find('#codeFooterDocs').hide(); // cut out extraneous docs
     }
 
@@ -3149,7 +3149,7 @@ class CodeDisplay {
          <span id="liveModeSpan" style="display: none;">| <a id="editLiveModeBtn" href="#">Live programming</a></a>\
          </div>\
          <div id="legendDiv"/>\
-         <div id="codeFooterDocs"><font color="#e93f34">NEW!</font> Click on a line of code to set a breakpoint. Then use the Forward and Back buttons to jump there.</div>\
+         <div id="codeFooterDocs">Click on a line of code to set a breakpoint; use Forward and Back buttons to jump there.</div>\
        </div>';
 
     this.domRoot.append(codeDisplayHTML);
@@ -3207,9 +3207,17 @@ class CodeDisplay {
       } else if (lang === 'py3') {
         this.domRoot.find('#langDisplayDiv').html('Python 3.6');
       } else if (lang === 'c') {
-        this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
+        if (this.owner.params.embeddedMode) {
+          this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11)');
+        } else {
+          this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
+        }
       } else if (lang === 'cpp') {
-        this.domRoot.find('#langDisplayDiv').html('C++ (gcc 4.8, C++11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
+        if (this.owner.params.embeddedMode) {
+          this.domRoot.find('#langDisplayDiv').html('C++ (gcc 4.8, C++11)');
+        } else {
+          this.domRoot.find('#langDisplayDiv').html('C++ (gcc 4.8, C++11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
+        }
       } else {
         this.domRoot.find('#langDisplayDiv').hide();
       }

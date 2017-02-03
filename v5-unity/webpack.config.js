@@ -44,6 +44,7 @@ module.exports = {
         'index': "./js/index.ts",
         'composingprograms': "./js/composingprograms.ts",
         'csc108h': "./js/csc108h.ts",
+        'pytutor-embed': "./js/pytutor-embed.ts",
     },
 
     output: {
