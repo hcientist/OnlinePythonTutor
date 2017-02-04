@@ -58,7 +58,7 @@ Here are instructions for a more powerful but harder-to-use alternative -- direc
 
 To directly embed a visualization, you:
 
-1. Run the target Python program offline to generate an execution trace, which is one (really, really long) string representing a JavaScript (JSON) object.
+1. Run the target program offline to generate an execution trace, which is one (really, really long) string representing a JSON object. Each backend provides its own scripts for generating execution traces.
 2. Save that string into a text file on your server, which will be loaded via AJAX by your JavaScript code.
 3. Include some JavaScript code and then embed it within your HTML webpage.
 
@@ -70,8 +70,7 @@ brought to the [code editor page](http://pythontutor.com/visualize.html).
 Also, note that the visualization is run client-side; thus, after the user loads the webpage (from the Internet
 or, say, a USB drive), they can play with the visualization without an Internet connection.
 
-Finally, multiple visualizations can be embedded in a single HTML webpage, although you need to be careful
-to redraw the SVG arrows when page elements are resized or moved.
+Finally, multiple visualizations can be embedded in a single HTML webpage.
 
 
 ### The Nitty-Gritty
