@@ -1,3 +1,5 @@
+// THIS FILE IS DEPRECATED! USE THIS INSTEAD: pytutor-embed.ts
+
 // Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
