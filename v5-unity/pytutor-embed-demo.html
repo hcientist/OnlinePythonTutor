@@ -15,24 +15,20 @@
 </head>
 
 <body style="background-color: white;">
-  <!-- This demo shows three visualizations, each embedded within a div ... -->
+  <!-- This demo shows three visualizations, each embedded within its own div -->
   <p>Recursive list sum (from <a href="http://pythontutor.com">pythontutor.com</a> home page):</p>
-  <div id="listSumLabel"></div>
   <div id="listSumDiv"></div>
 
   <p>Towers of Hanoi:</p>
-  <div id="hanoiLabel"></div>
   <div id="hanoiDiv"></div>
 
   <p>Happy Birthday:</p>
-  <div id="happyLabel"></div>
   <div id="happyDiv"></div>
 
-<!-- put at the very bottom so it will load after all the divs load -->
-  <script type="text/javascript">
+  <script type="text/javascript"> <!-- put JS at the very bottom so it will load after all the divs appear -->
+
 /*
-First create three JSON files listSum.json, hanoi.json, and
-happy.json by running generate_json_trace.py
+First create three JSON trace files (listSum.json, hanoi.json, happy.json) by running generate_json_trace.py
 
 python generate_json_trace.py --compact ../v3/tests/backend-tests/list_sum.txt > pytutor-embed-demo/listSum.json
 python generate_json_trace.py --compact example-code/python/towers_of_hanoi.txt > pytutor-embed-demo/hanoi.json
@@ -40,12 +36,12 @@ python generate_json_trace.py --compact example-code/python/happy.txt > pytutor-
 
 */
 
-// now create the visualizers, which loads trace data from the
-// respective JSON files:
+// Now create the visualizers, which loads traces from the respective JSON files:
+// createVisualizerFromJSON is defined in build/pytutor-embed.bundle.js
 createVisualizerFromJSON('pytutor-embed-demo/listSum.json', 'listSumDiv');
 
 // The "startingInstruction: 15" optional parameter means to jump to step 15
-// in the visualization when it loads. (The HTML webpage will actually display
+// in the visualization when it loads. (The webpage will actually display
 // "Step 16 of 79" since indices are zero-indexed.)
 //
 // verticalStack means to stack the code and visualizations vertically atop one another
