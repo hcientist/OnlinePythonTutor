@@ -62,6 +62,25 @@ export var lightArrowColor = '#c9e6ca';
 var heapPtrSrcRE = /__heap_pointer_src_/;
 var rightwardNudgeHack = true; // suggested by John DeNero, toggle with global
 
+// returns a list of length a.length * b.length with elements from both
+// mixed. the elements of a and b should be primitives, but if the first element
+// is a list, it flattens it. e.g.,:
+//   multiplyLists([1, 2, 3], [4, 5]) -> [[1,4], [1,5], [2,4], [2,5], [3,4], [3,5]]
+function multiplyLists(a, b) {
+  var ret = [];
+  for (var i = 0; i < a.length; i++) {
+    for (var j = 0; j < b.length; j++) {
+      var elt = a[i];
+      // flatten list
+      if ($.isArray(elt)) {
+        ret.push(elt.concat(b[j]));
+      } else {
+        ret.push([elt, b[j]]);
+      }
+    }
+  }
+  return ret;
+}
 
 // the main event!
 export class ExecutionVisualizer {
@@ -2992,31 +3011,70 @@ class DataVisualizer {
         });
       }
     } else if (obj[0] == 'C_MULTIDIMENSIONAL_ARRAY') {
-      console.log(obj);
-
-      // TODO: render as multidimensional array:
+      // since we can display only 2 dimensions sensibly, make the first
+      // dimension into rows and flatten all other dimensions together into
+      // columns. in the common case for a 2-D array, this will do the
+      // perfect thing: first dimension is rows, second dimension is columns.
+      // e.g., for a 4-D array, the first dimension is rows, and dimensions
+      // 2, 3, and 4 are flattened together into columns. we can't do
+      // any better than this since it doesn't make sense to display
+      // more than 2 dimensions at once on screen
       assert(obj.length >= 3);
       var addr = obj[1];
+      var dimensions = obj[2];
+      assert(dimensions.length > 1); // make sure we're really multidimensional!
 
       var leader = '';
       d3DomElement.append('<div class="typeLabel">' + leader + 'array</div>');
       d3DomElement.append('<table class="cArrayTbl"></table>');
       var tbl = d3DomElement.children('table');
 
-      tbl.append('<tr></tr><tr></tr>');
-      var headerTr = tbl.find('tr:first');
-      var contentTr = tbl.find('tr:last');
-      $.each(obj, function(ind, val) {
-        if (ind < 3) return; // skip headers
+      // a list of array indices for each dimension
+      var indicesByDimension = [];
+      for (var d = 0; d < dimensions.length; d++) {
+        indicesByDimension.push(d3.range(dimensions[d]));
+      }
 
-        // add a new column and then pass in that newly-added column
-        // as d3DomElement to the recursive call to child:
-        headerTr.append('<td class="cArrayHeader"></td>');
-        headerTr.find('td:last').append(ind - 3 /* adjust */);
+      // common case is 2-D:
+      var allDimensions = multiplyLists(indicesByDimension[0], indicesByDimension[1]);
+      // for all dimensions above the second one ...
+      for (var d = 2; d < dimensions.length; d++) {
+        allDimensions = multiplyLists(allDimensions, indicesByDimension[d]);
+      }
+      //console.log('allDimensions', JSON.stringify(allDimensions));
 
-        contentTr.append('<td class="cArrayElt"></td>');
-        myViz.renderNestedObject(val, stepNum, contentTr.find('td:last'));
-      });
+      // ignore dimensions[0], which is rows
+      var numColumns = 1;
+      for (var i=1; i < dimensions.length; i++) {
+        numColumns *= dimensions[i];
+      }
+
+      for (var row=0; row < dimensions[0]; row++) {
+        //console.log('row', row);
+
+        // a pair of rows for header + content, respectively
+        tbl.append('<tr></tr>');
+        var headerTr = tbl.find('tr:last');
+        tbl.append('<tr></tr>');
+        var contentTr = tbl.find('tr:last');
+
+        for (var col=0; col < numColumns; col++) {
+          var flattenedInd = (row*numColumns) + col; // the real index into the 1-D flattened array stored in obj[3:]
+          var realInd = flattenedInd + 3; // skip 3 header fields to get to the real index in obj
+          var val = obj[realInd];
+
+          var indToDisplay = allDimensions[flattenedInd].join(',');
+          //console.log('  col', col, '| flattenedInd:', flattenedInd, indToDisplay, 'contents:', val);
+
+          // add a new column and then pass in that newly-added column
+          // as d3DomElement to the recursive call to child:
+          headerTr.append('<td class="cMultidimArrayHeader"></td>');
+          headerTr.find('td:last').append(indToDisplay);
+
+          contentTr.append('<td class="cMultidimArrayElt"></td>');
+          myViz.renderNestedObject(val, stepNum, contentTr.find('td:last'));
+        }
+      }
     }
     else {
       assert(obj[0] == 'C_ARRAY');
