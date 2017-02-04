@@ -59,10 +59,9 @@ Here are instructions for a more powerful but harder-to-use alternative -- direc
 
 To directly embed a visualization, you:
 
-1. Run the target Python program offline to generate an execution trace, which is one (really, really long)
-string representing a JavaScript (JSON) object.
-2. Copy that long string into a JavaScript .js file.
-3. Include some other stuff in your .js file and then embed it within your HTML webpage.
+1. Run the target Python program offline to generate an execution trace, which is one (really, really long) string representing a JavaScript (JSON) object.
+2. Save that string into a text file on your server, which will be loaded via AJAX by your JavaScript code.
+3. Include some JavaScript code and then embed it within your HTML webpage.
 
 Note that the embedded visualization is **read-only** -- that is, the user can interact with the visualization
 by stepping forward and backward, but they cannot edit the code.
@@ -79,8 +78,5 @@ to redraw the SVG arrows when page elements are resized or moved.
 ### The Nitty-Gritty
 
 Let's attempt to go [literate programming](http://en.wikipedia.org/wiki/Literate_programming) style now ... load up
-[embedding-demo.html](http://pythontutor.com/embedding-demo.html) in
-your browser to see a demo. And then view its [source code](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/embedding-demo.html) and follow the instructions there,
-which should then lead you to [`v3/embedding-demo.js`](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/embedding-demo.js).
-
-Everything you need to know should be in the demo code!
+[http://pythontutor.com/pytutor-embed-demo.html](http://pythontutor.com/pytutor-embed-demo.html) in
+your browser to see a demo. Then view its [source code](https://github.com/pgbovine/OnlinePythonTutor/blob/master/v5-unity/pytutor-embed-demo.html) and follow the instructions within that file. Everything you need to know should be in the demo code!
