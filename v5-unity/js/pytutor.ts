@@ -3153,6 +3153,9 @@ class CodeDisplay {
        </div>';
 
     this.domRoot.append(codeDisplayHTML);
+    if (this.owner.params.embeddedMode) {
+      this.domRoot.find('#editCodeLinkDiv').css('font-size', '10pt');
+    }
     this.domRoot.find('#legendDiv')
         .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
         .append('<p style="margin-top: 4px"><svg id="curLegendArrowSVG"/> next line to execute</p>');

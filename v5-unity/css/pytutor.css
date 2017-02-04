@@ -696,6 +696,12 @@ div.ExecutionVisualizer .highlight-legend {
   border-color: #dddddd;
 }
 
+div.ExecutionVisualizer a,
+div.ExecutionVisualizer a:visited,
+div.ExecutionVisualizer a:hover {
+  color: #3D58A2;
+}
+
 div.ExecutionVisualizer div#rawUserInputDiv {
   padding: 5px;
   width: 95%;
