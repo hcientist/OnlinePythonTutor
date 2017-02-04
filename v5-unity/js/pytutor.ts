@@ -3012,7 +3012,7 @@ class DataVisualizer {
         // add a new column and then pass in that newly-added column
         // as d3DomElement to the recursive call to child:
         headerTr.append('<td class="cArrayHeader"></td>');
-        headerTr.find('td:last').append(ind - 2 /* adjust */);
+        headerTr.find('td:last').append(ind - 3 /* adjust */);
 
         contentTr.append('<td class="cArrayElt"></td>');
         myViz.renderNestedObject(val, stepNum, contentTr.find('td:last'));
@@ -3149,7 +3149,7 @@ class CodeDisplay {
          <span id="liveModeSpan" style="display: none;">| <a id="editLiveModeBtn" href="#">Live programming</a></a>\
          </div>\
          <div id="legendDiv"/>\
-         <div id="codeFooterDocs">Click on a line of code to set a breakpoint; use Forward and Back buttons to jump there.</div>\
+         <div id="codeFooterDocs">Click a line of code to set a breakpoint; use the Back and Forward buttons to jump there.</div>\
        </div>';
 
     this.domRoot.append(codeDisplayHTML);

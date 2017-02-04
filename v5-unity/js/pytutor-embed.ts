@@ -71,10 +71,12 @@ function createVisualizerFromJSON(jsonURL, divId, params=undefined) {
 // data-tracefile and data-params attributes from each, and then populates
 // each one using createVisualizerFromJSON()
 function createAllVisualizersFromHtmlAttrs() {
+  //console.log('createAllVisualizersFromHtmlAttrs');
   $('div.pytutorVisualizer').each(function(i, e) {
     var jsonURL = $(e).attr('data-tracefile');
     var divId = $(e).attr('id');
     var paramsText = $(e).attr('data-params');
+    //console.log(jsonURL, divId, paramsText);
     try {
       var params = JSON.parse(paramsText);
       createVisualizerFromJSON(jsonURL, divId, params);
@@ -85,5 +87,5 @@ function createAllVisualizersFromHtmlAttrs() {
 }
 
 // export globally
-window.createVisualizerFromJSON = createVisualizerFromJSON;
-window.createAllVisualizersFromHtmlAttrs = createAllVisualizersFromHtmlAttrs;
+(window as any).createVisualizerFromJSON = createVisualizerFromJSON;
+(window as any).createAllVisualizersFromHtmlAttrs = createAllVisualizersFromHtmlAttrs;
