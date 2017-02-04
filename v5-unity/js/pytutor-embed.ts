@@ -67,7 +67,23 @@ function createVisualizerFromJSON(jsonURL, divId, params=undefined) {
   }, 'json');
 }
 
-window.createVisualizerFromJSON = createVisualizerFromJSON; // export globally
+// looks for all div.pytutorVisualizer on the current page, extracts
+// data-tracefile and data-params attributes from each, and then populates
+// each one using createVisualizerFromJSON()
+function createAllVisualizersFromHtmlAttrs() {
+  $('div.pytutorVisualizer').each(function(i, e) {
+    var jsonURL = $(e).attr('data-tracefile');
+    var divId = $(e).attr('id');
+    var paramsText = $(e).attr('data-params');
+    try {
+      var params = JSON.parse(paramsText);
+      createVisualizerFromJSON(jsonURL, divId, params);
+    } catch(err) {
+      createVisualizerFromJSON(jsonURL, divId); // ignore params if we can't parse it
+    }
+  });
+}
 
-// to use this exported function, call something like:
-// createVisualizerFromJSON('listSum.json', 'listSumDiv');
+// export globally
+window.createVisualizerFromJSON = createVisualizerFromJSON;
+window.createAllVisualizersFromHtmlAttrs = createAllVisualizersFromHtmlAttrs;
