@@ -487,9 +487,11 @@ export class OptLiveFrontend extends OptFrontend {
         } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
           this.setFronendError([trace[trace.length - 1].exception_msg]);
         } else {
-          this.setFronendError(["Unknown error. Reload the page and try again. Or report a bug to",
-                                "philip@pgbovine.net by clicking on the 'Generate permanent link'",
-                                "button at the bottom and including a URL in your email."]);
+          this.setFronendError(
+                          ["Unknown error: The server may be too busy or down right now.",
+                           "Please reload and try again later. Or report a bug to",
+                           "philip@pgbovine.net by clicking the 'Generate permanent link'",
+                           "button at the bottom and including a URL in your email."]);
         }
       } else {
         this.prevVisualizer = this.myVisualizer;
