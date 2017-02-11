@@ -23499,6 +23499,12 @@ var OptLiveFrontend = (function (_super) {
             }
         }
     };
+    // need to override the version in opt-frontend-common.ts
+    OptLiveFrontend.prototype.redrawConnectors = function () {
+        if (this.myVisualizer) {
+            this.myVisualizer.redrawConnectors();
+        }
+    };
     // override with NOP to disable diff snapshots in live mode
     OptLiveFrontend.prototype.snapshotCodeDiff = function () { };
     OptLiveFrontend.prototype.initAceEditor = function (height) {
