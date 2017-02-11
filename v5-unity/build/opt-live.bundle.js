@@ -23254,6 +23254,16 @@ var OptLiveFrontend = (function (_super) {
         });
         return _this;
     }
+    // override verison in opt-frontend.ts
+    OptLiveFrontend.prototype.setAceMode = function () {
+        var v = $('#pythonVersionSelector').val();
+        if (v !== 'js' && v !== '2' && v !== '3') {
+            // we don't support live mode for this value of v, so set it to
+            // python 2 by default
+            $('#pythonVersionSelector').val('2');
+        }
+        _super.prototype.setAceMode.call(this); // delegate!
+    };
     OptLiveFrontend.prototype.toggleSyntaxError = function (x) {
         if (x) {
             this.hasSyntaxError = true;

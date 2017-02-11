@@ -123,6 +123,17 @@ export class OptLiveFrontend extends OptFrontend {
     });
   }
 
+  // override verison in opt-frontend.ts
+  setAceMode() {
+    var v = $('#pythonVersionSelector').val();
+    if (v !== 'js' && v !== '2' && v !== '3') {
+      // we don't support live mode for this value of v, so set it to
+      // python 2 by default
+      $('#pythonVersionSelector').val('2');
+    }
+    super.setAceMode(); // delegate!
+  }
+
   toggleSyntaxError(x) {
     if (x) {
       this.hasSyntaxError = true;
