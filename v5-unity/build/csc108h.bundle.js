@@ -421,9 +421,6 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAADwCAMAAADY
 - substitute in a non-live version of the live editor from opt-live.js
   in addition to the janky current version of the editor
 
-- the 'hide attributes' link on objects don't work; also, while i'm at
-  it, maybe i can keep those changes persistent over time? err or not :/
-
 */
 /* pytutor coding gotchas:
 
@@ -2768,7 +2765,7 @@ var DataVisualizer = (function () {
                     superclassStr += ('[extends ' + obj[2].join(', ') + '] ');
                 }
                 d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' class ' + superclassStr +
-                    '<br/>' + '<a href="#" id="attrToggleLink">hide attributes</a>' + '</div>');
+                    '<br/>' + '<a href="javascript:void(0)" id="attrToggleLink">hide attributes</a>' + '</div>');
             }
             // right now, let's NOT display class members, since that clutters
             // up the display too much. in the future, consider displaying
@@ -2806,31 +2803,27 @@ var DataVisualizer = (function () {
             // from imported modules and custom types created from, say,
             // collections.namedtuple
             if (!isInstance) {
-                // super kludgy! use a global selector $ to get at the DOM
-                // element, which should be okay since IDs should be globally
-                // unique on a page, even with multiple ExecutionVisualizer
-                // instances ... but still feels dirty to me since it violates
-                // my "no using raw $(__) selectors for jQuery" convention :/
-                $(d3DomElement.selector + ' .typeLabel #attrToggleLink').click(function () {
-                    var elt = $(d3DomElement.selector + ' .classTbl');
+                var className = obj[1];
+                d3DomElement.find('.typeLabel #attrToggleLink').click(function () {
+                    var elt = d3DomElement.find('.classTbl');
                     elt.toggle();
                     $(this).html((elt.is(':visible') ? 'hide' : 'show') + ' attributes');
                     if (elt.is(':visible')) {
-                        myViz.classAttrsHidden[d3DomElement.selector] = false;
+                        myViz.classAttrsHidden[className] = false;
                         $(this).html('hide attributes');
                     }
                     else {
-                        myViz.classAttrsHidden[d3DomElement.selector] = true;
+                        myViz.classAttrsHidden[className] = true;
                         $(this).html('show attributes');
                     }
                     myViz.redrawConnectors(); // redraw all arrows!
-                    return false; // so that the <a href="#"> doesn't reload the page
+                    return false; // don't reload the page
                 });
                 // "remember" whether this was hidden earlier during this
                 // visualization session
-                if (myViz.classAttrsHidden[d3DomElement.selector]) {
-                    $(d3DomElement.selector + ' .classTbl').hide();
-                    $(d3DomElement.selector + ' .typeLabel #attrToggleLink').html('show attributes');
+                if (myViz.classAttrsHidden[className]) {
+                    d3DomElement.find('.classTbl').hide();
+                    d3DomElement.find('.typeLabel #attrToggleLink').html('show attributes');
                 }
             }
         }
