@@ -52,9 +52,7 @@ var util = require('util');
 // spawn a shell
 // http://nodejs.org/api/child_process.html#child_process_child_process_execfile_file_args_options_callback
 
-var TIMEOUT_SECS = 10;
-var JAVA_TIMEOUT_SECS = 15; // the Java backend is SUPER SLOW :/
-var CPP_TIMEOUT_SECS = 15; // the C/C++ backend is also SUPER SLOW :/
+var TIMEOUT_SECS = 15;
 
 var MAX_BUFFER_SIZE = 10 * 1024 * 1024;
 
@@ -69,7 +67,7 @@ function postExecHandler(res, useJSONP, err, stdout, stderr) {
     if (err.killed) {
       // timeout!
       errTrace = {code: '', trace: [{'event': 'uncaught_exception',
-                                     'exception_msg': 'Timeout error. Your code ran for more than ' + TIMEOUT_SECS + ' seconds. Please shorten and try again.'}]};
+                                     'exception_msg': 'Error: Your code ran for more than ' + TIMEOUT_SECS + ' seconds.\nThe server may be overloaded right now.\nPlease try again later, or shorten your code.'}]};
       if (useJSONP) {
         res.jsonp(errTrace /* return an actual object, not a string */);
       } else {
@@ -187,7 +185,7 @@ function exec_java_handler(useJSONP /* use bind first */, req, res) {
             inputObjJSON);
 
   child_process.execFile(exeFile, args,
-                         {timeout: JAVA_TIMEOUT_SECS * 1000 /* milliseconds */,
+                         {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
                           maxBuffer: MAX_BUFFER_SIZE,
                           // make SURE docker gets the kill signal;
                           // this signal seems to allow docker to clean
@@ -247,7 +245,7 @@ function exec_cpp_handler(useCPP /* use bind first */, useJSONP /* use bind firs
             useCPP ? 'cpp' : 'c');
 
   child_process.execFile(exeFile, args,
-                         {timeout: CPP_TIMEOUT_SECS * 1000 /* milliseconds */,
+                         {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
                           maxBuffer: MAX_BUFFER_SIZE,
                           // make SURE docker gets the kill signal;
                           // this signal seems to allow docker to clean
