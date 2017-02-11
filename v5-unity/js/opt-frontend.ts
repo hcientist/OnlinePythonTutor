@@ -25,19 +25,19 @@ declare var codeopticonSession: string;  // FIX later when porting Codeopticon
 require('./lib/jquery-3.0.0.min.js');
 
 // just punt and use global script dependencies
-require("script!./lib/ace/src-min-noconflict/ace.js");
-require('script!./lib/ace/src-min-noconflict/mode-python.js');
-require('script!./lib/ace/src-min-noconflict/mode-javascript.js');
-require('script!./lib/ace/src-min-noconflict/mode-typescript.js');
-require('script!./lib/ace/src-min-noconflict/mode-c_cpp.js');
-require('script!./lib/ace/src-min-noconflict/mode-java.js');
-require('script!./lib/ace/src-min-noconflict/mode-ruby.js');
+require("script-loader!./lib/ace/src-min-noconflict/ace.js");
+require('script-loader!./lib/ace/src-min-noconflict/mode-python.js');
+require('script-loader!./lib/ace/src-min-noconflict/mode-javascript.js');
+require('script-loader!./lib/ace/src-min-noconflict/mode-typescript.js');
+require('script-loader!./lib/ace/src-min-noconflict/mode-c_cpp.js');
+require('script-loader!./lib/ace/src-min-noconflict/mode-java.js');
+require('script-loader!./lib/ace/src-min-noconflict/mode-ruby.js');
 
-require('script!./lib/socket.io-client/socket.io.js');
+require('script-loader!./lib/socket.io-client/socket.io.js');
 
 // need to directly import the class for type checking to work
-import {AbstractBaseFrontend, generateUUID, supports_html5_storage} from './opt-frontend-common.ts';
-import {ExecutionVisualizer, assert, htmlspecialchars} from './pytutor.ts';
+import {AbstractBaseFrontend, generateUUID, supports_html5_storage} from './opt-frontend-common';
+import {ExecutionVisualizer, assert, htmlspecialchars} from './pytutor';
 
 require('../css/opt-frontend.css');
 require('../css/opt-testcases.css');

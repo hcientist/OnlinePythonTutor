@@ -2,7 +2,7 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-import {ExecutionVisualizer} from './pytutor.ts';
+import {ExecutionVisualizer} from './pytutor';
 
 var allVisualizers = [];
 

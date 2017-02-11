@@ -2,9 +2,9 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
-import {OptFrontendSharedSessions,TogetherJS} from './opt-shared-sessions.ts';
-import {assert,htmlspecialchars} from './pytutor.ts';
-import {OptTestcases,redSadFace,yellowHappyFace} from './opt-testcases.ts';
+import {OptFrontendSharedSessions,TogetherJS} from './opt-shared-sessions';
+import {assert,htmlspecialchars} from './pytutor';
+import {OptTestcases,redSadFace,yellowHappyFace} from './opt-testcases';
 import {pythonExamplesHtml,PY2_EXAMPLES,PY3_EXAMPLES,
         javaExamplesHtml,JAVA_EXAMPLES,
         jsExamplesHtml,JS_EXAMPLES,
@@ -12,8 +12,8 @@ import {pythonExamplesHtml,PY2_EXAMPLES,PY3_EXAMPLES,
         rubyExamplesHtml,RUBY_EXAMPLES,
         cExamplesHtml,C_EXAMPLES,
         cppExamplesHtml,CPP_EXAMPLES,
-        exampleHeaderHtml} from './example-links.ts';
-import {footerHtml} from './footer-html.ts';
+        exampleHeaderHtml} from './example-links';
+import {footerHtml} from './footer-html';
 
 require('./lib/jquery-3.0.0.min.js');
 require('./lib/jquery.qtip.js');

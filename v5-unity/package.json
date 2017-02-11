@@ -8,7 +8,7 @@
   "scripts": {
     "start": "python bottle_server.py",
     "webpack": "webpack --devtool sourcemap --progress --colors --watch",
-    "production-build": "rm -f build/* && webpack --optimize-minimize && python add_cache_busting_query_strings.py"
+    "production-build": "rm -f build/* && webpack && python add_cache_busting_query_strings.py"
   },
   "dependencies": {
     "css-loader": "",

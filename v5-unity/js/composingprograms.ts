@@ -4,9 +4,9 @@
 
 // customized version of opt-frontend.js for ../composingprograms.html
 
-import {OptFrontendSharedSessions} from './opt-shared-sessions.ts';
-import {assert,htmlspecialchars} from './pytutor.ts';
-import {footerHtml} from './footer-html.ts';
+import {OptFrontendSharedSessions} from './opt-shared-sessions';
+import {assert,htmlspecialchars} from './pytutor';
+import {footerHtml} from './footer-html';
 
 export class OptFrontendComposingprograms extends OptFrontendSharedSessions {
   constructor(params={}) {

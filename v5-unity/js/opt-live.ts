@@ -40,17 +40,17 @@ require('../css/opt-frontend.css');
 require('../css/opt-live.css');
 
 // need to directly import the class for type checking to work
-import {OptFrontend} from './opt-frontend.ts';
-import {ExecutionVisualizer, assert, brightRed, darkArrowColor, lightArrowColor, SVG_ARROW_POLYGON, htmlspecialchars} from './pytutor.ts';
+import {OptFrontend} from './opt-frontend';
+import {ExecutionVisualizer, assert, brightRed, darkArrowColor, lightArrowColor, SVG_ARROW_POLYGON, htmlspecialchars} from './pytutor';
 
 // just punt and use global script dependencies
-require("script!./lib/ace/src-min-noconflict/ace.js");
-require('script!./lib/ace/src-min-noconflict/mode-python.js');
-require('script!./lib/ace/src-min-noconflict/mode-javascript.js');
-require('script!./lib/ace/src-min-noconflict/mode-typescript.js');
-require('script!./lib/ace/src-min-noconflict/mode-c_cpp.js');
-require('script!./lib/ace/src-min-noconflict/mode-java.js');
-require('script!./lib/ace/src-min-noconflict/mode-ruby.js');
+require("script-loader!./lib/ace/src-min-noconflict/ace.js");
+require('script-loader!./lib/ace/src-min-noconflict/mode-python.js');
+require('script-loader!./lib/ace/src-min-noconflict/mode-javascript.js');
+require('script-loader!./lib/ace/src-min-noconflict/mode-typescript.js');
+require('script-loader!./lib/ace/src-min-noconflict/mode-c_cpp.js');
+require('script-loader!./lib/ace/src-min-noconflict/mode-java.js');
+require('script-loader!./lib/ace/src-min-noconflict/mode-ruby.js');
 
 
 var optLiveFrontend: OptLiveFrontend;

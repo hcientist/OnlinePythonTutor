@@ -11,7 +11,7 @@
 require('../css/opt-frontend.css');
 
 // need to directly import the class for typechecking to work
-import {AbstractBaseFrontend} from './opt-frontend-common.ts';
+import {AbstractBaseFrontend} from './opt-frontend-common';
 
 var optFrontend; // singleton IframeEmbedFrontend object
 

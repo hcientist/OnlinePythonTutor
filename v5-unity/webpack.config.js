@@ -16,6 +16,9 @@ module.exports = {
 
       // run a micro frontend regression test after every webpack build
       // to sanity-check
+      //
+      // TODO: get frontend regression tests working again before re-enabling them:
+      /*
       new WebpackOnBuildPlugin(function(stats) {
         console.log("\n");
         exec("cd ../tests/frontend-regression-tests/ && make micro", (error, stdout, stderr) => {
@@ -25,10 +28,23 @@ module.exports = {
           }
         });
       }),
+      */
     ],
 
     // some included libraries reference 'jquery', so point to it:
     resolve : {
+        // VERY IMPORTANT to put .ts *FIRST* (or as the only item) in
+        // this list (if you're going to list other stuff), so that module
+        // names first resolve to .ts files
+        //
+        // this way, you can import modules like this without the .ts
+        // extension:
+        // import {ExecutionVisualizer} from './pytutor';
+        //
+        // for some reason, you're not allowed to put explicit filename
+        // extensions in newer versions of webpack, so we need this line:
+        extensions: ['.ts'],
+
         alias: {
             "jquery": __dirname + "/js/lib/jquery-3.0.0.min.js",
             "$": __dirname + "/js/lib/jquery-3.0.0.min.js",
@@ -57,7 +73,7 @@ module.exports = {
 
     module: {
         loaders: [
-            { test: /\.css$/, loader: "style!css" }, // CSS
+            { test: /\.css$/, loader: "style-loader!css-loader" }, // CSS
             { test: /\.(png|jpg)$/, loader: 'url-loader' }, // images
             { test: /\.ts$/, loader: 'ts-loader' } // TypeScript
         ]

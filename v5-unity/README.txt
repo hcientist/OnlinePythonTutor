@@ -1,30 +1,30 @@
----
 Online Python Tutor v5 "unity" -- the goal for this version is to
 significantly clean up, modernize, and modularize the OPT codebase to
 ease future development.
 
 ---
-
 After everything has been installed properly (see below):
 
 To start the Webpack file watching and compilation environment, run:
-
   npm run webpack
 
-
 To start the webserver, run:
-
   npm start
 
-
 then visit here to load an HTML page in your browser:
-
   http://localhost:8003/visualize.html
 
-
 To make a production (minified, cache-busted) build for deployment, run:
-
   npm run production-build
+
+(TODO: the --optimize-minimize doesn't seem to work right now; dunno
+why, ergh)
+
+---
+Most recently tested on 2017-02-11 with these versions of major tools:
+
+typescript 2.1.6
+webpack 2.2.1
 
 ---
 History:
@@ -42,7 +42,7 @@ legacy code (hopefully)
 To get started, install:
 
 1.) Node.js / npm
-2.) Global dependency installs:
+2.) Global npm dependency installs (run these commands in the v5-unity/ directory):
 
   sudo npm install webpack -g
   npm link webpack            # link to the local node_modules/ dir
@@ -55,15 +55,16 @@ To get started, install:
 
 4.) Run "tsd install" in this directory to install TypeScript definition files
 
-5.) Bottle.py for the local webserver
+5.) Instal bottle.py to run the local webserver (I suppose we could use node too, but oh wells!)
 
   sudo pip install bottle
 
 6.) Follow ../tests/frontend-regression-tests/README.txt to install
     dependencies for visual regression testing
 
+
 ======
-Older notes:
+Older (possibly-outdated) notes from mid-2016:
 
 Requires these global installations:
 - Node.js / npm

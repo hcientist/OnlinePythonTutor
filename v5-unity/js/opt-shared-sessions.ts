@@ -12,14 +12,14 @@ if (togetherjsInUrl) {
   console.log("togetherjsInUrl!");
 }
 
-require('script!./lib/togetherjs/togetherjs-min.js');
+require('script-loader!./lib/togetherjs/togetherjs-min.js');
 
 export var TogetherJS = (window as any).TogetherJS;
 
 
-import {supports_html5_storage} from './opt-frontend-common.ts';
-import {OptFrontend} from './opt-frontend.ts';
-import {assert} from './pytutor.ts';
+import {supports_html5_storage} from './opt-frontend-common';
+import {OptFrontend} from './opt-frontend';
+import {assert} from './pytutor';
 
 
 export class OptFrontendSharedSessions extends OptFrontend {

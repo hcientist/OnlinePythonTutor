@@ -20,7 +20,7 @@ require('./lib/diff_match_patch.js');
 require('./lib/jquery.ba-dotimeout.min.js');
 
 // need to directly import the class for type checking to work
-import {ExecutionVisualizer, assert, htmlspecialchars} from './pytutor.ts';
+import {ExecutionVisualizer, assert, htmlspecialchars} from './pytutor';
 
 
 // the main event!
