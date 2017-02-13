@@ -318,12 +318,6 @@ export class OptFrontend extends AbstractBaseFrontend {
       $("#javaOptionsPane").hide();
     }
 
-    if (selectorVal === 'c' || selectorVal === 'cpp') {
-      $("#cppOptionsPane").show();
-    } else {
-      $("#cppOptionsPane").hide();
-    }
-
     if (selectorVal === 'js' || selectorVal === '2' || selectorVal === '3') {
       $("#liveModeBtn").show();
     } else {

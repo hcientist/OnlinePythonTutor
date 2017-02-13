@@ -2584,8 +2584,15 @@ var DataVisualizer = (function () {
                             literalStr = literalStr.replace(new RegExp("\n", 'g'), '\\n'); // replace ALL
                             literalStr = literalStr.replace(new RegExp("\t", 'g'), '\\t'); // replace ALL
                             literalStr = literalStr.replace(new RegExp('\"', 'g'), '\\"'); // replace ALL
-                            // print as a SINGLE-quoted string literal (to emulate C-style chars)
-                            literalStr = "'" + literalStr + "'";
+                            // unprintable chars are denoted with '???', so show them as
+                            // a special unicode character:
+                            if (typeName === 'char' && literalStr === '???') {
+                                literalStr = '\uFFFD'; // question mark in black diamond unicode character
+                            }
+                            else {
+                                // print as a SINGLE-quoted string literal (to emulate C-style chars)
+                                literalStr = "'" + literalStr + "'";
+                            }
                             rep = htmlspecialchars(literalStr);
                         }
                     }
