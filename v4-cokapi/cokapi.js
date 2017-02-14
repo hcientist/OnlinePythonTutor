@@ -80,7 +80,7 @@ function postExecHandler(res, useJSONP, err, stdout, stderr) {
                                        'exception_msg': 'Error: stopped after running 1000 steps and cannot display visualization.\nShorten your code, since Python Tutor is not designed to handle long-running code.'}]};
       } else {
         errTrace = {code: '', trace: [{'event': 'uncaught_exception',
-                                       'exception_msg': "Unknown error. Report a bug to philip@pgbovine.net by clicking on the\n'Generate permanent link' button at the bottom and including a URL in your email."}]};
+                                       'exception_msg': "Unknown error. The server may be down or overloaded right now.\nReport a bug to philip@pgbovine.net by clicking on the\n'Generate permanent link' button at the bottom and including a URL in your email."}]};
       }
 
       if (useJSONP) {
@@ -97,7 +97,7 @@ function postExecHandler(res, useJSONP, err, stdout, stderr) {
         res.jsonp(stdoutParsed /* return an actual object, not a string */);
       } catch(e) {
         errTrace = {code: '', trace: [{'event': 'uncaught_exception',
-                                       'exception_msg': "Unknown error. Report a bug to philip@pgbovine.net by clicking on the\n'Generate permanent link' button at the bottom and including a URL in your email."}]};
+                                       'exception_msg': "Unknown error. The server may be down or overloaded right now.\nReport a bug to philip@pgbovine.net by clicking on the\n'Generate permanent link' button at the bottom and including a URL in your email."}]};
         res.jsonp(errTrace /* return an actual object, not a string */);
       }
     } else {
