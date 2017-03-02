@@ -37,17 +37,25 @@ parser.add_option("--create_jsvar", dest="js_varname", default=None,
                   help="Create a JavaScript variable out of the trace")
 parser.add_option("--code", dest="usercode", default=None,
                   help="Load user code from a string instead of a file and output compact JSON")
+parser.add_option("--probe-exprs", dest="probe_exprs_json", default=None,
+                  help="A JSON list of strings representing expressions whose values to probe at each step (advanced)")
 
 (options, args) = parser.parse_args()
 INDENT_LEVEL = None if options.compact else 2
 
 if options.usercode:
   INDENT_LEVEL = None
+
+  probe_exprs = None
+  if options.probe_exprs_json:
+    probe_exprs = json.loads(options.probe_exprs_json)
+
   print(pg_logger.exec_script_str_local(options.usercode,
                                         options.raw_input_lst_json,
                                         options.cumulative,
                                         options.heapPrimitives,
-                                        json_finalizer))
+                                        json_finalizer,
+                                        probe_exprs=probe_exprs))
 else:
   fin = sys.stdin if args[0] == "-" else open(args[0])
   if options.js_varname:

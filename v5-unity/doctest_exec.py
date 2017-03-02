@@ -6,6 +6,8 @@ Input:
 - sys.argv[3] - a zero-indexed integer to run the example at a specific index in the list,
                 or 'all' to run all examples for this test (NOT IMPLEMENTED YET)
 - sys.argv[4] - a string containing the student's code to be run with the test
+- sys.argv[5] - [optional] a string representing a JSON list of strings of
+                expressions whose values should be probed at each execution step
 
 Output:
 
@@ -36,7 +38,7 @@ import pprint
 pp = pprint.PrettyPrinter()
 
 
-def opt_run_doctest(doctest, example_number, student_code):
+def opt_run_doctest(doctest, example_number, student_code, probe_exprs):
     def my_finalizer(input_code, output_trace):
         ret = dict(doctest=encode_doctest(doctest),
                    example_number=example_number,
@@ -51,7 +53,8 @@ def opt_run_doctest(doctest, example_number, student_code):
         logger = pg_logger.PGLogger(False, False, False, my_finalizer,
                                   disable_security_checks=False,
                                   custom_modules=custom_modules,
-                                  separate_stdout_by_module=True)
+                                  separate_stdout_by_module=True,
+                                  probe_exprs=probe_exprs)
         try:
             logger._runscript(script_str)
         except bdb.BdbQuit:
@@ -79,6 +82,12 @@ if __name__ == "__main__":
     test_name = sys.argv[2]
     example_number = sys.argv[3]
     student_code = sys.argv[4]
+
+    if len(sys.argv) > 5:
+        probe_exprs = json.loads(sys.argv[5])
+    else:
+        probe_exprs = None
+
     if example_number != 'all':
         example_number = int(example_number)
 
@@ -91,7 +100,7 @@ if __name__ == "__main__":
             for t in tests:
                 # run this test!
                 if t.name == test_name:
-                    opt_run_doctest(t, example_number, student_code)
+                    opt_run_doctest(t, example_number, student_code, probe_exprs)
                     found = True
                     break
             if not found:

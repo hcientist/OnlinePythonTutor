@@ -445,10 +445,15 @@ class PGLogger(bdb.Bdb):
     # for each module rather than all stdout going to a single stream
     def __init__(self, cumulative_mode, heap_primitives, show_only_outputs, finalizer_func,
                  disable_security_checks=False, crazy_mode=False,
-                 custom_modules=None, separate_stdout_by_module=False):
+                 custom_modules=None, separate_stdout_by_module=False, probe_exprs=None):
         bdb.Bdb.__init__(self)
         self.mainpyfile = ''
         self._wait_for_mainpyfile = 0
+
+        if probe_exprs:
+            self.probe_exprs = probe_exprs
+        else:
+            self.probe_exprs = None
 
         self.separate_stdout_by_module = separate_stdout_by_module
         self.stdout_by_module = {} # Key: module name, Value: StringIO faux-stdout
@@ -1036,6 +1041,7 @@ class PGLogger(bdb.Bdb):
 
 
         # climb up until you find '<module>', which is (hopefully) the global scope
+        top_frame = None
         while True:
           cur_frame = self.stack[i][0]
           cur_name = cur_frame.f_code.co_name
@@ -1061,6 +1067,8 @@ class PGLogger(bdb.Bdb):
           # stack to render should only be [foo, baz].
           if cur_frame in self.frame_ordered_ids:
             encoded_stack_locals.append(create_encoded_stack_entry(cur_frame))
+            if not top_frame:
+                top_frame = cur_frame
           i -= 1
 
         zombie_encoded_stack_locals = [create_encoded_stack_entry(e) for e in zombie_frames_to_render]
@@ -1069,7 +1077,8 @@ class PGLogger(bdb.Bdb):
         # encode in a JSON-friendly format now, in order to prevent ill
         # effects of aliasing later down the line ...
         encoded_globals = {}
-        for (k, v) in get_user_globals(tos[0], at_global_scope=(self.curindex <= 1)).items():
+        cur_globals_dict = get_user_globals(tos[0], at_global_scope=(self.curindex <= 1))
+        for (k, v) in cur_globals_dict.items():
           encoded_val = self.encoder.encode(v, self.get_parent_of_function)
           encoded_globals[k] = encoded_val
 
@@ -1143,6 +1152,21 @@ class PGLogger(bdb.Bdb):
           e['unique_hash'] = hash_str
 
 
+        # handle probe_exprs *before* encoding the heap with self.encoder.get_heap
+        encoded_probe_vals = {}
+        if self.probe_exprs:
+            if top_frame: # are we in a function call?
+                top_frame_locals = get_user_locals(top_frame)
+            else:
+                top_frame_locals = {}
+            for e in self.probe_exprs:
+                try:
+                    # evaluate it with globals + locals of the top frame ...
+                    probe_val = eval(e, cur_globals_dict, top_frame_locals)
+                    encoded_probe_vals[e] = self.encoder.encode(probe_val, self.get_parent_of_function)
+                except:
+                    pass # don't encode the value if there's been an error
+
         if self.show_only_outputs:
           trace_entry = dict(line=lineno,
                              event=event_type,
@@ -1161,6 +1185,8 @@ class PGLogger(bdb.Bdb):
                              stack_to_render=stack_to_render,
                              heap=self.encoder.get_heap(),
                              stdout=self.get_user_stdout())
+          if encoded_probe_vals:
+            trace_entry['probe_exprs'] = encoded_probe_vals
 
         # optional column numbers for greater precision
         # (only relevant in Py2crazy, a hacked CPython that supports column numbers)
@@ -1524,9 +1550,12 @@ def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func
 # disables security check and returns the result of finalizer_func
 # WARNING: ONLY RUN THIS LOCALLY and never over the web, since
 # security checks are disabled
-def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func):
+#
+# [optional] probe_exprs is a list of strings representing
+# expressions whose values to probe at each step (advanced)
+def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func, probe_exprs=None):
   # TODO: add py_crazy_mode option here too ...
-  logger = PGLogger(cumulative_mode, heap_primitives, False, finalizer_func, disable_security_checks=True)
+  logger = PGLogger(cumulative_mode, heap_primitives, False, finalizer_func, disable_security_checks=True, probe_exprs=probe_exprs)
 
   # TODO: refactor these NOT to be globals
   global input_string_queue
