@@ -21872,7 +21872,8 @@ function createAllVisualizersFromHtmlAttrs() {
         }
     });
 }
-// export globally
+// export globally -- hacky!!!
+window.addVisualizerToPage = addVisualizerToPage;
 window.createVisualizerFromJSON = createVisualizerFromJSON;
 window.createAllVisualizersFromHtmlAttrs = createAllVisualizersFromHtmlAttrs;
 

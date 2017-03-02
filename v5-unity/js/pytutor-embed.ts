@@ -86,6 +86,7 @@ function createAllVisualizersFromHtmlAttrs() {
   });
 }
 
-// export globally
+// export globally -- hacky!!!
+(window as any).addVisualizerToPage = addVisualizerToPage;
 (window as any).createVisualizerFromJSON = createVisualizerFromJSON;
 (window as any).createAllVisualizersFromHtmlAttrs = createAllVisualizersFromHtmlAttrs;
