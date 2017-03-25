@@ -19,11 +19,11 @@ edX:
 <p>
 Coursera:
 
-<a href="https://www.coursera.org/learn/learn-to-program">Intro CS w/ Python</a>
+<a href="https://www.coursera.org/learn/learn-to-program">Intro CS w/ Python</a> |
 <a href="https://www.coursera.org/learn/python">Intro Python</a> |
-<a href="https://www.coursera.org/learn/python-data-analysis">Data Analysis w/ Python</a>
+<a href="https://www.coursera.org/learn/python-data-analysis">Data Science w/ Python</a> |
 <a href="https://www.coursera.org/specializations/python">Intro Python series</a> |
-<a href="https://www.coursera.org/specializations/data-science-python">Data Science w/ Python</a> |
+<a href="https://www.coursera.org/specializations/data-science-python">Data Science w/ Python series</a>
 
 </p>
 
