@@ -6,10 +6,10 @@ edX:
 
 <a href="https://www.edx.org/course/python-data-science-uc-san-diegox-dse200x">Python for Data Science</a> |
 <a href="https://www.edx.org/course/introduction-computer-science-mitx-6-00-1x-10">Intro CS w/ Python (MIT)</a> |
-<a href="https://www.edx.org/course/introduction-computer-science-harvardx-cs50x">Intro CS (Harvard)</a> |
+<a href="https://www.edx.org/course/introduction-computer-science-harvardx-cs50x">Intro CS (Harvard)</a> | <br/>
 <a href="https://www.edx.org/course/introduction-computational-thinking-data-mitx-6-00-2x-5#!">Data Science (MIT)</a> |
 <a href="https://www.edx.org/course/software-construction-java-mitx-6-005-1x">Software Construction in Java (MIT)</a> |
-<a href="https://www.edx.org/course/nature-code-biology-javascript-epflx-nic1-0x">Comp. Bio w/ JavaScript</a> |
+<a href="https://www.edx.org/course/nature-code-biology-javascript-epflx-nic1-0x">Comp. Bio w/ JavaScript</a> | <br/>
 <a href="https://www.edx.org/course/intermediate-c-microsoft-dev210-2x">Intermediate C++</a> |
 <a href="https://www.edx.org/course/using-python-research-harvardx-ph526x">Python for Research</a> |
 <a href="https://www.edx.org/course/statistics-probability-data-science-uc-san-diegox-dse210x">Stats w/ Python</a> |
@@ -22,9 +22,8 @@ Coursera:
 <a href="https://www.coursera.org/learn/learn-to-program">Intro CS w/ Python</a> |
 <a href="https://www.coursera.org/learn/python">Intro Python</a> |
 <a href="https://www.coursera.org/learn/python-data-analysis">Data Science w/ Python</a> |
-<a href="https://www.coursera.org/specializations/python">Intro Python series</a> |
+<a href="https://www.coursera.org/specializations/python">Intro Python series</a> | <br/>
 <a href="https://www.coursera.org/specializations/data-science-python">Data Science w/ Python series</a>
-
 </p>
 
 <p>
@@ -33,10 +32,18 @@ Udacity:
 <a href="https://www.udacity.com/course/intro-to-computer-science--cs101">Intro CS w/ Python</a> |
 <a href="https://www.udacity.com/course/intro-to-java-programming--cs046">Intro Java</a> |
 <a href="https://www.udacity.com/course/intro-to-artificial-intelligence--cs271">Intro A.I.</a> |
-<a href="https://www.udacity.com/course/design-of-computer-programs--cs212">Design of Computer Programs</a> |
+<a href="https://www.udacity.com/course/design-of-computer-programs--cs212">Design of Computer Programs</a> | <br/>
 <a href="https://www.udacity.com/course/javascript-basics--ud804">JavaScript Basics</a> |
 <a href="https://www.udacity.com/course/technical-interview--ud513">Technical Interview Prep</a>
+</p>
 
+<p>
+Textbooks:
+
+<a href="http://composingprograms.com/">Composing Programs</a> |
+<a href="https://www.inferentialthinking.com/">Computational Thinking</a> |
+<a href="http://interactivepython.org/runestone/static/thinkcspy/index.html">Interactive Python</a> |
+<a href="http://runestoneinteractive.org/library.html">Runestone Books</a>
 </p>
 
 <p style="margin-top: 35px;">The examples below illustrate some of this tool's visualization capabilities but are <em>not</em> meant as standalone programming lessons. See the courses listed above for lessons.</p>`
