@@ -25365,7 +25365,11 @@ if(false) {
 
 "use strict";
 
-exports.exampleHeaderHtml = "<p>Here are some free courses that either already use Python Tutor or are good to use with it:\n</p>\n\n<p>\nedX:\n\n<a href=\"https://www.edx.org/course/python-data-science-uc-san-diegox-dse200x\">Python for Data Science</a> |\n<a href=\"https://www.edx.org/course/introduction-computer-science-mitx-6-00-1x-10\">Intro CS w/ Python (MIT)</a> |\n<a href=\"https://www.edx.org/course/introduction-computer-science-harvardx-cs50x\">Intro CS (Harvard)</a> | <br/>\n<a href=\"https://www.edx.org/course/introduction-computational-thinking-data-mitx-6-00-2x-5#!\">Data Science (MIT)</a> |\n<a href=\"https://www.edx.org/course/software-construction-java-mitx-6-005-1x\">Software Construction in Java (MIT)</a> |\n<a href=\"https://www.edx.org/course/nature-code-biology-javascript-epflx-nic1-0x\">Comp. Bio w/ JavaScript</a> | <br/>\n<a href=\"https://www.edx.org/course/intermediate-c-microsoft-dev210-2x\">Intermediate C++</a> |\n<a href=\"https://www.edx.org/course/using-python-research-harvardx-ph526x\">Python for Research</a> |\n<a href=\"https://www.edx.org/course/statistics-probability-data-science-uc-san-diegox-dse210x\">Stats w/ Python</a> |\n<a href=\"https://www.edx.org/course/how-win-coding-competitions-secrets-itmox-i2cpx-0#!\">Coding Competitions</a>\n</p>\n\n<p>\nCoursera:\n\n<a href=\"https://www.coursera.org/learn/learn-to-program\">Intro CS w/ Python</a> |\n<a href=\"https://www.coursera.org/learn/python\">Intro Python</a> |\n<a href=\"https://www.coursera.org/learn/python-data-analysis\">Data Science w/ Python</a> |\n<a href=\"https://www.coursera.org/specializations/python\">Intro Python series</a> | <br/>\n<a href=\"https://www.coursera.org/specializations/data-science-python\">Data Science w/ Python series</a>\n</p>\n\n<p>\nUdacity:\n\n<a href=\"https://www.udacity.com/course/intro-to-computer-science--cs101\">Intro CS w/ Python</a> |\n<a href=\"https://www.udacity.com/course/intro-to-java-programming--cs046\">Intro Java</a> |\n<a href=\"https://www.udacity.com/course/intro-to-artificial-intelligence--cs271\">Intro A.I.</a> |\n<a href=\"https://www.udacity.com/course/design-of-computer-programs--cs212\">Design of Computer Programs</a> | <br/>\n<a href=\"https://www.udacity.com/course/javascript-basics--ud804\">JavaScript Basics</a> |\n<a href=\"https://www.udacity.com/course/technical-interview--ud513\">Technical Interview Prep</a>\n</p>\n\n<p>\nTextbooks:\n\n<a href=\"http://composingprograms.com/\">Composing Programs</a> |\n<a href=\"https://www.inferentialthinking.com/\">Computational Thinking</a> |\n<a href=\"http://interactivepython.org/runestone/static/thinkcspy/index.html\">Interactive Python</a> |\n<a href=\"http://runestoneinteractive.org/library.html\">Runestone Books</a>\n</p>\n\n<p style=\"margin-top: 35px;\">The examples below illustrate some of this tool's visualization capabilities but are <em>not</em> meant as standalone programming lessons. See the courses listed above for lessons.</p>";
+exports.exampleHeaderHtml = "<p>Here are some free courses that either already use Python Tutor or are good to use with it:\n</p>\n\n<p>\nedX:\n\n<a href=\"https://www.edx.org/course/python-data-science-uc-san-diegox-dse200x\">Python for Data Science</a> |\n<a href=\"https://www.edx.org/course/introduction-computer-science-mitx-6-00-1x-10\">Intro CS w/ Python (MIT)</a> |\n<a href=\"https://www.edx.org/course/introduction-computational-thinking-data-mitx-6-00-2x-5#!\">Data Science (MIT)</a> |\n<a href=\"https://www.edx.org/course/introduction-computer-science-harvardx-cs50x\">Intro CS (Harvard)</a> | <br/>\n<a href=\"https://www.edx.org/course/software-construction-java-mitx-6-005-1x\">Software Construction in Java</a> |\n<a href=\"https://www.edx.org/course/using-python-research-harvardx-ph526x\">Python for Research</a> |\n<a href=\"https://www.edx.org/course/statistics-probability-data-science-uc-san-diegox-dse210x\">Stats w/ Python</a> |\n<a href=\"https://www.edx.org/course/how-win-coding-competitions-secrets-itmox-i2cpx-0#!\">Coding Competitions</a>\n</p>\n\n<p>\nCoursera:\n\n<a href=\"https://www.coursera.org/learn/learn-to-program\">Intro CS w/ Python</a> |\n<a href=\"https://www.coursera.org/learn/python\">Intro Python</a> |\n<a href=\"https://www.coursera.org/learn/python-data-analysis\">Data Science w/ Python</a> |\n<a href=\"https://www.coursera.org/specializations/python\">Intro Python series</a><br/>\n</p>\n\n<p>\nUdacity:\n\n<a href=\"https://www.udacity.com/course/intro-to-computer-science--cs101\">Intro CS w/ Python</a> |\n<a href=\"https://www.udacity.com/course/intro-to-java-programming--cs046\">Intro Java</a> |\n<a href=\"https://www.udacity.com/course/intro-to-artificial-intelligence--cs271\">Intro A.I.</a> |\n<a href=\"https://www.udacity.com/course/design-of-computer-programs--cs212\">Design of Computer Programs</a> | <br/>\n<a href=\"https://www.udacity.com/course/javascript-basics--ud804\">JavaScript Basics</a> |\n<a href=\"https://www.udacity.com/course/technical-interview--ud513\">Technical Interview Prep</a>\n</p>\n\n<p>\nTextbooks:\n\n<a href=\"http://composingprograms.com/\">Composing Programs</a> |\n<a href=\"https://www.inferentialthinking.com/\">Computational Thinking</a> |\n<a href=\"http://interactivepython.org/runestone/static/thinkcspy/index.html\">Interactive Python</a> |\n<a href=\"http://runestoneinteractive.org/library.html\">Runestone Books</a>\n</p>\n\n<p style=\"margin-top: 35px;\">The examples below illustrate some of this tool's visualization capabilities but are <em>not</em> meant as standalone programming lessons. See the courses listed above for lessons.</p>";
+// extraneous:
+// <a href="https://www.edx.org/course/nature-code-biology-javascript-epflx-nic1-0x">Comp. Bio w/ JavaScript</a> | <br/>
+// <a href="https://www.edx.org/course/intermediate-c-microsoft-dev210-2x">Intermediate C++</a> |
+//<a href="https://www.coursera.org/specializations/data-science-python">Data Science w/ Python series</a>
 exports.pythonExamplesHtml = "<p style=\"margin-top: 25px; font-weight: bold;\">Python Examples</p>\n\n<p style=\"margin-top: 10px;\">Basic:\n\n<a class=\"exampleLink\" id=\"aliasExampleLink\" href=\"#\">hello</a> |\n<a class=\"exampleLink\" id=\"happyExampleLink\" href=\"#\">happy</a> |\n<a class=\"exampleLink\" id=\"tutorialExampleLink\" href=\"#\">intro</a> |\n<a class=\"exampleLink\" id=\"filterExampleLink\" href=\"#\">filter</a> |\n<a class=\"exampleLink\" id=\"strtokExampleLink\" href=\"#\">tokenize</a> |\n<a class=\"exampleLink\" id=\"insSortExampleLink\" href=\"#\">insertion sort</a> |\n<a class=\"exampleLink\" id=\"forElseLink\" href=\"#\">for-else</a> |\n<a class=\"exampleLink\" id=\"rawInputExampleLink\" href=\"#\">user input</a>\n</p>\n\n<p style=\"margin-top: 15px;\">Math:\n<a class=\"exampleLink\" id=\"factExampleLink\" href=\"#\">factorial</a> |\n<a class=\"exampleLink\" id=\"fibonacciExampleLink\" href=\"#\">fibonacci</a> |\n<a class=\"exampleLink\" id=\"memoFibExampleLink\" href=\"#\">memoized fibonacci</a> |\n<a class=\"exampleLink\" id=\"newtonExampleLink\" href=\"#\">square root</a> |\n<a class=\"exampleLink\" id=\"pwGcdLink\" href=\"#\">gcd</a> |\n<a class=\"exampleLink\" id=\"towersOfHanoiLink\" href=\"#\">towers of hanoi</a>\n</p>\n\n\n<p style=\"margin-top: 15px;\">Objects:\n\n<a class=\"exampleLink\" id=\"oop1ExampleLink\" href=\"#\">OOP 1</a> |\n<a class=\"exampleLink\" id=\"oop2ExampleLink\" href=\"#\">OOP 2</a> |\n<a class=\"exampleLink\" id=\"oopSmallExampleLink\" href=\"#\">OOP 3</a> |\n<a class=\"exampleLink\" id=\"inheritanceExampleLink\" href=\"#\">inheritance</a>\n\n</p>\n\n<p style=\"margin-top: 15px;\">Linked Lists:\n<a class=\"exampleLink\" id=\"ll1Link\" href=\"#\">LL 1</a> |\n<a class=\"exampleLink\" id=\"ll2Link\" href=\"#\">LL 2</a> |\n<a class=\"exampleLink\" id=\"sumListLink\" href=\"#\">LL sum</a>\n</p>\n\n<p style=\"margin-top: 15px;\">Pointer Aliasing:<br/>\n<a class=\"exampleLink\" id=\"aliasing1Link\" href=\"#\">aliasing1</a> |\n<a class=\"exampleLink\" id=\"aliasing2Link\" href=\"#\">aliasing2</a> |\n<a class=\"exampleLink\" id=\"aliasing3Link\" href=\"#\">aliasing3</a> |\n<a class=\"exampleLink\" id=\"aliasing4Link\" href=\"#\">aliasing4</a> |\n<a class=\"exampleLink\" id=\"aliasing5Link\" href=\"#\">aliasing5</a> |\n<a class=\"exampleLink\" id=\"aliasing6Link\" href=\"#\">aliasing6</a> |\n<a class=\"exampleLink\" id=\"aliasing7Link\" href=\"#\">aliasing7</a> |\n<a class=\"exampleLink\" id=\"aliasing8Link\" href=\"#\">aliasing8</a> |\n<a class=\"exampleLink\" id=\"pwSumListLink\" href=\"#\">sumList</a>\n</p>\n\n<p style=\"margin-top: 15px;\">Higher-Order Functions:<br/>\n\n<a class=\"exampleLink\" id=\"closure1Link\" href=\"#\">closure1</a> |\n<a class=\"exampleLink\" id=\"closure2Link\" href=\"#\">closure2</a> |\n<a class=\"exampleLink\" id=\"closure3Link\" href=\"#\">closure3</a> |\n<a class=\"exampleLink\" id=\"closure4Link\" href=\"#\">closure4</a> |\n<a class=\"exampleLink\" id=\"closure5Link\" href=\"#\">closure5</a> |\n<a class=\"exampleLink\" id=\"mapExampleLink\" href=\"#\">list map</a> |\n<a class=\"exampleLink\" id=\"sumExampleLink\" href=\"#\">summation</a> |\n<a class=\"exampleLink\" id=\"lambdaParamLink\" href=\"#\">lambda param</a>\n\n</p>\n\n<p style=\"margin-top: 15px;\">Advanced:<br/>\n<a class=\"exampleLink\" id=\"listCompLink\" href=\"#\">list comp</a> |\n<a class=\"exampleLink\" id=\"compsLink\" href=\"#\">list/set/dict comp</a> |\n<a class=\"exampleLink\" id=\"decoratorsLink\" href=\"#\">decorator</a> |\n<a class=\"exampleLink\" id=\"genPrimesLink\" href=\"#\">generator</a> |\n<a class=\"exampleLink\" id=\"genExprLink\" href=\"#\">genexpr</a> |\n<a class=\"exampleLink\" id=\"varargsLink\" href=\"#\">varargs</a> |\n<a class=\"exampleLink\" id=\"pwTryFinallyLink\" href=\"#\">exception</a> |\n<a class=\"exampleLink\" id=\"metaclassLink\" href=\"#\">metaclass</a>\n</p>\n\n<p style=\"margin-top: 15px;\">Python 3 only: <a class=\"exampleLink\" id=\"tortureLink\" href=\"#\">student torture</a> |\n<a class=\"exampleLink\" id=\"nonlocalLink\" href=\"#\">nonlocal</a>\n</p>";
 exports.PY2_EXAMPLES = {
     tutorialExampleLink: "py_tutorial.txt",
@@ -25811,6 +25815,8 @@ var OptFrontendWithTestcases = (function (_super) {
         _this.activateRuntimeErrorSurvey = true;
         _this.prevExecutionExceptionObjLst = []; // previous consecutive executions with "compile"-time exceptions
         _this.prevExecutionRuntimeErrorMsg = null; // did the previous execution have a run-time error? if so, what was the error message?
+        _this.prevExecutionRuntimeErrorLine = null; // line number of previous run-time error (if any)
+        _this.prevExecutionRuntimeErrorCode = null; // full code involved in previous run-time error (if any)
         _this.optTests = new opt_testcases_1.OptTestcases(_this);
         var queryStrOptions = _this.getQueryStringOptions();
         if (queryStrOptions.testCasesLst) {
@@ -25913,6 +25919,8 @@ var OptFrontendWithTestcases = (function (_super) {
             var excObj = { killerException: killerException, myAppState: this.getAppState() };
             this.prevExecutionExceptionObjLst.push(excObj);
             this.prevExecutionRuntimeErrorMsg = null; // no run-time error since we had a compile-time error
+            this.prevExecutionRuntimeErrorLine = null;
+            this.prevExecutionRuntimeErrorCode = null;
         }
     };
     OptFrontendWithTestcases.prototype.finishSuccessfulExecution = function () {
@@ -25924,11 +25932,12 @@ var OptFrontendWithTestcases = (function (_super) {
         if (this.activateRuntimeErrorSurvey) {
             this.popupRuntimeErrorSurvey();
         }
-        this.prevExecutionRuntimeErrorMsg = null; // clear this now and populate it in
-        // updateOutputCallbackFunc if necessary
+        this.prevExecutionRuntimeErrorMsg = null; // clear this now and populate it in updateOutputCallbackFunc
+        this.prevExecutionRuntimeErrorLine = null;
+        this.prevExecutionRuntimeErrorCode = null;
     };
     // called whenever myVisualizer.updateOutput() is called to update the visualization;
-    // set prevExecutionRuntimeErrorMsg if the user has stepped to a trace
+    // set prevExecutionRuntimeErrorMsg / line / code if the user has stepped to a trace
     // entry that contains an error message. the rationale for doing this
     // is that we want to display only errors that the user has stepped to
     // and seen with their own eyes so that they can hopefully know what the
@@ -25939,6 +25948,8 @@ var OptFrontendWithTestcases = (function (_super) {
             var curEntry = this.myVisualizer.curTrace[this.myVisualizer.curInstr];
             if (curEntry.event === "exception") {
                 this.prevExecutionRuntimeErrorMsg = curEntry.exception_msg;
+                this.prevExecutionRuntimeErrorLine = curEntry.line;
+                this.prevExecutionRuntimeErrorCode = this.myVisualizer.curInputCode;
             }
         }
     };
@@ -26073,7 +26084,7 @@ var OptFrontendWithTestcases = (function (_super) {
             bubbleAceEditor.setShowPrintMargin(false);
             bubbleAceEditor.setBehavioursEnabled(false);
             bubbleAceEditor.setFontSize('10px');
-            $('#syntaxErrCodeDisplay').css('width', '320px');
+            $('#syntaxErrCodeDisplay').css('width', '350px');
             $('#syntaxErrCodeDisplay').css('height', '90px'); // VERY IMPORTANT so that it works on I.E., ugh!
             // don't do real-time syntax checks:
             // https://github.com/ajaxorg/ace/wiki/Syntax-validation
@@ -26123,8 +26134,9 @@ var OptFrontendWithTestcases = (function (_super) {
             $.get('syntax_err_survey.py', { arg: JSON.stringify(impressionObj) }, function (dat) { });
         }
     };
-    // created on 2017-05-15 to mimic experimentalPopUpSyntaxErrorSurvey,
-    // except for run-time errors instead of syntax (compile-time) errors
+    // created on 2017-05-15 to mimic experimentalPopUpSyntaxErrorSurvey
+    // (lots of copy-pasta!!!), except this is for run-time errors instead of
+    // compile-time (i.e., syntax) errors
     OptFrontendWithTestcases.prototype.popupRuntimeErrorSurvey = function () {
         var _this = this;
         var noErrorsInCurTrace = true;
@@ -26139,6 +26151,8 @@ var OptFrontendWithTestcases = (function (_super) {
         }
         if (this.prevExecutionRuntimeErrorMsg && noErrorsInCurTrace) {
             var savedPrevExecutionRuntimeErrorMsg = this.prevExecutionRuntimeErrorMsg; // save it now!
+            var savedPrevExecutionRuntimeErrorLine = this.prevExecutionRuntimeErrorLine;
+            var savedPrevExecutionRuntimeErrorCode = this.prevExecutionRuntimeErrorCode;
             var bub = new SyntaxErrorSurveyBubble(this.myVisualizer, 'pyCodeOutputDiv');
             // destroy then create a new tip:
             bub.destroyQTip();
@@ -26170,6 +26184,7 @@ var OptFrontendWithTestcases = (function (_super) {
             var version = 'v1'; // deployed on 2017-05-15
             var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
                                 <div id="syntaxErrHeader">You just fixed this error from the last time your code ran:</div>\
+                                <div id="syntaxErrCodeDisplay"></div>\
                                 <div id="syntaxErrMsg"></div>\
                                 <div id="syntaxErrQuestion">\
                                   What misunderstanding originally caused this error?<br/>\
@@ -26184,6 +26199,8 @@ var OptFrontendWithTestcases = (function (_super) {
                 var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
                 var resObj = { appState: _this.getAppState(),
                     err_msg: savedPrevExecutionRuntimeErrorMsg,
+                    err_line: savedPrevExecutionRuntimeErrorLine,
+                    err_code: savedPrevExecutionRuntimeErrorCode,
                     opt_uuid: _this.userUUID,
                     session_uuid: _this.sessionUUID,
                     reply: res,
@@ -26197,6 +26214,8 @@ var OptFrontendWithTestcases = (function (_super) {
                 var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
                 var resObj = { appState: _this.getAppState(),
                     err_msg: savedPrevExecutionRuntimeErrorMsg,
+                    err_line: savedPrevExecutionRuntimeErrorLine,
+                    err_code: savedPrevExecutionRuntimeErrorCode,
                     opt_uuid: _this.userUUID,
                     session_uuid: _this.sessionUUID,
                     reply: res,
@@ -26210,6 +26229,8 @@ var OptFrontendWithTestcases = (function (_super) {
                 var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
                 var resObj = { appState: _this.getAppState(),
                     err_msg: savedPrevExecutionRuntimeErrorMsg,
+                    err_line: savedPrevExecutionRuntimeErrorLine,
+                    err_code: savedPrevExecutionRuntimeErrorCode,
                     opt_uuid: _this.userUUID,
                     session_uuid: _this.sessionUUID,
                     reply: res,
@@ -26220,7 +26241,33 @@ var OptFrontendWithTestcases = (function (_super) {
                 bub.destroyQTip();
                 return false; // otherwise the 'a href' will trigger a page reload, ergh!
             });
+            var bubbleAceEditor = ace.edit('syntaxErrCodeDisplay');
+            bubbleAceEditor.$blockScrolling = Infinity; // kludgy to shut up weird warnings
+            bubbleAceEditor.setOptions({ minLines: 1, maxLines: 5 }); // keep this SMALL
+            bubbleAceEditor.setValue(savedPrevExecutionRuntimeErrorCode, -1);
+            var s = bubbleAceEditor.getSession();
+            // tab -> 4 spaces
+            s.setTabSize(4);
+            s.setUseSoftTabs(true);
+            // disable extraneous indicators:
+            s.setFoldStyle('manual'); // no code folding indicators
+            s.getDocument().setNewLineMode('unix'); // canonicalize all newlines to unix format
+            bubbleAceEditor.setHighlightActiveLine(false);
+            bubbleAceEditor.setShowPrintMargin(false);
+            bubbleAceEditor.setBehavioursEnabled(false);
+            bubbleAceEditor.setFontSize('10px');
+            $('#syntaxErrCodeDisplay').css('width', '350px');
+            $('#syntaxErrCodeDisplay').css('height', '90px'); // VERY IMPORTANT so that it works on I.E., ugh!
+            // don't do real-time syntax checks:
+            // https://github.com/ajaxorg/ace/wiki/Syntax-validation
+            s.setOption("useWorker", false);
+            bubbleAceEditor.setReadOnly(true);
+            s.setAnnotations([{ row: savedPrevExecutionRuntimeErrorLine - 1,
+                    column: null,
+                    type: 'error',
+                    text: savedPrevExecutionRuntimeErrorMsg }]);
             bub.redrawCodelineBubble(); // do an initial redraw to align everything
+            bubbleAceEditor.scrollToLine(savedPrevExecutionRuntimeErrorLine - 1, true);
             // don't forget htmlspecialchars
             $("#syntaxErrMsg").html(pytutor_1.htmlspecialchars(savedPrevExecutionRuntimeErrorMsg));
             // unbind scroll handler first, then bind new one
@@ -26234,6 +26281,8 @@ var OptFrontendWithTestcases = (function (_super) {
             // isn't initially visible to the user, but whatevers ...
             var impressionObj = { appState: this.getAppState(),
                 err_msg: savedPrevExecutionRuntimeErrorMsg,
+                err_line: savedPrevExecutionRuntimeErrorLine,
+                err_code: savedPrevExecutionRuntimeErrorCode,
                 opt_uuid: this.userUUID,
                 session_uuid: this.sessionUUID,
                 type: 'show',

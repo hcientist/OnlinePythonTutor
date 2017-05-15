@@ -6,11 +6,9 @@ edX:
 
 <a href="https://www.edx.org/course/python-data-science-uc-san-diegox-dse200x">Python for Data Science</a> |
 <a href="https://www.edx.org/course/introduction-computer-science-mitx-6-00-1x-10">Intro CS w/ Python (MIT)</a> |
-<a href="https://www.edx.org/course/introduction-computer-science-harvardx-cs50x">Intro CS (Harvard)</a> | <br/>
 <a href="https://www.edx.org/course/introduction-computational-thinking-data-mitx-6-00-2x-5#!">Data Science (MIT)</a> |
-<a href="https://www.edx.org/course/software-construction-java-mitx-6-005-1x">Software Construction in Java (MIT)</a> |
-<a href="https://www.edx.org/course/nature-code-biology-javascript-epflx-nic1-0x">Comp. Bio w/ JavaScript</a> | <br/>
-<a href="https://www.edx.org/course/intermediate-c-microsoft-dev210-2x">Intermediate C++</a> |
+<a href="https://www.edx.org/course/introduction-computer-science-harvardx-cs50x">Intro CS (Harvard)</a> | <br/>
+<a href="https://www.edx.org/course/software-construction-java-mitx-6-005-1x">Software Construction in Java</a> |
 <a href="https://www.edx.org/course/using-python-research-harvardx-ph526x">Python for Research</a> |
 <a href="https://www.edx.org/course/statistics-probability-data-science-uc-san-diegox-dse210x">Stats w/ Python</a> |
 <a href="https://www.edx.org/course/how-win-coding-competitions-secrets-itmox-i2cpx-0#!">Coding Competitions</a>
@@ -22,8 +20,7 @@ Coursera:
 <a href="https://www.coursera.org/learn/learn-to-program">Intro CS w/ Python</a> |
 <a href="https://www.coursera.org/learn/python">Intro Python</a> |
 <a href="https://www.coursera.org/learn/python-data-analysis">Data Science w/ Python</a> |
-<a href="https://www.coursera.org/specializations/python">Intro Python series</a> | <br/>
-<a href="https://www.coursera.org/specializations/data-science-python">Data Science w/ Python series</a>
+<a href="https://www.coursera.org/specializations/python">Intro Python series</a><br/>
 </p>
 
 <p>
@@ -47,6 +44,11 @@ Textbooks:
 </p>
 
 <p style="margin-top: 35px;">The examples below illustrate some of this tool's visualization capabilities but are <em>not</em> meant as standalone programming lessons. See the courses listed above for lessons.</p>`
+
+// extraneous:
+// <a href="https://www.edx.org/course/nature-code-biology-javascript-epflx-nic1-0x">Comp. Bio w/ JavaScript</a> | <br/>
+// <a href="https://www.edx.org/course/intermediate-c-microsoft-dev210-2x">Intermediate C++</a> |
+//<a href="https://www.coursera.org/specializations/data-science-python">Data Science w/ Python series</a>
 
 export var pythonExamplesHtml = `<p style="margin-top: 25px; font-weight: bold;">Python Examples</p>
 

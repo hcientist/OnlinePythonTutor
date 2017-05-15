@@ -75,7 +75,10 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
   activateSyntaxErrorSurvey: boolean = true;
   activateRuntimeErrorSurvey: boolean = true;
   prevExecutionExceptionObjLst = []; // previous consecutive executions with "compile"-time exceptions
+
   prevExecutionRuntimeErrorMsg: string = null; // did the previous execution have a run-time error? if so, what was the error message?
+  prevExecutionRuntimeErrorLine: number = null; // line number of previous run-time error (if any)
+  prevExecutionRuntimeErrorCode: string = null; // full code involved in previous run-time error (if any)
 
   constructor(params={}) {
     super(params);
@@ -202,6 +205,8 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
       var excObj = {killerException: killerException, myAppState: this.getAppState()};
       this.prevExecutionExceptionObjLst.push(excObj);
       this.prevExecutionRuntimeErrorMsg = null; // no run-time error since we had a compile-time error
+      this.prevExecutionRuntimeErrorLine = null;
+      this.prevExecutionRuntimeErrorCode = null;
     }
   }
 
@@ -215,12 +220,13 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
     if (this.activateRuntimeErrorSurvey) {
       this.popupRuntimeErrorSurvey();
     }
-    this.prevExecutionRuntimeErrorMsg = null; // clear this now and populate it in
-                                              // updateOutputCallbackFunc if necessary
+    this.prevExecutionRuntimeErrorMsg = null; // clear this now and populate it in updateOutputCallbackFunc
+    this.prevExecutionRuntimeErrorLine = null;
+    this.prevExecutionRuntimeErrorCode = null;
   }
 
   // called whenever myVisualizer.updateOutput() is called to update the visualization;
-  // set prevExecutionRuntimeErrorMsg if the user has stepped to a trace
+  // set prevExecutionRuntimeErrorMsg / line / code if the user has stepped to a trace
   // entry that contains an error message. the rationale for doing this
   // is that we want to display only errors that the user has stepped to
   // and seen with their own eyes so that they can hopefully know what the
@@ -231,6 +237,8 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
       var curEntry = this.myVisualizer.curTrace[this.myVisualizer.curInstr];
       if (curEntry.event === "exception") {
         this.prevExecutionRuntimeErrorMsg = curEntry.exception_msg;
+        this.prevExecutionRuntimeErrorLine = curEntry.line;
+        this.prevExecutionRuntimeErrorCode = this.myVisualizer.curInputCode;
       }
     }
   }
@@ -386,7 +394,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
       bubbleAceEditor.setBehavioursEnabled(false);
       bubbleAceEditor.setFontSize('10px');
 
-      $('#syntaxErrCodeDisplay').css('width', '320px');
+      $('#syntaxErrCodeDisplay').css('width', '350px');
       $('#syntaxErrCodeDisplay').css('height', '90px'); // VERY IMPORTANT so that it works on I.E., ugh!
 
       // don't do real-time syntax checks:
@@ -441,8 +449,9 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
     }
   }
 
-  // created on 2017-05-15 to mimic experimentalPopUpSyntaxErrorSurvey,
-  // except for run-time errors instead of syntax (compile-time) errors
+  // created on 2017-05-15 to mimic experimentalPopUpSyntaxErrorSurvey
+  // (lots of copy-pasta!!!), except this is for run-time errors instead of
+  // compile-time (i.e., syntax) errors
   popupRuntimeErrorSurvey() {
     var noErrorsInCurTrace = true;
     // scan through the entire trace to make sure there are no errors;
@@ -457,6 +466,9 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
 
     if (this.prevExecutionRuntimeErrorMsg && noErrorsInCurTrace) {
       var savedPrevExecutionRuntimeErrorMsg = this.prevExecutionRuntimeErrorMsg; // save it now!
+      var savedPrevExecutionRuntimeErrorLine = this.prevExecutionRuntimeErrorLine;
+      var savedPrevExecutionRuntimeErrorCode = this.prevExecutionRuntimeErrorCode;
+
       var bub = new SyntaxErrorSurveyBubble(this.myVisualizer, 'pyCodeOutputDiv');
 
       // destroy then create a new tip:
@@ -491,6 +503,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
       var version = 'v1'; // deployed on 2017-05-15
       var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
                                 <div id="syntaxErrHeader">You just fixed this error from the last time your code ran:</div>\
+                                <div id="syntaxErrCodeDisplay"></div>\
                                 <div id="syntaxErrMsg"></div>\
                                 <div id="syntaxErrQuestion">\
                                   What misunderstanding originally caused this error?<br/>\
@@ -507,6 +520,8 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
         var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
         var resObj = {appState: this.getAppState(),
                       err_msg: savedPrevExecutionRuntimeErrorMsg,
+                      err_line: savedPrevExecutionRuntimeErrorLine,
+                      err_code: savedPrevExecutionRuntimeErrorCode,
                       opt_uuid: this.userUUID,
                       session_uuid: this.sessionUUID,
                       reply: res,
@@ -522,6 +537,8 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
         var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
         var resObj = {appState: this.getAppState(),
                       err_msg: savedPrevExecutionRuntimeErrorMsg,
+                      err_line: savedPrevExecutionRuntimeErrorLine,
+                      err_code: savedPrevExecutionRuntimeErrorCode,
                       opt_uuid: this.userUUID,
                       session_uuid: this.sessionUUID,
                       reply: res,
@@ -537,6 +554,8 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
         var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
         var resObj = {appState: this.getAppState(),
                       err_msg: savedPrevExecutionRuntimeErrorMsg,
+                      err_line: savedPrevExecutionRuntimeErrorLine,
+                      err_code: savedPrevExecutionRuntimeErrorCode,
                       opt_uuid: this.userUUID,
                       session_uuid: this.sessionUUID,
                       reply: res,
@@ -550,7 +569,38 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
         return false; // otherwise the 'a href' will trigger a page reload, ergh!
       });
 
+      var bubbleAceEditor = ace.edit('syntaxErrCodeDisplay');
+      bubbleAceEditor.$blockScrolling = Infinity; // kludgy to shut up weird warnings
+      bubbleAceEditor.setOptions({minLines: 1, maxLines: 5}); // keep this SMALL
+      bubbleAceEditor.setValue(savedPrevExecutionRuntimeErrorCode, -1);
+
+      var s = bubbleAceEditor.getSession();
+      // tab -> 4 spaces
+      s.setTabSize(4);
+      s.setUseSoftTabs(true);
+      // disable extraneous indicators:
+      s.setFoldStyle('manual'); // no code folding indicators
+      s.getDocument().setNewLineMode('unix'); // canonicalize all newlines to unix format
+      bubbleAceEditor.setHighlightActiveLine(false);
+      bubbleAceEditor.setShowPrintMargin(false);
+      bubbleAceEditor.setBehavioursEnabled(false);
+      bubbleAceEditor.setFontSize('10px');
+
+      $('#syntaxErrCodeDisplay').css('width', '350px');
+      $('#syntaxErrCodeDisplay').css('height', '90px'); // VERY IMPORTANT so that it works on I.E., ugh!
+
+      // don't do real-time syntax checks:
+      // https://github.com/ajaxorg/ace/wiki/Syntax-validation
+      s.setOption("useWorker", false);
+      bubbleAceEditor.setReadOnly(true);
+
+      s.setAnnotations([{row: savedPrevExecutionRuntimeErrorLine - 1,
+                         column: null,
+                         type: 'error',
+                         text: savedPrevExecutionRuntimeErrorMsg}]);
+
       bub.redrawCodelineBubble(); // do an initial redraw to align everything
+      (bubbleAceEditor as any).scrollToLine(savedPrevExecutionRuntimeErrorLine - 1, true);
 
       // don't forget htmlspecialchars
       $("#syntaxErrMsg").html(htmlspecialchars(savedPrevExecutionRuntimeErrorMsg));
@@ -567,6 +617,8 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
       // isn't initially visible to the user, but whatevers ...
       var impressionObj = {appState: this.getAppState(),
                            err_msg: savedPrevExecutionRuntimeErrorMsg,
+                           err_line: savedPrevExecutionRuntimeErrorLine,
+                           err_code: savedPrevExecutionRuntimeErrorCode,
                            opt_uuid: this.userUUID,
                            session_uuid: this.sessionUUID,
                            type: 'show',
