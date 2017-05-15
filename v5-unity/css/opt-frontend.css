@@ -81,6 +81,12 @@ button.surveyBtn {
   margin-top: 8px;
 }
 
+button.surveyBtnBig {
+  font-size: 11pt;
+  padding: 5px;
+  margin-top: 0px;
+}
+
 #footer {
   color: #999;
   font-size: 9pt;

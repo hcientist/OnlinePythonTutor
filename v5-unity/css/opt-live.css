@@ -49,10 +49,22 @@ div#rawUserInputDiv {
 }
 
 
+button.surveyBtn {
+  font-size: 8pt;
+  margin-top: 8px;
+}
+
+button.surveyBtnBig {
+  font-size: 11pt;
+  padding: 5px;
+  margin-top: 0px;
+}
+
+
 /* keep it a fixed min height so that footer below it doesn't jiggle up
    and down */
 #frontendErrorOutput {
-  min-height: 40px;
+  min-height: 20pt;
 }
 
 #liveModeHeader {
