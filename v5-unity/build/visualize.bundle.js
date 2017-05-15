@@ -26127,7 +26127,17 @@ var OptFrontendWithTestcases = (function (_super) {
     // except for run-time errors instead of syntax (compile-time) errors
     OptFrontendWithTestcases.prototype.popupRuntimeErrorSurvey = function () {
         var _this = this;
-        if (this.prevExecutionRuntimeErrorMsg) {
+        var noErrorsInCurTrace = true;
+        // scan through the entire trace to make sure there are no errors;
+        // if there are any errors, then we haven't really definitively "fixed"
+        // all of the run-time errors yet, so don't display a pop-up message
+        for (var i = 0; i < this.myVisualizer.curTrace.length; i++) {
+            if (this.myVisualizer.curTrace[i].event === "exception") {
+                noErrorsInCurTrace = false;
+                break;
+            }
+        }
+        if (this.prevExecutionRuntimeErrorMsg && noErrorsInCurTrace) {
             var bub = new SyntaxErrorSurveyBubble(this.myVisualizer, 'pyCodeOutputDiv');
             // destroy then create a new tip:
             bub.destroyQTip();
