@@ -26138,6 +26138,7 @@ var OptFrontendWithTestcases = (function (_super) {
             }
         }
         if (this.prevExecutionRuntimeErrorMsg && noErrorsInCurTrace) {
+            var savedPrevExecutionRuntimeErrorMsg = this.prevExecutionRuntimeErrorMsg; // save it now!
             var bub = new SyntaxErrorSurveyBubble(this.myVisualizer, 'pyCodeOutputDiv');
             // destroy then create a new tip:
             bub.destroyQTip();
@@ -26182,7 +26183,7 @@ var OptFrontendWithTestcases = (function (_super) {
             $(bub.qTipContentID() + ' #syntaxErrSubmitBtn').click(function () {
                 var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
                 var resObj = { appState: _this.getAppState(),
-                    err_msg: _this.prevExecutionRuntimeErrorMsg,
+                    err_msg: savedPrevExecutionRuntimeErrorMsg,
                     opt_uuid: _this.userUUID,
                     session_uuid: _this.sessionUUID,
                     reply: res,
@@ -26195,7 +26196,7 @@ var OptFrontendWithTestcases = (function (_super) {
                 // grab the value anyways in case the learner wrote something decent ...
                 var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
                 var resObj = { appState: _this.getAppState(),
-                    err_msg: _this.prevExecutionRuntimeErrorMsg,
+                    err_msg: savedPrevExecutionRuntimeErrorMsg,
                     opt_uuid: _this.userUUID,
                     session_uuid: _this.sessionUUID,
                     reply: res,
@@ -26208,7 +26209,7 @@ var OptFrontendWithTestcases = (function (_super) {
                 // grab the value anyways in case the learner wrote something decent ...
                 var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
                 var resObj = { appState: _this.getAppState(),
-                    err_msg: _this.prevExecutionRuntimeErrorMsg,
+                    err_msg: savedPrevExecutionRuntimeErrorMsg,
                     opt_uuid: _this.userUUID,
                     session_uuid: _this.sessionUUID,
                     reply: res,
@@ -26221,7 +26222,7 @@ var OptFrontendWithTestcases = (function (_super) {
             });
             bub.redrawCodelineBubble(); // do an initial redraw to align everything
             // don't forget htmlspecialchars
-            $("#syntaxErrMsg").html(pytutor_1.htmlspecialchars(this.prevExecutionRuntimeErrorMsg));
+            $("#syntaxErrMsg").html(pytutor_1.htmlspecialchars(savedPrevExecutionRuntimeErrorMsg));
             // unbind scroll handler first, then bind new one
             this.myVisualizer.domRoot.find('#pyCodeOutputDiv')
                 .unbind('scroll')
@@ -26232,7 +26233,7 @@ var OptFrontendWithTestcases = (function (_super) {
             // NB: it might actually be hidden if it appears on a line that
             // isn't initially visible to the user, but whatevers ...
             var impressionObj = { appState: this.getAppState(),
-                err_msg: this.prevExecutionRuntimeErrorMsg,
+                err_msg: savedPrevExecutionRuntimeErrorMsg,
                 opt_uuid: this.userUUID,
                 session_uuid: this.sessionUUID,
                 type: 'show',
