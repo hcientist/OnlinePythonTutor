@@ -21965,10 +21965,13 @@ var AbstractBaseFrontend = (function () {
             // this shouldn't lead to problems since only ONE
             // ExecutionVisualizer will be shown at a time
             visualizerIdOverride: '1',
-            updateOutputCallback: function () { $('#urlOutput,#urlOutputShortened,#embedCodeOutput').val(''); },
+            updateOutputCallback: this.updateOutputCallbackFunc.bind(this),
             startingInstruction: 0,
         };
         return ret;
+    };
+    AbstractBaseFrontend.prototype.updateOutputCallbackFunc = function () {
+        $('#urlOutput,#urlOutputShortened,#embedCodeOutput').val('');
     };
     AbstractBaseFrontend.prototype.executeCodeFromScratch = function () {
         this.rawInputLst = []; // reset!
@@ -22301,7 +22304,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "/* CSS accompanying ../visualize.html */\n\nh1 {\n  font-weight: normal;\n  font-size: 20pt;\n  font-family: georgia, serif;\n  line-height: 1em;  /* enforce single spacing so that Georgia works */\n\n  margin-top: 0px;\n  margin-bottom: 8px;\n}\n\nh2 {\n  font-size: 12pt;\n  font-weight: normal;\n  font-family: georgia, serif;\n  line-height: 1.1em; /* enforce single spacing so that Georgia works */\n\n  margin-top: 2px;\n  margin-bottom: 20px;\n}\n\n\nbody {\n  background-color: white;\n  font-family: verdana, arial, helvetica, sans-serif;\n  font-size: 10pt;\n}\n\na,\na:visited,\na:hover {\n  color: #3D58A2;\n}\n\nspan {\n  padding: 0px;\n}\n\ntable#pyOutputPane {\n  padding: 10px;\n}\n\n#pyInputPane, #loadingPane {\n  margin-top: 10px;\n  margin-bottom: 20px;\n\n  max-width: 700px;\n  /* center align */\n  margin-left: auto;\n  margin-right: auto;\n}\n\n#loadingPane {\n  margin-bottom: 5px;\n}\n\n#codeInputPane {\n  margin-top: 5px;\n  font-size: 12pt;\n  border: 1px solid #ddd;\n}\n\n#codeInputWarnings {\n  margin-bottom: 8px;\n}\n\nbutton.smallBtn {\n  font-size: 10pt;\n  padding: 3px;\n}\n\nbutton.bigBtn {\n  font-size: 12pt;\n  padding: 6px;\n  margin-top: 0px;\n}\n\nbutton.surveyBtn {\n  font-size: 8pt;\n  margin-top: 8px;\n}\n\n#footer {\n  color: #999;\n  font-size: 9pt;\n  border-top: 1px solid #bbbbbb;\n  padding-top: 5px;\n  margin-top: 5px;\n\n  max-width: 700px;\n  /* center align */\n  margin-left: auto;\n  margin-right: auto;\n}\n\n#frontendErrorOutput {\n  color: #e93f34; /* should match brightRed JavaScript variable */\n  font-size: 12pt;\n  line-height: 1.5em;\n  margin-top: 8px;\n}\n\n.togetherjsBtn {\n  color: #b80000;\n  font-size: 9pt;\n  padding: 4px;\n  margin-top: 3px;\n}\n\n#syncBtn {\n font-size: 8pt;\n margin-left: 3px;\n}\n\n#experimentalHeader {\n}\n\n#surveyHeader {\n  margin-left: 100px;\n}\n\n.surveyQ {\n  font-size: 9pt;\n  padding: 2px;\n}\n\n/* necessary for CodeMirror error line highlighting to work! */\n.CodeMirror .errorLine { background: #ffff3f !important; }\n\n\n/* from http://rog.ie/blog/css-star-rater */\n.star-rating {\n  font-size: 0;\n  white-space: nowrap;\n  display: inline-block;\n  /* pgbovine - scale this appropriately with a 5:1 ratio */\n  width: 100px;\n  height: 20px;\n  overflow: hidden;\n  position: relative;\n  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');\n  background-size: contain;\n}\n.star-rating i {\n  opacity: 0;\n  position: absolute;\n  left: 0;\n  top: 0;\n  height: 100%;\n  width: 20%;\n  z-index: 1;\n  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');\n  background-size: contain;\n}\n.star-rating input {\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  opacity: 0;\n  display: inline-block;\n  width: 20%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n  z-index: 2;\n  position: relative;\n}\n.star-rating input:hover + i,\n.star-rating input:checked + i {\n  opacity: 1;\n}\n.star-rating i ~ i {\n  width: 40%;\n}\n.star-rating i ~ i ~ i {\n  width: 60%;\n}\n.star-rating i ~ i ~ i ~ i {\n  width: 80%;\n}\n.star-rating i ~ i ~ i ~ i ~ i {\n  width: 100%;\n}\n\n\n#syntaxErrBubbleContents {\n  font-size: 9pt;\n  cursor: default;\n}\n\n#syntaxErrHeader {\n  margin-bottom: 3pt;\n}\n\n#syntaxErrCodeDisplay {\n  border: 1px solid #ddd;\n}\n\n#syntaxErrMsg {\n  color: #e93f34; /* should match brightRed JavaScript variable */\n  font-size: 10pt;\n  margin-top: 3pt;\n  margin-bottom: 2pt;\n}\n\n#syntaxErrQuestion {\n  margin-top: 12px;\n}\n\n#syntaxErrTxtInput {\n  margin-top: 3px;\n  margin-bottom: 6px;\n  padding: 2px;\n}\n\n#syntaxErrSubmitBtn, #syntaxErrCloseBtn {\n  margin-right: 8px;\n}\n\n#syntaxErrHideAllLink {\n  font-size: 8pt;\n}\n\n#testCasesPane {\n margin-top: 5px;\n padding-bottom: 10px;\n border-bottom: 1px solid #ccc;\n}\n\n\n/* for SyntaxErrorSurveyBubble */\n\ntextarea.bubbleInputText {\n  font-family: verdana, arial, helvetica, sans-serif;\n\tfont-size: 9pt;\n\tline-height: 1.3em;\n}\n\n.qtip-content {\n\tcolor: #333;\n\tbackground-color: #ffffff;\n\n\tmax-width: 350px;\n\twidth: 350px;\n\n\tborder: 2px solid #e93f34;\n\n  cursor: pointer;\n\n\t*border-right-width: 2px;\n\t*border-bottom-width: 2px;\n\n\t-webkit-border-radius: 5px;\n\t-moz-border-radius: 5px;\n\tborder-radius: 5px;\n\n\t-webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);\n\t-moz-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);\n\tbox-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);\n\n\t-webkit-background-clip: padding-box;\n\t-moz-background-clip: padding;\n\tbackground-clip: padding-box;\n}\n", ""]);
+exports.push([module.i, "/* CSS accompanying ../visualize.html */\n\nh1 {\n  font-weight: normal;\n  font-size: 20pt;\n  font-family: georgia, serif;\n  line-height: 1em;  /* enforce single spacing so that Georgia works */\n\n  margin-top: 0px;\n  margin-bottom: 8px;\n}\n\nh2 {\n  font-size: 12pt;\n  font-weight: normal;\n  font-family: georgia, serif;\n  line-height: 1.1em; /* enforce single spacing so that Georgia works */\n\n  margin-top: 2px;\n  margin-bottom: 20px;\n}\n\n\nbody {\n  background-color: white;\n  font-family: verdana, arial, helvetica, sans-serif;\n  font-size: 10pt;\n}\n\na,\na:visited,\na:hover {\n  color: #3D58A2;\n}\n\nspan {\n  padding: 0px;\n}\n\ntable#pyOutputPane {\n  padding: 10px;\n}\n\n#pyInputPane, #loadingPane {\n  margin-top: 10px;\n  margin-bottom: 20px;\n\n  max-width: 700px;\n  /* center align */\n  margin-left: auto;\n  margin-right: auto;\n}\n\n#loadingPane {\n  margin-bottom: 5px;\n}\n\n#codeInputPane {\n  margin-top: 5px;\n  font-size: 12pt;\n  border: 1px solid #ddd;\n}\n\n#codeInputWarnings {\n  margin-bottom: 8px;\n}\n\nbutton.smallBtn {\n  font-size: 10pt;\n  padding: 3px;\n}\n\nbutton.bigBtn {\n  font-size: 12pt;\n  padding: 6px;\n  margin-top: 0px;\n}\n\nbutton.surveyBtn {\n  font-size: 8pt;\n  margin-top: 8px;\n}\n\n#footer {\n  color: #999;\n  font-size: 9pt;\n  border-top: 1px solid #bbbbbb;\n  padding-top: 5px;\n  margin-top: 5px;\n\n  max-width: 700px;\n  /* center align */\n  margin-left: auto;\n  margin-right: auto;\n}\n\n#frontendErrorOutput {\n  color: #e93f34; /* should match brightRed JavaScript variable */\n  font-size: 12pt;\n  line-height: 1.5em;\n  margin-top: 8px;\n}\n\n.togetherjsBtn {\n  color: #b80000;\n  font-size: 9pt;\n  padding: 4px;\n  margin-top: 3px;\n}\n\n#syncBtn {\n font-size: 8pt;\n margin-left: 3px;\n}\n\n#experimentalHeader {\n}\n\n#surveyHeader {\n  margin-left: 100px;\n}\n\n.surveyQ {\n  font-size: 9pt;\n  padding: 2px;\n}\n\n/* necessary for CodeMirror error line highlighting to work! */\n.CodeMirror .errorLine { background: #ffff3f !important; }\n\n\n/* from http://rog.ie/blog/css-star-rater */\n.star-rating {\n  font-size: 0;\n  white-space: nowrap;\n  display: inline-block;\n  /* pgbovine - scale this appropriately with a 5:1 ratio */\n  width: 100px;\n  height: 20px;\n  overflow: hidden;\n  position: relative;\n  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');\n  background-size: contain;\n}\n.star-rating i {\n  opacity: 0;\n  position: absolute;\n  left: 0;\n  top: 0;\n  height: 100%;\n  width: 20%;\n  z-index: 1;\n  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');\n  background-size: contain;\n}\n.star-rating input {\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  opacity: 0;\n  display: inline-block;\n  width: 20%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n  z-index: 2;\n  position: relative;\n}\n.star-rating input:hover + i,\n.star-rating input:checked + i {\n  opacity: 1;\n}\n.star-rating i ~ i {\n  width: 40%;\n}\n.star-rating i ~ i ~ i {\n  width: 60%;\n}\n.star-rating i ~ i ~ i ~ i {\n  width: 80%;\n}\n.star-rating i ~ i ~ i ~ i ~ i {\n  width: 100%;\n}\n\n\n#syntaxErrBubbleContents {\n  font-size: 9.5pt;\n  cursor: default;\n}\n\n#syntaxErrHeader {\n  margin-bottom: 3pt;\n}\n\n#syntaxErrCodeDisplay {\n  border: 1px solid #ddd;\n}\n\n#syntaxErrMsg {\n  color: #e93f34; /* should match brightRed JavaScript variable */\n  font-size: 10pt;\n  margin-top: 3pt;\n  margin-bottom: 2pt;\n}\n\n#syntaxErrQuestion {\n  margin-top: 12px;\n}\n\n#syntaxErrTxtInput {\n  margin-top: 3px;\n  margin-bottom: 6px;\n  padding: 2px;\n}\n\n#syntaxErrSubmitBtn, #syntaxErrCloseBtn {\n  margin-right: 8px;\n}\n\n#syntaxErrHideAllLink {\n  font-size: 8pt;\n}\n\n#testCasesPane {\n margin-top: 5px;\n padding-bottom: 10px;\n border-bottom: 1px solid #ccc;\n}\n\n\n/* for SyntaxErrorSurveyBubble */\n\ntextarea.bubbleInputText {\n  font-family: verdana, arial, helvetica, sans-serif;\n\tfont-size: 9pt;\n\tline-height: 1.3em;\n}\n\n.qtip-content {\n\tcolor: #333;\n\tbackground-color: #ffffff;\n\n\tmax-width: 390px;\n\twidth: 390px;\n\n\tborder: 2px solid #e93f34;\n\n  cursor: pointer;\n\n\t*border-right-width: 2px;\n\t*border-bottom-width: 2px;\n\n\t-webkit-border-radius: 5px;\n\t-moz-border-radius: 5px;\n\tborder-radius: 5px;\n\n\t-webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);\n\t-moz-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);\n\tbox-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);\n\n\t-webkit-background-clip: padding-box;\n\t-moz-background-clip: padding;\n\tbackground-clip: padding-box;\n}\n", ""]);
 
 // exports
 
@@ -22756,6 +22759,8 @@ var OptFrontend = (function (_super) {
     OptFrontend.prototype.ignoreAjaxError = function (settings) {
         // other idiosyncratic errors to ignore
         if ((settings.url.indexOf('syntax_err_survey.py') > -1) ||
+            (settings.url.indexOf('runtime_err_survey.py') > -1) ||
+            (settings.url.indexOf('eureka_survey.py') > -1) ||
             (settings.url.indexOf('viz_interaction.py') > -1)) {
             return true;
         }
@@ -25803,7 +25808,9 @@ var OptFrontendWithTestcases = (function (_super) {
         if (params === void 0) { params = {}; }
         var _this = _super.call(this, params) || this;
         _this.activateSyntaxErrorSurvey = true;
+        _this.activateRuntimeErrorSurvey = true;
         _this.prevExecutionExceptionObjLst = []; // previous consecutive executions with "compile"-time exceptions
+        _this.prevExecutionRuntimeErrorMsg = null; // did the previous execution have a run-time error? if so, what was the error message?
         _this.optTests = new opt_testcases_1.OptTestcases(_this);
         var queryStrOptions = _this.getQueryStringOptions();
         if (queryStrOptions.testCasesLst) {
@@ -25887,6 +25894,7 @@ var OptFrontendWithTestcases = (function (_super) {
         var frontendOptionsObj = this.getBaseFrontendOptionsObj();
         backendOptionsObj.viz_test_case = true; // just so we can see this in server logs
         this.activateSyntaxErrorSurvey = false; // to avoid confusion with failed tests
+        this.activateRuntimeErrorSurvey = false; // to avoid confusion with failed tests
         frontendOptionsObj.jumpToEnd = true;
         this.executeCodeAndCreateViz(codeToExec, $('#pythonVersionSelector').val(), backendOptionsObj, frontendOptionsObj, 'pyOutputPane');
         this.optTests.doneRunningTest(); // this will run before the callback in executeCodeAndCreateViz, but oh wells
@@ -25904,6 +25912,7 @@ var OptFrontendWithTestcases = (function (_super) {
         if (killerException) {
             var excObj = { killerException: killerException, myAppState: this.getAppState() };
             this.prevExecutionExceptionObjLst.push(excObj);
+            this.prevExecutionRuntimeErrorMsg = null; // no run-time error since we had a compile-time error
         }
     };
     OptFrontendWithTestcases.prototype.finishSuccessfulExecution = function () {
@@ -25911,7 +25920,27 @@ var OptFrontendWithTestcases = (function (_super) {
         if (this.activateSyntaxErrorSurvey) {
             this.experimentalPopUpSyntaxErrorSurvey();
         }
-        this.prevExecutionExceptionObjLst = []; // reset
+        this.prevExecutionExceptionObjLst = []; // reset this since there was no compile-time error
+        if (this.activateRuntimeErrorSurvey) {
+            this.popupRuntimeErrorSurvey();
+        }
+        this.prevExecutionRuntimeErrorMsg = null; // clear this now and populate it in
+        // updateOutputCallbackFunc if necessary
+    };
+    // called whenever myVisualizer.updateOutput() is called to update the visualization;
+    // set prevExecutionRuntimeErrorMsg if the user has stepped to a trace
+    // entry that contains an error message. the rationale for doing this
+    // is that we want to display only errors that the user has stepped to
+    // and seen with their own eyes so that they can hopefully know what the
+    // error message is referring to ...
+    OptFrontendWithTestcases.prototype.updateOutputCallbackFunc = function () {
+        _super.prototype.updateOutputCallbackFunc.call(this);
+        if (this.myVisualizer) {
+            var curEntry = this.myVisualizer.curTrace[this.myVisualizer.curInstr];
+            if (curEntry.event === "exception") {
+                this.prevExecutionRuntimeErrorMsg = curEntry.exception_msg;
+            }
+        }
     };
     // created on 2015-04-18
     OptFrontendWithTestcases.prototype.experimentalPopUpSyntaxErrorSurvey = function () {
@@ -25958,15 +25987,31 @@ var OptFrontendWithTestcases = (function (_super) {
                     classes: 'qtip-light',
                 }
             });
+            /*
             var version = 'v3'; // deployed on 2015-09-08
+            var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
+                                      <div id="syntaxErrHeader">You just fixed the following error:</div>\
+                                      <div id="syntaxErrCodeDisplay"></div>\
+                                      <div id="syntaxErrMsg"></div>\
+                                      <div id="syntaxErrQuestion">\
+                                        Please help us improve error messages for future users.\
+                                         If you think the above message wasn\'t helpful, what would have been the best message for you here?<br/>\
+                                         <input type="text" id="syntaxErrTxtInput" size=60 maxlength=150/><br/>\
+                                         <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
+                                         <button id="syntaxErrCloseBtn" type="button">Close</button>\
+                                         <a href="#" id="syntaxErrHideAllLink">Hide all of these pop-ups</a>\
+                                      </div>\
+                                    </div>'
+            */
+            var version = 'v4'; // deployed on 2017-05-15
             var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
                                 <div id="syntaxErrHeader">You just fixed the following error:</div>\
                                 <div id="syntaxErrCodeDisplay"></div>\
                                 <div id="syntaxErrMsg"></div>\
                                 <div id="syntaxErrQuestion">\
-                                  Please help us improve error messages for future users.\
-                                   If you think the above message wasn\'t helpful, what would have been the best message for you here?<br/>\
-                                   <input type="text" id="syntaxErrTxtInput" size=60 maxlength=150/><br/>\
+                                  Please help us improve this tool.\
+                                  What would have been the most helpful error message for you to see here?<br/>\
+                                   <input type="text" id="syntaxErrTxtInput" size=62 maxlength=150/><br/>\
                                    <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
                                    <button id="syntaxErrCloseBtn" type="button">Close</button>\
                                    <a href="#" id="syntaxErrHideAllLink">Hide all of these pop-ups</a>\
@@ -26076,6 +26121,113 @@ var OptFrontendWithTestcases = (function (_super) {
                 type: 'show',
                 v: version };
             $.get('syntax_err_survey.py', { arg: JSON.stringify(impressionObj) }, function (dat) { });
+        }
+    };
+    // created on 2017-05-15 to mimic experimentalPopUpSyntaxErrorSurvey,
+    // except for run-time errors instead of syntax (compile-time) errors
+    OptFrontendWithTestcases.prototype.popupRuntimeErrorSurvey = function () {
+        var _this = this;
+        if (this.prevExecutionRuntimeErrorMsg) {
+            var bub = new SyntaxErrorSurveyBubble(this.myVisualizer, 'pyCodeOutputDiv');
+            // destroy then create a new tip:
+            bub.destroyQTip();
+            $(bub.hashID).qtip({
+                show: {
+                    ready: true,
+                    delay: 0,
+                    event: null,
+                    effect: function () { $(this).show(); },
+                },
+                hide: {
+                    fixed: true,
+                    event: null,
+                    effect: function () { $(this).hide(); },
+                },
+                content: ' ',
+                id: bub.domID,
+                position: {
+                    my: bub.my,
+                    at: bub.at,
+                    adjust: {
+                        x: 10,
+                    },
+                },
+                style: {
+                    classes: 'qtip-light',
+                }
+            });
+            var version = 'v1'; // deployed on 2017-05-15
+            var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
+                                <div id="syntaxErrHeader">You just fixed this error from the last time your code ran:</div>\
+                                <div id="syntaxErrMsg"></div>\
+                                <div id="syntaxErrQuestion">\
+                                  What misunderstanding originally caused this error?<br/>\
+                                   <input type="text" id="syntaxErrTxtInput" size=62 maxlength=150/><br/>\
+                                   <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
+                                   <button id="syntaxErrCloseBtn" type="button">Close</button>\
+                                   <a href="#" id="syntaxErrHideAllLink">Hide all of these pop-ups</a>\
+                                </div>\
+                              </div>';
+            $(bub.qTipContentID()).html(surveyBubbleHTML);
+            $(bub.qTipContentID() + ' #syntaxErrSubmitBtn').click(function () {
+                var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
+                var resObj = { appState: _this.getAppState(),
+                    err_msg: _this.prevExecutionRuntimeErrorMsg,
+                    opt_uuid: _this.userUUID,
+                    session_uuid: _this.sessionUUID,
+                    reply: res,
+                    type: 'submit',
+                    v: version };
+                $.get('runtime_err_survey.py', { arg: JSON.stringify(resObj) }, function (dat) { });
+                bub.destroyQTip();
+            });
+            $(bub.qTipContentID() + ' #syntaxErrCloseBtn').click(function () {
+                // grab the value anyways in case the learner wrote something decent ...
+                var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
+                var resObj = { appState: _this.getAppState(),
+                    err_msg: _this.prevExecutionRuntimeErrorMsg,
+                    opt_uuid: _this.userUUID,
+                    session_uuid: _this.sessionUUID,
+                    reply: res,
+                    type: 'close',
+                    v: version };
+                $.get('runtime_err_survey.py', { arg: JSON.stringify(resObj) }, function (dat) { });
+                bub.destroyQTip();
+            });
+            $(bub.qTipContentID() + ' #syntaxErrHideAllLink').click(function () {
+                // grab the value anyways in case the learner wrote something decent ...
+                var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
+                var resObj = { appState: _this.getAppState(),
+                    err_msg: _this.prevExecutionRuntimeErrorMsg,
+                    opt_uuid: _this.userUUID,
+                    session_uuid: _this.sessionUUID,
+                    reply: res,
+                    type: 'killall',
+                    v: version };
+                $.get('runtime_err_survey.py', { arg: JSON.stringify(resObj) }, function (dat) { });
+                _this.activateRuntimeErrorSurvey = false;
+                bub.destroyQTip();
+                return false; // otherwise the 'a href' will trigger a page reload, ergh!
+            });
+            bub.redrawCodelineBubble(); // do an initial redraw to align everything
+            // don't forget htmlspecialchars
+            $("#syntaxErrMsg").html(pytutor_1.htmlspecialchars(this.prevExecutionRuntimeErrorMsg));
+            // unbind scroll handler first, then bind new one
+            this.myVisualizer.domRoot.find('#pyCodeOutputDiv')
+                .unbind('scroll')
+                .scroll(function () {
+                bub.redrawCodelineBubble();
+            });
+            // log an event whenever this bubble is show (i.e., an 'impression')
+            // NB: it might actually be hidden if it appears on a line that
+            // isn't initially visible to the user, but whatevers ...
+            var impressionObj = { appState: this.getAppState(),
+                err_msg: this.prevExecutionRuntimeErrorMsg,
+                opt_uuid: this.userUUID,
+                session_uuid: this.sessionUUID,
+                type: 'show',
+                v: version };
+            $.get('runtime_err_survey.py', { arg: JSON.stringify(impressionObj) }, function (dat) { });
         }
     };
     return OptFrontendWithTestcases;

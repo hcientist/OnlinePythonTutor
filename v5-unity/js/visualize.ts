@@ -73,7 +73,9 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
   optTests: OptTestcases;
 
   activateSyntaxErrorSurvey: boolean = true;
+  activateRuntimeErrorSurvey: boolean = true;
   prevExecutionExceptionObjLst = []; // previous consecutive executions with "compile"-time exceptions
+  prevExecutionRuntimeErrorMsg: string = null; // did the previous execution have a run-time error? if so, what was the error message?
 
   constructor(params={}) {
     super(params);
@@ -175,6 +177,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
 
     (backendOptionsObj as any).viz_test_case = true; // just so we can see this in server logs
     this.activateSyntaxErrorSurvey = false; // to avoid confusion with failed tests
+    this.activateRuntimeErrorSurvey = false; // to avoid confusion with failed tests
     (frontendOptionsObj as any).jumpToEnd = true;
 
     this.executeCodeAndCreateViz(codeToExec,
@@ -198,6 +201,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
     if (killerException) {
       var excObj = {killerException: killerException, myAppState: this.getAppState()};
       this.prevExecutionExceptionObjLst.push(excObj);
+      this.prevExecutionRuntimeErrorMsg = null; // no run-time error since we had a compile-time error
     }
   }
 
@@ -206,7 +210,29 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
     if (this.activateSyntaxErrorSurvey) {
       this.experimentalPopUpSyntaxErrorSurvey();
     }
-    this.prevExecutionExceptionObjLst = []; // reset
+    this.prevExecutionExceptionObjLst = []; // reset this since there was no compile-time error
+
+    if (this.activateRuntimeErrorSurvey) {
+      this.popupRuntimeErrorSurvey();
+    }
+    this.prevExecutionRuntimeErrorMsg = null; // clear this now and populate it in
+                                              // updateOutputCallbackFunc if necessary
+  }
+
+  // called whenever myVisualizer.updateOutput() is called to update the visualization;
+  // set prevExecutionRuntimeErrorMsg if the user has stepped to a trace
+  // entry that contains an error message. the rationale for doing this
+  // is that we want to display only errors that the user has stepped to
+  // and seen with their own eyes so that they can hopefully know what the
+  // error message is referring to ...
+  updateOutputCallbackFunc() {
+    super.updateOutputCallbackFunc();
+    if (this.myVisualizer) {
+      var curEntry = this.myVisualizer.curTrace[this.myVisualizer.curInstr];
+      if (curEntry.event === "exception") {
+        this.prevExecutionRuntimeErrorMsg = curEntry.exception_msg;
+      }
+    }
   }
 
   // created on 2015-04-18
@@ -259,6 +285,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
         }
       });
 
+      /*
       var version = 'v3'; // deployed on 2015-09-08
       var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
                                 <div id="syntaxErrHeader">You just fixed the following error:</div>\
@@ -273,6 +300,23 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
                                    <a href="#" id="syntaxErrHideAllLink">Hide all of these pop-ups</a>\
                                 </div>\
                               </div>'
+      */
+
+      var version = 'v4'; // deployed on 2017-05-15
+      var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
+                                <div id="syntaxErrHeader">You just fixed the following error:</div>\
+                                <div id="syntaxErrCodeDisplay"></div>\
+                                <div id="syntaxErrMsg"></div>\
+                                <div id="syntaxErrQuestion">\
+                                  Please help us improve this tool.\
+                                  What would have been the most helpful error message for you to see here?<br/>\
+                                   <input type="text" id="syntaxErrTxtInput" size=62 maxlength=150/><br/>\
+                                   <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
+                                   <button id="syntaxErrCloseBtn" type="button">Close</button>\
+                                   <a href="#" id="syntaxErrHideAllLink">Hide all of these pop-ups</a>\
+                                </div>\
+                              </div>'
+
 
 
       $(bub.qTipContentID()).html(surveyBubbleHTML);
@@ -394,6 +438,128 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
                            type: 'show',
                            v: version};
       $.get('syntax_err_survey.py', {arg: JSON.stringify(impressionObj)}, function(dat) {});
+    }
+  }
+
+  // created on 2017-05-15 to mimic experimentalPopUpSyntaxErrorSurvey,
+  // except for run-time errors instead of syntax (compile-time) errors
+  popupRuntimeErrorSurvey() {
+    if (this.prevExecutionRuntimeErrorMsg) {
+      var bub = new SyntaxErrorSurveyBubble(this.myVisualizer, 'pyCodeOutputDiv');
+
+      // destroy then create a new tip:
+      bub.destroyQTip();
+      $(bub.hashID).qtip({
+        show: {
+          ready: true, // show on document.ready instead of on mouseenter
+          delay: 0,
+          event: null,
+          effect: function() {$(this).show();}, // don't do any fancy fading because it screws up with scrolling
+        },
+        hide: {
+          fixed: true,
+          event: null,
+          effect: function() {$(this).hide();}, // don't do any fancy fading because it screws up with scrolling
+        },
+
+        content: ' ', // can't be empty!
+        id: bub.domID,
+        position: {
+          my: bub.my,
+          at: bub.at,
+          adjust: {
+            x: 10,
+          },
+        },
+        style: {
+          classes: 'qtip-light',
+        }
+      });
+
+      var version = 'v1'; // deployed on 2017-05-15
+      var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
+                                <div id="syntaxErrHeader">You just fixed this error from the last time your code ran:</div>\
+                                <div id="syntaxErrMsg"></div>\
+                                <div id="syntaxErrQuestion">\
+                                  What misunderstanding originally caused this error?<br/>\
+                                   <input type="text" id="syntaxErrTxtInput" size=62 maxlength=150/><br/>\
+                                   <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
+                                   <button id="syntaxErrCloseBtn" type="button">Close</button>\
+                                   <a href="#" id="syntaxErrHideAllLink">Hide all of these pop-ups</a>\
+                                </div>\
+                              </div>'
+
+      $(bub.qTipContentID()).html(surveyBubbleHTML);
+
+      $(bub.qTipContentID() + ' #syntaxErrSubmitBtn').click(() => {
+        var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
+        var resObj = {appState: this.getAppState(),
+                      err_msg: this.prevExecutionRuntimeErrorMsg,
+                      opt_uuid: this.userUUID,
+                      session_uuid: this.sessionUUID,
+                      reply: res,
+                      type: 'submit',
+                      v: version};
+        $.get('runtime_err_survey.py', {arg: JSON.stringify(resObj)}, function(dat) {});
+
+        bub.destroyQTip();
+      });
+
+      $(bub.qTipContentID() + ' #syntaxErrCloseBtn').click(() => {
+        // grab the value anyways in case the learner wrote something decent ...
+        var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
+        var resObj = {appState: this.getAppState(),
+                      err_msg: this.prevExecutionRuntimeErrorMsg,
+                      opt_uuid: this.userUUID,
+                      session_uuid: this.sessionUUID,
+                      reply: res,
+                      type: 'close',
+                      v: version};
+        $.get('runtime_err_survey.py', {arg: JSON.stringify(resObj)}, function(dat) {});
+
+        bub.destroyQTip();
+      });
+
+      $(bub.qTipContentID() + ' #syntaxErrHideAllLink').click(() => {
+        // grab the value anyways in case the learner wrote something decent ...
+        var res = $(bub.qTipContentID() + ' #syntaxErrTxtInput').val();
+        var resObj = {appState: this.getAppState(),
+                      err_msg: this.prevExecutionRuntimeErrorMsg,
+                      opt_uuid: this.userUUID,
+                      session_uuid: this.sessionUUID,
+                      reply: res,
+                      type: 'killall',
+                      v: version};
+        $.get('runtime_err_survey.py', {arg: JSON.stringify(resObj)}, function(dat) {});
+
+        this.activateRuntimeErrorSurvey = false;
+        bub.destroyQTip();
+
+        return false; // otherwise the 'a href' will trigger a page reload, ergh!
+      });
+
+      bub.redrawCodelineBubble(); // do an initial redraw to align everything
+
+      // don't forget htmlspecialchars
+      $("#syntaxErrMsg").html(htmlspecialchars(this.prevExecutionRuntimeErrorMsg));
+
+      // unbind scroll handler first, then bind new one
+      this.myVisualizer.domRoot.find('#pyCodeOutputDiv')
+        .unbind('scroll')
+        .scroll(function() {
+          bub.redrawCodelineBubble();
+        });
+
+      // log an event whenever this bubble is show (i.e., an 'impression')
+      // NB: it might actually be hidden if it appears on a line that
+      // isn't initially visible to the user, but whatevers ...
+      var impressionObj = {appState: this.getAppState(),
+                           err_msg: this.prevExecutionRuntimeErrorMsg,
+                           opt_uuid: this.userUUID,
+                           session_uuid: this.sessionUUID,
+                           type: 'show',
+                           v: version};
+      $.get('runtime_err_survey.py', {arg: JSON.stringify(impressionObj)}, function(dat) {});
     }
   }
 

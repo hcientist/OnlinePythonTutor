@@ -184,7 +184,7 @@ button.surveyBtn {
 
 
 #syntaxErrBubbleContents {
-  font-size: 9pt;
+  font-size: 9.5pt;
   cursor: default;
 }
 
@@ -240,8 +240,8 @@ textarea.bubbleInputText {
 	color: #333;
 	background-color: #ffffff;
 
-	max-width: 350px;
-	width: 350px;
+	max-width: 390px;
+	width: 390px;
 
 	border: 2px solid #e93f34;
 

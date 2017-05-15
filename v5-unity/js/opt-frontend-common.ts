@@ -248,10 +248,14 @@ export abstract class AbstractBaseFrontend {
                 // this shouldn't lead to problems since only ONE
                 // ExecutionVisualizer will be shown at a time
                 visualizerIdOverride: '1',
-                updateOutputCallback: function() {$('#urlOutput,#urlOutputShortened,#embedCodeOutput').val('');},
+                updateOutputCallback: this.updateOutputCallbackFunc.bind(this),
                 startingInstruction: 0,
               };
     return ret;
+  }
+
+  updateOutputCallbackFunc() {
+    $('#urlOutput,#urlOutputShortened,#embedCodeOutput').val('');
   }
 
   executeCodeFromScratch() {

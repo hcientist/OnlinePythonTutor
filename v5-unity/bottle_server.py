@@ -24,6 +24,8 @@ import pg_logger
 @route('/LIVE_exec_<name:re:.+>.py')
 @route('/viz_interaction.py')
 @route('/syntax_err_survey.py')
+@route('/runtime_err_survey.py')
+@route('/eureka_survey.py')
 def dummy_ok(name=None):
     return 'OK'
 
