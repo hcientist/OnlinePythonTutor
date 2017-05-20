@@ -23520,10 +23520,13 @@ module.exports = "/* This Source Code Form is subject to the terms of the Mozill
 // deployed on 2017-05-15:
 var eureka_survey_v1 = "\n  <div id=\"eureka_survey\" style=\"text-align: center; margin-top: 10px; margin-bottom: 15px;\">\n    <div style=\"margin-bottom: 6px;\">Support our research by clicking below whenever you learn something:</div>\n    <button class=\"surveyBtnBig\" type=\"button\">I just cleared up a misunderstanding!</button>\n    <button class=\"surveyBtnBig\" type=\"button\" style=\"margin-left: 12px;\">I just fixed a bug in my code!</button>\n  </div>\n";
 var eureka_prompt_v1 = "What was your misunderstanding or error? (Press 'OK' to submit)";
+// deployed on 2017-05-20:
+var eureka_survey_v2 = "\n  <div id=\"eureka_survey\" style=\"text-align: center; margin-top: 10px; margin-bottom: 15px;\">\n    <div style=\"margin-bottom: 6px;\">Help us improve this tool by clicking below whenever you learn something:</div>\n    <button class=\"surveyBtnBig\" type=\"button\">I just cleared up a misunderstanding!</button>\n    <button class=\"surveyBtnBig\" type=\"button\" style=\"margin-left: 8px;\">I just fixed a bug in my code!</button>\n  </div>\n";
+var eureka_prompt_v2 = "What was your misunderstanding or error? (Press 'OK' to submit)";
 // adjust as versions increase ...
-exports.eureka_survey_version = 'v1';
-exports.eureka_survey = eureka_survey_v1;
-exports.eureka_prompt = eureka_prompt_v1;
+exports.eureka_survey_version = 'v2';
+exports.eureka_survey = eureka_survey_v2;
+exports.eureka_prompt = eureka_prompt_v2;
 
 
 /***/ }),
@@ -25953,7 +25956,7 @@ var OptFrontendWithTestcases = (function (_super) {
         this.prevExecutionRuntimeErrorCode = null;
         // put eureka_survey below #codAndNav so that it's highly visible:
         this.myVisualizer.domRoot.find('#codAndNav').append(surveys_1.eureka_survey);
-        this.myVisualizer.domRoot.find('#codAndNav #eureka_survey').css('margin-top', '35px'); // leave some extra space
+        this.myVisualizer.domRoot.find('#codAndNav #eureka_survey').css('margin-top', '30px'); // leave some extra space
         var that = this;
         $('.surveyBtnBig').click(function (e) {
             var myArgs = that.getAppState();
@@ -26074,6 +26077,7 @@ var OptFrontendWithTestcases = (function (_super) {
                                 <div id="syntaxErrCodeDisplay"></div>\
                                 <div id="syntaxErrMsg"></div>\
                                 <div id="syntaxErrQuestion">\
+                                  Please help us improve this tool with your feedback.<br/>\
                                   What misunderstanding do you think caused this error?<br/>\
                                    <input type="text" id="syntaxErrTxtInput" size=58 maxlength=150/><br/>\
                                    <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
@@ -26237,12 +26241,13 @@ var OptFrontendWithTestcases = (function (_super) {
             //var version = 'v1'; // deployed on 2017-05-15
             // v1 wording: "What misunderstanding originally caused this error?"
             var version = 'v2'; // deployed on 2017-05-20
-            // v2 wording: "What misunderstanding do you think caused this error?"
+            // v2 wording: "Please help us improve this tool with your feedback.\nWhat misunderstanding do you think caused this error?"
             var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
                                 <div id="syntaxErrHeader">You just fixed this error from the last time your code ran:</div>\
                                 <div id="syntaxErrCodeDisplay"></div>\
                                 <div id="syntaxErrMsg"></div>\
                                 <div id="syntaxErrQuestion">\
+                                  Please help us improve this tool with your feedback.<br/>\
                                   What misunderstanding do you think caused this error?<br/>\
                                    <input type="text" id="syntaxErrTxtInput" size=58 maxlength=150/><br/>\
                                    <button id="syntaxErrSubmitBtn" type="button">Submit</button>\

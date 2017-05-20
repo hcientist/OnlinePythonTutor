@@ -227,7 +227,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
 
     // put eureka_survey below #codAndNav so that it's highly visible:
     this.myVisualizer.domRoot.find('#codAndNav').append(eureka_survey);
-    this.myVisualizer.domRoot.find('#codAndNav #eureka_survey').css('margin-top', '35px'); // leave some extra space
+    this.myVisualizer.domRoot.find('#codAndNav #eureka_survey').css('margin-top', '30px'); // leave some extra space
     var that = this;
     $('.surveyBtnBig').click(function(e) {
       var myArgs = that.getAppState();
@@ -357,6 +357,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
                                 <div id="syntaxErrCodeDisplay"></div>\
                                 <div id="syntaxErrMsg"></div>\
                                 <div id="syntaxErrQuestion">\
+                                  Please help us improve this tool with your feedback.<br/>\
                                   What misunderstanding do you think caused this error?<br/>\
                                    <input type="text" id="syntaxErrTxtInput" size=58 maxlength=150/><br/>\
                                    <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
@@ -543,13 +544,14 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
       // v1 wording: "What misunderstanding originally caused this error?"
 
       var version = 'v2'; // deployed on 2017-05-20
-      // v2 wording: "What misunderstanding do you think caused this error?"
+      // v2 wording: "Please help us improve this tool with your feedback.\nWhat misunderstanding do you think caused this error?"
 
       var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
                                 <div id="syntaxErrHeader">You just fixed this error from the last time your code ran:</div>\
                                 <div id="syntaxErrCodeDisplay"></div>\
                                 <div id="syntaxErrMsg"></div>\
                                 <div id="syntaxErrQuestion">\
+                                  Please help us improve this tool with your feedback.<br/>\
                                   What misunderstanding do you think caused this error?<br/>\
                                    <input type="text" id="syntaxErrTxtInput" size=58 maxlength=150/><br/>\
                                    <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
