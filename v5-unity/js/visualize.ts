@@ -227,6 +227,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
 
     // put eureka_survey below #codAndNav so that it's highly visible:
     this.myVisualizer.domRoot.find('#codAndNav').append(eureka_survey);
+    this.myVisualizer.domRoot.find('#codAndNav #eureka_survey').css('margin-top', '35px'); // leave some extra space
     var that = this;
     $('.surveyBtnBig').click(function(e) {
       var myArgs = that.getAppState();
@@ -331,6 +332,7 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
                               </div>'
       */
 
+      /*
       var version = 'v4'; // deployed on 2017-05-15
       var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
                                 <div id="syntaxErrHeader">You just fixed the following error:</div>\
@@ -345,8 +347,23 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
                                    <a href="#" id="syntaxErrHideAllLink">Hide all of these pop-ups</a>\
                                 </div>\
                               </div>'
+      */
 
-
+      var version = 'v5'; // deployed on 2017-05-20
+      // directly ask about what they thought caused the error instead of having them (indirectly)
+      // suggest a better error message. this now matches the wording of runtime_err_survey v2.
+      var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
+                                <div id="syntaxErrHeader">You just fixed the following error:</div>\
+                                <div id="syntaxErrCodeDisplay"></div>\
+                                <div id="syntaxErrMsg"></div>\
+                                <div id="syntaxErrQuestion">\
+                                  What misunderstanding do you think caused this error?<br/>\
+                                   <input type="text" id="syntaxErrTxtInput" size=58 maxlength=150/><br/>\
+                                   <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
+                                   <button id="syntaxErrCloseBtn" type="button">Close</button>\
+                                   <a href="#" id="syntaxErrHideAllLink">Hide all of these pop-ups</a>\
+                                </div>\
+                              </div>'
 
       $(bub.qTipContentID()).html(surveyBubbleHTML);
 
@@ -521,14 +538,20 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
         }
       });
 
-      var version = 'v1'; // deployed on 2017-05-15
+
+      //var version = 'v1'; // deployed on 2017-05-15
+      // v1 wording: "What misunderstanding originally caused this error?"
+
+      var version = 'v2'; // deployed on 2017-05-20
+      // v2 wording: "What misunderstanding do you think caused this error?"
+
       var surveyBubbleHTML = '<div id="syntaxErrBubbleContents">\
                                 <div id="syntaxErrHeader">You just fixed this error from the last time your code ran:</div>\
                                 <div id="syntaxErrCodeDisplay"></div>\
                                 <div id="syntaxErrMsg"></div>\
                                 <div id="syntaxErrQuestion">\
-                                  What misunderstanding originally caused this error?<br/>\
-                                   <input type="text" id="syntaxErrTxtInput" size=62 maxlength=150/><br/>\
+                                  What misunderstanding do you think caused this error?<br/>\
+                                   <input type="text" id="syntaxErrTxtInput" size=58 maxlength=150/><br/>\
                                    <button id="syntaxErrSubmitBtn" type="button">Submit</button>\
                                    <button id="syntaxErrCloseBtn" type="button">Close</button>\
                                    <a href="#" id="syntaxErrHideAllLink">Hide all of these pop-ups</a>\
