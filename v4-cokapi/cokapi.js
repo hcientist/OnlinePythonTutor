@@ -260,9 +260,19 @@ function exec_cpp_handler(useCPP /* use bind first */, useJSONP /* use bind firs
 var https = require('https');
 var fs = require('fs');
 
+// obsolete as of 2017-06-28
+/*
 var options = {
   key: fs.readFileSync('cokapi.com.key'),
   cert: fs.readFileSync('cokapi.com-BUNDLE.crt')
+};
+*/
+
+// added letsencrypt support on 2017-06-28 -- MAKE SURE we have read permissions
+var options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/cokapi.com/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/cokapi.com/cert.pem'),
+  ca: fs.readFileSync('/etc/letsencrypt/live/cokapi.com/chain.pem')
 };
 
 var args = process.argv.slice(2);
