@@ -449,11 +449,10 @@ export abstract class AbstractBaseFrontend {
   setSurveyHTML() {
     // use ${this.userUUID} within the string ...
     var survey_v10 = '\n\
-    <p style="font-size: 10pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">\n\
-    <span>Support our research and keep this tool free by <a href="https://docs.google.com/forms/d/e/1FAIpQLSe48NsBZPvu1hrTBwc8-aSic7nPSxpsxFqpUxV5AN4LwnyJWg/viewform?entry.956368502=';
+    <p style="font-size: 11pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">\n\
+    <span><span style="color: #e93f34;">Support our research and keep this tool free</span> by filling out this <a href="https://docs.google.com/forms/d/e/1FAIpQLSe48NsBZPvu1hrTBwc8-aSic7nPSxpsxFqpUxV5AN4LwnyJWg/viewform?entry.956368502=';
     survey_v10 += this.userUUID;
-    survey_v10 += '" target="_blank">filling out this survey on how your native spoken language affects how you learn programming</a>.</span></p>';
-    //"We need more non-native English speakers."
+    survey_v10 += '" target="_blank">survey on how your native spoken language affects how you learn programming</a>.</span></p>';
 
     $('#surveyPane').html(survey_v10);
   }
