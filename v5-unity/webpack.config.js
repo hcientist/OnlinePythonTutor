@@ -43,7 +43,7 @@ module.exports = {
         //
         // for some reason, you're not allowed to put explicit filename
         // extensions in newer versions of webpack, so we need this line:
-        extensions: ['.ts'],
+        extensions: ['.ts', '.js', '.css', ''], // include '' fake-extension so that webpack finds literally-named imports too
 
         alias: {
             "jquery": __dirname + "/js/lib/jquery-3.0.0.min.js",

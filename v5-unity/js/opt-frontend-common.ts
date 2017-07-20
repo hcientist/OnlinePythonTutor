@@ -80,7 +80,7 @@ export abstract class AbstractBaseFrontend {
   // so you will need to customize for your server:
   serverRoot = (window.location.protocol === 'https:') ?
                 'https://cokapi.com:8001/' : // my certificate for https is registered via cokapi.com, so use it for now
-                'http://104.237.139.253:3000/';
+                'http://cokapi.com:3000/'; // try cokapi.com so that hopefully it works through firewalls better than directly using IP addr
 
   // see ../../v4-cokapi/cokapi.js for details
   langSettingToJsonpEndpoint = {
@@ -170,10 +170,10 @@ export abstract class AbstractBaseFrontend {
         }
       } else {
         this.setFronendError(
-                        ["Server error! Your code might be taking too much time to run or using too much memory.",
-                         "Or the server has CRASHED due to too many people using it at once. Try again later or",
-                         "report a bug to philip@pgbovine.net by clicking the 'Generate permanent link' button",
-                         "at the bottom of this page and including a URL in your email."]);
+                        ["Server error! Your code might be taking too much time/memory. Or the server CRASHED",
+                         "due to too many people using it. Or you are behind a FIREWALL that blocks access.",
+                         "Try again later, or report a bug to philip@pgbovine.net by clicking the 'Generate",
+                         "permanent link' button at the bottom of this page and including a URL in your email."]);
       }
       this.doneExecutingCode();
     });

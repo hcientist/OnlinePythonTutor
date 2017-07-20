@@ -33,7 +33,7 @@ require('./lib/jquery.jsPlumb-1.3.10-all-min.js'); // DO NOT UPGRADE ABOVE 1.3.1
 require('./lib/jquery-ui-1.11.4/jquery-ui.js');
 require('./lib/jquery-ui-1.11.4/jquery-ui.css');
 require('./lib/jquery.ba-bbq.js'); // contains slight pgbovine modifications
-require('../css/pytutor.css');
+require('../css/pytutor');
 
 
 // for TypeScript
