@@ -435,6 +435,7 @@
 	                }
 	                else {
 	                    _this.setFronendError(["Unknown error: The server may be too busy or down right now.",
+	                        "Or you are behind a FIREWALL that blocks access to this server.",
 	                        "Please reload and try again later. Or report a bug to",
 	                        "philip@pgbovine.net by clicking the 'Generate permanent link'",
 	                        "button at the bottom and including a URL in your email."]);
@@ -561,13 +562,8 @@
 	        }
 	    };
 	    AbstractBaseFrontend.prototype.setSurveyHTML = function () {
-	        // use ${this.userUUID} within the string ...
-	        var survey_v10 = '\n\
-	    <p style="font-size: 11pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">\n\
-	    <span><span style="color: #e93f34;">Support our research and keep this tool free</span> by filling out this <a href="https://docs.google.com/forms/d/e/1FAIpQLSe48NsBZPvu1hrTBwc8-aSic7nPSxpsxFqpUxV5AN4LwnyJWg/viewform?entry.956368502=';
-	        survey_v10 += this.userUUID;
-	        survey_v10 += '" target="_blank">survey on how your native spoken language affects how you learn programming</a>.</span></p>';
-	        $('#surveyPane').html(survey_v10);
+	        var survey_v11 = "<p style=\"font-size: 11pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;\">\n                        <span>\n                          <span style=\"color: #e93f34;\">Support our research and practice Python</span>\n                          by trying our new\n                          <a href=\"http://www.labinthewild.org/studies/python_tutor/\">debugging skill test</a>!";
+	        $('#surveyPane').html(survey_v11);
 	    };
 	    return AbstractBaseFrontend;
 	}());
@@ -591,7 +587,21 @@
 	</p>'
 
 	v10: (deployed on 2016-12-05) - survey of how native languages affects learning programming
+	     (taken down on 2017-07-28)
 	[see survey_v10 variable above]
+
+	    // use ${this.userUUID} within the string ...
+	    var survey_v10 = '\n\
+	    <p style="font-size: 11pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">\n\
+	    <span><span style="color: #e93f34;">Support our research and keep this tool free</span> by filling out this <a href="https://docs.google.com/forms/d/e/1FAIpQLSe48NsBZPvu1hrTBwc8-aSic7nPSxpsxFqpUxV5AN4LwnyJWg/viewform?entry.956368502=';
+	    survey_v10 += this.userUUID;
+	    survey_v10 += '" target="_blank">survey on how your native spoken language affects how you learn programming</a>.</span></p>';
+
+	    $('#surveyPane').html(survey_v10);
+
+	v11: labinthewild python debugging experiment, deployed on 2017-07-28
+	[see survey_v11 variable above]
+
 	*/
 	// misc utilities:
 	// From http://stackoverflow.com/a/8809472
