@@ -448,7 +448,7 @@ export abstract class AbstractBaseFrontend {
   }
 
   setSurveyHTML() {
-    var survey_v11 = `<p style="font-size: 11pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">
+    var survey_v11 = `<p style="font-size: 10pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">
                         <span>
                           <span style="color: #e93f34;">Support our research and practice Python</span>
                           by trying our new
