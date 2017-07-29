@@ -452,7 +452,7 @@ export abstract class AbstractBaseFrontend {
                         <span>
                           <span style="color: #e93f34;">Support our research and practice Python</span>
                           by trying our new
-                          <a href="http://www.labinthewild.org/studies/python_tutor/">debugging skill test</a>!`;
+                          <a target="_blank" href="http://www.labinthewild.org/studies/python_tutor/">debugging skill test</a>!`;
     $('#surveyPane').html(survey_v11);
   }
 } // END class AbstractBaseFrontend

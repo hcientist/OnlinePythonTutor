@@ -1040,7 +1040,7 @@
 	        }
 	    };
 	    AbstractBaseFrontend.prototype.setSurveyHTML = function () {
-	        var survey_v11 = "<p style=\"font-size: 10pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;\">\n                        <span>\n                          <span style=\"color: #e93f34;\">Support our research and practice Python</span>\n                          by trying our new\n                          <a href=\"http://www.labinthewild.org/studies/python_tutor/\">debugging skill test</a>!";
+	        var survey_v11 = "<p style=\"font-size: 10pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;\">\n                        <span>\n                          <span style=\"color: #e93f34;\">Support our research and practice Python</span>\n                          by trying our new\n                          <a target=\"_blank\" href=\"http://www.labinthewild.org/studies/python_tutor/\">debugging skill test</a>!";
 	        $('#surveyPane').html(survey_v11);
 	    };
 	    return AbstractBaseFrontend;
