@@ -1502,8 +1502,12 @@
 	            }
 	            // add an extra label to link back to the main site, so that viewers
 	            // on the embedded page know that they're seeing an OPT visualization
-	            base.append('<div style="font-size: 8pt; margin-bottom: 10px;">Visualized using <a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a></div>');
+	            base.append('<div style="font-size: 8pt; margin-bottom: 10px;">Visualized using <a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a> (<a href="https://twitter.com/pgbovine" target="_blank" style="color: #3D58A2;">@pgbovine</a>)</div>');
 	            base.find('#codeFooterDocs').hide(); // cut out extraneous docs
+	        }
+	        else {
+	            // also display credits:
+	            base.append('<div style="font-size: 8pt; margin-bottom: 10px;">Visualized using <a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a> (<a href="https://twitter.com/pgbovine" target="_blank" style="color: #3D58A2;">@pgbovine</a>)</div>');
 	        }
 	        // not enough room for these extra buttons ...
 	        if (this.params.codeDivWidth &&
@@ -4165,6 +4169,10 @@
 	        // returns True iff lineNo is visible in pyCodeOutputDiv
 	        var isOutputLineVisible = function (lineNo) {
 	            var lineNoTd = _this.domRoot.find('#lineNo' + lineNo);
+	            // if we can't even find this lineNo div, then punt!
+	            if (!lineNoTd || lineNoTd.length /* jQuery selector returns a list */ === 0) {
+	                return false;
+	            }
 	            var LO = lineNoTd.offset().top;
 	            var PO = pcod.offset().top;
 	            var ST = pcod.scrollTop();
@@ -4175,6 +4183,10 @@
 	        // smoothly scroll pyCodeOutputDiv so that the given line is at the center
 	        var scrollCodeOutputToLine = function (lineNo) {
 	            var lineNoTd = _this.domRoot.find('#lineNo' + lineNo);
+	            // if we can't even find this lineNo div, then punt!
+	            if (!lineNoTd || lineNoTd.length /* jQuery selector returns a list */ === 0) {
+	                return false;
+	            }
 	            var LO = lineNoTd.offset().top;
 	            var PO = pcod.offset().top;
 	            var ST = pcod.scrollTop();
