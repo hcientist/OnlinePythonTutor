@@ -44,6 +44,7 @@ random,
 re,
 string,
 time,
+typing,
 io/StringIO.
 <a
 href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3">Backend source code</a>.

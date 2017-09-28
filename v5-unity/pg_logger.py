@@ -117,7 +117,7 @@ else:
 ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'time', 'datetime',
                           'functools', 'itertools', 'operator', 'string',
                           'collections', 're', 'json',
-                          'heapq', 'bisect', 'copy', 'hashlib')
+                          'heapq', 'bisect', 'copy', 'hashlib', 'typing')
 
 # allow users to import but don't explicitly import it since it's
 # already been done above
@@ -151,7 +151,10 @@ CUSTOM_MODULE_IMPORTS = () # ignore these for now
 # NB: All modules in CUSTOM_MODULE_IMPORTS will be imported, warts and
 # all, so they better work on Python 2 and 3!
 for m in ALLOWED_STDLIB_MODULE_IMPORTS + CUSTOM_MODULE_IMPORTS:
-  __import__(m)
+  try:
+    __import__(m)
+  except ImportError:
+    pass
 
 
 # Restrict imports to a whitelist
