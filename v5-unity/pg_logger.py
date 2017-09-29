@@ -60,6 +60,10 @@ DEBUG = True
 
 BREAKPOINT_STR = '#break'
 
+# if a line starts with this string, then look for a comma-separated
+# list of variables after the colon. *hide* those variables in da trace
+PYTUTOR_HIDE_STR = '#pythontutor_hide:'
+
 CLASS_RE = re.compile('class\s+')
 
 
@@ -549,6 +553,8 @@ class PGLogger(bdb.Bdb):
         # ONLY at breakpoint lines.
         self.breakpoints = []
 
+        self.vars_to_hide = set() # see above comment for PYTUTOR_HIDE_STR
+
         self.prev_lineno = -1 # keep track of previous line just executed
 
 
@@ -910,6 +916,9 @@ class PGLogger(bdb.Bdb):
             if k == '__module__':
               continue
 
+            if k in self.vars_to_hide:
+              continue
+
             encoded_val = self.encoder.encode(v, self.get_parent_of_function)
             encoded_locals[k] = encoded_val
 
@@ -1082,6 +1091,9 @@ class PGLogger(bdb.Bdb):
         encoded_globals = {}
         cur_globals_dict = get_user_globals(tos[0], at_global_scope=(self.curindex <= 1))
         for (k, v) in cur_globals_dict.items():
+          if k in self.vars_to_hide:
+            continue
+
           encoded_val = self.encoder.encode(v, self.get_parent_of_function)
           encoded_globals[k] = encoded_val
 
@@ -1279,6 +1291,10 @@ class PGLogger(bdb.Bdb):
           if line.endswith(BREAKPOINT_STR):
             self.breakpoints.append(line_no)
 
+          if line.startswith(PYTUTOR_HIDE_STR):
+            hide_vars = line[len(PYTUTOR_HIDE_STR):]
+            hide_vars = [e.strip() for e in hide_vars.split(',')]
+            self.vars_to_hide.update(hide_vars)
 
         # populate an extent map to get more accurate ranges from code
         if self.crazy_mode:
