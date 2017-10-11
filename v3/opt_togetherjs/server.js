@@ -1,6 +1,12 @@
 // 2014-05-08 Philip Guo forked this code from TogetherJS
 // togetherjs/hub/server.js and started making modifications marked by
 // 'pgbovine' in comments
+//
+// see Makefile for deployment/running options
+//
+// 2017-10-09: started extending this server with a /requestPublicHelp
+// endpoint so that people can request help from anyone currently on the
+// OPT website rather than needing to find their own tutors/peers to help them.
 
 // Try to run with the following options to (hopefully!) prevent it from
 // mysteriously crashing and failing to restart (use --spinSleepTime to
@@ -142,6 +148,41 @@ var server = http.createServer(function(request, response) {
       return;
     }
     findRoom(prefix, max, response);
+  } else if (url.pathname == '/requestPublicHelp') { // pgbovine - copied and pasted from /findroom
+    if (request.method == "OPTIONS") {
+      // CORS preflight
+      corsAccept(request, response);
+      return;
+    }
+
+    // if url.query.removeFromQueue === true, then remove from
+    // publicHelpRequestQueue:
+    if (url.query.removeFromQueue) {
+      console.log('/requestPublicHelp removeFromQueue:', url.query);
+      removeFromPHRQueue(url.query.shareId);
+    } else {
+      // otherwise add to queue:
+      var obj = {id: url.query.shareId, url: url.query.shareUrl};
+      console.log('/requestPublicHelp', obj);
+
+      // avoid duplicates
+      var found = false;
+      for (var i=0; i < publicHelpRequestQueue.length; i++) {
+        if (publicHelpRequestQueue[i].id === obj.id) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        publicHelpRequestQueue.push(obj);
+      }
+    }
+
+    response.writeHead(200, {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*"
+    });
+    response.end(JSON.stringify({status: 'OKIE DOKIE'}));
   } else {
     write404(response);
   }
@@ -242,6 +283,20 @@ function originIsAllowed(origin) {
 var allConnections = {};
 var connectionStats = {};
 
+var publicHelpRequestQueue = []; // pgbovine
+function removeFromPHRQueue(id) {
+  var foundIndex = -1;
+  for (var i = 0; i < publicHelpRequestQueue.length; i++) {
+    if (publicHelpRequestQueue[i].id === id) {
+      foundIndex = i;
+      break;
+    }
+  }
+  if (foundIndex != -1) {
+    publicHelpRequestQueue.splice(foundIndex, 1);
+  }
+}
+
 var ID = 0;
 
 wsServer.on('request', function(request) {
@@ -265,10 +320,13 @@ wsServer.on('request', function(request) {
   connection.ID = ID++;
   if (! allConnections[id]) {
     allConnections[id] = [];
+    var nowTime = Date.now();
     connectionStats[id] = {
-      created: Date.now(),
+      created: nowTime,
+      lastMessageTime: nowTime, // pgbovine
       sample: [],
-      clients: {},
+      clients: {},   // pgbovine - doesn't properly get DELETED, don't use this
+      numClients: 0, // pgbovine - use this instead of the 'clients' field
       domains: {},
       urls: {},
       firstDomain: null,
@@ -293,7 +351,8 @@ wsServer.on('request', function(request) {
       logger.warn('Error parsing JSON: ' + JSON.stringify(message.utf8Data) + ": " + e);
       return;
     }
-    connectionStats[id].clients[parsed.clientId] = true;
+    connectionStats[id].clients[parsed.clientId] = true; // pgbovine - NB: this doesn't get properly deleted when clients leave the session, so don't use it
+    connectionStats[id].numClients = allConnections[id].length; // pgbovine
     var domain = null;
     if (parsed.url) {
       domain = parseUrl(parsed.url).hostname;
@@ -325,6 +384,10 @@ wsServer.on('request', function(request) {
       logObj.type = 'togetherjs';
       logObj.togetherjs = parsed;
       pgLogWrite(logObj);
+
+      // only count "meaningful" messages in lastMessageTime
+      // to avoid spurious signals of activity for non-events
+      connectionStats[id].lastMessageTime = Date.now(); // pgbovine
     }
 
     for (var i=0; i<allConnections[id].length; i++) {
@@ -349,9 +412,11 @@ wsServer.on('request', function(request) {
     if (index != -1) {
       allConnections[id].splice(index, 1);
     }
+    connectionStats[id].numClients = allConnections[id].length; // pgbovine
     if (! allConnections[id].length) {
       delete allConnections[id];
       connectionStats[id].lastLeft = Date.now();
+      removeFromPHRQueue(id); // pgbovine
     }
     logger.debug('Peer ' + connection.remoteAddress + ' disconnected, ID: ' + connection.ID);
 
@@ -361,6 +426,7 @@ wsServer.on('request', function(request) {
   });
 });
 
+// pgbovine - TODO: does this cause a ton of memory consumption in the long run? maybe cut out if it seems unnecessary?
 setInterval(function () {
   for (var id in connectionStats) {
     if (connectionStats[id].lastLeft && Date.now() - connectionStats[id].lastLeft > EMPTY_ROOM_LOG_TIMEOUT) {
@@ -516,5 +582,25 @@ function pgLogWrite(logObj) {
   pgLogFile.write(s + '\n');
   curLogSize++;
 }
+
+
+// for debugging
+/*
+setInterval(function () {
+  console.log('---');
+  for (var i = 0; i < publicHelpRequestQueue.length; i++) {
+    var curId = publicHelpRequestQueue[i].id;
+    var stat = connectionStats[curId];
+    if (stat) {
+      var timeSinceLastMsg = (Date.now() - stat.lastMessageTime);
+      console.log(curId, timeSinceLastMsg, stat.numClients);
+    }
+  }
+  //console.log(connectionStats, publicHelpRequestQueue);
+
+  // connectionStats[e].created and lastLeft are good for telling when
+  // sessions might be stale
+}, 2000);
+*/
 
 // end pgbovine
