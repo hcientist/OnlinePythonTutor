@@ -7,6 +7,7 @@
 // 2017-10-09: started extending this server with a /requestPublicHelp
 // endpoint so that people can request help from anyone currently on the
 // OPT website rather than needing to find their own tutors/peers to help them.
+// (also added a /getHelpQueue endpoint to get the current help queue state)
 
 // Try to run with the following options to (hopefully!) prevent it from
 // mysteriously crashing and failing to restart (use --spinSleepTime to
@@ -183,6 +184,37 @@ var server = http.createServer(function(request, response) {
       "Access-Control-Allow-Origin": "*"
     });
     response.end(JSON.stringify({status: 'OKIE DOKIE'}));
+  } else if (url.pathname == '/getHelpQueue') { // pgbovine
+    if (request.method == "OPTIONS") {
+      // CORS preflight
+      corsAccept(request, response);
+      return;
+    }
+
+    var ret = [];
+    publicHelpRequestQueue.forEach(function(e) {
+      var timeSinceLastMsg;
+      var numClients;
+
+      var stat = connectionStats[e.id];
+      if (stat) {
+        timeSinceLastMsg = (Date.now() - stat.lastMessageTime);
+        numClients = stat.numClients;
+      }
+
+      ret.push({
+        id: e.id,
+        url: e.url,
+        timeSinceLastMsg: timeSinceLastMsg,
+        numClients: numClients,
+      });
+    });
+
+    response.writeHead(200, {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*"
+    });
+    response.end(JSON.stringify(ret));
   } else {
     write404(response);
   }
@@ -410,13 +442,21 @@ wsServer.on('request', function(request) {
     }
     var index = allConnections[id].indexOf(connection);
     if (index != -1) {
+      // pgbovine - if the FIRST client disconnects, then remove this
+      // connection id from the help queue (if it's on it). this is because
+      // we assume the first client is the one who initiated the help
+      // request, so if they're no longer online, then there's no point
+      // in keeping it on the help queue.
+      if (index === 0) {
+        removeFromPHRQueue(id);
+      }
       allConnections[id].splice(index, 1);
     }
     connectionStats[id].numClients = allConnections[id].length; // pgbovine
     if (! allConnections[id].length) {
       delete allConnections[id];
       connectionStats[id].lastLeft = Date.now();
-      removeFromPHRQueue(id); // pgbovine
+      removeFromPHRQueue(id); // pgbovine - remove from help queue if all clients disconnected
     }
     logger.debug('Peer ' + connection.remoteAddress + ' disconnected, ID: ' + connection.ID);
 
