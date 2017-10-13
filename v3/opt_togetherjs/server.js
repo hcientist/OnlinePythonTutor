@@ -160,10 +160,10 @@ var server = http.createServer(function(request, response) {
     // publicHelpRequestQueue:
     if (url.query.removeFromQueue) {
       //console.log('/requestPublicHelp removeFromQueue:', url.query);
-      removeFromPHRQueue(url.query.shareId);
+      removeFromPHRQueue(url.query.id);
     } else {
-      // otherwise add to queue:
-      var obj = {id: url.query.shareId, url: url.query.shareUrl};
+      // otherwise add a COPY of the entire query object verbatim to the queue:
+      var obj = Object.assign({}, url.query); // COPY!
       //console.log('/requestPublicHelp', obj);
 
       // avoid duplicates
@@ -630,13 +630,12 @@ function getPHRStats() {
       numClients = stat.numClients;
     }
 
-    ret.push({
-      id: e.id,
-      url: e.url,
-      timeSinceCreation: timeSinceCreation,
-      timeSinceLastMsg: timeSinceLastMsg,
-      numClients: numClients,
-    });
+    var copy = Object.assign({}, e); // COPY!
+    copy.timeSinceCreation = timeSinceCreation;
+    copy.timeSinceLastMsg = timeSinceLastMsg;
+    copy.numClients = numClients;
+
+    ret.push(copy);
   });
   return ret;
 }
