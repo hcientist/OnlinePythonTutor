@@ -27,6 +27,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
   togetherjsSyncRequested = false;
   pendingCodeOutputScrollTop = null;
   updateOutputSignalFromRemote = false;
+  wantsPublicHelp = false;
 
   constructor(params={}) {
     super(params);
@@ -54,6 +55,22 @@ export class OptFrontendSharedSessions extends OptFrontend {
     //  }
     //});
 
+    setInterval(() => {
+      var ghqUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
+      $.ajax({
+        url: ghqUrl,
+        dataType: "json",
+        error: function() {
+          // clear the help queue display if there's an error
+          $("#surveyHeader").html('');
+        },
+        success: function (resp) {
+          // update help queue display
+          $("#surveyHeader").html(JSON.stringify(resp));
+        },
+      });
+    }, 3000);
+
     // add an additional listener in addition to whatever the superclass/ added
     window.addEventListener("hashchange", (e) => {
       if (TogetherJS.running && !this.isExecutingCode) {
@@ -66,8 +83,15 @@ export class OptFrontendSharedSessions extends OptFrontend {
   }
 
   // important overrides to inject in pieces of TogetherJS functionality
+  // without triggering spurious error messages
   ignoreAjaxError(settings) {
     if (settings.url.indexOf('togetherjs') > -1) {
+      return true;
+    } else if (settings.url.indexOf('getHelpQueue') > -1) {
+      return true;
+    } else if (settings.url.indexOf('requestPublicHelp') > -1) {
+      return true;
+    } else if (settings.url.indexOf('freegeoip') > -1) {
       return true;
     } else {
       return super.ignoreAjaxError(settings);
@@ -351,8 +375,22 @@ export class OptFrontendSharedSessions extends OptFrontend {
       }
     });
 
-    $("#sharedSessionBtn").click(this.startSharedSession.bind(this));
+    $("#sharedSessionBtn").click(this.startSharedSession.bind(this, false));
     $("#stopTogetherJSBtn").click(TogetherJS); // toggles off
+
+    $("#requestHelpBtn").click(this.startSharedSession.bind(this, true));
+    $("#stopRequestHelpBtn").click(function() {
+      this.wantsPublicHelp = false;
+      var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
+      var shareId = TogetherJS.shareId();
+      $.ajax({
+        url: rphUrl,
+        dataType: "json",
+        data: {shareId: shareId, removeFromQueue: true /* stop requesting help! */}
+      }).then(function (resp) {
+        console.log("SERVER SAID!!!", resp);
+      });
+    });
 
     // fired when TogetherJS is activated. might fire on page load if there's
     // already an open session from a prior page load in the recent past.
@@ -426,18 +464,63 @@ export class OptFrontendSharedSessions extends OptFrontend {
   TogetherjsReadyHandler() {
     $("#surveyHeader").hide();
     this.populateTogetherJsShareUrl();
+
+    if (this.wantsPublicHelp) {
+      // do this all after populateTogetherJsShareUrl so that there's a
+      // URL already in place and ready to share:
+      var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
+      var shareId = TogetherJS.shareId();
+      var shareUrl = TogetherJS.shareUrl();
+      var lang = this.getAppState().py;
+
+      // use http://freegeoip.net/ - this call gets the geolocation of the
+      // client's (i.e., YOUR) current IP address:
+      $.ajax({
+        url: "http://freegeoip.net/json/",
+        dataType: "json",
+        error: function() {
+          // no big deal, just send a help request without country_name
+
+          //console.log("freegeoip error!");
+          $.ajax({
+            url: rphUrl,
+            dataType: "json",
+            data: {id: shareId, url: shareUrl, lang: lang},
+          }).then(function (resp) {
+            console.log("SERVER SAID!!!", resp);
+          });
+        },
+        success: function(resp) {
+          //console.log("freegeoip RESP:", resp);
+          $.ajax({
+            url: rphUrl,
+            dataType: "json",
+            data: {id: shareId, url: shareUrl, lang: lang, country: resp.country_name},
+          }).then(function (resp) {
+            console.log("SERVER SAID!!!", resp);
+          });
+        },
+      });
+     }
   }
 
   TogetherjsCloseHandler() {
     if (this.appMode === "display") {
       $("#surveyHeader").show();
     }
+    this.wantsPublicHelp = false; // explicitly reset it
   }
 
-  startSharedSession() {
+  startSharedSession(requestPublicHelp=false) {
     $("#ssDiv,#surveyHeader,#adHeader").hide(); // hide ASAP!
     $("#togetherjsStatus").html("Please wait ... loading shared session");
     TogetherJS();
+
+    if (requestPublicHelp) {
+      this.wantsPublicHelp = true;
+    } else {
+      this.wantsPublicHelp = false; // explicitly reset it each time you activate
+    }
   }
 
   // return whether two states match, except don't worry about curInstr
