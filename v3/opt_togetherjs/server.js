@@ -159,12 +159,12 @@ var server = http.createServer(function(request, response) {
     // if url.query.removeFromQueue === true, then remove from
     // publicHelpRequestQueue:
     if (url.query.removeFromQueue) {
-      console.log('/requestPublicHelp removeFromQueue:', url.query);
+      //console.log('/requestPublicHelp removeFromQueue:', url.query);
       removeFromPHRQueue(url.query.shareId);
     } else {
       // otherwise add to queue:
       var obj = {id: url.query.shareId, url: url.query.shareUrl};
-      console.log('/requestPublicHelp', obj);
+      //console.log('/requestPublicHelp', obj);
 
       // avoid duplicates
       var found = false;
@@ -179,6 +179,11 @@ var server = http.createServer(function(request, response) {
       }
     }
 
+    var logObj = createLogEntry(request);
+    logObj.type = 'requestPublicHelp';
+    logObj.query = url.query;
+    pgLogWrite(logObj);
+
     response.writeHead(200, {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*"
@@ -191,30 +196,11 @@ var server = http.createServer(function(request, response) {
       return;
     }
 
-    var ret = [];
-    publicHelpRequestQueue.forEach(function(e) {
-      var timeSinceLastMsg;
-      var numClients;
-
-      var stat = connectionStats[e.id];
-      if (stat) {
-        timeSinceLastMsg = (Date.now() - stat.lastMessageTime);
-        numClients = stat.numClients;
-      }
-
-      ret.push({
-        id: e.id,
-        url: e.url,
-        timeSinceLastMsg: timeSinceLastMsg,
-        numClients: numClients,
-      });
-    });
-
     response.writeHead(200, {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*"
     });
-    response.end(JSON.stringify(ret));
+    response.end(JSON.stringify(getPHRStats()));
   } else {
     write404(response);
   }
@@ -314,20 +300,6 @@ function originIsAllowed(origin) {
 
 var allConnections = {};
 var connectionStats = {};
-
-var publicHelpRequestQueue = []; // pgbovine
-function removeFromPHRQueue(id) {
-  var foundIndex = -1;
-  for (var i = 0; i < publicHelpRequestQueue.length; i++) {
-    if (publicHelpRequestQueue[i].id === id) {
-      foundIndex = i;
-      break;
-    }
-  }
-  if (foundIndex != -1) {
-    publicHelpRequestQueue.splice(foundIndex, 1);
-  }
-}
 
 var ID = 0;
 
@@ -456,6 +428,7 @@ wsServer.on('request', function(request) {
     if (! allConnections[id].length) {
       delete allConnections[id];
       connectionStats[id].lastLeft = Date.now();
+      connectionStats[id].created = null; // pgbovine
       removeFromPHRQueue(id); // pgbovine - remove from help queue if all clients disconnected
     }
     logger.debug('Peer ' + connection.remoteAddress + ' disconnected, ID: ' + connection.ID);
@@ -624,23 +597,60 @@ function pgLogWrite(logObj) {
 }
 
 
-// for debugging
-/*
-setInterval(function () {
-  console.log('---');
+var publicHelpRequestQueue = []; // pgbovine
+function removeFromPHRQueue(id) {
+  var foundIndex = -1;
   for (var i = 0; i < publicHelpRequestQueue.length; i++) {
-    var curId = publicHelpRequestQueue[i].id;
-    var stat = connectionStats[curId];
-    if (stat) {
-      var timeSinceLastMsg = (Date.now() - stat.lastMessageTime);
-      console.log(curId, timeSinceLastMsg, stat.numClients);
+    if (publicHelpRequestQueue[i].id === id) {
+      foundIndex = i;
+      break;
     }
   }
-  //console.log(connectionStats, publicHelpRequestQueue);
+  if (foundIndex != -1) {
+    publicHelpRequestQueue.splice(foundIndex, 1);
+  }
+}
 
-  // connectionStats[e].created and lastLeft are good for telling when
-  // sessions might be stale
-}, 2000);
-*/
+function getPHRStats() {
+  var ret = [];
+  publicHelpRequestQueue.forEach(function(e) {
+    var timeSinceCreation;
+    var timeSinceLastMsg;
+    var numClients;
+
+    var stat = connectionStats[e.id];
+    if (stat) {
+      var now = Date.now();
+      if (stat.created) {
+        timeSinceCreation = now - stat.created;
+      }
+      if (stat.lastMessageTime) {
+        timeSinceLastMsg = now - stat.lastMessageTime;
+      }
+      numClients = stat.numClients;
+    }
+
+    ret.push({
+      id: e.id,
+      url: e.url,
+      timeSinceCreation: timeSinceCreation,
+      timeSinceLastMsg: timeSinceLastMsg,
+      numClients: numClients,
+    });
+  });
+  return ret;
+}
+
+setInterval(function () {
+  // TODO: if someone's been on the queue for a long time without any
+  // activity, then kick them off the queue
+
+  // periodically log the help queue stats:
+  var logObj = {};
+  logObj.date = (new Date()).toISOString();
+  logObj.type = 'PHRStats';
+  logObj.queue = getPHRStats();
+  pgLogWrite(logObj);
+}, 30 * 1000); // don't sample too frequently so as not to overwhelm the logs
 
 // end pgbovine
