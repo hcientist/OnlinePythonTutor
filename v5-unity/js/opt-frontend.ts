@@ -66,6 +66,10 @@ export class OptFrontend extends AbstractBaseFrontend {
   originFrontendJsFile: string = 'opt-frontend.js';
   pyInputAceEditor = undefined; // Ace editor object that contains the user's code
 
+  // some subclasses use these, so put them in the superclass
+  activateSyntaxErrorSurvey: boolean = true;
+  activateRuntimeErrorSurvey: boolean = true;
+
   preseededCurInstr: number = undefined;
 
   constructor(params={}) {

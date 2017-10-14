@@ -73,8 +73,6 @@ SyntaxErrorSurveyBubble.prototype.qTipID = function() {
 export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
   optTests: OptTestcases;
 
-  activateSyntaxErrorSurvey: boolean = true;
-  activateRuntimeErrorSurvey: boolean = true;
   prevExecutionExceptionObjLst = []; // previous consecutive executions with "compile"-time exceptions
 
   prevExecutionRuntimeErrorMsg: string = null; // did the previous execution have a run-time error? if so, what was the error message?

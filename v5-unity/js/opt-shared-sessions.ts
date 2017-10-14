@@ -14,6 +14,9 @@ if (togetherjsInUrl) {
 
 require('script-loader!./lib/togetherjs/togetherjs-min.js');
 
+require('script-loader!./lib/moment.min.js'); // https://momentjs.com/
+declare var moment: any; // for TypeScript
+
 export var TogetherJS = (window as any).TogetherJS;
 
 
@@ -67,6 +70,13 @@ export class OptFrontendSharedSessions extends OptFrontend {
         success: function (resp) {
           // update help queue display
           $("#surveyHeader").html(JSON.stringify(resp));
+          resp.forEach((e) => {
+            // use moment.js to generate human-readable relative times:
+            var d = new Date();
+            var timeSinceCreationStr = moment(d.valueOf() - e.timeSinceCreation).fromNow();
+            var timeSinceLastMsgStr = moment(d.valueOf() - e.timeSinceLastMsg).fromNow();
+            console.log(e.numClients, e.country, e.id, e.lang, timeSinceCreationStr, timeSinceLastMsgStr);
+          });
         },
       });
     }, 3000);
@@ -464,6 +474,10 @@ export class OptFrontendSharedSessions extends OptFrontend {
   TogetherjsReadyHandler() {
     $("#surveyHeader").hide();
     this.populateTogetherJsShareUrl();
+
+    // disable syntax and runtime surveys when shared sessions is on:
+    this.activateSyntaxErrorSurvey = false;
+    this.activateRuntimeErrorSurvey = false;
 
     if (this.wantsPublicHelp) {
       // do this all after populateTogetherJsShareUrl so that there's a
