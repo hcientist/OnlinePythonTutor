@@ -72,6 +72,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
       return; // early exit
     }
 
+    /*
     setInterval(() => {
       var ghqUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
       $.ajax({
@@ -94,6 +95,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
         },
       });
     }, 3000);
+    */
 
     // add an additional listener in addition to whatever the superclass/ added
     window.addEventListener("hashchange", (e) => {

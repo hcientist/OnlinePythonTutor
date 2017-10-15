@@ -23076,28 +23076,30 @@ var OptFrontendSharedSessions = (function (_super) {
             $("#ssDiv,#surveyHeader,#adHeader").hide(); // TODO: clean this up in the future
             return _this;
         }
-        setInterval(function () {
-            var ghqUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
-            $.ajax({
-                url: ghqUrl,
-                dataType: "json",
-                error: function () {
-                    // clear the help queue display if there's an error
-                    $("#surveyHeader").html('');
-                },
-                success: function (resp) {
-                    // update help queue display
-                    $("#surveyHeader").html(JSON.stringify(resp));
-                    resp.forEach(function (e) {
-                        // use moment.js to generate human-readable relative times:
-                        var d = new Date();
-                        var timeSinceCreationStr = moment(d.valueOf() - e.timeSinceCreation).fromNow();
-                        var timeSinceLastMsgStr = moment(d.valueOf() - e.timeSinceLastMsg).fromNow();
-                        console.log(e.numClients, e.country, e.id, e.lang, timeSinceCreationStr, timeSinceLastMsgStr);
-                    });
-                },
-            });
+        /*
+        setInterval(() => {
+          var ghqUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
+          $.ajax({
+            url: ghqUrl,
+            dataType: "json",
+            error: function() {
+              // clear the help queue display if there's an error
+              $("#surveyHeader").html('');
+            },
+            success: function (resp) {
+              // update help queue display
+              $("#surveyHeader").html(JSON.stringify(resp));
+              resp.forEach((e) => {
+                // use moment.js to generate human-readable relative times:
+                var d = new Date();
+                var timeSinceCreationStr = moment(d.valueOf() - e.timeSinceCreation).fromNow();
+                var timeSinceLastMsgStr = moment(d.valueOf() - e.timeSinceLastMsg).fromNow();
+                console.log(e.numClients, e.country, e.id, e.lang, timeSinceCreationStr, timeSinceLastMsgStr);
+              });
+            },
+          });
         }, 3000);
+        */
         // add an additional listener in addition to whatever the superclass/ added
         window.addEventListener("hashchange", function (e) {
             if (exports.TogetherJS.running && !_this.isExecutingCode) {
