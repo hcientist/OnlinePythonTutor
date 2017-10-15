@@ -17,6 +17,9 @@ require('script-loader!./lib/togetherjs/togetherjs-min.js');
 require('script-loader!./lib/moment.min.js'); // https://momentjs.com/
 declare var moment: any; // for TypeScript
 
+require('script-loader!./lib/mobile-detect.min.js'); // http://hgoebl.github.io/mobile-detect.js/ https://github.com/hgoebl/mobile-detect.js
+declare var MobileDetect: any; // for TypeScript
+
 export var TogetherJS = (window as any).TogetherJS;
 
 
@@ -31,6 +34,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
   pendingCodeOutputScrollTop = null;
   updateOutputSignalFromRemote = false;
   wantsPublicHelp = false;
+  disableSharedSessions = false; // if we're on mobile/tablets, disable this entirely since it doesn't work on mobile
 
   constructor(params={}) {
     super(params);
@@ -57,6 +61,16 @@ export class OptFrontendSharedSessions extends OptFrontend {
     //    });
     //  }
     //});
+
+    var md = new MobileDetect(window.navigator.userAgent);
+    if (md.mobile()) { // mobile or tablet device
+      this.disableSharedSessions = true;
+    }
+
+    if (this.disableSharedSessions) {
+      $("#ssDiv,#surveyHeader,#adHeader").hide(); // TODO: clean this up in the future
+      return; // early exit
+    }
 
     setInterval(() => {
       var ghqUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";

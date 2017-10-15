@@ -524,6 +524,7 @@
     defaultHubBase = "https://hub.togetherjs.mozillalabs.com";
   }
   defaultConfiguration.hubBase = "http://104.237.139.253:30035/"; // pgbovine - online deployment
+  //defaultConfiguration.hubBase = "http://localhost:30035/"; // pgbovine - localhost testing
 
   TogetherJS._configuration = {};
   TogetherJS._defaultConfiguration = {
