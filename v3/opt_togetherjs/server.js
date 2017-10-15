@@ -156,33 +156,22 @@ var server = http.createServer(function(request, response) {
       return;
     }
 
-    // if url.query.removeFromQueue === true, then remove from
-    // publicHelpRequestQueue:
-    if (url.query.removeFromQueue) {
-      //console.log('/requestPublicHelp removeFromQueue:', url.query);
-      removeFromPHRQueue(url.query.id);
-    } else {
-      // otherwise add a COPY of the entire query object verbatim to the queue:
-      var obj = Object.assign({}, url.query); // COPY!
-      //console.log('/requestPublicHelp', obj);
-
-      // avoid duplicates
-      var found = false;
-      for (var i=0; i < publicHelpRequestQueue.length; i++) {
-        if (publicHelpRequestQueue[i].id === obj.id) {
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        publicHelpRequestQueue.push(obj);
-      }
-    }
-
+    // log it first
     var logObj = createLogEntry(request);
     logObj.type = 'requestPublicHelp';
     logObj.query = url.query;
     pgLogWrite(logObj);
+    //console.log(logObj);
+
+
+    if (url.query.removeFromQueue) {
+      // if url.query.removeFromQueue, then remove from publicHelpRequestQueue:
+      removeFromPHRQueue(url.query.id);
+    } else {
+      // otherwise add a COPY of the entire query object verbatim to the queue:
+      var obj = Object.assign({}, url.query); // COPY!
+      addToPHRQueue(obj);
+    }
 
     response.writeHead(200, {
       "Content-Type": "application/json",
@@ -195,6 +184,21 @@ var server = http.createServer(function(request, response) {
       corsAccept(request, response);
       return;
     }
+
+    // if we don't have a user_uuid, use IP address as the next best proxy for unique user identity
+    var uniqueId = url.query.user_uuid;
+    if (!uniqueId) {
+      // copied from createLogEntry
+      // Webfaction forwards IP addresses via proxy, so use this ...
+      // http://stackoverflow.com/questions/8107856/how-can-i-get-the-users-ip-address-using-node-js
+      var ip = request.remoteAddress /* check this FIRST since it's for WebSockets */ ||
+        request.headers['x-forwarded-for'] ||
+        request.connection.remoteAddress ||
+        request.socket.remoteAddress ||
+        request.connection.socket.remoteAddress;
+      uniqueId = 'IP_' + ip;
+    }
+    allRecentHelpQueueQueries.add(uniqueId);
 
     response.writeHead(200, {
       "Content-Type": "application/json",
@@ -439,7 +443,8 @@ wsServer.on('request', function(request) {
   });
 });
 
-// pgbovine - TODO: does this cause a ton of memory consumption in the long run? maybe cut out if it seems unnecessary?
+// pgbovine - kill these since they seem unnecessary for OPT
+/*
 setInterval(function () {
   for (var id in connectionStats) {
     if (connectionStats[id].lastLeft && Date.now() - connectionStats[id].lastLeft > EMPTY_ROOM_LOG_TIMEOUT) {
@@ -465,6 +470,7 @@ setInterval(function () {
   load.time = Date.now();
   logger.info("LOAD", JSON.stringify(load));
 }, SAMPLE_LOAD_INTERVAL);
+*/
 
 function getLoad() {
   var sessions = 0;
@@ -544,7 +550,7 @@ exports.startServer = startServer;
 // pgbovine - logging infrastructure
 
 function createLogEntry(req, event_type) {
-  obj = {};
+  var obj = {};
 
   // Webfaction forwards IP addresses via proxy, so use this ...
   // http://stackoverflow.com/questions/8107856/how-can-i-get-the-users-ip-address-using-node-js
@@ -597,7 +603,25 @@ function pgLogWrite(logObj) {
 }
 
 
+// use the 'methods' below to manipulate the queue instead of directly
+// mutating it, since we can do logging in those functions
 var publicHelpRequestQueue = []; // pgbovine
+
+function addToPHRQueue(obj) {
+  // avoid duplicates
+  var found = false;
+  for (var i=0; i < publicHelpRequestQueue.length; i++) {
+    if (publicHelpRequestQueue[i].id === obj.id) {
+      found = true;
+      break;
+    }
+  }
+  if (!found) {
+    publicHelpRequestQueue.push(obj);
+    logPHRStats(); // log right *after* there's a change to the queue
+  }
+}
+
 function removeFromPHRQueue(id) {
   var foundIndex = -1;
   for (var i = 0; i < publicHelpRequestQueue.length; i++) {
@@ -608,6 +632,7 @@ function removeFromPHRQueue(id) {
   }
   if (foundIndex != -1) {
     publicHelpRequestQueue.splice(foundIndex, 1);
+    logPHRStats(); // log right *after* there's a change to the queue
   }
 }
 
@@ -640,16 +665,31 @@ function getPHRStats() {
   return ret;
 }
 
-setInterval(function () {
-  // TODO: if someone's been on the queue for a long time without any
-  // activity, then kick them off the queue
+// a set of help queries made using /getHelpQueue within the past minute or so,
+// which gives a rough indicator of how many people are currently logged onto
+// the OPT website at the moment. Reset this periodically.
+// Key: user_uuid or ip address starting with 'IP_'
+var allRecentHelpQueueQueries = new Set();
 
+function logPHRStats() {
   // periodically log the help queue stats:
   var logObj = {};
   logObj.date = (new Date()).toISOString();
   logObj.type = 'PHRStats';
   logObj.queue = getPHRStats();
+  logObj.recentQueries = Array.from(allRecentHelpQueueQueries);
   pgLogWrite(logObj);
-}, 30 * 1000); // don't sample too frequently so as not to overwhelm the logs
+  //console.log(logObj);
+}
+
+function logPHRandResetHelpQueries() {
+  logPHRStats();
+
+  // start over again so that we count only who's been querying in the
+  // past minute or so ...
+  allRecentHelpQueueQueries.clear();
+}
+
+setInterval(logPHRandResetHelpQueries, 60*1000); // production: sample every 1 minute so as not to overwhelm logs
 
 // end pgbovine
