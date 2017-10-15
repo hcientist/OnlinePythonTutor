@@ -5458,7 +5458,9 @@ define('ui',["require", "jquery", "util", "session", "templates", "templating", 
       container = container || ui.container;
       var abbrev = this.peer.name;
       if (this.peer.isSelf) {
-        abbrev = "me";
+        //abbrev = "me";
+        // pgbovine -- display your own username so that you know who you are:
+        abbrev = "me (" + this.peer.name + ")";
       }
       container.find("." + this.peer.className("togetherjs-person-name-")).text(this.peer.name || "");
       container.find("." + this.peer.className("togetherjs-person-name-abbrev-")).text(abbrev);

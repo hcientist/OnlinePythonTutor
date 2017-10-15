@@ -22430,6 +22430,7 @@ var OptFrontend = (function (_super) {
         // some subclasses use these, so put them in the superclass
         _this.activateSyntaxErrorSurvey = true;
         _this.activateRuntimeErrorSurvey = true;
+        _this.activateEurekaSurvey = true;
         _this.preseededCurInstr = undefined;
         $('#genEmbedBtn').bind('click', function () {
             var mod = _this.appMode;

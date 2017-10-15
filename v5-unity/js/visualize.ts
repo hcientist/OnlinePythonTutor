@@ -224,25 +224,27 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
     this.prevExecutionRuntimeErrorCode = null;
 
     // put eureka_survey below #codAndNav so that it's highly visible:
-    this.myVisualizer.domRoot.find('#codAndNav').append(eureka_survey);
-    this.myVisualizer.domRoot.find('#codAndNav #eureka_survey').css('margin-top', '30px'); // leave some extra space
-    var that = this;
-    $('.surveyBtnBig').click(function(e) {
-      var myArgs = that.getAppState();
-      var buttonPrompt = $(this).html();
-      var res = prompt(eureka_prompt);
-      // don't do ajax call when Cancel button is pressed
-      // (note that if OK button is pressed with no response, then an
-      // empty string will still be sent to the server)
-      if (res !== null) {
-        (myArgs as any).surveyVersion = eureka_survey_version;
-        (myArgs as any).surveyQuestion = buttonPrompt;
-        (myArgs as any).surveyResponse = res;
-        (myArgs as any).opt_uuid = that.userUUID;
-        (myArgs as any).session_uuid = that.sessionUUID;
-        $.get('eureka_survey.py', myArgs, function(dat) {});
-      }
-    });
+    if (this.activateEurekaSurvey) {
+      this.myVisualizer.domRoot.find('#codAndNav').append(eureka_survey);
+      this.myVisualizer.domRoot.find('#codAndNav #eureka_survey').css('margin-top', '30px'); // leave some extra space
+      var that = this;
+      $('.surveyBtnBig').click(function(e) {
+        var myArgs = that.getAppState();
+        var buttonPrompt = $(this).html();
+        var res = prompt(eureka_prompt);
+        // don't do ajax call when Cancel button is pressed
+        // (note that if OK button is pressed with no response, then an
+        // empty string will still be sent to the server)
+        if (res !== null) {
+          (myArgs as any).surveyVersion = eureka_survey_version;
+          (myArgs as any).surveyQuestion = buttonPrompt;
+          (myArgs as any).surveyResponse = res;
+          (myArgs as any).opt_uuid = that.userUUID;
+          (myArgs as any).session_uuid = that.sessionUUID;
+          $.get('eureka_survey.py', myArgs, function(dat) {});
+        }
+      });
+    }
   }
 
   // called whenever myVisualizer.updateOutput() is called to update the visualization;

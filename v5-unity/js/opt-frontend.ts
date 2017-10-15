@@ -69,6 +69,7 @@ export class OptFrontend extends AbstractBaseFrontend {
   // some subclasses use these, so put them in the superclass
   activateSyntaxErrorSurvey: boolean = true;
   activateRuntimeErrorSurvey: boolean = true;
+  activateEurekaSurvey: boolean = true;
 
   preseededCurInstr: number = undefined;
 

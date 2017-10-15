@@ -10,7 +10,7 @@
     // Disables clicks for a certain element.
     // (e.g., 'canvas' would not show clicks on canvas elements.)
     // Setting this to true will disable clicks globally.
-    dontShowClicks: false,
+    dontShowClicks: true, // pgbovine: on 2017-10-14, stop logging/showing clicks since they're overly verbose
     // Experimental feature to echo clicks to certain elements across clients:
     cloneClicks: '.togetherjsCloneClick', // pgbovine - clone clicks ONLY in these elements
     // Enable Mozilla or Google analytics on the page when TogetherJS is activated:
@@ -22,7 +22,21 @@
     // The base URL of the hub (gets filled in below):
     hubBase: null,
     // A function that will return the name of the user:
-    getUserName: null,
+    // pgbovine - customized to use opt_uuid in localStorage if available
+    // so that each user can have a somewhat-unique N-digit username
+    getUserName: function() {
+      if ('localStorage' in window && window['localStorage'] !== null) {
+        var userUUID = localStorage.getItem('opt_uuid');
+        if (userUUID) {
+          // get last 3 digits of user uuid:
+          return 'user_' + userUUID.substring(userUUID.length - 3, userUUID.length);
+        } else {
+          return null; // let TogetherJS auto-assign an animal name
+        }
+      } else {
+        return null; // let TogetherJS auto-assign an animal name
+      }
+    },
     // A function that will return the color of the user:
     getUserColor: null,
     // A function that will return the avatar of the user:
@@ -523,6 +537,7 @@
     // Substitution wasn't made
     defaultHubBase = "https://hub.togetherjs.mozillalabs.com";
   }
+  // TODO: abstract this out better ...
   defaultConfiguration.hubBase = "http://104.237.139.253:30035/"; // pgbovine - online deployment
   //defaultConfiguration.hubBase = "http://localhost:30035/"; // pgbovine - localhost testing
 

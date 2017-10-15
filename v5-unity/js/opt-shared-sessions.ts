@@ -494,6 +494,8 @@ export class OptFrontendSharedSessions extends OptFrontend {
     // disable syntax and runtime surveys when shared sessions is on:
     this.activateSyntaxErrorSurvey = false;
     this.activateRuntimeErrorSurvey = false;
+    this.activateEurekaSurvey = false;
+    $("#eureka_survey").remove(); // if a survey is already displayed on-screen, then kill it
 
     if (this.wantsPublicHelp) {
       // do this all after populateTogetherJsShareUrl so that there's a
