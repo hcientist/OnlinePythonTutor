@@ -72,30 +72,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
       return; // early exit
     }
 
-    /*
-    setInterval(() => {
-      var ghqUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
-      $.ajax({
-        url: ghqUrl,
-        dataType: "json",
-        error: function() {
-          // clear the help queue display if there's an error
-          $("#surveyHeader").html('');
-        },
-        success: function (resp) {
-          // update help queue display
-          $("#surveyHeader").html(JSON.stringify(resp));
-          resp.forEach((e) => {
-            // use moment.js to generate human-readable relative times:
-            var d = new Date();
-            var timeSinceCreationStr = moment(d.valueOf() - e.timeSinceCreation).fromNow();
-            var timeSinceLastMsgStr = moment(d.valueOf() - e.timeSinceLastMsg).fromNow();
-            console.log(e.numClients, e.country, e.id, e.lang, timeSinceCreationStr, timeSinceLastMsgStr);
-          });
-        },
-      });
-    }, 3000);
-    */
+    setInterval(this.getHelpQueue.bind(this), 5 * 1000); // polling every 5 seconds seems reasonable
 
     // add an additional listener in addition to whatever the superclass/ added
     window.addEventListener("hashchange", (e) => {
@@ -105,6 +82,38 @@ export class OptFrontendSharedSessions extends OptFrontend {
                          codeInputScrollTop: this.pyInputGetScrollTop(),
                          myAppState: this.getAppState()});
       }
+    });
+  }
+
+  getHelpQueue() {
+    var ghqUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
+    $.ajax({
+      url: ghqUrl,
+      dataType: "json",
+      data: {user_uuid: this.userUUID}, // tell the server who you are
+      error: function() {
+        console.log('/getHelpQueue error');
+        /*
+        // TODO: do something graceful here
+        // clear the help queue display if there's an error
+        $("#surveyHeader").html('');
+        */
+      },
+      success: function (resp) {
+        console.log('/getHelpQueue success');
+        /*
+        // TODO: do something graceful here
+        // update help queue display
+        $("#surveyHeader").html(JSON.stringify(resp));
+        resp.forEach((e) => {
+          // use moment.js to generate human-readable relative times:
+          var d = new Date();
+          var timeSinceCreationStr = moment(d.valueOf() - e.timeSinceCreation).fromNow();
+          var timeSinceLastMsgStr = moment(d.valueOf() - e.timeSinceLastMsg).fromNow();
+          console.log(e.numClients, e.country, e.id, e.lang, timeSinceCreationStr, timeSinceLastMsgStr);
+        });
+        */
+      },
     });
   }
 

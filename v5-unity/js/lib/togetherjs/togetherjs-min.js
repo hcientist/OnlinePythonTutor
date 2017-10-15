@@ -20,7 +20,9 @@
     // The code to enable (this is defaulting to a Mozilla code):
     analyticsCode: "UA-35433268-28",
     // The base URL of the hub (gets filled in below):
-    hubBase: null,
+    hubBase: "http://104.237.139.253:30035/", // pgbovine - online deployment
+    //hubBase: "http://localhost:30035/",     // pgbovine - localhost testing
+
     // A function that will return the name of the user:
     // pgbovine - customized to use opt_uuid in localStorage if available
     // so that each user can have a somewhat-unique N-digit username
@@ -537,9 +539,6 @@
     // Substitution wasn't made
     defaultHubBase = "https://hub.togetherjs.mozillalabs.com";
   }
-  // TODO: abstract this out better ...
-  defaultConfiguration.hubBase = "http://104.237.139.253:30035/"; // pgbovine - online deployment
-  //defaultConfiguration.hubBase = "http://localhost:30035/"; // pgbovine - localhost testing
 
   TogetherJS._configuration = {};
   TogetherJS._defaultConfiguration = {
