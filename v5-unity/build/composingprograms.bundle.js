@@ -23013,7 +23013,7 @@ exports.footerHtml = "\n<p>\n  <button id=\"genUrlBtn\" class=\"smallBtn\" type=
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+/* WEBPACK VAR INJECTION */(function(jQuery, $) {// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
@@ -23037,6 +23037,98 @@ exports.TogetherJS = window.TogetherJS;
 var opt_frontend_common_1 = __webpack_require__(28);
 var opt_frontend_1 = __webpack_require__(40);
 var pytutor_1 = __webpack_require__(5);
+// copy-pasta from // https://github.com/kidh0/jquery.idle
+/**
+ *  File: jquery.idle.js
+ *  Title:  JQuery Idle.
+ *  A dead simple jQuery plugin that executes a callback function if the user is idle.
+ *  About: Author
+ *  Henrique Boaventura (hboaventura@gmail.com).
+ *  About: Version
+ *  1.2.7
+ *  About: License
+ *  Copyright (C) 2013, Henrique Boaventura (hboaventura@gmail.com).
+ *  MIT License:
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *  - The above copyright notice and this permission notice shall be included in all
+ *    copies or substantial portions of the Software.
+ *  - THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *    SOFTWARE.
+ **/
+/*jslint browser: true */
+/*global jQuery: false */
+(function ($) {
+    'use strict';
+    $.fn.idle = function (options) {
+        var defaults = {
+            idle: 60000,
+            events: 'mousemove keydown mousedown touchstart',
+            onIdle: function () { },
+            onActive: function () { },
+            onHide: function () { },
+            onShow: function () { },
+            keepTracking: true,
+            startAtIdle: false,
+            recurIdleCall: false
+        }, idle = options.startAtIdle || false, visible = !options.startAtIdle || true, settings = $.extend({}, defaults, options), lastId = null, resetTimeout, timeout;
+        //event to clear all idle events
+        $(this).on("idle:stop", {}, function (event) {
+            $(this).off(settings.events);
+            settings.keepTracking = false;
+            resetTimeout(lastId, settings);
+        });
+        resetTimeout = function (id, settings) {
+            if (idle) {
+                idle = false;
+                settings.onActive.call();
+            }
+            clearTimeout(id);
+            if (settings.keepTracking) {
+                return timeout(settings);
+            }
+        };
+        timeout = function (settings) {
+            var timer = (settings.recurIdleCall ? setInterval : setTimeout), id;
+            id = timer(function () {
+                idle = true;
+                settings.onIdle.call();
+            }, settings.idle);
+            return id;
+        };
+        return this.each(function () {
+            lastId = timeout(settings);
+            $(this).on(settings.events, function (e) {
+                lastId = resetTimeout(lastId, settings);
+            });
+            if (settings.onShow || settings.onHide) {
+                $(document).on("visibilitychange webkitvisibilitychange mozvisibilitychange msvisibilitychange", function () {
+                    if (document.hidden || document.webkitHidden || document.mozHidden || document.msHidden) {
+                        if (visible) {
+                            visible = false;
+                            settings.onHide.call();
+                        }
+                    }
+                    else {
+                        if (!visible) {
+                            visible = true;
+                            settings.onShow.call();
+                        }
+                    }
+                });
+            }
+        });
+    };
+}(jQuery));
 var OptFrontendSharedSessions = (function (_super) {
     __extends(OptFrontendSharedSessions, _super);
     function OptFrontendSharedSessions(params) {
@@ -23048,6 +23140,7 @@ var OptFrontendSharedSessions = (function (_super) {
         _this.updateOutputSignalFromRemote = false;
         _this.wantsPublicHelp = false;
         _this.disableSharedSessions = false; // if we're on mobile/tablets, disable this entirely since it doesn't work on mobile
+        _this.isIdle = false;
         _this.initTogetherJS();
         _this.pyInputAceEditor.getSession().on("change", function (e) {
             // unfortunately, Ace doesn't detect whether a change was caused
@@ -23077,7 +23170,23 @@ var OptFrontendSharedSessions = (function (_super) {
             $("#ssDiv,#surveyHeader,#adHeader").hide(); // TODO: clean this up in the future
             return _this;
         }
-        setInterval(_this.getHelpQueue.bind(_this), 5 * 1000); // polling every 5 seconds seems reasonable
+        // jquery.idle:
+        $(document).idle({
+            onIdle: function () {
+                _this.isIdle = true;
+                console.log('I\'m idle');
+            },
+            onActive: function () {
+                _this.isIdle = false;
+                console.log('Hey, I\'m back!');
+            },
+            idle: 60 * 1000 // 1-minute timeout by default
+        });
+        // polling every 5 seconds seems reasonable; note that you won't
+        // send a signal to the server when this.isIdle is true, to conserve
+        // resources and get a more accurate indicator of who is active at
+        // the moment
+        setInterval(_this.getHelpQueue.bind(_this), 5 * 1000);
         // add an additional listener in addition to whatever the superclass/ added
         window.addEventListener("hashchange", function (e) {
             if (exports.TogetherJS.running && !_this.isExecutingCode) {
@@ -23090,6 +23199,13 @@ var OptFrontendSharedSessions = (function (_super) {
         return _this;
     }
     OptFrontendSharedSessions.prototype.getHelpQueue = function () {
+        // VERY IMPORTANT: to avoid overloading the server, don't send these
+        // requests when you're idle
+        if (this.isIdle) {
+            // TODO: clear the help queue display entirely if you're idle so
+            // that we don't have stale results
+            return; // return early!
+        }
         var ghqUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
         $.ajax({
             url: ghqUrl,
@@ -23396,7 +23512,7 @@ var OptFrontendSharedSessions = (function (_super) {
             $.ajax({
                 url: rphUrl,
                 dataType: "json",
-                data: { shareId: shareId, removeFromQueue: true /* stop requesting help! */ }
+                data: { id: shareId, removeFromQueue: true /* stop requesting help! */ }
             }).then(function (resp) {
                 console.log("SERVER SAID!!!", resp);
             });
@@ -23555,7 +23671,7 @@ var OptFrontendSharedSessions = (function (_super) {
 }(opt_frontend_1.OptFrontend)); // END class OptFrontendSharedSessions
 exports.OptFrontendSharedSessions = OptFrontendSharedSessions;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(0)))
 
 /***/ }),
 /* 43 */
