@@ -175,7 +175,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
     }
 
     if (this.disableSharedSessions) {
-      $("#ssDiv,#surveyHeader,#adHeader").hide(); // TODO: clean this up in the future
+      $("#ssDiv,#togetherjsStatus").hide(); // TODO: clean this up in the future
       return; // early exit, so we don't do any other initialization below here ...
     }
 
@@ -628,9 +628,10 @@ export class OptFrontendSharedSessions extends OptFrontend {
     }
   }
 
+  // TogetherJS is ready to rock and roll, so do the real
+  // initiatlization all here:
   TogetherjsReadyHandler() {
     $("#surveyHeader").hide();
-    this.populateTogetherJsShareUrl();
 
     // disable syntax and runtime surveys when shared sessions is on:
     this.activateSyntaxErrorSurvey = false;
@@ -639,8 +640,6 @@ export class OptFrontendSharedSessions extends OptFrontend {
     $("#eureka_survey").remove(); // if a survey is already displayed on-screen, then kill it
 
     if (this.wantsPublicHelp) {
-      // do this all after populateTogetherJsShareUrl so that there's a
-      // URL already in place and ready to share:
       var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
       var shareId = TogetherJS.shareId();
       var shareUrl = TogetherJS.shareUrl();
@@ -674,6 +673,8 @@ export class OptFrontendSharedSessions extends OptFrontend {
           });
         },
       });
+     } else {
+      this.privateSharedSessionUpdateHeader();
      }
   }
 
@@ -709,27 +710,24 @@ export class OptFrontendSharedSessions extends OptFrontend {
             s1.rawInputLstJSON == s2.rawInputLstJSON);
   }
 
-  populateTogetherJsShareUrl() {
-    // without anything after the '#' in the hash
-    var cleanUrl = $.param.fragment(location.href, {}, 2); // 2 means 'override'
-
-    var shareId = TogetherJS.shareId();
-    assert(shareId); // make sure we're not attempting to access shareId before it's set
-
-    var urlToShare = cleanUrl + 'togetherjs=' + shareId;
+  privateSharedSessionUpdateHeader() {
+    var urlToShare = TogetherJS.shareUrl();
     $("#togetherjsStatus").html('<div>\
-                                 Send the URL below to invite someone to join this shared session:\
+                                 You are now in a <span style="font-weight: bold; color: #e93f34;">PRIVATE</span> chat. Nobody will join unless you send them the URL below.\
                                  </div>\
-                                 <input type="text" style="font-size: 10pt; \
-                                 font-weight: bold; padding: 4px;\
+                                 URL to join this sesssion: <input type="text" style="font-size: 10pt; \
+                                 font-weight: bold; padding: 3px;\
                                  margin-top: 3pt; \
                                  margin-bottom: 6pt;" \
-                                 id="togetherjsURL" size="80" readonly="readonly"/>');
-
-    var extraHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt;">For best results, do not click or move around too quickly, and press "Force sync" if you get out of sync: <button id="syncBtn" type="button">Force sync</button><br/><a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs and feedback</a> on this shared sessions feature.</div>'
-    $("#togetherjsStatus").append(extraHtml);
-
+                                 id="togetherjsURL" size="70" readonly="readonly"/>');
     $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
+
+    this.appendTogetherJsFooter();
+  }
+
+  appendTogetherJsFooter() {
+    var extraHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt;">This is a <span style="font-weight: bold; color: #e93f34;">highly experimental</span> feature. Do not move or type too quickly. Click here if you get out of sync: <button id="syncBtn" type="button">Force sync</button> <a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs and feedback</a></div>'
+    $("#togetherjsStatus").append(extraHtml);
     $("#syncBtn").click(this.requestSync.bind(this));
   }
 

@@ -457,15 +457,18 @@ input.togetherjs-upload-avatar {
 }
 .togetherjs .togetherjs-subtitle #togetherjs-chat-participants {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.5);
+  /*color: rgba(255, 255, 255, 0.5); pgbovine changed to ... */
+  color: #eee;
 }
 .togetherjs .togetherjs-subtitle #togetherjs-chat-no-participants {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.5);
+  /* color: rgba(255, 255, 255, 0.5); pgbovine changed to ... */
+  color: #eee;
 }
 .togetherjs .togetherjs-subtitle #togetherjs-chat-participant-list {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.5);
+  /* color: rgba(255, 255, 255, 0.5); pgbovine changed to ... */
+  color: #eee;
 }
 .togetherjs #togetherjs-chat-input {
   width: 264px;

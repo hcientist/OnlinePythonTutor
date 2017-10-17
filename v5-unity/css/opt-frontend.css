@@ -108,15 +108,16 @@ button.surveyBtnBig {
 }
 
 .togetherjsBtn {
-  color: #b80000;
-  font-size: 9pt;
+  /*color: #b80000;*/
+  color: #e93f34;
+  font-size: 10pt;
   padding: 4px;
   margin-top: 3px;
 }
 
 #syncBtn {
  font-size: 8pt;
- margin-left: 3px;
+ margin-left: 0px;
 }
 
 #experimentalHeader {

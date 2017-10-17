@@ -451,7 +451,7 @@ export abstract class AbstractBaseFrontend {
     // use ${this.userUUID} within the string ...
     var survey_v12 = '\n\
     <p style="font-size: 10pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">\n\
-    <span><span style="color: #e93f34;">[NEW!]</span> Support our research and keep this tool free by <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=';
+    <span>Support our research and keep this tool free by <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=';
     survey_v12 += this.userUUID;
     survey_v12 += '" target="_blank"><b>filling out this short user survey</b></a>.</span></p>';
     $('#surveyPane').html(survey_v12);
