@@ -175,9 +175,65 @@ export class OptFrontendSharedSessions extends OptFrontend {
     }
 
     if (this.disableSharedSessions) {
-      $("#ssDiv,#togetherjsStatus").hide(); // TODO: clean this up in the future
       return; // early exit, so we don't do any other initialization below here ...
     }
+
+
+    var ssDiv = `
+<div id="ssDiv">
+
+  <!--
+  <button id="requestHelpBtn" type="button" class="togetherjsBtn">
+  Get live help! (NEW & experimental)
+  </button>
+  <p/>
+  -->
+
+  <button id="sharedSessionBtn" type="button" class="togetherjsBtn" style="font-size: 9pt;">
+  Start a private chat session
+  </button>
+</div>
+
+<div id="sharedSessionDisplayDiv" style="display: none; margin-right: 5px;">
+  <button id="stopTogetherJSBtn" type="button" class="togetherjsBtn">
+  Stop this chat session
+  </button>
+
+  <div style="width: 200px; font-size: 8pt; color: #666; margin-top: 8px;">
+  Note that your chat logs and code may be recorded, anonymized, and
+  analyzed for our research.
+  </div>
+</div>
+`;
+
+    var togetherJsDiv = `
+<div id="togetherjsStatus">
+  <div id="publicHelpQueue"></div>
+</div>
+`;
+
+    $("td#headerTdLeft").append(ssDiv);
+    $("td#headerTdRight").append(togetherJsDiv);
+
+    // do this all after creating the DOM elements above dynamically:
+    $("#sharedSessionBtn").click(this.startSharedSession.bind(this, false));
+    $("#stopTogetherJSBtn").click(TogetherJS); // toggles off
+    $("#requestHelpBtn").click(this.startSharedSession.bind(this, true));
+
+    /*
+    $("#stopRequestHelpBtn").click(function() {
+      this.wantsPublicHelp = false;
+      var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
+      var shareId = TogetherJS.shareId();
+      $.ajax({
+        url: rphUrl,
+        dataType: "json",
+        data: {id: shareId, removeFromQueue: true}, // stop requesting help!
+      }).then(function (resp) { // TODO: don't use promises; use the 'success' callback instead
+        console.log("SERVER SAID!!!", resp);
+      });
+    });
+    */
 
     // jquery.idle:
     ($(document) as any).idle({
@@ -232,7 +288,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
         */
       },
       success: function (resp) {
-        console.log('/getHelpQueue success');
+        console.log('/getHelpQueue success', resp);
         /*
         // TODO: do something graceful here
         // update help queue display
@@ -353,7 +409,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
     assert(TogetherJS);
 
     if (togetherjsInUrl) { // kinda gross global
-      $("#ssDiv,#surveyHeader,#adHeader").hide(); // hide ASAP!
+      $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
       $("#togetherjsStatus").html("Please wait ... loading shared session");
     }
 
@@ -542,30 +598,13 @@ export class OptFrontendSharedSessions extends OptFrontend {
       }
     });
 
-    $("#sharedSessionBtn").click(this.startSharedSession.bind(this, false));
-    $("#stopTogetherJSBtn").click(TogetherJS); // toggles off
-
-    $("#requestHelpBtn").click(this.startSharedSession.bind(this, true));
-    $("#stopRequestHelpBtn").click(function() {
-      this.wantsPublicHelp = false;
-      var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
-      var shareId = TogetherJS.shareId();
-      $.ajax({
-        url: rphUrl,
-        dataType: "json",
-        data: {id: shareId, removeFromQueue: true /* stop requesting help! */}
-      }).then(function (resp) {
-        console.log("SERVER SAID!!!", resp);
-      });
-    });
-
     // fired when TogetherJS is activated. might fire on page load if there's
     // already an open session from a prior page load in the recent past.
     TogetherJS.on("ready", () => {
       console.log("TogetherJS ready");
 
       $("#sharedSessionDisplayDiv").show();
-      $("#adInfo,#ssDiv,#adHeader,#testCasesParent").hide();
+      $("#ssDiv,#testCasesParent").hide();
 
       // send this to the server for the purposes of logging, but other
       // clients shouldn't do anything with this data
@@ -595,7 +634,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
 
       $("#togetherjsStatus").html(''); // clear it
       $("#sharedSessionDisplayDiv").hide();
-      $("#adInfo,#ssDiv,#adHeader,#testCasesParent").show();
+      $("#ssDiv,#testCasesParent").show();
 
       this.TogetherjsCloseHandler();
       this.redrawConnectors(); // update all arrows at the end
@@ -628,8 +667,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
     }
   }
 
-  // TogetherJS is ready to rock and roll, so do the real
-  // initiatlization all here:
+  // TogetherJS is ready to rock and roll, so do real initiatlization all here:
   TogetherjsReadyHandler() {
     $("#surveyHeader").hide();
 
@@ -640,42 +678,10 @@ export class OptFrontendSharedSessions extends OptFrontend {
     $("#eureka_survey").remove(); // if a survey is already displayed on-screen, then kill it
 
     if (this.wantsPublicHelp) {
-      var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
-      var shareId = TogetherJS.shareId();
-      var shareUrl = TogetherJS.shareUrl();
-      var lang = this.getAppState().py;
-
-      // use http://freegeoip.net/ - this call gets the geolocation of the
-      // client's (i.e., YOUR) current IP address:
-      $.ajax({
-        url: "http://freegeoip.net/json/",
-        dataType: "json",
-        error: function() {
-          // no big deal, just send a help request without country_name
-
-          //console.log("freegeoip error!");
-          $.ajax({
-            url: rphUrl,
-            dataType: "json",
-            data: {id: shareId, url: shareUrl, lang: lang},
-          }).then(function (resp) {
-            console.log("SERVER SAID!!!", resp);
-          });
-        },
-        success: function(resp) {
-          //console.log("freegeoip RESP:", resp);
-          $.ajax({
-            url: rphUrl,
-            dataType: "json",
-            data: {id: shareId, url: shareUrl, lang: lang, country: resp.country_name},
-          }).then(function (resp) {
-            console.log("SERVER SAID!!!", resp);
-          });
-        },
-      });
-     } else {
-      this.privateSharedSessionUpdateHeader();
-     }
+      this.initRequestPublicHelp();
+    } else {
+      this.initPrivateSharedSession();
+    }
   }
 
   TogetherjsCloseHandler() {
@@ -686,7 +692,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
   }
 
   startSharedSession(requestPublicHelp=false) {
-    $("#ssDiv,#surveyHeader,#adHeader").hide(); // hide ASAP!
+    $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
     $("#togetherjsStatus").html("Please wait ... loading shared session");
     TogetherJS();
 
@@ -710,7 +716,56 @@ export class OptFrontendSharedSessions extends OptFrontend {
             s1.rawInputLstJSON == s2.rawInputLstJSON);
   }
 
-  privateSharedSessionUpdateHeader() {
+  initRequestPublicHelp() {
+    assert(this.wantsPublicHelp);
+
+    // first make a /requestPublicHelp request to the TogetherJS server:
+
+    var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
+    var shareId = TogetherJS.shareId();
+    var shareUrl = TogetherJS.shareUrl();
+    var lang = this.getAppState().py;
+
+    // use http://freegeoip.net/ - this call gets the geolocation of the
+    // client's (i.e., YOUR) current IP address:
+    $.ajax({
+      url: "http://freegeoip.net/json/",
+      dataType: "json",
+      error: (resp) => {
+        // no big deal, just send a /requestPublicHelp request without country_name
+        //console.log("freegeoip error!");
+        $.ajax({
+          url: rphUrl,
+          dataType: "json",
+          data: {id: shareId, url: shareUrl, lang: lang},
+          success: this.doneRequestingPublicHelp.bind(this),
+        });
+      },
+      success: (resp) => {
+        //console.log("freegeoip RESP:", resp);
+        $.ajax({
+          url: rphUrl,
+          dataType: "json",
+          data: {id: shareId, url: shareUrl, lang: lang, country: resp.country_name},
+          success: this.doneRequestingPublicHelp.bind(this),
+        });
+      },
+    });
+  }
+
+  doneRequestingPublicHelp(resp) {
+    if (resp.status === "OKIE DOKIE") {
+      $("#togetherjsStatus").html('<div>You are now in a <span style="font-weight: bold; color: #e93f34;">PUBLIC HELP QUEUE</span> (see below). Anyone currently on this website can help you, but there is no guarantee that someone will be available. Use at your own risk; we cannot guarantee the quality of help you receive.</div><div id="publicHelpQueue"></div>');
+      this.appendTogetherJsFooter();
+    } else {
+      alert("UNKNOWN ERROR in getting live help. This feature isn't working at the moment. Please try again later.");
+      TogetherJS(); // shut down first
+    }
+  }
+
+  initPrivateSharedSession() {
+    assert(!this.wantsPublicHelp);
+
     var urlToShare = TogetherJS.shareUrl();
     $("#togetherjsStatus").html('<div>\
                                  You are now in a <span style="font-weight: bold; color: #e93f34;">PRIVATE</span> chat. Nobody will join unless you send them the URL below.\

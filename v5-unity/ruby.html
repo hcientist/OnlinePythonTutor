@@ -20,7 +20,7 @@ window.optOverride.frontendLang = 'ruby'; // hacky override before including vis
   <!-- let Webpack take care of everything. Use the [hash] feature to
        create unique filenames for releases:
        https://webpack.github.io/docs/long-term-caching.html -->
-  <script type="text/javascript" src="build/visualize.bundle.js?0d37333389" charset="utf-8"></script>
+  <script type="text/javascript" src="build/visualize.bundle.js?7bcf57866a" charset="utf-8"></script>
 
 <!-- insert google-analytics.txt contents here -->
 
@@ -30,38 +30,15 @@ window.optOverride.frontendLang = 'ruby'; // hacky override before including vis
 
 <table id="experimentalHeader">
 <tr>
-<td valign="top">
-
-<div id="ssDiv">
-  <button id="sharedSessionBtn" type="button" class="togetherjsBtn">
-  Start shared session
-  </button>
-  <div style="font-size: 7pt; margin-left: 2px; margin-top: 3px;">
-  <a href="https://www.youtube.com/watch?v=Z2TIjNArOK4" target="_blank">What are shared sessions?</a>
-  </div>
-</div>
-
-<div id="sharedSessionDisplayDiv" style="display: none;">
-  <button id="stopTogetherJSBtn" type="button" class="togetherjsBtn">
-  End shared session
-  </button>
-
-  <div style="width: 200px; font-size: 8pt; color: #666; margin-top: 5px;">
-  Your chat logs and code may be recorded, anonymized, and analyzed for research.
-  </div>
-</div>
-
-</td>
-<td valign="top">
-
-<div id="togetherjsStatus"></div>
+<td valign="top" id="headerTdLeft"></td>
+<td valign="top" id="headerTdRight">
 
 <div id="surveyHeader"></div>
 
 <div id="optHeader" style="font-family: Georgia, Palatino, Times, serif; font-size: 13pt; margin-bottom: 16px; margin-left: 16px;">
 Ruby Tutor - Visualize Ruby code execution to learn Ruby online
 
-<p style="font-size: 10pt";>
+<span style="font-size: 10pt";>
 (also visualize
 <a href="visualize.html#py=2">Python</a>,
 <a href="java.html">Java</a>,
@@ -72,7 +49,7 @@ Ruby Tutor - Visualize Ruby code execution to learn Ruby online
 and
 <a href="cpp.html">C++</a>
 code)
-</p>
+</span>
 
 </div>
 
