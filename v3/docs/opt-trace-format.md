@@ -1,5 +1,7 @@
 # Execution Trace Format
 
+**Note that OnlinePythonTutor/v5-unity/ is the most recent version, so update the instructions to point to that directory!**
+
 This document describes the execution trace format that serves as the
 interface between the frontend and backend of Online Python Tutor
 (thereafter abbreviated as OPT).
@@ -404,7 +406,7 @@ you'll see that objects 1, 2, and 3 map to the corresponding list, tuple, and di
 
 Look at the comments at the top of `pg_encoder.py` to learn the JSON encoding formats for various Python data types:
 
-https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/pg_encoder.py
+https://github.com/pgbovine/OnlinePythonTutor/blob/master/v5-unity/pg_encoder.py
 
 The basic idea behind the encoding format is that each compound object is encoded as a JSON list
 where the first element is a string "tag" identifying its type (e.g., "LIST", "TUPLE", "DICT").
