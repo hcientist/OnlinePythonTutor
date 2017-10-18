@@ -180,15 +180,12 @@ export class OptFrontendSharedSessions extends OptFrontend {
 
 
     var ssDiv = `
+
+<button id="requestHelpBtn" type="button" class="togetherjsBtn" style="margin-bottom: 6pt;">
+Get live help! (NEW/experimental)
+</button>
+
 <div id="ssDiv">
-
-  <!--
-  <button id="requestHelpBtn" type="button" class="togetherjsBtn">
-  Get live help! (NEW & experimental)
-  </button>
-  <p/>
-  -->
-
   <button id="sharedSessionBtn" type="button" class="togetherjsBtn" style="font-size: 9pt;">
   Start a private chat session
   </button>
@@ -218,7 +215,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
     // do this all after creating the DOM elements above dynamically:
     $("#sharedSessionBtn").click(this.startSharedSession.bind(this, false));
     $("#stopTogetherJSBtn").click(TogetherJS); // toggles off
-    $("#requestHelpBtn").click(this.startSharedSession.bind(this, true));
+    $("#requestHelpBtn").click(this.requestPublicHelpButtonClick.bind(this));
 
     /*
     $("#stopRequestHelpBtn").click(function() {
@@ -634,7 +631,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
 
       $("#togetherjsStatus").html(''); // clear it
       $("#sharedSessionDisplayDiv").hide();
-      $("#ssDiv,#testCasesParent").show();
+      $("#ssDiv,#requestHelpBtn,#testCasesParent").show();
 
       this.TogetherjsCloseHandler();
       this.redrawConnectors(); // update all arrows at the end
@@ -691,15 +688,22 @@ export class OptFrontendSharedSessions extends OptFrontend {
     this.wantsPublicHelp = false; // explicitly reset it
   }
 
-  startSharedSession(requestPublicHelp=false) {
+  startSharedSession(wantsPublicHelp) {
     $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
     $("#togetherjsStatus").html("Please wait ... loading shared session");
     TogetherJS();
+    this.wantsPublicHelp = wantsPublicHelp;
+  }
 
-    if (requestPublicHelp) {
+  requestPublicHelpButtonClick() {
+    if (TogetherJS.running) {
+      // TogetherJS is already running
       this.wantsPublicHelp = true;
+      this.initRequestPublicHelp();
     } else {
-      this.wantsPublicHelp = false; // explicitly reset it each time you activate
+      // TogetherJS isn't running yet, so start up a shared session AND
+      // request public help at the same time ...
+      this.startSharedSession(true);
     }
   }
 
@@ -718,9 +722,9 @@ export class OptFrontendSharedSessions extends OptFrontend {
 
   initRequestPublicHelp() {
     assert(this.wantsPublicHelp);
+    assert(TogetherJS.running);
 
     // first make a /requestPublicHelp request to the TogetherJS server:
-
     var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
     var shareId = TogetherJS.shareId();
     var shareUrl = TogetherJS.shareUrl();
@@ -754,9 +758,12 @@ export class OptFrontendSharedSessions extends OptFrontend {
   }
 
   doneRequestingPublicHelp(resp) {
+    assert(TogetherJS.running);
+
     if (resp.status === "OKIE DOKIE") {
       $("#togetherjsStatus").html('<div>You are now in a <span style="font-weight: bold; color: #e93f34;">PUBLIC HELP QUEUE</span> (see below). Anyone currently on this website can help you, but there is no guarantee that someone will be available. Use at your own risk; we cannot guarantee the quality of help you receive.</div><div id="publicHelpQueue"></div>');
       this.appendTogetherJsFooter();
+      $("#requestHelpBtn").hide();
     } else {
       alert("UNKNOWN ERROR in getting live help. This feature isn't working at the moment. Please try again later.");
       TogetherJS(); // shut down first
@@ -767,14 +774,15 @@ export class OptFrontendSharedSessions extends OptFrontend {
     assert(!this.wantsPublicHelp);
 
     var urlToShare = TogetherJS.shareUrl();
-    $("#togetherjsStatus").html('<div>\
-                                 You are now in a <span style="font-weight: bold; color: #e93f34;">PRIVATE</span> chat. Nobody will join unless you send them the URL below.\
-                                 </div>\
-                                 URL to join this sesssion: <input type="text" style="font-size: 10pt; \
-                                 font-weight: bold; padding: 3px;\
-                                 margin-top: 3pt; \
-                                 margin-bottom: 6pt;" \
-                                 id="togetherjsURL" size="70" readonly="readonly"/>');
+    $("#togetherjsStatus").html(`<div>
+                                 You are in a <span style="font-weight: bold; color: #e93f34;">PRIVATE</span> chat. To ask for public help, click the "Get live help!" button at the left. Nobody will join unless you send them the URL below.
+                                 </div>
+                                 URL to join this chat: <input type="text" style="font-size: 10pt;
+                                 font-weight: bold; padding: 3px;
+                                 margin-top: 3pt;
+                                 margin-bottom: 6pt;"
+                                 id="togetherjsURL" size="70" readonly="readonly"/>
+    `);
     $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
 
     this.appendTogetherJsFooter();
