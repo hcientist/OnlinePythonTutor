@@ -266,8 +266,7 @@ Get live help! (NEW/experimental)
     // VERY IMPORTANT: to avoid overloading the server, don't send these
     // requests when you're idle
     if (this.isIdle) {
-      // TODO: clear the help queue display entirely if you're idle so
-      // that we don't have stale results
+      $("#publicHelpQueue").empty(); // clear when idle so that you don't have stale results
       return; // return early!
     }
 
@@ -278,14 +277,12 @@ Get live help! (NEW/experimental)
       data: {user_uuid: this.userUUID}, // tell the server who you are
       error: function() {
         console.log('/getHelpQueue error');
-        /*
-        // TODO: do something graceful here
-        // clear the help queue display if there's an error
-        $("#surveyHeader").html('');
-        */
+
+        $("#publicHelpQueue").empty(); // avoid having stale results
       },
       success: function (resp) {
         console.log('/getHelpQueue success', resp);
+        $("#publicHelpQueue").html("Help queue: " + JSON.stringify(resp));
         /*
         // TODO: do something graceful here
         // update help queue display
@@ -743,6 +740,7 @@ Get live help! (NEW/experimental)
           dataType: "json",
           data: {id: shareId, url: shareUrl, lang: lang},
           success: this.doneRequestingPublicHelp.bind(this),
+          error: this.rphError.bind(this),
         });
       },
       success: (resp) => {
@@ -752,9 +750,17 @@ Get live help! (NEW/experimental)
           dataType: "json",
           data: {id: shareId, url: shareUrl, lang: lang, country: resp.country_name},
           success: this.doneRequestingPublicHelp.bind(this),
+          error: this.rphError.bind(this),
         });
       },
     });
+  }
+
+  rphError() {
+    alert("ERROR in getting live help. This isn't working at the moment. Please try again later.");
+    if (TogetherJS.running) {
+      TogetherJS(); // shut down TogetherJS
+    }
   }
 
   doneRequestingPublicHelp(resp) {
@@ -765,8 +771,10 @@ Get live help! (NEW/experimental)
       this.appendTogetherJsFooter();
       $("#requestHelpBtn").hide();
     } else {
-      alert("UNKNOWN ERROR in getting live help. This feature isn't working at the moment. Please try again later.");
-      TogetherJS(); // shut down first
+      alert("ERROR in getting live help. This isn't working at the moment. Please try again later.");
+      if (TogetherJS.running) {
+        TogetherJS(); // shut down TogetherJS
+      }
     }
   }
 
