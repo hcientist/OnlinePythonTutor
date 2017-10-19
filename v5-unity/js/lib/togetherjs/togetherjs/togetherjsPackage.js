@@ -1300,15 +1300,11 @@ channels.WebSocketChannel = util.Class(AbstractChannel, {
     }).bind(this);
     this.socket.onerror = (function (event) {
       console.error('WebSocket error:', event.data);
-      // pgbovine - warn *once* that the chat connection may be broken, then forceably disconnect:
+      // pgbovine - warn *once* that the chat connection may be broken,
+      // but don't forceably disconnect:
       if (!this.showedDisconnectedAlert) {
-        alert("ERROR: chat server is down, so your chat session won't work. Please try again later.");
+        alert("ERROR: chat server may be down, so your chat session may be broken. Please try again later.");
         this.showedDisconnectedAlert = true;
-        // this will take a while to finish shutting down, so use
-        // this.showedDisconnectedAlert to prevent multiple closing attempts:
-        if (TogetherJS.running) {
-          TogetherJS();
-        }
       }
     }).bind(this);
   }

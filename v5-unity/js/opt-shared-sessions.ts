@@ -181,9 +181,11 @@ export class OptFrontendSharedSessions extends OptFrontend {
 
     var ssDiv = `
 
+<!--
 <button id="requestHelpBtn" type="button" class="togetherjsBtn" style="margin-bottom: 6pt;">
 Get live help! (NEW/experimental)
 </button>
+ -->
 
 <div id="ssDiv">
   <button id="sharedSessionBtn" type="button" class="togetherjsBtn" style="font-size: 9pt;">
@@ -282,7 +284,8 @@ Get live help! (NEW/experimental)
       },
       success: function (resp) {
         console.log('/getHelpQueue success', resp);
-        $("#publicHelpQueue").html("Help queue: " + JSON.stringify(resp));
+        //$("#publicHelpQueue").html("Help queue: " + JSON.stringify(resp));
+
         /*
         // TODO: do something graceful here
         // update help queue display

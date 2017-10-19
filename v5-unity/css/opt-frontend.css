@@ -115,6 +115,11 @@ button.surveyBtnBig {
   margin-top: 3px;
 }
 
+#publicHelpQueue {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 #syncBtn {
  font-size: 8pt;
  margin-left: 0px;

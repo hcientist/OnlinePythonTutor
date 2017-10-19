@@ -22337,7 +22337,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "/* CSS accompanying ../visualize.html */\n\nh1 {\n  font-weight: normal;\n  font-size: 20pt;\n  font-family: georgia, serif;\n  line-height: 1em;  /* enforce single spacing so that Georgia works */\n\n  margin-top: 0px;\n  margin-bottom: 8px;\n}\n\nh2 {\n  font-size: 12pt;\n  font-weight: normal;\n  font-family: georgia, serif;\n  line-height: 1.1em; /* enforce single spacing so that Georgia works */\n\n  margin-top: 2px;\n  margin-bottom: 20px;\n}\n\n\nbody {\n  background-color: white;\n  font-family: verdana, arial, helvetica, sans-serif;\n  font-size: 10pt;\n}\n\na,\na:visited,\na:hover {\n  color: #3D58A2;\n}\n\nspan {\n  padding: 0px;\n}\n\ntable#pyOutputPane {\n  padding: 10px;\n}\n\n#pyInputPane, #loadingPane {\n  margin-top: 10px;\n  margin-bottom: 20px;\n\n  max-width: 700px;\n  /* center align */\n  margin-left: auto;\n  margin-right: auto;\n}\n\n#loadingPane {\n  margin-bottom: 5px;\n}\n\n#codeInputPane {\n  margin-top: 5px;\n  font-size: 12pt;\n  border: 1px solid #ddd;\n}\n\n#codeInputWarnings {\n  margin-bottom: 8px;\n}\n\nbutton.smallBtn {\n  font-size: 10pt;\n  padding: 3px;\n}\n\nbutton.bigBtn {\n  font-size: 12pt;\n  padding: 6px;\n  margin-top: 0px;\n}\n\nbutton.surveyBtn {\n  font-size: 8pt;\n  margin-top: 8px;\n}\n\nbutton.surveyBtnBig {\n  font-size: 11pt;\n  padding: 5px;\n  margin-top: 0px;\n}\n\n#footer {\n  color: #999;\n  font-size: 9pt;\n  border-top: 1px solid #bbbbbb;\n  padding-top: 5px;\n  margin-top: 5px;\n\n  max-width: 700px;\n  /* center align */\n  margin-left: auto;\n  margin-right: auto;\n}\n\n#frontendErrorOutput {\n  color: #e93f34; /* should match brightRed JavaScript variable */\n  font-size: 12pt;\n  line-height: 1.5em;\n  margin-top: 8px;\n}\n\n.togetherjsBtn {\n  /*color: #b80000;*/\n  color: #e93f34;\n  font-size: 10pt;\n  padding: 4px;\n  margin-top: 3px;\n}\n\n#syncBtn {\n font-size: 8pt;\n margin-left: 0px;\n}\n\n#experimentalHeader {\n}\n\n#surveyHeader {\n  margin-left: 100px;\n}\n\n.surveyQ {\n  font-size: 9pt;\n  padding: 2px;\n}\n\n/* necessary for CodeMirror error line highlighting to work! */\n.CodeMirror .errorLine { background: #ffff3f !important; }\n\n\n/* from http://rog.ie/blog/css-star-rater */\n.star-rating {\n  font-size: 0;\n  white-space: nowrap;\n  display: inline-block;\n  /* pgbovine - scale this appropriately with a 5:1 ratio */\n  width: 100px;\n  height: 20px;\n  overflow: hidden;\n  position: relative;\n  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');\n  background-size: contain;\n}\n.star-rating i {\n  opacity: 0;\n  position: absolute;\n  left: 0;\n  top: 0;\n  height: 100%;\n  width: 20%;\n  z-index: 1;\n  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');\n  background-size: contain;\n}\n.star-rating input {\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  opacity: 0;\n  display: inline-block;\n  width: 20%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n  z-index: 2;\n  position: relative;\n}\n.star-rating input:hover + i,\n.star-rating input:checked + i {\n  opacity: 1;\n}\n.star-rating i ~ i {\n  width: 40%;\n}\n.star-rating i ~ i ~ i {\n  width: 60%;\n}\n.star-rating i ~ i ~ i ~ i {\n  width: 80%;\n}\n.star-rating i ~ i ~ i ~ i ~ i {\n  width: 100%;\n}\n\n\n#syntaxErrBubbleContents {\n  font-size: 9.5pt;\n  cursor: default;\n}\n\n#syntaxErrHeader {\n  margin-bottom: 3pt;\n}\n\n#syntaxErrCodeDisplay {\n  border: 1px solid #ddd;\n}\n\n#syntaxErrMsg {\n  color: #e93f34; /* should match brightRed JavaScript variable */\n  font-size: 10pt;\n  margin-top: 3pt;\n  margin-bottom: 2pt;\n}\n\n#syntaxErrQuestion {\n  margin-top: 12px;\n}\n\n#syntaxErrTxtInput {\n  margin-top: 3px;\n  margin-bottom: 6px;\n  padding: 2px;\n}\n\n#syntaxErrSubmitBtn, #syntaxErrCloseBtn {\n  margin-right: 8px;\n}\n\n#syntaxErrHideAllLink {\n  font-size: 8pt;\n}\n\n#testCasesPane {\n margin-top: 5px;\n padding-bottom: 10px;\n border-bottom: 1px solid #ccc;\n}\n\n\n/* for SyntaxErrorSurveyBubble */\n\ntextarea.bubbleInputText {\n  font-family: verdana, arial, helvetica, sans-serif;\n\tfont-size: 9pt;\n\tline-height: 1.3em;\n}\n\n.qtip-content {\n\tcolor: #333;\n\tbackground-color: #ffffff;\n\n\tmax-width: 390px;\n\twidth: 390px;\n\n\tborder: 2px solid #e93f34;\n\n  cursor: pointer;\n\n\t*border-right-width: 2px;\n\t*border-bottom-width: 2px;\n\n\t-webkit-border-radius: 5px;\n\t-moz-border-radius: 5px;\n\tborder-radius: 5px;\n\n\t-webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);\n\t-moz-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);\n\tbox-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);\n\n\t-webkit-background-clip: padding-box;\n\t-moz-background-clip: padding;\n\tbackground-clip: padding-box;\n}\n", ""]);
+exports.push([module.i, "/* CSS accompanying ../visualize.html */\n\nh1 {\n  font-weight: normal;\n  font-size: 20pt;\n  font-family: georgia, serif;\n  line-height: 1em;  /* enforce single spacing so that Georgia works */\n\n  margin-top: 0px;\n  margin-bottom: 8px;\n}\n\nh2 {\n  font-size: 12pt;\n  font-weight: normal;\n  font-family: georgia, serif;\n  line-height: 1.1em; /* enforce single spacing so that Georgia works */\n\n  margin-top: 2px;\n  margin-bottom: 20px;\n}\n\n\nbody {\n  background-color: white;\n  font-family: verdana, arial, helvetica, sans-serif;\n  font-size: 10pt;\n}\n\na,\na:visited,\na:hover {\n  color: #3D58A2;\n}\n\nspan {\n  padding: 0px;\n}\n\ntable#pyOutputPane {\n  padding: 10px;\n}\n\n#pyInputPane, #loadingPane {\n  margin-top: 10px;\n  margin-bottom: 20px;\n\n  max-width: 700px;\n  /* center align */\n  margin-left: auto;\n  margin-right: auto;\n}\n\n#loadingPane {\n  margin-bottom: 5px;\n}\n\n#codeInputPane {\n  margin-top: 5px;\n  font-size: 12pt;\n  border: 1px solid #ddd;\n}\n\n#codeInputWarnings {\n  margin-bottom: 8px;\n}\n\nbutton.smallBtn {\n  font-size: 10pt;\n  padding: 3px;\n}\n\nbutton.bigBtn {\n  font-size: 12pt;\n  padding: 6px;\n  margin-top: 0px;\n}\n\nbutton.surveyBtn {\n  font-size: 8pt;\n  margin-top: 8px;\n}\n\nbutton.surveyBtnBig {\n  font-size: 11pt;\n  padding: 5px;\n  margin-top: 0px;\n}\n\n#footer {\n  color: #999;\n  font-size: 9pt;\n  border-top: 1px solid #bbbbbb;\n  padding-top: 5px;\n  margin-top: 5px;\n\n  max-width: 700px;\n  /* center align */\n  margin-left: auto;\n  margin-right: auto;\n}\n\n#frontendErrorOutput {\n  color: #e93f34; /* should match brightRed JavaScript variable */\n  font-size: 12pt;\n  line-height: 1.5em;\n  margin-top: 8px;\n}\n\n.togetherjsBtn {\n  /*color: #b80000;*/\n  color: #e93f34;\n  font-size: 10pt;\n  padding: 4px;\n  margin-top: 3px;\n}\n\n#publicHelpQueue {\n  margin-top: 10px;\n  margin-bottom: 10px;\n}\n\n#syncBtn {\n font-size: 8pt;\n margin-left: 0px;\n}\n\n#experimentalHeader {\n}\n\n#surveyHeader {\n  margin-left: 100px;\n}\n\n.surveyQ {\n  font-size: 9pt;\n  padding: 2px;\n}\n\n/* necessary for CodeMirror error line highlighting to work! */\n.CodeMirror .errorLine { background: #ffff3f !important; }\n\n\n/* from http://rog.ie/blog/css-star-rater */\n.star-rating {\n  font-size: 0;\n  white-space: nowrap;\n  display: inline-block;\n  /* pgbovine - scale this appropriately with a 5:1 ratio */\n  width: 100px;\n  height: 20px;\n  overflow: hidden;\n  position: relative;\n  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');\n  background-size: contain;\n}\n.star-rating i {\n  opacity: 0;\n  position: absolute;\n  left: 0;\n  top: 0;\n  height: 100%;\n  width: 20%;\n  z-index: 1;\n  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');\n  background-size: contain;\n}\n.star-rating input {\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  opacity: 0;\n  display: inline-block;\n  width: 20%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n  z-index: 2;\n  position: relative;\n}\n.star-rating input:hover + i,\n.star-rating input:checked + i {\n  opacity: 1;\n}\n.star-rating i ~ i {\n  width: 40%;\n}\n.star-rating i ~ i ~ i {\n  width: 60%;\n}\n.star-rating i ~ i ~ i ~ i {\n  width: 80%;\n}\n.star-rating i ~ i ~ i ~ i ~ i {\n  width: 100%;\n}\n\n\n#syntaxErrBubbleContents {\n  font-size: 9.5pt;\n  cursor: default;\n}\n\n#syntaxErrHeader {\n  margin-bottom: 3pt;\n}\n\n#syntaxErrCodeDisplay {\n  border: 1px solid #ddd;\n}\n\n#syntaxErrMsg {\n  color: #e93f34; /* should match brightRed JavaScript variable */\n  font-size: 10pt;\n  margin-top: 3pt;\n  margin-bottom: 2pt;\n}\n\n#syntaxErrQuestion {\n  margin-top: 12px;\n}\n\n#syntaxErrTxtInput {\n  margin-top: 3px;\n  margin-bottom: 6px;\n  padding: 2px;\n}\n\n#syntaxErrSubmitBtn, #syntaxErrCloseBtn {\n  margin-right: 8px;\n}\n\n#syntaxErrHideAllLink {\n  font-size: 8pt;\n}\n\n#testCasesPane {\n margin-top: 5px;\n padding-bottom: 10px;\n border-bottom: 1px solid #ccc;\n}\n\n\n/* for SyntaxErrorSurveyBubble */\n\ntextarea.bubbleInputText {\n  font-family: verdana, arial, helvetica, sans-serif;\n\tfont-size: 9pt;\n\tline-height: 1.3em;\n}\n\n.qtip-content {\n\tcolor: #333;\n\tbackground-color: #ffffff;\n\n\tmax-width: 390px;\n\twidth: 390px;\n\n\tborder: 2px solid #e93f34;\n\n  cursor: pointer;\n\n\t*border-right-width: 2px;\n\t*border-bottom-width: 2px;\n\n\t-webkit-border-radius: 5px;\n\t-moz-border-radius: 5px;\n\tborder-radius: 5px;\n\n\t-webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);\n\t-moz-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);\n\tbox-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);\n\n\t-webkit-background-clip: padding-box;\n\t-moz-background-clip: padding;\n\tbackground-clip: padding-box;\n}\n", ""]);
 
 // exports
 
@@ -23169,14 +23169,14 @@ var OptFrontendSharedSessions = (function (_super) {
         if (_this.disableSharedSessions) {
             return _this;
         }
-        var ssDiv = "\n<div id=\"ssDiv\">\n\n  <!--\n  <button id=\"requestHelpBtn\" type=\"button\" class=\"togetherjsBtn\">\n  Get live help! (NEW & experimental)\n  </button>\n  <p/>\n  -->\n\n  <button id=\"sharedSessionBtn\" type=\"button\" class=\"togetherjsBtn\" style=\"font-size: 9pt;\">\n  Start a private chat session\n  </button>\n</div>\n\n<div id=\"sharedSessionDisplayDiv\" style=\"display: none; margin-right: 5px;\">\n  <button id=\"stopTogetherJSBtn\" type=\"button\" class=\"togetherjsBtn\">\n  Stop this chat session\n  </button>\n\n  <div style=\"width: 200px; font-size: 8pt; color: #666; margin-top: 8px;\">\n  Note that your chat logs and code may be recorded, anonymized, and\n  analyzed for our research.\n  </div>\n</div>\n";
+        var ssDiv = "\n\n<!--\n<button id=\"requestHelpBtn\" type=\"button\" class=\"togetherjsBtn\" style=\"margin-bottom: 6pt;\">\nGet live help! (NEW/experimental)\n</button>\n -->\n\n<div id=\"ssDiv\">\n  <button id=\"sharedSessionBtn\" type=\"button\" class=\"togetherjsBtn\" style=\"font-size: 9pt;\">\n  Start a private chat session\n  </button>\n</div>\n\n<div id=\"sharedSessionDisplayDiv\" style=\"display: none; margin-right: 5px;\">\n  <button id=\"stopTogetherJSBtn\" type=\"button\" class=\"togetherjsBtn\">\n  Stop this chat session\n  </button>\n\n  <div style=\"width: 200px; font-size: 8pt; color: #666; margin-top: 8px;\">\n  Note that your chat logs and code may be recorded, anonymized, and\n  analyzed for our research.\n  </div>\n</div>\n";
         var togetherJsDiv = "\n<div id=\"togetherjsStatus\">\n  <div id=\"publicHelpQueue\"></div>\n</div>\n";
         $("td#headerTdLeft").append(ssDiv);
         $("td#headerTdRight").append(togetherJsDiv);
         // do this all after creating the DOM elements above dynamically:
         $("#sharedSessionBtn").click(_this.startSharedSession.bind(_this, false));
         $("#stopTogetherJSBtn").click(exports.TogetherJS); // toggles off
-        $("#requestHelpBtn").click(_this.startSharedSession.bind(_this, true));
+        $("#requestHelpBtn").click(_this.requestPublicHelpButtonClick.bind(_this));
         /*
         $("#stopRequestHelpBtn").click(function() {
           this.wantsPublicHelp = false;
@@ -23223,8 +23223,7 @@ var OptFrontendSharedSessions = (function (_super) {
         // VERY IMPORTANT: to avoid overloading the server, don't send these
         // requests when you're idle
         if (this.isIdle) {
-            // TODO: clear the help queue display entirely if you're idle so
-            // that we don't have stale results
+            $("#publicHelpQueue").empty(); // clear when idle so that you don't have stale results
             return; // return early!
         }
         var ghqUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
@@ -23234,14 +23233,11 @@ var OptFrontendSharedSessions = (function (_super) {
             data: { user_uuid: this.userUUID },
             error: function () {
                 console.log('/getHelpQueue error');
-                /*
-                // TODO: do something graceful here
-                // clear the help queue display if there's an error
-                $("#surveyHeader").html('');
-                */
+                $("#publicHelpQueue").empty(); // avoid having stale results
             },
             success: function (resp) {
                 console.log('/getHelpQueue success', resp);
+                //$("#publicHelpQueue").html("Help queue: " + JSON.stringify(resp));
                 /*
                 // TODO: do something graceful here
                 // update help queue display
@@ -23553,7 +23549,7 @@ var OptFrontendSharedSessions = (function (_super) {
             console.log("TogetherJS close");
             $("#togetherjsStatus").html(''); // clear it
             $("#sharedSessionDisplayDiv").hide();
-            $("#ssDiv,#testCasesParent").show();
+            $("#ssDiv,#requestHelpBtn,#testCasesParent").show();
             _this.TogetherjsCloseHandler();
             _this.redrawConnectors(); // update all arrows at the end
         });
@@ -23602,16 +23598,22 @@ var OptFrontendSharedSessions = (function (_super) {
         }
         this.wantsPublicHelp = false; // explicitly reset it
     };
-    OptFrontendSharedSessions.prototype.startSharedSession = function (requestPublicHelp) {
-        if (requestPublicHelp === void 0) { requestPublicHelp = false; }
+    OptFrontendSharedSessions.prototype.startSharedSession = function (wantsPublicHelp) {
         $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
         $("#togetherjsStatus").html("Please wait ... loading shared session");
         exports.TogetherJS();
-        if (requestPublicHelp) {
+        this.wantsPublicHelp = wantsPublicHelp;
+    };
+    OptFrontendSharedSessions.prototype.requestPublicHelpButtonClick = function () {
+        if (exports.TogetherJS.running) {
+            // TogetherJS is already running
             this.wantsPublicHelp = true;
+            this.initRequestPublicHelp();
         }
         else {
-            this.wantsPublicHelp = false; // explicitly reset it each time you activate
+            // TogetherJS isn't running yet, so start up a shared session AND
+            // request public help at the same time ...
+            this.startSharedSession(true);
         }
     };
     // return whether two states match, except don't worry about curInstr
@@ -23628,6 +23630,7 @@ var OptFrontendSharedSessions = (function (_super) {
     OptFrontendSharedSessions.prototype.initRequestPublicHelp = function () {
         var _this = this;
         pytutor_1.assert(this.wantsPublicHelp);
+        pytutor_1.assert(exports.TogetherJS.running);
         // first make a /requestPublicHelp request to the TogetherJS server:
         var rphUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
         var shareId = exports.TogetherJS.shareId();
@@ -23646,6 +23649,7 @@ var OptFrontendSharedSessions = (function (_super) {
                     dataType: "json",
                     data: { id: shareId, url: shareUrl, lang: lang },
                     success: _this.doneRequestingPublicHelp.bind(_this),
+                    error: _this.rphError.bind(_this),
                 });
             },
             success: function (resp) {
@@ -23655,31 +23659,35 @@ var OptFrontendSharedSessions = (function (_super) {
                     dataType: "json",
                     data: { id: shareId, url: shareUrl, lang: lang, country: resp.country_name },
                     success: _this.doneRequestingPublicHelp.bind(_this),
+                    error: _this.rphError.bind(_this),
                 });
             },
         });
     };
+    OptFrontendSharedSessions.prototype.rphError = function () {
+        alert("ERROR in getting live help. This isn't working at the moment. Please try again later.");
+        if (exports.TogetherJS.running) {
+            exports.TogetherJS(); // shut down TogetherJS
+        }
+    };
     OptFrontendSharedSessions.prototype.doneRequestingPublicHelp = function (resp) {
+        pytutor_1.assert(exports.TogetherJS.running);
         if (resp.status === "OKIE DOKIE") {
             $("#togetherjsStatus").html('<div>You are now in a <span style="font-weight: bold; color: #e93f34;">PUBLIC HELP QUEUE</span> (see below). Anyone currently on this website can help you, but there is no guarantee that someone will be available. Use at your own risk; we cannot guarantee the quality of help you receive.</div><div id="publicHelpQueue"></div>');
             this.appendTogetherJsFooter();
+            $("#requestHelpBtn").hide();
         }
         else {
-            alert("UNKNOWN ERROR in getting live help. This feature isn't working at the moment. Please try again later.");
-            exports.TogetherJS(); // shut down first
+            alert("ERROR in getting live help. This isn't working at the moment. Please try again later.");
+            if (exports.TogetherJS.running) {
+                exports.TogetherJS(); // shut down TogetherJS
+            }
         }
     };
     OptFrontendSharedSessions.prototype.initPrivateSharedSession = function () {
         pytutor_1.assert(!this.wantsPublicHelp);
         var urlToShare = exports.TogetherJS.shareUrl();
-        $("#togetherjsStatus").html('<div>\
-                                 You are now in a <span style="font-weight: bold; color: #e93f34;">PRIVATE</span> chat. Nobody will join unless you send them the URL below.\
-                                 </div>\
-                                 URL to join this sesssion: <input type="text" style="font-size: 10pt; \
-                                 font-weight: bold; padding: 3px;\
-                                 margin-top: 3pt; \
-                                 margin-bottom: 6pt;" \
-                                 id="togetherjsURL" size="70" readonly="readonly"/>');
+        $("#togetherjsStatus").html("<div>\n                                 You are in a <span style=\"font-weight: bold; color: #e93f34;\">PRIVATE</span> chat. To ask for public help, click the \"Get live help!\" button at the left. Nobody will join unless you send them the URL below.\n                                 </div>\n                                 URL to join this chat: <input type=\"text\" style=\"font-size: 10pt;\n                                 font-weight: bold; padding: 3px;\n                                 margin-top: 3pt;\n                                 margin-bottom: 6pt;\"\n                                 id=\"togetherjsURL\" size=\"70\" readonly=\"readonly\"/>\n    ");
         $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
         this.appendTogetherJsFooter();
     };
