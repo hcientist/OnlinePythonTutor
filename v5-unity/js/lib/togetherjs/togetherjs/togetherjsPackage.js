@@ -1300,6 +1300,12 @@ channels.WebSocketChannel = util.Class(AbstractChannel, {
     }).bind(this);
     this.socket.onerror = (function (event) {
       console.error('WebSocket error:', event.data);
+      // pgbovine - warn *once* that the chat connection may be broken,
+      // but don't forceably disconnect in case the error was just a fluke
+      if (!this.showedDisconnectedAlert) {
+        alert("ERROR: chat server might be down, so your session may be disconnected. Please try again later.");
+        this.showedDisconnectedAlert = true;
+      }
     }).bind(this);
   }
 
