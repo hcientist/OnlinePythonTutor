@@ -22557,7 +22557,7 @@ var OptFrontendSharedSessions = (function (_super) {
                         }
                         else {
                             curStr = e.username + ' from ' + e.country + ' needs help with ' + langName;
-                            if (e.numClients <= 1) {
+                            if (!e.numClients || isNaN(e.numClients) || e.numClients <= 1) {
                                 curStr += ' - <a class="gotoHelpLink" style="font-weight: bold;" href="' + e.url + '" target="_blank">click to help</a>';
                                 curStr += ' <span class="helpQueueSmallText">(requested ' + timeSinceCreationStr + ', last active ' + timeSinceLastMsgStr + ')</span>';
                             }

@@ -347,7 +347,7 @@ Get live help! (NEW!)
               curStr += ' <button id="stopRequestHelpBtn" type="button">Stop requesting help</button>';
             } else {
               curStr = e.username + ' from ' + e.country + ' needs help with ' + langName;
-              if (e.numClients <= 1) {
+              if (!e.numClients || isNaN(e.numClients) || e.numClients <= 1) {
                 curStr += ' - <a class="gotoHelpLink" style="font-weight: bold;" href="' + e.url + '" target="_blank">click to help</a>';
                 curStr += ' <span class="helpQueueSmallText">(requested ' + timeSinceCreationStr + ', last active ' + timeSinceLastMsgStr  + ')</span>';
               } else if (e.numClients == 2) {
