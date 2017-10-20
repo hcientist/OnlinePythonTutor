@@ -1303,7 +1303,7 @@ channels.WebSocketChannel = util.Class(AbstractChannel, {
       // pgbovine - warn *once* that the chat connection may be broken,
       // but don't forceably disconnect:
       if (!this.showedDisconnectedAlert) {
-        alert("ERROR: chat server may be down, so your chat session may be broken. Please try again later.");
+        alert("ERROR: chat server may be down, so your session could be broken. Please check and try again later.");
         this.showedDisconnectedAlert = true;
       }
     }).bind(this);

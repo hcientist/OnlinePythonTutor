@@ -13,9 +13,6 @@
 
 /* TODOs:
 
-- get shared sessions working here after refactoring ... it kinda almost
-  works right now
-
 - abstract out components within pytutor.js to prevent ugly code
   duplication with stuff in this file
 
@@ -40,7 +37,7 @@ require('../css/opt-frontend.css');
 require('../css/opt-live.css');
 
 // need to directly import the class for type checking to work
-import {OptFrontend} from './opt-frontend';
+import {OptFrontendSharedSessions,TogetherJS} from './opt-shared-sessions';
 import {ExecutionVisualizer, assert, brightRed, darkArrowColor, lightArrowColor, SVG_ARROW_POLYGON, htmlspecialchars} from './pytutor';
 import {eureka_survey,eureka_prompt,eureka_survey_version} from './surveys';
 
@@ -57,7 +54,7 @@ require('script-loader!./lib/ace/src-min-noconflict/mode-ruby.js');
 var optLiveFrontend: OptLiveFrontend;
 
 
-export class OptLiveFrontend extends OptFrontend {
+export class OptLiveFrontend extends OptFrontendSharedSessions {
   originFrontendJsFile: string = 'opt-live.js';
 
   prevVisualizer = null; // the visualizer object from the previous execution
@@ -379,6 +376,16 @@ export class OptLiveFrontend extends OptFrontend {
     myVisualizer.add_pytutor_hook(
       "end_updateOutput",
       (args) => {
+        // adapted from opt-shared-sessions.ts to handle TogetherJS
+        if (this.updateOutputSignalFromRemote) {
+          return [true]; // die early; no more hooks should run after this one!
+        }
+
+        if (TogetherJS.running) {
+          TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
+        }
+
+
         // copied from opt-frontend-common.js
         if (args.myViz.creationTime) {
           var curTs = new Date().getTime();
@@ -621,15 +628,29 @@ export class OptLiveFrontend extends OptFrontend {
     return ret;
   }
 
+
+  // for shared sessions
+  TogetherjsReadyHandler() {
+    $("#liveModeHeader").hide();
+    super.TogetherjsReadyHandler();
+  }
+
+  TogetherjsCloseHandler() {
+    $("#liveModeHeader").show();
+    super.TogetherjsCloseHandler();
+  }
+
+  updateOutputTogetherJsHandler(msg) {
+    super.updateOutputTogetherJsHandler(msg); // do this first
+    // then update slider at the end
+    $('#executionSlider').slider('value', this.myVisualizer.curInstr); // update slider
+    this.updateStepLabels();
+  }
+
 } // END class OptLiveFrontend
 
 
 $(document).ready(function() {
-  optLiveFrontend = new OptLiveFrontend({
-                                  /*TogetherjsReadyHandler: optFrontendTogetherjsReadyHandler,
-                                    TogetherjsCloseHandler: optFrontendTogetherjsCloseHandler,
-                                    startSharedSession: optFrontendStartSharedSession,
-                                  */
-                                });
+  optLiveFrontend = new OptLiveFrontend({});
   optLiveFrontend.setSurveyHTML();
 });

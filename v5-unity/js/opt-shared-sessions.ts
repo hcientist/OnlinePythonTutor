@@ -4,12 +4,20 @@
 
 // Implements shared sessions (a.k.a. Codechella)
 
-// VERY IMPORTANT to grab the value of  togetherjsInUrl before loading
+// VERY IMPORTANT to grab the value of togetherjsInUrl before loading
 // togetherjs-min.js, since loading that file deletes #togetherjs from URL
 // NB: kinda gross global
-var togetherjsInUrl = !!(window.location.hash.match(/^#togetherjs/)); // turn into bool
+var togetherjsInUrl = !!(window.location.hash.match(/togetherjs=/)); // turn into bool
 if (togetherjsInUrl) {
   console.log("togetherjsInUrl!");
+} else {
+  // if you're *not* loading a URL with togetherjs in it (i.e., joining into
+  // an existing session), then do this hack at the VERY BEGINNING before
+  // loading togetherjs-min.js to prevent TogetherJS from annoyingly
+  // auto-starting when, say, you're in a shared session and reload
+  // your browser (which can lead to weird interactions with the help queue)
+  console.log("NOT togetherjsInUrl!");
+  (window as any).TogetherJSConfig_noAutoStart = true;
 }
 
 require('script-loader!./lib/togetherjs/togetherjs-min.js');
@@ -181,15 +189,13 @@ export class OptFrontendSharedSessions extends OptFrontend {
 
     var ssDiv = `
 
-<!--
-<button id="requestHelpBtn" type="button" class="togetherjsBtn" style="margin-bottom: 6pt;">
-Get live help! (NEW/experimental)
+<button id="requestHelpBtn" type="button" class="togetherjsBtn" style="margin-bottom: 6pt; font-weight: bold;">
+Get live help! (NEW!)
 </button>
- -->
 
 <div id="ssDiv">
   <button id="sharedSessionBtn" type="button" class="togetherjsBtn" style="font-size: 9pt;">
-  Start a private chat session
+  Start private chat session
   </button>
 </div>
 
@@ -219,21 +225,6 @@ Get live help! (NEW/experimental)
     $("#stopTogetherJSBtn").click(TogetherJS); // toggles off
     $("#requestHelpBtn").click(this.requestPublicHelpButtonClick.bind(this));
 
-    /*
-    $("#stopRequestHelpBtn").click(function() {
-      this.wantsPublicHelp = false;
-      var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
-      var shareId = TogetherJS.shareId();
-      $.ajax({
-        url: rphUrl,
-        dataType: "json",
-        data: {id: shareId, removeFromQueue: true}, // stop requesting help!
-      }).then(function (resp) { // TODO: don't use promises; use the 'success' callback instead
-        console.log("SERVER SAID!!!", resp);
-      });
-    });
-    */
-
     // jquery.idle:
     ($(document) as any).idle({
       onIdle: () => {
@@ -242,9 +233,11 @@ Get live help! (NEW/experimental)
       },
       onActive: () => {
         this.isIdle = false;
-        console.log('Hey, I\'m back!');
+        console.log('I\'m back!');
+        // update the help queue as soon as you're back:
+        this.getHelpQueue();
       },
-      idle: 60 * 1000 // 1-minute timeout by default
+      idle: 60 * 1000 // 1-minute timeout by default for idleness
     })
 
     // polling every 5 seconds seems reasonable; note that you won't
@@ -253,7 +246,7 @@ Get live help! (NEW/experimental)
     // the moment
     setInterval(this.getHelpQueue.bind(this), 5 * 1000);
 
-    // add an additional listener in addition to whatever the superclass/ added
+    // add an additional listener in addition to whatever the superclasses added
     window.addEventListener("hashchange", (e) => {
       if (TogetherJS.running && !this.isExecutingCode) {
         TogetherJS.send({type: "hashchange",
@@ -262,6 +255,41 @@ Get live help! (NEW/experimental)
                          myAppState: this.getAppState()});
       }
     });
+
+    // shut down TogetherJS if it's still running
+    // (use 'on' to add an additional listener in addition to whatever event
+    // handlers the superclasses already added)
+    $(window).on('beforeunload', () => {
+      if (TogetherJS.running) {
+        TogetherJS();
+      }
+    });
+    $(window).on('unload', () => {
+      if (TogetherJS.running) {
+        TogetherJS();
+      }
+    });
+  }
+
+  langToEnglish(lang) {
+    if (lang === '2') {
+      return 'Python 2';
+    } else if (lang === '3') {
+      return 'Python 3';
+    } else if (lang === 'java') {
+      return 'Java';
+    } else if (lang === 'js') {
+      return 'JavaScript';
+    } else if (lang === 'ts') {
+      return 'TypeScript';
+    } else if (lang === 'ruby') {
+      return 'Ruby';
+    } else if (lang === 'c') {
+      return 'C';
+    } else if (lang === 'cpp') {
+      return 'C++';
+    }
+    return '(unknown language)'; // fail soft, even though this shouldn't ever happen
   }
 
   getHelpQueue() {
@@ -279,25 +307,107 @@ Get live help! (NEW/experimental)
       data: {user_uuid: this.userUUID}, // tell the server who you are
       error: function() {
         console.log('/getHelpQueue error');
-
-        $("#publicHelpQueue").empty(); // avoid having stale results
+        $("#publicHelpQueue").empty(); // avoid showing stale results
       },
-      success: function (resp) {
-        console.log('/getHelpQueue success', resp);
-        //$("#publicHelpQueue").html("Help queue: " + JSON.stringify(resp));
+      success: (resp) => {
+        if (resp && resp.length > 0) {
+          $("#publicHelpQueue").empty();
 
-        /*
-        // TODO: do something graceful here
-        // update help queue display
-        $("#surveyHeader").html(JSON.stringify(resp));
-        resp.forEach((e) => {
-          // use moment.js to generate human-readable relative times:
-          var d = new Date();
-          var timeSinceCreationStr = moment(d.valueOf() - e.timeSinceCreation).fromNow();
-          var timeSinceLastMsgStr = moment(d.valueOf() - e.timeSinceLastMsg).fromNow();
-          console.log(e.numClients, e.country, e.id, e.lang, timeSinceCreationStr, timeSinceLastMsgStr);
-        });
-        */
+          var myShareId = TogetherJS.shareId();
+
+          // if numClients > 1, that means the session has multiple
+          // participants, so "demote" to those to the bottom of the
+          // help queue so they're displayed last. but keep everything in order.
+          var entriesWithoutHelpers = [];
+          var entriesWithHelpers = [];
+
+          resp.forEach((e) => {
+            // when testing on localhost, we sometimes use the
+            // production TogetherJS chat server, but we don't want to
+            // show localhost entries on the global queue for people on
+            // the real site since there's no way they can jump in to join
+            //
+            // i.e., if your browser isn't on localhost but the URL of
+            // the help queue entry is on localhost, then *don't* display it
+            if ((window.location.href.indexOf('localhost') < 0) &&
+                (e.url.indexOf('localhost') >= 0)) {
+              return;
+            }
+
+            // use moment.js to generate human-readable relative times:
+            var d = new Date();
+            var timeSinceCreationStr = moment(d.valueOf() - e.timeSinceCreation).fromNow();
+            var timeSinceLastMsgStr = moment(d.valueOf() - e.timeSinceLastMsg).fromNow();
+            var langName = this.langToEnglish(e.lang);
+
+            var curStr = '';
+            if (e.id === myShareId) {
+              curStr = e.username + ' from ' + e.country + ' needs help with ' + langName;
+              curStr += ' - <span class="redBold">this is you!</span>';
+              curStr += ' <button id="stopRequestHelpBtn" type="button">Stop requesting help</button>';
+            } else {
+              curStr = e.username + ' from ' + e.country + ' needs help with ' + langName;
+              if (e.numClients <= 1) {
+                curStr += ' - <a class="gotoHelpLink" style="font-weight: bold;" href="' + e.url + '" target="_blank">click to help</a>';
+                curStr += ' <span class="helpQueueSmallText">(requested ' + timeSinceCreationStr + ', last active ' + timeSinceLastMsgStr  + ')</span>';
+              } else if (e.numClients == 2) {
+                curStr += ' - ' + String(e.numClients - 1) + ' person currently helping';
+                curStr += ' - <a class="gotoHelpLink" href="' + e.url + '" target="_blank">click to help</a>';
+              } else {
+                curStr += ' - ' + String(e.numClients - 1) + ' people currently helping';
+                curStr += ' - <a class="gotoHelpLink" href="' + e.url + '" target="_blank">click to help</a>';
+              }
+            }
+
+            if (e.numClients > 1) {
+              entriesWithHelpers.push(curStr);
+            } else {
+              entriesWithoutHelpers.push(curStr);
+            }
+          });
+
+          $("#publicHelpQueue").html('<div style="margin-bottom: 5px;">These Python Tutor users are asking for help right now. Please volunteer to help!</div>');
+
+          // prioritize help entries that don't currently have helpers helping (i.e., numClients <= 1)
+          entriesWithoutHelpers.forEach((e) => {
+            $("#publicHelpQueue").append('<li>' + e + '</li>');
+          });
+          entriesWithHelpers.forEach((e) => {
+            $("#publicHelpQueue").append('<li>' + e + '</li>');
+          });
+
+          // add these handlers AFTER the respective DOM nodes have been
+          // added above:
+          $("#stopRequestHelpBtn").click(() => {
+            this.wantsPublicHelp = false;
+            var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
+            var shareId = TogetherJS.shareId();
+            $.ajax({
+              url: rphUrl,
+              dataType: "json",
+              data: {id: shareId, removeFromQueue: true}, // stop requesting help!
+              success: () => {
+                this.getHelpQueue(); // update the help queue ASAP to get updated status
+              },
+              error: () => {
+                this.getHelpQueue(); // update the help queue ASAP to get updated status
+              },
+            });
+          });
+
+          // add confirmation to hopefully establish some etiquette expectations
+          $(".gotoHelpLink").click(() => {
+            var confirmation = confirm('Thanks for volunteering! If you press OK, you will join a live chat session with the help requester. Please be polite and helpful in your interactions.');
+            if (confirmation) {
+              return true;  // cause the link to be clicked as normal
+            } else {
+              return false; // returning false will NOT cause the link to be clicked
+            }
+          });
+
+        } else {
+          $("#publicHelpQueue").html('Nobody is currently asking for help. Click "Get live help!" at the left to ask for help.');
+        }
       },
     });
   }
@@ -401,6 +511,24 @@ Get live help! (NEW/experimental)
     }
   }
 
+  // subclasses can override
+  updateOutputTogetherJsHandler(msg) {
+    if (!msg.sameUrl) return; // make sure we're on the same page
+    if (this.isExecutingCode) {
+      return;
+    }
+
+    if (this.myVisualizer) {
+      // to prevent this call to updateOutput from firing its own TogetherJS event
+      this.updateOutputSignalFromRemote = true;
+      try {
+        this.myVisualizer.renderStep(msg.step);
+      }
+      finally {
+        this.updateOutputSignalFromRemote = false;
+      }
+    }
+  }
 
   initTogetherJS() {
     assert(TogetherJS);
@@ -434,13 +562,13 @@ Get live help! (NEW/experimental)
         // make sure the name is truly unique, incrementing count as necessary
         do {
           if (!isNaN(count)) {
-            newName = toks[0] + ' ' + String(count + 1); // e.g., "Tutor 3"
+            newName = toks[0] + '_' + String(count + 1); // e.g., "Tutor 3"
             count++;
           }
           else {
             // the original name was something like "Tutor", so make
             // newName into, say, "Tutor 2"
-            newName = p.Self.name + ' 2';
+            newName = p.Self.name + '_2';
             count = 2;
           }
         } while ($.inArray(newName, peerNames) >= 0); // i.e., is newName in peerNames?
@@ -449,23 +577,7 @@ Get live help! (NEW/experimental)
       }
     });
 
-    TogetherJS.hub.on("updateOutput", (msg) => {
-      if (!msg.sameUrl) return; // make sure we're on the same page
-      if (this.isExecutingCode) {
-        return;
-      }
-
-      if (this.myVisualizer) {
-        // to prevent this call to updateOutput from firing its own TogetherJS event
-        this.updateOutputSignalFromRemote = true;
-        try {
-          this.myVisualizer.renderStep(msg.step);
-        }
-        finally {
-          this.updateOutputSignalFromRemote = false;
-        }
-      }
-    });
+    TogetherJS.hub.on("updateOutput", this.updateOutputTogetherJsHandler.bind(this));
 
     TogetherJS.hub.on("executeCode", (msg) => {
       if (!msg.sameUrl) return; // make sure we're on the same page
@@ -629,7 +741,7 @@ Get live help! (NEW/experimental)
     TogetherJS.on("close", () => {
       console.log("TogetherJS close");
 
-      $("#togetherjsStatus").html(''); // clear it
+      $("#togetherjsStatus").html('<div id="publicHelpQueue"></div>'); // clear it (tricky! leave a publicHelpQueue node here!)
       $("#sharedSessionDisplayDiv").hide();
       $("#ssDiv,#requestHelpBtn,#testCasesParent").show();
 
@@ -729,6 +841,8 @@ Get live help! (NEW/experimental)
     var shareId = TogetherJS.shareId();
     var shareUrl = TogetherJS.shareUrl();
     var lang = this.getAppState().py;
+    var getUserName = TogetherJS.config.get("getUserName");
+    var username = getUserName();
 
     // use http://freegeoip.net/ - this call gets the geolocation of the
     // client's (i.e., YOUR) current IP address:
@@ -741,7 +855,7 @@ Get live help! (NEW/experimental)
         $.ajax({
           url: rphUrl,
           dataType: "json",
-          data: {id: shareId, url: shareUrl, lang: lang},
+          data: {id: shareId, url: shareUrl, lang: lang, username: username},
           success: this.doneRequestingPublicHelp.bind(this),
           error: this.rphError.bind(this),
         });
@@ -751,7 +865,7 @@ Get live help! (NEW/experimental)
         $.ajax({
           url: rphUrl,
           dataType: "json",
-          data: {id: shareId, url: shareUrl, lang: lang, country: resp.country_name},
+          data: {id: shareId, url: shareUrl, lang: lang, username: username, country: resp.country_name},
           success: this.doneRequestingPublicHelp.bind(this),
           error: this.rphError.bind(this),
         });
@@ -770,7 +884,7 @@ Get live help! (NEW/experimental)
     assert(TogetherJS.running);
 
     if (resp.status === "OKIE DOKIE") {
-      $("#togetherjsStatus").html('<div>You are now in a <span style="font-weight: bold; color: #e93f34;">PUBLIC HELP QUEUE</span> (see below). Anyone currently on this website can help you, but there is no guarantee that someone will be available. Use at your own risk; we cannot guarantee the quality of help you receive.</div><div id="publicHelpQueue"></div>');
+      $("#togetherjsStatus").html('<div id="publicHelpQueue"></div><div style="margin-bottom: 10px;">You are now in a <span style="color: #e93f34;">PUBLIC HELP QUEUE</span> as ' + TogetherJS.config.get("getUserName")() + ' (see above). Anyone currently on this website can volunteer to help you, but there is no guarantee that someone will come. Please be patient, keep working normally, and stay on the queue.</div>');
       this.appendTogetherJsFooter();
       $("#requestHelpBtn").hide();
     } else {
@@ -786,7 +900,7 @@ Get live help! (NEW/experimental)
 
     var urlToShare = TogetherJS.shareUrl();
     $("#togetherjsStatus").html(`<div>
-                                 You are in a <span style="font-weight: bold; color: #e93f34;">PRIVATE</span> chat. To ask for public help, click the "Get live help!" button at the left. Nobody will join unless you send them the URL below.
+                                 You are in a <span style="font-weight: bold; color: #e93f34;">PRIVATE</span> chat. To ask for public help, click the "Get live help!" button at the left. Nobody will join this chat session unless you send them the URL below.
                                  </div>
                                  URL to join this chat: <input type="text" style="font-size: 10pt;
                                  font-weight: bold; padding: 3px;
@@ -800,7 +914,7 @@ Get live help! (NEW/experimental)
   }
 
   appendTogetherJsFooter() {
-    var extraHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt;">This is a <span style="font-weight: bold; color: #e93f34;">highly experimental</span> feature. Do not move or type too quickly. Click here if you get out of sync: <button id="syncBtn" type="button">Force sync</button> <a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs and feedback</a></div>'
+    var extraHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt;">This is a <span class="redBold">highly experimental</span> feature. Do not move or type too quickly. Click here if you get out of sync: <button id="syncBtn" type="button">Force sync</button> <a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs and feedback</a></div>'
     $("#togetherjsStatus").append(extraHtml);
     $("#syncBtn").click(this.requestSync.bind(this));
   }

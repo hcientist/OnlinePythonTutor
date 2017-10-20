@@ -115,9 +115,27 @@ button.surveyBtnBig {
   margin-top: 3px;
 }
 
+/* make this a fixed size with scrollbars for overflow so that the UI doesn't jitter up and down */
 #publicHelpQueue {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  overflow: auto;
+  height: 95px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
+
+.helpQueueSmallText {
+  color: #333;
+  font-size: 8pt;
+}
+
+.redBold {
+  font-weight: bold;
+  color: #e93f34;
+}
+
+#stopRequestHelpBtn {
+  font-size: 9pt;
+  padding: 2px;
 }
 
 #syncBtn {
