@@ -22577,44 +22577,51 @@ var OptFrontendSharedSessions = (function (_super) {
                             entriesWithoutHelpers.push(curStr);
                         }
                     });
-                    $("#publicHelpQueue").html('<div style="margin-bottom: 5px;">These Python Tutor users are asking for help right now. Please volunteer to help!</div>');
-                    // prioritize help entries that don't currently have helpers helping (i.e., numClients <= 1)
-                    entriesWithoutHelpers.forEach(function (e) {
-                        $("#publicHelpQueue").append('<li>' + e + '</li>');
-                    });
-                    entriesWithHelpers.forEach(function (e) {
-                        $("#publicHelpQueue").append('<li>' + e + '</li>');
-                    });
-                    // add these handlers AFTER the respective DOM nodes have been
-                    // added above:
-                    $("#stopRequestHelpBtn").click(function () {
-                        _this.wantsPublicHelp = false;
-                        var rphUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
-                        var shareId = exports.TogetherJS.shareId();
-                        $.ajax({
-                            url: rphUrl,
-                            dataType: "json",
-                            data: { id: shareId, removeFromQueue: true },
-                            success: function () {
-                                _this.getHelpQueue(); // update the help queue ASAP to get updated status
-                            },
-                            error: function () {
-                                _this.getHelpQueue(); // update the help queue ASAP to get updated status
-                            },
+                    if ((entriesWithHelpers.length + entriesWithoutHelpers.length) > 0) {
+                        $("#publicHelpQueue").html('<div style="margin-bottom: 5px;">These Python Tutor users are asking for help right now. Please volunteer to help!</div>');
+                        // prioritize help entries that don't currently have helpers helping (i.e., numClients <= 1)
+                        entriesWithoutHelpers.forEach(function (e) {
+                            $("#publicHelpQueue").append('<li>' + e + '</li>');
                         });
-                    });
-                    // add confirmation to hopefully establish some etiquette expectations
-                    $(".gotoHelpLink").click(function () {
-                        var confirmation = confirm('Thanks for volunteering! If you press OK, you will join a live chat session with the help requester. Please be polite and helpful in your interactions.');
-                        if (confirmation) {
-                            return true; // cause the link to be clicked as normal
-                        }
-                        else {
-                            return false; // returning false will NOT cause the link to be clicked
-                        }
-                    });
+                        entriesWithHelpers.forEach(function (e) {
+                            $("#publicHelpQueue").append('<li>' + e + '</li>');
+                        });
+                        // add these handlers AFTER the respective DOM nodes have been
+                        // added above:
+                        $("#stopRequestHelpBtn").click(function () {
+                            _this.wantsPublicHelp = false;
+                            var rphUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
+                            var shareId = exports.TogetherJS.shareId();
+                            $.ajax({
+                                url: rphUrl,
+                                dataType: "json",
+                                data: { id: shareId, removeFromQueue: true },
+                                success: function () {
+                                    _this.getHelpQueue(); // update the help queue ASAP to get updated status
+                                },
+                                error: function () {
+                                    _this.getHelpQueue(); // update the help queue ASAP to get updated status
+                                },
+                            });
+                        });
+                        // add confirmation to hopefully establish some etiquette expectations
+                        $(".gotoHelpLink").click(function () {
+                            var confirmation = confirm('Thanks for volunteering! If you press OK, you will join a live chat session with the help requester. Please be polite and helpful in your interactions.');
+                            if (confirmation) {
+                                return true; // cause the link to be clicked as normal
+                            }
+                            else {
+                                return false; // returning false will NOT cause the link to be clicked
+                            }
+                        });
+                    }
+                    else {
+                        // ugly repetition ...
+                        $("#publicHelpQueue").html('Nobody is currently asking for help. Click "Get live help!" at the left to ask for help.');
+                    }
                 }
                 else {
+                    // ugly repetition ...
                     $("#publicHelpQueue").html('Nobody is currently asking for help. Click "Get live help!" at the left to ask for help.');
                 }
             },

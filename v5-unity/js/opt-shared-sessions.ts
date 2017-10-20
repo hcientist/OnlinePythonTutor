@@ -366,46 +366,51 @@ Get live help! (NEW!)
             }
           });
 
-          $("#publicHelpQueue").html('<div style="margin-bottom: 5px;">These Python Tutor users are asking for help right now. Please volunteer to help!</div>');
+          if ((entriesWithHelpers.length + entriesWithoutHelpers.length) > 0) {
+            $("#publicHelpQueue").html('<div style="margin-bottom: 5px;">These Python Tutor users are asking for help right now. Please volunteer to help!</div>');
 
-          // prioritize help entries that don't currently have helpers helping (i.e., numClients <= 1)
-          entriesWithoutHelpers.forEach((e) => {
-            $("#publicHelpQueue").append('<li>' + e + '</li>');
-          });
-          entriesWithHelpers.forEach((e) => {
-            $("#publicHelpQueue").append('<li>' + e + '</li>');
-          });
-
-          // add these handlers AFTER the respective DOM nodes have been
-          // added above:
-          $("#stopRequestHelpBtn").click(() => {
-            this.wantsPublicHelp = false;
-            var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
-            var shareId = TogetherJS.shareId();
-            $.ajax({
-              url: rphUrl,
-              dataType: "json",
-              data: {id: shareId, removeFromQueue: true}, // stop requesting help!
-              success: () => {
-                this.getHelpQueue(); // update the help queue ASAP to get updated status
-              },
-              error: () => {
-                this.getHelpQueue(); // update the help queue ASAP to get updated status
-              },
+            // prioritize help entries that don't currently have helpers helping (i.e., numClients <= 1)
+            entriesWithoutHelpers.forEach((e) => {
+              $("#publicHelpQueue").append('<li>' + e + '</li>');
             });
-          });
+            entriesWithHelpers.forEach((e) => {
+              $("#publicHelpQueue").append('<li>' + e + '</li>');
+            });
 
-          // add confirmation to hopefully establish some etiquette expectations
-          $(".gotoHelpLink").click(() => {
-            var confirmation = confirm('Thanks for volunteering! If you press OK, you will join a live chat session with the help requester. Please be polite and helpful in your interactions.');
-            if (confirmation) {
-              return true;  // cause the link to be clicked as normal
-            } else {
-              return false; // returning false will NOT cause the link to be clicked
-            }
-          });
+            // add these handlers AFTER the respective DOM nodes have been
+            // added above:
+            $("#stopRequestHelpBtn").click(() => {
+              this.wantsPublicHelp = false;
+              var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
+              var shareId = TogetherJS.shareId();
+              $.ajax({
+                url: rphUrl,
+                dataType: "json",
+                data: {id: shareId, removeFromQueue: true}, // stop requesting help!
+                success: () => {
+                  this.getHelpQueue(); // update the help queue ASAP to get updated status
+                },
+                error: () => {
+                  this.getHelpQueue(); // update the help queue ASAP to get updated status
+                },
+              });
+            });
 
+            // add confirmation to hopefully establish some etiquette expectations
+            $(".gotoHelpLink").click(() => {
+              var confirmation = confirm('Thanks for volunteering! If you press OK, you will join a live chat session with the help requester. Please be polite and helpful in your interactions.');
+              if (confirmation) {
+                return true;  // cause the link to be clicked as normal
+              } else {
+                return false; // returning false will NOT cause the link to be clicked
+              }
+            });
+          } else {
+            // ugly repetition ...
+            $("#publicHelpQueue").html('Nobody is currently asking for help. Click "Get live help!" at the left to ask for help.');
+          }
         } else {
+          // ugly repetition ...
           $("#publicHelpQueue").html('Nobody is currently asking for help. Click "Get live help!" at the left to ask for help.');
         }
       },
