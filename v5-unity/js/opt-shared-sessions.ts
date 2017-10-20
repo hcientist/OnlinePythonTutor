@@ -897,7 +897,7 @@ Get live help! (NEW!)
     assert(TogetherJS.running);
 
     if (resp.status === "OKIE DOKIE") {
-      $("#togetherjsStatus").html('<div id="publicHelpQueue"></div><div style="margin-bottom: 10px;">You are now in a <span style="color: #e93f34;">PUBLIC HELP QUEUE</span> as ' + TogetherJS.config.get("getUserName")() + ' (see above). Anyone currently on this website can volunteer to help you, but there is no guarantee that someone will come. Please be patient, keep working normally, and stay on the queue.</div>');
+      $("#togetherjsStatus").html('<div id="publicHelpQueue"></div><div style="margin-bottom: 10px;">You have requested help as username ' + TogetherJS.config.get("getUserName")() + ' (see above). Anyone currently on this website can volunteer to help you, but there is no guarantee that someone will help. <span style="color: #e93f34;">Please be patient, keep working normally, and stay on the queue.</span></div>');
       this.appendTogetherJsFooter();
       $("#requestHelpBtn").hide();
     } else {
