@@ -22550,38 +22550,28 @@ var OptFrontendSharedSessions = (function (_super) {
                         var timeSinceLastMsgStr = moment(d.valueOf() - e.timeSinceLastMsg).fromNow();
                         var langName = _this.langToEnglish(e.lang);
                         var curStr = '';
+                        if (e.country && e.city) {
+                            curStr = e.username + ' from ' + e.city + ', ' + e.country + ' needs help with ' + langName;
+                        }
+                        else if (e.country) {
+                            curStr = e.username + ' from ' + e.country + ' needs help with ' + langName;
+                        }
+                        else if (e.city) {
+                            curStr = e.username + ' from ' + e.city + ' needs help with ' + langName;
+                        }
+                        else {
+                            curStr = e.username + ' needs help with ' + langName;
+                        }
                         if (e.id === myShareId) {
-                            if (e.country && e.city) {
-                                curStr = e.username + ' from ' + e.city + ', ' + e.country + ' needs help with ' + langName;
-                            }
-                            else if (e.country) {
-                                curStr = e.username + ' from ' + e.country + ' needs help with ' + langName;
-                            }
-                            else if (e.city) {
-                                curStr = e.username + ' from ' + e.city + ' needs help with ' + langName;
-                            }
-                            else {
-                                curStr = e.username + ' needs help with ' + langName;
-                            }
                             curStr += ' - <span class="redBold">this is you!</span>';
                             curStr += ' <button id="stopRequestHelpBtn" type="button">Stop requesting help</button>';
                         }
                         else {
-                            if (e.country) {
-                                curStr = e.username + ' from ' + e.country + ' needs help with ' + langName;
-                            }
-                            else {
-                                curStr = e.username + ' needs help with ' + langName;
-                            }
                             if (!e.numClients || isNaN(e.numClients) || e.numClients <= 1) {
                                 curStr += ' - <a class="gotoHelpLink" style="font-weight: bold;" href="' + e.url + '" target="_blank">click to help</a>';
                             }
-                            else if (e.numClients == 2) {
-                                curStr += ' - ' + String(e.numClients - 1) + ' person currently helping';
-                                curStr += ' - <a class="gotoHelpLink" href="' + e.url + '" target="_blank">click to help</a>';
-                            }
                             else {
-                                curStr += ' - ' + String(e.numClients - 1) + ' people currently helping';
+                                curStr += ' - ' + String(e.numClients) + ' people in session';
                                 curStr += ' - <a class="gotoHelpLink" href="' + e.url + '" target="_blank">click to help</a>';
                             }
                             curStr += ' <span class="helpQueueSmallText">(requested ' + timeSinceCreationStr + ', last active ' + timeSinceLastMsgStr + ')</span>';
