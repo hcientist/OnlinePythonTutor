@@ -176,7 +176,11 @@ var server = http.createServer(function(request, response) {
       requestFunc("http://freegeoip.net/json/" + String(logObj.ip), function(error, resp, body) {
         var geoResult;
         if (!error) {
-          geoResult = body;
+          try {
+            geoResult = JSON.parse(body);
+          } catch (e) {
+            // pass
+          }
         }
 
         // add a COPY of the entire query object verbatim to the queue:
@@ -187,6 +191,7 @@ var server = http.createServer(function(request, response) {
           obj.country = geoResult.country_name;
           obj.city = geoResult.city;
         }
+        //console.log('addToPHRQueue:', obj);
         addToPHRQueue(obj);
 
         response.writeHead(200, {
