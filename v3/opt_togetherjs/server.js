@@ -157,13 +157,7 @@ var server = http.createServer(function(request, response) {
       return;
     }
 
-    // log it first
     var logObj = createLogEntry(request);
-    logObj.type = 'requestPublicHelp';
-    logObj.query = url.query;
-    pgLogWrite(logObj);
-    //console.log(logObj);
-
 
     if (url.query.removeFromQueue) {
       // if url.query.removeFromQueue, then remove from publicHelpRequestQueue:
@@ -191,7 +185,13 @@ var server = http.createServer(function(request, response) {
           obj.country = geoResult.country_name;
           obj.city = geoResult.city;
         }
-        //console.log('addToPHRQueue:', obj);
+
+        // log the geo-enhanced obj
+        logObj.type = 'requestPublicHelp';
+        logObj.query = obj;
+        pgLogWrite(logObj);
+
+        // then add to queue:
         addToPHRQueue(obj);
 
         response.writeHead(200, {
