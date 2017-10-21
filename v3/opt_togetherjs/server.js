@@ -158,8 +158,13 @@ var server = http.createServer(function(request, response) {
     }
 
     var logObj = createLogEntry(request);
+    logObj.type = 'requestPublicHelp';
 
     if (url.query.removeFromQueue) {
+      // don't forget to log!!!
+      logObj.query = url.query;
+      pgLogWrite(logObj);
+
       // if url.query.removeFromQueue, then remove from publicHelpRequestQueue:
       removeFromPHRQueue(url.query.id);
     } else {
@@ -187,7 +192,6 @@ var server = http.createServer(function(request, response) {
         }
 
         // log the geo-enhanced obj
-        logObj.type = 'requestPublicHelp';
         logObj.query = obj;
         pgLogWrite(logObj);
 
