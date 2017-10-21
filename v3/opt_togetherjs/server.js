@@ -161,12 +161,19 @@ var server = http.createServer(function(request, response) {
     logObj.type = 'requestPublicHelp';
 
     if (url.query.removeFromQueue) {
+      // if url.query.removeFromQueue, then remove from publicHelpRequestQueue:
+      removeFromPHRQueue(url.query.id);
+
       // don't forget to log!!!
       logObj.query = url.query;
       pgLogWrite(logObj);
 
-      // if url.query.removeFromQueue, then remove from publicHelpRequestQueue:
-      removeFromPHRQueue(url.query.id);
+      // ... and then finish the HTTP response!
+      response.writeHead(200, {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      });
+      response.end(JSON.stringify({status: 'OKIE DOKIE'}));
     } else {
       // use http://freegeoip.net/ - this call gets the geolocation of the
       // client's current IP address. note that we prefer to do this on the
@@ -198,6 +205,7 @@ var server = http.createServer(function(request, response) {
         // then add to queue:
         addToPHRQueue(obj);
 
+        // ... and then finish the HTTP response!
         response.writeHead(200, {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*"
