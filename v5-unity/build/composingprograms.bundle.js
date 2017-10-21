@@ -22551,8 +22551,14 @@ var OptFrontendSharedSessions = (function (_super) {
                         var langName = _this.langToEnglish(e.lang);
                         var curStr = '';
                         if (e.id === myShareId) {
-                            if (e.country) {
+                            if (e.country && e.city) {
+                                curStr = e.username + ' from ' + e.city + ', ' + e.country + ' needs help with ' + langName;
+                            }
+                            else if (e.country) {
                                 curStr = e.username + ' from ' + e.country + ' needs help with ' + langName;
+                            }
+                            else if (e.city) {
+                                curStr = e.username + ' from ' + e.city + ' needs help with ' + langName;
                             }
                             else {
                                 curStr = e.username + ' needs help with ' + langName;
@@ -23045,7 +23051,7 @@ var OptFrontendSharedSessions = (function (_super) {
                 $.ajax({
                     url: rphUrl,
                     dataType: "json",
-                    data: { id: shareId, url: shareUrl, lang: lang, username: username, country: resp.country_name },
+                    data: { id: shareId, url: shareUrl, lang: lang, username: username, country: resp.country_name, city: resp.city },
                     success: _this.doneRequestingPublicHelp.bind(_this),
                     error: _this.rphError.bind(_this),
                 });

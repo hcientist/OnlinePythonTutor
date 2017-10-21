@@ -342,8 +342,12 @@ Get live help! (NEW!)
 
             var curStr = '';
             if (e.id === myShareId) {
-              if (e.country) {
+              if (e.country && e.city) {
+                curStr = e.username + ' from ' + e.city + ', ' + e.country + ' needs help with ' + langName;
+              } else if (e.country) {
                 curStr = e.username + ' from ' + e.country + ' needs help with ' + langName;
+              } else if (e.city) {
+                curStr = e.username + ' from ' + e.city + ' needs help with ' + langName;
               } else {
                 curStr = e.username + ' needs help with ' + langName;
               }
@@ -878,7 +882,7 @@ Get live help! (NEW!)
         $.ajax({
           url: rphUrl,
           dataType: "json",
-          data: {id: shareId, url: shareUrl, lang: lang, username: username, country: resp.country_name},
+          data: {id: shareId, url: shareUrl, lang: lang, username: username, country: resp.country_name, city: resp.city},
           success: this.doneRequestingPublicHelp.bind(this),
           error: this.rphError.bind(this),
         });
