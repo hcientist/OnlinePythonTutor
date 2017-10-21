@@ -33,6 +33,7 @@ var WebSocketRouter = require('websocket').router;
 var http = require('http');
 var parseUrl = require('url').parse;
 var fs = require('fs');
+var requestFunc = require('request');
 
 // FIXME: not sure what logger to use
 //var logger = require('../../lib/logger');
@@ -168,16 +169,33 @@ var server = http.createServer(function(request, response) {
       // if url.query.removeFromQueue, then remove from publicHelpRequestQueue:
       removeFromPHRQueue(url.query.id);
     } else {
-      // otherwise add a COPY of the entire query object verbatim to the queue:
-      var obj = Object.assign({}, url.query); // COPY!
-      addToPHRQueue(obj);
-    }
+      // use http://freegeoip.net/ - this call gets the geolocation of the
+      // client's current IP address. note that we prefer to do this on the
+      // server rather than directly from the browser since we get a more
+      // accurate IP address on the server:
+      requestFunc("http://freegeoip.net/json/" + String(logObj.ip), function(error, resp, body) {
+        var geoResult;
+        if (!error) {
+          geoResult = body;
+        }
 
-    response.writeHead(200, {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"
-    });
-    response.end(JSON.stringify({status: 'OKIE DOKIE'}));
+        // add a COPY of the entire query object verbatim to the queue:
+        var obj = Object.assign({}, url.query); // COPY!
+        // add optional country and city info:
+        obj.ip = logObj.ip;
+        if (geoResult) {
+          obj.country = geoResult.country_name;
+          obj.city = geoResult.city;
+        }
+        addToPHRQueue(obj);
+
+        response.writeHead(200, {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
+        });
+        response.end(JSON.stringify({status: 'OKIE DOKIE'}));
+      });
+    }
   } else if (url.pathname == '/getHelpQueue') { // pgbovine
     if (request.method == "OPTIONS") {
       // CORS preflight

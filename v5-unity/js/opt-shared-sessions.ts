@@ -359,9 +359,9 @@ Get live help! (NEW!)
               } else {
                 curStr = e.username + ' needs help with ' + langName;
               }
+
               if (!e.numClients || isNaN(e.numClients) || e.numClients <= 1) {
                 curStr += ' - <a class="gotoHelpLink" style="font-weight: bold;" href="' + e.url + '" target="_blank">click to help</a>';
-                curStr += ' <span class="helpQueueSmallText">(requested ' + timeSinceCreationStr + ', last active ' + timeSinceLastMsgStr  + ')</span>';
               } else if (e.numClients == 2) {
                 curStr += ' - ' + String(e.numClients - 1) + ' person currently helping';
                 curStr += ' - <a class="gotoHelpLink" href="' + e.url + '" target="_blank">click to help</a>';
@@ -369,6 +369,7 @@ Get live help! (NEW!)
                 curStr += ' - ' + String(e.numClients - 1) + ' people currently helping';
                 curStr += ' - <a class="gotoHelpLink" href="' + e.url + '" target="_blank">click to help</a>';
               }
+              curStr += ' <span class="helpQueueSmallText">(requested ' + timeSinceCreationStr + ', last active ' + timeSinceLastMsgStr  + ')</span>';
             }
 
             if (e.numClients > 1) {
@@ -438,7 +439,7 @@ Get live help! (NEW!)
       return true;
     } else if (settings.url.indexOf('requestPublicHelp') > -1) {
       return true;
-    } else if (settings.url.indexOf('freegeoip') > -1) {
+    } else if (settings.url.indexOf('freegeoip') > -1) { // deprecated
       return true;
     } else {
       return super.ignoreAjaxError(settings);
@@ -861,33 +862,14 @@ Get live help! (NEW!)
     var getUserName = TogetherJS.config.get("getUserName");
     var username = getUserName();
 
-    // use http://freegeoip.net/ - this call gets the geolocation of the
-    // client's (i.e., YOUR) current IP address:
     $.ajax({
-      url: "http://freegeoip.net/json/",
+      url: rphUrl,
       dataType: "json",
-      error: (resp) => {
-        // no big deal, just send a /requestPublicHelp request without country_name
-        //console.log("freegeoip error!");
-        $.ajax({
-          url: rphUrl,
-          dataType: "json",
-          data: {id: shareId, url: shareUrl, lang: lang, username: username},
-          success: this.doneRequestingPublicHelp.bind(this),
-          error: this.rphError.bind(this),
-        });
-      },
-      success: (resp) => {
-        //console.log("freegeoip RESP:", resp);
-        $.ajax({
-          url: rphUrl,
-          dataType: "json",
-          data: {id: shareId, url: shareUrl, lang: lang, username: username, country: resp.country_name, city: resp.city},
-          success: this.doneRequestingPublicHelp.bind(this),
-          error: this.rphError.bind(this),
-        });
-      },
+      data: {id: shareId, url: shareUrl, lang: lang, username: username},
+      success: this.doneRequestingPublicHelp.bind(this),
+      error: this.rphError.bind(this),
     });
+
   }
 
   rphError() {

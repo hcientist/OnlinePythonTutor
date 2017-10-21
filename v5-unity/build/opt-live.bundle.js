@@ -22575,7 +22575,6 @@ var OptFrontendSharedSessions = (function (_super) {
                             }
                             if (!e.numClients || isNaN(e.numClients) || e.numClients <= 1) {
                                 curStr += ' - <a class="gotoHelpLink" style="font-weight: bold;" href="' + e.url + '" target="_blank">click to help</a>';
-                                curStr += ' <span class="helpQueueSmallText">(requested ' + timeSinceCreationStr + ', last active ' + timeSinceLastMsgStr + ')</span>';
                             }
                             else if (e.numClients == 2) {
                                 curStr += ' - ' + String(e.numClients - 1) + ' person currently helping';
@@ -22585,6 +22584,7 @@ var OptFrontendSharedSessions = (function (_super) {
                                 curStr += ' - ' + String(e.numClients - 1) + ' people currently helping';
                                 curStr += ' - <a class="gotoHelpLink" href="' + e.url + '" target="_blank">click to help</a>';
                             }
+                            curStr += ' <span class="helpQueueSmallText">(requested ' + timeSinceCreationStr + ', last active ' + timeSinceLastMsgStr + ')</span>';
                         }
                         if (e.numClients > 1) {
                             entriesWithHelpers.push(curStr);
@@ -23020,7 +23020,6 @@ var OptFrontendSharedSessions = (function (_super) {
             s1.rawInputLstJSON == s2.rawInputLstJSON);
     };
     OptFrontendSharedSessions.prototype.initRequestPublicHelp = function () {
-        var _this = this;
         pytutor_1.assert(this.wantsPublicHelp);
         pytutor_1.assert(exports.TogetherJS.running);
         // first make a /requestPublicHelp request to the TogetherJS server:
@@ -23030,32 +23029,12 @@ var OptFrontendSharedSessions = (function (_super) {
         var lang = this.getAppState().py;
         var getUserName = exports.TogetherJS.config.get("getUserName");
         var username = getUserName();
-        // use http://freegeoip.net/ - this call gets the geolocation of the
-        // client's (i.e., YOUR) current IP address:
         $.ajax({
-            url: "http://freegeoip.net/json/",
+            url: rphUrl,
             dataType: "json",
-            error: function (resp) {
-                // no big deal, just send a /requestPublicHelp request without country_name
-                //console.log("freegeoip error!");
-                $.ajax({
-                    url: rphUrl,
-                    dataType: "json",
-                    data: { id: shareId, url: shareUrl, lang: lang, username: username },
-                    success: _this.doneRequestingPublicHelp.bind(_this),
-                    error: _this.rphError.bind(_this),
-                });
-            },
-            success: function (resp) {
-                //console.log("freegeoip RESP:", resp);
-                $.ajax({
-                    url: rphUrl,
-                    dataType: "json",
-                    data: { id: shareId, url: shareUrl, lang: lang, username: username, country: resp.country_name, city: resp.city },
-                    success: _this.doneRequestingPublicHelp.bind(_this),
-                    error: _this.rphError.bind(_this),
-                });
-            },
+            data: { id: shareId, url: shareUrl, lang: lang, username: username },
+            success: this.doneRequestingPublicHelp.bind(this),
+            error: this.rphError.bind(this),
         });
     };
     OptFrontendSharedSessions.prototype.rphError = function () {
