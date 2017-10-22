@@ -309,11 +309,17 @@ Get live help! (NEW!)
       url: ghqUrl,
       dataType: "json",
       data: {user_uuid: this.userUUID}, // tell the server who you are
-      error: function() {
+      error: () => {
         console.log('/getHelpQueue error');
-        $("#publicHelpQueue").empty(); // avoid showing stale results
+
+        if (this.wantsPublicHelp) {
+          $("#publicHelpQueue").html('ERROR: help server is down. If you had previously asked for help, something is wrong; stop this session and try again later.');
+        } else {
+          $("#publicHelpQueue").empty(); // avoid showing stale results
+        }
       },
       success: (resp) => {
+        var displayEmptyQueueMsg = false;
         if (resp && resp.length > 0) {
           $("#publicHelpQueue").empty();
 
@@ -421,12 +427,18 @@ Get live help! (NEW!)
               }
             });
           } else {
-            // ugly repetition ...
-            $("#publicHelpQueue").html('Nobody is currently asking for help. Click "Get live help!" at the left to ask for help.');
+            displayEmptyQueueMsg = true;
           }
         } else {
-          // ugly repetition ...
-          $("#publicHelpQueue").html('Nobody is currently asking for help. Click "Get live help!" at the left to ask for help.');
+          displayEmptyQueueMsg = true;
+        }
+
+        if (displayEmptyQueueMsg) {
+          if (this.wantsPublicHelp) {
+            $("#publicHelpQueue").html('Nobody is currently asking for help. If you had previously asked for help, something is wrong; stop this session and try again later.');
+          } else {
+            $("#publicHelpQueue").html('Nobody is currently asking for help using the "Get live help!" button.');
+          }
         }
       },
     });

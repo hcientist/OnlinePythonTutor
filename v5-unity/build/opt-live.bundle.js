@@ -22525,9 +22525,15 @@ var OptFrontendSharedSessions = (function (_super) {
             data: { user_uuid: this.userUUID },
             error: function () {
                 console.log('/getHelpQueue error');
-                $("#publicHelpQueue").empty(); // avoid showing stale results
+                if (_this.wantsPublicHelp) {
+                    $("#publicHelpQueue").html('ERROR: help server is down. If you had previously asked for help, something is wrong; stop this session and try again later.');
+                }
+                else {
+                    $("#publicHelpQueue").empty(); // avoid showing stale results
+                }
             },
             success: function (resp) {
+                var displayEmptyQueueMsg = false;
                 if (resp && resp.length > 0) {
                     $("#publicHelpQueue").empty();
                     var myShareId = exports.TogetherJS.shareId();
@@ -22632,13 +22638,19 @@ var OptFrontendSharedSessions = (function (_super) {
                         });
                     }
                     else {
-                        // ugly repetition ...
-                        $("#publicHelpQueue").html('Nobody is currently asking for help. Click "Get live help!" at the left to ask for help.');
+                        displayEmptyQueueMsg = true;
                     }
                 }
                 else {
-                    // ugly repetition ...
-                    $("#publicHelpQueue").html('Nobody is currently asking for help. Click "Get live help!" at the left to ask for help.');
+                    displayEmptyQueueMsg = true;
+                }
+                if (displayEmptyQueueMsg) {
+                    if (_this.wantsPublicHelp) {
+                        $("#publicHelpQueue").html('Nobody is currently asking for help. If you had previously asked for help, something is wrong; stop this session and try again later.');
+                    }
+                    else {
+                        $("#publicHelpQueue").html('Nobody is currently asking for help using the "Get live help!" button.');
+                    }
                 }
             },
         });
