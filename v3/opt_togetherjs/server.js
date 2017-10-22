@@ -191,11 +191,14 @@ var server = http.createServer(function(request, response) {
 
         // add a COPY of the entire query object verbatim to the queue:
         var obj = Object.assign({}, url.query); // COPY!
-        // add optional country and city info:
+        // add optional geographic info:
         obj.ip = logObj.ip;
         if (geoResult) {
           obj.country = geoResult.country_name;
           obj.city = geoResult.city;
+          obj.region = geoResult.region_name;
+          obj.latitude = geoResult.latitude;
+          obj.longitude = geoResult.longitude;
         }
 
         // log the geo-enhanced obj
