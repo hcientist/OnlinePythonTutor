@@ -22276,6 +22276,9 @@ var __extends = (this && this.__extends) || function (d, b) {
 // VERY IMPORTANT to grab the value of togetherjsInUrl before loading
 // togetherjs-min.js, since loading that file deletes #togetherjs from URL
 // NB: kinda gross global
+//
+// if this is true, this means that you JOINED SOMEONE ELSE'S SESSION
+// rather than starting your own session
 var togetherjsInUrl = !!(window.location.hash.match(/togetherjs=/)); // turn into bool
 if (togetherjsInUrl) {
     console.log("togetherjsInUrl!");
@@ -22398,6 +22401,7 @@ var OptFrontendSharedSessions = (function (_super) {
         _this.pendingCodeOutputScrollTop = null;
         _this.updateOutputSignalFromRemote = false;
         _this.wantsPublicHelp = false;
+        _this.meInitiatedSession = false;
         _this.disableSharedSessions = false; // if we're on mobile/tablets, disable this entirely since it doesn't work on mobile
         _this.isIdle = false;
         _this.initTogetherJS();
@@ -22549,18 +22553,24 @@ var OptFrontendSharedSessions = (function (_super) {
                         var timeSinceCreationStr = moment(d.valueOf() - e.timeSinceCreation).fromNow();
                         var timeSinceLastMsgStr = moment(d.valueOf() - e.timeSinceLastMsg).fromNow();
                         var langName = _this.langToEnglish(e.lang);
-                        var curStr = '';
+                        var curStr = e.username;
                         if (e.country && e.city) {
-                            curStr = e.username + ' from ' + e.city + ', ' + e.country + ' needs help with ' + langName;
+                            // print 'region' (i.e., state) for US addresses:
+                            if (e.country === "United States" && e.region) {
+                                curStr += ' from ' + e.city + ', ' + e.region + ', US needs help with ' + langName;
+                            }
+                            else {
+                                curStr += ' from ' + e.city + ', ' + e.country + ' needs help with ' + langName;
+                            }
                         }
                         else if (e.country) {
-                            curStr = e.username + ' from ' + e.country + ' needs help with ' + langName;
+                            curStr += ' from ' + e.country + ' needs help with ' + langName;
                         }
                         else if (e.city) {
-                            curStr = e.username + ' from ' + e.city + ' needs help with ' + langName;
+                            curStr += ' from ' + e.city + ' needs help with ' + langName;
                         }
                         else {
-                            curStr = e.username + ' needs help with ' + langName;
+                            curStr += ' needs help with ' + langName;
                         }
                         if (e.id === myShareId) {
                             curStr += ' - <span class="redBold">this is you!</span>';
@@ -22985,6 +22995,7 @@ var OptFrontendSharedSessions = (function (_super) {
         $("#togetherjsStatus").html("Please wait ... loading shared session");
         exports.TogetherJS();
         this.wantsPublicHelp = wantsPublicHelp;
+        this.meInitiatedSession = true;
     };
     OptFrontendSharedSessions.prototype.requestPublicHelpButtonClick = function () {
         if (exports.TogetherJS.running) {
@@ -23050,7 +23061,14 @@ var OptFrontendSharedSessions = (function (_super) {
     OptFrontendSharedSessions.prototype.initPrivateSharedSession = function () {
         pytutor_1.assert(!this.wantsPublicHelp);
         var urlToShare = exports.TogetherJS.shareUrl();
-        $("#togetherjsStatus").html("<div>\n                                 You are in a <span style=\"font-weight: bold; color: #e93f34;\">PRIVATE</span> chat. To ask for public help, click the \"Get live help!\" button at the left. Nobody will join this chat session unless you send them the URL below.\n                                 </div>\n                                 URL to join this chat: <input type=\"text\" style=\"font-size: 10pt;\n                                 font-weight: bold; padding: 3px;\n                                 margin-top: 3pt;\n                                 margin-bottom: 6pt;\"\n                                 id=\"togetherjsURL\" size=\"70\" readonly=\"readonly\"/>\n    ");
+        var prefix;
+        if (!this.meInitiatedSession) {
+            prefix = "You have joined this chat. Thanks for helping! Please be polite and considerate in your interactions.";
+        }
+        else {
+            prefix = "You are in a <span style=\"font-weight: bold; color: #e93f34;\">PRIVATE</span> chat. To ask for public help, click the \"Get live help!\" button at the left. Nobody will join this chat session unless you send them the URL below.";
+        }
+        $("#togetherjsStatus").html('<div>' + prefix + '</div>' + "\n                                 URL for others to join: <input type=\"text\" style=\"font-size: 10pt;\n                                 font-weight: bold; padding: 3px;\n                                 margin-top: 3pt;\n                                 margin-bottom: 6pt;\"\n                                 id=\"togetherjsURL\" size=\"70\" readonly=\"readonly\"/>");
         $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
         this.appendTogetherJsFooter();
     };
