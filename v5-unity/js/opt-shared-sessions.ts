@@ -892,6 +892,7 @@ Get live help! (NEW!)
     if (TogetherJS.running) {
       TogetherJS(); // shut down TogetherJS
     }
+    this.redrawConnectors(); // update all arrows at the end
   }
 
   doneRequestingPublicHelp(resp) {
@@ -907,6 +908,7 @@ Get live help! (NEW!)
         TogetherJS(); // shut down TogetherJS
       }
     }
+    this.redrawConnectors(); // update all arrows at the end
   }
 
   initPrivateSharedSession() {
@@ -916,6 +918,7 @@ Get live help! (NEW!)
     var prefix;
     if (!this.meInitiatedSession) { // you've joined someone else's session
       prefix = `You have joined this chat. Thanks for helping! Please be polite and considerate in your interactions.`;
+      $("#requestHelpBtn").hide(); // don't display "Get live help!" button when you're joining someone else's session, to minimize confusion
     } else { // you started your own session
       prefix = `You are in a <span style="font-weight: bold; color: #e93f34;">PRIVATE</span> chat. To ask for public help, click the "Get live help!" button at the left. Nobody will join this chat session unless you send them the URL below.`;
     }
@@ -928,6 +931,7 @@ Get live help! (NEW!)
     $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
 
     this.appendTogetherJsFooter();
+    this.redrawConnectors(); // update all arrows at the end
   }
 
   appendTogetherJsFooter() {
