@@ -486,6 +486,13 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
                       this.executeCode(this.preseededCurInstr);
                       this.preseededCurInstr = undefined; // do this only once, then unset it
                     } else {
+                      // if you're trying to execute an empty text
+                      // buffer, highlight the code display with a
+                      // warning as though you got a syntax error:
+                      if (this.pyInputAceEditor && $.trim(this.pyInputGetValue()) == '') {
+                        this.toggleSyntaxError(true);
+                      }
+
                       this.executeCodeFromScratch();
                     }
                   }); // debounce

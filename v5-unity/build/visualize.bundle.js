@@ -23055,6 +23055,7 @@ var OptFrontendSharedSessions = (function (_super) {
         if (exports.TogetherJS.running) {
             exports.TogetherJS(); // shut down TogetherJS
         }
+        this.redrawConnectors(); // update all arrows at the end
     };
     OptFrontendSharedSessions.prototype.doneRequestingPublicHelp = function (resp) {
         pytutor_1.assert(exports.TogetherJS.running);
@@ -23069,6 +23070,7 @@ var OptFrontendSharedSessions = (function (_super) {
                 exports.TogetherJS(); // shut down TogetherJS
             }
         }
+        this.redrawConnectors(); // update all arrows at the end
     };
     OptFrontendSharedSessions.prototype.initPrivateSharedSession = function () {
         pytutor_1.assert(!this.wantsPublicHelp);
@@ -23076,6 +23078,7 @@ var OptFrontendSharedSessions = (function (_super) {
         var prefix;
         if (!this.meInitiatedSession) {
             prefix = "You have joined this chat. Thanks for helping! Please be polite and considerate in your interactions.";
+            $("#requestHelpBtn").hide(); // don't display "Get live help!" button when you're joining someone else's session, to minimize confusion
         }
         else {
             prefix = "You are in a <span style=\"font-weight: bold; color: #e93f34;\">PRIVATE</span> chat. To ask for public help, click the \"Get live help!\" button at the left. Nobody will join this chat session unless you send them the URL below.";
@@ -23083,6 +23086,7 @@ var OptFrontendSharedSessions = (function (_super) {
         $("#togetherjsStatus").html('<div>' + prefix + '</div>' + "\n                                 URL for others to join: <input type=\"text\" style=\"font-size: 10pt;\n                                 font-weight: bold; padding: 3px;\n                                 margin-top: 3pt;\n                                 margin-bottom: 6pt;\"\n                                 id=\"togetherjsURL\" size=\"70\" readonly=\"readonly\"/>");
         $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
         this.appendTogetherJsFooter();
+        this.redrawConnectors(); // update all arrows at the end
     };
     OptFrontendSharedSessions.prototype.appendTogetherJsFooter = function () {
         var extraHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt;">This is a <span class="redBold">highly experimental</span> feature. Do not move or type too quickly. Click here if you get out of sync: <button id="syncBtn" type="button">Force sync</button> <a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs and feedback</a></div>';
