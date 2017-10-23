@@ -407,7 +407,7 @@ Get live help! (NEW!)
               $.ajax({
                 url: rphUrl,
                 dataType: "json",
-                data: {id: shareId, removeFromQueue: true}, // stop requesting help!
+                data: {id: shareId, user_uuid: this.userUUID, removeFromQueue: true}, // stop requesting help!
                 success: () => {
                   this.getHelpQueue(); // update the help queue ASAP to get updated status
                 },
@@ -880,7 +880,7 @@ Get live help! (NEW!)
     $.ajax({
       url: rphUrl,
       dataType: "json",
-      data: {id: shareId, url: shareUrl, lang: lang, username: username},
+      data: {id: shareId, url: shareUrl, lang: lang, username: username, user_uuid: this.userUUID},
       success: this.doneRequestingPublicHelp.bind(this),
       error: this.rphError.bind(this),
     });

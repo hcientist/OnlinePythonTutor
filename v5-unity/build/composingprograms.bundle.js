@@ -22617,7 +22617,7 @@ var OptFrontendSharedSessions = (function (_super) {
                             $.ajax({
                                 url: rphUrl,
                                 dataType: "json",
-                                data: { id: shareId, removeFromQueue: true },
+                                data: { id: shareId, user_uuid: _this.userUUID, removeFromQueue: true },
                                 success: function () {
                                     _this.getHelpQueue(); // update the help queue ASAP to get updated status
                                 },
@@ -23045,7 +23045,7 @@ var OptFrontendSharedSessions = (function (_super) {
         $.ajax({
             url: rphUrl,
             dataType: "json",
-            data: { id: shareId, url: shareUrl, lang: lang, username: username },
+            data: { id: shareId, url: shareUrl, lang: lang, username: username, user_uuid: this.userUUID },
             success: this.doneRequestingPublicHelp.bind(this),
             error: this.rphError.bind(this),
         });
