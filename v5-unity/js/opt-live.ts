@@ -491,6 +491,7 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
                       // warning as though you got a syntax error:
                       if (this.pyInputAceEditor && $.trim(this.pyInputGetValue()) == '') {
                         this.toggleSyntaxError(true);
+                        this.myVisualizer.redrawConnectors();
                       }
 
                       this.executeCodeFromScratch();

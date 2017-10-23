@@ -24510,6 +24510,7 @@ var OptLiveFrontend = (function (_super) {
                     // warning as though you got a syntax error:
                     if (_this.pyInputAceEditor && $.trim(_this.pyInputGetValue()) == '') {
                         _this.toggleSyntaxError(true);
+                        _this.myVisualizer.redrawConnectors();
                     }
                     _this.executeCodeFromScratch();
                 }
