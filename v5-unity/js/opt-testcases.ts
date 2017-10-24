@@ -32,7 +32,7 @@ export class OptTestcases {
     this.parent = parent;
     $("#testCasesParent")
       .empty() // just to be paranoid, empty this out (and its event handlers, too, supposedly)
-      .html('<p style="margin-top: 25px;"><a href="#" id="createTestsLink">Create test cases</a></p><div id="testCasesPane"></div>');
+      .html('<p style="margin-top: 10px;"><a href="#" id="createTestsLink">Create test cases</a></p><div id="testCasesPane"></div>');
 
     $("#testCasesParent #createTestsLink").click(() => {
       this.initTestcasesPane();

@@ -88,7 +88,7 @@ button.surveyBtnBig {
 }
 
 #footer {
-  color: #999;
+  color: #888;
   font-size: 9pt;
   border-top: 1px solid #bbbbbb;
   padding-top: 5px;
@@ -124,7 +124,7 @@ button.surveyBtnBig {
 }
 
 .helpQueueSmallText {
-  color: #666;
+  color: #777;
   font-size: 8pt;
 }
 
@@ -253,12 +253,16 @@ button.surveyBtnBig {
 
 #testCasesPane {
  margin-top: 5px;
- padding-bottom: 10px;
+ padding-bottom: 5px;
 }
 
 #exampleSnippets {
  border-top: 1px solid #ccc;
  margin-top: 15px;
+}
+
+#instructionsPane {
+ margin-bottom: 10px;
 }
 
 /* for SyntaxErrorSurveyBubble */

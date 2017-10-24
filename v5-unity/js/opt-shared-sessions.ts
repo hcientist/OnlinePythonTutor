@@ -406,7 +406,7 @@ Get live help! (NEW!)
             });
             // gray it out to make it not look as prominent (match color of .helpQueueSmallText)
             entriesWithHelpers.forEach((e) => {
-              $("#publicHelpQueue").append('<li style="color: #666;">' + e + '</li>');
+              $("#publicHelpQueue").append('<li style="color: #777;">' + e + '</li>');
             });
 
             // add these handlers AFTER the respective DOM nodes have been

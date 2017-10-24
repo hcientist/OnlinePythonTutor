@@ -712,6 +712,14 @@ $(document).ready(function() {
   }
   $("#footer").append(footerHtml);
 
+  // insert a toggle for examples after #exampleSnippets, then hide it
+  $("#exampleSnippets").after('<a href="#" id="showExampleLink" style="font-size: 11pt;">Show example code and courses</a>');
+  $("#showExampleLink").click(() => {
+    $("#exampleSnippets").show();
+    $("#showExampleLink").hide();
+    return false; // don't follow the href link
+  });
+  $("#exampleSnippets").hide();
 
   var optFrontend = new OptFrontendWithTestcases(params);
   optFrontend.setSurveyHTML();
