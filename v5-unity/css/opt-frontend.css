@@ -124,7 +124,7 @@ button.surveyBtnBig {
 }
 
 .helpQueueSmallText {
-  color: #333;
+  color: #666;
   font-size: 8pt;
 }
 
@@ -254,9 +254,12 @@ button.surveyBtnBig {
 #testCasesPane {
  margin-top: 5px;
  padding-bottom: 10px;
- border-bottom: 1px solid #ccc;
 }
 
+#exampleSnippets {
+ border-top: 1px solid #ccc;
+ margin-top: 15px;
+}
 
 /* for SyntaxErrorSurveyBubble */
 

@@ -201,6 +201,9 @@ Get live help! (NEW!)
   <button id="sharedSessionBtn" type="button" class="togetherjsBtn" style="font-size: 9pt;">
   Start private chat session
   </button>
+  <div style="margin-top: 5px; font-size: 8pt;">
+  <a href="https://www.youtube.com/watch?v=oDY7ScMPtqI" target="_blank">How do I use this?</a>
+  </div>
 </div>
 
 <div id="sharedSessionDisplayDiv" style="display: none; margin-right: 5px;">
@@ -277,9 +280,9 @@ Get live help! (NEW!)
 
   langToEnglish(lang) {
     if (lang === '2') {
-      return 'Python 2';
+      return 'Python2';
     } else if (lang === '3') {
-      return 'Python 3';
+      return 'Python3';
     } else if (lang === 'java') {
       return 'Java';
     } else if (lang === 'js') {
@@ -293,7 +296,7 @@ Get live help! (NEW!)
     } else if (lang === 'cpp') {
       return 'C++';
     }
-    return '(unknown language)'; // fail soft, even though this shouldn't ever happen
+    return '???'; // fail soft, even though this shouldn't ever happen
   }
 
   getHelpQueue() {
@@ -332,6 +335,13 @@ Get live help! (NEW!)
           var entriesWithHelpers = [];
 
           resp.forEach((e) => {
+            // sometimes there are bogus incomplete entries on the queue. if
+            // there's not even a URL, then nobody can join the chat,
+            // so skip right away at the VERY BEGINNING:
+            if (!e.url) {
+              return;
+            }
+
             // when testing on localhost, we sometimes use the
             // production TogetherJS chat server, but we don't want to
             // show localhost entries on the global queue for people on
@@ -394,8 +404,9 @@ Get live help! (NEW!)
             entriesWithoutHelpers.forEach((e) => {
               $("#publicHelpQueue").append('<li>' + e + '</li>');
             });
+            // gray it out to make it not look as prominent (match color of .helpQueueSmallText)
             entriesWithHelpers.forEach((e) => {
-              $("#publicHelpQueue").append('<li>' + e + '</li>');
+              $("#publicHelpQueue").append('<li style="color: #666;">' + e + '</li>');
             });
 
             // add these handlers AFTER the respective DOM nodes have been
