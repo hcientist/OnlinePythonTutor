@@ -461,8 +461,8 @@ Get live help! (NEW!)
   // this will be called periodically, so make sure it doesn't block
   // execution by, say, taking too long:
   updateModerationPanel() {
-    // only do this if you initiated the session
-    if (!this.meInitiatedSession) {
+    // only do this if you initiated the session AND TogetherJS is currently on
+    if (!this.meInitiatedSession || !TogetherJS.running) {
       return;
     }
 
@@ -478,7 +478,7 @@ Get live help! (NEW!)
     });
 
     if (livePeers.length > 0) {
-      $("#moderationPanel").html("Remove & ban from session: ");
+      $("#moderationPanel").html("Kick & ban disruptive users: ");
       livePeers.forEach((e) => {
         $("#moderationPanel").append('<button class="kickLink">' + e.username + '</button>');
         $("#moderationPanel .kickLink").last()
@@ -488,13 +488,17 @@ Get live help! (NEW!)
 
       $("#moderationPanel .kickLink").click(function() {
         var idToKick = $(this).data('clientId');
-        var confirmation = confirm('Press OK to remove ' + $(this).data('username') + ' from this session.');
+        var confirmation = confirm('Press OK to kick and ban ' + $(this).data('username') + ' from this session.');
         if (confirmation) {
           TogetherJS.send({type: "kickOut", idToKick: idToKick});
         }
       });
     } else {
-      $("#moderationPanel").empty();
+      if (this.wantsPublicHelp) {
+        $("#moderationPanel").html('Nobody is here yet. Please be patient and keep working normally.');
+      } else {
+        $("#moderationPanel").html('Since this is a private session, nobody can join unless you send them the URL below. To ask for public help, click the "Get live help!" button at the left.');
+      }
     }
   }
 
@@ -975,7 +979,13 @@ Get live help! (NEW!)
     assert(TogetherJS.running);
 
     if (resp.status === "OKIE DOKIE") {
-      $("#togetherjsStatus").html('<div id="publicHelpQueue"></div><div style="margin-bottom: 10px;">You have requested help as username ' + TogetherJS.config.get("getUserName")() + ' (see above). Anyone currently on this website can volunteer to help you, but there is no guarantee that someone will help. <span style="color: #e93f34;">Please be patient, keep working normally, and stay on the queue.</span></div>');
+      $("#togetherjsStatus").html(`
+        <div id="moderationPanel"></div>
+        <div style="margin-bottom: 10px;">You have requested help as ` +
+        TogetherJS.config.get("getUserName")() +
+        ` (see below). Anyone currently on this website can volunteer to help you, but there's no guarantee that someone will help.</div>
+        <div id="publicHelpQueue"></div>`);
+      this.updateModerationPanel(); // update it right away
       this.appendTogetherJsFooter();
       $("#requestHelpBtn").hide();
     } else {
@@ -990,28 +1000,34 @@ Get live help! (NEW!)
   initPrivateSharedSession() {
     assert(!this.wantsPublicHelp);
 
-    var urlToShare = TogetherJS.shareUrl();
-    var prefix;
     if (!this.meInitiatedSession) { // you've joined someone else's session
-      prefix = `You have joined this chat. Thanks for helping! Please be polite and considerate in your interactions.`;
-      $("#requestHelpBtn").hide(); // don't display "Get live help!" button when you're joining someone else's session, to minimize confusion
+      // if you're joining someone else's session, disable ALL chat
+      // controls so that the only way out of the chat is to close your window;
+      // otherwise confusion arises when you quit out of the session and
+      // start a new one in the *same* window, which will re-join that
+      // session just cuz that's how TogetherJS works; it's hella confusing.
+      $("td#headerTdLeft").hide(); // TODO: make a better name for this!
+
+      $("#togetherjsStatus").html("<div>Thanks for helping! Please be polite and considerate. Close this window when you're done.</div>");
     } else { // you started your own session
-      prefix = `You are in a <span style="font-weight: bold; color: #e93f34;">PRIVATE</span> chat. To ask for public help, click the "Get live help!" button at the left. Nobody will join this chat session unless you send them the URL below.`;
+      var urlToShare = TogetherJS.shareUrl();
+      $("#togetherjsStatus").html(`
+        <div id="moderationPanel"></div>
+        URL for others to join: <input type="text" style="font-size: 10pt;
+        font-weight: bold; padding: 3px;
+        margin-top: 3pt;
+        margin-bottom: 6pt;"
+        id="togetherjsURL" size="70" readonly="readonly"/>`);
+      $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
+      this.updateModerationPanel(); // update it right away
     }
-    $("#togetherjsStatus").html('<div>' + prefix + '</div>' + `
-                                 URL for others to join: <input type="text" style="font-size: 10pt;
-                                 font-weight: bold; padding: 3px;
-                                 margin-top: 3pt;
-                                 margin-bottom: 6pt;"
-                                 id="togetherjsURL" size="70" readonly="readonly"/>`);
-    $("#togetherjsURL").val(urlToShare).attr('size', urlToShare.length + 20);
 
     this.appendTogetherJsFooter();
     this.redrawConnectors(); // update all arrows at the end
   }
 
   appendTogetherJsFooter() {
-    var extraHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt;">This is a <span class="redBold">highly experimental</span> feature. Do not move or type too quickly. Click here if you get out of sync: <button id="syncBtn" type="button">Force sync</button> <a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs and feedback</a></div><div id="moderationPanel"></div>'
+    var extraHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt;">This is a <span class="redBold">highly experimental</span> feature. Do not move or type too quickly. Click here if you get out of sync: <button id="syncBtn" type="button">Force sync</button> <a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs/feedback</a></div>';
     $("#togetherjsStatus").append(extraHtml);
     $("#syncBtn").click(this.requestSync.bind(this));
   }
