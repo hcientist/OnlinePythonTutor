@@ -22404,6 +22404,7 @@ var OptFrontendSharedSessions = (function (_super) {
         _this.meInitiatedSession = false;
         _this.disableSharedSessions = false; // if we're on mobile/tablets, disable this entirely since it doesn't work on mobile
         _this.isIdle = false;
+        _this.peopleIveKickedOut = []; // #savage
         _this.initTogetherJS();
         _this.pyInputAceEditor.getSession().on("change", function (e) {
             // unfortunately, Ace doesn't detect whether a change was caused
@@ -22689,11 +22690,13 @@ var OptFrontendSharedSessions = (function (_super) {
                     .data('clientId', e.clientId)
                     .data('username', e.username);
             });
+            var me = this; // ugh
             $("#moderationPanel .kickLink").click(function () {
                 var idToKick = $(this).data('clientId');
                 var confirmation = confirm('Press OK to kick and ban ' + $(this).data('username') + ' from this session.');
                 if (confirmation) {
                     exports.TogetherJS.send({ type: "kickOut", idToKick: idToKick });
+                    me.peopleIveKickedOut.push(idToKick);
                 }
             });
         }
@@ -22907,6 +22910,20 @@ var OptFrontendSharedSessions = (function (_super) {
                 pyCodeOutputDivScrollTop: _this.myVisualizer ?
                     _this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop() :
                     undefined });
+        });
+        // if you *received* this signal from someone, that means someone new just
+        // joined your session. check if you've previously kicked them out ...
+        // if so, FORCEABLY kick them out again to prevent people from somehow
+        // sneaking back into your session. thus, we have defense in depth of
+        // enforcing the ban from both the client and server sides ...
+        exports.TogetherJS.hub.on("initialAppState", function (msg) {
+            _this.peopleIveKickedOut.forEach(function (e) {
+                if (e === msg.clientId) {
+                    console.log(e, "trying to sneak back in, kicking out again", _this.peopleIveKickedOut);
+                    exports.TogetherJS.send({ type: "kickOutAgainBecauseSnuckBackIn", idToKick: e }); // server doesn't do anything with this; just log it for posterity
+                    exports.TogetherJS.send({ type: "kickOut", idToKick: e });
+                }
+            });
         });
         exports.TogetherJS.hub.on("myAppState", function (msg) {
             // DON'T USE msg.sameUrl check here since it doesn't work properly, eek!

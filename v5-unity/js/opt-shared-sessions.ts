@@ -154,6 +154,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
   meInitiatedSession = false;
   disableSharedSessions = false; // if we're on mobile/tablets, disable this entirely since it doesn't work on mobile
   isIdle = false;
+  peopleIveKickedOut = []; // #savage
 
   constructor(params={}) {
     super(params);
@@ -486,11 +487,13 @@ Get live help! (NEW!)
           .data('username', e.username);
       });
 
-      $("#moderationPanel .kickLink").click(function() {
+      var me = this; // ugh
+      $("#moderationPanel .kickLink").click(function() { // need jQuery $(this) so can't use => arrow function
         var idToKick = $(this).data('clientId');
         var confirmation = confirm('Press OK to kick and ban ' + $(this).data('username') + ' from this session.');
         if (confirmation) {
           TogetherJS.send({type: "kickOut", idToKick: idToKick});
+          me.peopleIveKickedOut.push(idToKick);
         }
       });
     } else {
@@ -723,6 +726,21 @@ Get live help! (NEW!)
                        pyCodeOutputDivScrollTop: this.myVisualizer ?
                                                  this.myVisualizer.domRoot.find('#pyCodeOutputDiv').scrollTop() :
                                                  undefined});
+    });
+
+    // if you *received* this signal from someone, that means someone new just
+    // joined your session. check if you've previously kicked them out ...
+    // if so, FORCEABLY kick them out again to prevent people from somehow
+    // sneaking back into your session. thus, we have defense in depth of
+    // enforcing the ban from both the client and server sides ...
+    TogetherJS.hub.on("initialAppState", (msg) => {
+      this.peopleIveKickedOut.forEach((e) => {
+        if (e === msg.clientId) {
+          console.log(e, "trying to sneak back in, kicking out again", this.peopleIveKickedOut);
+          TogetherJS.send({type: "kickOutAgainBecauseSnuckBackIn", idToKick: e}); // server doesn't do anything with this; just log it for posterity
+          TogetherJS.send({type: "kickOut", idToKick: e});
+        }
+      });
     });
 
     TogetherJS.hub.on("myAppState", (msg) => {
