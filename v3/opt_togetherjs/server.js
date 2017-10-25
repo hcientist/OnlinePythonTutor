@@ -242,7 +242,10 @@ var server = http.createServer(function(request, response) {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*"
     });
-    response.end(JSON.stringify(getPHRStats()));
+    // don't forget to pass in uniqueId since we want to know whether to
+    // hide some entries on the queue based on whether uniqueId has been
+    // banned from those sessions:
+    response.end(JSON.stringify(getPHRStats(uniqueId)));
   } else {
     write404(response);
   }
@@ -373,6 +376,7 @@ wsServer.on('request', function(request) {
       sample: [],
       clients: {},   // pgbovine - doesn't properly get DELETED, don't use this
       numClients: 0, // pgbovine - use this instead of the 'clients' field
+      bannedUsers: [], // pgbovine - list of user_uuid's or IP addresses that have been kicked/banned from this session
       domains: {},
       urls: {},
       firstDomain: null,
@@ -434,6 +438,31 @@ wsServer.on('request', function(request) {
       // only count "meaningful" messages in lastMessageTime
       // to avoid spurious signals of activity for non-events
       connectionStats[id].lastMessageTime = Date.now(); // pgbovine
+    }
+
+    // handle kicked/banned users:
+    if (parsed.type === 'app.iGotKickedOut') {
+      var bannedUsers = connectionStats[id].bannedUsers;
+
+      // try to use the user_uuid of the banned user, but if that fails,
+      // then use the IP address of the banned user ... remember that
+      // iGotKickedOut is issued (shamefully) by the user who was kicked/banned:
+      var uniqueId = parsed.user_uuid;
+      if (!uniqueId) {
+        // copied from createLogEntry
+        // Webfaction forwards IP addresses via proxy, so use this ...
+        // http://stackoverflow.com/questions/8107856/how-can-i-get-the-users-ip-address-using-node-js
+        var ip = request.remoteAddress /* check this FIRST since it's for WebSockets */ ||
+          request.headers['x-forwarded-for'] ||
+          request.connection.remoteAddress ||
+          request.socket.remoteAddress ||
+          request.connection.socket.remoteAddress;
+        uniqueId = 'IP_' + ip;
+      }
+      if (bannedUsers.indexOf(uniqueId) < 0) {
+        bannedUsers.push(uniqueId);
+      }
+      //console.log(connectionStats[id].bannedUsers);
     }
 
     for (var i=0; i<allConnections[id].length; i++) {
@@ -674,7 +703,7 @@ function removeFromPHRQueue(id) {
   }
 }
 
-function getPHRStats() {
+function getPHRStats(uniqueId) {
   var ret = [];
   publicHelpRequestQueue.forEach(function(e) {
     var timeSinceCreation;
@@ -691,6 +720,16 @@ function getPHRStats() {
         timeSinceLastMsg = now - stat.lastMessageTime;
       }
       numClients = stat.numClients;
+
+      // only enforce if uniqueId has been passed in ...
+      if (uniqueId && stat.bannedUsers) {
+        for (var i=0; i < stat.bannedUsers.length; i++) {
+          var elt = stat.bannedUsers[i];
+          if (elt === uniqueId) {
+            return; // GET OUTTA HERE EARLY! we've been banned from this session, so don't add this to the list
+          }
+        }
+      }
     }
 
     var copy = Object.assign({}, e); // COPY!
@@ -714,7 +753,7 @@ function logPHRStats() {
   var logObj = {};
   logObj.date = (new Date()).toISOString();
   logObj.type = 'PHRStats';
-  logObj.queue = getPHRStats();
+  logObj.queue = getPHRStats(undefined);
   logObj.recentQueries = Array.from(allRecentHelpQueueQueries);
   pgLogWrite(logObj);
   //console.log(logObj);
