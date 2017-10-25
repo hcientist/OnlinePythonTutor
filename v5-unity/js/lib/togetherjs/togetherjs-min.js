@@ -781,6 +781,15 @@
     return session.shareId;
   };
 
+  // pgbovine - added
+  TogetherJS.clientId = function () {
+    if (! TogetherJS.require) {
+      return null;
+    }
+    var session = TogetherJS.require("session");
+    return session.clientId;
+  };
+
   var listener = null;
 
   TogetherJS.listenForShortcut = function () {

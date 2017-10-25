@@ -253,6 +253,9 @@ Get live help! (NEW!)
     // the moment
     setInterval(this.getHelpQueue.bind(this), 5 * 1000);
 
+    // update this pretty frequently; doesn't require any ajax calls:
+    setInterval(this.updateModerationPanel.bind(this), 2 * 1000);
+
     // add an additional listener in addition to whatever the superclasses added
     window.addEventListener("hashchange", (e) => {
       if (TogetherJS.running && !this.isExecutingCode) {
@@ -453,6 +456,46 @@ Get live help! (NEW!)
         }
       },
     });
+  }
+
+  // this will be called periodically, so make sure it doesn't block
+  // execution by, say, taking too long:
+  updateModerationPanel() {
+    // only do this if you initiated the session
+    if (!this.meInitiatedSession) {
+      return;
+    }
+
+    var allPeers = TogetherJS.require("peers").getAllPeers();
+    var livePeers = [];
+    allPeers.forEach((e) => {
+      if (e.status !== "live") { // don't count people who've already left!!!
+        return;
+      }
+      var clientId = e.id;
+      var username = e.name;
+      livePeers.push({username: username, clientId: clientId});
+    });
+
+    if (livePeers.length > 0) {
+      $("#moderationPanel").html("Remove & ban from session: ");
+      livePeers.forEach((e) => {
+        $("#moderationPanel").append('<button class="kickLink">' + e.username + '</button>');
+        $("#moderationPanel .kickLink").last()
+          .data('clientId', e.clientId)
+          .data('username', e.username);
+      });
+
+      $("#moderationPanel .kickLink").click(function() {
+        var idToKick = $(this).data('clientId');
+        var confirmation = confirm('Press OK to remove ' + $(this).data('username') + ' from this session.');
+        if (confirmation) {
+          TogetherJS.send({type: "kickOut", idToKick: idToKick});
+        }
+      });
+    } else {
+      $("#moderationPanel").empty();
+    }
   }
 
   // important overrides to inject in pieces of TogetherJS functionality
@@ -750,6 +793,28 @@ Get live help! (NEW!)
       }
     });
 
+    // someone issued a kickOut message to kick somebody out of the
+    // session; maybe it's you, maybe it isn't ...
+    TogetherJS.hub.on("kickOut", (msg) => {
+      var myClientId = TogetherJS.clientId();
+      //console.log('RECEIVED kickOut', msg.idToKick, myClientId);
+      // disconnect yourself if idToKick matches your client id:
+      if (msg.idToKick && msg.idToKick === myClientId) {
+        // first send a message of shame to the server ...
+        TogetherJS.send({type: "iGotKickedOut",
+                         clientId: myClientId,
+                         user_uuid: this.userUUID});
+
+        // then nuke all of your shared sessions controls so that you
+        // have to restart a new browser session before trying to get
+        // back into anything; otherwise you might be able to jump back
+        // in instantly using your same session #weird:
+        $("#requestHelpBtn,#ssDiv").remove(); // totally remove them, eeek!
+
+        TogetherJS(); // ... then shut down TogetherJS
+      }
+    });
+
     // fired when TogetherJS is activated. might fire on page load if there's
     // already an open session from a prior page load in the recent past.
     TogetherJS.on("ready", () => {
@@ -946,7 +1011,7 @@ Get live help! (NEW!)
   }
 
   appendTogetherJsFooter() {
-    var extraHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt;">This is a <span class="redBold">highly experimental</span> feature. Do not move or type too quickly. Click here if you get out of sync: <button id="syncBtn" type="button">Force sync</button> <a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs and feedback</a></div>'
+    var extraHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt;">This is a <span class="redBold">highly experimental</span> feature. Do not move or type too quickly. Click here if you get out of sync: <button id="syncBtn" type="button">Force sync</button> <a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs and feedback</a></div><div id="moderationPanel"></div>'
     $("#togetherjsStatus").append(extraHtml);
     $("#syncBtn").click(this.requestSync.bind(this));
   }

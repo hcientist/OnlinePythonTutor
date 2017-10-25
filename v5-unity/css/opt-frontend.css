@@ -138,6 +138,18 @@ button.surveyBtnBig {
   padding: 2px;
 }
 
+#moderationPanel {
+  font-size: 11pt;
+  margin-bottom: 5pt;
+  min-height: 15pt; /* just so things don't jiggle around vertically too much */
+}
+
+.kickLink {
+  font-size: 10pt;
+  margin-right: 4px;
+}
+
+
 #syncBtn {
  font-size: 8pt;
  margin-left: 0px;
@@ -259,6 +271,10 @@ button.surveyBtnBig {
 #exampleSnippets {
  border-top: 1px solid #ccc;
  margin-top: 15px;
+}
+
+#showExampleLink {
+  margin-top: 15px;
 }
 
 #instructionsPane {
