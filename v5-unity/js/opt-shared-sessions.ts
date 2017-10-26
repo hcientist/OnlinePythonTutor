@@ -1140,6 +1140,10 @@ Get live help! (NEW!)
       });
     }
 
+    // SUPER SUBTLE SH*T -- if we're taking a new snapshot, bring us to the
+    // "latest" version right now, which means that we're no longer peeking
+    this.curPeekSnapshotIndex = -1;
+
     // update the display at the end if necessary
     this.renderCodeSnapshot();
   }
