@@ -151,10 +151,13 @@ export class OptFrontendSharedSessions extends OptFrontend {
   pendingCodeOutputScrollTop = null;
   updateOutputSignalFromRemote = false;
   wantsPublicHelp = false;
-  meInitiatedSession = false;
   disableSharedSessions = false; // if we're on mobile/tablets, disable this entirely since it doesn't work on mobile
   isIdle = false;
   peopleIveKickedOut = []; // #savage
+
+  fullCodeSnapshots = []; // a list of full snapshots of code taken at given times, with:
+                          // {ts: new Date().getTime(), cod: <full code snapshot, not diff!>}
+  curPeekSnapshotIndex = -1;  // current index you're peeking at inside of fullCodeSnapshots, -1 if not peeking at anything
 
   constructor(params={}) {
     super(params);
@@ -240,10 +243,12 @@ Get live help! (NEW!)
         console.log('I\'m idle');
       },
       onActive: () => {
-        this.isIdle = false;
+        this.isIdle = false; // set this first!
         console.log('I\'m back!');
         // update the help queue as soon as you're back:
         this.getHelpQueue();
+        // ... and maybe snappy snapshot it
+        this.periodicMaybeTakeSnapshot();
       },
       idle: 60 * 1000 // 1-minute timeout by default for idleness
     })
@@ -256,6 +261,10 @@ Get live help! (NEW!)
 
     // update this pretty frequently; doesn't require any ajax calls:
     setInterval(this.updateModerationPanel.bind(this), 2 * 1000);
+
+    // take a snapshot every 30 seconds or so if you're in a TogetherJS
+    // session and not idle
+    setInterval(this.periodicMaybeTakeSnapshot.bind(this), 30 * 1000);
 
     // add an additional listener in addition to whatever the superclasses added
     window.addEventListener("hashchange", (e) => {
@@ -459,11 +468,22 @@ Get live help! (NEW!)
     });
   }
 
+  // did I *originally* create this session, or did I join?
+  meCreatedThisSession() {
+    if (!TogetherJS.running) {
+      return false;
+    }
+
+    var session = TogetherJS.require("session");
+    var meIsCreator = !session.isClient; // adapted from lib/togetherjs/togetherjs/togetherjsPackage.js
+    return meIsCreator;
+  }
+
   // this will be called periodically, so make sure it doesn't block
   // execution by, say, taking too long:
   updateModerationPanel() {
     // only do this if you initiated the session AND TogetherJS is currently on
-    if (!this.meInitiatedSession || !TogetherJS.running) {
+    if (!TogetherJS.running || !this.meCreatedThisSession()) {
       return;
     }
 
@@ -734,6 +754,11 @@ Get live help! (NEW!)
     // sneaking back into your session. thus, we have defense in depth of
     // enforcing the ban from both the client and server sides ...
     TogetherJS.hub.on("initialAppState", (msg) => {
+      // take a snapshot whenever someone joins your session so that if
+      // they destroy/deface your code, at least you can restore it to
+      // what was there right before they joined
+      this.takeFullCodeSnapshot();
+
       this.peopleIveKickedOut.forEach((e) => {
         if (e === msg.clientId) {
           console.log(e, "trying to sneak back in, kicking out again", this.peopleIveKickedOut);
@@ -908,6 +933,7 @@ Get live help! (NEW!)
 
   // TogetherJS is ready to rock and roll, so do real initiatlization all here:
   TogetherjsReadyHandler() {
+    this.takeFullCodeSnapshot();
     $("#surveyHeader").hide();
 
     // disable syntax and runtime surveys when shared sessions is on:
@@ -935,7 +961,6 @@ Get live help! (NEW!)
     $("#togetherjsStatus").html("Please wait ... loading shared session");
     TogetherJS();
     this.wantsPublicHelp = wantsPublicHelp;
-    this.meInitiatedSession = true;
   }
 
   requestPublicHelpButtonClick() {
@@ -1018,7 +1043,7 @@ Get live help! (NEW!)
   initPrivateSharedSession() {
     assert(!this.wantsPublicHelp);
 
-    if (!this.meInitiatedSession) { // you've joined someone else's session
+    if (!this.meCreatedThisSession()) { // you've joined someone else's session
       // if you're joining someone else's session, disable ALL chat
       // controls so that the only way out of the chat is to close your window;
       // otherwise confusion arises when you quit out of the session and
@@ -1050,4 +1075,138 @@ Get live help! (NEW!)
     $("#syncBtn").click(this.requestSync.bind(this));
   }
 
+  // mutates this.fullCodeSnapshots. snapshots the ENTIRE contents of
+  // the code rather than a diff, for simplicity.
+  // don't do this too frequently or else things might blow up.
+  takeFullCodeSnapshot() {
+    var curTs = new Date().getTime();
+    var curCod = this.pyInputGetValue();
+    if (this.fullCodeSnapshots.length > 0) {
+      var curEntry;
+      if (this.curPeekSnapshotIndex < 0 ||
+          this.curPeekSnapshotIndex >= this.fullCodeSnapshots.length /* shouldn't ever happen, but fail soft */) {
+        curEntry = this.fullCodeSnapshots[this.fullCodeSnapshots.length - 1];
+      } else {
+        curEntry = this.fullCodeSnapshots[this.curPeekSnapshotIndex];
+      }
+      if (curEntry.cod == curCod) {
+        return; // curCod identical to last saved version or currently-peeking version that we're viewing, so don't do anything. RETURN EARLY!!!
+      }
+    }
+    this.fullCodeSnapshots.push({ts: curTs, cod: curCod});
+    //console.log('takeFullCodeSnapshot', this.fullCodeSnapshots.length);
+
+    // only give the option to restore old versions if YOU started this session,
+    // or else it's too confusing if everyone gets to restore as a free-for-all.
+    // also wait until this.fullCodeSnapshots has more than 1 element.
+    if ((this.fullCodeSnapshots.length > 1) &&
+        ($("#codeInputWarnings #snapshotHistory").length == 0) /* if you haven't rendered it yet */ &&
+        this.meCreatedThisSession()) {
+
+      $("#codeInputWarnings #liveModeExtraWarning").remove(); // for ../live.html
+      $("#codeInputWarnings").append(`
+        <span id="snapshotHistory" style="font-size: 9pt; margin-left: 5px;">
+          Restore old code:
+          <button id="prevSnapshot">&lt; Prev</button>
+          <span id="curSnapIndex"/>/<span id="numTotalSnaps"/>
+          <button id="nextSnapshot">Next &gt;</button>
+        </span>`);
+
+      $("#snapshotHistory #prevSnapshot").click(() => {
+        if (this.curPeekSnapshotIndex == 0) {
+          return;
+        }
+
+        if (this.curPeekSnapshotIndex < 0) {
+          // this is super duper tricky, since if you're trying to go
+          // backwards but haven't peeked yet, then we need to save your
+          // CURRENT snapshot so that we can restore it later if you
+          // want; otherwise going back in time clobbers everything up
+          // to your current snapshot:
+          this.takeFullCodeSnapshot();
+
+          this.curPeekSnapshotIndex = this.fullCodeSnapshots.length - 1;
+        }
+
+        this.curPeekSnapshotIndex--;
+        this.renderCodeSnapshot();
+
+        TogetherJS.send({type: "snapshotPeek", btn: 'prev', idx: this.curPeekSnapshotIndex, tot: this.fullCodeSnapshots.length});
+      });
+
+      $("#snapshotHistory #nextSnapshot").click(() => {
+        if (this.curPeekSnapshotIndex >= this.fullCodeSnapshots.length - 1) {
+          return;
+        }
+        if (this.curPeekSnapshotIndex < 0) {
+          return; // meaningless if you're not peeking
+        }
+
+        this.curPeekSnapshotIndex++;
+        this.renderCodeSnapshot();
+
+        TogetherJS.send({type: "snapshotPeek", btn: 'next', idx: this.curPeekSnapshotIndex, tot: this.fullCodeSnapshots.length});
+      });
+    }
+
+    // SUPER SUBTLE SH*T -- if we're taking a new snapshot, bring us to the
+    // "latest" version right now, which means that we're no longer peeking
+    this.curPeekSnapshotIndex = -1;
+
+    // update the display at the end if necessary
+    this.renderCodeSnapshot();
+  }
+
+  renderCodeSnapshot() {
+    // always update the display
+    $("#codeInputWarnings #numTotalSnaps").html(String(this.fullCodeSnapshots.length));
+
+    if (this.curPeekSnapshotIndex < 0) {
+      $("#codeInputWarnings #curSnapIndex").html(String(this.fullCodeSnapshots.length));
+    } else {
+      $("#codeInputWarnings #curSnapIndex").html(String(this.curPeekSnapshotIndex + 1));
+    }
+
+    // if we're not peeking, then no need to re-render:
+    if (this.curPeekSnapshotIndex < 0) {
+      return;
+    }
+
+    //console.log('renderCodeSnapshot', this.fullCodeSnapshots.length, this.curPeekSnapshotIndex);
+
+    var curCod = this.pyInputGetValue();
+    var cod;
+    // this shouldn't happen but fail-soft just in case
+    if (this.curPeekSnapshotIndex >= this.fullCodeSnapshots.length) {
+      cod = this.fullCodeSnapshots[this.fullCodeSnapshots.length - 1].cod;
+    } else {
+      cod = this.fullCodeSnapshots[this.curPeekSnapshotIndex].cod;
+    }
+    if (curCod != cod) { // don't re-render unless absolutely necessary
+      this.pyInputSetValue(cod);
+    }
+  }
+
+  // only take a snapshot in a shared session where you're not idle
+  periodicMaybeTakeSnapshot() {
+    if (TogetherJS.running && !this.isIdle) {
+      this.takeFullCodeSnapshot();
+    }
+  }
+
+  // this runs whenever the code editor changes ... hijack it for now
+  snapshotCodeDiff() {
+    // this is super subtle -- if we're currently peeking, then as
+    // soon as we edit the code, then take a full snapshot so that we
+    // don't lose the current state of the code as we're peeking.
+    // if we're not peeking, then carry on and do nothing.
+    if (this.curPeekSnapshotIndex >= 0) {
+      this.takeFullCodeSnapshot();
+    }
+
+    // don't forget to call this in the end!
+    // it's confusingly confusingly named since snapshotCodeDiff is
+    // very different than our takeFullCodeSnapshot
+    super.snapshotCodeDiff();
+  }
 } // END class OptFrontendSharedSessions

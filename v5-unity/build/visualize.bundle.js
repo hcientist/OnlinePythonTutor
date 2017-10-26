@@ -22401,10 +22401,12 @@ var OptFrontendSharedSessions = (function (_super) {
         _this.pendingCodeOutputScrollTop = null;
         _this.updateOutputSignalFromRemote = false;
         _this.wantsPublicHelp = false;
-        _this.meInitiatedSession = false;
         _this.disableSharedSessions = false; // if we're on mobile/tablets, disable this entirely since it doesn't work on mobile
         _this.isIdle = false;
         _this.peopleIveKickedOut = []; // #savage
+        _this.fullCodeSnapshots = []; // a list of full snapshots of code taken at given times, with:
+        // {ts: new Date().getTime(), cod: <full code snapshot, not diff!>}
+        _this.curPeekSnapshotIndex = -1; // current index you're peeking at inside of fullCodeSnapshots, -1 if not peeking at anything
         _this.initTogetherJS();
         _this.pyInputAceEditor.getSession().on("change", function (e) {
             // unfortunately, Ace doesn't detect whether a change was caused
@@ -22448,10 +22450,12 @@ var OptFrontendSharedSessions = (function (_super) {
                 console.log('I\'m idle');
             },
             onActive: function () {
-                _this.isIdle = false;
+                _this.isIdle = false; // set this first!
                 console.log('I\'m back!');
                 // update the help queue as soon as you're back:
                 _this.getHelpQueue();
+                // ... and maybe snappy snapshot it
+                _this.periodicMaybeTakeSnapshot();
             },
             idle: 60 * 1000 // 1-minute timeout by default for idleness
         });
@@ -22462,6 +22466,9 @@ var OptFrontendSharedSessions = (function (_super) {
         setInterval(_this.getHelpQueue.bind(_this), 5 * 1000);
         // update this pretty frequently; doesn't require any ajax calls:
         setInterval(_this.updateModerationPanel.bind(_this), 2 * 1000);
+        // take a snapshot every 30 seconds or so if you're in a TogetherJS
+        // session and not idle
+        setInterval(_this.periodicMaybeTakeSnapshot.bind(_this), 30 * 1000);
         // add an additional listener in addition to whatever the superclasses added
         window.addEventListener("hashchange", function (e) {
             if (exports.TogetherJS.running && !_this.isExecutingCode) {
@@ -22665,11 +22672,20 @@ var OptFrontendSharedSessions = (function (_super) {
             },
         });
     };
+    // did I *originally* create this session, or did I join?
+    OptFrontendSharedSessions.prototype.meCreatedThisSession = function () {
+        if (!exports.TogetherJS.running) {
+            return false;
+        }
+        var session = exports.TogetherJS.require("session");
+        var meIsCreator = !session.isClient; // adapted from lib/togetherjs/togetherjs/togetherjsPackage.js
+        return meIsCreator;
+    };
     // this will be called periodically, so make sure it doesn't block
     // execution by, say, taking too long:
     OptFrontendSharedSessions.prototype.updateModerationPanel = function () {
         // only do this if you initiated the session AND TogetherJS is currently on
-        if (!this.meInitiatedSession || !exports.TogetherJS.running) {
+        if (!exports.TogetherJS.running || !this.meCreatedThisSession()) {
             return;
         }
         var allPeers = exports.TogetherJS.require("peers").getAllPeers();
@@ -22917,6 +22933,10 @@ var OptFrontendSharedSessions = (function (_super) {
         // sneaking back into your session. thus, we have defense in depth of
         // enforcing the ban from both the client and server sides ...
         exports.TogetherJS.hub.on("initialAppState", function (msg) {
+            // take a snapshot whenever someone joins your session so that if
+            // they destroy/deface your code, at least you can restore it to
+            // what was there right before they joined
+            _this.takeFullCodeSnapshot();
             _this.peopleIveKickedOut.forEach(function (e) {
                 if (e === msg.clientId) {
                     console.log(e, "trying to sneak back in, kicking out again", _this.peopleIveKickedOut);
@@ -23070,6 +23090,7 @@ var OptFrontendSharedSessions = (function (_super) {
     };
     // TogetherJS is ready to rock and roll, so do real initiatlization all here:
     OptFrontendSharedSessions.prototype.TogetherjsReadyHandler = function () {
+        this.takeFullCodeSnapshot();
         $("#surveyHeader").hide();
         // disable syntax and runtime surveys when shared sessions is on:
         this.activateSyntaxErrorSurvey = false;
@@ -23094,7 +23115,6 @@ var OptFrontendSharedSessions = (function (_super) {
         $("#togetherjsStatus").html("Please wait ... loading shared session");
         exports.TogetherJS();
         this.wantsPublicHelp = wantsPublicHelp;
-        this.meInitiatedSession = true;
     };
     OptFrontendSharedSessions.prototype.requestPublicHelpButtonClick = function () {
         if (exports.TogetherJS.running) {
@@ -23164,7 +23184,7 @@ var OptFrontendSharedSessions = (function (_super) {
     };
     OptFrontendSharedSessions.prototype.initPrivateSharedSession = function () {
         pytutor_1.assert(!this.wantsPublicHelp);
-        if (!this.meInitiatedSession) {
+        if (!this.meCreatedThisSession()) {
             // if you're joining someone else's session, disable ALL chat
             // controls so that the only way out of the chat is to close your window;
             // otherwise confusion arises when you quit out of the session and
@@ -23186,6 +23206,118 @@ var OptFrontendSharedSessions = (function (_super) {
         var extraHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt;">This is a <span class="redBold">highly experimental</span> feature. Do not move or type too quickly. Click here if you get out of sync: <button id="syncBtn" type="button">Force sync</button> <a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs/feedback</a></div>';
         $("#togetherjsStatus").append(extraHtml);
         $("#syncBtn").click(this.requestSync.bind(this));
+    };
+    // mutates this.fullCodeSnapshots. snapshots the ENTIRE contents of
+    // the code rather than a diff, for simplicity.
+    // don't do this too frequently or else things might blow up.
+    OptFrontendSharedSessions.prototype.takeFullCodeSnapshot = function () {
+        var _this = this;
+        var curTs = new Date().getTime();
+        var curCod = this.pyInputGetValue();
+        if (this.fullCodeSnapshots.length > 0) {
+            var curEntry;
+            if (this.curPeekSnapshotIndex < 0 ||
+                this.curPeekSnapshotIndex >= this.fullCodeSnapshots.length /* shouldn't ever happen, but fail soft */) {
+                curEntry = this.fullCodeSnapshots[this.fullCodeSnapshots.length - 1];
+            }
+            else {
+                curEntry = this.fullCodeSnapshots[this.curPeekSnapshotIndex];
+            }
+            if (curEntry.cod == curCod) {
+                return; // curCod identical to last saved version or currently-peeking version that we're viewing, so don't do anything. RETURN EARLY!!!
+            }
+        }
+        this.fullCodeSnapshots.push({ ts: curTs, cod: curCod });
+        //console.log('takeFullCodeSnapshot', this.fullCodeSnapshots.length);
+        // only give the option to restore old versions if YOU started this session,
+        // or else it's too confusing if everyone gets to restore as a free-for-all.
+        // also wait until this.fullCodeSnapshots has more than 1 element.
+        if ((this.fullCodeSnapshots.length > 1) &&
+            ($("#codeInputWarnings #snapshotHistory").length == 0) /* if you haven't rendered it yet */ &&
+            this.meCreatedThisSession()) {
+            $("#codeInputWarnings #liveModeExtraWarning").remove(); // for ../live.html
+            $("#codeInputWarnings").append("\n        <span id=\"snapshotHistory\" style=\"font-size: 9pt; margin-left: 5px;\">\n          Restore old code:\n          <button id=\"prevSnapshot\">&lt; Prev</button>\n          <span id=\"curSnapIndex\"/>/<span id=\"numTotalSnaps\"/>\n          <button id=\"nextSnapshot\">Next &gt;</button>\n        </span>");
+            $("#snapshotHistory #prevSnapshot").click(function () {
+                if (_this.curPeekSnapshotIndex == 0) {
+                    return;
+                }
+                if (_this.curPeekSnapshotIndex < 0) {
+                    // this is super duper tricky, since if you're trying to go
+                    // backwards but haven't peeked yet, then we need to save your
+                    // CURRENT snapshot so that we can restore it later if you
+                    // want; otherwise going back in time clobbers everything up
+                    // to your current snapshot:
+                    _this.takeFullCodeSnapshot();
+                    _this.curPeekSnapshotIndex = _this.fullCodeSnapshots.length - 1;
+                }
+                _this.curPeekSnapshotIndex--;
+                _this.renderCodeSnapshot();
+                exports.TogetherJS.send({ type: "snapshotPeek", btn: 'prev', idx: _this.curPeekSnapshotIndex, tot: _this.fullCodeSnapshots.length });
+            });
+            $("#snapshotHistory #nextSnapshot").click(function () {
+                if (_this.curPeekSnapshotIndex >= _this.fullCodeSnapshots.length - 1) {
+                    return;
+                }
+                if (_this.curPeekSnapshotIndex < 0) {
+                    return; // meaningless if you're not peeking
+                }
+                _this.curPeekSnapshotIndex++;
+                _this.renderCodeSnapshot();
+                exports.TogetherJS.send({ type: "snapshotPeek", btn: 'next', idx: _this.curPeekSnapshotIndex, tot: _this.fullCodeSnapshots.length });
+            });
+        }
+        // SUPER SUBTLE SH*T -- if we're taking a new snapshot, bring us to the
+        // "latest" version right now, which means that we're no longer peeking
+        this.curPeekSnapshotIndex = -1;
+        // update the display at the end if necessary
+        this.renderCodeSnapshot();
+    };
+    OptFrontendSharedSessions.prototype.renderCodeSnapshot = function () {
+        // always update the display
+        $("#codeInputWarnings #numTotalSnaps").html(String(this.fullCodeSnapshots.length));
+        if (this.curPeekSnapshotIndex < 0) {
+            $("#codeInputWarnings #curSnapIndex").html(String(this.fullCodeSnapshots.length));
+        }
+        else {
+            $("#codeInputWarnings #curSnapIndex").html(String(this.curPeekSnapshotIndex + 1));
+        }
+        // if we're not peeking, then no need to re-render:
+        if (this.curPeekSnapshotIndex < 0) {
+            return;
+        }
+        //console.log('renderCodeSnapshot', this.fullCodeSnapshots.length, this.curPeekSnapshotIndex);
+        var curCod = this.pyInputGetValue();
+        var cod;
+        // this shouldn't happen but fail-soft just in case
+        if (this.curPeekSnapshotIndex >= this.fullCodeSnapshots.length) {
+            cod = this.fullCodeSnapshots[this.fullCodeSnapshots.length - 1].cod;
+        }
+        else {
+            cod = this.fullCodeSnapshots[this.curPeekSnapshotIndex].cod;
+        }
+        if (curCod != cod) {
+            this.pyInputSetValue(cod);
+        }
+    };
+    // only take a snapshot in a shared session where you're not idle
+    OptFrontendSharedSessions.prototype.periodicMaybeTakeSnapshot = function () {
+        if (exports.TogetherJS.running && !this.isIdle) {
+            this.takeFullCodeSnapshot();
+        }
+    };
+    // this runs whenever the code editor changes ... hijack it for now
+    OptFrontendSharedSessions.prototype.snapshotCodeDiff = function () {
+        // this is super subtle -- if we're currently peeking, then as
+        // soon as we edit the code, then take a full snapshot so that we
+        // don't lose the current state of the code as we're peeking.
+        // if we're not peeking, then carry on and do nothing.
+        if (this.curPeekSnapshotIndex >= 0) {
+            this.takeFullCodeSnapshot();
+        }
+        // don't forget to call this in the end!
+        // it's confusingly confusingly named since snapshotCodeDiff is
+        // very different than our takeFullCodeSnapshot
+        _super.prototype.snapshotCodeDiff.call(this);
     };
     return OptFrontendSharedSessions;
 }(opt_frontend_1.OptFrontend)); // END class OptFrontendSharedSessions
