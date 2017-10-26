@@ -22405,7 +22405,6 @@ var OptFrontendSharedSessions = (function (_super) {
         _this.isIdle = false;
         _this.peopleIveKickedOut = []; // #savage
         _this.fullCodeSnapshots = []; // a list of full snapshots of code taken at given times, with:
-        // {ts: new Date().getTime(), cod: <full code snapshot, not diff!>}
         _this.curPeekSnapshotIndex = -1; // current index you're peeking at inside of fullCodeSnapshots, -1 if not peeking at anything
         _this.initTogetherJS();
         _this.pyInputAceEditor.getSession().on("change", function (e) {
@@ -23212,29 +23211,19 @@ var OptFrontendSharedSessions = (function (_super) {
     // don't do this too frequently or else things might blow up.
     OptFrontendSharedSessions.prototype.takeFullCodeSnapshot = function () {
         var _this = this;
-        var curTs = new Date().getTime();
         var curCod = this.pyInputGetValue();
-        if (this.fullCodeSnapshots.length > 0) {
-            var curEntry;
-            var lastEntry = this.fullCodeSnapshots[this.fullCodeSnapshots.length - 1];
-            if (this.curPeekSnapshotIndex < 0 ||
-                this.curPeekSnapshotIndex >= this.fullCodeSnapshots.length /* shouldn't ever happen, but fail soft */) {
-                curEntry = lastEntry;
-            }
-            else {
-                curEntry = this.fullCodeSnapshots[this.curPeekSnapshotIndex];
-            }
-            if ((curEntry.cod == curCod) ||
-                (curEntry.cod == lastEntry)) {
-                // curCod identical to last saved version or currently-peeking version
-                // that we're viewing, so don't do anything. RETURN EARLY!!!
-                // note that there's no point in appending if you're identical to the
-                // last entry either since you can always go to it.
-                return;
+        // brute-force search through all of this.fullCodeSnapshots for an
+        // exact duplicate ... if it exists, then don't snapshot it again.
+        // this is super crude/potentially-inefficient but is the most robust
+        // way to check for changes in light of weird TogetherJS happenings
+        for (var i = 0; i < this.fullCodeSnapshots.length; i++) {
+            var e = this.fullCodeSnapshots[i];
+            if (e == curCod) {
+                return; // RETURN EARLY if there's a duplicate match!!!
             }
         }
-        this.fullCodeSnapshots.push({ ts: curTs, cod: curCod });
-        //console.log('takeFullCodeSnapshot', this.fullCodeSnapshots.length, 'idx:', this.curPeekSnapshotIndex);
+        this.fullCodeSnapshots.push(curCod);
+        console.log('takeFullCodeSnapshot', this.fullCodeSnapshots.length, 'idx:', this.curPeekSnapshotIndex);
         // only give the option to restore old versions if YOU started this session,
         // or else it's too confusing if everyone gets to restore as a free-for-all.
         // also wait until this.fullCodeSnapshots has more than 1 element.
@@ -23247,13 +23236,8 @@ var OptFrontendSharedSessions = (function (_super) {
                 if (_this.curPeekSnapshotIndex == 0) {
                     return;
                 }
+                _this.takeFullCodeSnapshot(); // try to snapshot *first* before you change the code
                 if (_this.curPeekSnapshotIndex < 0) {
-                    // this is super duper tricky, since if you're trying to go
-                    // backwards but haven't peeked yet, then we need to save your
-                    // CURRENT snapshot so that we can restore it later if you
-                    // want; otherwise going back in time clobbers everything up
-                    // to your current snapshot:
-                    _this.takeFullCodeSnapshot();
                     _this.curPeekSnapshotIndex = _this.fullCodeSnapshots.length - 1;
                 }
                 _this.curPeekSnapshotIndex--;
@@ -23267,14 +23251,12 @@ var OptFrontendSharedSessions = (function (_super) {
                 if (_this.curPeekSnapshotIndex < 0) {
                     return; // meaningless if you're not peeking
                 }
+                _this.takeFullCodeSnapshot(); // try to snapshot *first* before you change the code
                 _this.curPeekSnapshotIndex++;
                 _this.renderCodeSnapshot();
                 exports.TogetherJS.send({ type: "snapshotPeek", btn: 'next', idx: _this.curPeekSnapshotIndex, tot: _this.fullCodeSnapshots.length });
             });
         }
-        // SUPER SUBTLE SH*T -- if we're taking a new snapshot, bring us to the
-        // "latest" version right now, which means that we're no longer peeking
-        this.curPeekSnapshotIndex = -1;
         // update the display at the end if necessary
         this.renderCodeSnapshot();
     };
@@ -23296,10 +23278,10 @@ var OptFrontendSharedSessions = (function (_super) {
         var cod;
         // this shouldn't happen but fail-soft just in case
         if (this.curPeekSnapshotIndex >= this.fullCodeSnapshots.length) {
-            cod = this.fullCodeSnapshots[this.fullCodeSnapshots.length - 1].cod;
+            cod = this.fullCodeSnapshots[this.fullCodeSnapshots.length - 1];
         }
         else {
-            cod = this.fullCodeSnapshots[this.curPeekSnapshotIndex].cod;
+            cod = this.fullCodeSnapshots[this.curPeekSnapshotIndex];
         }
         if (curCod != cod) {
             this.pyInputSetValue(cod);
