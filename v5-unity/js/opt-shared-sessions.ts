@@ -1083,18 +1083,24 @@ Get live help! (NEW!)
     var curCod = this.pyInputGetValue();
     if (this.fullCodeSnapshots.length > 0) {
       var curEntry;
+      var lastEntry = this.fullCodeSnapshots[this.fullCodeSnapshots.length - 1];
       if (this.curPeekSnapshotIndex < 0 ||
           this.curPeekSnapshotIndex >= this.fullCodeSnapshots.length /* shouldn't ever happen, but fail soft */) {
-        curEntry = this.fullCodeSnapshots[this.fullCodeSnapshots.length - 1];
+        curEntry = lastEntry;
       } else {
         curEntry = this.fullCodeSnapshots[this.curPeekSnapshotIndex];
       }
-      if (curEntry.cod == curCod) {
-        return; // curCod identical to last saved version or currently-peeking version that we're viewing, so don't do anything. RETURN EARLY!!!
+      if ((curEntry.cod == curCod) ||
+          (curEntry.cod == lastEntry)) {
+        // curCod identical to last saved version or currently-peeking version
+        // that we're viewing, so don't do anything. RETURN EARLY!!!
+        // note that there's no point in appending if you're identical to the
+        // last entry either since you can always go to it.
+        return;
       }
     }
     this.fullCodeSnapshots.push({ts: curTs, cod: curCod});
-    //console.log('takeFullCodeSnapshot', this.fullCodeSnapshots.length);
+    //console.log('takeFullCodeSnapshot', this.fullCodeSnapshots.length, 'idx:', this.curPeekSnapshotIndex);
 
     // only give the option to restore old versions if YOU started this session,
     // or else it's too confusing if everyone gets to restore as a free-for-all.
