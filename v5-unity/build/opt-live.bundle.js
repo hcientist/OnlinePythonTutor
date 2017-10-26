@@ -24695,7 +24695,20 @@ var OptLiveFrontend = (function (_super) {
         }
     };
     // override with NOP to disable diff snapshots in live mode
-    OptLiveFrontend.prototype.snapshotCodeDiff = function () { };
+    OptLiveFrontend.prototype.snapshotCodeDiff = function () {
+        // ugh abstraction leak to snapshotCodeDiff() in opt-shared-sessions.ts
+        // this is super gross ...
+        //
+        // this is super subtle -- if we're currently peeking, then as
+        // soon as we edit the code, then take a full snapshot so that we
+        // don't lose the current state of the code as we're peeking.
+        // if we're not peeking, then carry on and do nothing.
+        if (this.curPeekSnapshotIndex >= 0) {
+            this.takeFullCodeSnapshot();
+        }
+        // DON'T call super.snapshotCodeDiff() since we don't want to do
+        // regular code diff snapshots in live programming mode
+    };
     OptLiveFrontend.prototype.initAceEditor = function (height) {
         var _this = this;
         pytutor_1.assert(!this.pyInputAceEditor);
