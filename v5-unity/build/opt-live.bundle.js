@@ -23305,20 +23305,6 @@ var OptFrontendSharedSessions = (function (_super) {
             this.takeFullCodeSnapshot();
         }
     };
-    // this runs whenever the code editor changes ... hijack it for now
-    OptFrontendSharedSessions.prototype.snapshotCodeDiff = function () {
-        // this is super subtle -- if we're currently peeking, then as
-        // soon as we edit the code, then take a full snapshot so that we
-        // don't lose the current state of the code as we're peeking.
-        // if we're not peeking, then carry on and do nothing.
-        if (this.curPeekSnapshotIndex >= 0) {
-            this.takeFullCodeSnapshot();
-        }
-        // don't forget to call this in the end!
-        // it's confusingly confusingly named since snapshotCodeDiff is
-        // very different than our takeFullCodeSnapshot
-        _super.prototype.snapshotCodeDiff.call(this);
-    };
     return OptFrontendSharedSessions;
 }(opt_frontend_1.OptFrontend)); // END class OptFrontendSharedSessions
 exports.OptFrontendSharedSessions = OptFrontendSharedSessions;
@@ -24695,20 +24681,7 @@ var OptLiveFrontend = (function (_super) {
         }
     };
     // override with NOP to disable diff snapshots in live mode
-    OptLiveFrontend.prototype.snapshotCodeDiff = function () {
-        // ugh abstraction leak to snapshotCodeDiff() in opt-shared-sessions.ts
-        // this is super gross ...
-        //
-        // this is super subtle -- if we're currently peeking, then as
-        // soon as we edit the code, then take a full snapshot so that we
-        // don't lose the current state of the code as we're peeking.
-        // if we're not peeking, then carry on and do nothing.
-        if (this.curPeekSnapshotIndex >= 0) {
-            this.takeFullCodeSnapshot();
-        }
-        // DON'T call super.snapshotCodeDiff() since we don't want to do
-        // regular code diff snapshots in live programming mode
-    };
+    OptLiveFrontend.prototype.snapshotCodeDiff = function () { };
     OptLiveFrontend.prototype.initAceEditor = function (height) {
         var _this = this;
         pytutor_1.assert(!this.pyInputAceEditor);

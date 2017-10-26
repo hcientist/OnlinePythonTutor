@@ -1193,20 +1193,4 @@ Get live help! (NEW!)
       this.takeFullCodeSnapshot();
     }
   }
-
-  // this runs whenever the code editor changes ... hijack it for now
-  snapshotCodeDiff() {
-    // this is super subtle -- if we're currently peeking, then as
-    // soon as we edit the code, then take a full snapshot so that we
-    // don't lose the current state of the code as we're peeking.
-    // if we're not peeking, then carry on and do nothing.
-    if (this.curPeekSnapshotIndex >= 0) {
-      this.takeFullCodeSnapshot();
-    }
-
-    // don't forget to call this in the end!
-    // it's confusingly confusingly named since snapshotCodeDiff is
-    // very different than our takeFullCodeSnapshot
-    super.snapshotCodeDiff();
-  }
 } // END class OptFrontendSharedSessions
