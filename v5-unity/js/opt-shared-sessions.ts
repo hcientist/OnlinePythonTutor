@@ -685,7 +685,7 @@ Get live help! (NEW!)
         }
 
         if (curStr) {
-          curStr = 'Someone from ' + curStr + ' just joined this chat. Send them a message!';
+          curStr = 'Someone from ' + curStr + ' just joined this chat.';
           this.chatbotPostMsg(curStr);
         }
       }
@@ -833,7 +833,12 @@ Get live help! (NEW!)
             if (msg.pyCodeOutputDivScrollTop !== undefined) {
               this.pendingCodeOutputScrollTop = msg.pyCodeOutputDivScrollTop;
             }
-            this.executeCode(learnerAppState.curInstr);
+            var learnerRawInputLst = JSON.parse(learnerAppState.rawInputLstJSON);
+            if (learnerRawInputLst && learnerRawInputLst.length > 0) {
+              this.executeCode(learnerAppState.curInstr, learnerRawInputLst);
+            } else {
+              this.executeCode(learnerAppState.curInstr);
+            }
           }
           finally {
             this.executeCodeSignalFromRemote = false;
