@@ -216,6 +216,11 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
       ruiDiv.find('#raw_input_submit_btn')
         .unbind('click')
         .click(() => {
+          // issue a warning since it's really hard to get rawInputLst
+          // stuff sync'ed when TogetherJS is running for various reasons:
+          if (TogetherJS.running) {
+            alert("Warning: user inputs do NOT work well in live help/chat mode. We suggest you use the regular Python Tutor visualizer instead.");
+          }
           var userInput = ruiDiv.find('#raw_input_textbox').val();
           var myVisualizer = this.myVisualizer;
           // advance instruction count by 1 to get to the NEXT instruction
