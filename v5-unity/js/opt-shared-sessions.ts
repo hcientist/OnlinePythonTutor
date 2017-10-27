@@ -655,6 +655,42 @@ Get live help! (NEW!)
       localStorage.removeItem('togetherjs.settings.name');
     }
 
+
+    // this event triggers when some new user joins (whether it's you or
+    // someone else) and says 'hello' ... the server attempts to
+    // geolocate their IP address server-side (since it's more accurate
+    // than doing it client-side, apparently) ...
+    TogetherJS.hub.on("togetherjs.pg-hello-geolocate", (msg) => {
+      if (!msg.sameUrl) return; // make sure we're on the same page
+
+      // make sure clientId isn't YOU so you don't display info about yourself:
+      var myClientId = TogetherJS.clientId();
+      if (msg.clientId != myClientId) {
+        var geo = msg.geo;
+        var curStr;
+
+        // follow the same format as how geolocation data is displayed
+        // in the public help queue
+        if (geo.country_name && geo.city) {
+          // print 'region_name' (i.e., state) for US addresses:
+          if (geo.country_name === "United States" && geo.region_name) {
+            curStr = geo.city + ', ' + geo.region_name + ', US';
+          } else {
+            curStr = geo.city + ', ' + geo.country_name;
+          }
+        } else if (geo.country_name) {
+          curStr = geo.country_name;
+        } else if (geo.city) {
+          curStr = geo.city;
+        }
+
+        if (curStr) {
+          curStr = 'Someone from ' + curStr + ' just joined this chat. Send them a message!';
+          this.chatbotPostMsg(curStr);
+        }
+      }
+    });
+
     // This event triggers when you first join a session and say 'hello',
     // and then one of your peers says hello back to you. If they have the
     // exact same name as you, then change your own name to avoid ambiguity.
@@ -1184,4 +1220,22 @@ Get live help! (NEW!)
       this.takeFullCodeSnapshot();
     }
   }
+
+  // helper chatbot which posts a message in your chat box that *only you can see*
+  chatbotPostMsg(msg) {
+    if (!TogetherJS.running) {
+      return;
+    }
+
+    var ui = TogetherJS.require("ui");
+    var sess = TogetherJS.require("session");
+    var p = TogetherJS.require("peers");
+
+    // mimic what's in lib/togetherjs/togetherjs/togetherjsPackage.js
+    ui.chat.text({text: 'CHATBOT: ' + msg,
+                  messageId: sess.clientId + "-" + Date.now(),
+                  peer: p.Self,
+                  notify: false});
+  }
+
 } // END class OptFrontendSharedSessions
