@@ -395,6 +395,7 @@ wsServer.on('request', function(request) {
   }));
   connection.on('message', function(message) {
     var parsed;
+    var ip;
     try {
       parsed = JSON.parse(message.utf8Data);
     } catch (e) {
@@ -452,7 +453,7 @@ wsServer.on('request', function(request) {
         // copied from createLogEntry
         // Webfaction forwards IP addresses via proxy, so use this ...
         // http://stackoverflow.com/questions/8107856/how-can-i-get-the-users-ip-address-using-node-js
-        var ip = request.remoteAddress /* check this FIRST since it's for WebSockets */ ||
+        ip = request.remoteAddress /* check this FIRST since it's for WebSockets */ ||
           request.headers['x-forwarded-for'] ||
           request.connection.remoteAddress ||
           request.socket.remoteAddress ||
@@ -463,6 +464,53 @@ wsServer.on('request', function(request) {
         bannedUsers.push(uniqueId);
       }
       //console.log(connectionStats[id].bannedUsers);
+    }
+
+    // when you first enter a session (i.e., saying 'hello'), try to geolocate
+    // your IP address server-side (since it's more accurate than doing it
+    // client-side) and then log/send a pg-hello-geolocate event to everyone
+    if (parsed.type === 'hello') {
+      // copied from createLogEntry
+      // Webfaction forwards IP addresses via proxy, so use this ...
+      // http://stackoverflow.com/questions/8107856/how-can-i-get-the-users-ip-address-using-node-js
+      ip = request.remoteAddress /* check this FIRST since it's for WebSockets */ ||
+        request.headers['x-forwarded-for'] ||
+        request.connection.remoteAddress ||
+        request.socket.remoteAddress ||
+        request.connection.socket.remoteAddress;
+
+      requestFunc("http://freegeoip.net/json/" + String(ip), function(error, resp, body) {
+        var geoResult;
+        if (!error) {
+          try {
+            geoResult = JSON.parse(body);
+          } catch (e) {
+            // pass
+          }
+        }
+
+        if (geoResult) {
+          var helloExtraLogEntry = {type: 'pg-hello-geolocate',
+                                    geo: geoResult,
+                                    clientId: parsed.clientId,
+                                    user_uuid: parsed.user_uuid};
+
+          var extraLogObj = createLogEntry(request);
+          extraLogObj.id = id;
+          extraLogObj.type = 'togetherjs';
+          extraLogObj.togetherjs = helloExtraLogEntry;
+          pgLogWrite(extraLogObj);
+
+          for (var i=0; i<allConnections[id].length; i++) {
+            var c = allConnections[id][i];
+            if (c == connection && !parsed["server-echo"]) {
+              continue;
+            }
+            c.sendUTF(JSON.stringify(helloExtraLogEntry));
+          }
+
+        }
+      });
     }
 
     for (var i=0; i<allConnections[id].length; i++) {
