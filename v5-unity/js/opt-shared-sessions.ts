@@ -257,6 +257,7 @@ Get live help! (NEW!)
     // resources and get a more accurate indicator of who is active at
     // the moment
     setInterval(this.getHelpQueue.bind(this), 5 * 1000);
+    this.getHelpQueue(); // call it once on page load
 
     // update this pretty frequently; doesn't require any ajax calls:
     setInterval(this.updateModerationPanel.bind(this), 2 * 1000);
@@ -391,7 +392,6 @@ Get live help! (NEW!)
 
             if (e.id === myShareId) {
               curStr += ' - <span class="redBold">this is you!</span>';
-              curStr += ' <button id="stopRequestHelpBtn" type="button">Stop requesting help</button>';
             } else {
               if (!e.numClients || isNaN(e.numClients) || e.numClients <= 1) {
                 curStr += ' - <a class="gotoHelpLink" style="font-weight: bold;" href="' + e.url + '" target="_blank">click to help</a>';
@@ -410,7 +410,13 @@ Get live help! (NEW!)
           });
 
           if ((entriesWithHelpers.length + entriesWithoutHelpers.length) > 0) {
-            $("#publicHelpQueue").html('<div style="margin-bottom: 5px;">These Python Tutor users are asking for help right now. Please volunteer to help!</div>');
+            if (!this.wantsPublicHelp) {
+              $("#publicHelpQueue").html('<div style="margin-bottom: 5px;">These Python Tutor users are asking for help right now. Please volunteer to help!</div>');
+            } else {
+              // if i'm asking for public help and am currently on the
+              // queue, eliminate this redundant message:
+              $("#publicHelpQueue").html('');
+            }
 
             // prioritize help entries that don't currently have helpers helping (i.e., numClients <= 1)
             entriesWithoutHelpers.forEach((e) => {
@@ -421,24 +427,7 @@ Get live help! (NEW!)
               $("#publicHelpQueue").append('<li style="color: #777;">' + e + '</li>');
             });
 
-            // add these handlers AFTER the respective DOM nodes have been
-            // added above:
-            $("#stopRequestHelpBtn").click(() => {
-              this.wantsPublicHelp = false;
-              var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
-              var shareId = TogetherJS.shareId();
-              $.ajax({
-                url: rphUrl,
-                dataType: "json",
-                data: {id: shareId, user_uuid: this.userUUID, removeFromQueue: true}, // stop requesting help!
-                success: () => {
-                  this.getHelpQueue(); // update the help queue ASAP to get updated status
-                },
-                error: () => {
-                  this.getHelpQueue(); // update the help queue ASAP to get updated status
-                },
-              });
-            });
+            // add these handlers AFTER the respective DOM nodes have been added above:
 
             // add confirmation to hopefully establish some etiquette expectations
             $(".gotoHelpLink").click(() => {
@@ -486,6 +475,8 @@ Get live help! (NEW!)
       return;
     }
 
+    $("#moderationPanel").empty(); // always start from scratch
+
     var allPeers = TogetherJS.require("peers").getAllPeers();
     var livePeers = [];
     allPeers.forEach((e) => {
@@ -498,7 +489,21 @@ Get live help! (NEW!)
     });
 
     if (livePeers.length > 0) {
-      $("#moderationPanel").html("Kick & ban disruptive users: ");
+      if (this.wantsPublicHelp) {
+        $("#moderationPanel").append(`
+          <button id="stopRequestHelpBtn" type="button" class="togetherjsBtn"
+                  style="margin-bottom: 6pt; font-size: 10pt; padding: 4px;">
+            Don't let any more people join this session
+          </button><br/>`);
+        $("#stopRequestHelpBtn").click(this.initStopRequestingPublicHelp.bind(this));
+      } else {
+        $("#moderationPanel").append('This is a private session. ');
+        if (!$("#requestHelpBtn").is(':visible')) {
+          $("#requestHelpBtn").show(); // make sure there's a way to get back on the queue
+        }
+      }
+
+      $("#moderationPanel").append('Kick out disruptive users: ');
       livePeers.forEach((e) => {
         $("#moderationPanel").append('<button class="kickLink">' + e.username + '</button>');
         $("#moderationPanel .kickLink").last()
@@ -519,7 +524,10 @@ Get live help! (NEW!)
       if (this.wantsPublicHelp) {
         $("#moderationPanel").html('Nobody is here yet. Please be patient and keep working normally.');
       } else {
-        $("#moderationPanel").html('Since this is a private session, nobody can join unless you send them the URL below. To ask for public help, click the "Get live help!" button at the left.');
+        $("#moderationPanel").html('This is a private session, so nobody can join unless you send them the URL below. To ask for public help, click the "Get live help!" button at the left.');
+        if (!$("#requestHelpBtn").is(':visible')) {
+          $("#requestHelpBtn").show(); // make sure this is shown since we say it in instructions
+        }
       }
     }
   }
@@ -647,7 +655,7 @@ Get live help! (NEW!)
 
     if (togetherjsInUrl) { // kinda gross global
       $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
-      $("#togetherjsStatus").html("Please wait ... loading shared session");
+      $("#togetherjsStatus").html("Please wait ... loading live help chat session");
     }
 
     // clear your name from the cache every time to prevent privacy leaks
@@ -998,7 +1006,7 @@ Get live help! (NEW!)
 
   startSharedSession(wantsPublicHelp) {
     $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
-    $("#togetherjsStatus").html("Please wait ... loading shared session");
+    $("#togetherjsStatus").html("Please wait ... loading live help chat session");
     TogetherJS();
     this.wantsPublicHelp = wantsPublicHelp;
   }
@@ -1064,11 +1072,12 @@ Get live help! (NEW!)
     if (resp.status === "OKIE DOKIE") {
       $("#togetherjsStatus").html(`
         <div id="moderationPanel"></div>
-        <div style="margin-bottom: 10px;">You have requested help as ` +
+        <div style="margin-bottom: 10px;">You have requested help as <b>` +
         TogetherJS.config.get("getUserName")() +
-        ` (see below). Anyone currently on this website can volunteer to help you, but there's no guarantee that someone will help.</div>
+        `</b> (see below for queue). Anyone currently on this website can volunteer to help you, but there's no guarantee that someone will come to help.</div>
         <div id="publicHelpQueue"></div>`);
       this.updateModerationPanel(); // update it right away
+      this.getHelpQueue(); // update it right away
       this.appendTogetherJsFooter();
       $("#requestHelpBtn").hide();
     } else {
@@ -1078,6 +1087,25 @@ Get live help! (NEW!)
       }
     }
     this.redrawConnectors(); // update all arrows at the end
+  }
+
+  initStopRequestingPublicHelp() {
+    var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
+    var shareId = TogetherJS.shareId();
+    $.ajax({
+      url: rphUrl,
+      dataType: "json",
+      data: {id: shareId, user_uuid: this.userUUID, removeFromQueue: true}, // stop requesting help!
+      success: this.doneStopRequestingPublicHelp.bind(this),
+      error: () => {
+        alert("Server error: request failed. Please try again later.");
+      },
+    });
+  }
+
+  doneStopRequestingPublicHelp() {
+    this.wantsPublicHelp = false;
+    this.initPrivateSharedSession();
   }
 
   initPrivateSharedSession() {
@@ -1091,7 +1119,7 @@ Get live help! (NEW!)
       // session just cuz that's how TogetherJS works; it's hella confusing.
       $("td#headerTdLeft").hide(); // TODO: make a better name for this!
 
-      $("#togetherjsStatus").html("<div>Thanks for helping! Please be polite and considerate. Close this window when you're done.</div>");
+      $("#togetherjsStatus").html("<div>Thanks for helping! Your username is <b>" + TogetherJS.config.get("getUserName")() + "</b>. Close this window when you're done.</div>");
     } else { // you started your own session
       var urlToShare = TogetherJS.shareUrl();
       $("#togetherjsStatus").html(`

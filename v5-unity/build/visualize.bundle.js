@@ -22463,6 +22463,7 @@ var OptFrontendSharedSessions = (function (_super) {
         // resources and get a more accurate indicator of who is active at
         // the moment
         setInterval(_this.getHelpQueue.bind(_this), 5 * 1000);
+        _this.getHelpQueue(); // call it once on page load
         // update this pretty frequently; doesn't require any ajax calls:
         setInterval(_this.updateModerationPanel.bind(_this), 2 * 1000);
         // take a snapshot every 30 seconds or so if you're in a TogetherJS
@@ -22595,7 +22596,6 @@ var OptFrontendSharedSessions = (function (_super) {
                         }
                         if (e.id === myShareId) {
                             curStr += ' - <span class="redBold">this is you!</span>';
-                            curStr += ' <button id="stopRequestHelpBtn" type="button">Stop requesting help</button>';
                         }
                         else {
                             if (!e.numClients || isNaN(e.numClients) || e.numClients <= 1) {
@@ -22615,7 +22615,14 @@ var OptFrontendSharedSessions = (function (_super) {
                         }
                     });
                     if ((entriesWithHelpers.length + entriesWithoutHelpers.length) > 0) {
-                        $("#publicHelpQueue").html('<div style="margin-bottom: 5px;">These Python Tutor users are asking for help right now. Please volunteer to help!</div>');
+                        if (!_this.wantsPublicHelp) {
+                            $("#publicHelpQueue").html('<div style="margin-bottom: 5px;">These Python Tutor users are asking for help right now. Please volunteer to help!</div>');
+                        }
+                        else {
+                            // if i'm asking for public help and am currently on the
+                            // queue, eliminate this redundant message:
+                            $("#publicHelpQueue").html('');
+                        }
                         // prioritize help entries that don't currently have helpers helping (i.e., numClients <= 1)
                         entriesWithoutHelpers.forEach(function (e) {
                             $("#publicHelpQueue").append('<li>' + e + '</li>');
@@ -22624,24 +22631,7 @@ var OptFrontendSharedSessions = (function (_super) {
                         entriesWithHelpers.forEach(function (e) {
                             $("#publicHelpQueue").append('<li style="color: #777;">' + e + '</li>');
                         });
-                        // add these handlers AFTER the respective DOM nodes have been
-                        // added above:
-                        $("#stopRequestHelpBtn").click(function () {
-                            _this.wantsPublicHelp = false;
-                            var rphUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
-                            var shareId = exports.TogetherJS.shareId();
-                            $.ajax({
-                                url: rphUrl,
-                                dataType: "json",
-                                data: { id: shareId, user_uuid: _this.userUUID, removeFromQueue: true },
-                                success: function () {
-                                    _this.getHelpQueue(); // update the help queue ASAP to get updated status
-                                },
-                                error: function () {
-                                    _this.getHelpQueue(); // update the help queue ASAP to get updated status
-                                },
-                            });
-                        });
+                        // add these handlers AFTER the respective DOM nodes have been added above:
                         // add confirmation to hopefully establish some etiquette expectations
                         $(".gotoHelpLink").click(function () {
                             var confirmation = confirm('Thanks for volunteering! If you press OK, you will join a live chat session with the help requester. Please be polite and helpful in your interactions.');
@@ -22687,6 +22677,7 @@ var OptFrontendSharedSessions = (function (_super) {
         if (!exports.TogetherJS.running || !this.meCreatedThisSession()) {
             return;
         }
+        $("#moderationPanel").empty(); // always start from scratch
         var allPeers = exports.TogetherJS.require("peers").getAllPeers();
         var livePeers = [];
         allPeers.forEach(function (e) {
@@ -22698,7 +22689,17 @@ var OptFrontendSharedSessions = (function (_super) {
             livePeers.push({ username: username, clientId: clientId });
         });
         if (livePeers.length > 0) {
-            $("#moderationPanel").html("Kick & ban disruptive users: ");
+            if (this.wantsPublicHelp) {
+                $("#moderationPanel").append("\n          <button id=\"stopRequestHelpBtn\" type=\"button\" class=\"togetherjsBtn\"\n                  style=\"margin-bottom: 6pt; font-size: 10pt; padding: 4px;\">\n            Don't let any more people join this session\n          </button><br/>");
+                $("#stopRequestHelpBtn").click(this.initStopRequestingPublicHelp.bind(this));
+            }
+            else {
+                $("#moderationPanel").append('This is a private session. ');
+                if (!$("#requestHelpBtn").is(':visible')) {
+                    $("#requestHelpBtn").show(); // make sure there's a way to get back on the queue
+                }
+            }
+            $("#moderationPanel").append('Kick out disruptive users: ');
             livePeers.forEach(function (e) {
                 $("#moderationPanel").append('<button class="kickLink">' + e.username + '</button>');
                 $("#moderationPanel .kickLink").last()
@@ -22720,7 +22721,10 @@ var OptFrontendSharedSessions = (function (_super) {
                 $("#moderationPanel").html('Nobody is here yet. Please be patient and keep working normally.');
             }
             else {
-                $("#moderationPanel").html('Since this is a private session, nobody can join unless you send them the URL below. To ask for public help, click the "Get live help!" button at the left.');
+                $("#moderationPanel").html('This is a private session, so nobody can join unless you send them the URL below. To ask for public help, click the "Get live help!" button at the left.');
+                if (!$("#requestHelpBtn").is(':visible')) {
+                    $("#requestHelpBtn").show(); // make sure this is shown since we say it in instructions
+                }
             }
         }
     };
@@ -22838,7 +22842,7 @@ var OptFrontendSharedSessions = (function (_super) {
         pytutor_1.assert(exports.TogetherJS);
         if (togetherjsInUrl) {
             $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
-            $("#togetherjsStatus").html("Please wait ... loading shared session");
+            $("#togetherjsStatus").html("Please wait ... loading live help chat session");
         }
         // clear your name from the cache every time to prevent privacy leaks
         if (opt_frontend_common_1.supports_html5_storage()) {
@@ -23152,7 +23156,7 @@ var OptFrontendSharedSessions = (function (_super) {
     };
     OptFrontendSharedSessions.prototype.startSharedSession = function (wantsPublicHelp) {
         $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
-        $("#togetherjsStatus").html("Please wait ... loading shared session");
+        $("#togetherjsStatus").html("Please wait ... loading live help chat session");
         exports.TogetherJS();
         this.wantsPublicHelp = wantsPublicHelp;
     };
@@ -23207,10 +23211,11 @@ var OptFrontendSharedSessions = (function (_super) {
     OptFrontendSharedSessions.prototype.doneRequestingPublicHelp = function (resp) {
         pytutor_1.assert(exports.TogetherJS.running);
         if (resp.status === "OKIE DOKIE") {
-            $("#togetherjsStatus").html("\n        <div id=\"moderationPanel\"></div>\n        <div style=\"margin-bottom: 10px;\">You have requested help as " +
+            $("#togetherjsStatus").html("\n        <div id=\"moderationPanel\"></div>\n        <div style=\"margin-bottom: 10px;\">You have requested help as <b>" +
                 exports.TogetherJS.config.get("getUserName")() +
-                " (see below). Anyone currently on this website can volunteer to help you, but there's no guarantee that someone will help.</div>\n        <div id=\"publicHelpQueue\"></div>");
+                "</b> (see below for queue). Anyone currently on this website can volunteer to help you, but there's no guarantee that someone will come to help.</div>\n        <div id=\"publicHelpQueue\"></div>");
             this.updateModerationPanel(); // update it right away
+            this.getHelpQueue(); // update it right away
             this.appendTogetherJsFooter();
             $("#requestHelpBtn").hide();
         }
@@ -23222,6 +23227,23 @@ var OptFrontendSharedSessions = (function (_super) {
         }
         this.redrawConnectors(); // update all arrows at the end
     };
+    OptFrontendSharedSessions.prototype.initStopRequestingPublicHelp = function () {
+        var rphUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
+        var shareId = exports.TogetherJS.shareId();
+        $.ajax({
+            url: rphUrl,
+            dataType: "json",
+            data: { id: shareId, user_uuid: this.userUUID, removeFromQueue: true },
+            success: this.doneStopRequestingPublicHelp.bind(this),
+            error: function () {
+                alert("Server error: request failed. Please try again later.");
+            },
+        });
+    };
+    OptFrontendSharedSessions.prototype.doneStopRequestingPublicHelp = function () {
+        this.wantsPublicHelp = false;
+        this.initPrivateSharedSession();
+    };
     OptFrontendSharedSessions.prototype.initPrivateSharedSession = function () {
         pytutor_1.assert(!this.wantsPublicHelp);
         if (!this.meCreatedThisSession()) {
@@ -23231,7 +23253,7 @@ var OptFrontendSharedSessions = (function (_super) {
             // start a new one in the *same* window, which will re-join that
             // session just cuz that's how TogetherJS works; it's hella confusing.
             $("td#headerTdLeft").hide(); // TODO: make a better name for this!
-            $("#togetherjsStatus").html("<div>Thanks for helping! Please be polite and considerate. Close this window when you're done.</div>");
+            $("#togetherjsStatus").html("<div>Thanks for helping! Your username is <b>" + exports.TogetherJS.config.get("getUserName")() + "</b>. Close this window when you're done.</div>");
         }
         else {
             var urlToShare = exports.TogetherJS.shareUrl();
