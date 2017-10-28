@@ -501,12 +501,14 @@ wsServer.on('request', function(request) {
           extraLogObj.togetherjs = helloExtraLogEntry;
           pgLogWrite(extraLogObj);
 
-          for (var i=0; i<allConnections[id].length; i++) {
-            var c = allConnections[id][i];
-            if (c == connection && !parsed["server-echo"]) {
-              continue;
+          if (allConnections && allConnections[id]) { // guard against potential crash that i saw in logs
+            for (var i=0; i<allConnections[id].length; i++) {
+              var c = allConnections[id][i];
+              if (c == connection && !parsed["server-echo"]) {
+                continue;
+              }
+              c.sendUTF(JSON.stringify(helloExtraLogEntry));
             }
-            c.sendUTF(JSON.stringify(helloExtraLogEntry));
           }
 
         }
