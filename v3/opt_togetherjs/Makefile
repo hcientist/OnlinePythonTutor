@@ -4,7 +4,8 @@ all:
 	jshint server.js && node server.js --host 0.0.0.0 --port 30035
 
 deps:
-	npm install websocket optimist request
+	npm install -g jshint # install globally
+	npm install websocket optimist request # install locally
 
 prod:
 	#jshint server.js && forever -l togetherjs_server.log server.js --host 0.0.0.0 --port 30035
