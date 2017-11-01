@@ -2,23 +2,22 @@ Online Python Tutor v5 "unity" -- the goal for this version is to
 significantly clean up, modernize, and modularize the OPT codebase to
 ease future development.
 
-Specifically, this version of the codebase improves upon the older
-[v3/](v3/) by using TypeScript and refactoring the code for better
-modularity. To see how, compare the TypeScript files found here in
-[js/](js/) and the older messier JavaScript files in
-[../v3/js/](../v3/js/)
+Specifically, this version of the codebase improves upon the older v3/
+code by using TypeScript and refactoring the code for better modularity.
+To see how, compare the TypeScript files found here in js/ and the older
+messier JavaScript files in ../v3/js/
 
 The main caveat, though, is that there's the extra complexity of a
 Webpack- and TypeScript-based compilation step. See these files for more
 info:
 
-- [package.json](package.json) <-- Node.js dependences for npm
-- [webpack.config.js](webpack.config.js) <-- Webpack configuration file
+- package.json      <-- Node.js dependences for npm
+- webpack.config.js <-- Webpack configuration file
 
-Note that this directory (like [v3/](v3/)) contains only the web
-frontend code and the Python execution backend (mainly in pg_logger.py).
-For the backends that run *other* (i.e., non-Python) languages, see
-[../v4-cokapi/](../v4-cokapi/)
+Note that this directory (like v3/) contains only the web frontend code
+and the Python execution backend (mainly in pg_logger.py). For the
+backends that run *other* (i.e., non-Python) languages, see
+../v4-cokapi/
 
 ---
 After everything has been installed properly (see below):
