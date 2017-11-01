@@ -30,9 +30,9 @@ You should see the visualizer at: http://localhost:8003/visualize.html
 ... and the live programming environment at: http://localhost:8003/live.html 
 
 However, it can be hard to run your own visualizer locally for
-non-Python languages, since there are complex setups in v4-cokapi/ that
-I haven't yet cleanly packaged up. By default, the local version will
-*call my server to run the non-Python backends*, so please be mindful of
+non-Python languages, since there are complex dependencies in v4-cokapi/ that
+I haven't yet cleanly packaged up. By default, the local version you run will
+*call my own server to run the non-Python backends*, so please be mindful of
 your bandwidth usage.
 
 For further directions, see [Overview for Developers](v3/docs/developer-overview.md) or explore the [rest of the docs](v3/docs/).
