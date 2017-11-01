@@ -11,7 +11,7 @@ The main caveat, though, is that there's the extra complexity of a
 Webpack- and TypeScript-based compilation step. See these files for more
 info:
 
-- package.json      <-- Node.js dependences for npm
+- package.json      <-- Node.js dependencies for npm
 - webpack.config.js <-- Webpack configuration file
 
 Note that this directory (like v3/) contains only the web frontend code
@@ -27,21 +27,22 @@ environment, run:
 
   npm run webpack
 
+
 To start the webserver, run:
+
   npm start
 
 then visit here to load an HTML page in your browser:
   http://localhost:8003/visualize.html
 
 To make a production (minified, cache-busted) build for deployment, run:
+
   npm run production-build
 
 
-(TODO: the --optimize-minimize doesn't seem to work right now; dunno
-why, ergh)
-
+(TODO: the --optimize-minimize doesn't seem to work right now; dunno why, ergh)
 ---
-Most recently tested on 2017-02-11 with these versions of major tools:
+This workflow was most recently tested on 2017-02-11 with these versions of major tools:
 
 typescript 2.1.6
 webpack 2.2.1
@@ -69,7 +70,6 @@ To get started, install:
 
 6.) [Optional] follow ../tests/frontend-regression-tests/README.txt to install
     dependencies for visual regression testing
-
 
 ======
 History:
