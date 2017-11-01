@@ -2,10 +2,30 @@ Online Python Tutor v5 "unity" -- the goal for this version is to
 significantly clean up, modernize, and modularize the OPT codebase to
 ease future development.
 
+Specifically, this version of the codebase improves upon the older
+[v3/](v3/) by using TypeScript and refactoring the code for better
+modularity. To see how, compare the TypeScript files found here in
+[js/](js/) and the older messier JavaScript files in
+[../v3/js/](../v3/js/)
+
+The main caveat, though, is that there's the extra complexity of a
+Webpack- and TypeScript-based compilation step. See these files for more
+info:
+
+- [package.json](package.json) <-- Node.js dependences for npm
+- [webpack.config.js](webpack.config.js) <-- Webpack configuration file
+
+Note that this directory (like [v3/](v3/)) contains only the web
+frontend code and the Python execution backend (mainly in pg_logger.py).
+For the backends that run *other* (i.e., non-Python) languages, see
+[../v4-cokapi/](../v4-cokapi/)
+
 ---
 After everything has been installed properly (see below):
 
-To start the Webpack file watching and compilation environment, run:
+To start the Webpack automatic file watching and code compilation
+environment, run:
+
   npm run webpack
 
 To start the webserver, run:
@@ -17,6 +37,7 @@ then visit here to load an HTML page in your browser:
 To make a production (minified, cache-busted) build for deployment, run:
   npm run production-build
 
+
 (TODO: the --optimize-minimize doesn't seem to work right now; dunno
 why, ergh)
 
@@ -25,18 +46,6 @@ Most recently tested on 2017-02-11 with these versions of major tools:
 
 typescript 2.1.6
 webpack 2.2.1
-
----
-History:
-
-I started porting v3/ over to v5-unity/ on 2016-06-12 since the headache
-of manually maintaining so many JS/CSS files and their intricate
-dependencies was starting to get out of hand ... i've waited for years
-to port to a more sustainable and modern development setup ...
-
-I decided to go with Webpack for the module system and to upgrade the
-appropriate versions of libraries to match, without breaking crufty
-legacy code (hopefully)
 
 ---
 To get started, install:
@@ -55,12 +64,25 @@ To get started, install:
 
 4.) Run "tsd install" in this directory to install TypeScript definition files
 
-5.) Instal bottle.py to run the local webserver (I suppose we could use node too, but oh wells!)
+5.) Install bottle.py to run the local webserver (I suppose we could use node too, but oh wells!)
 
   sudo pip install bottle
 
-6.) Follow ../tests/frontend-regression-tests/README.txt to install
+6.) [Optional] follow ../tests/frontend-regression-tests/README.txt to install
     dependencies for visual regression testing
+
+
+======
+History:
+
+I started porting v3/ over to v5-unity/ on 2016-06-12 since the headache
+of manually maintaining so many JS/CSS files and their intricate
+dependencies was starting to get out of hand ... i've waited for years
+to port to a more sustainable and modern development setup ...
+
+I decided to go with Webpack for the module system and to upgrade the
+appropriate versions of libraries to match, without breaking crufty
+legacy code (hopefully)
 
 
 ======
