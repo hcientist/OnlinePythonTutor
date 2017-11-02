@@ -398,7 +398,11 @@ Get live help! (NEW!)
               // and the new person who just joined the session hasn't chatted
               // but we still say '2 people chatting' in that case; oh wells!
               if ((e.numClients > 1) && (e.numChatters > 1)) {
-                curStr += ' - ' + String(e.numChatters) + ' people chatting';
+                if (e.numChatters < e.numClients) {
+                  curStr += ' - ' + String(e.numChatters) + ' people chatting';
+                } else { // subtle: can't have more chatters than current clients
+                  curStr += ' - ' + String(e.numClients) + ' people chatting';
+                }
               }
               curStr += ' - <a class="gotoHelpLink" href="' + e.url + '" target="_blank">click to help</a>';
             }
