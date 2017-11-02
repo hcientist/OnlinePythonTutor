@@ -341,11 +341,9 @@ Get live help! (NEW!)
 
           var myShareId = TogetherJS.shareId();
 
-          // if numClients > 1, that means the session has multiple
-          // participants, so "demote" to those to the bottom of the
-          // help queue so they're displayed last. but keep everything in order.
-          var entriesWithoutHelpers = [];
-          var entriesWithHelpers = [];
+          var regularEntries = [];
+          var grayedOutEntries = [];
+          var idleTimeoutMs = 3 * 60 * 1000 // 3 minutes seems reasonable
 
           resp.forEach((e) => {
             // sometimes there are bogus incomplete entries on the queue. if
@@ -393,23 +391,28 @@ Get live help! (NEW!)
             if (e.id === myShareId) {
               curStr += ' - <span class="redBold">this is you!</span>';
             } else {
-              if (!e.numClients || isNaN(e.numClients) || e.numClients <= 1) {
-                curStr += ' - <a class="gotoHelpLink" style="font-weight: bold;" href="' + e.url + '" target="_blank">click to help</a>';
-              } else {
-                curStr += ' - ' + String(e.numClients) + ' people in session';
-                curStr += ' - <a class="gotoHelpLink" href="' + e.url + '" target="_blank">click to help</a>';
+              // only display this if there's *currently* more than 1
+              // person in the session AND more than 1 person has chatted.
+              // NB: this isn't 100% accurate since it's possible someone
+              // previously chatted with the requester but left the session,
+              // and the new person who just joined the session hasn't chatted
+              // but we still say '2 people chatting' in that case; oh wells!
+              if ((e.numClients > 1) && (e.numChatters > 1)) {
+                curStr += ' - ' + String(e.numChatters) + ' people chatting';
               }
-              curStr += ' <span class="helpQueueSmallText">(requested ' + timeSinceCreationStr + ', last active ' + timeSinceLastMsgStr  + ')</span>';
+              curStr += ' - <a class="gotoHelpLink" href="' + e.url + '" target="_blank">click to help</a>';
             }
 
-            if (e.numClients > 1) {
-              entriesWithHelpers.push(curStr);
+            if (e.timeSinceLastMsg < idleTimeoutMs) {
+              curStr += ' <span class="helpQueueSmallText">(active ' + timeSinceLastMsgStr  + ', requested ' + timeSinceCreationStr + ') </span>';
+              regularEntries.push(curStr);
             } else {
-              entriesWithoutHelpers.push(curStr);
+              curStr += ' <span class="helpQueueSmallText">(idle: last active ' + timeSinceLastMsgStr  + ', requested ' + timeSinceCreationStr + ') </span>';
+              grayedOutEntries.push(curStr);
             }
           });
 
-          if ((entriesWithHelpers.length + entriesWithoutHelpers.length) > 0) {
+          if ((regularEntries.length + grayedOutEntries.length) > 0) {
             if (!this.wantsPublicHelp) {
               $("#publicHelpQueue").html('<div style="margin-bottom: 5px;">These Python Tutor users are asking for help right now. Please volunteer to help!</div>');
             } else {
@@ -418,12 +421,12 @@ Get live help! (NEW!)
               $("#publicHelpQueue").html('');
             }
 
-            // prioritize help entries that don't currently have helpers helping (i.e., numClients <= 1)
-            entriesWithoutHelpers.forEach((e) => {
+            regularEntries.forEach((e) => {
               $("#publicHelpQueue").append('<li>' + e + '</li>');
+              $("#publicHelpQueue a.gotoHelpLink").last().css('font-weight', 'bold');
             });
             // gray it out to make it not look as prominent (match color of .helpQueueSmallText)
-            entriesWithHelpers.forEach((e) => {
+            grayedOutEntries.forEach((e) => {
               $("#publicHelpQueue").append('<li style="color: #777;">' + e + '</li>');
             });
 

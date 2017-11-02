@@ -377,6 +377,7 @@ wsServer.on('request', function(request) {
       clients: {},   // pgbovine - doesn't properly get DELETED, don't use this
       numClients: 0, // pgbovine - use this instead of the 'clients' field
       bannedUsers: [], // pgbovine - list of user_uuid's or IP addresses that have been kicked/banned from this session
+      chatters: [],    // pgbovine - list of users who have actually chatted in this session
       domains: {},
       urls: {},
       firstDomain: null,
@@ -439,6 +440,15 @@ wsServer.on('request', function(request) {
       // only count "meaningful" messages in lastMessageTime
       // to avoid spurious signals of activity for non-events
       connectionStats[id].lastMessageTime = Date.now(); // pgbovine
+
+      // pgbovine
+      if (parsed.type == 'chat') {
+        var chatters = connectionStats[id].chatters;
+        var cid = parsed.clientId;
+        if (chatters.indexOf(cid) < 0) {
+          chatters.push(cid);
+        }
+      }
     }
 
     // handle kicked/banned users:
@@ -550,6 +560,7 @@ wsServer.on('request', function(request) {
       delete allConnections[id];
       connectionStats[id].lastLeft = Date.now();
       connectionStats[id].created = null; // pgbovine
+      connectionStats[id].chatters = [];  // pgbovine
       removeFromPHRQueue(id); // pgbovine - remove from help queue if all clients disconnected
     }
     logger.debug('Peer ' + connection.remoteAddress + ' disconnected, ID: ' + connection.ID);
@@ -759,6 +770,7 @@ function getPHRStats(uniqueId) {
     var timeSinceCreation;
     var timeSinceLastMsg;
     var numClients;
+    var numChatters;
 
     var stat = connectionStats[e.id];
     if (stat) {
@@ -770,6 +782,7 @@ function getPHRStats(uniqueId) {
         timeSinceLastMsg = now - stat.lastMessageTime;
       }
       numClients = stat.numClients;
+      numChatters = stat.chatters.length;
 
       // only enforce if uniqueId has been passed in ...
       if (uniqueId && stat.bannedUsers) {
@@ -786,6 +799,7 @@ function getPHRStats(uniqueId) {
     copy.timeSinceCreation = timeSinceCreation;
     copy.timeSinceLastMsg = timeSinceLastMsg;
     copy.numClients = numClients;
+    copy.numChatters = numChatters;
 
     ret.push(copy);
   });
