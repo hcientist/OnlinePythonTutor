@@ -444,7 +444,7 @@ wsServer.on('request', function(request) {
       // pgbovine
       if (parsed.type == 'chat') {
         var chatters = connectionStats[id].chatters;
-        var cid = parsed.clientId;
+        var cid = connection.ID;
         if (chatters.indexOf(cid) < 0) {
           chatters.push(cid);
         }
@@ -556,6 +556,13 @@ wsServer.on('request', function(request) {
       allConnections[id].splice(index, 1);
     }
     connectionStats[id].numClients = allConnections[id].length; // pgbovine
+    // pgbovine - remove from chatters if found:
+    var chatters = connectionStats[id].chatters;
+    var curInd = chatters.indexOf(connection.ID);
+    if (curInd != -1) {
+      chatters.splice(curInd, 1);
+    }
+
     if (! allConnections[id].length) {
       delete allConnections[id];
       connectionStats[id].lastLeft = Date.now();
