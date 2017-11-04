@@ -22598,10 +22598,6 @@ var OptFrontendSharedSessions = (function (_super) {
                         else {
                             // only display this if there's *currently* more than 1
                             // person in the session AND more than 1 person has chatted.
-                            // NB: this isn't 100% accurate since it's possible someone
-                            // previously chatted with the requester but left the session,
-                            // and the new person who just joined the session hasn't chatted
-                            // but we still say '2 people chatting' in that case; oh wells!
                             if ((e.numClients > 1) && (e.numChatters > 1)) {
                                 if (e.numChatters < e.numClients) {
                                     curStr += ' - ' + String(e.numChatters) + ' people chatting';
@@ -22617,7 +22613,7 @@ var OptFrontendSharedSessions = (function (_super) {
                             regularEntries.push(curStr);
                         }
                         else {
-                            curStr += ' <span class="helpQueueSmallText">(idle: last active ' + timeSinceLastMsgStr + ', requested ' + timeSinceCreationStr + ') </span>';
+                            curStr += ' <span class="helpQueueSmallText">(IDLE: last active ' + timeSinceLastMsgStr + ', requested ' + timeSinceCreationStr + ') </span>';
                             grayedOutEntries.push(curStr);
                         }
                     });
@@ -22634,9 +22630,9 @@ var OptFrontendSharedSessions = (function (_super) {
                             $("#publicHelpQueue").append('<li>' + e + '</li>');
                             $("#publicHelpQueue a.gotoHelpLink").last().css('font-weight', 'bold');
                         });
-                        // gray it out to make it not look as prominent (match color of .helpQueueSmallText)
+                        // gray it out to make it not look as prominent
                         grayedOutEntries.forEach(function (e) {
-                            $("#publicHelpQueue").append('<li style="color: #777;">' + e + '</li>');
+                            $("#publicHelpQueue").append('<li style="color: #888;">' + e + '</li>');
                         });
                         // add these handlers AFTER the respective DOM nodes have been added above:
                         // add confirmation to hopefully establish some etiquette expectations
