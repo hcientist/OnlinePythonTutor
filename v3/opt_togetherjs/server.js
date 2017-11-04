@@ -437,9 +437,38 @@ wsServer.on('request', function(request) {
       logObj.togetherjs = parsed;
       pgLogWrite(logObj);
 
-      // only count "meaningful" messages in lastMessageTime
+      // only count a certain subset of "meaningful" messages in lastMessageTime
       // to avoid spurious signals of activity for non-events
-      connectionStats[id].lastMessageTime = Date.now(); // pgbovine
+      /* for reference, here's a rough count of the types of messages
+       * seen in a ~1-week sample:
+      4 app.syncAppState
+      6 app.kickOutAgainBecauseSnuckBackIn
+     16 url-change-nudge
+    127 app.iGotKickedOut
+    139 app.kickOut
+    934 app.snapshotPeek
+   1509 cursor-click
+   3509 idle-status
+   4446 peer-update
+   4713 bye
+   4846 app.initialAppState
+   4851 hello
+   4851 pg-hello-geolocate
+   5219 app.myAppState
+   5857 app.requestSync
+  13611 app.hashchange
+  15373 chat
+  20749 app.pyCodeOutputDivScroll
+  38293 app.executeCode
+  39572 app.editCode
+  60295 app.updateOutput
+  */
+      if (parsed.type == 'app.editCode' ||
+          parsed.type == 'app.executeCode' ||
+          parsed.type == 'app.updateOutput' ||
+          parsed.type == 'chat') {
+        connectionStats[id].lastMessageTime = Date.now(); // pgbovine
+      }
 
       // pgbovine
       if (parsed.type == 'chat') {
