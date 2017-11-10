@@ -246,6 +246,23 @@ var server = http.createServer(function(request, response) {
     // hide some entries on the queue based on whether uniqueId has been
     // banned from those sessions:
     response.end(JSON.stringify(getPHRStats(uniqueId)));
+  } else if (url.pathname == '/survey') { // pgbovine - just log a survey entry to the log
+     if (request.method == "OPTIONS") {
+      // CORS preflight
+      corsAccept(request, response);
+      return;
+    }
+
+    var surveyLogObj = createLogEntry(request);
+    surveyLogObj.type = 'survey';
+    surveyLogObj.query = url.query;
+    pgLogWrite(surveyLogObj);
+
+    response.writeHead(200, {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*"
+    });
+    response.end(JSON.stringify({status: 'OKIE DOKIE'}));
   } else {
     write404(response);
   }
