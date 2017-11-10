@@ -22544,6 +22544,7 @@ var OptFrontendSharedSessions = (function (_super) {
             },
             success: function (resp) {
                 var displayEmptyQueueMsg = false;
+                var me = _this;
                 if (resp && resp.length > 0) {
                     $("#publicHelpQueue").empty();
                     var myShareId = exports.TogetherJS.shareId();
@@ -22606,7 +22607,7 @@ var OptFrontendSharedSessions = (function (_super) {
                                     curStr += ' - ' + String(e.numClients) + ' people chatting';
                                 }
                             }
-                            curStr += ' - <a class="gotoHelpLink" href="' + e.url + '" target="_blank">click to help</a>';
+                            curStr += " - <a class=\"gotoHelpLink\" data-id=\"" + e.id + "\" href=\"" + e.url + "\" target=\"_blank\">click to help</a>";
                         }
                         if (e.timeSinceLastMsg < idleTimeoutMs) {
                             curStr += ' <span class="helpQueueSmallText">(active ' + timeSinceLastMsgStr + ', requested ' + timeSinceCreationStr + ') </span>';
@@ -22635,15 +22636,22 @@ var OptFrontendSharedSessions = (function (_super) {
                             $("#publicHelpQueue").append('<li style="color: #888;">' + e + '</li>');
                         });
                         // add these handlers AFTER the respective DOM nodes have been added above:
-                        // add confirmation to hopefully establish some etiquette expectations
                         $(".gotoHelpLink").click(function () {
-                            var confirmation = confirm('Thanks for volunteering! If you press OK, you will join a live chat session with the help requester. Please be polite and helpful in your interactions.');
-                            if (confirmation) {
-                                return true; // cause the link to be clicked as normal
+                            // deployed on 2017-11-10
+                            var miniSurveyResponse = prompt("Thanks for volunteering! You're about to join a live chat session. Please support our research by answering below: Why did you decide to volunteer at this time? What motivated you to click on this help link?");
+                            var version = 'h1'; // survey version
+                            if (miniSurveyResponse) {
+                                var idToJoin = $(this).attr('data-id');
+                                var surveyUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/survey";
+                                $.ajax({
+                                    url: surveyUrl,
+                                    dataType: "json",
+                                    data: { id: idToJoin, user_uuid: me.userUUID, kind: 'volunteerHelp', v: version, response: miniSurveyResponse },
+                                    success: function () { },
+                                    error: function () { },
+                                });
                             }
-                            else {
-                                return false; // returning false will NOT cause the link to be clicked
-                            }
+                            return true; // ALWAYS cause the link to be clicked
                         });
                     }
                     else {
@@ -22741,6 +22749,9 @@ var OptFrontendSharedSessions = (function (_super) {
             return true;
         }
         else if (settings.url.indexOf('requestPublicHelp') > -1) {
+            return true;
+        }
+        else if (settings.url.indexOf('survey') > -1) {
             return true;
         }
         else if (settings.url.indexOf('freegeoip') > -1) {
@@ -23227,6 +23238,20 @@ var OptFrontendSharedSessions = (function (_super) {
             if (exports.TogetherJS.running) {
                 exports.TogetherJS(); // shut down TogetherJS
             }
+        }
+        // deployed on 2017-11-10
+        var miniSurveyResponse = prompt('You are now on the help queue. Please support our research by answering below: Why did you decide to ask for help at this time? What motivated you to click the "Get live help" button?');
+        var version = 'r1'; // survey version
+        if (miniSurveyResponse) {
+            var shareId = exports.TogetherJS.shareId();
+            var surveyUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/survey";
+            $.ajax({
+                url: surveyUrl,
+                dataType: "json",
+                data: { id: shareId, user_uuid: this.userUUID, kind: 'requestHelp', v: version, response: miniSurveyResponse },
+                success: function () { },
+                error: function () { },
+            });
         }
         this.redrawConnectors(); // update all arrows at the end
     };
