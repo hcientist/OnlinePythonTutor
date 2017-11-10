@@ -233,7 +233,7 @@ var server = http.createServer(function(request, response) {
         request.headers['x-forwarded-for'] ||
         request.connection.remoteAddress ||
         request.socket.remoteAddress ||
-        request.connection.socket.remoteAddress;
+        (req.connection.socket ? req.connection.socket.remoteAddress : null);
       uniqueId = 'IP_' + ip;
     }
     allRecentHelpQueueQueries.add(uniqueId);
@@ -513,7 +513,7 @@ wsServer.on('request', function(request) {
           request.headers['x-forwarded-for'] ||
           request.connection.remoteAddress ||
           request.socket.remoteAddress ||
-          request.connection.socket.remoteAddress;
+          (req.connection.socket ? req.connection.socket.remoteAddress : null);
         uniqueId = 'IP_' + ip;
       }
       if (bannedUsers.indexOf(uniqueId) < 0) {
@@ -533,7 +533,8 @@ wsServer.on('request', function(request) {
         request.headers['x-forwarded-for'] ||
         request.connection.remoteAddress ||
         request.socket.remoteAddress ||
-        request.connection.socket.remoteAddress;
+        (req.connection.socket ? req.connection.socket.remoteAddress : null);
+
 
       requestFunc("http://freegeoip.net/json/" + String(ip), function(error, resp, body) {
         var geoResult;
@@ -739,7 +740,7 @@ function createLogEntry(req, event_type) {
     req.headers['x-forwarded-for'] ||
     req.connection.remoteAddress ||
     req.socket.remoteAddress ||
-    req.connection.socket.remoteAddress;
+    (req.connection.socket ? req.connection.socket.remoteAddress : null);
 
   obj.ip = ip;
   obj.date = (new Date()).toISOString();
