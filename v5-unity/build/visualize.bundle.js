@@ -22391,6 +22391,82 @@ var pytutor_1 = __webpack_require__(5);
         });
     };
 }(jQuery));
+// "Get live help!" survey versions
+// initial pilot version: deployed on 2017-11-10, taken down on 2017-11-13
+// deployed a single version of the survey to EVERYONE who requested or
+// volunteered to help in the server logs under the /survey endpoint, i recorded
+// *ONLY* those people who made a non-null response (for the most part) ...
+// which is unlike subsequent versions, which record ALL impressions, even null
+// responses, so that we can know approximately how many times each survey
+// question got deployed and can thus get a rough response rate
+/*
+var liveHelpSurvey = {
+  requestHelp:   [{prompt: 'You are now on the help queue. Please support our research by answering below: Why did you decide to ask for help at this time? What motivated you to click the "Get live help" button?',
+                  v: 'r1'}],
+  volunteerHelp: [{prompt: "Thanks for volunteering! You're about to join a live chat session. Please support our research by answering below: Why did you decide to volunteer at this time? What motivated you to click on this help link?",
+                  v: 'h1'}],
+};
+*/
+// second version, deployed on 2017-11-13. randomly select one of these
+// questions to ask whenever a user triggers the survey, but save their
+// responses in localStorage so that when they return, it will ask them
+// a different question. starting from this version, th server logs
+// under the /survey endpoint will record *all* responses to the survey,
+// even null responses, since we can use that data to calculate survey
+// response rates.
+var liveHelpSurvey = {
+    requestHelp: [{ prompt: 'You\'re on the help queue. Support our research by answering below:\n\nWhy did you decide to ask for help at this time? What motivated you to click the "Get live help" button?',
+            v: 'r2a' },
+        { prompt: 'You\'re on the help queue. Support our research by answering below:\n\nWhy are you asking for help anonymously on this website? Are there people you know around you who can help as well?',
+            v: 'r2b' },
+        { prompt: 'You\'re on the help queue. Support our research by answering below:\n\nHow did you first find this website? What are you currently using this website for?',
+            v: 'r2c' },
+    ],
+    volunteerHelp: [{ prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhy did you decide to volunteer at this time? What motivated you to click on this help link?",
+            v: 'h2a' },
+        { prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhat is your current profession (e.g., student, teaching assistant, instructor)? Why are you using this website?",
+            v: 'h2b' },
+        { prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhat kind of code are you working on right now? What made you decide to stop coding and volunteer at this time?",
+            v: 'h2c' },
+    ]
+};
+// randomly picks a survey item from liveHelpSurvey and mutates
+// localStorage to record that this has been randomly picked, so it won't
+// be picked again during the next call
+function randomlyPickSurveyItem(key) {
+    var lst = liveHelpSurvey[key];
+    var filteredLst = [];
+    // filter lst down to filteredLst to find all elements whose version
+    // numbers 'v' does NOT already exist in localStorage
+    if (opt_frontend_common_1.supports_html5_storage()) {
+        lst.forEach(function (e) {
+            if (!localStorage.getItem(e.v)) {
+                filteredLst.push(e);
+            }
+        });
+    }
+    else {
+        filteredLst = lst;
+    }
+    // if ALL entries have been filtered out, then reset everything and
+    // start from scratch:
+    if (filteredLst.length == 0) {
+        if (opt_frontend_common_1.supports_html5_storage()) {
+            lst.forEach(function (e) {
+                localStorage.removeItem(e.v);
+            });
+        }
+        filteredLst = lst;
+    }
+    // now randomly pick an entry and show it:
+    // random number in [0, filteredLst.length)
+    var randInt = Math.floor(Math.random() * filteredLst.length);
+    var randomEntry = filteredLst[randInt];
+    if (opt_frontend_common_1.supports_html5_storage()) {
+        localStorage.setItem(randomEntry.v, '1');
+    }
+    return randomEntry;
+}
 var OptFrontendSharedSessions = (function (_super) {
     __extends(OptFrontendSharedSessions, _super);
     function OptFrontendSharedSessions(params) {
@@ -22637,20 +22713,19 @@ var OptFrontendSharedSessions = (function (_super) {
                         });
                         // add these handlers AFTER the respective DOM nodes have been added above:
                         $(".gotoHelpLink").click(function () {
-                            // deployed on 2017-11-10
-                            var miniSurveyResponse = prompt("Thanks for volunteering! You're about to join a live chat session. Please support our research by answering below: Why did you decide to volunteer at this time? What motivated you to click on this help link?");
-                            var version = 'h1'; // survey version
-                            if (miniSurveyResponse) {
-                                var idToJoin = $(this).attr('data-id');
-                                var surveyUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/survey";
-                                $.ajax({
-                                    url: surveyUrl,
-                                    dataType: "json",
-                                    data: { id: idToJoin, user_uuid: me.userUUID, kind: 'volunteerHelp', v: version, response: miniSurveyResponse },
-                                    success: function () { },
-                                    error: function () { },
-                                });
-                            }
+                            var surveyItem = randomlyPickSurveyItem('volunteerHelp');
+                            var miniSurveyResponse = prompt(surveyItem.prompt);
+                            // always log every impression, even if miniSurveyResponse is blank,
+                            // since we can know how many times that survey question was ever seen:
+                            var idToJoin = $(this).attr('data-id');
+                            var surveyUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/survey";
+                            $.ajax({
+                                url: surveyUrl,
+                                dataType: "json",
+                                data: { id: idToJoin, user_uuid: me.userUUID, kind: 'volunteerHelp', v: surveyItem.v, response: miniSurveyResponse },
+                                success: function () { },
+                                error: function () { },
+                            });
                             return true; // ALWAYS cause the link to be clicked
                         });
                     }
@@ -23239,20 +23314,19 @@ var OptFrontendSharedSessions = (function (_super) {
                 exports.TogetherJS(); // shut down TogetherJS
             }
         }
-        // deployed on 2017-11-10
-        var miniSurveyResponse = prompt('You are now on the help queue. Please support our research by answering below: Why did you decide to ask for help at this time? What motivated you to click the "Get live help" button?');
-        var version = 'r1'; // survey version
-        if (miniSurveyResponse) {
-            var shareId = exports.TogetherJS.shareId();
-            var surveyUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/survey";
-            $.ajax({
-                url: surveyUrl,
-                dataType: "json",
-                data: { id: shareId, user_uuid: this.userUUID, kind: 'requestHelp', v: version, response: miniSurveyResponse },
-                success: function () { },
-                error: function () { },
-            });
-        }
+        var surveyItem = randomlyPickSurveyItem('requestHelp');
+        var miniSurveyResponse = prompt(surveyItem.prompt);
+        // always log every impression, even if miniSurveyResponse is blank,
+        // since we can know how many times that survey question was ever seen:
+        var shareId = exports.TogetherJS.shareId();
+        var surveyUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/survey";
+        $.ajax({
+            url: surveyUrl,
+            dataType: "json",
+            data: { id: shareId, user_uuid: this.userUUID, kind: 'requestHelp', v: surveyItem.v, response: miniSurveyResponse },
+            success: function () { },
+            error: function () { },
+        });
         this.redrawConnectors(); // update all arrows at the end
     };
     OptFrontendSharedSessions.prototype.initStopRequestingPublicHelp = function () {
