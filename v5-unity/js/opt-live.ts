@@ -40,6 +40,7 @@ require('../css/opt-live.css');
 import {OptFrontendSharedSessions,TogetherJS} from './opt-shared-sessions';
 import {ExecutionVisualizer, assert, brightRed, darkArrowColor, lightArrowColor, SVG_ARROW_POLYGON, htmlspecialchars} from './pytutor';
 import {eureka_survey,eureka_prompt,eureka_survey_version} from './surveys';
+import {allTabsRE} from './opt-frontend';
 
 // just punt and use global script dependencies
 require("script-loader!./lib/ace/src-min-noconflict/ace.js");
@@ -484,6 +485,17 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
     });
 
     this.pyInputAceEditor.on('change', (e) => {
+      // 2017-11-21: convert all tabs to 4 spaces so that when you paste
+      // in code from somewhere else that contains tabs, instantly
+      // change all those tabs to spaces. note that all uses of 'tab' key
+      // within the Ace editor on this page will result in spaces (i.e.,
+      // "soft tabs")
+      var curVal = this.pyInputGetValue();
+      if (curVal.indexOf('\t') >= 0) {
+        this.pyInputSetValue(curVal.replace(allTabsRE, '    '));
+        console.log("Converted all tabs to spaces");
+      }
+
       $.doTimeout('pyInputAceEditorChange',
                   500, /* go a bit faster than CODE_SNAPSHOT_DEBOUNCE_MS to feel more snappy */
                   () => {
