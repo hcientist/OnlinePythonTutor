@@ -167,7 +167,11 @@ def __restricted_import__(*args):
   # subclass str and bypass the 'in' test on the next line
   args = [e for e in args if type(e) is str]
 
-  if args[0] in ALLOWED_STDLIB_MODULE_IMPORTS + CUSTOM_MODULE_IMPORTS + OTHER_STDLIB_WHITELIST:
+  all_allowed_imports = sorted(ALLOWED_STDLIB_MODULE_IMPORTS + CUSTOM_MODULE_IMPORTS + OTHER_STDLIB_WHITELIST)
+  if is_python3:
+    all_allowed_imports.remove('StringIO')
+
+  if args[0] in all_allowed_imports:
     imported_mod = BUILTIN_IMPORT(*args)
 
     if args[0] in CUSTOM_MODULE_IMPORTS:
@@ -185,7 +189,11 @@ def __restricted_import__(*args):
 
     return imported_mod
   else:
-    raise ImportError('{0} not supported'.format(args[0]))
+    # original error message ...
+    #raise ImportError('{0} not supported'.format(args[0]))
+    # 2017-12-06: added a better error message to tell the user what
+    # modules *can* be imported in python tutor ...
+    raise ImportError('{0} not supported\nOnly these modules can be imported: {1}'.format(args[0], ', '.join(all_allowed_imports)))
 
 
 # Support interactive user input by:
