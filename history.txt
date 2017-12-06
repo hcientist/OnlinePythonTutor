@@ -199,3 +199,12 @@ v5-unity/
 2017-10-20 - launched "Get live help!" feature on Python Tutor, where
 anyone on the site can volunteer to help others who are requesting help
 on the site: http://pgbovine.net/PG-Vlog-74-python-tutor-live-help.htm
+
+2017-12-06 - (finally!) set Python 3 as the default in visualize.html
+and live.html since most courses have been taught in Python 3 for years,
+yet Python 2 has been the default due to inertia. Note that for a few
+years, preferences have already been "sticky", which means that when a
+user chooses, say, Python 3, then the next time they revisit the site,
+it will stay on Python 3. But now Python 3 is the default, which should
+eliminate a bunch of confusion for first-time users expecting Python 3
+but actually getting Python 2 and seeing mysterious errors.
