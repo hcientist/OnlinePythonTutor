@@ -191,9 +191,18 @@ def __restricted_import__(*args):
   else:
     # original error message ...
     #raise ImportError('{0} not supported'.format(args[0]))
+
     # 2017-12-06: added a better error message to tell the user what
     # modules *can* be imported in python tutor ...
-    raise ImportError('{0} not supported\nOnly these modules can be imported: {1}'.format(args[0], ', '.join(all_allowed_imports)))
+    ENTRIES_PER_LINE = 6
+
+    lines_to_print = []
+    # adapted from https://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks
+    for i in range(0, len(all_allowed_imports), ENTRIES_PER_LINE):
+        lines_to_print.append(all_allowed_imports[i:i + ENTRIES_PER_LINE])
+    pretty_printed_imports = '\n  '.join([', '.join(e) for e in lines_to_print])
+
+    raise ImportError('{0} not supported\nOnly these modules can be imported into Python Tutor:\n  {1}'.format(args[0], pretty_printed_imports))
 
 
 # Support interactive user input by:
