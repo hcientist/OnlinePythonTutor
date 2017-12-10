@@ -22545,8 +22545,8 @@ var OptFrontendSharedSessions = (function (_super) {
         // take a snapshot every 30 seconds or so if you're in a TogetherJS
         // session and not idle
         setInterval(_this.periodicMaybeTakeSnapshot.bind(_this), 30 * 1000);
-        // do this every 1 minute or so ... don't pester the user too much ...
-        setInterval(_this.periodicMaybeChatNudge.bind(_this), 60 * 1000);
+        // do this every 30 seconds or so ...
+        setInterval(_this.periodicMaybeChatNudge.bind(_this), 30 * 1000);
         // add an additional listener in addition to whatever the superclasses added
         window.addEventListener("hashchange", function (e) {
             if (exports.TogetherJS.running && !_this.isExecutingCode) {

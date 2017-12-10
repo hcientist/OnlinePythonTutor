@@ -348,8 +348,8 @@ Get live help! (NEW!)
     // session and not idle
     setInterval(this.periodicMaybeTakeSnapshot.bind(this), 30 * 1000);
 
-    // do this every 1 minute or so ... don't pester the user too much ...
-    setInterval(this.periodicMaybeChatNudge.bind(this), 60 * 1000);
+    // do this every 30 seconds or so ...
+    setInterval(this.periodicMaybeChatNudge.bind(this), 30 * 1000);
 
     // add an additional listener in addition to whatever the superclasses added
     window.addEventListener("hashchange", (e) => {
