@@ -22545,8 +22545,7 @@ var OptFrontendSharedSessions = (function (_super) {
         // take a snapshot every 30 seconds or so if you're in a TogetherJS
         // session and not idle
         setInterval(_this.periodicMaybeTakeSnapshot.bind(_this), 30 * 1000);
-        // do this every 30 seconds or so ...
-        setInterval(_this.periodicMaybeChatNudge.bind(_this), 30 * 1000);
+        setInterval(_this.periodicMaybeChatNudge.bind(_this), 60 * 1000);
         // add an additional listener in addition to whatever the superclasses added
         window.addEventListener("hashchange", function (e) {
             if (exports.TogetherJS.running && !_this.isExecutingCode) {
@@ -23572,7 +23571,7 @@ var OptFrontendSharedSessions = (function (_super) {
                         chatMsgs.push(curStr);
                     });
                     if (chatMsgs.length > 0) {
-                        var finalMsg = 'These other users also need help now. If you help them, maybe they can help you in return.';
+                        var finalMsg = 'Please be patient and keep working normally. Note that these other users also need help. If you help them, maybe they can help you in return.';
                         chatMsgs.forEach(function (e) {
                             finalMsg += e;
                         });

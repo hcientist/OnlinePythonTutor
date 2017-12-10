@@ -348,8 +348,7 @@ Get live help! (NEW!)
     // session and not idle
     setInterval(this.periodicMaybeTakeSnapshot.bind(this), 30 * 1000);
 
-    // do this every 30 seconds or so ...
-    setInterval(this.periodicMaybeChatNudge.bind(this), 30 * 1000);
+    setInterval(this.periodicMaybeChatNudge.bind(this), 60 * 1000);
 
     // add an additional listener in addition to whatever the superclasses added
     window.addEventListener("hashchange", (e) => {
@@ -1490,7 +1489,7 @@ Get live help! (NEW!)
           });
 
           if (chatMsgs.length > 0) {
-            var finalMsg = 'These other users also need help now. If you help them, maybe they can help you in return.';
+            var finalMsg = 'Please be patient and keep working normally. Note that these other users also need help. If you help them, maybe they can help you in return.';
             chatMsgs.forEach((e) => {
               finalMsg += e;
             });
