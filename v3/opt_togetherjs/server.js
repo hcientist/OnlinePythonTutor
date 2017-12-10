@@ -263,6 +263,23 @@ var server = http.createServer(function(request, response) {
       "Access-Control-Allow-Origin": "*"
     });
     response.end(JSON.stringify({status: 'OKIE DOKIE'}));
+  } else if (url.pathname == '/nudge') { // pgbovine - just log an entry to the log
+     if (request.method == "OPTIONS") {
+      // CORS preflight
+      corsAccept(request, response);
+      return;
+    }
+
+    var nudgeLogObj = createLogEntry(request);
+    nudgeLogObj.type = 'nudge';
+    nudgeLogObj.query = url.query;
+    pgLogWrite(nudgeLogObj);
+
+    response.writeHead(200, {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*"
+    });
+    response.end(JSON.stringify({status: 'OKIE DOKIE'}));
   } else {
     write404(response);
   }

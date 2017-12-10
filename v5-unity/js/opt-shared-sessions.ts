@@ -170,11 +170,11 @@ var liveHelpSurvey = {
 // even null responses, since we can use that data to calculate survey
 // response rates.
 var liveHelpSurvey = {
-  requestHelp:   [ {prompt: 'You\'re on the help queue. Support our research by answering below:\n\nWhy did you decide to ask for help at this time? What motivated you to click the "Get live help" button?',
+  requestHelp:   [ {prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you decide to ask for help at this time? What motivated you to click the "Get live help" button?',
                     v: 'r2a'}, // identical to 'r1'
-                   {prompt: 'You\'re on the help queue. Support our research by answering below:\n\nWhy are you asking for help anonymously on this website? Are there people you know around you who can help as well?',
+                   {prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy are you asking for help anonymously on this website? Are there people you know around you who can help as well?',
                     v: 'r2b'},
-                   {prompt: 'You\'re on the help queue. Support our research by answering below:\n\nHow did you first find this website? What are you currently using this website for?',
+                   {prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nHow did you first find this website? What are you currently using this website for?',
                     v: 'r2c'},
                  ],
   volunteerHelp: [ {prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhy did you decide to volunteer at this time? What motivated you to click on this help link?",
@@ -335,7 +335,7 @@ Get live help! (NEW!)
     })
 
     // polling every 5 seconds seems reasonable; note that you won't
-    // send a signal to the server when this.isIdle is true, to conserve
+    // send an HTTP request to the server when this.isIdle is true, to conserve
     // resources and get a more accurate indicator of who is active at
     // the moment
     setInterval(this.getHelpQueue.bind(this), 5 * 1000);
@@ -347,6 +347,10 @@ Get live help! (NEW!)
     // take a snapshot every 30 seconds or so if you're in a TogetherJS
     // session and not idle
     setInterval(this.periodicMaybeTakeSnapshot.bind(this), 30 * 1000);
+
+    // do this every 30 seconds or so as well ... be a bit more
+    // assertive about nudging:
+    setInterval(this.periodicMaybeChatNudge.bind(this), 30 * 1000);
 
     // add an additional listener in addition to whatever the superclasses added
     window.addEventListener("hashchange", (e) => {
@@ -637,6 +641,8 @@ Get live help! (NEW!)
     } else if (settings.url.indexOf('requestPublicHelp') > -1) {
       return true;
     } else if (settings.url.indexOf('survey') > -1) {
+      return true;
+    } else if (settings.url.indexOf('nudge') > -1) {
       return true;
     } else if (settings.url.indexOf('freegeoip') > -1) { // deprecated
       return true;
@@ -1365,6 +1371,145 @@ Get live help! (NEW!)
     if (TogetherJS.running && !this.isIdle) {
       this.takeFullCodeSnapshot();
     }
+  }
+
+  // send an encouraging nudge message in the chat box if you're not idle ...
+  // deployed on 2017-12-10
+  periodicMaybeChatNudge() {
+    // only do this if you're:
+    // - currently in a chat
+    // - not idle
+    // - NOBODY else is in your sesssion besides you (i.e., no 'live' peers)
+    if (!TogetherJS.running || this.isIdle) {
+      return;
+    }
+
+    var allPeers = TogetherJS.require("peers").getAllPeers();
+    var numLivePeers = 0;
+    allPeers.forEach((e) => {
+      if (e.status !== "live") { // don't count people who've already left!!!
+        return;
+      }
+      numLivePeers++;
+    });
+
+    if (numLivePeers > 0) {
+      return;
+    }
+
+    // MASSIVE MASSIVE MASSIVE copy-and-paste from getHelpQueue()
+    var ghqUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
+    $.ajax({
+      url: ghqUrl,
+      dataType: "json",
+      data: {user_uuid: this.userUUID}, // tell the server who you are
+      error: () => {
+        console.log('/getHelpQueue error');
+      },
+      success: (resp) => {
+        if (resp && resp.length > 0) {
+          var myShareId = TogetherJS.shareId();
+
+          var chatMsgs = [];
+          var idleTimeoutMs = 3 * 60 * 1000 // 3 minutes seems reasonable -- NB: copy-and-paste from getHelpQueue()
+
+          var selfOnQueue = false;
+          resp.forEach((e) => {
+            if (e.id === myShareId) {
+              selfOnQueue = true;
+            }
+          });
+
+          if (!selfOnQueue) {
+            return; // don't bother doing anything if you're not even on the help queue
+          }
+
+          var otherActiveEntries = []; // what other entries are active so that we can nudge you to join them?
+          resp.forEach((e) => {
+            // sometimes there are bogus incomplete entries on the queue. if
+            // there's not even a URL, then nobody can join the chat,
+            // so skip right away at the VERY BEGINNING:
+            if (!e.url) {
+              return;
+            }
+
+            // when testing on localhost, we sometimes use the
+            // production TogetherJS chat server, but we don't want to
+            // show localhost entries on the global queue for people on
+            // the real site since there's no way they can jump in to join
+            //
+            // i.e., if your browser isn't on localhost but the URL of
+            // the help queue entry is on localhost, then *don't* display it
+            if ((window.location.href.indexOf('localhost') < 0) &&
+                (e.url.indexOf('localhost') >= 0)) {
+              return;
+            }
+
+            // don't bother showing idle entries to the user since these
+            // people are probably away from their computer at the moment:
+            if (e.timeSinceLastMsg >= idleTimeoutMs) {
+              return;
+            }
+
+            // don't show your own entry!
+            if (e.id === myShareId) {
+              return;
+            }
+
+            // skip this entry if there's more than 1 person chatting at
+            // the moment, because we want to show only the sessions
+            // waiting on queue with NOBODY helping them out right now:
+            if ((e.numClients > 1) && (e.numChatters > 1)) {
+              return;
+            }
+
+            otherActiveEntries.push(e);
+          });
+
+          otherActiveEntries.forEach((e) => {
+            var curStr = '\n- Click to help ' + e.username;
+            var langName = this.langToEnglish(e.lang);
+
+            if (e.country && e.city) {
+              // print 'region' (i.e., state) for US addresses:
+              if (e.country === "United States" && e.region) {
+                curStr += ' from ' + e.city + ', ' + e.region + ', US with ' + langName;
+              } else {
+                curStr += ' from ' + e.city + ', ' + e.country + ' with ' + langName;
+              }
+            } else if (e.country) {
+              curStr += ' from ' + e.country + ' with ' + langName;
+            } else if (e.city) {
+              curStr += ' from ' + e.city + ' with ' + langName;
+            } else {
+              curStr += ' with ' + langName;
+            }
+
+            curStr += ': ' + e.url;
+
+            chatMsgs.push(curStr);
+          });
+
+          if (chatMsgs.length > 0) {
+            var finalMsg = 'These other users also need help now. If you help them, maybe they can help you in return.';
+            chatMsgs.forEach((e) => {
+              finalMsg += e;
+            });
+            this.chatbotPostMsg(finalMsg);
+
+            // log an entry on the server to aid in data analysis later:
+            var nudgeUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/nudge";
+            $.ajax({
+              url: nudgeUrl,
+              dataType: "json",
+              data: {id: myShareId, user_uuid: this.userUUID, entriesJSON: JSON.stringify(otherActiveEntries)},
+              success: function() {}, // NOP
+              error: function() {},   // NOP
+            });
+          }
+        }
+      },
+    });
   }
 
   // helper chatbot which posts a message in your chat box that *only you can see*
