@@ -1305,7 +1305,11 @@ class PGLogger(bdb.Bdb):
 
         for (i, line) in enumerate(self.executed_script_lines):
           line_no = i + 1
-          if line.endswith(BREAKPOINT_STR):
+          # subtle -- if the stripped line starts with '#break', that
+          # means it may be a commented-out version of a normal Python
+          # 'break' statement, which shouldn't be confused with an
+          # OPT user-defined breakpoint!
+          if line.endswith(BREAKPOINT_STR) and not line.strip().startswith(BREAKPOINT_STR):
             self.breakpoints.append(line_no)
 
           if line.startswith(PYTUTOR_HIDE_STR):
