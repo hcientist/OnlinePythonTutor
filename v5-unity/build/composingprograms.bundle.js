@@ -733,12 +733,12 @@ var ExecutionVisualizer = (function () {
             }
             // add an extra label to link back to the main site, so that viewers
             // on the embedded page know that they're seeing an OPT visualization
-            base.append('<div style="font-size: 8pt; margin-bottom: 10px;"><a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a> - support by <a href="http://pgbovine.net/support.htm" target="_blank">making a small donation</a></div>');
+            base.append('<div style="font-size: 8pt; margin-bottom: 10px;"><a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a>. Support by <a href="http://pgbovine.net/support.htm" target="_blank">making a small donation</a></div>');
             base.find('#codeFooterDocs').hide(); // cut out extraneous docs
         }
         else {
             // also display credits:
-            base.append('<div style="font-size: 8pt; margin-bottom: 10px;"><a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="http://www.pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a> - keep this tool free by <a href="http://pgbovine.net/support.htm" target="_blank">making a small donation</a></div>');
+            base.append('<div style="font-size: 9pt; margin-bottom: 10px;">Keep this tool free for everyone by <a href="http://pgbovine.net/support.htm" target="_blank"><b>making a small donation</b></a></div>');
         }
         // not enough room for these extra buttons ...
         if (this.params.codeDivWidth &&
@@ -4044,7 +4044,7 @@ var AbstractBaseFrontend = (function () {
         // use ${this.userUUID} within the string ...
         var survey_v13 = '\n\
     <p style="font-size: 10pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">\n\
-    <div style="margin-bottom: 12px;">Keep this tool free for everyone by <a href="http://pgbovine.net/support.htm" target="_blank"><b>making a small donation</b></a> <span style="font-size: 8pt;">(Patreon, PayPal, Amazon, credit/debit)</span></div>\
+    <div style="margin-bottom: 12px;">Keep this tool free for everyone by <a href="http://pgbovine.net/support.htm" target="_blank"><b>making a small donation</b></a> <span style="font-size: 8pt;">(PayPal, Patreon, Amazon, credit/debit)</span></div>\
     <span>Support our research by completing a <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=';
         survey_v13 += this.userUUID;
         survey_v13 += '" target="_blank"><b>short user survey</b></a></span></p>';
