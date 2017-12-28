@@ -449,12 +449,13 @@ export abstract class AbstractBaseFrontend {
 
   setSurveyHTML() {
     // use ${this.userUUID} within the string ...
-    var survey_v12 = '\n\
+    var survey_v13 = '\n\
     <p style="font-size: 10pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">\n\
-    <span>Support our research and keep this tool free by <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=';
-    survey_v12 += this.userUUID;
-    survey_v12 += '" target="_blank"><b>filling out this short user survey</b></a>.</span></p>';
-    $('#surveyPane').html(survey_v12);
+    <div style="margin-bottom: 12px;">Keep this tool free for everyone by <a href="http://pgbovine.net/support.htm" target="_blank"><b>making a small donation</b></a> <span style="font-size: 8pt;">(Patreon, PayPal, Amazon, credit/debit)</span></div>\
+    <span>Support our research by completing a <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=';
+    survey_v13 += this.userUUID;
+    survey_v13 += '" target="_blank"><b>short user survey</b></a></span></p>';
+    $('#surveyPane').html(survey_v13);
   }
 } // END class AbstractBaseFrontend
 
@@ -498,7 +499,17 @@ v11: labinthewild python debugging experiment (deployed on 2017-07-28, taken dow
                           <a target="_blank" href="http://www.labinthewild.org/studies/python_tutor/">debugging skill test</a>!`;
 
 v12: simplified demographic survey which is a simplified hybrid of the v8 general usage survey and the v10 native language survey (deployed on 2017-09-12)
-[see survey_v12 variable above]
+
+    // use ${this.userUUID} within the string ...
+    var survey_v12 = '\n\
+    <p style="font-size: 10pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">\n\
+    <span>Support our research and keep this tool free by <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=';
+    survey_v12 += this.userUUID;
+    survey_v12 += '" target="_blank"><b>filling out this short user survey</b></a>.</span></p>';
+
+v13: same as v12 except with slightly different wording, and adding a
+call for donations (deployed on 2017-12-27)
+[see survey_v13 variable above]
 
 */
 
