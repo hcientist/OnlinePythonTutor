@@ -438,6 +438,11 @@ Get live help! (NEW!)
               return;
             }
 
+            // if there's no username, then something else is wrong, so punt as well ...
+            if (!e.username) {
+              return;
+            }
+
             // when testing on localhost, we sometimes use the
             // production TogetherJS chat server, but we don't want to
             // show localhost entries on the global queue for people on
