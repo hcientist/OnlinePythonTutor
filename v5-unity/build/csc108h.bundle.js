@@ -23175,20 +23175,38 @@ var liveHelpSurvey = {
 // under the /survey endpoint will record *all* responses to the survey,
 // even null responses, since we can use that data to calculate survey
 // response rates.
+// (taken down on 2018-01-22 and replaced with third version below)
+/*
 var liveHelpSurvey = {
-    requestHelp: [{ prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you decide to ask for help at this time? What motivated you to click the "Get live help" button?',
-            v: 'r2a' },
-        { prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy are you asking for help anonymously on this website? Are there people you know around you who can help as well?',
-            v: 'r2b' },
-        { prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nHow did you first find this website? What are you currently using this website for?',
-            v: 'r2c' },
+  requestHelp:   [ {prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you decide to ask for help at this time? What motivated you to click the "Get live help" button?',
+                    v: 'r2a'}, // identical to 'r1'
+                   {prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy are you asking for help anonymously on this website? Are there people you know around you who can help as well?',
+                    v: 'r2b'},
+                   {prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nHow did you first find this website? What are you currently using this website for?',
+                    v: 'r2c'},
+                 ],
+  volunteerHelp: [ {prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhy did you decide to volunteer at this time? What motivated you to click on this help link?",
+                    v: 'h2a'}, // identical to 'h1'
+                   {prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhat is your current profession (e.g., student, teaching assistant, instructor)? Why are you using this website?",
+                    v: 'h2b'},
+                   {prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhat kind of code are you working on right now? What made you decide to stop coding and volunteer at this time?",
+                    v: 'h2c'},
+                 ]
+};
+*/
+// third version, deployed on 2018-01-22 (modeled off of the second version above)
+var liveHelpSurvey = {
+    requestHelp: [{ prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you decide to ask for help at this time?',
+            v: 'r3a' },
+        { prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you choose to ask for help anonymously here rather than getting help from someone you know?',
+            v: 'r3b' },
     ],
-    volunteerHelp: [{ prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhy did you decide to volunteer at this time? What motivated you to click on this help link?",
-            v: 'h2a' },
-        { prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhat is your current profession (e.g., student, teaching assistant, instructor)? Why are you using this website?",
-            v: 'h2b' },
-        { prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhat kind of code are you working on right now? What made you decide to stop coding and volunteer at this time?",
-            v: 'h2c' },
+    volunteerHelp: [{ prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhy did you decide to volunteer at this time?",
+            v: 'h3a' },
+        { prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhat is your current job or profession?",
+            v: 'h3b' },
+        { prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhat kind of code were you working on right before you volunteered?",
+            v: 'h3c' },
     ]
 };
 // randomly picks a survey item from liveHelpSurvey and mutates

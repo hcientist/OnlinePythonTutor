@@ -169,6 +169,8 @@ var liveHelpSurvey = {
 // under the /survey endpoint will record *all* responses to the survey,
 // even null responses, since we can use that data to calculate survey
 // response rates.
+// (taken down on 2018-01-22 and replaced with third version below)
+/*
 var liveHelpSurvey = {
   requestHelp:   [ {prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you decide to ask for help at this time? What motivated you to click the "Get live help" button?',
                     v: 'r2a'}, // identical to 'r1'
@@ -185,6 +187,24 @@ var liveHelpSurvey = {
                     v: 'h2c'},
                  ]
 };
+*/
+
+// third version, deployed on 2018-01-22 (modeled off of the second version above)
+var liveHelpSurvey = {
+  requestHelp:   [ {prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you decide to ask for help at this time?',
+                    v: 'r3a'}, // almost identical to 'r2a'
+                   {prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you choose to ask for help anonymously here rather than getting help from someone you know?',
+                    v: 'r3b'},
+                 ],
+  volunteerHelp: [ {prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhy did you decide to volunteer at this time?",
+                    v: 'h3a'}, // almost identical to 'h2a'
+                   {prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhat is your current job or profession?",
+                    v: 'h3b'},
+                   {prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhat kind of code were you working on right before you volunteered?",
+                    v: 'h3c'},
+                 ]
+};
+
 
 // randomly picks a survey item from liveHelpSurvey and mutates
 // localStorage to record that this has been randomly picked, so it won't
