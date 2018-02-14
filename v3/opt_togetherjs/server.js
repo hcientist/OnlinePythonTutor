@@ -236,7 +236,7 @@ var server = http.createServer(function(request, response) {
         (req.connection.socket ? req.connection.socket.remoteAddress : null);
       uniqueId = 'IP_' + ip;
     }
-    allRecentHelpQueueQueries.add(uniqueId);
+    allRecentHelpQueueQueries.set(uniqueId, JSON.stringify(url.query));
 
     response.writeHead(200, {
       "Content-Type": "application/json",
@@ -881,7 +881,8 @@ function getPHRStats(uniqueId) {
 // which gives a rough indicator of how many people are currently logged onto
 // the OPT website at the moment. Reset this periodically.
 // Key: user_uuid or ip address starting with 'IP_'
-var allRecentHelpQueueQueries = new Set();
+// Value: JSON string of current app state of this user
+var allRecentHelpQueueQueries = new Map();
 
 function logPHRStats() {
   // periodically log the help queue stats:
