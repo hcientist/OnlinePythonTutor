@@ -23385,10 +23385,11 @@ var OptFrontendSharedSessions = (function (_super) {
             return; // return early!
         }
         var ghqUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
+        var curState = this.getAppState();
         $.ajax({
             url: ghqUrl,
             dataType: "json",
-            data: { user_uuid: this.userUUID },
+            data: { user_uuid: this.userUUID, lang: curState.py, mode: curState.mode, origin: curState.origin },
             error: function () {
                 console.log('/getHelpQueue error');
                 if (_this.wantsPublicHelp) {
@@ -24272,10 +24273,11 @@ var OptFrontendSharedSessions = (function (_super) {
         }
         // MASSIVE MASSIVE MASSIVE copy-and-paste from getHelpQueue()
         var ghqUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
+        var curState = this.getAppState();
         $.ajax({
             url: ghqUrl,
             dataType: "json",
-            data: { user_uuid: this.userUUID },
+            data: { user_uuid: this.userUUID, lang: curState.py, mode: curState.mode, origin: curState.origin },
             error: function () {
                 console.log('/getHelpQueue error');
             },
@@ -24635,7 +24637,9 @@ var OptFrontendWithTestcases = (function (_super) {
         }
     };
     OptFrontendWithTestcases.prototype.appStateAugmenter = function (appState) {
-        this.optTests.appStateAugmenter(appState);
+        if (this.optTests) {
+            this.optTests.appStateAugmenter(appState);
+        }
     };
     OptFrontendWithTestcases.prototype.runTestCase = function (id, codeToExec, firstTestLine) {
         var _this = this;

@@ -102,7 +102,9 @@ export class OptFrontendWithTestcases extends OptFrontendSharedSessions {
   }
 
   appStateAugmenter(appState) {
-    this.optTests.appStateAugmenter(appState);
+    if (this.optTests) {
+      this.optTests.appStateAugmenter(appState);
+    }
   }
 
   runTestCase(id, codeToExec, firstTestLine) {

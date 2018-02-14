@@ -425,10 +425,11 @@ Get live help! (NEW!)
     }
 
     var ghqUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
+    var curState = this.getAppState();
     $.ajax({
       url: ghqUrl,
       dataType: "json",
-      data: {user_uuid: this.userUUID}, // tell the server who you are
+      data: {user_uuid: this.userUUID, lang: curState.py, mode: curState.mode, origin: curState.origin},
       error: () => {
         console.log('/getHelpQueue error');
 
@@ -1422,10 +1423,11 @@ Get live help! (NEW!)
 
     // MASSIVE MASSIVE MASSIVE copy-and-paste from getHelpQueue()
     var ghqUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
+    var curState = this.getAppState();
     $.ajax({
       url: ghqUrl,
       dataType: "json",
-      data: {user_uuid: this.userUUID}, // tell the server who you are
+      data: {user_uuid: this.userUUID, lang: curState.py, mode: curState.mode, origin: curState.origin},
       error: () => {
         console.log('/getHelpQueue error');
       },
