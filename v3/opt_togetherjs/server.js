@@ -223,20 +223,21 @@ var server = http.createServer(function(request, response) {
       return;
     }
 
+    // copied from createLogEntry
+    // Webfaction forwards IP addresses via proxy, so use this ...
+    // http://stackoverflow.com/questions/8107856/how-can-i-get-the-users-ip-address-using-node-js
+    var ip = request.remoteAddress /* check this FIRST since it's for WebSockets */ ||
+      request.headers['x-forwarded-for'] ||
+      request.connection.remoteAddress ||
+      request.socket.remoteAddress ||
+      (req.connection.socket ? req.connection.socket.remoteAddress : null);
+
     // if we don't have a user_uuid, use IP address as the next best proxy for unique user identity
     var uniqueId = url.query.user_uuid;
     if (!uniqueId) {
-      // copied from createLogEntry
-      // Webfaction forwards IP addresses via proxy, so use this ...
-      // http://stackoverflow.com/questions/8107856/how-can-i-get-the-users-ip-address-using-node-js
-      var ip = request.remoteAddress /* check this FIRST since it's for WebSockets */ ||
-        request.headers['x-forwarded-for'] ||
-        request.connection.remoteAddress ||
-        request.socket.remoteAddress ||
-        (req.connection.socket ? req.connection.socket.remoteAddress : null);
       uniqueId = 'IP_' + ip;
     }
-    allRecentHelpQueueQueries.set(uniqueId, JSON.stringify(url.query));
+    allRecentHelpQueueQueries.set(uniqueId, Object.assign({ip: ip}, url.query));
 
     response.writeHead(200, {
       "Content-Type": "application/json",
@@ -890,7 +891,7 @@ function logPHRStats() {
   logObj.date = (new Date()).toISOString();
   logObj.type = 'PHRStats';
   logObj.queue = getPHRStats(undefined);
-  logObj.recentQueries = Array.from(allRecentHelpQueueQueries);
+  logObj.recentQueries = [...allRecentHelpQueueQueries]; // spread operator
   pgLogWrite(logObj);
   //console.log(logObj);
 }
