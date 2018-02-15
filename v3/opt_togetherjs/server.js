@@ -230,7 +230,7 @@ var server = http.createServer(function(request, response) {
       request.headers['x-forwarded-for'] ||
       request.connection.remoteAddress ||
       request.socket.remoteAddress ||
-      (req.connection.socket ? req.connection.socket.remoteAddress : null);
+      (request.connection.socket ? request.connection.socket.remoteAddress : null);
 
     // if we don't have a user_uuid, use IP address as the next best proxy for unique user identity
     var uniqueId = url.query.user_uuid;
@@ -531,7 +531,7 @@ wsServer.on('request', function(request) {
           request.headers['x-forwarded-for'] ||
           request.connection.remoteAddress ||
           request.socket.remoteAddress ||
-          (req.connection.socket ? req.connection.socket.remoteAddress : null);
+          (request.connection.socket ? request.connection.socket.remoteAddress : null);
         uniqueId = 'IP_' + ip;
       }
       if (bannedUsers.indexOf(uniqueId) < 0) {
@@ -551,7 +551,7 @@ wsServer.on('request', function(request) {
         request.headers['x-forwarded-for'] ||
         request.connection.remoteAddress ||
         request.socket.remoteAddress ||
-        (req.connection.socket ? req.connection.socket.remoteAddress : null);
+        (request.connection.socket ? request.connection.socket.remoteAddress : null);
 
 
       requestFunc("http://freegeoip.net/json/" + String(ip), function(error, resp, body) {
