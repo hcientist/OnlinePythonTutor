@@ -204,7 +204,7 @@ export abstract class AbstractBaseFrontend {
       (myArgs as any).opt_uuid = this.userUUID;
       (myArgs as any).session_uuid = this.sessionUUID;
       (myArgs as any).error_msg = errorStr;
-      $.get('error_log.py', myArgs, function(dat) {});
+      $.get('error_log.py', myArgs, function(dat) {}); // added this logging feature on 2018-02-18
     }
   }
 
