@@ -93,6 +93,11 @@ class IframeEmbedFrontend extends AbstractBaseFrontend {
     // NOP
   }
 
+  getAppState() {
+    return {query: optFrontend.getQueryStringOptions(),
+            origin: this.originFrontendJsFile};
+  }
+
   // David Pritchard's code for resizeContainer option ...
   resizeContainerNow() {
     function findContainer() {

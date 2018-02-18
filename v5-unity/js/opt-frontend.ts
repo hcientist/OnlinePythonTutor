@@ -372,7 +372,7 @@ export class OptFrontend extends AbstractBaseFrontend {
   executeCodeFromScratch() {
     // don't execute empty string:
     if (this.pyInputAceEditor && $.trim(this.pyInputGetValue()) == '') {
-      this.setFronendError(["Type in some code to visualize."]);
+      this.setFronendError(["Type in some code to visualize."], true);
       return;
     }
     super.executeCodeFromScratch();
@@ -500,6 +500,7 @@ export class OptFrontend extends AbstractBaseFrontend {
     if ((settings.url.indexOf('syntax_err_survey.py') > -1) ||
         (settings.url.indexOf('runtime_err_survey.py') > -1) ||
         (settings.url.indexOf('eureka_survey.py') > -1) ||
+        (settings.url.indexOf('error_log.py') > -1) ||
         (settings.url.indexOf('viz_interaction.py') > -1)) {
       return true;
     }

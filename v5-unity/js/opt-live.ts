@@ -578,7 +578,7 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
     this.clearFrontendError();
     this.startExecutingCode();
 
-    this.setFronendError(['Running your code ...']);
+    this.setFronendError(['Running your code ...'], true);
 
     var backendScript = this.langSettingToBackendScript[pyState];
     assert(backendScript);

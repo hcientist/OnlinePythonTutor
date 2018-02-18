@@ -191,8 +191,21 @@ export abstract class AbstractBaseFrontend {
   // TODO: override this with a version in codeopticon-learner.js if needed
   logEventCodeopticon(obj) { } // NOP
 
-  setFronendError(lines) {
+  getAppState() {return {};} // NOP -- subclasses need to override
+
+  setFronendError(lines, ignoreLog=false) {
     $("#frontendErrorOutput").html(lines.map(htmlspecialchars).join('<br/>'));
+
+    // log it to the server as well (unless ignoreLog is on)
+    if (!ignoreLog) {
+      var errorStr = lines.join();
+
+      var myArgs = this.getAppState();
+      (myArgs as any).opt_uuid = this.userUUID;
+      (myArgs as any).session_uuid = this.sessionUUID;
+      (myArgs as any).error_msg = errorStr;
+      $.get('error_log.py', myArgs, function(dat) {});
+    }
   }
 
   clearFrontendError() {
@@ -331,7 +344,7 @@ export abstract class AbstractBaseFrontend {
       // do Codeopticon logging at the VERY END after the dust settles ...
       // maybe move into opt-frontend.js?
       // and don't do it for iframe-embed.js since getAppState doesn't
-      // work in that case ...
+      // work in that case ... [TODO: this comment may be deprecated]
       /*
       if (this.originFrontendJsFile !== 'iframe-embed.js') {
         this.logEventCodeopticon({type: 'doneExecutingCode',
