@@ -1309,6 +1309,10 @@ class PGLogger(bdb.Bdb):
           # means it may be a commented-out version of a normal Python
           # 'break' statement, which shouldn't be confused with an
           # OPT user-defined breakpoint!
+          #
+          # TODO: this still fails when someone writes something like
+          # '##break' since it doesn't start with '#break'!!! i just
+          # picked an unfortunate name that's also a python keyword :0
           if line.endswith(BREAKPOINT_STR) and not line.strip().startswith(BREAKPOINT_STR):
             self.breakpoints.append(line_no)
 

@@ -3797,8 +3797,8 @@ var AbstractBaseFrontend = (function () {
                 }
             }
             else {
-                _this.setFronendError(["Server error! Your code might be taking too much time/memory. Or the server CRASHED",
-                    "due to too many people using it. Or you are behind a FIREWALL that blocks access.",
+                _this.setFronendError(["Server error! Your code might have an INFINITE LOOP or be running for too long. Or the",
+                    "server crashed due to over-use. Or you're behind a firewall that blocks access.",
                     "Try again later, or report a bug to philip@pgbovine.net by clicking the 'Generate",
                     "permanent link' button at the bottom of this page and including a URL in your email."]);
             }
@@ -3825,7 +3825,7 @@ var AbstractBaseFrontend = (function () {
             myArgs.opt_uuid = this.userUUID;
             myArgs.session_uuid = this.sessionUUID;
             myArgs.error_msg = errorStr;
-            $.get('error_log.py', myArgs, function (dat) { });
+            $.get('error_log.py', myArgs, function (dat) { }); // added this logging feature on 2018-02-18
         }
     };
     AbstractBaseFrontend.prototype.clearFrontendError = function () {
