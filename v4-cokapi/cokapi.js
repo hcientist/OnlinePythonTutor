@@ -80,7 +80,7 @@ function postExecHandler(res, useJSONP, err, stdout, stderr) {
                                        'exception_msg': 'Error: stopped after running 1000 steps and cannot display visualization.\nShorten your code, since Python Tutor is not designed to handle long-running code.'}]};
       } else {
         errTrace = {code: '', trace: [{'event': 'uncaught_exception',
-                                       'exception_msg': "Unknown error on backend. Either your code contains UNSUPPORTED FEATURES,\nor the server may be OVERLOADED now; please try again later.\nReport a bug to philip@pgbovine.net by clicking on the\n'Generate shortened link' button at the bottom and including a URL in your email."}]};
+                                       'exception_msg': "Unknown error on backend. The server may be OVERLOADED right now; please try again later.\nYour code may also contain UNSUPPORTED FEATURES that the tool cannot handle.\nReport a bug to philip@pgbovine.net by clicking on the 'Generate shortened link'\nbutton at the bottom and including a URL in your email."}]};
                                        // old message, retired on 2018-03-02
                                        //'exception_msg': "Unknown error. The server may be down or overloaded right now.\nReport a bug to philip@pgbovine.net by clicking on the\n'Generate permanent link' button at the bottom and including a URL in your email."}]};
       }
@@ -99,7 +99,7 @@ function postExecHandler(res, useJSONP, err, stdout, stderr) {
         res.jsonp(stdoutParsed /* return an actual object, not a string */);
       } catch(e) {
         errTrace = {code: '', trace: [{'event': 'uncaught_exception',
-                                       'exception_msg': "Unknown error on backend. Either your code contains UNSUPPORTED FEATURES,\nor the server may be OVERLOADED now; please try again later.\nReport a bug to philip@pgbovine.net by clicking on the\n'Generate shortened link' button at the bottom and including a URL in your email."}]};
+                                       'exception_msg': "Unknown error on backend. The server may be OVERLOADED right now; please try again later.\nYour code may also contain UNSUPPORTED FEATURES that the tool cannot handle.\nReport a bug to philip@pgbovine.net by clicking on the 'Generate shortened link'\nbutton at the bottom and including a URL in your email."}]};
                                        // old message, retired on 2018-03-02
                                        //'exception_msg': "Unknown error. The server may be down or overloaded right now.\nReport a bug to philip@pgbovine.net by clicking on the\n'Generate permanent link' button at the bottom and including a URL in your email."}]};
         res.jsonp(errTrace /* return an actual object, not a string */);
