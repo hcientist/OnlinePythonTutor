@@ -3785,7 +3785,7 @@ var AbstractBaseFrontend = (function () {
                 _this.setFronendError(["Server error! Your code might have an INFINITE LOOP or be running for too long.",
                     "Or the server crashed due to over-use. Or you're behind a firewall that blocks access.",
                     "Try again later, or report a bug to philip@pgbovine.net by clicking the 'Generate",
-                    "permanent link' button at the bottom of this page and including a URL in your email."]);
+                    "shortened link' button at the bottom of this page and including a URL in your email."]);
             }
             _this.doneExecutingCode();
         });
@@ -3912,7 +3912,7 @@ var AbstractBaseFrontend = (function () {
                     _this.setFronendError(["Unknown error: The server may be too busy or down right now.",
                         "Or you are behind a FIREWALL that blocks access to this server.",
                         "Please reload and try again later. Or report a bug to",
-                        "philip@pgbovine.net by clicking the 'Generate permanent link'",
+                        "philip@pgbovine.net by clicking the 'Generate shortened link'",
                         "button at the bottom and including a URL in your email."]);
                 }
             }
@@ -3969,7 +3969,7 @@ var AbstractBaseFrontend = (function () {
         var jsonp_endpoint = this.langSettingToJsonpEndpoint[pyState]; // maybe null
         if (!backendScript) {
             this.setFronendError(["Server configuration error: No backend script",
-                "Report a bug to philip@pgbovine.net by clicking on the 'Generate permanent link'",
+                "Report a bug to philip@pgbovine.net by clicking on the 'Generate shortened link'",
                 "button at the bottom and including a URL in your email."]);
             return;
         }
