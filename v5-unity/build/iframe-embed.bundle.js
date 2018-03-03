@@ -3782,8 +3782,8 @@ var AbstractBaseFrontend = (function () {
                 }
             }
             else {
-                _this.setFronendError(["Server error! Your code might have an INFINITE LOOP or be running for too long. Or the",
-                    "server crashed due to over-use. Or you're behind a firewall that blocks access.",
+                _this.setFronendError(["Server error! Your code might have an INFINITE LOOP or be running for too long.",
+                    "Or the server crashed due to over-use. Or you're behind a firewall that blocks access.",
                     "Try again later, or report a bug to philip@pgbovine.net by clicking the 'Generate",
                     "permanent link' button at the bottom of this page and including a URL in your email."]);
             }
