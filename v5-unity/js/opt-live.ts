@@ -561,8 +561,8 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
           this.setFronendError(
                           ["Unknown error: The server may be too busy or down right now.",
                            "Please reload and try again later. Or report a bug to",
-                           "philip@pgbovine.net by clicking the 'Generate permanent link'",
-                           "button at the bottom and including a URL in your email."]);
+                           "philip@pgbovine.net by clicking the 'Generate shortened link'",
+                           "button at the bottom and including a URL in your email. [#NullTrace]"]);
         }
       } else {
         this.prevVisualizer = this.myVisualizer;

@@ -171,7 +171,7 @@ export abstract class AbstractBaseFrontend {
       } else {
         this.setFronendError(
                         ["Server error! Your code might have an INFINITE LOOP or be running for too long.",
-                         "Or the server crashed due to over-use. Or you're behind a firewall that blocks access.",
+                         "Or the server crashed due to over-use. Or you're behind a FIREWALL that blocks access.",
                          "Try again later, or report a bug to philip@pgbovine.net by clicking the 'Generate",
                          "shortened link' button at the bottom of this page and including a URL in your email."]);
       }
@@ -301,7 +301,6 @@ export abstract class AbstractBaseFrontend {
                           outputDiv) {
     var vizCallback = (dataFromBackend) => {
       var trace = dataFromBackend.trace;
-      var killerException = null;
       // don't enter visualize mode if there are killer errors:
       if (!trace ||
           (trace.length == 0) ||
@@ -309,18 +308,15 @@ export abstract class AbstractBaseFrontend {
         this.handleUncaughtException(trace);
 
         if (trace.length == 1) {
-          killerException = trace[0]; // killer!
           this.setFronendError([trace[0].exception_msg]);
         } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
-          killerException = trace[trace.length - 1]; // killer!
           this.setFronendError([trace[trace.length - 1].exception_msg]);
         } else {
           this.setFronendError(
                           ["Unknown error: The server may be too busy or down right now.",
-                           "Or you are behind a FIREWALL that blocks access to this server.",
                            "Please reload and try again later. Or report a bug to",
                            "philip@pgbovine.net by clicking the 'Generate shortened link'",
-                           "button at the bottom and including a URL in your email."]);
+                           "button at the bottom and including a URL in your email. [#NullTrace]"]);
         }
       } else {
         // fail-soft to prevent running off of the end of trace
@@ -340,23 +336,6 @@ export abstract class AbstractBaseFrontend {
           this.finishSuccessfulExecution(); // TODO: should we also run this if we're calling runTestCaseCallback?
         }
       }
-
-      // do Codeopticon logging at the VERY END after the dust settles ...
-      // maybe move into opt-frontend.js?
-      // and don't do it for iframe-embed.js since getAppState doesn't
-      // work in that case ... [TODO: this comment may be deprecated]
-      /*
-      if (this.originFrontendJsFile !== 'iframe-embed.js') {
-        this.logEventCodeopticon({type: 'doneExecutingCode',
-                  appState: this.getAppState(),
-                  // enough to reconstruct the ExecutionVisualizer object
-                  backendDataJSON: JSON.stringify(dataFromBackend), // for easier transport and compression
-                  frontendOptionsObj: frontendOptionsObj,
-                  backendOptionsObj: backendOptionsObj,
-                  killerException: killerException, // if there's, say, a syntax error
-                  });
-      }
-      */
     }
 
     this.executeCodeAndRunCallback(codeToExec,
