@@ -559,9 +559,9 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
           this.setFronendError([trace[trace.length - 1].exception_msg]);
         } else {
           this.setFronendError(
-                          ["Unknown error: The server may be too busy or down right now.",
-                           "Please reload and try again later. Or report a bug to",
-                           "philip@pgbovine.net by clicking the 'Generate shortened link'",
+                          ["Unknown error: The server may be OVERLOADED right now; try again later.",
+                           "Your code may also contain UNSUPPORTED FEATURES that this tool cannot handle.",
+                           "Report a bug to philip@pgbovine.net by clicking the 'Generate shortened link'",
                            "button at the bottom and including a URL in your email. [#NullTrace]"]);
         }
       } else {

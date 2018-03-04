@@ -3789,7 +3789,7 @@ var AbstractBaseFrontend = (function () {
             }
             else {
                 _this.setFronendError(["Server error! Your code might have an INFINITE LOOP or be running for too long.",
-                    "The server may also be OVERLOADED now. Or you're behind a FIREWALL that blocks access.",
+                    "The server may also be OVERLOADED. Or you're behind a FIREWALL that blocks access.",
                     "Try again later, or report a bug to philip@pgbovine.net by clicking the 'Generate",
                     "shortened link' button at the bottom of this page and including a URL in your email."]);
             }
@@ -3912,9 +3912,9 @@ var AbstractBaseFrontend = (function () {
                     _this.setFronendError([trace[trace.length - 1].exception_msg]);
                 }
                 else {
-                    _this.setFronendError(["Unknown error: The server may be too busy or down right now.",
-                        "Please reload and try again later. Or report a bug to",
-                        "philip@pgbovine.net by clicking the 'Generate shortened link'",
+                    _this.setFronendError(["Unknown error: The server may be OVERLOADED right now; try again later.",
+                        "Your code may also contain UNSUPPORTED FEATURES that this tool cannot handle.",
+                        "Report a bug to philip@pgbovine.net by clicking the 'Generate shortened link'",
                         "button at the bottom and including a URL in your email. [#NullTrace]"]);
                 }
             }
