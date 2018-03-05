@@ -8,4 +8,3 @@ prod:
 
 deps:
 	npm install express
-	#npm install express jshint serve-static sqlite3

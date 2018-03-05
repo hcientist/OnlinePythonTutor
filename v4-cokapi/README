@@ -35,13 +35,21 @@ sudo ln -s /home/pgbovine/node-v6.9.5-linux-x64/bin/node /usr/bin/
 guarantee that it will work!]
 
 
-To install node dependencies, run 'make deps'
-(also depends on jshint and forever being globally-installed)
+First install global dependencies:
+
+npm install -g jshint
+npm install -g forever
+
+
+To install cokapi's node dependencies, run 'make deps'
+(this depends on jshint and forever being globally-installed)
+
 
 To start up the backend server, run 'make'
 
 Note that this is really really really hard-coded for my own server
 setup, so it will likely be hard for you to reproduce that setup.
+
 
 You will also need to install and configure Docker to run the individual
 backends in backends/ -- see Makefile and Dockerfile in each respective
