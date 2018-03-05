@@ -1,12 +1,13 @@
 # C/C++ Visualizer Backend
 
-2018-03-04: The C/C++ visualizer backend lives here now
+2018-03-04: The C/C++ visualizer backend lives here now!
 
-It used to be in a separate repo located at:
+It used to be in its own separate repo located at:
 https://github.com/pgbovine/opt-cpp-backend
 
-I still use it for issue tracking for legacy reasons:
-https://github.com/pgbovine/opt-cpp-backend/issues
+However, I still use this for tracking old legacy C/C++ issues before
+finishing my migration: https://github.com/pgbovine/opt-cpp-backend/issues
+
 
 Former README.md file from that repo:
 ---
