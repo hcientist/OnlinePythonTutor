@@ -12,11 +12,28 @@ Node.js for the server and docker for sandboxing.
 2018-03-04 - moved the C/C++ backend into this directory; it was
 previously in a separate github repo since it was so big:
 https://github.com/pgbovine/opt-cpp-backend
-
-but i decided it's easier if everything is together in one repo
+... but I decided it's easier if everything is together in one repo
 
 ---
 Instructions:
+
+This all has been tested in the following version of Node.js for Linux:
+node-v6.9.5-linux-x64.tar.xz
+... which comes in this repo. Untar it in your home directory:
+
+untar it and add this to .bashrc to find it:
+export PATH=$HOME/node-v6.9.5-linux-x64/bin:"$PATH"
+
+symlink node to /usr/bin/node so that as soon as the machine restarts,
+the environment knows where to find node before your own .bashrc runs:
+
+e.g.,:
+sudo ln -s /home/pgbovine/node-v6.9.5-linux-x64/bin/node /usr/bin/
+
+
+[If you install Node with your OS's package manager, then there's no
+guarantee that it will work!]
+
 
 To install node dependencies, run 'make deps'
 (also depends on jshint and forever being globally-installed)
