@@ -31,6 +31,13 @@ e.g.,:
 sudo ln -s /home/pgbovine/node-v6.9.5-linux-x64/bin/node /usr/bin/
 
 
+Let this node.js process bind to privileged ports < 1024 as non-root:
+
+sudo setcap 'cap_net_bind_service=+ep' /home/pgbovine/node-v6.9.5-linux-x64/bin/node
+
+https://gist.github.com/firstdoit/6389682
+
+
 [If you install Node with your OS's package manager, then there's no
 guarantee that it will work!]
 
