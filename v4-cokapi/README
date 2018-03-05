@@ -9,6 +9,12 @@ Release notes:
 for multiple target languages under one unified app. It relies on
 Node.js for the server and docker for sandboxing.
 
+2018-03-04 - moved the C/C++ backend into this directory; it was
+previously in a separate github repo since it was so big:
+https://github.com/pgbovine/opt-cpp-backend
+
+but i decided it's easier if everything is together in one repo
+
 ---
 Instructions:
 

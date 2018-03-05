@@ -1,0 +1,1 @@
+{"code": "int main() {\n  unknownFunc();\n}", "trace": [{"exception_msg": "undefined reference to `unknownFunc'", "line": 2, "event": "uncaught_exception"}]}

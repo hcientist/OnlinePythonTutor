@@ -1,0 +1,1746 @@
+{
+  "code": "int main() {\n  long long int a = 1234567890123456789L;\n\n  char b = (char)a;\n  short c = (short)a;\n  int d = (int)a;\n  long int e = (long int)a;\n\n  unsigned char f = (unsigned char)a;\n  unsigned short g = (unsigned short)a;\n  unsigned int h = (unsigned int)a;\n  unsigned long int i = (unsigned long int)a;\n  unsigned long long int j = (unsigned long long int)a;\n\n  long double k = 3.1415926535897932384626433832795028841971693993751058209749L;\n  double l = (double)k;\n  float m = (float)k;\n\n  return 0;\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 2, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "long long int", 
+              "<UNINITIALIZED>"
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000BE", 
+              "char", 
+              "<UNINITIALIZED>"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "short int", 
+              "<UNINITIALIZED>"
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long int", 
+              "<UNINITIALIZED>"
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000BF", 
+              "unsigned char", 
+              "<UNINITIALIZED>"
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000C2", 
+              "short unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 1, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 4, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long long int", 
+              1234567890123456789
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000C6", 
+              "char", 
+              "<UNINITIALIZED>"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "short int", 
+              "<UNINITIALIZED>"
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long int", 
+              "<UNINITIALIZED>"
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000C7", 
+              "unsigned char", 
+              "<UNINITIALIZED>"
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000CA", 
+              "short unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "long long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 4, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 5, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long long int", 
+              1234567890123456789
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000C6", 
+              "char", 
+              "\u0015"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "short int", 
+              "<UNINITIALIZED>"
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long int", 
+              "<UNINITIALIZED>"
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000C7", 
+              "unsigned char", 
+              "<UNINITIALIZED>"
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000CA", 
+              "short unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "long long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 5, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 6, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long long int", 
+              1234567890123456789
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000C6", 
+              "char", 
+              "\u0015"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "short int", 
+              -32491
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long int", 
+              "<UNINITIALIZED>"
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000C7", 
+              "unsigned char", 
+              "<UNINITIALIZED>"
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000CA", 
+              "short unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "long long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 6, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 7, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long long int", 
+              1234567890123456789
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000C6", 
+              "char", 
+              "\u0015"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "short int", 
+              -32491
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "int", 
+              2112454933
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long int", 
+              "<UNINITIALIZED>"
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000C7", 
+              "unsigned char", 
+              "<UNINITIALIZED>"
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000CA", 
+              "short unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "long long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 7, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 9, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long long int", 
+              1234567890123456789
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000C6", 
+              "char", 
+              "\u0015"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "short int", 
+              -32491
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "int", 
+              2112454933
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long int", 
+              1234567890123456789
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000C7", 
+              "unsigned char", 
+              "<UNINITIALIZED>"
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000CA", 
+              "short unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "long long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 9, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long long int", 
+              1234567890123456789
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000C6", 
+              "char", 
+              "\u0015"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "short int", 
+              -32491
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "int", 
+              2112454933
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long int", 
+              1234567890123456789
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000C7", 
+              "unsigned char", 
+              21
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000CA", 
+              "short unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "long long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long long int", 
+              1234567890123456789
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000C6", 
+              "char", 
+              "\u0015"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "short int", 
+              -32491
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "int", 
+              2112454933
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long int", 
+              1234567890123456789
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000C7", 
+              "unsigned char", 
+              21
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000CA", 
+              "short unsigned int", 
+              33045
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "long long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 12, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long long int", 
+              1234567890123456789
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000C6", 
+              "char", 
+              "\u0015"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "short int", 
+              -32491
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "int", 
+              2112454933
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long int", 
+              1234567890123456789
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000C7", 
+              "unsigned char", 
+              21
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000CA", 
+              "short unsigned int", 
+              33045
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "unsigned int", 
+              2112454933
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "long long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 12, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 13, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long long int", 
+              1234567890123456789
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000C6", 
+              "char", 
+              "\u0015"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "short int", 
+              -32491
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "int", 
+              2112454933
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long int", 
+              1234567890123456789
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000C7", 
+              "unsigned char", 
+              21
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000CA", 
+              "short unsigned int", 
+              33045
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "unsigned int", 
+              2112454933
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long unsigned int", 
+              1234567890123456789
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "long long unsigned int", 
+              "<UNINITIALIZED>"
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 13, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 15, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long long int", 
+              1234567890123456789
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000C6", 
+              "char", 
+              "\u0015"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "short int", 
+              -32491
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "int", 
+              2112454933
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long int", 
+              1234567890123456789
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000C7", 
+              "unsigned char", 
+              21
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000CA", 
+              "short unsigned int", 
+              33045
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "unsigned int", 
+              2112454933
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long unsigned int", 
+              1234567890123456789
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "long long unsigned int", 
+              1234567890123456789
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 13, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 16, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long long int", 
+              1234567890123456789
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000C6", 
+              "char", 
+              "\u0015"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "short int", 
+              -32491
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "int", 
+              2112454933
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long int", 
+              1234567890123456789
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000C7", 
+              "unsigned char", 
+              21
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000CA", 
+              "short unsigned int", 
+              33045
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "unsigned int", 
+              2112454933
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long unsigned int", 
+              1234567890123456789
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "long long unsigned int", 
+              1234567890123456789
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 16, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 17, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long long int", 
+              1234567890123456789
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000C6", 
+              "char", 
+              "\u0015"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "short int", 
+              -32491
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "int", 
+              2112454933
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long int", 
+              1234567890123456789
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000C7", 
+              "unsigned char", 
+              21
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000CA", 
+              "short unsigned int", 
+              33045
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "unsigned int", 
+              2112454933
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long unsigned int", 
+              1234567890123456789
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "long long unsigned int", 
+              1234567890123456789
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "double", 
+              3.141593
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 17, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 19, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long long int", 
+              1234567890123456789
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000C6", 
+              "char", 
+              "\u0015"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "short int", 
+              -32491
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "int", 
+              2112454933
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long int", 
+              1234567890123456789
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000C7", 
+              "unsigned char", 
+              21
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000CA", 
+              "short unsigned int", 
+              33045
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "unsigned int", 
+              2112454933
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long unsigned int", 
+              1234567890123456789
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "long long unsigned int", 
+              1234567890123456789
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "double", 
+              3.141593
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "float", 
+              3.141593
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 17, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 20, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "long long int", 
+              1234567890123456789
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000C6", 
+              "char", 
+              "\u0015"
+            ], 
+            "c": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "short int", 
+              -32491
+            ], 
+            "d": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "int", 
+              2112454933
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000E0", 
+              "long int", 
+              1234567890123456789
+            ], 
+            "f": [
+              "C_DATA", 
+              "0xFFF0000C7", 
+              "unsigned char", 
+              21
+            ], 
+            "g": [
+              "C_DATA", 
+              "0xFFF0000CA", 
+              "short unsigned int", 
+              33045
+            ], 
+            "h": [
+              "C_DATA", 
+              "0xFFF0000D0", 
+              "unsigned int", 
+              2112454933
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "long unsigned int", 
+              1234567890123456789
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "long long unsigned int", 
+              1234567890123456789
+            ], 
+            "k": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "long double", 
+              "<UNINITIALIZED>"
+            ], 
+            "l": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "double", 
+              3.141593
+            ], 
+            "m": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "float", 
+              3.141593
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 20, 
+          "ordered_varnames": [
+            "a", 
+            "b", 
+            "c", 
+            "d", 
+            "e", 
+            "f", 
+            "g", 
+            "h", 
+            "i", 
+            "j", 
+            "k", 
+            "l", 
+            "m"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

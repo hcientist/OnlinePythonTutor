@@ -1,0 +1,27 @@
+Small-ish broken tests as of 2017-01-29
+
+multidimensional arrays -- test in webapp:
+
+./fjalar-MultiDimArrayTest.c
+./c-multiarray-2.c
+./cpp-array-struct-test.cpp
+./c-multiarray-3.c
+./fjalar-ArrayTest.c
+
+
+python run_cpp_backend.py 'const int DIM1 = 3;
+const int DIM2 = 4;
+
+void fint(int param[DIM1][DIM2]) {
+  return;
+}
+
+int main() {
+  int xyz[DIM1][DIM2];
+  int i, j;
+  for (i = 0; i < DIM1; i++)
+    for(j = 0; j < DIM2; j++)
+      xyz[i][j] = i+j*i;
+  return 0;
+}' c > out 2> err
+

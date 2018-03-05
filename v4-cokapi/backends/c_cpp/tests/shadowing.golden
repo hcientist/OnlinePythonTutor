@@ -1,0 +1,130 @@
+{
+  "code": "int x = 111;\nvoid main() {\n  int x = 222;\n  {\n    int x = 333;\n  }\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "x": [
+          "C_DATA", 
+          "0x601038", 
+          "int", 
+          111
+        ]
+      }, 
+      "heap": {}, 
+      "line": 3, 
+      "ordered_globals": [
+        "x"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "x": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 3, 
+          "ordered_varnames": [
+            "x"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "x": [
+          "C_DATA", 
+          "0x601038", 
+          "int", 
+          111
+        ]
+      }, 
+      "heap": {}, 
+      "line": 5, 
+      "ordered_globals": [
+        "x"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "x": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "int", 
+              222
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 5, 
+          "ordered_varnames": [
+            "x", 
+            "x"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "main", 
+      "globals": {
+        "x": [
+          "C_DATA", 
+          "0x601038", 
+          "int", 
+          111
+        ]
+      }, 
+      "heap": {}, 
+      "line": 7, 
+      "ordered_globals": [
+        "x"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "x": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "int", 
+              222
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 7, 
+          "ordered_varnames": [
+            "x"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

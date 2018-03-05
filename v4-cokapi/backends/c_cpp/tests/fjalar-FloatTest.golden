@@ -1,0 +1,3482 @@
+{
+  "code": "// From the test suite of https://github.com/codespecs/daikon\n//   daikon/tests/kvasir-tests/\n\n#include <stdio.h>\n#include <stdlib.h>\n\ndouble globalDouble[] = {123e-6, 123e1, 123e10, 123e100, 123e1000};\n\nfloat floatMultiply(float a, float b) {\n  return a*b;\n}\n\nfloat floatDivide(float a, float b) {\n  return a/b;\n}\n\nfloat floatAdd(float a, float b) {\n  return a+b;\n}\n\nfloat floatSub(float a, float b) {\n  return a-b;\n}\n\ndouble doubleMultiply(double a, double b) {\n  return a*b;\n}\n\ndouble doubleDivide(double a, double b) {\n  return a/b;\n}\n\ndouble doubleAdd(double a, double b) {\n  return a+b;\n}\n\ndouble doubleSub(double a, double b) {\n  return a-b;\n}\n\n\nint main()\n{\n\n  // Test large(~ 10^100), medium, and small inputs\n  floatMultiply(10e12, 12e23);\n  floatDivide(1.0, 254);\n  floatAdd(100.345, 34.456);\n  floatSub(34, -3415.234242);\n\n  doubleMultiply(10e130, 54e45);\n  doubleDivide(1.0, 541234);\n  doubleAdd(450.3451516134, 64.123413151);\n  doubleSub(15, -5246.5415143232);\n    \n  return 0;\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 43, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 43, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 46, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 46, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "floatMultiply", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 9, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 46, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatMultiply", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 9, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatMultiply_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "floatMultiply", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 46, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              9999999827968.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              null
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatMultiply", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatMultiply_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "floatMultiply", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 46, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              9999999827968.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              null
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatMultiply", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatMultiply_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "floatMultiply", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 46, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              9999999827968.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              null
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatMultiply", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatMultiply_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 47, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 47, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "floatDivide", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 13, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 47, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatDivide", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 13, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatDivide_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "floatDivide", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 14, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 47, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              1.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              254.0
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatDivide", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 14, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatDivide_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "floatDivide", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 15, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 47, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              1.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              254.0
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatDivide", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 15, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatDivide_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "floatDivide", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 15, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 47, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              1.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              254.0
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatDivide", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 15, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatDivide_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 48, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 48, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "floatAdd", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 17, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 48, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatAdd", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 17, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatAdd_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "floatAdd", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 18, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 48, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              100.345001
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              34.456001
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatAdd", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 18, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatAdd_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "floatAdd", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 19, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 48, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              100.345001
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              34.456001
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatAdd", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 19, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatAdd_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "floatAdd", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 19, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 48, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              100.345001
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              34.456001
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatAdd", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 19, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatAdd_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 49, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 49, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "floatSub", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 21, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 49, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatSub", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 21, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatSub_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "floatSub", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 22, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 49, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              34.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              -3415.234131
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatSub", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 22, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatSub_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "floatSub", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 23, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 49, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              34.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              -3415.234131
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatSub", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatSub_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "floatSub", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 23, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 49, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "float", 
+              34.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "float", 
+              -3415.234131
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "floatSub", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "floatSub_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 51, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 51, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "doubleMultiply", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 25, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 51, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleMultiply", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 25, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleMultiply_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "doubleMultiply", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 26, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 51, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              null
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              null
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleMultiply", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 26, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleMultiply_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "doubleMultiply", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 27, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 51, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              null
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              null
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleMultiply", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 27, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleMultiply_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "doubleMultiply", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 27, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 51, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              null
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              null
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleMultiply", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 27, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleMultiply_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 52, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 52, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "doubleDivide", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 29, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 52, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleDivide", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 29, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleDivide_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "doubleDivide", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 30, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 52, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              1.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              541234.0
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleDivide", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 30, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleDivide_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "doubleDivide", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 31, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 52, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              1.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              541234.0
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleDivide", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 31, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleDivide_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "doubleDivide", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 31, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 52, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              1.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              541234.0
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleDivide", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 31, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleDivide_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 53, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 53, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "doubleAdd", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 33, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 53, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleAdd", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 33, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleAdd_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "doubleAdd", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 34, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 53, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              450.345152
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              64.123413
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleAdd", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 34, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleAdd_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "doubleAdd", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 35, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 53, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              450.345152
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              64.123413
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleAdd", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 35, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleAdd_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "doubleAdd", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 35, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 53, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              450.345152
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              64.123413
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleAdd", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 35, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleAdd_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 54, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 54, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "doubleSub", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 37, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 54, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              "<UNINITIALIZED>"
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleSub", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 37, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleSub_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "doubleSub", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 38, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 54, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              15.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              -5246.541514
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleSub", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 38, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleSub_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "doubleSub", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 39, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 54, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              15.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              -5246.541514
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleSub", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 39, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleSub_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "doubleSub", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 39, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 54, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "double", 
+              15.0
+            ], 
+            "b": [
+              "C_DATA", 
+              "0xFFF0000E8", 
+              "double", 
+              -5246.541514
+            ]
+          }, 
+          "frame_id": "0xFFF0000F8", 
+          "func_name": "doubleSub", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 39, 
+          "ordered_varnames": [
+            "a", 
+            "b"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "doubleSub_0xFFF0000F8"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 56, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 56, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "main", 
+      "globals": {
+        "globalDouble": [
+          "C_ARRAY", 
+          "0x601060", 
+          [
+            "C_DATA", 
+            "0x601060", 
+            "double", 
+            0.000123
+          ], 
+          [
+            "C_DATA", 
+            "0x601068", 
+            "double", 
+            1230.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601070", 
+            "double", 
+            1230000000000.0
+          ], 
+          [
+            "C_DATA", 
+            "0x601078", 
+            "double", 
+            null
+          ], 
+          [
+            "C_DATA", 
+            "0x601080", 
+            "double", 
+            null
+          ]
+        ]
+      }, 
+      "heap": {}, 
+      "line": 57, 
+      "ordered_globals": [
+        "globalDouble"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 57, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

@@ -1,0 +1,244 @@
+{
+  "code": "// error when writing to readonly memory\nvoid change( char a[] ) {\n  a[0] = 'B';\n  a[1] = 'y';\n  a[2] = 'e';\n  a[3] = '\\0';\n}\n\nint main() {\n  change(\"Hello\");\n  return 0;\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 9, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "change", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 2, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "change", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 2, 
+          "ordered_varnames": [
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "change_0xFFF000100"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "change", 
+      "globals": {}, 
+      "heap": {
+        "0x4005C4": [
+          "C_ARRAY", 
+          "0x4005C4", 
+          [
+            "C_DATA", 
+            "0x4005C4", 
+            "char", 
+            "H"
+          ], 
+          [
+            "C_DATA", 
+            "0x4005C5", 
+            "char", 
+            "e"
+          ], 
+          [
+            "C_DATA", 
+            "0x4005C6", 
+            "char", 
+            "l"
+          ], 
+          [
+            "C_DATA", 
+            "0x4005C7", 
+            "char", 
+            "l"
+          ], 
+          [
+            "C_DATA", 
+            "0x4005C8", 
+            "char", 
+            "o"
+          ], 
+          [
+            "C_DATA", 
+            "0x4005C9", 
+            "char", 
+            "\\0"
+          ]
+        ]
+      }, 
+      "line": 3, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x4005C4"
+            ]
+          }, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "change", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 3, 
+          "ordered_varnames": [
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "change_0xFFF000100"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "exception", 
+      "exception_msg": "Process terminating with default action of signal 11 (SIGSEGV)\n Bad permissions for mapped region at address 0x4005C4\n   at 0x4004F9: change (usercode.c:3)\n   by 0x40052C: main (usercode.c:10)", 
+      "func_name": "change", 
+      "globals": {}, 
+      "heap": {
+        "0x4005C4": [
+          "C_ARRAY", 
+          "0x4005C4", 
+          [
+            "C_DATA", 
+            "0x4005C4", 
+            "char", 
+            "H"
+          ], 
+          [
+            "C_DATA", 
+            "0x4005C5", 
+            "char", 
+            "e"
+          ], 
+          [
+            "C_DATA", 
+            "0x4005C6", 
+            "char", 
+            "l"
+          ], 
+          [
+            "C_DATA", 
+            "0x4005C7", 
+            "char", 
+            "l"
+          ], 
+          [
+            "C_DATA", 
+            "0x4005C8", 
+            "char", 
+            "o"
+          ], 
+          [
+            "C_DATA", 
+            "0x4005C9", 
+            "char", 
+            "\\0"
+          ]
+        ]
+      }, 
+      "line": 3, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x4005C4"
+            ]
+          }, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "change", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 3, 
+          "ordered_varnames": [
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "change_0xFFF000100"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

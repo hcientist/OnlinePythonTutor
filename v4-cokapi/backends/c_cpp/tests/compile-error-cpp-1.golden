@@ -1,0 +1,1 @@
+{"code": "#include <stdlib>\n\nint main() {\n  int* x = malloc(2*sizeof(*x));\n}", "trace": [{"exception_msg": "error: stdlib: No such file or directory", "line": 1, "event": "uncaught_exception"}]}

@@ -1,0 +1,3785 @@
+{
+  "code": "// From the test suite of https://github.com/codespecs/daikon\n//   daikon/tests/kvasir-tests/\n\n#include <stdio.h>\n#include <stdlib.h>\n\n#define NUM_COUNTERS 10\n\ntypedef struct _counter {\n  int a;\n} counter;\n\ncounter* counters;\n\nint sum = 0;\n\n// The invariant sum = sum(counter.a[]) should\n// hold at every call to check()\nvoid check() {\n}\n\nint main() {\n  counters = calloc(1, NUM_COUNTERS*sizeof(counter));\n  check();\n\n  counters[0].a++;\n  sum++;\n  check();\n\n  counters[5].a++;\n  sum++;\n  check();\n\n  counters[9].a = 100;\n  sum += 100;\n  check();\n\n  counters[0].a+= 2;\n  sum+= 2;\n  check();\n\n  return 0;\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x0"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          0
+        ]
+      }, 
+      "heap": {}, 
+      "line": 23, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 22, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          0
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                0
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 24, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "check", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          0
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                0
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 20, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "check", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 20, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "check_0xFFF000100"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          0
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                0
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 26, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 26, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          0
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                0
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 27, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 27, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          1
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                0
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 28, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 27, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "check", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          1
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                0
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 20, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 28, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "check", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 20, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "check_0xFFF000100"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          1
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                0
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 30, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 30, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          1
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                0
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 31, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 31, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          2
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                0
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 32, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 31, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "check", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          2
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                0
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 20, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 32, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "check", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 20, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "check_0xFFF000100"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          2
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                0
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 34, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 34, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          2
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                100
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 35, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 35, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          102
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                100
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 36, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 35, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "check", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          102
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                100
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 20, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 36, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "check", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 20, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "check_0xFFF000100"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          102
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                100
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 38, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 38, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          102
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                3
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                100
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 39, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 39, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          104
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                3
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                100
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 40, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 39, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "check", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          104
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                3
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                100
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 20, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 40, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "check", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 20, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "check_0xFFF000100"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          104
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                3
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                100
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 42, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 42, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "main", 
+      "globals": {
+        "counters": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x53FE040"
+        ], 
+        "sum": [
+          "C_DATA", 
+          "0x601044", 
+          "int", 
+          104
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                3
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE044", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE044", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE048", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE04C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE04C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE050", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE054", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE054", 
+                "int", 
+                1
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE058", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE058", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE05C", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE05C", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE060", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE060", 
+                "int", 
+                0
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE064", 
+            "counter", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE064", 
+                "int", 
+                100
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 43, 
+      "ordered_globals": [
+        "counters", 
+        "sum"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 43, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

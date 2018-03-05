@@ -1,0 +1,162 @@
+{
+  "code": "void foo() {\n  static int wxyz = 42;\n}\n\nvoid main() {\n  foo();\n  static int wxyz = 12345;\n  if (1) {\n    static int wxyz = 54321;\n    printf(\"%d\\n\", wxyz);\n  }\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 6, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "wxyz (static 0x601048)": [
+              "C_DATA", 
+              "0x601048", 
+              "int", 
+              12345
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 5, 
+          "ordered_varnames": [
+            "wxyz (static 0x601048)"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "foo", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 3, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "wxyz (static 0x601048)": [
+              "C_DATA", 
+              "0x601048", 
+              "int", 
+              12345
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 6, 
+          "ordered_varnames": [
+            "wxyz (static 0x601048)"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "wxyz (static 0x601040)": [
+              "C_DATA", 
+              "0x601040", 
+              "int", 
+              42
+            ]
+          }, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "foo", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 3, 
+          "ordered_varnames": [
+            "wxyz (static 0x601040)"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "foo_0xFFF000100"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "wxyz (static 0x601044)": [
+              "C_DATA", 
+              "0x601044", 
+              "int", 
+              54321
+            ], 
+            "wxyz (static 0x601048)": [
+              "C_DATA", 
+              "0x601048", 
+              "int", 
+              12345
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "wxyz (static 0x601048)", 
+            "wxyz (static 0x601044)"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 12, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "wxyz (static 0x601048)": [
+              "C_DATA", 
+              "0x601048", 
+              "int", 
+              12345
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 12, 
+          "ordered_varnames": [
+            "wxyz (static 0x601048)"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": "54321\n"
+    }
+  ]
+}
+

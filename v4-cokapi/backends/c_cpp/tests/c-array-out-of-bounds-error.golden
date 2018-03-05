@@ -1,0 +1,2258 @@
+{
+  "code": "// from a bug report\nvoid* sortedArrayPositionsChange(int *Arr, int len) {\n    int i = 0, j = len - 1, t;\n    if (len <= 0)\n        return 0;\n    else {\n        for (i = len - 1; i > 0; i--) {\n            if (Arr[i] < Arr[i - 1]) {\n                j = i - 1;\n                while (j >= 0 && Arr[i] < Arr[j])\n                    j--;\n                t = Arr[i];\n                Arr[i] = Arr[j];\n                Arr[j] = t; // <-- early termination error\n                break;\n            }\n        }\n    }\n}\n\nint main() {\n    int Arr[5] = { 50, 20, 30, 40, 10 };\n    sortedArrayPositionsChange(Arr, 5);\n    return 0;\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 21, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000E8", 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 21, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 22, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 22, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 23, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 22, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 2, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 2, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 3, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 3, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 4, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              0
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              4
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 4, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 7, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              0
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              4
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 7, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 8, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              4
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 8, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 9, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              4
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 9, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              3
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 9, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              3
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              2
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              2
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              1
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              1
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              0
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              0
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              -1
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 12, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              -1
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 12, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 13, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              -1
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              10
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 13, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 14, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                0
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              -1
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              10
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 14, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "exception", 
+      "exception_msg": "Process terminating with default action of signal 11 (SIGSEGV)\n Access not within mapped region at address 0xA0040064B\n   at 0xA0040064B: ???\n   by 0x505AEC4: (below main) (libc-start.c:287)\n If you believe this happened as a result of a stack\n overflow in your program's main thread (unlikely but\n possible), you can try to increase the size of the\n main thread stack using the --main-stacksize= flag.\n The main thread stack size used in this run was 16777216.", 
+      "func_name": "sortedArrayPositionsChange", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 14, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                50
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                30
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                40
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                0
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "Arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "Arr": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000F0"
+            ], 
+            "i": [
+              "C_DATA", 
+              "0xFFF0000D4", 
+              "int", 
+              4
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "int", 
+              -1
+            ], 
+            "len": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5
+            ], 
+            "t": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              10
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "sortedArrayPositionsChange", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 14, 
+          "ordered_varnames": [
+            "Arr", 
+            "len", 
+            "i", 
+            "j", 
+            "t"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "sortedArrayPositionsChange_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+
