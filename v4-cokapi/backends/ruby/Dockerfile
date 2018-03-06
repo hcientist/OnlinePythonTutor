@@ -41,6 +41,8 @@ RUN cd /tmp/ruby/ruby-2.2.2 && ./configure --prefix=/tmp/ruby/ruby-2.2.2-custom-
 # beware takes a long time! so make sure we cache the build
 RUN cd /tmp/ruby/ruby-2.2.2 && make && make install
 # install custom gem
+# specify a non-https source in .gemrc to avoid certificate problems
+COPY .gemrc /root
 RUN /tmp/ruby/ruby-2.2.2-custom-OPT/bin/gem install debug_inspector
 
 COPY pg_logger.rb /tmp/ruby/
