@@ -194,7 +194,8 @@ export abstract class AbstractBaseFrontend {
   getAppState() {return {};} // NOP -- subclasses need to override
 
   setFronendError(lines, ignoreLog=false) {
-    $("#frontendErrorOutput").html(lines.map(htmlspecialchars).join('<br/>'));
+    $("#frontendErrorOutput").html(lines.map(htmlspecialchars).join('<br/>') +
+                                   (ignoreLog ? '' : '<p/>Here is a list of <a target="_blank" href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">UNSUPPORTED FEATURES</a>'));
 
     // log it to the server as well (unless ignoreLog is on)
     if (!ignoreLog) {
