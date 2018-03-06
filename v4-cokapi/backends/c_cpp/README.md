@@ -24,3 +24,22 @@ http://www.valgrind.org/downloads/valgrind-3.11.0.tar.bz2
 Build dependencies:
 - (basic Linux C compiler toolchain)
 - binutils-dev
+
+---
+To install:
+
+First grab the basic build dependencies:
+
+sudo apt-get install \
+build-essential git git-core libssl-dev \
+autotools-dev \
+automake \
+libc6-dbg
+
+then run:
+
+./auto-everything.sh
+
+now to make a docker container, run
+
+'make docker'
