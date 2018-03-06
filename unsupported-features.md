@@ -26,8 +26,7 @@ since they're too hard to implement.
 ### Python
 
 - asynchronous code
-- 3rd-party libraries
-- infinite loops - server simply times out without a good error message
+- some infinite loops: the server times out without showing partial results or a good error messages
 - some Unicode, especially in Python 2
 
 
@@ -42,6 +41,9 @@ since they're too hard to implement.
 - Passing in command-line arguments via argc/argv
 - If you're behind some kinds of firewalls or proxy servers, sometimes
   the visualizer doesn't work
+- Reading from external files
+- 3rd-party libraries
+- Long-running code
 
 Look through these issue trackers for additional bugs and unsupported
 features:
