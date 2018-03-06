@@ -28,7 +28,7 @@ since they're too hard to implement.
 - asynchronous code
 - 3rd-party libraries
 - infinite loops - server simply times out without a good error message
-- Unicode especially in Python 2, and raw_input()
+- some Unicode, especially in Python 2
 
 
 ### Ruby
