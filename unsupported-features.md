@@ -40,6 +40,8 @@ since they're too hard to implement.
 
 - Unicode doesn't work too well in general, so use ASCII characters when possible
 - Passing in command-line arguments via argc/argv
+- If you're behind some kinds of firewalls or proxy servers, sometimes
+  the visualizer doesn't work
 
 Look through these issue trackers for additional bugs and unsupported
 features:
