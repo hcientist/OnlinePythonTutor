@@ -1,0 +1,13 @@
+Example root crontab:
+
+$ sudo crontab -l
+0 9 * * * /sbin/shutdown -r now
+0 21 * * * /sbin/shutdown -r now
+0 4 15 */2 * /home/pgbovine/letsencrypt/certbot-auto renew
+
+
+Example user crontab:
+
+$ crontab -l
+@reboot /home/pgbovine/linode-forever-processes.sh
+*/10 * * * * docker rm -f $(docker ps -a -f status=created)

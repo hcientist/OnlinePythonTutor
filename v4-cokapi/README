@@ -63,6 +63,14 @@ and configure Docker to run the individual backends in backends/
 
 See Makefile and Dockerfile in each respective directory for details!
 
+---
+I also recommend to clear out all 'created' (but not actively running)
+docker containers every ~10 minutes by putting an entry in your crontab:
+
+*/10 * * * * docker rm -f $(docker ps -a -f status=created)
+
+Check out crontabs.txt for details
+
 
 Once you start up the cokapi.js Node.js server, you can ping it with
 HTTP/HTTPS endpoints such as:
