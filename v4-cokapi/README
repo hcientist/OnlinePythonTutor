@@ -15,9 +15,9 @@ https://github.com/pgbovine/opt-cpp-backend
 ... but I decided it's easier if everything is together in one repo
 
 ---
-Instructions:
+Setup instructions:
 
-This all has been tested in the following version of Node.js for Linux:
+This has been tested in the following version of Node.js for Linux:
 node-v6.9.5-linux-x64.tar.xz
 ... which comes in this repo. Untar it in your home directory:
 
@@ -54,13 +54,15 @@ To install cokapi's node dependencies, run 'make deps'
 
 To start up the backend server, run 'make'
 
-Note that this is really really really hard-coded for my own server
-setup, so it will likely be hard for you to reproduce that setup.
+(Note that this is really really really hard-coded for my own server
+setup, so it will likely be hard for you to reproduce that setup.)
 
+---
+Before you can actually run the backends, you'll also need to install
+and configure Docker to run the individual backends in backends/
 
-You will also need to install and configure Docker to run the individual
-backends in backends/ -- see Makefile and Dockerfile in each respective
-directory.
+See Makefile and Dockerfile in each respective directory for details!
+
 
 Once you start up the cokapi.js Node.js server, you can ping it with
 HTTP/HTTPS endpoints such as:
