@@ -1,9 +1,0 @@
-# Docker tends to eat up resources such as memory, etc., which will
-# grind the machine to a halt. Here's an example crontab that, every 30
-# minutes, kills all docker processes so that we hopefully don't
-# overload the system. it also reboots the entire machine periodically
-# to flush everything out.
-
-0 * * * * docker rm -f $(docker ps -aq)
-30 * * * * docker rm -f $(docker ps -aq)
-0 9 * * * /sbin/shutdown -r now
