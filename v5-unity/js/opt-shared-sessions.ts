@@ -1201,7 +1201,8 @@ Get live help! (NEW!)
         <div id="moderationPanel"></div>
         <div style="margin-bottom: 10px;">You have requested help as <b>` +
         TogetherJS.config.get("getUserName")() +
-        `</b> (see below for queue). Anyone currently on this website can volunteer to help you, but there is no guarantee that someone will come help. <span style="color: #888; font-size: 8pt;">Use this service at your own risk. We are not responsible for the chat messages or behaviors of this site's users.</span></div>
+        // 2018-03-05: added a note about academic integrity:
+        `</b> (see below for queue). Anyone currently on this website can volunteer to help you, but there is no guarantee that someone will come help. <span style="color: #888; font-size: 8pt;">We are not responsible for the chat messages or behaviors of this site's users. It is your responsibility to follow appropriate academic integrity standards.</span></div>
         <div id="publicHelpQueue"></div>`);
       this.updateModerationPanel(); // update it right away
       this.getHelpQueue(); // update it right away
