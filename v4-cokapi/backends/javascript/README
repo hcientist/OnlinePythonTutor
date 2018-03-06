@@ -1,4 +1,3 @@
-Run 'make deps' to install node dependencies in here
+First run 'make deps' to install node dependencies
 
-and also untar node-v6.0.0-linux-x64.tar.xz so that the proper node
-binary is available
+Then run 'make' to create the proper docker container
