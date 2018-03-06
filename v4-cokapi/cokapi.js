@@ -240,7 +240,7 @@ function exec_cpp_handler(useCPP /* use bind first */, useJSONP /* use bind firs
   var exeFile;
   var args = [];
 
-  // this needs to match the docker setup in opt-cpp-backend/Dockerfile (in the https://github.com/pgbovine/opt-cpp-backend repo)
+  // must match the docker setup in backends/c_cpp/Dockerfile
   exeFile = '/usr/bin/docker'; // absolute path to docker executable
   args.push('run', '-m', MEM_LIMIT, '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/opt-cpp-backend:v1',
             'python',
