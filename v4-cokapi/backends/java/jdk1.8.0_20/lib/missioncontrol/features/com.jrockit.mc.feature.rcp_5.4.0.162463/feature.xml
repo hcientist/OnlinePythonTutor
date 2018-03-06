@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.jrockit.mc.feature.rcp"
+      label="%name"
+      version="5.4.0.162463"
+      provider-name="%provider">
+
+   <description url="%descriptionUrl">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseUrl">
+      %license
+   </license>
+
+   <includes
+         id="com.jrockit.mc.feature.console"
+         version="5.4.0.162463"/>
+
+   <includes
+         id="org.eclipse.rcp"
+         version="3.8.2.v20130118-180157-96BuGOZFxwOAeG8Ofmqicz0tPK"/>
+
+   <includes
+         id="com.jrockit.mc.feature.rcp.ja"
+         version="5.4.0.162463"/>
+
+   <includes
+         id="com.jrockit.mc.feature.core"
+         version="5.4.0.162463"/>
+
+   <includes
+         id="com.jrockit.mc.feature.rcp.zh_CN"
+         version="5.4.0.162463"/>
+
+   <includes
+         id="org.eclipse.help"
+         version="1.4.1.v20120912-145617-8R7xFOXFLWUl7PpMEeZNIGkb4"/>
+
+   <includes
+         id="com.jrockit.mc.feature.flightrecorder"
+         version="5.4.0.162463"/>
+
+   <includes
+         id="org.eclipse.equinox.p2.rcp.feature"
+         version="1.1.0.v20121211-153934-785EoBqNKNZz-DW7sUc8hFwz00wd"/>
+
+   <plugin
+         id="com.jrockit.mc.rcp.application"
+         download-size="0"
+         install-size="0"
+         version="5.4.0.162463"
+         unpack="false"/>
+
+   <plugin
+         id="com.jrockit.mc.rcp.application.ja"
+         nl="ja_JP,ja"
+         download-size="0"
+         install-size="0"
+         version="5.4.0.162463"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="com.jrockit.mc.rcp.application.zh_CN"
+         nl="zh_CN"
+         download-size="0"
+         install-size="0"
+         version="5.4.0.162463"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.core.resources"
+         download-size="0"
+         install-size="0"
+         version="3.8.1.v20121114-124432"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.core.runtime"
+         download-size="0"
+         install-size="0"
+         version="3.8.0.v20120521-2346"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.jface.text"
+         download-size="0"
+         install-size="0"
+         version="3.8.2.v20121126-164145"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ui"
+         download-size="0"
+         install-size="0"
+         version="3.8.2.v20121018-234953"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ui.forms"
+         download-size="0"
+         install-size="0"
+         version="3.5.200.v20120521-2332"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ui.views"
+         download-size="0"
+         install-size="0"
+         version="3.6.100.v20120521-2332"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.core.filesystem"
+         download-size="0"
+         install-size="0"
+         version="1.3.200.v20130115-145044"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.core.runtime.compatibility.registry"
+         download-size="0"
+         install-size="0"
+         version="3.5.100.v20120521-2346"
+         fragment="true"/>
+
+   <plugin
+         id="org.eclipse.osgi.services"
+         download-size="0"
+         install-size="0"
+         version="3.3.100.v20120522-1822"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.text"
+         download-size="0"
+         install-size="0"
+         version="3.5.200.v20120523-1310"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.core.net"
+         download-size="0"
+         install-size="0"
+         version="1.2.200.v20120914-093638"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.equinox.security"
+         download-size="0"
+         install-size="0"
+         version="1.1.100.v20120522-1841"
+         unpack="false"/>
+
+   <plugin
+         id="com.jrockit.mc.rcp.intro"
+         download-size="0"
+         install-size="0"
+         version="5.4.0.162463"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ui.intro"
+         download-size="0"
+         install-size="0"
+         version="3.4.200.v20120521-2344"
+         unpack="false"/>
+
+   <plugin
+         id="com.jrockit.mc.commands"
+         download-size="0"
+         install-size="0"
+         version="5.4.0.162463"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.equinox.ds"
+         download-size="0"
+         install-size="0"
+         version="1.4.1.v20120926-201320"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.equinox.simpleconfigurator"
+         download-size="0"
+         install-size="0"
+         version="1.0.301.v20120914-163612"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.equinox.common"
+         download-size="0"
+         install-size="0"
+         version="3.6.100.v20120522-1841"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ui.net"
+         download-size="0"
+         install-size="0"
+         version="1.2.101.v20120914-093638"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.equinox.event"
+         download-size="0"
+         install-size="0"
+         version="1.2.200.v20120522-2049"
+         unpack="false"/>
+
+   <plugin
+         id="javax.el"
+         download-size="0"
+         install-size="0"
+         version="2.2.0.v201108011116"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.equinox.p2.director.app"
+         download-size="0"
+         install-size="0"
+         version="1.0.300.v20120428-0517"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.equinox.p2.reconciler.dropins"
+         download-size="0"
+         install-size="0"
+         version="1.1.200.v20120301-2145"
+         unpack="false"/>
+
+</feature>

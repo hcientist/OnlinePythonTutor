@@ -18,19 +18,20 @@ MAINTAINER Philip Guo <philip@pgbovine.net>
 # Uncomment the following line in /etc/default/docker DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4"
 # Restart the Docker service sudo service docker restart
 
-# Follow these instructions for installing Oracle's official Java 8
-# http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html
-RUN apt-get update && apt-get install -y software-properties-common
-RUN apt-add-repository ppa:webupd8team/java
-RUN apt-get update
-RUN yes | apt-get install -y oracle-java8-installer # pipe 'y' using 'yes' to agree to Oracle's terms of service for installer
+# March 2018: use the pre-packed version of the JDK in this directory instead
+# of trying to download from a repo, since Dave Pritchard originally made the
+# visualizer to work with this specific version circa 2013!
+# (why didn't i include a tar/zip file? because it's too big to fit into
+# GitHub's free accounts with a 100MB limit, so i had to unzip it before
+# putting it in my repo!)
+ADD jdk1.8.0_20/ /tmp/jdk1.8.0_20
 
 RUN mkdir /tmp/java_jail
 RUN mkdir /tmp/java_jail/cp
 ADD java_jail/cp/ /tmp/java_jail/cp
 
 # compile all Java files within cp/
-RUN cd /tmp/java_jail/cp && find . -name "*.java" -print | xargs javac -Xlint:unchecked -cp .:javax.json-1.0.jar:/usr/lib/jvm/java-8-oracle/lib/tools.jar
+RUN cd /tmp/java_jail/cp && find . -name "*.java" -print | xargs /tmp/jdk1.8.0_20/bin/javac -Xlint:unchecked -cp .:javax.json-1.0.jar:/tmp/jdk1.8.0_20/lib/tools.jar
 
 COPY run-java-backend.sh /tmp/
 RUN chmod a+x /tmp/run-java-backend.sh

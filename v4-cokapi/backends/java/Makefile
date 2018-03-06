@@ -8,3 +8,7 @@ test:
 
 bash:
 	docker run -m 512M -t -i --rm --user=netuser --net=none --cap-drop all pgbovine/cokapi-java:v1 bash
+
+
+local:
+	cd java_jail/cp && make
