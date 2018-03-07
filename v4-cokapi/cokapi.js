@@ -178,7 +178,8 @@ function exec_java_handler(useJSONP /* use bind first */, req, res) {
 
   // must match the docker setup in backends/java/Dockerfile
   exeFile = '/usr/bin/docker'; // absolute path to docker executable
-  args.push('run', '-m', MEM_LIMIT, '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi-java:v1',
+  // increase memory limit for Java to 1024M to see if it helps ...
+  args.push('run', '-m', '1024M', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi-java:v1',
             '/tmp/run-java-backend.sh',
             inputObjJSON);
 
