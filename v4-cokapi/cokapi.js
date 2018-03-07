@@ -274,6 +274,8 @@ if (args.length > 0) {
   } else if (args[0] === 'https8001') {
     PORT = 8001;
     useHttps = true;
+  } else {
+    assert(false);
   }
 }
 
