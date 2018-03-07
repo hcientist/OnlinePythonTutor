@@ -40,11 +40,11 @@ since they're too hard to implement.
 ### Other (language-agnostic)
 
 - Unicode doesn't work too well in general, so use ASCII characters when possible
-- Passing in command-line arguments via argc/argv
+- Passing in command-line arguments via argv[] array
 - If you're behind some kinds of firewalls or proxy servers, sometimes
   the visualizer doesn't work
 - Reading from external files
-- 3rd-party libraries
+- Importing external 3rd-party libraries
 - Code that is too large in size (shorten your code to smaller examples!)
 - Code that runs for a long time
 
