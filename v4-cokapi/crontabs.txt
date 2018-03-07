@@ -10,4 +10,4 @@ Example user crontab to periodically flush away docker containers:
 
 $ crontab -l
 @reboot /home/pgbovine/linode-forever-processes.sh
-*/15 * * * * docker rm -f $(docker ps -aq)
+*/5 * * * * docker rm -f $(docker ps -aq)
