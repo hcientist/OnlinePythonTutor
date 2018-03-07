@@ -61,7 +61,7 @@ function postExecHandler(res, useJSONP, err, stdout, stderr) {
     if (err.killed) {
       // timeout!
       errTrace = {code: '', trace: [{'event': 'uncaught_exception',
-                                     'exception_msg': 'Error: Your code ran for more than ' + TIMEOUT_SECS + ' seconds.\nThe server may be overloaded right now.\nPlease try again later, or shorten your code. [#BackendError]'}]};
+                                     'exception_msg': 'Error: Your code ran for more than ' + TIMEOUT_SECS + ' seconds. It may have an INFINITE LOOP.\nOr the server may be OVERLOADED right now.\nPlease try again later, or shorten your code. [#BackendError]'}]};
       if (useJSONP) {
         res.jsonp(errTrace /* return an actual object, not a string */);
       } else {
