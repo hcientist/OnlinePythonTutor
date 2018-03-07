@@ -79,8 +79,8 @@ export abstract class AbstractBaseFrontend {
   // these settings are all customized for my own server setup,
   // so you will need to customize for your server:
   serverRoot = (window.location.protocol === 'https:') ?
-                'https://cokapi.com:8001/' : // my certificate for https is registered via cokapi.com, so use it for now
-                'http://cokapi.com:3000/'; // try cokapi.com so that hopefully it works through firewalls better than directly using IP addr
+                'https://cokapi.com/' : // my certificate for https is registered via cokapi.com, so use it for now
+                'http://cokapi.com/';   // try cokapi.com so that hopefully it works through firewalls better than directly using IP addr
 
   // see ../../v4-cokapi/cokapi.js for details
   langSettingToJsonpEndpoint = {
