@@ -35,12 +35,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // Run with an 'https' command-line flag to use https (must have
 // the proper certificate and key files, though)
 
-var IS_DEBUG = false;
-
-var PRODUCTION_PORT = 3000;
-var PRODUCTION_HTTPS_PORT = 8001;
-var DEBUG_PORT = 5001;
-
 var assert = require('assert');
 var child_process = require('child_process');
 var express = require('express');
@@ -144,11 +138,11 @@ function exec_js_handler(useJSONP /* use bind first */, isTypescript /* use bind
   child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
                           maxBuffer: MAX_BUFFER_SIZE,
-                          // make SURE docker gets the kill signal;
-                          // this signal seems to allow docker to clean
-                          // up after itself to --rm the container, but
-                          // double-check with 'docker ps -a'
-                          killSignal: 'SIGINT'},
+                          // SIGINT isn't as "strong" but docker seems
+                          // to clean up containers better with it. the
+                          // problem with SIGKILL is that containers
+                          // don't seem to be properly cleaned up ...
+                          killSignal: 'SIGKILL'},
                          postExecHandler.bind(null, res, useJSONP));
 }
 
@@ -191,11 +185,11 @@ function exec_java_handler(useJSONP /* use bind first */, req, res) {
   child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
                           maxBuffer: MAX_BUFFER_SIZE,
-                          // make SURE docker gets the kill signal;
-                          // this signal seems to allow docker to clean
-                          // up after itself to --rm the container, but
-                          // double-check with 'docker ps -a'
-                          killSignal: 'SIGINT'},
+                          // SIGINT isn't as "strong" but docker seems
+                          // to clean up containers better with it. the
+                          // problem with SIGKILL is that containers
+                          // don't seem to be properly cleaned up ...
+                          killSignal: 'SIGKILL'},
                          postExecHandler.bind(null, res, useJSONP));
 }
 
@@ -220,11 +214,11 @@ function exec_ruby_handler(useJSONP /* use bind first */, req, res) {
   child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
                           maxBuffer: MAX_BUFFER_SIZE,
-                          // make SURE docker gets the kill signal;
-                          // this signal seems to allow docker to clean
-                          // up after itself to --rm the container, but
-                          // double-check with 'docker ps -a'
-                          killSignal: 'SIGINT'},
+                          // SIGINT isn't as "strong" but docker seems
+                          // to clean up containers better with it. the
+                          // problem with SIGKILL is that containers
+                          // don't seem to be properly cleaned up ...
+                          killSignal: 'SIGKILL'},
                          postExecHandler.bind(null, res, useJSONP));
 }
 
@@ -251,11 +245,11 @@ function exec_cpp_handler(useCPP /* use bind first */, useJSONP /* use bind firs
   child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
                           maxBuffer: MAX_BUFFER_SIZE,
-                          // make SURE docker gets the kill signal;
-                          // this signal seems to allow docker to clean
-                          // up after itself to --rm the container, but
-                          // double-check with 'docker ps -a'
-                          killSignal: 'SIGINT'},
+                          // SIGINT isn't as "strong" but docker seems
+                          // to clean up containers better with it. the
+                          // problem with SIGKILL is that containers
+                          // don't seem to be properly cleaned up ...
+                          killSignal: 'SIGKILL'},
                          postExecHandler.bind(null, res, useJSONP));
 }
 
@@ -264,33 +258,45 @@ function exec_cpp_handler(useCPP /* use bind first */, useJSONP /* use bind firs
 var https = require('https');
 var fs = require('fs');
 
-// obsolete as of 2017-06-28
-/*
-var options = {
-  key: fs.readFileSync('cokapi.com.key'),
-  cert: fs.readFileSync('cokapi.com-BUNDLE.crt')
-};
-*/
-
-// added letsencrypt support on 2017-06-28 -- MAKE SURE we have read permissions
-var options = {
-  key: fs.readFileSync('/etc/letsencrypt/live/cokapi.com/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/cokapi.com/cert.pem'),
-  ca: fs.readFileSync('/etc/letsencrypt/live/cokapi.com/chain.pem')
-};
+// to use low-numbered ports, Node must be allowed to bind to ports lower than 1024.
+// e.g., run: sudo setcap 'cap_net_bind_service=+ep' <node executable>
+// defaults:
+var PORT = 80;
+var useHttps = false;
 
 var args = process.argv.slice(2);
-if (args.length > 0 && args[0] === 'https') {
+if (args.length > 0) {
+  if (args[0] === 'https') {
+    PORT = 443;
+    useHttps = true;
+  } else if (args[0] === 'http3000') {
+    PORT = 3000;
+  } else if (args[0] === 'https8001') {
+    PORT = 8001;
+    useHttps = true;
+  } else {
+    assert(false);
+  }
+}
+
+if (useHttps) {
+  // added letsencrypt support on 2017-06-28 -- MAKE SURE we have read permissions
+  var options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/cokapi.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/cokapi.com/cert.pem'),
+    ca: fs.readFileSync('/etc/letsencrypt/live/cokapi.com/chain.pem')
+  };
+
   var server = https.createServer(options, app).listen(
-    IS_DEBUG ? DEBUG_PORT : PRODUCTION_HTTPS_PORT,
+    PORT,
     function() {
       var host = server.address().address;
       var port = server.address().port;
-      console.log('https app listening at http://%s:%s', host, port);
+      console.log('https app listening at https://%s:%s', host, port);
   });
 } else {
   var server = app.listen(
-    IS_DEBUG ? DEBUG_PORT : PRODUCTION_PORT,
+    PORT,
     function() {
       var host = server.address().address;
       var port = server.address().port;
