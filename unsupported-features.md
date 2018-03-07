@@ -10,6 +10,8 @@ since they're too hard to implement.
 - unions
 - some complex typedefs
 - taking text input from user using scanf(), cin >>, etc.
+- code with memory-related errors: it will fail-fast using [Valgrind
+  Memcheck](http://valgrind.org/docs/manual/mc-manual.html)
 - [doesn't show when function parameters get mutated](https://github.com/pgbovine/opt-cpp-backend/issues/57)
 - [function return values are not visualized](https://github.com/pgbovine/opt-cpp-backend/issues/4)
 - [stack arrays without compile-time sizes](https://github.com/pgbovine/opt-cpp-backend/issues/44)
@@ -38,12 +40,13 @@ since they're too hard to implement.
 ### Other (language-agnostic)
 
 - Unicode doesn't work too well in general, so use ASCII characters when possible
-- Passing in command-line arguments via argc/argv
+- Passing in command-line arguments via argv[] array
 - If you're behind some kinds of firewalls or proxy servers, sometimes
   the visualizer doesn't work
 - Reading from external files
-- 3rd-party libraries
-- Long-running code
+- Importing external 3rd-party libraries
+- Code that is too large in size (shorten your code to smaller examples!)
+- Code that runs for a long time
 
 Look through these issue trackers for additional bugs and unsupported
 features:
