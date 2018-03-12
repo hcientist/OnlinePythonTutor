@@ -443,12 +443,11 @@ export abstract class AbstractBaseFrontend {
   setSurveyHTML() {
     // use ${this.userUUID} within the string ...
     var survey_v14 = `
-    <p style="font-size: 10pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">
+    <p style="font-size: 9pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">
 
-    <div style="margin-bottom: 12px; font-size: 9pt;">
-      Created by <a href="https://twitter.com/pgbovine" target="_blank">@pgbovine</a>. Keep this tool free by making a <a style="font-size: 10pt; font-weight: bold;" href="http://pgbovine.net/support.htm" target="_blank">small donation</a> (PayPal, Patreon, credit/debit card)
-    </div>
-    <span>Support our research by completing a <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=${this.userUUID}" target="_blank"><b>short user survey</b></a></span>
+    Help improve this tool by completing a <a style="font-size: 10pt; font-weight: bold;" href="https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=${this.userUUID}" target="_blank">short user survey</a>
+    <br/>
+    Keep this tool free by making a <a style="font-size: 10pt; font-weight: bold;" href="http://pgbovine.net/support.htm" target="_blank">small donation</a> (PayPal, Patreon, credit/debit card)
     </p>`;
     $('#surveyPane').html(survey_v14);
   }
