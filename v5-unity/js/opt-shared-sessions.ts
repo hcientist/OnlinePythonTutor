@@ -432,6 +432,10 @@ Get live help! (NEW!)
       data: {user_uuid: this.userUUID, lang: curState.py, mode: curState.mode, origin: curState.origin},
       error: () => {
         console.log('/getHelpQueue error');
+        // hide all shared session related stuff if you can't even
+        // getHelpQueue successfully, because that means you likely
+        // can't get connected to the chat server at all:
+        $("td#headerTdLeft").hide(); // TODO: make a better name for this!
 
         if (this.wantsPublicHelp) {
           $("#publicHelpQueue").html('ERROR: help server is down. If you had previously asked for help, something is wrong; stop this session and try again later.');
@@ -440,6 +444,11 @@ Get live help! (NEW!)
         }
       },
       success: (resp) => {
+        if (!$("td#headerTdLeft").is(":visible") ){
+          console.log('td#headerTdLeft show');
+          $("td#headerTdLeft").show(); // TODO: make a better name for this!
+        }
+
         var displayEmptyQueueMsg = false;
         var me = this;
         if (resp && resp.length > 0) {
