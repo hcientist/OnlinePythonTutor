@@ -138,11 +138,11 @@ function exec_js_handler(useJSONP /* use bind first */, isTypescript /* use bind
   child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
                           maxBuffer: MAX_BUFFER_SIZE,
-                          // SIGINT isn't as "strong" but docker seems
-                          // to clean up containers better with it. the
-                          // problem with SIGKILL is that containers
-                          // don't seem to be properly cleaned up ...
-                          killSignal: 'SIGKILL'},
+                          // make SURE docker gets the kill signal;
+                          // this signal seems to allow docker to clean
+                          // up after itself to --rm the container, but
+                          // double-check with 'docker ps -a'
+                          killSignal: 'SIGINT'},
                          postExecHandler.bind(null, res, useJSONP));
 }
 
@@ -178,19 +178,18 @@ function exec_java_handler(useJSONP /* use bind first */, req, res) {
 
   // must match the docker setup in backends/java/Dockerfile
   exeFile = '/usr/bin/docker'; // absolute path to docker executable
-  // increase memory limit for Java to 1024M to see if it helps ...
-  args.push('run', '-m', '1024M', '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi-java:v1',
+  args.push('run', '-m', MEM_LIMIT, '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi-java:v1',
             '/tmp/run-java-backend.sh',
             inputObjJSON);
 
   child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
                           maxBuffer: MAX_BUFFER_SIZE,
-                          // SIGINT isn't as "strong" but docker seems
-                          // to clean up containers better with it. the
-                          // problem with SIGKILL is that containers
-                          // don't seem to be properly cleaned up ...
-                          killSignal: 'SIGKILL'},
+                          // make SURE docker gets the kill signal;
+                          // this signal seems to allow docker to clean
+                          // up after itself to --rm the container, but
+                          // double-check with 'docker ps -a'
+                          killSignal: 'SIGINT'},
                          postExecHandler.bind(null, res, useJSONP));
 }
 
@@ -215,11 +214,11 @@ function exec_ruby_handler(useJSONP /* use bind first */, req, res) {
   child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
                           maxBuffer: MAX_BUFFER_SIZE,
-                          // SIGINT isn't as "strong" but docker seems
-                          // to clean up containers better with it. the
-                          // problem with SIGKILL is that containers
-                          // don't seem to be properly cleaned up ...
-                          killSignal: 'SIGKILL'},
+                          // make SURE docker gets the kill signal;
+                          // this signal seems to allow docker to clean
+                          // up after itself to --rm the container, but
+                          // double-check with 'docker ps -a'
+                          killSignal: 'SIGINT'},
                          postExecHandler.bind(null, res, useJSONP));
 }
 
@@ -246,11 +245,11 @@ function exec_cpp_handler(useCPP /* use bind first */, useJSONP /* use bind firs
   child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
                           maxBuffer: MAX_BUFFER_SIZE,
-                          // SIGINT isn't as "strong" but docker seems
-                          // to clean up containers better with it. the
-                          // problem with SIGKILL is that containers
-                          // don't seem to be properly cleaned up ...
-                          killSignal: 'SIGKILL'},
+                          // make SURE docker gets the kill signal;
+                          // this signal seems to allow docker to clean
+                          // up after itself to --rm the container, but
+                          // double-check with 'docker ps -a'
+                          killSignal: 'SIGINT'},
                          postExecHandler.bind(null, res, useJSONP));
 }
 
