@@ -442,13 +442,15 @@ export abstract class AbstractBaseFrontend {
 
   setSurveyHTML() {
     // use ${this.userUUID} within the string ...
-    var survey_v13 = '\n\
-    <p style="font-size: 10pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">\n\
-    <div style="margin-bottom: 12px;">Keep this tool free for everyone by <a href="http://pgbovine.net/support.htm" target="_blank"><b>making a small donation</b></a> <span style="font-size: 8pt;">(PayPal, Patreon, credit/debit card)</span></div>\
-    <span>Support our research by completing a <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=';
-    survey_v13 += this.userUUID;
-    survey_v13 += '" target="_blank"><b>short user survey</b></a></span></p>';
-    $('#surveyPane').html(survey_v13);
+    var survey_v14 = `
+    <p style="font-size: 10pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">
+
+    <div style="margin-bottom: 12px; font-size: 9pt;">
+      Created by <a href="https://twitter.com/pgbovine" target="_blank">@pgbovine</a>. Keep this tool free by making a <a style="font-size: 10pt; font-weight: bold;" href="http://pgbovine.net/support.htm" target="_blank">small donation</a> (PayPal, Patreon, credit/debit card)
+    </div>
+    <span>Support our research by completing a <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=${this.userUUID}" target="_blank"><b>short user survey</b></a></span>
+    </p>`;
+    $('#surveyPane').html(survey_v14);
   }
 } // END class AbstractBaseFrontend
 
@@ -502,7 +504,18 @@ v12: simplified demographic survey which is a simplified hybrid of the v8 genera
 
 v13: same as v12 except with slightly different wording, and adding a
 call for donations (deployed on 2017-12-27)
-[see survey_v13 variable above]
+
+    // use ${this.userUUID} within the string ...
+    var survey_v13 = '\n\
+    <p style="font-size: 10pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;">\n\
+    <div style="margin-bottom: 12px;">Keep this tool free for everyone by <a href="http://pgbovine.net/support.htm" target="_blank"><b>making a small donation</b></a> <span style="font-size: 8pt;">(PayPal, Patreon, credit/debit card)</span></div>\
+    <span>Support our research by completing a <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=';
+    survey_v13 += this.userUUID;
+    survey_v13 += '" target="_blank"><b>short user survey</b></a></span></p>';
+
+
+v14: very similar to v13 (deployed on 2018-03-11)
+[see the survey_v14 variable]
 
 */
 
