@@ -190,6 +190,7 @@ var liveHelpSurvey = {
 */
 
 // third version, deployed on 2018-01-22 (modeled off of the second version above)
+/*
 var liveHelpSurvey = {
   requestHelp:   [ {prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you decide to ask for help at this time?',
                     v: 'r3a'}, // almost identical to 'r2a'
@@ -204,7 +205,21 @@ var liveHelpSurvey = {
                     v: 'h3c'},
                  ]
 };
+*/
 
+// fourth version, deployed on 2018-03-12
+var liveHelpSurvey = {
+  requestHelp:   [ {prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you decide to ask for help at this time?',
+                    v: 'r4a'},
+                   {prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you ask for help anonymously on this website rather than getting help from someone you know?',
+                    v: 'r4b'},
+                 ],
+  volunteerHelp: [ {prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhy did you decide to volunteer at this time? What motivated you to click on this particular help link?",
+                    v: 'h4a'},
+                   {prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhat is your current job or profession?",
+                    v: 'h4b'},
+                 ]
+};
 
 // randomly picks a survey item from liveHelpSurvey and mutates
 // localStorage to record that this has been randomly picked, so it won't
