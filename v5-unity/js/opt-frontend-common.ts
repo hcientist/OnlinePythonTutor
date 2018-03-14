@@ -165,8 +165,8 @@ export abstract class AbstractBaseFrontend {
           this.num414Tries++;
           $("#executeBtn").click();
         } else {
-          this.num414Tries = 0;
-          this.setFronendError(["Server error! Your code might be too long for this tool. Shorten your code and re-try."]);
+          this.setFronendError(["Server error! Your code might be too long for this tool. Shorten your code and re-try. [#CodeTooLong]"]);
+          this.num414Tries = 0; // reset this to 0 AFTER setFronendError so that in setFronendError we can know that it's a 414 error (super hacky!)
         }
       } else {
         this.setFronendError(
@@ -205,6 +205,15 @@ export abstract class AbstractBaseFrontend {
       (myArgs as any).opt_uuid = this.userUUID;
       (myArgs as any).session_uuid = this.sessionUUID;
       (myArgs as any).error_msg = errorStr;
+
+      // very subtle! if you have a 414 error, that means your original
+      // code was too long to fit in the URL, so CLEAR THE FULL CODE from
+      // myArgs, or else it will generate a URL that will give a 414 again
+      // when you run error_log.py!!! this relies on this.num414Tries not
+      // being reset yet at this point:
+      if (this.num414Tries > 0) {
+        (myArgs as any).code = '#CodeTooLong: ' + String((myArgs as any).code.length) + ' bytes';
+      }
       $.get('error_log.py', myArgs, function(dat) {}); // added this logging feature on 2018-02-18
     }
   }
