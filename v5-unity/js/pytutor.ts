@@ -3690,7 +3690,8 @@ class NavigationController {
 
   showError(msg: string) {
     if (msg) {
-      this.domRoot.find("#errorOutput").html(htmlspecialchars(msg)).show();
+      this.domRoot.find("#errorOutput").html(htmlspecialchars(msg) + `
+      <span style="font-size: 9pt; color: #666">(see <a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md" target="_blank">unsupported features</a>)</span>`).show();
     } else {
       this.domRoot.find("#errorOutput").hide();
     }

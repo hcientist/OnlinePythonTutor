@@ -182,8 +182,8 @@ div.ExecutionVisualizer textarea#vizDescriptionEditor {
 
 div.ExecutionVisualizer #errorOutput {
   color: #e93f34; /* should match brightRed JavaScript variable */
-  font-size: 12pt;
-  padding: 2px;
+  font-size: 11pt;
+  padding-top: 2px;
   line-height: 1.5em;
   margin-bottom: 4px;
 }
