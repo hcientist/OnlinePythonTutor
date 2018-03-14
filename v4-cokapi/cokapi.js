@@ -50,7 +50,7 @@ var TIMEOUT_SECS = 15;
 
 var MAX_BUFFER_SIZE = 10 * 1024 * 1024;
 
-var MEM_LIMIT = "512M";
+var MEM_LIMIT = "1024m"; // raise it from 512MB to 1024MB and measure what happens
 
 
 // bind() res and useJSONP before using

@@ -15,5 +15,6 @@ $ crontab -l
 # apparently this command removes only *stopped* containers:
 */5 * * * * docker rm $(docker ps -a -q)
 
+# very aggressively remove long-running containers ...
 @reboot /home/pgbovine/linode-forever-processes.sh
-*/5 * * * * /home/pgbovine/OnlinePythonTutor/v4-cokapi/docker-rm-long-processes.py >> /home/pgbovine/out 2>> /home/pgbovine/err
+*/1 * * * * /home/pgbovine/OnlinePythonTutor/v4-cokapi/docker-rm-long-processes.py >> /home/pgbovine/docker-rm.out 2>> /home/pgbovine/docker-rm.err
