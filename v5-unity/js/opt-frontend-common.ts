@@ -82,6 +82,8 @@ export abstract class AbstractBaseFrontend {
                 'https://cokapi.com/' : // my certificate for https is registered via cokapi.com, so use it for now
                 'http://cokapi.com/';   // try cokapi.com so that hopefully it works through firewalls better than directly using IP addr
 
+  backupHttpServerRoot = 'http://45.33.41.179/'; // this is my backup server in case the primary is too busy
+
   // see ../../v4-cokapi/cokapi.js for details
   langSettingToJsonpEndpoint = {
     '2':    null,
@@ -92,6 +94,17 @@ export abstract class AbstractBaseFrontend {
     'ruby': this.serverRoot + 'exec_ruby_jsonp',
     'c':    this.serverRoot + 'exec_c_jsonp',
     'cpp':  this.serverRoot + 'exec_cpp_jsonp',
+  };
+
+  langSettingToJsonpEndpointBackup = {
+    '2':    null,
+    '3':    null,
+    'js':   this.backupHttpServerRoot + 'exec_js_jsonp',
+    'ts':   this.backupHttpServerRoot + 'exec_ts_jsonp',
+    'java': this.backupHttpServerRoot + 'exec_java_jsonp',
+    'ruby': this.backupHttpServerRoot + 'exec_ruby_jsonp',
+    'c':    this.backupHttpServerRoot + 'exec_c_jsonp',
+    'cpp':  this.backupHttpServerRoot + 'exec_cpp_jsonp',
   };
 
   abstract executeCode(forceStartingInstr?: number, forceRawInputLst?: string[]) : any;
@@ -416,6 +429,24 @@ export abstract class AbstractBaseFrontend {
       if (jsonp_endpoint) {
         assert (pyState !== '2' && pyState !== '3');
 
+        var retryOnBackupServer = () => {
+          // first log a #TryBackup error entry:
+          this.setFronendError(["Main server is busy or has errors; re-trying using backup server ... [#TryBackup]"]);
+
+          // now re-try the query using the backup server:
+          var backup_jsonp_endpoint = this.langSettingToJsonpEndpointBackup[pyState];
+          assert(backup_jsonp_endpoint);
+          $.ajax({
+            url: backup_jsonp_endpoint,
+            // The name of the callback parameter, as specified by the YQL service
+            jsonp: "callback",
+            dataType: "jsonp",
+            data: {user_script : codeToExec,
+                   options_json: JSON.stringify(backendOptionsObj)},
+            success: callbackWrapper
+          });
+        }
+
         // for non-python, this should be a dummy script for logging
         // only, and to check whether there's a 414 error for #CodeTooLong
         $.get(backendScript,
@@ -424,7 +455,7 @@ export abstract class AbstractBaseFrontend {
                user_uuid: this.userUUID,
                session_uuid: this.sessionUUID,
                diffs_json: deltaObjStringified},
-               function(dat) {
+               (dat) => {
                 // this is super important! only if this first call is a
                 // SUCCESS do we actually make the REAL call using JSONP.
                 // the reason why is that we might get a 414 error for
@@ -438,12 +469,60 @@ export abstract class AbstractBaseFrontend {
                 // http://learn.jquery.com/ajax/working-with-jsonp/
                 $.ajax({
                   url: jsonp_endpoint,
+
+                  // for testing
+                  //url: 'http://cokapi.com/test_failure_jsonp',
+                  //url: 'http://cokapi.com/unknown_url',
+
                   // The name of the callback parameter, as specified by the YQL service
                   jsonp: "callback",
                   dataType: "jsonp",
                   data: {user_script : codeToExec,
                          options_json: JSON.stringify(backendOptionsObj)},
-                  success: callbackWrapper,
+                  success: (dataFromBackend) => {
+                    var trace = dataFromBackend.trace;
+                    var shouldRetry = false;
+
+                    // the cokapi backend responded successfully, but the
+                    // backend may have issued an error. if so, then
+                    // RETRY with backupHttpServerRoot. otherwise let it
+                    // through to callbackWrapper
+                    if (!trace ||
+                        (trace.length == 0) ||
+                        (trace[trace.length - 1].event == 'uncaught_exception')) {
+                      if (trace.length == 1) {
+                        // we should only retry if there's a legit
+                        // backend error and not just a syntax error:
+                        var msg = trace[0].exception_msg;
+                        if (msg.indexOf('#BackendError') >= 0) {
+                          shouldRetry = true;
+                        }
+                      } else {
+                        shouldRetry = true;
+                      }
+                    }
+
+                    // don't bother re-trying for https since we don't
+                    // currently have an https backup server
+                    if (window.location.protocol === 'https:') {
+                      shouldRetry = false;
+                    }
+
+                    if (shouldRetry) {
+                      retryOnBackupServer();
+                    } else {
+                      // accept our fate without retrying
+                      callbackWrapper(dataFromBackend);
+                    }
+                  },
+                  // if there's a server error, then ALWAYS retry:
+                  error: (jqXHR, textStatus, errorThrown) => {
+                    retryOnBackupServer();
+                    // use 'global: false;' below to NOT run the generic ajaxError() function
+                  },
+
+                  global: false, // VERY IMPORTANT! do not call the generic ajaxError() function when there's an error;
+                                 // only call our error handler above; http://api.jquery.com/ajaxerror/
                 });
 
                }, "text");
