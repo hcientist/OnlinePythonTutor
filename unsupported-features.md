@@ -16,7 +16,7 @@ Email philip@pgbovine.net with more bug reports and use the "Generate shortened 
 - [doesn't show when function parameters get mutated](https://github.com/pgbovine/opt-cpp-backend/issues/57)
 - [function return values are not visualized](https://github.com/pgbovine/opt-cpp-backend/issues/4)
 - [stack arrays without compile-time sizes](https://github.com/pgbovine/opt-cpp-backend/issues/44)
-
+- [read-only memory isn't visualized separately from the heap](https://github.com/pgbovine/opt-cpp-backend/issues/70)
 
 ### JavaScript
 
