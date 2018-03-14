@@ -254,6 +254,14 @@ function exec_cpp_handler(useCPP /* use bind first */, useJSONP /* use bind firs
 }
 
 
+// test
+app.get('/test_failure_jsonp', function(req, res) {
+  var errTrace = {code: '', trace: [{'event': 'uncaught_exception',
+                                 'exception_msg': "Unknown error. The server may be OVERLOADED right now; please try again later.\nYour code may also contain UNSUPPORTED FEATURES that the tool cannot handle.\nReport a bug to philip@pgbovine.net by clicking on the 'Generate shortened link'\nbutton at the bottom and including a URL in your email. [#BackendError]"}]};
+  res.jsonp(errTrace /* return an actual object, not a string */);
+});
+
+
 // https support
 var https = require('https');
 var fs = require('fs');
