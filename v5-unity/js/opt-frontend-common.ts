@@ -415,26 +415,39 @@ export abstract class AbstractBaseFrontend {
 
       if (jsonp_endpoint) {
         assert (pyState !== '2' && pyState !== '3');
-        // hack! should just be a dummy script for logging only
+
+        // for non-python, this should be a dummy script for logging
+        // only, and to check whether there's a 414 error for #CodeTooLong
         $.get(backendScript,
               {user_script : codeToExec,
                options_json: JSON.stringify(backendOptionsObj),
                user_uuid: this.userUUID,
                session_uuid: this.sessionUUID,
                diffs_json: deltaObjStringified},
-               function(dat) {} /* don't do anything since this is a dummy call */, "text");
+               function(dat) {
+                // this is super important! only if this first call is a
+                // SUCCESS do we actually make the REAL call using JSONP.
+                // the reason why is that we might get a 414 error for
+                // #CodeTooLong if we try to execute this code, in which
+                // case we want to either re-try or bail out. this also
+                // keeps the control flow synchronous. we always try
+                // the original backendScript, and then we try
+                // jsonp_endpoint only if that's successful:
 
-        // the REAL call uses JSONP
-        // http://learn.jquery.com/ajax/working-with-jsonp/
-        $.ajax({
-          url: jsonp_endpoint,
-          // The name of the callback parameter, as specified by the YQL service
-          jsonp: "callback",
-          dataType: "jsonp",
-          data: {user_script : codeToExec,
-                 options_json: JSON.stringify(backendOptionsObj)},
-          success: callbackWrapper,
-        });
+                // the REAL call uses JSONP
+                // http://learn.jquery.com/ajax/working-with-jsonp/
+                $.ajax({
+                  url: jsonp_endpoint,
+                  // The name of the callback parameter, as specified by the YQL service
+                  jsonp: "callback",
+                  dataType: "jsonp",
+                  data: {user_script : codeToExec,
+                         options_json: JSON.stringify(backendOptionsObj)},
+                  success: callbackWrapper,
+                });
+
+               }, "text");
+
       } else {
         // for Python 2 or 3, directly execute backendScript
         assert (pyState === '2' || pyState === '3');
