@@ -39,6 +39,7 @@ Email philip@pgbovine.net with more bug reports and use the "Generate shortened 
 - Unicode doesn't work well in general (especially for Ruby and Python 2); use ASCII characters when possible
 - Passing in command-line arguments via argv[] array
 - Multi-threaded or concurrent code
+- Anything involving GUI programming or GUI/webpage components
 - If you're behind some kinds of firewalls or proxy servers, sometimes
   the visualizer doesn't work
 - Reading data from external files; put data inline in strings when possible
