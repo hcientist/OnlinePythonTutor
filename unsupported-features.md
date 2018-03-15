@@ -24,6 +24,7 @@ Email philip@pgbovine.net with more bug reports and use the "Generate shortened 
 - asynchronous event-driven code
 - variable names that contain special characters like '$'
 - Date() object
+- anything that operates on webpages, such DOM manipulation, alert(), prompt(), confirm(), etc.
 
 
 ### Python
