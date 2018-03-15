@@ -43,6 +43,7 @@ Email philip@pgbovine.net with more bug reports and use the "Generate shortened 
 - If you're behind some kinds of firewalls or proxy servers, sometimes
   the visualizer doesn't work
 - Reading data from external files; put data inline in strings when possible
+- Interfacing with databases, networks, or other external resources
 - Importing external 3rd-party libraries
 - Code that is too large in size; shorten your code!
 - Code that runs for too many steps (e.g., > 1,000 steps) or for a long time
