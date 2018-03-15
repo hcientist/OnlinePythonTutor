@@ -374,6 +374,8 @@ export abstract class AbstractBaseFrontend {
                             backendOptionsObj, frontendOptionsObj,
                             execCallback) {
       var callbackWrapper = (dataFromBackend) => {
+        this.clearFrontendError(); // clear old errors first; execCallback may put in a new error:
+
         execCallback(dataFromBackend); // call the main event first
 
         // run this at the VERY END after all the dust has settled
