@@ -277,8 +277,12 @@ export class OptFrontend extends AbstractBaseFrontend {
       }
 
       $.doTimeout('pyInputAceEditorChange', CODE_SNAPSHOT_DEBOUNCE_MS, this.snapshotCodeDiff.bind(this)); // debounce
-      this.clearFrontendError();
-      s.clearAnnotations();
+
+      // starting on 2018-03-14 -- do NOT clear frontend errors and
+      // annotations when you edit the code, since you may still want to
+      // see the old error messages ... commented out these two lines:
+      //this.clearFrontendError();
+      //s.clearAnnotations();
     });
 
     // don't do real-time syntax checks:
