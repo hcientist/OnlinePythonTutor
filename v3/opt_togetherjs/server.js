@@ -779,7 +779,7 @@ var curLogSize = 0;
 
 function pgLogWrite(logObj) {
   var s = JSON.stringify(logObj);
-  console.log(s); // debug
+  //console.log(s); // debug
 
   // rotate log every MAX_LOG_SIZE entries
   if (!pgLogFile || curLogSize >= MAX_LOG_SIZE) {
