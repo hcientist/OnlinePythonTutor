@@ -3106,12 +3106,12 @@ var CodeDisplay = (function () {
         // the "Live Programming Mode" button in the code editor:
         //<span id="liveModeSpan" style="display: none;">| <a id="editLiveModeBtn" href="#">Live programming</a></a>\
         //
-        // also changed 'Edit code' link to '<b>Edit your code</b>' to make
+        // also changed 'Edit code' link to 'Edit your code' to make
         // it more clear to users
         var codeDisplayHTML = '<div id="codeDisplayDiv">\
          <div id="langDisplayDiv"></div>\
          <div id="pyCodeOutputDiv"/>\
-         <div id="editCodeLinkDiv"><a id="editBtn"><b>Edit your code</b></a>\
+         <div id="editCodeLinkDiv"><a id="editBtn">Edit your code</a>\
          </div>\
          <div id="legendDiv"/>\
          <div id="codeFooterDocs">Click a line of code to set a breakpoint; use the Back and Forward buttons to jump there.</div>\
