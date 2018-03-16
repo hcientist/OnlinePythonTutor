@@ -599,14 +599,21 @@ export class OptFrontend extends AbstractBaseFrontend {
         this.enterEditMode();
       });
       var v = $('#pythonVersionSelector').val();
+
+      // 2018-03-15 - removed "Live programming" link from
+      // visualization mode to simplify the UI, even if it drives
+      // fewer people to live programming mode; they can always click
+      // the "Live Programming Mode" button in the code editor:
+      /*
       if (v === 'js' || v === '2' || v === '3') {
         var myArgs = this.getAppState();
-        var urlStr = $.param.fragment('live.html', myArgs, 2 /* clobber all */);
+        var urlStr = $.param.fragment('live.html', myArgs, 2); // clobber all
         $("#pyOutputPane #liveModeSpan").show();
         $('#pyOutputPane #editLiveModeBtn').off().click(this.openLiveModeUrl.bind(this));
       } else {
         $("#pyOutputPane #liveModeSpan").hide();
       }
+      */
 
       $(document).scrollTop(0); // scroll to top to make UX better on small monitors
 
