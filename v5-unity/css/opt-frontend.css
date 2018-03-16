@@ -94,7 +94,7 @@ button.surveyBtnBig {
 }
 
 #footer {
-  color: #888;
+  color: #999;
   font-size: 9pt;
   border-top: 1px solid #bbbbbb;
   padding-top: 5px;
@@ -116,7 +116,7 @@ button.surveyBtnBig {
 .togetherjsBtn {
   /*color: #b80000;*/
   color: #e93f34;
-  font-size: 10pt;
+  font-size: 9pt;
   padding: 4px;
   margin-top: 3px;
 }

@@ -315,8 +315,8 @@ export class OptFrontendSharedSessions extends OptFrontend {
 
     var ssDiv = `
 
-<button id="requestHelpBtn" type="button" class="togetherjsBtn" style="margin-bottom: 6pt; font-weight: bold;">
-Get live help! (NEW!)
+<button id="requestHelpBtn" type="button" class="togetherjsBtn" style="font-size: 11pt; margin-bottom: 6pt; font-weight: bold;">
+Get live help!
 </button>
 
 <div id="ssDiv">
@@ -332,11 +332,6 @@ Get live help! (NEW!)
   <button id="stopTogetherJSBtn" type="button" class="togetherjsBtn">
   Stop this chat session
   </button>
-
-  <div style="width: 200px; font-size: 8pt; color: #666; margin-top: 8px;">
-  Note that your chat logs and code may be recorded, anonymized, and
-  analyzed for our research.
-  </div>
 </div>
 `;
 
@@ -1263,8 +1258,7 @@ Get live help! (NEW!)
         <div id="moderationPanel"></div>
         <div style="margin-bottom: 10px;">You have requested help as <b>` +
         TogetherJS.config.get("getUserName")() +
-        // 2018-03-05: added a note about academic integrity:
-        `</b> (see below for queue). Anyone currently on this website can volunteer to help you, but there is no guarantee that someone will come help. <span style="color: #888; font-size: 8pt;">We are not responsible for the chat messages or behaviors of this site's users. It is your responsibility to follow appropriate academic integrity standards.</span></div>
+        `</b> (see below for queue). Anyone currently on this website can volunteer to help you, but there is no guarantee that someone will come help. <span style="color: #999; font-size: 8pt;">We are not responsible for the chat messages or behaviors of this site's users.</span></div>
         <div id="publicHelpQueue"></div>`);
       this.updateModerationPanel(); // update it right away
       this.getHelpQueue(); // update it right away
@@ -1555,7 +1549,7 @@ Get live help! (NEW!)
           });
 
           otherActiveEntries.forEach((e) => {
-            var curStr = '\n- Click to help ' + e.username;
+            var curStr = '\n- Help ' + e.username;
             var langName = this.langToEnglish(e.lang);
 
             if (e.country && e.city) {
@@ -1579,7 +1573,7 @@ Get live help! (NEW!)
           });
 
           if (chatMsgs.length > 0) {
-            var finalMsg = 'Please be patient and keep working normally. Note that these other users also need help. If you help them, maybe they can help you in return.';
+            var finalMsg = 'Please be patient and keep working normally. These other users also need help right now. If you help them, maybe they can help you in return.';
             chatMsgs.forEach((e) => {
               finalMsg += e;
             });
