@@ -665,6 +665,7 @@ Get live help! (NEW!)
         if (confirmation) {
           TogetherJS.send({type: "kickOut", idToKick: idToKick});
           me.peopleIveKickedOut.push(idToKick);
+          me.takeFullCodeSnapshot(); // 2018-03-15: save a snapshot at the time when you kick someone out, so that UNDO button will appear to show you older snapshots
         }
       });
     } else {
@@ -847,11 +848,6 @@ Get live help! (NEW!)
           curStr = 'Someone from ' + curStr + ' just joined this chat.';
           this.chatbotPostMsg(curStr);
         }
-
-        // 2018-03-15: take a full snapshot whenever a new user joins
-        // the chat. that way, in case they deface your code, you're
-        // guaranteed to have a snapshot you can undo
-        this.takeFullCodeSnapshot();
       }
     });
 
