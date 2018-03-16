@@ -22951,6 +22951,7 @@ var OptFrontendSharedSessions = (function (_super) {
                 if (confirmation) {
                     exports.TogetherJS.send({ type: "kickOut", idToKick: idToKick });
                     me.peopleIveKickedOut.push(idToKick);
+                    me.takeFullCodeSnapshot(); // 2018-03-15: save a snapshot at the time when you kick someone out, so that UNDO button will appear to show you older snapshots
                 }
             });
         }
@@ -23125,10 +23126,6 @@ var OptFrontendSharedSessions = (function (_super) {
                     curStr = 'Someone from ' + curStr + ' just joined this chat.';
                     _this.chatbotPostMsg(curStr);
                 }
-                // 2018-03-15: take a full snapshot whenever a new user joins
-                // the chat. that way, in case they deface your code, you're
-                // guaranteed to have a snapshot you can undo
-                _this.takeFullCodeSnapshot();
             }
         });
         // This event triggers when you first join a session and say 'hello',
