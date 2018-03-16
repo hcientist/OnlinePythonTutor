@@ -272,6 +272,8 @@ export class OptFrontendSharedSessions extends OptFrontend {
   isIdle = false;
   peopleIveKickedOut = []; // #savage
 
+  sessionActivityStats = {};
+
   fullCodeSnapshots = []; // a list of full snapshots of code taken at given times, with:
   curPeekSnapshotIndex = -1;  // current index you're peeking at inside of fullCodeSnapshots, -1 if not peeking at anything
 
@@ -885,6 +887,35 @@ Get live help! (NEW!)
       }
     });
 
+    // someone ELSE sent a chat
+    TogetherJS.hub.on("togetherjs.chat", (msg) => {
+      var obj = (this.sessionActivityStats as any).numChatsByPeers;
+      if (!(obj[msg.clientId])) {
+        obj[msg.clientId] = 0;
+      }
+      obj[msg.clientId]++;
+    });
+
+    // someone ELSE edited code
+    TogetherJS.hub.on("editCode", (msg) => {
+      var obj = (this.sessionActivityStats as any).numCodeEditsByPeers;
+      if (!(obj[msg.clientId])) {
+        obj[msg.clientId] = 0;
+      }
+      obj[msg.clientId]++;
+    });
+
+    // someone (other than you) left this session; if *you* left, then
+    // TogetherJS will be shut off by the time this signal is sent, so
+    // this callback function won't run
+    TogetherJS.hub.on("togetherjs.bye", (msg) => {
+      this.takeFullCodeSnapshot(); // take a snapshot whenever someone leaves so that we can undo to the point right before they left
+
+      console.log('PEER JUST LEFT: # chats, # code edits:',
+                  (this.sessionActivityStats as any).numChatsByPeers[msg.clientId],
+                  (this.sessionActivityStats as any).numCodeEditsByPeers[msg.clientId]);
+    });
+
     TogetherJS.hub.on("updateOutput", this.updateOutputTogetherJsHandler.bind(this));
 
     TogetherJS.hub.on("executeCode", (msg) => {
@@ -1070,8 +1101,7 @@ Get live help! (NEW!)
       $("#sharedSessionDisplayDiv").show();
       $("#ssDiv,#testCasesParent").hide();
 
-      // send this to the server for the purposes of logging, but other
-      // clients shouldn't do anything with this data
+      // send this to the server for the purposes of logging
       if (TogetherJS.running) {
         TogetherJS.send({type: "initialAppState",
                          myAppState: this.getAppState(),
@@ -1141,6 +1171,13 @@ Get live help! (NEW!)
     this.activateRuntimeErrorSurvey = false;
     this.activateEurekaSurvey = false;
     $("#eureka_survey").remove(); // if a survey is already displayed on-screen, then kill it
+
+    this.sessionActivityStats = {
+      // Key: clientId of another person who's joined this session
+      // Value: number of times these events occurred
+      numChatsByPeers: {},
+      numCodeEditsByPeers: {},
+    };
 
     if (this.wantsPublicHelp) {
       this.initRequestPublicHelp();
