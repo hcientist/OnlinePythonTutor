@@ -3062,7 +3062,7 @@ var ProgramOutputBox = (function () {
         var stdoutHeight = '75px';
         // heuristic for code with really small outputs
         if (this.numStdoutLines <= 3) {
-            stdoutHeight = (18 * this.numStdoutLines) + 'px';
+            stdoutHeight = (25 * this.numStdoutLines) + 'px';
         }
         if (heightOverride) {
             stdoutHeight = heightOverride;
