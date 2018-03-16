@@ -644,7 +644,7 @@ Get live help! (NEW!)
           </button><br/>`);
         $("#stopRequestHelpBtn").click(this.initStopRequestingPublicHelp.bind(this));
       } else {
-        $("#moderationPanel").append('This is a private session. ');
+        $("#moderationPanel").append('This is a private session.<br/><br/>');
         if (!$("#requestHelpBtn").is(':visible')) {
           $("#requestHelpBtn").show(); // make sure there's a way to get back on the queue
         }
@@ -661,7 +661,7 @@ Get live help! (NEW!)
       var me = this; // ugh
       $("#moderationPanel .kickLink").click(function() { // need jQuery $(this) so can't use => arrow function
         var idToKick = $(this).data('clientId');
-        var confirmation = confirm('Press OK to kick and ban ' + $(this).data('username') + ' from this session.');
+        var confirmation = confirm('Press OK to kick and ban ' + $(this).data('username') + ' from this session.\n\nUndo their code changes using the UNDO/restore buttons.');
         if (confirmation) {
           TogetherJS.send({type: "kickOut", idToKick: idToKick});
           me.peopleIveKickedOut.push(idToKick);
@@ -1341,7 +1341,7 @@ Get live help! (NEW!)
       $("#codeInputWarnings #liveModeExtraWarning").remove(); // for ../live.html
       $("#codeInputWarnings").append(`
         <span id="snapshotHistory" style="font-size: 9pt; margin-left: 5px;">
-          Restore old code:
+          <span style="color: red; font-weight: bold;">UNDO</span>/restore old code:
           <button id="prevSnapshot">&lt; Prev</button>
           <span id="curSnapIndex"/>/<span id="numTotalSnaps"/>
           <button id="nextSnapshot">Next &gt;</button>
