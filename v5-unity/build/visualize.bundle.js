@@ -23382,6 +23382,7 @@ var OptFrontendSharedSessions = (function (_super) {
         this.fullCodeSnapshots = []; // a list of full snapshots of code taken at given times, with:
         this.curPeekSnapshotIndex = -1; // current index you're peeking at inside of fullCodeSnapshots, -1 if not peeking at anything
         this.initTogetherJS();
+        this.initABTest();
         this.pyInputAceEditor.getSession().on("change", function (e) {
             // unfortunately, Ace doesn't detect whether a change was caused
             // by a setValue call
@@ -23468,6 +23469,28 @@ var OptFrontendSharedSessions = (function (_super) {
             }
         });
     }
+    // for A/B testing -- store this information PER USER in localStorage,
+    // so that it can last throughout all sessions where this user
+    // used the same browser. that way, every user will consistently get
+    // put into one particular A/B test bucket.
+    OptFrontendSharedSessions.prototype.initABTest = function () {
+        if (opt_frontend_common_1.supports_html5_storage() && localStorage.getItem('abtest_settings')) {
+            this.abTestSettings = JSON.parse(localStorage.getItem('abtest_settings'));
+        }
+        else {
+            // if we don't support html5 storage or abtest_settings is
+            // undefined, then initialize it from scratch and save it
+            this.abTestSettings = {};
+            // all values in the range of [0, 1)
+            this.abTestSettings.nudge = Math.random();
+            this.abTestSettings.payItForward = Math.random();
+            this.abTestSettings.helperGreeting = Math.random();
+            if (opt_frontend_common_1.supports_html5_storage()) {
+                localStorage.setItem('abtest_settings', JSON.stringify(this.abTestSettings));
+            }
+        }
+        console.log('initABTest:', this.abTestSettings);
+    };
     OptFrontendSharedSessions.prototype.langToEnglish = function (lang) {
         if (lang === '2') {
             return 'Python2';
@@ -24407,6 +24430,11 @@ var OptFrontendSharedSessions = (function (_super) {
     };
     // send an encouraging nudge message in the chat box if you're not idle ...
     // deployed on 2017-12-10
+    //
+    // starting on 2018-03-16, set this up as an A/B test where if
+    // (this.abTestSettings.nudge < 0.5), then we do a real nudge;
+    // otherwise we don't do a nudge but log to the server that we did a
+    // fake one so we have a record if it
     OptFrontendSharedSessions.prototype.periodicMaybeChatNudge = function () {
         var _this = this;
         // only do this if you're:
@@ -24516,13 +24544,17 @@ var OptFrontendSharedSessions = (function (_super) {
                         chatMsgs.forEach(function (e) {
                             finalMsg += e;
                         });
-                        _this.chatbotPostMsg(finalMsg);
+                        // A/B test: log all nudges but only display it if it's real:
+                        var isRealNudge = (_this.abTestSettings && _this.abTestSettings.nudge < 0.5);
+                        if (isRealNudge) {
+                            _this.chatbotPostMsg(finalMsg);
+                        }
                         // log an entry on the server to aid in data analysis later:
                         var nudgeUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/nudge";
                         $.ajax({
                             url: nudgeUrl,
                             dataType: "json",
-                            data: { id: myShareId, user_uuid: _this.userUUID, entriesJSON: JSON.stringify(otherActiveEntries) },
+                            data: { isRealNudge: isRealNudge, id: myShareId, user_uuid: _this.userUUID, entriesJSON: JSON.stringify(otherActiveEntries) },
                             success: function () { },
                             error: function () { },
                         });
