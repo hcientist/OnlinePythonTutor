@@ -323,7 +323,7 @@ Get live help!
 
 <div id="ssDiv">
   <button id="sharedSessionBtn" type="button" class="togetherjsBtn" style="font-size: 9pt;">
-  Start private chat session
+  Start private chat
   </button>
   <div style="margin-top: 5px; font-size: 8pt;">
   <a href="https://www.youtube.com/watch?v=oDY7ScMPtqI" target="_blank">How do I use this?</a>
