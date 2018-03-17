@@ -273,6 +273,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
   peopleIveKickedOut = []; // #savage
 
   sessionActivityStats = {};
+  abTestSettings; // for A/B testing
 
   fullCodeSnapshots = []; // a list of full snapshots of code taken at given times, with:
   curPeekSnapshotIndex = -1;  // current index you're peeking at inside of fullCodeSnapshots, -1 if not peeking at anything
@@ -280,6 +281,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
   constructor(params={}) {
     super(params);
     this.initTogetherJS();
+    this.initABTest();
 
     this.pyInputAceEditor.getSession().on("change", (e) => {
       // unfortunately, Ace doesn't detect whether a change was caused
@@ -405,6 +407,29 @@ Get live help!
         TogetherJS();
       }
     });
+  }
+
+  // for A/B testing -- store this information PER USER in localStorage,
+  // so that it can last throughout all sessions where this user
+  // used the same browser. that way, every user will consistently get
+  // put into one particular A/B test bucket.
+  initABTest() {
+    if (supports_html5_storage() && localStorage.getItem('abtest_settings')) {
+      this.abTestSettings = JSON.parse(localStorage.getItem('abtest_settings'));
+    } else {
+      // if we don't support html5 storage or abtest_settings is
+      // undefined, then initialize it from scratch and save it
+      this.abTestSettings = {};
+
+      // all values in the range of [0, 1)
+      this.abTestSettings.nudge = Math.random();
+      this.abTestSettings.payItForward = Math.random();
+      this.abTestSettings.helperGreeting = Math.random();
+      if (supports_html5_storage()) {
+        localStorage.setItem('abtest_settings', JSON.stringify(this.abTestSettings));
+      }
+    }
+    console.log('initABTest:', this.abTestSettings);
   }
 
   langToEnglish(lang) {
@@ -1456,6 +1481,11 @@ Get live help!
 
   // send an encouraging nudge message in the chat box if you're not idle ...
   // deployed on 2017-12-10
+  //
+  // starting on 2018-03-16, set this up as an A/B test where if
+  // (this.abTestSettings.nudge < 0.5), then we do a real nudge;
+  // otherwise we don't do a nudge but log to the server that we did a
+  // fake one so we have a record if it
   periodicMaybeChatNudge() {
     // only do this if you're:
     // - currently in a chat
@@ -1577,14 +1607,19 @@ Get live help!
             chatMsgs.forEach((e) => {
               finalMsg += e;
             });
-            this.chatbotPostMsg(finalMsg);
+
+            // A/B test: log all nudges but only display it if it's real:
+            var isRealNudge = (this.abTestSettings && this.abTestSettings.nudge < 0.5);
+            if (isRealNudge) {
+              this.chatbotPostMsg(finalMsg);
+            }
 
             // log an entry on the server to aid in data analysis later:
             var nudgeUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/nudge";
             $.ajax({
               url: nudgeUrl,
               dataType: "json",
-              data: {id: myShareId, user_uuid: this.userUUID, entriesJSON: JSON.stringify(otherActiveEntries)},
+              data: {isRealNudge: isRealNudge, id: myShareId, user_uuid: this.userUUID, entriesJSON: JSON.stringify(otherActiveEntries)},
               success: function() {}, // NOP
               error: function() {},   // NOP
             });
