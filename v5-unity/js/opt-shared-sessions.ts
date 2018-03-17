@@ -268,12 +268,16 @@ export class OptFrontendSharedSessions extends OptFrontend {
   pendingCodeOutputScrollTop = null;
   updateOutputSignalFromRemote = false;
   wantsPublicHelp = false;
+  iMadeAPublicHelpRequest = false; // subtly different than wantsPublicHelp (see usage)
   disableSharedSessions = false; // if we're on mobile/tablets, disable this entirely since it doesn't work on mobile
   isIdle = false;
   peopleIveKickedOut = []; // #savage
 
   sessionActivityStats = {};
   abTestSettings; // for A/B testing
+
+  payItForwardMsg = "If you found this service useful, please take the time to help others in the future. We depend on volunteers like you to provide help.";
+  payItForwardMsgVersion = 'v1';
 
   fullCodeSnapshots = []; // a list of full snapshots of code taken at given times, with:
   curPeekSnapshotIndex = -1;  // current index you're peeking at inside of fullCodeSnapshots, -1 if not peeking at anything
@@ -417,17 +421,24 @@ Get live help!
     if (supports_html5_storage() && localStorage.getItem('abtest_settings')) {
       this.abTestSettings = JSON.parse(localStorage.getItem('abtest_settings'));
     } else {
-      // if we don't support html5 storage or abtest_settings is
-      // undefined, then initialize it from scratch and save it
       this.abTestSettings = {};
+    }
 
-      // all values in the range of [0, 1)
+    // all values in the range of [0, 1)
+    if (this.abTestSettings.nudge === undefined) {
       this.abTestSettings.nudge = Math.random();
+    }
+    if (this.abTestSettings.payItForward === undefined) {
       this.abTestSettings.payItForward = Math.random();
+    }
+    if (this.abTestSettings.helperGreeting === undefined) {
       this.abTestSettings.helperGreeting = Math.random();
-      if (supports_html5_storage()) {
-        localStorage.setItem('abtest_settings', JSON.stringify(this.abTestSettings));
-      }
+    }
+
+    // always save it again for robustness (we might have added some new
+    // keys to this user's abTestSettings object)
+    if (supports_html5_storage()) {
+      localStorage.setItem('abtest_settings', JSON.stringify(this.abTestSettings));
     }
     console.log('initABTest:', this.abTestSettings);
   }
@@ -616,7 +627,7 @@ Get live help!
 
         if (displayEmptyQueueMsg) {
           if (this.wantsPublicHelp) {
-            $("#publicHelpQueue").html('Nobody is currently asking for help. If you had previously asked for help, something is wrong; stop this session and try again later.');
+            $("#publicHelpQueue").html('Nobody is currently on the help queue. <span style="color: red; font-weight: bold;">If you have asked for help, something is not working</span>; stop this session and try again later.');
           } else {
             $("#publicHelpQueue").html('Nobody is currently asking for help using the "Get live help!" button. Be the first!');
           }
@@ -934,6 +945,43 @@ Get live help!
       console.log('PEER JUST LEFT: # chats, # code edits:',
                   (this.sessionActivityStats as any).numChatsByPeers[msg.clientId],
                   (this.sessionActivityStats as any).numCodeEditsByPeers[msg.clientId]);
+
+      // A/B test the pay-it-forward nudge
+      //
+      // if YOU were the help requester, and the person who just left had
+      // >= 10 chats or code edits, then they did SOMETHING non-trivial, so
+      // possibly pop up a pay-it-forward message. they're not
+      // guaranteed to have successfully helped you, but at least they
+      // did something and weren't just lurking silently.
+      //
+      // note that we use this.iMadeAPublicHelpRequest, which will pick up
+      // on only those requests you made by putting yourself on the public
+      // help queue
+      if (this.iMadeAPublicHelpRequest &&
+          (((this.sessionActivityStats as any).numChatsByPeers[msg.clientId] >= 10) ||
+           ((this.sessionActivityStats as any).numCodeEditsByPeers[msg.clientId] >= 10))) {
+        var isRealPayItForward = (this.abTestSettings && this.abTestSettings.payItForward < 0.5);
+
+        if (isRealPayItForward) {
+          this.chatbotPostMsg(this.payItForwardMsg);
+        }
+
+        // regardless of isRealPayItForward, log an entry on the server to aid in data analysis later:
+        // note that we co-opt the 'nudge' endpoint for simplicity
+        var nudgeUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/nudge";
+        $.ajax({
+          url: nudgeUrl,
+          dataType: "json",
+          data: {nudgeType: 'payItForward',
+                 v: this.payItForwardMsgVersion,
+                 info: 'peerJustLeft',
+                 isRealNudge: isRealPayItForward,
+                 id: TogetherJS.shareId(),
+                 user_uuid: this.userUUID},
+          success: function() {}, // NOP
+          error: function() {},   // NOP
+        });
+      }
     });
 
     TogetherJS.hub.on("updateOutput", this.updateOutputTogetherJsHandler.bind(this));
@@ -1207,10 +1255,66 @@ Get live help!
   }
 
   TogetherjsCloseHandler() {
+    // A/B test the pay-it-forward nudge
+    //
+    // if YOU were the help requester and ANYONE in your session had
+    // >= 10 chats or code edits, then they did SOMETHING non-trivial, so
+    // possibly pop up a pay-it-forward message. they're not
+    // guaranteed to have successfully helped you, but at least they
+    // did something and weren't just lurking silently.
+    //
+    // note that we use this.iMadeAPublicHelpRequest, which will pick up
+    // on only those requests you made by putting yourself on the public
+    // help queue
+    if (this.iMadeAPublicHelpRequest) {
+      var nonTrivialSession = false;
+      var ncbp = (this.sessionActivityStats as any).numChatsByPeers;
+      var ncebp = (this.sessionActivityStats as any).numCodeEditsByPeers;
+      for (var key in ncbp) {
+        if (ncbp[key] >= 10) {
+          nonTrivialSession = true;
+          break;
+        }
+      }
+      for (var key in ncebp) {
+        if (ncebp[key] >= 10) {
+          nonTrivialSession = true;
+          break;
+        }
+      }
+
+      if (nonTrivialSession) {
+        var isRealPayItForward = (this.abTestSettings && this.abTestSettings.payItForward < 0.5);
+
+        if (isRealPayItForward) {
+          // we can't use the chatbot since we just closed the TogetherJS session, so we'll have to go with an alert
+          // TODO: replace with a less annoying modal pop-up in the future, maybe from jQuery UI
+          alert(this.payItForwardMsg);
+        }
+
+        // regardless of isRealPayItForward, log an entry on the server to aid in data analysis later:
+        // note that we co-opt the 'nudge' endpoint for simplicity
+        var nudgeUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/nudge";
+        $.ajax({
+          url: nudgeUrl,
+          dataType: "json",
+          data: {nudgeType: 'payItForward',
+                 v: this.payItForwardMsgVersion,
+                 info: 'sessionStopped',
+                 isRealNudge: isRealPayItForward,
+                 //id: TogetherJS.shareId(), // we don't have a shareId anymore since the session has been stopped
+                 user_uuid: this.userUUID},
+          success: function() {}, // NOP
+          error: function() {},   // NOP
+        });
+      }
+    }
+
     if (this.appMode === "display") {
       $("#surveyHeader").show();
     }
     this.wantsPublicHelp = false; // explicitly reset it
+    this.iMadeAPublicHelpRequest = false; // explicitly reset it
   }
 
   startSharedSession(wantsPublicHelp) {
@@ -1248,6 +1352,8 @@ Get live help!
   initRequestPublicHelp() {
     assert(this.wantsPublicHelp);
     assert(TogetherJS.running);
+
+    this.iMadeAPublicHelpRequest = true; // this will always be true even if you shut the door later and don't let people in (i.e., make this into a private session)
 
     // first make a /requestPublicHelp request to the TogetherJS server:
     var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
@@ -1614,7 +1720,7 @@ Get live help!
               this.chatbotPostMsg(finalMsg);
             }
 
-            // log an entry on the server to aid in data analysis later:
+            // regardless of isRealNudge, log an entry on the server to aid in data analysis later:
             var nudgeUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/nudge";
             $.ajax({
               url: nudgeUrl,
