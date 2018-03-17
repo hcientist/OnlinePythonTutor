@@ -140,7 +140,9 @@ export class OptFrontend extends AbstractBaseFrontend {
              });
     });
 
-    $("#instructionsPane").html('Instructions: <a href="https://www.youtube.com/watch?v=h4q3UKdEFKE" target="_blank">sharing permanent links</a> | <a href="https://www.youtube.com/watch?v=Mxt9HZWgwAM" target="_blank">hiding variables</a> | <a href="https://www.youtube.com/watch?v=80ztTXP90Vs" target="_blank">setting breakpoints</a>');
+    $("#instructionsPane").html(`Advanced instructions:
+      <a href="https://www.youtube.com/watch?v=80ztTXP90Vs" target="_blank">setting breakpoints</a> |
+      <a href="https://www.youtube.com/watch?v=Mxt9HZWgwAM" target="_blank">hiding variables</a>`);
 
     // first initialize options from HTML LocalStorage. very important
     // that this code runs FIRST so that options get overridden by query

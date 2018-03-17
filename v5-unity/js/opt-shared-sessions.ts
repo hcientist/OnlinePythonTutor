@@ -593,7 +593,7 @@ Get live help!
           if (this.wantsPublicHelp) {
             $("#publicHelpQueue").html('Nobody is currently asking for help. If you had previously asked for help, something is wrong; stop this session and try again later.');
           } else {
-            $("#publicHelpQueue").html('Nobody is currently asking for help using the "Get live help!" button.');
+            $("#publicHelpQueue").html('Nobody is currently asking for help using the "Get live help!" button. Be the first!');
           }
         }
       },
