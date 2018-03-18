@@ -1371,12 +1371,31 @@ Get live help!
   initRequestPublicHelp() {
     assert(this.wantsPublicHelp);
     assert(TogetherJS.running);
+    var shareId = TogetherJS.shareId();
+
+
+    // pop up the survey BEFORE you make the request, so in case you get
+    // hung up on the prompt() and take a long time to answer the question,
+    // you're not put on the queue yet until you finish or click Cancel:
+    var surveyItem = randomlyPickSurveyItem('requestHelp');
+    var miniSurveyResponse = prompt(surveyItem.prompt);
+
+    // always log every impression, even if miniSurveyResponse is blank,
+    // since we can know how many times that survey question was ever seen:
+    var surveyUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/survey";
+    $.ajax({
+      url: surveyUrl,
+      dataType: "json",
+      data: {id: shareId, user_uuid: this.userUUID, kind: 'requestHelp', v: surveyItem.v, response: miniSurveyResponse},
+      success: function() {}, // NOP
+      error: function() {},   // NOP
+    });
+
 
     this.iMadeAPublicHelpRequest = true; // this will always be true even if you shut the door later and don't let people in (i.e., make this into a private session)
 
     // first make a /requestPublicHelp request to the TogetherJS server:
     var rphUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
-    var shareId = TogetherJS.shareId();
     var shareUrl = TogetherJS.shareUrl();
     var lang = this.getAppState().py;
     var getUserName = TogetherJS.config.get("getUserName");
@@ -1420,21 +1439,6 @@ Get live help!
         TogetherJS(); // shut down TogetherJS
       }
     }
-
-    var surveyItem = randomlyPickSurveyItem('requestHelp');
-    var miniSurveyResponse = prompt(surveyItem.prompt);
-
-    // always log every impression, even if miniSurveyResponse is blank,
-    // since we can know how many times that survey question was ever seen:
-    var shareId = TogetherJS.shareId();
-    var surveyUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/survey";
-    $.ajax({
-      url: surveyUrl,
-      dataType: "json",
-      data: {id: shareId, user_uuid: this.userUUID, kind: 'requestHelp', v: surveyItem.v, response: miniSurveyResponse},
-      success: function() {}, // NOP
-      error: function() {},   // NOP
-    });
 
     this.redrawConnectors(); // update all arrows at the end
   }
