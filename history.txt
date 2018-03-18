@@ -216,3 +216,6 @@ but actually getting Python 2 and seeing mysterious errors.
 - also added a second backup execution server for non-Python languages
   to vastly improve reliability for those languages, since they're now
   getting popular and my sole server wasn't faring so well under load
+- did lots of behind-the-scenes sysadmin/DevOps stuff to monitor errors,
+  produce better and more consistent error messages, and improve
+  reliability; this stuff will become more important as traffic grows
