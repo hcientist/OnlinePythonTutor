@@ -22,15 +22,16 @@ Email philip@pgbovine.net with more bug reports and use the "Generate shortened 
 
 - promises
 - asynchronous event-driven code
+- anything that operates on webpages, such DOM manipulation, alert(), prompt(), confirm(), etc.
+- setTimeout, setInterval, etc.
 - variable names that contain special characters like '$'
 - Date() object
-- anything that operates on webpages, such DOM manipulation, alert(), prompt(), confirm(), etc.
 
 
 ### Python
 
 - some infinite loops: the server times out without showing partial results or good error messages
-- to cut down execution times, [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
+  - to cut down execution times, [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
 - asynchronous code
 
 
@@ -38,7 +39,7 @@ Email philip@pgbovine.net with more bug reports and use the "Generate shortened 
 
 - Unicode doesn't work well in general (especially for Ruby and Python 2); use ASCII characters when possible
 - Passing in command-line arguments via argv[] array
-- Multi-threaded or concurrent code
+- Multi-threaded, concurrent, or asynchronous code
 - Anything involving GUI programming or GUI/webpage components
 - If you're behind some kinds of firewalls or proxy servers, sometimes
   the visualizer doesn't work
