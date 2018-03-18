@@ -22,8 +22,8 @@ Email philip@pgbovine.net with more bug reports and use the "Generate shortened 
 
 - promises
 - asynchronous event-driven code
-- anything that operates on webpages, such DOM manipulation, alert(), prompt(), confirm(), etc.
-- setTimeout, setInterval, etc.
+  - including setTimeout, setInterval, etc.
+- anything that operates on webpages, such as DOM manipulation, alert(), prompt(), confirm(), etc.
 - variable names that contain special characters like '$'
 - Date() object
 
