@@ -23593,10 +23593,25 @@ var OptFrontendSharedSessions = (function (_super) {
     OptFrontendSharedSessions.prototype.initRequestPublicHelp = function () {
         pytutor_1.assert(this.wantsPublicHelp);
         pytutor_1.assert(exports.TogetherJS.running);
+        var shareId = exports.TogetherJS.shareId();
+        // pop up the survey BEFORE you make the request, so in case you get
+        // hung up on the prompt() and take a long time to answer the question,
+        // you're not put on the queue yet until you finish or click Cancel:
+        var surveyItem = randomlyPickSurveyItem('requestHelp');
+        var miniSurveyResponse = prompt(surveyItem.prompt);
+        // always log every impression, even if miniSurveyResponse is blank,
+        // since we can know how many times that survey question was ever seen:
+        var surveyUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/survey";
+        $.ajax({
+            url: surveyUrl,
+            dataType: "json",
+            data: { id: shareId, user_uuid: this.userUUID, kind: 'requestHelp', v: surveyItem.v, response: miniSurveyResponse },
+            success: function () { },
+            error: function () { },
+        });
         this.iMadeAPublicHelpRequest = true; // this will always be true even if you shut the door later and don't let people in (i.e., make this into a private session)
         // first make a /requestPublicHelp request to the TogetherJS server:
         var rphUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
-        var shareId = exports.TogetherJS.shareId();
         var shareUrl = exports.TogetherJS.shareUrl();
         var lang = this.getAppState().py;
         var getUserName = exports.TogetherJS.config.get("getUserName");
@@ -23633,19 +23648,6 @@ var OptFrontendSharedSessions = (function (_super) {
                 exports.TogetherJS(); // shut down TogetherJS
             }
         }
-        var surveyItem = randomlyPickSurveyItem('requestHelp');
-        var miniSurveyResponse = prompt(surveyItem.prompt);
-        // always log every impression, even if miniSurveyResponse is blank,
-        // since we can know how many times that survey question was ever seen:
-        var shareId = exports.TogetherJS.shareId();
-        var surveyUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/survey";
-        $.ajax({
-            url: surveyUrl,
-            dataType: "json",
-            data: { id: shareId, user_uuid: this.userUUID, kind: 'requestHelp', v: surveyItem.v, response: miniSurveyResponse },
-            success: function () { },
-            error: function () { },
-        });
         this.redrawConnectors(); // update all arrows at the end
     };
     OptFrontendSharedSessions.prototype.initStopRequestingPublicHelp = function () {
