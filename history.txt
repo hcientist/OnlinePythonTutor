@@ -1,4 +1,9 @@
 Project history:
+---
+
+See here for an early history of the first three years:
+http://pgbovine.net/python-tutor-history.htm
+
 
 v1-v2/
 
@@ -158,8 +163,8 @@ v3/
   visualized pieces of code!]
 
 
-2014-06-16 - launched the shared sessions feature on Python Tutor:
-http://pgbovine.net/python-tutor-live.htm
+  2014-06-16 - launched the shared sessions feature on Python Tutor:
+  http://pgbovine.net/python-tutor-live.htm
 
 
 v4-cokapi/
@@ -185,8 +190,8 @@ v4-cokapi/
   May 2016 - launched C/C++ backends
 
 
-June 2016 - launched OPT live programming mode at:
-http://pythontutor.com/live.html
+  June 2016 - launched a live programming mode for Python/JavaScript at:
+  http://pythontutor.com/live.html
 
 
 v5-unity/
@@ -195,27 +200,32 @@ v5-unity/
   which was deployed in September 2012. From now on, active development
   will take place in v5-unity/ and *not* v3/.
 
+  2017-10-20 - launched "Get live help!" feature on Python Tutor, where
+  anyone on the site can volunteer to help others who are requesting
+  help on the site. This is a natural extension of Codechella. See here
+  for details: http://pgbovine.net/PG-Vlog-74-python-tutor-live-help.htm
 
-2017-10-20 - launched "Get live help!" feature on Python Tutor, where
-anyone on the site can volunteer to help others who are requesting help
-on the site: http://pgbovine.net/PG-Vlog-74-python-tutor-live-help.htm
+  2017-12-06 - (finally!) set Python 3 as the default in visualize.html
+  and live.html since most courses have been taught in Python 3 for years,
+  yet Python 2 has been the default due to inertia. Note that for a few
+  years, preferences have already been "sticky", which means that when a
+  user chooses, say, Python 3, then the next time they revisit the site,
+  it will stay on Python 3. But now Python 3 is the default, which should
+  eliminate a bunch of confusion for first-time users expecting Python 3
+  but actually getting Python 2 and seeing mysterious errors.
 
-2017-12-06 - (finally!) set Python 3 as the default in visualize.html
-and live.html since most courses have been taught in Python 3 for years,
-yet Python 2 has been the default due to inertia. Note that for a few
-years, preferences have already been "sticky", which means that when a
-user chooses, say, Python 3, then the next time they revisit the site,
-it will stay on Python 3. But now Python 3 is the default, which should
-eliminate a bunch of confusion for first-time users expecting Python 3
-but actually getting Python 2 and seeing mysterious errors.
-
-2018-03-17
-- greatly simplified the home page of http://pythontutor.com/ to focus
-  solely on visualization and live help features front and center. Lots
-  of other minor UI clean-ups throughout the app as well
-- also added a second backup execution server for non-Python languages
-  to vastly improve reliability for those languages, since they're now
-  getting popular and my sole server wasn't faring so well under load
-- did lots of behind-the-scenes sysadmin/DevOps stuff to monitor errors,
-  produce better and more consistent error messages, and improve
-  reliability; this stuff will become more important as traffic grows
+  2018-03-17 - lots of minor unglamorous 'elbow grease' tweaks to get
+  the tool more usable in general
+  - greatly simplified the home page of http://pythontutor.com/ to focus
+    solely on visualization and live help features. lots of other minor
+    UI clean-ups throughout the app as well.
+  - added a second backup execution server for non-Python languages to
+    vastly improve reliability for those languages, since they're now
+    getting popular and my sole server wasn't faring so well under load
+  - did lots of behind-the-scenes sysadmin/DevOps stuff to monitor
+    errors, produce better and more consistent error messages, and
+    improve reliability; this sort of stuff will become more important
+    as traffic grows
+  - started keeping a list of unsupported features and linking to it
+    when the user encounters errors, so they will know its limitations:
+    https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md
