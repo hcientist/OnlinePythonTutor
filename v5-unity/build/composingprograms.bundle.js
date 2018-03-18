@@ -22556,15 +22556,30 @@ var liveHelpSurvey = {
 };
 */
 // fourth version, deployed on 2018-03-12
+/*
 var liveHelpSurvey = {
-    requestHelp: [{ prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you decide to ask for help at this time?',
+  requestHelp:   [ {prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you decide to ask for help at this time?',
+                    v: 'r4a'},
+                   {prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you ask for help anonymously on this website rather than getting help from someone you know?',
+                    v: 'r4b'},
+                 ],
+  volunteerHelp: [ {prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhy did you decide to volunteer at this time? What motivated you to click on this particular help link?",
+                    v: 'h4a'},
+                   {prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhat is your current job or profession?",
+                    v: 'h4b'},
+                 ]
+};
+*/
+// 2018-03-17: minor tweaks on version 4's wording to make it sound a bit more optional and casual
+var liveHelpSurvey = {
+    requestHelp: [{ prompt: 'You are now on the help queue. Please wait for help to arrive.\n\n[OPTIONAL] Support our research by letting us know:\nWhy did you decide to ask for help at this time?',
             v: 'r4a' },
-        { prompt: 'You\'re now on the help queue. Support our research by answering below:\n\nWhy did you ask for help anonymously on this website rather than getting help from someone you know?',
+        { prompt: 'You are now on the help queue. Please wait for help to arrive.\n\n[OPTIONAL] Support our research by letting us know:\nWhy did you ask for help anonymously on this website rather than getting help from someone you know?',
             v: 'r4b' },
     ],
-    volunteerHelp: [{ prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhy did you decide to volunteer at this time? What motivated you to click on this particular help link?",
+    volunteerHelp: [{ prompt: "Thanks for volunteering! You are about to join a live chat.\n\n[OPTIONAL] Support our research by letting us know:\nWhy did you decide to volunteer at this time? What motivated you to click on this particular help link?",
             v: 'h4a' },
-        { prompt: "Thanks for volunteering! Support our research by answering below:\n\nWhat is your current job or profession?",
+        { prompt: "Thanks for volunteering! You are about to join a live chat.\n\n[OPTIONAL] Support our research by letting us know:\nWhat is your current job or profession?",
             v: 'h4b' },
     ]
 };
