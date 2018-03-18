@@ -209,6 +209,10 @@ it will stay on Python 3. But now Python 3 is the default, which should
 eliminate a bunch of confusion for first-time users expecting Python 3
 but actually getting Python 2 and seeing mysterious errors.
 
-2018-03-17 - greatly simplified the home page of http://pythontutor.com/
-to focus solely on visualization and live help features front and
-center. Lots of other minor UI clean-ups throughout the app as well.
+2018-03-17
+- greatly simplified the home page of http://pythontutor.com/ to focus
+  solely on visualization and live help features front and center. Lots
+  of other minor UI clean-ups throughout the app as well
+- also added a second backup execution server for non-Python languages
+  to vastly improve reliability for those languages, since they're now
+  getting popular and my sole server wasn't faring so well under load
