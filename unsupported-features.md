@@ -4,7 +4,7 @@ This tool currently does NOT support these language features.
 
 Some of these will eventually be supported, but others probably won't, due to implementation challenges and other priorities.
 
-Email philip@pgbovine.net with more bug reports and use the "Generate shortened link" button to include a URL so that I can reproduce it.
+Email philip@pgbovine.net with more bug reports and use the "Generate shortened link" button to include a URL so that I can reproduce them.
 
 ### C and C++
 
@@ -41,15 +41,15 @@ Email philip@pgbovine.net with more bug reports and use the "Generate shortened 
 - Passing in command-line arguments via argv[] array
 - Multi-threaded, concurrent, or asynchronous code
 - Anything involving GUI programming or GUI/webpage components
-- If you're behind some kinds of firewalls or proxy servers, sometimes
-  the visualizer doesn't work
-- Reading data from external files; put data inline in strings when possible
+- Reading data from external files; put all your data in strings when possible
 - Interfacing with databases, networks, or other external resources
 - Importing external 3rd-party libraries
 - Code that is too large in size; shorten your code!
 - Code that runs for too many steps (e.g., > 1,000 steps) or for a long time
   - shorten your code to isolate where you want to visualize and debug
   - or [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
+- If you're behind some kinds of firewalls or proxy servers, the visualizer may not work
+
 
 Look through these issue trackers for additional bugs and unsupported features:
 - https://github.com/pgbovine/OnlinePythonTutor/issues
