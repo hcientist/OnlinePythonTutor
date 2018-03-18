@@ -23,14 +23,13 @@ p, li {
 
 h1 {
   font-weight: normal;
-  margin-top: 0px;
-  margin-bottom: 8px;
+  margin-top: 15px;
+  margin-bottom: 0px;
   line-height: 1.5;
 }
 
 .smallH1 {
-  font-size: 14pt;
-  margin-left: -2px;
+  font-size: 15pt;
 }
 
 #optLink {
@@ -79,7 +78,7 @@ div.activityPane p {
 
 div.activityPane h1 {
   font-size: 22pt;
-  margin-bottom: 20pt;
+  /*margin-bottom: 20pt;*/
 }
 
 
@@ -110,7 +109,7 @@ a:hover {
 
 div#learnPane {
   margin-top: 6pt;
-  margin-bottom: 8pt;
+  padding-bottom: 20px;
   border: 5px solid #062270;
 }
 
