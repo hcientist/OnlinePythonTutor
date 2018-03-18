@@ -3279,13 +3279,13 @@ class CodeDisplay {
         if (this.owner.params.embeddedMode) {
           this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11)');
         } else {
-          this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
+          this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11)<br/><font color="#e93f34">EXPERIMENTAL!</font> <a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md" target="_blank">known bugs/limitations</a>');
         }
       } else if (lang === 'cpp') {
         if (this.owner.params.embeddedMode) {
           this.domRoot.find('#langDisplayDiv').html('C++ (gcc 4.8, C++11)');
         } else {
-          this.domRoot.find('#langDisplayDiv').html('C++ (gcc 4.8, C++11) <font color="#e93f34">EXPERIMENTAL!</font><br/>see <a href="https://github.com/pgbovine/opt-cpp-backend/issues" target="_blank">known bugs</a> and report to philip@pgbovine.net');
+          this.domRoot.find('#langDisplayDiv').html('C++ (gcc 4.8, C++11)<br/><font color="#e93f34">EXPERIMENTAL!</font> <a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md" target="_blank">known bugs/limitations</a>');
         }
       } else {
         this.domRoot.find('#langDisplayDiv').hide();
