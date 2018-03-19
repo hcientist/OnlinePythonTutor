@@ -8,6 +8,8 @@
 // endpoint so that people can request help from anyone currently on the
 // OPT website rather than needing to find their own tutors/peers to help them.
 // (also added a /getHelpQueue endpoint to get the current help queue state)
+//
+// 2018-03-18: added a /serverStats endpoint to report on latest server stats
 
 // Try to run with the following options to (hopefully!) prevent it from
 // mysteriously crashing and failing to restart (use --spinSleepTime to
@@ -34,6 +36,8 @@ var http = require('http');
 var parseUrl = require('url').parse;
 var fs = require('fs');
 var requestFunc = require('request');
+
+var child_process = require('child_process');
 
 // FIXME: not sure what logger to use
 //var logger = require('../../lib/logger');
@@ -281,6 +285,28 @@ var server = http.createServer(function(request, response) {
       "Access-Control-Allow-Origin": "*"
     });
     response.end(JSON.stringify({status: 'OKIE DOKIE'}));
+  } else if (url.pathname == '/serverStats') {
+
+    // reference code from /load endpoint ...
+    //var load = getLoad();
+    //response.writeHead(200, {"Content-Type": "text/plain"});
+    //response.end("OK " + load.connections + " connections " +
+    //             load.sessions + " sessions; " +
+    //             load.solo + " are single-user and " +
+    //             (load.sessions - load.solo) + " active sessions");
+
+    // use "free -m" to get operating system memory stats:
+    child_process.execFile('/usr/bin/free', ['-m'], (err, stdout, stderr) => {
+      response.writeHead(200, {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      });
+      response.end(JSON.stringify({
+                    date: (new Date()).toISOString(),
+                    queue: getPHRStats(undefined),
+                    freem: {errcode: err.code, stdout: stdout, stderr: stderr},
+                    connectionStats: connectionStats}));
+    });
   } else {
     write404(response);
   }
