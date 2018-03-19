@@ -304,7 +304,7 @@ var server = http.createServer(function(request, response) {
       response.end(JSON.stringify({
                     date: (new Date()).toISOString(),
                     queue: getPHRStats(undefined),
-                    freem: {errcode: err.code, stdout: stdout, stderr: stderr},
+                    freem: {errcode: err ? err.code : null, stdout: stdout, stderr: stderr},
                     connectionStats: connectionStats}));
     });
   } else {
