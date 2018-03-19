@@ -669,6 +669,27 @@ wsServer.on('request', function(request) {
   });
 });
 
+// periodically clean up connectionStats so that it doesn't grow out of  control:
+setInterval(function () {
+  for (var id in connectionStats) {
+    if (connectionStats[id].lastLeft && Date.now() - connectionStats[id].lastLeft > EMPTY_ROOM_LOG_TIMEOUT) {
+      //logStats(id, connectionStats[id]);
+      delete connectionStats[id]; // clean up!!!
+      continue;
+    }
+    var totalClients = countClients(connectionStats[id].clients);
+    var connections = 0;
+    if (allConnections[id]) {
+      connections = allConnections[id].length;
+    }
+    connectionStats[id].sample.push({
+      time: Date.now(),
+      totalClients: totalClients,
+      connections: connections
+    });
+  }
+}, SAMPLE_STATS_INTERVAL);
+
 // pgbovine - kill these since they seem unnecessary for OPT
 /*
 setInterval(function () {
