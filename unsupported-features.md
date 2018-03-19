@@ -37,6 +37,9 @@ Email philip@pgbovine.net with more bug reports and use the "Generate shortened 
 
 ### Other (language-agnostic)
 
+- Random number generators will give different results on different
+  executions (in the future I'll save the random seed so that results
+  are deterministic)
 - Unicode doesn't work well in general (especially for Ruby and Python 2); use ASCII characters when possible
 - Passing in command-line arguments via argv[] array
 - Multi-threaded, concurrent, or asynchronous code
