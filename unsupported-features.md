@@ -33,13 +33,12 @@ Email philip@pgbovine.net with more bug reports and use the "Generate shortened 
 - some infinite loops: the server times out without showing partial results or good error messages
   - to cut down execution times, [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
 - asynchronous code
+- random number generators and user input (via input() or raw_input())
+  [sometimes doesn't work well together](https://github.com/pgbovine/OnlinePythonTutor/issues/110)
 
 
 ### Other (language-agnostic)
 
-- Random number generators will give different results on different
-  executions (in the future I'll save the random seed so that results
-  are deterministic)
 - Unicode doesn't work well in general (especially for Ruby and Python 2); use ASCII characters when possible
 - Passing in command-line arguments via argv[] array
 - Multi-threaded, concurrent, or asynchronous code
