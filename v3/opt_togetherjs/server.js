@@ -677,16 +677,21 @@ setInterval(function () {
       delete connectionStats[id]; // clean up!!!
       continue;
     }
+
+    // pgbovine - don't sample since it will just take up space
+    /*
     var totalClients = countClients(connectionStats[id].clients);
     var connections = 0;
     if (allConnections[id]) {
       connections = allConnections[id].length;
     }
+
     connectionStats[id].sample.push({
       time: Date.now(),
       totalClients: totalClients,
       connections: connections
     });
+    */
   }
 }, SAMPLE_STATS_INTERVAL);
 
