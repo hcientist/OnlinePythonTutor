@@ -301,8 +301,10 @@ var server = http.createServer(function(request, response) {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
       });
+      var nowTime = Date.now();
       response.end(JSON.stringify({
-                    date: (new Date()).toISOString(),
+                    curTime: nowTime,
+                    curTimeDt: nowTime.toISOString(),
                     queue: getPHRStats(undefined),
                     freem: {errcode: err ? err.code : null, stdout: stdout, stderr: stderr},
                     connectionStats: connectionStats}));
