@@ -304,7 +304,6 @@ var server = http.createServer(function(request, response) {
       var nowTime = Date.now();
       response.end(JSON.stringify({
                     curTime: nowTime,
-                    curTimeDt: nowTime.toISOString(),
                     queue: getPHRStats(undefined),
                     freem: {errcode: err ? err.code : null, stdout: stdout, stderr: stderr},
                     connectionStats: connectionStats}));
