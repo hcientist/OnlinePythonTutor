@@ -6,6 +6,10 @@ Some of these will eventually be supported, but others probably won't, due to im
 
 Email philip@pgbovine.net with more bug reports and use the "Generate shortened link" button to include a URL so that I can reproduce them.
 
+For more details on project status and issue prioritization, check out these videos from March 2018:
+- [Python Tutor project status - 1 of 2 - common feature requests & feasible fixes](https://www.youtube.com/watch?v=oKIqejkxqP0)
+- [Python Tutor project status - 2 of 2 - bigger feature requests & unlikely fixes](https://www.youtube.com/watch?v=8o-XeFTgD40)
+
 ### C and C++
 
 - unions
