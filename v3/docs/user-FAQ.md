@@ -1,6 +1,7 @@
 # Frequently Asked Questions from users of Online Python Tutor
 
-First read [the current list of unsupported feastures](https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md)
+This document is **deprecated**; instead refer to the [**current list of unsupported features**](https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md)
+
 
 Email philip@pgbovine.net if you have a question that isn't addressed here.
 
