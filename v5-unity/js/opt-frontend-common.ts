@@ -249,6 +249,7 @@ export abstract class AbstractBaseFrontend {
             heapPrimitives: $.bbq.getState('heapPrimitives'),
             textReferences: $.bbq.getState('textReferences'),
             rawInputLst: ril ? $.parseJSON(ril) : undefined,
+            demoMode: $.bbq.getState('demo'), // is 'demo mode' on? if so, hide a lot of excess stuff
             codeopticonSession: $.bbq.getState('cosession'),
             codeopticonUsername: $.bbq.getState('couser'),
             testCasesLst: testCasesLstJSON ? $.parseJSON(testCasesLstJSON) : undefined

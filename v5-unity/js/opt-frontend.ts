@@ -73,6 +73,8 @@ export class OptFrontend extends AbstractBaseFrontend {
   activateRuntimeErrorSurvey: boolean = true;
   activateEurekaSurvey: boolean = true;
 
+  demoMode: boolean = false; // if true, then we're giving a live demo, so hide a bunch of excess stuff on page
+
   preseededCurInstr: number = undefined;
 
   constructor(params={}) {
@@ -705,6 +707,8 @@ export class OptFrontend extends AbstractBaseFrontend {
     }
   }
 
+  demoModeChanged() {}; // NOP; subclasses need to override
+
   parseQueryString() {
     var queryStrOptions = this.getQueryStringOptions();
     this.setToggleOptions(queryStrOptions);
@@ -716,6 +720,11 @@ export class OptFrontend extends AbstractBaseFrontend {
     this.preseededCurInstr = queryStrOptions.preseededCurInstr;
     if (isNaN(this.preseededCurInstr)) {
       this.preseededCurInstr = undefined;
+    }
+
+    if (queryStrOptions.demoMode) {
+      this.demoMode = true;
+      this.demoModeChanged();
     }
 
     if (queryStrOptions.codeopticonSession) {

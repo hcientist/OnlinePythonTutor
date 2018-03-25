@@ -288,7 +288,7 @@ export class OptFrontendSharedSessions extends OptFrontend {
   updateOutputSignalFromRemote = false;
   wantsPublicHelp = false;
   iMadeAPublicHelpRequest = false; // subtly different than wantsPublicHelp (see usage)
-  disableSharedSessions = false; // if we're on mobile/tablets, disable this entirely since it doesn't work on mobile
+  disableSharedSessions = false;
   isIdle = false;
   peopleIveKickedOut = []; // #savage
 
@@ -396,7 +396,12 @@ Get live help!
     // resources and get a more accurate indicator of who is active at
     // the moment
     setInterval(this.getHelpQueue.bind(this), 5 * 1000);
-    this.getHelpQueue(); // call it once on page load
+
+    // actually DON'T call this on page load to avoid spurious calls
+    // in case someone is only on the page momentarily or has demoMode=true,
+    // which takes a while to activate since the browser has to parse
+    // the URL hash ... just be patient
+    //this.getHelpQueue(); // call it once on page load
 
     // update this pretty frequently; doesn't require any ajax calls:
     setInterval(this.updateModerationPanel.bind(this), 2 * 1000);
@@ -430,6 +435,26 @@ Get live help!
         TogetherJS();
       }
     });
+  }
+
+  demoModeChanged() {
+    console.log('demoModeChanged', this.demoMode);
+    if (this.demoMode) {
+      // hide the shared sessions header ...
+      $("td#headerTdLeft,td#headerTdRight").hide();
+      // we need to not only hide this header, but also NOT call
+      // getHelpQueue periodically, or else the server will *think* that
+      // we're monitoring the help queue when in fact we aren't:
+      this.disableSharedSessions = true;
+
+      // disable all surveys too
+      this.activateSyntaxErrorSurvey = false;
+      this.activateRuntimeErrorSurvey = false;
+      this.activateEurekaSurvey = false;
+    } else {
+      $("td#headerTdLeft,td#headerTdRight").show();
+      this.disableSharedSessions = false;
+    }
   }
 
   // for A/B testing -- store this information PER USER in localStorage,
@@ -485,10 +510,15 @@ Get live help!
 
   getHelpQueue() {
     // VERY IMPORTANT: to avoid overloading the server, don't send these
-    // requests when you're idle
-    if (this.isIdle) {
+    // requests when you're idle or disableSharedSessions is on.
+    // this is important also for accurate logging, since if you're not
+    // currently looking at the queue, the server shouldn't count you as
+    // an "observer" who is looking at the queue at the moment, or else
+    // it might overestimate the number of people who are observing the
+    // queue at each moment ...
+    if (this.isIdle || this.disableSharedSessions) {
       $("#publicHelpQueue").empty(); // clear when idle so that you don't have stale results
-      return; // return early!
+      return; // return early before making a GET request to server!
     }
 
     var ghqUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
