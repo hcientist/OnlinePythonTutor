@@ -521,6 +521,13 @@ Get live help!
       return; // return early before making a GET request to server!
     }
 
+    // if we can't even see the help queue for some reason, then don't bother
+    // calling /getHelpQueue on the server since we can't see the help queue!!
+    if (!$("#publicHelpQueue").is(":visible") ){
+      console.log('getHelpQueue canned because #publicHelpQueue not visible');
+      return; // return early before making a GET request to server!
+    }
+
     var ghqUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getHelpQueue";
     var curState = this.getAppState();
     $.ajax({
@@ -1457,7 +1464,7 @@ Get live help!
         <div id="moderationPanel"></div>
         <div style="margin-bottom: 10px;">You have requested help as <b>` +
         TogetherJS.config.get("getUserName")() +
-        `</b> (see below for queue). Anyone currently on this website can volunteer to help you, but there is no guarantee that someone will come help. <span style="color: #999; font-size: 8pt;">We are not responsible for the chat messages or behaviors of this site's users.</span></div>
+        `</b> (see below for queue).<br/>Anyone on this website can volunteer to help you, but there is no guarantee that someone will come help.</div>
         <div id="publicHelpQueue"></div>`);
       this.updateModerationPanel(); // update it right away
       this.getHelpQueue(); // update it right away
@@ -1522,7 +1529,12 @@ Get live help!
   }
 
   appendTogetherJsFooter() {
-    var extraHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt;">This is a <span style="color: #e93f34;">highly experimental</span> feature. Use at your own risk. Do not move or type too quickly. If you get out of sync, click: <button id="syncBtn" type="button">force sync</button> <a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs/feedback</a></div>';
+    // deployed on 2018-03-24
+    var extraHtml = '<div style="margin-top: 3px; margin-bottom: 6px; font-size: 9pt;"><a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs & feedback</a>. Don\'t move or type too fast. If you get out of sync, click <button id="syncBtn" type="button">force sync</button> </div>';
+
+    // retired on 2018-03-24 to simplify the text on the page:
+    //var extraHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt;">This is a <span style="color: #e93f34;">highly experimental</span> feature. Use at your own risk. Do not move or type too quickly. If you get out of sync, click: <button id="syncBtn" type="button">force sync</button> <a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs/feedback</a></div>';
+
     $("#togetherjsStatus").append(extraHtml);
     $("#syncBtn").click(this.requestSync.bind(this));
   }
