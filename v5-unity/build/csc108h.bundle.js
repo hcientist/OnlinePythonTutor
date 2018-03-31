@@ -3894,7 +3894,8 @@ var AbstractBaseFrontend = (function () {
     };
     AbstractBaseFrontend.prototype.getBaseFrontendOptionsObj = function () {
         var ret = {
-            disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
+            disableHeapNesting: (($('#heapPrimitivesSelector').val() == 'true') ||
+                ($('#heapPrimitivesSelector').val() == 'nevernest')),
             textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
             executeCodeWithRawInputFunc: this.executeCodeWithRawInput.bind(this),
             // always use the same visualizer ID for all
@@ -4008,6 +4009,7 @@ var AbstractBaseFrontend = (function () {
             frontendOptionsObj.lang = 'py3';
         }
         else if (pyState === 'java') {
+            // TODO: should we still keep this exceptional case?
             frontendOptionsObj.disableHeapNesting = true; // never nest Java objects, seems like a good default
         }
         // if we don't have any deltas, then don't bother sending deltaObj:
@@ -22698,11 +22700,6 @@ var OptFrontendSharedSessions = (function (_super) {
         // resources and get a more accurate indicator of who is active at
         // the moment
         setInterval(_this.getHelpQueue.bind(_this), 5 * 1000);
-        // actually DON'T call this on page load to avoid spurious calls
-        // in case someone is only on the page momentarily or has demoMode=true,
-        // which takes a while to activate since the browser has to parse
-        // the URL hash ... just be patient
-        //this.getHelpQueue(); // call it once on page load
         // update this pretty frequently; doesn't require any ajax calls:
         setInterval(_this.updateModerationPanel.bind(_this), 2 * 1000);
         // take a snapshot every 30 seconds or so if you're in a TogetherJS
@@ -22733,6 +22730,13 @@ var OptFrontendSharedSessions = (function (_super) {
         });
         return _this;
     }
+    OptFrontendSharedSessions.prototype.parseQueryString = function () {
+        _super.prototype.parseQueryString.call(this);
+        // AFTERWARDS, immediately get help queue. this way, if the query
+        // string option demo=true is set, then it will properly disable
+        // shared sessions before getting the help queue
+        this.getHelpQueue();
+    };
     OptFrontendSharedSessions.prototype.demoModeChanged = function () {
         console.log('demoModeChanged', this.demoMode);
         if (this.demoMode) {

@@ -3879,7 +3879,8 @@ var AbstractBaseFrontend = (function () {
     };
     AbstractBaseFrontend.prototype.getBaseFrontendOptionsObj = function () {
         var ret = {
-            disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
+            disableHeapNesting: (($('#heapPrimitivesSelector').val() == 'true') ||
+                ($('#heapPrimitivesSelector').val() == 'nevernest')),
             textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
             executeCodeWithRawInputFunc: this.executeCodeWithRawInput.bind(this),
             // always use the same visualizer ID for all
@@ -3993,6 +3994,7 @@ var AbstractBaseFrontend = (function () {
             frontendOptionsObj.lang = 'py3';
         }
         else if (pyState === 'java') {
+            // TODO: should we still keep this exceptional case?
             frontendOptionsObj.disableHeapNesting = true; // never nest Java objects, seems like a good default
         }
         // if we don't have any deltas, then don't bother sending deltaObj:
@@ -22518,7 +22520,7 @@ var IframeEmbedFrontend = (function (_super) {
         var preseededCode = queryStrOptions.preseededCode;
         var pyState = queryStrOptions.py;
         var verticalStackBool = (queryStrOptions.verticalStack == 'true');
-        var heapPrimitivesBool = (queryStrOptions.heapPrimitives == 'true');
+        var heapPrimitivesBool = (queryStrOptions.heapPrimitives == 'true'); // note that it can be 'nevernest' as well
         var textRefsBool = (queryStrOptions.textReferences == 'true');
         var cumModeBool = (queryStrOptions.cumulative == 'true');
         var drawParentPointerBool = (queryStrOptions.drawParentPointers == 'true');
@@ -22544,7 +22546,7 @@ var IframeEmbedFrontend = (function (_super) {
         var frontendOptionsObj = { startingInstruction: startingInstruction,
             embeddedMode: true,
             verticalStack: verticalStackBool,
-            disableHeapNesting: heapPrimitivesBool,
+            disableHeapNesting: (heapPrimitivesBool || (queryStrOptions.heapPrimitives == 'nevernest')),
             drawParentPointers: drawParentPointerBool,
             textualMemoryLabels: textRefsBool,
             executeCodeWithRawInputFunc: this.executeCodeWithRawInput.bind(this),

@@ -15,7 +15,7 @@
   <!-- let Webpack take care of everything. Use the [hash] feature to
        create unique filenames for releases:
        https://webpack.github.io/docs/long-term-caching.html -->
-  <script type="text/javascript" src="build/visualize.bundle.js?92b0a5448b" charset="utf-8"></script>
+  <script type="text/javascript" src="build/visualize.bundle.js?06f85e09f4" charset="utf-8"></script>
 
 <!-- insert google-analytics.txt contents here -->
 
@@ -80,7 +80,8 @@
     <option value="true">show all frames (Python)</option>
   </select>
   <select id="heapPrimitivesSelector">
-    <option value="false">inline primitives &amp; nested objects [default]</option>
+    <option value="false">inline primitives &amp; try to nest objects [default]</option>
+    <option value="nevernest">inline primitives but don't nest objects</option>
     <option value="true">render all objects on the heap (Python/Java)</option>
   </select>
   <select id="textualMemoryLabelsSelector">
