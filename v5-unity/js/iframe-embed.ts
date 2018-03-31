@@ -31,7 +31,7 @@ class IframeEmbedFrontend extends AbstractBaseFrontend {
     var preseededCode = queryStrOptions.preseededCode;
     var pyState = queryStrOptions.py;
     var verticalStackBool = (queryStrOptions.verticalStack == 'true');
-    var heapPrimitivesBool = (queryStrOptions.heapPrimitives == 'true');
+    var heapPrimitivesBool = (queryStrOptions.heapPrimitives == 'true'); // note that it can be 'nevernest' as well
     var textRefsBool = (queryStrOptions.textReferences == 'true');
     var cumModeBool = (queryStrOptions.cumulative == 'true');
     var drawParentPointerBool = (queryStrOptions.drawParentPointers == 'true');
@@ -62,7 +62,7 @@ class IframeEmbedFrontend extends AbstractBaseFrontend {
     var frontendOptionsObj = {startingInstruction: startingInstruction,
                               embeddedMode: true,
                               verticalStack: verticalStackBool,
-                              disableHeapNesting: heapPrimitivesBool,
+                              disableHeapNesting: (heapPrimitivesBool || (queryStrOptions.heapPrimitives == 'nevernest')),
                               drawParentPointers: drawParentPointerBool,
                               textualMemoryLabels: textRefsBool,
                               executeCodeWithRawInputFunc: this.executeCodeWithRawInput.bind(this),

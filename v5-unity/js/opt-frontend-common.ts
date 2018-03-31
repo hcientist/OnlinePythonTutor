@@ -274,7 +274,8 @@ export abstract class AbstractBaseFrontend {
 
   getBaseFrontendOptionsObj() {
     var ret = {// tricky: selector 'true' and 'false' values are strings!
-                disableHeapNesting: ($('#heapPrimitivesSelector').val() == 'true'),
+                disableHeapNesting: (($('#heapPrimitivesSelector').val() == 'true') ||
+                                     ($('#heapPrimitivesSelector').val() == 'nevernest')),
                 textualMemoryLabels: ($('#textualMemoryLabelsSelector').val() == 'true'),
                 executeCodeWithRawInputFunc: this.executeCodeWithRawInput.bind(this),
 
@@ -407,6 +408,7 @@ export abstract class AbstractBaseFrontend {
       } else if (pyState === '3') {
         frontendOptionsObj.lang = 'py3';
       } else if (pyState === 'java') {
+        // TODO: should we still keep this exceptional case?
         frontendOptionsObj.disableHeapNesting = true; // never nest Java objects, seems like a good default
       }
 
