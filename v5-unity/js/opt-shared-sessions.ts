@@ -397,12 +397,6 @@ Get live help!
     // the moment
     setInterval(this.getHelpQueue.bind(this), 5 * 1000);
 
-    // actually DON'T call this on page load to avoid spurious calls
-    // in case someone is only on the page momentarily or has demoMode=true,
-    // which takes a while to activate since the browser has to parse
-    // the URL hash ... just be patient
-    //this.getHelpQueue(); // call it once on page load
-
     // update this pretty frequently; doesn't require any ajax calls:
     setInterval(this.updateModerationPanel.bind(this), 2 * 1000);
 
@@ -435,6 +429,14 @@ Get live help!
         TogetherJS();
       }
     });
+  }
+
+  parseQueryString() {
+    super.parseQueryString();
+    // AFTERWARDS, immediately get help queue. this way, if the query
+    // string option demo=true is set, then it will properly disable
+    // shared sessions before getting the help queue
+    this.getHelpQueue();
   }
 
   demoModeChanged() {
