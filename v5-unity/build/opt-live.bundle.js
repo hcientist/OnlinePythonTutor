@@ -25123,9 +25123,11 @@ var OptLiveFrontend = (function (_super) {
         });
         return _this;
     }
-    OptLiveFrontend.prototype.parseQueryString = function () {
-        _super.prototype.parseQueryString.call(this); // call super first!
-        $("#eurekaSurveyPane,#surveyPane,#liveModeHeader").hide();
+    OptLiveFrontend.prototype.demoModeChanged = function () {
+        _super.prototype.demoModeChanged.call(this); // call first
+        if (this.demoMode) {
+            $("#eurekaSurveyPane,#surveyPane,#liveModeHeader").hide();
+        }
     };
     // override verison in opt-frontend.ts
     OptLiveFrontend.prototype.setAceMode = function () {
