@@ -147,9 +147,11 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
     });
   }
 
-  parseQueryString() {
-    super.parseQueryString(); // call super first!
-    $("#eurekaSurveyPane,#surveyPane,#liveModeHeader").hide();
+  demoModeChanged() {
+    super.demoModeChanged();
+    console.log('demoModeChanged', this.demoMode);
+    if (this.demoMode) {
+      $("#eurekaSurveyPane,#surveyPane,#liveModeHeader").hide();
   }
 
   // override verison in opt-frontend.ts
