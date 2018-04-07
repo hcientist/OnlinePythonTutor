@@ -13,6 +13,9 @@
 
 /* TODOs:
 
+- use a backup execution server for JS (via backupHttpServerRoot) just
+  like we do in opt-frontend-common.ts
+
 - abstract out components within pytutor.js to prevent ugly code
   duplication with stuff in this file
 
