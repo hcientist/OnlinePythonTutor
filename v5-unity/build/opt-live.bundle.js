@@ -25002,6 +25002,9 @@ var __extends = (this && this.__extends) || function (d, b) {
 // visualizations (2013-2014 UROP), inspired by Bret Victor's stuff
 /* TODOs:
 
+- use a backup execution server for JS (via backupHttpServerRoot) just
+  like we do in opt-frontend-common.ts
+
 - abstract out components within pytutor.js to prevent ugly code
   duplication with stuff in this file
 
@@ -25010,6 +25013,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 
 - [later] add a codeopticon-style history slider of the user's past
   edits (but that might be confusing)
+  - NB: now we kind of already have this if you're in a shared session
+    with 'undo' and 'redo' buttons
 
 - [later] detect exact position of syntax error and put a squiggly line below
   it with something like:
@@ -25118,6 +25123,10 @@ var OptLiveFrontend = (function (_super) {
         });
         return _this;
     }
+    OptLiveFrontend.prototype.parseQueryString = function () {
+        _super.prototype.parseQueryString.call(this); // call super first!
+        $("#eurekaSurveyPane,#surveyPane,#liveModeHeader").hide();
+    };
     // override verison in opt-frontend.ts
     OptLiveFrontend.prototype.setAceMode = function () {
         var v = $('#pythonVersionSelector').val();
@@ -25517,7 +25526,10 @@ var OptLiveFrontend = (function (_super) {
         }
         else if (pyState === 'js') {
             frontendOptionsObj.lang = 'js';
-            jsonp_endpoint = this.langSettingToJsonpEndpoint[pyState]; // maybe null
+            // only set the remote endpoint if you're *not* on localhost:
+            if (window.location.href.indexOf('localhost') < 0) {
+                jsonp_endpoint = this.langSettingToJsonpEndpoint[pyState]; // maybe null
+            }
         }
         else {
             pytutor_1.assert(false);
@@ -25557,15 +25569,34 @@ var OptLiveFrontend = (function (_super) {
             });
         }
         else {
-            // for Python 2 or 3, directly execute backendScript
-            pytutor_1.assert(pyState === '2' || pyState === '3');
-            $.get(backendScript, { user_script: codeToExec,
-                raw_input_json: this.rawInputLst.length > 0 ? JSON.stringify(this.rawInputLst) : '',
-                options_json: JSON.stringify(backendOptionsObj),
-                user_uuid: this.userUUID,
-                session_uuid: this.sessionUUID,
-                prevUpdateHistoryJSON: prevUpdateHistoryJSON,
-                exeTime: new Date().getTime() }, execCallback, "json");
+            if (pyState === '2' || pyState === '3') {
+                $.get(backendScript, { user_script: codeToExec,
+                    raw_input_json: this.rawInputLst.length > 0 ? JSON.stringify(this.rawInputLst) : '',
+                    options_json: JSON.stringify(backendOptionsObj),
+                    user_uuid: this.userUUID,
+                    session_uuid: this.sessionUUID,
+                    prevUpdateHistoryJSON: prevUpdateHistoryJSON,
+                    exeTime: new Date().getTime() }, execCallback, "json");
+            }
+            else if (pyState === 'js') {
+                if (window.location.href.indexOf('localhost') >= 0) {
+                    // use /exec_js_native if you're running on localhost:
+                    // (need to first run 'make local' from ../../v4-cokapi/Makefile)
+                    $.get('http://localhost:3000/exec_js_native', { user_script: codeToExec,
+                        raw_input_json: this.rawInputLst.length > 0 ? JSON.stringify(this.rawInputLst) : '',
+                        options_json: JSON.stringify(backendOptionsObj),
+                        user_uuid: this.userUUID,
+                        session_uuid: this.sessionUUID,
+                        prevUpdateHistoryJSON: prevUpdateHistoryJSON,
+                        exeTime: new Date().getTime() }, execCallback, "json");
+                }
+                else {
+                    pytutor_1.assert(false);
+                }
+            }
+            else {
+                pytutor_1.assert(false);
+            }
         }
     };
     OptLiveFrontend.prototype.getBaseFrontendOptionsObj = function () {
