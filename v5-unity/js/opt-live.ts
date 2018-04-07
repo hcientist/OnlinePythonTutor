@@ -148,10 +148,10 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
   }
 
   demoModeChanged() {
-    super.demoModeChanged();
-    console.log('demoModeChanged', this.demoMode);
+    super.demoModeChanged(); // call first
     if (this.demoMode) {
       $("#eurekaSurveyPane,#surveyPane,#liveModeHeader").hide();
+    }
   }
 
   // override verison in opt-frontend.ts
