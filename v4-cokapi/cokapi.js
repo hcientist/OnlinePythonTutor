@@ -41,6 +41,34 @@ var express = require('express');
 var util = require('util');
 
 
+// to use low-numbered ports, Node must be allowed to bind to ports lower than 1024.
+// e.g., run: sudo setcap 'cap_net_bind_service=+ep' <node executable>
+// defaults:
+var PORT = 80;
+var useHttps = false;
+var local = false;
+
+var args = process.argv.slice(2);
+if (args.length > 0) {
+  if (args[0] === 'https') {
+    PORT = 443;
+    useHttps = true;
+  } else if (args[0] === 'http3000') {
+    PORT = 3000;
+  } else if (args[0] === 'https8001') {
+    PORT = 8001;
+    useHttps = true;
+  } else if (args[0] === 'local') {
+    PORT = 3000;
+    local = true;
+    console.log('running in local mode');
+  } else {
+    assert(false);
+  }
+}
+
+
+
 // We use this to execute since it supports utf8 and also an optional
 // timeout, but it needs the exact location of binaries because it doesn't
 // spawn a shell
@@ -144,6 +172,33 @@ function exec_js_handler(useJSONP /* use bind first */, isTypescript /* use bind
                           // double-check with 'docker ps -a'
                           killSignal: 'SIGINT'},
                          postExecHandler.bind(null, res, useJSONP));
+}
+
+
+// for running *natively* on localhost my Mac (must customize for Linux):
+if (local) {
+  app.get('/exec_js_native', function(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*'); // enable CORS
+
+    var usrCod = req.query.user_script;
+
+    var exeFile = 'backends/javascript/node-v6.0.0-darwin-x64/bin/node';
+    var args = [];
+    args.push('--expose-debug-as=Debug',
+              'backends/javascript/jslogger.js',
+              '--jsondump=true',
+              '--code=' + usrCod);
+
+    child_process.execFile(exeFile, args,
+                           {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
+                            maxBuffer: MAX_BUFFER_SIZE,
+                            // make SURE docker gets the kill signal;
+                            // this signal seems to allow docker to clean
+                            // up after itself to --rm the container, but
+                            // double-check with 'docker ps -a'
+                            killSignal: 'SIGINT'},
+                           postExecHandler.bind(null, res, false));
+  });
 }
 
 
@@ -265,27 +320,6 @@ app.get('/test_failure_jsonp', function(req, res) {
 // https support
 var https = require('https');
 var fs = require('fs');
-
-// to use low-numbered ports, Node must be allowed to bind to ports lower than 1024.
-// e.g., run: sudo setcap 'cap_net_bind_service=+ep' <node executable>
-// defaults:
-var PORT = 80;
-var useHttps = false;
-
-var args = process.argv.slice(2);
-if (args.length > 0) {
-  if (args[0] === 'https') {
-    PORT = 443;
-    useHttps = true;
-  } else if (args[0] === 'http3000') {
-    PORT = 3000;
-  } else if (args[0] === 'https8001') {
-    PORT = 8001;
-    useHttps = true;
-  } else {
-    assert(false);
-  }
-}
 
 if (useHttps) {
   // added letsencrypt support on 2017-06-28 -- MAKE SURE we have read permissions

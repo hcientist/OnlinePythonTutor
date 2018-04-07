@@ -5,6 +5,8 @@ JS logger backend for Online Python Tutor runtime visualizer
 First version created on: 2015-01-02 by Philip Guo
 - originally made for Node v0.10.25, which supports ES5 (Jan 2015)
 - on 2016-05-01, ported over to also work on Node v6.0.0, which supports ES6
+- NB on 2018-04-05: this script seems *very* sensitive to Node version,
+  so even a slightly newer version of Node v6 won't work; it seems very brittle
 
 Run as:
 node --expose-debug-as=Debug jslogger.js
