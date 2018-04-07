@@ -21,6 +21,8 @@
 
 - [later] add a codeopticon-style history slider of the user's past
   edits (but that might be confusing)
+  - NB: now we kind of already have this if you're in a shared session
+    with 'undo' and 'redo' buttons
 
 - [later] detect exact position of syntax error and put a squiggly line below
   it with something like:
@@ -140,6 +142,11 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
         $.get('eureka_survey.py', myArgs, function(dat) {});
       }
     });
+  }
+
+  parseQueryString() {
+    super.parseQueryString(); // call super first!
+    $("#eurekaSurveyPane,#surveyPane,#liveModeHeader").hide();
   }
 
   // override verison in opt-frontend.ts
@@ -590,7 +597,11 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
       frontendOptionsObj.lang = 'py3';
     } else if (pyState === 'js') {
       frontendOptionsObj.lang = 'js';
-      jsonp_endpoint = this.langSettingToJsonpEndpoint[pyState]; // maybe null
+
+      // only set the remote endpoint if you're *not* on localhost:
+      if (window.location.href.indexOf('localhost') < 0) {
+        jsonp_endpoint = this.langSettingToJsonpEndpoint[pyState]; // maybe null
+      }
     } else {
       assert(false);
     }
@@ -631,18 +642,39 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
                options_json: JSON.stringify(backendOptionsObj)},
         success: execCallback,
       });
+
+      // TODO: we currently don't use backupHttpServerRoot like we do in opt-frontend-common.ts
+      // maybe we should add support for it here too
     } else {
-      // for Python 2 or 3, directly execute backendScript
-      assert (pyState === '2' || pyState === '3');
-      $.get(backendScript,
-            {user_script : codeToExec,
-             raw_input_json: this.rawInputLst.length > 0 ? JSON.stringify(this.rawInputLst) : '',
-             options_json: JSON.stringify(backendOptionsObj),
-             user_uuid: this.userUUID,
-             session_uuid: this.sessionUUID,
-             prevUpdateHistoryJSON: prevUpdateHistoryJSON,
-             exeTime: new Date().getTime()},
-             execCallback, "json");
+      if (pyState === '2' || pyState === '3') {
+        $.get(backendScript,
+              {user_script : codeToExec,
+               raw_input_json: this.rawInputLst.length > 0 ? JSON.stringify(this.rawInputLst) : '',
+               options_json: JSON.stringify(backendOptionsObj),
+               user_uuid: this.userUUID,
+               session_uuid: this.sessionUUID,
+               prevUpdateHistoryJSON: prevUpdateHistoryJSON,
+               exeTime: new Date().getTime()},
+               execCallback, "json");
+      } else if (pyState === 'js') {
+        if (window.location.href.indexOf('localhost') >= 0) {
+          // use /exec_js_native if you're running on localhost:
+          // (need to first run 'make local' from ../../v4-cokapi/Makefile)
+          $.get('http://localhost:3000/exec_js_native',
+                {user_script : codeToExec,
+                 raw_input_json: this.rawInputLst.length > 0 ? JSON.stringify(this.rawInputLst) : '',
+                 options_json: JSON.stringify(backendOptionsObj),
+                 user_uuid: this.userUUID,
+                 session_uuid: this.sessionUUID,
+                 prevUpdateHistoryJSON: prevUpdateHistoryJSON,
+                 exeTime: new Date().getTime()},
+                 execCallback, "json");
+        } else {
+          assert(false);
+        }
+      } else {
+        assert(false);
+      }
     }
   }
 
