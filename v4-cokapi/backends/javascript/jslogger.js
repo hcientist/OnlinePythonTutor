@@ -839,6 +839,15 @@ function listener(event, execState, eventData, data) {
           for (jj = 0; jj < localScopePairs.length; jj++) {
             var mungedVarName = e[0] + ' (block ' + scopeIdx + ')';
             e = localScopePairs[jj];
+
+            // TODO: decide later whether to do this or not, still undecided ...
+            //
+            // don't display 'undefined' values within blocks since
+            // sometimes it shows extraneous ones like in for-of loops
+            //if (_.isUndefined(e[1])) {
+            //  continue;
+            //}
+
             traceStackEntry.ordered_varnames.push(mungedVarName);
             assert(!_.has(traceStackEntry.encoded_locals, mungedVarName));
             traceStackEntry.encoded_locals[mungedVarName] = encodeObject(e[1]);
@@ -953,6 +962,15 @@ function listener(event, execState, eventData, data) {
         for (jj = 0; jj < globalScopePairs.length; jj++) {
           var globalVarname = globalScopePairs[jj][0] + ' (block ' + scopeIdx + ')';
           var globalVal = globalScopePairs[jj][1];
+
+          // TODO: decide later whether to do this or not, still undecided ...
+          //
+          // don't display 'undefined' values within blocks since
+          // sometimes it shows extraneous ones like in for-of loops
+          //if (_.isUndefined(globalVal)) {
+          //  continue;
+          //}
+
           if (!_.has(IGNORE_GLOBAL_VARS, globalVarname)) {
             curTraceEntry.ordered_globals.push(globalVarname);
             assert(!_.has(curTraceEntry.globals, globalVarname));
