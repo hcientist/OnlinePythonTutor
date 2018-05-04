@@ -22889,7 +22889,7 @@ var OptFrontendSharedSessions = (function (_super) {
                         var timeSinceCreationStr = moment(d.valueOf() - e.timeSinceCreation).fromNow();
                         var timeSinceLastMsgStr = moment(d.valueOf() - e.timeSinceLastMsg).fromNow();
                         var langName = _this.langToEnglish(e.lang);
-                        var curStr = e.username;
+                        var curStr = pytutor_1.htmlspecialchars(e.username);
                         if (e.country && e.city) {
                             // print 'region' (i.e., state) for US addresses:
                             if (e.country === "United States" && e.region) {
@@ -23026,7 +23026,7 @@ var OptFrontendSharedSessions = (function (_super) {
             }
             $("#moderationPanel").append('Kick out disruptive users: ');
             livePeers.forEach(function (e) {
-                $("#moderationPanel").append('<button class="kickLink">' + e.username + '</button>');
+                $("#moderationPanel").append('<button class="kickLink">' + pytutor_1.htmlspecialchars(e.username) + '</button>');
                 $("#moderationPanel .kickLink").last()
                     .data('clientId', e.clientId)
                     .data('username', e.username);
@@ -23912,7 +23912,7 @@ var OptFrontendSharedSessions = (function (_super) {
                         otherActiveEntries.push(e);
                     });
                     otherActiveEntries.forEach(function (e) {
-                        var curStr = '\n- Help ' + e.username;
+                        var curStr = '\n- Help ' + pytutor_1.htmlspecialchars(e.username);
                         var langName = _this.langToEnglish(e.lang);
                         if (e.country && e.city) {
                             // print 'region' (i.e., state) for US addresses:
