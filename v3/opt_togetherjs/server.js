@@ -10,6 +10,8 @@
 // (also added a /getHelpQueue endpoint to get the current help queue state)
 //
 // 2018-03-18: added a /serverStats endpoint to report on latest server stats
+//
+// 2018-05-04: added some security patches, now requires Node.js >= 8 (tested on v8.11.1 so far)
 
 // Try to run with the following options to (hopefully!) prevent it from
 // mysteriously crashing and failing to restart (use --spinSleepTime to
@@ -132,7 +134,7 @@ function sanitizedUrl(s) {
   var myUrl = null;
 
   try {
-    myUrl = new url.URL(s);
+    myUrl = new url.URL(s); // requires Node.js >= 8, i think
   } catch (e) {
     return null; // if you can't parse the URL, then it's definitely not legit
   }
