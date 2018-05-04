@@ -36,7 +36,7 @@ export var TogetherJS = (window as any).TogetherJS;
 
 import {supports_html5_storage} from './opt-frontend-common';
 import {OptFrontend} from './opt-frontend';
-import {assert} from './pytutor';
+import {assert,htmlspecialchars} from './pytutor';
 
 
 // copy-pasta from // https://github.com/kidh0/jquery.idle
@@ -597,7 +597,7 @@ Get live help!
             var timeSinceLastMsgStr = moment(d.valueOf() - e.timeSinceLastMsg).fromNow();
             var langName = this.langToEnglish(e.lang);
 
-            var curStr = e.username;
+            var curStr = htmlspecialchars(e.username);
 
             if (e.country && e.city) {
               // print 'region' (i.e., state) for US addresses:
@@ -743,7 +743,7 @@ Get live help!
 
       $("#moderationPanel").append('Kick out disruptive users: ');
       livePeers.forEach((e) => {
-        $("#moderationPanel").append('<button class="kickLink">' + e.username + '</button>');
+        $("#moderationPanel").append('<button class="kickLink">' + htmlspecialchars(e.username) + '</button>');
         $("#moderationPanel .kickLink").last()
           .data('clientId', e.clientId)
           .data('username', e.username);
@@ -1752,7 +1752,7 @@ Get live help!
           });
 
           otherActiveEntries.forEach((e) => {
-            var curStr = '\n- Help ' + e.username;
+            var curStr = '\n- Help ' + htmlspecialchars(e.username);
             var langName = this.langToEnglish(e.lang);
 
             if (e.country && e.city) {

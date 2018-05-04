@@ -117,6 +117,46 @@ Logger.prototype = {
   };
 });
 
+// pgbovine - sanitize inputs for security
+var USERNAME_RE = /user_\w\w\w/;
+function isLegitUsername(s) {
+  return (s && typeof(s) == 'string' && s.length === 8 && USERNAME_RE.test(s));
+}
+
+var url = require('url');
+function sanitizedUrl(s) {
+  if (!(s && typeof(s) == 'string')) {
+    return null;
+  }
+
+  var myUrl = null;
+
+  try {
+    myUrl = new url.URL(s);
+  } catch (e) {
+    return null; // if you can't parse the URL, then it's definitely not legit
+  }
+
+  // URL should have a hash since that's where togetherjs id info is passed in
+  if (!myUrl.hash) {
+    return null;
+  }
+
+  var sanitizedDomain = null;
+  // if pythontutor or localhost isn't in the domain, then it's not legit
+  if (myUrl.hostname.toLowerCase().indexOf('pythontutor') >= 0) {
+    sanitizedDomain = 'http://pythontutor.com/'; // canonicalize!
+  } else if (myUrl.hostname === 'localhost') {
+    sanitizedDomain = 'http://localhost:' + myUrl.port + '/';
+  } else {
+    return null;
+  }
+
+  var sanitizedUrl = url.resolve(sanitizedDomain, myUrl.pathname + myUrl.hash);
+  return sanitizedUrl;
+}
+
+
 var logger = new Logger(0, null, true);
 
 var server = http.createServer(function(request, response) {
@@ -161,6 +201,13 @@ var server = http.createServer(function(request, response) {
       return;
     }
 
+    // sanity-check inputs
+    if (!url.query.id) {
+      response.writeHead(200, { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }); // CORS?
+      response.end(JSON.stringify({status: 'ERROR'}));
+      return;
+    }
+
     var logObj = createLogEntry(request);
     logObj.type = 'requestPublicHelp';
 
@@ -179,6 +226,16 @@ var server = http.createServer(function(request, response) {
       });
       response.end(JSON.stringify({status: 'OKIE DOKIE'}));
     } else {
+      var cleanUrl = sanitizedUrl(url.query.url);
+
+      // sanity-check inputs
+      if (!url.query.id || !url.query.lang || !isLegitUsername(url.query.username) || !cleanUrl) {
+        response.writeHead(200, { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }); // CORS?
+        response.end(JSON.stringify({status: 'ERROR'}));
+        return;
+      }
+      url.query.url = cleanUrl; // substitute in cleaned URL
+
       // use http://freegeoip.net/ - this call gets the geolocation of the
       // client's current IP address. note that we prefer to do this on the
       // server rather than directly from the browser since we get a more
