@@ -146,7 +146,9 @@ function sanitizedUrl(s) {
 
   var sanitizedDomain = null;
   // if pythontutor or localhost isn't in the domain, then it's not legit
-  if (myUrl.hostname.toLowerCase().indexOf('pythontutor') >= 0) {
+  if (myUrl.hostname.toLowerCase().indexOf('www.pythontutor.com') >= 0) {
+    sanitizedDomain = 'http://www.pythontutor.com/'; // canonicalize!
+  } else if (myUrl.hostname.toLowerCase().indexOf('pythontutor.com') >= 0) {
     sanitizedDomain = 'http://pythontutor.com/'; // canonicalize!
   } else if (myUrl.hostname === 'localhost') {
     sanitizedDomain = 'http://localhost:' + myUrl.port + '/';
