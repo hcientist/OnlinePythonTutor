@@ -156,7 +156,8 @@ function sanitizedUrl(s) {
     return null;
   }
 
-  var sanitizedUrl = url.resolve(sanitizedDomain, myUrl.pathname + myUrl.hash);
+  // strip '/' from pathnames to prevent weirdness
+  var sanitizedUrl = url.resolve(sanitizedDomain, myUrl.pathname.replace('/', '') + myUrl.hash);
   return sanitizedUrl;
 }
 
