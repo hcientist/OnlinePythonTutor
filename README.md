@@ -51,7 +51,7 @@ For code or security contributions:
 - Peter Wentworth and his students - working on the original Python 3 fork circa 2010-2011
 - For security tips and vulnerability reports: Aaron E. (https://arinerron.com), Chris Horne (https://github.com/lahwran), Joshua Landau (joshua@landau.ws), David Wyde (https://davidwyde.com/)
 
-For user testing and instructor-oriented feedback:
+For user testing and feedback from instructors' perspectives:
 - Ned Batchelder
 - Jennifer Campbell
 - John Dalbey
