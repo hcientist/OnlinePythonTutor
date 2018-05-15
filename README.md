@@ -41,7 +41,7 @@ For further directions, see [Overview for Developers](v3/docs/developer-overview
 
 ### Acknowledgments
 
-For code or security contributions
+For code or security contributions:
 - Irene Chen - holistic visualization mode -- v3/js/holistic.js
 - John DeNero - helping with the official Python 3 port and lots of code patches
 - Chris Meyers - custom visualizations such as v3/matrix.py and v3/htmlFrame.py
@@ -51,7 +51,7 @@ For code or security contributions
 - Peter Wentworth and his students - working on the original Python 3 fork circa 2010-2011
 - For security tips and vulnerability reports: Aaron E. (https://arinerron.com), Chris Horne (https://github.com/lahwran), Joshua Landau (joshua@landau.ws), David Wyde (https://davidwyde.com/)
 
-For general advice and feedback about this project:
+For user testing and instructor-oriented feedback:
 - Ned Batchelder
 - Jennifer Campbell
 - John Dalbey
