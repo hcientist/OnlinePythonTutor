@@ -12,6 +12,7 @@ Webpack- and TypeScript-based compilation step. See these files for more
 info:
 
 - package.json      <-- Node.js dependencies for npm
+- package-lock.json <-- see https://docs.npmjs.com/files/package-locks
 - webpack.config.js <-- Webpack configuration file (works on webpack versions under v4)
 
 Note that this directory (like v3/) contains only the web frontend code
