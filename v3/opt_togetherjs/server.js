@@ -125,7 +125,6 @@ function isLegitUsername(s) {
   return (s && typeof(s) == 'string' && s.length === 8 && USERNAME_RE.test(s));
 }
 
-var url = require('url');
 function sanitizedUrl(s) {
   if (!(s && typeof(s) == 'string')) {
     return null;
@@ -134,7 +133,7 @@ function sanitizedUrl(s) {
   var myUrl = null;
 
   try {
-    myUrl = new url.URL(s); // requires Node.js >= 8, i think
+    myUrl = parseUrl(s);
   } catch (e) {
     return null; // if you can't parse the URL, then it's definitely not legit
   }
@@ -157,7 +156,12 @@ function sanitizedUrl(s) {
   }
 
   // strip '/' from pathnames to prevent weirdness
-  var sanitizedUrl = url.resolve(sanitizedDomain, myUrl.pathname.replace('/', '') + myUrl.hash);
+  var urlLib = require('url');
+  var sanitizedUrl = urlLib.resolve(sanitizedDomain, myUrl.pathname.replace('/', '') + myUrl.hash);
+
+  if (!sanitizedUrl) {
+    console.log('ERROR in sanitizedUrl', s, sanitizedDomain, myUrl, sanitizedUrl);
+  }
   return sanitizedUrl;
 }
 
@@ -208,6 +212,7 @@ var server = http.createServer(function(request, response) {
 
     // sanity-check inputs
     if (!url.query.id) {
+      console.log('ERROR: no url.query.id');
       response.writeHead(200, { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }); // CORS?
       response.end(JSON.stringify({status: 'ERROR'}));
       return;
@@ -235,6 +240,7 @@ var server = http.createServer(function(request, response) {
 
       // sanity-check inputs
       if (!url.query.id || !url.query.lang || !isLegitUsername(url.query.username) || !cleanUrl) {
+        console.log('ERROR 2:', url.query, isLegitUsername(url.query.username), cleanUrl);
         response.writeHead(200, { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }); // CORS?
         response.end(JSON.stringify({status: 'ERROR'}));
         return;

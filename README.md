@@ -41,22 +41,17 @@ For further directions, see [Overview for Developers](v3/docs/developer-overview
 
 ### Acknowledgments
 
-For code or security contributions
+For code or security contributions:
+- Irene Chen - experimental holistic visualization mode - v3/js/holistic.js
+- John DeNero - helping with the official Python 3 port, bug fixes galore
+- Chris Meyers - custom visualizations such as v3/matrix.py and v3/htmlFrame.py
+- Brad Miller - adding pop-up question dialogs to visualizations, other bug fixes
+- David Pritchard and Will Gwozdz - Java visualizer and other frontend enhancements
+- Peter Robinson - v3/make_visualizations.py
+- Peter Wentworth and his students - working on the original Python 3 fork circa 2010-2011
+- Security tips and vulnerability reports: Aaron E. (https://arinerron.com), Chris Horne (https://github.com/lahwran), Joshua Landau (joshua@landau.ws), David Wyde (https://davidwyde.com/)
 
-- John DeNero - for helping with the official Python 3 port and lots of code patches
-- Chris Horne - https://github.com/lahwran - for security tips
-- Joshua Landau - joshua@landau.ws - for security tips
-- David Wyde - https://davidwyde.com/ - for security tips
-- Peter Wentworth and his students - for working on the original Python 3 fork circa 2010/2011
-- Brad Miller - for adding pop-up question dialogs to visualizations, and other bug fixes
-- David Pritchard and Will Gwozdz - for the Java visualizer and other frontend enhancements
-- Peter Robinson - for v3/make_visualizations.py
-- Chris Meyers - for custom visualizations such as v3/matrix.py and v3/htmlFrame.py
-- Irene Chen - for holistic visualization mode -- v3/js/holistic.js
-
-
-For general advice and feedback about this project:
-
+For user testing and feedback from instructors' perspectives:
 - Ned Batchelder
 - Jennifer Campbell
 - John Dalbey
@@ -68,6 +63,7 @@ For general advice and feedback about this project:
 - Mark Guzdial
 - Adam Hartz
 - Sean Lip
+- Fernando Perez
 - Tomas Lozano-Perez
 - Bertram Ludaescher
 - Brad Miller
