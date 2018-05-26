@@ -12,7 +12,7 @@ Webpack- and TypeScript-based compilation step. See these files for more
 info:
 
 - package.json      <-- Node.js dependencies for npm
-- webpack.config.js <-- Webpack configuration file
+- webpack.config.js <-- Webpack configuration file (works on webpack versions under v4)
 
 Note that this directory (like v3/) contains only the web frontend code
 and the Python execution backend (mainly in pg_logger.py). For the
@@ -42,12 +42,26 @@ To make a production (minified, cache-busted) build for deployment, run:
 
 (TODO: the --optimize-minimize doesn't seem to work right now; dunno why, ergh)
 ---
-This workflow was most recently tested on 2017-02-11 with these versions of major tools:
+This workflow was tested on 2017-02-11 with these versions of major tools:
 
 typescript 2.1.6
 webpack 2.2.1
 
----
+
+UPDATE: it was tested on 2018-05-26 with:
+
+$ webpack -v
+3.11.0
+
+$ tsc -v
+Version 2.8.3
+
+------
+
+[instructions last updated on 2018-05-26 ... ergh these instructions
+get outdated so quickly since the npm ecosystem is so unstable and moves
+so fast ...]
+
 To get started, install:
 
 1) Node.js / npm
@@ -67,6 +81,10 @@ To get started, install:
 
 6) Install bottle.py to run the local webserver (I suppose we could use node too, but oh wells!)
   pip install bottle # maybe needed sudo
+
+see package.json for specific version dependencies, such as:
+    "ts-loader": "^3.5.0",
+otherwise stuff doesn't play well together, eeeek dependency hell!
 
 ======
 History:
