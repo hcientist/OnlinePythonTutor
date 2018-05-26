@@ -15,7 +15,7 @@
     "on-build-webpack": "^0.1.0",
     "script-loader": "",
     "style-loader": "",
-    "ts-loader": "",
+    "ts-loader": "^3.5.0",
     "url-loader": "",
     "webpack-cli": "^2.1.4"
   }
