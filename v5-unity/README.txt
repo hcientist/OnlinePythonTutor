@@ -50,26 +50,23 @@ webpack 2.2.1
 ---
 To get started, install:
 
-1.) Node.js / npm
-2.) Global npm dependency installs (run these commands in the v5-unity/ directory):
+1) Node.js / npm
+2) Global npm dependency installs (run these commands in this directory):
 
-  sudo npm install webpack -g
-  npm link webpack            # link to the local node_modules/ dir
+  sudo npm install webpack@v3.11.0 -g # DON'T USE NEWER WEBPACK since it won't work with my webpack.config.js file, ergh
   sudo npm install webpack-dev-server -g
   sudo npm install -g typescript
-  npm link typescript         # link to the local node_modules/ dir
   sudo npm install -g tsd
 
-3.) Run "npm install" in this directory to install node dependencies
+3) Run "npm install" in this directory to install node dependencies
+4) Run "tsd install" in this directory to install TypeScript definition files
 
-4.) Run "tsd install" in this directory to install TypeScript definition files
+5) do this near the end, i think
+  npm link webpack            # link to the local node_modules/ dir
+  npm link typescript         # link to the local node_modules/ dir
 
-5.) Install bottle.py to run the local webserver (I suppose we could use node too, but oh wells!)
-
-  sudo pip install bottle
-
-6.) [Optional] follow ../tests/frontend-regression-tests/README.txt to install
-    dependencies for visual regression testing
+6) Install bottle.py to run the local webserver (I suppose we could use node too, but oh wells!)
+  pip install bottle # maybe needed sudo
 
 ======
 History:
