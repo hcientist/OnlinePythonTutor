@@ -247,6 +247,8 @@ var server = http.createServer(function(request, response) {
       }
       url.query.url = cleanUrl; // substitute in cleaned URL
 
+      // ugh, will be deprecated on 2018-07-01: https://github.com/apilayer/freegeoip#readme
+      //
       // use http://freegeoip.net/ - this call gets the geolocation of the
       // client's current IP address. note that we prefer to do this on the
       // server rather than directly from the browser since we get a more
@@ -319,6 +321,30 @@ var server = http.createServer(function(request, response) {
     // hide some entries on the queue based on whether uniqueId has been
     // banned from those sessions:
     response.end(JSON.stringify(getPHRStats(uniqueId)));
+  } else if (url.pathname == '/getNumObservers') { // pgbovine
+    if (request.method == "OPTIONS") {
+      // CORS preflight
+      corsAccept(request, response);
+      return;
+    }
+
+    // get number of *non-idle* OPT users who are observing the help queue,
+    // split by their current programming language that they're working in
+    var numObservers = {};
+    for (var val of allRecentHelpQueueQueries.values()) {
+      if (val.lang) {
+        if (numObservers[val.lang] === undefined) {
+          numObservers[val.lang] = 0;
+        }
+        numObservers[val.lang] += 1;
+      }
+    }
+
+    response.writeHead(200, {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*"
+    });
+    response.end(JSON.stringify(numObservers));
   } else if (url.pathname == '/survey') { // pgbovine - just log a survey entry to the log
      if (request.method == "OPTIONS") {
       // CORS preflight
@@ -649,6 +675,7 @@ wsServer.on('request', function(request) {
         (request.connection.socket ? request.connection.socket.remoteAddress : null);
 
 
+      // ugh, will be deprecated on 2018-07-01: https://github.com/apilayer/freegeoip#readme
       requestFunc("http://freegeoip.net/json/" + String(ip), function(error, resp, body) {
         var geoResult;
         if (!error) {
