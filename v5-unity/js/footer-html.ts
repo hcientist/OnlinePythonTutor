@@ -1,3 +1,26 @@
+export var privacyAndEndingHTML = `
+
+<p style="margin-top: 30px;">Privacy Policy: By using Python Tutor, your
+visualized code, options, user interactions, text chats, and IP address
+are logged on our server and may be analyzed for research purposes.
+Nearly all web services collect this basic information from users in
+their server logs. However, Python Tutor does not collect any personally
+identifiable information from its users. It uses Google Analytics for
+website analytics.</p>
+
+<p>Terms of Service: The Python Tutor service is provided for free on an
+as-is basis. Use this service at your own risk. Do not use it to share
+confidential information. The developers of Python Tutor are not
+responsible for the chat messages or behaviors of any of the users on
+this website. We are also not responsible for any damages caused by
+using this website. Finally, it is your responsibility to follow
+appropriate academic integrity standards.</p>
+
+<p style="margin-top: 25px;">
+Copyright &copy; <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
+</p>`;
+
+
 export var footerHtml = `
 <p>
   <button id="genUrlBtn" class="smallBtn" type="button">Generate permanent link</button> <input type="text" id="urlOutput" size="70"/>
@@ -83,21 +106,4 @@ source code</a>.</p>
 
 <p>7. C++ using gcc 4.8, C++11, and Valgrind Memcheck.
 <a href="https://github.com/pgbovine/opt-cpp-backend">Backend source code</a>.</p>
-
-<p style="margin-top: 30px;">Privacy Policy: By using Python
-Tutor, your visualized code, options, user interactions, text chats, and
-IP address are logged on our server and may be analyzed for research
-purposes. Nearly all Web services collect this basic information from
-users. However, the Python Tutor website (pythontutor.com) does
-not collect any personal information or session state from users, nor
-does it issue any cookies.</p>
-
-<p>Use this website at your own risk. The developers of Python Tutor are
-not responsible for the chat messages or behaviors of any of the users
-on this website. We are also not responsible for any damages caused by
-using this website. It is your responsibility to follow appropriate academic integrity standards.</p>
-
-<p style="margin-top: 25px;">
-Copyright &copy; <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
-</p>
-`;
+` + privacyAndEndingHTML;

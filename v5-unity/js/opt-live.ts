@@ -46,6 +46,7 @@ import {OptFrontendSharedSessions,TogetherJS} from './opt-shared-sessions';
 import {ExecutionVisualizer, assert, brightRed, darkArrowColor, lightArrowColor, SVG_ARROW_POLYGON, htmlspecialchars} from './pytutor';
 import {eureka_survey,eureka_prompt,eureka_survey_version} from './surveys';
 import {allTabsRE} from './opt-frontend';
+import {privacyAndEndingHTML} from './footer-html';
 
 // just punt and use global script dependencies
 require("script-loader!./lib/ace/src-min-noconflict/ace.js");
@@ -145,6 +146,8 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
         $.get('eureka_survey.py', myArgs, function(dat) {});
       }
     });
+
+    $("#footer").append(privacyAndEndingHTML);
   }
 
   demoModeChanged() {
