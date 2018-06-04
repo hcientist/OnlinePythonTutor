@@ -58,7 +58,7 @@ var thisSource = "// What follows is the source for the server.\n" +
     "// a bunch of lying liars, so at least you have us on record.\n\n" +
     fs.readFileSync(__filename);
 
-var ipStackApiKey = String(fs.readFileSync('ipstack-geolocation/api-key.txt')).trim(); // pgbovine
+var ipStackApiKey = String(fs.readFileSync(__dirname + '/ipstack-geolocation/api-key.txt')).trim(); // pgbovine
 
 var Logger = function (level, filename, stdout) {
   this.level = level;
