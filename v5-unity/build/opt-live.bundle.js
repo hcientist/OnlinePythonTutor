@@ -23567,6 +23567,22 @@ exports.TogetherJS = window.TogetherJS;
 var opt_frontend_common_1 = __webpack_require__(8);
 var opt_frontend_1 = __webpack_require__(35);
 var pytutor_1 = __webpack_require__(5);
+// copypasta from pytutor.ts
+// https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#RULE_.231_-_HTML_Escape_Before_Inserting_Untrusted_Data_into_HTML_Element_Content
+var entityMap = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': '&quot;',
+    "'": '&#x27;',
+    "/": '&#x2F;'
+};
+function escapeHtmlAntiXSS(string) {
+    return String(string).replace(/[&<>"'\/]/g, function (s) {
+        return entityMap[s];
+    });
+}
+;
 // copy-pasta from // https://github.com/kidh0/jquery.idle
 /**
  *  File: jquery.idle.js
@@ -24083,7 +24099,7 @@ var OptFrontendSharedSessions = /** @class */ (function (_super) {
                                     curStr += ' - ' + String(e.numClients) + ' people chatting';
                                 }
                             }
-                            curStr += " - <a class=\"gotoHelpLink\" data-id=\"" + e.id + "\" href=\"" + e.url + "\" target=\"_blank\">click to help</a>";
+                            curStr += " - <a class=\"gotoHelpLink\" data-id=\"" + escapeHtmlAntiXSS(e.id) + "\" href=\"" + e.url + "\" target=\"_blank\">click to help</a>";
                         }
                         if (e.timeSinceLastMsg < idleTimeoutMs) {
                             curStr += ' <span class="helpQueueSmallText">(active ' + timeSinceLastMsgStr + ', requested ' + timeSinceCreationStr + ') </span>';
