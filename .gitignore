@@ -11,3 +11,4 @@ v3/opt_togetherjs/*.json
 # for regression tests
 *.diff.png
 *.fail.png
+v3/opt_togetherjs/ipstack-geolocation
