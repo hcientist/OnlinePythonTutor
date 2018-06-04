@@ -58,6 +58,8 @@ var thisSource = "// What follows is the source for the server.\n" +
     "// a bunch of lying liars, so at least you have us on record.\n\n" +
     fs.readFileSync(__filename);
 
+var ipStackApiKey = String(fs.readFileSync('ipstack-geolocation/api-key.txt')).trim(); // pgbovine
+
 var Logger = function (level, filename, stdout) {
   this.level = level;
   this.filename = filename;
@@ -247,13 +249,11 @@ var server = http.createServer(function(request, response) {
       }
       url.query.url = cleanUrl; // substitute in cleaned URL
 
-      // ugh, will be deprecated on 2018-07-01: https://github.com/apilayer/freegeoip#readme
-      //
-      // use http://freegeoip.net/ - this call gets the geolocation of the
-      // client's current IP address. note that we prefer to do this on the
-      // server rather than directly from the browser since we get a more
-      // accurate IP address on the server:
-      requestFunc("http://freegeoip.net/json/" + String(logObj.ip), function(error, resp, body) {
+      // see ipstack-geolocation/ directory (not in GitHub) for more info
+      // this call gets the geolocation of the client's current IP address.
+      // note that we prefer to do this on the server rather than directly
+      // from the browser since we get a more accurate IP address on the server:
+      requestFunc("http://api.ipstack.com/" + String(logObj.ip) + '?access_key=' + ipStackApiKey, function(error, resp, body) {
         var geoResult;
         if (!error) {
           try {
@@ -675,8 +675,8 @@ wsServer.on('request', function(request) {
         (request.connection.socket ? request.connection.socket.remoteAddress : null);
 
 
-      // ugh, will be deprecated on 2018-07-01: https://github.com/apilayer/freegeoip#readme
-      requestFunc("http://freegeoip.net/json/" + String(ip), function(error, resp, body) {
+      // see ipstack-geolocation/ directory (not in GitHub) for more info
+      requestFunc("http://api.ipstack.com/" + String(ip) + '?access_key=' + ipStackApiKey, function(error, resp, body) {
         var geoResult;
         if (!error) {
           try {
