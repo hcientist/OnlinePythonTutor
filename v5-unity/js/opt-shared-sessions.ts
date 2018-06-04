@@ -1555,7 +1555,7 @@ Get live help!
         <div id="moderationPanel"></div>
         <div style="margin-bottom: 10px;">You have requested help as <span class="redBold">` +
         TogetherJS.config.get("getUserName")() +
-        `</span>. <span id="numObserversSpan"></span> The longer you wait on the queue (see below), the more likely that someone on this website will volunteer to help you.</div>
+        `</span>. <span id="numObserversSpan"></span> The longer you wait, the more likely that someone on this website will volunteer to help you. But there is no guarantee that someone will come help.</div>
         <div id="publicHelpQueue"></div>`);
       this.updateModerationPanel(); // update it right away
       this.getHelpQueue(); // update it right away
