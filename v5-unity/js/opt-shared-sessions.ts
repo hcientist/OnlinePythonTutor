@@ -396,6 +396,7 @@ Get live help!
     // resources and get a more accurate indicator of who is active at
     // the moment
     setInterval(this.getHelpQueue.bind(this), 5 * 1000);
+    setInterval(this.getNumObservers.bind(this), 5 * 1000);
 
     // update this pretty frequently; doesn't require any ajax calls:
     setInterval(this.updateModerationPanel.bind(this), 2 * 1000);
@@ -694,6 +695,74 @@ Get live help!
     });
   }
 
+  getNumObservers() {
+    // VERY IMPORTANT: to avoid overloading the server, don't send these
+    // requests when you're idle or disableSharedSessions is on.
+    if (this.isIdle || this.disableSharedSessions) {
+      return; // return early before making a GET request to server!
+    }
+
+    // if we can't even see the numObserversSpan element, then don't bother
+    // calling /getNumObservers on the server since we wouldn't even be
+    // able to see it now anyhow
+    if (!$("#numObserversSpan").is(":visible") ){
+      return; // return early before making a GET request to server!
+    }
+
+    var ghqUrl = TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/getNumObservers";
+    $.ajax({
+      url: ghqUrl,
+      dataType: "json",
+      error: () => {
+        console.log('/getNumObservers error');
+        $("#numObserversSpan").empty(); // avoid showing stale results
+      },
+      success: (data) => {
+        var numPython = 0; // '2' and '3'
+        var numJs = 0;     // 'js' and 'ts'
+        var numCpp = 0;    // 'c' and 'cpp'
+        var numJava = 0;   // 'java'
+        var numRuby = 0;   // 'ruby'
+
+        if (data['2'] > 0) {
+          numPython += data['2'];
+        }
+        if (data['3'] > 0) {
+          numPython += data['3'];
+        }
+        if (data['js'] > 0) {
+          numJs += data['js'];
+        }
+        if (data['ts'] > 0) {
+          numJs += data['ts'];
+        }
+        if (data['c'] > 0) {
+          numCpp += data['c'];
+        }
+        if (data['cpp'] > 0) {
+          numCpp += data['cpp'];
+        }
+        if (data['java'] > 0) {
+          numJava += data['java'];
+        }
+        if (data['ruby'] > 0) {
+          numRuby += data['ruby'];
+        }
+
+        var tot = numPython + numJs + numCpp + numJava + numRuby;
+        var outputArr = [[numPython, 'coding in Python'],
+                         [numJs, 'in JavaScript'],
+                         [numCpp, 'in C/C++'],
+                         [numJava, 'in Java'],
+                         [numRuby, 'in Ruby']];
+        (outputArr as any).sort((a,b) => (b[0] - a[0])); // sort descending
+
+        var outputStr = outputArr.filter(e => e[0] > 0).map(e => `${e[0]} ${e[1]}`).join(', ');
+        $("#numObserversSpan").html(`There are now ${tot} people on this website: ${outputStr}<br/>`);
+      },
+    });
+  }
+
   // did I *originally* create this session, or did I join?
   meCreatedThisSession() {
     if (!TogetherJS.running) {
@@ -777,6 +846,8 @@ Get live help!
     if (settings.url.indexOf('togetherjs') > -1) {
       return true;
     } else if (settings.url.indexOf('getHelpQueue') > -1) {
+      return true;
+    } else if (settings.url.indexOf('getNumObservers') > -1) {
       return true;
     } else if (settings.url.indexOf('requestPublicHelp') > -1) {
       return true;
@@ -1464,12 +1535,13 @@ Get live help!
     if (resp.status === "OKIE DOKIE") {
       $("#togetherjsStatus").html(`
         <div id="moderationPanel"></div>
-        <div style="margin-bottom: 10px;">You have requested help as <b>` +
+        <div style="margin-bottom: 10px;">You have requested help as <span class="redBold">` +
         TogetherJS.config.get("getUserName")() +
-        `</b> (see below for queue).<br/>Anyone on this website can volunteer to help you, but there is no guarantee that someone will come help.</div>
+        `</span>. <span id="numObserversSpan"></span> The longer you wait on the queue (see below), the more likely that someone on this website will volunteer to help you.</div>
         <div id="publicHelpQueue"></div>`);
       this.updateModerationPanel(); // update it right away
       this.getHelpQueue(); // update it right away
+      this.getNumObservers(); // update it right away
       this.appendTogetherJsFooter();
       $("#requestHelpBtn").hide();
     } else {
