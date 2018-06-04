@@ -24918,7 +24918,7 @@ var OptFrontendSharedSessions = /** @class */ (function (_super) {
         if (resp.status === "OKIE DOKIE") {
             $("#togetherjsStatus").html("\n        <div id=\"moderationPanel\"></div>\n        <div style=\"margin-bottom: 10px;\">You have requested help as <span class=\"redBold\">" +
                 exports.TogetherJS.config.get("getUserName")() +
-                "</span>. <span id=\"numObserversSpan\"></span> The longer you wait on the queue (see below), the more likely that someone on this website will volunteer to help you.</div>\n        <div id=\"publicHelpQueue\"></div>");
+                "</span>. <span id=\"numObserversSpan\"></span> The longer you wait, the more likely that someone on this website will volunteer to help you. But there is no guarantee that someone will come help.</div>\n        <div id=\"publicHelpQueue\"></div>");
             this.updateModerationPanel(); // update it right away
             this.getHelpQueue(); // update it right away
             this.getNumObservers(); // update it right away
