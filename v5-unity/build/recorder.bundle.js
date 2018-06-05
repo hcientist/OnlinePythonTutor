@@ -27905,17 +27905,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
   - test by recording locally (with python/js/etc. backends running on
     localhost) and then replaying remotely on pythontutor.com, since
-    that's what students will ultimately be doing. also make a special
-    entry in TogetherJS logs for tutorial replays.
+    that's what students will ultimately be doing.
+    - also make a special entry in codechella logs for tutorial replays
+      so that we can EASILY FILTER THEM OUT when we're analyzing the logs.
 
   - in the video player UI, put a time indicator in seconds
+
+  - move cursorOrSelectionChanged up to opt-shared-sessions.ts when it
+    seems ready for prime time
 
   - in playback mode, set a more instructive username for the tutor's
     mouse pointer - and also a better and more consistent COLOR
     - #0095DD may be good (matches chat window header background)
-
-  - allow the regular OPT visualizer to also REPLAY demo files (but only
-    let recording happen in recorder.ts)
 
   - ideally don't send events to the togetherjs when you're in recording
     or playback mode, so as not to overwhelm the logs. also it seems
