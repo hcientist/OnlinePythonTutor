@@ -1879,6 +1879,13 @@ define('session',["require", "util", "channels", "jquery", "storage"], function 
       console.info("Send:", msg);
     }
     msg.clientId = session.clientId;
+    // pgbovine - note that we still need to send the message as usual,
+    // or else things break in subtle ways
+    var eventRecorderFunc = TogetherJS.config.get("eventRecorderFunc");
+    if (eventRecorderFunc) {
+      eventRecorderFunc(msg);
+    }
+
     channel.send(msg);
   };
 
@@ -2722,6 +2729,13 @@ define('peers',["util", "session", "storage", "require", "templates"], function 
       peer = Peer(id, {fromHelloMessage: message});
       return peer;
     }
+    // pgbovine - fail-soft required for properly replaying demos:
+    // if you can't find a peer with that id, just return YOURSELF
+    if (!peer) {
+      console.warn("No peer with id:", id, "... returning peers.Self");
+      return peers.Self;
+    }
+
     assert(peer, "No peer with id:", id);
     if (message &&
         (message.type == "hello" || message.type == "hello-back" ||
@@ -8844,6 +8858,8 @@ define('forms',["jquery", "util", "session", "elementFinder", "eventMaker", "tem
     buildTrackers();
   }
 
+  TogetherJS.config('setInit', setInit); // pgbovine - expose this function to outside callers
+
   session.on("reinitialize", setInit);
 
   session.on("ui-ready", setInit);
@@ -9088,8 +9104,10 @@ define('startup',["util", "require", "jquery", "windowing", "storage"], function
     },
 
     sessionIntro: function (next) {
-      // pgbovine - pop open chat
-      windowing.show("#togetherjs-chat");
+      // pgbovine - pop open chat unless we're recording/playing a demo
+      if (!TogetherJS.config.get("isDemoSession")) {
+        windowing.show("#togetherjs-chat");
+      }
 
       if ((! session.isClient) || ! session.firstRun) {
         next();

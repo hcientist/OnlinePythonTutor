@@ -8,19 +8,14 @@
 -->
 
 <head>
-  <title>Ruby Tutor - Visualize Ruby code execution to learn Ruby online</title>
+  <title>Python Tutor codcast recorder</title>
 
   <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
-
-<script type="text/javascript">
-window.optOverride = {}
-window.optOverride.frontendLang = 'ruby'; // hacky override before including visualize.bundle.js
-</script>
 
   <!-- let Webpack take care of everything. Use the [hash] feature to
        create unique filenames for releases:
        https://webpack.github.io/docs/long-term-caching.html -->
-  <script type="text/javascript" src="build/visualize.bundle.js?a7cf50b623" charset="utf-8"></script>
+  <script type="text/javascript" src="build/recorder.bundle.js?fcfa457c31" charset="utf-8"></script>
 
 <!-- insert google-analytics.txt contents here -->
 
@@ -31,30 +26,7 @@ window.optOverride.frontendLang = 'ruby'; // hacky override before including vis
 <table id="experimentalHeader">
 <tr>
 <td valign="top" id="headerTdLeft"></td>
-<td valign="top" id="headerTdRight">
-
-<div id="surveyHeader"></div>
-
-<div id="optHeader" style="font-family: Georgia, Palatino, Times, serif; font-size: 13pt; margin-bottom: 16px; margin-left: 16px;">
-Ruby Tutor - Visualize Ruby code execution to learn Ruby online
-
-<span style="font-size: 10pt";>
-(also visualize
-<a href="visualize.html#py=2">Python2</a>,
-<a href="visualize.html#py=3">Python3</a>,
-<a href="java.html">Java</a>,
-<a href="javascript.html">JavaScript</a>,
-<a href="typescript.html">TypeScript</a>,
-<a href="ruby.html">Ruby</a>,
-<a href="c.html">C</a>,
-and
-<a href="cpp.html">C++</a>
-code)
-</span>
-
-</div>
-
-</td>
+<td valign="top" id="headerTdRight"></td>
 </tr>
 </table>
 
@@ -64,6 +36,13 @@ code)
 <div id="codeInputWarnings">Write code in
 
   <select id="pythonVersionSelector">
+    <option value="3" selected>Python 3.6</option>
+    <option value="2">Python 2.7</option>
+    <option value="java">Java 8</option>
+    <option value="c">C (gcc 4.8, C11)</option>
+    <option value="cpp">C++ (gcc 4.8, C++11)</option>
+    <option value="js">JavaScript ES6</option>
+    <option value="ts">TypeScript 1.4</option>
     <option value="ruby">Ruby 2.2</option>
   </select>
 
@@ -77,10 +56,32 @@ code)
 
 <p>
 <button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
-<button style="margin-left: 20px;" id="liveModeBtn" class="bigBtn" type="button">Live Programming Mode</button>
 </p>
 
 <div id="instructionsPane"></div>
+
+<div id="javaOptionsPane" style="margin-top: 20px;">
+<!--[<i>coming soon!</i>] Java options: pass in command-line arguments and feed user input to stdin-->
+</div>
+
+<div id="optionsPane">
+  <select id="cumulativeModeSelector">
+    <option value="false">hide exited frames [default]</option>
+    <option value="true">show all frames (Python)</option>
+  </select>
+  <select id="heapPrimitivesSelector">
+    <option value="false">inline primitives and try to nest objects</option>
+    <option value="nevernest" selected>inline primitives but don't nest objects [default]</option>
+    <option value="true">render all objects on the heap (Python/Java)</option>
+  </select>
+  <select id="textualMemoryLabelsSelector">
+    <option value="false">draw pointers as arrows [default]</option>
+    <option value="true">use text labels for pointers</option>
+  </select>
+</div>
+
+
+<div id="testCasesParent"></div>
 
 <div id="exampleSnippets"></div>
 

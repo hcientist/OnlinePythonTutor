@@ -35,6 +35,12 @@ export abstract class AbstractBaseFrontend {
   myVisualizer: ExecutionVisualizer;
   originFrontendJsFile: string; // "abstract" -- must override in subclass
 
+  // a cache where each element is a pair:
+  // [appState, cached execution trace]
+  // that way, if you execute the same code with the same settings again and
+  // get a cache hit, then there's no need to make a server call
+  traceCache = [];
+
   // 'edit' or 'display'. also support 'visualize' for backward
   // compatibility (same as 'display')
   appMode: string = 'edit';
@@ -250,6 +256,7 @@ export abstract class AbstractBaseFrontend {
             textReferences: $.bbq.getState('textReferences'),
             rawInputLst: ril ? $.parseJSON(ril) : undefined,
             demoMode: $.bbq.getState('demo'), // is 'demo mode' on? if so, hide a lot of excess stuff
+            codcastFile: $.bbq.getState('codcast'), // load a codcast file created using ../recorder.html
             codeopticonSession: $.bbq.getState('cosession'),
             codeopticonUsername: $.bbq.getState('couser'),
             testCasesLst: testCasesLstJSON ? $.parseJSON(testCasesLstJSON) : undefined
@@ -431,6 +438,18 @@ export abstract class AbstractBaseFrontend {
         }
       }
 
+      // if we can find a matching cache entry, then use it!!!
+      if (this.traceCache) {
+        var appState = this.getAppState();
+        var cachedTrace = this.traceCacheGet(appState);
+        if (cachedTrace) {
+          //console.log("CACHE HIT!", appState);
+          callbackWrapper({code: (appState as any).code, trace: cachedTrace});
+          return; // return early without going to the server at all!
+        }
+      }
+
+      // everything below here is an ajax (async) call to the server ...
       if (jsonp_endpoint) {
         assert (pyState !== '2' && pyState !== '3');
 
@@ -544,6 +563,57 @@ export abstract class AbstractBaseFrontend {
                diffs_json: deltaObjStringified},
                callbackWrapper, "json");
       }
+  }
+
+
+  // manage traceCache
+
+  // return whether two states match, except don't worry about mode or curInstr
+  static appStateEqForCache(s1, s2) {
+    // NB: this isn't always true if we're recording and replaying
+    // in different frontend files ...
+    //assert(s1.origin == s2.origin); // sanity check!
+    return (s1.code == s2.code &&
+            s1.cumulative == s2.cumulative &&
+            s1.heapPrimitives == s1.heapPrimitives &&
+            s1.textReferences == s2.textReferences &&
+            s1.py == s2.py &&
+            s1.rawInputLstJSON == s2.rawInputLstJSON);
+  }
+
+  // SILENTLY fail without doing anything if the current app state is
+  // already in the cache
+  traceCacheAdd() {
+    // should only be called if you currently have a working trace;
+    // otherwise it's useless
+    assert(this.myVisualizer && this.myVisualizer.curTrace);
+    var appState = this.getAppState();
+
+    // make sure nothing in the cache currently matches appState
+    for (var i = 0; i < this.traceCache.length; i++) {
+      var e = this.traceCache[i];
+      if (AbstractBaseFrontend.appStateEqForCache(e[0], appState)) {
+        console.warn("traceCacheAdd silently failed, entry already in cache");
+        return;
+      }
+    }
+
+    this.traceCache.push([appState, this.myVisualizer.curTrace]);
+    console.log('traceCacheAdd', this.traceCache);
+  }
+
+  traceCacheGet(appState) {
+    for (var i = 0; i < this.traceCache.length; i++) {
+      var e = this.traceCache[i];
+      if (AbstractBaseFrontend.appStateEqForCache(e[0], appState)) {
+        return e[1];
+      }
+    }
+    return null;
+  }
+
+  traceCacheClear() {
+    this.traceCache = [];
   }
 
   setSurveyHTML() {

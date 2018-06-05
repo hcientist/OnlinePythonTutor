@@ -74,6 +74,7 @@ export class OptFrontend extends AbstractBaseFrontend {
   activateEurekaSurvey: boolean = true;
 
   demoMode: boolean = false; // if true, then we're giving a live demo, so hide a bunch of excess stuff on page
+  codcastFile: string; // name of a codcast demo file to try to load
 
   preseededCurInstr: number = undefined;
 
@@ -576,6 +577,10 @@ export class OptFrontend extends AbstractBaseFrontend {
 
       $(document).scrollTop(0); // scroll to top to make UX better on small monitors
 
+      // *after* the editor is shown, force it to refresh its contents
+      // (using the misleadingly-named resize(true) method)
+      this.pyInputAceEditor.resize(true);
+
       var s: any = { mode: 'edit' };
       // keep these persistent so that they survive page reloads
       // keep these persistent so that they survive page reloads
@@ -708,6 +713,7 @@ export class OptFrontend extends AbstractBaseFrontend {
   }
 
   demoModeChanged() {}; // NOP; subclasses need to override
+  loadCodcastFile() {}; // NOP; subclasses need to override
 
   parseQueryString() {
     var queryStrOptions = this.getQueryStringOptions();
@@ -725,6 +731,11 @@ export class OptFrontend extends AbstractBaseFrontend {
     if (queryStrOptions.demoMode) {
       this.demoMode = true;
       this.demoModeChanged();
+    }
+
+    if (queryStrOptions.codcastFile) {
+      this.codcastFile = queryStrOptions.codcastFile;
+      this.loadCodcastFile();
     }
 
     if (queryStrOptions.codeopticonSession) {

@@ -36,6 +36,7 @@ export var TogetherJS = (window as any).TogetherJS;
 
 import {supports_html5_storage} from './opt-frontend-common';
 import {OptFrontend} from './opt-frontend';
+import {OptDemoVideo} from './demovideo';
 import {assert,htmlspecialchars} from './pytutor';
 
 
@@ -319,15 +320,25 @@ export class OptFrontendSharedSessions extends OptFrontend {
   fullCodeSnapshots = []; // a list of full snapshots of code taken at given times, with:
   curPeekSnapshotIndex = -1;  // current index you're peeking at inside of fullCodeSnapshots, -1 if not peeking at anything
 
+  // overriden by the OptDemoRecorder subclass but put it here since
+  // we use it at parts (yeah, abstraction violation, but oh wells,
+  // it's too troublesome to clean up at this point ...)
+  isPlayingDemo = false;
+  demoVideo: OptDemoVideo;
+
+  Range; // reference to imported Ace Range() object -- ergh
+
   constructor(params={}) {
     super(params);
     this.initTogetherJS();
     this.initABTest();
 
+    this.Range = ace.require('ace/range').Range; // for Ace Range() objects
+
     this.pyInputAceEditor.getSession().on("change", (e) => {
       // unfortunately, Ace doesn't detect whether a change was caused
       // by a setValue call
-      if (TogetherJS.running) {
+      if (TogetherJS.running && !this.isPlayingDemo) {
         TogetherJS.send({type: "codemirror-edit"});
       }
     });
@@ -427,7 +438,7 @@ Get live help!
 
     // add an additional listener in addition to whatever the superclasses added
     window.addEventListener("hashchange", (e) => {
-      if (TogetherJS.running && !this.isExecutingCode) {
+      if (TogetherJS.running && !this.isPlayingDemo && !this.isExecutingCode) {
         TogetherJS.send({type: "hashchange",
                          appMode: this.appMode,
                          codeInputScrollTop: this.pyInputGetScrollTop(),
@@ -476,6 +487,27 @@ Get live help!
       $("td#headerTdLeft,td#headerTdRight").show();
       this.disableSharedSessions = false;
     }
+  }
+
+  loadCodcastFile() {
+    assert(this.codcastFile);
+    console.log('loadCodcastFile', this.codcastFile);
+
+    this.disableSharedSessions = true;
+    this.activateSyntaxErrorSurvey = false;
+    this.activateRuntimeErrorSurvey = false;
+    this.activateEurekaSurvey = false;
+    // TODO: also disable undo/redo feature since that can get annoying
+    // when replaying demo "videos"
+
+    $("td#headerTdLeft").html(''); // clobber the existing contents
+
+    $.get(this.codcastFile, {}, (dat) => {
+      // create an OptDemoVideo object from the serialized JSON data contained
+      // in that file
+      this.demoVideo = new OptDemoVideo(this, dat);
+      this.startPlayback();
+    }, 'text' /* grab data as plain text */);
   }
 
   // for A/B testing -- store this information PER USER in localStorage,
@@ -882,13 +914,13 @@ Get live help!
 
   logEditDelta(delta) {
     super.logEditDelta(delta);
-    if (TogetherJS.running) {
+    if (TogetherJS.running && !this.isPlayingDemo) {
       TogetherJS.send({type: "editCode", delta: delta});
     }
   }
 
   startExecutingCode(startingInstruction=0) {
-    if (TogetherJS.running && !this.executeCodeSignalFromRemote) {
+    if (TogetherJS.running && !this.isPlayingDemo && !this.executeCodeSignalFromRemote) {
       TogetherJS.send({type: "executeCode",
                        myAppState: this.getAppState(),
                        forceStartingInstr: startingInstruction,
@@ -924,7 +956,7 @@ Get live help!
         // debounce
         $.doTimeout('pyCodeOutputDivScroll', 100, function() {
           // note that this will send a signal back and forth both ways
-          if (TogetherJS.running) {
+          if (TogetherJS.running && !this.isPlayingDemo) {
             // (there's no easy way to prevent this), but it shouldn't keep
             // bouncing back and forth indefinitely since no the second signal
             // causes no additional scrolling
@@ -946,7 +978,7 @@ Get live help!
         return [true]; // die early; no more hooks should run after this one!
       }
 
-      if (TogetherJS.running && !this.isExecutingCode) {
+      if (TogetherJS.running && !this.isPlayingDemo && !this.isExecutingCode) {
         TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
       }
       return [false]; // pass through to let other hooks keep handling
@@ -959,7 +991,19 @@ Get live help!
     // VERY SUBTLE -- reinitialize TogetherJS at the END so that it can detect
     // and sync any new elements that are now inside myVisualizer
     if (TogetherJS.running) {
-      TogetherJS.reinitialize();
+      // TogetherJS.reinitialize() is ASYNCHRONOUS so the signal handler runs
+      // way too late when we're playing a demo all at once using playFirstNSteps()
+      // because all calls must be synchronous. in that case, use the
+      // synchronous "equivalent":
+      if (this.isPlayingDemo) {
+        var setInit = TogetherJS.config.get('setInit');
+        setInit(); // this is synchronous so it happens instantly
+                   // TODO: does this do everything we need or do we
+                   // need to pull out more functionality from the handler
+                   // of TogetherJS.reinitialize()?
+      } else {
+        TogetherJS.reinitialize();
+      }
     }
   }
 
@@ -1316,8 +1360,9 @@ Get live help!
       $("#sharedSessionDisplayDiv").show();
       $("#ssDiv,#testCasesParent").hide();
 
-      // send this to the server for the purposes of logging
-      if (TogetherJS.running) {
+      // send this to the server for the purposes of logging, but other
+      // clients shouldn't do anything with this data
+      if (TogetherJS.running && !this.isPlayingDemo) {
         TogetherJS.send({type: "initialAppState",
                          myAppState: this.getAppState(),
                          user_uuid: this.userUUID,
@@ -1348,6 +1393,27 @@ Get live help!
       this.TogetherjsCloseHandler();
       this.redrawConnectors(); // update all arrows at the end
     });
+
+
+    // for codcasts: note that there's only ONE cursor, so this isn't
+    // like Google Docs where each user gets their own cursor. this may
+    // cause some confusion during attempted simultaneous editing
+    //
+    // TODO: should we record these to the codechella logs?
+    TogetherJS.hub.on("aceChangeCursor", (msg) => {
+      //console.warn('TogetherJS.hub.on("aceChangeCursor"', msg.row, msg.column);
+      this.pyInputAceEditor.selection.moveCursorTo(msg.row, msg.column,
+                                                   false /* keepDesiredColumn */);
+    });
+
+    TogetherJS.hub.on("aceChangeSelection", (msg) => {
+      //console.warn('TogetherJS.hub.on("aceChangeSelection"', msg.start, msg.end);
+      this.pyInputAceEditor.selection.setSelectionRange(
+        new this.Range(msg.start.row, msg.start.column, msg.end.row, msg.end.column),
+        false /* reverse */
+      );
+    });
+
   }
 
   requestSync() {
@@ -1378,6 +1444,12 @@ Get live help!
 
   // TogetherJS is ready to rock and roll, so do real initiatlization all here:
   TogetherjsReadyHandler() {
+    if (this.isPlayingDemo) {
+      this.demoVideo.playbackTogetherJsReady();
+      TogetherJS.send({type: "startPlayingDemo"}); // so that we can tell in the TogetherJS logs which sessions are demo plays; we can filter those out later
+      return; // GET OUT EARLY!!! don't do the rest if you're playing a demo
+    }
+
     this.takeFullCodeSnapshot();
     $("#surveyHeader").hide();
 
@@ -1462,12 +1534,18 @@ Get live help!
     }
     this.wantsPublicHelp = false; // explicitly reset it
     this.iMadeAPublicHelpRequest = false; // explicitly reset it
+
+    if (this.isPlayingDemo) {
+      this.demoVideo.stopPlayback();
+      assert(!this.isPlayingDemo);
+    }
   }
 
   startSharedSession(wantsPublicHelp) {
     $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
     $("#togetherjsStatus").html("Please wait ... loading live help chat session");
     TogetherJS();
+    // TODO: unify everything into 1 boolean
     this.wantsPublicHelp = wantsPublicHelp;
   }
 
@@ -1907,6 +1985,111 @@ Get live help!
                   messageId: sess.clientId + "-" + Date.now(),
                   peer: p.Self,
                   notify: false});
+  }
+
+
+  // for codcasts:
+  setPlayPauseButton(state) {
+    assert(this.demoVideo);
+    var me = $("#demoPlayBtn");
+    if (state == 'playing') {
+      me.data('status', 'playing')
+      me.html('Pause');
+      this.demoVideo.playFromCurrentFrame();
+    } else {
+      assert(state == 'paused');
+      me.data('status', 'paused')
+      me.html('Play');
+      this.demoVideo.pause();
+    }
+  }
+
+  startPlayback() {
+    $("#ssDiv,#surveyHeader").hide(); // hide ASAP!
+
+    $("#togetherjsStatus").html(`<div><button id="demoPlayBtn">Play</button></div>
+                                  <div style="margin-top: 10px;" id="timeSlider"/>`);
+
+    assert(this.demoVideo);
+
+    $("#demoPlayBtn").data('status', 'paused');
+    $("#demoPlayBtn").click(() => {
+      var me = $("#demoPlayBtn");
+      if (me.data('status') == 'paused') {
+        this.setPlayPauseButton('playing');
+      } else {
+        assert(me.data('status') == 'playing');
+        this.setPlayPauseButton('paused');
+      }
+    });
+
+    var timeSliderDiv = $('#timeSlider');
+    timeSliderDiv.css('width', '700px');
+
+    var interruptedPlaying = false; // did we yank the slider while the video was playing?
+
+    var totalNumFrames = this.demoVideo.getTotalNumFrames();
+
+    timeSliderDiv.slider({
+      min: 0,
+      max: totalNumFrames,
+      step: 1,
+
+      // triggers only when the user *manually* slides, *not* when the
+      // value has been changed programmatically
+      slide: (evt, ui) => {
+        if (this.demoVideo.rafTimerId) {
+          // emulate YouTube by 'jumping' to the given frame and
+          // pausing, then resuming playback when you let go (see
+          // 'change' event handler)
+          this.demoVideo.pause();
+          interruptedPlaying = true;
+        }
+        this.demoVideo.jumpToFrame(ui.value);
+      },
+
+      // triggers both when user manually finishes sliding, and also
+      // when the slider's value is set programmatically
+      change: (evt, ui) => {
+        // this is SUPER subtle. if this value was changed programmatically,
+        // then evt.originalEvent will be undefined. however, if this value
+        // was changed by a user-initiated event, then this code should be
+        // executed ...
+        if ((evt as any).originalEvent) {
+          // slider value was changed by a user interaction; only do
+          // something special if interruptedPlaying is on, in which
+          // case resume playback. this happens AFTER a user-initiated
+          // 'slide' event is done:
+          if (interruptedPlaying) {
+            // literally an edge case -- if we've slid to the VERY END,
+            // don't resume playing since that will wrap back around to
+            // the beginning
+            if (ui.value < totalNumFrames) {
+              this.demoVideo.playFromCurrentFrame();
+            } else {
+              // if we've slide the slider to the very end, pause it!
+              this.setPlayPauseButton('paused');
+            }
+            interruptedPlaying = false;
+          }
+        } else {
+          // slider value was changed programmatically, so we're
+          // assuming that requestAnimationFrame has been used to schedule
+          // periodic changes to the slider
+          this.demoVideo.jumpToFrame(ui.value);
+        }
+      }
+    });
+
+    // disable keyboard actions on the slider itself (to prevent double-firing
+    // of events), and make skinnier and taller
+    timeSliderDiv
+      .find(".ui-slider-handle")
+      .unbind('keydown')
+      .css('width', '0.6em')
+      .css('height', '1.5em');
+
+    this.demoVideo.startPlayback(); // do this last
   }
 
 } // END class OptFrontendSharedSessions

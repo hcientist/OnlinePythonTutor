@@ -54,6 +54,7 @@ module.exports = {
 
     entry: {
         'visualize': "./js/visualize.ts",
+        'recorder': "./js/recorder.ts",
         'opt-live': "./js/opt-live.ts",
         'iframe-embed': "./js/iframe-embed.ts",
         'index': "./js/index.ts",

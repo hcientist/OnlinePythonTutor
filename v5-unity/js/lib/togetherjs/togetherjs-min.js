@@ -24,6 +24,8 @@
     hubBase: "http://45.79.11.225:30035/",    // pgbovine - online deployment to new Linode (starting 2017-10-27)
     //hubBase: "http://104.237.139.253:30035/", // pgbovine - online deployment to old Linode (prior to 2017-10-27)
 
+    eventRecorderFunc: null, // pgbovine - for demo recording
+
     // A function that will return the name of the user:
     // pgbovine - customized to use opt_uuid in localStorage if available
     // so that each user can have a somewhat-unique N-digit username
