@@ -6,7 +6,7 @@
 // created: 2018-06-09
 //
 // example invocation:
-// http://localhost:8003/render-trace.html#traceFile=tests/frontend-tests/python/homepage.trace&options={%22disableHeapNesting%22:true,%20%22lang%22:%20%22py2%22,%20%22startingInstruction%22:%2015}
+// http://localhost:8003/render-trace.html#traceFile=tests/frontend-tests/python/homepage.trace&options={%22hideCode%22:%20true,%20%20%22disableHeapNesting%22:true,%20%22lang%22:%20%22py2%22,%20%22startingInstruction%22:%2015}
 
 import {ExecutionVisualizer} from './pytutor';
 

@@ -1,21 +1,15 @@
 Visual regression testing for OPT frontend
-started exploring on 2018-06-09 using Google Puppeteer (https://pptr.dev/)
+started exploring (again!!!) on 2018-06-09 using Google Puppeteer (https://pptr.dev/)
 
-{
+this is (at least) my 3rd attempt at this: {
 
-  for a really old prior attempt at frontend visual regression testing
-  using phantomjs (created around 2013-11-23), see:
-  ../../../v3/tests/frontend-tests/opt-screenshot-test.js
+  for a REALLY old prior attempt at frontend visual regression testing
+  using phantomjs (created around 2013-11-23 and updated in early 2014), see:
+    ../../../v3/tests/frontend-tests/opt-screenshot-test.js
 
-  and for a less old version using casperjs, see ../
+  and for a less old prior attempt from July 2016 using casperjs, see:
+    ../../../tests/frontend-regression-tests/
 
 }
 
-Instructions:
-
-install using:
-
-  npm install puppeteer
-  npm install pixelmatch
-
-  (which will install stuff in ../node_modules)
+Dependencies: see top of frontend-golden-test.js
