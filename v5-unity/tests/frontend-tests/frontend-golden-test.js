@@ -37,7 +37,7 @@ async function visitPageAndTakeScreenshot(traceUrl, outputFn, options) {
     await page.goto(url);
   } catch (e) {
     // if this page can't be visited, then BAIL
-    console.log(`  ERROR cannot visit ${url}`);
+    console.log(`  SERVER ERROR - cannot open ${url}`);
     await browser.close();
     return;
   }
@@ -55,7 +55,8 @@ async function visitPageAndTakeScreenshot(traceUrl, outputFn, options) {
 // correspond to a particular set of values in the options object.
 // we need testName to properly name the *.png files resulting from this test
 async function runFrontendTest(lang, traceFile, testName, options) {
-  assert(fs.existsSync(path.join(lang, traceFile)));
+  const traceRelPath = path.join(lang, traceFile);
+  assert(fs.existsSync(traceRelPath));
   assert(testName);
   assert(typeof options === 'object');
 
@@ -69,10 +70,11 @@ async function runFrontendTest(lang, traceFile, testName, options) {
   const diffFn = path.join(lang, `${bn}.${testName}.diff.png`);
   const traceUrl = path.join(TEST_BASEDIR, lang, traceFile); // #tricky
 
+  console.log(`Testing ${traceRelPath}`);
+  await fs.remove(diffFn); // erase old version to be prevent staleness
   await fs.remove(outputFn); // erase old version to be prevent staleness
   await visitPageAndTakeScreenshot(traceUrl, outputFn, options);
   assert(fs.existsSync(outputFn));
-  console.log(`Created ${outputFn}`);
 
   if (fs.existsSync(goldenFn)) {
     const img1 = PNG.sync.read(fs.readFileSync(goldenFn));
