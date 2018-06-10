@@ -16,5 +16,6 @@ Instructions:
 install using:
 
   npm install puppeteer
+  npm install pixelmatch
 
   (which will install stuff in ../node_modules)
