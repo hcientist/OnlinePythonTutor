@@ -1,0 +1,2908 @@
+{
+  "code": "# adapted from http://rubylearning.com/satishtalim/ruby_inheritance.html\nclass Mammal  \n  def breathe  \n    puts \"inhale and exhale\"  \n  end  \nend  \n  \nclass Cat < Mammal  \n  def speak  \n    puts \"Meow\"  \n  end  \nend  \n\nclass Tabby < Cat\n  def speak\n    puts \"Tabby meow\"\n  end\nend\n  \nrani = Cat.new  \nrani.breathe  \nrani.speak\n\ntab = Tabby.new\ntab.speak\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 2,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": null,
+            "tab": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 2,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": null,
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Mammal>:2",
+          "frame_id": 2,
+          "unique_hash": "<class:Mammal>:2_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ]
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Mammal"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": null,
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Mammal>:3",
+          "frame_id": 2,
+          "unique_hash": "<class:Mammal>:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ]
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Mammal"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": null,
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Mammal>:6",
+          "frame_id": 2,
+          "unique_hash": "<class:Mammal>:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              2
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Mammal"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": null,
+            "tab": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Mammal"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": null,
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Cat>:8",
+          "frame_id": 2,
+          "unique_hash": "<class:Cat>:8_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ]
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": null,
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Cat>:9",
+          "frame_id": 2,
+          "unique_hash": "<class:Cat>:9_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              6
+            ]
+          ]
+        ],
+        "6": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ]
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 12,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": null,
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Cat>:12",
+          "frame_id": 2,
+          "unique_hash": "<class:Cat>:12_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "7": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              8
+            ]
+          ]
+        ],
+        "8": [
+          "FUNCTION",
+          "speak",
+          ""
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": null,
+            "tab": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              9
+            ]
+          ]
+        ],
+        "9": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              10
+            ]
+          ]
+        ],
+        "10": [
+          "FUNCTION",
+          "speak",
+          ""
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": null,
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Tabby>:14",
+          "frame_id": 2,
+          "unique_hash": "<class:Tabby>:14_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              13
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              11
+            ]
+          ]
+        ],
+        "11": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              12
+            ]
+          ]
+        ],
+        "12": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ]
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": null,
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Tabby>:15",
+          "frame_id": 2,
+          "unique_hash": "<class:Tabby>:15_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              13
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              14
+            ]
+          ]
+        ],
+        "14": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "15": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ]
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 18,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": null,
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Tabby>:18",
+          "frame_id": 2,
+          "unique_hash": "<class:Tabby>:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              13
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              16
+            ]
+          ]
+        ],
+        "16": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              17
+            ]
+          ]
+        ],
+        "17": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              18
+            ]
+          ]
+        ],
+        "18": [
+          "FUNCTION",
+          "speak",
+          ""
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 20,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:20",
+          "frame_id": 1,
+          "unique_hash": "<main>:20_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": null,
+            "tab": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              19
+            ]
+          ]
+        ],
+        "19": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              20
+            ]
+          ]
+        ],
+        "20": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              21
+            ]
+          ]
+        ],
+        "21": [
+          "FUNCTION",
+          "speak",
+          ""
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 21,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:21",
+          "frame_id": 1,
+          "unique_hash": "<main>:21_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": [
+              "REF",
+              25
+            ],
+            "tab": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              22
+            ]
+          ]
+        ],
+        "22": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              23
+            ]
+          ]
+        ],
+        "23": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              24
+            ]
+          ]
+        ],
+        "24": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "25": [
+          "INSTANCE",
+          "Cat"
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:21",
+          "frame_id": 1,
+          "unique_hash": "<main>:21_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": [
+              "REF",
+              25
+            ],
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "breathe:3",
+          "frame_id": 2,
+          "unique_hash": "breathe:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              25
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              26
+            ]
+          ]
+        ],
+        "26": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              27
+            ]
+          ]
+        ],
+        "27": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              28
+            ]
+          ]
+        ],
+        "28": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "25": [
+          "INSTANCE",
+          "Cat"
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:21",
+          "frame_id": 1,
+          "unique_hash": "<main>:21_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": [
+              "REF",
+              25
+            ],
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "breathe:4",
+          "frame_id": 2,
+          "unique_hash": "breathe:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              25
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              29
+            ]
+          ]
+        ],
+        "29": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              30
+            ]
+          ]
+        ],
+        "30": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              31
+            ]
+          ]
+        ],
+        "31": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "25": [
+          "INSTANCE",
+          "Cat"
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "return",
+      "stdout": "inhale and exhale\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:21",
+          "frame_id": 1,
+          "unique_hash": "<main>:21_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": [
+              "REF",
+              25
+            ],
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "breathe:5",
+          "frame_id": 2,
+          "unique_hash": "breathe:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              25
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              32
+            ]
+          ]
+        ],
+        "32": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              33
+            ]
+          ]
+        ],
+        "33": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              34
+            ]
+          ]
+        ],
+        "34": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "25": [
+          "INSTANCE",
+          "Cat"
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 22,
+      "event": "step_line",
+      "stdout": "inhale and exhale\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": [
+              "REF",
+              25
+            ],
+            "tab": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              35
+            ]
+          ]
+        ],
+        "35": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              36
+            ]
+          ]
+        ],
+        "36": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              37
+            ]
+          ]
+        ],
+        "37": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "25": [
+          "INSTANCE",
+          "Cat"
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "call",
+      "stdout": "inhale and exhale\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": [
+              "REF",
+              25
+            ],
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "speak:9",
+          "frame_id": 2,
+          "unique_hash": "speak:9_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              25
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              38
+            ]
+          ]
+        ],
+        "38": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              39
+            ]
+          ]
+        ],
+        "39": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              40
+            ]
+          ]
+        ],
+        "40": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "25": [
+          "INSTANCE",
+          "Cat"
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "inhale and exhale\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": [
+              "REF",
+              25
+            ],
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "speak:10",
+          "frame_id": 2,
+          "unique_hash": "speak:10_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              25
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              41
+            ]
+          ]
+        ],
+        "41": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              42
+            ]
+          ]
+        ],
+        "42": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              43
+            ]
+          ]
+        ],
+        "43": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "25": [
+          "INSTANCE",
+          "Cat"
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "return",
+      "stdout": "inhale and exhale\nMeow\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": [
+              "REF",
+              25
+            ],
+            "tab": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "speak:11",
+          "frame_id": 2,
+          "unique_hash": "speak:11_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              25
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              44
+            ]
+          ]
+        ],
+        "44": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              45
+            ]
+          ]
+        ],
+        "45": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              46
+            ]
+          ]
+        ],
+        "46": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "25": [
+          "INSTANCE",
+          "Cat"
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 24,
+      "event": "step_line",
+      "stdout": "inhale and exhale\nMeow\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:24",
+          "frame_id": 1,
+          "unique_hash": "<main>:24_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": [
+              "REF",
+              25
+            ],
+            "tab": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              47
+            ]
+          ]
+        ],
+        "47": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              48
+            ]
+          ]
+        ],
+        "48": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              49
+            ]
+          ]
+        ],
+        "49": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "25": [
+          "INSTANCE",
+          "Cat"
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 25,
+      "event": "step_line",
+      "stdout": "inhale and exhale\nMeow\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:25",
+          "frame_id": 1,
+          "unique_hash": "<main>:25_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": [
+              "REF",
+              25
+            ],
+            "tab": [
+              "REF",
+              53
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              50
+            ]
+          ]
+        ],
+        "50": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              51
+            ]
+          ]
+        ],
+        "51": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              52
+            ]
+          ]
+        ],
+        "52": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "25": [
+          "INSTANCE",
+          "Cat"
+        ],
+        "53": [
+          "INSTANCE",
+          "Tabby"
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
+      "event": "call",
+      "stdout": "inhale and exhale\nMeow\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:25",
+          "frame_id": 1,
+          "unique_hash": "<main>:25_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": [
+              "REF",
+              25
+            ],
+            "tab": [
+              "REF",
+              53
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "speak:15",
+          "frame_id": 2,
+          "unique_hash": "speak:15_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              53
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              54
+            ]
+          ]
+        ],
+        "54": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              55
+            ]
+          ]
+        ],
+        "55": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              56
+            ]
+          ]
+        ],
+        "56": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "53": [
+          "INSTANCE",
+          "Tabby"
+        ],
+        "25": [
+          "INSTANCE",
+          "Cat"
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "inhale and exhale\nMeow\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:25",
+          "frame_id": 1,
+          "unique_hash": "<main>:25_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": [
+              "REF",
+              25
+            ],
+            "tab": [
+              "REF",
+              53
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "speak:16",
+          "frame_id": 2,
+          "unique_hash": "speak:16_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              53
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              57
+            ]
+          ]
+        ],
+        "57": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              58
+            ]
+          ]
+        ],
+        "58": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              59
+            ]
+          ]
+        ],
+        "59": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "53": [
+          "INSTANCE",
+          "Tabby"
+        ],
+        "25": [
+          "INSTANCE",
+          "Cat"
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 17,
+      "event": "return",
+      "stdout": "inhale and exhale\nMeow\nTabby meow\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:25",
+          "frame_id": 1,
+          "unique_hash": "<main>:25_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": [
+              "REF",
+              25
+            ],
+            "tab": [
+              "REF",
+              53
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "speak:17",
+          "frame_id": 2,
+          "unique_hash": "speak:17_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              53
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              60
+            ]
+          ]
+        ],
+        "60": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              61
+            ]
+          ]
+        ],
+        "61": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              62
+            ]
+          ]
+        ],
+        "62": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "53": [
+          "INSTANCE",
+          "Tabby"
+        ],
+        "25": [
+          "INSTANCE",
+          "Cat"
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 25,
+      "event": "step_line",
+      "stdout": "inhale and exhale\nMeow\nTabby meow\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:26",
+          "frame_id": 1,
+          "unique_hash": "<main>:26_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "rani",
+            "tab"
+          ],
+          "encoded_locals": {
+            "rani": [
+              "REF",
+              25
+            ],
+            "tab": [
+              "REF",
+              53
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Mammal",
+          [
+
+          ],
+          [
+            "breathe",
+            [
+              "REF",
+              63
+            ]
+          ]
+        ],
+        "63": [
+          "FUNCTION",
+          "breathe",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Cat",
+          [
+            "Mammal"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              64
+            ]
+          ]
+        ],
+        "64": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "13": [
+          "CLASS",
+          "Tabby",
+          [
+            "Cat"
+          ],
+          [
+            "speak",
+            [
+              "REF",
+              65
+            ]
+          ]
+        ],
+        "65": [
+          "FUNCTION",
+          "speak",
+          ""
+        ],
+        "25": [
+          "INSTANCE",
+          "Cat"
+        ],
+        "53": [
+          "INSTANCE",
+          "Tabby"
+        ]
+      },
+      "globals": {
+        "Mammal": [
+          "REF",
+          1
+        ],
+        "Cat": [
+          "REF",
+          5
+        ],
+        "Tabby": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "Mammal",
+        "Cat",
+        "Tabby"
+      ]
+    }
+  ]
+}
