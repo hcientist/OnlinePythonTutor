@@ -13,7 +13,11 @@
     localhost) and then replaying remotely on pythontutor.com, since
     that's what students will ultimately be doing.
     - also make a special entry in codechella logs for tutorial replays
-      so that we can EASILY FILTER THEM OUT when we're analyzing the logs.
+      so that we can EASILY FILTER THEM OUT when we're analyzing the logs
+      - maybe a 'playbackRecording' event in the logs?
+    - alternatively, route these to a different instance of server.js on
+      another port so that it doesn't interfere with regular codechella
+      (but that's more complicated to set up logistically)
 
   - in the video player UI, put a time indicator in seconds
 
