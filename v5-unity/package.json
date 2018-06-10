@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "css-loader": "",
+    "fs-extra": "^6.0.1",
     "on-build-webpack": "^0.1.0",
     "pixelmatch": "^4.0.2",
     "puppeteer": "^1.5.0",
