@@ -6,7 +6,7 @@
 // created: 2018-06-09
 //
 // example invocation:
-// http://localhost:8003/render-trace.html#traceFile=tests/frontend-tests/python/homepage.trace&options={%22disableHeapNesting%22:true,%20%22lang%22:%20%22py2%22}
+// http://localhost:8003/render-trace.html#traceFile=tests/frontend-tests/python/homepage.trace&options={%22disableHeapNesting%22:true,%20%22lang%22:%20%22py2%22,%20%22startingInstruction%22:%2015}
 
 import {ExecutionVisualizer} from './pytutor';
 
@@ -19,7 +19,6 @@ $(document).ready(function() {
   }
 
   console.log('traceFile:', traceFile, 'frontendOptions:', frontendOptions);
-
   $.getJSON(traceFile, (trace) => {
     var myViz = new ExecutionVisualizer('visualizerDiv', trace, frontendOptions);
   });

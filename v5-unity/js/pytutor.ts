@@ -495,6 +495,7 @@ export class ExecutionVisualizer {
     }
 
     this.updateOutput();
+    this.redrawConnectors(); // do this at the end
     this.hasRendered = true;
     this.try_hook("end_render", {myViz:this});
   }
