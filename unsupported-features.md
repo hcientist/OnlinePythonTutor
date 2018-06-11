@@ -8,8 +8,7 @@ For more details on project status and issue prioritization, check out these vid
 - [Python Tutor project status - 1 of 2 - common feature requests & feasible fixes](https://www.youtube.com/watch?v=oKIqejkxqP0)
 - [Python Tutor project status - 2 of 2 - bigger feature requests & unlikely fixes](https://www.youtube.com/watch?v=8o-XeFTgD40)
 
-... and this earlier video from Oct 2017: [PG Vlog #75 - Python Tutor Software Development Philosophy
-](https://www.youtube.com/watch?v=sVtXLdBRfyE)
+... and this earlier video from Oct 2017: [Python Tutor Software Development Philosophy](https://www.youtube.com/watch?v=sVtXLdBRfyE)
 
 ### C and C++
 
@@ -25,9 +24,9 @@ For more details on project status and issue prioritization, check out these vid
 
 ### JavaScript
 
-- promises
 - asynchronous event-driven code
   - including setTimeout, setInterval, etc.
+  - promises, async/await
 - anything that operates on webpages, such as DOM manipulation, alert(), prompt(), confirm(), etc.
 - variable names that contain special characters like '$'
 - Date() object
@@ -38,9 +37,8 @@ For more details on project status and issue prioritization, check out these vid
 - some infinite loops: the server times out without showing partial results or good error messages
   - to cut down execution times, [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
 - asynchronous code
-- random number generators and user input (via input() or raw_input())
-  [sometimes don't work well together](https://github.com/pgbovine/OnlinePythonTutor/issues/110)
-
+- random number generators and user input (via input() or raw_input()) [sometimes don't work well together](https://github.com/pgbovine/OnlinePythonTutor/issues/110)
+- showing mutable default function arguments or other complex arg formats (see https://github.com/pgbovine/OnlinePythonTutor/issues/127)
 
 ### Other (language-agnostic)
 
