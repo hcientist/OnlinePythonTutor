@@ -1,6 +1,6 @@
 # Unsupported features in Python Tutor
 
-This tool currently does NOT support the following language features. Some of these will eventually be supported, but others probably won't, due to implementation challenges and other priorities.
+This tool currently does **NOT** support the following language features. Some of these will eventually be supported, but others probably won't, due to implementation challenges and other priorities.
 
 Email philip@pgbovine.net with more bug reports and use the "Generate shortened link" button to include a URL so that I can reproduce them.
 
@@ -38,10 +38,12 @@ For more details on project status and issue prioritization, check out these vid
   - to cut down execution times, [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
 - asynchronous code
 - random number generators and user input (via input() or raw_input()) [sometimes don't work well together](https://github.com/pgbovine/OnlinePythonTutor/issues/110)
-- showing [mutable default function arguments](https://github.com/pgbovine/OnlinePythonTutor/issues/127) or likely other complex argument formats
+- showing [mutable default function arguments](https://github.com/pgbovine/OnlinePythonTutor/issues/127) or other complex argument formats
 
-### Other (language-agnostic)
 
+### Other unsupported features (language-agnostic)
+
+- Stepping *within* a line of code to show how subexpressions get evaluated within that line
 - Unicode doesn't work well in general (especially for Ruby and Python 2); use ASCII characters when possible
 - Passing in command-line arguments via argv[] array
 - Multi-threaded, concurrent, or asynchronous code
