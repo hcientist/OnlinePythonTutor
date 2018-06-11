@@ -11,9 +11,10 @@ const puppeteer = require('puppeteer');
 const pixelmatch = require('pixelmatch');
 const PNG = require('pngjs').PNG; // comes with pixelmatch
 const fs = require('fs-extra'); // npm install fs-extra; drop-in replacement for built-in fs module
+const stable_stringify = require('json-stable-stringify'); // for deterministic hashing
 const path = require('path');
 const assert = require('assert');
-
+const crypto = require('crypto');
 
 const TEST_BASEDIR = 'tests/frontend-tests/' // relative to v5-unity/
 const BASE_URL = 'http://localhost:8003/render-trace.html#';
@@ -50,19 +51,19 @@ async function visitPageAndTakeScreenshot(traceUrl, outputFn, options) {
 // the JSON trace should exist in ${lang}/${traceFile}
 // NB: we're using language names as subdirectories since trace files (weirdly!)
 // don't contain the language name.
-//
-// testName is a unique name that you assign to this test, which should
-// correspond to a particular set of values in the options object.
-// we need testName to properly name the *.png files resulting from this test
-async function runFrontendTest(lang, traceFile, testName, options) {
+async function runFrontendTest(lang, traceFile, options) {
   const traceRelPath = path.join(lang, traceFile);
   assert(fs.existsSync(traceRelPath));
-  assert(testName);
   assert(typeof options === 'object');
 
-  // always add these to options
+  // always add these to the options object:
   options.lang = lang;
   options.hideCode = true;
+
+  const optionsStr = stable_stringify(options);
+
+  // generate a short unique test name based on the contents of options:
+  const testName = crypto.createHash('md5').update(optionsStr).digest("hex").substr(0, 5);
 
   const bn = path.basename(traceFile, '.trace');
   const outputFn = path.join(lang, `${bn}.${testName}.out.png`);
@@ -70,11 +71,11 @@ async function runFrontendTest(lang, traceFile, testName, options) {
   const diffFn = path.join(lang, `${bn}.${testName}.diff.png`);
   const traceUrl = path.join(TEST_BASEDIR, lang, traceFile); // #tricky
 
-  console.log(`Testing ${traceRelPath}`);
   await fs.remove(diffFn); // erase old version to be prevent staleness
   await fs.remove(outputFn); // erase old version to be prevent staleness
   await visitPageAndTakeScreenshot(traceUrl, outputFn, options);
   assert(fs.existsSync(outputFn));
+  console.log(`Testing ${outputFn} ${optionsStr}`);
 
   if (fs.existsSync(goldenFn)) {
     const img1 = PNG.sync.read(fs.readFileSync(goldenFn));
