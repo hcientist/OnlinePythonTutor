@@ -38,7 +38,7 @@ For more details on project status and issue prioritization, check out these vid
   - to cut down execution times, [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
 - asynchronous code
 - random number generators and user input (via input() or raw_input()) [sometimes don't work well together](https://github.com/pgbovine/OnlinePythonTutor/issues/110)
-- showing mutable default function arguments or other complex arg formats (see https://github.com/pgbovine/OnlinePythonTutor/issues/127)
+- showing [mutable default function arguments](https://github.com/pgbovine/OnlinePythonTutor/issues/127) or likely other complex argument formats
 
 ### Other (language-agnostic)
 
