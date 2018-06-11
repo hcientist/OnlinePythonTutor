@@ -9,6 +9,7 @@ google-analytics.txt
 webfaction-deploy.sh
 v3/opt_togetherjs/*.json
 # for regression tests
+*.out.png
 *.diff.png
 *.fail.png
 v3/opt_togetherjs/ipstack-geolocation
