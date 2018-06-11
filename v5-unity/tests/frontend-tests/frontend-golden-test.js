@@ -19,12 +19,13 @@ const crypto = require('crypto');
 const TEST_BASEDIR = 'tests/frontend-tests/' // relative to v5-unity/
 const BASE_URL = 'http://localhost:8003/render-trace.html#';
 
+const RED = '\033[91m';
+const ENDCOLOR = '\033[0m';
+
 
 // put width and height in options if you want a custom viewport width/height:
 async function visitPageAndTakeScreenshot(traceUrl, outputFn, options) {
   const url = BASE_URL + 'traceFile=' + traceUrl + '&options=' + JSON.stringify(options);
-  //console.log(url);
-
   const size = {width: 800, height: 800};
   if (options.width && options.height) {
     size.width = options.width;
@@ -45,6 +46,8 @@ async function visitPageAndTakeScreenshot(traceUrl, outputFn, options) {
   await page.waitFor('#dataViz'); // wait until the visualization loads
   await page.screenshot({path: outputFn});
   await browser.close();
+
+  return url;
 }
 
 
@@ -73,7 +76,7 @@ async function runFrontendTest(lang, traceFile, options) {
 
   await fs.remove(diffFn); // erase old version to be prevent staleness
   await fs.remove(outputFn); // erase old version to be prevent staleness
-  await visitPageAndTakeScreenshot(traceUrl, outputFn, options);
+  const url = await visitPageAndTakeScreenshot(traceUrl, outputFn, options);
   assert(fs.existsSync(outputFn));
   console.log(`Testing ${outputFn} ${optionsStr}`);
 
@@ -86,7 +89,8 @@ async function runFrontendTest(lang, traceFile, options) {
                                      img1.width, img1.height,
                                      {threshold: 0.1});
     if (numDiffPixels > 0) {
-      console.log(`  ERROR: ${numDiffPixels}-pixel diff from golden: see ${diffFn}`);
+      console.log(`  ${RED}ERROR: ${numDiffPixels}-pixel diff from golden${ENDCOLOR} - see ${diffFn}`);
+      console.log(`  ${url}`);
       diff.pack().pipe(fs.createWriteStream(diffFn));
     }
   } else {
