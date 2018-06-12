@@ -98,6 +98,11 @@ export class ExecutionVisualizer {
     return (this.params.alwaysNestTypes.indexOf(obj[0]) >= 0);
   }
 
+  // should this object be nested within another one?
+  shouldNestObject(obj) {
+    return (!this.params.disableHeapNesting || this.objInAlwaysNestTypes(obj));
+  }
+
   params: any = {};
   curInputCode: string;
   curTrace: any[];
@@ -1376,8 +1381,7 @@ class DataVisualizer {
               if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
                 updateCurLayout(childID, curRow, newRow);
               }
-              else if (myViz.params.disableHeapNesting && // TODO: put check together in a helper function
-                       !myViz.owner.objInAlwaysNestTypes(curEntry.heap[childID])) {
+              else if (!myViz.owner.shouldNestObject(curEntry.heap[childID])) {
                 updateCurLayout(childID, [], []);
               }
             }
@@ -1390,8 +1394,7 @@ class DataVisualizer {
             var dictKey = child[0];
             if (!myViz.isPrimitiveType(dictKey)) {
               var keyChildID = getRefID(dictKey);
-              if (myViz.params.disableHeapNesting && // TODO: put check together in a helper function
-                  !myViz.owner.objInAlwaysNestTypes(curEntry.heap[keyChildID])) {
+              if (!myViz.owner.shouldNestObject(curEntry.heap[keyChildID])) {
                 updateCurLayout(keyChildID, [], []);
               }
             }
@@ -1402,8 +1405,7 @@ class DataVisualizer {
               if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
                 updateCurLayout(childID, curRow, newRow);
               }
-              else if (myViz.params.disableHeapNesting && // TODO: put check together in a helper function
-                       !myViz.owner.objInAlwaysNestTypes(curEntry.heap[childID])) {
+              else if (!myViz.owner.shouldNestObject(curEntry.heap[childID])) {
                 updateCurLayout(childID, [], []);
               }
             }
@@ -1417,8 +1419,7 @@ class DataVisualizer {
             var instKey = child[0];
             if (!myViz.isPrimitiveType(instKey)) {
               var keyChildID = getRefID(instKey);
-              if (myViz.params.disableHeapNesting && // TODO: put check together in a helper function
-                  !myViz.owner.objInAlwaysNestTypes(curEntry.heap[keyChildID])) {
+              if (!myViz.owner.shouldNestObject(curEntry.heap[keyChildID])) {
                 updateCurLayout(keyChildID, [], []);
               }
             }
@@ -1429,8 +1430,7 @@ class DataVisualizer {
               if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
                 updateCurLayout(childID, curRow, newRow);
               }
-              else if (myViz.params.disableHeapNesting && // TODO: put check together in a helper function
-                       !myViz.owner.objInAlwaysNestTypes(curEntry.heap[childID])) {
+              else if (!myViz.owner.shouldNestObject(curEntry.heap[childID])) {
                 updateCurLayout(childID, [], []);
               }
             }
@@ -1448,8 +1448,7 @@ class DataVisualizer {
               var instVal = kvPair[1];
               if (!myViz.isPrimitiveType(instVal)) {
                 var childID = getRefID(instVal);
-                if (myViz.params.disableHeapNesting && // TODO: put check together in a helper function
-                    !myViz.owner.objInAlwaysNestTypes(curEntry.heap[childID])) {
+                if (!myViz.owner.shouldNestObject(curEntry.heap[childID])) {
                   updateCurLayout(childID, [], []);
                 }
               }
