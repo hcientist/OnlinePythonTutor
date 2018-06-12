@@ -1419,6 +1419,25 @@ class DataVisualizer {
             }
           });
         }
+        else if (heapObj[0] == 'JS_FUNCTION') {
+          // a JavaScript function object has funcProperties that we should
+          // recurse into in order to precompute their layouts
+          assert(heapObj.length == 5);
+          var funcProperties = heapObj[3]; // either null or a non-empty list of key-value pairs
+          if (funcProperties) {
+            assert(funcProperties.length > 0);
+            $.each(funcProperties, function(ind, kvPair) {
+              // copy/paste from INSTANCE/CLASS code above
+              var instVal = kvPair[1];
+              if (!myViz.isPrimitiveType(instVal)) {
+                var childID = getRefID(instVal);
+                if (myViz.params.disableHeapNesting) {
+                  updateCurLayout(childID, [], []);
+                }
+              }
+            });
+          }
+        }
         else if ((heapObj[0] == 'C_ARRAY') || (heapObj[0] == 'C_MULTIDIMENSIONAL_ARRAY') || (heapObj[0] == 'C_STRUCT')) {
           updateCurLayoutAndRecurse(heapObj);
         }
@@ -1638,10 +1657,10 @@ class DataVisualizer {
       var startingInd = -1;
 
       if (obj1[0] == 'DICT') {
-        startingInd = 2;
+        startingInd = 1;
       }
       else if (obj1[0] == 'INSTANCE') {
-        startingInd = 3;
+        startingInd = 2;
       }
       else {
         return false; // punt on all other types
