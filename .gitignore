@@ -13,3 +13,8 @@ v3/opt_togetherjs/*.json
 *.diff.png
 *.fail.png
 v3/opt_togetherjs/ipstack-geolocation
+
+v4-cokapi/backends/javascript/node-v6.0.0-darwin-x64/
+
+# this .gz file is too big to fit into a github repo
+v4-cokapi/backends/java/jdk-8u20-linux-x64.tar.gz
