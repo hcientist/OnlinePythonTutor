@@ -1334,8 +1334,8 @@ class DataVisualizer {
       }
 
       function recurseIntoObject(id, curRow, newRow) {
-        // heuristic for laying out 1-D linked data structures: check for enclosing elements that are
-        // structurally identical and then lay them out as siblings in the same "row"
+        // heuristic for laying out 1-D linked data structures: check for enclosing elements
+        // that are structurallyEquivalent() and then lay them out as siblings in the same "row"
         var heapObj = curEntry.heap[id];
 
         if (myViz.isCppMode()) {
@@ -1354,18 +1354,11 @@ class DataVisualizer {
 
             if (!myViz.isPrimitiveType(child)) {
               var childID = getRefID(child);
-
-              // comment this out to make "linked lists" that aren't
-              // structurally equivalent look good, e.g.,:
-              //   x = (1, 2, (3, 4, 5, 6, (7, 8, 9, None)))
-              //if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-              //  updateCurLayout(childID, curRow, newRow);
-              //}
-              if (myViz.params.disableHeapNesting) {
-                updateCurLayout(childID, [], []);
-              }
-              else {
+              if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
                 updateCurLayout(childID, curRow, newRow);
+              }
+              else if (myViz.params.disableHeapNesting) {
+                updateCurLayout(childID, [], []);
               }
             }
           });
