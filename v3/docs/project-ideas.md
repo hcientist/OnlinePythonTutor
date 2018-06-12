@@ -1,3 +1,5 @@
+**[WARNING: this document hasn't been updated since ~2015, so it's no longer actively maintained]**
+
 # Project Ideas
 
 This (messy!) document provides an overview of some project ideas for extending
