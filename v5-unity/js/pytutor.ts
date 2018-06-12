@@ -86,6 +86,18 @@ export class ExecutionVisualizer {
   static DEFAULT_EMBEDDED_CODE_DIV_WIDTH = 350;
   static DEFAULT_EMBEDDED_CODE_DIV_HEIGHT = 400;
 
+  // always nest values of these types within objects to make the
+  // visualization look cleaner:
+  // - functions should be nested within heap objects since that's a more
+  //   intuitive rendering for methods (i.e., functions within objects)
+  static DEFAULT_ALWAYS_NEST_TYPES = ['FUNCTION', 'JS_FUNCTION'];
+
+  objInAlwaysNestTypes(obj) {
+    if (!obj) return false;
+    assert($.isArray(obj));
+    return (this.params.alwaysNestTypes.indexOf(obj[0]) >= 0);
+  }
+
   params: any = {};
   curInputCode: string;
   curTrace: any[];
@@ -158,6 +170,8 @@ export class ExecutionVisualizer {
   //                                       codeDivHeight=DEFAULT_EMBEDDED_CODE_DIV_HEIGHT
   //                          (and hide a bunch of other stuff & don't activate keyboard shortcuts!)
   //   disableHeapNesting   - if true, then render all heap objects at the top level (i.e., no nested objects)
+  //   alwaysNestTypes      - if non-null, a list of type names to ALWAYS nest within heap objects
+  //                          (supersedes disableHeapNesting, defaults to DEFAULT_ALWAYS_NEST_TYPES)
   //   drawParentPointers   - if true, then draw environment diagram parent pointers for all frames
   //                          WARNING: there are hard-to-debug MEMORY LEAKS associated with activating this option
   //   textualMemoryLabels  - render references using textual memory labels rather than as jsPlumb arrows.
@@ -227,6 +241,11 @@ export class ExecutionVisualizer {
     this.params.drawParentPointers = (this.params.drawParentPointers === true);
     this.params.textualMemoryLabels = (this.params.textualMemoryLabels === true);
     this.params.showAllFrameLabels = (this.params.showAllFrameLabels === true);
+
+    if (this.params.alwaysNestTypes === undefined) {
+      this.params.alwaysNestTypes = ExecutionVisualizer.DEFAULT_ALWAYS_NEST_TYPES;
+    }
+    assert($.isArray(this.params.alwaysNestTypes));
 
     // insert ExecutionVisualizer into domRootID in the DOM
     var tmpRoot = $('#' + domRootID);
@@ -1357,7 +1376,8 @@ class DataVisualizer {
               if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
                 updateCurLayout(childID, curRow, newRow);
               }
-              else if (myViz.params.disableHeapNesting) {
+              else if (myViz.params.disableHeapNesting && // TODO: put check together in a helper function
+                       !myViz.owner.objInAlwaysNestTypes(curEntry.heap[childID])) {
                 updateCurLayout(childID, [], []);
               }
             }
@@ -1367,10 +1387,11 @@ class DataVisualizer {
           $.each(heapObj, function(ind, child) {
             if (ind < 1) return; // skip type tag
 
-            if (myViz.params.disableHeapNesting) {
-              var dictKey = child[0];
-              if (!myViz.isPrimitiveType(dictKey)) {
-                var keyChildID = getRefID(dictKey);
+            var dictKey = child[0];
+            if (!myViz.isPrimitiveType(dictKey)) {
+              var keyChildID = getRefID(dictKey);
+              if (myViz.params.disableHeapNesting && // TODO: put check together in a helper function
+                  !myViz.owner.objInAlwaysNestTypes(curEntry.heap[keyChildID])) {
                 updateCurLayout(keyChildID, [], []);
               }
             }
@@ -1381,7 +1402,8 @@ class DataVisualizer {
               if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
                 updateCurLayout(childID, curRow, newRow);
               }
-              else if (myViz.params.disableHeapNesting) {
+              else if (myViz.params.disableHeapNesting && // TODO: put check together in a helper function
+                       !myViz.owner.objInAlwaysNestTypes(curEntry.heap[childID])) {
                 updateCurLayout(childID, [], []);
               }
             }
@@ -1392,10 +1414,11 @@ class DataVisualizer {
             var headerLength = (heapObj[0] == 'INSTANCE') ? 2 : 3;
             if (ind < headerLength) return;
 
-            if (myViz.params.disableHeapNesting) {
-              var instKey = child[0];
-              if (!myViz.isPrimitiveType(instKey)) {
-                var keyChildID = getRefID(instKey);
+            var instKey = child[0];
+            if (!myViz.isPrimitiveType(instKey)) {
+              var keyChildID = getRefID(instKey);
+              if (myViz.params.disableHeapNesting && // TODO: put check together in a helper function
+                  !myViz.owner.objInAlwaysNestTypes(curEntry.heap[keyChildID])) {
                 updateCurLayout(keyChildID, [], []);
               }
             }
@@ -1406,7 +1429,8 @@ class DataVisualizer {
               if (myViz.structurallyEquivalent(heapObj, curEntry.heap[childID])) {
                 updateCurLayout(childID, curRow, newRow);
               }
-              else if (myViz.params.disableHeapNesting) {
+              else if (myViz.params.disableHeapNesting && // TODO: put check together in a helper function
+                       !myViz.owner.objInAlwaysNestTypes(curEntry.heap[childID])) {
                 updateCurLayout(childID, [], []);
               }
             }
@@ -1424,7 +1448,8 @@ class DataVisualizer {
               var instVal = kvPair[1];
               if (!myViz.isPrimitiveType(instVal)) {
                 var childID = getRefID(instVal);
-                if (myViz.params.disableHeapNesting) {
+                if (myViz.params.disableHeapNesting && // TODO: put check together in a helper function
+                    !myViz.owner.objInAlwaysNestTypes(curEntry.heap[childID])) {
                   updateCurLayout(childID, [], []);
                 }
               }
