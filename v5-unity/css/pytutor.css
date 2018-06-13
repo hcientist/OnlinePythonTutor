@@ -227,8 +227,12 @@ div.ExecutionVisualizer .vizFrame {
 
 /* Rendering of primitive types */
 
+div.ExecutionVisualizer .importedObj {
+  font-size: 8pt;
+}
+
 div.ExecutionVisualizer .nullObj {
-//  font-size: 8pt;
+/*  font-size: 8pt; */
 }
 
 div.ExecutionVisualizer .stringObj,
@@ -382,6 +386,7 @@ div.ExecutionVisualizer table.customObjTbl {
 
 div.ExecutionVisualizer table.customObjTbl td.customObjElt {
   padding: 5px;
+  font-size: 9pt; /* make this smaller */
 }
 
 div.ExecutionVisualizer table.listTbl td.listElt,

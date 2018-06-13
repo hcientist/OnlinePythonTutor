@@ -90,7 +90,10 @@ export class ExecutionVisualizer {
   // visualization look cleaner:
   // - functions should be nested within heap objects since that's a more
   //   intuitive rendering for methods (i.e., functions within objects)
-  static DEFAULT_ALWAYS_NEST_TYPES = ['FUNCTION', 'JS_FUNCTION'];
+  // - lots of special cases for function/property-like python types that we should inline
+  static DEFAULT_ALWAYS_NEST_TYPES = ['FUNCTION', 'JS_FUNCTION',
+                                      'property', 'classmethod', 'staticmethod', 'builtin_function_or_method',
+                                      'member_descriptor', 'getset_descriptor', 'method_descriptor', 'wrapper_descriptor'];
 
   objInAlwaysNestTypes(obj) {
     if (!obj) return false;
@@ -1710,8 +1713,9 @@ class DataVisualizer {
     }
 
     if (typeof obj == "object") {
-      // kludge: only 'SPECIAL_FLOAT' objects count as primitives
-      return (obj[0] == 'SPECIAL_FLOAT' || obj[0] == 'JS_SPECIAL_VAL' ||
+      // kludgy
+      return (obj[0] == 'IMPORTED_FAUX_PRIMITIVE' ||
+              obj[0] == 'SPECIAL_FLOAT' || obj[0] == 'JS_SPECIAL_VAL' ||
               obj[0] == 'C_DATA' /* TODO: is this right?!? */);
     }
     else {
@@ -2653,6 +2657,12 @@ class DataVisualizer {
 
           d3DomElement.append('<div id="' + cdataId + '" class="cdataElt">' + rep + '</div>');
         }
+      } else if (obj[0] == 'IMPORTED_FAUX_PRIMITIVE') {
+        // these represent objects that you've imported from external
+        // libraries/modules, which should be displayed as 'primitives'
+        // so that we don't clutter up the display by dedicating heap
+        // space for them or trying to recurse into viewing their insides
+        d3DomElement.append('<span class="importedObj">' + obj[1] + '</span>');
       } else {
         assert(obj[0] == 'SPECIAL_FLOAT' || obj[0] == 'JS_SPECIAL_VAL');
         d3DomElement.append('<span class="numberObj">' + obj[1] + '</span>');
