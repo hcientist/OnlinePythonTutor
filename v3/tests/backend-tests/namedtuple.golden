@@ -20,17 +20,11 @@
       "stack_to_render": [], 
       "globals": {
         "namedtuple": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported function"
         ]
       }, 
-      "heap": {
-        "1": [
-          "FUNCTION", 
-          "namedtuple(typename, field_names, verbose, rename)", 
-          null
-        ]
-      }, 
+      "heap": {}, 
       "line": 3, 
       "event": "step_line"
     }, 
@@ -44,21 +38,16 @@
       "stack_to_render": [], 
       "globals": {
         "namedtuple": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported function"
         ], 
         "Restaurant": [
           "REF", 
-          2
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "namedtuple(typename, field_names, verbose, rename)", 
-          null
-        ], 
-        "2": [
           "CLASS", 
           "Restaurant", 
           [
@@ -68,129 +57,129 @@
             "__getnewargs__", 
             [
               "REF", 
-              3
+              2
             ]
           ], 
           [
             "__getstate__", 
             [
               "REF", 
-              4
+              3
             ]
           ], 
           [
             "__new__", 
             [
               "REF", 
-              5
+              4
             ]
           ], 
           [
             "__repr__", 
             [
               "REF", 
-              6
+              5
             ]
           ], 
           [
             "__slots__", 
             [
               "REF", 
-              7
+              6
             ]
           ], 
           [
             "_asdict", 
             [
               "REF", 
-              8
+              7
             ]
           ], 
           [
             "_fields", 
             [
               "REF", 
-              9
+              8
             ]
           ], 
           [
             "_make", 
             [
               "REF", 
-              10
+              9
             ]
           ], 
           [
             "_replace", 
             [
               "REF", 
-              11
+              10
             ]
           ], 
           [
             "cuisine", 
             [
               "REF", 
-              12
+              11
             ]
           ], 
           [
             "dish", 
             [
               "REF", 
-              13
+              12
             ]
           ], 
           [
             "name", 
             [
               "REF", 
-              14
+              13
             ]
           ], 
           [
             "phone", 
             [
               "REF", 
-              15
+              14
             ]
           ], 
           [
             "price", 
             [
               "REF", 
-              16
+              15
             ]
           ]
         ], 
-        "3": [
+        "2": [
           "FUNCTION", 
           "__getnewargs__(self)", 
           null
         ], 
-        "4": [
+        "3": [
           "FUNCTION", 
           "__getstate__(self)", 
           null
         ], 
-        "5": [
+        "4": [
           "staticmethod", 
           "<staticmethod object at 0xADDR>"
         ], 
-        "6": [
+        "5": [
           "FUNCTION", 
           "__repr__(self)", 
           null
         ], 
-        "7": [
+        "6": [
           "TUPLE"
         ], 
-        "8": [
+        "7": [
           "FUNCTION", 
           "_asdict(self)", 
           null
         ], 
-        "9": [
+        "8": [
           "TUPLE", 
           "name", 
           "cuisine", 
@@ -198,14 +187,18 @@
           "dish", 
           "price"
         ], 
-        "10": [
+        "9": [
           "classmethod", 
           "<classmethod object at 0xADDR>"
         ], 
-        "11": [
+        "10": [
           "FUNCTION", 
           "_replace(_self, **kwds)", 
           null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
         ], 
         "12": [
           "property", 
@@ -220,10 +213,6 @@
           "<property object at 0xADDR>"
         ], 
         "15": [
-          "property", 
-          "<property object at 0xADDR>"
-        ], 
-        "16": [
           "property", 
           "<property object at 0xADDR>"
         ]
@@ -242,25 +231,20 @@
       "stack_to_render": [], 
       "globals": {
         "namedtuple": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported function"
         ], 
         "R1": [
           "REF", 
-          17
+          16
         ], 
         "Restaurant": [
           "REF", 
-          2
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "namedtuple(typename, field_names, verbose, rename)", 
-          null
-        ], 
-        "2": [
           "CLASS", 
           "Restaurant", 
           [
@@ -270,129 +254,129 @@
             "__getnewargs__", 
             [
               "REF", 
-              3
+              2
             ]
           ], 
           [
             "__getstate__", 
             [
               "REF", 
-              4
+              3
             ]
           ], 
           [
             "__new__", 
             [
               "REF", 
-              5
+              4
             ]
           ], 
           [
             "__repr__", 
             [
               "REF", 
-              6
+              5
             ]
           ], 
           [
             "__slots__", 
             [
               "REF", 
-              7
+              6
             ]
           ], 
           [
             "_asdict", 
             [
               "REF", 
-              8
+              7
             ]
           ], 
           [
             "_fields", 
             [
               "REF", 
-              9
+              8
             ]
           ], 
           [
             "_make", 
             [
               "REF", 
-              10
+              9
             ]
           ], 
           [
             "_replace", 
             [
               "REF", 
-              11
+              10
             ]
           ], 
           [
             "cuisine", 
             [
               "REF", 
-              12
+              11
             ]
           ], 
           [
             "dish", 
             [
               "REF", 
-              13
+              12
             ]
           ], 
           [
             "name", 
             [
               "REF", 
-              14
+              13
             ]
           ], 
           [
             "phone", 
             [
               "REF", 
-              15
+              14
             ]
           ], 
           [
             "price", 
             [
               "REF", 
-              16
+              15
             ]
           ]
         ], 
-        "3": [
+        "2": [
           "FUNCTION", 
           "__getnewargs__(self)", 
           null
         ], 
-        "4": [
+        "3": [
           "FUNCTION", 
           "__getstate__(self)", 
           null
         ], 
-        "5": [
+        "4": [
           "staticmethod", 
           "<staticmethod object at 0xADDR>"
         ], 
-        "6": [
+        "5": [
           "FUNCTION", 
           "__repr__(self)", 
           null
         ], 
-        "7": [
+        "6": [
           "TUPLE"
         ], 
-        "8": [
+        "7": [
           "FUNCTION", 
           "_asdict(self)", 
           null
         ], 
-        "9": [
+        "8": [
           "TUPLE", 
           "name", 
           "cuisine", 
@@ -400,14 +384,18 @@
           "dish", 
           "price"
         ], 
-        "10": [
+        "9": [
           "classmethod", 
           "<classmethod object at 0xADDR>"
         ], 
-        "11": [
+        "10": [
           "FUNCTION", 
           "_replace(_self, **kwds)", 
           null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
         ], 
         "12": [
           "property", 
@@ -426,10 +414,6 @@
           "<property object at 0xADDR>"
         ], 
         "16": [
-          "property", 
-          "<property object at 0xADDR>"
-        ], 
-        "17": [
           "INSTANCE", 
           "Restaurant", 
           [
@@ -469,29 +453,24 @@
       "stack_to_render": [], 
       "globals": {
         "namedtuple": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported function"
         ], 
         "R1": [
           "REF", 
-          17
+          16
         ], 
         "R2": [
           "REF", 
-          18
+          17
         ], 
         "Restaurant": [
           "REF", 
-          2
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "FUNCTION", 
-          "namedtuple(typename, field_names, verbose, rename)", 
-          null
-        ], 
-        "2": [
           "CLASS", 
           "Restaurant", 
           [
@@ -501,129 +480,129 @@
             "__getnewargs__", 
             [
               "REF", 
-              3
+              2
             ]
           ], 
           [
             "__getstate__", 
             [
               "REF", 
-              4
+              3
             ]
           ], 
           [
             "__new__", 
             [
               "REF", 
-              5
+              4
             ]
           ], 
           [
             "__repr__", 
             [
               "REF", 
-              6
+              5
             ]
           ], 
           [
             "__slots__", 
             [
               "REF", 
-              7
+              6
             ]
           ], 
           [
             "_asdict", 
             [
               "REF", 
-              8
+              7
             ]
           ], 
           [
             "_fields", 
             [
               "REF", 
-              9
+              8
             ]
           ], 
           [
             "_make", 
             [
               "REF", 
-              10
+              9
             ]
           ], 
           [
             "_replace", 
             [
               "REF", 
-              11
+              10
             ]
           ], 
           [
             "cuisine", 
             [
               "REF", 
-              12
+              11
             ]
           ], 
           [
             "dish", 
             [
               "REF", 
-              13
+              12
             ]
           ], 
           [
             "name", 
             [
               "REF", 
-              14
+              13
             ]
           ], 
           [
             "phone", 
             [
               "REF", 
-              15
+              14
             ]
           ], 
           [
             "price", 
             [
               "REF", 
-              16
+              15
             ]
           ]
         ], 
-        "3": [
+        "2": [
           "FUNCTION", 
           "__getnewargs__(self)", 
           null
         ], 
-        "4": [
+        "3": [
           "FUNCTION", 
           "__getstate__(self)", 
           null
         ], 
-        "5": [
+        "4": [
           "staticmethod", 
           "<staticmethod object at 0xADDR>"
         ], 
-        "6": [
+        "5": [
           "FUNCTION", 
           "__repr__(self)", 
           null
         ], 
-        "7": [
+        "6": [
           "TUPLE"
         ], 
-        "8": [
+        "7": [
           "FUNCTION", 
           "_asdict(self)", 
           null
         ], 
-        "9": [
+        "8": [
           "TUPLE", 
           "name", 
           "cuisine", 
@@ -631,14 +610,18 @@
           "dish", 
           "price"
         ], 
-        "10": [
+        "9": [
           "classmethod", 
           "<classmethod object at 0xADDR>"
         ], 
-        "11": [
+        "10": [
           "FUNCTION", 
           "_replace(_self, **kwds)", 
           null
+        ], 
+        "11": [
+          "property", 
+          "<property object at 0xADDR>"
         ], 
         "12": [
           "property", 
@@ -657,10 +640,6 @@
           "<property object at 0xADDR>"
         ], 
         "16": [
-          "property", 
-          "<property object at 0xADDR>"
-        ], 
-        "17": [
           "INSTANCE", 
           "Restaurant", 
           [
@@ -684,7 +663,7 @@
             24.500
           ]
         ], 
-        "18": [
+        "17": [
           "INSTANCE", 
           "Restaurant", 
           [

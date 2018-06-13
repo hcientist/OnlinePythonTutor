@@ -20,16 +20,11 @@
       "stack_to_render": [], 
       "globals": {
         "math": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ]
       }, 
-      "heap": {
-        "1": [
-          "INSTANCE", 
-          "module"
-        ]
-      }, 
+      "heap": {}, 
       "line": 2, 
       "event": "step_line"
     }, 
@@ -44,19 +39,15 @@
       "globals": {
         "operator": [
           "REF", 
-          2
+          1
         ], 
         "math": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ]
       }, 
       "heap": {
         "1": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "2": [
           "INSTANCE", 
           "module"
         ]
@@ -76,27 +67,19 @@
       "globals": {
         "operator": [
           "REF", 
-          2
+          1
         ], 
         "string": [
-          "REF", 
-          3
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ], 
         "math": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ]
       }, 
       "heap": {
         "1": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "2": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "3": [
           "INSTANCE", 
           "module"
         ]
@@ -117,35 +100,23 @@
       "globals": {
         "operator": [
           "REF", 
-          2
+          1
         ], 
         "collections": [
-          "REF", 
-          4
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ], 
         "string": [
-          "REF", 
-          3
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ], 
         "math": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ]
       }, 
       "heap": {
         "1": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "2": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "3": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "4": [
           "INSTANCE", 
           "module"
         ]
@@ -167,43 +138,27 @@
       "globals": {
         "operator": [
           "REF", 
-          2
+          1
         ], 
         "re": [
-          "REF", 
-          5
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ], 
         "collections": [
-          "REF", 
-          4
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ], 
         "string": [
-          "REF", 
-          3
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ], 
         "math": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ]
       }, 
       "heap": {
         "1": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "2": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "3": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "4": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "5": [
           "INSTANCE", 
           "module"
         ]
@@ -225,52 +180,32 @@
       "stack_to_render": [], 
       "globals": {
         "string": [
-          "REF", 
-          3
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ], 
         "re": [
-          "REF", 
-          5
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ], 
         "json": [
-          "REF", 
-          6
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ], 
         "collections": [
-          "REF", 
-          4
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ], 
         "operator": [
           "REF", 
-          2
+          1
         ], 
         "math": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
         ]
       }, 
       "heap": {
         "1": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "2": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "3": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "4": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "5": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "6": [
           "INSTANCE", 
           "module"
         ]

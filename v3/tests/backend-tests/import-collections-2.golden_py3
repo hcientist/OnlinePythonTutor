@@ -20,107 +20,11 @@
       "stack_to_render": [], 
       "globals": {
         "defaultdict": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
         ]
       }, 
-      "heap": {
-        "1": [
-          "CLASS", 
-          "defaultdict", 
-          [
-            "dict"
-          ], 
-          [
-            "__copy__", 
-            [
-              "REF", 
-              2
-            ]
-          ], 
-          [
-            "__getattribute__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              4
-            ]
-          ], 
-          [
-            "__missing__", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__reduce__", 
-            [
-              "REF", 
-              6
-            ]
-          ], 
-          [
-            "__repr__", 
-            [
-              "REF", 
-              7
-            ]
-          ], 
-          [
-            "copy", 
-            [
-              "REF", 
-              8
-            ]
-          ], 
-          [
-            "default_factory", 
-            [
-              "REF", 
-              9
-            ]
-          ]
-        ], 
-        "2": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "3": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "4": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "5": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "6": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "7": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "8": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "9": [
-          "INSTANCE", 
-          "member_descriptor"
-        ]
-      }, 
+      "heap": {}, 
       "line": 2, 
       "event": "step_line"
     }, 
@@ -134,111 +38,16 @@
       "stack_to_render": [], 
       "globals": {
         "defaultdict": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
         ], 
         "d": [
           "REF", 
-          10
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "CLASS", 
-          "defaultdict", 
-          [
-            "dict"
-          ], 
-          [
-            "__copy__", 
-            [
-              "REF", 
-              2
-            ]
-          ], 
-          [
-            "__getattribute__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              4
-            ]
-          ], 
-          [
-            "__missing__", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__reduce__", 
-            [
-              "REF", 
-              6
-            ]
-          ], 
-          [
-            "__repr__", 
-            [
-              "REF", 
-              7
-            ]
-          ], 
-          [
-            "copy", 
-            [
-              "REF", 
-              8
-            ]
-          ], 
-          [
-            "default_factory", 
-            [
-              "REF", 
-              9
-            ]
-          ]
-        ], 
-        "2": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "3": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "4": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "5": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "6": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "7": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "8": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "9": [
-          "INSTANCE", 
-          "member_descriptor"
-        ], 
-        "10": [
           "INSTANCE", 
           "defaultdict"
         ]
@@ -256,111 +65,16 @@
       "stack_to_render": [], 
       "globals": {
         "defaultdict": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
         ], 
         "d": [
           "REF", 
-          10
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "CLASS", 
-          "defaultdict", 
-          [
-            "dict"
-          ], 
-          [
-            "__copy__", 
-            [
-              "REF", 
-              2
-            ]
-          ], 
-          [
-            "__getattribute__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              4
-            ]
-          ], 
-          [
-            "__missing__", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__reduce__", 
-            [
-              "REF", 
-              6
-            ]
-          ], 
-          [
-            "__repr__", 
-            [
-              "REF", 
-              7
-            ]
-          ], 
-          [
-            "copy", 
-            [
-              "REF", 
-              8
-            ]
-          ], 
-          [
-            "default_factory", 
-            [
-              "REF", 
-              9
-            ]
-          ]
-        ], 
-        "2": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "3": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "4": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "5": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "6": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "7": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "8": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "9": [
-          "INSTANCE", 
-          "member_descriptor"
-        ], 
-        "10": [
           "INSTANCE", 
           "defaultdict"
         ]
@@ -378,111 +92,16 @@
       "stack_to_render": [], 
       "globals": {
         "defaultdict": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
         ], 
         "d": [
           "REF", 
-          10
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "CLASS", 
-          "defaultdict", 
-          [
-            "dict"
-          ], 
-          [
-            "__copy__", 
-            [
-              "REF", 
-              2
-            ]
-          ], 
-          [
-            "__getattribute__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              4
-            ]
-          ], 
-          [
-            "__missing__", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__reduce__", 
-            [
-              "REF", 
-              6
-            ]
-          ], 
-          [
-            "__repr__", 
-            [
-              "REF", 
-              7
-            ]
-          ], 
-          [
-            "copy", 
-            [
-              "REF", 
-              8
-            ]
-          ], 
-          [
-            "default_factory", 
-            [
-              "REF", 
-              9
-            ]
-          ]
-        ], 
-        "2": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "3": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "4": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "5": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "6": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "7": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "8": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "9": [
-          "INSTANCE", 
-          "member_descriptor"
-        ], 
-        "10": [
           "INSTANCE", 
           "defaultdict"
         ]
@@ -500,111 +119,16 @@
       "stack_to_render": [], 
       "globals": {
         "defaultdict": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
         ], 
         "d": [
           "REF", 
-          10
+          1
         ]
       }, 
       "heap": {
         "1": [
-          "CLASS", 
-          "defaultdict", 
-          [
-            "dict"
-          ], 
-          [
-            "__copy__", 
-            [
-              "REF", 
-              2
-            ]
-          ], 
-          [
-            "__getattribute__", 
-            [
-              "REF", 
-              3
-            ]
-          ], 
-          [
-            "__init__", 
-            [
-              "REF", 
-              4
-            ]
-          ], 
-          [
-            "__missing__", 
-            [
-              "REF", 
-              5
-            ]
-          ], 
-          [
-            "__reduce__", 
-            [
-              "REF", 
-              6
-            ]
-          ], 
-          [
-            "__repr__", 
-            [
-              "REF", 
-              7
-            ]
-          ], 
-          [
-            "copy", 
-            [
-              "REF", 
-              8
-            ]
-          ], 
-          [
-            "default_factory", 
-            [
-              "REF", 
-              9
-            ]
-          ]
-        ], 
-        "2": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "3": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "4": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "5": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "6": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "7": [
-          "INSTANCE", 
-          "wrapper_descriptor"
-        ], 
-        "8": [
-          "INSTANCE", 
-          "method_descriptor"
-        ], 
-        "9": [
-          "INSTANCE", 
-          "member_descriptor"
-        ], 
-        "10": [
           "INSTANCE", 
           "defaultdict"
         ]

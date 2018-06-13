@@ -20,16 +20,11 @@
       "stack_to_render": [], 
       "globals": {
         "operator": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ]
       }, 
-      "heap": {
-        "1": [
-          "module", 
-          "operator"
-        ]
-      }, 
+      "heap": {}, 
       "line": 2, 
       "event": "step_line"
     }, 
@@ -44,18 +39,13 @@
       "stack_to_render": [], 
       "globals": {
         "operator": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "pi": 3.142, 
         "e": 2.718
       }, 
-      "heap": {
-        "1": [
-          "module", 
-          "operator"
-        ]
-      }, 
+      "heap": {}, 
       "line": 3, 
       "event": "step_line"
     }, 
@@ -71,19 +61,14 @@
       "stack_to_render": [], 
       "globals": {
         "operator": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "pi": 3.142, 
         "e": 2.718, 
         "pie": 5.860
       }, 
-      "heap": {
-        "1": [
-          "module", 
-          "operator"
-        ]
-      }, 
+      "heap": {}, 
       "line": 3, 
       "event": "return"
     }

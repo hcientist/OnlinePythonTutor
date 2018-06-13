@@ -17,32 +17,32 @@
       "func_name": "<module>",
       "globals": {
         "dump": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "dumps": [
-          "REF",
-          2
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "load": [
-          "REF",
-          3
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "loads": [
-          "REF",
-          4
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "JSONDecoder": [
-          "REF",
-          5
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
         ],
         "JSONDecodeError": [
-          "REF",
-          9
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
         ],
         "JSONEncoder": [
-          "REF",
-          12
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
         ]
       },
       "ordered_globals": [
@@ -55,161 +55,7 @@
         "JSONEncoder"
       ],
       "stack_to_render": [],
-      "heap": {
-        "1": [
-          "FUNCTION",
-          "dump(obj, fp, **kw, skipkeys, ensure_ascii, check_circular, allow_nan, cls, indent, separators, default, sort_keys)",
-          null
-        ],
-        "2": [
-          "FUNCTION",
-          "dumps(obj, **kw, skipkeys, ensure_ascii, check_circular, allow_nan, cls, indent, separators, default, sort_keys)",
-          null
-        ],
-        "3": [
-          "FUNCTION",
-          "load(fp, **kw, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook)",
-          null
-        ],
-        "4": [
-          "FUNCTION",
-          "loads(s, **kw, encoding, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook)",
-          null
-        ],
-        "5": [
-          "CLASS",
-          "JSONDecoder",
-          [],
-          [
-            "__init__",
-            [
-              "REF",
-              6
-            ]
-          ],
-          [
-            "decode",
-            [
-              "REF",
-              7
-            ]
-          ],
-          [
-            "raw_decode",
-            [
-              "REF",
-              8
-            ]
-          ]
-        ],
-        "6": [
-          "FUNCTION",
-          "__init__(self, object_hook, parse_float, parse_int, parse_constant, strict, object_pairs_hook)",
-          null
-        ],
-        "7": [
-          "FUNCTION",
-          "decode(self, s, _w)",
-          null
-        ],
-        "8": [
-          "FUNCTION",
-          "raw_decode(self, s, idx)",
-          null
-        ],
-        "9": [
-          "CLASS",
-          "JSONDecodeError",
-          [
-            "ValueError"
-          ],
-          [
-            "__init__",
-            [
-              "REF",
-              10
-            ]
-          ],
-          [
-            "__reduce__",
-            [
-              "REF",
-              11
-            ]
-          ]
-        ],
-        "10": [
-          "FUNCTION",
-          "__init__(self, msg, doc, pos)",
-          null
-        ],
-        "11": [
-          "FUNCTION",
-          "__reduce__(self)",
-          null
-        ],
-        "12": [
-          "CLASS",
-          "JSONEncoder",
-          [],
-          [
-            "__init__",
-            [
-              "REF",
-              13
-            ]
-          ],
-          [
-            "default",
-            [
-              "REF",
-              14
-            ]
-          ],
-          [
-            "encode",
-            [
-              "REF",
-              15
-            ]
-          ],
-          [
-            "item_separator",
-            ", "
-          ],
-          [
-            "iterencode",
-            [
-              "REF",
-              16
-            ]
-          ],
-          [
-            "key_separator",
-            ": "
-          ]
-        ],
-        "13": [
-          "FUNCTION",
-          "__init__(self, skipkeys, ensure_ascii, check_circular, allow_nan, sort_keys, indent, separators, default)",
-          null
-        ],
-        "14": [
-          "FUNCTION",
-          "default(self, o)",
-          null
-        ],
-        "15": [
-          "FUNCTION",
-          "encode(self, o)",
-          null
-        ],
-        "16": [
-          "FUNCTION",
-          "iterencode(self, o, _one_shot)",
-          null
-        ]
-      },
+      "heap": {},
       "stdout": ""
     }
   ]

@@ -17,20 +17,15 @@
       "func_name": "<module>",
       "globals": {
         "math": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ]
       },
       "ordered_globals": [
         "math"
       ],
       "stack_to_render": [],
-      "heap": {
-        "1": [
-          "INSTANCE",
-          "module"
-        ]
-      },
+      "heap": {},
       "stdout": ""
     },
     {
@@ -39,12 +34,12 @@
       "func_name": "<module>",
       "globals": {
         "math": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "operator": [
-          "REF",
-          2
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ]
       },
       "ordered_globals": [
@@ -52,16 +47,7 @@
         "operator"
       ],
       "stack_to_render": [],
-      "heap": {
-        "1": [
-          "INSTANCE",
-          "module"
-        ],
-        "2": [
-          "INSTANCE",
-          "module"
-        ]
-      },
+      "heap": {},
       "stdout": ""
     },
     {
@@ -70,16 +56,16 @@
       "func_name": "<module>",
       "globals": {
         "math": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "operator": [
-          "REF",
-          2
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "string": [
-          "REF",
-          3
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ]
       },
       "ordered_globals": [
@@ -88,20 +74,7 @@
         "string"
       ],
       "stack_to_render": [],
-      "heap": {
-        "1": [
-          "INSTANCE",
-          "module"
-        ],
-        "2": [
-          "INSTANCE",
-          "module"
-        ],
-        "3": [
-          "INSTANCE",
-          "module"
-        ]
-      },
+      "heap": {},
       "stdout": ""
     },
     {
@@ -110,20 +83,20 @@
       "func_name": "<module>",
       "globals": {
         "math": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "operator": [
-          "REF",
-          2
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "string": [
-          "REF",
-          3
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "collections": [
-          "REF",
-          4
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ]
       },
       "ordered_globals": [
@@ -133,24 +106,7 @@
         "collections"
       ],
       "stack_to_render": [],
-      "heap": {
-        "1": [
-          "INSTANCE",
-          "module"
-        ],
-        "2": [
-          "INSTANCE",
-          "module"
-        ],
-        "3": [
-          "INSTANCE",
-          "module"
-        ],
-        "4": [
-          "INSTANCE",
-          "module"
-        ]
-      },
+      "heap": {},
       "stdout": ""
     },
     {
@@ -159,24 +115,24 @@
       "func_name": "<module>",
       "globals": {
         "math": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "operator": [
-          "REF",
-          2
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "string": [
-          "REF",
-          3
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "collections": [
-          "REF",
-          4
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "re": [
-          "REF",
-          5
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ]
       },
       "ordered_globals": [
@@ -187,28 +143,7 @@
         "re"
       ],
       "stack_to_render": [],
-      "heap": {
-        "1": [
-          "INSTANCE",
-          "module"
-        ],
-        "2": [
-          "INSTANCE",
-          "module"
-        ],
-        "3": [
-          "INSTANCE",
-          "module"
-        ],
-        "4": [
-          "INSTANCE",
-          "module"
-        ],
-        "5": [
-          "INSTANCE",
-          "module"
-        ]
-      },
+      "heap": {},
       "stdout": ""
     },
     {
@@ -217,28 +152,28 @@
       "func_name": "<module>",
       "globals": {
         "math": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "operator": [
-          "REF",
-          2
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "string": [
-          "REF",
-          3
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "collections": [
-          "REF",
-          4
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "re": [
-          "REF",
-          5
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "json": [
-          "REF",
-          6
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ]
       },
       "ordered_globals": [
@@ -250,32 +185,7 @@
         "json"
       ],
       "stack_to_render": [],
-      "heap": {
-        "1": [
-          "INSTANCE",
-          "module"
-        ],
-        "2": [
-          "INSTANCE",
-          "module"
-        ],
-        "3": [
-          "INSTANCE",
-          "module"
-        ],
-        "4": [
-          "INSTANCE",
-          "module"
-        ],
-        "5": [
-          "INSTANCE",
-          "module"
-        ],
-        "6": [
-          "INSTANCE",
-          "module"
-        ]
-      },
+      "heap": {},
       "stdout": ""
     }
   ]

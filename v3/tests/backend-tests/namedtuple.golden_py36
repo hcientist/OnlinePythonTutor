@@ -17,21 +17,15 @@
       "func_name": "<module>",
       "globals": {
         "namedtuple": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ]
       },
       "ordered_globals": [
         "namedtuple"
       ],
       "stack_to_render": [],
-      "heap": {
-        "1": [
-          "FUNCTION",
-          "namedtuple(typename, field_names, verbose, rename, module)",
-          null
-        ]
-      },
+      "heap": {},
       "stdout": ""
     },
     {
@@ -40,12 +34,12 @@
       "func_name": "<module>",
       "globals": {
         "namedtuple": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "Restaurant": [
           "REF",
-          2
+          1
         ]
       },
       "ordered_globals": [
@@ -55,11 +49,6 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "FUNCTION",
-          "namedtuple(typename, field_names, verbose, rename, module)",
-          null
-        ],
-        "2": [
           "CLASS",
           "Restaurant",
           [
@@ -69,56 +58,56 @@
             "__getnewargs__",
             [
               "REF",
-              3
+              2
             ]
           ],
           [
             "__new__",
             [
               "REF",
-              4
+              3
             ]
           ],
           [
             "__repr__",
             [
               "REF",
-              5
+              4
             ]
           ],
           [
             "__slots__",
             [
               "REF",
-              6
+              5
             ]
           ],
           [
             "_asdict",
             [
               "REF",
-              7
+              6
             ]
           ],
           [
             "_fields",
             [
               "REF",
-              8
+              7
             ]
           ],
           [
             "_make",
             [
               "REF",
-              9
+              8
             ]
           ],
           [
             "_replace",
             [
               "REF",
-              10
+              9
             ]
           ],
           [
@@ -129,61 +118,61 @@
             "cuisine",
             [
               "REF",
-              11
+              10
             ]
           ],
           [
             "dish",
             [
               "REF",
-              12
+              11
             ]
           ],
           [
             "name",
             [
               "REF",
-              13
+              12
             ]
           ],
           [
             "phone",
             [
               "REF",
-              14
+              13
             ]
           ],
           [
             "price",
             [
               "REF",
-              15
+              14
             ]
           ]
         ],
-        "3": [
+        "2": [
           "FUNCTION",
           "__getnewargs__(self)",
           null
         ],
-        "4": [
+        "3": [
           "INSTANCE",
           "staticmethod"
         ],
-        "5": [
+        "4": [
           "FUNCTION",
           "__repr__(self)",
           null
         ],
-        "6": [
+        "5": [
           "TUPLE"
         ],
-        "7": [
+        "6": [
           "FUNCTION",
           "_asdict(self)",
           null
         ],
-        "8": [
+        "7": [
           "TUPLE",
           "name",
           "cuisine",
@@ -191,14 +180,18 @@
           "dish",
           "price"
         ],
-        "9": [
+        "8": [
           "INSTANCE",
           "classmethod"
         ],
-        "10": [
+        "9": [
           "FUNCTION",
           "_replace(_self, **kwds)",
           null
+        ],
+        "10": [
+          "INSTANCE",
+          "property"
         ],
         "11": [
           "INSTANCE",
@@ -213,10 +206,6 @@
           "property"
         ],
         "14": [
-          "INSTANCE",
-          "property"
-        ],
-        "15": [
           "INSTANCE",
           "property"
         ]
@@ -229,16 +218,16 @@
       "func_name": "<module>",
       "globals": {
         "namedtuple": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "Restaurant": [
           "REF",
-          2
+          1
         ],
         "R1": [
           "REF",
-          16
+          15
         ]
       },
       "ordered_globals": [
@@ -249,11 +238,6 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "FUNCTION",
-          "namedtuple(typename, field_names, verbose, rename, module)",
-          null
-        ],
-        "2": [
           "CLASS",
           "Restaurant",
           [
@@ -263,56 +247,56 @@
             "__getnewargs__",
             [
               "REF",
-              3
+              2
             ]
           ],
           [
             "__new__",
             [
               "REF",
-              4
+              3
             ]
           ],
           [
             "__repr__",
             [
               "REF",
-              5
+              4
             ]
           ],
           [
             "__slots__",
             [
               "REF",
-              6
+              5
             ]
           ],
           [
             "_asdict",
             [
               "REF",
-              7
+              6
             ]
           ],
           [
             "_fields",
             [
               "REF",
-              8
+              7
             ]
           ],
           [
             "_make",
             [
               "REF",
-              9
+              8
             ]
           ],
           [
             "_replace",
             [
               "REF",
-              10
+              9
             ]
           ],
           [
@@ -323,61 +307,61 @@
             "cuisine",
             [
               "REF",
-              11
+              10
             ]
           ],
           [
             "dish",
             [
               "REF",
-              12
+              11
             ]
           ],
           [
             "name",
             [
               "REF",
-              13
+              12
             ]
           ],
           [
             "phone",
             [
               "REF",
-              14
+              13
             ]
           ],
           [
             "price",
             [
               "REF",
-              15
+              14
             ]
           ]
         ],
-        "3": [
+        "2": [
           "FUNCTION",
           "__getnewargs__(self)",
           null
         ],
-        "4": [
+        "3": [
           "INSTANCE",
           "staticmethod"
         ],
-        "5": [
+        "4": [
           "FUNCTION",
           "__repr__(self)",
           null
         ],
-        "6": [
+        "5": [
           "TUPLE"
         ],
-        "7": [
+        "6": [
           "FUNCTION",
           "_asdict(self)",
           null
         ],
-        "8": [
+        "7": [
           "TUPLE",
           "name",
           "cuisine",
@@ -385,14 +369,18 @@
           "dish",
           "price"
         ],
-        "9": [
+        "8": [
           "INSTANCE",
           "classmethod"
         ],
-        "10": [
+        "9": [
           "FUNCTION",
           "_replace(_self, **kwds)",
           null
+        ],
+        "10": [
+          "INSTANCE",
+          "property"
         ],
         "11": [
           "INSTANCE",
@@ -411,10 +399,6 @@
           "property"
         ],
         "15": [
-          "INSTANCE",
-          "property"
-        ],
-        "16": [
           "INSTANCE",
           "Restaurant"
         ]
@@ -427,20 +411,20 @@
       "func_name": "<module>",
       "globals": {
         "namedtuple": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "Restaurant": [
           "REF",
-          2
+          1
         ],
         "R1": [
           "REF",
-          16
+          15
         ],
         "R2": [
           "REF",
-          17
+          16
         ]
       },
       "ordered_globals": [
@@ -452,11 +436,6 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "FUNCTION",
-          "namedtuple(typename, field_names, verbose, rename, module)",
-          null
-        ],
-        "2": [
           "CLASS",
           "Restaurant",
           [
@@ -466,56 +445,56 @@
             "__getnewargs__",
             [
               "REF",
-              3
+              2
             ]
           ],
           [
             "__new__",
             [
               "REF",
-              4
+              3
             ]
           ],
           [
             "__repr__",
             [
               "REF",
-              5
+              4
             ]
           ],
           [
             "__slots__",
             [
               "REF",
-              6
+              5
             ]
           ],
           [
             "_asdict",
             [
               "REF",
-              7
+              6
             ]
           ],
           [
             "_fields",
             [
               "REF",
-              8
+              7
             ]
           ],
           [
             "_make",
             [
               "REF",
-              9
+              8
             ]
           ],
           [
             "_replace",
             [
               "REF",
-              10
+              9
             ]
           ],
           [
@@ -526,61 +505,61 @@
             "cuisine",
             [
               "REF",
-              11
+              10
             ]
           ],
           [
             "dish",
             [
               "REF",
-              12
+              11
             ]
           ],
           [
             "name",
             [
               "REF",
-              13
+              12
             ]
           ],
           [
             "phone",
             [
               "REF",
-              14
+              13
             ]
           ],
           [
             "price",
             [
               "REF",
-              15
+              14
             ]
           ]
         ],
-        "3": [
+        "2": [
           "FUNCTION",
           "__getnewargs__(self)",
           null
         ],
-        "4": [
+        "3": [
           "INSTANCE",
           "staticmethod"
         ],
-        "5": [
+        "4": [
           "FUNCTION",
           "__repr__(self)",
           null
         ],
-        "6": [
+        "5": [
           "TUPLE"
         ],
-        "7": [
+        "6": [
           "FUNCTION",
           "_asdict(self)",
           null
         ],
-        "8": [
+        "7": [
           "TUPLE",
           "name",
           "cuisine",
@@ -588,14 +567,18 @@
           "dish",
           "price"
         ],
-        "9": [
+        "8": [
           "INSTANCE",
           "classmethod"
         ],
-        "10": [
+        "9": [
           "FUNCTION",
           "_replace(_self, **kwds)",
           null
+        ],
+        "10": [
+          "INSTANCE",
+          "property"
         ],
         "11": [
           "INSTANCE",
@@ -615,13 +598,9 @@
         ],
         "15": [
           "INSTANCE",
-          "property"
-        ],
-        "16": [
-          "INSTANCE",
           "Restaurant"
         ],
-        "17": [
+        "16": [
           "INSTANCE",
           "Restaurant"
         ]

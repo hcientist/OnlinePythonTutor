@@ -17,20 +17,15 @@
       "func_name": "<module>",
       "globals": {
         "random": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ]
       },
       "ordered_globals": [
         "random"
       ],
       "stack_to_render": [],
-      "heap": {
-        "1": [
-          "INSTANCE",
-          "module"
-        ]
-      },
+      "heap": {},
       "stdout": ""
     },
     {
@@ -39,20 +34,15 @@
       "func_name": "<module>",
       "globals": {
         "random": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ]
       },
       "ordered_globals": [
         "random"
       ],
       "stack_to_render": [],
-      "heap": {
-        "1": [
-          "INSTANCE",
-          "module"
-        ]
-      },
+      "heap": {},
       "stdout": ""
     },
     {
@@ -61,12 +51,12 @@
       "func_name": "<module>",
       "globals": {
         "random": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "compile": [
-          "REF",
-          2
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ]
       },
       "ordered_globals": [
@@ -74,17 +64,7 @@
         "compile"
       ],
       "stack_to_render": [],
-      "heap": {
-        "1": [
-          "INSTANCE",
-          "module"
-        ],
-        "2": [
-          "FUNCTION",
-          "compile(pattern, flags)",
-          null
-        ]
-      },
+      "heap": {},
       "stdout": ""
     },
     {
@@ -93,16 +73,16 @@
       "func_name": "<module>",
       "globals": {
         "random": [
-          "REF",
-          1
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "compile": [
-          "REF",
-          2
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
         ],
         "x": [
           "REF",
-          3
+          1
         ]
       },
       "ordered_globals": [
@@ -113,15 +93,6 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "module"
-        ],
-        "2": [
-          "FUNCTION",
-          "compile(pattern, flags)",
-          null
-        ],
-        "3": [
           "INSTANCE",
           "SRE_Pattern"
         ]

@@ -20,16 +20,11 @@
       "stack_to_render": [], 
       "globals": {
         "math": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ]
       }, 
-      "heap": {
-        "1": [
-          "module", 
-          "math"
-        ]
-      }, 
+      "heap": {}, 
       "line": 2, 
       "event": "step_line"
     }, 
@@ -43,24 +38,15 @@
       "stack_to_render": [], 
       "globals": {
         "operator": [
-          "REF", 
-          2
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "math": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ]
       }, 
-      "heap": {
-        "1": [
-          "module", 
-          "math"
-        ], 
-        "2": [
-          "module", 
-          "operator"
-        ]
-      }, 
+      "heap": {}, 
       "line": 3, 
       "event": "step_line"
     }, 
@@ -75,32 +61,19 @@
       "stack_to_render": [], 
       "globals": {
         "operator": [
-          "REF", 
-          2
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "string": [
-          "REF", 
-          3
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "math": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ]
       }, 
-      "heap": {
-        "1": [
-          "module", 
-          "math"
-        ], 
-        "2": [
-          "module", 
-          "operator"
-        ], 
-        "3": [
-          "module", 
-          "string"
-        ]
-      }, 
+      "heap": {}, 
       "line": 4, 
       "event": "step_line"
     }, 
@@ -116,40 +89,23 @@
       "stack_to_render": [], 
       "globals": {
         "operator": [
-          "REF", 
-          2
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "collections": [
-          "REF", 
-          4
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "string": [
-          "REF", 
-          3
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "math": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ]
       }, 
-      "heap": {
-        "1": [
-          "module", 
-          "math"
-        ], 
-        "2": [
-          "module", 
-          "operator"
-        ], 
-        "3": [
-          "module", 
-          "string"
-        ], 
-        "4": [
-          "module", 
-          "collections"
-        ]
-      }, 
+      "heap": {}, 
       "line": 5, 
       "event": "step_line"
     }, 
@@ -166,48 +122,27 @@
       "stack_to_render": [], 
       "globals": {
         "operator": [
-          "REF", 
-          2
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "re": [
-          "REF", 
-          5
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "collections": [
-          "REF", 
-          4
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "string": [
-          "REF", 
-          3
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "math": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ]
       }, 
-      "heap": {
-        "1": [
-          "module", 
-          "math"
-        ], 
-        "2": [
-          "module", 
-          "operator"
-        ], 
-        "3": [
-          "module", 
-          "string"
-        ], 
-        "4": [
-          "module", 
-          "collections"
-        ], 
-        "5": [
-          "module", 
-          "re"
-        ]
-      }, 
+      "heap": {}, 
       "line": 6, 
       "event": "step_line"
     }, 
@@ -225,56 +160,31 @@
       "stack_to_render": [], 
       "globals": {
         "string": [
-          "REF", 
-          3
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "re": [
-          "REF", 
-          5
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "json": [
-          "REF", 
-          6
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "collections": [
-          "REF", 
-          4
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "operator": [
-          "REF", 
-          2
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ], 
         "math": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ]
       }, 
-      "heap": {
-        "1": [
-          "module", 
-          "math"
-        ], 
-        "2": [
-          "module", 
-          "operator"
-        ], 
-        "3": [
-          "module", 
-          "string"
-        ], 
-        "4": [
-          "module", 
-          "collections"
-        ], 
-        "5": [
-          "module", 
-          "re"
-        ], 
-        "6": [
-          "module", 
-          "json"
-        ]
-      }, 
+      "heap": {}, 
       "line": 6, 
       "event": "return"
     }

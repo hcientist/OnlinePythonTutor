@@ -20,16 +20,11 @@
       "stack_to_render": [], 
       "globals": {
         "random": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ]
       }, 
-      "heap": {
-        "1": [
-          "module", 
-          "random"
-        ]
-      }, 
+      "heap": {}, 
       "line": 4, 
       "event": "step_line"
     }, 
@@ -42,16 +37,11 @@
       "stack_to_render": [], 
       "globals": {
         "random": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ]
       }, 
-      "heap": {
-        "1": [
-          "module", 
-          "random"
-        ]
-      }, 
+      "heap": {}, 
       "line": 6, 
       "event": "step_line"
     }, 
@@ -65,25 +55,15 @@
       "stack_to_render": [], 
       "globals": {
         "compile": [
-          "REF", 
-          2
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported function"
         ], 
         "random": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ]
       }, 
-      "heap": {
-        "1": [
-          "module", 
-          "random"
-        ], 
-        "2": [
-          "FUNCTION", 
-          "compile(pattern, flags)", 
-          null
-        ]
-      }, 
+      "heap": {}, 
       "line": 7, 
       "event": "step_line"
     }, 
@@ -98,29 +78,20 @@
       "stack_to_render": [], 
       "globals": {
         "compile": [
-          "REF", 
-          2
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported function"
         ], 
         "x": [
           "REF", 
-          3
+          1
         ], 
         "random": [
-          "REF", 
-          1
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
         ]
       }, 
       "heap": {
         "1": [
-          "module", 
-          "random"
-        ], 
-        "2": [
-          "FUNCTION", 
-          "compile(pattern, flags)", 
-          null
-        ], 
-        "3": [
           "_sre.SRE_Pattern", 
           "<_sre.SRE_Pattern object at 0xADDR>"
         ]
