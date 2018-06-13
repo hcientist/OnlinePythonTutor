@@ -23,6 +23,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # Thanks to John DeNero for making the encoder work on both Python 2 and 3
+# (circa 2012-2013)
 
 
 # Given an arbitrary piece of Python data, encode it in such a manner
@@ -48,6 +49,12 @@
 #
 #   (for SPECIAL_FLOAT values, <value> is a list like ['SPECIAL_FLOAT', 'Infinity'])
 #
+#   added on 2018-06-13:
+#   ['IMPORTED_FAUX_PRIMITIVE', <label>] - renders externally imported objects
+#                                          like they were primitives, to save
+#                                          space and to prevent from having to
+#                                          recurse into of them to see internals
+#
 #   Compound objects:
 #   * list     - ['LIST', elt1, elt2, elt3, ..., eltN]
 #   * tuple    - ['TUPLE', elt1, elt2, elt3, ..., eltN]
@@ -72,6 +79,7 @@ from collections import defaultdict
 import re, types
 import sys
 import math
+import os
 typeRE = re.compile("<type '(.*)'>")
 classRE = re.compile("<class '(.*)'>")
 
@@ -213,7 +221,41 @@ class ObjectEncoder:
       return encode_primitive(dat)
     # compound type - return an object reference and update encoded_heap_objects
     else:
+
+      # IMPORTED_FAUX_PRIMITIVE feature added on 2018-06-13:
+      is_externally_defined = False # is dat defined in external (i.e., non-user) code?
+      try:
+        # some objects don't return anything for getsourcefile() but DO return
+        # something legit for getmodule(). e.g., "from io import StringIO"
+        # so TRY getmodule *first* and then fall back on getsourcefile
+        # since getmodule seems more robust empirically ...
+        gsf = inspect.getmodule(dat).__file__
+        if not gsf:
+            gsf = inspect.getsourcefile(dat)
+
+        # a hacky heuristic is that if gsf is an absolute path, then it's likely
+        # to be some library function and *not* in user-defined code
+        if gsf and os.path.isabs(gsf):
+            is_externally_defined = True
+      except (AttributeError, TypeError):
+        pass # fail soft
       my_id = id(dat)
+
+      # if this is an externally-defined object (i.e., from an imported
+      # module, don't try to recurse into it since we don't want to see
+      # the internals of imported objects; just return an
+      # IMPORTED_FAUX_PRIMITIVE object and continue along on our way
+      if is_externally_defined:
+        label = 'object'
+        try:
+            label = type(dat).__name__
+            if is_class(dat):
+                label = 'class'
+            elif is_instance(dat):
+                label = 'object'
+        except:
+            pass
+        return ['IMPORTED_FAUX_PRIMITIVE', 'imported ' + label] # punt early!
 
       try:
         my_small_id = self.id_to_small_IDs[my_id]
@@ -347,6 +389,10 @@ class ObjectEncoder:
          (not dat.__class__.__str__ is object.__str__): # make sure it's not the lame default __str__
         # N.B.: when objects are being constructed, this call
         # might fail since not all fields have yet been populated
+        #
+        # 2018-06-13: TODO: look into improving this: maybe also print
+        # internal repr in addition to __str__? also what about if a
+        # superclass defines __str__ ... does the above check pick it up?
         try:
           pprint_str = str(dat)
         except:
