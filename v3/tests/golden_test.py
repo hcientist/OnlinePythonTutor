@@ -162,11 +162,12 @@ if __name__ == "__main__":
   INPUT_FILE_EXTENSION = '.txt' # input test files are .txt, NOT .py
 
   if options.py3:
-    PROGRAM = ['python3.2', GEN_JSON_TRACE_PY]
+    PROGRAM = ['python3.2', GEN_JSON_TRACE_PY] # tested on Python 3.2.6 on Mac OS X
+    #PROGRAM = ['python3.6', GEN_JSON_TRACE_PY]
     OUTPUT_FILE_EXTENSION = '.out_py3'
     GOLDEN_FILE_EXTENSION = '.golden_py3'
   else:
-    PROGRAM = ['python2.7', GEN_JSON_TRACE_PY]
+    PROGRAM = ['python2.7', GEN_JSON_TRACE_PY] # tested on Python 2.7.14 on Mac OS X
     OUTPUT_FILE_EXTENSION = '.out'
     GOLDEN_FILE_EXTENSION = '.golden'
 

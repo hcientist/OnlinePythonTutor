@@ -14,7 +14,7 @@
     {
       "ordered_globals": [], 
       "stdout": "", 
-      "exception_msg": "ImportError: os not supported", 
+      "exception_msg": "ImportError: os not supported\nOnly these modules can be imported into Python Tutor:\n  StringIO, bisect, collections, copy, datetime, functools\n  hashlib, heapq, io, itertools, json, math\n  operator, random, re, string, time, typing", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {}, 
