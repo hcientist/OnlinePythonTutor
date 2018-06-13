@@ -1,0 +1,5152 @@
+{
+  "code": "# Adapted from an example by David G. Kay\nfrom collections import namedtuple\n\nRestaurant = namedtuple('Restaurant', 'name cuisine phone dish price')\n\nR1 = Restaurant(\"Taillevent\", \"French\", \"343-3434\", \"Escargots\", 24.50)\nR2 = Restaurant(\"La Tour D'Argent\", \"French\", \"343-3344\", \"Ris de Veau\", 48.50)\nR3 = Restaurant(\"Pascal\", \"French\", \"333-4444\", \"Bouillabaisse\", 32.00)\nR4 = Restaurant(\"Thai Touch\", \"Thai\", \"444-3333\", \"Mee Krob\", 10.95)\nR5 = Restaurant(\"Thai Dishes\", \"Thai\", \"333-4433\", \"Paht Woon Sen\",  8.50)\nR6 = Restaurant(\"Thai Spoon\", \"Thai\", \"334-3344\", \"Mussamun\", 9.00)\n\nRL = [R1, R2, R3, R4, R5, R6]\n\nFrenchRestaurants = [r for r in RL if r.cuisine==\"French\"]\nprint(FrenchRestaurants)\n",
+  "trace": [
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ],
+        "R5": [
+          "REF",
+          20
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "20": [
+          "INSTANCE",
+          "Restaurant"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 13,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ],
+        "R5": [
+          "REF",
+          20
+        ],
+        "R6": [
+          "REF",
+          21
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "20": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "21": [
+          "INSTANCE",
+          "Restaurant"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ],
+        "R5": [
+          "REF",
+          20
+        ],
+        "R6": [
+          "REF",
+          21
+        ],
+        "RL": [
+          "REF",
+          22
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RL"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "20": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "21": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "22": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ],
+          [
+            "REF",
+            19
+          ],
+          [
+            "REF",
+            20
+          ],
+          [
+            "REF",
+            21
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 15,
+      "event": "call",
+      "func_name": "<listcomp>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ],
+        "R5": [
+          "REF",
+          20
+        ],
+        "R6": [
+          "REF",
+          21
+        ],
+        "RL": [
+          "REF",
+          22
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RL"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              23
+            ]
+          },
+          "ordered_varnames": [
+            ".0"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "23": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "20": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "21": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "22": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ],
+          [
+            "REF",
+            19
+          ],
+          [
+            "REF",
+            20
+          ],
+          [
+            "REF",
+            21
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "<listcomp>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ],
+        "R5": [
+          "REF",
+          20
+        ],
+        "R6": [
+          "REF",
+          21
+        ],
+        "RL": [
+          "REF",
+          22
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RL"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              23
+            ]
+          },
+          "ordered_varnames": [
+            ".0"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "23": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "20": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "21": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "22": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ],
+          [
+            "REF",
+            19
+          ],
+          [
+            "REF",
+            20
+          ],
+          [
+            "REF",
+            21
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "<listcomp>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ],
+        "R5": [
+          "REF",
+          20
+        ],
+        "R6": [
+          "REF",
+          21
+        ],
+        "RL": [
+          "REF",
+          22
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RL"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              23
+            ],
+            "r": [
+              "REF",
+              16
+            ]
+          },
+          "ordered_varnames": [
+            ".0",
+            "r"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "23": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "20": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "21": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "22": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ],
+          [
+            "REF",
+            19
+          ],
+          [
+            "REF",
+            20
+          ],
+          [
+            "REF",
+            21
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "<listcomp>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ],
+        "R5": [
+          "REF",
+          20
+        ],
+        "R6": [
+          "REF",
+          21
+        ],
+        "RL": [
+          "REF",
+          22
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RL"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              23
+            ],
+            "r": [
+              "REF",
+              17
+            ]
+          },
+          "ordered_varnames": [
+            ".0",
+            "r"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "23": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "20": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "21": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "22": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ],
+          [
+            "REF",
+            19
+          ],
+          [
+            "REF",
+            20
+          ],
+          [
+            "REF",
+            21
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "<listcomp>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ],
+        "R5": [
+          "REF",
+          20
+        ],
+        "R6": [
+          "REF",
+          21
+        ],
+        "RL": [
+          "REF",
+          22
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RL"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              23
+            ],
+            "r": [
+              "REF",
+              18
+            ]
+          },
+          "ordered_varnames": [
+            ".0",
+            "r"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "23": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "20": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "21": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "22": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ],
+          [
+            "REF",
+            19
+          ],
+          [
+            "REF",
+            20
+          ],
+          [
+            "REF",
+            21
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "<listcomp>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ],
+        "R5": [
+          "REF",
+          20
+        ],
+        "R6": [
+          "REF",
+          21
+        ],
+        "RL": [
+          "REF",
+          22
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RL"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              23
+            ],
+            "r": [
+              "REF",
+              19
+            ]
+          },
+          "ordered_varnames": [
+            ".0",
+            "r"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "23": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "20": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "21": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "22": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ],
+          [
+            "REF",
+            19
+          ],
+          [
+            "REF",
+            20
+          ],
+          [
+            "REF",
+            21
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "<listcomp>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ],
+        "R5": [
+          "REF",
+          20
+        ],
+        "R6": [
+          "REF",
+          21
+        ],
+        "RL": [
+          "REF",
+          22
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RL"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              23
+            ],
+            "r": [
+              "REF",
+              20
+            ]
+          },
+          "ordered_varnames": [
+            ".0",
+            "r"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "23": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "20": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "21": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "22": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ],
+          [
+            "REF",
+            19
+          ],
+          [
+            "REF",
+            20
+          ],
+          [
+            "REF",
+            21
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "<listcomp>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ],
+        "R5": [
+          "REF",
+          20
+        ],
+        "R6": [
+          "REF",
+          21
+        ],
+        "RL": [
+          "REF",
+          22
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RL"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              23
+            ],
+            "r": [
+              "REF",
+              21
+            ]
+          },
+          "ordered_varnames": [
+            ".0",
+            "r"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "23": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "21": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "20": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "22": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ],
+          [
+            "REF",
+            19
+          ],
+          [
+            "REF",
+            20
+          ],
+          [
+            "REF",
+            21
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 15,
+      "event": "return",
+      "func_name": "<listcomp>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ],
+        "R5": [
+          "REF",
+          20
+        ],
+        "R6": [
+          "REF",
+          21
+        ],
+        "RL": [
+          "REF",
+          22
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RL"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              23
+            ],
+            "r": [
+              "REF",
+              21
+            ],
+            "__return__": [
+              "REF",
+              24
+            ]
+          },
+          "ordered_varnames": [
+            ".0",
+            "r",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "23": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "21": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "24": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ]
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "20": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "22": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ],
+          [
+            "REF",
+            19
+          ],
+          [
+            "REF",
+            20
+          ],
+          [
+            "REF",
+            21
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ],
+        "R5": [
+          "REF",
+          20
+        ],
+        "R6": [
+          "REF",
+          21
+        ],
+        "RL": [
+          "REF",
+          22
+        ],
+        "FrenchRestaurants": [
+          "REF",
+          24
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RL",
+        "FrenchRestaurants"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "20": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "21": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "22": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ],
+          [
+            "REF",
+            19
+          ],
+          [
+            "REF",
+            20
+          ],
+          [
+            "REF",
+            21
+          ]
+        ],
+        "24": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 16,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "namedtuple": [
+          "REF",
+          1
+        ],
+        "Restaurant": [
+          "REF",
+          2
+        ],
+        "R1": [
+          "REF",
+          16
+        ],
+        "R2": [
+          "REF",
+          17
+        ],
+        "R3": [
+          "REF",
+          18
+        ],
+        "R4": [
+          "REF",
+          19
+        ],
+        "R5": [
+          "REF",
+          20
+        ],
+        "R6": [
+          "REF",
+          21
+        ],
+        "RL": [
+          "REF",
+          22
+        ],
+        "FrenchRestaurants": [
+          "REF",
+          24
+        ]
+      },
+      "ordered_globals": [
+        "namedtuple",
+        "Restaurant",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RL",
+        "FrenchRestaurants"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "namedtuple(typename, field_names, verbose, rename, module)",
+          null
+        ],
+        "2": [
+          "CLASS",
+          "Restaurant",
+          [
+            "tuple"
+          ],
+          [
+            "__getnewargs__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__slots__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_asdict",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_fields",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_make",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "_replace",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "_source",
+            "from builtins import property as _property, tuple as _tuple\nfrom operator import itemgetter as _itemgetter\nfrom collections import OrderedDict\n\nclass Restaurant(tuple):\n    'Restaurant(name, cuisine, phone, dish, price)'\n\n    __slots__ = ()\n\n    _fields = ('name', 'cuisine', 'phone', 'dish', 'price')\n\n    def __new__(_cls, name, cuisine, phone, dish, price):\n        'Create new instance of Restaurant(name, cuisine, phone, dish, price)'\n        return _tuple.__new__(_cls, (name, cuisine, phone, dish, price))\n\n    @classmethod\n    def _make(cls, iterable, new=tuple.__new__, len=len):\n        'Make a new Restaurant object from a sequence or iterable'\n        result = new(cls, iterable)\n        if len(result) != 5:\n            raise TypeError('Expected 5 arguments, got %d' % len(result))\n        return result\n\n    def _replace(_self, **kwds):\n        'Return a new Restaurant object replacing specified fields with new values'\n        result = _self._make(map(kwds.pop, ('name', 'cuisine', 'phone', 'dish', 'price'), _self))\n        if kwds:\n            raise ValueError('Got unexpected field names: %r' % list(kwds))\n        return result\n\n    def __repr__(self):\n        'Return a nicely formatted representation string'\n        return self.__class__.__name__ + '(name=%r, cuisine=%r, phone=%r, dish=%r, price=%r)' % self\n\n    def _asdict(self):\n        'Return a new OrderedDict which maps field names to their values.'\n        return OrderedDict(zip(self._fields, self))\n\n    def __getnewargs__(self):\n        'Return self as a plain tuple.  Used by copy and pickle.'\n        return tuple(self)\n\n    name = _property(_itemgetter(0), doc='Alias for field number 0')\n\n    cuisine = _property(_itemgetter(1), doc='Alias for field number 1')\n\n    phone = _property(_itemgetter(2), doc='Alias for field number 2')\n\n    dish = _property(_itemgetter(3), doc='Alias for field number 3')\n\n    price = _property(_itemgetter(4), doc='Alias for field number 4')\n\n"
+          ],
+          [
+            "cuisine",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "dish",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "phone",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "price",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "__getnewargs__(self)",
+          null
+        ],
+        "4": [
+          "INSTANCE",
+          "staticmethod"
+        ],
+        "5": [
+          "FUNCTION",
+          "__repr__(self)",
+          null
+        ],
+        "6": [
+          "TUPLE"
+        ],
+        "7": [
+          "FUNCTION",
+          "_asdict(self)",
+          null
+        ],
+        "8": [
+          "TUPLE",
+          "name",
+          "cuisine",
+          "phone",
+          "dish",
+          "price"
+        ],
+        "9": [
+          "INSTANCE",
+          "classmethod"
+        ],
+        "10": [
+          "FUNCTION",
+          "_replace(_self, **kwds)",
+          null
+        ],
+        "11": [
+          "INSTANCE",
+          "property"
+        ],
+        "12": [
+          "INSTANCE",
+          "property"
+        ],
+        "13": [
+          "INSTANCE",
+          "property"
+        ],
+        "14": [
+          "INSTANCE",
+          "property"
+        ],
+        "15": [
+          "INSTANCE",
+          "property"
+        ],
+        "16": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "17": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "18": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "19": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "20": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "21": [
+          "INSTANCE",
+          "Restaurant"
+        ],
+        "22": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ],
+          [
+            "REF",
+            19
+          ],
+          [
+            "REF",
+            20
+          ],
+          [
+            "REF",
+            21
+          ]
+        ],
+        "24": [
+          "LIST",
+          [
+            "REF",
+            16
+          ],
+          [
+            "REF",
+            17
+          ],
+          [
+            "REF",
+            18
+          ]
+        ]
+      },
+      "stdout": "[Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5), Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5), Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)]\n"
+    }
+  ]
+}

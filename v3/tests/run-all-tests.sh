@@ -5,4 +5,8 @@ python golden_test.py --all
 echo
 echo 'Python 3.2 test'
 echo '==============='
-python golden_test.py --all --py3
+python golden_test.py --all --py32
+echo
+echo 'Python 3.6 test'
+echo '==============='
+python golden_test.py --all --py36

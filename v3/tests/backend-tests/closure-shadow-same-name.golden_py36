@@ -1,0 +1,505 @@
+{
+  "code": "# some of the params in f and g have identical names AND values,\n# so make sure they're all displayed properly\ndef f(x, y, z):\n  def g(x, y):\n    return x\n  return g(x, y)\n\nf(1, 2, 3)\n",
+  "trace": [
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(x, y, z)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "call",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "z": 3,
+            "y": 2,
+            "x": 1
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(x, y, z)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "z": 3,
+            "y": 2,
+            "x": 1
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(x, y, z)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "z": 3,
+            "y": 2,
+            "x": 1,
+            "g": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z",
+            "g"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1_p"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(x, y)",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x, y, z)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "call",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "z": 3,
+            "y": 2,
+            "x": 1,
+            "g": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z",
+            "g"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "y": 2,
+            "x": 1
+          },
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f2"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(x, y)",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x, y, z)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "z": 3,
+            "y": 2,
+            "x": 1,
+            "g": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z",
+            "g"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "y": 2,
+            "x": 1
+          },
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f2"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(x, y)",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x, y, z)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "return",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "z": 3,
+            "y": 2,
+            "x": 1,
+            "g": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z",
+            "g"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "y": 2,
+            "x": 1,
+            "__return__": 1
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f2"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(x, y)",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x, y, z)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "return",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "z": 3,
+            "y": 2,
+            "x": 1,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": 1
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1_p"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(x, y)",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x, y, z)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "z": 3,
+            "y": 2,
+            "x": 1,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": 1
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(x, y)",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x, y, z)",
+          null
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

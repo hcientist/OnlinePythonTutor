@@ -1,0 +1,350 @@
+{
+  "code": "def add(a, b, c):\n  d = a + b\n  return c + d\n\nx = 5\ny = 10\nz = x * y\nprint(add(x, y, z))\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "add": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "add"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "add(a, b, c)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "add": [
+          "REF",
+          1
+        ],
+        "x": 5
+      },
+      "ordered_globals": [
+        "add",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "add(a, b, c)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "add": [
+          "REF",
+          1
+        ],
+        "x": 5,
+        "y": 10
+      },
+      "ordered_globals": [
+        "add",
+        "x",
+        "y"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "add(a, b, c)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "add": [
+          "REF",
+          1
+        ],
+        "x": 5,
+        "y": 10,
+        "z": 50
+      },
+      "ordered_globals": [
+        "add",
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "add(a, b, c)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 1,
+      "event": "call",
+      "func_name": "add",
+      "globals": {
+        "add": [
+          "REF",
+          1
+        ],
+        "x": 5,
+        "y": 10,
+        "z": 50
+      },
+      "ordered_globals": [
+        "add",
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "add",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "c": 50,
+            "b": 10,
+            "a": 5
+          },
+          "ordered_varnames": [
+            "a",
+            "b",
+            "c"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "add_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "add(a, b, c)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "add",
+      "globals": {
+        "add": [
+          "REF",
+          1
+        ],
+        "x": 5,
+        "y": 10,
+        "z": 50
+      },
+      "ordered_globals": [
+        "add",
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "add",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "c": 50,
+            "b": 10,
+            "a": 5
+          },
+          "ordered_varnames": [
+            "a",
+            "b",
+            "c"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "add_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "add(a, b, c)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "add",
+      "globals": {
+        "add": [
+          "REF",
+          1
+        ],
+        "x": 5,
+        "y": 10,
+        "z": 50
+      },
+      "ordered_globals": [
+        "add",
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "add",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "c": 50,
+            "b": 10,
+            "a": 5,
+            "d": 15
+          },
+          "ordered_varnames": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "add_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "add(a, b, c)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "return",
+      "func_name": "add",
+      "globals": {
+        "add": [
+          "REF",
+          1
+        ],
+        "x": 5,
+        "y": 10,
+        "z": 50
+      },
+      "ordered_globals": [
+        "add",
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "add",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "c": 50,
+            "b": 10,
+            "a": 5,
+            "d": 15,
+            "__return__": 65
+          },
+          "ordered_varnames": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "add_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "add(a, b, c)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "add": [
+          "REF",
+          1
+        ],
+        "x": 5,
+        "y": 10,
+        "z": 50
+      },
+      "ordered_globals": [
+        "add",
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "add(a, b, c)",
+          null
+        ]
+      },
+      "stdout": "65\n"
+    }
+  ]
+}

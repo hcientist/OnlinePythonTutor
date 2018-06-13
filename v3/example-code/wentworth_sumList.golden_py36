@@ -1,0 +1,4520 @@
+{
+  "code": "# Tutorial code from Prof. Peter Wentworth\n# Rhodes University, South Africa (http://www.ru.ac.za/)\n\ndef sumList(xs):\n    '''\n    Sum a list that can contain nested lists.\n    Precondition: All leaf elements are numbers.\n    '''\n    sum = 0\n    for e in xs:\n        if type(e) is list:\n            print((\"Calling sumList(%s) recursively\" % e))\n            v = sumList(e)\n            print((\"sumList(%s) returned %s\" % (e, v)))\n            sum += v\n        else:\n            sum += e\n    return sum\n\n\ntestData = [10, [20, 30, [40], 50], 60]\nprint((\"Calling sumList(%s)\" % testData))\nresult = sumList(testData)\nprint((\"Final sum of all numbers in initial list is %s\" % result))\n\n",
+  "trace": [
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 21,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "sumList"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 22,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 23,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\n"
+    },
+    {
+      "line": 4,
+      "event": "call",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "xs"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\n"
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "xs"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 0
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 0,
+            "e": 10
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\n"
+    },
+    {
+      "line": 17,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 0,
+            "e": 10
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": 10
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\n"
+    },
+    {
+      "line": 12,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\n"
+    },
+    {
+      "line": 13,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\n"
+    },
+    {
+      "line": 4,
+      "event": "call",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\n"
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 0
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 0,
+            "e": 20
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\n"
+    },
+    {
+      "line": 17,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 0,
+            "e": 20
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 20,
+            "e": 20
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 20,
+            "e": 30
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\n"
+    },
+    {
+      "line": 17,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 20,
+            "e": 30
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 50,
+            "e": 30
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 50,
+            "e": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\n"
+    },
+    {
+      "line": 12,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 50,
+            "e": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\n"
+    },
+    {
+      "line": 13,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 50,
+            "e": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\n"
+    },
+    {
+      "line": 4,
+      "event": "call",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 50,
+            "e": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f2"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "xs"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f3"
+        }
+      ],
+      "heap": {
+        "4": [
+          "LIST",
+          40
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\n"
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 50,
+            "e": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f2"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "xs"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f3"
+        }
+      ],
+      "heap": {
+        "4": [
+          "LIST",
+          40
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 50,
+            "e": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f2"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              4
+            ],
+            "sum": 0
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f3"
+        }
+      ],
+      "heap": {
+        "4": [
+          "LIST",
+          40
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 50,
+            "e": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f2"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              4
+            ],
+            "sum": 0,
+            "e": 40
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f3"
+        }
+      ],
+      "heap": {
+        "4": [
+          "LIST",
+          40
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\n"
+    },
+    {
+      "line": 17,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 50,
+            "e": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f2"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              4
+            ],
+            "sum": 0,
+            "e": 40
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f3"
+        }
+      ],
+      "heap": {
+        "4": [
+          "LIST",
+          40
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 50,
+            "e": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f2"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              4
+            ],
+            "sum": 40,
+            "e": 40
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f3"
+        }
+      ],
+      "heap": {
+        "4": [
+          "LIST",
+          40
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\n"
+    },
+    {
+      "line": 18,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 50,
+            "e": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f2"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              4
+            ],
+            "sum": 40,
+            "e": 40
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f3"
+        }
+      ],
+      "heap": {
+        "4": [
+          "LIST",
+          40
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\n"
+    },
+    {
+      "line": 18,
+      "event": "return",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 50,
+            "e": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f2"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              4
+            ],
+            "sum": 40,
+            "e": 40,
+            "__return__": 40
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f3"
+        }
+      ],
+      "heap": {
+        "4": [
+          "LIST",
+          40
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\n"
+    },
+    {
+      "line": 14,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 50,
+            "e": [
+              "REF",
+              4
+            ],
+            "v": 40
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\n"
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 50,
+            "e": [
+              "REF",
+              4
+            ],
+            "v": 40
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 90,
+            "e": [
+              "REF",
+              4
+            ],
+            "v": 40
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 90,
+            "e": 50,
+            "v": 40
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\n"
+    },
+    {
+      "line": 17,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 90,
+            "e": 50,
+            "v": 40
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 140,
+            "e": 50,
+            "v": 40
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\n"
+    },
+    {
+      "line": 18,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 140,
+            "e": 50,
+            "v": 40
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\n"
+    },
+    {
+      "line": 18,
+      "event": "return",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "sumList_f1"
+        },
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              3
+            ],
+            "sum": 140,
+            "e": 50,
+            "v": 40,
+            "__return__": 140
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\n"
+    },
+    {
+      "line": 14,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ],
+            "v": 140
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\n"
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 10,
+            "e": [
+              "REF",
+              3
+            ],
+            "v": 140
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\nsumList([20, 30, [40], 50]) returned 140\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 150,
+            "e": [
+              "REF",
+              3
+            ],
+            "v": 140
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\nsumList([20, 30, [40], 50]) returned 140\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 150,
+            "e": 60,
+            "v": 140
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\nsumList([20, 30, [40], 50]) returned 140\n"
+    },
+    {
+      "line": 17,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 150,
+            "e": 60,
+            "v": 140
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\nsumList([20, 30, [40], 50]) returned 140\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 210,
+            "e": 60,
+            "v": 140
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\nsumList([20, 30, [40], 50]) returned 140\n"
+    },
+    {
+      "line": 18,
+      "event": "step_line",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 210,
+            "e": 60,
+            "v": 140
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\nsumList([20, 30, [40], 50]) returned 140\n"
+    },
+    {
+      "line": 18,
+      "event": "return",
+      "func_name": "sumList",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "sumList",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "xs": [
+              "REF",
+              2
+            ],
+            "sum": 210,
+            "e": 60,
+            "v": 140,
+            "__return__": 210
+          },
+          "ordered_varnames": [
+            "xs",
+            "sum",
+            "e",
+            "v",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "sumList_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ],
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\nsumList([20, 30, [40], 50]) returned 140\n"
+    },
+    {
+      "line": 24,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ],
+        "result": 210
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData",
+        "result"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\nsumList([20, 30, [40], 50]) returned 140\n"
+    },
+    {
+      "line": 24,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "sumList": [
+          "REF",
+          1
+        ],
+        "testData": [
+          "REF",
+          2
+        ],
+        "result": 210
+      },
+      "ordered_globals": [
+        "sumList",
+        "testData",
+        "result"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "sumList(xs)",
+          null
+        ],
+        "2": [
+          "LIST",
+          10,
+          [
+            "REF",
+            3
+          ],
+          60
+        ],
+        "3": [
+          "LIST",
+          20,
+          30,
+          [
+            "REF",
+            4
+          ],
+          50
+        ],
+        "4": [
+          "LIST",
+          40
+        ]
+      },
+      "stdout": "Calling sumList([10, [20, 30, [40], 50], 60])\nCalling sumList([20, 30, [40], 50]) recursively\nCalling sumList([40]) recursively\nsumList([40]) returned 40\nsumList([20, 30, [40], 50]) returned 140\nFinal sum of all numbers in initial list is 210\n"
+    }
+  ]
+}

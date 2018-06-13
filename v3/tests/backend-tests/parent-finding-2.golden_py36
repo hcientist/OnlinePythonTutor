@@ -1,0 +1,957 @@
+{
+  "code": "# make sure OPT finds horse as parent of mask\ndef horse(mask):\n    horse = mask\n    def mask(horse):\n        return horse\n    return horse(mask)\n\nmask = lambda horse: horse(2)\n\nhorse(mask)\n",
+  "trace": [
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "horse": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "horse"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "horse(mask)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "horse": [
+          "REF",
+          1
+        ],
+        "mask": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "horse",
+        "mask"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "horse(mask)",
+          null
+        ],
+        "2": [
+          "FUNCTION",
+          "<lambda>(horse) <line 8>",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "horse",
+      "globals": {
+        "horse": [
+          "REF",
+          1
+        ],
+        "mask": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "horse",
+        "mask"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "horse",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "mask": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "mask"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "horse_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(horse) <line 8>",
+          null
+        ],
+        "1": [
+          "FUNCTION",
+          "horse(mask)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "horse",
+      "globals": {
+        "horse": [
+          "REF",
+          1
+        ],
+        "mask": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "horse",
+        "mask"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "horse",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "mask": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "mask"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "horse_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(horse) <line 8>",
+          null
+        ],
+        "1": [
+          "FUNCTION",
+          "horse(mask)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "horse",
+      "globals": {
+        "horse": [
+          "REF",
+          1
+        ],
+        "mask": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "horse",
+        "mask"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "horse",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "mask": [
+              "REF",
+              2
+            ],
+            "horse": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "mask",
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "horse_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(horse) <line 8>",
+          null
+        ],
+        "1": [
+          "FUNCTION",
+          "horse(mask)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "horse",
+      "globals": {
+        "horse": [
+          "REF",
+          1
+        ],
+        "mask": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "horse",
+        "mask"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "horse",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "mask": [
+              "REF",
+              3
+            ],
+            "horse": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "mask",
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "horse_f1_p"
+        }
+      ],
+      "heap": {
+        "3": [
+          "FUNCTION",
+          "mask(horse)",
+          1
+        ],
+        "2": [
+          "FUNCTION",
+          "<lambda>(horse) <line 8>",
+          null
+        ],
+        "1": [
+          "FUNCTION",
+          "horse(mask)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "call",
+      "func_name": "<lambda>",
+      "globals": {
+        "horse": [
+          "REF",
+          1
+        ],
+        "mask": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "horse",
+        "mask"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "horse",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "mask": [
+              "REF",
+              3
+            ],
+            "horse": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "mask",
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "horse_f1_p"
+        },
+        {
+          "func_name": "<lambda> <line 8>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "horse": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 8>_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "FUNCTION",
+          "mask(horse)",
+          1
+        ],
+        "2": [
+          "FUNCTION",
+          "<lambda>(horse) <line 8>",
+          null
+        ],
+        "1": [
+          "FUNCTION",
+          "horse(mask)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "<lambda>",
+      "globals": {
+        "horse": [
+          "REF",
+          1
+        ],
+        "mask": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "horse",
+        "mask"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "horse",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "mask": [
+              "REF",
+              3
+            ],
+            "horse": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "mask",
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "horse_f1_p"
+        },
+        {
+          "func_name": "<lambda> <line 8>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "horse": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 8>_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "FUNCTION",
+          "mask(horse)",
+          1
+        ],
+        "2": [
+          "FUNCTION",
+          "<lambda>(horse) <line 8>",
+          null
+        ],
+        "1": [
+          "FUNCTION",
+          "horse(mask)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "call",
+      "func_name": "mask",
+      "globals": {
+        "horse": [
+          "REF",
+          1
+        ],
+        "mask": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "horse",
+        "mask"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "horse",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "mask": [
+              "REF",
+              3
+            ],
+            "horse": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "mask",
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "horse_f1_p"
+        },
+        {
+          "func_name": "<lambda> <line 8>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "horse": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 8>_f2"
+        },
+        {
+          "func_name": "mask",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "horse": 2
+          },
+          "ordered_varnames": [
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "mask_f3"
+        }
+      ],
+      "heap": {
+        "3": [
+          "FUNCTION",
+          "mask(horse)",
+          1
+        ],
+        "2": [
+          "FUNCTION",
+          "<lambda>(horse) <line 8>",
+          null
+        ],
+        "1": [
+          "FUNCTION",
+          "horse(mask)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "mask",
+      "globals": {
+        "horse": [
+          "REF",
+          1
+        ],
+        "mask": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "horse",
+        "mask"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "horse",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "mask": [
+              "REF",
+              3
+            ],
+            "horse": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "mask",
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "horse_f1_p"
+        },
+        {
+          "func_name": "<lambda> <line 8>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "horse": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 8>_f2"
+        },
+        {
+          "func_name": "mask",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "horse": 2
+          },
+          "ordered_varnames": [
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "mask_f3"
+        }
+      ],
+      "heap": {
+        "3": [
+          "FUNCTION",
+          "mask(horse)",
+          1
+        ],
+        "2": [
+          "FUNCTION",
+          "<lambda>(horse) <line 8>",
+          null
+        ],
+        "1": [
+          "FUNCTION",
+          "horse(mask)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "return",
+      "func_name": "mask",
+      "globals": {
+        "horse": [
+          "REF",
+          1
+        ],
+        "mask": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "horse",
+        "mask"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "horse",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "mask": [
+              "REF",
+              3
+            ],
+            "horse": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "mask",
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "horse_f1_p"
+        },
+        {
+          "func_name": "<lambda> <line 8>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "horse": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 8>_f2"
+        },
+        {
+          "func_name": "mask",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "horse": 2,
+            "__return__": 2
+          },
+          "ordered_varnames": [
+            "horse",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "mask_f3"
+        }
+      ],
+      "heap": {
+        "3": [
+          "FUNCTION",
+          "mask(horse)",
+          1
+        ],
+        "2": [
+          "FUNCTION",
+          "<lambda>(horse) <line 8>",
+          null
+        ],
+        "1": [
+          "FUNCTION",
+          "horse(mask)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "return",
+      "func_name": "<lambda>",
+      "globals": {
+        "horse": [
+          "REF",
+          1
+        ],
+        "mask": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "horse",
+        "mask"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "horse",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "mask": [
+              "REF",
+              3
+            ],
+            "horse": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "mask",
+            "horse"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "horse_f1_p"
+        },
+        {
+          "func_name": "<lambda> <line 8>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "horse": [
+              "REF",
+              3
+            ],
+            "__return__": 2
+          },
+          "ordered_varnames": [
+            "horse",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 8>_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "FUNCTION",
+          "mask(horse)",
+          1
+        ],
+        "2": [
+          "FUNCTION",
+          "<lambda>(horse) <line 8>",
+          null
+        ],
+        "1": [
+          "FUNCTION",
+          "horse(mask)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "return",
+      "func_name": "horse",
+      "globals": {
+        "horse": [
+          "REF",
+          1
+        ],
+        "mask": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "horse",
+        "mask"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "horse",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "mask": [
+              "REF",
+              3
+            ],
+            "horse": [
+              "REF",
+              2
+            ],
+            "__return__": 2
+          },
+          "ordered_varnames": [
+            "mask",
+            "horse",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "horse_f1_p"
+        }
+      ],
+      "heap": {
+        "3": [
+          "FUNCTION",
+          "mask(horse)",
+          1
+        ],
+        "2": [
+          "FUNCTION",
+          "<lambda>(horse) <line 8>",
+          null
+        ],
+        "1": [
+          "FUNCTION",
+          "horse(mask)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 10,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "horse": [
+          "REF",
+          1
+        ],
+        "mask": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "horse",
+        "mask"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "horse",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "mask": [
+              "REF",
+              3
+            ],
+            "horse": [
+              "REF",
+              2
+            ],
+            "__return__": 2
+          },
+          "ordered_varnames": [
+            "mask",
+            "horse",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "horse_f1_p_z"
+        }
+      ],
+      "heap": {
+        "3": [
+          "FUNCTION",
+          "mask(horse)",
+          1
+        ],
+        "2": [
+          "FUNCTION",
+          "<lambda>(horse) <line 8>",
+          null
+        ],
+        "1": [
+          "FUNCTION",
+          "horse(mask)",
+          null
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

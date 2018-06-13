@@ -1,0 +1,501 @@
+{
+  "code": "x = 5\ny = 10\nz = x * y\nprint(\"HELLO WORLD\")\nfor i in range(10):\n  print(z * i)\n\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5
+      },
+      "ordered_globals": [
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10
+      },
+      "ordered_globals": [
+        "x",
+        "y"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 0
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 0
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 1
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 1
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 2
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 2
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 3
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 3
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n150\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 4
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n150\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 4
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n150\n200\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 5
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n150\n200\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 5
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n150\n200\n250\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 6
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n150\n200\n250\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 6
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n150\n200\n250\n300\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 7
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n150\n200\n250\n300\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 7
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n150\n200\n250\n300\n350\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 8
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n150\n200\n250\n300\n350\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 8
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n150\n200\n250\n300\n350\n400\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 9
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n150\n200\n250\n300\n350\n400\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 9
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n150\n200\n250\n300\n350\n400\n450\n"
+    },
+    {
+      "line": 5,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "x": 5,
+        "y": 10,
+        "z": 50,
+        "i": 9
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "i"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "HELLO WORLD\n0\n50\n100\n150\n200\n250\n300\n350\n400\n450\n"
+    }
+  ]
+}

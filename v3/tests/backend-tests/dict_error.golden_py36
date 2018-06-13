@@ -1,0 +1,207 @@
+{
+  "code": "def foo():\n  local_y[('tup', 'le')] = set([1, 2, 3])\n\nfoo()\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "foo": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "foo"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "foo()",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 1,
+      "event": "call",
+      "func_name": "foo",
+      "globals": {
+        "foo": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "foo"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "foo_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "foo()",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "foo",
+      "globals": {
+        "foo": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "foo"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "foo_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "foo()",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "exception",
+      "func_name": "foo",
+      "globals": {
+        "foo": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "foo"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "foo_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "foo()",
+          null
+        ]
+      },
+      "stdout": "",
+      "exception_msg": "NameError: name 'local_y' is not defined"
+    },
+    {
+      "line": 2,
+      "event": "return",
+      "func_name": "foo",
+      "globals": {
+        "foo": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "foo"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "foo_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "foo()",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "exception",
+      "func_name": "<module>",
+      "globals": {
+        "foo": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "foo"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "foo()",
+          null
+        ]
+      },
+      "stdout": "",
+      "exception_msg": "NameError: name 'local_y' is not defined"
+    }
+  ]
+}

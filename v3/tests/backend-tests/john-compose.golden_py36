@@ -1,0 +1,1262 @@
+{
+  "code": "def compose1(f, g):\n  return lambda x: f(g(x))\n\nadd_one_and_square = compose1(lambda x: x * x, lambda x: x + 1)\nresult = add_one_and_square(12)\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "compose1"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 1,
+      "event": "call",
+      "func_name": "compose1",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "compose1"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "compose1",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "g": [
+              "REF",
+              2
+            ],
+            "f": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "f",
+            "g"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "compose1_f1_p"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "compose1",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "compose1"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "compose1",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "g": [
+              "REF",
+              2
+            ],
+            "f": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "f",
+            "g"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "compose1_f1_p"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "return",
+      "func_name": "compose1",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "compose1"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "compose1",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "g": [
+              "REF",
+              2
+            ],
+            "f": [
+              "REF",
+              3
+            ],
+            "__return__": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "f",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "compose1_f1_p"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "4": [
+          "FUNCTION",
+          "<lambda>(x) <line 2>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ],
+        "add_one_and_square": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "compose1",
+        "add_one_and_square"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "compose1",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "g": [
+              "REF",
+              2
+            ],
+            "f": [
+              "REF",
+              3
+            ],
+            "__return__": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "f",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "compose1_f1_p_z"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "4": [
+          "FUNCTION",
+          "<lambda>(x) <line 2>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "<lambda>",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ],
+        "add_one_and_square": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "compose1",
+        "add_one_and_square"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "compose1",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "g": [
+              "REF",
+              2
+            ],
+            "f": [
+              "REF",
+              3
+            ],
+            "__return__": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "f",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "compose1_f1_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 2>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "x": 12
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 2>_f2"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "4": [
+          "FUNCTION",
+          "<lambda>(x) <line 2>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<lambda>",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ],
+        "add_one_and_square": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "compose1",
+        "add_one_and_square"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "compose1",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "g": [
+              "REF",
+              2
+            ],
+            "f": [
+              "REF",
+              3
+            ],
+            "__return__": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "f",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "compose1_f1_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 2>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "x": 12
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 2>_f2"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "4": [
+          "FUNCTION",
+          "<lambda>(x) <line 2>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "call",
+      "func_name": "<lambda>",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ],
+        "add_one_and_square": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "compose1",
+        "add_one_and_square"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "compose1",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "g": [
+              "REF",
+              2
+            ],
+            "f": [
+              "REF",
+              3
+            ],
+            "__return__": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "f",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "compose1_f1_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 2>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "x": 12
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 2>_f2"
+        },
+        {
+          "func_name": "<lambda> <line 4>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 12
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 4>_f3"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "4": [
+          "FUNCTION",
+          "<lambda>(x) <line 2>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<lambda>",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ],
+        "add_one_and_square": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "compose1",
+        "add_one_and_square"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "compose1",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "g": [
+              "REF",
+              2
+            ],
+            "f": [
+              "REF",
+              3
+            ],
+            "__return__": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "f",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "compose1_f1_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 2>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "x": 12
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 2>_f2"
+        },
+        {
+          "func_name": "<lambda> <line 4>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 12
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 4>_f3"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "4": [
+          "FUNCTION",
+          "<lambda>(x) <line 2>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "return",
+      "func_name": "<lambda>",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ],
+        "add_one_and_square": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "compose1",
+        "add_one_and_square"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "compose1",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "g": [
+              "REF",
+              2
+            ],
+            "f": [
+              "REF",
+              3
+            ],
+            "__return__": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "f",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "compose1_f1_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 2>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "x": 12
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 2>_f2"
+        },
+        {
+          "func_name": "<lambda> <line 4>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 12,
+            "__return__": 13
+          },
+          "ordered_varnames": [
+            "x",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 4>_f3"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "4": [
+          "FUNCTION",
+          "<lambda>(x) <line 2>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "call",
+      "func_name": "<lambda>",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ],
+        "add_one_and_square": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "compose1",
+        "add_one_and_square"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "compose1",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "g": [
+              "REF",
+              2
+            ],
+            "f": [
+              "REF",
+              3
+            ],
+            "__return__": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "f",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "compose1_f1_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 2>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "x": 12
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 2>_f2"
+        },
+        {
+          "func_name": "<lambda> <line 4>",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 13
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 4>_f4"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "4": [
+          "FUNCTION",
+          "<lambda>(x) <line 2>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<lambda>",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ],
+        "add_one_and_square": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "compose1",
+        "add_one_and_square"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "compose1",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "g": [
+              "REF",
+              2
+            ],
+            "f": [
+              "REF",
+              3
+            ],
+            "__return__": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "f",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "compose1_f1_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 2>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "x": 12
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 2>_f2"
+        },
+        {
+          "func_name": "<lambda> <line 4>",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 13
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 4>_f4"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "4": [
+          "FUNCTION",
+          "<lambda>(x) <line 2>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "return",
+      "func_name": "<lambda>",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ],
+        "add_one_and_square": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "compose1",
+        "add_one_and_square"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "compose1",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "g": [
+              "REF",
+              2
+            ],
+            "f": [
+              "REF",
+              3
+            ],
+            "__return__": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "f",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "compose1_f1_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 2>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "x": 12
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 2>_f2"
+        },
+        {
+          "func_name": "<lambda> <line 4>",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 13,
+            "__return__": 169
+          },
+          "ordered_varnames": [
+            "x",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 4>_f4"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "4": [
+          "FUNCTION",
+          "<lambda>(x) <line 2>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "return",
+      "func_name": "<lambda>",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ],
+        "add_one_and_square": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "compose1",
+        "add_one_and_square"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "compose1",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "g": [
+              "REF",
+              2
+            ],
+            "f": [
+              "REF",
+              3
+            ],
+            "__return__": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "f",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "compose1_f1_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 2>",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "x": 12,
+            "__return__": 169
+          },
+          "ordered_varnames": [
+            "x",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 2>_f2"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "4": [
+          "FUNCTION",
+          "<lambda>(x) <line 2>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "compose1": [
+          "REF",
+          1
+        ],
+        "add_one_and_square": [
+          "REF",
+          4
+        ],
+        "result": 169
+      },
+      "ordered_globals": [
+        "compose1",
+        "add_one_and_square",
+        "result"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "compose1",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "g": [
+              "REF",
+              2
+            ],
+            "f": [
+              "REF",
+              3
+            ],
+            "__return__": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "f",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "compose1_f1_p_z"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>(x) <line 4>",
+          null
+        ],
+        "4": [
+          "FUNCTION",
+          "<lambda>(x) <line 2>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "compose1(f, g)",
+          null
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

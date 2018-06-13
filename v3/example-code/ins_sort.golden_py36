@@ -1,0 +1,3538 @@
+{
+  "code": "# from: http://www.ece.uci.edu/~chou/py02/python.html\ndef InsertionSort(A):\n    for j in range(1, len(A)):\n        key = A[j]\n        i = j - 1\n        while (i >= 0) and (A[i] > key):\n            A[i+1] = A[i]\n            i = i - 1\n        A[i+1] = key\n\ninput = [8, 3, 9, 15, 29, 7, 10]\nInsertionSort(input)\nprint(input)\n",
+  "trace": [
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 12,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ],
+        "2": [
+          "LIST",
+          8,
+          3,
+          9,
+          15,
+          29,
+          7,
+          10
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "A"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          8,
+          3,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "A"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          8,
+          3,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 1
+          },
+          "ordered_varnames": [
+            "A",
+            "j"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          8,
+          3,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 1,
+            "key": 3
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          8,
+          3,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 1,
+            "key": 3,
+            "i": 0
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          8,
+          3,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 1,
+            "key": 3,
+            "i": 0
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          8,
+          3,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 1,
+            "key": 3,
+            "i": 0
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          8,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 1,
+            "key": 3,
+            "i": -1
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          8,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 1,
+            "key": 3,
+            "i": -1
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          8,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 1,
+            "key": 3,
+            "i": -1
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 2,
+            "key": 3,
+            "i": -1
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 2,
+            "key": 9,
+            "i": -1
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 2,
+            "key": 9,
+            "i": 1
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 2,
+            "key": 9,
+            "i": 1
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 2,
+            "key": 9,
+            "i": 1
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 3,
+            "key": 9,
+            "i": 1
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 3,
+            "key": 15,
+            "i": 1
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 3,
+            "key": 15,
+            "i": 2
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 3,
+            "key": 15,
+            "i": 2
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 3,
+            "key": 15,
+            "i": 2
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 4,
+            "key": 15,
+            "i": 2
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 4,
+            "key": 29,
+            "i": 2
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 4,
+            "key": 29,
+            "i": 3
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 4,
+            "key": 29,
+            "i": 3
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 4,
+            "key": 29,
+            "i": 3
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 29,
+            "i": 3
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 3
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 4
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 4
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          7,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 4
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 3
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 3
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          29,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 3
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          15,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 2
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          15,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 2
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          15,
+          15,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 2
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          9,
+          15,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 1
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          9,
+          15,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 1
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          9,
+          9,
+          15,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 1
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          8,
+          9,
+          15,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 0
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          8,
+          9,
+          15,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 0
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          8,
+          8,
+          9,
+          15,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 5,
+            "key": 7,
+            "i": 0
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          15,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 6,
+            "key": 7,
+            "i": 0
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          15,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 6,
+            "key": 10,
+            "i": 0
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          15,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 6,
+            "key": 10,
+            "i": 5
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          15,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 6,
+            "key": 10,
+            "i": 5
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          15,
+          29,
+          10
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 6,
+            "key": 10,
+            "i": 5
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          15,
+          29,
+          29
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 6,
+            "key": 10,
+            "i": 4
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          15,
+          29,
+          29
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 6,
+            "key": 10,
+            "i": 4
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          15,
+          29,
+          29
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 6,
+            "key": 10,
+            "i": 4
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          15,
+          15,
+          29
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 6,
+            "key": 10,
+            "i": 3
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          15,
+          15,
+          29
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 6,
+            "key": 10,
+            "i": 3
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          15,
+          15,
+          29
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 6,
+            "key": 10,
+            "i": 3
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          10,
+          15,
+          29
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "return",
+      "func_name": "InsertionSort",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "InsertionSort",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "A": [
+              "REF",
+              2
+            ],
+            "j": 6,
+            "key": 10,
+            "i": 3,
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "A",
+            "j",
+            "key",
+            "i",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "InsertionSort_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          10,
+          15,
+          29
+        ],
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 13,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ],
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          10,
+          15,
+          29
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 13,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "InsertionSort": [
+          "REF",
+          1
+        ],
+        "input": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "InsertionSort",
+        "input"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "InsertionSort(A)",
+          null
+        ],
+        "2": [
+          "LIST",
+          3,
+          7,
+          8,
+          9,
+          10,
+          15,
+          29
+        ]
+      },
+      "stdout": "[3, 7, 8, 9, 10, 15, 29]\n"
+    }
+  ]
+}

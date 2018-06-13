@@ -1,0 +1,168 @@
+{
+  "code": "# not a true circular reference\n\na = [10, 20, 30]\nb = a\nc = [10, 20, 30]\nd = (a, b, c)\n\n",
+  "trace": [
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "a": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "a"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          10,
+          20,
+          30
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "a": [
+          "REF",
+          1
+        ],
+        "b": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "a",
+        "b"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          10,
+          20,
+          30
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "a": [
+          "REF",
+          1
+        ],
+        "b": [
+          "REF",
+          1
+        ],
+        "c": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "a",
+        "b",
+        "c"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          10,
+          20,
+          30
+        ],
+        "2": [
+          "LIST",
+          10,
+          20,
+          30
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "a": [
+          "REF",
+          1
+        ],
+        "b": [
+          "REF",
+          1
+        ],
+        "c": [
+          "REF",
+          2
+        ],
+        "d": [
+          "REF",
+          3
+        ]
+      },
+      "ordered_globals": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          10,
+          20,
+          30
+        ],
+        "2": [
+          "LIST",
+          10,
+          20,
+          30
+        ],
+        "3": [
+          "TUPLE",
+          [
+            "REF",
+            1
+          ],
+          [
+            "REF",
+            1
+          ],
+          [
+            "REF",
+            2
+          ]
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

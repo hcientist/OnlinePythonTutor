@@ -1,0 +1,982 @@
+{
+  "code": "# The ultimate Unicode test for Python 3\n\nx = '\u263a' # this is a unicode string U+263A representing a smiley\nprint(x)\n\nx_lst = [x]\nx_lst *= 3\n\nz = '\\x8e'\nprint(z)\n\nprint(x + ' ' + z)\n\nxz_lst = [x, z]\nxz_lst *= 3\ntypes_lst = [repr(type(e)) for e in xz_lst]\nprint(xz_lst)\n",
+  "trace": [
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": "\u263a"
+      },
+      "ordered_globals": [
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": "\u263a"
+      },
+      "ordered_globals": [
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "\u263a\n"
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          "\u263a"
+        ]
+      },
+      "stdout": "\u263a\n"
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ]
+      },
+      "stdout": "\u263a\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e"
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ]
+      },
+      "stdout": "\u263a\n"
+    },
+    {
+      "line": 12,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e"
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n"
+    },
+    {
+      "line": 14,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e"
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n\u263a \u008e\n"
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e",
+        "xz_lst": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z",
+        "xz_lst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ],
+        "2": [
+          "LIST",
+          "\u263a",
+          "\u008e"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n\u263a \u008e\n"
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e",
+        "xz_lst": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z",
+        "xz_lst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ],
+        "2": [
+          "LIST",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n\u263a \u008e\n"
+    },
+    {
+      "line": 16,
+      "event": "call",
+      "func_name": "<listcomp>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e",
+        "xz_lst": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z",
+        "xz_lst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            ".0"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ],
+        "2": [
+          "LIST",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n\u263a \u008e\n"
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "<listcomp>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e",
+        "xz_lst": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z",
+        "xz_lst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            ".0"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ],
+        "2": [
+          "LIST",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n\u263a \u008e\n"
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "<listcomp>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e",
+        "xz_lst": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z",
+        "xz_lst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              3
+            ],
+            "e": "\u263a"
+          },
+          "ordered_varnames": [
+            ".0",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ],
+        "2": [
+          "LIST",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n\u263a \u008e\n"
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "<listcomp>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e",
+        "xz_lst": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z",
+        "xz_lst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              3
+            ],
+            "e": "\u008e"
+          },
+          "ordered_varnames": [
+            ".0",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ],
+        "2": [
+          "LIST",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n\u263a \u008e\n"
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "<listcomp>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e",
+        "xz_lst": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z",
+        "xz_lst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              3
+            ],
+            "e": "\u263a"
+          },
+          "ordered_varnames": [
+            ".0",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ],
+        "2": [
+          "LIST",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n\u263a \u008e\n"
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "<listcomp>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e",
+        "xz_lst": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z",
+        "xz_lst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              3
+            ],
+            "e": "\u008e"
+          },
+          "ordered_varnames": [
+            ".0",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ],
+        "2": [
+          "LIST",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n\u263a \u008e\n"
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "<listcomp>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e",
+        "xz_lst": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z",
+        "xz_lst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              3
+            ],
+            "e": "\u263a"
+          },
+          "ordered_varnames": [
+            ".0",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ],
+        "2": [
+          "LIST",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n\u263a \u008e\n"
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "<listcomp>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e",
+        "xz_lst": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z",
+        "xz_lst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              3
+            ],
+            "e": "\u008e"
+          },
+          "ordered_varnames": [
+            ".0",
+            "e"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ],
+        "2": [
+          "LIST",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n\u263a \u008e\n"
+    },
+    {
+      "line": 16,
+      "event": "return",
+      "func_name": "<listcomp>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e",
+        "xz_lst": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z",
+        "xz_lst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "<listcomp>",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            ".0": [
+              "REF",
+              3
+            ],
+            "e": "\u008e",
+            "__return__": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            ".0",
+            "e",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<listcomp>_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "INSTANCE",
+          "list_iterator"
+        ],
+        "4": [
+          "LIST",
+          "<class 'str'>",
+          "<class 'str'>",
+          "<class 'str'>",
+          "<class 'str'>",
+          "<class 'str'>",
+          "<class 'str'>"
+        ],
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ],
+        "2": [
+          "LIST",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n\u263a \u008e\n"
+    },
+    {
+      "line": 17,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e",
+        "xz_lst": [
+          "REF",
+          2
+        ],
+        "types_lst": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z",
+        "xz_lst",
+        "types_lst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ],
+        "2": [
+          "LIST",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e"
+        ],
+        "4": [
+          "LIST",
+          "<class 'str'>",
+          "<class 'str'>",
+          "<class 'str'>",
+          "<class 'str'>",
+          "<class 'str'>",
+          "<class 'str'>"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n\u263a \u008e\n"
+    },
+    {
+      "line": 17,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "x": "\u263a",
+        "x_lst": [
+          "REF",
+          1
+        ],
+        "z": "\u008e",
+        "xz_lst": [
+          "REF",
+          2
+        ],
+        "types_lst": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "x_lst",
+        "z",
+        "xz_lst",
+        "types_lst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u263a",
+          "\u263a"
+        ],
+        "2": [
+          "LIST",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e",
+          "\u263a",
+          "\u008e"
+        ],
+        "4": [
+          "LIST",
+          "<class 'str'>",
+          "<class 'str'>",
+          "<class 'str'>",
+          "<class 'str'>",
+          "<class 'str'>",
+          "<class 'str'>"
+        ]
+      },
+      "stdout": "\u263a\n\u008e\n\u263a \u008e\n['\u263a', '\\x8e', '\u263a', '\\x8e', '\u263a', '\\x8e']\n"
+    }
+  ]
+}

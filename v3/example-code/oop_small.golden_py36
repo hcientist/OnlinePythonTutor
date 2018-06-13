@@ -1,0 +1,1089 @@
+{
+  "code": "class A:\n    x = 1\n    y = 'hello'\n\nclass B:\n    z = 'bye'\n\nclass C(A,B):\n    def salutation(self):\n        return '%d %s %s' % (self.x, self.y, self.z)\n\ninst = C()\nprint(inst.salutation())\ninst.x = 100\nprint(inst.salutation())\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            "hello"
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            "hello"
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "z",
+            "bye"
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 12,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          2
+        ],
+        "C": [
+          "REF",
+          3
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "C"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            "hello"
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "z",
+            "bye"
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [
+            "A",
+            "B"
+          ],
+          [
+            "salutation",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "salutation(self)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 13,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          2
+        ],
+        "C": [
+          "REF",
+          3
+        ],
+        "inst": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "C",
+        "inst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            "hello"
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "z",
+            "bye"
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [
+            "A",
+            "B"
+          ],
+          [
+            "salutation",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "salutation(self)",
+          null
+        ],
+        "5": [
+          "INSTANCE",
+          "C"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 9,
+      "event": "call",
+      "func_name": "salutation",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          2
+        ],
+        "C": [
+          "REF",
+          3
+        ],
+        "inst": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "C",
+        "inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "salutation",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "self"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "salutation_f1"
+        }
+      ],
+      "heap": {
+        "5": [
+          "INSTANCE",
+          "C"
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            "hello"
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "z",
+            "bye"
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [
+            "A",
+            "B"
+          ],
+          [
+            "salutation",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "salutation(self)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "salutation",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          2
+        ],
+        "C": [
+          "REF",
+          3
+        ],
+        "inst": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "C",
+        "inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "salutation",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "self"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "salutation_f1"
+        }
+      ],
+      "heap": {
+        "5": [
+          "INSTANCE",
+          "C"
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            "hello"
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "z",
+            "bye"
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [
+            "A",
+            "B"
+          ],
+          [
+            "salutation",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "salutation(self)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 10,
+      "event": "return",
+      "func_name": "salutation",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          2
+        ],
+        "C": [
+          "REF",
+          3
+        ],
+        "inst": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "C",
+        "inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "salutation",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ],
+            "__return__": "1 hello bye"
+          },
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "salutation_f1"
+        }
+      ],
+      "heap": {
+        "5": [
+          "INSTANCE",
+          "C"
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            "hello"
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "z",
+            "bye"
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [
+            "A",
+            "B"
+          ],
+          [
+            "salutation",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "salutation(self)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 14,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          2
+        ],
+        "C": [
+          "REF",
+          3
+        ],
+        "inst": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "C",
+        "inst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            "hello"
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "z",
+            "bye"
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [
+            "A",
+            "B"
+          ],
+          [
+            "salutation",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "salutation(self)",
+          null
+        ],
+        "5": [
+          "INSTANCE",
+          "C"
+        ]
+      },
+      "stdout": "1 hello bye\n"
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          2
+        ],
+        "C": [
+          "REF",
+          3
+        ],
+        "inst": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "C",
+        "inst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            "hello"
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "z",
+            "bye"
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [
+            "A",
+            "B"
+          ],
+          [
+            "salutation",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "salutation(self)",
+          null
+        ],
+        "5": [
+          "INSTANCE",
+          "C",
+          [
+            "x",
+            100
+          ]
+        ]
+      },
+      "stdout": "1 hello bye\n"
+    },
+    {
+      "line": 9,
+      "event": "call",
+      "func_name": "salutation",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          2
+        ],
+        "C": [
+          "REF",
+          3
+        ],
+        "inst": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "C",
+        "inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "salutation",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "self"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "salutation_f2"
+        }
+      ],
+      "heap": {
+        "5": [
+          "INSTANCE",
+          "C",
+          [
+            "x",
+            100
+          ]
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            "hello"
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "z",
+            "bye"
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [
+            "A",
+            "B"
+          ],
+          [
+            "salutation",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "salutation(self)",
+          null
+        ]
+      },
+      "stdout": "1 hello bye\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "salutation",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          2
+        ],
+        "C": [
+          "REF",
+          3
+        ],
+        "inst": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "C",
+        "inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "salutation",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "self"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "salutation_f2"
+        }
+      ],
+      "heap": {
+        "5": [
+          "INSTANCE",
+          "C",
+          [
+            "x",
+            100
+          ]
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            "hello"
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "z",
+            "bye"
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [
+            "A",
+            "B"
+          ],
+          [
+            "salutation",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "salutation(self)",
+          null
+        ]
+      },
+      "stdout": "1 hello bye\n"
+    },
+    {
+      "line": 10,
+      "event": "return",
+      "func_name": "salutation",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          2
+        ],
+        "C": [
+          "REF",
+          3
+        ],
+        "inst": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "C",
+        "inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "salutation",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ],
+            "__return__": "100 hello bye"
+          },
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "salutation_f2"
+        }
+      ],
+      "heap": {
+        "5": [
+          "INSTANCE",
+          "C",
+          [
+            "x",
+            100
+          ]
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            "hello"
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "z",
+            "bye"
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [
+            "A",
+            "B"
+          ],
+          [
+            "salutation",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "salutation(self)",
+          null
+        ]
+      },
+      "stdout": "1 hello bye\n"
+    },
+    {
+      "line": 15,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          2
+        ],
+        "C": [
+          "REF",
+          3
+        ],
+        "inst": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "C",
+        "inst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            "hello"
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "z",
+            "bye"
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [
+            "A",
+            "B"
+          ],
+          [
+            "salutation",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "salutation(self)",
+          null
+        ],
+        "5": [
+          "INSTANCE",
+          "C",
+          [
+            "x",
+            100
+          ]
+        ]
+      },
+      "stdout": "1 hello bye\n100 hello bye\n"
+    }
+  ]
+}

@@ -1,0 +1,2913 @@
+{
+  "code": "# Tutorial code from Prof. Peter Wentworth\n# Rhodes University, South Africa (http://www.ru.ac.za/)\n\n# Demonstrate recursion that throws an exception\n# at its base case, and the tracing of try ... finally.\n#\n# How many \"survived!\" messages will be printed???\n\ndef f(n):\n    try:\n        x = 10 / n\n        print(\"x is \" + str(x))\n        f(n-1)\n        print(\"survived!\")\n    finally:\n        print(\"Bye from f where n = \" + str(n))\n\nf(4)\n",
+  "trace": [
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 18,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 9,
+      "event": "call",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 12,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 13,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\n"
+    },
+    {
+      "line": 9,
+      "event": "call",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\n"
+    },
+    {
+      "line": 12,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\n"
+    },
+    {
+      "line": 13,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\n"
+    },
+    {
+      "line": 9,
+      "event": "call",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\n"
+    },
+    {
+      "line": 12,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\n"
+    },
+    {
+      "line": 13,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\n"
+    },
+    {
+      "line": 9,
+      "event": "call",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f3"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 1
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f3"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 1
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f3"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 1
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\n"
+    },
+    {
+      "line": 12,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f3"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 1,
+            "x": [
+              "SPECIAL_FLOAT",
+              "10.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\n"
+    },
+    {
+      "line": 13,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f3"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 1,
+            "x": [
+              "SPECIAL_FLOAT",
+              "10.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\n"
+    },
+    {
+      "line": 9,
+      "event": "call",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f3"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 1,
+            "x": [
+              "SPECIAL_FLOAT",
+              "10.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f4"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 0
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f5"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f3"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 1,
+            "x": [
+              "SPECIAL_FLOAT",
+              "10.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f4"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 0
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f5"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f3"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 1,
+            "x": [
+              "SPECIAL_FLOAT",
+              "10.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f4"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 0
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f5"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\n"
+    },
+    {
+      "line": 11,
+      "event": "exception",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f3"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 1,
+            "x": [
+              "SPECIAL_FLOAT",
+              "10.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f4"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 0
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f5"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\n",
+      "exception_msg": "ZeroDivisionError: division by zero"
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f3"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 1,
+            "x": [
+              "SPECIAL_FLOAT",
+              "10.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f4"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 0
+          },
+          "ordered_varnames": [
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f5"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\n"
+    },
+    {
+      "line": 16,
+      "event": "return",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f3"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 1,
+            "x": [
+              "SPECIAL_FLOAT",
+              "10.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f4"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 0,
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "n",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f5"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\nBye from f where n = 0\n"
+    },
+    {
+      "line": 13,
+      "event": "exception",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f3"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 1,
+            "x": [
+              "SPECIAL_FLOAT",
+              "10.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\nBye from f where n = 0\n",
+      "exception_msg": "ZeroDivisionError: division by zero"
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f3"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 1,
+            "x": [
+              "SPECIAL_FLOAT",
+              "10.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\nBye from f where n = 0\n"
+    },
+    {
+      "line": 16,
+      "event": "return",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f3"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 1,
+            "x": [
+              "SPECIAL_FLOAT",
+              "10.0"
+            ],
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "n",
+            "x",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\nBye from f where n = 0\nBye from f where n = 1\n"
+    },
+    {
+      "line": 13,
+      "event": "exception",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\nBye from f where n = 0\nBye from f where n = 1\n",
+      "exception_msg": "ZeroDivisionError: division by zero"
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ]
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\nBye from f where n = 0\nBye from f where n = 1\n"
+    },
+    {
+      "line": 16,
+      "event": "return",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f2"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 2,
+            "x": [
+              "SPECIAL_FLOAT",
+              "5.0"
+            ],
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "n",
+            "x",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\nBye from f where n = 0\nBye from f where n = 1\nBye from f where n = 2\n"
+    },
+    {
+      "line": 13,
+      "event": "exception",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\nBye from f where n = 0\nBye from f where n = 1\nBye from f where n = 2\n",
+      "exception_msg": "ZeroDivisionError: division by zero"
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\nBye from f where n = 0\nBye from f where n = 1\nBye from f where n = 2\n"
+    },
+    {
+      "line": 16,
+      "event": "return",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "f_f1"
+        },
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 3,
+            "x": 3.3333,
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "n",
+            "x",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\nBye from f where n = 0\nBye from f where n = 1\nBye from f where n = 2\nBye from f where n = 3\n"
+    },
+    {
+      "line": 13,
+      "event": "exception",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\nBye from f where n = 0\nBye from f where n = 1\nBye from f where n = 2\nBye from f where n = 3\n",
+      "exception_msg": "ZeroDivisionError: division by zero"
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5
+          },
+          "ordered_varnames": [
+            "n",
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\nBye from f where n = 0\nBye from f where n = 1\nBye from f where n = 2\nBye from f where n = 3\n"
+    },
+    {
+      "line": 16,
+      "event": "return",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "n": 4,
+            "x": 2.5,
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "n",
+            "x",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\nBye from f where n = 0\nBye from f where n = 1\nBye from f where n = 2\nBye from f where n = 3\nBye from f where n = 4\n"
+    },
+    {
+      "line": 18,
+      "event": "exception",
+      "func_name": "<module>",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(n)",
+          null
+        ]
+      },
+      "stdout": "x is 2.5\nx is 3.3333333333333335\nx is 5.0\nx is 10.0\nBye from f where n = 0\nBye from f where n = 1\nBye from f where n = 2\nBye from f where n = 3\nBye from f where n = 4\n",
+      "exception_msg": "ZeroDivisionError: division by zero"
+    }
+  ]
+}

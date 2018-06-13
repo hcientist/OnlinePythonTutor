@@ -1,0 +1,26 @@
+{
+  "code": "# these showed up in my server logs as errors:\n\nmax = raw_input(max) # max is a built-in function\n",
+  "trace": [
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "exception",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "",
+      "exception_msg": "NameError: name 'raw_input' is not defined"
+    }
+  ]
+}

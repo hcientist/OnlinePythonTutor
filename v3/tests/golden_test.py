@@ -4,8 +4,7 @@ by Philip Guo
 
 (sloppily) customized for the Online Python Tutor project
 
-THIS ONLY WORKS ON Python 2.7 and 3.2
-(note that Python 3.3 gives all sorts of weird non-deterministic errors, so use Python 3.2 for now)
+THIS ONLY WORKS ON Python 2.7, 3.2, and 3.6
 
 Also note that the Python 3 tests aren't as "robust" or as rigorously checked ...
 I've been focusing on Python 2 for now.
@@ -16,6 +15,7 @@ GEN_JSON_TRACE_PY = '../../v5-unity/generate_json_trace.py'
 
 # no longer supported by v5-unity
 IGNORED_TESTS = [
+    'backend-tests/cs61a-multi-lambdas.txt', # WEIRD NON-DETERMINISTIC TEST!!!
     'backend-tests/callback-test.txt',
     'backend-tests/ttt_min.txt',
     '../example-code/chris-meyers/optFib.txt',
@@ -154,18 +154,23 @@ if __name__ == "__main__":
                     help="Diff against golden file for one test")
   parser.add_option("--diffall", action="store_true", dest="diff_all",
                     help="Diff against golden file for all tests")
-  parser.add_option("--py3", action="store_true", dest="py3",
-                    help="Run tests using Python 3.2 (rather than Python 2.7)")
+  parser.add_option("--py32", action="store_true", dest="py32",
+                    help="Run tests using Python 3.2 (rather than the default of Python 2.7)")
+  parser.add_option("--py36", action="store_true", dest="py36",
+                    help="Run tests using Python 3.6 (rather than the default of Python 2.7)")
   (options, args) = parser.parse_args()
 
 
   INPUT_FILE_EXTENSION = '.txt' # input test files are .txt, NOT .py
 
-  if options.py3:
+  if options.py32:
     PROGRAM = ['python3.2', GEN_JSON_TRACE_PY] # tested on Python 3.2.6 on Mac OS X
-    #PROGRAM = ['python3.6', GEN_JSON_TRACE_PY]
     OUTPUT_FILE_EXTENSION = '.out_py3'
     GOLDEN_FILE_EXTENSION = '.golden_py3'
+  elif options.py36:
+    PROGRAM = ['python3.6', GEN_JSON_TRACE_PY] # tested on Python 3.6.5 on Mac OS X
+    OUTPUT_FILE_EXTENSION = '.out_py36'
+    GOLDEN_FILE_EXTENSION = '.golden_py36'
   else:
     PROGRAM = ['python2.7', GEN_JSON_TRACE_PY] # tested on Python 2.7.14 on Mac OS X
     OUTPUT_FILE_EXTENSION = '.out'

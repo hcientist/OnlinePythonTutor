@@ -1,0 +1,11 @@
+{
+  "code": "x = 0\nfor i in range(10):\n  x += 1\n   print x\n  x += 1\n\n",
+  "trace": [
+    {
+      "event": "uncaught_exception",
+      "line": 4,
+      "offset": 3,
+      "exception_msg": "IndentationError: unexpected indent (<string>, line 4)"
+    }
+  ]
+}
