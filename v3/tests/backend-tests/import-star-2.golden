@@ -1,0 +1,2983 @@
+{
+  "code": "from io import *\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "RawIOBase", 
+        "UnsupportedOperation", 
+        "IOBase", 
+        "BufferedRWPair", 
+        "StringIO", 
+        "open", 
+        "SEEK_SET", 
+        "BufferedRandom", 
+        "TextIOBase", 
+        "BlockingIOError", 
+        "TextIOWrapper", 
+        "SEEK_END", 
+        "BufferedReader", 
+        "BufferedWriter", 
+        "FileIO", 
+        "SEEK_CUR", 
+        "BufferedIOBase", 
+        "BytesIO"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "RawIOBase": [
+          "REF", 
+          1
+        ], 
+        "UnsupportedOperation": [
+          "REF", 
+          20
+        ], 
+        "IOBase": [
+          "REF", 
+          21
+        ], 
+        "BufferedRWPair": [
+          "REF", 
+          43
+        ], 
+        "StringIO": [
+          "REF", 
+          57
+        ], 
+        "SEEK_SET": 0, 
+        "BufferedRandom": [
+          "REF", 
+          78
+        ], 
+        "TextIOBase": [
+          "REF", 
+          105
+        ], 
+        "BufferedReader": [
+          "REF", 
+          154
+        ], 
+        "TextIOWrapper": [
+          "REF", 
+          127
+        ], 
+        "SEEK_END": 2, 
+        "BlockingIOError": [
+          "REF", 
+          124
+        ], 
+        "BufferedIOBase": [
+          "REF", 
+          221
+        ], 
+        "FileIO": [
+          "REF", 
+          200
+        ], 
+        "BytesIO": [
+          "REF", 
+          243
+        ], 
+        "BufferedWriter": [
+          "REF", 
+          179
+        ], 
+        "open": [
+          "REF", 
+          77
+        ], 
+        "SEEK_CUR": 1
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE", 
+          "ABCMeta", 
+          [
+            "__abstractmethods__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "_abc_cache", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "_abc_negative_cache", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_abc_negative_cache_version", 
+            15
+          ], 
+          [
+            "_abc_registry", 
+            [
+              "REF", 
+              14
+            ]
+          ]
+        ], 
+        "2": [
+          "frozenset", 
+          "frozenset([])"
+        ], 
+        "3": [
+          "INSTANCE", 
+          "WeakSet", 
+          [
+            "_iterating", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "_pending_removals", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "_remove", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "data", 
+            [
+              "REF", 
+              7
+            ]
+          ]
+        ], 
+        "4": [
+          "SET"
+        ], 
+        "5": [
+          "LIST"
+        ], 
+        "6": [
+          "FUNCTION", 
+          "_remove(item, selfref)", 
+          null
+        ], 
+        "7": [
+          "SET"
+        ], 
+        "8": [
+          "INSTANCE", 
+          "WeakSet", 
+          [
+            "_iterating", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_pending_removals", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "_remove", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "data", 
+            [
+              "REF", 
+              12
+            ]
+          ]
+        ], 
+        "9": [
+          "SET"
+        ], 
+        "10": [
+          "LIST"
+        ], 
+        "11": [
+          "FUNCTION", 
+          "_remove(item, selfref)", 
+          null
+        ], 
+        "12": [
+          "SET", 
+          [
+            "REF", 
+            13
+          ]
+        ], 
+        "13": [
+          "weakref", 
+          "<weakref at 0xADDR>"
+        ], 
+        "14": [
+          "INSTANCE", 
+          "WeakSet", 
+          [
+            "_iterating", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "_pending_removals", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "_remove", 
+            [
+              "REF", 
+              17
+            ]
+          ], 
+          [
+            "data", 
+            [
+              "REF", 
+              18
+            ]
+          ]
+        ], 
+        "15": [
+          "SET"
+        ], 
+        "16": [
+          "LIST"
+        ], 
+        "17": [
+          "FUNCTION", 
+          "_remove(item, selfref)", 
+          null
+        ], 
+        "18": [
+          "SET", 
+          [
+            "REF", 
+            19
+          ]
+        ], 
+        "19": [
+          "weakref", 
+          "<weakref at 0xADDR>"
+        ], 
+        "20": [
+          "CLASS", 
+          "UnsupportedOperation", 
+          [
+            "ValueError", 
+            "IOError"
+          ]
+        ], 
+        "21": [
+          "INSTANCE", 
+          "ABCMeta", 
+          [
+            "__abstractmethods__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__metaclass__", 
+            [
+              "REF", 
+              22
+            ]
+          ], 
+          [
+            "_abc_cache", 
+            [
+              "REF", 
+              28
+            ]
+          ], 
+          [
+            "_abc_negative_cache", 
+            [
+              "REF", 
+              33
+            ]
+          ], 
+          [
+            "_abc_negative_cache_version", 
+            15
+          ], 
+          [
+            "_abc_registry", 
+            [
+              "REF", 
+              38
+            ]
+          ]
+        ], 
+        "22": [
+          "CLASS", 
+          "ABCMeta", 
+          [
+            "type"
+          ], 
+          [
+            "__instancecheck__", 
+            [
+              "REF", 
+              23
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              24
+            ]
+          ], 
+          [
+            "__subclasscheck__", 
+            [
+              "REF", 
+              25
+            ]
+          ], 
+          [
+            "_abc_invalidation_counter", 
+            23
+          ], 
+          [
+            "_dump_registry", 
+            [
+              "REF", 
+              26
+            ]
+          ], 
+          [
+            "register", 
+            [
+              "REF", 
+              27
+            ]
+          ]
+        ], 
+        "23": [
+          "FUNCTION", 
+          "__instancecheck__(cls, instance)", 
+          null
+        ], 
+        "24": [
+          "staticmethod", 
+          "<staticmethod object at 0xADDR>"
+        ], 
+        "25": [
+          "FUNCTION", 
+          "__subclasscheck__(cls, subclass)", 
+          null
+        ], 
+        "26": [
+          "FUNCTION", 
+          "_dump_registry(cls, file)", 
+          null
+        ], 
+        "27": [
+          "FUNCTION", 
+          "register(cls, subclass)", 
+          null
+        ], 
+        "28": [
+          "INSTANCE", 
+          "WeakSet", 
+          [
+            "_iterating", 
+            [
+              "REF", 
+              29
+            ]
+          ], 
+          [
+            "_pending_removals", 
+            [
+              "REF", 
+              30
+            ]
+          ], 
+          [
+            "_remove", 
+            [
+              "REF", 
+              31
+            ]
+          ], 
+          [
+            "data", 
+            [
+              "REF", 
+              32
+            ]
+          ]
+        ], 
+        "29": [
+          "SET"
+        ], 
+        "30": [
+          "LIST"
+        ], 
+        "31": [
+          "FUNCTION", 
+          "_remove(item, selfref)", 
+          null
+        ], 
+        "32": [
+          "SET"
+        ], 
+        "33": [
+          "INSTANCE", 
+          "WeakSet", 
+          [
+            "_iterating", 
+            [
+              "REF", 
+              34
+            ]
+          ], 
+          [
+            "_pending_removals", 
+            [
+              "REF", 
+              35
+            ]
+          ], 
+          [
+            "_remove", 
+            [
+              "REF", 
+              36
+            ]
+          ], 
+          [
+            "data", 
+            [
+              "REF", 
+              37
+            ]
+          ]
+        ], 
+        "34": [
+          "SET"
+        ], 
+        "35": [
+          "LIST"
+        ], 
+        "36": [
+          "FUNCTION", 
+          "_remove(item, selfref)", 
+          null
+        ], 
+        "37": [
+          "SET"
+        ], 
+        "38": [
+          "INSTANCE", 
+          "WeakSet", 
+          [
+            "_iterating", 
+            [
+              "REF", 
+              39
+            ]
+          ], 
+          [
+            "_pending_removals", 
+            [
+              "REF", 
+              40
+            ]
+          ], 
+          [
+            "_remove", 
+            [
+              "REF", 
+              41
+            ]
+          ], 
+          [
+            "data", 
+            [
+              "REF", 
+              42
+            ]
+          ]
+        ], 
+        "39": [
+          "SET"
+        ], 
+        "40": [
+          "LIST"
+        ], 
+        "41": [
+          "FUNCTION", 
+          "_remove(item, selfref)", 
+          null
+        ], 
+        "42": [
+          "SET"
+        ], 
+        "43": [
+          "CLASS", 
+          "BufferedRWPair", 
+          [
+            "_BufferedIOBase"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              44
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              45
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              46
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              47
+            ]
+          ], 
+          [
+            "flush", 
+            [
+              "REF", 
+              48
+            ]
+          ], 
+          [
+            "isatty", 
+            [
+              "REF", 
+              49
+            ]
+          ], 
+          [
+            "peek", 
+            [
+              "REF", 
+              50
+            ]
+          ], 
+          [
+            "read", 
+            [
+              "REF", 
+              51
+            ]
+          ], 
+          [
+            "read1", 
+            [
+              "REF", 
+              52
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              53
+            ]
+          ], 
+          [
+            "readinto", 
+            [
+              "REF", 
+              54
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              55
+            ]
+          ], 
+          [
+            "write", 
+            [
+              "REF", 
+              56
+            ]
+          ]
+        ], 
+        "44": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BufferedRWPair' objects>"
+        ], 
+        "45": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "46": [
+          "method_descriptor", 
+          "<method 'close' of '_io.BufferedRWPair' objects>"
+        ], 
+        "47": [
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BufferedRWPair' objects>"
+        ], 
+        "48": [
+          "method_descriptor", 
+          "<method 'flush' of '_io.BufferedRWPair' objects>"
+        ], 
+        "49": [
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BufferedRWPair' objects>"
+        ], 
+        "50": [
+          "method_descriptor", 
+          "<method 'peek' of '_io.BufferedRWPair' objects>"
+        ], 
+        "51": [
+          "method_descriptor", 
+          "<method 'read' of '_io.BufferedRWPair' objects>"
+        ], 
+        "52": [
+          "method_descriptor", 
+          "<method 'read1' of '_io.BufferedRWPair' objects>"
+        ], 
+        "53": [
+          "method_descriptor", 
+          "<method 'readable' of '_io.BufferedRWPair' objects>"
+        ], 
+        "54": [
+          "method_descriptor", 
+          "<method 'readinto' of '_io.BufferedRWPair' objects>"
+        ], 
+        "55": [
+          "method_descriptor", 
+          "<method 'writable' of '_io.BufferedRWPair' objects>"
+        ], 
+        "56": [
+          "method_descriptor", 
+          "<method 'write' of '_io.BufferedRWPair' objects>"
+        ], 
+        "57": [
+          "CLASS", 
+          "StringIO", 
+          [
+            "_TextIOBase"
+          ], 
+          [
+            "__getstate__", 
+            [
+              "REF", 
+              58
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              59
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              60
+            ]
+          ], 
+          [
+            "__setstate__", 
+            [
+              "REF", 
+              61
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              62
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              63
+            ]
+          ], 
+          [
+            "getvalue", 
+            [
+              "REF", 
+              64
+            ]
+          ], 
+          [
+            "line_buffering", 
+            [
+              "REF", 
+              65
+            ]
+          ], 
+          [
+            "newlines", 
+            [
+              "REF", 
+              66
+            ]
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              67
+            ]
+          ], 
+          [
+            "read", 
+            [
+              "REF", 
+              68
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              69
+            ]
+          ], 
+          [
+            "readline", 
+            [
+              "REF", 
+              70
+            ]
+          ], 
+          [
+            "seek", 
+            [
+              "REF", 
+              71
+            ]
+          ], 
+          [
+            "seekable", 
+            [
+              "REF", 
+              72
+            ]
+          ], 
+          [
+            "tell", 
+            [
+              "REF", 
+              73
+            ]
+          ], 
+          [
+            "truncate", 
+            [
+              "REF", 
+              74
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              75
+            ]
+          ], 
+          [
+            "write", 
+            [
+              "REF", 
+              76
+            ]
+          ]
+        ], 
+        "58": [
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.StringIO' objects>"
+        ], 
+        "59": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.StringIO' objects>"
+        ], 
+        "60": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "61": [
+          "method_descriptor", 
+          "<method '__setstate__' of '_io.StringIO' objects>"
+        ], 
+        "62": [
+          "method_descriptor", 
+          "<method 'close' of '_io.StringIO' objects>"
+        ], 
+        "63": [
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.StringIO' objects>"
+        ], 
+        "64": [
+          "method_descriptor", 
+          "<method 'getvalue' of '_io.StringIO' objects>"
+        ], 
+        "65": [
+          "getset_descriptor", 
+          "<attribute 'line_buffering' of '_io.StringIO' objects>"
+        ], 
+        "66": [
+          "getset_descriptor", 
+          "<attribute 'newlines' of '_io.StringIO' objects>"
+        ], 
+        "67": [
+          "wrapper_descriptor", 
+          "<slot wrapper 'next' of '_io.StringIO' objects>"
+        ], 
+        "68": [
+          "method_descriptor", 
+          "<method 'read' of '_io.StringIO' objects>"
+        ], 
+        "69": [
+          "method_descriptor", 
+          "<method 'readable' of '_io.StringIO' objects>"
+        ], 
+        "70": [
+          "method_descriptor", 
+          "<method 'readline' of '_io.StringIO' objects>"
+        ], 
+        "71": [
+          "method_descriptor", 
+          "<method 'seek' of '_io.StringIO' objects>"
+        ], 
+        "72": [
+          "method_descriptor", 
+          "<method 'seekable' of '_io.StringIO' objects>"
+        ], 
+        "73": [
+          "method_descriptor", 
+          "<method 'tell' of '_io.StringIO' objects>"
+        ], 
+        "74": [
+          "method_descriptor", 
+          "<method 'truncate' of '_io.StringIO' objects>"
+        ], 
+        "75": [
+          "method_descriptor", 
+          "<method 'writable' of '_io.StringIO' objects>"
+        ], 
+        "76": [
+          "method_descriptor", 
+          "<method 'write' of '_io.StringIO' objects>"
+        ], 
+        "77": [
+          "FUNCTION", 
+          "open(...)", 
+          null
+        ], 
+        "78": [
+          "CLASS", 
+          "BufferedRandom", 
+          [
+            "_BufferedIOBase"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              79
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              80
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              81
+            ]
+          ], 
+          [
+            "__sizeof__", 
+            [
+              "REF", 
+              82
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              83
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              84
+            ]
+          ], 
+          [
+            "detach", 
+            [
+              "REF", 
+              85
+            ]
+          ], 
+          [
+            "fileno", 
+            [
+              "REF", 
+              86
+            ]
+          ], 
+          [
+            "flush", 
+            [
+              "REF", 
+              87
+            ]
+          ], 
+          [
+            "isatty", 
+            [
+              "REF", 
+              88
+            ]
+          ], 
+          [
+            "mode", 
+            [
+              "REF", 
+              89
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              90
+            ]
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              91
+            ]
+          ], 
+          [
+            "peek", 
+            [
+              "REF", 
+              92
+            ]
+          ], 
+          [
+            "raw", 
+            [
+              "REF", 
+              93
+            ]
+          ], 
+          [
+            "read", 
+            [
+              "REF", 
+              94
+            ]
+          ], 
+          [
+            "read1", 
+            [
+              "REF", 
+              95
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              96
+            ]
+          ], 
+          [
+            "readinto", 
+            [
+              "REF", 
+              97
+            ]
+          ], 
+          [
+            "readline", 
+            [
+              "REF", 
+              98
+            ]
+          ], 
+          [
+            "seek", 
+            [
+              "REF", 
+              99
+            ]
+          ], 
+          [
+            "seekable", 
+            [
+              "REF", 
+              100
+            ]
+          ], 
+          [
+            "tell", 
+            [
+              "REF", 
+              101
+            ]
+          ], 
+          [
+            "truncate", 
+            [
+              "REF", 
+              102
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              103
+            ]
+          ], 
+          [
+            "write", 
+            [
+              "REF", 
+              104
+            ]
+          ]
+        ], 
+        "79": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BufferedRandom' objects>"
+        ], 
+        "80": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "81": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.BufferedRandom' objects>"
+        ], 
+        "82": [
+          "method_descriptor", 
+          "<method '__sizeof__' of '_io.BufferedRandom' objects>"
+        ], 
+        "83": [
+          "method_descriptor", 
+          "<method 'close' of '_io.BufferedRandom' objects>"
+        ], 
+        "84": [
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BufferedRandom' objects>"
+        ], 
+        "85": [
+          "method_descriptor", 
+          "<method 'detach' of '_io.BufferedRandom' objects>"
+        ], 
+        "86": [
+          "method_descriptor", 
+          "<method 'fileno' of '_io.BufferedRandom' objects>"
+        ], 
+        "87": [
+          "method_descriptor", 
+          "<method 'flush' of '_io.BufferedRandom' objects>"
+        ], 
+        "88": [
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BufferedRandom' objects>"
+        ], 
+        "89": [
+          "getset_descriptor", 
+          "<attribute 'mode' of '_io.BufferedRandom' objects>"
+        ], 
+        "90": [
+          "getset_descriptor", 
+          "<attribute 'name' of '_io.BufferedRandom' objects>"
+        ], 
+        "91": [
+          "wrapper_descriptor", 
+          "<slot wrapper 'next' of '_io.BufferedRandom' objects>"
+        ], 
+        "92": [
+          "method_descriptor", 
+          "<method 'peek' of '_io.BufferedRandom' objects>"
+        ], 
+        "93": [
+          "member_descriptor", 
+          "<member 'raw' of '_io.BufferedRandom' objects>"
+        ], 
+        "94": [
+          "method_descriptor", 
+          "<method 'read' of '_io.BufferedRandom' objects>"
+        ], 
+        "95": [
+          "method_descriptor", 
+          "<method 'read1' of '_io.BufferedRandom' objects>"
+        ], 
+        "96": [
+          "method_descriptor", 
+          "<method 'readable' of '_io.BufferedRandom' objects>"
+        ], 
+        "97": [
+          "method_descriptor", 
+          "<method 'readinto' of '_io.BufferedRandom' objects>"
+        ], 
+        "98": [
+          "method_descriptor", 
+          "<method 'readline' of '_io.BufferedRandom' objects>"
+        ], 
+        "99": [
+          "method_descriptor", 
+          "<method 'seek' of '_io.BufferedRandom' objects>"
+        ], 
+        "100": [
+          "method_descriptor", 
+          "<method 'seekable' of '_io.BufferedRandom' objects>"
+        ], 
+        "101": [
+          "method_descriptor", 
+          "<method 'tell' of '_io.BufferedRandom' objects>"
+        ], 
+        "102": [
+          "method_descriptor", 
+          "<method 'truncate' of '_io.BufferedRandom' objects>"
+        ], 
+        "103": [
+          "method_descriptor", 
+          "<method 'writable' of '_io.BufferedRandom' objects>"
+        ], 
+        "104": [
+          "method_descriptor", 
+          "<method 'write' of '_io.BufferedRandom' objects>"
+        ], 
+        "105": [
+          "INSTANCE", 
+          "ABCMeta", 
+          [
+            "__abstractmethods__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "_abc_cache", 
+            [
+              "REF", 
+              106
+            ]
+          ], 
+          [
+            "_abc_negative_cache", 
+            [
+              "REF", 
+              111
+            ]
+          ], 
+          [
+            "_abc_negative_cache_version", 
+            22
+          ], 
+          [
+            "_abc_registry", 
+            [
+              "REF", 
+              117
+            ]
+          ]
+        ], 
+        "106": [
+          "INSTANCE", 
+          "WeakSet", 
+          [
+            "_iterating", 
+            [
+              "REF", 
+              107
+            ]
+          ], 
+          [
+            "_pending_removals", 
+            [
+              "REF", 
+              108
+            ]
+          ], 
+          [
+            "_remove", 
+            [
+              "REF", 
+              109
+            ]
+          ], 
+          [
+            "data", 
+            [
+              "REF", 
+              110
+            ]
+          ]
+        ], 
+        "107": [
+          "SET"
+        ], 
+        "108": [
+          "LIST"
+        ], 
+        "109": [
+          "FUNCTION", 
+          "_remove(item, selfref)", 
+          null
+        ], 
+        "110": [
+          "SET"
+        ], 
+        "111": [
+          "INSTANCE", 
+          "WeakSet", 
+          [
+            "_iterating", 
+            [
+              "REF", 
+              112
+            ]
+          ], 
+          [
+            "_pending_removals", 
+            [
+              "REF", 
+              113
+            ]
+          ], 
+          [
+            "_remove", 
+            [
+              "REF", 
+              114
+            ]
+          ], 
+          [
+            "data", 
+            [
+              "REF", 
+              115
+            ]
+          ]
+        ], 
+        "112": [
+          "SET"
+        ], 
+        "113": [
+          "LIST"
+        ], 
+        "114": [
+          "FUNCTION", 
+          "_remove(item, selfref)", 
+          null
+        ], 
+        "115": [
+          "SET", 
+          [
+            "REF", 
+            116
+          ]
+        ], 
+        "116": [
+          "weakref", 
+          "<weakref at 0xADDR>"
+        ], 
+        "117": [
+          "INSTANCE", 
+          "WeakSet", 
+          [
+            "_iterating", 
+            [
+              "REF", 
+              118
+            ]
+          ], 
+          [
+            "_pending_removals", 
+            [
+              "REF", 
+              119
+            ]
+          ], 
+          [
+            "_remove", 
+            [
+              "REF", 
+              120
+            ]
+          ], 
+          [
+            "data", 
+            [
+              "REF", 
+              121
+            ]
+          ]
+        ], 
+        "118": [
+          "SET"
+        ], 
+        "119": [
+          "LIST"
+        ], 
+        "120": [
+          "FUNCTION", 
+          "_remove(item, selfref)", 
+          null
+        ], 
+        "121": [
+          "SET", 
+          [
+            "REF", 
+            122
+          ], 
+          [
+            "REF", 
+            123
+          ]
+        ], 
+        "122": [
+          "weakref", 
+          "<weakref at 0xADDR>"
+        ], 
+        "123": [
+          "weakref", 
+          "<weakref at 0xADDR>"
+        ], 
+        "124": [
+          "CLASS", 
+          "BlockingIOError", 
+          [
+            "IOError"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              125
+            ]
+          ], 
+          [
+            "characters_written", 
+            [
+              "REF", 
+              126
+            ]
+          ]
+        ], 
+        "125": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'BlockingIOError' objects>"
+        ], 
+        "126": [
+          "member_descriptor", 
+          "<member 'characters_written' of 'BlockingIOError' objects>"
+        ], 
+        "127": [
+          "CLASS", 
+          "TextIOWrapper", 
+          [
+            "_TextIOBase"
+          ], 
+          [
+            "_CHUNK_SIZE", 
+            [
+              "REF", 
+              128
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              129
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              130
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              131
+            ]
+          ], 
+          [
+            "buffer", 
+            [
+              "REF", 
+              132
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              133
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              134
+            ]
+          ], 
+          [
+            "detach", 
+            [
+              "REF", 
+              135
+            ]
+          ], 
+          [
+            "encoding", 
+            [
+              "REF", 
+              136
+            ]
+          ], 
+          [
+            "errors", 
+            [
+              "REF", 
+              137
+            ]
+          ], 
+          [
+            "fileno", 
+            [
+              "REF", 
+              138
+            ]
+          ], 
+          [
+            "flush", 
+            [
+              "REF", 
+              139
+            ]
+          ], 
+          [
+            "isatty", 
+            [
+              "REF", 
+              140
+            ]
+          ], 
+          [
+            "line_buffering", 
+            [
+              "REF", 
+              141
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              142
+            ]
+          ], 
+          [
+            "newlines", 
+            [
+              "REF", 
+              143
+            ]
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              144
+            ]
+          ], 
+          [
+            "read", 
+            [
+              "REF", 
+              145
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              146
+            ]
+          ], 
+          [
+            "readline", 
+            [
+              "REF", 
+              147
+            ]
+          ], 
+          [
+            "seek", 
+            [
+              "REF", 
+              148
+            ]
+          ], 
+          [
+            "seekable", 
+            [
+              "REF", 
+              149
+            ]
+          ], 
+          [
+            "tell", 
+            [
+              "REF", 
+              150
+            ]
+          ], 
+          [
+            "truncate", 
+            [
+              "REF", 
+              151
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              152
+            ]
+          ], 
+          [
+            "write", 
+            [
+              "REF", 
+              153
+            ]
+          ]
+        ], 
+        "128": [
+          "getset_descriptor", 
+          "<attribute '_CHUNK_SIZE' of '_io.TextIOWrapper' objects>"
+        ], 
+        "129": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.TextIOWrapper' objects>"
+        ], 
+        "130": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "131": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.TextIOWrapper' objects>"
+        ], 
+        "132": [
+          "member_descriptor", 
+          "<member 'buffer' of '_io.TextIOWrapper' objects>"
+        ], 
+        "133": [
+          "method_descriptor", 
+          "<method 'close' of '_io.TextIOWrapper' objects>"
+        ], 
+        "134": [
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.TextIOWrapper' objects>"
+        ], 
+        "135": [
+          "method_descriptor", 
+          "<method 'detach' of '_io.TextIOWrapper' objects>"
+        ], 
+        "136": [
+          "member_descriptor", 
+          "<member 'encoding' of '_io.TextIOWrapper' objects>"
+        ], 
+        "137": [
+          "getset_descriptor", 
+          "<attribute 'errors' of '_io.TextIOWrapper' objects>"
+        ], 
+        "138": [
+          "method_descriptor", 
+          "<method 'fileno' of '_io.TextIOWrapper' objects>"
+        ], 
+        "139": [
+          "method_descriptor", 
+          "<method 'flush' of '_io.TextIOWrapper' objects>"
+        ], 
+        "140": [
+          "method_descriptor", 
+          "<method 'isatty' of '_io.TextIOWrapper' objects>"
+        ], 
+        "141": [
+          "member_descriptor", 
+          "<member 'line_buffering' of '_io.TextIOWrapper' objects>"
+        ], 
+        "142": [
+          "getset_descriptor", 
+          "<attribute 'name' of '_io.TextIOWrapper' objects>"
+        ], 
+        "143": [
+          "getset_descriptor", 
+          "<attribute 'newlines' of '_io.TextIOWrapper' objects>"
+        ], 
+        "144": [
+          "wrapper_descriptor", 
+          "<slot wrapper 'next' of '_io.TextIOWrapper' objects>"
+        ], 
+        "145": [
+          "method_descriptor", 
+          "<method 'read' of '_io.TextIOWrapper' objects>"
+        ], 
+        "146": [
+          "method_descriptor", 
+          "<method 'readable' of '_io.TextIOWrapper' objects>"
+        ], 
+        "147": [
+          "method_descriptor", 
+          "<method 'readline' of '_io.TextIOWrapper' objects>"
+        ], 
+        "148": [
+          "method_descriptor", 
+          "<method 'seek' of '_io.TextIOWrapper' objects>"
+        ], 
+        "149": [
+          "method_descriptor", 
+          "<method 'seekable' of '_io.TextIOWrapper' objects>"
+        ], 
+        "150": [
+          "method_descriptor", 
+          "<method 'tell' of '_io.TextIOWrapper' objects>"
+        ], 
+        "151": [
+          "method_descriptor", 
+          "<method 'truncate' of '_io.TextIOWrapper' objects>"
+        ], 
+        "152": [
+          "method_descriptor", 
+          "<method 'writable' of '_io.TextIOWrapper' objects>"
+        ], 
+        "153": [
+          "method_descriptor", 
+          "<method 'write' of '_io.TextIOWrapper' objects>"
+        ], 
+        "154": [
+          "CLASS", 
+          "BufferedReader", 
+          [
+            "_BufferedIOBase"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              155
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              156
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              157
+            ]
+          ], 
+          [
+            "__sizeof__", 
+            [
+              "REF", 
+              158
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              159
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              160
+            ]
+          ], 
+          [
+            "detach", 
+            [
+              "REF", 
+              161
+            ]
+          ], 
+          [
+            "fileno", 
+            [
+              "REF", 
+              162
+            ]
+          ], 
+          [
+            "flush", 
+            [
+              "REF", 
+              163
+            ]
+          ], 
+          [
+            "isatty", 
+            [
+              "REF", 
+              164
+            ]
+          ], 
+          [
+            "mode", 
+            [
+              "REF", 
+              165
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              166
+            ]
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              167
+            ]
+          ], 
+          [
+            "peek", 
+            [
+              "REF", 
+              168
+            ]
+          ], 
+          [
+            "raw", 
+            [
+              "REF", 
+              169
+            ]
+          ], 
+          [
+            "read", 
+            [
+              "REF", 
+              170
+            ]
+          ], 
+          [
+            "read1", 
+            [
+              "REF", 
+              171
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              172
+            ]
+          ], 
+          [
+            "readline", 
+            [
+              "REF", 
+              173
+            ]
+          ], 
+          [
+            "seek", 
+            [
+              "REF", 
+              174
+            ]
+          ], 
+          [
+            "seekable", 
+            [
+              "REF", 
+              175
+            ]
+          ], 
+          [
+            "tell", 
+            [
+              "REF", 
+              176
+            ]
+          ], 
+          [
+            "truncate", 
+            [
+              "REF", 
+              177
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              178
+            ]
+          ]
+        ], 
+        "155": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BufferedReader' objects>"
+        ], 
+        "156": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "157": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.BufferedReader' objects>"
+        ], 
+        "158": [
+          "method_descriptor", 
+          "<method '__sizeof__' of '_io.BufferedReader' objects>"
+        ], 
+        "159": [
+          "method_descriptor", 
+          "<method 'close' of '_io.BufferedReader' objects>"
+        ], 
+        "160": [
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BufferedReader' objects>"
+        ], 
+        "161": [
+          "method_descriptor", 
+          "<method 'detach' of '_io.BufferedReader' objects>"
+        ], 
+        "162": [
+          "method_descriptor", 
+          "<method 'fileno' of '_io.BufferedReader' objects>"
+        ], 
+        "163": [
+          "method_descriptor", 
+          "<method 'flush' of '_io.BufferedReader' objects>"
+        ], 
+        "164": [
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BufferedReader' objects>"
+        ], 
+        "165": [
+          "getset_descriptor", 
+          "<attribute 'mode' of '_io.BufferedReader' objects>"
+        ], 
+        "166": [
+          "getset_descriptor", 
+          "<attribute 'name' of '_io.BufferedReader' objects>"
+        ], 
+        "167": [
+          "wrapper_descriptor", 
+          "<slot wrapper 'next' of '_io.BufferedReader' objects>"
+        ], 
+        "168": [
+          "method_descriptor", 
+          "<method 'peek' of '_io.BufferedReader' objects>"
+        ], 
+        "169": [
+          "member_descriptor", 
+          "<member 'raw' of '_io.BufferedReader' objects>"
+        ], 
+        "170": [
+          "method_descriptor", 
+          "<method 'read' of '_io.BufferedReader' objects>"
+        ], 
+        "171": [
+          "method_descriptor", 
+          "<method 'read1' of '_io.BufferedReader' objects>"
+        ], 
+        "172": [
+          "method_descriptor", 
+          "<method 'readable' of '_io.BufferedReader' objects>"
+        ], 
+        "173": [
+          "method_descriptor", 
+          "<method 'readline' of '_io.BufferedReader' objects>"
+        ], 
+        "174": [
+          "method_descriptor", 
+          "<method 'seek' of '_io.BufferedReader' objects>"
+        ], 
+        "175": [
+          "method_descriptor", 
+          "<method 'seekable' of '_io.BufferedReader' objects>"
+        ], 
+        "176": [
+          "method_descriptor", 
+          "<method 'tell' of '_io.BufferedReader' objects>"
+        ], 
+        "177": [
+          "method_descriptor", 
+          "<method 'truncate' of '_io.BufferedReader' objects>"
+        ], 
+        "178": [
+          "method_descriptor", 
+          "<method 'writable' of '_io.BufferedReader' objects>"
+        ], 
+        "179": [
+          "CLASS", 
+          "BufferedWriter", 
+          [
+            "_BufferedIOBase"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              180
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              181
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              182
+            ]
+          ], 
+          [
+            "__sizeof__", 
+            [
+              "REF", 
+              183
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              184
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              185
+            ]
+          ], 
+          [
+            "detach", 
+            [
+              "REF", 
+              186
+            ]
+          ], 
+          [
+            "fileno", 
+            [
+              "REF", 
+              187
+            ]
+          ], 
+          [
+            "flush", 
+            [
+              "REF", 
+              188
+            ]
+          ], 
+          [
+            "isatty", 
+            [
+              "REF", 
+              189
+            ]
+          ], 
+          [
+            "mode", 
+            [
+              "REF", 
+              190
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              191
+            ]
+          ], 
+          [
+            "raw", 
+            [
+              "REF", 
+              192
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              193
+            ]
+          ], 
+          [
+            "seek", 
+            [
+              "REF", 
+              194
+            ]
+          ], 
+          [
+            "seekable", 
+            [
+              "REF", 
+              195
+            ]
+          ], 
+          [
+            "tell", 
+            [
+              "REF", 
+              196
+            ]
+          ], 
+          [
+            "truncate", 
+            [
+              "REF", 
+              197
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              198
+            ]
+          ], 
+          [
+            "write", 
+            [
+              "REF", 
+              199
+            ]
+          ]
+        ], 
+        "180": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BufferedWriter' objects>"
+        ], 
+        "181": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "182": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.BufferedWriter' objects>"
+        ], 
+        "183": [
+          "method_descriptor", 
+          "<method '__sizeof__' of '_io.BufferedWriter' objects>"
+        ], 
+        "184": [
+          "method_descriptor", 
+          "<method 'close' of '_io.BufferedWriter' objects>"
+        ], 
+        "185": [
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BufferedWriter' objects>"
+        ], 
+        "186": [
+          "method_descriptor", 
+          "<method 'detach' of '_io.BufferedWriter' objects>"
+        ], 
+        "187": [
+          "method_descriptor", 
+          "<method 'fileno' of '_io.BufferedWriter' objects>"
+        ], 
+        "188": [
+          "method_descriptor", 
+          "<method 'flush' of '_io.BufferedWriter' objects>"
+        ], 
+        "189": [
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BufferedWriter' objects>"
+        ], 
+        "190": [
+          "getset_descriptor", 
+          "<attribute 'mode' of '_io.BufferedWriter' objects>"
+        ], 
+        "191": [
+          "getset_descriptor", 
+          "<attribute 'name' of '_io.BufferedWriter' objects>"
+        ], 
+        "192": [
+          "member_descriptor", 
+          "<member 'raw' of '_io.BufferedWriter' objects>"
+        ], 
+        "193": [
+          "method_descriptor", 
+          "<method 'readable' of '_io.BufferedWriter' objects>"
+        ], 
+        "194": [
+          "method_descriptor", 
+          "<method 'seek' of '_io.BufferedWriter' objects>"
+        ], 
+        "195": [
+          "method_descriptor", 
+          "<method 'seekable' of '_io.BufferedWriter' objects>"
+        ], 
+        "196": [
+          "method_descriptor", 
+          "<method 'tell' of '_io.BufferedWriter' objects>"
+        ], 
+        "197": [
+          "method_descriptor", 
+          "<method 'truncate' of '_io.BufferedWriter' objects>"
+        ], 
+        "198": [
+          "method_descriptor", 
+          "<method 'writable' of '_io.BufferedWriter' objects>"
+        ], 
+        "199": [
+          "method_descriptor", 
+          "<method 'write' of '_io.BufferedWriter' objects>"
+        ], 
+        "200": [
+          "CLASS", 
+          "FileIO", 
+          [
+            "_RawIOBase"
+          ], 
+          [
+            "__getattribute__", 
+            [
+              "REF", 
+              201
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              202
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              203
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              204
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              205
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              206
+            ]
+          ], 
+          [
+            "closefd", 
+            [
+              "REF", 
+              207
+            ]
+          ], 
+          [
+            "fileno", 
+            [
+              "REF", 
+              208
+            ]
+          ], 
+          [
+            "isatty", 
+            [
+              "REF", 
+              209
+            ]
+          ], 
+          [
+            "mode", 
+            [
+              "REF", 
+              210
+            ]
+          ], 
+          [
+            "read", 
+            [
+              "REF", 
+              211
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              212
+            ]
+          ], 
+          [
+            "readall", 
+            [
+              "REF", 
+              213
+            ]
+          ], 
+          [
+            "readinto", 
+            [
+              "REF", 
+              214
+            ]
+          ], 
+          [
+            "seek", 
+            [
+              "REF", 
+              215
+            ]
+          ], 
+          [
+            "seekable", 
+            [
+              "REF", 
+              216
+            ]
+          ], 
+          [
+            "tell", 
+            [
+              "REF", 
+              217
+            ]
+          ], 
+          [
+            "truncate", 
+            [
+              "REF", 
+              218
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              219
+            ]
+          ], 
+          [
+            "write", 
+            [
+              "REF", 
+              220
+            ]
+          ]
+        ], 
+        "201": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of '_io.FileIO' objects>"
+        ], 
+        "202": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.FileIO' objects>"
+        ], 
+        "203": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "204": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.FileIO' objects>"
+        ], 
+        "205": [
+          "method_descriptor", 
+          "<method 'close' of '_io.FileIO' objects>"
+        ], 
+        "206": [
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.FileIO' objects>"
+        ], 
+        "207": [
+          "getset_descriptor", 
+          "<attribute 'closefd' of '_io.FileIO' objects>"
+        ], 
+        "208": [
+          "method_descriptor", 
+          "<method 'fileno' of '_io.FileIO' objects>"
+        ], 
+        "209": [
+          "method_descriptor", 
+          "<method 'isatty' of '_io.FileIO' objects>"
+        ], 
+        "210": [
+          "getset_descriptor", 
+          "<attribute 'mode' of '_io.FileIO' objects>"
+        ], 
+        "211": [
+          "method_descriptor", 
+          "<method 'read' of '_io.FileIO' objects>"
+        ], 
+        "212": [
+          "method_descriptor", 
+          "<method 'readable' of '_io.FileIO' objects>"
+        ], 
+        "213": [
+          "method_descriptor", 
+          "<method 'readall' of '_io.FileIO' objects>"
+        ], 
+        "214": [
+          "method_descriptor", 
+          "<method 'readinto' of '_io.FileIO' objects>"
+        ], 
+        "215": [
+          "method_descriptor", 
+          "<method 'seek' of '_io.FileIO' objects>"
+        ], 
+        "216": [
+          "method_descriptor", 
+          "<method 'seekable' of '_io.FileIO' objects>"
+        ], 
+        "217": [
+          "method_descriptor", 
+          "<method 'tell' of '_io.FileIO' objects>"
+        ], 
+        "218": [
+          "method_descriptor", 
+          "<method 'truncate' of '_io.FileIO' objects>"
+        ], 
+        "219": [
+          "method_descriptor", 
+          "<method 'writable' of '_io.FileIO' objects>"
+        ], 
+        "220": [
+          "method_descriptor", 
+          "<method 'write' of '_io.FileIO' objects>"
+        ], 
+        "221": [
+          "INSTANCE", 
+          "ABCMeta", 
+          [
+            "__abstractmethods__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "_abc_cache", 
+            [
+              "REF", 
+              222
+            ]
+          ], 
+          [
+            "_abc_negative_cache", 
+            [
+              "REF", 
+              227
+            ]
+          ], 
+          [
+            "_abc_negative_cache_version", 
+            20
+          ], 
+          [
+            "_abc_registry", 
+            [
+              "REF", 
+              233
+            ]
+          ]
+        ], 
+        "222": [
+          "INSTANCE", 
+          "WeakSet", 
+          [
+            "_iterating", 
+            [
+              "REF", 
+              223
+            ]
+          ], 
+          [
+            "_pending_removals", 
+            [
+              "REF", 
+              224
+            ]
+          ], 
+          [
+            "_remove", 
+            [
+              "REF", 
+              225
+            ]
+          ], 
+          [
+            "data", 
+            [
+              "REF", 
+              226
+            ]
+          ]
+        ], 
+        "223": [
+          "SET"
+        ], 
+        "224": [
+          "LIST"
+        ], 
+        "225": [
+          "FUNCTION", 
+          "_remove(item, selfref)", 
+          null
+        ], 
+        "226": [
+          "SET"
+        ], 
+        "227": [
+          "INSTANCE", 
+          "WeakSet", 
+          [
+            "_iterating", 
+            [
+              "REF", 
+              228
+            ]
+          ], 
+          [
+            "_pending_removals", 
+            [
+              "REF", 
+              229
+            ]
+          ], 
+          [
+            "_remove", 
+            [
+              "REF", 
+              230
+            ]
+          ], 
+          [
+            "data", 
+            [
+              "REF", 
+              231
+            ]
+          ]
+        ], 
+        "228": [
+          "SET"
+        ], 
+        "229": [
+          "LIST"
+        ], 
+        "230": [
+          "FUNCTION", 
+          "_remove(item, selfref)", 
+          null
+        ], 
+        "231": [
+          "SET", 
+          [
+            "REF", 
+            232
+          ]
+        ], 
+        "232": [
+          "weakref", 
+          "<weakref at 0xADDR>"
+        ], 
+        "233": [
+          "INSTANCE", 
+          "WeakSet", 
+          [
+            "_iterating", 
+            [
+              "REF", 
+              234
+            ]
+          ], 
+          [
+            "_pending_removals", 
+            [
+              "REF", 
+              235
+            ]
+          ], 
+          [
+            "_remove", 
+            [
+              "REF", 
+              236
+            ]
+          ], 
+          [
+            "data", 
+            [
+              "REF", 
+              237
+            ]
+          ]
+        ], 
+        "234": [
+          "SET"
+        ], 
+        "235": [
+          "LIST"
+        ], 
+        "236": [
+          "FUNCTION", 
+          "_remove(item, selfref)", 
+          null
+        ], 
+        "237": [
+          "SET", 
+          [
+            "REF", 
+            238
+          ], 
+          [
+            "REF", 
+            239
+          ], 
+          [
+            "REF", 
+            240
+          ], 
+          [
+            "REF", 
+            241
+          ], 
+          [
+            "REF", 
+            242
+          ]
+        ], 
+        "238": [
+          "weakref", 
+          "<weakref at 0xADDR>"
+        ], 
+        "239": [
+          "weakref", 
+          "<weakref at 0xADDR>"
+        ], 
+        "240": [
+          "weakref", 
+          "<weakref at 0xADDR>"
+        ], 
+        "241": [
+          "weakref", 
+          "<weakref at 0xADDR>"
+        ], 
+        "242": [
+          "weakref", 
+          "<weakref at 0xADDR>"
+        ], 
+        "243": [
+          "CLASS", 
+          "BytesIO", 
+          [
+            "_BufferedIOBase"
+          ], 
+          [
+            "__getstate__", 
+            [
+              "REF", 
+              244
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              245
+            ]
+          ], 
+          [
+            "__iter__", 
+            [
+              "REF", 
+              246
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              247
+            ]
+          ], 
+          [
+            "__setstate__", 
+            [
+              "REF", 
+              248
+            ]
+          ], 
+          [
+            "__sizeof__", 
+            [
+              "REF", 
+              249
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              250
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              251
+            ]
+          ], 
+          [
+            "flush", 
+            [
+              "REF", 
+              252
+            ]
+          ], 
+          [
+            "getvalue", 
+            [
+              "REF", 
+              253
+            ]
+          ], 
+          [
+            "isatty", 
+            [
+              "REF", 
+              254
+            ]
+          ], 
+          [
+            "next", 
+            [
+              "REF", 
+              255
+            ]
+          ], 
+          [
+            "read", 
+            [
+              "REF", 
+              256
+            ]
+          ], 
+          [
+            "read1", 
+            [
+              "REF", 
+              257
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              258
+            ]
+          ], 
+          [
+            "readinto", 
+            [
+              "REF", 
+              259
+            ]
+          ], 
+          [
+            "readline", 
+            [
+              "REF", 
+              260
+            ]
+          ], 
+          [
+            "readlines", 
+            [
+              "REF", 
+              261
+            ]
+          ], 
+          [
+            "seek", 
+            [
+              "REF", 
+              262
+            ]
+          ], 
+          [
+            "seekable", 
+            [
+              "REF", 
+              263
+            ]
+          ], 
+          [
+            "tell", 
+            [
+              "REF", 
+              264
+            ]
+          ], 
+          [
+            "truncate", 
+            [
+              "REF", 
+              265
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              266
+            ]
+          ], 
+          [
+            "write", 
+            [
+              "REF", 
+              267
+            ]
+          ], 
+          [
+            "writelines", 
+            [
+              "REF", 
+              268
+            ]
+          ]
+        ], 
+        "244": [
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.BytesIO' objects>"
+        ], 
+        "245": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BytesIO' objects>"
+        ], 
+        "246": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__iter__' of '_io.BytesIO' objects>"
+        ], 
+        "247": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "248": [
+          "method_descriptor", 
+          "<method '__setstate__' of '_io.BytesIO' objects>"
+        ], 
+        "249": [
+          "method_descriptor", 
+          "<method '__sizeof__' of '_io.BytesIO' objects>"
+        ], 
+        "250": [
+          "method_descriptor", 
+          "<method 'close' of '_io.BytesIO' objects>"
+        ], 
+        "251": [
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BytesIO' objects>"
+        ], 
+        "252": [
+          "method_descriptor", 
+          "<method 'flush' of '_io.BytesIO' objects>"
+        ], 
+        "253": [
+          "method_descriptor", 
+          "<method 'getvalue' of '_io.BytesIO' objects>"
+        ], 
+        "254": [
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BytesIO' objects>"
+        ], 
+        "255": [
+          "wrapper_descriptor", 
+          "<slot wrapper 'next' of '_io.BytesIO' objects>"
+        ], 
+        "256": [
+          "method_descriptor", 
+          "<method 'read' of '_io.BytesIO' objects>"
+        ], 
+        "257": [
+          "method_descriptor", 
+          "<method 'read1' of '_io.BytesIO' objects>"
+        ], 
+        "258": [
+          "method_descriptor", 
+          "<method 'readable' of '_io.BytesIO' objects>"
+        ], 
+        "259": [
+          "method_descriptor", 
+          "<method 'readinto' of '_io.BytesIO' objects>"
+        ], 
+        "260": [
+          "method_descriptor", 
+          "<method 'readline' of '_io.BytesIO' objects>"
+        ], 
+        "261": [
+          "method_descriptor", 
+          "<method 'readlines' of '_io.BytesIO' objects>"
+        ], 
+        "262": [
+          "method_descriptor", 
+          "<method 'seek' of '_io.BytesIO' objects>"
+        ], 
+        "263": [
+          "method_descriptor", 
+          "<method 'seekable' of '_io.BytesIO' objects>"
+        ], 
+        "264": [
+          "method_descriptor", 
+          "<method 'tell' of '_io.BytesIO' objects>"
+        ], 
+        "265": [
+          "method_descriptor", 
+          "<method 'truncate' of '_io.BytesIO' objects>"
+        ], 
+        "266": [
+          "method_descriptor", 
+          "<method 'writable' of '_io.BytesIO' objects>"
+        ], 
+        "267": [
+          "method_descriptor", 
+          "<method 'write' of '_io.BytesIO' objects>"
+        ], 
+        "268": [
+          "method_descriptor", 
+          "<method 'writelines' of '_io.BytesIO' objects>"
+        ]
+      }, 
+      "line": 1, 
+      "event": "return"
+    }
+  ]
+}

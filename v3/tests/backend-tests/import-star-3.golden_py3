@@ -1,0 +1,180 @@
+{
+  "code": "from json import *\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "load", 
+        "JSONEncoder", 
+        "dump", 
+        "JSONDecoder", 
+        "dumps", 
+        "loads"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "load": [
+          "REF", 
+          1
+        ], 
+        "JSONEncoder": [
+          "REF", 
+          2
+        ], 
+        "dump": [
+          "REF", 
+          7
+        ], 
+        "JSONDecoder": [
+          "REF", 
+          8
+        ], 
+        "dumps": [
+          "REF", 
+          12
+        ], 
+        "loads": [
+          "REF", 
+          13
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "load(fp, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, **kw)", 
+          null
+        ], 
+        "2": [
+          "CLASS", 
+          "JSONEncoder", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "default", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "encode", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "item_separator", 
+            ", "
+          ], 
+          [
+            "iterencode", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "key_separator", 
+            ": "
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__init__(self, skipkeys, ensure_ascii, check_circular, allow_nan, sort_keys, indent, separators, default)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "default(self, o)", 
+          null
+        ], 
+        "5": [
+          "FUNCTION", 
+          "encode(self, o)", 
+          null
+        ], 
+        "6": [
+          "FUNCTION", 
+          "iterencode(self, o, _one_shot)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "dump(obj, fp, skipkeys, ensure_ascii, check_circular, allow_nan, cls, indent, separators, default, sort_keys, **kw)", 
+          null
+        ], 
+        "8": [
+          "CLASS", 
+          "JSONDecoder", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "decode", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "raw_decode", 
+            [
+              "REF", 
+              11
+            ]
+          ]
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__init__(self, object_hook, parse_float, parse_int, parse_constant, strict, object_pairs_hook)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "decode(self, s, _w)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "raw_decode(self, s, idx)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "dumps(obj, skipkeys, ensure_ascii, check_circular, allow_nan, cls, indent, separators, default, sort_keys, **kw)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "loads(s, encoding, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, **kw)", 
+          null
+        ]
+      }, 
+      "line": 1, 
+      "event": "return"
+    }
+  ]
+}

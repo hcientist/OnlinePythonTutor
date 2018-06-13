@@ -1,0 +1,3119 @@
+{
+  "code": "from io import *\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 1,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "BlockingIOError": [
+          "REF",
+          1
+        ],
+        "open": [
+          "REF",
+          3
+        ],
+        "IOBase": [
+          "REF",
+          4
+        ],
+        "RawIOBase": [
+          "REF",
+          21
+        ],
+        "FileIO": [
+          "REF",
+          39
+        ],
+        "BytesIO": [
+          "REF",
+          64
+        ],
+        "StringIO": [
+          "REF",
+          91
+        ],
+        "BufferedIOBase": [
+          "REF",
+          111
+        ],
+        "BufferedReader": [
+          "REF",
+          133
+        ],
+        "BufferedWriter": [
+          "REF",
+          162
+        ],
+        "BufferedRWPair": [
+          "REF",
+          185
+        ],
+        "BufferedRandom": [
+          "REF",
+          201
+        ],
+        "TextIOBase": [
+          "REF",
+          232
+        ],
+        "TextIOWrapper": [
+          "REF",
+          251
+        ],
+        "UnsupportedOperation": [
+          "REF",
+          280
+        ],
+        "SEEK_SET": 0,
+        "SEEK_CUR": 1,
+        "SEEK_END": 2
+      },
+      "ordered_globals": [
+        "BlockingIOError",
+        "open",
+        "IOBase",
+        "RawIOBase",
+        "FileIO",
+        "BytesIO",
+        "StringIO",
+        "BufferedIOBase",
+        "BufferedReader",
+        "BufferedWriter",
+        "BufferedRWPair",
+        "BufferedRandom",
+        "TextIOBase",
+        "TextIOWrapper",
+        "UnsupportedOperation",
+        "SEEK_SET",
+        "SEEK_CUR",
+        "SEEK_END"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "BlockingIOError",
+          [
+            "OSError"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "3": [
+          "FUNCTION",
+          "open(...)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "IOBase",
+          [
+            "_IOBase"
+          ],
+          [
+            "__abstractmethods__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "_abc_cache",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "_abc_negative_cache",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "_abc_negative_cache_version",
+            0
+          ],
+          [
+            "_abc_registry",
+            [
+              "REF",
+              16
+            ]
+          ]
+        ],
+        "5": [
+          "INSTANCE",
+          "frozenset"
+        ],
+        "6": [
+          "INSTANCE",
+          "WeakSet",
+          [
+            "_iterating",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "_pending_removals",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "_remove",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "data",
+            [
+              "REF",
+              10
+            ]
+          ]
+        ],
+        "7": [
+          "SET"
+        ],
+        "8": [
+          "LIST"
+        ],
+        "9": [
+          "FUNCTION",
+          "_remove(item, selfref)",
+          null
+        ],
+        "10": [
+          "SET"
+        ],
+        "11": [
+          "INSTANCE",
+          "WeakSet",
+          [
+            "_iterating",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "_pending_removals",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "_remove",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "data",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "12": [
+          "SET"
+        ],
+        "13": [
+          "LIST"
+        ],
+        "14": [
+          "FUNCTION",
+          "_remove(item, selfref)",
+          null
+        ],
+        "15": [
+          "SET"
+        ],
+        "16": [
+          "INSTANCE",
+          "WeakSet",
+          [
+            "_iterating",
+            [
+              "REF",
+              17
+            ]
+          ],
+          [
+            "_pending_removals",
+            [
+              "REF",
+              18
+            ]
+          ],
+          [
+            "_remove",
+            [
+              "REF",
+              19
+            ]
+          ],
+          [
+            "data",
+            [
+              "REF",
+              20
+            ]
+          ]
+        ],
+        "17": [
+          "SET"
+        ],
+        "18": [
+          "LIST"
+        ],
+        "19": [
+          "FUNCTION",
+          "_remove(item, selfref)",
+          null
+        ],
+        "20": [
+          "SET"
+        ],
+        "21": [
+          "CLASS",
+          "RawIOBase",
+          [
+            "_RawIOBase",
+            "IOBase"
+          ],
+          [
+            "__abstractmethods__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "_abc_cache",
+            [
+              "REF",
+              22
+            ]
+          ],
+          [
+            "_abc_negative_cache",
+            [
+              "REF",
+              27
+            ]
+          ],
+          [
+            "_abc_negative_cache_version",
+            0
+          ],
+          [
+            "_abc_registry",
+            [
+              "REF",
+              33
+            ]
+          ]
+        ],
+        "22": [
+          "INSTANCE",
+          "WeakSet",
+          [
+            "_iterating",
+            [
+              "REF",
+              23
+            ]
+          ],
+          [
+            "_pending_removals",
+            [
+              "REF",
+              24
+            ]
+          ],
+          [
+            "_remove",
+            [
+              "REF",
+              25
+            ]
+          ],
+          [
+            "data",
+            [
+              "REF",
+              26
+            ]
+          ]
+        ],
+        "23": [
+          "SET"
+        ],
+        "24": [
+          "LIST"
+        ],
+        "25": [
+          "FUNCTION",
+          "_remove(item, selfref)",
+          null
+        ],
+        "26": [
+          "SET"
+        ],
+        "27": [
+          "INSTANCE",
+          "WeakSet",
+          [
+            "_iterating",
+            [
+              "REF",
+              28
+            ]
+          ],
+          [
+            "_pending_removals",
+            [
+              "REF",
+              29
+            ]
+          ],
+          [
+            "_remove",
+            [
+              "REF",
+              30
+            ]
+          ],
+          [
+            "data",
+            [
+              "REF",
+              31
+            ]
+          ]
+        ],
+        "28": [
+          "SET"
+        ],
+        "29": [
+          "LIST"
+        ],
+        "30": [
+          "FUNCTION",
+          "_remove(item, selfref)",
+          null
+        ],
+        "31": [
+          "SET",
+          [
+            "REF",
+            32
+          ]
+        ],
+        "32": [
+          "INSTANCE",
+          "weakref"
+        ],
+        "33": [
+          "INSTANCE",
+          "WeakSet",
+          [
+            "_iterating",
+            [
+              "REF",
+              34
+            ]
+          ],
+          [
+            "_pending_removals",
+            [
+              "REF",
+              35
+            ]
+          ],
+          [
+            "_remove",
+            [
+              "REF",
+              36
+            ]
+          ],
+          [
+            "data",
+            [
+              "REF",
+              37
+            ]
+          ]
+        ],
+        "34": [
+          "SET"
+        ],
+        "35": [
+          "LIST"
+        ],
+        "36": [
+          "FUNCTION",
+          "_remove(item, selfref)",
+          null
+        ],
+        "37": [
+          "SET",
+          [
+            "REF",
+            38
+          ]
+        ],
+        "38": [
+          "INSTANCE",
+          "weakref"
+        ],
+        "39": [
+          "CLASS",
+          "FileIO",
+          [
+            "_RawIOBase"
+          ],
+          [
+            "__getattribute__",
+            [
+              "REF",
+              40
+            ]
+          ],
+          [
+            "__getstate__",
+            [
+              "REF",
+              41
+            ]
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              42
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              43
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              44
+            ]
+          ],
+          [
+            "_blksize",
+            [
+              "REF",
+              45
+            ]
+          ],
+          [
+            "_dealloc_warn",
+            [
+              "REF",
+              46
+            ]
+          ],
+          [
+            "_finalizing",
+            [
+              "REF",
+              47
+            ]
+          ],
+          [
+            "close",
+            [
+              "REF",
+              48
+            ]
+          ],
+          [
+            "closed",
+            [
+              "REF",
+              49
+            ]
+          ],
+          [
+            "closefd",
+            [
+              "REF",
+              50
+            ]
+          ],
+          [
+            "fileno",
+            [
+              "REF",
+              51
+            ]
+          ],
+          [
+            "isatty",
+            [
+              "REF",
+              52
+            ]
+          ],
+          [
+            "mode",
+            [
+              "REF",
+              53
+            ]
+          ],
+          [
+            "read",
+            [
+              "REF",
+              54
+            ]
+          ],
+          [
+            "readable",
+            [
+              "REF",
+              55
+            ]
+          ],
+          [
+            "readall",
+            [
+              "REF",
+              56
+            ]
+          ],
+          [
+            "readinto",
+            [
+              "REF",
+              57
+            ]
+          ],
+          [
+            "seek",
+            [
+              "REF",
+              58
+            ]
+          ],
+          [
+            "seekable",
+            [
+              "REF",
+              59
+            ]
+          ],
+          [
+            "tell",
+            [
+              "REF",
+              60
+            ]
+          ],
+          [
+            "truncate",
+            [
+              "REF",
+              61
+            ]
+          ],
+          [
+            "writable",
+            [
+              "REF",
+              62
+            ]
+          ],
+          [
+            "write",
+            [
+              "REF",
+              63
+            ]
+          ]
+        ],
+        "40": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "41": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "42": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "43": [
+          "FUNCTION",
+          "__new__(...)",
+          null
+        ],
+        "44": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "45": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "46": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "47": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "48": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "49": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "50": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "51": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "52": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "53": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "54": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "55": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "56": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "57": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "58": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "59": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "60": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "61": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "62": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "63": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "64": [
+          "CLASS",
+          "BytesIO",
+          [
+            "_BufferedIOBase"
+          ],
+          [
+            "__getstate__",
+            [
+              "REF",
+              65
+            ]
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              66
+            ]
+          ],
+          [
+            "__iter__",
+            [
+              "REF",
+              67
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              68
+            ]
+          ],
+          [
+            "__next__",
+            [
+              "REF",
+              69
+            ]
+          ],
+          [
+            "__setstate__",
+            [
+              "REF",
+              70
+            ]
+          ],
+          [
+            "__sizeof__",
+            [
+              "REF",
+              71
+            ]
+          ],
+          [
+            "close",
+            [
+              "REF",
+              72
+            ]
+          ],
+          [
+            "closed",
+            [
+              "REF",
+              73
+            ]
+          ],
+          [
+            "flush",
+            [
+              "REF",
+              74
+            ]
+          ],
+          [
+            "getbuffer",
+            [
+              "REF",
+              75
+            ]
+          ],
+          [
+            "getvalue",
+            [
+              "REF",
+              76
+            ]
+          ],
+          [
+            "isatty",
+            [
+              "REF",
+              77
+            ]
+          ],
+          [
+            "read",
+            [
+              "REF",
+              78
+            ]
+          ],
+          [
+            "read1",
+            [
+              "REF",
+              79
+            ]
+          ],
+          [
+            "readable",
+            [
+              "REF",
+              80
+            ]
+          ],
+          [
+            "readinto",
+            [
+              "REF",
+              81
+            ]
+          ],
+          [
+            "readline",
+            [
+              "REF",
+              82
+            ]
+          ],
+          [
+            "readlines",
+            [
+              "REF",
+              83
+            ]
+          ],
+          [
+            "seek",
+            [
+              "REF",
+              84
+            ]
+          ],
+          [
+            "seekable",
+            [
+              "REF",
+              85
+            ]
+          ],
+          [
+            "tell",
+            [
+              "REF",
+              86
+            ]
+          ],
+          [
+            "truncate",
+            [
+              "REF",
+              87
+            ]
+          ],
+          [
+            "writable",
+            [
+              "REF",
+              88
+            ]
+          ],
+          [
+            "write",
+            [
+              "REF",
+              89
+            ]
+          ],
+          [
+            "writelines",
+            [
+              "REF",
+              90
+            ]
+          ]
+        ],
+        "65": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "66": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "67": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "68": [
+          "FUNCTION",
+          "__new__(...)",
+          null
+        ],
+        "69": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "70": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "71": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "72": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "73": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "74": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "75": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "76": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "77": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "78": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "79": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "80": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "81": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "82": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "83": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "84": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "85": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "86": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "87": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "88": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "89": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "90": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "91": [
+          "CLASS",
+          "StringIO",
+          [
+            "_TextIOBase"
+          ],
+          [
+            "__getstate__",
+            [
+              "REF",
+              92
+            ]
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              93
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              94
+            ]
+          ],
+          [
+            "__next__",
+            [
+              "REF",
+              95
+            ]
+          ],
+          [
+            "__setstate__",
+            [
+              "REF",
+              96
+            ]
+          ],
+          [
+            "close",
+            [
+              "REF",
+              97
+            ]
+          ],
+          [
+            "closed",
+            [
+              "REF",
+              98
+            ]
+          ],
+          [
+            "getvalue",
+            [
+              "REF",
+              99
+            ]
+          ],
+          [
+            "line_buffering",
+            [
+              "REF",
+              100
+            ]
+          ],
+          [
+            "newlines",
+            [
+              "REF",
+              101
+            ]
+          ],
+          [
+            "read",
+            [
+              "REF",
+              102
+            ]
+          ],
+          [
+            "readable",
+            [
+              "REF",
+              103
+            ]
+          ],
+          [
+            "readline",
+            [
+              "REF",
+              104
+            ]
+          ],
+          [
+            "seek",
+            [
+              "REF",
+              105
+            ]
+          ],
+          [
+            "seekable",
+            [
+              "REF",
+              106
+            ]
+          ],
+          [
+            "tell",
+            [
+              "REF",
+              107
+            ]
+          ],
+          [
+            "truncate",
+            [
+              "REF",
+              108
+            ]
+          ],
+          [
+            "writable",
+            [
+              "REF",
+              109
+            ]
+          ],
+          [
+            "write",
+            [
+              "REF",
+              110
+            ]
+          ]
+        ],
+        "92": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "93": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "94": [
+          "FUNCTION",
+          "__new__(...)",
+          null
+        ],
+        "95": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "96": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "97": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "98": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "99": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "100": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "101": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "102": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "103": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "104": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "105": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "106": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "107": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "108": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "109": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "110": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "111": [
+          "CLASS",
+          "BufferedIOBase",
+          [
+            "_BufferedIOBase",
+            "IOBase"
+          ],
+          [
+            "__abstractmethods__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "_abc_cache",
+            [
+              "REF",
+              112
+            ]
+          ],
+          [
+            "_abc_negative_cache",
+            [
+              "REF",
+              117
+            ]
+          ],
+          [
+            "_abc_negative_cache_version",
+            5
+          ],
+          [
+            "_abc_registry",
+            [
+              "REF",
+              123
+            ]
+          ]
+        ],
+        "112": [
+          "INSTANCE",
+          "WeakSet",
+          [
+            "_iterating",
+            [
+              "REF",
+              113
+            ]
+          ],
+          [
+            "_pending_removals",
+            [
+              "REF",
+              114
+            ]
+          ],
+          [
+            "_remove",
+            [
+              "REF",
+              115
+            ]
+          ],
+          [
+            "data",
+            [
+              "REF",
+              116
+            ]
+          ]
+        ],
+        "113": [
+          "SET"
+        ],
+        "114": [
+          "LIST"
+        ],
+        "115": [
+          "FUNCTION",
+          "_remove(item, selfref)",
+          null
+        ],
+        "116": [
+          "SET"
+        ],
+        "117": [
+          "INSTANCE",
+          "WeakSet",
+          [
+            "_iterating",
+            [
+              "REF",
+              118
+            ]
+          ],
+          [
+            "_pending_removals",
+            [
+              "REF",
+              119
+            ]
+          ],
+          [
+            "_remove",
+            [
+              "REF",
+              120
+            ]
+          ],
+          [
+            "data",
+            [
+              "REF",
+              121
+            ]
+          ]
+        ],
+        "118": [
+          "SET"
+        ],
+        "119": [
+          "LIST"
+        ],
+        "120": [
+          "FUNCTION",
+          "_remove(item, selfref)",
+          null
+        ],
+        "121": [
+          "SET",
+          [
+            "REF",
+            122
+          ]
+        ],
+        "122": [
+          "INSTANCE",
+          "weakref"
+        ],
+        "123": [
+          "INSTANCE",
+          "WeakSet",
+          [
+            "_iterating",
+            [
+              "REF",
+              124
+            ]
+          ],
+          [
+            "_pending_removals",
+            [
+              "REF",
+              125
+            ]
+          ],
+          [
+            "_remove",
+            [
+              "REF",
+              126
+            ]
+          ],
+          [
+            "data",
+            [
+              "REF",
+              127
+            ]
+          ]
+        ],
+        "124": [
+          "SET"
+        ],
+        "125": [
+          "LIST"
+        ],
+        "126": [
+          "FUNCTION",
+          "_remove(item, selfref)",
+          null
+        ],
+        "127": [
+          "SET",
+          [
+            "REF",
+            128
+          ],
+          [
+            "REF",
+            129
+          ],
+          [
+            "REF",
+            130
+          ],
+          [
+            "REF",
+            131
+          ],
+          [
+            "REF",
+            132
+          ]
+        ],
+        "128": [
+          "INSTANCE",
+          "weakref"
+        ],
+        "129": [
+          "INSTANCE",
+          "weakref"
+        ],
+        "130": [
+          "INSTANCE",
+          "weakref"
+        ],
+        "131": [
+          "INSTANCE",
+          "weakref"
+        ],
+        "132": [
+          "INSTANCE",
+          "weakref"
+        ],
+        "133": [
+          "CLASS",
+          "BufferedReader",
+          [
+            "_BufferedIOBase"
+          ],
+          [
+            "__getstate__",
+            [
+              "REF",
+              134
+            ]
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              135
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              136
+            ]
+          ],
+          [
+            "__next__",
+            [
+              "REF",
+              137
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              138
+            ]
+          ],
+          [
+            "__sizeof__",
+            [
+              "REF",
+              139
+            ]
+          ],
+          [
+            "_dealloc_warn",
+            [
+              "REF",
+              140
+            ]
+          ],
+          [
+            "_finalizing",
+            [
+              "REF",
+              141
+            ]
+          ],
+          [
+            "close",
+            [
+              "REF",
+              142
+            ]
+          ],
+          [
+            "closed",
+            [
+              "REF",
+              143
+            ]
+          ],
+          [
+            "detach",
+            [
+              "REF",
+              144
+            ]
+          ],
+          [
+            "fileno",
+            [
+              "REF",
+              145
+            ]
+          ],
+          [
+            "flush",
+            [
+              "REF",
+              146
+            ]
+          ],
+          [
+            "isatty",
+            [
+              "REF",
+              147
+            ]
+          ],
+          [
+            "mode",
+            [
+              "REF",
+              148
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              149
+            ]
+          ],
+          [
+            "peek",
+            [
+              "REF",
+              150
+            ]
+          ],
+          [
+            "raw",
+            [
+              "REF",
+              151
+            ]
+          ],
+          [
+            "read",
+            [
+              "REF",
+              152
+            ]
+          ],
+          [
+            "read1",
+            [
+              "REF",
+              153
+            ]
+          ],
+          [
+            "readable",
+            [
+              "REF",
+              154
+            ]
+          ],
+          [
+            "readinto",
+            [
+              "REF",
+              155
+            ]
+          ],
+          [
+            "readinto1",
+            [
+              "REF",
+              156
+            ]
+          ],
+          [
+            "readline",
+            [
+              "REF",
+              157
+            ]
+          ],
+          [
+            "seek",
+            [
+              "REF",
+              158
+            ]
+          ],
+          [
+            "seekable",
+            [
+              "REF",
+              159
+            ]
+          ],
+          [
+            "tell",
+            [
+              "REF",
+              160
+            ]
+          ],
+          [
+            "truncate",
+            [
+              "REF",
+              161
+            ]
+          ]
+        ],
+        "134": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "135": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "136": [
+          "FUNCTION",
+          "__new__(...)",
+          null
+        ],
+        "137": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "138": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "139": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "140": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "141": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "142": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "143": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "144": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "145": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "146": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "147": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "148": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "149": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "150": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "151": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "152": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "153": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "154": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "155": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "156": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "157": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "158": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "159": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "160": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "161": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "162": [
+          "CLASS",
+          "BufferedWriter",
+          [
+            "_BufferedIOBase"
+          ],
+          [
+            "__getstate__",
+            [
+              "REF",
+              163
+            ]
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              164
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              165
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              166
+            ]
+          ],
+          [
+            "__sizeof__",
+            [
+              "REF",
+              167
+            ]
+          ],
+          [
+            "_dealloc_warn",
+            [
+              "REF",
+              168
+            ]
+          ],
+          [
+            "_finalizing",
+            [
+              "REF",
+              169
+            ]
+          ],
+          [
+            "close",
+            [
+              "REF",
+              170
+            ]
+          ],
+          [
+            "closed",
+            [
+              "REF",
+              171
+            ]
+          ],
+          [
+            "detach",
+            [
+              "REF",
+              172
+            ]
+          ],
+          [
+            "fileno",
+            [
+              "REF",
+              173
+            ]
+          ],
+          [
+            "flush",
+            [
+              "REF",
+              174
+            ]
+          ],
+          [
+            "isatty",
+            [
+              "REF",
+              175
+            ]
+          ],
+          [
+            "mode",
+            [
+              "REF",
+              176
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              177
+            ]
+          ],
+          [
+            "raw",
+            [
+              "REF",
+              178
+            ]
+          ],
+          [
+            "seek",
+            [
+              "REF",
+              179
+            ]
+          ],
+          [
+            "seekable",
+            [
+              "REF",
+              180
+            ]
+          ],
+          [
+            "tell",
+            [
+              "REF",
+              181
+            ]
+          ],
+          [
+            "truncate",
+            [
+              "REF",
+              182
+            ]
+          ],
+          [
+            "writable",
+            [
+              "REF",
+              183
+            ]
+          ],
+          [
+            "write",
+            [
+              "REF",
+              184
+            ]
+          ]
+        ],
+        "163": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "164": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "165": [
+          "FUNCTION",
+          "__new__(...)",
+          null
+        ],
+        "166": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "167": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "168": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "169": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "170": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "171": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "172": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "173": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "174": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "175": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "176": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "177": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "178": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "179": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "180": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "181": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "182": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "183": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "184": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "185": [
+          "CLASS",
+          "BufferedRWPair",
+          [
+            "_BufferedIOBase"
+          ],
+          [
+            "__getstate__",
+            [
+              "REF",
+              186
+            ]
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              187
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              188
+            ]
+          ],
+          [
+            "close",
+            [
+              "REF",
+              189
+            ]
+          ],
+          [
+            "closed",
+            [
+              "REF",
+              190
+            ]
+          ],
+          [
+            "flush",
+            [
+              "REF",
+              191
+            ]
+          ],
+          [
+            "isatty",
+            [
+              "REF",
+              192
+            ]
+          ],
+          [
+            "peek",
+            [
+              "REF",
+              193
+            ]
+          ],
+          [
+            "read",
+            [
+              "REF",
+              194
+            ]
+          ],
+          [
+            "read1",
+            [
+              "REF",
+              195
+            ]
+          ],
+          [
+            "readable",
+            [
+              "REF",
+              196
+            ]
+          ],
+          [
+            "readinto",
+            [
+              "REF",
+              197
+            ]
+          ],
+          [
+            "readinto1",
+            [
+              "REF",
+              198
+            ]
+          ],
+          [
+            "writable",
+            [
+              "REF",
+              199
+            ]
+          ],
+          [
+            "write",
+            [
+              "REF",
+              200
+            ]
+          ]
+        ],
+        "186": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "187": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "188": [
+          "FUNCTION",
+          "__new__(...)",
+          null
+        ],
+        "189": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "190": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "191": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "192": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "193": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "194": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "195": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "196": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "197": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "198": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "199": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "200": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "201": [
+          "CLASS",
+          "BufferedRandom",
+          [
+            "_BufferedIOBase"
+          ],
+          [
+            "__getstate__",
+            [
+              "REF",
+              202
+            ]
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              203
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              204
+            ]
+          ],
+          [
+            "__next__",
+            [
+              "REF",
+              205
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              206
+            ]
+          ],
+          [
+            "__sizeof__",
+            [
+              "REF",
+              207
+            ]
+          ],
+          [
+            "_dealloc_warn",
+            [
+              "REF",
+              208
+            ]
+          ],
+          [
+            "_finalizing",
+            [
+              "REF",
+              209
+            ]
+          ],
+          [
+            "close",
+            [
+              "REF",
+              210
+            ]
+          ],
+          [
+            "closed",
+            [
+              "REF",
+              211
+            ]
+          ],
+          [
+            "detach",
+            [
+              "REF",
+              212
+            ]
+          ],
+          [
+            "fileno",
+            [
+              "REF",
+              213
+            ]
+          ],
+          [
+            "flush",
+            [
+              "REF",
+              214
+            ]
+          ],
+          [
+            "isatty",
+            [
+              "REF",
+              215
+            ]
+          ],
+          [
+            "mode",
+            [
+              "REF",
+              216
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              217
+            ]
+          ],
+          [
+            "peek",
+            [
+              "REF",
+              218
+            ]
+          ],
+          [
+            "raw",
+            [
+              "REF",
+              219
+            ]
+          ],
+          [
+            "read",
+            [
+              "REF",
+              220
+            ]
+          ],
+          [
+            "read1",
+            [
+              "REF",
+              221
+            ]
+          ],
+          [
+            "readable",
+            [
+              "REF",
+              222
+            ]
+          ],
+          [
+            "readinto",
+            [
+              "REF",
+              223
+            ]
+          ],
+          [
+            "readinto1",
+            [
+              "REF",
+              224
+            ]
+          ],
+          [
+            "readline",
+            [
+              "REF",
+              225
+            ]
+          ],
+          [
+            "seek",
+            [
+              "REF",
+              226
+            ]
+          ],
+          [
+            "seekable",
+            [
+              "REF",
+              227
+            ]
+          ],
+          [
+            "tell",
+            [
+              "REF",
+              228
+            ]
+          ],
+          [
+            "truncate",
+            [
+              "REF",
+              229
+            ]
+          ],
+          [
+            "writable",
+            [
+              "REF",
+              230
+            ]
+          ],
+          [
+            "write",
+            [
+              "REF",
+              231
+            ]
+          ]
+        ],
+        "202": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "203": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "204": [
+          "FUNCTION",
+          "__new__(...)",
+          null
+        ],
+        "205": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "206": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "207": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "208": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "209": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "210": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "211": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "212": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "213": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "214": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "215": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "216": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "217": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "218": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "219": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "220": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "221": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "222": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "223": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "224": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "225": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "226": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "227": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "228": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "229": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "230": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "231": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "232": [
+          "CLASS",
+          "TextIOBase",
+          [
+            "_TextIOBase",
+            "IOBase"
+          ],
+          [
+            "__abstractmethods__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "_abc_cache",
+            [
+              "REF",
+              233
+            ]
+          ],
+          [
+            "_abc_negative_cache",
+            [
+              "REF",
+              238
+            ]
+          ],
+          [
+            "_abc_negative_cache_version",
+            7
+          ],
+          [
+            "_abc_registry",
+            [
+              "REF",
+              244
+            ]
+          ]
+        ],
+        "233": [
+          "INSTANCE",
+          "WeakSet",
+          [
+            "_iterating",
+            [
+              "REF",
+              234
+            ]
+          ],
+          [
+            "_pending_removals",
+            [
+              "REF",
+              235
+            ]
+          ],
+          [
+            "_remove",
+            [
+              "REF",
+              236
+            ]
+          ],
+          [
+            "data",
+            [
+              "REF",
+              237
+            ]
+          ]
+        ],
+        "234": [
+          "SET"
+        ],
+        "235": [
+          "LIST"
+        ],
+        "236": [
+          "FUNCTION",
+          "_remove(item, selfref)",
+          null
+        ],
+        "237": [
+          "SET"
+        ],
+        "238": [
+          "INSTANCE",
+          "WeakSet",
+          [
+            "_iterating",
+            [
+              "REF",
+              239
+            ]
+          ],
+          [
+            "_pending_removals",
+            [
+              "REF",
+              240
+            ]
+          ],
+          [
+            "_remove",
+            [
+              "REF",
+              241
+            ]
+          ],
+          [
+            "data",
+            [
+              "REF",
+              242
+            ]
+          ]
+        ],
+        "239": [
+          "SET"
+        ],
+        "240": [
+          "LIST"
+        ],
+        "241": [
+          "FUNCTION",
+          "_remove(item, selfref)",
+          null
+        ],
+        "242": [
+          "SET",
+          [
+            "REF",
+            243
+          ]
+        ],
+        "243": [
+          "INSTANCE",
+          "weakref"
+        ],
+        "244": [
+          "INSTANCE",
+          "WeakSet",
+          [
+            "_iterating",
+            [
+              "REF",
+              245
+            ]
+          ],
+          [
+            "_pending_removals",
+            [
+              "REF",
+              246
+            ]
+          ],
+          [
+            "_remove",
+            [
+              "REF",
+              247
+            ]
+          ],
+          [
+            "data",
+            [
+              "REF",
+              248
+            ]
+          ]
+        ],
+        "245": [
+          "SET"
+        ],
+        "246": [
+          "LIST"
+        ],
+        "247": [
+          "FUNCTION",
+          "_remove(item, selfref)",
+          null
+        ],
+        "248": [
+          "SET",
+          [
+            "REF",
+            249
+          ],
+          [
+            "REF",
+            250
+          ]
+        ],
+        "249": [
+          "INSTANCE",
+          "weakref"
+        ],
+        "250": [
+          "INSTANCE",
+          "weakref"
+        ],
+        "251": [
+          "CLASS",
+          "TextIOWrapper",
+          [
+            "_TextIOBase"
+          ],
+          [
+            "_CHUNK_SIZE",
+            [
+              "REF",
+              252
+            ]
+          ],
+          [
+            "__getstate__",
+            [
+              "REF",
+              253
+            ]
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              254
+            ]
+          ],
+          [
+            "__new__",
+            [
+              "REF",
+              255
+            ]
+          ],
+          [
+            "__next__",
+            [
+              "REF",
+              256
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              257
+            ]
+          ],
+          [
+            "_finalizing",
+            [
+              "REF",
+              258
+            ]
+          ],
+          [
+            "buffer",
+            [
+              "REF",
+              259
+            ]
+          ],
+          [
+            "close",
+            [
+              "REF",
+              260
+            ]
+          ],
+          [
+            "closed",
+            [
+              "REF",
+              261
+            ]
+          ],
+          [
+            "detach",
+            [
+              "REF",
+              262
+            ]
+          ],
+          [
+            "encoding",
+            [
+              "REF",
+              263
+            ]
+          ],
+          [
+            "errors",
+            [
+              "REF",
+              264
+            ]
+          ],
+          [
+            "fileno",
+            [
+              "REF",
+              265
+            ]
+          ],
+          [
+            "flush",
+            [
+              "REF",
+              266
+            ]
+          ],
+          [
+            "isatty",
+            [
+              "REF",
+              267
+            ]
+          ],
+          [
+            "line_buffering",
+            [
+              "REF",
+              268
+            ]
+          ],
+          [
+            "name",
+            [
+              "REF",
+              269
+            ]
+          ],
+          [
+            "newlines",
+            [
+              "REF",
+              270
+            ]
+          ],
+          [
+            "read",
+            [
+              "REF",
+              271
+            ]
+          ],
+          [
+            "readable",
+            [
+              "REF",
+              272
+            ]
+          ],
+          [
+            "readline",
+            [
+              "REF",
+              273
+            ]
+          ],
+          [
+            "seek",
+            [
+              "REF",
+              274
+            ]
+          ],
+          [
+            "seekable",
+            [
+              "REF",
+              275
+            ]
+          ],
+          [
+            "tell",
+            [
+              "REF",
+              276
+            ]
+          ],
+          [
+            "truncate",
+            [
+              "REF",
+              277
+            ]
+          ],
+          [
+            "writable",
+            [
+              "REF",
+              278
+            ]
+          ],
+          [
+            "write",
+            [
+              "REF",
+              279
+            ]
+          ]
+        ],
+        "252": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "253": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "254": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "255": [
+          "FUNCTION",
+          "__new__(...)",
+          null
+        ],
+        "256": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "257": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "258": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "259": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "260": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "261": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "262": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "263": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "264": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "265": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "266": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "267": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "268": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "269": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "270": [
+          "INSTANCE",
+          "getset_descriptor"
+        ],
+        "271": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "272": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "273": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "274": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "275": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "276": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "277": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "278": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "279": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "280": [
+          "CLASS",
+          "UnsupportedOperation",
+          [
+            "OSError",
+            "ValueError"
+          ]
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

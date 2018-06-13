@@ -1,0 +1,616 @@
+{
+  "code": "from collections import defaultdict\nd = defaultdict(list)\nd['hello'].append('a')\nd['hello'].append('b')\nd['hello'].append('c')\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "defaultdict"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "defaultdict": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "defaultdict", 
+          [
+            "dict"
+          ], 
+          [
+            "__copy__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__getattribute__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__missing__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__reduce__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "copy", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "default_factory", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "2": [
+          "method_descriptor", 
+          "<method '__copy__' of 'collections.defaultdict' objects>"
+        ], 
+        "3": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'collections.defaultdict' objects>"
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'collections.defaultdict' objects>"
+        ], 
+        "5": [
+          "method_descriptor", 
+          "<method '__missing__' of 'collections.defaultdict' objects>"
+        ], 
+        "6": [
+          "method_descriptor", 
+          "<method '__reduce__' of 'collections.defaultdict' objects>"
+        ], 
+        "7": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of 'collections.defaultdict' objects>"
+        ], 
+        "8": [
+          "method_descriptor", 
+          "<method 'copy' of 'collections.defaultdict' objects>"
+        ], 
+        "9": [
+          "member_descriptor", 
+          "<member 'default_factory' of 'collections.defaultdict' objects>"
+        ]
+      }, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "defaultdict", 
+        "d"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "defaultdict": [
+          "REF", 
+          1
+        ], 
+        "d": [
+          "REF", 
+          10
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "defaultdict", 
+          [
+            "dict"
+          ], 
+          [
+            "__copy__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__getattribute__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__missing__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__reduce__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "copy", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "default_factory", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "2": [
+          "method_descriptor", 
+          "<method '__copy__' of 'collections.defaultdict' objects>"
+        ], 
+        "3": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'collections.defaultdict' objects>"
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'collections.defaultdict' objects>"
+        ], 
+        "5": [
+          "method_descriptor", 
+          "<method '__missing__' of 'collections.defaultdict' objects>"
+        ], 
+        "6": [
+          "method_descriptor", 
+          "<method '__reduce__' of 'collections.defaultdict' objects>"
+        ], 
+        "7": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of 'collections.defaultdict' objects>"
+        ], 
+        "8": [
+          "method_descriptor", 
+          "<method 'copy' of 'collections.defaultdict' objects>"
+        ], 
+        "9": [
+          "member_descriptor", 
+          "<member 'default_factory' of 'collections.defaultdict' objects>"
+        ], 
+        "10": [
+          "collections.defaultdict", 
+          "defaultdict(<type 'list'>, {})"
+        ]
+      }, 
+      "line": 3, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "defaultdict", 
+        "d"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "defaultdict": [
+          "REF", 
+          1
+        ], 
+        "d": [
+          "REF", 
+          10
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "defaultdict", 
+          [
+            "dict"
+          ], 
+          [
+            "__copy__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__getattribute__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__missing__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__reduce__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "copy", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "default_factory", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "2": [
+          "method_descriptor", 
+          "<method '__copy__' of 'collections.defaultdict' objects>"
+        ], 
+        "3": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'collections.defaultdict' objects>"
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'collections.defaultdict' objects>"
+        ], 
+        "5": [
+          "method_descriptor", 
+          "<method '__missing__' of 'collections.defaultdict' objects>"
+        ], 
+        "6": [
+          "method_descriptor", 
+          "<method '__reduce__' of 'collections.defaultdict' objects>"
+        ], 
+        "7": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of 'collections.defaultdict' objects>"
+        ], 
+        "8": [
+          "method_descriptor", 
+          "<method 'copy' of 'collections.defaultdict' objects>"
+        ], 
+        "9": [
+          "member_descriptor", 
+          "<member 'default_factory' of 'collections.defaultdict' objects>"
+        ], 
+        "10": [
+          "collections.defaultdict", 
+          "defaultdict(<type 'list'>, {'hello': ['a']})"
+        ]
+      }, 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "defaultdict", 
+        "d"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "defaultdict": [
+          "REF", 
+          1
+        ], 
+        "d": [
+          "REF", 
+          10
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "defaultdict", 
+          [
+            "dict"
+          ], 
+          [
+            "__copy__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__getattribute__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__missing__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__reduce__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "copy", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "default_factory", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "2": [
+          "method_descriptor", 
+          "<method '__copy__' of 'collections.defaultdict' objects>"
+        ], 
+        "3": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'collections.defaultdict' objects>"
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'collections.defaultdict' objects>"
+        ], 
+        "5": [
+          "method_descriptor", 
+          "<method '__missing__' of 'collections.defaultdict' objects>"
+        ], 
+        "6": [
+          "method_descriptor", 
+          "<method '__reduce__' of 'collections.defaultdict' objects>"
+        ], 
+        "7": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of 'collections.defaultdict' objects>"
+        ], 
+        "8": [
+          "method_descriptor", 
+          "<method 'copy' of 'collections.defaultdict' objects>"
+        ], 
+        "9": [
+          "member_descriptor", 
+          "<member 'default_factory' of 'collections.defaultdict' objects>"
+        ], 
+        "10": [
+          "collections.defaultdict", 
+          "defaultdict(<type 'list'>, {'hello': ['a', 'b']})"
+        ]
+      }, 
+      "line": 5, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "defaultdict", 
+        "d"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "defaultdict": [
+          "REF", 
+          1
+        ], 
+        "d": [
+          "REF", 
+          10
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "defaultdict", 
+          [
+            "dict"
+          ], 
+          [
+            "__copy__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__getattribute__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__missing__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__reduce__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "copy", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "default_factory", 
+            [
+              "REF", 
+              9
+            ]
+          ]
+        ], 
+        "2": [
+          "method_descriptor", 
+          "<method '__copy__' of 'collections.defaultdict' objects>"
+        ], 
+        "3": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'collections.defaultdict' objects>"
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'collections.defaultdict' objects>"
+        ], 
+        "5": [
+          "method_descriptor", 
+          "<method '__missing__' of 'collections.defaultdict' objects>"
+        ], 
+        "6": [
+          "method_descriptor", 
+          "<method '__reduce__' of 'collections.defaultdict' objects>"
+        ], 
+        "7": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of 'collections.defaultdict' objects>"
+        ], 
+        "8": [
+          "method_descriptor", 
+          "<method 'copy' of 'collections.defaultdict' objects>"
+        ], 
+        "9": [
+          "member_descriptor", 
+          "<member 'default_factory' of 'collections.defaultdict' objects>"
+        ], 
+        "10": [
+          "collections.defaultdict", 
+          "defaultdict(<type 'list'>, {'hello': ['a', 'b', 'c']})"
+        ]
+      }, 
+      "line": 5, 
+      "event": "return"
+    }
+  ]
+}

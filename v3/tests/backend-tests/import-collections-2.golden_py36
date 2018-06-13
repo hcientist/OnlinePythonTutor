@@ -1,0 +1,616 @@
+{
+  "code": "from collections import defaultdict\nd = defaultdict(list)\nd['hello'].append('a')\nd['hello'].append('b')\nd['hello'].append('c')\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "defaultdict": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "defaultdict"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "defaultdict",
+          [
+            "dict"
+          ],
+          [
+            "__copy__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__getattribute__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__missing__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__reduce__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "copy",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "default_factory",
+            [
+              "REF",
+              9
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "3": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "4": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "5": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "6": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "7": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "8": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "9": [
+          "INSTANCE",
+          "member_descriptor"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "defaultdict": [
+          "REF",
+          1
+        ],
+        "d": [
+          "REF",
+          10
+        ]
+      },
+      "ordered_globals": [
+        "defaultdict",
+        "d"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "defaultdict",
+          [
+            "dict"
+          ],
+          [
+            "__copy__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__getattribute__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__missing__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__reduce__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "copy",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "default_factory",
+            [
+              "REF",
+              9
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "3": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "4": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "5": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "6": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "7": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "8": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "9": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "10": [
+          "INSTANCE",
+          "defaultdict"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "defaultdict": [
+          "REF",
+          1
+        ],
+        "d": [
+          "REF",
+          10
+        ]
+      },
+      "ordered_globals": [
+        "defaultdict",
+        "d"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "defaultdict",
+          [
+            "dict"
+          ],
+          [
+            "__copy__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__getattribute__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__missing__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__reduce__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "copy",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "default_factory",
+            [
+              "REF",
+              9
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "3": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "4": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "5": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "6": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "7": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "8": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "9": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "10": [
+          "INSTANCE",
+          "defaultdict"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "defaultdict": [
+          "REF",
+          1
+        ],
+        "d": [
+          "REF",
+          10
+        ]
+      },
+      "ordered_globals": [
+        "defaultdict",
+        "d"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "defaultdict",
+          [
+            "dict"
+          ],
+          [
+            "__copy__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__getattribute__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__missing__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__reduce__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "copy",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "default_factory",
+            [
+              "REF",
+              9
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "3": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "4": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "5": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "6": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "7": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "8": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "9": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "10": [
+          "INSTANCE",
+          "defaultdict"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "defaultdict": [
+          "REF",
+          1
+        ],
+        "d": [
+          "REF",
+          10
+        ]
+      },
+      "ordered_globals": [
+        "defaultdict",
+        "d"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "defaultdict",
+          [
+            "dict"
+          ],
+          [
+            "__copy__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__getattribute__",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "__missing__",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "__reduce__",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "__repr__",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "copy",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "default_factory",
+            [
+              "REF",
+              9
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "3": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "4": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "5": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "6": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "7": [
+          "INSTANCE",
+          "wrapper_descriptor"
+        ],
+        "8": [
+          "INSTANCE",
+          "method_descriptor"
+        ],
+        "9": [
+          "INSTANCE",
+          "member_descriptor"
+        ],
+        "10": [
+          "INSTANCE",
+          "defaultdict"
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}
