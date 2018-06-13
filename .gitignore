@@ -1,5 +1,6 @@
 *.out
 *.out_py3
+*.out_py36
 *.pyc
 *.pyo
 v4-cokapi/feedback/cokapi-feedback.db
