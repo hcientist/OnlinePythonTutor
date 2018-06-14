@@ -30,6 +30,7 @@ For more details on project status and issue prioritization, check out these vid
 - anything that operates on webpages, such as DOM manipulation, alert(), prompt(), confirm(), etc.
 - variable names that contain special characters like '$'
 - Date() object
+- features in ES7 and newer
 
 
 ### Python
