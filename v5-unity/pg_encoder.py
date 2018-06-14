@@ -79,7 +79,6 @@ from collections import defaultdict
 import re, types
 import sys
 import math
-import os
 typeRE = re.compile("<type '(.*)'>")
 classRE = re.compile("<class '(.*)'>")
 
@@ -235,7 +234,11 @@ class ObjectEncoder:
 
         # a hacky heuristic is that if gsf is an absolute path, then it's likely
         # to be some library function and *not* in user-defined code
-        if gsf and os.path.isabs(gsf):
+        #
+        # NB: don't use os.path.isabs() since it doesn't work on some
+        # python installations (e.g., on my webserver) and also adds a
+        # dependency on the os module. just do a simple check:
+        if gsf and gsf[0] == '/':
             is_externally_defined = True
       except (AttributeError, TypeError):
         pass # fail soft
