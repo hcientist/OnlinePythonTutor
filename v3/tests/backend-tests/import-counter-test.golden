@@ -1,0 +1,200 @@
+{
+  "code": "from collections import Counter\nc = Counter()\nc['foo'] += 1\nc['foo'] += 1\nc['foo'] += 1\nc['bar'] += 10\nc['baz'] = 100\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Counter"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Counter", 
+        "c"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "c": [
+          "REF", 
+          1
+        ], 
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT", 
+          "Counter", 
+          "Counter()"
+        ]
+      }, 
+      "line": 3, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Counter", 
+        "c"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "c": [
+          "REF", 
+          1
+        ], 
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT", 
+          "Counter", 
+          "Counter({'foo': 1})"
+        ]
+      }, 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Counter", 
+        "c"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "c": [
+          "REF", 
+          1
+        ], 
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT", 
+          "Counter", 
+          "Counter({'foo': 2})"
+        ]
+      }, 
+      "line": 5, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Counter", 
+        "c"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "c": [
+          "REF", 
+          1
+        ], 
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT", 
+          "Counter", 
+          "Counter({'foo': 3})"
+        ]
+      }, 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Counter", 
+        "c"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "c": [
+          "REF", 
+          1
+        ], 
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT", 
+          "Counter", 
+          "Counter({'bar': 10, 'foo': 3})"
+        ]
+      }, 
+      "line": 7, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Counter", 
+        "c"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "c": [
+          "REF", 
+          1
+        ], 
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT", 
+          "Counter", 
+          "Counter({'baz': 100, 'bar': 10, 'foo': 3})"
+        ]
+      }, 
+      "line": 7, 
+      "event": "return"
+    }
+  ]
+}
