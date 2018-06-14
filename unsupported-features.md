@@ -1,6 +1,6 @@
 # Unsupported features in Python Tutor
 
-This tool currently does **NOT** support the following language features. Some of these will eventually be supported, but others probably won't, due to implementation challenges and other priorities.
+[Python Tutor](http://pythontutor.com/) currently does **NOT** support the following language features. Some of these features will eventually be supported, but others probably won't, due to implementation challenges and other priorities.
 
 Email philip@pgbovine.net with more bug reports and use the "Generate shortened link" button to include a URL so that I can reproduce them.
 
