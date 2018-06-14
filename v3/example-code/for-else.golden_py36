@@ -43,8 +43,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 2)"
         ]
       },
       "stdout": ""
@@ -67,8 +68,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 2)"
         ]
       },
       "stdout": ""
@@ -91,8 +93,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 2)"
         ]
       },
       "stdout": "2\n"
@@ -115,8 +118,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 2)"
         ]
       },
       "stdout": "2\n"
@@ -139,8 +143,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 3)"
         ]
       },
       "stdout": "2\n"
@@ -165,8 +170,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 3)"
         ]
       },
       "stdout": "2\n"
@@ -191,8 +197,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 3)"
         ]
       },
       "stdout": "2\n"
@@ -217,8 +224,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 3)"
         ]
       },
       "stdout": "2\n"
@@ -243,8 +251,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 3)"
         ]
       },
       "stdout": "2\n3\n"
@@ -269,8 +278,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 3)"
         ]
       },
       "stdout": "2\n3\n"
@@ -295,8 +305,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 4)"
         ]
       },
       "stdout": "2\n3\n"
@@ -321,8 +332,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 4)"
         ]
       },
       "stdout": "2\n3\n"
@@ -347,8 +359,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 4)"
         ]
       },
       "stdout": "2\n3\n"
@@ -373,8 +386,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 4)"
         ]
       },
       "stdout": "2\n3\n"
@@ -399,8 +413,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 4)"
         ]
       },
       "stdout": "2\n3\n"
@@ -425,8 +440,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
         ]
       },
       "stdout": "2\n3\n"
@@ -451,8 +467,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
         ]
       },
       "stdout": "2\n3\n"
@@ -477,8 +494,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
         ]
       },
       "stdout": "2\n3\n"
@@ -503,8 +521,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
         ]
       },
       "stdout": "2\n3\n"
@@ -529,8 +548,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
         ]
       },
       "stdout": "2\n3\n"
@@ -555,8 +575,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
         ]
       },
       "stdout": "2\n3\n"
@@ -581,8 +602,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
         ]
       },
       "stdout": "2\n3\n"
@@ -607,8 +629,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
         ]
       },
       "stdout": "2\n3\n"
@@ -633,8 +656,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -659,8 +683,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -685,8 +710,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 6)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -711,8 +737,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 6)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -737,8 +764,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 6)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -763,8 +791,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 6)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -789,8 +818,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 6)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -815,8 +845,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -841,8 +872,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -867,8 +899,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -893,8 +926,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -919,8 +953,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -945,8 +980,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -971,8 +1007,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -997,8 +1034,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -1023,8 +1061,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -1049,8 +1088,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -1075,8 +1115,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -1101,8 +1142,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
         ]
       },
       "stdout": "2\n3\n5\n"
@@ -1127,8 +1169,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
         ]
       },
       "stdout": "2\n3\n5\n7\n"
@@ -1153,8 +1196,9 @@
       "stack_to_render": [],
       "heap": {
         "2": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
         ]
       },
       "stdout": "2\n3\n5\n7\n"
@@ -1179,8 +1223,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 8)"
         ]
       },
       "stdout": "2\n3\n5\n7\n"
@@ -1205,8 +1250,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 8)"
         ]
       },
       "stdout": "2\n3\n5\n7\n"
@@ -1231,8 +1277,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 8)"
         ]
       },
       "stdout": "2\n3\n5\n7\n"
@@ -1257,8 +1304,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 8)"
         ]
       },
       "stdout": "2\n3\n5\n7\n"
@@ -1283,8 +1331,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 8)"
         ]
       },
       "stdout": "2\n3\n5\n7\n"
@@ -1309,8 +1358,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 9)"
         ]
       },
       "stdout": "2\n3\n5\n7\n"
@@ -1335,8 +1385,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 9)"
         ]
       },
       "stdout": "2\n3\n5\n7\n"
@@ -1361,8 +1412,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 9)"
         ]
       },
       "stdout": "2\n3\n5\n7\n"
@@ -1387,8 +1439,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 9)"
         ]
       },
       "stdout": "2\n3\n5\n7\n"
@@ -1413,8 +1466,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 9)"
         ]
       },
       "stdout": "2\n3\n5\n7\n"
@@ -1439,8 +1493,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 9)"
         ]
       },
       "stdout": "2\n3\n5\n7\n"
@@ -1465,8 +1520,9 @@
       "stack_to_render": [],
       "heap": {
         "3": [
-          "INSTANCE",
-          "range"
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 9)"
         ]
       },
       "stdout": "2\n3\n5\n7\n"

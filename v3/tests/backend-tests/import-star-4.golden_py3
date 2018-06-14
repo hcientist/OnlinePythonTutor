@@ -412,12 +412,14 @@
           ]
         ], 
         "24": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__call__' of 'operator.attrgetter' objects>"
         ], 
         "25": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'operator.attrgetter' objects>"
         ], 
         "26": [
           "FUNCTION", 
@@ -461,12 +463,14 @@
           ]
         ], 
         "30": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__call__' of 'operator.methodcaller' objects>"
         ], 
         "31": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'operator.methodcaller' objects>"
         ], 
         "32": [
           "FUNCTION", 
@@ -615,12 +619,14 @@
           ]
         ], 
         "57": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__call__' of 'operator.itemgetter' objects>"
         ], 
         "58": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'operator.itemgetter' objects>"
         ], 
         "59": [
           "FUNCTION", 

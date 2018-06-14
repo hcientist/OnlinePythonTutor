@@ -414,8 +414,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -640,8 +641,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -664,8 +666,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"

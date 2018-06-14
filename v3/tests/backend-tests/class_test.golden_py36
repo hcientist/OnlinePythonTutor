@@ -97,9 +97,8 @@
       ],
       "heap": {
         "4": [
-          "INSTANCE_PPRINT",
-          "Point",
-          "<incomplete object>"
+          "INSTANCE",
+          "Point"
         ],
         "1": [
           "CLASS",
@@ -172,9 +171,8 @@
       ],
       "heap": {
         "4": [
-          "INSTANCE_PPRINT",
-          "Point",
-          "<incomplete object>"
+          "INSTANCE",
+          "Point"
         ],
         "1": [
           "CLASS",
@@ -247,9 +245,12 @@
       ],
       "heap": {
         "4": [
-          "INSTANCE_PPRINT",
+          "INSTANCE",
           "Point",
-          "<incomplete object>"
+          [
+            "x",
+            1
+          ]
         ],
         "1": [
           "CLASS",
@@ -326,7 +327,15 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ],
         "1": [
           "CLASS",
@@ -412,7 +421,15 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ]
       },
       "stdout": ""
@@ -459,7 +476,15 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ],
         "1": [
           "CLASS",
@@ -535,7 +560,15 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ],
         "1": [
           "CLASS",
@@ -613,7 +646,15 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ],
         "1": [
           "CLASS",
@@ -699,7 +740,15 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ]
       },
       "stdout": "(1, 2)\n"
@@ -748,9 +797,8 @@
       ],
       "heap": {
         "5": [
-          "INSTANCE_PPRINT",
-          "Point",
-          "<incomplete object>"
+          "INSTANCE",
+          "Point"
         ],
         "1": [
           "CLASS",
@@ -784,7 +832,15 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ]
       },
       "stdout": "(1, 2)\n"
@@ -833,9 +889,8 @@
       ],
       "heap": {
         "5": [
-          "INSTANCE_PPRINT",
-          "Point",
-          "<incomplete object>"
+          "INSTANCE",
+          "Point"
         ],
         "1": [
           "CLASS",
@@ -869,7 +924,15 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ]
       },
       "stdout": "(1, 2)\n"
@@ -918,9 +981,12 @@
       ],
       "heap": {
         "5": [
-          "INSTANCE_PPRINT",
+          "INSTANCE",
           "Point",
-          "<incomplete object>"
+          [
+            "x",
+            3
+          ]
         ],
         "1": [
           "CLASS",
@@ -954,7 +1020,15 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ]
       },
       "stdout": "(1, 2)\n"
@@ -1007,7 +1081,15 @@
         "5": [
           "INSTANCE_PPRINT",
           "Point",
-          "(3, -4)"
+          "(3, -4)",
+          [
+            "x",
+            3
+          ],
+          [
+            "y",
+            -4
+          ]
         ],
         "1": [
           "CLASS",
@@ -1041,7 +1123,15 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ]
       },
       "stdout": "(1, 2)\n"
@@ -1103,12 +1193,28 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ],
         "5": [
           "INSTANCE_PPRINT",
           "Point",
-          "(3, -4)"
+          "(3, -4)",
+          [
+            "x",
+            3
+          ],
+          [
+            "y",
+            -4
+          ]
         ]
       },
       "stdout": "(1, 2)\n"
@@ -1160,7 +1266,15 @@
         "5": [
           "INSTANCE_PPRINT",
           "Point",
-          "(3, -4)"
+          "(3, -4)",
+          [
+            "x",
+            3
+          ],
+          [
+            "y",
+            -4
+          ]
         ],
         "1": [
           "CLASS",
@@ -1194,7 +1308,15 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ]
       },
       "stdout": "(1, 2)\n"
@@ -1246,7 +1368,15 @@
         "5": [
           "INSTANCE_PPRINT",
           "Point",
-          "(3, -4)"
+          "(3, -4)",
+          [
+            "x",
+            3
+          ],
+          [
+            "y",
+            -4
+          ]
         ],
         "1": [
           "CLASS",
@@ -1280,7 +1410,15 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ]
       },
       "stdout": "(1, 2)\n"
@@ -1334,7 +1472,15 @@
         "5": [
           "INSTANCE_PPRINT",
           "Point",
-          "(3, -4)"
+          "(3, -4)",
+          [
+            "x",
+            3
+          ],
+          [
+            "y",
+            -4
+          ]
         ],
         "1": [
           "CLASS",
@@ -1368,7 +1514,15 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ]
       },
       "stdout": "(1, 2)\n"
@@ -1430,12 +1584,28 @@
         "4": [
           "INSTANCE_PPRINT",
           "Point",
-          "(1, 2)"
+          "(1, 2)",
+          [
+            "x",
+            1
+          ],
+          [
+            "y",
+            2
+          ]
         ],
         "5": [
           "INSTANCE_PPRINT",
           "Point",
-          "(3, -4)"
+          "(3, -4)",
+          [
+            "x",
+            3
+          ],
+          [
+            "y",
+            -4
+          ]
         ]
       },
       "stdout": "(1, 2)\n(3, -4)\n"

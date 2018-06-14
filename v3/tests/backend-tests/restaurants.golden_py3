@@ -414,8 +414,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -640,8 +641,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -664,8 +666,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -895,8 +898,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -919,8 +923,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -943,8 +948,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -1182,8 +1188,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -1206,8 +1213,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -1230,8 +1238,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -1257,8 +1266,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -1498,8 +1508,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -1522,8 +1533,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -1546,8 +1558,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -1573,8 +1586,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -1597,8 +1611,9 @@
           ]
         ], 
         "20": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Dishes', cuisine='Thai', phone='333-4433', dish='Paht Woon Sen', price=8.5)", 
           [
             "cuisine", 
             "Thai"
@@ -1843,8 +1858,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -1867,8 +1883,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -1891,8 +1908,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -1918,8 +1936,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -1942,8 +1961,9 @@
           ]
         ], 
         "20": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Dishes', cuisine='Thai', phone='333-4433', dish='Paht Woon Sen', price=8.5)", 
           [
             "cuisine", 
             "Thai"
@@ -1966,8 +1986,9 @@
           ]
         ], 
         "21": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Spoon', cuisine='Thai', phone='334-3344', dish='Mussamun', price=9.0)", 
           [
             "cuisine", 
             "Thai"
@@ -2220,8 +2241,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -2244,8 +2266,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -2268,8 +2291,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -2295,8 +2319,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -2319,8 +2344,9 @@
           ]
         ], 
         "20": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Dishes', cuisine='Thai', phone='333-4433', dish='Paht Woon Sen', price=8.5)", 
           [
             "cuisine", 
             "Thai"
@@ -2343,8 +2369,9 @@
           ]
         ], 
         "21": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Spoon', cuisine='Thai', phone='334-3344', dish='Mussamun', price=9.0)", 
           [
             "cuisine", 
             "Thai"
@@ -2643,8 +2670,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -2667,8 +2695,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -2691,8 +2720,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -2718,8 +2748,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -2742,8 +2773,9 @@
           ]
         ], 
         "20": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Dishes', cuisine='Thai', phone='333-4433', dish='Paht Woon Sen', price=8.5)", 
           [
             "cuisine", 
             "Thai"
@@ -2766,8 +2798,9 @@
           ]
         ], 
         "21": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Spoon', cuisine='Thai', phone='334-3344', dish='Mussamun', price=9.0)", 
           [
             "cuisine", 
             "Thai"
@@ -3070,8 +3103,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -3094,8 +3128,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -3118,8 +3153,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -3145,8 +3181,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -3169,8 +3206,9 @@
           ]
         ], 
         "20": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Dishes', cuisine='Thai', phone='333-4433', dish='Paht Woon Sen', price=8.5)", 
           [
             "cuisine", 
             "Thai"
@@ -3193,8 +3231,9 @@
           ]
         ], 
         "21": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Spoon', cuisine='Thai', phone='334-3344', dish='Mussamun', price=9.0)", 
           [
             "cuisine", 
             "Thai"
@@ -3502,8 +3541,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -3526,8 +3566,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -3550,8 +3591,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -3577,8 +3619,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -3601,8 +3644,9 @@
           ]
         ], 
         "20": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Dishes', cuisine='Thai', phone='333-4433', dish='Paht Woon Sen', price=8.5)", 
           [
             "cuisine", 
             "Thai"
@@ -3625,8 +3669,9 @@
           ]
         ], 
         "21": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Spoon', cuisine='Thai', phone='334-3344', dish='Mussamun', price=9.0)", 
           [
             "cuisine", 
             "Thai"
@@ -3934,8 +3979,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -3958,8 +4004,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -3982,8 +4029,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -4009,8 +4057,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -4033,8 +4082,9 @@
           ]
         ], 
         "20": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Dishes', cuisine='Thai', phone='333-4433', dish='Paht Woon Sen', price=8.5)", 
           [
             "cuisine", 
             "Thai"
@@ -4057,8 +4107,9 @@
           ]
         ], 
         "21": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Spoon', cuisine='Thai', phone='334-3344', dish='Mussamun', price=9.0)", 
           [
             "cuisine", 
             "Thai"
@@ -4366,8 +4417,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -4390,8 +4442,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -4414,8 +4467,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -4441,8 +4495,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -4465,8 +4520,9 @@
           ]
         ], 
         "20": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Dishes', cuisine='Thai', phone='333-4433', dish='Paht Woon Sen', price=8.5)", 
           [
             "cuisine", 
             "Thai"
@@ -4489,8 +4545,9 @@
           ]
         ], 
         "21": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Spoon', cuisine='Thai', phone='334-3344', dish='Mussamun', price=9.0)", 
           [
             "cuisine", 
             "Thai"
@@ -4798,8 +4855,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -4822,8 +4880,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -4846,8 +4905,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -4873,8 +4933,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -4897,8 +4958,9 @@
           ]
         ], 
         "20": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Dishes', cuisine='Thai', phone='333-4433', dish='Paht Woon Sen', price=8.5)", 
           [
             "cuisine", 
             "Thai"
@@ -4921,8 +4983,9 @@
           ]
         ], 
         "21": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Spoon', cuisine='Thai', phone='334-3344', dish='Mussamun', price=9.0)", 
           [
             "cuisine", 
             "Thai"
@@ -5230,8 +5293,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -5254,8 +5318,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -5278,8 +5343,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -5305,8 +5371,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -5329,8 +5396,9 @@
           ]
         ], 
         "20": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Dishes', cuisine='Thai', phone='333-4433', dish='Paht Woon Sen', price=8.5)", 
           [
             "cuisine", 
             "Thai"
@@ -5353,8 +5421,9 @@
           ]
         ], 
         "21": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Spoon', cuisine='Thai', phone='334-3344', dish='Mussamun', price=9.0)", 
           [
             "cuisine", 
             "Thai"
@@ -5662,8 +5731,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -5686,8 +5756,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -5710,8 +5781,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -5737,8 +5809,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -5761,8 +5834,9 @@
           ]
         ], 
         "20": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Dishes', cuisine='Thai', phone='333-4433', dish='Paht Woon Sen', price=8.5)", 
           [
             "cuisine", 
             "Thai"
@@ -5785,8 +5859,9 @@
           ]
         ], 
         "21": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Spoon', cuisine='Thai', phone='334-3344', dish='Mussamun', price=9.0)", 
           [
             "cuisine", 
             "Thai"
@@ -6099,8 +6174,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -6123,8 +6199,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -6147,8 +6224,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -6174,8 +6252,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -6198,8 +6277,9 @@
           ]
         ], 
         "20": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Dishes', cuisine='Thai', phone='333-4433', dish='Paht Woon Sen', price=8.5)", 
           [
             "cuisine", 
             "Thai"
@@ -6222,8 +6302,9 @@
           ]
         ], 
         "21": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Spoon', cuisine='Thai', phone='334-3344', dish='Mussamun', price=9.0)", 
           [
             "cuisine", 
             "Thai"
@@ -6527,8 +6608,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -6551,8 +6633,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -6575,8 +6658,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -6602,8 +6686,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -6626,8 +6711,9 @@
           ]
         ], 
         "20": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Dishes', cuisine='Thai', phone='333-4433', dish='Paht Woon Sen', price=8.5)", 
           [
             "cuisine", 
             "Thai"
@@ -6650,8 +6736,9 @@
           ]
         ], 
         "21": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Spoon', cuisine='Thai', phone='334-3344', dish='Mussamun', price=9.0)", 
           [
             "cuisine", 
             "Thai"
@@ -6951,8 +7038,9 @@
           "property"
         ], 
         "16": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
           [
             "cuisine", 
             "French"
@@ -6975,8 +7063,9 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
           [
             "cuisine", 
             "French"
@@ -6999,8 +7088,9 @@
           ]
         ], 
         "18": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Pascal', cuisine='French', phone='333-4444', dish='Bouillabaisse', price=32.0)", 
           [
             "cuisine", 
             "French"
@@ -7026,8 +7116,9 @@
           ]
         ], 
         "19": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Touch', cuisine='Thai', phone='444-3333', dish='Mee Krob', price=10.95)", 
           [
             "cuisine", 
             "Thai"
@@ -7050,8 +7141,9 @@
           ]
         ], 
         "20": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Dishes', cuisine='Thai', phone='333-4433', dish='Paht Woon Sen', price=8.5)", 
           [
             "cuisine", 
             "Thai"
@@ -7074,8 +7166,9 @@
           ]
         ], 
         "21": [
-          "INSTANCE", 
+          "INSTANCE_PPRINT", 
           "Restaurant", 
+          "Restaurant(name='Thai Spoon', cuisine='Thai', phone='334-3344', dish='Mussamun', price=9.0)", 
           [
             "cuisine", 
             "Thai"

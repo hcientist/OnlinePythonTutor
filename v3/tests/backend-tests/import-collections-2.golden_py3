@@ -48,8 +48,9 @@
       }, 
       "heap": {
         "1": [
-          "INSTANCE", 
-          "defaultdict"
+          "INSTANCE_PPRINT", 
+          "defaultdict", 
+          "defaultdict(<class 'list'>, {})"
         ]
       }, 
       "line": 3, 
@@ -75,8 +76,9 @@
       }, 
       "heap": {
         "1": [
-          "INSTANCE", 
-          "defaultdict"
+          "INSTANCE_PPRINT", 
+          "defaultdict", 
+          "defaultdict(<class 'list'>, {'hello': ['a']})"
         ]
       }, 
       "line": 4, 
@@ -102,8 +104,9 @@
       }, 
       "heap": {
         "1": [
-          "INSTANCE", 
-          "defaultdict"
+          "INSTANCE_PPRINT", 
+          "defaultdict", 
+          "defaultdict(<class 'list'>, {'hello': ['a', 'b']})"
         ]
       }, 
       "line": 5, 
@@ -129,8 +132,9 @@
       }, 
       "heap": {
         "1": [
-          "INSTANCE", 
-          "defaultdict"
+          "INSTANCE_PPRINT", 
+          "defaultdict", 
+          "defaultdict(<class 'list'>, {'hello': ['a', 'b', 'c']})"
         ]
       }, 
       "line": 5, 

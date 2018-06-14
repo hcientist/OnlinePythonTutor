@@ -1,0 +1,7 @@
+from collections import Counter
+c = Counter()
+c['foo'] += 1
+c['foo'] += 1
+c['foo'] += 1
+c['bar'] += 10
+c['baz'] = 100

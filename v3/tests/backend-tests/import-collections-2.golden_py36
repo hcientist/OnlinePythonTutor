@@ -49,8 +49,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "defaultdict"
+          "INSTANCE_PPRINT",
+          "defaultdict",
+          "defaultdict(<class 'list'>, {})"
         ]
       },
       "stdout": ""
@@ -76,8 +77,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "defaultdict"
+          "INSTANCE_PPRINT",
+          "defaultdict",
+          "defaultdict(<class 'list'>, {'hello': ['a']})"
         ]
       },
       "stdout": ""
@@ -103,8 +105,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "defaultdict"
+          "INSTANCE_PPRINT",
+          "defaultdict",
+          "defaultdict(<class 'list'>, {'hello': ['a', 'b']})"
         ]
       },
       "stdout": ""
@@ -130,8 +133,9 @@
       "stack_to_render": [],
       "heap": {
         "1": [
-          "INSTANCE",
-          "defaultdict"
+          "INSTANCE_PPRINT",
+          "defaultdict",
+          "defaultdict(<class 'list'>, {'hello': ['a', 'b', 'c']})"
         ]
       },
       "stdout": ""

@@ -89,8 +89,9 @@
           "module"
         ], 
         "2": [
-          "INSTANCE", 
-          "defaultdict"
+          "INSTANCE_PPRINT", 
+          "defaultdict", 
+          "defaultdict(<class 'list'>, {})"
         ]
       }, 
       "line": 3, 

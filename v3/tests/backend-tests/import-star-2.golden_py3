@@ -207,12 +207,14 @@
           ]
         ], 
         "2": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.BufferedRWPair' objects>"
         ], 
         "3": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BufferedRWPair' objects>"
         ], 
         "4": [
           "FUNCTION", 
@@ -220,48 +222,59 @@
           null
         ], 
         "5": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.BufferedRWPair' objects>"
         ], 
         "6": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BufferedRWPair' objects>"
         ], 
         "7": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'flush' of '_io.BufferedRWPair' objects>"
         ], 
         "8": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BufferedRWPair' objects>"
         ], 
         "9": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'peek' of '_io.BufferedRWPair' objects>"
         ], 
         "10": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read' of '_io.BufferedRWPair' objects>"
         ], 
         "11": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read1' of '_io.BufferedRWPair' objects>"
         ], 
         "12": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.BufferedRWPair' objects>"
         ], 
         "13": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readinto' of '_io.BufferedRWPair' objects>"
         ], 
         "14": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.BufferedRWPair' objects>"
         ], 
         "15": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'write' of '_io.BufferedRWPair' objects>"
         ], 
         "16": [
           "CLASS", 
@@ -404,12 +417,14 @@
           ]
         ], 
         "17": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.StringIO' objects>"
         ], 
         "18": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.StringIO' objects>"
         ], 
         "19": [
           "FUNCTION", 
@@ -417,68 +432,84 @@
           null
         ], 
         "20": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__next__' of '_io.StringIO' objects>"
         ], 
         "21": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__setstate__' of '_io.StringIO' objects>"
         ], 
         "22": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.StringIO' objects>"
         ], 
         "23": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.StringIO' objects>"
         ], 
         "24": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'getvalue' of '_io.StringIO' objects>"
         ], 
         "25": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'line_buffering' of '_io.StringIO' objects>"
         ], 
         "26": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'newlines' of '_io.StringIO' objects>"
         ], 
         "27": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read' of '_io.StringIO' objects>"
         ], 
         "28": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.StringIO' objects>"
         ], 
         "29": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readline' of '_io.StringIO' objects>"
         ], 
         "30": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seek' of '_io.StringIO' objects>"
         ], 
         "31": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seekable' of '_io.StringIO' objects>"
         ], 
         "32": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'tell' of '_io.StringIO' objects>"
         ], 
         "33": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'truncate' of '_io.StringIO' objects>"
         ], 
         "34": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.StringIO' objects>"
         ], 
         "35": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'write' of '_io.StringIO' objects>"
         ], 
         "36": [
           "CLASS", 
@@ -684,12 +715,14 @@
           ]
         ], 
         "37": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.BufferedRandom' objects>"
         ], 
         "38": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BufferedRandom' objects>"
         ], 
         "39": [
           "FUNCTION", 
@@ -697,104 +730,129 @@
           null
         ], 
         "40": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__next__' of '_io.BufferedRandom' objects>"
         ], 
         "41": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.BufferedRandom' objects>"
         ], 
         "42": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__sizeof__' of '_io.BufferedRandom' objects>"
         ], 
         "43": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '_dealloc_warn' of '_io.BufferedRandom' objects>"
         ], 
         "44": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.BufferedRandom' objects>"
         ], 
         "45": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BufferedRandom' objects>"
         ], 
         "46": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'detach' of '_io.BufferedRandom' objects>"
         ], 
         "47": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'fileno' of '_io.BufferedRandom' objects>"
         ], 
         "48": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'flush' of '_io.BufferedRandom' objects>"
         ], 
         "49": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BufferedRandom' objects>"
         ], 
         "50": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'mode' of '_io.BufferedRandom' objects>"
         ], 
         "51": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'name' of '_io.BufferedRandom' objects>"
         ], 
         "52": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'peek' of '_io.BufferedRandom' objects>"
         ], 
         "53": [
-          "INSTANCE", 
-          "member_descriptor"
+          "INSTANCE_PPRINT", 
+          "member_descriptor", 
+          "<member 'raw' of '_io.BufferedRandom' objects>"
         ], 
         "54": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read' of '_io.BufferedRandom' objects>"
         ], 
         "55": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read1' of '_io.BufferedRandom' objects>"
         ], 
         "56": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.BufferedRandom' objects>"
         ], 
         "57": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readinto' of '_io.BufferedRandom' objects>"
         ], 
         "58": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readline' of '_io.BufferedRandom' objects>"
         ], 
         "59": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seek' of '_io.BufferedRandom' objects>"
         ], 
         "60": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seekable' of '_io.BufferedRandom' objects>"
         ], 
         "61": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'tell' of '_io.BufferedRandom' objects>"
         ], 
         "62": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'truncate' of '_io.BufferedRandom' objects>"
         ], 
         "63": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.BufferedRandom' objects>"
         ], 
         "64": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'write' of '_io.BufferedRandom' objects>"
         ], 
         "65": [
           "CLASS", 
@@ -818,12 +876,14 @@
           ]
         ], 
         "66": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'BlockingIOError' objects>"
         ], 
         "67": [
-          "INSTANCE", 
-          "member_descriptor"
+          "INSTANCE_PPRINT", 
+          "member_descriptor", 
+          "<member 'characters_written' of 'BlockingIOError' objects>"
         ], 
         "68": [
           "CLASS", 
@@ -1022,16 +1082,19 @@
           ]
         ], 
         "69": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute '_CHUNK_SIZE' of '_io.TextIOWrapper' objects>"
         ], 
         "70": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.TextIOWrapper' objects>"
         ], 
         "71": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.TextIOWrapper' objects>"
         ], 
         "72": [
           "FUNCTION", 
@@ -1039,96 +1102,119 @@
           null
         ], 
         "73": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__next__' of '_io.TextIOWrapper' objects>"
         ], 
         "74": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.TextIOWrapper' objects>"
         ], 
         "75": [
-          "INSTANCE", 
-          "member_descriptor"
+          "INSTANCE_PPRINT", 
+          "member_descriptor", 
+          "<member 'buffer' of '_io.TextIOWrapper' objects>"
         ], 
         "76": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.TextIOWrapper' objects>"
         ], 
         "77": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.TextIOWrapper' objects>"
         ], 
         "78": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'detach' of '_io.TextIOWrapper' objects>"
         ], 
         "79": [
-          "INSTANCE", 
-          "member_descriptor"
+          "INSTANCE_PPRINT", 
+          "member_descriptor", 
+          "<member 'encoding' of '_io.TextIOWrapper' objects>"
         ], 
         "80": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'errors' of '_io.TextIOWrapper' objects>"
         ], 
         "81": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'fileno' of '_io.TextIOWrapper' objects>"
         ], 
         "82": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'flush' of '_io.TextIOWrapper' objects>"
         ], 
         "83": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'isatty' of '_io.TextIOWrapper' objects>"
         ], 
         "84": [
-          "INSTANCE", 
-          "member_descriptor"
+          "INSTANCE_PPRINT", 
+          "member_descriptor", 
+          "<member 'line_buffering' of '_io.TextIOWrapper' objects>"
         ], 
         "85": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'name' of '_io.TextIOWrapper' objects>"
         ], 
         "86": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'newlines' of '_io.TextIOWrapper' objects>"
         ], 
         "87": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read' of '_io.TextIOWrapper' objects>"
         ], 
         "88": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.TextIOWrapper' objects>"
         ], 
         "89": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readline' of '_io.TextIOWrapper' objects>"
         ], 
         "90": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seek' of '_io.TextIOWrapper' objects>"
         ], 
         "91": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seekable' of '_io.TextIOWrapper' objects>"
         ], 
         "92": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'tell' of '_io.TextIOWrapper' objects>"
         ], 
         "93": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'truncate' of '_io.TextIOWrapper' objects>"
         ], 
         "94": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.TextIOWrapper' objects>"
         ], 
         "95": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'write' of '_io.TextIOWrapper' objects>"
         ], 
         "96": [
           "CLASS", 
@@ -1320,12 +1406,14 @@
           ]
         ], 
         "97": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.BufferedReader' objects>"
         ], 
         "98": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BufferedReader' objects>"
         ], 
         "99": [
           "FUNCTION", 
@@ -1333,96 +1421,119 @@
           null
         ], 
         "100": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__next__' of '_io.BufferedReader' objects>"
         ], 
         "101": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.BufferedReader' objects>"
         ], 
         "102": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__sizeof__' of '_io.BufferedReader' objects>"
         ], 
         "103": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '_dealloc_warn' of '_io.BufferedReader' objects>"
         ], 
         "104": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.BufferedReader' objects>"
         ], 
         "105": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BufferedReader' objects>"
         ], 
         "106": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'detach' of '_io.BufferedReader' objects>"
         ], 
         "107": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'fileno' of '_io.BufferedReader' objects>"
         ], 
         "108": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'flush' of '_io.BufferedReader' objects>"
         ], 
         "109": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BufferedReader' objects>"
         ], 
         "110": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'mode' of '_io.BufferedReader' objects>"
         ], 
         "111": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'name' of '_io.BufferedReader' objects>"
         ], 
         "112": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'peek' of '_io.BufferedReader' objects>"
         ], 
         "113": [
-          "INSTANCE", 
-          "member_descriptor"
+          "INSTANCE_PPRINT", 
+          "member_descriptor", 
+          "<member 'raw' of '_io.BufferedReader' objects>"
         ], 
         "114": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read' of '_io.BufferedReader' objects>"
         ], 
         "115": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read1' of '_io.BufferedReader' objects>"
         ], 
         "116": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.BufferedReader' objects>"
         ], 
         "117": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readline' of '_io.BufferedReader' objects>"
         ], 
         "118": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seek' of '_io.BufferedReader' objects>"
         ], 
         "119": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seekable' of '_io.BufferedReader' objects>"
         ], 
         "120": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'tell' of '_io.BufferedReader' objects>"
         ], 
         "121": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'truncate' of '_io.BufferedReader' objects>"
         ], 
         "122": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.BufferedReader' objects>"
         ], 
         "123": [
           "CLASS", 
@@ -1586,12 +1697,14 @@
           ]
         ], 
         "124": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.BufferedWriter' objects>"
         ], 
         "125": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BufferedWriter' objects>"
         ], 
         "126": [
           "FUNCTION", 
@@ -1599,80 +1712,99 @@
           null
         ], 
         "127": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.BufferedWriter' objects>"
         ], 
         "128": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__sizeof__' of '_io.BufferedWriter' objects>"
         ], 
         "129": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '_dealloc_warn' of '_io.BufferedWriter' objects>"
         ], 
         "130": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.BufferedWriter' objects>"
         ], 
         "131": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BufferedWriter' objects>"
         ], 
         "132": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'detach' of '_io.BufferedWriter' objects>"
         ], 
         "133": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'fileno' of '_io.BufferedWriter' objects>"
         ], 
         "134": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'flush' of '_io.BufferedWriter' objects>"
         ], 
         "135": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BufferedWriter' objects>"
         ], 
         "136": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'mode' of '_io.BufferedWriter' objects>"
         ], 
         "137": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'name' of '_io.BufferedWriter' objects>"
         ], 
         "138": [
-          "INSTANCE", 
-          "member_descriptor"
+          "INSTANCE_PPRINT", 
+          "member_descriptor", 
+          "<member 'raw' of '_io.BufferedWriter' objects>"
         ], 
         "139": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.BufferedWriter' objects>"
         ], 
         "140": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seek' of '_io.BufferedWriter' objects>"
         ], 
         "141": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seekable' of '_io.BufferedWriter' objects>"
         ], 
         "142": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'tell' of '_io.BufferedWriter' objects>"
         ], 
         "143": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'truncate' of '_io.BufferedWriter' objects>"
         ], 
         "144": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.BufferedWriter' objects>"
         ], 
         "145": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'write' of '_io.BufferedWriter' objects>"
         ], 
         "146": [
           "CLASS", 
@@ -1836,16 +1968,19 @@
           ]
         ], 
         "147": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of '_io.FileIO' objects>"
         ], 
         "148": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.FileIO' objects>"
         ], 
         "149": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.FileIO' objects>"
         ], 
         "150": [
           "FUNCTION", 
@@ -1853,76 +1988,94 @@
           null
         ], 
         "151": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.FileIO' objects>"
         ], 
         "152": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '_dealloc_warn' of '_io.FileIO' objects>"
         ], 
         "153": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.FileIO' objects>"
         ], 
         "154": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.FileIO' objects>"
         ], 
         "155": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closefd' of '_io.FileIO' objects>"
         ], 
         "156": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'fileno' of '_io.FileIO' objects>"
         ], 
         "157": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'isatty' of '_io.FileIO' objects>"
         ], 
         "158": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'mode' of '_io.FileIO' objects>"
         ], 
         "159": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read' of '_io.FileIO' objects>"
         ], 
         "160": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.FileIO' objects>"
         ], 
         "161": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readall' of '_io.FileIO' objects>"
         ], 
         "162": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readinto' of '_io.FileIO' objects>"
         ], 
         "163": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seek' of '_io.FileIO' objects>"
         ], 
         "164": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seekable' of '_io.FileIO' objects>"
         ], 
         "165": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'tell' of '_io.FileIO' objects>"
         ], 
         "166": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'truncate' of '_io.FileIO' objects>"
         ], 
         "167": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.FileIO' objects>"
         ], 
         "168": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'write' of '_io.FileIO' objects>"
         ], 
         "169": [
           "CLASS", 
@@ -2114,16 +2267,19 @@
           ]
         ], 
         "170": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.BytesIO' objects>"
         ], 
         "171": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BytesIO' objects>"
         ], 
         "172": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__iter__' of '_io.BytesIO' objects>"
         ], 
         "173": [
           "FUNCTION", 
@@ -2131,92 +2287,114 @@
           null
         ], 
         "174": [
-          "INSTANCE", 
-          "wrapper_descriptor"
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__next__' of '_io.BytesIO' objects>"
         ], 
         "175": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__setstate__' of '_io.BytesIO' objects>"
         ], 
         "176": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__sizeof__' of '_io.BytesIO' objects>"
         ], 
         "177": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.BytesIO' objects>"
         ], 
         "178": [
-          "INSTANCE", 
-          "getset_descriptor"
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BytesIO' objects>"
         ], 
         "179": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'flush' of '_io.BytesIO' objects>"
         ], 
         "180": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'getbuffer' of '_io.BytesIO' objects>"
         ], 
         "181": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'getvalue' of '_io.BytesIO' objects>"
         ], 
         "182": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BytesIO' objects>"
         ], 
         "183": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read' of '_io.BytesIO' objects>"
         ], 
         "184": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read1' of '_io.BytesIO' objects>"
         ], 
         "185": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.BytesIO' objects>"
         ], 
         "186": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readinto' of '_io.BytesIO' objects>"
         ], 
         "187": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readline' of '_io.BytesIO' objects>"
         ], 
         "188": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readlines' of '_io.BytesIO' objects>"
         ], 
         "189": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seek' of '_io.BytesIO' objects>"
         ], 
         "190": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seekable' of '_io.BytesIO' objects>"
         ], 
         "191": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'tell' of '_io.BytesIO' objects>"
         ], 
         "192": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'truncate' of '_io.BytesIO' objects>"
         ], 
         "193": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.BytesIO' objects>"
         ], 
         "194": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'write' of '_io.BytesIO' objects>"
         ], 
         "195": [
-          "INSTANCE", 
-          "method_descriptor"
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writelines' of '_io.BytesIO' objects>"
         ]
       }, 
       "line": 1, 

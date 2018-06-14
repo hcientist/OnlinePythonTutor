@@ -127,9 +127,9 @@
           1,
           2,
           3,
-          "world",
           "goodbye",
-          "hello"
+          "hello",
+          "world"
         ]
       },
       "stdout": ""
@@ -187,9 +187,9 @@
           1,
           2,
           3,
-          "world",
           "goodbye",
-          "hello"
+          "hello",
+          "world"
         ],
         "4": [
           "DICT",

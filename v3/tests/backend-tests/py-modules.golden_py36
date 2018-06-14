@@ -112,8 +112,9 @@
           "module"
         ],
         "2": [
-          "INSTANCE",
-          "SRE_Pattern"
+          "INSTANCE_PPRINT",
+          "SRE_Pattern",
+          "re.compile('foo')"
         ]
       },
       "stdout": ""
