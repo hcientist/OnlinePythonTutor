@@ -63,7 +63,8 @@
 #   * instance - ['INSTANCE', class name, [attr1, value1], [attr2, value2], ..., [attrN, valueN]]
 #   * instance with __str__ defined - ['INSTANCE_PPRINT', class name, <__str__ value>]
 #   * class    - ['CLASS', class name, [list of superclass names], [attr1, value1], [attr2, value2], ..., [attrN, valueN]]
-#   * function - ['FUNCTION', function name, parent frame ID (for nested functions)]
+#   * function - ['FUNCTION', function name, parent frame ID (for nested functions),
+#                 [*OPTIONAL* list of pairs of default argument names/values] ] <-- final optional element added on 2018-06-13
 #   * module   - ['module', module name]
 #   * other    - [<type name>, string representation of object]
 #   * compound object reference - ['REF', target object's unique_id]
@@ -307,14 +308,30 @@ class ObjectEncoder:
           argspec = inspect.getargspec(dat)
 
         printed_args = [e for e in argspec.args]
+
+        default_arg_names_and_vals = []
+        if argspec.defaults:
+            num_missing_defaults = len(printed_args) - len(argspec.defaults)
+            assert num_missing_defaults >= 0
+            # tricky tricky tricky how default positional arguments work!
+            for i in range(num_missing_defaults, len(printed_args)):
+                default_arg_names_and_vals.append((printed_args[i], self.encode(argspec.defaults[i-num_missing_defaults], get_parent)))
+
         if argspec.varargs:
           printed_args.append('*' + argspec.varargs)
 
         if is_python3:
-          if argspec.varkw:
-            printed_args.append('**' + argspec.varkw)
+          # kwonlyargs come before varkw
           if argspec.kwonlyargs:
             printed_args.extend(argspec.kwonlyargs)
+            if argspec.kwonlydefaults:
+              # iterate in order of appearance in kwonlyargs
+              for varname in argspec.kwonlyargs:
+                if varname in argspec.kwonlydefaults:
+                  val = argspec.kwonlydefaults[varname]
+                  default_arg_names_and_vals.append((varname, self.encode(val, get_parent)))
+          if argspec.varkw:
+            printed_args.append('**' + argspec.varkw)
         else:
           if argspec.keywords:
             printed_args.append('**' + argspec.keywords)
@@ -345,6 +362,10 @@ class ObjectEncoder:
           enclosing_frame_id = get_parent(dat)
           encoded_val[2] = enclosing_frame_id
         new_obj.extend(encoded_val)
+        # OPTIONAL!!!
+        if default_arg_names_and_vals:
+            new_obj.append(default_arg_names_and_vals) # *append* it as a single list element
+
       elif typ is types.BuiltinFunctionType:
         pretty_name = get_name(dat) + '(...)'
         new_obj.extend(['FUNCTION', pretty_name, None])

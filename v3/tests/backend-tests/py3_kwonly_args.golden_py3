@@ -28,7 +28,17 @@
         "1": [
           "FUNCTION", 
           "my_sorted(iterable, reverse, key)", 
-          null
+          null, 
+          [
+            [
+              "reverse", 
+              false
+            ], 
+            [
+              "key", 
+              null
+            ]
+          ]
         ]
       }, 
       "line": 2, 
