@@ -773,7 +773,17 @@ var ExecutionVisualizer = /** @class */ (function () {
         if (!obj)
             return false;
         assert($.isArray(obj));
-        return (this.params.alwaysNestTypes.indexOf(obj[0]) >= 0);
+        if (this.params.alwaysNestTypes.indexOf(obj[0]) >= 0) {
+            // is the type name in alwaysNestTypes?
+            return true;
+        }
+        else if (obj.length >= 2 && obj[0] == 'INSTANCE' && (this.params.alwaysNestTypes.indexOf(obj[1]) >= 0)) {
+            // otherwise is this an INSTANCE with the type name (obj[1]) in alwaysNestTypes?
+            return true;
+        }
+        else {
+            return false;
+        }
     };
     // should this object be nested within another one?
     ExecutionVisualizer.prototype.shouldNestObject = function (obj) {
