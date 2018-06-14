@@ -197,9 +197,9 @@
       "heap": {
         "7": [
           "SET",
-          "banana",
           "apple",
-          "carrot"
+          "carrot",
+          "banana"
         ],
         "4": [
           "LIST",

@@ -126,10 +126,10 @@
           "SET",
           1,
           2,
-          "world",
           3,
-          "hello",
-          "goodbye"
+          "world",
+          "goodbye",
+          "hello"
         ]
       },
       "stdout": ""
@@ -186,10 +186,10 @@
           "SET",
           1,
           2,
-          "world",
           3,
-          "hello",
-          "goodbye"
+          "world",
+          "goodbye",
+          "hello"
         ],
         "4": [
           "DICT",

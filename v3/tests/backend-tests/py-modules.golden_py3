@@ -20,11 +20,16 @@
       "stack_to_render": [], 
       "globals": {
         "random": [
-          "IMPORTED_FAUX_PRIMITIVE", 
-          "imported object"
+          "REF", 
+          1
         ]
       }, 
-      "heap": {}, 
+      "heap": {
+        "1": [
+          "INSTANCE", 
+          "module"
+        ]
+      }, 
       "line": 4, 
       "event": "step_line"
     }, 
@@ -37,11 +42,16 @@
       "stack_to_render": [], 
       "globals": {
         "random": [
-          "IMPORTED_FAUX_PRIMITIVE", 
-          "imported object"
+          "REF", 
+          1
         ]
       }, 
-      "heap": {}, 
+      "heap": {
+        "1": [
+          "INSTANCE", 
+          "module"
+        ]
+      }, 
       "line": 6, 
       "event": "step_line"
     }, 
@@ -59,11 +69,16 @@
           "imported object"
         ], 
         "random": [
-          "IMPORTED_FAUX_PRIMITIVE", 
-          "imported object"
+          "REF", 
+          1
         ]
       }, 
-      "heap": {}, 
+      "heap": {
+        "1": [
+          "INSTANCE", 
+          "module"
+        ]
+      }, 
       "line": 7, 
       "event": "step_line"
     }, 
@@ -83,15 +98,19 @@
         ], 
         "x": [
           "REF", 
-          1
+          2
         ], 
         "random": [
-          "IMPORTED_FAUX_PRIMITIVE", 
-          "imported object"
+          "REF", 
+          1
         ]
       }, 
       "heap": {
         "1": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "2": [
           "INSTANCE", 
           "SRE_Pattern"
         ]

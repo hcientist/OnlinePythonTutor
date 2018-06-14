@@ -17,15 +17,20 @@
       "func_name": "<module>",
       "globals": {
         "operator": [
-          "IMPORTED_FAUX_PRIMITIVE",
-          "imported object"
+          "REF",
+          1
         ]
       },
       "ordered_globals": [
         "operator"
       ],
       "stack_to_render": [],
-      "heap": {},
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ]
+      },
       "stdout": ""
     },
     {
@@ -34,8 +39,8 @@
       "func_name": "<module>",
       "globals": {
         "operator": [
-          "IMPORTED_FAUX_PRIMITIVE",
-          "imported object"
+          "REF",
+          1
         ],
         "pi": 3.1416,
         "e": 2.7183
@@ -46,7 +51,12 @@
         "e"
       ],
       "stack_to_render": [],
-      "heap": {},
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ]
+      },
       "stdout": ""
     },
     {
@@ -55,8 +65,8 @@
       "func_name": "<module>",
       "globals": {
         "operator": [
-          "IMPORTED_FAUX_PRIMITIVE",
-          "imported object"
+          "REF",
+          1
         ],
         "pi": 3.1416,
         "e": 2.7183,
@@ -69,7 +79,12 @@
         "pie"
       ],
       "stack_to_render": [],
-      "heap": {},
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ]
+      },
       "stdout": ""
     }
   ]

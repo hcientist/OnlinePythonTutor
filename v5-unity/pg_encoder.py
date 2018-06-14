@@ -245,6 +245,16 @@ class ObjectEncoder:
         pass # fail soft
       my_id = id(dat)
 
+      # if dat is an *real* object instance (and not some special built-in one
+      # like ABCMeta, or a py3 function object), then DON'T treat it as
+      # externally-defined because a user might be instantiating an *instance*
+      # of an imported class in their own code, so we want to show that instance
+      # in da visualization - ugh #hacky
+      if (is_instance(dat) and
+          type(dat) not in (types.FunctionType, types.MethodType, types.BuiltinFunctionType, types.BuiltinMethodType) and
+          hasattr(dat, '__class__') and (get_name(dat.__class__) != 'ABCMeta')):
+        is_externally_defined = False
+
       # if this is an externally-defined object (i.e., from an imported
       # module, don't try to recurse into it since we don't want to see
       # the internals of imported objects; just return an
