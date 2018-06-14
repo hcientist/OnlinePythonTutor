@@ -1447,11 +1447,23 @@ class DataVisualizer {
             }
           });
         }
-        else if (heapObj[0] == 'JS_FUNCTION') {
+        else if (heapObj[0] == 'FUNCTION' || heapObj[0] == 'JS_FUNCTION') {
+          // a Python function object has an optional element at index=3
+          // (zero-indexed) that represents default arg names/values
+          //
           // a JavaScript function object has funcProperties that we should
           // recurse into in order to precompute their layouts
-          assert(heapObj.length == 5);
-          var funcProperties = heapObj[3]; // either null or a non-empty list of key-value pairs
+          var funcProperties = null;
+          // traverse into default argument values to precompute their
+          // layouts, if applicable
+          if (heapObj[0] == 'FUNCTION' && heapObj.length > 3) {
+            funcProperties = heapObj[3];
+          }
+          if (heapObj[0] == 'JS_FUNCTION') {
+            assert(heapObj.length == 5);
+            funcProperties = heapObj[3];
+          }
+
           if (funcProperties) {
             assert(funcProperties.length > 0);
             $.each(funcProperties, function(ind, kvPair) {
@@ -2936,7 +2948,7 @@ class DataVisualizer {
       d3DomElement.append('<table class="customObjTbl"><tr><td class="customObjElt">' + strRepr + '</td></tr></table>');
     }
     else if (obj[0] == 'FUNCTION') {
-      assert(obj.length == 3);
+      assert(obj.length == 3 || obj.length == 4);
 
       // pretty-print lambdas and display other weird characters:
       var funcName = htmlspecialchars(obj[1]).replace('&lt;lambda&gt;', '\u03bb');
@@ -2956,6 +2968,23 @@ class DataVisualizer {
       }
       else {
         d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + '</div>');
+      }
+
+      // render default argument names/values (see ../pg_encoder.py)
+      if (obj.length > 3) {
+        var funcProperties = obj[3];
+        assert(funcProperties.length > 0);
+        d3DomElement.append('<div class="typeLabel" style="margin-top: 3px;">default arguments:</div>');
+        d3DomElement.append('<table class="instTbl"></table>');
+        var tbl = d3DomElement.children('table');
+        $.each(funcProperties, function(ind, kvPair) {
+          tbl.append('<tr class="instEntry"><td class="instKey"></td><td class="instVal"></td></tr>');
+          var newRow = tbl.find('tr:last');
+          var keyTd = newRow.find('td:first');
+          var valTd = newRow.find('td:last');
+          keyTd.append('<span class="keyObj">' + htmlspecialchars(kvPair[0]) + '</span>');
+          myViz.renderNestedObject(kvPair[1], stepNum, valTd);
+        });
       }
     }
     else if (obj[0] == 'JS_FUNCTION') { /* TODO: refactor me */
