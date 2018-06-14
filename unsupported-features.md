@@ -39,8 +39,7 @@ For more details on project status and issue prioritization, check out these vid
   - to cut down execution times, [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
 - asynchronous code
 - random number generators and user input (via input() or raw_input()) [sometimes don't work well together](https://github.com/pgbovine/OnlinePythonTutor/issues/110)
-- showing [mutable default function arguments](https://github.com/pgbovine/OnlinePythonTutor/issues/127) or other complex argument formats
-
+- (note: remember that Python 2 and 3 support slightly different kinds of language constructs)
 
 ### Other unsupported features (language-agnostic)
 
