@@ -1,0 +1,11 @@
+{
+  "code": "# py3 only\ndef baz(*my_args, my_kwonly1, my_kwonly2, my_kwonly3=[5,4,3,2,1], **my_kwargs):\n    my_kwonly3.append(my_kwonly1)\n    my_kwonly3.append(my_kwonly2)\n\nbaz(my_kwonly1='hello', my_kwonly2='world')\nbaz(my_kwonly1=1, my_kwonly2=2)\n", 
+  "trace": [
+    {
+      "exception_msg": "SyntaxError: invalid syntax (<string>, line 2)", 
+      "line": 2, 
+      "event": "uncaught_exception", 
+      "offset": 28
+    }
+  ]
+}

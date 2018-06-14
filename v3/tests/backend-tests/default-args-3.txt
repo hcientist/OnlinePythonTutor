@@ -1,0 +1,7 @@
+# py3 only
+def baz(*my_args, my_kwonly1, my_kwonly2, my_kwonly3=[5,4,3,2,1], **my_kwargs):
+    my_kwonly3.append(my_kwonly1)
+    my_kwonly3.append(my_kwonly2)
+
+baz(my_kwonly1='hello', my_kwonly2='world')
+baz(my_kwonly1=1, my_kwonly2=2)

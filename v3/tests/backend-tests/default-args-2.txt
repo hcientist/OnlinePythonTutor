@@ -1,0 +1,11 @@
+def foo(x, y=2, z=3, a=[]):
+    pass
+
+def bar(x=set('a'), y='b', z='c', *my_rest, **my_kwargs):
+    pass
+
+def baz(x, y='b', z='c', *my_rest, **my_kwargs):
+    pass
+
+def baz2(x, y, z='c', *my_rest, **my_kwargs):
+    pass

@@ -1,0 +1,791 @@
+{
+  "code": "# py3 only\ndef baz(*my_args, my_kwonly1, my_kwonly2, my_kwonly3=[5,4,3,2,1], **my_kwargs):\n    my_kwonly3.append(my_kwonly1)\n    my_kwonly3.append(my_kwonly2)\n\nbaz(my_kwonly1='hello', my_kwonly2='world')\nbaz(my_kwonly1=1, my_kwonly2=2)\n",
+  "trace": [
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "baz": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "baz"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "baz(*my_args, my_kwonly1, my_kwonly2, my_kwonly3, **my_kwargs)",
+          null,
+          [
+            [
+              "my_kwonly3",
+              [
+                "REF",
+                2
+              ]
+            ]
+          ]
+        ],
+        "2": [
+          "LIST",
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "baz",
+      "globals": {
+        "baz": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "baz"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "baz",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "my_kwargs": [
+              "REF",
+              3
+            ],
+            "my_args": [
+              "REF",
+              4
+            ],
+            "my_kwonly3": [
+              "REF",
+              2
+            ],
+            "my_kwonly2": "world",
+            "my_kwonly1": "hello"
+          },
+          "ordered_varnames": [
+            "my_kwonly1",
+            "my_kwonly2",
+            "my_kwonly3",
+            "my_args",
+            "my_kwargs"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "baz_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "DICT"
+        ],
+        "4": [
+          "TUPLE"
+        ],
+        "2": [
+          "LIST",
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "baz(*my_args, my_kwonly1, my_kwonly2, my_kwonly3, **my_kwargs)",
+          null,
+          [
+            [
+              "my_kwonly3",
+              [
+                "REF",
+                2
+              ]
+            ]
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "baz",
+      "globals": {
+        "baz": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "baz"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "baz",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "my_kwargs": [
+              "REF",
+              3
+            ],
+            "my_args": [
+              "REF",
+              4
+            ],
+            "my_kwonly3": [
+              "REF",
+              2
+            ],
+            "my_kwonly2": "world",
+            "my_kwonly1": "hello"
+          },
+          "ordered_varnames": [
+            "my_kwonly1",
+            "my_kwonly2",
+            "my_kwonly3",
+            "my_args",
+            "my_kwargs"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "baz_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "DICT"
+        ],
+        "4": [
+          "TUPLE"
+        ],
+        "2": [
+          "LIST",
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "baz(*my_args, my_kwonly1, my_kwonly2, my_kwonly3, **my_kwargs)",
+          null,
+          [
+            [
+              "my_kwonly3",
+              [
+                "REF",
+                2
+              ]
+            ]
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "baz",
+      "globals": {
+        "baz": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "baz"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "baz",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "my_kwargs": [
+              "REF",
+              3
+            ],
+            "my_args": [
+              "REF",
+              4
+            ],
+            "my_kwonly3": [
+              "REF",
+              2
+            ],
+            "my_kwonly2": "world",
+            "my_kwonly1": "hello"
+          },
+          "ordered_varnames": [
+            "my_kwonly1",
+            "my_kwonly2",
+            "my_kwonly3",
+            "my_args",
+            "my_kwargs"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "baz_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "DICT"
+        ],
+        "4": [
+          "TUPLE"
+        ],
+        "2": [
+          "LIST",
+          5,
+          4,
+          3,
+          2,
+          1,
+          "hello"
+        ],
+        "1": [
+          "FUNCTION",
+          "baz(*my_args, my_kwonly1, my_kwonly2, my_kwonly3, **my_kwargs)",
+          null,
+          [
+            [
+              "my_kwonly3",
+              [
+                "REF",
+                2
+              ]
+            ]
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "return",
+      "func_name": "baz",
+      "globals": {
+        "baz": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "baz"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "baz",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "my_kwargs": [
+              "REF",
+              3
+            ],
+            "my_args": [
+              "REF",
+              4
+            ],
+            "my_kwonly3": [
+              "REF",
+              2
+            ],
+            "my_kwonly2": "world",
+            "my_kwonly1": "hello",
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "my_kwonly1",
+            "my_kwonly2",
+            "my_kwonly3",
+            "my_args",
+            "my_kwargs",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "baz_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "DICT"
+        ],
+        "4": [
+          "TUPLE"
+        ],
+        "2": [
+          "LIST",
+          5,
+          4,
+          3,
+          2,
+          1,
+          "hello",
+          "world"
+        ],
+        "1": [
+          "FUNCTION",
+          "baz(*my_args, my_kwonly1, my_kwonly2, my_kwonly3, **my_kwargs)",
+          null,
+          [
+            [
+              "my_kwonly3",
+              [
+                "REF",
+                2
+              ]
+            ]
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "baz": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "baz"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "baz(*my_args, my_kwonly1, my_kwonly2, my_kwonly3, **my_kwargs)",
+          null,
+          [
+            [
+              "my_kwonly3",
+              [
+                "REF",
+                2
+              ]
+            ]
+          ]
+        ],
+        "2": [
+          "LIST",
+          5,
+          4,
+          3,
+          2,
+          1,
+          "hello",
+          "world"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "baz",
+      "globals": {
+        "baz": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "baz"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "baz",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "my_kwargs": [
+              "REF",
+              5
+            ],
+            "my_args": [
+              "REF",
+              4
+            ],
+            "my_kwonly3": [
+              "REF",
+              2
+            ],
+            "my_kwonly2": 2,
+            "my_kwonly1": 1
+          },
+          "ordered_varnames": [
+            "my_kwonly1",
+            "my_kwonly2",
+            "my_kwonly3",
+            "my_args",
+            "my_kwargs"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "baz_f2"
+        }
+      ],
+      "heap": {
+        "5": [
+          "DICT"
+        ],
+        "4": [
+          "TUPLE"
+        ],
+        "2": [
+          "LIST",
+          5,
+          4,
+          3,
+          2,
+          1,
+          "hello",
+          "world"
+        ],
+        "1": [
+          "FUNCTION",
+          "baz(*my_args, my_kwonly1, my_kwonly2, my_kwonly3, **my_kwargs)",
+          null,
+          [
+            [
+              "my_kwonly3",
+              [
+                "REF",
+                2
+              ]
+            ]
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "baz",
+      "globals": {
+        "baz": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "baz"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "baz",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "my_kwargs": [
+              "REF",
+              5
+            ],
+            "my_args": [
+              "REF",
+              4
+            ],
+            "my_kwonly3": [
+              "REF",
+              2
+            ],
+            "my_kwonly2": 2,
+            "my_kwonly1": 1
+          },
+          "ordered_varnames": [
+            "my_kwonly1",
+            "my_kwonly2",
+            "my_kwonly3",
+            "my_args",
+            "my_kwargs"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "baz_f2"
+        }
+      ],
+      "heap": {
+        "5": [
+          "DICT"
+        ],
+        "4": [
+          "TUPLE"
+        ],
+        "2": [
+          "LIST",
+          5,
+          4,
+          3,
+          2,
+          1,
+          "hello",
+          "world"
+        ],
+        "1": [
+          "FUNCTION",
+          "baz(*my_args, my_kwonly1, my_kwonly2, my_kwonly3, **my_kwargs)",
+          null,
+          [
+            [
+              "my_kwonly3",
+              [
+                "REF",
+                2
+              ]
+            ]
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "baz",
+      "globals": {
+        "baz": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "baz"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "baz",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "my_kwargs": [
+              "REF",
+              5
+            ],
+            "my_args": [
+              "REF",
+              4
+            ],
+            "my_kwonly3": [
+              "REF",
+              2
+            ],
+            "my_kwonly2": 2,
+            "my_kwonly1": 1
+          },
+          "ordered_varnames": [
+            "my_kwonly1",
+            "my_kwonly2",
+            "my_kwonly3",
+            "my_args",
+            "my_kwargs"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "baz_f2"
+        }
+      ],
+      "heap": {
+        "5": [
+          "DICT"
+        ],
+        "4": [
+          "TUPLE"
+        ],
+        "2": [
+          "LIST",
+          5,
+          4,
+          3,
+          2,
+          1,
+          "hello",
+          "world",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "baz(*my_args, my_kwonly1, my_kwonly2, my_kwonly3, **my_kwargs)",
+          null,
+          [
+            [
+              "my_kwonly3",
+              [
+                "REF",
+                2
+              ]
+            ]
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "return",
+      "func_name": "baz",
+      "globals": {
+        "baz": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "baz"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "baz",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "my_kwargs": [
+              "REF",
+              5
+            ],
+            "my_args": [
+              "REF",
+              4
+            ],
+            "my_kwonly3": [
+              "REF",
+              2
+            ],
+            "my_kwonly2": 2,
+            "my_kwonly1": 1,
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "my_kwonly1",
+            "my_kwonly2",
+            "my_kwonly3",
+            "my_args",
+            "my_kwargs",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "baz_f2"
+        }
+      ],
+      "heap": {
+        "5": [
+          "DICT"
+        ],
+        "4": [
+          "TUPLE"
+        ],
+        "2": [
+          "LIST",
+          5,
+          4,
+          3,
+          2,
+          1,
+          "hello",
+          "world",
+          1,
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "baz(*my_args, my_kwonly1, my_kwonly2, my_kwonly3, **my_kwargs)",
+          null,
+          [
+            [
+              "my_kwonly3",
+              [
+                "REF",
+                2
+              ]
+            ]
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "baz": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "baz"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "baz(*my_args, my_kwonly1, my_kwonly2, my_kwonly3, **my_kwargs)",
+          null,
+          [
+            [
+              "my_kwonly3",
+              [
+                "REF",
+                2
+              ]
+            ]
+          ]
+        ],
+        "2": [
+          "LIST",
+          5,
+          4,
+          3,
+          2,
+          1,
+          "hello",
+          "world",
+          1,
+          2
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}
