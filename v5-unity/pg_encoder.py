@@ -424,6 +424,12 @@ class ObjectEncoder:
       if hasattr(dat, '__str__'):
         try:
           pprint_str = dat.__str__()
+
+          # sometimes you'll get 'trivial' pprint_str like: '<__main__.MyObj object at 0x10f465cd0>'
+          # or '<module 'collections' ...'
+          # IGNORE THOSE!!!
+          if pprint_str[0] == '<' and pprint_str[-1] == '>' and (' at ' in pprint_str or pprint_str.startswith('<module')):
+            pprint_str = None
         except:
           pass
 
