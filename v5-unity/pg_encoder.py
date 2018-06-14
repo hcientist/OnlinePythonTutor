@@ -61,7 +61,7 @@
 #   * set      - ['SET', elt1, elt2, elt3, ..., eltN]
 #   * dict     - ['DICT', [key1, value1], [key2, value2], ..., [keyN, valueN]]
 #   * instance - ['INSTANCE', class name, [attr1, value1], [attr2, value2], ..., [attrN, valueN]]
-#   * instance with __str__ defined - ['INSTANCE_PPRINT', class name, <__str__ value>]
+#   * instance with non-trivial __str__ defined - ['INSTANCE_PPRINT', class name, <__str__ value>, [attr1, value1], [attr2, value2], ..., [attrN, valueN]]
 #   * class    - ['CLASS', class name, [list of superclass names], [attr1, value1], [attr2, value2], ..., [attrN, valueN]]
 #   * function - ['FUNCTION', function name, parent frame ID (for nested functions),
 #                 [*OPTIONAL* list of pairs of default argument names/values] ] <-- final optional element added on 2018-06-13
@@ -419,26 +419,24 @@ class ObjectEncoder:
         # http://docs.python.org/release/3.1.5/c-api/capsule.html
         class_name = get_name(type(dat))
 
-      if hasattr(dat, '__str__') and \
-         (not dat.__class__.__str__ is object.__str__): # make sure it's not the lame default __str__
-        # N.B.: when objects are being constructed, this call
-        # might fail since not all fields have yet been populated
-        #
-        # 2018-06-13: TODO: look into improving this: maybe also print
-        # internal repr in addition to __str__? also what about if a
-        # superclass defines __str__ ... does the above check pick it up?
+      pprint_str = None
+      # do you or any of your superclasses have a __str__ field? if so, pretty-print yourself!
+      if hasattr(dat, '__str__'):
         try:
-          pprint_str = str(dat)
+          pprint_str = dat.__str__()
         except:
-          pprint_str = '<incomplete object>'
+          pass
 
+      # TODO: filter for trivial-looking pprint_str like those produced
+      # by object.__str__
+      if pprint_str:
         new_obj.extend(['INSTANCE_PPRINT', class_name, pprint_str])
-        return # bail early
       else:
         new_obj.extend(['INSTANCE', class_name])
-        # don't traverse inside modules, or else risk EXPLODING the visualization
-        if class_name == 'module':
-          return
+
+      # don't traverse inside modules, or else risk EXPLODING the visualization
+      if class_name == 'module':
+        return
     else:
       superclass_names = [e.__name__ for e in dat.__bases__ if e is not object]
       new_obj.extend(['CLASS', get_name(dat), superclass_names])
