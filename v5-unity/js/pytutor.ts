@@ -101,7 +101,9 @@ export class ExecutionVisualizer {
     if (this.params.alwaysNestTypes.indexOf(obj[0]) >= 0) {
       // is the type name in alwaysNestTypes?
       return true;
-    } else if (obj.length >= 2 && obj[0] == 'INSTANCE' && (this.params.alwaysNestTypes.indexOf(obj[1]) >= 0)) {
+    } else if (obj.length >= 2 &&
+               (obj[0] == 'INSTANCE' || obj[0] == 'INSTANCE_PPRINT') &&
+               (this.params.alwaysNestTypes.indexOf(obj[1]) >= 0)) {
       // otherwise is this an INSTANCE with the type name (obj[1]) in alwaysNestTypes?
       return true;
     } else {
@@ -1422,7 +1424,7 @@ class DataVisualizer {
             }
           });
         }
-        else if (heapObj[0] == 'INSTANCE' || heapObj[0] == 'CLASS') {
+        else if (heapObj[0] == 'INSTANCE' || heapObj[0] == 'INSTANCE_PPRINT' || heapObj[0] == 'CLASS') {
           jQuery.each(heapObj, function(ind, child) {
             var headerLength = (heapObj[0] == 'INSTANCE') ? 2 : 3;
             if (ind < headerLength) return;
@@ -1701,6 +1703,9 @@ class DataVisualizer {
       }
       else if (obj1[0] == 'INSTANCE') {
         startingInd = 2;
+      }
+      else if (obj1[0] == 'INSTANCE_PPRINT') {
+        startingInd = 3;
       }
       else {
         return false; // punt on all other types
@@ -2853,16 +2858,19 @@ class DataVisualizer {
         }
       }
     }
-    else if (obj[0] == 'INSTANCE' || obj[0] == 'CLASS') {
+    else if (obj[0] == 'INSTANCE' || obj[0] == 'INSTANCE_PPRINT' || obj[0] == 'CLASS') {
       var isInstance = (obj[0] == 'INSTANCE');
+      var isPprintInstance = (obj[0] == 'INSTANCE_PPRINT');
       var headerLength = isInstance ? 2 : 3;
 
       assert(obj.length >= headerLength);
 
       if (isInstance) {
         d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' ' + myViz.getRealLabel('instance') + '</div>');
-      }
-      else {
+      } else if (isPprintInstance) {
+        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' ' + myViz.getRealLabel('instance') + '</div>');
+        d3DomElement.append('<table class="customObjTbl"><tr><td class="customObjElt">' + htmlspecialchars(obj[2]) + '</td></tr></table>');
+      } else {
         var superclassStr = '';
         if (obj[2].length > 0) {
           superclassStr += ('[extends ' + obj[2].join(', ') + '] ');
@@ -2881,7 +2889,7 @@ class DataVisualizer {
         var lab = isInstance ? 'inst' : 'class';
         d3DomElement.append('<table class="' + lab + 'Tbl"></table>');
 
-        var tbl = d3DomElement.children('table');
+        var tbl = d3DomElement.children('table:last'); // tricky, there's more than 1 table if isPprintInstance is true
 
         $.each(obj, function(ind, kvPair) {
           if (ind < headerLength) return; // skip header tags
@@ -2940,12 +2948,6 @@ class DataVisualizer {
           d3DomElement.find('.typeLabel #attrToggleLink').html('show attributes');
         }
       }
-    }
-    else if (obj[0] == 'INSTANCE_PPRINT') {
-      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + obj[1] + ' instance</div>');
-
-      strRepr = htmlspecialchars(obj[2]); // escape strings!
-      d3DomElement.append('<table class="customObjTbl"><tr><td class="customObjElt">' + strRepr + '</td></tr></table>');
     }
     else if (obj[0] == 'FUNCTION') {
       assert(obj.length == 3 || obj.length == 4);
