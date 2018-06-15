@@ -121,7 +121,22 @@ else:
 ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'time', 'datetime',
                           'functools', 'itertools', 'operator', 'string',
                           'collections', 're', 'json',
-                          'heapq', 'bisect', 'copy', 'hashlib', 'typing')
+                          'heapq', 'bisect', 'copy', 'hashlib', 'typing',
+                          # the above modules were first added in 2012-09
+                          # and then incrementally appended to up until
+                          # 2016-ish (see git blame logs)
+
+                          # added these additional ones on 2018-06-15
+                          # after seeing usage logs of what users tried
+                          # importing a lot but we didn't support yet
+                          # (ignoring imports that heavily deal with
+                          # filesystem, networking, or 3rd-party libs)
+                          '__future__', 'cmath', 'decimal', 'fractions',
+                          'pprint', 'calendar', 'pickle', 'cPickle',
+                          'struct', 'types', 'ctypes', 'array',
+                          'sqlite3', 'locale', 'glob', 'abc', 'inspect',
+                          'doctest', 'unittest',
+                          )
 
 # allow users to import but don't explicitly import it since it's
 # already been done above
@@ -183,6 +198,9 @@ def __restricted_import__(*args):
     # somewhat weak protection against imported modules that contain one
     # of these troublesome builtins. again, NOTHING is foolproof ...
     # just more defense in depth :)
+    #
+    # unload it so that if someone attempts to reload it, then it has to be
+    # loaded from the filesystem, which is (supposedly!) blocked by setrlimit
     for mod in ('os', 'sys', 'posix', 'gc'):
       if hasattr(imported_mod, mod):
         delattr(imported_mod, mod)
@@ -200,7 +218,7 @@ def __restricted_import__(*args):
     # adapted from https://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks
     for i in range(0, len(all_allowed_imports), ENTRIES_PER_LINE):
         lines_to_print.append(all_allowed_imports[i:i + ENTRIES_PER_LINE])
-    pretty_printed_imports = '\n  '.join([', '.join(e) for e in lines_to_print])
+    pretty_printed_imports = ',\n  '.join([', '.join(e) for e in lines_to_print])
 
     raise ImportError('{0} not supported\nOnly these modules can be imported into Python Tutor:\n  {1}'.format(args[0], pretty_printed_imports))
 
