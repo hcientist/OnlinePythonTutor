@@ -55,7 +55,7 @@ imports:
 __future__, abc, array, bisect, calendar,
 cmath, collections, copy, datetime, decimal,
 doctest, fractions, functools, glob, hashlib, heapq,
-inspect, io, itertools, json, locale, math,
+io, itertools, json, locale, math,
 operator, pickle, pprint, random, re,
 string, struct, time, types, typing, unittest, StringIO (Python 2 only).
 

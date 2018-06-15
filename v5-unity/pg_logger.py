@@ -134,7 +134,7 @@ ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'time', 'datetime',
                           '__future__', 'cmath', 'decimal', 'fractions',
                           'pprint', 'calendar', 'pickle',
                           'struct', 'types', 'array',
-                          'locale', 'glob', 'abc', 'inspect',
+                          'locale', 'glob', 'abc',
                           'doctest', 'unittest',
                           )
 
