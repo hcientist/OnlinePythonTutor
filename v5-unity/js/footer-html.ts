@@ -53,10 +53,10 @@ href="https://docs.python.org/3.6/">3.6</a> with these limited module
 imports:
 
 __future__, abc, array, bisect, calendar,
-cmath, collections, copy, ctypes, datetime, decimal,
+cmath, collections, copy, datetime, decimal,
 doctest, fractions, functools, glob, hashlib, heapq,
 inspect, io, itertools, json, locale, math,
-operator, pickle, pprint, random, re, sqlite3,
+operator, pickle, pprint, random, re,
 string, struct, time, types, typing, unittest, StringIO (Python 2 only).
 
 <a
