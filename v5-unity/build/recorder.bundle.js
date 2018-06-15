@@ -647,6 +647,9 @@ function multiplyLists(a, b) {
     }
     return ret;
 }
+var newlineAllRegex = new RegExp('\n', 'g');
+var doubleQuoteAllRegex = new RegExp('\"', 'g');
+var tabAllRegex = new RegExp("\t", 'g');
 // the main event!
 var ExecutionVisualizer = /** @class */ (function () {
     // Constructor with an ever-growing feature-crepped list of options :)
@@ -2413,7 +2416,7 @@ var DataVisualizer = /** @class */ (function () {
             // pretty-print lambdas and display other weird characters
             // (might contain '<' or '>' for weird names like <genexpr>)
             var funcName = htmlspecialchars(frame.func_name).replace('&lt;lambda&gt;', '\u03bb')
-                .replace('\n', '<br/>');
+                .replace(newlineAllRegex, '<br/>');
             var headerLabel = funcName;
             // only display if you're someone's parent (unless showAllFrameLabels)
             if (frame.is_parent || myViz.params.showAllFrameLabels) {
@@ -2772,8 +2775,8 @@ var DataVisualizer = /** @class */ (function () {
             var literalStr = htmlspecialchars(obj);
             // print as a double-quoted string literal
             // with explicit newlines as <br/>
-            literalStr = literalStr.replace(new RegExp('\n', 'g'), '<br/>'); // replace ALL
-            literalStr = literalStr.replace(new RegExp('\"', 'g'), '\\"'); // replace ALL
+            literalStr = literalStr.replace(newlineAllRegex, '<br/>'); // replace ALL
+            literalStr = literalStr.replace(doubleQuoteAllRegex, '\\"'); // replace ALL
             literalStr = '"' + literalStr + '"';
             d3DomElement.append('<span class="stringObj">' + literalStr + '</span>');
         }
@@ -2847,9 +2850,9 @@ var DataVisualizer = /** @class */ (function () {
                         }
                         else {
                             // a regular string
-                            literalStr = literalStr.replace(new RegExp("\n", 'g'), '\\n'); // replace ALL
-                            literalStr = literalStr.replace(new RegExp("\t", 'g'), '\\t'); // replace ALL
-                            literalStr = literalStr.replace(new RegExp('\"', 'g'), '\\"'); // replace ALL
+                            literalStr = literalStr.replace(newlineAllRegex, '\\n'); // replace ALL
+                            literalStr = literalStr.replace(tabAllRegex, '\\t'); // replace ALL
+                            literalStr = literalStr.replace(doubleQuoteAllRegex, '\\"'); // replace ALL
                             // unprintable chars are denoted with '???', so show them as
                             // a special unicode character:
                             if (typeName === 'char' && literalStr === '???') {
@@ -3830,7 +3833,7 @@ var NavigationController = /** @class */ (function () {
     };
     NavigationController.prototype.showError = function (msg) {
         if (msg) {
-            this.domRoot.find("#errorOutput").html(htmlspecialchars(msg) + "\n      <span style=\"font-size: 9pt; color: #666\">(see <a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\" target=\"_blank\">unsupported features</a>)</span>").show();
+            this.domRoot.find("#errorOutput").html(htmlspecialchars(msg).replace(newlineAllRegex, '<br/>') + "\n      <span style=\"font-size: 9pt; color: #666\">(see <a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\" target=\"_blank\">unsupported features</a>)</span>").show();
         }
         else {
             this.domRoot.find("#errorOutput").hide();
@@ -3888,6 +3891,7 @@ String.prototype /* TS too strict */.rtrim = function () {
 // and '.' seems to be illegal.
 //
 // also '=', '!', and '?' are common in Ruby names, so escape those as well
+// '$' sometimes found in JavaScript names, so escape as well
 //
 // also spaces are illegal, so convert to '_'
 // TODO: what other characters are illegal???
@@ -3903,6 +3907,7 @@ function varnameToCssID(varname) {
         .replace(/[:]/g, '_COLON_')
         .replace(/[=]/g, '_EQ_')
         .replace(/[.]/g, '_DOT_')
+        .replace(/[$]/g, '_DOLLAR_')
         .replace(/ /g, '_');
 }
 function isHeapRef(obj, heap) {
