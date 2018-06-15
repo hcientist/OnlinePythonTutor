@@ -132,7 +132,7 @@ ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'time', 'datetime',
                           # (ignoring imports that heavily deal with
                           # filesystem, networking, or 3rd-party libs)
                           '__future__', 'cmath', 'decimal', 'fractions',
-                          'pprint', 'calendar', 'pickle', 'cPickle',
+                          'pprint', 'calendar', 'pickle',
                           'struct', 'types', 'ctypes', 'array',
                           'sqlite3', 'locale', 'glob', 'abc', 'inspect',
                           'doctest', 'unittest',
