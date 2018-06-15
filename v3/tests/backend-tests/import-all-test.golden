@@ -1,5 +1,5 @@
 {
-  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, ctypes, datetime, decimal, doctest, fractions, functools, glob, hashlib, heapq, inspect, io, itertools, json, locale, math, operator, pickle, pprint, random, re, sqlite3, string, struct, time, types, typing, unittest\n", 
+  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, datetime, decimal, doctest, fractions, functools, glob, hashlib, heapq, inspect, io, itertools, json, locale, math, operator, pickle, pprint, random, re, string, struct, time, types, unittest\n", 
   "trace": [
     {
       "ordered_globals": [], 
@@ -29,15 +29,12 @@
         "re", 
         "json", 
         "collections", 
-        "typing", 
-        "sqlite3", 
         "unittest", 
         "math", 
         "fractions", 
         "string", 
         "glob", 
         "inspect", 
-        "ctypes", 
         "copy", 
         "types", 
         "hashlib", 
@@ -117,14 +114,6 @@
           "IMPORTED_FAUX_PRIMITIVE", 
           "imported module"
         ], 
-        "typing": [
-          "IMPORTED_FAUX_PRIMITIVE", 
-          "imported module"
-        ], 
-        "sqlite3": [
-          "IMPORTED_FAUX_PRIMITIVE", 
-          "imported module"
-        ], 
         "unittest": [
           "IMPORTED_FAUX_PRIMITIVE", 
           "imported module"
@@ -146,10 +135,6 @@
           "imported module"
         ], 
         "inspect": [
-          "IMPORTED_FAUX_PRIMITIVE", 
-          "imported module"
-        ], 
-        "ctypes": [
           "IMPORTED_FAUX_PRIMITIVE", 
           "imported module"
         ], 

@@ -1,5 +1,5 @@
 {
-  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, ctypes, datetime, decimal, doctest, fractions, functools, glob, hashlib, heapq, inspect, io, itertools, json, locale, math, operator, pickle, pprint, random, re, sqlite3, string, struct, time, types, typing, unittest\n", 
+  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, datetime, decimal, doctest, fractions, functools, glob, hashlib, heapq, inspect, io, itertools, json, locale, math, operator, pickle, pprint, random, re, string, struct, time, types, unittest\n", 
   "trace": [
     {
       "ordered_globals": [], 
@@ -29,13 +29,12 @@
         "re", 
         "json", 
         "collections", 
-        "sqlite3", 
+        "unittest", 
         "math", 
         "fractions", 
         "string", 
         "glob", 
         "inspect", 
-        "ctypes", 
         "copy", 
         "types", 
         "hashlib", 
@@ -48,7 +47,6 @@
         "pickle"
       ], 
       "stdout": "", 
-      "exception_msg": "ImportError: No module named typing", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {
@@ -116,7 +114,7 @@
           "REF", 
           16
         ], 
-        "sqlite3": [
+        "unittest": [
           "REF", 
           17
         ], 
@@ -140,49 +138,45 @@
           "REF", 
           22
         ], 
-        "ctypes": [
+        "copy": [
           "REF", 
           23
         ], 
-        "copy": [
+        "types": [
           "REF", 
           24
         ], 
-        "types": [
+        "hashlib": [
           "REF", 
           25
         ], 
-        "hashlib": [
+        "bisect": [
           "REF", 
           26
         ], 
-        "bisect": [
+        "decimal": [
           "REF", 
           27
         ], 
-        "decimal": [
+        "itertools": [
           "REF", 
           28
         ], 
-        "itertools": [
+        "cmath": [
           "REF", 
           29
         ], 
-        "cmath": [
+        "doctest": [
           "REF", 
           30
         ], 
-        "doctest": [
+        "time": [
           "REF", 
           31
         ], 
-        "time": [
-          "REF", 
-          32
-        ], 
         "pickle": [
           "REF", 
-          33
+          32
         ]
       }, 
       "heap": {
@@ -313,14 +307,10 @@
         "32": [
           "INSTANCE", 
           "module"
-        ], 
-        "33": [
-          "INSTANCE", 
-          "module"
         ]
       }, 
       "line": 1, 
-      "event": "exception"
+      "event": "return"
     }
   ]
 }

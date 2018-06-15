@@ -20,7 +20,7 @@
       "stack_to_render": [],
       "heap": {},
       "stdout": "",
-      "exception_msg": "ImportError: os not supported\nOnly these modules can be imported into Python Tutor:\n  __future__, abc, array, bisect, calendar, cmath,\n  collections, copy, ctypes, datetime, decimal, doctest,\n  fractions, functools, glob, hashlib, heapq, inspect,\n  io, itertools, json, locale, math, operator,\n  pickle, pprint, random, re, sqlite3, string,\n  struct, time, types, typing, unittest"
+      "exception_msg": "ImportError: os not supported\nOnly these modules can be imported into Python Tutor:\n  __future__, abc, array, bisect, calendar, cmath,\n  collections, copy, datetime, decimal, doctest, fractions,\n  functools, glob, hashlib, heapq, inspect, io,\n  itertools, json, locale, math, operator, pickle,\n  pprint, random, re, string, struct, time,\n  types, typing, unittest"
     }
   ]
 }

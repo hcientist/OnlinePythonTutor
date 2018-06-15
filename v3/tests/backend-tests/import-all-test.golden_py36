@@ -1,5 +1,5 @@
 {
-  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, ctypes, datetime, decimal, doctest, fractions, functools, glob, hashlib, heapq, inspect, io, itertools, json, locale, math, operator, pickle, pprint, random, re, sqlite3, string, struct, time, types, typing, unittest\n",
+  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, datetime, decimal, doctest, fractions, functools, glob, hashlib, heapq, inspect, io, itertools, json, locale, math, operator, pickle, pprint, random, re, string, struct, time, types, unittest\n",
   "trace": [
     {
       "line": 1,
@@ -48,113 +48,101 @@
           "REF",
           8
         ],
-        "ctypes": [
+        "datetime": [
           "REF",
           9
         ],
-        "datetime": [
+        "decimal": [
           "REF",
           10
         ],
-        "decimal": [
+        "doctest": [
           "REF",
           11
         ],
-        "doctest": [
+        "fractions": [
           "REF",
           12
         ],
-        "fractions": [
+        "functools": [
           "REF",
           13
         ],
-        "functools": [
+        "glob": [
           "REF",
           14
         ],
-        "glob": [
+        "hashlib": [
           "REF",
           15
         ],
-        "hashlib": [
+        "heapq": [
           "REF",
           16
         ],
-        "heapq": [
+        "inspect": [
           "REF",
           17
         ],
-        "inspect": [
+        "io": [
           "REF",
           18
         ],
-        "io": [
+        "itertools": [
           "REF",
           19
         ],
-        "itertools": [
+        "json": [
           "REF",
           20
         ],
-        "json": [
+        "locale": [
           "REF",
           21
         ],
-        "locale": [
+        "math": [
           "REF",
           22
         ],
-        "math": [
+        "operator": [
           "REF",
           23
         ],
-        "operator": [
+        "pickle": [
           "REF",
           24
         ],
-        "pickle": [
+        "pprint": [
           "REF",
           25
         ],
-        "pprint": [
+        "random": [
           "REF",
           26
         ],
-        "random": [
+        "re": [
           "REF",
           27
         ],
-        "re": [
+        "string": [
           "REF",
           28
         ],
-        "sqlite3": [
+        "struct": [
           "REF",
           29
         ],
-        "string": [
+        "time": [
           "REF",
           30
         ],
-        "struct": [
+        "types": [
           "REF",
           31
         ],
-        "time": [
-          "REF",
-          32
-        ],
-        "types": [
-          "REF",
-          33
-        ],
-        "typing": [
-          "REF",
-          34
-        ],
         "unittest": [
           "REF",
-          35
+          32
         ]
       },
       "ordered_globals": [
@@ -166,7 +154,6 @@
         "cmath",
         "collections",
         "copy",
-        "ctypes",
         "datetime",
         "decimal",
         "doctest",
@@ -186,12 +173,10 @@
         "pprint",
         "random",
         "re",
-        "sqlite3",
         "string",
         "struct",
         "time",
         "types",
-        "typing",
         "unittest"
       ],
       "stack_to_render": [],
@@ -321,18 +306,6 @@
           "module"
         ],
         "32": [
-          "INSTANCE",
-          "module"
-        ],
-        "33": [
-          "INSTANCE",
-          "module"
-        ],
-        "34": [
-          "INSTANCE",
-          "module"
-        ],
-        "35": [
           "INSTANCE",
           "module"
         ]
