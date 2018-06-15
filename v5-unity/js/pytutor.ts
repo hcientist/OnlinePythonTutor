@@ -79,6 +79,10 @@ function multiplyLists(a, b) {
   return ret;
 }
 
+var newlineAllRegex = new RegExp('\n', 'g');
+var doubleQuoteAllRegex = new RegExp('\"', 'g');
+var tabAllRegex = new RegExp("\t", 'g');
+
 // the main event!
 export class ExecutionVisualizer {
   static curVisualizerID = 1;
@@ -2153,7 +2157,7 @@ class DataVisualizer {
         // pretty-print lambdas and display other weird characters
         // (might contain '<' or '>' for weird names like <genexpr>)
         var funcName = htmlspecialchars(frame.func_name).replace('&lt;lambda&gt;', '\u03bb')
-              .replace('\n', '<br/>');
+              .replace(newlineAllRegex, '<br/>');
 
         var headerLabel = funcName;
 
@@ -2585,8 +2589,8 @@ class DataVisualizer {
 
       // print as a double-quoted string literal
       // with explicit newlines as <br/>
-      literalStr = literalStr.replace(new RegExp('\n', 'g'), '<br/>'); // replace ALL
-      literalStr = literalStr.replace(new RegExp('\"', 'g'), '\\"'); // replace ALL
+      literalStr = literalStr.replace(newlineAllRegex, '<br/>'); // replace ALL
+      literalStr = literalStr.replace(doubleQuoteAllRegex, '\\"'); // replace ALL
       literalStr = '"' + literalStr + '"';
 
       d3DomElement.append('<span class="stringObj">' + literalStr + '</span>');
@@ -2662,9 +2666,9 @@ class DataVisualizer {
               rep = '\uD83D\uDC80'; // skull emoji
             } else {
               // a regular string
-              literalStr = literalStr.replace(new RegExp("\n", 'g'), '\\n'); // replace ALL
-              literalStr = literalStr.replace(new RegExp("\t", 'g'), '\\t'); // replace ALL
-              literalStr = literalStr.replace(new RegExp('\"', 'g'), '\\"'); // replace ALL
+              literalStr = literalStr.replace(newlineAllRegex, '\\n'); // replace ALL
+              literalStr = literalStr.replace(tabAllRegex, '\\t'); // replace ALL
+              literalStr = literalStr.replace(doubleQuoteAllRegex, '\\"'); // replace ALL
 
               // unprintable chars are denoted with '???', so show them as
               // a special unicode character:
@@ -3783,7 +3787,7 @@ class NavigationController {
 
   showError(msg: string) {
     if (msg) {
-      this.domRoot.find("#errorOutput").html(htmlspecialchars(msg) + `
+      this.domRoot.find("#errorOutput").html(htmlspecialchars(msg).replace(newlineAllRegex, '<br/>') + `
       <span style="font-size: 9pt; color: #666">(see <a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md" target="_blank">unsupported features</a>)</span>`).show();
     } else {
       this.domRoot.find("#errorOutput").hide();
@@ -3854,6 +3858,7 @@ function htmlsanitize(str) {
 // and '.' seems to be illegal.
 //
 // also '=', '!', and '?' are common in Ruby names, so escape those as well
+// '$' sometimes found in JavaScript names, so escape as well
 //
 // also spaces are illegal, so convert to '_'
 // TODO: what other characters are illegal???
@@ -3869,6 +3874,7 @@ function varnameToCssID(varname) {
                 .replace(/[:]/g, '_COLON_')
                 .replace(/[=]/g, '_EQ_')
                 .replace(/[.]/g, '_DOT_')
+                .replace(/[$]/g, '_DOLLAR_')
                 .replace(/ /g, '_');
 }
 
