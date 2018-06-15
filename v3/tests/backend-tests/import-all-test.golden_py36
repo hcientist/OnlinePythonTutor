@@ -1,5 +1,5 @@
 {
-  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, datetime, decimal, doctest, fractions, functools, glob, hashlib, heapq, inspect, io, itertools, json, locale, math, operator, pickle, pprint, random, re, string, struct, time, types, unittest\n",
+  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, datetime, decimal, doctest, fractions, functools, glob, hashlib, heapq, io, itertools, json, locale, math, operator, pickle, pprint, random, re, string, struct, time, types, unittest\n",
   "trace": [
     {
       "line": 1,
@@ -80,69 +80,65 @@
           "REF",
           16
         ],
-        "inspect": [
+        "io": [
           "REF",
           17
         ],
-        "io": [
+        "itertools": [
           "REF",
           18
         ],
-        "itertools": [
+        "json": [
           "REF",
           19
         ],
-        "json": [
+        "locale": [
           "REF",
           20
         ],
-        "locale": [
+        "math": [
           "REF",
           21
         ],
-        "math": [
+        "operator": [
           "REF",
           22
         ],
-        "operator": [
+        "pickle": [
           "REF",
           23
         ],
-        "pickle": [
+        "pprint": [
           "REF",
           24
         ],
-        "pprint": [
+        "random": [
           "REF",
           25
         ],
-        "random": [
+        "re": [
           "REF",
           26
         ],
-        "re": [
+        "string": [
           "REF",
           27
         ],
-        "string": [
+        "struct": [
           "REF",
           28
         ],
-        "struct": [
+        "time": [
           "REF",
           29
         ],
-        "time": [
+        "types": [
           "REF",
           30
         ],
-        "types": [
-          "REF",
-          31
-        ],
         "unittest": [
           "REF",
-          32
+          31
         ]
       },
       "ordered_globals": [
@@ -162,7 +158,6 @@
         "glob",
         "hashlib",
         "heapq",
-        "inspect",
         "io",
         "itertools",
         "json",
@@ -302,10 +297,6 @@
           "module"
         ],
         "31": [
-          "INSTANCE",
-          "module"
-        ],
-        "32": [
           "INSTANCE",
           "module"
         ]

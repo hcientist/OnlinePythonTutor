@@ -1,5 +1,5 @@
 {
-  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, datetime, decimal, doctest, fractions, functools, glob, hashlib, heapq, inspect, io, itertools, json, locale, math, operator, pickle, pprint, random, re, string, struct, time, types, unittest\n", 
+  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, datetime, decimal, doctest, fractions, functools, glob, hashlib, heapq, io, itertools, json, locale, math, operator, pickle, pprint, random, re, string, struct, time, types, unittest\n", 
   "trace": [
     {
       "ordered_globals": [], 
@@ -34,7 +34,6 @@
         "fractions", 
         "string", 
         "glob", 
-        "inspect", 
         "copy", 
         "types", 
         "hashlib", 
@@ -134,49 +133,45 @@
           "REF", 
           21
         ], 
-        "inspect": [
+        "copy": [
           "REF", 
           22
         ], 
-        "copy": [
+        "types": [
           "REF", 
           23
         ], 
-        "types": [
+        "hashlib": [
           "REF", 
           24
         ], 
-        "hashlib": [
+        "bisect": [
           "REF", 
           25
         ], 
-        "bisect": [
+        "decimal": [
           "REF", 
           26
         ], 
-        "decimal": [
+        "itertools": [
           "REF", 
           27
         ], 
-        "itertools": [
+        "cmath": [
           "REF", 
           28
         ], 
-        "cmath": [
+        "doctest": [
           "REF", 
           29
         ], 
-        "doctest": [
+        "time": [
           "REF", 
           30
         ], 
-        "time": [
-          "REF", 
-          31
-        ], 
         "pickle": [
           "REF", 
-          32
+          31
         ]
       }, 
       "heap": {
@@ -301,10 +296,6 @@
           "module"
         ], 
         "31": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "32": [
           "INSTANCE", 
           "module"
         ]
