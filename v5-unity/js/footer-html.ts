@@ -49,25 +49,16 @@ change the link to <b>https://</b> if needed.</p>
 languages (despite its name!):</p>
 
 <p>1. Python <a href="https://docs.python.org/2.7/">2.7</a> and <a
-href="https://docs.python.org/3.6/">3.6</a> with limited module
+href="https://docs.python.org/3.6/">3.6</a> with these limited module
 imports:
-bisect,
-collections,
-copy,
-datetime,
-functools,
-hashlib,
-heapq,
-itertools,
-json,
-math,
-operator,
-random,
-re,
-string,
-time,
-typing,
-io/StringIO.
+
+__future__, abc, array, bisect, calendar,
+cmath, collections, copy, ctypes, datetime, decimal,
+doctest, fractions, functools, glob, hashlib, heapq,
+inspect, io, itertools, json, locale, math,
+operator, pickle, pprint, random, re, sqlite3,
+string, struct, time, types, typing, unittest, StringIO (Python 2 only).
+
 <a
 href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3">Backend source code</a>.
 </p>
