@@ -34,7 +34,7 @@
     {
       "ordered_globals": [], 
       "stdout": "", 
-      "exception_msg": "ImportError: os not supported\nOnly these modules can be imported into Python Tutor:\n  StringIO, __future__, abc, array, bisect, cPickle,\n  calendar, cmath, collections, copy, ctypes, datetime,\n  decimal, doctest, fractions, functools, glob, hashlib,\n  heapq, inspect, io, itertools, json, locale,\n  math, operator, pickle, pprint, random, re,\n  sqlite3, string, struct, time, types, typing,\n  unittest", 
+      "exception_msg": "ImportError: os not supported\nOnly these modules can be imported into Python Tutor:\n  StringIO, __future__, abc, array, bisect, calendar,\n  cmath, collections, copy, ctypes, datetime, decimal,\n  doctest, fractions, functools, glob, hashlib, heapq,\n  inspect, io, itertools, json, locale, math,\n  operator, pickle, pprint, random, re, sqlite3,\n  string, struct, time, types, typing, unittest", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {}, 
@@ -55,7 +55,7 @@
     {
       "ordered_globals": [], 
       "stdout": "", 
-      "exception_msg": "ImportError: os not supported\nOnly these modules can be imported into Python Tutor:\n  StringIO, __future__, abc, array, bisect, cPickle,\n  calendar, cmath, collections, copy, ctypes, datetime,\n  decimal, doctest, fractions, functools, glob, hashlib,\n  heapq, inspect, io, itertools, json, locale,\n  math, operator, pickle, pprint, random, re,\n  sqlite3, string, struct, time, types, typing,\n  unittest", 
+      "exception_msg": "ImportError: os not supported\nOnly these modules can be imported into Python Tutor:\n  StringIO, __future__, abc, array, bisect, calendar,\n  cmath, collections, copy, ctypes, datetime, decimal,\n  doctest, fractions, functools, glob, hashlib, heapq,\n  inspect, io, itertools, json, locale, math,\n  operator, pickle, pprint, random, re, sqlite3,\n  string, struct, time, types, typing, unittest", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {}, 

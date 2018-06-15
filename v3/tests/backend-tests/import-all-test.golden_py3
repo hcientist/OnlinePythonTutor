@@ -1,0 +1,326 @@
+{
+  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, ctypes, datetime, decimal, doctest, fractions, functools, glob, hashlib, heapq, inspect, io, itertools, json, locale, math, operator, pickle, pprint, random, re, sqlite3, string, struct, time, types, typing, unittest\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "heapq", 
+        "__future__", 
+        "locale", 
+        "functools", 
+        "random", 
+        "datetime", 
+        "io", 
+        "operator", 
+        "array", 
+        "calendar", 
+        "abc", 
+        "struct", 
+        "pprint", 
+        "re", 
+        "json", 
+        "collections", 
+        "sqlite3", 
+        "math", 
+        "fractions", 
+        "string", 
+        "glob", 
+        "inspect", 
+        "ctypes", 
+        "copy", 
+        "types", 
+        "hashlib", 
+        "bisect", 
+        "decimal", 
+        "itertools", 
+        "cmath", 
+        "doctest", 
+        "time", 
+        "pickle"
+      ], 
+      "stdout": "", 
+      "exception_msg": "ImportError: No module named typing", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "heapq": [
+          "REF", 
+          1
+        ], 
+        "__future__": [
+          "REF", 
+          2
+        ], 
+        "locale": [
+          "REF", 
+          3
+        ], 
+        "functools": [
+          "REF", 
+          4
+        ], 
+        "random": [
+          "REF", 
+          5
+        ], 
+        "datetime": [
+          "REF", 
+          6
+        ], 
+        "io": [
+          "REF", 
+          7
+        ], 
+        "operator": [
+          "REF", 
+          8
+        ], 
+        "array": [
+          "REF", 
+          9
+        ], 
+        "calendar": [
+          "REF", 
+          10
+        ], 
+        "abc": [
+          "REF", 
+          11
+        ], 
+        "struct": [
+          "REF", 
+          12
+        ], 
+        "pprint": [
+          "REF", 
+          13
+        ], 
+        "re": [
+          "REF", 
+          14
+        ], 
+        "json": [
+          "REF", 
+          15
+        ], 
+        "collections": [
+          "REF", 
+          16
+        ], 
+        "sqlite3": [
+          "REF", 
+          17
+        ], 
+        "math": [
+          "REF", 
+          18
+        ], 
+        "fractions": [
+          "REF", 
+          19
+        ], 
+        "string": [
+          "REF", 
+          20
+        ], 
+        "glob": [
+          "REF", 
+          21
+        ], 
+        "inspect": [
+          "REF", 
+          22
+        ], 
+        "ctypes": [
+          "REF", 
+          23
+        ], 
+        "copy": [
+          "REF", 
+          24
+        ], 
+        "types": [
+          "REF", 
+          25
+        ], 
+        "hashlib": [
+          "REF", 
+          26
+        ], 
+        "bisect": [
+          "REF", 
+          27
+        ], 
+        "decimal": [
+          "REF", 
+          28
+        ], 
+        "itertools": [
+          "REF", 
+          29
+        ], 
+        "cmath": [
+          "REF", 
+          30
+        ], 
+        "doctest": [
+          "REF", 
+          31
+        ], 
+        "time": [
+          "REF", 
+          32
+        ], 
+        "pickle": [
+          "REF", 
+          33
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "2": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "3": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "4": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "5": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "6": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "7": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "8": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "9": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "10": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "11": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "12": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "13": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "14": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "15": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "25": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "26": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "27": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "28": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "29": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "30": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "31": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "32": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "33": [
+          "INSTANCE", 
+          "module"
+        ]
+      }, 
+      "line": 1, 
+      "event": "exception"
+    }
+  ]
+}
