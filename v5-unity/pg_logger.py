@@ -297,10 +297,14 @@ def mouse_input_wrapper(prompt=''):
 
 
 # blacklist of builtins
-BANNED_BUILTINS = ['reload', 'open', 'compile',
-                   'file', 'eval', 'exec', 'execfile',
-                   'exit', 'quit', 'help',
-                   'dir', 'globals', 'locals', 'vars']
+BANNED_BUILTINS = [] # 2018-06-15 don't ban any builtins since that's just security by obscurity
+                     # we should rely on other layered security mechanisms
+
+# old banned built-ins prior to 2018-06-15
+#BANNED_BUILTINS = ['reload', 'open', 'compile',
+#                   'file', 'eval', 'exec', 'execfile',
+#                   'exit', 'quit', 'help',
+#                   'dir', 'globals', 'locals', 'vars']
 # Peter says 'apply' isn't dangerous, so don't ban it
 
 IGNORE_VARS = set(('__builtins__', '__name__', '__exception__', '__doc__', '__package__'))
