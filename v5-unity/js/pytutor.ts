@@ -1064,6 +1064,9 @@ export class ExecutionVisualizer {
       if (prevIsReturn) {
         var idx = myViz.curInstr - 1;
         var retStack = myViz.curTrace[idx].stack_to_render;
+        if (retStack.length == 0) { // in rare cases like when you're doing an exec()
+          return; // punt!
+        }
         assert(retStack.length > 0);
         var retFrameId = retStack[retStack.length - 1].frame_id;
 
