@@ -87,26 +87,6 @@ class NullDevice():
         pass
 
 
-# These could lead to XSS or other code injection attacks, so be careful:
-# these are now deprecated as of 2016-06-28
-'''
-__html__ = None
-def setHTML(htmlStr):
-  global __html__
-  __html__ = htmlStr
-
-__css__ = None
-def setCSS(cssStr):
-  global __css__
-  __css__ = cssStr
-
-__js__ = None
-def setJS(jsStr):
-  global __js__
-  __js__ = jsStr
-'''
-
-
 # ugh, I can't figure out why in Python 2, __builtins__ seems to
 # be a dict, but in Python 3, __builtins__ seems to be a module,
 # so just handle both cases ... UGLY!
@@ -142,34 +122,12 @@ ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'time', 'datetime',
 # already been done above
 OTHER_STDLIB_WHITELIST = ('StringIO', 'io')
 
-# TODO: 2017-01-14: this CUSTOM_MODULE_IMPORTS thing is now DEPRECATED ...
-# whitelist of custom modules to import into OPT
-# (TODO: support modules in a subdirectory, but there are various
-# logistical problems with doing so that I can't overcome at the moment,
-# especially getting setHTML, setCSS, and setJS to work in the imported
-# modules.)
-CUSTOM_MODULE_IMPORTS = () # ignore these for now
-#                        ('callback_module',
-#                         'ttt_module',
-#                         'html_module',
-#                         'htmlexample_module',
-# ignore these troublesome imports for now
-#                         'watch_module',   # 'import sys' might be troublesome
-#                         'bintree_module',
-#                         'GChartWrapper',
-#                         'matrix',
-#                         'htmlFrame')
-
-
 # PREEMPTIVELY import all of these modules, so that when the user's
 # script imports them, it won't try to do a file read (since they've
 # already been imported and cached in memory). Remember that when
 # the user's code runs, resource.setrlimit(resource.RLIMIT_NOFILE, (0, 0))
 # will already be in effect, so no more files can be opened.
-#
-# NB: All modules in CUSTOM_MODULE_IMPORTS will be imported, warts and
-# all, so they better work on Python 2 and 3!
-for m in ALLOWED_STDLIB_MODULE_IMPORTS + CUSTOM_MODULE_IMPORTS:
+for m in ALLOWED_STDLIB_MODULE_IMPORTS:
   try:
     __import__(m)
   except ImportError:
@@ -182,20 +140,12 @@ def __restricted_import__(*args):
   # subclass str and bypass the 'in' test on the next line
   args = [e for e in args if type(e) is str]
 
-  all_allowed_imports = sorted(ALLOWED_STDLIB_MODULE_IMPORTS + CUSTOM_MODULE_IMPORTS + OTHER_STDLIB_WHITELIST)
+  all_allowed_imports = sorted(ALLOWED_STDLIB_MODULE_IMPORTS + OTHER_STDLIB_WHITELIST)
   if is_python3:
     all_allowed_imports.remove('StringIO')
 
   if args[0] in all_allowed_imports:
     imported_mod = BUILTIN_IMPORT(*args)
-
-    # these are now deprecated as of 2016-06-28
-    #if args[0] in CUSTOM_MODULE_IMPORTS:
-    #  # add special magical functions to custom imported modules
-    #  setattr(imported_mod, 'setHTML', setHTML)
-    #  setattr(imported_mod, 'setCSS', setCSS)
-    #  setattr(imported_mod, 'setJS', setJS)
-
     # somewhat weak protection against imported modules that contain one
     # of these troublesome builtins. again, NOTHING is foolproof ...
     # just more defense in depth :)
@@ -294,7 +244,6 @@ def mouse_input_wrapper(prompt=''):
   if input_string_queue:
     return input_string_queue.pop(0)
   raise MouseInputException(prompt)
-
 
 
 # blacklist of builtins
@@ -1264,16 +1213,6 @@ class PGLogger(bdb.Bdb):
         if topframe_module != "__main__":
           trace_entry['custom_module_name'] = topframe_module
 
-        # TODO: refactor into a non-global
-        # these are now deprecated as of 2016-06-28
-        #global __html__, __css__, __js__
-        #if __html__:
-        #  trace_entry['html_output'] = __html__
-        #if __css__:
-        #  trace_entry['css_output'] = __css__
-        #if __js__:
-        #  trace_entry['js_output'] = __js__
-
         # if there's an exception, then record its info:
         if event_type == 'exception':
           # always check in f_locals
@@ -1596,10 +1535,6 @@ def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func
     # TODO: if we want to support unicode, remove str() cast
     input_string_queue = [str(e) for e in json.loads(raw_input_lst_json)]
 
-  # these are now deprecated as of 2016-06-28
-  #global __html__, __css__, __js__
-  #__html__, __css__, __js__ = None, None, None
-
   try:
     logger._runscript(script_str)
   except bdb.BdbQuit:
@@ -1627,10 +1562,6 @@ def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_
   if raw_input_lst_json:
     # TODO: if we want to support unicode, remove str() cast
     input_string_queue = [str(e) for e in json.loads(raw_input_lst_json)]
-
-  # these are now deprecated as of 2016-06-28
-  #global __html__, __css__, __js__
-  #__html__, __css__, __js__ = None, None, None
 
   try:
     logger._runscript(script_str)
