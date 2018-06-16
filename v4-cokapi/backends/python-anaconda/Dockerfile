@@ -1,5 +1,8 @@
 # an alternative Python visualizer backend using the Anaconda distribution
 # of Python 3.6, which includes *tons* of third-party libraries
+# (note that the regular Python backend lives in ../../../v5-unity/
+#  and does not require Docker. that one is faster and more streamlined,
+#  but doesn't have tons of third-party libraries.)
 #
 # i based this image on the official Anaconda docker image:
 # https://github.com/ContinuumIO/docker-images/tree/master/anaconda3
