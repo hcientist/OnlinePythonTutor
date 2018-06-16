@@ -1435,29 +1435,29 @@ var ExecutionVisualizer = /** @class */ (function () {
             if (prevIsReturn) {
                 var idx = myViz.curInstr - 1;
                 var retStack = myViz.curTrace[idx].stack_to_render;
-                if (retStack.length == 0) { // in rare cases like when you're doing an exec()
-                    return; // punt!
-                }
-                assert(retStack.length > 0);
-                var retFrameId = retStack[retStack.length - 1].frame_id;
-                // now go backwards until we find a 'call' to this frame
-                while (idx >= 0) {
-                    var entry = myViz.curTrace[idx];
-                    if (entry.event == 'call' && entry.stack_to_render) {
-                        var topFrame = entry.stack_to_render[entry.stack_to_render.length - 1];
-                        if (topFrame.frame_id == retFrameId) {
-                            break; // DONE, we found the call that corresponds to this return
+                // retStack.length == 0 in rare cases such as inside of an
+                // exec() statement. #weird
+                if (retStack.length > 0) {
+                    var retFrameId = retStack[retStack.length - 1].frame_id;
+                    // now go backwards until we find a 'call' to this frame
+                    while (idx >= 0) {
+                        var entry = myViz.curTrace[idx];
+                        if (entry.event == 'call' && entry.stack_to_render) {
+                            var topFrame = entry.stack_to_render[entry.stack_to_render.length - 1];
+                            if (topFrame.frame_id == retFrameId) {
+                                break; // DONE, we found the call that corresponds to this return
+                            }
                         }
+                        idx--;
                     }
-                    idx--;
-                }
-                // now idx is the index of the 'call' entry. we need to find the
-                // entry before that, which is the instruction before the call.
-                // THAT's the line of the call site.
-                if (idx > 0) {
-                    var callingEntry = myViz.curTrace[idx - 1];
-                    prevLineNumber = callingEntry.line; // WOOHOO!!!
-                    prevIsReturn = false; // this is now a call site, not a return
+                    // now idx is the index of the 'call' entry. we need to find the
+                    // entry before that, which is the instruction before the call.
+                    // THAT's the line of the call site.
+                    if (idx > 0) {
+                        var callingEntry = myViz.curTrace[idx - 1];
+                        prevLineNumber = callingEntry.line; // WOOHOO!!!
+                        prevIsReturn = false; // this is now a call site, not a return
+                    }
                 }
             }
         }
