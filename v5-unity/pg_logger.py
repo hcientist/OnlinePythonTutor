@@ -48,8 +48,6 @@ else:
 import pg_encoder
 
 
-# TODO: not threadsafe:
-
 # upper-bound on the number of executed lines, in order to guard against
 # infinite loops
 #MAX_EXECUTED_LINES = 300
@@ -91,6 +89,7 @@ class NullDevice():
 
 # These could lead to XSS or other code injection attacks, so be careful:
 # these are now deprecated as of 2016-06-28
+'''
 __html__ = None
 def setHTML(htmlStr):
   global __html__
@@ -105,6 +104,7 @@ __js__ = None
 def setJS(jsStr):
   global __js__
   __js__ = jsStr
+'''
 
 
 # ugh, I can't figure out why in Python 2, __builtins__ seems to
@@ -189,11 +189,12 @@ def __restricted_import__(*args):
   if args[0] in all_allowed_imports:
     imported_mod = BUILTIN_IMPORT(*args)
 
-    if args[0] in CUSTOM_MODULE_IMPORTS:
-      # add special magical functions to custom imported modules
-      setattr(imported_mod, 'setHTML', setHTML)
-      setattr(imported_mod, 'setCSS', setCSS)
-      setattr(imported_mod, 'setJS', setJS)
+    # these are now deprecated as of 2016-06-28
+    #if args[0] in CUSTOM_MODULE_IMPORTS:
+    #  # add special magical functions to custom imported modules
+    #  setattr(imported_mod, 'setHTML', setHTML)
+    #  setattr(imported_mod, 'setCSS', setCSS)
+    #  setattr(imported_mod, 'setJS', setJS)
 
     # somewhat weak protection against imported modules that contain one
     # of these troublesome builtins. again, NOTHING is foolproof ...
@@ -1265,13 +1266,13 @@ class PGLogger(bdb.Bdb):
 
         # TODO: refactor into a non-global
         # these are now deprecated as of 2016-06-28
-        global __html__, __css__, __js__
-        if __html__:
-          trace_entry['html_output'] = __html__
-        if __css__:
-          trace_entry['css_output'] = __css__
-        if __js__:
-          trace_entry['js_output'] = __js__
+        #global __html__, __css__, __js__
+        #if __html__:
+        #  trace_entry['html_output'] = __html__
+        #if __css__:
+        #  trace_entry['css_output'] = __css__
+        #if __js__:
+        #  trace_entry['js_output'] = __js__
 
         # if there's an exception, then record its info:
         if event_type == 'exception':
@@ -1397,13 +1398,6 @@ class PGLogger(bdb.Bdb):
               user_builtins[k] = v
 
         user_builtins['mouse_input'] = mouse_input_wrapper
-
-        # TODO: we can disable these imports here, but a crafty user can
-        # always get a hold of them by importing one of the external
-        # modules, so there's no point in trying security by obscurity
-        user_builtins['setHTML'] = setHTML
-        user_builtins['setCSS'] = setCSS
-        user_builtins['setJS'] = setJS
 
         if self.separate_stdout_by_module:
           self.stdout_by_module["__main__"] = StringIO.StringIO()
@@ -1602,8 +1596,9 @@ def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func
     # TODO: if we want to support unicode, remove str() cast
     input_string_queue = [str(e) for e in json.loads(raw_input_lst_json)]
 
-  global __html__, __css__, __js__
-  __html__, __css__, __js__ = None, None, None
+  # these are now deprecated as of 2016-06-28
+  #global __html__, __css__, __js__
+  #__html__, __css__, __js__ = None, None, None
 
   try:
     logger._runscript(script_str)
@@ -1633,8 +1628,9 @@ def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_
     # TODO: if we want to support unicode, remove str() cast
     input_string_queue = [str(e) for e in json.loads(raw_input_lst_json)]
 
-  global __html__, __css__, __js__
-  __html__, __css__, __js__ = None, None, None
+  # these are now deprecated as of 2016-06-28
+  #global __html__, __css__, __js__
+  #__html__, __css__, __js__ = None, None, None
 
   try:
     logger._runscript(script_str)
@@ -1642,19 +1638,3 @@ def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_
     pass
   finally:
     return logger.finalize()
-
-
-# deprecated?!?
-def exec_str_with_user_ns(script_str, user_ns, finalizer_func):
-  logger = PGLogger(False, False, False, finalizer_func, disable_security_checks=True)
-
-  global __html__, __css__, __js__
-  __html__, __css__, __js__ = None, None, None
-
-  try:
-    logger._runscript(script_str, user_ns)
-  except bdb.BdbQuit:
-    pass
-  finally:
-    return logger.finalize()
-

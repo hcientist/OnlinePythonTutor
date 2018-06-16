@@ -1350,13 +1350,13 @@
       "globals": {
         "x_range": [
           "REF", 
-          3
+          2
         ], 
         "x": 2, 
         "n": 9
       }, 
       "heap": {
-        "3": [
+        "2": [
           "INSTANCE_PPRINT", 
           "range", 
           "range(2, 9)"
@@ -1377,13 +1377,13 @@
       "globals": {
         "x_range": [
           "REF", 
-          3
+          2
         ], 
         "x": 2, 
         "n": 9
       }, 
       "heap": {
-        "3": [
+        "2": [
           "INSTANCE_PPRINT", 
           "range", 
           "range(2, 9)"
@@ -1404,13 +1404,13 @@
       "globals": {
         "x_range": [
           "REF", 
-          3
+          2
         ], 
         "x": 2, 
         "n": 9
       }, 
       "heap": {
-        "3": [
+        "2": [
           "INSTANCE_PPRINT", 
           "range", 
           "range(2, 9)"
@@ -1431,13 +1431,13 @@
       "globals": {
         "x_range": [
           "REF", 
-          3
+          2
         ], 
         "x": 3, 
         "n": 9
       }, 
       "heap": {
-        "3": [
+        "2": [
           "INSTANCE_PPRINT", 
           "range", 
           "range(2, 9)"
@@ -1458,13 +1458,13 @@
       "globals": {
         "x_range": [
           "REF", 
-          3
+          2
         ], 
         "x": 3, 
         "n": 9
       }, 
       "heap": {
-        "3": [
+        "2": [
           "INSTANCE_PPRINT", 
           "range", 
           "range(2, 9)"
@@ -1485,13 +1485,13 @@
       "globals": {
         "x_range": [
           "REF", 
-          3
+          2
         ], 
         "x": 3, 
         "n": 9
       }, 
       "heap": {
-        "3": [
+        "2": [
           "INSTANCE_PPRINT", 
           "range", 
           "range(2, 9)"
@@ -1512,13 +1512,13 @@
       "globals": {
         "x_range": [
           "REF", 
-          3
+          2
         ], 
         "n": 9, 
         "x": 3
       }, 
       "heap": {
-        "3": [
+        "2": [
           "INSTANCE_PPRINT", 
           "range", 
           "range(2, 9)"
