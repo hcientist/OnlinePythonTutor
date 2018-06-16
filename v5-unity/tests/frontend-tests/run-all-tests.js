@@ -16,6 +16,7 @@ const runFrontendTest = require('./frontend-golden-test').runFrontendTest;
     await runFrontendTest('py3', 'metaclass.trace', {disableHeapNesting: e, startingInstruction: 4});
     await runFrontendTest('py3', 'storture.trace', {disableHeapNesting: e, startingInstruction: 17});
     await runFrontendTest('py3', 'decorator.trace', {disableHeapNesting: e, startingInstruction: 19});
+    await runFrontendTest('py3', 'tree.trace', {disableHeapNesting: e, startingInstruction: 1});
 
     await runFrontendTest('ruby', 'class-inheritance.trace', {disableHeapNesting: e, startingInstruction: 20});
     await runFrontendTest('ruby', 'megagreeter.trace', {disableHeapNesting: e, startingInstruction: 40});
