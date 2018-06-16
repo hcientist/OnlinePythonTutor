@@ -174,6 +174,33 @@ function exec_js_handler(useJSONP /* use bind first */, isTypescript /* use bind
                          postExecHandler.bind(null, res, useJSONP));
 }
 
+app.get('/exec_pyanaconda', exec_pyanaconda_handler.bind(null, false));
+app.get('/exec_pyanaconda_jsonp', exec_pyanaconda_handler.bind(null, true));
+
+function exec_pyanaconda_handler(useJSONP /* use bind first */, req, res) {
+  var usrCod = req.query.user_script;
+
+  var exeFile;
+  var args = [];
+
+  // must match the docker setup in backends/javascript/Dockerfile
+  exeFile = '/usr/bin/docker'; // absolute path to docker executable
+  args.push('run', '-m', MEM_LIMIT, '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi-python-anaconda:v1',
+            'python',
+            '/tmp/python/generate_json_trace.py',
+            '--nosandbox',
+            '--code=' + usrCod);
+
+  child_process.execFile(exeFile, args,
+                         {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
+                          maxBuffer: MAX_BUFFER_SIZE,
+                          // make SURE docker gets the kill signal;
+                          // this signal seems to allow docker to clean
+                          // up after itself to --rm the container, but
+                          // double-check with 'docker ps -a'
+                          killSignal: 'SIGINT'},
+                         postExecHandler.bind(null, res, useJSONP));
+}
 
 // for running *natively* on localhost my Mac (must customize for Linux):
 if (local) {
