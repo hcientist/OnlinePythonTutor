@@ -122,17 +122,6 @@ ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'time', 'datetime',
 # already been done above
 OTHER_STDLIB_WHITELIST = ('StringIO', 'io')
 
-# PREEMPTIVELY import all of these modules, so that when the user's
-# script imports them, it won't try to do a file read (since they've
-# already been imported and cached in memory). Remember that when
-# the user's code runs, resource.setrlimit(resource.RLIMIT_NOFILE, (0, 0))
-# will already be in effect, so no more files can be opened.
-for m in ALLOWED_STDLIB_MODULE_IMPORTS:
-  try:
-    __import__(m)
-  except ImportError:
-    pass
-
 
 # Restrict imports to a whitelist
 def __restricted_import__(*args):
@@ -1380,6 +1369,20 @@ class PGLogger(bdb.Bdb):
           #   x = 2
           #   while True: x = x*x
           if resource_module_loaded and (not self.disable_security_checks):
+            # PREEMPTIVELY import all of these modules, so that when the user's
+            # script imports them, it won't try to do a file read (since they've
+            # already been imported and cached in memory). Remember that when
+            # the user's code runs, resource.setrlimit(resource.RLIMIT_NOFILE, (0, 0))
+            # will already be in effect, so no more files can be opened.
+            #
+            # NB: this might slow down your script, since even a trivial script will
+            # need to import the entirety of ALLOWED_STDLIB_MODULE_IMPORTS
+            for m in ALLOWED_STDLIB_MODULE_IMPORTS:
+              try:
+                __import__(m)
+              except ImportError:
+                pass
+
             resource.setrlimit(resource.RLIMIT_AS, (200000000, 200000000))
             resource.setrlimit(resource.RLIMIT_CPU, (5, 5))
 
