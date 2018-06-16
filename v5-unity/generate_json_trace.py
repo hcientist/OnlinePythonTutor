@@ -57,13 +57,17 @@ if options.usercode:
   if options.probe_exprs_json:
     probe_exprs = json.loads(options.probe_exprs_json)
 
+  allow_all_modules = False
+  if options.allmodules:
+    allow_all_modules = True
+
   print(pg_logger.exec_script_str_local(options.usercode,
                                         options.raw_input_lst_json,
                                         options.cumulative,
                                         options.heapPrimitives,
                                         json_finalizer,
                                         probe_exprs=probe_exprs,
-                                        allow_all_modules=allmodules))
+                                        allow_all_modules=allow_all_modules))
 else:
   fin = sys.stdin if args[0] == "-" else open(args[0])
   if options.js_varname:
