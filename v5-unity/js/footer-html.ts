@@ -57,7 +57,7 @@ cmath, collections, copy, datetime, decimal,
 doctest, fractions, functools, glob, hashlib, heapq,
 io, itertools, json, locale, math,
 operator, pickle, pprint, random, re,
-string, struct, time, types, typing, unittest, StringIO (Python 2 only).
+string, struct, time, types, unittest, StringIO (Python 2), typing (Python 3).
 
 <a
 href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v5-unity">Backend source code</a>.

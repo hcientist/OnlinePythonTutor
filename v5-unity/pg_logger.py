@@ -132,6 +132,8 @@ def __restricted_import__(*args):
   all_allowed_imports = sorted(ALLOWED_STDLIB_MODULE_IMPORTS + OTHER_STDLIB_WHITELIST)
   if is_python3:
     all_allowed_imports.remove('StringIO')
+  else:
+    all_allowed_imports.remove('typing')
 
   if args[0] in all_allowed_imports:
     imported_mod = BUILTIN_IMPORT(*args)
@@ -453,6 +455,13 @@ class PGLogger(bdb.Bdb):
                 self.modules_to_trace.add(module_name)
 
         self.disable_security_checks = disable_security_checks
+        self.allow_all_modules = allow_all_modules
+        # if we allow all modules, we shouldn't do security checks
+        # either since otherwise users can't really import anything
+        # because that will likely involve opening files on disk, which
+        # is disallowed by security checks
+        if self.allow_all_modules:
+            self.disable_security_checks = True
 
         # if True, then displays ALL stack frames that have ever existed
         # rather than only those currently on the stack (and their
@@ -1311,7 +1320,7 @@ class PGLogger(bdb.Bdb):
             user_builtins[k] = open_wrapper
           elif k in BANNED_BUILTINS:
             user_builtins[k] = create_banned_builtins_wrapper(k)
-          elif k == '__import__':
+          elif k == '__import__' and not self.allow_all_modules:
             user_builtins[k] = __restricted_import__
           else:
             if k == 'raw_input':
@@ -1369,6 +1378,8 @@ class PGLogger(bdb.Bdb):
           #   x = 2
           #   while True: x = x*x
           if resource_module_loaded and (not self.disable_security_checks):
+            assert not self.allow_all_modules # <-- shouldn't be on!
+
             # PREEMPTIVELY import all of these modules, so that when the user's
             # script imports them, it won't try to do a file read (since they've
             # already been imported and cached in memory). Remember that when
