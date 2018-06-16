@@ -188,7 +188,7 @@ function exec_pyanaconda_handler(useJSONP /* use bind first */, req, res) {
   args.push('run', '-m', MEM_LIMIT, '--rm', '--user=netuser', '--net=none', '--cap-drop', 'all', 'pgbovine/cokapi-python-anaconda:v1',
             'python',
             '/tmp/python/generate_json_trace.py',
-            '--nosandbox',
+            '--allmodules', // freely allow importing of all modules
             '--code=' + usrCod);
 
   child_process.execFile(exeFile, args,
