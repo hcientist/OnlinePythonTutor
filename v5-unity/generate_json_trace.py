@@ -1,4 +1,4 @@
-# Generates a JSON trace that is compatible with the js/pytutor.js frontend
+# Generates a JSON trace that is compatible with the js/pytutor.ts frontend
 
 import sys, pg_logger, json
 from optparse import OptionParser
@@ -15,6 +15,11 @@ def json_finalizer(input_code, output_trace):
   # sort_keys=True leads to printing in DETERMINISTIC order, but might
   # screw up some old tests ... however, there is STILL non-determinism
   # in Python 3.3 tests, ugh!
+  #
+  # TODO: for Python 3.6, think about reinstating sort_keys=True as a
+  # command-line option for tests only? maybe don't activate it for reals
+  # since that might falsely give users the impression that object/dict keys
+  # are always sorted
   json_output = json.dumps(ret, indent=INDENT_LEVEL)
   return json_output
 
@@ -31,6 +36,8 @@ parser.add_option('-p', '--heapPrimitives', default=False, action='store_true',
         help='render primitives as heap objects.')
 parser.add_option('-o', '--compact', default=False, action='store_true',
         help='output compact trace.')
+parser.add_option('--allmodules', default=False, action='store_true',
+        help='allow importing of all installed Python modules.')
 parser.add_option('-i', '--input', default=False, action='store',
         help='JSON list of strings for simulated raw_input.', dest='raw_input_lst_json')
 parser.add_option("--create_jsvar", dest="js_varname", default=None,
@@ -55,7 +62,8 @@ if options.usercode:
                                         options.cumulative,
                                         options.heapPrimitives,
                                         json_finalizer,
-                                        probe_exprs=probe_exprs))
+                                        probe_exprs=probe_exprs,
+                                        allow_all_modules=allmodules))
 else:
   fin = sys.stdin if args[0] == "-" else open(args[0])
   if options.js_varname:

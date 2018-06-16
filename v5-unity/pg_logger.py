@@ -490,7 +490,7 @@ class PGLogger(bdb.Bdb):
     # if separate_stdout_by_module, then have a separate stdout stream
     # for each module rather than all stdout going to a single stream
     def __init__(self, cumulative_mode, heap_primitives, show_only_outputs, finalizer_func,
-                 disable_security_checks=False, crazy_mode=False,
+                 disable_security_checks=False, allow_all_modules=False, crazy_mode=False,
                  custom_modules=None, separate_stdout_by_module=False, probe_exprs=None):
         bdb.Bdb.__init__(self)
         self.mainpyfile = ''
@@ -1619,9 +1619,12 @@ def exec_script_str(script_str, raw_input_lst_json, options_json, finalizer_func
 #
 # [optional] probe_exprs is a list of strings representing
 # expressions whose values to probe at each step (advanced)
-def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func, probe_exprs=None):
-  # TODO: add py_crazy_mode option here too ...
-  logger = PGLogger(cumulative_mode, heap_primitives, False, finalizer_func, disable_security_checks=True, probe_exprs=probe_exprs)
+def exec_script_str_local(script_str, raw_input_lst_json, cumulative_mode, heap_primitives, finalizer_func,
+                          probe_exprs=None, allow_all_modules=False):
+  logger = PGLogger(cumulative_mode, heap_primitives, False, finalizer_func,
+                    disable_security_checks=True,
+                    allow_all_modules=allow_all_modules,
+                    probe_exprs=probe_exprs)
 
   # TODO: refactor these NOT to be globals
   global input_string_queue
