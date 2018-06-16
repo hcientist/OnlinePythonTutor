@@ -1316,7 +1316,7 @@ class PGLogger(bdb.Bdb):
             builtin_items.append((k, getattr(__builtins__, k)))
 
         for (k, v) in builtin_items:
-          if k == 'open': # put this before BANNED_BUILTINS
+          if k == 'open' and not self.allow_all_modules: # put this before BANNED_BUILTINS
             user_builtins[k] = open_wrapper
           elif k in BANNED_BUILTINS:
             user_builtins[k] = create_banned_builtins_wrapper(k)
