@@ -97,6 +97,20 @@ else:
   BUILTIN_IMPORT = __builtins__.__import__
 
 
+# python data science stack; pre-load these if they appear in the user's code
+PYDATA_MODULES = (
+  'numpy',
+  'scipy',
+  'matplotlib',
+  'pandas',
+  'sklearn',
+  'skimage',
+  'sympy',
+  'statsmodels',
+  'bokeh',
+)
+
+
 # whitelist of module imports
 ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'time', 'datetime',
                           'functools', 'itertools', 'operator', 'string',
@@ -266,6 +280,7 @@ list/set/dict comprehensions as they're being built. e.g., try:
 Note that on pythontutor.com, I am currently running custom-compiled
 versions of Python-2.7.6 and Python-3.3.3 with this f_valuestack hack.
 Unless you run your own custom CPython, you won't get these benefits.
+- update as of 2018-06-16: I don't think the above has been true for a while
 
 
 Patch:
@@ -1370,6 +1385,20 @@ class PGLogger(bdb.Bdb):
                              "__builtins__" : user_builtins})
 
         try:
+          # if allow_all_modules is on, then iterate through modules
+          # that we should pre-load, check whether that module's name
+          # appears in the user's source code, and if it does, then pre-load
+          # that module. if we *don'* pre-load a module, then when it's
+          # imported in the user's code, it may take forever because the
+          # bdb debugger tries to single-step thru that code (i think!)
+          if self.allow_all_modules:
+            for m in PYDATA_MODULES:
+              if m in script_str: # optimization: load only modules that appear in script_str
+                try:
+                  __import__(m)
+                except ImportError:
+                  pass
+
           # enforce resource limits RIGHT BEFORE running script_str
 
           # set ~200MB virtual memory limit AND a 5-second CPU time
@@ -1385,14 +1414,12 @@ class PGLogger(bdb.Bdb):
             # already been imported and cached in memory). Remember that when
             # the user's code runs, resource.setrlimit(resource.RLIMIT_NOFILE, (0, 0))
             # will already be in effect, so no more files can be opened.
-            #
-            # NB: this might slow down your script, since even a trivial script will
-            # need to import the entirety of ALLOWED_STDLIB_MODULE_IMPORTS
             for m in ALLOWED_STDLIB_MODULE_IMPORTS:
-              try:
-                __import__(m)
-              except ImportError:
-                pass
+              if m in script_str: # optimization: load only modules that appear in script_str
+                try:
+                  __import__(m)
+                except ImportError:
+                  pass
 
             resource.setrlimit(resource.RLIMIT_AS, (200000000, 200000000))
             resource.setrlimit(resource.RLIMIT_CPU, (5, 5))
