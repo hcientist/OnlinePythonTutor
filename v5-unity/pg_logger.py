@@ -97,20 +97,6 @@ else:
   BUILTIN_IMPORT = __builtins__.__import__
 
 
-# python data science stack; preload these if they appear in the user's code
-PYDATA_MODULES = (
-  'numpy',
-  'scipy',
-  'matplotlib',
-  'pandas',
-  'sklearn',
-  'skimage',
-  'sympy',
-  'statsmodels',
-  'bokeh',
-)
-
-
 # whitelist of module imports
 ALLOWED_STDLIB_MODULE_IMPORTS = ('math', 'random', 'time', 'datetime',
                           'functools', 'itertools', 'operator', 'string',
@@ -1385,20 +1371,33 @@ class PGLogger(bdb.Bdb):
                              "__builtins__" : user_builtins})
 
         try:
-          # if allow_all_modules is on, then iterate through modules
-          # that we should preload, check whether that module's name
-          # appears in the user's source code, and if it does, then preload
-          # that module. if we *don't* preload a module, then when it's
-          # imported in the user's code, it may take forever because the
-          # bdb debugger tries to single-step thru that code (i think!)
-          # (run 'import pandas' to test this)
+          # if allow_all_modules is on, then try to parse script_str into an
+          # AST, traverse the tree to find all modules that it imports, and then
+          # try to PRE-IMPORT all of those. if we *don't* pre-import a module,
+          # then when it's imported in the user's code, it may take *forever*
+          # because the bdb debugger tries to single-step thru that code
+          # (i think!). run 'import pandas' to quickly test this.
           if self.allow_all_modules:
-            for m in PYDATA_MODULES:
-              if m in script_str: # optimization: load only modules that appear in script_str
-                try:
-                  __import__(m)
-                except ImportError:
-                  pass
+            import ast
+            try:
+              all_modules_to_preimport = []
+              tree = ast.parse(script_str)
+              for node in ast.walk(tree):
+                if isinstance(node, ast.Import):
+                  for n in node.names:
+                    all_modules_to_preimport.append(n.name)
+                elif isinstance(node, ast.ImportFrom):
+                  all_modules_to_preimport(node.module)
+
+              for m in all_modules_to_preimport:
+                if m in script_str: # optimization: load only modules that appear in script_str
+                  try:
+                    __import__(m)
+                  except ImportError:
+                    pass
+            except:
+              pass
+
 
           # enforce resource limits RIGHT BEFORE running script_str
 
