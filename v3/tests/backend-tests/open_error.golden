@@ -14,7 +14,7 @@
     {
       "ordered_globals": [], 
       "stdout": "", 
-      "exception_msg": "Exception: open() is not supported by Python Tutor.\nInstead use StringIO.StringIO() to simulate a file.\nHere is an example: http://goo.gl/Q9xQ4p", 
+      "exception_msg": "Exception: open() is not supported by Python Tutor.\nInstead use StringIO.StringIO() to simulate a file.\nExample: http://goo.gl/Q9xQ4p\n\nYou can also try \"Python 3.6 with Anaconda (experimental)\",\nwhich is slower but lets you import many more modules.\n", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {}, 

@@ -124,12 +124,12 @@
         ],
         "3": [
           "SET",
+          "goodbye",
           1,
           2,
           3,
-          "goodbye",
-          "hello",
-          "world"
+          "world",
+          "hello"
         ]
       },
       "stdout": ""
@@ -184,12 +184,12 @@
         ],
         "3": [
           "SET",
+          "goodbye",
           1,
           2,
           3,
-          "goodbye",
-          "hello",
-          "world"
+          "world",
+          "hello"
         ],
         "4": [
           "DICT",

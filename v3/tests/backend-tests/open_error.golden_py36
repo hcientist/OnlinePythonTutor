@@ -20,7 +20,7 @@
       "stack_to_render": [],
       "heap": {},
       "stdout": "",
-      "exception_msg": "Exception: open() is not supported by Python Tutor.\nInstead use io.StringIO() to simulate a file.\nHere is an example: http://goo.gl/uNvBGl"
+      "exception_msg": "Exception: open() is not supported by Python Tutor.\nInstead use io.StringIO() to simulate a file.\nExample: http://goo.gl/uNvBGl\n\nYou can also try \"Python 3.6 with Anaconda (experimental)\",\nwhich is slower but lets you import many more modules.\n"
     }
   ]
 }

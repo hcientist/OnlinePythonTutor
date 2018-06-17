@@ -1,5 +1,5 @@
 {
-  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, datetime, decimal, doctest, fractions, functools, glob, hashlib, heapq, io, itertools, json, locale, math, operator, pickle, pprint, random, re, string, struct, time, types, unittest\n",
+  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, datetime, decimal, doctest, fractions, functools, hashlib, heapq, io, itertools, json, locale, math, operator, pickle, pprint, random, re, string, time, types, unittest\n",
   "trace": [
     {
       "line": 1,
@@ -68,77 +68,69 @@
           "REF",
           13
         ],
-        "glob": [
+        "hashlib": [
           "REF",
           14
         ],
-        "hashlib": [
+        "heapq": [
           "REF",
           15
         ],
-        "heapq": [
+        "io": [
           "REF",
           16
         ],
-        "io": [
+        "itertools": [
           "REF",
           17
         ],
-        "itertools": [
+        "json": [
           "REF",
           18
         ],
-        "json": [
+        "locale": [
           "REF",
           19
         ],
-        "locale": [
+        "math": [
           "REF",
           20
         ],
-        "math": [
+        "operator": [
           "REF",
           21
         ],
-        "operator": [
+        "pickle": [
           "REF",
           22
         ],
-        "pickle": [
+        "pprint": [
           "REF",
           23
         ],
-        "pprint": [
+        "random": [
           "REF",
           24
         ],
-        "random": [
+        "re": [
           "REF",
           25
         ],
-        "re": [
+        "string": [
           "REF",
           26
         ],
-        "string": [
+        "time": [
           "REF",
           27
         ],
-        "struct": [
+        "types": [
           "REF",
           28
         ],
-        "time": [
-          "REF",
-          29
-        ],
-        "types": [
-          "REF",
-          30
-        ],
         "unittest": [
           "REF",
-          31
+          29
         ]
       },
       "ordered_globals": [
@@ -155,7 +147,6 @@
         "doctest",
         "fractions",
         "functools",
-        "glob",
         "hashlib",
         "heapq",
         "io",
@@ -169,7 +160,6 @@
         "random",
         "re",
         "string",
-        "struct",
         "time",
         "types",
         "unittest"
@@ -289,14 +279,6 @@
           "module"
         ],
         "29": [
-          "INSTANCE",
-          "module"
-        ],
-        "30": [
-          "INSTANCE",
-          "module"
-        ],
-        "31": [
           "INSTANCE",
           "module"
         ]

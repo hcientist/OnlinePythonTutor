@@ -1,5 +1,5 @@
 {
-  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, datetime, decimal, doctest, fractions, functools, glob, hashlib, heapq, io, itertools, json, locale, math, operator, pickle, pprint, random, re, string, struct, time, types, unittest\n", 
+  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, datetime, decimal, doctest, fractions, functools, hashlib, heapq, io, itertools, json, locale, math, operator, pickle, pprint, random, re, string, time, types, unittest\n", 
   "trace": [
     {
       "ordered_globals": [], 
@@ -24,7 +24,6 @@
         "array", 
         "calendar", 
         "abc", 
-        "struct", 
         "pprint", 
         "re", 
         "json", 
@@ -33,7 +32,6 @@
         "math", 
         "fractions", 
         "string", 
-        "glob", 
         "copy", 
         "types", 
         "hashlib", 
@@ -93,85 +91,77 @@
           "REF", 
           11
         ], 
-        "struct": [
+        "pprint": [
           "REF", 
           12
         ], 
-        "pprint": [
+        "re": [
           "REF", 
           13
         ], 
-        "re": [
+        "json": [
           "REF", 
           14
         ], 
-        "json": [
+        "collections": [
           "REF", 
           15
         ], 
-        "collections": [
+        "unittest": [
           "REF", 
           16
         ], 
-        "unittest": [
+        "math": [
           "REF", 
           17
         ], 
-        "math": [
+        "fractions": [
           "REF", 
           18
         ], 
-        "fractions": [
+        "string": [
           "REF", 
           19
         ], 
-        "string": [
+        "copy": [
           "REF", 
           20
         ], 
-        "glob": [
+        "types": [
           "REF", 
           21
         ], 
-        "copy": [
+        "hashlib": [
           "REF", 
           22
         ], 
-        "types": [
+        "bisect": [
           "REF", 
           23
         ], 
-        "hashlib": [
+        "decimal": [
           "REF", 
           24
         ], 
-        "bisect": [
+        "itertools": [
           "REF", 
           25
         ], 
-        "decimal": [
+        "cmath": [
           "REF", 
           26
         ], 
-        "itertools": [
+        "doctest": [
           "REF", 
           27
         ], 
-        "cmath": [
+        "time": [
           "REF", 
           28
         ], 
-        "doctest": [
-          "REF", 
-          29
-        ], 
-        "time": [
-          "REF", 
-          30
-        ], 
         "pickle": [
           "REF", 
-          31
+          29
         ]
       }, 
       "heap": {
@@ -288,14 +278,6 @@
           "module"
         ], 
         "29": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "30": [
-          "INSTANCE", 
-          "module"
-        ], 
-        "31": [
           "INSTANCE", 
           "module"
         ]

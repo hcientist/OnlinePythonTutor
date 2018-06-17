@@ -14,7 +14,7 @@
     {
       "ordered_globals": [], 
       "stdout": "", 
-      "exception_msg": "ImportError: os not supported\nOnly these modules can be imported into Python Tutor:\n  __future__, abc, array, bisect, calendar, cmath,\n  collections, copy, datetime, decimal, doctest, fractions,\n  functools, glob, hashlib, heapq, io, itertools,\n  json, locale, math, operator, pickle, pprint,\n  random, re, string, struct, time, types,\n  typing, unittest", 
+      "exception_msg": "ImportError: os not found or not supported\nOnly these modules can be imported:\n  __future__, abc, array, bisect, calendar, cmath,\n  collections, copy, datetime, decimal, doctest, fractions,\n  functools, hashlib, heapq, io, itertools, json,\n  locale, math, operator, pickle, pprint, random,\n  re, string, time, types, typing, unittest\n\nYou can also try \"Python 3.6 with Anaconda (experimental)\",\nwhich is slower but lets you import many more modules.\n", 
       "func_name": "<module>", 
       "stack_to_render": [], 
       "globals": {}, 
