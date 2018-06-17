@@ -218,6 +218,7 @@ export class ExecutionVisualizer {
   //          and to display the proper language in langDisplayDiv:
   //          'py2' for Python 2, 'py3' for Python 3, 'js' for JavaScript, 'java' for Java,
   //          'ts' for TypeScript, 'ruby' for Ruby, 'c' for C, 'cpp' for C++
+  //          'py3anaconda' for Python 3 with Anaconda
   //          [default is Python-style labels]
   constructor(domRootID, dat, params) {
     this.curInputCode = dat.code.rtrim(); // kill trailing spaces
@@ -3338,6 +3339,8 @@ class CodeDisplay {
         pyVer = 'java';
       } else if (lang === 'py3') {
         pyVer = '3';
+      } else if (lang === 'py3anaconda') {
+        pyVer = 'py3anaconda';
       } else if (lang === 'c') {
         pyVer = 'c';
       } else if (lang === 'cpp') {
@@ -3368,6 +3371,8 @@ class CodeDisplay {
         this.domRoot.find('#langDisplayDiv').html('Python 2.7');
       } else if (lang === 'py3') {
         this.domRoot.find('#langDisplayDiv').html('Python 3.6');
+      } else if (lang === 'py3anaconda') {
+        this.domRoot.find('#langDisplayDiv').html('Python 3.6 with <a target="_blank" href="https://docs.anaconda.com/anaconda/">Anaconda 5.2</a><br/><font color="#e93f34">EXPERIMENTAL!</font>');
       } else if (lang === 'c') {
         if (this.owner.params.embeddedMode) {
           this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11)');
