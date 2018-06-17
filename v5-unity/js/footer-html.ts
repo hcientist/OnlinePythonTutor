@@ -54,10 +54,10 @@ imports:
 
 __future__, abc, array, bisect, calendar,
 cmath, collections, copy, datetime, decimal,
-doctest, fractions, functools, glob, hashlib, heapq,
+doctest, fractions, functools, hashlib, heapq,
 io, itertools, json, locale, math,
 operator, pickle, pprint, random, re,
-string, struct, time, types, unittest, StringIO (Python 2), typing (Python 3).
+string, time, types, unittest, StringIO (Python 2), typing (Python 3).
 
 (There is also an experimental version of Python 3.6 with <a
 href="https://docs.anaconda.com/anaconda/">Anaconda</a>, which lets
