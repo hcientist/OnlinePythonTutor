@@ -179,6 +179,10 @@ app.get('/exec_pyanaconda_jsonp', exec_pyanaconda_handler.bind(null, true));
 
 function exec_pyanaconda_handler(useJSONP /* use bind first */, req, res) {
   var usrCod = req.query.user_script;
+  var parsedOptions = {};
+  if (req.query.options_json) {
+    parsedOptions = JSON.parse(req.query.options_json);
+  }
 
   var exeFile;
   var args = [];
@@ -190,6 +194,16 @@ function exec_pyanaconda_handler(useJSONP /* use bind first */, req, res) {
             '/tmp/python/generate_json_trace.py',
             '--allmodules', // freely allow importing of all modules
             '--code=' + usrCod);
+
+  if (parsedOptions.heap_primitives) {
+    args.push('--heapPrimitives');
+  }
+  if (parsedOptions.cumulative_mode) {
+    args.push('--cumulative');
+  }
+  if (req.query.raw_input_json) {
+    args.push('--input=' + req.query.raw_input_json);
+  }
 
   child_process.execFile(exeFile, args,
                          {timeout: TIMEOUT_SECS * 1000 /* milliseconds */,
