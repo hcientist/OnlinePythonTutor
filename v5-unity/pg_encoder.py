@@ -243,7 +243,10 @@ class ObjectEncoder:
         # NB: don't use os.path.isabs() since it doesn't work on some
         # python installations (e.g., on my webserver) and also adds a
         # dependency on the os module. just do a simple check:
-        if gsf and gsf[0] == '/':
+        #
+        # hacky: do other checks for strings that are indicative of files
+        # that load user-written code, like 'generate_json_trace.py'
+        if gsf and gsf[0] == '/' and 'generate_json_trace.py' not in gsf:
             is_externally_defined = True
       except (AttributeError, TypeError):
         pass # fail soft
