@@ -97,7 +97,7 @@ else:
   BUILTIN_IMPORT = __builtins__.__import__
 
 
-# python data science stack; pre-load these if they appear in the user's code
+# python data science stack; preload these if they appear in the user's code
 PYDATA_MODULES = (
   'numpy',
   'scipy',
@@ -1386,11 +1386,12 @@ class PGLogger(bdb.Bdb):
 
         try:
           # if allow_all_modules is on, then iterate through modules
-          # that we should pre-load, check whether that module's name
-          # appears in the user's source code, and if it does, then pre-load
-          # that module. if we *don'* pre-load a module, then when it's
+          # that we should preload, check whether that module's name
+          # appears in the user's source code, and if it does, then preload
+          # that module. if we *don't* preload a module, then when it's
           # imported in the user's code, it may take forever because the
           # bdb debugger tries to single-step thru that code (i think!)
+          # (run 'import pandas' to test this)
           if self.allow_all_modules:
             for m in PYDATA_MODULES:
               if m in script_str: # optimization: load only modules that appear in script_str
