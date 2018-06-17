@@ -2160,8 +2160,7 @@ class DataVisualizer {
 
         // pretty-print lambdas and display other weird characters
         // (might contain '<' or '>' for weird names like <genexpr>)
-        var funcName = htmlspecialchars(frame.func_name).replace('&lt;lambda&gt;', '\u03bb')
-              .replace(newlineAllRegex, '<br/>');
+        var funcName = htmlspecialchars(frame.func_name).replace('&lt;lambda&gt;', '\u03bb');
 
         var headerLabel = funcName;
 
@@ -2592,8 +2591,6 @@ class DataVisualizer {
       var literalStr = htmlspecialchars(obj);
 
       // print as a double-quoted string literal
-      // with explicit newlines as <br/>
-      literalStr = literalStr.replace(newlineAllRegex, '<br/>'); // replace ALL
       literalStr = literalStr.replace(doubleQuoteAllRegex, '\\"'); // replace ALL
       literalStr = '"' + literalStr + '"';
 
@@ -3795,7 +3792,7 @@ class NavigationController {
 
   showError(msg: string) {
     if (msg) {
-      this.domRoot.find("#errorOutput").html(htmlspecialchars(msg).replace(newlineAllRegex, '<br/>') + `
+      this.domRoot.find("#errorOutput").html(htmlspecialchars(msg) + `
       <span style="font-size: 9pt; color: #666">(see <a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md" target="_blank">unsupported features</a>)</span>`).show();
     } else {
       this.domRoot.find("#errorOutput").hide();
@@ -3832,6 +3829,9 @@ export function htmlspecialchars(str) {
 
     // replace tab as four spaces:
     str = str.replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;");
+
+    // replace newline as <br/>
+    str = str.replace(newlineAllRegex, '<br/>');
   }
   return str;
 }
