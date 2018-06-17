@@ -543,7 +543,7 @@ Get live help!
   langToEnglish(lang) {
     if (lang === '2') {
       return 'Python2';
-    } else if (lang === '3') {
+    } else if (lang === '3' || lang == 'py3anaconda') {
       return 'Python3';
     } else if (lang === 'java') {
       return 'Java';
@@ -768,7 +768,7 @@ Get live help!
         $("#numObserversSpan").empty(); // avoid showing stale results
       },
       success: (data) => {
-        var numPython = 0; // '2' and '3'
+        var numPython = 0; // '2' and '3' and 'py3anaconda'
         var numJs = 0;     // 'js' and 'ts'
         var numCpp = 0;    // 'c' and 'cpp'
         var numJava = 0;   // 'java'
@@ -778,6 +778,9 @@ Get live help!
           numPython += data['2'];
         }
         if (data['3'] > 0) {
+          numPython += data['3'];
+        }
+        if (data['py3anaconda'] > 0) {
           numPython += data['3'];
         }
         if (data['js'] > 0) {

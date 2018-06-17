@@ -327,7 +327,7 @@ export class OptFrontend extends AbstractBaseFrontend {
         this.pyInputSetValue(CPP_BLANK_TEMPLATE);
       }
     } else {
-      assert(selectorVal === '2' || selectorVal == '3')
+      assert(selectorVal === '2' || selectorVal == '3' || selectorVal == 'py3anaconda')
       mod = 'python';
       tabSize = 4; // PEP8 style standards
     }

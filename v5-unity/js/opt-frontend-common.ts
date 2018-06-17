@@ -80,6 +80,9 @@ export abstract class AbstractBaseFrontend {
     'ruby': 'web_exec_ruby.py',
     'c':   'web_exec_c.py',
     'cpp': 'web_exec_cpp.py',
+
+    // experimental!
+    'py3anaconda': 'web_exec_py3anaconda.py',
   };
 
   // these settings are all customized for my own server setup,
@@ -100,6 +103,7 @@ export abstract class AbstractBaseFrontend {
     'ruby': this.serverRoot + 'exec_ruby_jsonp',
     'c':    this.serverRoot + 'exec_c_jsonp',
     'cpp':  this.serverRoot + 'exec_cpp_jsonp',
+    'py3anaconda':  this.serverRoot + 'exec_pyanaconda_jsonp',
   };
 
   langSettingToJsonpEndpointBackup = {
@@ -111,6 +115,7 @@ export abstract class AbstractBaseFrontend {
     'ruby': this.backupHttpServerRoot + 'exec_ruby_jsonp',
     'c':    this.backupHttpServerRoot + 'exec_c_jsonp',
     'cpp':  this.backupHttpServerRoot + 'exec_cpp_jsonp',
+    'py3anaconda':  this.backupHttpServerRoot + 'exec_pyanaconda_jsonp',
   };
 
   abstract executeCode(forceStartingInstr?: number, forceRawInputLst?: string[]) : any;

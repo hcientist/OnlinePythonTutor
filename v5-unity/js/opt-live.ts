@@ -81,6 +81,7 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
     'ruby': 'LIVE_exec_ruby.py',
     'c':   'LIVE_exec_c.py',
     'cpp': 'LIVE_exec_cpp.py',
+    'py3anaconda': 'LIVE_exec_py3anaconda.py',
   };
 
   constructor(params) {

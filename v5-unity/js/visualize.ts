@@ -766,7 +766,7 @@ $(document).ready(function() {
     assert(lang);
     $('#pythonVersionSelector').val(lang);
 
-    if (lang === '2' || lang === '3') {
+    if (lang === '2' || lang === '3' || lang === 'py3anaconda') {
       exFile = 'example-code/python/' + exFile;
     } else {
       exFile = 'example-code/' + lang + '/' + exFile;
