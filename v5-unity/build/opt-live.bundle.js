@@ -698,6 +698,7 @@ var ExecutionVisualizer = /** @class */ (function () {
     //          and to display the proper language in langDisplayDiv:
     //          'py2' for Python 2, 'py3' for Python 3, 'js' for JavaScript, 'java' for Java,
     //          'ts' for TypeScript, 'ruby' for Ruby, 'c' for C, 'cpp' for C++
+    //          'py3anaconda' for Python 3 with Anaconda
     //          [default is Python-style labels]
     function ExecutionVisualizer(domRootID, dat, params) {
         this.params = {};
@@ -3425,6 +3426,9 @@ var CodeDisplay = /** @class */ (function () {
             else if (lang === 'py3') {
                 pyVer = '3';
             }
+            else if (lang === 'py3anaconda') {
+                pyVer = 'py3anaconda';
+            }
             else if (lang === 'c') {
                 pyVer = 'c';
             }
@@ -3457,6 +3461,9 @@ var CodeDisplay = /** @class */ (function () {
             }
             else if (lang === 'py3') {
                 this.domRoot.find('#langDisplayDiv').html('Python 3.6');
+            }
+            else if (lang === 'py3anaconda') {
+                this.domRoot.find('#langDisplayDiv').html('Python 3.6 with <a target="_blank" href="https://docs.anaconda.com/anaconda/">Anaconda 5.2</a><br/><font color="#e93f34">EXPERIMENTAL!</font>');
             }
             else if (lang === 'c') {
                 if (this.owner.params.embeddedMode) {
@@ -22286,6 +22293,8 @@ var AbstractBaseFrontend = /** @class */ (function () {
             'ruby': 'web_exec_ruby.py',
             'c': 'web_exec_c.py',
             'cpp': 'web_exec_cpp.py',
+            // experimental!
+            'py3anaconda': 'web_exec_py3anaconda.py',
         };
         // these settings are all customized for my own server setup,
         // so you will need to customize for your server:
@@ -22303,6 +22312,7 @@ var AbstractBaseFrontend = /** @class */ (function () {
             'ruby': this.serverRoot + 'exec_ruby_jsonp',
             'c': this.serverRoot + 'exec_c_jsonp',
             'cpp': this.serverRoot + 'exec_cpp_jsonp',
+            'py3anaconda': this.serverRoot + 'exec_pyanaconda_jsonp',
         };
         this.langSettingToJsonpEndpointBackup = {
             '2': null,
@@ -22313,6 +22323,7 @@ var AbstractBaseFrontend = /** @class */ (function () {
             'ruby': this.backupHttpServerRoot + 'exec_ruby_jsonp',
             'c': this.backupHttpServerRoot + 'exec_c_jsonp',
             'cpp': this.backupHttpServerRoot + 'exec_cpp_jsonp',
+            'py3anaconda': this.backupHttpServerRoot + 'exec_pyanaconda_jsonp',
         };
         // OMG nasty wtf?!?
         // From: http://stackoverflow.com/questions/21159301/quotaexceedederror-dom-exception-22-an-attempt-was-made-to-add-something-to-st
@@ -23320,7 +23331,7 @@ var OptFrontendSharedSessions = /** @class */ (function (_super) {
         if (lang === '2') {
             return 'Python2';
         }
-        else if (lang === '3') {
+        else if (lang === '3' || lang == 'py3anaconda') {
             return 'Python3';
         }
         else if (lang === 'java') {
@@ -23539,7 +23550,7 @@ var OptFrontendSharedSessions = /** @class */ (function (_super) {
                 $("#numObserversSpan").empty(); // avoid showing stale results
             },
             success: function (data) {
-                var numPython = 0; // '2' and '3'
+                var numPython = 0; // '2' and '3' and 'py3anaconda'
                 var numJs = 0; // 'js' and 'ts'
                 var numCpp = 0; // 'c' and 'cpp'
                 var numJava = 0; // 'java'
@@ -23548,6 +23559,9 @@ var OptFrontendSharedSessions = /** @class */ (function (_super) {
                     numPython += data['2'];
                 }
                 if (data['3'] > 0) {
+                    numPython += data['3'];
+                }
+                if (data['py3anaconda'] > 0) {
                     numPython += data['3'];
                 }
                 if (data['js'] > 0) {
@@ -25121,7 +25135,7 @@ var OptFrontend = /** @class */ (function (_super) {
             }
         }
         else {
-            pytutor_1.assert(selectorVal === '2' || selectorVal == '3');
+            pytutor_1.assert(selectorVal === '2' || selectorVal == '3' || selectorVal == 'py3anaconda');
             mod = 'python';
             tabSize = 4; // PEP8 style standards
         }
@@ -26080,7 +26094,7 @@ exports.push([module.i, ".testCaseEditor {\n  width: 300px;\n  height: 90px; /* 
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.privacyAndEndingHTML = "\n\n<p style=\"margin-top: 30px;\">Privacy Policy: By using Python Tutor, your\nvisualized code, options, user interactions, text chats, and IP address\nare logged on our server and may be analyzed for research purposes.\nNearly all web services collect this basic information from users in\ntheir server logs. However, Python Tutor does not collect any personally\nidentifiable information from its users. It uses Google Analytics for\nwebsite analytics.</p>\n\n<p>Terms of Service: The Python Tutor service is provided for free on an\nas-is basis. Use this service at your own risk. Do not use it to share\nconfidential information. The developers of Python Tutor are not\nresponsible for the chat messages or behaviors of any of the users on\nthis website. We are also not responsible for any damages caused by\nusing this website. Finally, it is your responsibility to follow\nappropriate academic integrity standards.</p>\n\n<p style=\"margin-top: 25px;\">\nCopyright &copy; <a href=\"http://www.pgbovine.net/\">Philip Guo</a>.  All rights reserved.\n</p>";
-exports.footerHtml = "\n<p>\n  <button id=\"genUrlBtn\" class=\"smallBtn\" type=\"button\">Generate permanent link</button> <input type=\"text\" id=\"urlOutput\" size=\"70\"/>\n</p>\n<p>\n  <button id=\"genUrlShortenedBtn\" class=\"smallBtn\" type=\"button\">Generate shortened link</button> <input type=\"text\" id=\"urlOutputShortened\" size=\"25\"/>\n</p>\n\n<p>Click above to create a permanent link to your\nvisualization (<a href=\"https://www.youtube.com/watch?v=h4q3UKdEFKE\" target=\"_blank\">video demo</a>). To report bugs, paste the link along with an error\ndescription in an email to philip@pgbovine.net</p>\n\n<div id=\"embedLinkDiv\">\n<p>\n  <button id=\"genEmbedBtn\" class=\"smallBtn\" type=\"button\">Generate embed code</button> <input type=\"text\" id=\"embedCodeOutput\" size=\"70\"/>\n</p>\n\n<p>To embed this visualization in your webpage, click the 'Generate\nembed code' button above and paste the resulting HTML code into your\nwebpage. Adjust the height and width parameters and\nchange the link to <b>https://</b> if needed.</p>\n</div>\n\n<p style=\"margin-top: 25px;\">\n<a href=\"http://pythontutor.com/\">Python Tutor</a> (<a href=\"https://github.com/pgbovine/OnlinePythonTutor\">code on GitHub</a>) supports seven\nlanguages (despite its name!):</p>\n\n<p>1. Python <a href=\"https://docs.python.org/2.7/\">2.7</a> and <a\nhref=\"https://docs.python.org/3.6/\">3.6</a> with these limited module\nimports:\n\n__future__, abc, array, bisect, calendar,\ncmath, collections, copy, datetime, decimal,\ndoctest, fractions, functools, glob, hashlib, heapq,\nio, itertools, json, locale, math,\noperator, pickle, pprint, random, re,\nstring, struct, time, types, typing, unittest, StringIO (Python 2 only).\n\n<a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v5-unity\">Backend source code</a>.\n</p>\n\n<p>2. Java using Oracle's Java 8. The original <a\nhref=\"http://cscircles.cemc.uwaterloo.ca/java_visualize/\">Java\nvisualizer</a> was created by <a href=\"https://github.com/daveagp\">David Pritchard</a> and Will Gwozdz.\nIt supports\n<code><a href=\"http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdIn.html\">StdIn</a></code>, \n<code><a href=\"http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdOut.html\">StdOut</a></code>, \nmost other <a href=\"http://introcs.cs.princeton.edu/java/stdlib\"><tt>stdlib</tt> libraries</a>,\n<a href=\"http://introcs.cs.princeton.edu/java/43stack/Stack.java.html\"><tt>Stack</tt></a>,\n<a href=\"http://introcs.cs.princeton.edu/java/43stack/Queue.java.html\"><tt>Queue</tt></a>,\nand <a href=\"http://introcs.cs.princeton.edu/java/44st/ST.java.html\"><tt>ST</tt></a>.\n(To access Java's built-in <tt>Stack</tt>/<tt>Queue</tt> classes, write\n<tt>import java.util.Stack;</tt> &mdash; note, <tt>import\njava.util.*;</tt> won't work.)\n<a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/java\">Backend\nsource code</a>.</p>\n\n<p>3. JavaScript ES6 running in Node.js v6.0.0. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript\">Backend\nsource code</a>.</p>\n\n<p>4. <a href=\"http://www.typescriptlang.org\">TypeScript</a> 1.4.1 running in Node.js v6.0.0. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript\">Backend\nsource code</a>.</p>\n\n<p>5. Ruby 2 using MRI 2.2.2. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/ruby\">Backend\nsource code</a>.</p>\n\n<p>6. C using gcc 4.8, C11, and Valgrind Memcheck.\n<a href=\"https://github.com/pgbovine/opt-cpp-backend\">Backend source code</a>.</p>\n\n<p>7. C++ using gcc 4.8, C++11, and Valgrind Memcheck.\n<a href=\"https://github.com/pgbovine/opt-cpp-backend\">Backend source code</a>.</p>\n" + exports.privacyAndEndingHTML;
+exports.footerHtml = "\n<p>\n  <button id=\"genUrlBtn\" class=\"smallBtn\" type=\"button\">Generate permanent link</button> <input type=\"text\" id=\"urlOutput\" size=\"70\"/>\n</p>\n<p>\n  <button id=\"genUrlShortenedBtn\" class=\"smallBtn\" type=\"button\">Generate shortened link</button> <input type=\"text\" id=\"urlOutputShortened\" size=\"25\"/>\n</p>\n\n<p>Click above to create a permanent link to your\nvisualization (<a href=\"https://www.youtube.com/watch?v=h4q3UKdEFKE\" target=\"_blank\">video demo</a>). To report bugs, paste the link along with an error\ndescription in an email to philip@pgbovine.net</p>\n\n<div id=\"embedLinkDiv\">\n<p>\n  <button id=\"genEmbedBtn\" class=\"smallBtn\" type=\"button\">Generate embed code</button> <input type=\"text\" id=\"embedCodeOutput\" size=\"70\"/>\n</p>\n\n<p>To embed this visualization in your webpage, click the 'Generate\nembed code' button above and paste the resulting HTML code into your\nwebpage. Adjust the height and width parameters and\nchange the link to <b>https://</b> if needed.</p>\n</div>\n\n<p style=\"margin-top: 25px;\">\n<a href=\"http://pythontutor.com/\">Python Tutor</a> (<a href=\"https://github.com/pgbovine/OnlinePythonTutor\">code on GitHub</a>) supports seven\nlanguages (despite its name!):</p>\n\n<p>1. Python <a href=\"https://docs.python.org/2.7/\">2.7</a> and <a\nhref=\"https://docs.python.org/3.6/\">3.6</a> with these limited module\nimports:\n\n__future__, abc, array, bisect, calendar,\ncmath, collections, copy, datetime, decimal,\ndoctest, fractions, functools, glob, hashlib, heapq,\nio, itertools, json, locale, math,\noperator, pickle, pprint, random, re,\nstring, struct, time, types, unittest, StringIO (Python 2), typing (Python 3).\n\n<a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v5-unity\">Backend source code</a>.\n</p>\n\n<p>2. Java using Oracle's Java 8. The original <a\nhref=\"http://cscircles.cemc.uwaterloo.ca/java_visualize/\">Java\nvisualizer</a> was created by <a href=\"https://github.com/daveagp\">David Pritchard</a> and Will Gwozdz.\nIt supports\n<code><a href=\"http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdIn.html\">StdIn</a></code>, \n<code><a href=\"http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdOut.html\">StdOut</a></code>, \nmost other <a href=\"http://introcs.cs.princeton.edu/java/stdlib\"><tt>stdlib</tt> libraries</a>,\n<a href=\"http://introcs.cs.princeton.edu/java/43stack/Stack.java.html\"><tt>Stack</tt></a>,\n<a href=\"http://introcs.cs.princeton.edu/java/43stack/Queue.java.html\"><tt>Queue</tt></a>,\nand <a href=\"http://introcs.cs.princeton.edu/java/44st/ST.java.html\"><tt>ST</tt></a>.\n(To access Java's built-in <tt>Stack</tt>/<tt>Queue</tt> classes, write\n<tt>import java.util.Stack;</tt> &mdash; note, <tt>import\njava.util.*;</tt> won't work.)\n<a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/java\">Backend\nsource code</a>.</p>\n\n<p>3. JavaScript ES6 running in Node.js v6.0.0. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript\">Backend\nsource code</a>.</p>\n\n<p>4. <a href=\"http://www.typescriptlang.org\">TypeScript</a> 1.4.1 running in Node.js v6.0.0. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript\">Backend\nsource code</a>.</p>\n\n<p>5. Ruby 2 using MRI 2.2.2. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/ruby\">Backend\nsource code</a>.</p>\n\n<p>6. C using gcc 4.8, C11, and Valgrind Memcheck.\n<a href=\"https://github.com/pgbovine/opt-cpp-backend\">Backend source code</a>.</p>\n\n<p>7. C++ using gcc 4.8, C++11, and Valgrind Memcheck.\n<a href=\"https://github.com/pgbovine/opt-cpp-backend\">Backend source code</a>.</p>\n" + exports.privacyAndEndingHTML;
 
 
 /***/ }),
@@ -26214,6 +26228,7 @@ var OptLiveFrontend = /** @class */ (function (_super) {
             'ruby': 'LIVE_exec_ruby.py',
             'c': 'LIVE_exec_c.py',
             'cpp': 'LIVE_exec_cpp.py',
+            'py3anaconda': 'LIVE_exec_py3anaconda.py',
         };
         $('#legendDiv')
             .append('<svg id="prevLegendArrowSVG"/> line that has just executed')

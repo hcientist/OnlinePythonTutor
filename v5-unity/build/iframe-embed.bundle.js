@@ -666,6 +666,7 @@ var ExecutionVisualizer = /** @class */ (function () {
     //          and to display the proper language in langDisplayDiv:
     //          'py2' for Python 2, 'py3' for Python 3, 'js' for JavaScript, 'java' for Java,
     //          'ts' for TypeScript, 'ruby' for Ruby, 'c' for C, 'cpp' for C++
+    //          'py3anaconda' for Python 3 with Anaconda
     //          [default is Python-style labels]
     function ExecutionVisualizer(domRootID, dat, params) {
         this.params = {};
@@ -3393,6 +3394,9 @@ var CodeDisplay = /** @class */ (function () {
             else if (lang === 'py3') {
                 pyVer = '3';
             }
+            else if (lang === 'py3anaconda') {
+                pyVer = 'py3anaconda';
+            }
             else if (lang === 'c') {
                 pyVer = 'c';
             }
@@ -3425,6 +3429,9 @@ var CodeDisplay = /** @class */ (function () {
             }
             else if (lang === 'py3') {
                 this.domRoot.find('#langDisplayDiv').html('Python 3.6');
+            }
+            else if (lang === 'py3anaconda') {
+                this.domRoot.find('#langDisplayDiv').html('Python 3.6 with <a target="_blank" href="https://docs.anaconda.com/anaconda/">Anaconda 5.2</a><br/><font color="#e93f34">EXPERIMENTAL!</font>');
             }
             else if (lang === 'c') {
                 if (this.owner.params.embeddedMode) {
@@ -22254,6 +22261,8 @@ var AbstractBaseFrontend = /** @class */ (function () {
             'ruby': 'web_exec_ruby.py',
             'c': 'web_exec_c.py',
             'cpp': 'web_exec_cpp.py',
+            // experimental!
+            'py3anaconda': 'web_exec_py3anaconda.py',
         };
         // these settings are all customized for my own server setup,
         // so you will need to customize for your server:
@@ -22271,6 +22280,7 @@ var AbstractBaseFrontend = /** @class */ (function () {
             'ruby': this.serverRoot + 'exec_ruby_jsonp',
             'c': this.serverRoot + 'exec_c_jsonp',
             'cpp': this.serverRoot + 'exec_cpp_jsonp',
+            'py3anaconda': this.serverRoot + 'exec_pyanaconda_jsonp',
         };
         this.langSettingToJsonpEndpointBackup = {
             '2': null,
@@ -22281,6 +22291,7 @@ var AbstractBaseFrontend = /** @class */ (function () {
             'ruby': this.backupHttpServerRoot + 'exec_ruby_jsonp',
             'c': this.backupHttpServerRoot + 'exec_c_jsonp',
             'cpp': this.backupHttpServerRoot + 'exec_cpp_jsonp',
+            'py3anaconda': this.backupHttpServerRoot + 'exec_pyanaconda_jsonp',
         };
         // OMG nasty wtf?!?
         // From: http://stackoverflow.com/questions/21159301/quotaexceedederror-dom-exception-22-an-attempt-was-made-to-add-something-to-st
