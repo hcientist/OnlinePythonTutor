@@ -22603,7 +22603,9 @@ var AbstractBaseFrontend = /** @class */ (function () {
                     jsonp: "callback",
                     dataType: "jsonp",
                     data: { user_script: codeToExec,
-                        options_json: JSON.stringify(backendOptionsObj) },
+                        options_json: JSON.stringify(backendOptionsObj),
+                        raw_input_json: _this.rawInputLst.length > 0 ? JSON.stringify(_this.rawInputLst) : null,
+                    },
                     success: callbackWrapper
                 });
             };
@@ -22633,7 +22635,9 @@ var AbstractBaseFrontend = /** @class */ (function () {
                     jsonp: "callback",
                     dataType: "jsonp",
                     data: { user_script: codeToExec,
-                        options_json: JSON.stringify(backendOptionsObj) },
+                        options_json: JSON.stringify(backendOptionsObj),
+                        raw_input_json: _this.rawInputLst.length > 0 ? JSON.stringify(_this.rawInputLst) : null,
+                    },
                     success: function (dataFromBackend) {
                         var trace = dataFromBackend.trace;
                         var shouldRetry = false;

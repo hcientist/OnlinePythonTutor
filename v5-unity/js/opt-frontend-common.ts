@@ -471,7 +471,9 @@ export abstract class AbstractBaseFrontend {
             jsonp: "callback",
             dataType: "jsonp",
             data: {user_script : codeToExec,
-                   options_json: JSON.stringify(backendOptionsObj)},
+                   options_json: JSON.stringify(backendOptionsObj),
+                   raw_input_json: this.rawInputLst.length > 0 ? JSON.stringify(this.rawInputLst) : null,
+                  },
             success: callbackWrapper
           });
         }
@@ -507,7 +509,9 @@ export abstract class AbstractBaseFrontend {
                   jsonp: "callback",
                   dataType: "jsonp",
                   data: {user_script : codeToExec,
-                         options_json: JSON.stringify(backendOptionsObj)},
+                         options_json: JSON.stringify(backendOptionsObj),
+                         raw_input_json: this.rawInputLst.length > 0 ? JSON.stringify(this.rawInputLst) : null,
+                        },
                   success: (dataFromBackend) => {
                     var trace = dataFromBackend.trace;
                     var shouldRetry = false;
