@@ -200,8 +200,8 @@ class ObjectEncoder:
     return self.parent.should_hide_var(var)
 
   # searches through self.parents.types_to_inline and tries
-  # to match the type returned by type(obj) and also 'class'/'instance'
-  # for classes and instances, respectively
+  # to match the type returned by type(obj).__name__ and
+  # also 'class' and 'instance' for classes and instances, respectively
   def should_inline_object_by_type(self, obj):
     # fast-pass optimization -- common case
     if not self.parent.types_to_inline:
@@ -209,15 +209,12 @@ class ObjectEncoder:
 
     # copy-pasted from the end of self.encode()
     typ = type(obj)
-    typeStr = str(typ)
-    m = typeRE.match(typeStr)
-    if not m:
-      m = classRE.match(typeStr)
-    if not m:
-      return False
+    typename = typ.__name__
 
-    assert m
-    typename = m.group(1)
+    # pick up built-in functions too:
+    if typ in (types.FunctionType, types.MethodType, types.BuiltinFunctionType, types.BuiltinMethodType):
+        typename = 'function'
+
     if not typename:
         return False
 
@@ -225,7 +222,20 @@ class ObjectEncoder:
     if is_class(obj):
         alt_typename = 'class'
     elif is_instance(obj):
-        alt_typename = 'instance'
+        # if obj is an instance of the Fooo class, then we want to match
+        # on both 'instance' and 'Fooo'
+        typename = 'instance'
+        class_name = None
+        if hasattr(obj, '__class__'):
+            # common case ...
+            class_name = get_name(obj.__class__)
+        else:
+            # super special case for something like
+            # "from datetime import datetime_CAPI" in Python 3.2,
+            # which is some weird 'PyCapsule' type ...
+            # http://docs.python.org/release/3.1.5/c-api/capsule.html
+            class_name = get_name(type(obj))
+        alt_typename = class_name
 
     for re_match in self.parent.types_to_inline:
         if re_match(typename):
@@ -261,7 +271,6 @@ class ObjectEncoder:
       return encode_primitive(dat)
     # compound type - return an object reference and update encoded_heap_objects
     else:
-
       # IMPORTED_FAUX_PRIMITIVE feature added on 2018-06-13:
       is_externally_defined = False # is dat defined in external (i.e., non-user) code?
       try:
@@ -313,6 +322,35 @@ class ObjectEncoder:
         except:
             pass
         return ['IMPORTED_FAUX_PRIMITIVE', 'imported ' + label] # punt early!
+
+      # next check whether it should be inlined
+      if self.should_inline_object_by_type(dat):
+        label = 'object'
+        try:
+            label = type(dat).__name__
+            if is_class(dat):
+                class_name = get_name(dat)
+                label = class_name + ' class'
+            elif is_instance(dat):
+                # a lot of copy-pasta from other parts of this file:
+                # TODO: clean up
+                class_name = None
+                if hasattr(dat, '__class__'):
+                    # common case ...
+                    class_name = get_name(dat.__class__)
+                else:
+                    # super special case for something like
+                    # "from datetime import datetime_CAPI" in Python 3.2,
+                    # which is some weird 'PyCapsule' type ...
+                    # http://docs.python.org/release/3.1.5/c-api/capsule.html
+                    class_name = get_name(type(dat))
+                if class_name:
+                    label = class_name + ' instance'
+                else:
+                    label = 'instance'
+        except:
+            pass
+        return ['IMPORTED_FAUX_PRIMITIVE', label + ' (hidden)'] # punt early!
 
       try:
         my_small_id = self.id_to_small_IDs[my_id]

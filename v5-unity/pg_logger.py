@@ -70,10 +70,11 @@ BREAKPOINT_STR = '#break'
 # - also now filters class and instance fields in addition to top-level vars
 PYTUTOR_HIDE_STR = '#pythontutor_hide:'
 # 2018-06-17: a comma-separated list of types that should be displayed *inline*
-# like primitives. for details of what types are legal to specify, see:
+# like primitives, with their actual values HIDDEN to save space. for details
+# of what types are legal to specify, see:
 # pg_encoder.py:should_inline_object_by_type()
 # - also accepts shell globs, just like PYTUTOR_HIDE_STR
-PYTUTOR_INLINE_TYPE_STR = '#pythontutor_inline_type:'
+PYTUTOR_INLINE_TYPE_STR = '#pythontutor_hide_type:'
 
 CLASS_RE = re.compile('class\s+')
 
@@ -609,7 +610,6 @@ class PGLogger(bdb.Bdb):
         self.vars_to_hide = set() # a set of regex match objects
                                   # created by compileGlobMatch() from
                                   # the contents of PYTUTOR_HIDE_STR
-
         self.types_to_inline = set() # a set of regex match objects derived from PYTUTOR_INLINE_TYPE_STR
 
         self.prev_lineno = -1 # keep track of previous line just executed
@@ -1358,6 +1358,13 @@ class PGLogger(bdb.Bdb):
             # remember to call strip() -> compileGlobMatch()
             hide_vars = [compileGlobMatch(e.strip()) for e in hide_vars.split(',')]
             self.vars_to_hide.update(hide_vars)
+
+          if line.startswith(PYTUTOR_INLINE_TYPE_STR):
+            listed_types = line[len(PYTUTOR_INLINE_TYPE_STR):]
+            # remember to call strip() -> compileGlobMatch()
+            listed_types = [compileGlobMatch(e.strip()) for e in listed_types.split(',')]
+            self.types_to_inline.update(listed_types)
+
 
         # populate an extent map to get more accurate ranges from code
         if self.crazy_mode:
