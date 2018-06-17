@@ -59,6 +59,10 @@ io, itertools, json, locale, math,
 operator, pickle, pprint, random, re,
 string, struct, time, types, unittest, StringIO (Python 2), typing (Python 3).
 
+(There is also an experimental version of Python 3.6 with <a
+href="https://docs.anaconda.com/anaconda/">Anaconda</a>, which lets
+you import many more modules.)
+
 <a
 href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v5-unity">Backend source code</a>.
 </p>

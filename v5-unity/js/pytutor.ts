@@ -3369,7 +3369,7 @@ class CodeDisplay {
       } else if (lang === 'py3') {
         this.domRoot.find('#langDisplayDiv').html('Python 3.6');
       } else if (lang === 'py3anaconda') {
-        this.domRoot.find('#langDisplayDiv').html('Python 3.6 with <a target="_blank" href="https://docs.anaconda.com/anaconda/">Anaconda 5.2</a><br/><font color="#e93f34">EXPERIMENTAL!</font>');
+        this.domRoot.find('#langDisplayDiv').html('Python 3.6 with <a target="_blank" href="https://docs.anaconda.com/anaconda/">Anaconda 5.2</a> <font color="#e93f34">EXPERIMENTAL!</font><br/>(much slower than <a target="_blank" href="visualize.html#py=3">regular Python 3.6</a>, but lets you import more modules)');
       } else if (lang === 'c') {
         if (this.owner.params.embeddedMode) {
           this.domRoot.find('#langDisplayDiv').html('C (gcc 4.8, C11)');

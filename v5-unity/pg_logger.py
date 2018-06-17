@@ -122,6 +122,9 @@ for e in ('_*', '__*', '__*__', '*_$'):
 '''
 
 
+TRY_ANACONDA_STR = '\n\nYou can also try "Python 3.6 with Anaconda (experimental)",\nwhich is slower but lets you import many more modules.\n'
+
+
 # simple sandboxing scheme:
 #
 # - use resource.setrlimit to deprive this process of ANY file descriptors
@@ -219,7 +222,7 @@ def __restricted_import__(*args):
         lines_to_print.append(all_allowed_imports[i:i + ENTRIES_PER_LINE])
     pretty_printed_imports = ',\n  '.join([', '.join(e) for e in lines_to_print])
 
-    raise ImportError('{0} not supported\nOnly these modules can be imported into Python Tutor:\n  {1}'.format(args[0], pretty_printed_imports))
+    raise ImportError('{0} not found or not supported\nOnly these modules can be imported:\n  {1}{2}'.format(args[0], pretty_printed_imports, TRY_ANACONDA_STR))
 
 
 # Support interactive user input by:
@@ -245,16 +248,16 @@ def open_wrapper(*args):
   if is_python3:
       raise Exception('''open() is not supported by Python Tutor.
 Instead use io.StringIO() to simulate a file.
-Here is an example: http://goo.gl/uNvBGl''')
+Example: http://goo.gl/uNvBGl''' + TRY_ANACONDA_STR)
   else:
       raise Exception('''open() is not supported by Python Tutor.
 Instead use StringIO.StringIO() to simulate a file.
-Here is an example: http://goo.gl/Q9xQ4p''')
+Example: http://goo.gl/Q9xQ4p''' + TRY_ANACONDA_STR)
 
 # create a more sensible error message for unsupported features
 def create_banned_builtins_wrapper(fn_name):
   def err_func(*args):
-    raise Exception("'" + fn_name + "' is not supported by Python Tutor.")
+    raise Exception("'" + fn_name + "' is not supported by Python Tutor." + TRY_ANACONDA_STR)
   return err_func
 
 
