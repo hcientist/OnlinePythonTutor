@@ -199,6 +199,42 @@ class ObjectEncoder:
   def should_hide_var(self, var):
     return self.parent.should_hide_var(var)
 
+  # searches through self.parents.types_to_inline and tries
+  # to match the type returned by type(obj) and also 'class'/'instance'
+  # for classes and instances, respectively
+  def should_inline_object_by_type(self, obj):
+    # fast-pass optimization -- common case
+    if not self.parent.types_to_inline:
+      return False
+
+    # copy-pasted from the end of self.encode()
+    typ = type(obj)
+    typeStr = str(typ)
+    m = typeRE.match(typeStr)
+    if not m:
+      m = classRE.match(typeStr)
+    if not m:
+      return False
+
+    assert m
+    typename = m.group(1)
+    if not typename:
+        return False
+
+    alt_typename = None
+    if is_class(obj):
+        alt_typename = 'class'
+    elif is_instance(obj):
+        alt_typename = 'instance'
+
+    for re_match in self.parent.types_to_inline:
+        if re_match(typename):
+            return True
+        if alt_typename and re_match(alt_typename):
+            return True
+    return False
+
+
   def get_heap(self):
     return self.encoded_heap_objects
 
