@@ -2419,8 +2419,7 @@ var DataVisualizer = /** @class */ (function () {
             .html(function (frame, i) {
             // pretty-print lambdas and display other weird characters
             // (might contain '<' or '>' for weird names like <genexpr>)
-            var funcName = htmlspecialchars(frame.func_name).replace('&lt;lambda&gt;', '\u03bb')
-                .replace(newlineAllRegex, '<br/>');
+            var funcName = htmlspecialchars(frame.func_name).replace('&lt;lambda&gt;', '\u03bb');
             var headerLabel = funcName;
             // only display if you're someone's parent (unless showAllFrameLabels)
             if (frame.is_parent || myViz.params.showAllFrameLabels) {
@@ -2778,8 +2777,6 @@ var DataVisualizer = /** @class */ (function () {
             // escape using htmlspecialchars to prevent HTML/script injection
             var literalStr = htmlspecialchars(obj);
             // print as a double-quoted string literal
-            // with explicit newlines as <br/>
-            literalStr = literalStr.replace(newlineAllRegex, '<br/>'); // replace ALL
             literalStr = literalStr.replace(doubleQuoteAllRegex, '\\"'); // replace ALL
             literalStr = '"' + literalStr + '"';
             d3DomElement.append('<span class="stringObj">' + literalStr + '</span>');
@@ -3843,7 +3840,7 @@ var NavigationController = /** @class */ (function () {
     };
     NavigationController.prototype.showError = function (msg) {
         if (msg) {
-            this.domRoot.find("#errorOutput").html(htmlspecialchars(msg).replace(newlineAllRegex, '<br/>') + "\n      <span style=\"font-size: 9pt; color: #666\">(see <a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\" target=\"_blank\">unsupported features</a>)</span>").show();
+            this.domRoot.find("#errorOutput").html(htmlspecialchars(msg) + "\n      <span style=\"font-size: 9pt; color: #666\">(see <a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\" target=\"_blank\">unsupported features</a>)</span>").show();
         }
         else {
             this.domRoot.find("#errorOutput").hide();
@@ -3873,6 +3870,8 @@ function htmlspecialchars(str) {
         str = str.replace(/ /g, "&nbsp;");
         // replace tab as four spaces:
         str = str.replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;");
+        // replace newline as <br/>
+        str = str.replace(newlineAllRegex, '<br/>');
     }
     return str;
 }
