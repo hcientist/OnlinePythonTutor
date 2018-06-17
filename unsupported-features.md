@@ -49,7 +49,7 @@ For more details on project status and issue prioritization, check out these vid
 - Multi-threaded, concurrent, or asynchronous code
 - Anything involving GUI programming or GUI/webpage components
 - Reading data from external files; put all your data in strings when possible
-- Interfacing with databases, networks, or other external resources
+- Interfacing with databases, network, filesystem, or other external resources
 - Importing external 3rd-party libraries (try "Python 3.6 with Anaconda (experimental)" if you want to use more libraries)
 - Code that is too large in size; shorten your code!
 - Code that runs for too many steps (e.g., > 1,000 steps) or for a long time
