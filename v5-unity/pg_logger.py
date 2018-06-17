@@ -28,6 +28,8 @@
 # Python debugger imported via the bdb module), printing out the values
 # of all in-scope data structures after each executed instruction.
 
+# NB: try to import the minimal amount of stuff in this module to lessen
+# the security attack surface
 
 import imp
 import sys
@@ -60,9 +62,64 @@ BREAKPOINT_STR = '#break'
 
 # if a line starts with this string, then look for a comma-separated
 # list of variables after the colon. *hide* those variables in da trace
+#
+# 2018-06-17:
+# - now supports unix-style shell globs using the syntax in
+#   https://docs.python.org/3/library/fnmatch.html so you can write things
+#   like '#pythontutor_hide: _*' to hide all private instance variables
+# - also now filters class and instance fields in addition to top-level vars
 PYTUTOR_HIDE_STR = '#pythontutor_hide:'
 
 CLASS_RE = re.compile('class\s+')
+
+# copied-pasted from translate() in https://github.com/python/cpython/blob/2.7/Lib/fnmatch.py
+def globToRegex(pat):
+    """Translate a shell PATTERN to a regular expression.
+    There is no way to quote meta-characters.
+    """
+
+    i, n = 0, len(pat)
+    res = ''
+    while i < n:
+        c = pat[i]
+        i = i+1
+        if c == '*':
+            res = res + '.*'
+        elif c == '?':
+            res = res + '.'
+        elif c == '[':
+            j = i
+            if j < n and pat[j] == '!':
+                j = j+1
+            if j < n and pat[j] == ']':
+                j = j+1
+            while j < n and pat[j] != ']':
+                j = j+1
+            if j >= n:
+                res = res + '\\['
+            else:
+                stuff = pat[i:j].replace('\\','\\\\')
+                i = j+1
+                if stuff[0] == '!':
+                    stuff = '^' + stuff[1:]
+                elif stuff[0] == '^':
+                    stuff = '\\' + stuff
+                res = '%s[%s]' % (res, stuff)
+        else:
+            res = res + re.escape(c)
+    return res + '\Z(?ms)'
+
+def compileGlobMatch(pattern):
+    # very important to use match and *not* search!
+    return re.compile(globToRegex(pattern)).match
+
+# test globToRegex and compileGlobMatch
+'''
+for e in ('_*', '__*', '__*__', '*_$'):
+    stuff = compileGlobMatch(e)
+    for s in ('_test', 'test_', '_test_', '__test', '__test__'):
+        print(e, s, stuff(s) is not None)
+'''
 
 
 # simple sandboxing scheme:
@@ -532,7 +589,7 @@ class PGLogger(bdb.Bdb):
 
         # very important for this single object to persist throughout
         # execution, or else canonical small IDs won't be consistent.
-        self.encoder = pg_encoder.ObjectEncoder(self.render_heap_primitives)
+        self.encoder = pg_encoder.ObjectEncoder(self)
 
         self.executed_script = None # Python script to be executed!
 
@@ -541,9 +598,18 @@ class PGLogger(bdb.Bdb):
         # ONLY at breakpoint lines.
         self.breakpoints = []
 
-        self.vars_to_hide = set() # see above comment for PYTUTOR_HIDE_STR
+        self.vars_to_hide = set() # a set of regex match objects
+                                  # created by compileGlobMatch() from
+                                  # the contents of PYTUTOR_HIDE_STR
 
         self.prev_lineno = -1 # keep track of previous line just executed
+
+
+    def should_hide_var(self, var):
+        for re_match in self.vars_to_hide:
+            if re_match(var):
+                return True
+        return False
 
 
     def get_user_stdout(self):
@@ -904,7 +970,7 @@ class PGLogger(bdb.Bdb):
             if k == '__module__':
               continue
 
-            if k in self.vars_to_hide:
+            if self.should_hide_var(k):
               continue
 
             encoded_val = self.encoder.encode(v, self.get_parent_of_function)
@@ -1079,7 +1145,7 @@ class PGLogger(bdb.Bdb):
         encoded_globals = {}
         cur_globals_dict = get_user_globals(tos[0], at_global_scope=(self.curindex <= 1))
         for (k, v) in cur_globals_dict.items():
-          if k in self.vars_to_hide:
+          if self.should_hide_var(k):
             continue
 
           encoded_val = self.encoder.encode(v, self.get_parent_of_function)
@@ -1279,7 +1345,8 @@ class PGLogger(bdb.Bdb):
 
           if line.startswith(PYTUTOR_HIDE_STR):
             hide_vars = line[len(PYTUTOR_HIDE_STR):]
-            hide_vars = [e.strip() for e in hide_vars.split(',')]
+            # remember to call strip() -> compileGlobMatch()
+            hide_vars = [compileGlobMatch(e.strip()) for e in hide_vars.split(',')]
             self.vars_to_hide.update(hide_vars)
 
         # populate an extent map to get more accurate ranges from code

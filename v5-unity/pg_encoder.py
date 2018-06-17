@@ -169,12 +169,14 @@ def create_lambda_line_number(codeobj, line_to_lambda_code):
 # to every reference ever created by the program without ever releasing
 # anything!
 class ObjectEncoder:
-  def __init__(self, render_heap_primitives):
+  def __init__(self, parent):
+    self.parent = parent # should be a PGLogger object
+
     # Key: canonicalized small ID
     # Value: encoded (compound) heap object
     self.encoded_heap_objects = {}
 
-    self.render_heap_primitives = render_heap_primitives
+    self.render_heap_primitives = parent.render_heap_primitives
 
     self.id_to_small_IDs = {}
     self.cur_small_ID = 1
@@ -194,6 +196,8 @@ class ObjectEncoder:
     #        on that line in the order they were defined
     self.line_to_lambda_code = defaultdict(list)
 
+  def should_hide_var(self, var):
+    return self.parent.should_hide_var(var)
 
   def get_heap(self):
     return self.encoded_heap_objects
@@ -457,5 +461,6 @@ class ObjectEncoder:
       user_attrs = []
 
     for attr in user_attrs:
-      new_obj.append([self.encode(attr, None), self.encode(dat.__dict__[attr], None)])
+      if not self.should_hide_var(attr):
+        new_obj.append([self.encode(attr, None), self.encode(dat.__dict__[attr], None)])
 
