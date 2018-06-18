@@ -221,9 +221,11 @@ class ObjectEncoder:
     alt_typename = None
     if is_class(obj):
         alt_typename = 'class'
-    elif is_instance(obj):
+    elif is_instance(obj) and typename != 'function':
         # if obj is an instance of the Fooo class, then we want to match
         # on both 'instance' and 'Fooo'
+        # (exception: 'function' objects are sometimes also instances,
+        #  but we still want to call them 'function', so ignore them)
         typename = 'instance'
         class_name = None
         if hasattr(obj, '__class__'):
