@@ -1047,6 +1047,10 @@ Get live help!
     // someone else) and says 'hello' ... the server attempts to
     // geolocate their IP address server-side (since it's more accurate
     // than doing it client-side, apparently) ...
+    //
+    // 2018-06-22: *disabled* this feature in
+    // ../../v3/opt_togetherjs/server.js since ipstack.com limits number of
+    // API calls per month, so we don't want to exceed limits!
     TogetherJS.hub.on("togetherjs.pg-hello-geolocate", (msg) => {
       if (!msg.sameUrl) return; // make sure we're on the same page
 
@@ -1254,6 +1258,17 @@ Get live help!
           TogetherJS.send({type: "kickOut", idToKick: e});
         }
       });
+
+      // 2018-06-22: *disabled* pg-hello-geolocate feature in
+      // ../../v3/opt_togetherjs/server.js since ipstack.com limits number of
+      // API calls per month, so we don't want to exceed limits!
+      // instead display a generic "Someone just joined this session" msg
+      //
+      // make sure clientId isn't YOU so you don't display info about yourself:
+      var myClientId = TogetherJS.clientId();
+      if (msg.clientId != myClientId) {
+        this.chatbotPostMsg('Someone just joined this session.');
+      }
     });
 
     TogetherJS.hub.on("myAppState", (msg) => {
