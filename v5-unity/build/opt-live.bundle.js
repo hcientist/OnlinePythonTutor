@@ -23812,6 +23812,10 @@ var OptFrontendSharedSessions = /** @class */ (function (_super) {
         // someone else) and says 'hello' ... the server attempts to
         // geolocate their IP address server-side (since it's more accurate
         // than doing it client-side, apparently) ...
+        //
+        // 2018-06-22: *disabled* this feature in
+        // ../../v3/opt_togetherjs/server.js since ipstack.com limits number of
+        // API calls per month, so we don't want to exceed limits!
         exports.TogetherJS.hub.on("togetherjs.pg-hello-geolocate", function (msg) {
             if (!msg.sameUrl)
                 return; // make sure we're on the same page
@@ -23999,6 +24003,16 @@ var OptFrontendSharedSessions = /** @class */ (function (_super) {
                     exports.TogetherJS.send({ type: "kickOut", idToKick: e });
                 }
             });
+            // 2018-06-22: *disabled* pg-hello-geolocate feature in
+            // ../../v3/opt_togetherjs/server.js since ipstack.com limits number of
+            // API calls per month, so we don't want to exceed limits!
+            // instead display a generic "Someone just joined this session" msg
+            //
+            // make sure clientId isn't YOU so you don't display info about yourself:
+            var myClientId = exports.TogetherJS.clientId();
+            if (msg.clientId != myClientId) {
+                _this.chatbotPostMsg('Someone just joined this session.');
+            }
         });
         exports.TogetherJS.hub.on("myAppState", function (msg) {
             // DON'T USE msg.sameUrl check here since it doesn't work properly, eek!
