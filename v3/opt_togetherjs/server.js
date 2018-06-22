@@ -534,6 +534,7 @@ wsServer.on('request', function(request) {
       numClients: 0, // pgbovine - use this instead of the 'clients' field
       bannedUsers: [], // pgbovine - list of user_uuid's or IP addresses that have been kicked/banned from this session
       chatters: [],    // pgbovine - list of users who have actually chatted in this session
+      numEditCodeEventsByClientId: {}, // pgbovine - key: clientId, value: number of editCode events by clientId
       domains: {},
       urls: {},
       firstDomain: null,
@@ -623,7 +624,26 @@ wsServer.on('request', function(request) {
           parsed.type == 'app.executeCode' ||
           parsed.type == 'app.updateOutput' ||
           parsed.type == 'chat') {
-        connectionStats[id].lastMessageTime = Date.now(); // pgbovine
+        if (parsed.type == 'app.editCode') {
+          editCodeStats = connectionStats[id].numEditCodeEventsByClientId;
+          if (editCodeStats[parsed.clientId] === undefined) {
+            editCodeStats[parsed.clientId] = 1;
+          } else {
+            editCodeStats[parsed.clientId] += 1;
+            // only update lastMessageTime if it's NOT your first editCode event
+            // in order to prevent counting an idle session from being
+            // misleadingly marked as non-idle in the UI just because someone
+            // peeked their head into a session to see what's going on
+            // but didn't actually do anything meaningful. otherwise
+            // there's a bunch of 'false positives' where a session is
+            // displayed in the UI as non-idle even though no activity
+            // has taken place within that session
+            connectionStats[id].lastMessageTime = Date.now(); // pgbovine
+          }
+        } else {
+          // always update lastMessageTime
+          connectionStats[id].lastMessageTime = Date.now(); // pgbovine
+        }
       }
 
       // pgbovine
