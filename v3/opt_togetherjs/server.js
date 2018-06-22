@@ -664,7 +664,11 @@ wsServer.on('request', function(request) {
     // when you first enter a session (i.e., saying 'hello'), try to geolocate
     // your IP address server-side (since it's more accurate than doing it
     // client-side) and then log/send a pg-hello-geolocate event to everyone
-    if (parsed.type === 'hello') {
+    //
+    // 2018-06-22: *disable* this feature (set to if(false)) since ipstack.com
+    // limits number of API calls per month, so we don't want to exceed limits!
+    if (false) {
+    //if (parsed.type === 'hello') {
       // copied from createLogEntry
       // Webfaction forwards IP addresses via proxy, so use this ...
       // http://stackoverflow.com/questions/8107856/how-can-i-get-the-users-ip-address-using-node-js
