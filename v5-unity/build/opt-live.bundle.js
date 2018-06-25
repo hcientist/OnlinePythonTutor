@@ -23096,22 +23096,42 @@ var liveHelpSurvey = {
 };
 */
 // 2018-03-17: minor tweaks on version 4's wording to make it sound a bit more optional and casual
+/*
 var liveHelpSurvey = {
-    requestHelp: [{ prompt: 'You are now on the help queue. Please wait for help to arrive.\n\n[OPTIONAL] Support our research by letting us know:\nWhy did you decide to ask for help at this time?',
-            v: 'r4a' },
-        { prompt: 'You are now on the help queue. Please wait for help to arrive.\n\n[OPTIONAL] Support our research by letting us know:\nWhy did you ask for help anonymously on this website rather than getting help from someone you know?',
-            v: 'r4b' },
+  requestHelp:   [ {prompt: 'You are now on the help queue. Please wait for help to arrive.\n\n[OPTIONAL] Support our research by letting us know:\nWhy did you decide to ask for help at this time?',
+                    v: 'r4a'},
+                   {prompt: 'You are now on the help queue. Please wait for help to arrive.\n\n[OPTIONAL] Support our research by letting us know:\nWhy did you ask for help anonymously on this website rather than getting help from someone you know?',
+                    v: 'r4b'},
+                 ],
+  volunteerHelp: [ {prompt: "Thanks for volunteering! You are about to join a live chat.\n\n[OPTIONAL] Support our research by letting us know:\nWhy did you decide to volunteer at this time? What motivated you to click on this particular help link?",
+                    v: 'h4a'},
+                   {prompt: "Thanks for volunteering! You are about to join a live chat.\n\n[OPTIONAL] Support our research by letting us know:\nWhat is your current job or profession?",
+                    v: 'h4b'},
+                 ]
+};
+*/
+// 2018-06-24: version 5 is nearly identical to version 4, except that I turned
+// on noRepeats=true so we don't ask users the same question more than once
+var liveHelpSurvey = {
+    requestHelp: [{ prompt: 'You are now on the help queue. Please wait for help to arrive.\n\nSupport our research by letting us know:\nWhy did you decide to ask for help at this time?',
+            v: 'r5a' },
+        { prompt: 'You are now on the help queue. Please wait for help to arrive.\n\nSupport our research by letting us know:\nWhy did you ask for help anonymously on this website rather than getting help from someone you know?',
+            v: 'r5b' },
     ],
-    volunteerHelp: [{ prompt: "Thanks for volunteering! You are about to join a live chat.\n\n[OPTIONAL] Support our research by letting us know:\nWhy did you decide to volunteer at this time? What motivated you to click on this particular help link?",
-            v: 'h4a' },
-        { prompt: "Thanks for volunteering! You are about to join a live chat.\n\n[OPTIONAL] Support our research by letting us know:\nWhat is your current job or profession?",
-            v: 'h4b' },
+    volunteerHelp: [{ prompt: "Thanks for volunteering! You are about to join a live chat.\n\nSupport our research by letting us know:\nWhy did you decide to volunteer at this time? What motivated you to click on this particular help link?",
+            v: 'h5a' },
+        { prompt: "Thanks for volunteering! You are about to join a live chat.\n\nSupport our research by letting us know:\nWhat is your current job or profession?",
+            v: 'h5b' },
     ]
 };
 // randomly picks a survey item from liveHelpSurvey and mutates
 // localStorage to record that this has been randomly picked, so it won't
 // be picked again during the next call
-function randomlyPickSurveyItem(key) {
+//
+// 2018-06-24: if noRepeats is true, then don't ask this user repeated
+// questions; simply return null if all questions have already been asked
+function randomlyPickSurveyItem(key, noRepeats) {
+    if (noRepeats === void 0) { noRepeats = false; }
     var lst = liveHelpSurvey[key];
     var filteredLst = [];
     // filter lst down to filteredLst to find all elements whose version
@@ -23129,6 +23149,9 @@ function randomlyPickSurveyItem(key) {
     // if ALL entries have been filtered out, then reset everything and
     // start from scratch:
     if (filteredLst.length == 0) {
+        if (noRepeats) {
+            return null; // punt early if noRepeats=true!!!
+        }
         if (opt_frontend_common_1.supports_html5_storage()) {
             lst.forEach(function (e) {
                 localStorage.removeItem(e.v);
@@ -23498,7 +23521,12 @@ var OptFrontendSharedSessions = /** @class */ (function (_super) {
                         });
                         // add these handlers AFTER the respective DOM nodes have been added above:
                         $(".gotoHelpLink").click(function () {
-                            var surveyItem = randomlyPickSurveyItem('volunteerHelp');
+                            // 2018-06-24: don't show the user repeated questions (noRepeats=true)
+                            var surveyItem = randomlyPickSurveyItem('volunteerHelp', true);
+                            if (!surveyItem) {
+                                // punt early!
+                                return true; // ALWAYS cause the link to be clicked
+                            }
                             var miniSurveyResponse = prompt(surveyItem.prompt);
                             // always log every impression, even if miniSurveyResponse is blank,
                             // since we can know how many times that survey question was ever seen:
@@ -24302,18 +24330,22 @@ var OptFrontendSharedSessions = /** @class */ (function (_super) {
         // pop up the survey BEFORE you make the request, so in case you get
         // hung up on the prompt() and take a long time to answer the question,
         // you're not put on the queue yet until you finish or click Cancel:
-        var surveyItem = randomlyPickSurveyItem('requestHelp');
-        var miniSurveyResponse = prompt(surveyItem.prompt);
-        // always log every impression, even if miniSurveyResponse is blank,
-        // since we can know how many times that survey question was ever seen:
-        var surveyUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/survey";
-        $.ajax({
-            url: surveyUrl,
-            dataType: "json",
-            data: { id: shareId, user_uuid: this.userUUID, kind: 'requestHelp', v: surveyItem.v, response: miniSurveyResponse },
-            success: function () { },
-            error: function () { },
-        });
+        //
+        // 2018-06-24: don't show the user repeated questions (noRepeats=true)
+        var surveyItem = randomlyPickSurveyItem('requestHelp', true);
+        if (surveyItem) {
+            var miniSurveyResponse = prompt(surveyItem.prompt);
+            // always log every impression, even if miniSurveyResponse is blank,
+            // since we can know how many times that survey question was ever seen:
+            var surveyUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/survey";
+            $.ajax({
+                url: surveyUrl,
+                dataType: "json",
+                data: { id: shareId, user_uuid: this.userUUID, kind: 'requestHelp', v: surveyItem.v, response: miniSurveyResponse },
+                success: function () { },
+                error: function () { },
+            });
+        }
         this.iMadeAPublicHelpRequest = true; // this will always be true even if you shut the door later and don't let people in (i.e., make this into a private session)
         // first make a /requestPublicHelp request to the TogetherJS server:
         var rphUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/requestPublicHelp";
