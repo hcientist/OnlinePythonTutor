@@ -27,7 +27,8 @@ export class OptFrontendComposingprograms extends OptFrontendSharedSessions {
     var ret = { compactFuncLabels: true,
                 showAllFrameLabels: true,
 
-                disableHeapNesting: false,
+                alwaysNestTypes: [],
+                disableHeapNesting: true,
                 textualMemoryLabels: false,
 
                 executeCodeWithRawInputFunc: this.executeCodeWithRawInput.bind(this),
