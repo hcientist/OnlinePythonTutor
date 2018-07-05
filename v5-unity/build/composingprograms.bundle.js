@@ -26213,7 +26213,8 @@ var OptFrontendComposingprograms = /** @class */ (function (_super) {
     OptFrontendComposingprograms.prototype.getBaseFrontendOptionsObj = function () {
         var ret = { compactFuncLabels: true,
             showAllFrameLabels: true,
-            disableHeapNesting: false,
+            alwaysNestTypes: [],
+            disableHeapNesting: true,
             textualMemoryLabels: false,
             executeCodeWithRawInputFunc: this.executeCodeWithRawInput.bind(this),
             updateOutputCallback: function () { $('#urlOutput,#urlOutputShortened,#embedCodeOutput').val(''); },
