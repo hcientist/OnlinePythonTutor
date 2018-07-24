@@ -123,22 +123,6 @@ export abstract class AbstractBaseFrontend {
   abstract handleUncaughtException(trace: any[]) : any; // called by executeCodeAndCreateViz
 
   constructor(params: any = {}) {
-    // OMG nasty wtf?!?
-    // From: http://stackoverflow.com/questions/21159301/quotaexceedederror-dom-exception-22-an-attempt-was-made-to-add-something-to-st
-    // Safari, in Private Browsing Mode, looks like it supports localStorage but all calls to setItem
-    // throw QuotaExceededError. We're going to detect this and just silently drop any calls to setItem
-    // to avoid the entire page breaking, without having to do a check at each usage of Storage.
-    if (typeof localStorage === 'object') {
-      try {
-        localStorage.setItem('localStorage', '1');
-        localStorage.removeItem('localStorage');
-      } catch (e) {
-        (Storage as any).prototype._setItem = Storage.prototype.setItem;
-        Storage.prototype.setItem = function() {}; // make it a NOP
-        alert('Your web browser does not support storing settings locally. In Safari, the most common cause of this is using "Private Browsing Mode". Some features may not work properly for you.');
-      }
-    }
-
     if (supports_html5_storage()) {
       // generate a unique UUID per "user" (as indicated by a single browser
       // instance on a user's machine, which can be more precise than IP
@@ -716,10 +700,21 @@ export function generateUUID(){
     return uuid;
 };
 
-// From http://diveintohtml5.info/storage.html
+// Adapted from http://diveintohtml5.info/storage.html
 export function supports_html5_storage() {
   try {
-    return 'localStorage' in window && window['localStorage'] !== null;
+    if ('localStorage' in window && window['localStorage'] !== null) {
+      // From: http://stackoverflow.com/questions/21159301/
+      // Safari before v11, in Private Browsing Mode, looks like it supports localStorage but all calls to
+      // setItem throw QuotaExceededError.  Making these calls in the try block will detect that situation
+      // with the catch below, returning false.
+      localStorage.setItem('_localStorage_test', '1');
+      localStorage.removeItem('_localStorage_test');
+      return true;
+    }
+    else {
+      return false;
+    }
   } catch (e) {
     return false;
   }
