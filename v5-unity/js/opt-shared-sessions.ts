@@ -260,6 +260,11 @@ var liveHelpSurvey = {
 
 // 2018-06-24: version 5 is nearly identical to version 4, except that I turned
 // on noRepeats=true so we don't ask users the same question more than once
+//
+// 2018-08-09: remove this feature entirely for help requests only (r5a, r5b)
+//             since Chrome seems to handle prompt() weirdly now
+//             (it seems to have done so for quite a while);
+//             [it still seems fine when someone is *volunteering* to help]
 var liveHelpSurvey = {
   requestHelp:   [ {prompt: 'You are now on the help queue. Please wait for help to arrive.\n\nSupport our research by letting us know:\nWhy did you decide to ask for help at this time?',
                     v: 'r5a'},
@@ -1631,6 +1636,12 @@ Get live help!
     // you're not put on the queue yet until you finish or click Cancel:
     //
     // 2018-06-24: don't show the user repeated questions (noRepeats=true)
+    // 2018-08-09: remove this feature entirely for help requests only
+    //             since Chrome seems to handle prompt() weirdly now
+    //             (it seems to have done so for quite a while);
+    //             [it still seems fine when someone is *volunteering* to help]
+    //             consider using JS library for pop-up questions in the future
+    /*
     var surveyItem = randomlyPickSurveyItem('requestHelp', true);
     if (surveyItem) {
       var miniSurveyResponse = prompt(surveyItem.prompt);
@@ -1646,6 +1657,7 @@ Get live help!
         error: function() {},   // NOP
       });
     }
+    */
 
     this.iMadeAPublicHelpRequest = true; // this will always be true even if you shut the door later and don't let people in (i.e., make this into a private session)
 
