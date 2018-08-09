@@ -44,6 +44,7 @@ For further directions, see [Overview for Developers](v3/docs/developer-overview
 For code or security contributions:
 - Irene Chen - experimental holistic visualization mode - v3/js/holistic.js
 - John DeNero - helping with the official Python 3 port, bug fixes galore
+- Mark Liffiton - localStorage bug fix
 - Chris Meyers - custom visualizations such as v3/matrix.py and v3/htmlFrame.py
 - Brad Miller - adding pop-up question dialogs to visualizations, other bug fixes
 - David Pritchard and Will Gwozdz - Java visualizer and other frontend enhancements
