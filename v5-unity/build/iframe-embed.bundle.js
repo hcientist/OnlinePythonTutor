@@ -22575,6 +22575,11 @@ var AbstractBaseFrontend = /** @class */ (function () {
         // everything below here is an ajax (async) call to the server ...
         if (jsonp_endpoint) {
             pytutor_1.assert(pyState !== '2' && pyState !== '3');
+            // 2018-08-12: issue an error message for non-python code
+            this.setFronendError(["Error: non-Python code is *not* working right now due to server problems.",
+                "We are working on a fix now. Please do not email us about this issue."]);
+            this.doneExecutingCode();
+            return;
             var retryOnBackupServer = function () {
                 // first log a #TryBackup error entry:
                 _this.setFronendError(["Main server is busy or has errors; re-trying using backup server ... [#TryBackup]"]);

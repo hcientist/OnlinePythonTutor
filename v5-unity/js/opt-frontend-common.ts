@@ -442,6 +442,13 @@ export abstract class AbstractBaseFrontend {
       if (jsonp_endpoint) {
         assert (pyState !== '2' && pyState !== '3');
 
+        // 2018-08-12: issue an error message for non-python code
+        this.setFronendError(
+                        ["Error: non-Python code is *not* working right now due to server problems.",
+                         "We are working on a fix now. Please do not email us about this issue."]);
+        this.doneExecutingCode();
+        return;
+
         var retryOnBackupServer = () => {
           // first log a #TryBackup error entry:
           this.setFronendError(["Main server is busy or has errors; re-trying using backup server ... [#TryBackup]"]);
