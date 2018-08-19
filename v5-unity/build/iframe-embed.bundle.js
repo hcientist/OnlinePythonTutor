@@ -22269,6 +22269,7 @@ var AbstractBaseFrontend = /** @class */ (function () {
             'https://cokapi.com/' : // my certificate for https is registered via cokapi.com, so use it for now
             'http://cokapi.com/'; // try cokapi.com so that hopefully it works through firewalls better than directly using IP addr
         this.backupHttpServerRoot = 'http://45.33.41.179/'; // this is my backup server in case the primary is too busy
+        // TODO: add more backup servers and randomly load-balance as necessary in the future
         // see ../../v4-cokapi/cokapi.js for details
         this.langSettingToJsonpEndpoint = {
             '2': null,
@@ -22575,6 +22576,12 @@ var AbstractBaseFrontend = /** @class */ (function () {
         // everything below here is an ajax (async) call to the server ...
         if (jsonp_endpoint) {
             pytutor_1.assert(pyState !== '2' && pyState !== '3');
+            // 2018-08-19: this is an uncommon use case (only used for https iframe embedding)
+            if (jsonp_endpoint.indexOf('https:') == 0) {
+                this.setFronendError(["Error: https execution of non-Python code is not currently supported. [#nonPythonHttps]"]);
+                this.doneExecutingCode();
+                return;
+            }
             var retryOnBackupServer = function () {
                 // first log a #TryBackup error entry:
                 _this.setFronendError(["Main server is busy or has errors; re-trying using backup server ... [#TryBackup]"]);
