@@ -22300,8 +22300,9 @@ var AbstractBaseFrontend = /** @class */ (function () {
         this.serverRoot = (window.location.protocol === 'https:') ?
             'https://cokapi.com/' : // my certificate for https is registered via cokapi.com, so use it for now
             'http://cokapi.com/'; // try cokapi.com so that hopefully it works through firewalls better than directly using IP addr
-        this.backupHttpServerRoot = 'http://45.33.41.179/'; // this is my backup server in case the primary is too busy
-        // TODO: add more backup servers and randomly load-balance as necessary in the future
+        // (but that's just an unsubstantiated hunch)
+        // randomly pick one backup server to load balance:
+        this.backupHttpServerRoot = (Math.random() >= 0.5) ? 'http://45.33.41.179/' : 'http://23.239.12.25/';
         // see ../../v4-cokapi/cokapi.js for details
         this.langSettingToJsonpEndpoint = {
             '2': null,
@@ -22616,7 +22617,7 @@ var AbstractBaseFrontend = /** @class */ (function () {
             }
             var retryOnBackupServer = function () {
                 // first log a #TryBackup error entry:
-                _this.setFronendError(["Main server is busy or has errors; re-trying using backup server ... [#TryBackup]"]);
+                _this.setFronendError(["Main server is busy or has errors; re-trying using backup server " + _this.backupHttpServerRoot + " ... [#TryBackup]"]);
                 // now re-try the query using the backup server:
                 var backup_jsonp_endpoint = _this.langSettingToJsonpEndpointBackup[pyState];
                 pytutor_1.assert(backup_jsonp_endpoint);
