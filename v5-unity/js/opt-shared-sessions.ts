@@ -885,12 +885,12 @@ Get live help!
       if (this.wantsPublicHelp) {
         $("#moderationPanel").append(`
           <button id="stopRequestHelpBtn" type="button" class="togetherjsBtn"
-                  style="margin-bottom: 6pt; font-size: 10pt; padding: 4px;">
-            Don't let any more people join this session
+                  style="margin-bottom: 6pt; font-size: 10pt; font-weight: bold; padding: 4px;">
+            Click to make this session private so nobody else can join.
           </button><br/>`);
         $("#stopRequestHelpBtn").click(this.initStopRequestingPublicHelp.bind(this));
       } else {
-        $("#moderationPanel").append('This is a private session.<br/><br/>');
+        $("#moderationPanel").append('This is a private session. To ask for public help, click the "Get live help!" button at the left.<br/><br/>');
         if (!$("#requestHelpBtn").is(':visible')) {
           $("#requestHelpBtn").show(); // make sure there's a way to get back on the queue
         }
