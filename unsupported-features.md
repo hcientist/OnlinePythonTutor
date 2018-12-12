@@ -37,6 +37,7 @@ For more details on project status and issue prioritization, check out these vid
   - to cut down execution times, [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
 - asynchronous code
 - random number generators and user input (via input() or raw_input()) [sometimes don't work well together](https://github.com/pgbovine/OnlinePythonTutor/issues/110)
+- you can't rely on the behavior of id() matching CPython; note that when teaching beginners, you shouldn't rely on id() since oftentimes these behaviors aren't part of the Python language spec (they're due to implementation-specific optimizations).
 - no 3rd-party library/module support: use the experimental "Python 3.6 with <a href="https://docs.anaconda.com/anaconda/">Anaconda</a>" mode if you want to import many more modules from the Anaconda distribution
 - (note: remember that Python 2 and 3 support slightly different kinds of language constructs)
 
