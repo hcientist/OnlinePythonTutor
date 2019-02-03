@@ -4,8 +4,8 @@ Python Tutor is maintained by one single volunteer ([me!](http://pgbovine.net/))
 
 General guidelines:
 
-- I cannot provide technical support for users who want to install Python Tutor locally on their own computers or host it on their own servers. I can provide support only for the official website.
-- I cannot provide support for Python Tutor instances embedded on other people's websites, such as course websites or online tutorials. Please contact the people in charge of those websites for help.
+- I cannot provide technical support for users who want to install Python Tutor locally on their own computers or host it on their own servers. I can provide support only for the official website at [http://pythontutor.com/](http://pythontutor.com/).
+- I also cannot provide support for Python Tutor code that's embedded within other people's websites, such as class websites or online tutorials. Please contact the people in charge of those websites for help.
 
 ---
 [Python Tutor](http://pythontutor.com/) currently does **NOT** support the following programming language features. Some of these features will eventually be supported, but others probably won't, due to implementation challenges and other priorities.
