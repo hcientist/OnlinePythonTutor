@@ -1,8 +1,14 @@
 # Unsupported features in Python Tutor
 
-[Python Tutor](http://pythontutor.com/) currently does **NOT** support the following language features. Some of these features will eventually be supported, but others probably won't, due to implementation challenges and other priorities.
+Python Tutor is maintained by one single volunteer ([me!](http://pgbovine.net/)) in my spare time, so unfortunately I am unable to respond personally to most bug reports and feature requests. You've probably been sent to this page since your issue may be listed  here. If you think your issue is *not* covered here, email philip@pgbovine.net with details and use the "Generate shortened link" button to include a URL so that I can reproduce your issue. Thanks!
 
-Email philip@pgbovine.net with more bug reports and use the "Generate shortened link" button to include a URL so that I can reproduce them.
+General guidelines:
+
+- I cannot provide technical support for users who want to install Python Tutor locally on their own computers or host it on their own servers. I can provide support only for the official website.
+- I cannot provide support for Python Tutor instances embedded on other people's websites, such as course websites or online tutorials. Please contact the people in charge of those websites for help.
+
+---
+[Python Tutor](http://pythontutor.com/) currently does **NOT** support the following programming language features. Some of these features will eventually be supported, but others probably won't, due to implementation challenges and other priorities.
 
 For more details on project status and issue prioritization, check out these videos from March 2018:
 - [Python Tutor project status - 1 of 2 - common feature requests & feasible fixes](https://www.youtube.com/watch?v=oKIqejkxqP0)
