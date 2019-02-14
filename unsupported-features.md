@@ -4,7 +4,7 @@ Python Tutor is maintained by one single volunteer ([me!](http://pgbovine.net/))
 
 General guidelines:
 
-- I cannot provide technical support for users who want to install Python Tutor locally on their own computers or host it on their own servers. I can provide support only for the official website at [http://pythontutor.com/](http://pythontutor.com/).
+- I cannot provide technical support for users who want to install Python Tutor locally on their own computers or host it on their own servers. I can provide support only for the official website at [http://pythontutor.com/](http://pythontutor.com/), and even so my time is extremely limited since my work on this website is unpaid and voluntary.
 - I also cannot provide support for Python Tutor code that's embedded within other people's websites, such as class websites or online tutorials. Please contact the people in charge of those websites for help.
 
 ---
