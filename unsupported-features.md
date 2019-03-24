@@ -1,9 +1,10 @@
 # Unsupported features in Python Tutor
 
-Python Tutor is maintained by one single volunteer ([me!](http://pgbovine.net/)) in my spare time, so unfortunately I am unable to respond personally to most bug reports and feature requests. You've probably been sent to this page since your issue may be listed  here. If you think your issue is *not* covered here, email philip@pgbovine.net with details and use the "Generate shortened link" button to include a URL so that I can reproduce your issue. Thanks!
+Python Tutor is maintained by one single volunteer ([me!](http://pgbovine.net/)) in my spare time, so unfortunately I am unable to respond personally to most bug reports and feature requests. You've probably been sent to this page since your issue may be listed here. If you think your issue is *not* covered here, email philip@pgbovine.net with details and use the "Generate shortened link" button to include a URL so that I can reproduce your issue. Thanks!
 
 General guidelines:
 
+- First and foremost, I may send you to this page and **not respond to your email** in detail. Please do not email me repeatedly. This site has millions of users, and I get too many emails to be able to respond personally to each and every one. It is a free site that is run by one volunteer, so if you would like better user support, there are many good paid tutoring services out there. Thanks for understanding!
 - I cannot provide technical support for users who want to install Python Tutor locally on their own computers or host it on their own servers. I can provide support only for the official website at [http://pythontutor.com/](http://pythontutor.com/), and even so my time is extremely limited since my work on this website is unpaid and voluntary.
 - I also cannot provide support for Python Tutor code that's embedded within other people's websites, such as class websites or online tutorials. Please contact the people in charge of those websites for help.
 
