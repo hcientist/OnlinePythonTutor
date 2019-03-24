@@ -426,6 +426,8 @@ Get live help!
     // shut down chat features on 2019-03-24:
     //$("td#headerTdLeft").append(ssDiv);
     //$("td#headerTdRight").append(togetherJsDiv);
+    $("td#headerTdLeft").width('200px');
+    $("td#headerTdLeft").append("<div style=\"font-size: 6pt; font-color: #666;\">Live chat mode is shut down indefinitely due to technical difficulties. Please don't email me to ask about this issue. (<a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\">more info</a>)</div>");
 
     // do this all after creating the DOM elements above dynamically:
     $("#sharedSessionBtn").click(this.startSharedSession.bind(this, false));
