@@ -63,7 +63,7 @@ For more details on project status and issue prioritization, check out these vid
   - shorten your code to isolate where you want to visualize and debug
   - or [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
 - If you're behind some kinds of firewalls or proxy servers, the visualizer may not work
-
+- User accounts, login, authentication, or integration with other third-party sites
 
 Look through these issue trackers for additional bugs and unsupported features:
 - https://github.com/pgbovine/OnlinePythonTutor/issues
