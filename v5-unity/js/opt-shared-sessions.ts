@@ -423,8 +423,9 @@ Get live help!
 </div>
 `;
 
-    $("td#headerTdLeft").append(ssDiv);
-    $("td#headerTdRight").append(togetherJsDiv);
+    // shut down chat features on 2019-03-24:
+    //$("td#headerTdLeft").append(ssDiv);
+    //$("td#headerTdRight").append(togetherJsDiv);
 
     // do this all after creating the DOM elements above dynamically:
     $("#sharedSessionBtn").click(this.startSharedSession.bind(this, false));
