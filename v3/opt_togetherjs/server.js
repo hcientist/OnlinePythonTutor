@@ -305,12 +305,14 @@ var server = http.createServer(function(request, response) {
       request.connection.remoteAddress ||
       request.socket.remoteAddress ||
       (request.connection.socket ? request.connection.socket.remoteAddress : null);
+    var ipBasedId = 'IP_' + ip;
 
     // if we don't have a user_uuid, use IP address as the next best proxy for unique user identity
     var uniqueId = url.query.user_uuid;
     if (!uniqueId) {
-      uniqueId = 'IP_' + ip;
+      uniqueId = ipBasedId;
     }
+
     allRecentHelpQueueQueries.set(uniqueId, Object.assign({ip: ip}, url.query));
 
     response.writeHead(200, {
@@ -320,7 +322,7 @@ var server = http.createServer(function(request, response) {
     // don't forget to pass in uniqueId since we want to know whether to
     // hide some entries on the queue based on whether uniqueId has been
     // banned from those sessions:
-    response.end(JSON.stringify(getPHRStats(uniqueId)));
+    response.end(JSON.stringify(getPHRStats(uniqueId, ipBasedId)));
   } else if (url.pathname == '/getNumObservers') { // pgbovine
     if (request.method == "OPTIONS") {
       // CORS preflight
@@ -398,7 +400,7 @@ var server = http.createServer(function(request, response) {
       var nowTime = Date.now();
       response.end(JSON.stringify({
                     curTime: nowTime,
-                    queue: getPHRStats(undefined),
+                    queue: getPHRStats(undefined, undefined),
                     freem: {errcode: err ? err.code : null, stdout: stdout, stderr: stderr},
                     connectionStats: connectionStats}));
     });
@@ -1014,7 +1016,7 @@ function removeFromPHRQueue(id) {
   }
 }
 
-function getPHRStats(uniqueId) {
+function getPHRStats(uniqueId, ipBasedId) {
   var ret = [];
   publicHelpRequestQueue.forEach(function(e) {
     var timeSinceCreation;
@@ -1034,11 +1036,14 @@ function getPHRStats(uniqueId) {
       numClients = stat.numClients;
       numChatters = stat.chatters.length;
 
-      // only enforce if uniqueId has been passed in ...
-      if (uniqueId && stat.bannedUsers) {
+      // 2019-03-26: since we are always enforcing bannedUsers by IP
+      // addresses now, DON'T use uniqueId inside here; use ipBasedId
+
+      // only enforce if ipBasedId has been passed in ...
+      if (ipBasedId && stat.bannedUsers) {
         for (var i=0; i < stat.bannedUsers.length; i++) {
           var elt = stat.bannedUsers[i];
-          if (elt === uniqueId) {
+          if (elt === ipBasedId) {
             return; // GET OUTTA HERE EARLY! we've been banned from this session, so don't add this to the list
           }
         }
@@ -1068,7 +1073,7 @@ function logPHRStats() {
   var logObj = {};
   logObj.date = (new Date()).toISOString();
   logObj.type = 'PHRStats';
-  logObj.queue = getPHRStats(undefined);
+  logObj.queue = getPHRStats(undefined, undefined);
   logObj.recentQueries = [...allRecentHelpQueueQueries]; // spread operator
   pgLogWrite(logObj);
   //console.log(logObj);
