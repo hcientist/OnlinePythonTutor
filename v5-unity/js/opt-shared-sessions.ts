@@ -265,6 +265,8 @@ var liveHelpSurvey = {
 //             since Chrome seems to handle prompt() weirdly now
 //             (it seems to have done so for quite a while);
 //             [it still seems fine when someone is *volunteering* to help]
+//
+// 2019-03-26: took this down to simplify the UI more
 var liveHelpSurvey = {
   requestHelp:   [ {prompt: 'You are now on the help queue. Please wait for help to arrive.\n\nSupport our research by letting us know:\nWhy did you decide to ask for help at this time?',
                     v: 'r5a'},
@@ -740,6 +742,8 @@ Get live help!
 
             // add these handlers AFTER the respective DOM nodes have been added above:
 
+            // 2019-03-26: took this down to simplify the UI more
+            /*
             $(".gotoHelpLink").click(function() {
               // 2018-06-24: don't show the user repeated questions (noRepeats=true)
               var surveyItem = randomlyPickSurveyItem('volunteerHelp', true);
@@ -763,6 +767,7 @@ Get live help!
 
               return true; // ALWAYS cause the link to be clicked
             });
+            */
           } else {
             displayEmptyQueueMsg = true;
           }
