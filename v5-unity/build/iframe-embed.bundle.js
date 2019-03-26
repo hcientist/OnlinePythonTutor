@@ -904,12 +904,12 @@ var ExecutionVisualizer = (function () {
             }
             // add an extra label to link back to the main site, so that viewers
             // on the embedded page know that they're seeing an OPT visualization
-            base.append('<div style="font-size: 8pt; margin-bottom: 10px;"><a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="https://twitter.com/pgbovine" target="_blank" style="color: #3D58A2;">Philip Guo</a>. Support with a <a href="http://pgbovine.net/support.htm" target="_blank">small donation</a>.</div>');
+            base.append('<div style="font-size: 8pt; margin-bottom: 10px;"><a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="https://twitter.com/pgbovine" target="_blank" style="color: #3D58A2;">Philip Guo</a></div>');
             base.find('#codeFooterDocs').hide(); // cut out extraneous docs
         }
         else {
             // also display credits:
-            base.append('<div style="font-size: 9pt; margin-top: 5px; margin-bottom: 10px;">Created by <a href="https://twitter.com/pgbovine" target="_blank">@pgbovine</a>. Support with a <a href="http://pgbovine.net/support.htm" target="_blank">small donation</a>.</div>');
+            base.append('<div style="font-size: 9pt; margin-top: 5px; margin-bottom: 10px;">Created by <a href="https://twitter.com/pgbovine" target="_blank">@pgbovine</a></div>');
         }
         // not enough room for these extra buttons ...
         if (this.params.codeDivWidth &&
@@ -1147,7 +1147,7 @@ var ExecutionVisualizer = (function () {
         // render error (if applicable):
         if (myViz.curLineExceptionMsg) {
             if (myViz.curLineExceptionMsg === "Unknown error") {
-                myViz.navControls.showError('Unknown error: Please email a bug report to philip@pgbovine.net');
+                myViz.navControls.showError('Unknown error: <a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">read this page for more info</a>');
             }
             else {
                 myViz.navControls.showError(myViz.curLineExceptionMsg);
@@ -22338,8 +22338,7 @@ var AbstractBaseFrontend = (function () {
             else {
                 _this.setFronendError(["Server error! Your code might have an INFINITE LOOP or be running for too long.",
                     "The server may also be OVERLOADED. Or you're behind a FIREWALL that blocks access.",
-                    "Try again later, or report a bug to philip@pgbovine.net by clicking the 'Generate",
-                    "shortened link' button at the bottom of this page and including a URL in your email."]);
+                    "Try again later, or <a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\">read this page for more info</a>."]);
             }
             _this.doneExecutingCode();
         });
@@ -22474,8 +22473,7 @@ var AbstractBaseFrontend = (function () {
                 else {
                     _this.setFronendError(["Unknown error: The server may be OVERLOADED right now; try again later.",
                         "Your code may also contain UNSUPPORTED FEATURES that this tool cannot handle.",
-                        "Report a bug to philip@pgbovine.net by clicking the 'Generate shortened link'",
-                        "button at the bottom and including a URL in your email. [#NullTrace]"]);
+                        "Try again later, or <a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\">read this page for more info</a>. [#NullTrace]"]);
                 }
             }
             else {
@@ -22515,9 +22513,7 @@ var AbstractBaseFrontend = (function () {
         pytutor_1.assert(backendScript);
         var jsonp_endpoint = this.langSettingToJsonpEndpoint[pyState]; // maybe null
         if (!backendScript) {
-            this.setFronendError(["Server configuration error: No backend script",
-                "Report a bug to philip@pgbovine.net by clicking on the 'Generate shortened link'",
-                "button at the bottom and including a URL in your email."]);
+            this.setFronendError(["Server configuration error: No backend script"]);
             return;
         }
         this.clearFrontendError();
@@ -22719,12 +22715,14 @@ var AbstractBaseFrontend = (function () {
     };
     AbstractBaseFrontend.prototype.setSurveyHTML = function () {
         // use ${this.userUUID} within the string ...
-        var survey_v14 = "\n    <p style=\"font-size: 9pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;\">\n\n    Help improve this tool by completing a <a style=\"font-size: 10pt; font-weight: bold;\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=" + this.userUUID + "\" target=\"_blank\">short user survey</a>\n    <br/>\n    Keep this tool free by making a <a style=\"font-size: 10pt; font-weight: bold;\" href=\"http://pgbovine.net/support.htm\" target=\"_blank\">small donation</a> (PayPal, Patreon, credit/debit card)\n    </p>";
+        var survey_v14 = "\n    <p style=\"font-size: 9pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;\">\n\n    Help improve this tool by completing a <a style=\"font-size: 10pt; font-weight: bold;\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=" + this.userUUID + "\" target=\"_blank\">short user survey</a>\n    </p>";
         $('#surveyPane').html(survey_v14);
     };
     return AbstractBaseFrontend;
 }()); // END class AbstractBaseFrontend
 exports.AbstractBaseFrontend = AbstractBaseFrontend;
+// removed donation link on 2019-03-26
+//    Keep this tool free by making a <a style="font-size: 10pt; font-weight: bold;" href="http://pgbovine.net/support.htm" target="_blank">small donation</a> (PayPal, Patreon, credit/debit card)
 /* For survey questions. Versions of survey wording:
 
 [see ../../v3/js/opt-frontend-common.js for older versions of survey wording - v1 to v7]

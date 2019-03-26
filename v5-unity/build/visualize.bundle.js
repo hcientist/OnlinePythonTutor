@@ -936,12 +936,12 @@ var ExecutionVisualizer = (function () {
             }
             // add an extra label to link back to the main site, so that viewers
             // on the embedded page know that they're seeing an OPT visualization
-            base.append('<div style="font-size: 8pt; margin-bottom: 10px;"><a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="https://twitter.com/pgbovine" target="_blank" style="color: #3D58A2;">Philip Guo</a>. Support with a <a href="http://pgbovine.net/support.htm" target="_blank">small donation</a>.</div>');
+            base.append('<div style="font-size: 8pt; margin-bottom: 10px;"><a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="https://twitter.com/pgbovine" target="_blank" style="color: #3D58A2;">Philip Guo</a></div>');
             base.find('#codeFooterDocs').hide(); // cut out extraneous docs
         }
         else {
             // also display credits:
-            base.append('<div style="font-size: 9pt; margin-top: 5px; margin-bottom: 10px;">Created by <a href="https://twitter.com/pgbovine" target="_blank">@pgbovine</a>. Support with a <a href="http://pgbovine.net/support.htm" target="_blank">small donation</a>.</div>');
+            base.append('<div style="font-size: 9pt; margin-top: 5px; margin-bottom: 10px;">Created by <a href="https://twitter.com/pgbovine" target="_blank">@pgbovine</a></div>');
         }
         // not enough room for these extra buttons ...
         if (this.params.codeDivWidth &&
@@ -1179,7 +1179,7 @@ var ExecutionVisualizer = (function () {
         // render error (if applicable):
         if (myViz.curLineExceptionMsg) {
             if (myViz.curLineExceptionMsg === "Unknown error") {
-                myViz.navControls.showError('Unknown error: Please email a bug report to philip@pgbovine.net');
+                myViz.navControls.showError('Unknown error: <a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">read this page for more info</a>');
             }
             else {
                 myViz.navControls.showError(myViz.curLineExceptionMsg);
@@ -4297,11 +4297,11 @@ var OptFrontendSharedSessions = (function (_super) {
         }
         var ssDiv = "\n\n<button id=\"requestHelpBtn\" type=\"button\" class=\"togetherjsBtn\" style=\"font-size: 11pt; margin-bottom: 6pt; font-weight: bold;\">\nGet live help!\n</button>\n\n<div id=\"ssDiv\">\n  <button id=\"sharedSessionBtn\" type=\"button\" class=\"togetherjsBtn\" style=\"font-size: 9pt;\">\n  Start private chat\n  </button>\n  <div style=\"margin-top: 5px; font-size: 8pt;\">\n  <a href=\"https://www.youtube.com/watch?v=oDY7ScMPtqI\" target=\"_blank\">How do I use this?</a>\n  </div>\n</div>\n\n<div id=\"sharedSessionDisplayDiv\" style=\"display: none; margin-right: 5px;\">\n  <button id=\"stopTogetherJSBtn\" type=\"button\" class=\"togetherjsBtn\">\n  Stop this chat session\n  </button>\n</div>\n";
         var togetherJsDiv = "\n<div id=\"togetherjsStatus\">\n  <div id=\"publicHelpQueue\"></div>\n</div>\n";
-        // shut down chat features on 2019-03-24:
-        //$("td#headerTdLeft").append(ssDiv);
-        //$("td#headerTdRight").append(togetherJsDiv);
-        $("td#headerTdLeft").width('200px');
-        $("td#headerTdLeft").append("<div style=\"font-size: 6pt; font-color: #666;\">Live chat mode is shut down indefinitely due to technical difficulties. Please don't email me to ask about this issue. (<a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\">more info</a>)</div>");
+        $("td#headerTdLeft").append(ssDiv);
+        $("td#headerTdRight").append(togetherJsDiv);
+        // shut down chat features on 2019-03-24 due to technical difficulties, reactivated on 2019-03-26:
+        //$("td#headerTdLeft").width('200px');
+        //$("td#headerTdLeft").append("<div style=\"font-size: 6pt; font-color: #666;\">Live chat mode is shut down indefinitely due to technical difficulties. Please don't email me to ask about this issue. (<a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\">more info</a>)</div>");
         // do this all after creating the DOM elements above dynamically:
         $("#sharedSessionBtn").click(_this.startSharedSession.bind(_this, false));
         $("#stopTogetherJSBtn").click(exports.TogetherJS); // toggles off
@@ -24283,8 +24283,7 @@ var AbstractBaseFrontend = (function () {
             else {
                 _this.setFronendError(["Server error! Your code might have an INFINITE LOOP or be running for too long.",
                     "The server may also be OVERLOADED. Or you're behind a FIREWALL that blocks access.",
-                    "Try again later, or report a bug to philip@pgbovine.net by clicking the 'Generate",
-                    "shortened link' button at the bottom of this page and including a URL in your email."]);
+                    "Try again later, or <a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\">read this page for more info</a>."]);
             }
             _this.doneExecutingCode();
         });
@@ -24419,8 +24418,7 @@ var AbstractBaseFrontend = (function () {
                 else {
                     _this.setFronendError(["Unknown error: The server may be OVERLOADED right now; try again later.",
                         "Your code may also contain UNSUPPORTED FEATURES that this tool cannot handle.",
-                        "Report a bug to philip@pgbovine.net by clicking the 'Generate shortened link'",
-                        "button at the bottom and including a URL in your email. [#NullTrace]"]);
+                        "Try again later, or <a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\">read this page for more info</a>. [#NullTrace]"]);
                 }
             }
             else {
@@ -24460,9 +24458,7 @@ var AbstractBaseFrontend = (function () {
         pytutor_1.assert(backendScript);
         var jsonp_endpoint = this.langSettingToJsonpEndpoint[pyState]; // maybe null
         if (!backendScript) {
-            this.setFronendError(["Server configuration error: No backend script",
-                "Report a bug to philip@pgbovine.net by clicking on the 'Generate shortened link'",
-                "button at the bottom and including a URL in your email."]);
+            this.setFronendError(["Server configuration error: No backend script"]);
             return;
         }
         this.clearFrontendError();
@@ -24664,12 +24660,14 @@ var AbstractBaseFrontend = (function () {
     };
     AbstractBaseFrontend.prototype.setSurveyHTML = function () {
         // use ${this.userUUID} within the string ...
-        var survey_v14 = "\n    <p style=\"font-size: 9pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;\">\n\n    Help improve this tool by completing a <a style=\"font-size: 10pt; font-weight: bold;\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=" + this.userUUID + "\" target=\"_blank\">short user survey</a>\n    <br/>\n    Keep this tool free by making a <a style=\"font-size: 10pt; font-weight: bold;\" href=\"http://pgbovine.net/support.htm\" target=\"_blank\">small donation</a> (PayPal, Patreon, credit/debit card)\n    </p>";
+        var survey_v14 = "\n    <p style=\"font-size: 9pt; margin-top: 12px; margin-bottom: 15px; line-height: 150%;\">\n\n    Help improve this tool by completing a <a style=\"font-size: 10pt; font-weight: bold;\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSfQJP1ojlv8XzXAvHz0al-J_Hs3GQu4XeblxT8EzS8dIzuaYA/viewform?entry.956368502=" + this.userUUID + "\" target=\"_blank\">short user survey</a>\n    </p>";
         $('#surveyPane').html(survey_v14);
     };
     return AbstractBaseFrontend;
 }()); // END class AbstractBaseFrontend
 exports.AbstractBaseFrontend = AbstractBaseFrontend;
+// removed donation link on 2019-03-26
+//    Keep this tool free by making a <a style="font-size: 10pt; font-weight: bold;" href="http://pgbovine.net/support.htm" target="_blank">small donation</a> (PayPal, Patreon, credit/debit card)
 /* For survey questions. Versions of survey wording:
 
 [see ../../v3/js/opt-frontend-common.js for older versions of survey wording - v1 to v7]
@@ -24827,7 +24825,7 @@ if(false) {
 "use strict";
 
 exports.privacyAndEndingHTML = "\n\n<p style=\"margin-top: 30px;\">Privacy Policy: By using Python Tutor, your\nvisualized code, options, user interactions, text chats, and IP address\nare logged on our server and may be analyzed for research purposes.\nNearly all web services collect this basic information from users in\ntheir server logs. However, Python Tutor does not collect any personally\nidentifiable information from its users. It uses Google Analytics for\nwebsite analytics.</p>\n\n<p>Terms of Service: The Python Tutor service is provided for free on an\nas-is basis. Use this service at your own risk. Do not use it to share\nconfidential information. The developers of Python Tutor are not\nresponsible for the chat messages or behaviors of any of the users on\nthis website. We are also not responsible for any damages caused by\nusing this website. Finally, it is your responsibility to follow\nappropriate academic integrity standards.</p>\n\n<p style=\"margin-top: 25px;\">\nCopyright &copy; <a href=\"http://www.pgbovine.net/\">Philip Guo</a>.  All rights reserved.\n</p>";
-exports.footerHtml = "\n<p>\n  <button id=\"genUrlBtn\" class=\"smallBtn\" type=\"button\">Generate permanent link</button> <input type=\"text\" id=\"urlOutput\" size=\"70\"/>\n</p>\n<p>\n  <button id=\"genUrlShortenedBtn\" class=\"smallBtn\" type=\"button\">Generate shortened link</button> <input type=\"text\" id=\"urlOutputShortened\" size=\"25\"/>\n</p>\n\n<p>Click above to create a permanent link to your\nvisualization (<a href=\"https://www.youtube.com/watch?v=h4q3UKdEFKE\" target=\"_blank\">video demo</a>). To report bugs, paste the link along with an error\ndescription in an email to philip@pgbovine.net</p>\n\n<div id=\"embedLinkDiv\">\n<p>\n  <button id=\"genEmbedBtn\" class=\"smallBtn\" type=\"button\">Generate embed code</button> <input type=\"text\" id=\"embedCodeOutput\" size=\"70\"/>\n</p>\n\n<p>To embed this visualization in your webpage, click the 'Generate\nembed code' button above and paste the resulting HTML code into your\nwebpage. Adjust the height and width parameters and\nchange the link to <b>https://</b> if needed.</p>\n</div>\n\n<p style=\"margin-top: 25px;\">\n<a href=\"http://pythontutor.com/\">Python Tutor</a> (<a href=\"https://github.com/pgbovine/OnlinePythonTutor\">code on GitHub</a>) supports seven\nlanguages (despite its name!):</p>\n\n<p>1. Python <a href=\"https://docs.python.org/2.7/\">2.7</a> and <a\nhref=\"https://docs.python.org/3.6/\">3.6</a> with these limited module\nimports:\n\n__future__, abc, array, bisect, calendar,\ncmath, collections, copy, datetime, decimal,\ndoctest, fractions, functools, hashlib, heapq,\nio, itertools, json, locale, math,\noperator, pickle, pprint, random, re,\nstring, time, types, unittest, StringIO (Python 2), typing (Python 3).\n\n(There is also an experimental version of Python 3.6 with <a\nhref=\"https://docs.anaconda.com/anaconda/\">Anaconda</a>, which lets\nyou import many more modules.)\n\n<a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v5-unity\">Backend source code</a>.\n</p>\n\n<p>2. Java using Oracle's Java 8. The original <a\nhref=\"http://cscircles.cemc.uwaterloo.ca/java_visualize/\">Java\nvisualizer</a> was created by <a href=\"https://github.com/daveagp\">David Pritchard</a> and Will Gwozdz.\nIt supports\n<code><a href=\"http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdIn.html\">StdIn</a></code>, \n<code><a href=\"http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdOut.html\">StdOut</a></code>, \nmost other <a href=\"http://introcs.cs.princeton.edu/java/stdlib\"><tt>stdlib</tt> libraries</a>,\n<a href=\"http://introcs.cs.princeton.edu/java/43stack/Stack.java.html\"><tt>Stack</tt></a>,\n<a href=\"http://introcs.cs.princeton.edu/java/43stack/Queue.java.html\"><tt>Queue</tt></a>,\nand <a href=\"http://introcs.cs.princeton.edu/java/44st/ST.java.html\"><tt>ST</tt></a>.\n(To access Java's built-in <tt>Stack</tt>/<tt>Queue</tt> classes, write\n<tt>import java.util.Stack;</tt> &mdash; note, <tt>import\njava.util.*;</tt> won't work.)\n<a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/java\">Backend\nsource code</a>.</p>\n\n<p>3. JavaScript ES6 running in Node.js v6.0.0. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript\">Backend\nsource code</a>.</p>\n\n<p>4. <a href=\"http://www.typescriptlang.org\">TypeScript</a> 1.4.1 running in Node.js v6.0.0. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript\">Backend\nsource code</a>.</p>\n\n<p>5. Ruby 2 using MRI 2.2.2. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/ruby\">Backend\nsource code</a>.</p>\n\n<p>6. C using gcc 4.8, C11, and Valgrind Memcheck.\n<a href=\"https://github.com/pgbovine/opt-cpp-backend\">Backend source code</a>.</p>\n\n<p>7. C++ using gcc 4.8, C++11, and Valgrind Memcheck.\n<a href=\"https://github.com/pgbovine/opt-cpp-backend\">Backend source code</a>.</p>\n" + exports.privacyAndEndingHTML;
+exports.footerHtml = "\n<p>\n  <button id=\"genUrlBtn\" class=\"smallBtn\" type=\"button\">Generate permanent link</button> <input type=\"text\" id=\"urlOutput\" size=\"70\"/>\n</p>\n<p>\n  <button id=\"genUrlShortenedBtn\" class=\"smallBtn\" type=\"button\">Generate shortened link</button> <input type=\"text\" id=\"urlOutputShortened\" size=\"25\"/>\n</p>\n\n<p>Click above to create a permanent link to your\nvisualization (<a href=\"https://www.youtube.com/watch?v=h4q3UKdEFKE\" target=\"_blank\">video demo</a>).</p>\n\n<div id=\"embedLinkDiv\">\n<p>\n  <button id=\"genEmbedBtn\" class=\"smallBtn\" type=\"button\">Generate embed code</button> <input type=\"text\" id=\"embedCodeOutput\" size=\"70\"/>\n</p>\n\n<p>To embed this visualization in your webpage, click the 'Generate\nembed code' button above and paste the resulting HTML code into your\nwebpage. Adjust the height and width parameters and\nchange the link to <b>https://</b> if needed.</p>\n</div>\n\n<p style=\"margin-top: 25px;\">\n<a href=\"http://pythontutor.com/\">Python Tutor</a> (<a href=\"https://github.com/pgbovine/OnlinePythonTutor\">code on GitHub</a>) supports seven\nlanguages (despite its name!):</p>\n\n<p>1. Python <a href=\"https://docs.python.org/2.7/\">2.7</a> and <a\nhref=\"https://docs.python.org/3.6/\">3.6</a> with these limited module\nimports:\n\n__future__, abc, array, bisect, calendar,\ncmath, collections, copy, datetime, decimal,\ndoctest, fractions, functools, hashlib, heapq,\nio, itertools, json, locale, math,\noperator, pickle, pprint, random, re,\nstring, time, types, unittest, StringIO (Python 2), typing (Python 3).\n\n(There is also an experimental version of Python 3.6 with <a\nhref=\"https://docs.anaconda.com/anaconda/\">Anaconda</a>, which lets\nyou import many more modules.)\n\n<a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v5-unity\">Backend source code</a>.\n</p>\n\n<p>2. Java using Oracle's Java 8. The original <a\nhref=\"http://cscircles.cemc.uwaterloo.ca/java_visualize/\">Java\nvisualizer</a> was created by <a href=\"https://github.com/daveagp\">David Pritchard</a> and Will Gwozdz.\nIt supports\n<code><a href=\"http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdIn.html\">StdIn</a></code>, \n<code><a href=\"http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdOut.html\">StdOut</a></code>, \nmost other <a href=\"http://introcs.cs.princeton.edu/java/stdlib\"><tt>stdlib</tt> libraries</a>,\n<a href=\"http://introcs.cs.princeton.edu/java/43stack/Stack.java.html\"><tt>Stack</tt></a>,\n<a href=\"http://introcs.cs.princeton.edu/java/43stack/Queue.java.html\"><tt>Queue</tt></a>,\nand <a href=\"http://introcs.cs.princeton.edu/java/44st/ST.java.html\"><tt>ST</tt></a>.\n(To access Java's built-in <tt>Stack</tt>/<tt>Queue</tt> classes, write\n<tt>import java.util.Stack;</tt> &mdash; note, <tt>import\njava.util.*;</tt> won't work.)\n<a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/java\">Backend\nsource code</a>.</p>\n\n<p>3. JavaScript ES6 running in Node.js v6.0.0. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript\">Backend\nsource code</a>.</p>\n\n<p>4. <a href=\"http://www.typescriptlang.org\">TypeScript</a> 1.4.1 running in Node.js v6.0.0. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript\">Backend\nsource code</a>.</p>\n\n<p>5. Ruby 2 using MRI 2.2.2. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/ruby\">Backend\nsource code</a>.</p>\n\n<p>6. C using gcc 4.8, C11, and Valgrind Memcheck.\n<a href=\"https://github.com/pgbovine/opt-cpp-backend\">Backend source code</a>.</p>\n\n<p>7. C++ using gcc 4.8, C++11, and Valgrind Memcheck.\n<a href=\"https://github.com/pgbovine/opt-cpp-backend\">Backend source code</a>.</p>\n" + exports.privacyAndEndingHTML;
 
 
 /***/ }),
