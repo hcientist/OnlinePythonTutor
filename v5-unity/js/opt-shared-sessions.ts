@@ -1697,13 +1697,20 @@ Get live help!
         <div id="moderationPanel"></div>
         <div style="margin-bottom: 10px;">You have requested help as <span class="redBold">` +
         TogetherJS.config.get("getUserName")() +
-        `</span>. <span id="numObserversSpan"></span> The longer you wait, the more likely that someone on this website will volunteer to help you. But there is no guarantee that someone will come help.</div>
+        `</span>. <span id="numObserversSpan"></span></div>
         <div id="publicHelpQueue"></div>`);
+      // 2019-03-26: removed this line from next to numObserversSpan
+      // "The longer you wait, the more likely that someone on this website will volunteer to help you. But there is no guarantee that someone will come help."
+
       this.updateModerationPanel(); // update it right away
       this.getHelpQueue(); // update it right away
       this.getNumObservers(); // update it right away
       this.appendTogetherJsFooter();
       $("#requestHelpBtn").hide();
+
+      // 2019-03-26: display a more prominent warning here:
+      this.chatbotPostMsg('This service is NOT being actively maintained anymore, so it may crash at any time. It is available as-is for free with no technical support. Do not contact the owner to make any requests for new features.');
+
     } else {
       alert("ERROR in getting live help. This isn't working at the moment. Please try again later.");
       if (TogetherJS.running) {
@@ -1763,8 +1770,11 @@ Get live help!
   }
 
   appendTogetherJsFooter() {
+    // deployed on 2019-03-26
+    var extraHtml = '<div style="margin-top: 3px; margin-bottom: 6px; font-size: 9pt;">Don\'t move or type too fast. If you get out of sync, click <button id="syncBtn" type="button">force sync</button> </div>';
+
     // deployed on 2018-03-24
-    var extraHtml = '<div style="margin-top: 3px; margin-bottom: 6px; font-size: 9pt;"><a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs & feedback</a>. Don\'t move or type too fast. If you get out of sync, click <button id="syncBtn" type="button">force sync</button> </div>';
+    //var extraHtml = '<div style="margin-top: 3px; margin-bottom: 6px; font-size: 9pt;"><a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs & feedback</a>. Don\'t move or type too fast. If you get out of sync, click <button id="syncBtn" type="button">force sync</button> </div>';
 
     // retired on 2018-03-24 to simplify the text on the page:
     //var extraHtml = '<div style="margin-top: 3px; margin-bottom: 10px; font-size: 8pt;">This is a <span style="color: #e93f34;">highly experimental</span> feature. Use at your own risk. Do not move or type too quickly. If you get out of sync, click: <button id="syncBtn" type="button">force sync</button> <a href="https://docs.google.com/forms/d/126ZijTGux_peoDusn1F9C1prkR226897DQ0MTTB5Q4M/viewform" target="_blank">Report bugs/feedback</a></div>';
