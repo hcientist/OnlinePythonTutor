@@ -669,7 +669,7 @@ wsServer.on('request', function(request) {
       // (but this may result in false positives of, say, an entire
       // classroom's IP address being inadvertently banned from a session)
       //var uniqueId = parsed.user_uuid;
-      //var uniqueId = null;
+      var uniqueId = null;
       if (!uniqueId) {
         // copied from createLogEntry
         // Webfaction forwards IP addresses via proxy, so use this ...
