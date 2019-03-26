@@ -30,8 +30,7 @@ export var footerHtml = `
 </p>
 
 <p>Click above to create a permanent link to your
-visualization (<a href="https://www.youtube.com/watch?v=h4q3UKdEFKE" target="_blank">video demo</a>). To report bugs, paste the link along with an error
-description in an email to philip@pgbovine.net</p>
+visualization (<a href="https://www.youtube.com/watch?v=h4q3UKdEFKE" target="_blank">video demo</a>).</p>
 
 <div id="embedLinkDiv">
 <p>

@@ -253,7 +253,8 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
         curEntry.event === 'uncaught_exception') {
       assert(curEntry.exception_msg);
       if (curEntry.exception_msg == "Unknown error") {
-        $("#frontendErrorOutput").html('Unknown error: Please email a bug report to philip@pgbovine.net');
+        $("#frontendErrorOutput").html('Unknown error: <a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">read this page for more info</a>');
+
       } else {
         $("#frontendErrorOutput").html(htmlspecialchars(curEntry.exception_msg));
       }
@@ -577,8 +578,7 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
           this.setFronendError(
                           ["Unknown error: The server may be OVERLOADED right now; try again later.",
                            "Your code may also contain UNSUPPORTED FEATURES that this tool cannot handle.",
-                           "Report a bug to philip@pgbovine.net by clicking the 'Generate shortened link'",
-                           "button at the bottom and including a URL in your email. [#NullTrace]"]);
+                           "<a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\">read this page for more info</a> [#NullTrace]"]);
         }
       } else {
         this.prevVisualizer = this.myVisualizer;

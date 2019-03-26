@@ -442,11 +442,11 @@ export class ExecutionVisualizer {
 
       // add an extra label to link back to the main site, so that viewers
       // on the embedded page know that they're seeing an OPT visualization
-      base.append('<div style="font-size: 8pt; margin-bottom: 10px;"><a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="https://twitter.com/pgbovine" target="_blank" style="color: #3D58A2;">Philip Guo</a>. Support with a <a href="http://pgbovine.net/support.htm" target="_blank">small donation</a>.</div>');
+      base.append('<div style="font-size: 8pt; margin-bottom: 10px;"><a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="https://twitter.com/pgbovine" target="_blank" style="color: #3D58A2;">Philip Guo</a></div>');
       base.find('#codeFooterDocs').hide(); // cut out extraneous docs
     } else {
       // also display credits:
-      base.append('<div style="font-size: 9pt; margin-top: 5px; margin-bottom: 10px;">Created by <a href="https://twitter.com/pgbovine" target="_blank">@pgbovine</a>. Support with a <a href="http://pgbovine.net/support.htm" target="_blank">small donation</a>.</div>');
+      base.append('<div style="font-size: 9pt; margin-top: 5px; margin-bottom: 10px;">Created by <a href="https://twitter.com/pgbovine" target="_blank">@pgbovine</a></div>');
     }
 
     // not enough room for these extra buttons ...
@@ -728,7 +728,7 @@ export class ExecutionVisualizer {
     // render error (if applicable):
     if (myViz.curLineExceptionMsg) {
       if (myViz.curLineExceptionMsg === "Unknown error") {
-        myViz.navControls.showError('Unknown error: Please email a bug report to philip@pgbovine.net');
+        myViz.navControls.showError('Unknown error: <a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">read this page for more info</a>');
       } else {
         myViz.navControls.showError(myViz.curLineExceptionMsg);
       }
