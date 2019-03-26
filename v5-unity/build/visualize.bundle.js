@@ -4186,6 +4186,8 @@ var liveHelpSurvey = {
 //             since Chrome seems to handle prompt() weirdly now
 //             (it seems to have done so for quite a while);
 //             [it still seems fine when someone is *volunteering* to help]
+//
+// 2019-03-26: took this down to simplify the UI more
 var liveHelpSurvey = {
     requestHelp: [{ prompt: 'You are now on the help queue. Please wait for help to arrive.\n\nSupport our research by letting us know:\nWhy did you decide to ask for help at this time?',
             v: 'r5a' },
@@ -4595,28 +4597,6 @@ var OptFrontendSharedSessions = (function (_super) {
                         // gray it out to make it not look as prominent
                         grayedOutEntries.forEach(function (e) {
                             $("#publicHelpQueue").append('<li style="color: #888;">' + e + '</li>');
-                        });
-                        // add these handlers AFTER the respective DOM nodes have been added above:
-                        $(".gotoHelpLink").click(function () {
-                            // 2018-06-24: don't show the user repeated questions (noRepeats=true)
-                            var surveyItem = randomlyPickSurveyItem('volunteerHelp', true);
-                            if (!surveyItem) {
-                                // punt early!
-                                return true; // ALWAYS cause the link to be clicked
-                            }
-                            var miniSurveyResponse = prompt(surveyItem.prompt);
-                            // always log every impression, even if miniSurveyResponse is blank,
-                            // since we can know how many times that survey question was ever seen:
-                            var idToJoin = $(this).attr('data-id');
-                            var surveyUrl = exports.TogetherJS.config.get("hubBase").replace(/\/*$/, "") + "/survey";
-                            $.ajax({
-                                url: surveyUrl,
-                                dataType: "json",
-                                data: { id: idToJoin, user_uuid: me.userUUID, kind: 'volunteerHelp', v: surveyItem.v, response: miniSurveyResponse },
-                                success: function () { },
-                                error: function () { },
-                            });
-                            return true; // ALWAYS cause the link to be clicked
                         });
                     }
                     else {
