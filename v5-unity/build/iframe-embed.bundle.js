@@ -908,8 +908,6 @@ var ExecutionVisualizer = (function () {
             base.find('#codeFooterDocs').hide(); // cut out extraneous docs
         }
         else {
-            // also display credits:
-            base.append('<div style="font-size: 9pt; margin-top: 5px; margin-bottom: 10px;">Created by <a href="https://twitter.com/pgbovine" target="_blank">@pgbovine</a></div>');
         }
         // not enough room for these extra buttons ...
         if (this.params.codeDivWidth &&
@@ -1147,7 +1145,7 @@ var ExecutionVisualizer = (function () {
         // render error (if applicable):
         if (myViz.curLineExceptionMsg) {
             if (myViz.curLineExceptionMsg === "Unknown error") {
-                myViz.navControls.showError('Unknown error: <a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">read this page for more info</a>');
+                myViz.navControls.showError('Unknown error: <a target="_blank" href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">read this page for more info</a>');
             }
             else {
                 myViz.navControls.showError(myViz.curLineExceptionMsg);
@@ -22338,7 +22336,7 @@ var AbstractBaseFrontend = (function () {
             else {
                 _this.setFronendError(["Server error! Your code might have an INFINITE LOOP or be running for too long.",
                     "The server may also be OVERLOADED. Or you're behind a FIREWALL that blocks access.",
-                    "Try again later, or <a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\">read this page for more info</a>."]);
+                    "Try again later. This site is provided for free with no available technical support."]);
             }
             _this.doneExecutingCode();
         });
@@ -22356,7 +22354,7 @@ var AbstractBaseFrontend = (function () {
     AbstractBaseFrontend.prototype.setFronendError = function (lines, ignoreLog) {
         if (ignoreLog === void 0) { ignoreLog = false; }
         $("#frontendErrorOutput").html(lines.map(pytutor_1.htmlspecialchars).join('<br/>') +
-            (ignoreLog ? '' : '<p/>Here is a list of <a target="_blank" href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">UNSUPPORTED FEATURES</a>'));
+            (ignoreLog ? '' : '<p/>Read this list of <a target="_blank" href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">UNSUPPORTED FEATURES</a>'));
         // log it to the server as well (unless ignoreLog is on)
         if (!ignoreLog) {
             var errorStr = lines.join();
@@ -22473,7 +22471,7 @@ var AbstractBaseFrontend = (function () {
                 else {
                     _this.setFronendError(["Unknown error: The server may be OVERLOADED right now; try again later.",
                         "Your code may also contain UNSUPPORTED FEATURES that this tool cannot handle.",
-                        "Try again later, or <a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\">read this page for more info</a>. [#NullTrace]"]);
+                        "Try again later. This site is provided for free with no available technical support. [#NullTrace]"]);
                 }
             }
             else {

@@ -908,8 +908,6 @@ var ExecutionVisualizer = (function () {
             base.find('#codeFooterDocs').hide(); // cut out extraneous docs
         }
         else {
-            // also display credits:
-            base.append('<div style="font-size: 9pt; margin-top: 5px; margin-bottom: 10px;">Created by <a href="https://twitter.com/pgbovine" target="_blank">@pgbovine</a></div>');
         }
         // not enough room for these extra buttons ...
         if (this.params.codeDivWidth &&
@@ -1147,7 +1145,7 @@ var ExecutionVisualizer = (function () {
         // render error (if applicable):
         if (myViz.curLineExceptionMsg) {
             if (myViz.curLineExceptionMsg === "Unknown error") {
-                myViz.navControls.showError('Unknown error: <a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">read this page for more info</a>');
+                myViz.navControls.showError('Unknown error: <a target="_blank" href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">read this page for more info</a>');
             }
             else {
                 myViz.navControls.showError(myViz.curLineExceptionMsg);
