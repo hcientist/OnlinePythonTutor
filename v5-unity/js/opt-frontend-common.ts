@@ -182,7 +182,7 @@ export abstract class AbstractBaseFrontend {
         this.setFronendError(
                         ["Server error! Your code might have an INFINITE LOOP or be running for too long.",
                          "The server may also be OVERLOADED. Or you're behind a FIREWALL that blocks access.",
-                         "Try again later, or <a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\">read this page for more info</a>."]);
+                         "Try again later. This site is provided for free with no available technical support."]);
       }
       this.doneExecutingCode();
     });
@@ -204,7 +204,7 @@ export abstract class AbstractBaseFrontend {
 
   setFronendError(lines, ignoreLog=false) {
     $("#frontendErrorOutput").html(lines.map(htmlspecialchars).join('<br/>') +
-                                   (ignoreLog ? '' : '<p/>Here is a list of <a target="_blank" href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">UNSUPPORTED FEATURES</a>'));
+                                   (ignoreLog ? '' : '<p/>Read this list of <a target="_blank" href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">UNSUPPORTED FEATURES</a>'));
 
     // log it to the server as well (unless ignoreLog is on)
     if (!ignoreLog) {
@@ -337,7 +337,7 @@ export abstract class AbstractBaseFrontend {
           this.setFronendError(
                           ["Unknown error: The server may be OVERLOADED right now; try again later.",
                            "Your code may also contain UNSUPPORTED FEATURES that this tool cannot handle.",
-                           "Try again later, or <a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\">read this page for more info</a>. [#NullTrace]"]);
+                           "Try again later. This site is provided for free with no available technical support. [#NullTrace]"]);
         }
       } else {
         // fail-soft to prevent running off of the end of trace

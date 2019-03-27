@@ -1155,6 +1155,12 @@ Get live help!
 
         p.Self.update({name: newName}); // change our own name
       }
+
+
+      if (!this.meCreatedThisSession()) {
+        // 2019-03-26: display a more prominent warning here:
+        this.chatbotPostMsg('Thanks for helping! This service is NOT being actively maintained, so it may crash at any time. Please do not contact the site owner for technical support or feature requests.');
+      }
     });
 
     // someone ELSE sent a chat
@@ -1714,8 +1720,7 @@ Get live help!
       $("#requestHelpBtn").hide();
 
       // 2019-03-26: display a more prominent warning here:
-      this.chatbotPostMsg('This service is NOT being actively maintained anymore, so it may crash at any time. It is available as-is for free with no technical support. Do not contact the owner to make any requests for new features.');
-
+      this.chatbotPostMsg('This service is NOT being actively maintained, so it may crash at any time. It is available for free with no technical support. Please do not contact the site owner to make any feature requests.');
     } else {
       alert("ERROR in getting live help. This isn't working at the moment. Please try again later.");
       if (TogetherJS.running) {
