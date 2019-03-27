@@ -4955,10 +4955,13 @@ var OptFrontendSharedSessions = (function (_super) {
                 } while ($.inArray(newName, peerNames) >= 0); // i.e., is newName in peerNames?
                 p.Self.update({ name: newName }); // change our own name
             }
-            if (!_this.meCreatedThisSession()) {
-                // 2019-03-26: display a more prominent warning here:
-                _this.chatbotPostMsg('Thanks for helping! This service is NOT being actively maintained, so it may crash at any time. Please do not contact the site owner for technical support or feature requests.');
-            }
+            // TODO: ugh this doesn't quite work since it sends this message
+            // to EVERYONE except for the session creator (which gets
+            // triggered whenever ANYONE enters the room, not just you)
+            //if (!this.meCreatedThisSession()) {
+            //  // 2019-03-26: display a more prominent warning here:
+            //  this.chatbotPostMsg('Thanks for helping! This service is NOT being actively maintained, so it may crash at any time. Please do not contact the site owner for technical support or feature requests.');
+            //}
         });
         // someone ELSE sent a chat
         exports.TogetherJS.hub.on("togetherjs.chat", function (msg) {
