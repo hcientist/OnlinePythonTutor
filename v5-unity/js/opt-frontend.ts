@@ -122,6 +122,7 @@ export class OptFrontend extends AbstractBaseFrontend {
       $('#urlOutput').val(urlStr);
     });
 
+    /* 2019-04-09 took this down since google's URL shortener service shut down :/
     $('#genUrlShortenedBtn').bind('click', () => {
       var myArgs = this.getAppState();
       var urlStr = $.param.fragment(window.location.href, myArgs, 2); // 2 means 'override'
@@ -142,6 +143,7 @@ export class OptFrontend extends AbstractBaseFrontend {
              }
              });
     });
+    */
 
     $("#instructionsPane").html(`Advanced instructions:
       <a href="https://www.youtube.com/watch?v=80ztTXP90Vs&list=PLzV58Zm8FuBL2WxxZKGZ6j1dH8NKb_HYI&index=5" target="_blank">setting breakpoints</a> |
