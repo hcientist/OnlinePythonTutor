@@ -1,27 +1,29 @@
-## Important notes:
-
 ### *Python Tutor's server may go down at any time. Don't rely on it for anything time-critical.*
 
 ### *Python Tutor is not getting any new features since I don't have the time to update it.*
 
 ### *Finally, there is no available technical support. This service is provided as-is for free.*
 
-Python Tutor is maintained by one volunteer in my spare time, so I am unable to respond to most bug reports and feature requests. Your issue is likely listed on this page. If you're sure that it's *not* listed here, [email me](http://pgbovine.net/email-policy.htm) and use the "Generate permanent link" button to include a URL of your code.
+This service is maintained by one volunteer in my spare time, so I'm unable to respond to most bug reports and feature requests. Your issue is likely listed on this page. If you're sure it's *not* listed here, [email me](http://pgbovine.net/email-policy.htm) and use the "Generate permanent link" button to include a URL of your code.
 
-- **If you don't receive a reply, assume that your issue will NOT be addressed** since it's listed here. Please do not email me repeatedly. I get too many emails to be able to respond to all of them.
+- **If you don't receive a reply from me, assume that your issue will NOT be addressed** since it's listed here. Please do not email me repeatedly. I get too many emails to be able to respond to most of them.
 - I can't provide technical support for users who want to install Python Tutor locally on their own computers or host it on their own servers.
 - I can't provide support for Python Tutor code that's embedded within other people's websites, such as class websites or online tutorials. Contact the people in charge of those websites for help.
 
 ---
 ## Unsupported features
 
-[Python Tutor](http://pythontutor.com/) currently does *not* support the following programming language features. Some of these features will eventually be supported, but others probably won't, due to implementation challenges and other priorities.
+[Python Tutor](http://pythontutor.com/) currently does *not* support the following features:
+
+<!--
+Some of these features will eventually be supported, but others probably won't, due to implementation challenges and other priorities.
 
 For more details on project status and issue prioritization, check out these videos from March 2018:
 - [Python Tutor project status - 1 of 2 - common feature requests & feasible fixes](https://www.youtube.com/watch?v=oKIqejkxqP0)
 - [Python Tutor project status - 2 of 2 - bigger feature requests & unlikely fixes](https://www.youtube.com/watch?v=8o-XeFTgD40)
 
 ... and this earlier video from Oct 2017: [Python Tutor Software Development Philosophy](https://www.youtube.com/watch?v=sVtXLdBRfyE)
+-->
 
 ### C and C++
 
@@ -72,6 +74,6 @@ For more details on project status and issue prioritization, check out these vid
 - If you're behind some kinds of firewalls or proxy servers, the visualizer may not work
 - User accounts, login, authentication, or integration with other third-party sites
 
-Look through these issue trackers for additional bugs and unsupported features:
+Look through these issue trackers for additional known bugs and unsupported features:
 - https://github.com/pgbovine/OnlinePythonTutor/issues
 - https://github.com/pgbovine/opt-cpp-backend/issues
