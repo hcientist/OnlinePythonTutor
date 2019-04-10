@@ -1,8 +1,8 @@
 ## Important notes:
 
-### *Python Tutor's server may go down at any time. There are no uptime or quality guarantees, so don't rely on it for anything critical.*
+### *Python Tutor's server may go down at any time. Don't rely on it for anything time-critical.*
 
-### *Python Tutor is not getting any new features since I don't have the time or resources to update it.*
+### *Python Tutor is not getting any new features since I don't have the time to update it.*
 
 ### *Finally, there is no available technical support. This service is provided as-is for free.*
 
