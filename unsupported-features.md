@@ -1,19 +1,21 @@
-## *Note: Python Tutor is likely not getting any new features since I don't have the time or resources to update it.*
+# Important notes:
+
+## *Python Tutor's server may go down at any time. There are no uptime or quality guarantees, so don't rely on it for anything critical.*
+
+## *Python Tutor is not getting any new features since I don't have the time or resources to update it.*
+
+## *Finally, there is no available technical support. This service is provided as-is for free.*
+
+Python Tutor is maintained by one volunteer in my spare time, so I am unable to respond to most bug reports and feature requests. Your issue is likely listed on this page. If you're sure that it's *not* listed here, email philip@pgbovine.net and use the "Generate permanent link" button to include a URL of your code.
+
+- **If you don't receive a reply, assume that your issue will NOT be addressed** since it's listed here. Please do not email me repeatedly. I get too many emails to be able to respond to all of them.
+- I cannot provide technical support for users who want to install Python Tutor locally on their own computers or host it on their own servers.
+- I also cannot provide support for Python Tutor code that's embedded within other people's websites, such as class websites or online tutorials. Contact the people in charge of those websites for help.
 
 ---
+# Unsupported features
 
-# Unsupported features in Python Tutor
-
-Python Tutor is maintained by one single volunteer ([me!](http://pgbovine.net/)) in my spare time, so I am unable to respond to most bug reports and feature requests. You've been sent to this page since your issue may be listed here. If you think your issue is *not* covered here, email philip@pgbovine.net with details and use the "Generate shortened link" button to include a URL so that I can reproduce your issue.
-
-General guidelines:
-
-- I may send you a link to this page and **not respond to your email**. Please do not email me repeatedly. This site has millions of users, and I get too many emails to be able to respond personally to each one. It is a free site that is run by one volunteer, so if you would like better user support, there are many good paid tutoring services out there.
-- I cannot provide technical support for users who want to install Python Tutor locally on their own computers or host it on their own servers. I can provide support only for the official website at [http://pythontutor.com/](http://pythontutor.com/), and even so my time is extremely limited since my work on this website is unpaid and voluntary.
-- I also cannot provide support for Python Tutor code that's embedded within other people's websites, such as class websites or online tutorials. Please contact the people in charge of those websites for help.
-
----
-[Python Tutor](http://pythontutor.com/) currently does **NOT** support the following programming language features. Some of these features will eventually be supported, but others probably won't, due to implementation challenges and other priorities.
+[Python Tutor](http://pythontutor.com/) currently does *not* support the following programming language features. Some of these features will eventually be supported, but others probably won't, due to implementation challenges and other priorities.
 
 For more details on project status and issue prioritization, check out these videos from March 2018:
 - [Python Tutor project status - 1 of 2 - common feature requests & feasible fixes](https://www.youtube.com/watch?v=oKIqejkxqP0)
