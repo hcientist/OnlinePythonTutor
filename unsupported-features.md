@@ -1,4 +1,4 @@
-***Note that Python Tutor is likely not getting any new features since I don't have the time or resources to update it.***
+## *Note: Python Tutor is likely not getting any new features since I don't have the time or resources to update it.*
 
 ---
 
