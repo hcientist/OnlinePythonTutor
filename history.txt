@@ -230,7 +230,7 @@ v5-unity/
     when the user encounters errors, so they will know its limitations:
     https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md
     
-  2019-04-01 (around this time) - put up more warnings throughout the site that
+  2019-04-01 (around this time) - Put up more warnings throughout the site that
   there won't be technical support or new features coming, since I don't have the
-  time to maintain its code or server load as well anymore. disabled getting live help
-  from live.html experimental live programming mode.
+  time to maintain its code or server load as well anymore. Disabled "Get live help!"
+  from live.html experimental live programming mode due to too much load on server.
