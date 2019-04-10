@@ -1436,6 +1436,9 @@ Get live help!
       $("#sharedSessionDisplayDiv").show();
       $("#ssDiv,#testCasesParent").hide();
 
+      // 2019-04-09: hide live programming mode whenever you're in a shared session
+      $("#liveModeBtn").hide();
+
       // send this to the server for the purposes of logging, but other
       // clients shouldn't do anything with this data
       if (TogetherJS.running && !this.isPlayingDemo) {

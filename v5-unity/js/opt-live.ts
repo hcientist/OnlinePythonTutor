@@ -42,7 +42,11 @@ require('../css/opt-frontend.css');
 require('../css/opt-live.css');
 
 // need to directly import the class for type checking to work
-import {OptFrontendSharedSessions,TogetherJS} from './opt-shared-sessions';
+
+// 2019-04-09: disabled shared sessions in opt-live.ts
+//import {OptFrontendSharedSessions,TogetherJS} from './opt-shared-sessions';
+
+import {OptFrontend} from './opt-frontend';
 import {ExecutionVisualizer, assert, brightRed, darkArrowColor, lightArrowColor, SVG_ARROW_POLYGON, htmlspecialchars} from './pytutor';
 import {eureka_survey,eureka_prompt,eureka_survey_version} from './surveys';
 import {allTabsRE} from './opt-frontend';
@@ -61,7 +65,7 @@ require('script-loader!./lib/ace/src-min-noconflict/mode-ruby.js');
 var optLiveFrontend: OptLiveFrontend;
 
 
-export class OptLiveFrontend extends OptFrontendSharedSessions {
+export class OptLiveFrontend extends OptFrontend {
   originFrontendJsFile: string = 'opt-live.js';
 
   prevVisualizer = null; // the visualizer object from the previous execution
@@ -235,9 +239,11 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
         .click(() => {
           // issue a warning since it's really hard to get rawInputLst
           // stuff sync'ed when TogetherJS is running for various reasons:
+          /* 2019-04-09: disabled shared sessions in opt-live.ts
           if (TogetherJS.running) {
             alert("Warning: user inputs do NOT work well in live help/chat mode. We suggest you use the regular Python Tutor visualizer instead.");
           }
+          */
           var userInput = ruiDiv.find('#raw_input_textbox').val();
           var myVisualizer = this.myVisualizer;
           // advance instruction count by 1 to get to the NEXT instruction
@@ -399,6 +405,7 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
     myVisualizer.add_pytutor_hook(
       "end_updateOutput",
       (args) => {
+        /* 2019-04-09: disabled shared sessions in opt-live.ts
         // adapted from opt-shared-sessions.ts to handle TogetherJS
         if (this.updateOutputSignalFromRemote) {
           return [true]; // die early; no more hooks should run after this one!
@@ -407,6 +414,7 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
         if (TogetherJS.running) {
           TogetherJS.send({type: "updateOutput", step: args.myViz.curInstr});
         }
+        */
 
 
         // copied from opt-frontend-common.js
@@ -695,6 +703,7 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
   }
 
 
+  /* 2019-04-09: disabled shared sessions in opt-live.ts
   // for shared sessions
   TogetherjsReadyHandler() {
     $("#liveModeHeader").hide();
@@ -712,11 +721,12 @@ export class OptLiveFrontend extends OptFrontendSharedSessions {
     $('#executionSlider').slider('value', this.myVisualizer.curInstr); // update slider
     this.updateStepLabels();
   }
+  */
 
 } // END class OptLiveFrontend
 
 
 $(document).ready(function() {
   optLiveFrontend = new OptLiveFrontend({});
-  optLiveFrontend.setSurveyHTML();
+  //optLiveFrontend.setSurveyHTML(); // 2019-04-09 take survey off this page
 });
