@@ -1,12 +1,12 @@
-# Important notes:
+## Important notes:
 
-## *Python Tutor's server may go down at any time. There are no uptime or quality guarantees, so don't rely on it for anything critical.*
+### *Python Tutor's server may go down at any time. There are no uptime or quality guarantees, so don't rely on it for anything critical.*
 
-## *Python Tutor is not getting any new features since I don't have the time or resources to update it.*
+### *Python Tutor is not getting any new features since I don't have the time or resources to update it.*
 
-## *Finally, there is no available technical support. This service is provided as-is for free.*
+### *Finally, there is no available technical support. This service is provided as-is for free.*
 
-Python Tutor is maintained by one volunteer in my spare time, so I am unable to respond to most bug reports and feature requests. Your issue is likely listed on this page. If you're sure that it's *not* listed here, email philip@pgbovine.net and use the "Generate permanent link" button to include a URL of your code.
+Python Tutor is maintained by one volunteer in my spare time, so I am unable to respond to most bug reports and feature requests. Your issue is likely listed on this page. If you're sure that it's *not* listed here, [email me](http://pgbovine.net/email-policy.htm) and use the "Generate permanent link" button to include a URL of your code.
 
 - **If you don't receive a reply, assume that your issue will NOT be addressed** since it's listed here. Please do not email me repeatedly. I get too many emails to be able to respond to all of them.
 - I cannot provide technical support for users who want to install Python Tutor locally on their own computers or host it on their own servers.
