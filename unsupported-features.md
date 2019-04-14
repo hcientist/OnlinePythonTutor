@@ -1,12 +1,10 @@
-### *Python Tutor's server may go down at any time. Don't rely on it for anything time-critical.*
+### *Python Tutor's server may go down at any time, so don't rely on it for anything time-critical.*
 
-### *Python Tutor is not getting any new features since I don't have the time to update it.*
-
-### *Finally, there is no available technical support. This service is provided as-is for free.*
+### *There is no technical support available. This service is provided as-is for free.*
 
 This service is maintained by one volunteer in my spare time, so I'm unable to respond to most bug reports and feature requests. Your issue is likely listed on this page. If you're sure it's *not* listed here, [email me](http://pgbovine.net/email-policy.htm) and use the "Generate permanent link" button to include a URL of your code.
 
-- **If you don't receive a reply from me, assume that your issue will NOT be addressed** since it's listed here. Please do not email me repeatedly. I get too many emails to be able to respond to most of them.
+- **If you don't receive a reply from me, assume that your issue will NOT be addressed**. Please do not email me multiple times.
 - I can't provide technical support for users who want to install Python Tutor locally on their own computers or host it on their own servers.
 - I can't provide support for Python Tutor code that's embedded within other people's websites, such as class websites or online tutorials. Contact the people in charge of those websites for help.
 
@@ -73,7 +71,8 @@ For more details on project status and issue prioritization, check out these vid
   - or [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
 - If you're behind some kinds of firewalls or proxy servers, the visualizer may not work
 - User accounts, login, authentication, or integration with other third-party sites
+- URL shortening (use a third-party URL shortener service)
 
-Look through these issue trackers for additional known bugs and unsupported features:
+Look through these issue trackers for more known bugs and unsupported features:
 - https://github.com/pgbovine/OnlinePythonTutor/issues
 - https://github.com/pgbovine/opt-cpp-backend/issues
