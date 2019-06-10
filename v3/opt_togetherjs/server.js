@@ -985,8 +985,10 @@ function pgLogWrite(logObj) {
 
       recentlyCompletedLogFile.pipe(gzip).pipe(out).on('finish', (err) => {
         out.end();
-        // delete the original non-zipped version of file when you're done
-        fs.unlink(fpath, (err) => {});
+        // if there weren't errors, delete the original non-zipped version of file when you're done
+        if (!err) {
+          fs.unlink(fpath, (err) => {});
+        }
       });
     }
     var filename = 'log_' + logObj.date + '.json';
