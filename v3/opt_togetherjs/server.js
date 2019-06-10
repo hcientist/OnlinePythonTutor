@@ -41,6 +41,8 @@ var requestFunc = require('request');
 
 var child_process = require('child_process');
 
+const zlib = require('zlib'); // https://nodejs.org/api/zlib.html
+
 // FIXME: not sure what logger to use
 //var logger = require('../../lib/logger');
 
@@ -955,6 +957,7 @@ function createLogEntry(req, event_type) {
 var pgLogFile = null;
 
 var MAX_LOG_SIZE = 10000;
+//var MAX_LOG_SIZE = 5; // for testing
 var curLogSize = 0;
 
 function pgLogWrite(logObj) {
@@ -964,7 +967,27 @@ function pgLogWrite(logObj) {
   // rotate log every MAX_LOG_SIZE entries
   if (!pgLogFile || curLogSize >= MAX_LOG_SIZE) {
     if (pgLogFile) {
-      pgLogFile.end();
+      const fpath = pgLogFile.path; // grab its path first, then ...
+      pgLogFile.end();              // ... end the prior log file
+
+      // zip up the recently-completed log file and then delete the
+      // original, to save space
+
+      // if fpath no longer exists for some reason, then crash and let
+      // 'forever' restart the server
+      const recentlyCompletedLogFile = fs.createReadStream(fpath);
+
+      const gzip = zlib.createGzip();
+      const out = fs.createWriteStream(fpath + '.gz',
+                                      {flags: 'w',
+                                       mode: parseInt('644', 8),
+                                       encoding: "UTF-8"});
+
+      recentlyCompletedLogFile.pipe(gzip).pipe(out).on('finish', (err) => {
+        out.end();
+        // delete the original non-zipped version of file when you're done
+        fs.unlink(fpath, (err) => {});
+      });
     }
     var filename = 'log_' + logObj.date + '.json';
     var pathname = require('path').resolve(__dirname, filename);
