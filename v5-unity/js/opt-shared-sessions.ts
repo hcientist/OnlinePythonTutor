@@ -500,7 +500,7 @@ Get live help!
     // AFTERWARDS, immediately get help queue. this way, if the query
     // string option demo=true is set, then it will properly disable
     // shared sessions before getting the help queue
-    this.getHelpQueue();
+    this.getHelpQueue(1500); // set a short timeout in ms so we fail faster if we can't reach help queue server for some reason (e.g., firewall)
   }
 
   demoModeChanged() {
@@ -595,7 +595,9 @@ Get live help!
     return '???'; // fail soft, even though this shouldn't ever happen
   }
 
-  getHelpQueue() {
+  // timeout=0 default means no timeout; explicitly set it in ms to make
+  // a shorter timeout
+  getHelpQueue(timeout=0) {
     // VERY IMPORTANT: to avoid overloading the server, don't send these
     // requests when you're idle or disableSharedSessions is on.
     // this is important also for accurate logging, since if you're not
@@ -620,6 +622,7 @@ Get live help!
     $.ajax({
       url: ghqUrl,
       dataType: "json",
+      timeout: timeout, // 0 for no timeout, set in milliseconds
       data: {user_uuid: this.userUUID, lang: curState.py, mode: curState.mode, origin: curState.origin},
       error: () => {
         console.log('/getHelpQueue error');
@@ -629,9 +632,10 @@ Get live help!
         $("td#headerTdLeft").hide(); // TODO: make a better name for this!
 
         if (this.wantsPublicHelp) {
-          $("#publicHelpQueue").html('ERROR: help server is down. If you had previously asked for help, something is wrong; stop this session and try again later.');
+          $("#publicHelpQueue").html("ERROR: live chat server is down or your firewall is blocking it. If you had previously asked for help, something is wrong; stop this session and try again later.");
         } else {
-          $("#publicHelpQueue").empty(); // avoid showing stale results
+          //$("#publicHelpQueue").empty(); // avoid showing stale results
+          $("#publicHelpQueue").html("ERROR: live chat server is down or your firewall is blocking it. This website still works, but just not the chat."); // show error msg
         }
       },
       success: (resp) => {
