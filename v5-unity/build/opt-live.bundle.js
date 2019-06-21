@@ -583,10 +583,11 @@ function updateLink (link, options, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($, jQuery) {// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+/* WEBPACK VAR INJECTION */(function($, jQuery) {
+// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
-
+Object.defineProperty(exports, "__esModule", { value: true });
 /* TODO:
 
 - substitute in a non-live version of the live editor from opt-live.js
@@ -653,7 +654,7 @@ var newlineAllRegex = new RegExp('\n', 'g');
 var doubleQuoteAllRegex = new RegExp('\"', 'g');
 var tabAllRegex = new RegExp("\t", 'g');
 // the main event!
-var ExecutionVisualizer = (function () {
+var ExecutionVisualizer = /** @class */ (function () {
     // Constructor with an ever-growing feature-crepped list of options :)
     // domRootID is the string ID of the root element where to render this instance
     //
@@ -940,6 +941,8 @@ var ExecutionVisualizer = (function () {
             base.find('#codeFooterDocs').hide(); // cut out extraneous docs
         }
         else {
+            // also display credits: nevermind
+            //base.append('<div style="font-size: 9pt; margin-top: 5px; margin-bottom: 10px;">Created by <a href="https://twitter.com/pgbovine" target="_blank">@pgbovine</a></div>');
         }
         // not enough room for these extra buttons ...
         if (this.params.codeDivWidth &&
@@ -961,7 +964,7 @@ var ExecutionVisualizer = (function () {
             resize: function (event, ui) {
                 _this.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
                 _this.navControls.renderSliderBreakpoints(_this.sortedBreakpointsList); // update breakpoint display accordingly on resize
-                if (_this.params.updateOutputCallback)
+                if (_this.params.updateOutputCallback) // report size change
                     _this.params.updateOutputCallback(_this);
             }
         });
@@ -1072,6 +1075,10 @@ var ExecutionVisualizer = (function () {
         if (this.sortedBreakpointsList.length == 0) {
             return -1;
         }
+        // usability hack: if you're currently on a breakpoint, then
+        // single-step forward to the next execution point, NOT the next
+        // breakpoint. it's often useful to see what happens when the line
+        // at a breakpoint executes.
         else if ($.inArray(c, this.sortedBreakpointsList) >= 0) {
             return c + 1;
         }
@@ -1081,7 +1088,7 @@ var ExecutionVisualizer = (function () {
                 var next = this.sortedBreakpointsList[i + 1];
                 if (c < cur)
                     return cur;
-                if (cur <= c && c < next)
+                if (cur <= c && c < next) // subtle
                     return next;
             }
             // final edge case:
@@ -1183,7 +1190,7 @@ var ExecutionVisualizer = (function () {
                 myViz.navControls.showError(myViz.curLineExceptionMsg);
             }
         }
-        else if (!this.instrLimitReached) {
+        else if (!this.instrLimitReached) { // ugly, I know :/
             myViz.navControls.showError(null);
         }
         // finally, render all of the data structures
@@ -1520,22 +1527,22 @@ var ExecutionVisualizer = (function () {
         // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
         return (PO <= LO) && (LO < (PO + H - 25));
     };
+    ExecutionVisualizer.curVisualizerID = 1;
+    ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH = 350;
+    ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT = 400;
+    // always nest values of these types within objects to make the
+    // visualization look cleaner:
+    // - functions should be nested within heap objects since that's a more
+    //   intuitive rendering for methods (i.e., functions within objects)
+    // - lots of special cases for function/property-like python types that we should inline
+    ExecutionVisualizer.DEFAULT_ALWAYS_NEST_TYPES = ['FUNCTION', 'JS_FUNCTION',
+        'property', 'classmethod', 'staticmethod', 'builtin_function_or_method',
+        'member_descriptor', 'getset_descriptor', 'method_descriptor', 'wrapper_descriptor'];
     return ExecutionVisualizer;
 }()); // END class ExecutionVisualizer
-ExecutionVisualizer.curVisualizerID = 1;
-ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH = 350;
-ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT = 400;
-// always nest values of these types within objects to make the
-// visualization look cleaner:
-// - functions should be nested within heap objects since that's a more
-//   intuitive rendering for methods (i.e., functions within objects)
-// - lots of special cases for function/property-like python types that we should inline
-ExecutionVisualizer.DEFAULT_ALWAYS_NEST_TYPES = ['FUNCTION', 'JS_FUNCTION',
-    'property', 'classmethod', 'staticmethod', 'builtin_function_or_method',
-    'member_descriptor', 'getset_descriptor', 'method_descriptor', 'wrapper_descriptor'];
 exports.ExecutionVisualizer = ExecutionVisualizer;
 // implements the data structure visualization for an entire trace
-var DataVisualizer = (function () {
+var DataVisualizer = /** @class */ (function () {
     function DataVisualizer(owner, domRoot, domRootD3) {
         this.classAttrsHidden = {}; // kludgy hack for 'show/hide attributes' for class objects
         this.owner = owner;
@@ -1723,7 +1730,7 @@ var DataVisualizer = (function () {
                 for (var i = 0; i < curLayout.length; i++) {
                     var row = curLayout[i];
                     var index = row.indexOf(id);
-                    if (index > 0) {
+                    if (index > 0) { // index of 0 is impossible since it's the row ID tag
                         return { row: row, index: index };
                     }
                 }
@@ -1874,7 +1881,7 @@ var DataVisualizer = (function () {
                         //  entry right before the 2 to form ['row1', 3, 2, 1])
                         if (newRow.length > 1) {
                             var args = [foundIndex, 0];
-                            for (var i = 1; i < newRow.length; i++) {
+                            for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
                                 args.push(newRow[i]);
                                 idsToRemove.remove(newRow[i]);
                             }
@@ -1901,7 +1908,7 @@ var DataVisualizer = (function () {
                     if (newRow.length > 0) {
                         if (curRow && curRow.length > 0) {
                             // append onto the END of curRow if it exists
-                            for (var i = 1; i < newRow.length; i++) {
+                            for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
                                 curRow.push(newRow[i]);
                             }
                         }
@@ -1924,7 +1931,7 @@ var DataVisualizer = (function () {
                             curLayout.push($.extend(true /* make a deep copy */, [], newRow));
                         }
                         // regardless, newRow is now accounted for, so clear it
-                        for (var i = 1; i < newRow.length; i++) {
+                        for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
                             idsToRemove.remove(newRow[i]);
                         }
                         newRow.splice(0, newRow.length); // kill it!
@@ -1962,7 +1969,7 @@ var DataVisualizer = (function () {
             // iterate through all globals and ordered stack frames and call updateCurLayout
             $.each(curEntry.ordered_globals, function (i, varname) {
                 var val = curEntry.globals[varname];
-                if (val !== undefined) {
+                if (val !== undefined) { // might not be defined at this line, which is OKAY!
                     // TODO: try to unify this behavior between C/C++ and other languages:
                     if (myViz.isCppMode()) {
                         updateCurLayoutAndRecurse(val);
@@ -1995,7 +2002,7 @@ var DataVisualizer = (function () {
                 var idInt = Number(id); // keys are stored as strings, so convert!!!
                 $.each(curLayout, function (rownum, row) {
                     var ind = row.indexOf(idInt);
-                    if (ind > 0) {
+                    if (ind > 0) { // remember that index 0 of the row is the row ID tag
                         row.splice(ind, 1);
                     }
                 });
@@ -2162,6 +2169,7 @@ var DataVisualizer = (function () {
         });
         // insert new heap rows
         heapRows.enter().append('table')
+            //.each(function(objLst, i) {console.log('NEW ROW:', objLst, i);})
             .attr('id', function (d, i) { return 'heapRow' + i; }) // add unique ID
             .attr('class', 'heapRow');
         // delete a heap row
@@ -2174,6 +2182,7 @@ var DataVisualizer = (function () {
             .remove();
         // update an existing heap row
         var toplevelHeapObjects = heapRows
+            //.each(function(objLst, i) { console.log('UPDATE ROW:', objLst, i); })
             .selectAll('td.toplevelHeapObject')
             .data(function (d, i) { return d.slice(1, d.length); }, /* map over each row, skipping row ID tag */ function (objID) { return objID; } /* each object ID is unique for constancy */);
         // insert a new toplevelHeapObject
@@ -2246,7 +2255,7 @@ var DataVisualizer = (function () {
         $.each(curEntry.ordered_globals, function (i, varname) {
             var val = curEntry.globals[varname];
             // (use '!==' to do an EXACT match against undefined)
-            if (val !== undefined) {
+            if (val !== undefined) { // might not be defined at this line, which is OKAY!
                 realGlobalsLst.push(varname);
             }
         });
@@ -2316,6 +2325,7 @@ var DataVisualizer = (function () {
                         $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
                         assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(varDivID));
                         myViz.jsPlumbManager.connectionEndpointIDs.set(varDivID, heapObjID);
+                        //console.log('STACK->HEAP', varDivID, heapObjID);
                     }
                 }
             }
@@ -2357,6 +2367,7 @@ var DataVisualizer = (function () {
             return d.is_zombie ? myViz.owner.generateID("zombie_stack" + i)
                 : myViz.owner.generateID("stack" + i);
         })
+            // HTML5 custom data attributes
             .attr('data-frame_id', function (frame, i) { return frame.frame_id; })
             .attr('data-parent_frame_id', function (frame, i) {
             return (frame.parent_frame_id_list.length > 0) ? frame.parent_frame_id_list[0] : null;
@@ -2507,6 +2518,7 @@ var DataVisualizer = (function () {
                         $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
                         assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(varDivID));
                         myViz.jsPlumbManager.connectionEndpointIDs.set(varDivID, heapObjID);
+                        //console.log('STACK->HEAP', varDivID, heapObjID);
                     }
                 }
             }
@@ -2710,8 +2722,11 @@ var DataVisualizer = (function () {
                     //c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
                     $(c.canvas).css("z-index", 1000); // ... and move it to the VERY FRONT
                 }
+                // for heap->heap connectors
                 else if (myViz.jsPlumbManager.heapConnectionEndpointIDs.has(c.endpoints[0].elementId)) {
+                    // NOP since it's already the color and style we set by default
                 }
+                // TODO: maybe this needs special consideration for C/C++ code? dunno
                 else if (stackFrameDiv.length > 0) {
                     // else unhighlight it
                     // (only if c.source actually belongs to a stackFrameDiv (i.e.,
@@ -2832,6 +2847,7 @@ var DataVisualizer = (function () {
                         var literalStr = obj[3];
                         if (literalStr === '<UNINITIALIZED>') {
                             rep = '<span class="cdataUninit">?</span>';
+                            //rep = '\uD83D\uDCA9'; // pile of poo emoji
                         }
                         else if (literalStr == '<UNALLOCATED>') {
                             rep = '\uD83D\uDC80'; // skull emoji
@@ -3123,7 +3139,7 @@ var DataVisualizer = (function () {
                 });
             }
         }
-        else if (obj[0] == 'JS_FUNCTION') {
+        else if (obj[0] == 'JS_FUNCTION') { /* TODO: refactor me */
             // JavaScript function
             assert(obj.length == 5);
             var funcName = htmlspecialchars(obj[1]);
@@ -3299,7 +3315,7 @@ var DataVisualizer = (function () {
     };
     return DataVisualizer;
 }()); // END class DataVisualizer
-var ProgramOutputBox = (function () {
+var ProgramOutputBox = /** @class */ (function () {
     function ProgramOutputBox(owner, domRoot, heightOverride) {
         if (heightOverride === void 0) { heightOverride = null; }
         // how many *maximum* lines get printed to stdout in the entire trace?
@@ -3357,7 +3373,7 @@ var ProgramOutputBox = (function () {
     };
     return ProgramOutputBox;
 }()); // END class ProgramOutputBox
-var CodeDisplay = (function () {
+var CodeDisplay = /** @class */ (function () {
     function CodeDisplay(owner, domRoot, domRootD3, codToDisplay, lang, editCodeBaseURL) {
         this.leftGutterSvgInitialized = false;
         this.owner = owner;
@@ -3706,7 +3722,7 @@ var CodeDisplay = (function () {
     };
     return CodeDisplay;
 }()); // END class CodeDisplay
-var NavigationController = (function () {
+var NavigationController = /** @class */ (function () {
     function NavigationController(owner, domRoot, domRootD3, nSteps) {
         var _this = this;
         this.owner = owner;
@@ -22221,10 +22237,11 @@ module.exports = __webpack_amd_options__;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+/* WEBPACK VAR INJECTION */(function($) {
+// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
-
+Object.defineProperty(exports, "__esModule", { value: true });
 /// <reference path="_references.ts" />
 __webpack_require__(35);
 __webpack_require__(36);
@@ -22235,10 +22252,10 @@ var pytutor_1 = __webpack_require__(4);
 // NB: this still relies on global state such as localStorage and the
 // browser URL hash string, so you still can't have more than one of these
 // objects per page; should still be instantiated as a SINGLETON
-var AbstractBaseFrontend = (function () {
+var AbstractBaseFrontend = /** @class */ (function () {
     function AbstractBaseFrontend(params) {
-        if (params === void 0) { params = {}; }
         var _this = this;
+        if (params === void 0) { params = {}; }
         this.sessionUUID = generateUUID(); // remains constant throughout one page load ("session")
         // a cache where each element is a pair:
         // [appState, cached execution trace]
@@ -22284,7 +22301,7 @@ var AbstractBaseFrontend = (function () {
         // these settings are all customized for my own server setup,
         // so you will need to customize for your server:
         this.serverRoot = (window.location.protocol === 'https:') ?
-            'https://cokapi.com/' :
+            'https://cokapi.com/' : // my certificate for https is registered via cokapi.com, so use it for now
             'http://cokapi.com/'; // try cokapi.com so that hopefully it works through firewalls better than directly using IP addr
         // (but that's just an unsubstantiated hunch)
         // randomly pick one backup server to load balance:
@@ -22909,6 +22926,7 @@ if(false) {
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.privacyAndEndingHTML = "\n\n<p style=\"margin-top: 30px;\">Privacy Policy: By using Python Tutor, your\nvisualized code, options, user interactions, text chats, and IP address\nare logged on our server and may be analyzed for research purposes.\nNearly all web services collect this basic information from users in\ntheir server logs. However, Python Tutor does not collect any personally\nidentifiable information from its users. It uses Google Analytics for\nwebsite analytics.</p>\n\n<p>Terms of Service: The Python Tutor service is provided for free on an\nas-is basis. Use this service at your own risk. Do not use it to share\nconfidential information. The developers of Python Tutor are not\nresponsible for the chat messages or behaviors of any of the users on\nthis website. We are also not responsible for any damages caused by\nusing this website. Finally, it is your responsibility to follow\nappropriate academic integrity standards.</p>\n\n<p style=\"margin-top: 25px;\">\nCopyright &copy; <a href=\"http://www.pgbovine.net/\">Philip Guo</a>.  All rights reserved.\n</p>";
 exports.footerHtml = "\n<p>\n  <button id=\"genUrlBtn\" class=\"smallBtn\" type=\"button\">Generate permanent link</button> <input type=\"text\" id=\"urlOutput\" size=\"70\"/>\n</p>\n\n<p>Click above to create a permanent link to your\nvisualization (<a href=\"https://www.youtube.com/watch?v=h4q3UKdEFKE\" target=\"_blank\">video demo</a>).</p>\n\n<div id=\"embedLinkDiv\">\n<p>\n  <button id=\"genEmbedBtn\" class=\"smallBtn\" type=\"button\">Generate embed code</button> <input type=\"text\" id=\"embedCodeOutput\" size=\"70\"/>\n</p>\n\n<p>To embed this visualization in your webpage, click the 'Generate\nembed code' button above and paste the resulting HTML code into your\nwebpage. Adjust the height and width parameters and\nchange the link to <b>https://</b> if needed.</p>\n</div>\n\n<p style=\"margin-top: 25px;\">\n<a href=\"http://pythontutor.com/\">Python Tutor</a> (<a href=\"https://github.com/pgbovine/OnlinePythonTutor\">code on GitHub</a>) supports seven\nlanguages (despite its name!):</p>\n\n<p>1. Python <a href=\"https://docs.python.org/2.7/\">2.7</a> and <a\nhref=\"https://docs.python.org/3.6/\">3.6</a> with these limited module\nimports:\n\n__future__, abc, array, bisect, calendar,\ncmath, collections, copy, datetime, decimal,\ndoctest, fractions, functools, hashlib, heapq,\nio, itertools, json, locale, math,\noperator, pickle, pprint, random, re,\nstring, time, types, unittest, StringIO (Python 2), typing (Python 3).\n\n(There is also an experimental version of Python 3.6 with <a\nhref=\"https://docs.anaconda.com/anaconda/\">Anaconda</a>, which lets\nyou import many more modules.)\n\n<a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v5-unity\">Backend source code</a>.\n</p>\n\n<p>2. Java using Oracle's Java 8. The original <a\nhref=\"http://cscircles.cemc.uwaterloo.ca/java_visualize/\">Java\nvisualizer</a> was created by <a href=\"https://github.com/daveagp\">David Pritchard</a> and Will Gwozdz.\nIt supports\n<code><a href=\"http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdIn.html\">StdIn</a></code>, \n<code><a href=\"http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdOut.html\">StdOut</a></code>, \nmost other <a href=\"http://introcs.cs.princeton.edu/java/stdlib\"><tt>stdlib</tt> libraries</a>,\n<a href=\"http://introcs.cs.princeton.edu/java/43stack/Stack.java.html\"><tt>Stack</tt></a>,\n<a href=\"http://introcs.cs.princeton.edu/java/43stack/Queue.java.html\"><tt>Queue</tt></a>,\nand <a href=\"http://introcs.cs.princeton.edu/java/44st/ST.java.html\"><tt>ST</tt></a>.\n(To access Java's built-in <tt>Stack</tt>/<tt>Queue</tt> classes, write\n<tt>import java.util.Stack;</tt> &mdash; note, <tt>import\njava.util.*;</tt> won't work.)\n<a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/java\">Backend\nsource code</a>.</p>\n\n<p>3. JavaScript ES6 running in Node.js v6.0.0. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript\">Backend\nsource code</a>.</p>\n\n<p>4. <a href=\"http://www.typescriptlang.org\">TypeScript</a> 1.4.1 running in Node.js v6.0.0. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript\">Backend\nsource code</a>.</p>\n\n<p>5. Ruby 2 using MRI 2.2.2. <a\nhref=\"https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/ruby\">Backend\nsource code</a>.</p>\n\n<p>6. C using gcc 4.8, C11, and Valgrind Memcheck.\n<a href=\"https://github.com/pgbovine/opt-cpp-backend\">Backend source code</a>.</p>\n\n<p>7. C++ using gcc 4.8, C++11, and Valgrind Memcheck.\n<a href=\"https://github.com/pgbovine/opt-cpp-backend\">Backend source code</a>.</p>\n" + exports.privacyAndEndingHTML;
 
@@ -22918,15 +22936,24 @@ exports.footerHtml = "\n<p>\n  <button id=\"genUrlBtn\" class=\"smallBtn\" type=
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+/* WEBPACK VAR INJECTION */(function($) {
+// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
-
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(0);
 // just punt and use global script dependencies
 __webpack_require__(38);
@@ -22950,7 +22977,7 @@ var SUBMIT_UPDATE_HISTORY_INTERVAL_MS = 1000 * 60;
 function sanitizeURL(s) {
     return s.replace(/\(/g, '%28').replace(/\)/g, '%29'); // replace ( with %28 and ) with %29 so that links embed well in Markdown and email clients
 }
-var OptFrontend = (function (_super) {
+var OptFrontend = /** @class */ (function (_super) {
     __extends(OptFrontend, _super);
     function OptFrontend(params) {
         if (params === void 0) { params = {}; }
@@ -23289,7 +23316,7 @@ var OptFrontend = (function (_super) {
                     var curTs = new Date().getTime();
                     var uh = args.myViz.updateHistory;
                     pytutor_1.assert(uh.length > 0); // should already be seeded with an initial value
-                    if (uh.length > 1) {
+                    if (uh.length > 1) { // don't try to "compress" the very first entry
                         var lastTs = uh[uh.length - 1][1];
                         // (debounce entries that are less than 1 second apart to
                         // compress the logs a bit when there's rapid scrubbing or scrolling)
@@ -23827,6 +23854,7 @@ if(false) {
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
 // deployed on 2017-05-15:
 var eureka_survey_v1 = "\n  <div id=\"eureka_survey\" style=\"text-align: center; margin-top: 10px; margin-bottom: 15px;\">\n    <div style=\"margin-bottom: 6px;\">Support our research by clicking below whenever you learn something:</div>\n    <button class=\"surveyBtnBig\" type=\"button\">I just cleared up a misunderstanding!</button>\n    <button class=\"surveyBtnBig\" type=\"button\" style=\"margin-left: 12px;\">I just fixed a bug in my code!</button>\n  </div>\n";
 var eureka_prompt_v1 = "What was your misunderstanding or error? (Press 'OK' to submit)";
@@ -23951,15 +23979,24 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADE
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+/* WEBPACK VAR INJECTION */(function($) {
+// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
-
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
 // OPT live programming prototype started on 2016-05-30
 // first launched as a "Live Programming Mode" button on main OPT site
 // on 2016-06-08, working for Python 2/3 and JavaScript for starters
@@ -24012,7 +24049,7 @@ __webpack_require__(39);
 __webpack_require__(40);
 __webpack_require__(43);
 var optLiveFrontend;
-var OptLiveFrontend = (function (_super) {
+var OptLiveFrontend = /** @class */ (function (_super) {
     __extends(OptLiveFrontend, _super);
     function OptLiveFrontend(params) {
         var _this = _super.call(this, params) || this;
@@ -24339,7 +24376,7 @@ var OptLiveFrontend = (function (_super) {
                 var curTs = new Date().getTime();
                 var uh = args.myViz.updateHistory;
                 pytutor_1.assert(uh.length > 0); // should already be seeded with an initial value
-                if (uh.length > 1) {
+                if (uh.length > 1) { // don't try to "compress" the very first entry
                     var lastTs = uh[uh.length - 1][1];
                     // (debounce entries that are less than 1 second apart to
                     // compress the logs a bit when there's rapid scrubbing or scrolling)
@@ -24545,6 +24582,8 @@ var OptLiveFrontend = (function (_super) {
                     options_json: JSON.stringify(backendOptionsObj) },
                 success: execCallback,
             });
+            // TODO: we currently don't use backupHttpServerRoot like we do in opt-frontend-common.ts
+            // maybe we should add support for it here too
         }
         else {
             if (pyState === '2' || pyState === '3') {

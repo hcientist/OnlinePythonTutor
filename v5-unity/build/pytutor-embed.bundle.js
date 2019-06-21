@@ -551,10 +551,11 @@ function updateLink (link, options, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($, jQuery) {// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+/* WEBPACK VAR INJECTION */(function($, jQuery) {
+// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
-
+Object.defineProperty(exports, "__esModule", { value: true });
 /* TODO:
 
 - substitute in a non-live version of the live editor from opt-live.js
@@ -621,7 +622,7 @@ var newlineAllRegex = new RegExp('\n', 'g');
 var doubleQuoteAllRegex = new RegExp('\"', 'g');
 var tabAllRegex = new RegExp("\t", 'g');
 // the main event!
-var ExecutionVisualizer = (function () {
+var ExecutionVisualizer = /** @class */ (function () {
     // Constructor with an ever-growing feature-crepped list of options :)
     // domRootID is the string ID of the root element where to render this instance
     //
@@ -908,6 +909,8 @@ var ExecutionVisualizer = (function () {
             base.find('#codeFooterDocs').hide(); // cut out extraneous docs
         }
         else {
+            // also display credits: nevermind
+            //base.append('<div style="font-size: 9pt; margin-top: 5px; margin-bottom: 10px;">Created by <a href="https://twitter.com/pgbovine" target="_blank">@pgbovine</a></div>');
         }
         // not enough room for these extra buttons ...
         if (this.params.codeDivWidth &&
@@ -929,7 +932,7 @@ var ExecutionVisualizer = (function () {
             resize: function (event, ui) {
                 _this.domRoot.find("#codeDisplayDiv").css("height", "auto"); // redetermine height if necessary
                 _this.navControls.renderSliderBreakpoints(_this.sortedBreakpointsList); // update breakpoint display accordingly on resize
-                if (_this.params.updateOutputCallback)
+                if (_this.params.updateOutputCallback) // report size change
                     _this.params.updateOutputCallback(_this);
             }
         });
@@ -1040,6 +1043,10 @@ var ExecutionVisualizer = (function () {
         if (this.sortedBreakpointsList.length == 0) {
             return -1;
         }
+        // usability hack: if you're currently on a breakpoint, then
+        // single-step forward to the next execution point, NOT the next
+        // breakpoint. it's often useful to see what happens when the line
+        // at a breakpoint executes.
         else if ($.inArray(c, this.sortedBreakpointsList) >= 0) {
             return c + 1;
         }
@@ -1049,7 +1056,7 @@ var ExecutionVisualizer = (function () {
                 var next = this.sortedBreakpointsList[i + 1];
                 if (c < cur)
                     return cur;
-                if (cur <= c && c < next)
+                if (cur <= c && c < next) // subtle
                     return next;
             }
             // final edge case:
@@ -1151,7 +1158,7 @@ var ExecutionVisualizer = (function () {
                 myViz.navControls.showError(myViz.curLineExceptionMsg);
             }
         }
-        else if (!this.instrLimitReached) {
+        else if (!this.instrLimitReached) { // ugly, I know :/
             myViz.navControls.showError(null);
         }
         // finally, render all of the data structures
@@ -1488,22 +1495,22 @@ var ExecutionVisualizer = (function () {
         // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
         return (PO <= LO) && (LO < (PO + H - 25));
     };
+    ExecutionVisualizer.curVisualizerID = 1;
+    ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH = 350;
+    ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT = 400;
+    // always nest values of these types within objects to make the
+    // visualization look cleaner:
+    // - functions should be nested within heap objects since that's a more
+    //   intuitive rendering for methods (i.e., functions within objects)
+    // - lots of special cases for function/property-like python types that we should inline
+    ExecutionVisualizer.DEFAULT_ALWAYS_NEST_TYPES = ['FUNCTION', 'JS_FUNCTION',
+        'property', 'classmethod', 'staticmethod', 'builtin_function_or_method',
+        'member_descriptor', 'getset_descriptor', 'method_descriptor', 'wrapper_descriptor'];
     return ExecutionVisualizer;
 }()); // END class ExecutionVisualizer
-ExecutionVisualizer.curVisualizerID = 1;
-ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_WIDTH = 350;
-ExecutionVisualizer.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT = 400;
-// always nest values of these types within objects to make the
-// visualization look cleaner:
-// - functions should be nested within heap objects since that's a more
-//   intuitive rendering for methods (i.e., functions within objects)
-// - lots of special cases for function/property-like python types that we should inline
-ExecutionVisualizer.DEFAULT_ALWAYS_NEST_TYPES = ['FUNCTION', 'JS_FUNCTION',
-    'property', 'classmethod', 'staticmethod', 'builtin_function_or_method',
-    'member_descriptor', 'getset_descriptor', 'method_descriptor', 'wrapper_descriptor'];
 exports.ExecutionVisualizer = ExecutionVisualizer;
 // implements the data structure visualization for an entire trace
-var DataVisualizer = (function () {
+var DataVisualizer = /** @class */ (function () {
     function DataVisualizer(owner, domRoot, domRootD3) {
         this.classAttrsHidden = {}; // kludgy hack for 'show/hide attributes' for class objects
         this.owner = owner;
@@ -1691,7 +1698,7 @@ var DataVisualizer = (function () {
                 for (var i = 0; i < curLayout.length; i++) {
                     var row = curLayout[i];
                     var index = row.indexOf(id);
-                    if (index > 0) {
+                    if (index > 0) { // index of 0 is impossible since it's the row ID tag
                         return { row: row, index: index };
                     }
                 }
@@ -1842,7 +1849,7 @@ var DataVisualizer = (function () {
                         //  entry right before the 2 to form ['row1', 3, 2, 1])
                         if (newRow.length > 1) {
                             var args = [foundIndex, 0];
-                            for (var i = 1; i < newRow.length; i++) {
+                            for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
                                 args.push(newRow[i]);
                                 idsToRemove.remove(newRow[i]);
                             }
@@ -1869,7 +1876,7 @@ var DataVisualizer = (function () {
                     if (newRow.length > 0) {
                         if (curRow && curRow.length > 0) {
                             // append onto the END of curRow if it exists
-                            for (var i = 1; i < newRow.length; i++) {
+                            for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
                                 curRow.push(newRow[i]);
                             }
                         }
@@ -1892,7 +1899,7 @@ var DataVisualizer = (function () {
                             curLayout.push($.extend(true /* make a deep copy */, [], newRow));
                         }
                         // regardless, newRow is now accounted for, so clear it
-                        for (var i = 1; i < newRow.length; i++) {
+                        for (var i = 1; i < newRow.length; i++) { // ignore row ID tag
                             idsToRemove.remove(newRow[i]);
                         }
                         newRow.splice(0, newRow.length); // kill it!
@@ -1930,7 +1937,7 @@ var DataVisualizer = (function () {
             // iterate through all globals and ordered stack frames and call updateCurLayout
             $.each(curEntry.ordered_globals, function (i, varname) {
                 var val = curEntry.globals[varname];
-                if (val !== undefined) {
+                if (val !== undefined) { // might not be defined at this line, which is OKAY!
                     // TODO: try to unify this behavior between C/C++ and other languages:
                     if (myViz.isCppMode()) {
                         updateCurLayoutAndRecurse(val);
@@ -1963,7 +1970,7 @@ var DataVisualizer = (function () {
                 var idInt = Number(id); // keys are stored as strings, so convert!!!
                 $.each(curLayout, function (rownum, row) {
                     var ind = row.indexOf(idInt);
-                    if (ind > 0) {
+                    if (ind > 0) { // remember that index 0 of the row is the row ID tag
                         row.splice(ind, 1);
                     }
                 });
@@ -2130,6 +2137,7 @@ var DataVisualizer = (function () {
         });
         // insert new heap rows
         heapRows.enter().append('table')
+            //.each(function(objLst, i) {console.log('NEW ROW:', objLst, i);})
             .attr('id', function (d, i) { return 'heapRow' + i; }) // add unique ID
             .attr('class', 'heapRow');
         // delete a heap row
@@ -2142,6 +2150,7 @@ var DataVisualizer = (function () {
             .remove();
         // update an existing heap row
         var toplevelHeapObjects = heapRows
+            //.each(function(objLst, i) { console.log('UPDATE ROW:', objLst, i); })
             .selectAll('td.toplevelHeapObject')
             .data(function (d, i) { return d.slice(1, d.length); }, /* map over each row, skipping row ID tag */ function (objID) { return objID; } /* each object ID is unique for constancy */);
         // insert a new toplevelHeapObject
@@ -2214,7 +2223,7 @@ var DataVisualizer = (function () {
         $.each(curEntry.ordered_globals, function (i, varname) {
             var val = curEntry.globals[varname];
             // (use '!==' to do an EXACT match against undefined)
-            if (val !== undefined) {
+            if (val !== undefined) { // might not be defined at this line, which is OKAY!
                 realGlobalsLst.push(varname);
             }
         });
@@ -2284,6 +2293,7 @@ var DataVisualizer = (function () {
                         $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
                         assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(varDivID));
                         myViz.jsPlumbManager.connectionEndpointIDs.set(varDivID, heapObjID);
+                        //console.log('STACK->HEAP', varDivID, heapObjID);
                     }
                 }
             }
@@ -2325,6 +2335,7 @@ var DataVisualizer = (function () {
             return d.is_zombie ? myViz.owner.generateID("zombie_stack" + i)
                 : myViz.owner.generateID("stack" + i);
         })
+            // HTML5 custom data attributes
             .attr('data-frame_id', function (frame, i) { return frame.frame_id; })
             .attr('data-parent_frame_id', function (frame, i) {
             return (frame.parent_frame_id_list.length > 0) ? frame.parent_frame_id_list[0] : null;
@@ -2475,6 +2486,7 @@ var DataVisualizer = (function () {
                         $(this).append('<div class="stack_pointer" id="' + varDivID + '">&nbsp;</div>');
                         assert(!myViz.jsPlumbManager.connectionEndpointIDs.has(varDivID));
                         myViz.jsPlumbManager.connectionEndpointIDs.set(varDivID, heapObjID);
+                        //console.log('STACK->HEAP', varDivID, heapObjID);
                     }
                 }
             }
@@ -2678,8 +2690,11 @@ var DataVisualizer = (function () {
                     //c.endpoints[1].setVisible(false, true, true); // JUST set right endpoint to be invisible
                     $(c.canvas).css("z-index", 1000); // ... and move it to the VERY FRONT
                 }
+                // for heap->heap connectors
                 else if (myViz.jsPlumbManager.heapConnectionEndpointIDs.has(c.endpoints[0].elementId)) {
+                    // NOP since it's already the color and style we set by default
                 }
+                // TODO: maybe this needs special consideration for C/C++ code? dunno
                 else if (stackFrameDiv.length > 0) {
                     // else unhighlight it
                     // (only if c.source actually belongs to a stackFrameDiv (i.e.,
@@ -2800,6 +2815,7 @@ var DataVisualizer = (function () {
                         var literalStr = obj[3];
                         if (literalStr === '<UNINITIALIZED>') {
                             rep = '<span class="cdataUninit">?</span>';
+                            //rep = '\uD83D\uDCA9'; // pile of poo emoji
                         }
                         else if (literalStr == '<UNALLOCATED>') {
                             rep = '\uD83D\uDC80'; // skull emoji
@@ -3091,7 +3107,7 @@ var DataVisualizer = (function () {
                 });
             }
         }
-        else if (obj[0] == 'JS_FUNCTION') {
+        else if (obj[0] == 'JS_FUNCTION') { /* TODO: refactor me */
             // JavaScript function
             assert(obj.length == 5);
             var funcName = htmlspecialchars(obj[1]);
@@ -3267,7 +3283,7 @@ var DataVisualizer = (function () {
     };
     return DataVisualizer;
 }()); // END class DataVisualizer
-var ProgramOutputBox = (function () {
+var ProgramOutputBox = /** @class */ (function () {
     function ProgramOutputBox(owner, domRoot, heightOverride) {
         if (heightOverride === void 0) { heightOverride = null; }
         // how many *maximum* lines get printed to stdout in the entire trace?
@@ -3325,7 +3341,7 @@ var ProgramOutputBox = (function () {
     };
     return ProgramOutputBox;
 }()); // END class ProgramOutputBox
-var CodeDisplay = (function () {
+var CodeDisplay = /** @class */ (function () {
     function CodeDisplay(owner, domRoot, domRootD3, codToDisplay, lang, editCodeBaseURL) {
         this.leftGutterSvgInitialized = false;
         this.owner = owner;
@@ -3674,7 +3690,7 @@ var CodeDisplay = (function () {
     };
     return CodeDisplay;
 }()); // END class CodeDisplay
-var NavigationController = (function () {
+var NavigationController = /** @class */ (function () {
     function NavigationController(owner, domRoot, domRootD3, nSteps) {
         var _this = this;
         this.owner = owner;
@@ -22245,10 +22261,11 @@ module.exports = __webpack_amd_options__;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+/* WEBPACK VAR INJECTION */(function($) {
+// Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
-
+Object.defineProperty(exports, "__esModule", { value: true });
 var pytutor_1 = __webpack_require__(4);
 var allVisualizers = [];
 function redrawAllVisualizerArrows() {

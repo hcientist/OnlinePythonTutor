@@ -75,6 +75,7 @@ To get started, install:
 
 3) Run "npm install" in this directory to install node dependencies
 4) Run "tsd install" in this directory to install TypeScript definition files
+  [NB: no longer seems to work as of 2019-06-10]
 
 5) do this near the end, i think
   npm link webpack            # link to the local node_modules/ dir
