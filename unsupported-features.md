@@ -6,6 +6,7 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 
 - **If you don't receive a reply from me, assume that your issue will NOT be addressed**. Please do not email me multiple times.
 - I can't provide technical support for users who want to install Python Tutor locally on their own computers or host it on their own servers.
+- I am not accepting any code contributions or GitHub pull requests at this time. Feel free to fork the code and do whatever you like with it, as long as you abide by its software licenses.
 - I can't provide support for Python Tutor code that's embedded within other people's websites, such as class websites or online tutorials. Contact the people in charge of those websites for help.
 
 ---
