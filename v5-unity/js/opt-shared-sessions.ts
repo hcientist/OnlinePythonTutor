@@ -773,6 +773,12 @@ Get live help!
               return true; // ALWAYS cause the link to be clicked
             });
             */
+
+            // 2019-08-26 added this message:
+            $(".gotoHelpLink").click(function() {
+              var x = confirm('This site is 100% run by volunteers like you, so thanks for helping! Please be polite and patient with students, but feel free to leave at any time if you do not feel comfortable with the session.\n\nClick OK to join (you may need to enable pop-ups in browser).');
+              return x;
+            });
           } else {
             displayEmptyQueueMsg = true;
           }
@@ -1325,10 +1331,19 @@ Get live help!
         //this.chatbotPostMsg('Someone just joined this session.');
 
         // 2019-04-01: display a more dire warning about server load:
+        /*
         if (this.meCreatedThisSession()) {
           this.chatbotPostMsg('Someone just joined. The server may get slow or crash if too many users join. Use button at top to *make your session private* so nobody else can join.');
         } else {
           this.chatbotPostMsg('Someone just joined. The server may get slow or crash if too many users join.');
+        }
+        */
+
+        // 2019-08-26: altered the message a bit ...
+        if (this.meCreatedThisSession()) {
+          this.chatbotPostMsg('Someone just joined; please be polite since they are volunteering here for free. Server may crash if too many join; use button at top to *make session private* so nobody else can join.');
+        } else {
+          this.chatbotPostMsg('Someone just joined; server may crash if too many users join.');
         }
       }
     });
@@ -1738,7 +1753,9 @@ Get live help!
       $("#requestHelpBtn").hide();
 
       // 2019-03-26: display a more prominent warning here:
-      this.chatbotPostMsg('This service is NOT being maintained, so it may crash any time and lose your code. It is available for free with no technical support. Do not contact the site owner to make any feature requests.');
+      //this.chatbotPostMsg('This service is NOT being maintained, so it may crash any time and lose your code. It is available for free with no technical support. Do not contact the site owner to make any feature requests.');
+      // 2019-08-26: updated message
+      this.chatbotPostMsg('Welcome! This service is free with no technical support and no quality guarantees of any kind. Please do NOT contact the site owner to make any requests about this service.');
     } else {
       alert("ERROR in getting live help. This isn't working at the moment. Please try again later.");
       if (TogetherJS.running) {
