@@ -73,6 +73,7 @@ For more details on project status and issue prioritization, check out these vid
 - If you're behind some kinds of firewalls or proxy servers, the visualizer may not work
 - User accounts, login, authentication, or integration with other third-party sites
 - URL shortening (use a third-party URL shortener service)
+- https iframe embedding with non-Python languages
 
 Look through these issue trackers for more known bugs and unsupported features:
 - https://github.com/pgbovine/OnlinePythonTutor/issues
