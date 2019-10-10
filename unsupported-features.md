@@ -15,6 +15,16 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 [Python Tutor](http://pythontutor.com/) currently does *not* support the following features:
 
 
+### Python
+
+- some infinite loops: the server times out without showing partial results or good error messages
+  - to cut down execution times, [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
+- random number generators and user input (via input() or raw_input()) [sometimes don't work well together](https://github.com/pgbovine/OnlinePythonTutor/issues/110)
+- you can't rely on the behaviors of `id()` or `is` matching CPython on your computer; note that when teaching beginners, you shouldn't rely on these behaviors since they aren't part of the Python language spec (they're implementation-specific optimizations).
+  - for details, see GitHub issues [here](https://github.com/pgbovine/OnlinePythonTutor/issues/275) and [here](https://github.com/pgbovine/OnlinePythonTutor/issues/273) and [here](https://github.com/pgbovine/OnlinePythonTutor/issues/255)
+- no 3rd-party library/module support: use the experimental "Python 3.6 with <a href="https://docs.anaconda.com/anaconda/">Anaconda</a>" mode if you want to import many more modules from the Anaconda distribution
+
+
 ### C and C++
 
 - unions
@@ -27,6 +37,7 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 - [stack arrays without compile-time sizes](https://github.com/pgbovine/opt-cpp-backend/issues/44)
 - [read-only memory isn't visualized separately from the heap](https://github.com/pgbovine/opt-cpp-backend/issues/70)
 
+
 ### JavaScript
 
 - asynchronous and event-driven code
@@ -34,16 +45,6 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
   - promises, async/await
 - anything that operates on webpages, such as DOM manipulation, alert(), prompt(), confirm(), etc.
 - Date() object
-
-
-### Python
-
-- some infinite loops: the server times out without showing partial results or good error messages
-  - to cut down execution times, [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
-- random number generators and user input (via input() or raw_input()) [sometimes don't work well together](https://github.com/pgbovine/OnlinePythonTutor/issues/110)
-- you can't rely on the behaviors of `id()` or `is` matching CPython on your computer; note that when teaching beginners, you shouldn't rely on these behaviors since they aren't part of the Python language spec (they're implementation-specific optimizations).
-  - [see GitHub issue here](https://github.com/pgbovine/OnlinePythonTutor/issues/275) and [here](https://github.com/pgbovine/OnlinePythonTutor/issues/273)
-- no 3rd-party library/module support: use the experimental "Python 3.6 with <a href="https://docs.anaconda.com/anaconda/">Anaconda</a>" mode if you want to import many more modules from the Anaconda distribution
 
 
 ### Other unsupported features (language-agnostic)
@@ -54,7 +55,8 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 - Multi-threaded, concurrent, or asynchronous code
   - Python Tutor is only for regular single-threaded execution
 - Anything involving GUI programming or GUI/webpage components
-- Reading data from external files; put all your data in strings when possible
+- Reading data from external files (put all your data in strings when possible)
+- Editing multiple source code files (Python Tutor is *not* a replacement for an IDE)
 - Interfacing with databases, network, filesystem, or other external resources
 - Importing external 3rd-party libraries (try "Python 3.6 with Anaconda (experimental)" if you want to use more libraries)
 - Code that is too large in size. Python Tutor isn't meant for running large amounts of code, so shorten your code!
