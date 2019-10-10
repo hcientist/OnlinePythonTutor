@@ -32,6 +32,7 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 - taking text input from the user using scanf(), cin >>, etc.
 - code with memory-related errors: it will fail-fast using [Valgrind
   Memcheck](http://valgrind.org/docs/manual/mc-manual.html)
+- C++ STL and string objects aren't visualized nicely (see [GitHub issue](https://github.com/pgbovine/OnlinePythonTutor/issues/256))
 - [doesn't show when function parameters get mutated](https://github.com/pgbovine/opt-cpp-backend/issues/57)
 - [function return values are not visualized](https://github.com/pgbovine/opt-cpp-backend/issues/4)
 - [stack arrays without compile-time sizes](https://github.com/pgbovine/opt-cpp-backend/issues/44)
@@ -47,6 +48,11 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 - Date() object
 
 
+### Java
+
+- some data structures like ArrayList aren't visualized properly (see [GitHub issue](https://github.com/pgbovine/OnlinePythonTutor/issues/236))
+
+
 ### Other unsupported features (language-agnostic)
 
 - Stepping *within* a line of code to show how subexpressions get evaluated within that line
@@ -56,7 +62,6 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
   - Python Tutor is only for regular single-threaded execution
 - Anything involving GUI programming or GUI/webpage components
 - Reading data from external files (put all your data in strings when possible)
-- Editing multiple source code files (Python Tutor is *not* a replacement for an IDE)
 - Interfacing with databases, network, filesystem, or other external resources
 - Importing external 3rd-party libraries (try "Python 3.6 with Anaconda (experimental)" if you want to use more libraries)
 - Code that is too large in size. Python Tutor isn't meant for running large amounts of code, so shorten your code!
@@ -69,6 +74,8 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 - https iframe embedding with non-Python languages
 - Other languages are not likely to get supported at this point due to lack of time
 - Standalone application or offline mode (you can try to install it yourself but I don't have time to provide tech support for local installations)
+- Editing multiple source code files (Python Tutor is *not* a replacement for an IDE)
+- Integration with other programming environments like Jupyter Notebooks, IDEs, text editors, etc.
 
 Look through these issue trackers for more known bugs and unsupported features:
 - https://github.com/pgbovine/OnlinePythonTutor/issues
