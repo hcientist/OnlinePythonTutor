@@ -74,6 +74,8 @@ For more details on project status and issue prioritization, check out these vid
 - User accounts, login, authentication, or integration with other third-party sites
 - URL shortening (use a third-party URL shortener service)
 - https iframe embedding with non-Python languages
+- Other languages are not likely to get supported at this point due to lack of time
+- Standalone application or offline mode (you can try to install it yourself but I don't have time to provide tech support for local installations)
 
 Look through these issue trackers for more known bugs and unsupported features:
 - https://github.com/pgbovine/OnlinePythonTutor/issues
