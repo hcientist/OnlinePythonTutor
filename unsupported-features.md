@@ -17,11 +17,11 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 
 ### Python
 
+- for strings and numbers, you can't rely on the behaviors of `id()` or `is` matching CPython on your computer; note that when teaching beginners, you shouldn't rely on these behaviors since they aren't part of the Python language spec (they're implementation-specific optimizations).
+  - for details, see GitHub issues [here](https://github.com/pgbovine/OnlinePythonTutor/issues/275) and [here](https://github.com/pgbovine/OnlinePythonTutor/issues/273) and [here](https://github.com/pgbovine/OnlinePythonTutor/issues/255)
 - some infinite loops: the server times out without showing partial results or good error messages
   - to cut down execution times, [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
 - random number generators and user input (via input() or raw_input()) [sometimes don't work well together](https://github.com/pgbovine/OnlinePythonTutor/issues/110)
-- you can't rely on the behaviors of `id()` or `is` matching CPython on your computer; note that when teaching beginners, you shouldn't rely on these behaviors since they aren't part of the Python language spec (they're implementation-specific optimizations).
-  - for details, see GitHub issues [here](https://github.com/pgbovine/OnlinePythonTutor/issues/275) and [here](https://github.com/pgbovine/OnlinePythonTutor/issues/273) and [here](https://github.com/pgbovine/OnlinePythonTutor/issues/255)
 - no 3rd-party library/module support: use the experimental "Python 3.6 with <a href="https://docs.anaconda.com/anaconda/">Anaconda</a>" mode if you want to import many more modules from the Anaconda distribution
 
 
