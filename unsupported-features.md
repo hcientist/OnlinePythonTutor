@@ -23,7 +23,7 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
   - to cut down execution times, [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
 - random number generators and user input (via input() or raw_input()) [sometimes don't work well together](https://github.com/pgbovine/OnlinePythonTutor/issues/110)
 - no 3rd-party library/module support: use the experimental "Python 3.6 with <a href="https://docs.anaconda.com/anaconda/">Anaconda</a>" mode if you want to import many more modules from the Anaconda distribution
-
+- raw_input/input might not work in iframe embeds
 
 ### C and C++
 
@@ -56,7 +56,7 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 ### Other unsupported features (language-independent)
 
 - Stepping *within* a line of code to show how subexpressions get evaluated within that line
-- Unicode doesn't work too well (especially for Ruby and Python 2, @124, @194); use ASCII characters when possible
+- Unicode doesn't work all the time (especially for Ruby https://github.com/pgbovine/OnlinePythonTutor/issues/134 and Python 2 https://github.com/pgbovine/OnlinePythonTutor/issues/77, https://github.com/pgbovine/OnlinePythonTutor/issues/124, https://github.com/pgbovine/OnlinePythonTutor/issues/194); use ASCII characters when possible
 - Passing in command-line arguments via argv[] array
 - Multi-threaded, concurrent, or asynchronous code
   - Python Tutor is only for regular single-threaded execution
