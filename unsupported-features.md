@@ -17,7 +17,7 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 
 ### Python
 
-- for strings and numbers, you can't rely on the behaviors of `id()` or `is` matching CPython on your computer; note that when teaching beginners, you shouldn't rely on these behaviors since they aren't part of the Python language spec (they're implementation-specific optimizations).
+- for strings and numbers, you can't rely on the behaviors of `id()` or `is` matching CPython on your computer; when teaching beginners, you shouldn't rely on these behaviors since they are implementation-specific optimizations.
   - for details, see GitHub issues [here](https://github.com/pgbovine/OnlinePythonTutor/issues/275) and [here](https://github.com/pgbovine/OnlinePythonTutor/issues/273) and [here](https://github.com/pgbovine/OnlinePythonTutor/issues/255)
 - some infinite loops: the server times out without showing partial results or good error messages
   - to cut down execution times, [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
@@ -53,7 +53,7 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 - some data structures like ArrayList aren't visualized properly (see [GitHub issue](https://github.com/pgbovine/OnlinePythonTutor/issues/236))
 
 
-### Other unsupported features (language-agnostic)
+### Other unsupported features (language-independent)
 
 - Stepping *within* a line of code to show how subexpressions get evaluated within that line
 - Unicode doesn't work well in general (especially for Ruby and Python 2); use ASCII characters when possible
@@ -71,9 +71,9 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 - If you're behind some kinds of firewalls or proxy servers, the visualizer or live chat may not work
 - User accounts, login, authentication, or integration with other third-party sites
 - URL shortening (you should use your own third-party URL shortener service)
-- https iframe embedding with non-Python languages
+- https iframe embedding with non-Python languages (iframe embed should work for Python if you use `https://` for URL)
 - Other languages are not likely to get supported at this point due to lack of time
-- Standalone application or offline mode (you can try to install it yourself but I don't have time to provide tech support for local installations)
+- Standalone application or offline mode (you can download the code and install it yourself but I don't have time to provide tech support for local installations)
 - Editing multiple source code files (Python Tutor is *not* a replacement for an IDE)
 - Integration with other programming environments like Jupyter Notebooks, IDEs, text editors, etc.
 
