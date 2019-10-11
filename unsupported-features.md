@@ -56,7 +56,7 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 ### Other unsupported features (language-independent)
 
 - Stepping *within* a line of code to show how subexpressions get evaluated within that line
-- Unicode doesn't work well in general (especially for Ruby and Python 2); use ASCII characters when possible
+- Unicode doesn't work too well (especially for Ruby and Python 2, @124, @194); use ASCII characters when possible
 - Passing in command-line arguments via argv[] array
 - Multi-threaded, concurrent, or asynchronous code
   - Python Tutor is only for regular single-threaded execution
