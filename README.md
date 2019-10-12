@@ -2,14 +2,10 @@ Python Tutor -- http://pythontutor.com/ -- helps people overcome a fundamental b
 
 This tool was created by [Philip Guo](http://pgbovine.net/) in January 2010. [See project history](history.txt).
 
+[List of unsupported features and known bugs](https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md)
+
 The latest development version of the code is in [v5-unity](v5-unity/),
 although lots of legacy documentation still resides in [v3](v3/).
-
-- [Unsupported features and known bugs](https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md)
-- [Frequently Asked Questions](v3/docs/user-FAQ.md)
-- [Overview for Developers](v3/docs/developer-overview.md)
-
-All documentation is viewable online at: https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3/docs
 
 
 ### Quick Start
