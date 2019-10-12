@@ -106,10 +106,10 @@ http://pythontutor.com/visualize.html#heapPrimitives=true&textReferences=true
 
 Of course! Toggle options are customizable via the query string. Here are the default settings:
 
-http://pythontutor.com/visualize.html#cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=2
+http://pythontutor.com/visualize.html#cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=3
 
-For example, if you want to default to Python 3, visit:
-http://pythontutor.com/visualize.html#&py=3
+For example, if you want to default to C, visit:
+http://pythontutor.com/visualize.html#&py=c
 
 Or Java:
 http://pythontutor.com/visualize.html#&py=java
@@ -121,8 +121,3 @@ http://pythontutor.com/visualize.html#heapPrimitives=true&textReferences=true
 #### Can I iframe-embed using https?
 
 Yes, only for Python, though. Change the embed URL from http:// to https:// and it should hopefully work.
-
-#### Can I run my own version offline without Internet access?
-
-Yes, if you care about only Python. See the directions in [Overview for Developers](developer-overview.md). Unfortunately, this is much harder to do for other languages, since they use backends that are in v4-cokapi/ that communicate with the visualizer in more complex ways.
-
