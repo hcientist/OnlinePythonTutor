@@ -7,6 +7,7 @@
 This free service is maintained by one volunteer in my spare time, so I'm unable to respond to most bug reports and feature requests. Your issue is likely listed here. If you're sure it's not here, [email me](http://pgbovine.net/email-policy.htm) and use the "Generate permanent link" button to include a URL of your code.
 
 - **If you don't receive a reply from me, assume that your issue will NOT be addressed**. Please do not email me multiple times.
+- Do not email me to ask for programming help; use the "Get live help!" button on the website.
 - I can't provide technical support for users who want to install Python Tutor locally on their own computers or host it on their own servers.
 - I can't provide support for Python Tutor code that's embedded within other people's websites, such as class websites or online tutorials. Contact the people in charge of those websites for help.
 - I'm not accepting any code contributions or GitHub pull requests at this time. Feel free to fork the code and do whatever you like with it, as long as you abide by its software licenses.
