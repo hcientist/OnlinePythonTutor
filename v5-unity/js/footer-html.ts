@@ -40,36 +40,29 @@ export var footerHtml = `
 </div>
 
 <p style="margin-top: 25px;">
-<a href="http://pythontutor.com/">Python Tutor</a> (<a href="https://github.com/pgbovine/OnlinePythonTutor">code on GitHub</a>) currently supports:</p>
+<a href="http://pythontutor.com/">Python Tutor</a> (<a href="https://github.com/pgbovine/OnlinePythonTutor">code on GitHub</a>) supports:
 
-<p>Python <a href="https://docs.python.org/3.6/">3.6</a> and <a
-href="https://docs.python.org/2.7/">2.7</a> with limited module imports:
-
-__future__, abc, array, bisect, calendar,
+Python <a href="https://docs.python.org/3.6/">3.6</a> and <a
+href="https://docs.python.org/2.7/">2.7</a> with limited imports
+(__future__, abc, array, bisect, calendar,
 cmath, collections, copy, datetime, decimal,
 doctest, fractions, functools, hashlib, heapq,
 io, itertools, json, locale, math,
 operator, pickle, pprint, random, re,
-string, time, types, unittest, StringIO (Python 2), typing (Python 3).
+string, time, types, unittest, StringIO (Python 2), typing (Python 3)),
 
-<p>Java using Oracle's Java 8. The official <a
-href="http://cscircles.cemc.uwaterloo.ca/java_visualize/">Java
-visualizer</a> was created by <a href="https://github.com/daveagp">David Pritchard</a> and Will Gwozdz.
-It supports
+Oracle Java 8 (implemented by <a href="https://github.com/daveagp">David Pritchard</a> and Will Gwozdz,
+supports
 <code><a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdIn.html">StdIn</a></code>, 
 <code><a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdOut.html">StdOut</a></code>, 
 most other <a href="http://introcs.cs.princeton.edu/java/stdlib"><tt>stdlib</tt> libraries</a>,
 <a href="http://introcs.cs.princeton.edu/java/43stack/Stack.java.html"><tt>Stack</tt></a>,
 <a href="http://introcs.cs.princeton.edu/java/43stack/Queue.java.html"><tt>Queue</tt></a>,
 and <a href="http://introcs.cs.princeton.edu/java/44st/ST.java.html"><tt>ST</tt></a>.
-(To access Java's built-in <tt>Stack</tt>/<tt>Queue</tt> classes, write
-<tt>import java.util.Stack;</tt> &mdash; note, <tt>import
-java.util.*;</tt> won't work.)
-</p>
+To access built-in <tt>Stack</tt>/<tt>Queue</tt> classes, write:
+<tt>import java.util.Stack;</tt> This won't work: <tt>import
+java.util.*;</tt>),
 
-<p>JavaScript ES6 and <a
-href="http://www.typescriptlang.org">TypeScript</a> 1.4.1 (Node.js
-v6.0.0), Ruby 2 (MRI 2.2.2), C and C++ (gcc 4.8, C11/C++11, Valgrind
-Memcheck)</p>
+JavaScript ES6 and TypeScript 1.4.1 (Node.js v6.0.0), Ruby 2 (MRI 2.2.2), C and C++ (gcc 4.8, C11/C++11, Valgrind Memcheck)</p>
 
 ` + privacyAndEndingHTML;

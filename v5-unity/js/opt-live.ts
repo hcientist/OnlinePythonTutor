@@ -132,7 +132,9 @@ export class OptLiveFrontend extends OptFrontend {
       if (this.myVisualizer) {this.myVisualizer.stepForward();}
     });
 
+    // taken down on 2019-10-19 because i really haven't looked at the data for a long time; see surveys.ts
     // put eureka_survey into #eurekaSurveyPane so that it's highly visible
+    /*
     $("#eurekaSurveyPane").append(eureka_survey);
     var that = this;
     $('.surveyBtnBig').click(function(e) {
@@ -151,6 +153,7 @@ export class OptLiveFrontend extends OptFrontend {
         $.get('eureka_survey.py', myArgs, function(dat) {});
       }
     });
+    */
 
     $("#footer").append(privacyAndEndingHTML);
   }
