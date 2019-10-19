@@ -18,7 +18,7 @@ Python Tutor is designed to imitate what an instructor in an introductory progra
 
 (source: UC Berkeley's CS61B course)
 
-It is *not* meant to be a replacement for a professional-quality code debugger or IDE. This means that you should only use it to write **small pieces of self-contained code** that runs for not too many execution steps. After all, an instructor cannot draw hundreds of lines of code, hundreds of data structures and pointers, or show hundreds of execution steps on the blackboard! Also, code in introductory classes usually does not access external libraries or resources.
+It is *not* meant to be a replacement for professional code debuggers or IDEs. This means that you should only use it to write **small pieces of self-contained code** that runs for not too many execution steps. After all, an instructor can't draw hundreds of lines of code, hundreds of data structures and pointers, or hundreds of execution steps on the blackboard! Also, code in introductory classes usually don't access external libraries.
 
 Due to this ultra-focused design, the following features are not supported and will likely *never* be supported:
 
@@ -31,9 +31,10 @@ Due to this ultra-focused design, the following features are not supported and w
 - Interfacing with databases, network, filesystem, or other external resources
 - Anything involving GUI programming or GUI/webpage components
 - Multi-threaded, concurrent, or asynchronous code; Python Tutor is only for regular single-threaded execution
-- Importing external 3rd-party libraries (try "Python 3.6 with Anaconda (experimental)" if you want to use more libraries)
-- Editing multiple source code files (Python Tutor is *not* a replacement for an IDE)
-- Integrating with programming environments like Jupyter Notebooks, IDEs, text editors, etc.
+- Importing external libraries (try "Python 3.6 with Anaconda (experimental)" if you want to use more libraries)
+- Editing multiple source code files (Python Tutor is not an IDE)
+- User accounts, saving code as files in the cloud, or integrating with online services like GitHub
+- Integrating with programming environments like Jupyter Notebooks, IDEs, or text editors
 
 
 **Other unsupported features:**
@@ -87,7 +88,6 @@ Due to this ultra-focused design, the following features are not supported and w
 - URL shortening (you should use your own third-party URL shortener service)
 - https iframe embedding with non-Python languages (iframe embed should work for Python if you use `https://` for URL)
 - Standalone application or offline mode (you can download the code and install it yourself but I don't have time to provide tech support for local installations)
-- User accounts, login, authentication, or integration with other third-party sites
 
 Look through these issue trackers for more known bugs and unsupported features:
 - https://github.com/pgbovine/OnlinePythonTutor/issues
