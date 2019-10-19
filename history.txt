@@ -230,10 +230,14 @@ v5-unity/
     when the user encounters errors, so they will know its limitations:
     https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md
   
-  2018-08 - added some more backup servers to try to improve responsiveness
-  for non-Python language execution
+  2018-08 - added some more backup servers to try to improve
+  responsiveness for non-Python language execution
 
-  2019-04 (around this time) - Put up more warnings throughout the site that
-  there won't be technical support or major new features coming, since I don't have
-  time to maintain its code or server load as well anymore. Disabled "Get live help!"
-  from live.html experimental live programming mode due to too much load on server.
+  2019-04 (around this time) - Put up more warnings throughout the site
+  that there won't be technical support or major new features coming,
+  since I don't have time to maintain its code or server load as well
+  anymore. Disabled "Get live help!" from live.html experimental live
+  programming mode due to too much load on server.
+
+  2019-10 - simplified the UI by removing excess text and also removed
+  the inline Eureka survey (v5-unity/js/surveys.ts)
