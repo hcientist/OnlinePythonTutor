@@ -1,6 +1,6 @@
-### *Python Tutor's server may go down at any time and lose your code. The live chat service may also go down at any time. There is NO technical support.*
+### *Python Tutor's server may go down at any time and lose your code. The live chat service may also go down at any time. There is NO technical support available.*
 
-This service is maintained by one volunteer in my spare time, so I'm unable to respond to most bug reports and feature requests. Your issue is likely listed here. If you're sure it's not here, [email me](http://pgbovine.net/email-policy.htm) and use the "Generate permanent link" button to include a URL of your code.
+This free service is maintained by one volunteer in my spare time, so I'm unable to respond to most bug reports and feature requests. Your issue is likely listed here. If you're sure it's not here, [email me](http://pgbovine.net/email-policy.htm) and use the "Generate permanent link" button to include a URL of your code.
 
 - **If you don't receive a reply from me, assume that your issue will NOT be addressed**. Please do not email me multiple times.
 - I can't provide technical support for users who want to install Python Tutor locally on their own computers or host it on their own servers.
