@@ -88,6 +88,7 @@ Due to this ultra-focused design, the following features are not supported and w
 - URL shortening (you should use your own third-party URL shortener service)
 - https iframe embedding with non-Python languages (iframe embed should work for Python if you use `https://` for URL)
 - Standalone application or offline mode (you can download the code and install it yourself but I don't have time to provide tech support for local installations)
+- Python Tutor is meant for desktop/laptop computers, not for mobile devices. Some features such as live help mode don't work on mobile devices or tablets. The UI also looks too cluttered on small screens.
 
 Look through these issue trackers for more known bugs and unsupported features:
 - https://github.com/pgbovine/OnlinePythonTutor/issues
