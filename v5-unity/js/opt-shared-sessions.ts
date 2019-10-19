@@ -407,7 +407,6 @@ Get live help!
   <button id="sharedSessionBtn" type="button" class="togetherjsBtn" style="font-size: 9pt;">
   Start private chat
   </button>
-  <div style="margin-top: 5px; font-size: 8pt;">(warning: chat service<br/>may crash at any time)</div>
 </div>
 
 <div id="sharedSessionDisplayDiv" style="display: none; margin-right: 5px;">

@@ -34,3 +34,5 @@ var eureka_prompt_v2 = "What was your misunderstanding or error? (Press 'OK' to 
 export var eureka_survey_version = 'v2';
 export var eureka_survey = eureka_survey_v2;
 export var eureka_prompt = eureka_prompt_v2;
+
+// taken down on 2019-10-19 because i really haven't looked at the data for a long time

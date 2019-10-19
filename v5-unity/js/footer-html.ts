@@ -22,31 +22,28 @@ Copyright &copy; <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights 
 
 
 export var footerHtml = `
-<p>
-  <button id="genUrlBtn" class="smallBtn" type="button">Generate permanent link</button> <input type="text" id="urlOutput" size="70"/>
+<p style="margin-top: 20px; margin-bottom: 30px;"><a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md" target="_blank">unsupported features / known bugs</a> |
+<a href="https://www.youtube.com/watch?v=80ztTXP90Vs&list=PLzV58Zm8FuBL2WxxZKGZ6j1dH8NKb_HYI&index=5" target="_blank">setting breakpoints</a> |
+<a href="https://www.youtube.com/watch?v=Mxt9HZWgwAM&list=PLzV58Zm8FuBL2WxxZKGZ6j1dH8NKb_HYI&index=6" target="_blank">hiding variables</a> |
+<a href="https://www.youtube.com/watch?v=JjGt95Te0wo&index=3&list=PLzV58Zm8FuBL2WxxZKGZ6j1dH8NKb_HYI" target="_blank">live programming</a>
 </p>
 
-<p>Click above to create a permanent link to your
-visualization (<a href="https://www.youtube.com/watch?v=h4q3UKdEFKE" target="_blank">video demo</a>).</p>
+<p>
+  <button id="genUrlBtn" class="smallBtn" type="button">Generate permanent link</button> <input type="text" id="urlOutput" size="60"/>
+(<a href="https://www.youtube.com/watch?v=h4q3UKdEFKE" target="_blank">video demo</a>)
+</p>
 
 <div id="embedLinkDiv">
 <p>
-  <button id="genEmbedBtn" class="smallBtn" type="button">Generate embed code</button> <input type="text" id="embedCodeOutput" size="70"/>
+  <button id="genEmbedBtn" class="smallBtn" type="button">Generate embed code</button> <input type="text" id="embedCodeOutput" size="60"/> (also supports https://)
 </p>
-
-<p>To embed this visualization in your webpage, click the 'Generate
-embed code' button above and paste the resulting HTML code into your
-webpage. Adjust the height and width parameters and
-change the link to <b>https://</b> if needed.</p>
 </div>
 
 <p style="margin-top: 25px;">
-<a href="http://pythontutor.com/">Python Tutor</a> (<a href="https://github.com/pgbovine/OnlinePythonTutor">code on GitHub</a>) supports seven
-languages (despite its name!):</p>
+<a href="http://pythontutor.com/">Python Tutor</a> (<a href="https://github.com/pgbovine/OnlinePythonTutor">code on GitHub</a>) currently supports:</p>
 
-<p>1. Python <a href="https://docs.python.org/2.7/">2.7</a> and <a
-href="https://docs.python.org/3.6/">3.6</a> with these limited module
-imports:
+<p>Python <a href="https://docs.python.org/3.6/">3.6</a> and <a
+href="https://docs.python.org/2.7/">2.7</a> with limited module imports:
 
 __future__, abc, array, bisect, calendar,
 cmath, collections, copy, datetime, decimal,
@@ -55,15 +52,7 @@ io, itertools, json, locale, math,
 operator, pickle, pprint, random, re,
 string, time, types, unittest, StringIO (Python 2), typing (Python 3).
 
-(There is also an experimental version of Python 3.6 with <a
-href="https://docs.anaconda.com/anaconda/">Anaconda</a>, which lets
-you import many more modules.)
-
-<a
-href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v5-unity">Backend source code</a>.
-</p>
-
-<p>2. Java using Oracle's Java 8. The original <a
+<p>Java using Oracle's Java 8. The official <a
 href="http://cscircles.cemc.uwaterloo.ca/java_visualize/">Java
 visualizer</a> was created by <a href="https://github.com/daveagp">David Pritchard</a> and Will Gwozdz.
 It supports
@@ -76,25 +65,11 @@ and <a href="http://introcs.cs.princeton.edu/java/44st/ST.java.html"><tt>ST</tt>
 (To access Java's built-in <tt>Stack</tt>/<tt>Queue</tt> classes, write
 <tt>import java.util.Stack;</tt> &mdash; note, <tt>import
 java.util.*;</tt> won't work.)
-<a
-href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/java">Backend
-source code</a>.</p>
+</p>
 
-<p>3. JavaScript ES6 running in Node.js v6.0.0. <a
-href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript">Backend
-source code</a>.</p>
+<p>JavaScript ES6 and <a
+href="http://www.typescriptlang.org">TypeScript</a> 1.4.1 (Node.js
+v6.0.0), Ruby 2 (MRI 2.2.2), C and C++ (gcc 4.8, C11/C++11, Valgrind
+Memcheck)</p>
 
-<p>4. <a href="http://www.typescriptlang.org">TypeScript</a> 1.4.1 running in Node.js v6.0.0. <a
-href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript">Backend
-source code</a>.</p>
-
-<p>5. Ruby 2 using MRI 2.2.2. <a
-href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/ruby">Backend
-source code</a>.</p>
-
-<p>6. C using gcc 4.8, C11, and Valgrind Memcheck.
-<a href="https://github.com/pgbovine/opt-cpp-backend">Backend source code</a>.</p>
-
-<p>7. C++ using gcc 4.8, C++11, and Valgrind Memcheck.
-<a href="https://github.com/pgbovine/opt-cpp-backend">Backend source code</a>.</p>
 ` + privacyAndEndingHTML;

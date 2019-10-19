@@ -442,7 +442,7 @@ export class ExecutionVisualizer {
 
       // add an extra label to link back to the main site, so that viewers
       // on the embedded page know that they're seeing an OPT visualization
-      base.append('<div style="font-size: 8pt; margin-bottom: 10px;"><a href="http://pythontutor.com" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="https://twitter.com/pgbovine" target="_blank" style="color: #3D58A2;">Philip Guo</a></div>');
+      base.append('<div style="font-size: 8pt; margin-bottom: 10px;"><a href="http://pythontutor.com/" target="_blank" style="color: #3D58A2;">Python Tutor</a> by <a href="http://pgbovine.net/" target="_blank" style="color: #3D58A2;">Philip Guo</a></div>');
       base.find('#codeFooterDocs').hide(); // cut out extraneous docs
     } else {
       // also display credits: nevermind
@@ -3306,7 +3306,7 @@ class CodeDisplay {
          <div id="editCodeLinkDiv"><a id="editBtn">Edit this code</a>\
          </div>\
          <div id="legendDiv"/>\
-         <div id="codeFooterDocs">Click a line of code to set a breakpoint; use the Back and Forward buttons to jump there.</div>\
+         <div id="codeFooterDocs"></div>\
        </div>';
 
     this.domRoot.append(codeDisplayHTML);
