@@ -1,6 +1,4 @@
-### *Python Tutor's server may go down at any time, so don't rely on it for anything time-critical.*
-
-### *There is no technical support available. This service is provided as-is for free.*
+### *Python Tutor's server may go down at any time and lose your code. There is no technical support available. This service is provided as-is for free.*
 
 This service is maintained by one volunteer in my spare time, so I'm unable to respond to most bug reports and feature requests. Your issue is likely listed on this page. If you're sure it's *not* listed here, [email me](http://pgbovine.net/email-policy.htm) and use the "Generate permanent link" button to include a URL of your code.
 
@@ -12,8 +10,35 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 ---
 ## Unsupported features
 
-[Python Tutor](http://pythontutor.com/) currently does *not* support the following features:
+[Python Tutor](http://pythontutor.com/) currently does **not** support the following features:
 
+
+### Read this first!
+
+Python Tutor is designed to imitate what an instructor in an introductory programming class (e.g., CS1, CS2) draws on the blackboard:
+
+![drawing on blackboard](board.jpg)
+
+(source: UC Berkeley's CS61B course)
+
+It is *not* meant to be a replacement for a professional-quality code debugger or IDE. This means that you should only use it to write **small pieces of self-contained code** that runs for not too many execution steps. After all, an instructor cannot draw hundreds of lines of code, hundreds of data structures and pointers, or show hundreds of execution steps on the blackboard! Also, code in introductory classes usually does not access external libraries or resources.
+
+As a consequence of this ultra-focused design, the following features are not supported and will likely *never* be supported:
+
+- Code that is too large in size. Shorten your code to what would fit on a blackboard!
+- Code that runs for too many steps (e.g., > 1,000 steps) or for a long time
+  - shorten your code to isolate exactly where you want to visualize and debug
+  - or [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
+- Reading data from external files (put all your data in strings)
+- Interfacing with databases, network, filesystem, or other external resources
+- Anything involving GUI programming or GUI/webpage components
+- Multi-threaded, concurrent, or asynchronous code; Python Tutor is only for regular single-threaded execution
+- Importing external 3rd-party libraries (try "Python 3.6 with Anaconda (experimental)" if you want to use more libraries)
+- Editing multiple source code files (Python Tutor is *not* a replacement for an IDE)
+- Integration with other programming environments like Jupyter Notebooks, IDEs, text editors, etc.
+
+
+Other unsupported features:
 
 ### Python
 
@@ -54,30 +79,17 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 - some data structures like ArrayList aren't visualized properly (see [GitHub issue](https://github.com/pgbovine/OnlinePythonTutor/issues/236))
 
 
-### Other unsupported features (language-independent)
+### Language-independent
 
 - Stepping *within* a line of code to show how subexpressions get evaluated within that line; the best workaround is to split complex expressions into multiple lines and assign temporary variables on each line ([example](http://pythontutor.com/visualize.html#code=w%20%3D%205%0Ax%20%3D%2010%0Ay%20%3D%2020%0Az%20%3D%2030%0A%0A%23%20bad%3A%20executes%20all%20at%20once%0Aresult%20%3D%20w%20-%20x%20*%20%28y%20%2B%20z%29%0A%0A%23%20good%3A%20shows%20individual%20steps%0At1%20%3D%20y%20%2B%20z%0At2%20%3D%20x%20*%20t1%0Aresult2%20%3D%20w%20-%20t2&cumulative=false&heapPrimitives=nevernest&mode=edit&origin=opt-frontend.js&py=2&rawInputLstJSON=%5B%5D&textReferences=false)).
 - Highlighting of what variables or data structure components changed in between steps (although that would be cool!)
-- Unicode doesn't well, especially for Ruby: [#134](https://github.com/pgbovine/OnlinePythonTutor/issues/134), and Python 2: [#77](https://github.com/pgbovine/OnlinePythonTutor/issues/77), [#124](https://github.com/pgbovine/OnlinePythonTutor/issues/124), [#194](https://github.com/pgbovine/OnlinePythonTutor/issues/194); use ASCII characters when possible
-- Passing in command-line arguments via argv[] array
-- Multi-threaded, concurrent, or asynchronous code
-  - Python Tutor is only for regular single-threaded execution
-- Anything involving GUI programming or GUI/webpage components
-- Reading data from external files (put all your data in strings when possible)
-- Interfacing with databases, network, filesystem, or other external resources
-- Importing external 3rd-party libraries (try "Python 3.6 with Anaconda (experimental)" if you want to use more libraries)
-- Code that is too large in size. Python Tutor isn't meant for running large amounts of code, so shorten your code!
-- Code that runs for too many steps (e.g., > 1,000 steps) or for a long time
-  - shorten your code to isolate where you want to visualize and debug
-  - or [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
+- Unicode doesn't well, especially for Ruby: [#134](https://github.com/pgbovine/OnlinePythonTutor/issues/134), and Python 2: [#77](https://github.com/pgbovine/OnlinePythonTutor/issues/77), [#124](https://github.com/pgbovine/OnlinePythonTutor/issues/124), [#194](https://github.com/pgbovine/OnlinePythonTutor/issues/194) (use ASCII characters when possible)
+- Passing in command-line arguments via argv[] array (use hard-coded strings instead)
 - If you're behind some kinds of firewalls or proxy servers, the visualizer or live chat may not work
-- User accounts, login, authentication, or integration with other third-party sites
 - URL shortening (you should use your own third-party URL shortener service)
 - https iframe embedding with non-Python languages (iframe embed should work for Python if you use `https://` for URL)
-- Other languages are not likely to get supported at this point due to lack of time
 - Standalone application or offline mode (you can download the code and install it yourself but I don't have time to provide tech support for local installations)
-- Editing multiple source code files (Python Tutor is *not* a replacement for an IDE)
-- Integration with other programming environments like Jupyter Notebooks, IDEs, text editors, etc.
+- User accounts, login, authentication, or integration with other third-party sites
 
 Look through these issue trackers for more known bugs and unsupported features:
 - https://github.com/pgbovine/OnlinePythonTutor/issues
@@ -107,7 +119,7 @@ http://pythontutor.com/visualize.html#heapPrimitives=true&textReferences=true
 
 Of course! Toggle options are customizable via the query string. Here are the default settings:
 
-http://pythontutor.com/visualize.html#cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=3
+http://pythontutor.com/visualize.html#cumulative=false&heapPrimitives=nevernest&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=3
 
 For example, if you want to default to C, visit:
 http://pythontutor.com/visualize.html#&py=c
