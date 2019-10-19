@@ -7,7 +7,7 @@ This service is maintained by one volunteer in my spare time, so I'm unable to r
 - I can't provide support for Python Tutor code that's embedded within other people's websites, such as class websites or online tutorials. Contact the people in charge of those websites for help.
 - I'm not accepting any code contributions or GitHub pull requests at this time. Feel free to fork the code and do whatever you like with it, as long as you abide by its software licenses.
 
----
+
 ## Unsupported features
 
 ### Read this first!
@@ -36,7 +36,7 @@ Due to this ultra-focused design, the following features are not supported and w
 - Integrating with programming environments like Jupyter Notebooks, IDEs, text editors, etc.
 
 
-Other unsupported features:
+**Other unsupported features:**
 
 ### Python
 
@@ -77,7 +77,7 @@ Other unsupported features:
 - some data structures like ArrayList aren't visualized properly (see [GitHub issue](https://github.com/pgbovine/OnlinePythonTutor/issues/236))
 
 
-### Language-independent
+### Language-independent unsupported features
 
 - Stepping *within* a line of code to show how subexpressions get evaluated within that line; the best workaround is to split complex expressions into multiple lines and assign temporary variables on each line ([example](http://pythontutor.com/visualize.html#code=w%20%3D%205%0Ax%20%3D%2010%0Ay%20%3D%2020%0Az%20%3D%2030%0A%0A%23%20bad%3A%20executes%20all%20at%20once%0Aresult%20%3D%20w%20-%20x%20*%20%28y%20%2B%20z%29%0A%0A%23%20good%3A%20shows%20individual%20steps%0At1%20%3D%20y%20%2B%20z%0At2%20%3D%20x%20*%20t1%0Aresult2%20%3D%20w%20-%20t2&cumulative=false&heapPrimitives=nevernest&mode=edit&origin=opt-frontend.js&py=2&rawInputLstJSON=%5B%5D&textReferences=false)).
 - Highlighting of what variables or data structure components changed in between steps (although that would be cool!)
