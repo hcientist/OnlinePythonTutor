@@ -26,8 +26,7 @@ Due to this ultra-focused design, the following features are not supported and w
 - Code that runs for too many steps (e.g., > 1,000 steps) or for a long time
   - shorten your code to isolate exactly where you want to visualize and debug
   - or [set Python breakpoints](https://youtu.be/80ztTXP90Vs?t=42) using `#break` comments
-- Reading data from external files
-  - Put all your data in strings: examples for [Python3](http://goo.gl/uNvBGl) and [Python2](http://goo.gl/Q9xQ4p)
+- Reading data from external files (put your data in strings: examples for [Python3](http://goo.gl/uNvBGl) and [Python2](http://goo.gl/Q9xQ4p))
 - Interfacing with databases, network, filesystem, or other external resources
 - Anything involving GUI programming or GUI/webpage components
 - Multi-threaded, concurrent, or asynchronous code; Python Tutor is only for regular single-threaded execution
@@ -80,6 +79,7 @@ Due to this ultra-focused design, the following features are not supported and w
 
 ### Language-independent unsupported features
 
+- Python Tutor is meant for desktop/laptop computers, **not for mobile devices**. Some features such as live help mode don't work on mobile devices or tablets. The UI also looks cluttered and can be buggy on small screens.
 - Stepping *within* a line of code to show how subexpressions get evaluated within that line; the best workaround is to split complex expressions into multiple lines and assign temporary variables on each line ([example](http://pythontutor.com/visualize.html#code=w%20%3D%205%0Ax%20%3D%2010%0Ay%20%3D%2020%0Az%20%3D%2030%0A%0A%23%20bad%3A%20executes%20all%20at%20once%0Aresult%20%3D%20w%20-%20x%20*%20%28y%20%2B%20z%29%0A%0A%23%20good%3A%20shows%20individual%20steps%0At1%20%3D%20y%20%2B%20z%0At2%20%3D%20x%20*%20t1%0Aresult2%20%3D%20w%20-%20t2&cumulative=false&heapPrimitives=nevernest&mode=edit&origin=opt-frontend.js&py=2&rawInputLstJSON=%5B%5D&textReferences=false)).
 - Highlighting of what variables or data structure components changed in between steps (although that would be cool!)
 - Unicode doesn't well, especially for Ruby: [#134](https://github.com/pgbovine/OnlinePythonTutor/issues/134), and Python 2: [#77](https://github.com/pgbovine/OnlinePythonTutor/issues/77), [#124](https://github.com/pgbovine/OnlinePythonTutor/issues/124), [#194](https://github.com/pgbovine/OnlinePythonTutor/issues/194) (use ASCII characters when possible)
@@ -88,7 +88,6 @@ Due to this ultra-focused design, the following features are not supported and w
 - URL shortening (you should use your own third-party URL shortener service)
 - https iframe embedding with non-Python languages (iframe embed should work for Python if you use `https://` for URL)
 - Standalone application or offline mode (you can download the code and install it yourself but I don't have time to provide tech support for local installations)
-- Python Tutor is meant for desktop/laptop computers, not for mobile devices. Some features such as live help mode don't work on mobile devices or tablets. The UI also looks too cluttered on small screens.
 
 Look through these issue trackers for more known bugs and unsupported features:
 - https://github.com/pgbovine/OnlinePythonTutor/issues
