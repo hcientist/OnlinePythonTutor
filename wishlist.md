@@ -37,8 +37,15 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - showing visualization diffs and animated transitions between steps so users can clearly see what changes occurred
   - goes hand-in-hand with the narrations feature above, since if we know what has changed, then we can narrate it (e.g., "a new element was added to the middle of this list")
 - hiding elements by clicking on them, and remembering those hide options across different executions of similar code
+  - especially useful for large function/class definitions, which are largely boilerplate and irrelevant to the core lessons of the code
   - June 2018: implemented a simpler version as #pythontutor_hide and #pythontutor_hide_type annotations for Python in [pg_logger.py](v5-unity/pg_logger.py) ([video demo](https://www.youtube.com/watch?v=Mxt9HZWgwAM&list=PLzV58Zm8FuBL2WxxZKGZ6j1dH8NKb_HYI&index=6))
-  
+- more advanced navigation through execution steps. e.g.,:
+  - click a line of code to jump to where it is next executed
+  - set breakpoints by clicking on gutter instead of directly on the code
+  - debugger-style stepping into and out of function calls
+- hover over stack frames and then highlight the code that contains the call site of that frame
+  - (more generally, think about other hover-based cross-linking of compile- and run-time information in visualizations)
+
 
 ## Live Help Mode
 
@@ -58,6 +65,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 
 - upgrade language backends to newer versions of compilers/interpreters (doable but tedious since I need to re-test the backends with new language versions, which could surface subtle bugs)
 - if there's an infinite loop (or execution runs too long), still trace and render the first 1,000 steps instead of just returning an error, so users can see which parts of their code led to the too-long execution
+
 
 ## Other
 
