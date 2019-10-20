@@ -11,7 +11,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 
 - unify the [regular](http://pythontutor.com/visualize.html) and [live programming](http://pythontutor.com/live.html) UIs into one, so that users don't need to switch back-and-forth between editing and visualizing code
   - (live programming can simply be a toggle switch in the unified UI)
-- modernize the UI, make it more responsive and display better on mobile devices of various sizes (currently in [#unsupported](unsupported-features.md))
+- modernize the UI, make it more responsive and display better on mobile devices of various sizes
 - internationalization/localization of the UI into other popular languages
 
 
