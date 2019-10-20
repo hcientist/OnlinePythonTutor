@@ -13,7 +13,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - we then need a clear indicator of when the visualization is "stale" (i.e., doesn't corresopnd to the currently-edited code)
   - live programming can simply be a toggle switch in the unified UI
 - modernize the UI, make it more responsive and display better on mobile devices of various sizes
-  - adjustable font sizes
+  - adjustable font sizes in both editor and visualization
   - adjustable sizes for all widgets, and *remember* the user-adjusted sizes
   - on mobile, some users reported issues with writing or copy-pasting code in the editor (I only have iOS, maybe test on Android emulators/devices too)
     - one bug report said: 'In the mobile version we have to give a space before pressing enter, if not done then last symbol or alphabet will get removed'
@@ -67,6 +67,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - even better: seeing execution diffs between two *different* executions of similar code, to compare the impacts of specific code changes on run-time state
 - hiding elements by clicking on them, and remembering those hide options across different executions of similar code
   - especially useful for large function/class/module/type definitions, which are largely boilerplate and irrelevant to the core lessons of the code
+  - this can go a long way toward preventing information overload
   - June 2018: implemented a simpler version as #pythontutor_hide and #pythontutor_hide_type annotations for Python in [pg_logger.py](v5-unity/pg_logger.py) ([video demo](https://www.youtube.com/watch?v=Mxt9HZWgwAM&list=PLzV58Zm8FuBL2WxxZKGZ6j1dH8NKb_HYI&index=6))
 - more advanced navigation through execution steps. e.g.,:
   - click a line of code to jump to where it is next executed
@@ -130,3 +131,5 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - inline links to short video tutorials whenever the user makes a common error
   - could automatically detect coding context and suggest proper videos on concepts (e.g., while loops)
   - (In Jan 2018 I started implementing a codcast record/replay "video" feature in [recorder.ts](v5-unity/js/recorder.ts) but haven't released it yet. I could use that to record a bunch of inline tutorials.)
+- using [annotation bubbles](v3/opt-annotations.png) to mark semantic meaning of data structures at each execution step (started prototyping this feature a longgg time ago); this is a cruder non-video form of codcasts
+- adding basic curricula, lessons, and practice problems to the site (I've thus far resisted since there are already so many great resources online for programming curricula)
