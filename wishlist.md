@@ -81,7 +81,8 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 ### Advanced Data Rendering
 
 - displaying large data structures by summarizing or truncating them (e.g., [1, 2, ..., 998, 999, 1000]), with clickable expansions
-  - more generally, think about semantic zooming, overview+detail, or Table Lens (see Pirolli, Card, et al.), see [v3 project ideas doc](v3/docs/project-ideas.md) for details
+  - more generally, think about semantic zooming, overview+detail, or Table Lens (see Pirolli, Card, et al.)
+  - or maybe even "zooming out" to the point where data structures appear as abbreviated plain-text to take focus off heap details
 - multiple custom views of the same underlying data. e.g.,:
   - C char arrays: view as strings or as encoded binary bytes?
   - Python 2 strings: view as text or as encoded binary bytes?
