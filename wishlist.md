@@ -18,7 +18,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 ### Code Editor
 
 - cache the user's code in localStorage so that it's still there in case they accidentally close the browser window
-  - more ambitious but doable would be to save to user's GitHub account or pull from Gists, as an easy form of cloud data storage
+  - more ambitious but doable would be to save to user's GitHub account or pull from Gists, as an easy form of cloud data storage; instructors can really benefit from this since they can save their lessons in GitHub
 - more precisely underline syntax/compile errors in the editor if we have column/range information
 - better error messages than what the default compilers/interpreters offer, by integrating more powerful static analysis or style checking tools
 - flipping back-and-forth between edit and visualize modes can be annoying when the code is very long; it would be nice to save the vertical scroll position in the editor so the user can easily jump back to editing where they left off.
@@ -41,7 +41,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - goes hand-in-hand with the narrations feature above, since if we know what has changed, then we can narrate it (e.g., "a new element was added to the middle of this list")
   - more advanced: seeing execution diffs between two *different* executions of similar code, to compare the impacts of code changes on run-time state
 - hiding elements by clicking on them, and remembering those hide options across different executions of similar code
-  - especially useful for large function/class definitions, which are largely boilerplate and irrelevant to the core lessons of the code
+  - especially useful for large function/class/module definitions, which are largely boilerplate and irrelevant to the core lessons of the code
   - June 2018: implemented a simpler version as #pythontutor_hide and #pythontutor_hide_type annotations for Python in [pg_logger.py](v5-unity/pg_logger.py) ([video demo](https://www.youtube.com/watch?v=Mxt9HZWgwAM&list=PLzV58Zm8FuBL2WxxZKGZ6j1dH8NKb_HYI&index=6))
 - more advanced navigation through execution steps. e.g.,:
   - click a line of code to jump to where it is next executed
