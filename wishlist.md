@@ -30,17 +30,22 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - better fonts in the visualizer's code display, to disambiguate letters like l, I, and 1. One user suggested Adobe's Source Code Pro.
   - (these issues will disappear if we unify the regular and live programming UIs!)
 - red-green colorblindness may be an issue with the visualizer's arrows for prev/next line to execute
-- step-by-step verbal or textual narration of exactly what the code is doing at each execution step, and what it means for the program
+- step-by-step verbal or textual narrations of exactly what the code is doing at each execution step, and what it means for the program
   - the gold standard is emulating what an instructor would *say* to explain each step, perhaps at different levels of abstraction/complexity for different learner audiences
   - my hunch is that annotating code with tagged comments denoting programmer intent or [variable roles](http://www.cs.joensuu.fi/~saja/var_roles/stud_vers/stud_Python_eng.html) could make these narrations more meaningful
   - could be great for low-vision accessibility too
-
+- showing visualization diffs and animated transitions between steps so users can clearly see what changes occurred
+  - goes hand-in-hand with the narrations feature above, since if we know what has changed, then we can narrate it (e.g., "a new element was added to the middle of this list")
+- hiding elements by clicking on them, and remembering those hide options across different executions of similar code
+  - June 2018: implemented a simpler version as #pythontutor_hide and #pythontutor_hide_type annotations for Python in [pg_logger.py](v5-unity/pg_logger.py) ([video demo](https://www.youtube.com/watch?v=Mxt9HZWgwAM&list=PLzV58Zm8FuBL2WxxZKGZ6j1dH8NKb_HYI&index=6))
+  
 
 ## Live Help Mode
 
 - server-side validation of all live mode interactions for better robustness and security
 - help requester should have finer-grained moderation controls, such as controlling which other users should have permission to edit code
 - auto-throttling of user actions (e.g., chats, code edits) to prevent disruption and server overload
+- social features such as user accounts, profiles, reputation points, review ratings, incentives, gamification, etc. (unlikely since they go against the minimalist design philosophy of the service)
 
 
 ## Tutorials
