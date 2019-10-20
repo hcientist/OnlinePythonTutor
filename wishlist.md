@@ -18,20 +18,23 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 ### Code Editor
 
 - cache the user's code in localStorage so that it's still there in case they accidentally close the browser window
+  - more ambitious but doable would be to save to user's GitHub account or pull from Gists, as an easy form of cloud data storage
 - more precisely underline syntax/compile errors in the editor if we have column/range information
 - better error messages than what the default compilers/interpreters offer, by integrating more powerful static analysis or style checking tools
-- flipping back-and-forth betweetn edit and visualize modes can be annoying when the code is very long; it would be nice to save the vertical scroll position in the editor so the user can easily jump back to editing where they left off.
+- flipping back-and-forth between edit and visualize modes can be annoying when the code is very long; it would be nice to save the vertical scroll position in the editor so the user can easily jump back to editing where they left off.
   - related: if there's a run-time error in the visualizer, then when they flip back to the editor, it could jump to the line where the error occurred
   - (these issues will disappear if we unify the regular and live programming UIs!)
+- proactively warn the user when their code is likely too long or runs for too many steps, to nudge them toward either shortening it or using breakpoints (e.g., the Python #break annotation) to cut down on steps
 
 
 ### Visualizer
 
-- better fonts in the visualizer's code display, to disambiguate letters like l, I, and 1. One user suggested Adobe's Source Code Pro.
-  - (these issues will disappear if we unify the regular and live programming UIs!)
+- better fonts in the visualizer's code display, to disambiguate letters like l, I, and 1
+  - one user suggested Adobe's Source Code Pro.
+  - (this issue will disappear if we unify the regular and live programming UIs!)
 - red-green colorblindness may be an issue with the visualizer's arrows for prev/next line to execute
-- step-by-step verbal or textual narrations of exactly what the code is doing at each execution step, and what it means for the program
-  - the gold standard is emulating what an instructor would *say* to explain each step, perhaps at different levels of abstraction/complexity for different learner audiences
+- step-by-step verbal or textual narrations of exactly what the code is doing at each execution step, and *why* it's doing that
+  - the gold standard here is emulating what an instructor would *say* to explain each step, perhaps at different levels of abstraction/complexity for different learner audiences
   - my hunch is that annotating code with tagged comments denoting programmer intent or [variable roles](http://www.cs.joensuu.fi/~saja/var_roles/stud_vers/stud_Python_eng.html) could make these narrations more meaningful
   - could be great for low-vision accessibility too
 - showing visualization diffs and animated transitions between consecutive steps so users can clearly see what changes occurred
@@ -81,7 +84,9 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 
 - upgrade language backends to newer versions of compilers/interpreters (doable but tedious since I need to re-test the backends with new language versions, which could surface subtle bugs)
 - if there's an infinite loop (or execution runs too long), still trace and render the first 1,000 steps instead of just returning an error, so users can see which parts of their code led to the too-long execution
-
+- implement *backend* breakpoints (like the Python #break annotation) for all other languages, so that overly-long execution traces don't get generated even for larger pieces of code
+  - right now there are breakpoints in the frontend, but that doesn't help when the backend already executes for > 1,000 steps; we need breakpoints in the backend (likely implement as comment annotations or GUI clicks in the code editor gutter) to really clamp down on overly-long executions
+  
 
 ## Other
 
