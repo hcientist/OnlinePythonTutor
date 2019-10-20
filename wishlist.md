@@ -42,6 +42,13 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - lots of user demand for C/C++ user inputs (and probably some for other languages too!)
 - support multi-line user inputs in a textarea
 - pressing Enter to submit a user input instead of clicking 'Submit' button
+- non-textual rich input widgets (see [v3 project ideas doc](v3/docs/project-ideas.md) for details):
+  - interactive widget to draw mathematical graphs (e.g., nodes and edges); useful for visualizing graph/tree manipulation algorithms
+  - 2-D canvas where the user can draw points and lines in a coordinate system; useful for visualizing simple computational geometry algorithms
+  - 2-D matrix of numbers or colored blocks for, say, a PacMan world
+  - drag and drop an image; useful for visualizing image manipulation algorithms
+  - text box that represents a file on the filesystem, then I/O calls such as open, read, write, etc. would be intercepted and visualized as iterating (pointing) to the file object one line at a time
+
 
 ### Visualizer
 
@@ -54,6 +61,8 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - my hunch is that annotating code with tagged comments denoting programmer intent or [variable roles](http://www.cs.joensuu.fi/~saja/var_roles/stud_vers/stud_Python_eng.html) could make these narrations more meaningful
   - could be great for low-vision accessibility too
 - showing visualization diffs and animated transitions between consecutive steps so users can clearly see what changes occurred
+  - could be shown via colors, arrows, and/or animations
+  - could reduce the [split attention effect](https://en.wikipedia.org/wiki/Split_attention_effect) of learners needing to track the code on the left side and the changes to the visualization on the right side
   - goes hand-in-hand with the narrations feature above, since if we know what has changed, then we can narrate it (e.g., "a new element was added to the middle of this list")
 - even better: seeing execution diffs between two *different* executions of similar code, to compare the impacts of specific code changes on run-time state
 - hiding elements by clicking on them, and remembering those hide options across different executions of similar code
@@ -72,13 +81,14 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 ### Advanced Data Rendering
 
 - displaying large data structures by summarizing or truncating them (e.g., [1, 2, ..., 998, 999, 1000]), with clickable expansions
-  - more generally, think about semantic zooming, overview+detail, or Table Lens (see Pirolli, Card, et al.) style of visualizations
+  - more generally, think about semantic zooming, overview+detail, or Table Lens (see Pirolli, Card, et al.), see [v3 project ideas doc](v3/docs/project-ideas.md) for details
 - multiple custom views of the same underlying data. e.g.,:
   - C char arrays: view as strings or as encoded binary bytes?
   - Python 2 strings: view as text or as encoded binary bytes?
   - more extreme: a binary blob can represent, say, a JPEG image; should we decode and display it?
 - more detailed visualizations of data structure element accesses or slices ([GitHub Issue](https://github.com/pgbovine/OnlinePythonTutor/issues/185))
-- more advanced data structure displays, such as 2D matrices, bitmap images, trees, graphs, etc. of the sort covered by typical algorithms or data structures textbooks (e.g., CLRS or [AIMA](https://www.google.com/search?q=Artificial+Intelligence%3A+A+Modern+Approach&oq=Artificial+Intelligence%3A+A+Modern+Approach&aqs=chrome..69i57j69i60.2409j1j7&sourceid=chrome&ie=UTF-8))
+- more advanced data structure displays (see [v3 project ideas doc](v3/docs/project-ideas.md) for details):
+  - e.g., 2-D matrices, bitmap images, trees, graphs, etc. of the sort covered by typical algorithms or data structures textbooks (e.g., CLRS or [AIMA](https://www.google.com/search?q=Artificial+Intelligence%3A+A+Modern+Approach&oq=Artificial+Intelligence%3A+A+Modern+Approach&aqs=chrome..69i57j69i60.2409j1j7&sourceid=chrome&ie=UTF-8))
 - rendering data structures commonly used in data science or machine learning (e.g., tables, data frames, SQL-like operations, 2D plots showing points, lines, and curves)
   - for inspirations here, look at diagrams used in pandas, scikit-learn, and the R tidyverse
 - better rendering of tree recursive algorithms (e.g., fibonacci, tree traversals), such as putting frames in an execution *tree* instead of linearizing them into a stack
