@@ -714,11 +714,11 @@ export class ExecutionVisualizer {
     var msg = "Step " + String(this.curInstr + 1) + " of " + String(totalInstrs-1);
     if (isLastInstr) {
       if (this.promptForUserInput || this.promptForMouseInput) {
-        msg = '<b><font color="' + brightRed + '">Enter user input below:</font></b>';
+        msg = '<b><font color="' + brightRed + '">Enter user input:</font></b>';
       } else if (this.instrLimitReached) {
-        msg = "Instruction limit reached";
+        msg = "Step limit reached";
       } else {
-        msg = "Program terminated";
+        msg = "Done running (" + String(totalInstrs-1) + " steps)"
       }
     }
 
@@ -3314,7 +3314,7 @@ class CodeDisplay {
       this.domRoot.find('#editCodeLinkDiv').css('font-size', '10pt');
     }
     this.domRoot.find('#legendDiv')
-        .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
+        .append('<svg id="prevLegendArrowSVG"/> line that just executed')
         .append('<p style="margin-top: 4px"><svg id="curLegendArrowSVG"/> next line to execute</p>');
     this.domRootD3.select('svg#prevLegendArrowSVG')
         .append('polygon')
@@ -3668,11 +3668,11 @@ class NavigationController {
                      <div id="executionSliderFooter"/>\
                      <div id="vcrControls">\
                        <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>\
-                       <button id="jmpStepBack", type="button">&lt; Back</button>\
-                       <span id="curInstr">Step ? of ?</span>\
-                       <button id="jmpStepFwd", type="button">Forward &gt;</button>\
+                       <button id="jmpStepBack", type="button">&lt; Prev</button>\
+                       <button id="jmpStepFwd", type="button">Next &gt;</button>\
                        <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>\
                      </div>\
+                     <div id="curInstr">Step ? of ?</div>\
                      <div id="rawUserInputDiv">\
                        <span id="userInputPromptStr"/>\
                        <input type="text" id="raw_input_textbox" size="30"/>\
@@ -3718,11 +3718,11 @@ class NavigationController {
 
   setVcrControls(msg: string, isFirstInstr: boolean, isLastInstr: boolean) {
     var vcrControls = this.domRoot.find("#vcrControls");
-    vcrControls.find("#curInstr").html(msg);
     vcrControls.find("#jmpFirstInstr").attr("disabled", false);
     vcrControls.find("#jmpStepBack").attr("disabled", false);
     vcrControls.find("#jmpStepFwd").attr("disabled", false);
     vcrControls.find("#jmpLastInstr").attr("disabled", false);
+    this.domRoot.find("#curInstr").html(msg);
 
     if (isFirstInstr) {
       vcrControls.find("#jmpFirstInstr").attr("disabled", true);
@@ -3793,7 +3793,7 @@ class NavigationController {
   showError(msg: string) {
     if (msg) {
       this.domRoot.find("#errorOutput").html(htmlspecialchars(msg) + `
-      <span style="font-size: 9pt; color: #666">(see <a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md" target="_blank">unsupported features</a>)</span>`).show();
+      <div style="font-size: 10pt; color: #666">(see <a href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md" target="_blank">unsupported features</a>)</div>`).show();
     } else {
       this.domRoot.find("#errorOutput").hide();
     }

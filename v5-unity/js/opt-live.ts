@@ -92,7 +92,7 @@ export class OptLiveFrontend extends OptFrontend {
     super(params);
 
     $('#legendDiv')
-      .append('<svg id="prevLegendArrowSVG"/> line that has just executed')
+      .append('<svg id="prevLegendArrowSVG"/> line that just executed')
       .append('<p style="margin-top: 4px"><svg id="curLegendArrowSVG"/> next line to execute</p>');
 
     d3.select('svg#prevLegendArrowSVG')
@@ -217,9 +217,9 @@ export class OptLiveFrontend extends OptFrontend {
     var isLastInstr = myVisualizer.curInstr === (totalInstrs-1);
     if (isLastInstr) {
       if (myVisualizer.promptForUserInput || myVisualizer.promptForMouseInput) {
-        $("#curInstr").html('<b><font color="' + brightRed + '">Enter user input below:</font></b>');
+        $("#curInstr").html('<b><font color="' + brightRed + '">Enter user input:</font></b>');
       } else if (myVisualizer.instrLimitReached) {
-        $("#curInstr").html("Instruction limit reached");
+        $("#curInstr").html("Step limit reached");
       } else {
         $("#curInstr").html("Done running (" + String(totalInstrs-1) + " steps)");
       }
@@ -329,7 +329,7 @@ export class OptLiveFrontend extends OptFrontend {
     var myVisualizer = this.myVisualizer;
     var prevVisualizer = this.prevVisualizer;
     assert(myVisualizer);
-    $("#pyOutputPane,#vcrControls").show();
+    $("#pyOutputPane,#vcrControls,#curInstr").show();
     this.doneExecutingCode();
 
     this.toggleSyntaxError(false);

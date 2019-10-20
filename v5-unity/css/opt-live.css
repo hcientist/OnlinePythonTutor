@@ -25,7 +25,8 @@
 /* copied from pytutor.css - TODO: integrate and merge together */
 /* VCR control buttons for stepping through execution */
 #vcrControls {
-  margin: 15px auto;
+  margin-top: 15px;
+  margin-bottom: 6px;
   /*width: 100%;*/
   text-align: center;
 }
@@ -36,8 +37,11 @@
 }
 
 #curInstr {
+  /*
   margin-left: 4px;
   margin-right: 4px;
+  */
+  text-align: center;
 }
 
 div#rawUserInputDiv {
