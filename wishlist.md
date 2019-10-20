@@ -49,7 +49,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - (more generally, think about other hover-based cross-linking of compile- and run-time information in visualizations)
 
 
-### More Advanced Custom Rendering
+### Advanced Data Rendering
 
 - displaying large data structures by summarizing or truncating them (e.g., [1, 2, ..., 998, 999, 1000]), with clickable expansions
 - multiple custom views of the same underlying data. e.g.,:
@@ -57,8 +57,10 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - Python 2 strings: view as text or as encoded binary bytes?
   - more extreme: a binary blob can represent, say, a JPEG image; should we decode and display it?
 - more detailed visualizations of data structure element accesses or slices ([GitHub Issue](https://github.com/pgbovine/OnlinePythonTutor/issues/185))
-- more advanced data structure displays, such as 2D matrices, bitmap images, trees, graphs, etc. of the sort covered by typical algorithms or data structures textbooks (e.g., CLRS or Artificial Intelligence: A Modern Approach)
-- better rendering of tree recursive algorithms (e.g., fibonacci, tree traversals), such as putting stack frames in an execution *tree* instead of linearizing it into a stack
+- more advanced data structure displays, such as 2D matrices, bitmap images, trees, graphs, etc. of the sort covered by typical algorithms or data structures textbooks (e.g., CLRS or [AIMA](https://www.google.com/search?q=Artificial+Intelligence%3A+A+Modern+Approach&oq=Artificial+Intelligence%3A+A+Modern+Approach&aqs=chrome..69i57j69i60.2409j1j7&sourceid=chrome&ie=UTF-8))
+- rendering data structures commonly used in data science or machine learning (e.g., tables, data frames, SQL-like operations, 2D plots showing points, lines, and curves)
+  - for inspirations here, look at diagrams used in pandas, scikit-learn, and the R tidyverse
+- better rendering of tree recursive algorithms (e.g., fibonacci, tree traversals), such as putting frames in an execution *tree* instead of linearizing them into a stack
 
 
 ## Live Help Mode
