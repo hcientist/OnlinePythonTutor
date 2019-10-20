@@ -90,13 +90,18 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - help requester should have finer-grained moderation controls, such as controlling which other users should have permission to edit code
 - auto-throttling of user actions (e.g., chats, code edits) to prevent disruption and server overload
 - hide other users' cursors when they're not moving, since they occlude the code and chat
-- allow the requester fill in a tweet-length message about what they want help on, which would be displayed above their code editor; that way when someone new joins a room, they can have some simple context
-  - this doesn't show up on the help queue itself so it won't spam everyone on the site
+- also an option to turn everyone's cursors off to remove clutter
+- allow the requester fill in a tweet-length message about what they want help on, which would be displayed above their code editor; that way when someone new joins a room, they can get some immediate context
+  - also, this doesn't show up on the help queue itself so it won't spam everyone on the site
 - desktop notifications for both volunteers and requesters when something of note happens, like when someone enters a room or asks for help (so they can have Python Tutor open in a background tab and be doing other stuff while waiting)
 - social features such as user accounts, profiles, reputation points, review ratings, incentives, gamification, etc. (unlikely since they go against the minimalist design philosophy of the service)
-- chat box is too small so requires too much scrolling around
+- chat box is too small so requires too much scrolling around; would be great if resizable or fonts could be smaller
+- chat window auto-scrolls whenever a new message comes in, which is annoying if you're scrolled upward trying to read older messages
 - allow users entering public help sessions to view the full chat history
-- have a volunteer lobby where volunteers can hang out while waiting for people to help, and maybe even coordinate with each other about who to help when new requests come onto the queue
+- have a volunteer lobby chat room where volunteers can hang out while waiting and maybe even coordinate with each other about who to help when new requests come onto the queue
+- concurrent editing in the Ace editor is a bit slow and clunky; also you can't see multiple edit cursors
+- need some indicator that the chat session's original creator (i.e., the help requester) has left, so nobody in there is the original person (but it's OK for these sessions to still exist!)
+
 
 
 ## Language Backends
