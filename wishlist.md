@@ -16,6 +16,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - adjustable font sizes
   - adjustable sizes for all widgets, and *remember* the user-adjusted sizes
   - on mobile, some users reported issues with writing or copy-pasting code in the editor (I only have iOS, maybe test on Android emulators/devices too)
+    - one bug report said: 'In the mobile version we have to give a space before pressing enter, if not done then last symbol or alphabet will get removed'
 - internationalization/localization of the UI into other popular languages
 - dark mode UI
 
@@ -88,7 +89,14 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - server-side validation of all live mode interactions for better robustness and security
 - help requester should have finer-grained moderation controls, such as controlling which other users should have permission to edit code
 - auto-throttling of user actions (e.g., chats, code edits) to prevent disruption and server overload
+- hide other users' cursors when they're not moving, since they occlude the code and chat
+- allow the requester fill in a tweet-length message about what they want help on, which would be displayed above their code editor; that way when someone new joins a room, they can have some simple context
+  - this doesn't show up on the help queue itself so it won't spam everyone on the site
+- desktop notifications for both volunteers and requesters when something of note happens, like when someone enters a room or asks for help (so they can have Python Tutor open in a background tab and be doing other stuff while waiting)
 - social features such as user accounts, profiles, reputation points, review ratings, incentives, gamification, etc. (unlikely since they go against the minimalist design philosophy of the service)
+- chat box is too small so requires too much scrolling around
+- allow users entering public help sessions to view the full chat history
+- have a volunteer lobby where volunteers can hang out while waiting for people to help, and maybe even coordinate with each other about who to help when new requests come onto the queue
 
 
 ## Language Backends
