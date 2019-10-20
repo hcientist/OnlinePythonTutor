@@ -34,8 +34,9 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - the gold standard is emulating what an instructor would *say* to explain each step, perhaps at different levels of abstraction/complexity for different learner audiences
   - my hunch is that annotating code with tagged comments denoting programmer intent or [variable roles](http://www.cs.joensuu.fi/~saja/var_roles/stud_vers/stud_Python_eng.html) could make these narrations more meaningful
   - could be great for low-vision accessibility too
-- showing visualization diffs and animated transitions between steps so users can clearly see what changes occurred
+- showing visualization diffs and animated transitions between consecutive steps so users can clearly see what changes occurred
   - goes hand-in-hand with the narrations feature above, since if we know what has changed, then we can narrate it (e.g., "a new element was added to the middle of this list")
+  - more advanced: seeing execution diffs between two *different* executions of similar code, to compare the impacts of code changes on run-time state
 - hiding elements by clicking on them, and remembering those hide options across different executions of similar code
   - especially useful for large function/class definitions, which are largely boilerplate and irrelevant to the core lessons of the code
   - June 2018: implemented a simpler version as #pythontutor_hide and #pythontutor_hide_type annotations for Python in [pg_logger.py](v5-unity/pg_logger.py) ([video demo](https://www.youtube.com/watch?v=Mxt9HZWgwAM&list=PLzV58Zm8FuBL2WxxZKGZ6j1dH8NKb_HYI&index=6))
@@ -43,8 +44,21 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - click a line of code to jump to where it is next executed
   - set breakpoints by clicking on gutter instead of directly on the code
   - debugger-style stepping into and out of function calls
+- drag-and-drop of visualization elements to let the user define custom layouts, and then remembering those positions
 - hover over stack frames and then highlight the code that contains the call site of that frame
   - (more generally, think about other hover-based cross-linking of compile- and run-time information in visualizations)
+
+
+### More Advanced Custom Rendering
+
+- displaying large data structures by summarizing or truncating them (e.g., [1, 2, ..., 998, 999, 1000]), with clickable expansions
+- multiple custom views of the same underlying data. e.g.,:
+  - C char arrays: view as strings or as encoded binary bytes?
+  - Python 2 strings: view as text or as encoded binary bytes?
+  - more extreme: a binary blob can represent, say, a JPEG image; should we decode and display it?
+- more detailed visualizations of data structure element accesses or slices ([GitHub Issue](https://github.com/pgbovine/OnlinePythonTutor/issues/185))
+- more advanced data structure displays, such as 2D matrices, bitmap images, trees, graphs, etc. of the sort covered by typical algorithms or data structures textbooks (e.g., CLRS or Artificial Intelligence: A Modern Approach)
+- better rendering of tree recursive algorithms (e.g., fibonacci, tree traversals), such as putting stack frames in an execution *tree* instead of linearizing it into a stack
 
 
 ## Live Help Mode
