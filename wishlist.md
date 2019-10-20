@@ -10,9 +10,14 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 ### General
 
 - unify the [regular](http://pythontutor.com/visualize.html) and [live programming](http://pythontutor.com/live.html) UIs into one, so that users don't need to switch back-and-forth between editing and visualizing code
-  - (live programming can simply be a toggle switch in the unified UI)
+  - we then need a clear indicator of when the visualization is "stale" (i.e., doesn't corresopnd to the currently-edited code)
+  - live programming can simply be a toggle switch in the unified UI
 - modernize the UI, make it more responsive and display better on mobile devices of various sizes
+  - adjustable font sizes
+  - adjustable sizes for all widgets, and *remember* the user-adjusted sizes
+  - on mobile, some users reported issues with writing or copy-pasting code in the editor (I only have iOS, maybe test on Android emulators/devices too)
 - internationalization/localization of the UI into other popular languages
+- dark mode UI
 
 
 ### Code Editor
@@ -21,11 +26,21 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - more ambitious but doable would be to save to user's GitHub account or pull from Gists, as an easy form of cloud data storage; instructors can really benefit from this since they can save their lessons in GitHub
 - more precisely underline syntax/compile errors in the editor if we have column/range information
 - better error messages than what the default compilers/interpreters offer, by integrating more powerful static analysis or style checking tools
-- flipping back-and-forth between edit and visualize modes can be annoying when the code is very long; it would be nice to save the vertical scroll position in the editor so the user can easily jump back to editing where they left off.
-  - related: if there's a run-time error in the visualizer, then when they flip back to the editor, it could jump to the line where the error occurred
+- flipping back-and-forth between edit and visualize modes can be annoying when the code is very long; would be nice to save the vertical scroll position in the editor so the user can easily jump back to editing where they left off
+  - related: whatever line you're currently seeing in the visualizer, when you switch back to editor - ([GitHub Issue](https://github.com/pgbovine/OnlinePythonTutor/issues/253))
   - (these issues will disappear if we unify the regular and live programming UIs!)
 - proactively warn the user when their code is likely too long or runs for too many steps, to nudge them toward either shortening it or using breakpoints (e.g., the Python #break annotation) to cut down on steps
+- IDE-like features like tab completion, code folding, etc.
 
+
+### User Inputs
+
+- running the same code repeatedly with different user inputs without flipping back-and-forth between edit and visualize modes (a unified UI would make this easier too!)
+  - also the complement: if you change your code, be able to re-run it with the same set of user inputs so that you don't need to keep re-entering them
+- in addition to Python `input()` and `raw_input()`, also support command-line arguments via `argv[]` array
+- lots of user demand for C/C++ user inputs (and probably some for other languages too!)
+- support multi-line user inputs in a textarea
+- pressing Enter to submit a user input instead of clicking 'Submit' button
 
 ### Visualizer
 
@@ -39,9 +54,9 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - could be great for low-vision accessibility too
 - showing visualization diffs and animated transitions between consecutive steps so users can clearly see what changes occurred
   - goes hand-in-hand with the narrations feature above, since if we know what has changed, then we can narrate it (e.g., "a new element was added to the middle of this list")
-  - more advanced: seeing execution diffs between two *different* executions of similar code, to compare the impacts of code changes on run-time state
+- even better: seeing execution diffs between two *different* executions of similar code, to compare the impacts of specific code changes on run-time state
 - hiding elements by clicking on them, and remembering those hide options across different executions of similar code
-  - especially useful for large function/class/module definitions, which are largely boilerplate and irrelevant to the core lessons of the code
+  - especially useful for large function/class/module/type definitions, which are largely boilerplate and irrelevant to the core lessons of the code
   - June 2018: implemented a simpler version as #pythontutor_hide and #pythontutor_hide_type annotations for Python in [pg_logger.py](v5-unity/pg_logger.py) ([video demo](https://www.youtube.com/watch?v=Mxt9HZWgwAM&list=PLzV58Zm8FuBL2WxxZKGZ6j1dH8NKb_HYI&index=6))
 - more advanced navigation through execution steps. e.g.,:
   - click a line of code to jump to where it is next executed
@@ -50,11 +65,13 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - drag-and-drop of visualization elements to let the user define custom layouts, and then remembering those positions
 - hover over stack frames and then highlight the code that contains the call site of that frame
   - (more generally, think about other hover-based cross-linking of compile- and run-time information in visualizations)
+- keyboard shortcuts for quick navigation (but watch out for keyboard focus issues)
 
 
 ### Advanced Data Rendering
 
 - displaying large data structures by summarizing or truncating them (e.g., [1, 2, ..., 998, 999, 1000]), with clickable expansions
+  - more generally, think about semantic zooming, overview+detail, or Table Lens (see Pirolli, Card, et al.) style of visualizations
 - multiple custom views of the same underlying data. e.g.,:
   - C char arrays: view as strings or as encoded binary bytes?
   - Python 2 strings: view as text or as encoded binary bytes?
@@ -74,20 +91,18 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - social features such as user accounts, profiles, reputation points, review ratings, incentives, gamification, etc. (unlikely since they go against the minimalist design philosophy of the service)
 
 
-## Tutorials
-
-- inline links to short video tutorials whenever the user makes a common error; could automatically detect context and suggest proper videos
-  - (In Jan 2018 I started implementing a codcast record/replay "video" feature in [recorder.ts](v5-unity/js/recorder.ts) but haven't released it yet. I could use that to record a bunch of inline tutorials.)
-
-
 ## Language Backends
 
 - upgrade language backends to newer versions of compilers/interpreters (doable but tedious since I need to re-test the backends with new language versions, which could surface subtle bugs)
-- if there's an infinite loop (or execution runs too long), still trace and render the first 1,000 steps instead of just returning an error, so users can see which parts of their code led to the too-long execution
+- if there's an infinite loop (or execution runs too long), still trace and render the first 1,000 steps instead of just returning an error, so users can see which parts of their code led to the too-long execution ([GitHub Issue](https://github.com/pgbovine/OnlinePythonTutor/issues/265))
 - implement *backend* breakpoints (like the Python #break annotation) for all other languages, so that overly-long execution traces don't get generated even for larger pieces of code
   - right now there are breakpoints in the frontend, but that doesn't help when the backend already executes for > 1,000 steps; we need breakpoints in the backend (likely implement as comment annotations or GUI clicks in the code editor gutter) to really clamp down on overly-long executions
-  
+- more reliable and faster server-side execution for non-Python backends
+
 
 ## Other
 
-- Changing the name of the site to something more language-agnostic, since it's about way more than Python by now. Python Tutor has a strong brand andn natural SEO at this point, so maybe keep that but then either have a more general umbrella project name or an "everything-else-tutor" for all other languages.
+- Change the name of the site to something more language-agnostic, since it's about way more than Python by now. Python Tutor has a strong brand and natural SEO at this point, so maybe keep that but then either have a more general umbrella project name or an "everything-else-tutor" for all other languages.
+- inline links to short video tutorials whenever the user makes a common error
+  - could automatically detect coding context and suggest proper videos on concepts (e.g., while loops)
+  - (In Jan 2018 I started implementing a codcast record/replay "video" feature in [recorder.ts](v5-unity/js/recorder.ts) but haven't released it yet. I could use that to record a bunch of inline tutorials.)
