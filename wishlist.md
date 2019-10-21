@@ -1,6 +1,6 @@
 # Wishlist for Python Tutor
 
-Created: 2019-10-20
+*Created: 2019-10-20*
 
 This is a (disorganized!) wishlist for new Python Tutor features, created by aggregating nearly a decade's worth of user survey responses, GitHub issues, other user feedback, and my own personal notes. Unfortunately, most items here will likely **never get implemented** due to my limited time to devote to this project; I also don't have time to manage code contributions from others.
 
@@ -28,12 +28,16 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - more ambitious but doable would be to save to user's GitHub account or pull from Gists, as an easy form of cloud data storage; instructors can really benefit from this since they can save their lessons in GitHub
 - more precisely underline syntax/compile errors in the editor if we have column/range information
 - better error messages than what the default compilers/interpreters offer, by integrating more powerful static analysis or style checking tools
+- it's a known problem that lots of users try to enter code that's too long and/or runs for too many steps. maybe offer suggestions for users to heuristically shorten their code
+  - e.g., make certain variable values smaller for running loops fewer times, make strings shorter, numbers smaller, etc. to get at the heart of the algorithm at play
+  - this likely involves analyzing both the static code *and* the dynamic execution trace
 - flipping back-and-forth between edit and visualize modes can be annoying when the code is very long; would be nice to save the vertical scroll position in the editor so the user can easily jump back to editing where they left off
   - related: whatever line you're currently seeing in the visualizer, when you switch back to editor - ([GitHub Issue](https://github.com/pgbovine/OnlinePythonTutor/issues/253))
   - (these issues will disappear if we unify the regular and live programming UIs!)
 - proactively warn the user when their code is likely too long or runs for too many steps, to nudge them toward either shortening it or using breakpoints (e.g., the Python #break annotation) to cut down on steps
 - IDE-like features like tab completion, code folding, etc.
 - exposing a slider for undo/redo of edits; we already have undo/redo buttons in live help mode, so maybe extend that to always be activated
+- upgrade Ace to a more modern version, or even move to Monaco (but TogetherJS works only with Ace for shared sessions)
 
 
 ## Visualizer UI
@@ -84,7 +88,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - text box that represents a file on the filesystem, then I/O calls such as open, read, write, etc. would be intercepted and visualized as iterating (pointing) to the file object one line at a time
 
 
-## Live Help Mode
+## Live Help Mode and Shared Sessions
 
 - server-side validation of all live mode interactions for better robustness and security
 - help requester should have finer-grained moderation controls, such as controlling which other users should have permission to edit code
@@ -102,17 +106,19 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - concurrent editing in the Ace editor is a bit slow and clunky; also you can't see multiple edit cursors
 - need some indicator that the chat session's original creator (i.e., the help requester) has left, so nobody in there is the original person (but it's OK for these sessions to still exist!)
 - better server-side caching of user state, such as ipstack geolocation calls since we have a limited free monthly quota
+- manually implement my own chat box feature and code editor syncing using another library (which doesn't tie me to Ace anymore)
+  - that way, I use TogetherJS only for the shared cursors (which some users even find annoying!)
+  - this will give me more flexibility in implementing both chats and collaborative code edits without being constrained by TogetherJS's clunky implementations
 
 
 ## Language Backends
+
+These features deal with the server-side backends that run the user's code.
 
 - upgrade language backends to newer versions of compilers/interpreters (doable but tedious since I need to re-test the backends with new language versions, which could surface subtle bugs)
 - if there's an infinite loop (or execution runs too long), still trace and render the first 1,000 steps instead of just returning an error, so users can see which parts of their code led to the too-long execution ([GitHub Issue](https://github.com/pgbovine/OnlinePythonTutor/issues/265))
 - implement *backend* breakpoints (like the Python #break annotation) for all other languages, so that overly-long execution traces don't get generated even for larger pieces of code
   - right now there are breakpoints in the frontend, but that doesn't help when the backend already executes for > 1,000 steps; we need breakpoints in the backend (likely implement as comment annotations or GUI clicks in the code editor gutter) to really clamp down on overly-long executions
-- it's a known problem that lots of users try to enter code that's too long and/or runs for too many steps. maybe offer suggestions for users to heuristically shorten their code
-  - e.g., make certain variable values smaller for running loops fewer times, make strings shorter, numbers smaller, etc. to get at the heart of the algorithm at play
-  - this likely involves analyzing both the static code *and* the dynamic execution trace
 - more reliable and faster server-side execution for non-Python backends
 
 
@@ -142,7 +148,7 @@ The core issue here is that Python Tutor now has a fixed rendering algorithm (wi
 - custom rendering API: Right now Python Tutor renders data structures in a single, fixed way. However, different instructors have different preferences for how they want certain objects to render on-screen. There's currently no way for them to specify these custom rendering schemes without mucking around with intricate JavaScript code in the frontend. How can we make this easier?
 
 
-## Authoring Environments
+## Authoring Environments for Instructors
 
 (I've thus far resisted going down this path since there are already so many great free programming lessons online.)
 
@@ -153,4 +159,5 @@ The core issue here is that Python Tutor now has a fixed rendering algorithm (wi
 - create an authoring environment using [annotation bubbles](v3/opt-annotations.png) to mark semantic meaning of data structures at each execution step (started prototyping this feature a longgg time ago)
   - this is a cruder non-video form of codcasts
   - they're more like "codewalks"
+  - they can also be used to ask precisely-annotated questions to post on a forum like Stack Overflow
 - allowing instructors to add interactivity to visualizations, such as blanking out object values and making learners guess what value goes where, making learners drag and drop pointers to the right places, making them guess which line executes next, or other sorts of "micro-quizzes" to get learners more engaged
