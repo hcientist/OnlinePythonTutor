@@ -4,7 +4,8 @@
 
 This is a (disorganized!) wishlist for new Python Tutor features, created by aggregating nearly a decade's worth of user survey responses, GitHub issues, other user feedback, and my own personal notes. Unfortunately, most items here will likely **never get implemented** due to my limited time to devote to this project; I also don't have time to manage code contributions from others.
 
-First read the [**unsupported features doc**](unsupported-features.md#read-this-first) to get a sense of what desired features are *not* listed here since they don't fit Python Tutor's core design philosophy. When I decide what new features to add, I mainly think about how I can keep improving *what makes Python Tutor unique* rather than piling on generic features that other tools already have.
+First read the [**unsupported features doc**](unsupported-features.md#read-this-first) to get a sense of what desired features are *not* listed here since they don't fit Python Tutor's core design philosophy. When I decide what new features to add, I mainly think about improving *what makes Python Tutor unique* rather than piling on generic features that other tools already have.
+
 
 ## User Interfaces
 
@@ -17,7 +18,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - adjustable font sizes in both editor and visualizer
   - adjustable sizes for all widgets, and *remember* the user-adjusted sizes
   - on mobile, some users reported issues with writing or copy-pasting code in the editor (I only have iOS, maybe test on Android emulators/devices too)
-    - one bug report said: 'In the mobile version we have to give a space before pressing enter, if not done then last symbol or alphabet will get removed'
+    - from a bug report: 'In the mobile version we have to give a space before pressing enter, if not done then last symbol or alphabet will get removed'
 - internationalization/localization of the UI into other popular languages
 - dark mode UI
 - change the name of the site to something more language-agnostic, since it's about way more than Python by now. Python Tutor has a strong brand and natural SEO at this point, so maybe keep that but then either have a more general umbrella project name or an "everything-else-tutor" for all other languages
@@ -133,7 +134,24 @@ These features deal with the server-side backends that run the user's code.
 
 ## Features for Instructors
 
-My primary target audience consiste of learners because there are several orders of magnitude more of them using Python Tutor. Thus, I've tended to de-prioritize features that are specifically geared toward instructors.
+The majority of Python Tutor users are learners, so I prioritize features that target them rather than those that mainly target instructors. Here are some common features that instructors want, though.
+
+
+### Authoring Environments
+
+I've thus far resisted going down this path since there are already so many great free programming lessons online.
+
+- adding basic curricula, lessons, and practice problems to the site, powered by Python Tutor visualizations
+  - authoring environment for creating custom lessons and exercises
+  - these can take advantage of Python Tutor's unique features, such as asking questions about writing efficient code that finishes in less than N execution steps
+- in Jan 2018 I started implementing a codcast record/replay "video" feature in [recorder.ts](v5-unity/js/recorder.ts) but haven't released it yet; I could use that to record a bunch of inline tutorials.
+  - could automatically detect coding context and suggest proper videos on concepts (e.g., while loops)
+  - add inline links to short codcast video tutorials whenever the user makes a common error
+- make an authoring environment using [annotation bubbles](v3/opt-annotations.png) to mark semantic meaning of data structures at each execution step (started prototyping this feature a longgg time ago)
+  - this is a cruder non-video form of codcasts
+  - they're more like "codewalks"
+  - can also be used by learners to ask precisely-annotated questions to post on a forum like Stack Overflow
+- allow instructors to add interactivity to visualizations, such as blanking out object values and making learners guess what value goes where, making learners drag and drop pointers to the right places, making them guess which line executes next, or other sorts of "micro-quizzes" to get learners more engaged
 
 
 ### Custom Data Rendering
@@ -154,18 +172,3 @@ The core issue here is that Python Tutor now has a fixed rendering algorithm (wi
 - rendering data structures commonly used in data science or machine learning (e.g., tables, data frames, SQL-like operations, 2-D plots showing points, lines, and curves)
   - for inspiration here, look at diagrams used in pandas, scikit-learn, and the R tidyverse
 - custom rendering API: Right now Python Tutor renders data structures in a single, fixed way. However, different instructors have different preferences for how they want certain objects to render on-screen. There's currently no way for them to specify these custom rendering schemes without mucking around with intricate JavaScript code in the frontend. How can we make this easier?
-
-
-### Authoring Environments
-
-I've thus far resisted going down this path since there are already so many great free programming lessons online.
-
-- adding basic curricula, lessons, and practice problems to the site, powered by Python Tutor visualizations
-- inline links to short video tutorials whenever the user makes a common error
-  - could automatically detect coding context and suggest proper videos on concepts (e.g., while loops)
-  - in Jan 2018 I started implementing a codcast record/replay "video" feature in [recorder.ts](v5-unity/js/recorder.ts) but haven't released it yet; I could use that to record a bunch of inline tutorials.
-- create an authoring environment using [annotation bubbles](v3/opt-annotations.png) to mark semantic meaning of data structures at each execution step (started prototyping this feature a longgg time ago)
-  - this is a cruder non-video form of codcasts
-  - they're more like "codewalks"
-  - they can also be used by learners to ask precisely-annotated questions to post on a forum like Stack Overflow
-- allowing instructors to add interactivity to visualizations, such as blanking out object values and making learners guess what value goes where, making learners drag and drop pointers to the right places, making them guess which line executes next, or other sorts of "micro-quizzes" to get learners more engaged
