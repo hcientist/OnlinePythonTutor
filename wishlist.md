@@ -144,9 +144,11 @@ I've thus far resisted going down this path since there are already so many grea
 - adding basic curricula, lessons, and practice problems to the site, powered by Python Tutor visualizations
   - authoring environment for creating custom lessons and exercises
   - these can take advantage of Python Tutor's unique features, such as asking questions about writing efficient code that finishes in less than N execution steps
-- in Jan 2018 I started implementing a codcast record/replay "video" feature in [recorder.ts](v5-unity/js/recorder.ts) but haven't released it yet; I could use that to record a bunch of inline tutorials.
-  - could automatically detect coding context and suggest proper videos on concepts (e.g., while loops)
-  - add inline links to short codcast video tutorials whenever the user makes a common error
+- in Jan 2018 I started implementing a codcast record/replay "video" feature in [recorder.ts](v5-unity/js/recorder.ts) but haven't released it yet
+  - I could use that to record a bunch of inline tutorials
+    - could automatically detect coding context and suggest proper videos on concepts (e.g., while loops)
+    - add inline links to short codcast video tutorials whenever the user makes a common error
+  - can also create an authoring environment for instructors to make their own codcasts, and save them to, say, GitHub
 - make an authoring environment using [annotation bubbles](v3/opt-annotations.png) to mark semantic meaning of data structures at each execution step (started prototyping this feature a longgg time ago)
   - this is a cruder non-video form of codcasts
   - they're more like "codewalks"
