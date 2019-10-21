@@ -2,7 +2,7 @@
 
 Created: 2019-10-20
 
-This is a (disorganized!) wishlist for new Python Tutor features, created by aggregating nearly a decade's worth of user survey responses, GitHub issues, other user feedback, and my own personal notes. Unfortunately, most items will likely **never get implemented** due to my limited time to devote to this project; I also don't have time to manage code contributions from others.
+This is a (disorganized!) wishlist for new Python Tutor features, created by aggregating nearly a decade's worth of user survey responses, GitHub issues, other user feedback, and my own personal notes. Unfortunately, most items here will likely **never get implemented** due to my limited time to devote to this project; I also don't have time to manage code contributions from others.
 
 First read the [**unsupported features doc**](unsupported-features.md#read-this-first) to get a sense of what desired features are *not* listed here since they don't fit Python Tutor's core design philosophy. When I decide what new features to add, I mainly think about how I can keep improving *what makes Python Tutor unique* rather than piling on generic features that other tools already have.
 
