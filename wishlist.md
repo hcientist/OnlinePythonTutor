@@ -2,7 +2,7 @@
 
 This is a wishlist for new Python Tutor features, created by aggregating nearly a decade's worth of user survey responses, GitHub issues, other user feedback, and my own personal notes. Unfortunately, most items will likely **never get implemented** due to my limited time to devote to this project; I also don't have time to manage code contributions from others. This doc was originally created on 2019-10-20.
 
-First read the [**unsupported features doc**](unsupported-features.md#read-this-first) to get a sense of what desired features are *not* listed here since they don't fit within Python Tutor's design philosophy.
+First read the [**unsupported features doc**](unsupported-features.md#read-this-first) to get a sense of what desired features are *not* listed here since they don't fit its core design philosophy. When I decide what new features to add, I mainly think about how I can keep improving *what makes Python Tutor unique* rather than piling on generic features that other tools already have.
 
 
 ## User Interface
@@ -32,6 +32,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - (these issues will disappear if we unify the regular and live programming UIs!)
 - proactively warn the user when their code is likely too long or runs for too many steps, to nudge them toward either shortening it or using breakpoints (e.g., the Python #break annotation) to cut down on steps
 - IDE-like features like tab completion, code folding, etc.
+- exposing a slider for undo/redo of edits; we already have undo/redo buttons in live help mode, so maybe extend that to always be activated
 
 
 ### User Inputs
@@ -60,6 +61,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - the gold standard here is emulating what an instructor would *say* to explain each step, perhaps at different levels of abstraction/complexity for different learner audiences
   - my hunch is that annotating code with tagged comments denoting programmer intent or [variable roles](http://www.cs.joensuu.fi/~saja/var_roles/stud_vers/stud_Python_eng.html) could make these narrations more meaningful
   - could be great for low-vision accessibility too
+  - [annotation bubbles](v3/opt-annotations.png) can help instructors hone in on specific parts of the visualization to explain at each step
 - showing visualization diffs and animated transitions between consecutive steps so users can clearly see what changes occurred
   - could be shown via colors, arrows, and/or animations
   - could reduce the [split attention effect](https://en.wikipedia.org/wiki/Split_attention_effect) of learners needing to track the code on the left side and the changes to the visualization on the right side
@@ -77,23 +79,6 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - hover over stack frames and then highlight the code that contains the call site of that frame
   - (more generally, think about other hover-based cross-linking of compile- and run-time information in visualizations)
 - keyboard shortcuts for quick navigation (but watch out for keyboard focus issues)
-
-
-### Advanced Data Rendering
-
-- displaying large data structures by summarizing or truncating them (e.g., [1, 2, ..., 998, 999, 1000]), with clickable expansions
-  - more generally, think about semantic zooming, overview+detail, or Table Lens (see Pirolli, Card, et al.)
-  - or maybe even "zooming out" to the point where data structures appear as abbreviated plain-text to take focus off heap details
-- multiple custom views of the same underlying data. e.g.,:
-  - C char arrays: view as strings or as encoded binary bytes?
-  - Python 2 strings: view as text or as encoded binary bytes?
-  - more extreme: a binary blob can represent, say, a JPEG image; should we decode and display it?
-- more detailed visualizations of data structure element accesses or slices ([GitHub Issue](https://github.com/pgbovine/OnlinePythonTutor/issues/185))
-- more advanced data structure displays (see [v3 project ideas doc](v3/docs/project-ideas.md) for details):
-  - e.g., 2-D matrices, bitmap images, trees, graphs, etc. of the sort covered by typical algorithms or data structures textbooks (e.g., CLRS or [AIMA](https://www.google.com/search?q=Artificial+Intelligence%3A+A+Modern+Approach&oq=Artificial+Intelligence%3A+A+Modern+Approach&aqs=chrome..69i57j69i60.2409j1j7&sourceid=chrome&ie=UTF-8))
-- rendering data structures commonly used in data science or machine learning (e.g., tables, data frames, SQL-like operations, 2D plots showing points, lines, and curves)
-  - for inspirations here, look at diagrams used in pandas, scikit-learn, and the R tidyverse
-- better rendering of tree recursive algorithms (e.g., fibonacci, tree traversals), such as putting frames in an execution *tree* instead of linearizing them into a stack
 
 
 ## Live Help Mode
@@ -123,6 +108,34 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - implement *backend* breakpoints (like the Python #break annotation) for all other languages, so that overly-long execution traces don't get generated even for larger pieces of code
   - right now there are breakpoints in the frontend, but that doesn't help when the backend already executes for > 1,000 steps; we need breakpoints in the backend (likely implement as comment annotations or GUI clicks in the code editor gutter) to really clamp down on overly-long executions
 - more reliable and faster server-side execution for non-Python backends
+- it's a known problem that lots of users try to enter code that's too long and/or runs for too many steps. maybe offer suggestions for users to heuristically shorten their code
+  - e.g., make certain variable values smaller for running loops fewer times, make strings shorter, numbers smaller, etc. to get at the heart of the algorithm at play
+  - this likely involves analyzing both the static code *and* the dynamic execution trace
+
+
+## Advanced Data Rendering
+
+- displaying large data structures by summarizing or truncating them (e.g., [1, 2, ..., 998, 999, 1000]), with clickable expansions
+  - more generally, think about semantic zooming, overview+detail, or Table Lens (see Pirolli, Card, et al.)
+  - could summarize as data visualizations like sparklines or summary tables (e.g., counts of commonly-occurring values)
+  - or maybe even "zooming out" to the point where data structures appear as abbreviated plain-text to take focus off heap details
+- multiple custom views of the same underlying data. e.g.,:
+  - C char arrays: view as strings or as encoded binary bytes?
+  - C unions can be viewed in different ways
+  - Python 2 strings: view as text or as encoded binary bytes?
+  - objects: view as their constituent parts or as their "toString()"-like representation?
+  - more extreme: a binary blob can represent, say, a JPEG image; should we decode and display it?
+- multiple linked representations: the ability to have one variable map to multiple visualization components.
+  - This is useful for, say, an NLP dynamic programming algorithm where the code must both keep track of a parse tree and a 2-D matrix for the dynamic programming table, and both should update in unison.
+- more detailed visualizations of data structure element accesses or slices ([GitHub Issue](https://github.com/pgbovine/OnlinePythonTutor/issues/185))
+- more advanced data structure displays (see [v3 project ideas doc](v3/docs/project-ideas.md) for details):
+  - e.g., 2-D matrices, 2-D microworlds like Pac-Man or Game of Life, bitmap images, trees, graphs, etc. of the sort covered by typical algorithms or data structures textbooks (e.g., CLRS or [AIMA](https://www.google.com/search?q=Artificial+Intelligence%3A+A+Modern+Approach&oq=Artificial+Intelligence%3A+A+Modern+Approach&aqs=chrome..69i57j69i60.2409j1j7&sourceid=chrome&ie=UTF-8))
+  - e.g., a file object may be visualized as a text buffer with file location pointers; an automata object may be visualized as a Graphviz-like finite state machine; a pair of numerical arrays may be rendered as a scatterplot; a 2-D matrix of RGB values may be rendered as a bitmap image (e.g., for Media Computation); a symbolic math/formal-methods library data structure could be rendered in LaTeX format as mathematical equations
+- rendering data structures commonly used in data science or machine learning (e.g., tables, data frames, SQL-like operations, 2D plots showing points, lines, and curves)
+  - for inspirations here, look at diagrams used in pandas, scikit-learn, and the R tidyverse
+- better rendering of tree recursive algorithms (e.g., fibonacci, tree traversals), such as putting frames in an execution *tree* instead of linearizing them into a stack
+- allowing instructors to add interactivity to visualizations, such as blanking out object values and making learners guess what value goes where, making learners drag and drop pointers to the right places, making them guess which line executes next, or other sorts of "micro-quizzes" to get learners more engaged
+- custom rendering API: Right now Python Tutor renders data structures in a single, fixed way. However, different instructors have different preferences for how they want certain objects to render on-screen (and argue passionately for their specific tastes). There's currently no way for them to specify these custom rendering schemes without mucking around with intricate JavaScript code in the frontend. How can we make this easier?
 
 
 ## Other
@@ -131,5 +144,5 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - inline links to short video tutorials whenever the user makes a common error
   - could automatically detect coding context and suggest proper videos on concepts (e.g., while loops)
   - (In Jan 2018 I started implementing a codcast record/replay "video" feature in [recorder.ts](v5-unity/js/recorder.ts) but haven't released it yet. I could use that to record a bunch of inline tutorials.)
-- using [annotation bubbles](v3/opt-annotations.png) to mark semantic meaning of data structures at each execution step (started prototyping this feature a longgg time ago); this is a cruder non-video form of codcasts
+- using [annotation bubbles](v3/opt-annotations.png) to mark semantic meaning of data structures at each execution step (started prototyping this feature a longgg time ago); this is a cruder non-video form of codcasts; they're like "codewalks"
 - adding basic curricula, lessons, and practice problems to the site (I've thus far resisted since there are already so many great resources online for programming curricula)
