@@ -631,10 +631,10 @@ Get live help!
         $("td#headerTdLeft").hide(); // TODO: make a better name for this!
 
         if (this.wantsPublicHelp) {
-          $("#publicHelpQueue").html("ERROR: live chat server is down or your firewall is blocking it. If you had previously asked for help, something is wrong; stop this session and try again later.");
+          $("#publicHelpQueue").html("ERROR: live chat server is down or your firewall is blocking it. If you asked for help, something is wrong; stop this session and try again later. Do NOT email to ask when the server will be back up.");
         } else {
           //$("#publicHelpQueue").empty(); // avoid showing stale results
-          $("#publicHelpQueue").html("ERROR: live chat server is down or your firewall is blocking it. This website still works, but just not the chat."); // show error msg
+          $("#publicHelpQueue").html("ERROR: live chat server is down or your firewall is blocking it. Do NOT email to ask when the server will be back up."); // show error msg
         }
       },
       success: (resp) => {
