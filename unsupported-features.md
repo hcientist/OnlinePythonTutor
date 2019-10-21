@@ -40,9 +40,7 @@ Due to this ultra-focused design, the following features are not supported and w
 - Integrating with programming environments like Jupyter Notebooks, IDEs, or text editors
 
 
-**Other unsupported features:**
-
-### Python
+### Python unsupported features
 
 - for strings and numbers, you can't rely on the behaviors of `id()` or `is` matching CPython on your computer; when teaching beginners, you shouldn't rely on these behaviors since they are implementation-specific optimizations.
   - see GitHub issues [here](https://github.com/pgbovine/OnlinePythonTutor/issues/275) and [here](https://github.com/pgbovine/OnlinePythonTutor/issues/273) and [here](https://github.com/pgbovine/OnlinePythonTutor/issues/255)
@@ -52,7 +50,7 @@ Due to this ultra-focused design, the following features are not supported and w
 - raw_input/input might not work in iframe embeds
 
 
-### C and C++
+### C and C++ unsupported features
 
 - [doesn't show when function parameters get mutated](https://github.com/pgbovine/opt-cpp-backend/issues/57) (make a copy to a new local variable to visualize)
 - [function return values are not visualized](https://github.com/pgbovine/opt-cpp-backend/issues/4) (add a temporary variable to visualize)
@@ -66,7 +64,7 @@ Due to this ultra-focused design, the following features are not supported and w
 - [read-only memory isn't visualized separately from the heap](https://github.com/pgbovine/opt-cpp-backend/issues/70)
 
 
-### JavaScript
+### JavaScript unsupported features
 
 - asynchronous and event-driven code
   - including setTimeout, setInterval, etc.
@@ -76,7 +74,7 @@ Due to this ultra-focused design, the following features are not supported and w
 - Date() object
 
 
-### Java
+### Java unsupported features
 
 - some data structures like ArrayList aren't visualized properly (see [GitHub issue](https://github.com/pgbovine/OnlinePythonTutor/issues/236))
 
@@ -97,9 +95,7 @@ Look through these issue trackers for more known bugs and unsupported features:
 - https://github.com/pgbovine/opt-cpp-backend/issues
 
 
----
-
-## Misc. FAQ
+## FAQ
 
 ### I thought all objects in Python are (conceptually) on the heap; why does Python Tutor render primitive values (e.g., numbers, strings) inside of stack frames?
 
