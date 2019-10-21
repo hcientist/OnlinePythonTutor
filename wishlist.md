@@ -1,8 +1,10 @@
 # Wishlist for Python Tutor
 
-This is a wishlist for new Python Tutor features, created by aggregating nearly a decade's worth of user survey responses, GitHub issues, other user feedback, and my own personal notes. Unfortunately, most items will likely **never get implemented** due to my limited time to devote to this project; I also don't have time to manage code contributions from others. This doc was originally created on 2019-10-20.
+Created: 2019-10-20
 
-First read the [**unsupported features doc**](unsupported-features.md#read-this-first) to get a sense of what desired features are *not* listed here since they don't fit its core design philosophy. When I decide what new features to add, I mainly think about how I can keep improving *what makes Python Tutor unique* rather than piling on generic features that other tools already have.
+This is a (disorganized!) wishlist for new Python Tutor features, created by aggregating nearly a decade's worth of user survey responses, GitHub issues, other user feedback, and my own personal notes. Unfortunately, most items will likely **never get implemented** due to my limited time to devote to this project; I also don't have time to manage code contributions from others.
+
+First read the [**unsupported features doc**](unsupported-features.md#read-this-first) to get a sense of what desired features are *not* listed here since they don't fit Python Tutor's core design philosophy. When I decide what new features to add, I mainly think about how I can keep improving *what makes Python Tutor unique* rather than piling on generic features that other tools already have.
 
 
 ## General UI/UX
@@ -17,7 +19,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
     - one bug report said: 'In the mobile version we have to give a space before pressing enter, if not done then last symbol or alphabet will get removed'
 - internationalization/localization of the UI into other popular languages
 - dark mode UI
-- Change the name of the site to something more language-agnostic, since it's about way more than Python by now. Python Tutor has a strong brand and natural SEO at this point, so maybe keep that but then either have a more general umbrella project name or an "everything-else-tutor" for all other languages
+- change the name of the site to something more language-agnostic, since it's about way more than Python by now. Python Tutor has a strong brand and natural SEO at this point, so maybe keep that but then either have a more general umbrella project name or an "everything-else-tutor" for all other languages
 
 
 ## Code Editor UI
@@ -32,24 +34,6 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - proactively warn the user when their code is likely too long or runs for too many steps, to nudge them toward either shortening it or using breakpoints (e.g., the Python #break annotation) to cut down on steps
 - IDE-like features like tab completion, code folding, etc.
 - exposing a slider for undo/redo of edits; we already have undo/redo buttons in live help mode, so maybe extend that to always be activated
-
-
-## User Input UI
-
-(Right now we support text-only inputs using `input()` and `raw_input()` for Python, but not for other languages.)
-
-- running the same code repeatedly with different user inputs without flipping back-and-forth between edit and visualize modes (a unified UI would make this easier too!)
-  - also the complement: if you change your code, be able to re-run it with the same set of user inputs so that you don't need to keep re-entering them
-- in addition to Python `input()` and `raw_input()`, also support command-line arguments via `argv[]` array
-- lots of user demand for C/C++ user inputs (and probably some for other languages too!)
-- support multi-line user inputs in a textarea
-- pressing Enter to submit a user input instead of clicking 'Submit' button
-- non-textual rich input widgets (see [v3 project ideas doc](v3/docs/project-ideas.md) for details):
-  - interactive widget to draw mathematical graphs (e.g., nodes and edges); useful for visualizing graph/tree manipulation algorithms
-  - 2-D canvas where the user can draw points and lines in a coordinate system; useful for visualizing simple computational geometry algorithms
-  - 2-D matrix of numbers or colored blocks for, say, a PacMan world
-  - drag and drop an image; useful for visualizing image manipulation algorithms
-  - text box that represents a file on the filesystem, then I/O calls such as open, read, write, etc. would be intercepted and visualized as iterating (pointing) to the file object one line at a time
 
 
 ## Visualizer UI
@@ -82,6 +66,24 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - keyboard shortcuts for quick navigation (but watch out for keyboard focus issues)
 
 
+## User Input UI
+
+(Right now we support only text inputs using `input()` and `raw_input()` for Python.)
+
+- running the same code repeatedly with different user inputs without flipping back-and-forth between edit and visualize modes (a unified UI would make this easier too!)
+  - also the complement: if you change your code, be able to re-run it with the same set of user inputs so that you don't need to keep re-entering them
+- lots of demand for C/C++ user inputs (and probably for other languages too!)
+- also support command-line arguments via `argv[]` array
+- support multi-line user inputs in a textarea
+- pressing Enter to submit a user input instead of clicking 'Submit' button
+- non-textual rich input widgets (see [v3 project ideas doc](v3/docs/project-ideas.md) for details):
+  - interactive widget to draw mathematical graphs (e.g., nodes and edges); useful for visualizing graph/tree manipulation algorithms
+  - 2-D canvas where the user can draw points and lines in a coordinate system; useful for visualizing simple computational geometry algorithms
+  - 2-D matrix of numbers or colored blocks for, say, a PacMan world
+  - drag and drop an image; useful for visualizing image manipulation algorithms
+  - text box that represents a file on the filesystem, then I/O calls such as open, read, write, etc. would be intercepted and visualized as iterating (pointing) to the file object one line at a time
+
+
 ## Live Help Mode
 
 - server-side validation of all live mode interactions for better robustness and security
@@ -108,13 +110,15 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - if there's an infinite loop (or execution runs too long), still trace and render the first 1,000 steps instead of just returning an error, so users can see which parts of their code led to the too-long execution ([GitHub Issue](https://github.com/pgbovine/OnlinePythonTutor/issues/265))
 - implement *backend* breakpoints (like the Python #break annotation) for all other languages, so that overly-long execution traces don't get generated even for larger pieces of code
   - right now there are breakpoints in the frontend, but that doesn't help when the backend already executes for > 1,000 steps; we need breakpoints in the backend (likely implement as comment annotations or GUI clicks in the code editor gutter) to really clamp down on overly-long executions
-- more reliable and faster server-side execution for non-Python backends
 - it's a known problem that lots of users try to enter code that's too long and/or runs for too many steps. maybe offer suggestions for users to heuristically shorten their code
   - e.g., make certain variable values smaller for running loops fewer times, make strings shorter, numbers smaller, etc. to get at the heart of the algorithm at play
   - this likely involves analyzing both the static code *and* the dynamic execution trace
+- more reliable and faster server-side execution for non-Python backends
 
 
 ## Custom Data Rendering
+
+The core issue here is that Python Tutor now has a fixed rendering algorithm (with a small set of toggle options), which I designed heuristically to meet [common introductory teaching use cases](unsupported-features.md#read-this-first). However, instructors in particular want more flexibility in what and how to render their data.
 
 - displaying large data structures by summarizing or truncating them (e.g., [1, 2, ..., 998, 999, 1000]), with clickable expansions
   - more generally, think about semantic zooming, overview+detail, or Table Lens (see Pirolli, Card, et al.)
@@ -135,7 +139,6 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - rendering data structures commonly used in data science or machine learning (e.g., tables, data frames, SQL-like operations, 2D plots showing points, lines, and curves)
   - for inspirations here, look at diagrams used in pandas, scikit-learn, and the R tidyverse
 - better rendering of tree recursive algorithms (e.g., fibonacci, tree traversals), such as putting frames in an execution *tree* instead of linearizing them into a stack
-- allowing instructors to add interactivity to visualizations, such as blanking out object values and making learners guess what value goes where, making learners drag and drop pointers to the right places, making them guess which line executes next, or other sorts of "micro-quizzes" to get learners more engaged
 - custom rendering API: Right now Python Tutor renders data structures in a single, fixed way. However, different instructors have different preferences for how they want certain objects to render on-screen. There's currently no way for them to specify these custom rendering schemes without mucking around with intricate JavaScript code in the frontend. How can we make this easier?
 
 
@@ -147,6 +150,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - inline links to short video tutorials whenever the user makes a common error
   - could automatically detect coding context and suggest proper videos on concepts (e.g., while loops)
   - (In Jan 2018 I started implementing a codcast record/replay "video" feature in [recorder.ts](v5-unity/js/recorder.ts) but haven't released it yet. I could use that to record a bunch of inline tutorials.)
-- creating an authoring environment using [annotation bubbles](v3/opt-annotations.png) to mark semantic meaning of data structures at each execution step (started prototyping this feature a longgg time ago)
+- create an authoring environment using [annotation bubbles](v3/opt-annotations.png) to mark semantic meaning of data structures at each execution step (started prototyping this feature a longgg time ago)
   - this is a cruder non-video form of codcasts
   - they're more like "codewalks"
+- allowing instructors to add interactivity to visualizations, such as blanking out object values and making learners guess what value goes where, making learners drag and drop pointers to the right places, making them guess which line executes next, or other sorts of "micro-quizzes" to get learners more engaged
