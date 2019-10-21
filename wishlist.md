@@ -5,9 +5,7 @@ This is a wishlist for new Python Tutor features, created by aggregating nearly 
 First read the [**unsupported features doc**](unsupported-features.md#read-this-first) to get a sense of what desired features are *not* listed here since they don't fit its core design philosophy. When I decide what new features to add, I mainly think about how I can keep improving *what makes Python Tutor unique* rather than piling on generic features that other tools already have.
 
 
-## User Interface
-
-### General
+## General UI/UX
 
 - unify the [regular](http://pythontutor.com/visualize.html) and [live programming](http://pythontutor.com/live.html) UIs into one, so that users don't need to switch back-and-forth between editing and visualizing code
   - we then need a clear indicator of when the visualization is "stale" (i.e., doesn't corresopnd to the currently-edited code)
@@ -19,9 +17,10 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
     - one bug report said: 'In the mobile version we have to give a space before pressing enter, if not done then last symbol or alphabet will get removed'
 - internationalization/localization of the UI into other popular languages
 - dark mode UI
+- Change the name of the site to something more language-agnostic, since it's about way more than Python by now. Python Tutor has a strong brand and natural SEO at this point, so maybe keep that but then either have a more general umbrella project name or an "everything-else-tutor" for all other languages
 
 
-### Code Editor
+## Code Editor UI
 
 - cache the user's code in localStorage so that it's still there in case they accidentally close the browser window
   - more ambitious but doable would be to save to user's GitHub account or pull from Gists, as an easy form of cloud data storage; instructors can really benefit from this since they can save their lessons in GitHub
@@ -35,7 +34,9 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - exposing a slider for undo/redo of edits; we already have undo/redo buttons in live help mode, so maybe extend that to always be activated
 
 
-### User Inputs
+## User Input UI
+
+(Right now we support text-only inputs using `input()` and `raw_input()` for Python, but not for other languages.)
 
 - running the same code repeatedly with different user inputs without flipping back-and-forth between edit and visualize modes (a unified UI would make this easier too!)
   - also the complement: if you change your code, be able to re-run it with the same set of user inputs so that you don't need to keep re-entering them
@@ -51,7 +52,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - text box that represents a file on the filesystem, then I/O calls such as open, read, write, etc. would be intercepted and visualized as iterating (pointing) to the file object one line at a time
 
 
-### Visualizer
+## Visualizer UI
 
 - better fonts in the visualizer's code display, to disambiguate letters like l, I, and 1
   - one user suggested Adobe's Source Code Pro.
@@ -98,7 +99,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
 - have a volunteer lobby chat room where volunteers can hang out while waiting and maybe even coordinate with each other about who to help when new requests come onto the queue
 - concurrent editing in the Ace editor is a bit slow and clunky; also you can't see multiple edit cursors
 - need some indicator that the chat session's original creator (i.e., the help requester) has left, so nobody in there is the original person (but it's OK for these sessions to still exist!)
-
+- better server-side caching of user state, such as ipstack geolocation calls since we have a limited free monthly quota
 
 
 ## Language Backends
@@ -113,7 +114,7 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - this likely involves analyzing both the static code *and* the dynamic execution trace
 
 
-## Advanced Data Rendering
+## Custom Data Rendering
 
 - displaying large data structures by summarizing or truncating them (e.g., [1, 2, ..., 998, 999, 1000]), with clickable expansions
   - more generally, think about semantic zooming, overview+detail, or Table Lens (see Pirolli, Card, et al.)
@@ -135,14 +136,17 @@ First read the [**unsupported features doc**](unsupported-features.md#read-this-
   - for inspirations here, look at diagrams used in pandas, scikit-learn, and the R tidyverse
 - better rendering of tree recursive algorithms (e.g., fibonacci, tree traversals), such as putting frames in an execution *tree* instead of linearizing them into a stack
 - allowing instructors to add interactivity to visualizations, such as blanking out object values and making learners guess what value goes where, making learners drag and drop pointers to the right places, making them guess which line executes next, or other sorts of "micro-quizzes" to get learners more engaged
-- custom rendering API: Right now Python Tutor renders data structures in a single, fixed way. However, different instructors have different preferences for how they want certain objects to render on-screen (and argue passionately for their specific tastes). There's currently no way for them to specify these custom rendering schemes without mucking around with intricate JavaScript code in the frontend. How can we make this easier?
+- custom rendering API: Right now Python Tutor renders data structures in a single, fixed way. However, different instructors have different preferences for how they want certain objects to render on-screen. There's currently no way for them to specify these custom rendering schemes without mucking around with intricate JavaScript code in the frontend. How can we make this easier?
 
 
-## Other
+## Authoring Environments
 
-- Change the name of the site to something more language-agnostic, since it's about way more than Python by now. Python Tutor has a strong brand and natural SEO at this point, so maybe keep that but then either have a more general umbrella project name or an "everything-else-tutor" for all other languages.
+(I've thus far resisted going down this path since there are already so many great free programming lessons online.)
+
+- adding basic curricula, lessons, and practice problems to the site
 - inline links to short video tutorials whenever the user makes a common error
   - could automatically detect coding context and suggest proper videos on concepts (e.g., while loops)
   - (In Jan 2018 I started implementing a codcast record/replay "video" feature in [recorder.ts](v5-unity/js/recorder.ts) but haven't released it yet. I could use that to record a bunch of inline tutorials.)
-- using [annotation bubbles](v3/opt-annotations.png) to mark semantic meaning of data structures at each execution step (started prototyping this feature a longgg time ago); this is a cruder non-video form of codcasts; they're like "codewalks"
-- adding basic curricula, lessons, and practice problems to the site (I've thus far resisted since there are already so many great resources online for programming curricula)
+- creating an authoring environment using [annotation bubbles](v3/opt-annotations.png) to mark semantic meaning of data structures at each execution step (started prototyping this feature a longgg time ago)
+  - this is a cruder non-video form of codcasts
+  - they're more like "codewalks"
