@@ -45,6 +45,7 @@ require('../css/opt-live.css');
 
 // 2019-04-09: disabled shared sessions in opt-live.ts
 //import {OptFrontendSharedSessions,TogetherJS} from './opt-shared-sessions';
+import * as d3 from "d3"
 
 import {OptFrontend} from './opt-frontend';
 import {ExecutionVisualizer, assert, brightRed, darkArrowColor, lightArrowColor, SVG_ARROW_POLYGON, htmlspecialchars} from './pytutor';

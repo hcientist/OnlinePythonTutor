@@ -35,12 +35,10 @@ require('./lib/jquery-ui-1.11.4/jquery-ui.css');
 require('./lib/jquery.ba-bbq.js'); // contains slight pgbovine modifications
 require('../css/pytutor');
 
-
 // for TypeScript
 declare var jQuery: JQueryStatic;
 declare var jsPlumb: any;
-
-
+import * as d3 from "d3"
 export var SVG_ARROW_POLYGON = '0,3 12,3 12,0 18,5 12,10 12,7 0,7';
 var SVG_ARROW_HEIGHT = 10; // must match height of SVG_ARROW_POLYGON
 
@@ -544,7 +542,7 @@ export class ExecutionVisualizer {
 
   _getSortedBreakpointsList() {
     var ret = [];
-    this.breakpoints.forEach(function(k, v) {
+    Array.from(this.breakpoints.entries()).forEach(function(k, v) {
       ret.push(Number(k)); // these should be NUMBERS, not strings
     });
     ret.sort(function(x,y){return x-y}); // WTF, javascript sort is lexicographic by default!
@@ -948,7 +946,7 @@ export class ExecutionVisualizer {
           var contentTr = tbl.find('tr:last');
           contentTr.append('<td class="'+ label + 'FElt">'+'<span class="stringObj symbolic">&#8596;</span>'+'</td>');
           $.each(obj, function(ind, val) {
-            if (ind < 1) return; // skip type tag and ID entry
+            if (+ind < 1) return; // skip type tag and ID entry
             contentTr.append('<td class="'+ label + 'Elt"></td>');
             myViz.renderNestedObject(val, stepNum, contentTr.find('td:last'));
           });
@@ -961,7 +959,7 @@ export class ExecutionVisualizer {
           // Add arrows showing in/out direction
           contentTr.append('<td class="'+ label + 'FElt">'+'<span class="stringObj symbolic">&#8592;</span></td>');    
           $.each(obj, function(ind, val) {
-            if (ind < 1) return; // skip type tag and ID entry
+            if (+ind < 1) return; // skip type tag and ID entry
             contentTr.append('<td class="'+ label + 'Elt"></td>');
             myViz.renderNestedObject(val, stepNum, contentTr.find('td:last'));
           });
@@ -1395,7 +1393,7 @@ class DataVisualizer {
 
         if (isLinearObj(heapObj)) {
           $.each(heapObj, function(ind, child) {
-            if (ind < 1) return; // skip type tag
+            if (+ind < 1) return; // skip type tag
 
             if (!myViz.isPrimitiveType(child)) {
               var childID = getRefID(child);
@@ -1410,7 +1408,7 @@ class DataVisualizer {
         }
         else if (heapObj[0] == 'DICT') {
           $.each(heapObj, function(ind, child) {
-            if (ind < 1) return; // skip type tag
+            if (+ind < 1) return; // skip type tag
 
             var dictKey = child[0];
             if (!myViz.isPrimitiveType(dictKey)) {
@@ -1435,7 +1433,7 @@ class DataVisualizer {
         else if (heapObj[0] == 'INSTANCE' || heapObj[0] == 'INSTANCE_PPRINT' || heapObj[0] == 'CLASS') {
           jQuery.each(heapObj, function(ind, child) {
             var headerLength = (heapObj[0] == 'INSTANCE') ? 2 : 3;
-            if (ind < headerLength) return;
+            if (+ind < headerLength) return;
 
             var instKey = child[0];
             if (!myViz.isPrimitiveType(instKey)) {
@@ -1610,12 +1608,12 @@ class DataVisualizer {
       function recurseIntoCStructArray(val) {
         if (val[0] === 'C_ARRAY') {
           $.each(val, function(ind, elt) {
-            if (ind < 2) return; // these have 2 header fields
+            if (+ind < 2) return; // these have 2 header fields
             updateCurLayoutAndRecurse(elt);
           });
         } else if (val[0] === 'C_MULTIDIMENSIONAL_ARRAY' || val[0] === 'C_STRUCT') {
           $.each(val, function(ind, kvPair) {
-            if (ind < 3) return; // these have 3 header fields
+            if (+ind < 3) return; // these have 3 header fields
             updateCurLayoutAndRecurse(kvPair[1]);
           });
         }
@@ -1654,11 +1652,11 @@ class DataVisualizer {
 
 
       // iterate through remaining elements of idsToRemove and REMOVE them from curLayout
-      idsToRemove.forEach(function(id, xxx) {
+      Array.from(idsToRemove.entries()).forEach(function(id, xxx) {
         var idInt = Number(id); // keys are stored as strings, so convert!!!
         $.each(curLayout, function(rownum, row) {
           var ind = row.indexOf(idInt);
-          if (ind > 0) { // remember that index 0 of the row is the row ID tag
+          if (+ind > 0) { // remember that index 0 of the row is the row ID tag
             row.splice(ind, 1);
           }
         });
@@ -2313,8 +2311,8 @@ class DataVisualizer {
         //console.log(my_CSS_id, 'EXIT');
 
         // Remove all pointers where either the source or destination end is my_CSS_id
-        existingParentPointerConnectionEndpointIDs.forEach(function(k, v) {
-          if (k == my_CSS_id || v == my_CSS_id) {
+        Array.from(existingParentPointerConnectionEndpointIDs.entries()).forEach(function(k:any, v) {
+          if (k == my_CSS_id || +v == +my_CSS_id) {
             //console.log('remove EPP', k, v);
             existingParentPointerConnectionEndpointIDs.remove(k);
           }
@@ -2488,14 +2486,14 @@ class DataVisualizer {
       // existingConnectionEndpointIDs since we want to redraw all arrows
       // each and every time.
       if (!myViz.isCppMode()) {
-        existingConnectionEndpointIDs.forEach(renderVarValueConnector);
+        Array.from(existingConnectionEndpointIDs.entries()).forEach(renderVarValueConnector);
       }
       // add all the NEW connectors that have arisen in this call to renderDataStructures
       myViz.jsPlumbManager.connectionEndpointIDs.forEach(renderVarValueConnector);
     }
     // do the same for environment parent pointers
     if (myViz.params.drawParentPointers) {
-      existingParentPointerConnectionEndpointIDs.forEach(renderParentPointerConnector);
+      Array.from(existingParentPointerConnectionEndpointIDs.entries()).forEach(renderParentPointerConnector);
       myViz.jsPlumbManager.parentPointerConnectionEndpointIDs.forEach(renderParentPointerConnector);
     }
 
@@ -2659,7 +2657,7 @@ class DataVisualizer {
 
           var rep = '';
           if (typeof obj[3] === 'string') {
-            var literalStr = obj[3];
+            var literalStr : any= obj[3];
             if (literalStr === '<UNINITIALIZED>') {
               rep = '<span class="cdataUninit">?</span>';
               //rep = '\uD83D\uDCA9'; // pile of poo emoji
@@ -2805,12 +2803,12 @@ class DataVisualizer {
           var headerTr = tbl.find('tr:first');
           var contentTr = tbl.find('tr:last');
           $.each(obj, function(ind, val) {
-            if (ind < 1) return; // skip type tag and ID entry
+            if (+ind < 1) return; // skip type tag and ID entry
 
             // add a new column and then pass in that newly-added column
             // as d3DomElement to the recursive call to child:
             headerTr.append('<td class="' + label + 'Header"></td>');
-            headerTr.find('td:last').append(ind - 1);
+            headerTr.find('td:last').append(+ind - 1);
 
             contentTr.append('<td class="'+ label + 'Elt"></td>');
             myViz.renderNestedObject(val, stepNum, contentTr.find('td:last'));
@@ -2834,9 +2832,9 @@ class DataVisualizer {
           }
 
           jQuery.each(obj, function(ind, val) {
-            if (ind < 1) return; // skip 'SET' tag
+            if (+ind < 1) return; // skip 'SET' tag
 
-            if (((ind - 1) % numCols) == 0) {
+            if (((+ind - 1) % numCols) == 0) {
               tbl.append('<tr></tr>');
             }
 
@@ -2847,7 +2845,7 @@ class DataVisualizer {
         }
         else if (obj[0] == 'DICT') {
           $.each(obj, function(ind, kvPair) {
-            if (ind < 1) return; // skip 'DICT' tag
+            if (+ind < 1) return; // skip 'DICT' tag
 
             tbl.append('<tr class="dictEntry"><td class="dictKey"></td><td class="dictVal"></td></tr>');
             var newRow = tbl.find('tr:last');
@@ -2897,7 +2895,7 @@ class DataVisualizer {
         var tbl = d3DomElement.children('table:last'); // tricky, there's more than 1 table if isPprintInstance is true
 
         $.each(obj, function(ind, kvPair) {
-          if (ind < headerLength) return; // skip header tags
+          if (+ind < headerLength) return; // skip header tags
 
           tbl.append('<tr class="' + lab + 'Entry"><td class="' + lab + 'Key"></td><td class="' + lab + 'Val"></td></tr>');
 
@@ -3083,7 +3081,7 @@ class DataVisualizer {
         var tbl = d3DomElement.children('table');
 
         $.each(obj, function(ind, kvPair) {
-          if (ind < 3) return; // skip header tags
+          if (+ind < 3) return; // skip header tags
 
           tbl.append('<tr class="instEntry"><td class="instKey"></td><td class="instVal"></td></tr>');
 
@@ -3182,12 +3180,12 @@ class DataVisualizer {
       var headerTr = tbl.find('tr:first');
       var contentTr = tbl.find('tr:last');
       $.each(obj, function(ind, val) {
-        if (ind < 2) return; // skip 'C_ARRAY' and addr
+        if (+ind < 2) return; // skip 'C_ARRAY' and addr
 
         // add a new column and then pass in that newly-added column
         // as d3DomElement to the recursive call to child:
         headerTr.append('<td class="cArrayHeader"></td>');
-        headerTr.find('td:last').append(ind - 2 /* adjust */);
+        headerTr.find('td:last').append(+ind - 2 /* adjust */);
 
         contentTr.append('<td class="cArrayElt"></td>');
         myViz.renderNestedObject(val, stepNum, contentTr.find('td:last'));
@@ -3771,7 +3769,7 @@ class NavigationController {
       .attr('width', w)
       .attr('height', 12);
 
-    var xrange = d3.scale.linear()
+    var xrange = d3.scaleLinear()
       .domain([0, this.nSteps - 1])
       .range([0, w]);
 

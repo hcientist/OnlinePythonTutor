@@ -798,4 +798,5 @@ $(document).ready(function() {
   }
 
   $("#liveModeBtn").click(optFrontend.openLiveModeUrl.bind(optFrontend));
+
 });
