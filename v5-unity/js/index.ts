@@ -12,7 +12,7 @@ $(document).ready(function() {
   $("#cp-thumbnail").attr('src', require('./images/opt-v3-cs61a-embed-small.png'));
 
   var demoViz = new ExecutionVisualizer('demoViz', demoTrace, {embeddedMode: true,
-                                                               lang: 'py2',
+                                                               lang: 'py3',
                                                                startingInstruction: 10,
                                                                editCodeBaseURL: 'visualize.html'});
 

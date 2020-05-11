@@ -13,6 +13,7 @@ module.exports = {
         jQuery: "jquery",
         $: "jquery"
       }),
+
       // run a micro frontend regression test after every webpack build
       // to sanity-check
       //
@@ -61,7 +62,6 @@ module.exports = {
         'composingprograms': "./js/composingprograms.ts",
         'csc108h': "./js/csc108h.ts",
         'pytutor-embed': "./js/pytutor-embed.ts",
-        'opt-graph': "./js/opt-graph.ts",
     },
 
     output: {
@@ -74,7 +74,7 @@ module.exports = {
     },
 
     module: {
-        rules: [
+        loaders: [
             { test: /\.css$/, loader: "style-loader!css-loader" }, // CSS
             { test: /\.(png|jpg)$/, loader: 'url-loader' }, // images
             { test: /\.ts$/, loader: 'ts-loader' } // TypeScript

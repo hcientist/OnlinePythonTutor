@@ -429,7 +429,7 @@ Get live help!
     $("td#headerTdRight").append(togetherJsDiv);
     // shut down chat features on 2019-03-24 due to technical difficulties, reactivated on 2019-03-26:
     //$("td#headerTdLeft").width('200px');
-    //$("td#headerTdLeft").append("<div style=\"font-size: 6pt; font-color: #666;\">Live chat mode is shut down indefinitely due to technical difficulties. Please don't email me to ask about this issue. (<a href=\"https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md\">more info</a>)</div>");
+    //$("td#headerTdLeft").append("<div style=\"font-size: 6pt; font-color: #666;\">Live chat mode is shut down indefinitely due to technical difficulties. Please don't email me to ask about this issue.</div>");
 
     // do this all after creating the DOM elements above dynamically:
     $("#sharedSessionBtn").click(this.startSharedSession.bind(this, false));
@@ -631,10 +631,14 @@ Get live help!
         $("td#headerTdLeft").hide(); // TODO: make a better name for this!
 
         if (this.wantsPublicHelp) {
-          $("#publicHelpQueue").html("ERROR: live chat is down or your firewall is blocking it. If you asked for help, something is wrong; stop this session and try again later. Do NOT email to ask when live chat will be back up.");
+          //$("#publicHelpQueue").html("ERROR: live chat is down or your firewall is blocking it. If you asked for help, something is wrong; stop this session and try again later. Do NOT email to ask when live chat will be back up.");
+          // 2019-11-04: friendlier error msg
+          $("#publicHelpQueue").html("ERROR: live chat is down or your WiFi/firewall is blocking it. If you asked for help, something is wrong; stop this session and try again later.");
         } else {
           //$("#publicHelpQueue").empty(); // avoid showing stale results
-          $("#publicHelpQueue").html("ERROR: live chat is down or your firewall is blocking it. Do NOT email to ask when live chat will be back up."); // show error msg
+          //$("#publicHelpQueue").html("ERROR: live chat is down or your firewall is blocking it. Do NOT email to ask when live chat will be back up."); // show error msg
+          // 2019-11-04: friendlier error msg
+          $("#publicHelpQueue").html("(Live chat is down or your WiFi/firewall is blocking it. Try again later. There is NO technical support available.)"); // show error msg
         }
       },
       success: (resp) => {

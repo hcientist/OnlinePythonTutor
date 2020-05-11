@@ -66,3 +66,11 @@ java.util.*;</tt>),
 JavaScript ES6 and TypeScript 1.4.1 (Node.js v6.0.0), Ruby 2 (MRI 2.2.2), C and C++ (gcc 4.8, C11/C++11, Valgrind Memcheck)</p>
 
 ` + privacyAndEndingHTML;
+
+
+export var nullTraceErrorLst = [
+  "Unknown error: The server is OVERLOADED or your code has UNSUPPORTED FEATURES.",
+  "Try again later. This site is free with NO available technical support. [#NullTrace]"
+];
+
+export var unsupportedFeaturesStr = 'see <a target="_blank" href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">UNSUPPORTED FEATURES</a>';

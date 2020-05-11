@@ -798,6 +798,4 @@ $(document).ready(function() {
   }
 
   $("#liveModeBtn").click(optFrontend.openLiveModeUrl.bind(optFrontend));
-  $("#graphBtn").click(optFrontend.openGraphModeUrl.bind(optFrontend));
-
 });

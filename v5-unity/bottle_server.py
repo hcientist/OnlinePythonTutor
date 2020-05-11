@@ -27,7 +27,6 @@ import pg_logger
 @route('/runtime_err_survey.py')
 @route('/eureka_survey.py')
 @route('/error_log.py')
-@route('/viz_graph.py')
 def dummy_ok(name=None):
     return 'OK'
 

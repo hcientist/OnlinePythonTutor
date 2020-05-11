@@ -18,6 +18,6 @@ declare namespace AceAjax {
   interface Editor {
     setHighlightGutterLine: any;
     setDisplayIndentGuides: any;
-    //on: any;
+    on: any;
   }
 }

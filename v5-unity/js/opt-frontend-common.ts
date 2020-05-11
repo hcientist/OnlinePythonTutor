@@ -21,6 +21,7 @@ require('./lib/jquery.ba-dotimeout.min.js');
 
 // need to directly import the class for type checking to work
 import {ExecutionVisualizer, assert, htmlspecialchars} from './pytutor';
+import {nullTraceErrorLst,unsupportedFeaturesStr} from './footer-html';
 
 
 // the main event!
@@ -89,7 +90,7 @@ export abstract class AbstractBaseFrontend {
   // so you will need to customize for your server:
   serverRoot = (window.location.protocol === 'https:') ?
                 'https://cokapi.com/' : // my certificate for https is registered via cokapi.com, so use it for now
-                'http://cokapi.com/';   // try cokapi.com so that hopefully it works through firewalls better than directly using IP addr
+                'http://cokapi.com/';   // try cokapi.com so that hopefully it works through firewalls better than directly using its IP addr (which should be 104.237.139.253)
                                         // (but that's just an unsubstantiated hunch)
 
   // randomly pick one backup server to load balance:
@@ -182,7 +183,7 @@ export abstract class AbstractBaseFrontend {
         this.setFronendError(
                         ["Server error! Your code might have an INFINITE LOOP or be running for too long.",
                          "The server may also be OVERLOADED. Or you're behind a FIREWALL that blocks access.",
-                         "Try again later. This site is provided for free with no available technical support."]);
+                         "Try again later. This site is free with NO technical support. [#UnknownServerError]"]);
       }
       this.doneExecutingCode();
     });
@@ -202,10 +203,9 @@ export abstract class AbstractBaseFrontend {
 
   getAppState() {return {};} // NOP -- subclasses need to override
 
-
   setFronendError(lines, ignoreLog=false) {
     $("#frontendErrorOutput").html(lines.map(htmlspecialchars).join('<br/>') +
-                                   (ignoreLog ? '' : '<p/>Read this list of <a target="_blank" href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">UNSUPPORTED FEATURES</a>'));
+                                   (ignoreLog ? '' : '<p/>(' + unsupportedFeaturesStr + ')'));
 
     // log it to the server as well (unless ignoreLog is on)
     if (!ignoreLog) {
@@ -335,10 +335,7 @@ export abstract class AbstractBaseFrontend {
         } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
           this.setFronendError([trace[trace.length - 1].exception_msg]);
         } else {
-          this.setFronendError(
-                          ["Unknown error: The server may be OVERLOADED right now; try again later.",
-                           "Your code may also contain UNSUPPORTED FEATURES that this tool cannot handle.",
-                           "Try again later. This site is provided for free with no available technical support. [#NullTrace]"]);
+          this.setFronendError(nullTraceErrorLst);
         }
       } else {
         // fail-soft to prevent running off of the end of trace
@@ -365,7 +362,6 @@ export abstract class AbstractBaseFrontend {
                                    backendOptionsObj, frontendOptionsObj,
                                    vizCallback.bind(this));
   }
-
 
   // execute code and call the execCallback function when the server
   // returns data via Ajax
@@ -564,53 +560,6 @@ export abstract class AbstractBaseFrontend {
       }
   }
 
-  // copy-past of executeCodeAndCreateViz to inform if the program
-  //compiles and can be transformed in graphs
-  executeCodeAndCreateGraph(codeToExec,
-                            pyState,
-                            backendOptionsObj, frontendOptionsObj,
-                            outputDiv) {
-      var vizCallback = (dataFromBackend) => {
-        var trace = dataFromBackend.trace;
-        // don't enter visualize mode if there are killer errors:
-        if (!trace ||
-            (trace.length == 0) ||
-            (trace[trace.length - 1].event == 'uncaught_exception')) {
-          this.handleUncaughtException(trace);
-
-          if (trace.length == 1) {
-            this.setFronendError([trace[0].exception_msg]);
-          } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
-            this.setFronendError([trace[trace.length - 1].exception_msg]);
-          } else {
-            this.setFronendError(
-                            ["Unknown error: The server may be OVERLOADED right now; try again later.",
-                             "Your code may also contain UNSUPPORTED FEATURES that this tool cannot handle.",
-                             "Try again later. This site is provided for free with no available technical support. [#NullTrace]"]);
-          }
-        } else {
-          // fail-soft to prevent running off of the end of trace
-          if (frontendOptionsObj.startingInstruction >= trace.length) {
-            frontendOptionsObj.startingInstruction = 0;
-          }
-
-          if (frontendOptionsObj.runTestCaseCallback) {
-            // hacky! DO NOT actually create a visualization! instead call:
-            frontendOptionsObj.runTestCaseCallback(trace);
-          } else {
-            // success!
-            var myArgs = this.getAppState();
-            var urlStr = $.param.fragment('graph-visualizer.html', myArgs, 2 /* clobber all */);
-            window.open(urlStr); // open in new tab
-            return false; // to prevent default "a href" click action
-          }
-        }
-      }
-      this.executeCodeAndRunCallback(codeToExec,
-                                         pyState,
-                                         backendOptionsObj, frontendOptionsObj,
-                                         vizCallback.bind(this));
-    }
 
   // manage traceCache
 

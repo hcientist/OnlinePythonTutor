@@ -45,13 +45,12 @@ require('../css/opt-live.css');
 
 // 2019-04-09: disabled shared sessions in opt-live.ts
 //import {OptFrontendSharedSessions,TogetherJS} from './opt-shared-sessions';
-import * as d3 from "d3"
 
 import {OptFrontend} from './opt-frontend';
 import {ExecutionVisualizer, assert, brightRed, darkArrowColor, lightArrowColor, SVG_ARROW_POLYGON, htmlspecialchars} from './pytutor';
 import {eureka_survey,eureka_prompt,eureka_survey_version} from './surveys';
 import {allTabsRE} from './opt-frontend';
-import {privacyAndEndingHTML} from './footer-html';
+import {privacyAndEndingHTML,nullTraceErrorLst,unsupportedFeaturesStr} from './footer-html';
 
 // just punt and use global script dependencies
 require("script-loader!./lib/ace/src-min-noconflict/ace.js");
@@ -91,8 +90,7 @@ export class OptLiveFrontend extends OptFrontend {
 
   constructor(params) {
     super(params);
-    console.log("eheh");
-    console.log(this.pyInputGetValue());
+
     $('#legendDiv')
       .append('<svg id="prevLegendArrowSVG"/> line that just executed')
       .append('<p style="margin-top: 4px"><svg id="curLegendArrowSVG"/> next line to execute</p>');
@@ -264,10 +262,10 @@ export class OptLiveFrontend extends OptFrontend {
         curEntry.event === 'uncaught_exception') {
       assert(curEntry.exception_msg);
       if (curEntry.exception_msg == "Unknown error") {
-        $("#frontendErrorOutput").html('Unknown error: <a target="_blank" href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">read this page for more info</a>');
+        $("#frontendErrorOutput").html('Unknown error: ' + unsupportedFeaturesStr);
 
       } else {
-        $("#frontendErrorOutput").html(htmlspecialchars(curEntry.exception_msg));
+        $("#frontendErrorOutput").html(htmlspecialchars(curEntry.exception_msg) + '<p/>(' + unsupportedFeaturesStr + ')');
       }
 
       if (myVisualizer.curLineNumber) {
@@ -277,7 +275,7 @@ export class OptLiveFrontend extends OptFrontend {
         this.allMarkerIds.push(markerId);
       }
     } else if (myVisualizer.instrLimitReached) {
-      $("#frontendErrorOutput").html(htmlspecialchars(myVisualizer.instrLimitReachedWarningMsg));
+      $("#frontendErrorOutput").html(htmlspecialchars(myVisualizer.instrLimitReachedWarningMsg) + '<p/>(' + unsupportedFeaturesStr + ')');
     } else {
       $("#frontendErrorOutput").html(''); // clear it
     }
@@ -588,10 +586,7 @@ export class OptLiveFrontend extends OptFrontend {
         } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
           this.setFronendError([trace[trace.length - 1].exception_msg]);
         } else {
-          this.setFronendError(
-                          ["Unknown error: The server may be OVERLOADED right now; try again later.",
-                           "Your code may also contain UNSUPPORTED FEATURES that this tool cannot handle.",
-                           "[#NullTrace]"]);
+          this.setFronendError(nullTraceErrorLst);
         }
       } else {
         this.prevVisualizer = this.myVisualizer;

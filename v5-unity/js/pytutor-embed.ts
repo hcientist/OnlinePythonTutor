@@ -2,16 +2,18 @@
 // Copyright (C) Philip Guo (philip@pgbovine.net)
 // LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
 
+// see ../pytutor-embed-demo.html for how to use this file
+
 import {ExecutionVisualizer} from './pytutor';
 
 var allVisualizers = [];
 
 function redrawAllVisualizerArrows() {
   $.each(allVisualizers, (i, v) => {
-    console.log("redrawConnectors:", v);
+    //console.log("redrawConnectors:", v);
     v.redrawConnectors();
   });
-  console.log("DONE redrawAllVisualizerArrows");
+  //console.log("DONE redrawAllVisualizerArrows");
 }
 
 // creates a ExecutionVisualizer representing trace and adds it to page at divId

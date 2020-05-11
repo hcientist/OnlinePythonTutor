@@ -1,3 +1,7 @@
+Note: I can't provide technical support for users who want to install Python Tutor on their own computers/servers.
+Read details here: https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md
+---
+
 Online Python Tutor v5 "unity" -- the goal for this version is to
 significantly clean up, modernize, and modularize the OPT codebase to
 ease future development.

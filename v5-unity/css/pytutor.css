@@ -60,6 +60,13 @@ div.ExecutionVisualizer #dataViz {
   /*margin-left: 25px;*/
 }
 
+div.ExecutionVisualizer #selectiveHideStatus {
+  /*margin-left: 25px;*/
+  font-size: 9pt;
+  margin-bottom: 15px;
+  margin-left: 13px;
+}
+
 /*
 div.ExecutionVisualizer div#codeDisplayDiv {
   width: 550px;
@@ -776,6 +783,10 @@ div.ExecutionVisualizer .pycrazy-highlight-prev-and-cur {
 
 #optTabularView td.stepTableTd {
   padding: 3px 10px;
+}
+
+#uiControlsPane {
+  font-size: 8pt;
 }
 
 

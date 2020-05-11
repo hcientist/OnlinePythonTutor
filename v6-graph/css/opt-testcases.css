@@ -1,0 +1,25 @@
+.testCaseEditor {
+  width: 300px;
+  height: 90px; /* VERY IMPORTANT so that it works on I.E., ugh! */
+  border: 1px solid #ddd;
+}
+
+#testCasesTable thead td {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #bbb;
+  text-align: center;
+}
+
+#testCasesTable td {
+  padding-top: 10px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#testCasesTable td.outputTd {
+  text-align: center;
+}
+
+#testCasesTable {
+  margin-bottom: 5px;
+}
