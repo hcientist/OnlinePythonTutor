@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Visualize Graphs</title>
+
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+
+    <!-- let Webpack take care of everything. Use the [hash] feature to
+         create unique filenames for releases:
+         https://webpack.github.io/docs/long-term-caching.html -->
+
+    <script type="text/javascript" src="build/opt-graph.bundle.js?3bf4da0be3" charset="utf-8"></script>
+
+</head>
+
+<body>
+
+<table id="experimentalHeader">
+    <tr>
+        <td valign="top" id="headerTdLeft"></td>
+        <td valign="top" id="headerTdRight"></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td valign="top">
+            <div id="pyInputPane">
+                <div id="codeInputWarnings">Write code in
+                    <select id="pythonVersionSelector">
+                        <option value="2">Python 2.7</option>
+                        <option value="3" selected>Python 3.6</option>
+                    </select>
+
+                    <span id="liveModeExtraWarning" style="color: #888; font-size: 8pt; float: right;">(drag lower right corner to resize code editor)</span>
+                </div>
+                <div id="someoneIsTypingDiv" style="color: #e93f34; font-weight: bold; display: none;">Someone is typing ...</div>
+
+                <div id="codeInputPane"></div>
+                <div id="legendDiv"></div>
+                <div id="executionSlider" style="margin-top: 10px;"></div>
+
+                <!-- copied and pasted from pytutor.js
+                     TODO: integrate all this together and modularize -->
+
+                <div id="vcrControls" style="display: none;">
+                    <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>
+                    <button id="jmpStepBack", type="button">&lt; Prev</button>
+                    <button id="jmpStepFwd", type="button">Next &gt;</button>
+                    <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>
+                </div>
+                <div id="curInstr" style="display: none;"></div>
+
+                <div id="rawUserInputDiv" style="display: none;">
+                    <span id="userInputPromptStr"></span>
+                    <input type="text" id="raw_input_textbox" size="30"/>
+                    <button id="raw_input_submit_btn">Submit</button>
+                </div>
+
+                <div id="frontendErrorOutput"></div>
+            </div>
+            <div id="eurekaSurveyPane"></div>
+        </td>
+        <td valign="top">
+            <div id="pyOutputPane"/>
+        </td>
+    </tr>
+</table>
+
+<div id="footer"></div>
+
+</body>
+</html>

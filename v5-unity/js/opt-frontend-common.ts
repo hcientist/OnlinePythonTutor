@@ -202,6 +202,7 @@ export abstract class AbstractBaseFrontend {
 
   getAppState() {return {};} // NOP -- subclasses need to override
 
+
   setFronendError(lines, ignoreLog=false) {
     $("#frontendErrorOutput").html(lines.map(htmlspecialchars).join('<br/>') +
                                    (ignoreLog ? '' : '<p/>Read this list of <a target="_blank" href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/unsupported-features.md">UNSUPPORTED FEATURES</a>'));
@@ -364,6 +365,7 @@ export abstract class AbstractBaseFrontend {
                                    backendOptionsObj, frontendOptionsObj,
                                    vizCallback.bind(this));
   }
+
 
   // execute code and call the execCallback function when the server
   // returns data via Ajax
@@ -562,6 +564,53 @@ export abstract class AbstractBaseFrontend {
       }
   }
 
+  // copy-past of executeCodeAndCreateViz to inform if the program
+  //compiles and can be transformed in graphs
+  executeCodeAndCreateGraph(codeToExec,
+                            pyState,
+                            backendOptionsObj, frontendOptionsObj,
+                            outputDiv) {
+      var vizCallback = (dataFromBackend) => {
+        var trace = dataFromBackend.trace;
+        // don't enter visualize mode if there are killer errors:
+        if (!trace ||
+            (trace.length == 0) ||
+            (trace[trace.length - 1].event == 'uncaught_exception')) {
+          this.handleUncaughtException(trace);
+
+          if (trace.length == 1) {
+            this.setFronendError([trace[0].exception_msg]);
+          } else if (trace.length > 0 && trace[trace.length - 1].exception_msg) {
+            this.setFronendError([trace[trace.length - 1].exception_msg]);
+          } else {
+            this.setFronendError(
+                            ["Unknown error: The server may be OVERLOADED right now; try again later.",
+                             "Your code may also contain UNSUPPORTED FEATURES that this tool cannot handle.",
+                             "Try again later. This site is provided for free with no available technical support. [#NullTrace]"]);
+          }
+        } else {
+          // fail-soft to prevent running off of the end of trace
+          if (frontendOptionsObj.startingInstruction >= trace.length) {
+            frontendOptionsObj.startingInstruction = 0;
+          }
+
+          if (frontendOptionsObj.runTestCaseCallback) {
+            // hacky! DO NOT actually create a visualization! instead call:
+            frontendOptionsObj.runTestCaseCallback(trace);
+          } else {
+            // success!
+            var myArgs = this.getAppState();
+            var urlStr = $.param.fragment('graph-visualizer.html', myArgs, 2 /* clobber all */);
+            window.open(urlStr); // open in new tab
+            return false; // to prevent default "a href" click action
+          }
+        }
+      }
+      this.executeCodeAndRunCallback(codeToExec,
+                                         pyState,
+                                         backendOptionsObj, frontendOptionsObj,
+                                         vizCallback.bind(this));
+    }
 
   // manage traceCache
 

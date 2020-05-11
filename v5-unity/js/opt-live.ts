@@ -91,7 +91,8 @@ export class OptLiveFrontend extends OptFrontend {
 
   constructor(params) {
     super(params);
-
+    console.log("eheh");
+    console.log(this.pyInputGetValue());
     $('#legendDiv')
       .append('<svg id="prevLegendArrowSVG"/> line that just executed')
       .append('<p style="margin-top: 4px"><svg id="curLegendArrowSVG"/> next line to execute</p>');

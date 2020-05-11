@@ -331,6 +331,7 @@ export class OptFrontend extends AbstractBaseFrontend {
     assert(mod);
 
     var s = this.pyInputAceEditor.getSession();
+
     s.setMode("ace/mode/" + mod);
     s.setTabSize(tabSize);
     s.setUseSoftTabs(true);
@@ -347,8 +348,12 @@ export class OptFrontend extends AbstractBaseFrontend {
 
     if (selectorVal === 'js' || selectorVal === '2' || selectorVal === '3') {
       $("#liveModeBtn").show();
+      $("#graphBtn").show();
+      if (selectorVal === 'js')
+        $("#graphBtn").hide();
     } else {
       $("#liveModeBtn").hide();
+      $("#graphBtn").hide();
     }
 
     this.clearFrontendError();
@@ -645,6 +650,17 @@ export class OptFrontend extends AbstractBaseFrontend {
     var urlStr = $.param.fragment('live.html', myArgs, 2 /* clobber all */);
     window.open(urlStr); // open in new tab
     return false; // to prevent default "a href" click action
+  }
+
+  openGraphModeUrl() {
+     var backendOptionsObj = this.getBaseBackendOptionsObj();
+     var frontendOptionsObj = this.getBaseFrontendOptionsObj();
+     this.executeCodeAndCreateGraph(this.pyInputGetValue(),
+                                      $('#pythonVersionSelector').val(),
+                                      backendOptionsObj,
+                                      frontendOptionsObj,
+                                      'pyOutputPane');
+     return false; // to prevent default "a href" click action
   }
 
   appStateAugmenter(x) { }; // NOP

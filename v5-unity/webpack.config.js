@@ -13,7 +13,6 @@ module.exports = {
         jQuery: "jquery",
         $: "jquery"
       }),
-
       // run a micro frontend regression test after every webpack build
       // to sanity-check
       //
@@ -62,6 +61,7 @@ module.exports = {
         'composingprograms': "./js/composingprograms.ts",
         'csc108h': "./js/csc108h.ts",
         'pytutor-embed': "./js/pytutor-embed.ts",
+        'opt-graph': "./js/opt-graph.ts",
     },
 
     output: {
