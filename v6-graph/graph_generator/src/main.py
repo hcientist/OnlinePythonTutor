@@ -37,8 +37,7 @@ def getFunctions(code):
 
     input=FileStream("testfile.txt")
 
-    if os.path.isfile("textfile.txt"):
-        os.remove("testfile.txt")
+    os.remove("testfile.txt")
 
     lexer = PythonLexer(input)
     stream = CommonTokenStream(lexer)
