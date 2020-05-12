@@ -67,6 +67,17 @@
     </tr>
 </table>
 
+<p>
+    <select id="graphSelector" onchange="this.changeValue()">
+        <option value="FCG" selected>Function Call Graph</option>
+        <option value="CFG">Control Flow Graph</option>
+        <option value="DFG">Data Flow Graph</option>
+    </select>
+    <select id="functionSelector" ></select>
+    <button style="margin-left: 20px;" id="graphBtn" type="button">Visualize Graph</button>
+
+</p>
+
 <div id="footer"></div>
 
 </body>

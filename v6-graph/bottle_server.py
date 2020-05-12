@@ -18,6 +18,12 @@ except:
     import io as StringIO # py3
 import json
 import pg_logger
+import sys
+
+sys.path.append("graph_generator/src/")
+sys.path.append("graph_generator/gen/")
+
+import main
 
 
 @route('/web_exec_<name:re:.+>.py')
@@ -27,13 +33,22 @@ import pg_logger
 @route('/runtime_err_survey.py')
 @route('/eureka_survey.py')
 @route('/error_log.py')
-@route('/viz_graph.py')
 def dummy_ok(name=None):
     return 'OK'
 
 @route('/<filepath:path>')
 def index(filepath):
     return static_file(filepath, root='.')
+
+@route('/viz_graph.py')
+def viz_graph():
+    code = request.query.code
+    r = main.getFunctions(code)
+    s = ""
+    for i in r:
+        s += i + " "
+    s = s[:-1]
+    return s
 
 
 # Note that this will run either Python 2 or 3, depending on which
