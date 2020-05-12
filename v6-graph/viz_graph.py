@@ -2,3 +2,4 @@
 
 # make this a dummy file for now
 print("Content-type: text/plain; charset=iso-8859-1\n")
+print("viz_graph")
