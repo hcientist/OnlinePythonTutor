@@ -7,7 +7,7 @@ from PythonLexer import PythonLexer
 from PythonParser import PythonParser
 import os
 
-def testefunc(code):
+def testefunc(graph, code, function):
     file = open("testfile.txt", "w")
     file.write(code)
     file.close()
@@ -23,10 +23,14 @@ def testefunc(code):
     tree = parser.root()
     visitor = MyVisitor()
     visitor.visit(tree)
-   # graphGenerator.main(["FCG", visitor.getCall()])
-    print(visitor.getData())
-    graphGenerator.getDFG(visitor.getData(), "teste")
-   # graphGenerator.main(["CFG", visitor.getControl(), "teste"])
+    src = ""
+    if graph == "FCG":
+        src = graphGenerator.callGraph(visitor.getCall())
+    elif graph == "CFG":
+        src = graphGenerator.controlGraph(visitor.getControl(), function)
+    elif graph == "DFG":
+        src = graphGenerator.dataGraph(visitor.getData(), function)
+    return src
 
 
 def getFunctions(code):

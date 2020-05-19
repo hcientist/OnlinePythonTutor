@@ -1,42 +1,35 @@
 import sys
 
-from igraph import *
+import pygraphviz as pgv
 
-
+#Call graph function generator
+#blue for functions defined on user program
+# green for functions of pythons libraries
 def callGraph(graph):
-    g = Graph(directed=True)
+    print(graph)
+    g = pgv.AGraph(strict=True, directed=True)
     i = 0
     for function1 in graph:
         if i == 0:
-            g.add_vertex(function1)
+            g.add_node(function1, style="filled", fillcolor='lightblue')
             i += 1
-            g.vs[len(g.vs)-1]["type"] = "d"
-        if not g.vs.select(name=function1):
-            g.add_vertex(function1)
+        if function1 not in g:
             if function1.endswith(')'):
-                g.vs[len(g.vs)-1]["type"] = "d"
+                g.add_node(function1, style="filled", fillcolor='lightblue')
             else:
-                g.vs[len(g.vs)-1]["type"] = "p"
+                g.add_node(function1, style="filled", fillcolor='greenyellow')
         for function2 in graph[function1]:
-            if not g.vs.select(name=function2):
-                g.add_vertex(function2)
+            if function2 not in g:
                 if function2.endswith(')'):
-                    g.vs[len(g.vs)-1]["type"] = "d"
+                    g.add_node(function2, style="filled", fillcolor='lightblue')
                 else:
-                    g.vs[len(g.vs)-1]["type"] = "p"
-            if g.get_eid(function1, function2, error=False) == -1:
-                g.add_edge(function1, function2)
-    visual_style = {}
-    visual_style["vertex_size"] = 20
-    visual_style["vertex_label"] = g.vs["name"]
-    visual_style["layout"] = g.layout("rt")
-    color_dict = {"d": "light blue", "p": "light green"}
-    visual_style["vertex_color"] = [color_dict[type] for type in g.vs["type"]]
-    visual_style["vertex_size"] = 40
-    visual_style["vertex_shape"] = "circle"
-    visual_style["bbox"] = (600, 600)
-    visual_style["margin"] = 20
-    plot(g, **visual_style)
+                    g.add_node(function2, style="filled", fillcolor='greenyellow')
+            g.add_edge(function1, function2)
+    print(g)
+    g.layout(prog='dot')
+    g.draw('callgraph.png')
+    return "callgraph.png"
+
 
 
 def checkBetween(prev, fro, to):
@@ -49,11 +42,11 @@ def checkBetween(prev, fro, to):
 
 def controlGraph(graph, function):
     control = graph[function]
-    g = Graph(directed=True)
+    g = pgv.AGraph(strict=True, directed=True)
     prev = {}
     nbody = -1
     for (body, type, value) in control:
-        g.add_vertex(value)
+        g.add_node(value)
         if nbody == -1:
             nbody += 1
             prev[nbody] = value
@@ -80,10 +73,12 @@ def controlGraph(graph, function):
     i = 0
     while i < len(control)-1:
         tupple = control[i]
-        v = g.vs.select(name=tupple[2])
+        v = g.get_node(tupple[2])
+
         depth = tupple[0]
         prev[depth] = tupple[2]
-        if (tupple[1] == "simple" and g.degree(v, type="out")[0] == 0) or (tupple[1] == "while" and g.degree(v, type="out")[0]==1) or (tupple[1] == "for" and g.degree(v,type="out")[0]==1):
+
+        if (tupple[1] == "simple" and g.out_degree(v) == 0) or (tupple[1] == "while" and g.out_degree(v) ==1) or (tupple[1] == "for" and g.out_degree(v) ==1):
             j = i+1
             while j < len(control):
                 tupple2 = control[j]
@@ -98,76 +93,52 @@ def controlGraph(graph, function):
                     j = len(control)
                 j += 1
         i += 1
-    visual_style = {}
-    visual_style["vertex_size"] = 20
-    visual_style["vertex_label"] = g.vs["name"]
-    visual_style["layout"] = g.layout("rt")
-    visual_style["vertex_color"] = "light blue"
-    visual_style["vertex_size"] = 40
-    visual_style["vertex_shape"] = "rectangle"
-    visual_style["bbox"] = (700, 700)
-    visual_style["margin"] = 20
-    plot(g, **visual_style)
-
+    g.layout(prog='dot')
+    g.draw('controlgraph.png')
+    return "controlgraph.png"
 
 def dataGraph(graph, function):
     data = graph[function]
     i = 0
+    cl = -1
     stmt = ""
-    g = Graph(directed=True)
+    g = pgv.AGraph(strict=True, directed=True)
     for (k, v) in data:
+        cl += 1
         if "if" in k:
             stmt = v[0]
-            if i == 0:
-                g.add_vertex(k)
-                g.vs.select(name=k)["lab"] = k
-                g.vs.select(name=k)["color"] = "red"
-                i += 1
-            elif not g.vs.select(name=k):
-                g.add_vertex(k)
-                g.vs.select(name=k)["lab"] = k
-                g.vs.select(name=k)["color"] = "red"
+            g.add_subgraph(name="cluster_%d" %cl, label=k)
+            c = g.subgraphs()[-1]
             for n in v:
-                g.add_vertex(n)
-                g.vs.select(name=n)["color"] = "red"
                 if "#" in n:
-                    g.vs.select(name=n)["lab"] = n[0]
+                    c.add_node(n, label=n[0], style="filled")
                 else:
-                    g.vs.select(name=n)["lab"] = n
-                g.add_edge(k, n)
+                    c.add_node(n, label=n, style="filled")
         elif "else" in k:
             stmt = v
         else:
             if i == 0:
-                g.add_vertex(k)
-                g.vs.select(name=k)["lab"] = k
-                g.vs.select(name=k)["color"] = "green"
-                i += 1
-            if not g.vs.select(name=k):
-                g.add_vertex(k)
-                g.vs.select(name=k)["lab"] = k
-                g.vs.select(name=k)["color"] = "green"
+                g.add_node(k, label=k, style="filled", fillcolor='green')
+            i += 1
+            if k not in g:
+                g.add_node(k, label=k, style="filled", fillcolor='green')
             j = 0
             if len(v) == 1:
-                if not g.vs.select(name=v[0]):
-                    g.add_vertex(v[0])
-                    g.vs.select(name=v[0])["lab"] = v[0]
-                    g.vs.select(name=v[0])["color"] = "blue"
+                if v[0] not in g:
+                    g.add_node(v[0], label=v[0], style="filled")
                 if "*" in k:
                     g.add_edge(v[0], stmt)
                     g.add_edge(stmt, k)
-                    g.vs.select(name=k)["lab"] = k[:-1]
+                    g.get_node(k).attr['label'] = k[:-1]
                 else:
                     g.add_edge(v[0], k)
                 j = 1
             while j < len(v):
-                if not g.vs.select(name=v[j]):
-                    g.add_vertex(v[j])
-                    g.vs.select(name=v[j])["color"] = "blue"
+                if v[j] not in g:
                     if j % 2 == 0:
-                        g.vs.select(name=v[j])["lab"] = v[j]
+                        g.add_node(v[j], label=v[j], style="filled")
                     else:
-                        g.vs.select(name=v[j])["lab"] = v[j][0]
+                        g.add_node(v[j], label=v[j][0], style="filled")
                 if j != 0:
                     if j == 1:
                         g.add_edge(v[0], v[1])
@@ -175,7 +146,7 @@ def dataGraph(graph, function):
                         g.add_edge(v[j], v[j-1])
                         if j == len(v)-1:
                             if "*" in k:
-                                g.vs.select(name=k)["lab"] = k[:-1]
+                                g.get_node(k).attr['label'] = k[:-1]
                                 g.add_edge(v[j-1], stmt)
                                 g.add_edge(stmt, k)
                             else:
@@ -183,25 +154,21 @@ def dataGraph(graph, function):
                     else:
                         g.add_edge(v[j-2], v[j])
                 j += 1
-    color_dict = {"blue": "light blue", "green": "light green", "red": "red"}
-    visual_style = {}
-    visual_style["vertex_size"] = 20
-    visual_style["vertex_label"] = g.vs["lab"]
-    visual_style["layout"] = g.layout("lgl")
-    visual_style["vertex_color"] = [color_dict[type] for type in g.vs["color"]]
-    visual_style["vertex_size"] = 40
-    visual_style["vertex_shape"] = "circle"
-    visual_style["bbox"] = (600, 600)
-    visual_style["margin"] = 20
-    print("olha o grafo ", g)
+    g.layout(prog='dot')
+    g.draw('datagraph.png')
+    return "datagraph.png"
+
+# 0 = graph type ; 1 = graph properties ; 2 function
+def main(argv):
+    if argv[0] == "FCG":
+        callGraph(argv[1])
+    elif argv[0] == "CFG":
+        controlGraph(argv[1], argv[2])
+    elif argv[0] == "DFG":
+        dataGraph(argv[1], argv[2])
+    else:
+        print("Not a valid type")
 
 
-def getFCG(data):
-    return callGraph(data)
-
-def getCFG(data,function):
-    return controlGraph(data, function)
-
-def getDFG(data, function):
-    return dataGraph(data, function)
-
+if __name__ == '__main__':
+    main(sys.argv)
