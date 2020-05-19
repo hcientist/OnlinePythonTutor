@@ -5,16 +5,16 @@ import {allTabsRE} from './opt-frontend';
 import {privacyAndEndingHTML} from './footer-html';
 
 var optGraphFrontend: OptGraphFrontend;
+var code
 
 export class OptGraphFrontend extends OptFrontend {
 
 
 constructor(params) {
     super(params)
-    console.log("teste:\n" +this.pyInputGetValue());
     this.setReadMode()
-
-    $.get("/viz_graph.py", {code: this.pyInputGetValue()} , function(data){
+    code = this.pyInputGetValue()
+    $.get("/viz_function.py", {code: code} , function(data){
                 var str=""
                 var list = data.split(" ");
                 list.forEach(function(fun) {
@@ -24,28 +24,9 @@ constructor(params) {
     });
     $("#functionSelector").hide();
 
-    $( "#graphSelector" ).change(function() {
-        var selectorVal = $('#graphSelector').val();
-        if (selectorVal === "FCG")
-            $("#functionSelector").hide();
-        else
-            $("#functionSelector").show();
-        });
 
     $("#footer").append(privacyAndEndingHTML);
 }
-
-changeValue() {
-    console.log("ahahah");
-    var selectorVal = $('#graphSelector').val();
-    if (selectorVal === "FCG")
-        $("#functionSelector").hide();
-    else
-        $("#functionSelector").show();
-
-
-}
-
 
 setReadMode(){
    this.pyInputAceEditor.setReadOnly(true);
@@ -53,5 +34,27 @@ setReadMode(){
 }
 
 $(document).ready(function() {
-  optGraphFrontend = new OptGraphFrontend({});
+    optGraphFrontend = new OptGraphFrontend({});
+
+     $( "#graphSelector" ).change(function() {
+            var selectorVal = $('#graphSelector').val();
+            if (selectorVal === "FCG")
+                $("#functionSelector").hide();
+            else
+                $("#functionSelector").show();
+     });
+
+
+    $("#graphBtn").click(function() {
+        var selectorVal = $('#graphSelector').val();
+        console.log("ahaha", selectorVal);
+        var funct :string = ""
+        if (selectorVal != "FCG")
+            funct = $("#functionSelector").val();
+        $.get("/viz_graph.py", {code: code, graph: selectorVal, func: funct} , function(data){
+            console.log(data);
+            document.getElementById("imageid").setAttribute('src',data + "?t=" + new Date().getTime());
+        })
+    });
+
 });
