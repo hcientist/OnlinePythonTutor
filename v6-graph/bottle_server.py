@@ -40,8 +40,9 @@ def dummy_ok(name=None):
 def index(filepath):
     return static_file(filepath, root='.')
 
-@route('/viz_graph.py')
-def viz_graph():
+
+@route('/viz_function.py')
+def viz_function():
     code = request.query.code
     r = main.getFunctions(code)
     s = ""
@@ -50,6 +51,14 @@ def viz_graph():
     s = s[:-1]
     return s
 
+
+@route('/viz_graph.py')
+def viz_graph():
+    code = request.query.code
+    graph = request.query.graph
+    function = request.query.func
+    res = main.testefunc(graph, code, function)
+    return res
 
 # Note that this will run either Python 2 or 3, depending on which
 # version of Python you used to start the server, REGARDLESS of which
