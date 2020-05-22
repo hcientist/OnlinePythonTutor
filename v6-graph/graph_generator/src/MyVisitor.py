@@ -127,6 +127,14 @@ class MyVisitor(PythonParserVisitor):
         self.funControl[self.functiOn].append((self.nbody, "simple", stmt))
         return self.visitChildren(ctx)
 
+    # for some reason return and var were together (ex: returna instead of return a)
+    def visitReturn_stmt(self, ctx: PythonParser.Return_stmtContext):
+        end = ""
+        if ctx.testlist():
+            end = ctx.testlist().getText()
+        self.funControl[self.functiOn].append((self.nbody, "simple", "return "+end))
+        return self.visitChildren(ctx)
+
     def visitWhile_stmt(self, ctx:PythonParser.While_stmtContext):
         while ctx.getText() not in self.body[self.nbody]:
             self.nbody -= 1
