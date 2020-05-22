@@ -54,7 +54,10 @@ class MyVisitor(PythonParserVisitor):
 
     def visitFuncdef(self, ctx):
         name = ctx.name().getText()
-        definition = ctx.name().getText() + ctx.OPEN_PAREN().getText() + ctx.typedargslist().getText() + ctx.CLOSE_PAREN().getText()
+        arg = ""
+        if ctx.typedargslist():
+            arg = ctx.typedargslist().getText()
+        definition = ctx.name().getText() + ctx.OPEN_PAREN().getText() + arg + ctx.CLOSE_PAREN().getText()
         self.data = []
         for i in self.operations:
             i = 0
