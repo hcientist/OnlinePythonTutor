@@ -24,6 +24,7 @@ class MyVisitor(PythonParserVisitor):
         self.conditional = False  # if it's in a conditional body
         self.nconditional = 0  # number of conditional body
         self.condVars = {}  # listVars of conditional bodys
+        self.nloop = -1  # it it's in a loop body and its number of body
 
     def getCall(self):
         return self.uniformize()
@@ -74,6 +75,7 @@ class MyVisitor(PythonParserVisitor):
         self.nconditional = 0
         self.condVars = {}
         self.nifs = 0
+        self.nloop = -1
         return self.visitChildren(ctx)
 
     def visitAtomFun(self, ctx:PythonParser.AtomFunContext):
@@ -126,8 +128,11 @@ class MyVisitor(PythonParserVisitor):
         if self.conditional is True and self.nbody < self.nconditional:
             self.conditional = False
             self.condVars = {}
-        self.existingFun.append(stmt)
-        self.funControl[self.functiOn].append((self.nbody, "simple", stmt))
+        if self.nloop != -1 and self.nbody <= self.nloop:
+            self.nloop = -1
+        if "return" not in stmt:
+            self.existingFun.append(stmt)
+            self.funControl[self.functiOn].append((self.nbody, "simple", stmt))
         return self.visitChildren(ctx)
 
     # for some reason return and var were together (ex: returna instead of return a)
@@ -141,12 +146,14 @@ class MyVisitor(PythonParserVisitor):
     def visitWhile_stmt(self, ctx:PythonParser.While_stmtContext):
         while ctx.getText() not in self.body[self.nbody]:
             self.nbody -= 1
+        self.nloop = self.nbody
         if self.conditional is True and self.nbody < self.nconditional:
             self.conditional = False
             self.condVars = {}
         stmt = "while " + ctx.test().getText()
         while stmt in self.existingFun:
             stmt += " "
+        self.dataFlow[self.functiOn].append((stmt, []))
         self.existingFun.append(stmt)
         self.funControl[self.functiOn].append((self.nbody, "while", stmt))
         return self.visitChildren(ctx)
@@ -154,12 +161,14 @@ class MyVisitor(PythonParserVisitor):
     def visitFor_stmt(self, ctx:PythonParser.For_stmtContext):
         while ctx.getText() not in self.body[self.nbody]:
             self.nbody -= 1
+        self.nloop = self.nbody
         if self.conditional is True and self.nbody < self.nconditional:
             self.conditional = False
             self.condVars = {}
         stmt = "for " + ctx.exprlist().getText() + " in " + ctx.testlist().getText()
         while stmt in self.existingFun:
             stmt += " "
+        self.dataFlow[self.functiOn].append((stmt, []))
         self.existingFun.append(stmt)
         self.funControl[self.functiOn].append((self.nbody, "for", stmt))
         return self.visitChildren(ctx)
@@ -235,6 +244,8 @@ class MyVisitor(PythonParserVisitor):
             if self.assign:
                 self.data.append(self.assign[1])
                 self.data.append(self.assign[0])
+            if self.nloop != -1:
+                self.data.append("loop")
             self.dataFlow[self.functiOn].append((var, self.data))
             self.data = []
             self.assign = []

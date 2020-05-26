@@ -122,13 +122,19 @@ def dataGraph(graph, function):
     data = graph[function]
     cl = -1
     stmt = ""
+    loop = ""
     g = pgv.AGraph(strict=True, directed=True)
     # k is final var and v an array with its operations (ex: a = 2 + b -> k=a, v=[2,+ #n, b]
     # or k is a conditional stmt and v an array with its paths -> 1 (true) and 0 (elif/else)
     for (k, v) in data:
-        cl += 1
+        # creates a cluster for loops
+        if "for" in k or "while" in k:
+            cl += 1
+            g.add_subgraph(name="cluster_%d" %cl, label=k)
+            loop = g.subgraphs()[-1]
         # creates a cluster for if/elif stmts
-        if "if" in k:
+        elif "if" in k:
+            cl += 1
             stmt = v[0]
             g.add_subgraph(name="cluster_%d" %cl, label=k)
             c = g.subgraphs()[-1]
@@ -144,7 +150,10 @@ def dataGraph(graph, function):
             stmt = v
         else:
             # var which value has changed has a green node
-            if k not in g:
+            if v[-1] == "loop":
+                loop.add_node(k, label=k, style="filled", fillcolor='green')
+                del v[-1]
+            else:
                 g.add_node(k, label=k, style="filled", fillcolor='green')
             j = 0
             # ex: var a = 2
@@ -193,21 +202,17 @@ def dataGraph(graph, function):
                     else:
                         g.add_edge(v[j-2], v[j])
                 j += 1
+    # delete subgraphs that don't have data dependecies
+    for sub in g.subgraphs():
+        has_input = 0
+        for node in sub:
+            if g.in_degree(node) != 0:
+                has_input = 1
+                break
+        if has_input == 0:
+            for node in sub.nodes():
+                g.remove_node(node)
+            g.remove_subgraph(sub.name)
     g.layout(prog='dot')
     g.draw('datagraph.png')
     return "datagraph.png"
-
-# 0 = graph type ; 1 = graph properties ; 2 function
-def main(argv):
-    if argv[0] == "FCG":
-        callGraph(argv[1])
-    elif argv[0] == "CFG":
-        controlGraph(argv[1], argv[2])
-    elif argv[0] == "DFG":
-        dataGraph(argv[1], argv[2])
-    else:
-        print("Not a valid type")
-
-
-if __name__ == '__main__':
-    main(sys.argv)
