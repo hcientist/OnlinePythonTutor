@@ -26,6 +26,7 @@ def callGraph(graph):
     g.draw('callgraph.png')
     return 'callgraph.png'
 
+
 # returns position of previous for or while
 def checkBetween(prev, fro, to):
     while fro >= to:
@@ -53,8 +54,10 @@ def controlGraph(graph, function):
                 # conect to previous loop
                 tmp = checkBetween(prev, body-1, 0)
                 g.add_edge(value, prev[tmp])
+                nbody = body
             elif "break" in value:
                 g.add_edge(prev[nbody], value)
+                nbody = body
             # continuous flow
             elif nbody == body:
                 g.add_edge(prev[nbody], value)
@@ -80,10 +83,9 @@ def controlGraph(graph, function):
     prev = {}
     i = 0
     # create missing edges
-    while i < len(control)-1:
+    while i < len(control):
         tupple = control[i]
         v = g.get_node(tupple[2])
-
         depth = tupple[0]
         prev[depth] = tupple[2]
         if "break" in tupple[2]:
@@ -92,14 +94,14 @@ def controlGraph(graph, function):
             j = i+1
             while j < len(control):
                 tupple2 = control[j]
-                if tupple2[0] <= tmp:
+                if tupple2[0] <= tmp and "else" not in tupple2[2]:
                     g.add_edge(tupple[2], tupple2[2])
                     break
                 j += 1
         # check nodes with missing edges
-        elif (tupple[1] == "simple" and g.out_degree(v) == 0) or (tupple[1] == "while" and g.out_degree(v) ==1) or (tupple[1] == "for" and g.out_degree(v) ==1):
+        elif (tupple[1] == "simple" and g.out_degree(v) == 0) or (tupple[1] == "loop" and g.out_degree(v) == 1):
             j = i+1
-            # search next stmts for the ones whero to link previous node
+            # search next stmts for the ones where to link previous node
             while j < len(control):
                 tupple2 = control[j]
                 if tupple2[0] <= depth and (tupple2[1] == "else" or "elif" == tupple2[1]):
@@ -110,16 +112,23 @@ def controlGraph(graph, function):
                         g.add_edge(tupple[2], prev[tmp])
                     else:
                         g.add_edge(tupple[2], tupple2[2])
-                    j = len(control)
+                    break
                 j += 1
+            # case of not having more stmt after loop
+            if j == len(control):
+                tmp = checkBetween(prev, depth-1, 0)
+                if tmp != -1:
+                    g.add_edge(tupple[2], prev[tmp])
         i += 1
     g.layout(prog='dot')
     g.draw('controllgraph.png')
     return 'controllgraph.png'
 
+
 # data graph function generator to show data dependecies
 def dataGraph(graph, function):
     data = graph[function]
+    print(data)
     cl = -1
     stmt = ""
     loop = ""
@@ -127,34 +136,39 @@ def dataGraph(graph, function):
     # k is final var and v an array with its operations (ex: a = 2 + b -> k=a, v=[2,+ #n, b]
     # or k is a conditional stmt and v an array with its paths -> 1 (true) and 0 (elif/else)
     for (k, v) in data:
-        # creates a cluster for loops
-        if "for" in k or "while" in k:
-            cl += 1
-            g.add_subgraph(name="cluster_%d" %cl, label=k)
-            loop = g.subgraphs()[-1]
         # creates a cluster for if/elif stmts
-        elif "if" in k:
+        if "if" in k or "for" in k or "while" in k:
             cl += 1
             stmt = v[0]
-            g.add_subgraph(name="cluster_%d" %cl, label=k)
-            c = g.subgraphs()[-1]
+            if k[-1] == "*":
+                c = g.subgraphs()[-1]
+                c.add_subgraph(name="cluster_%d" %cl, label=k[:-1])
+                c = c.subgraphs()[-1]
+            else:
+                g.add_subgraph(name="cluster_%d" %cl, label=k)
+                c = g.subgraphs()[-1]
             for n in v:
-                # result of if is 1 or 0 (true or false)
-                if "#" in n:
+                # result of if is 1 (true)
+                if "#" in n and "else" not in n:
                     c.add_node(n, label=n[0], style="filled")
                 # if conditional is false another condition can be the next path (elif)
                 else:
                     c.add_node(n, label=n, style="filled")
         # link previous node to the else node (0 of previous if/elif)
         elif "else" in k:
+            cl += 1
+            if k[-1] == "*":
+                c = g.subgraphs()[-1]
+                c.add_subgraph(name="cluster_%d" %cl, label=k[:-1])
+                c = c.subgraphs()[-1]
+            else:
+                g.add_subgraph(name="cluster_%d" %cl, label=k)
+                c = g.subgraphs()[-1]
+            c.add_node(v, label=v[0], style="filled")
             stmt = v
         else:
             # var which value has changed has a green node
-            if v[-1] == "loop":
-                loop.add_node(k, label=k, style="filled", fillcolor='green')
-                del v[-1]
-            else:
-                g.add_node(k, label=k, style="filled", fillcolor='green')
+            g.add_node(k, label=k, style="filled", fillcolor='green')
             j = 0
             # ex: var a = 2
             if len(v) == 1:
@@ -162,7 +176,7 @@ def dataGraph(graph, function):
                     g.add_node(v[0], label=v[0], style="filled")
                 # var depends of a conditional statement so before the node conects to final var
                 # it has to pass through the node of the conditional cluster
-                if "*" in k:
+                if k[-1] == "*":
                     g.add_edge(v[0], stmt)
                     g.add_edge(stmt, k)
                     g.get_node(k).attr['label'] = k[:-1]
@@ -215,4 +229,4 @@ def dataGraph(graph, function):
             g.remove_subgraph(sub.name)
     g.layout(prog='dot')
     g.draw('datagraph.png')
-    return "datagraph.png"
+    return 'datagraph.png'
