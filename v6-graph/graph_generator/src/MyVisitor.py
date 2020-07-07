@@ -5,12 +5,13 @@ sys.path.append("../gen/")
 from PythonParserVisitor import PythonParserVisitor
 from PythonParser import PythonParser
 
+
 class MyVisitor(PythonParserVisitor):
     def __init__(self):
         self.funDef = {}  # list of defined functions {name of function, its definition}
         self.funCall = {}  # list of functions calls by function
         self.funControl = {}  # flow of each function (key, type, value)
-        self.dataFlow = {}   # name of function : (name of var, operation)
+        self.dataFlow = {}   # name of function : [(number body, name of var, operation)]
         self.existingFun = []  # list of existing functions
         self.listVars = {}  # list of existing var and number of times it was used
         self.functiOn = ""  # function being parsed
@@ -19,16 +20,16 @@ class MyVisitor(PythonParserVisitor):
         self.nbody = -1  # number of body being parsed
         self.elses = 0  # number of elses
         self.ifs = {}  # if in execution by body
-        self.nifs = 0  # number of current condition
+        self.active = []  # final vars actives
         self.data = []  # operation being parsed
-        self.assign = []  # auto-assign operations (+=,-=,etc). this is added to data in the visitend
-        self.operations = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  # {+,-,*,/,%,&,|,^,**,//,<<,>>}  # number of each sign
-        self.saveData = False  # if it's to an operation on data
         self.conditional = False  # if it's in a conditional body
         self.nconditional = 0  # number of conditional body
         self.condVars = {}  # listVars of conditional bodys
-        self.nloop = -1  # it it's in a loop body and its number of body
-        self.loop = ""  # loop in execution
+        self.listCondVars = []  # list of all cond vars
+        self.finalCondVars = {} # dictionary of final variables of cond bodys
+        self.operations = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  # {+,-,*,/,%,&,|,^,**,//,<<,>>}  # number of each sign
+        self.saveData = False  # if it's to an operation on data
+
 
     def getCall(self):
         return self.uniformize()
@@ -38,6 +39,12 @@ class MyVisitor(PythonParserVisitor):
 
     def getData(self):
         return self.dataFlow
+
+    def getListFunctions(self):
+        newList= []
+        for key in self.funDef:
+            newList.append(key)
+        return newList
 
     def uniformize(self):
         newDict = {}
@@ -72,16 +79,15 @@ class MyVisitor(PythonParserVisitor):
         self.conditional = False
         self.nconditional = 0
         self.condVars = {}
-        self.nifs = 0
-        self.nloop = -1
-        self.loop = ""
+        self.listCondVars = []
+        self.finalCondVars = {}
+        self.active = []
         return self.visitChildren(ctx)
 
     def visitAtomFun(self, ctx:PythonParser.AtomFunContext):
         name = ctx.name().getText()
         if self.saveData:
             var = ctx.getText()
-            a = 0
             self.data.append(var)
         if self.functiOn in self.funCall:
             self.funCall[self.functiOn].append(name)
@@ -126,12 +132,10 @@ class MyVisitor(PythonParserVisitor):
             stmt += " "
         if self.conditional is True and self.nbody < self.nconditional:
             self.conditional = False
+            self.updDataFlow()
             self.condVars = {}
-        if self.nloop != -1 and self.nbody <= self.nloop:
-            self.nloop = -1
-        if "return" not in stmt:
-            self.existingFun.append(stmt)
-            self.funControl[self.functiOn].append((self.nbody, "simple", stmt))
+        self.existingFun.append(stmt)
+        self.funControl[self.functiOn].append((self.nbody, "simple", stmt))
         if "print" in stmt:
             if self.functiOn in self.funCall:
                 self.funCall[self.functiOn].append("print")
@@ -145,47 +149,40 @@ class MyVisitor(PythonParserVisitor):
         end = ""
         if ctx.testlist():
             end = ctx.testlist().getText()
-        self.funControl[self.functiOn].append((self.nbody, "simple", "return "+end))
+        self.funControl[self.functiOn][-1] = (self.nbody, "simple", "return "+end)
         return self.visitChildren(ctx)
 
     def visitWhile_stmt(self, ctx:PythonParser.While_stmtContext):
         while ctx.getText() not in self.body[self.nbody]:
             self.nbody -= 1
-        self.nloop = self.nbody
         if self.conditional is True and self.nbody < self.nconditional:
             self.conditional = False
+            self.updDataFlow()
             self.condVars = {}
         stmt = "while " + ctx.test().getText()
         while stmt in self.existingFun:
             stmt += " "
-        self.loop = stmt
         self.existingFun.append(stmt)
         self.funControl[self.functiOn].append((self.nbody, "loop", stmt))
-        if self.nbody != 0:
-            stmt += "*"
+
         self.ifs[self.nbody] = stmt
-        self.dataFlow[self.functiOn].append((stmt, ["1 #" + str(self.nifs)]))
-        self.nifs += 1
+        self.dataFlow[self.functiOn].append((self.nbody, stmt, []))
         return self.visitChildren(ctx)
 
     def visitFor_stmt(self, ctx:PythonParser.For_stmtContext):
         while ctx.getText() not in self.body[self.nbody]:
             self.nbody -= 1
-        self.nloop = self.nbody
         if self.conditional is True and self.nbody < self.nconditional:
             self.conditional = False
+            self.updDataFlow()
             self.condVars = {}
         stmt = "for " + ctx.exprlist().getText() + " in " + ctx.testlist().getText()
         while stmt in self.existingFun:
             stmt += " "
-        self.loop = stmt
         self.existingFun.append(stmt)
         self.funControl[self.functiOn].append((self.nbody, "loop", stmt))
-        if self.nbody != 0:
-            stmt += "*"
         self.ifs[self.nbody] = stmt
-        self.dataFlow[self.functiOn].append((stmt, ["1 #" + str(self.nifs)]))
-        self.nifs += 1
+        self.dataFlow[self.functiOn].append((self.nbody, stmt, []))
         return self.visitChildren(ctx)
 
     def visitIf_stmt(self, ctx:PythonParser.If_stmtContext):
@@ -202,11 +199,9 @@ class MyVisitor(PythonParserVisitor):
             stmt += " "
         self.existingFun.append(stmt)
         self.funControl[self.functiOn].append((self.nbody, "if", stmt))
-        if self.nbody != 0:
-            stmt += "*"
+
         self.ifs[self.nbody] = stmt
-        self.dataFlow[self.functiOn].append((stmt, ["1 #" + str(self.nifs)]))
-        self.nifs += 1
+        self.dataFlow[self.functiOn].append((self.nbody, stmt, []))
         return self.visitChildren(ctx)
 
     def visitElif_clause(self, ctx:PythonParser.Elif_clauseContext):
@@ -222,11 +217,8 @@ class MyVisitor(PythonParserVisitor):
         self.existingFun.append(stmt)
         self.funControl[self.functiOn].append((self.nbody, "elif", stmt))
         self.addElse(stmt, self.ifs[self.nbody])
-        if self.nbody != 0:
-            stmt += "*"
         self.ifs[self.nbody] = stmt
-        self.dataFlow[self.functiOn].append((stmt, ["1 #" + str(self.nifs)]))
-        self.nifs += 1
+        self.dataFlow[self.functiOn].append((self.nbody, stmt, []))
         return self.visitChildren(ctx)
 
     def visitElse_clause(self, ctx:PythonParser.Else_clauseContext):
@@ -234,15 +226,15 @@ class MyVisitor(PythonParserVisitor):
             self.nbody -= 1
         self.funControl[self.functiOn].append((self.nbody, "else", "else #" + str(self.elses)))
         self.elses += 1
-        if len(self.condVars) == 1:
-            self.condVars[self.nconditional] = self.listVars.copy()
-        else:
-            self.condVars[self.nbody + 1] = self.getPrevBody()
         stmt = "else #" + str(self.elses)
+        if self.conditional is True and self.nbody == self.nconditional-1:
+            if len(self.condVars) == 1:
+                self.condVars[self.nconditional] = self.listVars.copy()
+            else:
+                self.condVars[self.nbody + 1] = self.getPrevBody()
         self.addElse(stmt, self.ifs[self.nbody])
-        if self.nbody != 0:
-            stmt += "*"
-        self.dataFlow[self.functiOn].append((stmt, "0 #" + str(self.elses)))
+        self.ifs[self.nbody] = stmt
+        self.dataFlow[self.functiOn].append((self.nbody, stmt, []))
         return self.visitChildren(ctx)
 
     def visitSuite(self, ctx:PythonParser.SuiteContext):
@@ -261,16 +253,16 @@ class MyVisitor(PythonParserVisitor):
                 for i in range(0, a):
                     var += "'"
                 var += "*"
+                while var in self.listCondVars:
+                    var += "*"
+                self.addFinal(var)
+                self.listCondVars.append(var)
             elif self.varOn in self.listVars:
                 a = self.listVars[self.varOn]
                 for i in range(0, a):
                     var += "'"
-            if self.assign:
-                self.data.append(self.assign[1])
-                self.data.append(self.assign[0])
-            self.dataFlow[self.functiOn].append((var, self.data))
+            self.dataFlow[self.functiOn].append((self.nbody, var, self.data))
             self.data = []
-            self.assign = []
         self.saveData = False
         return self.visitChildren(ctx)
 
@@ -278,74 +270,77 @@ class MyVisitor(PythonParserVisitor):
     def visitAssign3(self, ctx:PythonParser.Assign3Context):
         self.saveData = True
         var = self.varOn
-        if self.conditional is True:
+        tmp = self.checkActive(var)
+        if tmp != "false":
+            var = tmp
+        elif self.conditional is True:
             for i in range(0, self.condVars[self.getBody()][self.varOn]-1):
                 var += "'"
             if self.varOn not in self.listVars or self.condVars[self.getBody()][self.varOn]-1 != self.listVars[self.varOn]:
-                var += "*"
+                var = self.getPrevCond(var)
         else:
             for i in range(0, self.listVars[self.varOn]-1):
                 var += "'"
-        self.assign.append(var)
+        self.data.append(var)
         return self.visitChildren(ctx)
 
     def visitAddAssign(self, ctx:PythonParser.AddAssignContext):
-        self.assign.append("+ #" + str(self.operations[0]))
+        self.data.append("+ #" + str(self.operations[0]))
         self.operations[0] += 1
         return self.visitChildren(ctx)
 
     def visitSubAssign(self, ctx:PythonParser.SubAssignContext):
-        self.assign.append("- #" + str(self.operations[1]))
+        self.data.append("- #" + str(self.operations[1]))
         self.operations[1] += 1
         return self.visitChildren(ctx)
 
     def visitMultAssign(self, ctx:PythonParser.MultAssignContext):
-        self.assign.append("* #" + str(self.operations[2]))
+        self.data.append("* #" + str(self.operations[2]))
         self.operations[2] += 1
         return self.visitChildren(ctx)
 
     def visitDivAssign(self, ctx:PythonParser.DivAssignContext):
-        self.assign.append("/ #" + str(self.operations[3]))
+        self.data.append("/ #" + str(self.operations[3]))
         self.operations[3] += 1
         return self.visitChildren(ctx)
 
     def visitModAssign(self, ctx:PythonParser.ModAssignContext):
-        self.assign.append("% #" + str(self.operations[4]))
+        self.data.append("% #" + str(self.operations[4]))
         self.operations[4] += 1
         return self.visitChildren(ctx)
 
     def visitAndAssign(self, ctx:PythonParser.AndAssignContext):
-        self.assign.append("& #" + str(self.operations[5]))
+        self.data.append("& #" + str(self.operations[5]))
         self.operations[5] += 1
         return self.visitChildren(ctx)
 
     def visitOrAssign(self, ctx:PythonParser.OrAssignContext):
-        self.assign.append("| #" + str(self.operations[6]))
+        self.data.append("| #" + str(self.operations[6]))
         self.operations[6] += 1
         return self.visitChildren(ctx)
 
     def visitXorAssign(self, ctx:PythonParser.XorAssignContext):
-        self.assign.append("^ #" + str(self.operations[7]))
+        self.data.append("^ #" + str(self.operations[7]))
         self.operations[7] += 1
         return self.visitChildren(ctx)
 
     def visitPowerAssign(self, ctx:PythonParser.PowerAssignContext):
-        self.assign.append("** #" + str(self.operations[8]))
+        self.data.append("** #" + str(self.operations[8]))
         self.operations[8] += 1
         return self.visitChildren(ctx)
 
     def visitIdivAssign(self, ctx:PythonParser.IdivAssignContext):
-        self.assign.append("// #" + str(self.operations[9]))
+        self.data.append("// #" + str(self.operations[9]))
         self.operations[9] += 1
         return self.visitChildren(ctx)
 
     def visitLeftAssign(self, ctx:PythonParser.LeftAssignContext):
-        self.assign.append("<< #" + str(self.operations[10]))
+        self.data.append("<< #" + str(self.operations[10]))
         self.operations[10] += 1
         return self.visitChildren(ctx)
 
     def visitRightAssign(self, ctx:PythonParser.RightAssignContext):
-        self.assign.append(">> #" + str(self.operations[11]))
+        self.data.append(">> #" + str(self.operations[11]))
         self.operations[11] += 1
         return self.visitChildren(ctx)
 
@@ -355,18 +350,24 @@ class MyVisitor(PythonParserVisitor):
         if self.saveData:
             var = ctx.getText()
             a = 0
-            body = self.getBody()
-            if self.conditional is True and body > -1 and var in self.condVars[self.getBody()]:
-                if len(self.condVars[self.getBody()]) > 0:
-                    a = self.condVars[self.getBody()][var]
-            elif var in self.listVars:
-                a = self.listVars[var]
-            if var == self.varOn:
+            tmp = self.checkActive(var)
+            if tmp != "false":
+                var = tmp
+            elif self.conditional and var in self.condVars[self.getBody()]:
+                a = self.condVars[self.getBody()][var]
                 for i in range(0, a-1):
                     var += "'"
+                if a != 0:
+                    var = self.getPrevCond(var)
             else:
-                for i in range(0, a):
-                    var += "'"
+                if var in self.listVars:
+                    a = self.listVars[var]
+                if var == self.varOn:
+                    for i in range(0, a-1):
+                        var += "'"
+                else:
+                    for i in range(0, a):
+                        var += "'"
             self.data.append(var)
         return self.visitChildren(ctx)
 
@@ -383,8 +384,8 @@ class MyVisitor(PythonParserVisitor):
         return self.visitChildren(ctx)
 
     def visitExpr4(self, ctx:PythonParser.Expr4Context):
-        if self.nbody in self.ifs and ctx.getText() not in self.ifs[self.nbody]:
-            self.saveData = True
+        if self.nbody in self.ifs and ctx.getText() in self.ifs[self.nbody]:
+            self.saveData = False
         return self.visitChildren(ctx)
 
     def visitAssign1(self, ctx: PythonParser.Assign1Context):
@@ -392,10 +393,11 @@ class MyVisitor(PythonParserVisitor):
         return super().visitAssign1(ctx)
 
     def visitExprOp(self, ctx:PythonParser.ExprOpContext):
-        text = ctx.getText()
-        op = self.wichOp(text)
-        self.data.append(text + " #" + str(self.operations[op]))
-        self.operations[op] += 1
+        if self.saveData:
+            text = ctx.getText()
+            op = self.wichOp(text)
+            self.data.append(text + " #" + str(self.operations[op]))
+            self.operations[op] += 1
         return self.visitChildren(ctx)
 
     def wichOp(self, s):
@@ -404,7 +406,7 @@ class MyVisitor(PythonParserVisitor):
             "-":1,
             "*":2,
             "/":3,
-            "&":4,
+            "%":4,
             "&":5,
             "|":6,
             "^":7,
@@ -445,13 +447,80 @@ class MyVisitor(PythonParserVisitor):
                 r = 1
         return self.listVars.copy()
 
+    def getPrevCond(self, var):
+        final = ""
+        for i in self.listCondVars:
+            if var in i and "*" in i:
+                final = i
+        return final
+
+
     def addElse(self, s, condition):
-        for (a, b) in self.dataFlow[self.functiOn]:
-            if a == condition:
-                b.append(s)
+        for (a, b, c) in self.dataFlow[self.functiOn]:
+            if b == condition:
+                c.append(s)
 
     def replace(self, s):
         s = s.replace("not", "not ")
         s = s.replace("and", " and ")
         s = s.replace("or", " or ")
         return s
+
+    def addFinal(self, var):
+        kvar = var
+        key = self.ifs[self.nbody-1]
+        while "*" in kvar:
+            kvar = kvar[:-1]
+        while "'" in kvar:
+            kvar = kvar[:-1]
+        if key not in self.finalCondVars:
+            self.finalCondVars[key] = [(kvar, var)]
+        else:
+            for (a, b) in self.finalCondVars[key]:
+                if a == kvar:
+                    pos = self.finalCondVars[key].index((a, b))
+                    self.finalCondVars[key][pos] = (kvar, var)
+                    break
+            else:
+                self.finalCondVars[key].append((kvar,var))
+
+    def getFinalVar(self, var):
+        var += "#"
+        while var in self.listCondVars:
+            var += "#"
+        self.active.append(var)
+        return var
+
+    def updDataFlow(self):
+        list = []
+        for key in self.finalCondVars:
+            for (a, b) in self.finalCondVars[key]:
+                if a not in list:
+                    list.append(a)
+        for entry in list:
+            array = []
+            if entry not in self.listVars:
+                self.listVars[entry] = 0
+            a = self.listVars[entry]
+            tmp = entry
+            for i in range(0, a):
+                tmp += "'"
+            array.append(tmp)
+            for key in self.finalCondVars:
+                for (a, b) in self.finalCondVars[key]:
+                    if a == entry:
+                        array.append(b)
+                        break
+            self.dataFlow[self.functiOn].append((-2, self.getFinalVar(entry), array))
+        self.finalCondVars = {}
+
+    def checkActive(self, var):
+        for i in self.active:
+            tmp = i
+            while "#" in tmp:
+                tmp = tmp[:-1]
+            if tmp == var:
+                r = i
+                self.active.remove(i)
+                return r
+        return "false"

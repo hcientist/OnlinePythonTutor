@@ -128,60 +128,52 @@ def controlGraph(graph, function):
 # data graph function generator to show data dependecies
 def dataGraph(graph, function):
     data = graph[function]
-    print(data)
     cl = -1
-    stmt = ""
-    loop = ""
+    prev = {}
+    name = " "
     g = pgv.AGraph(strict=True, directed=True)
     # k is final var and v an array with its operations (ex: a = 2 + b -> k=a, v=[2,+ #n, b]
     # or k is a conditional stmt and v an array with its paths -> 1 (true) and 0 (elif/else)
-    for (k, v) in data:
-        # creates a cluster for if/elif stmts
-        if "if" in k or "for" in k or "while" in k:
-            cl += 1
-            stmt = v[0]
-            if k[-1] == "*":
-                c = g.subgraphs()[-1]
-                c.add_subgraph(name="cluster_%d" %cl, label=k[:-1])
-                c = c.subgraphs()[-1]
-            else:
-                g.add_subgraph(name="cluster_%d" %cl, label=k)
-                c = g.subgraphs()[-1]
-            for n in v:
-                # result of if is 1 (true)
-                if "#" in n and "else" not in n:
-                    c.add_node(n, label=n[0], style="filled")
-                # if conditional is false another condition can be the next path (elif)
+    for index, (n, k, v) in enumerate(data):
+        if n == -2:
+            lab = k
+            while "#" in lab:
+                lab = lab[:-1]
+            g.add_node(k, label=lab, style="filled", fillcolor='red')
+            for i in v:
+                g.add_edge(i, k)
+        # creates a cluster for if/elif/else/for/while stmts
+        elif "if" in k or "for" in k or "while" in k or "else" in k:
+            if (n,k,v) != data[-1] and n < data[index + 1][0]:
+                cl += 1
+                if n > 0:
+                    c = prev[n-1]
+                    c.add_subgraph(name="cluster_%d" %cl, label=k)
+                    prev[n] = c.subgraphs()[-1]
                 else:
-                    c.add_node(n, label=n, style="filled")
-        # link previous node to the else node (0 of previous if/elif)
-        elif "else" in k:
-            cl += 1
-            if k[-1] == "*":
-                c = g.subgraphs()[-1]
-                c.add_subgraph(name="cluster_%d" %cl, label=k[:-1])
-                c = c.subgraphs()[-1]
-            else:
-                g.add_subgraph(name="cluster_%d" %cl, label=k)
-                c = g.subgraphs()[-1]
-            c.add_node(v, label=v[0], style="filled")
-            stmt = v
+                    g.add_subgraph(name="cluster_%d" %cl, label=k)
+                    prev[n] = g.subgraphs()[-1]
+                for i in v:
+                    prev[n].add_node(i, label=i, style="filled")
+                if not v:
+                    prev[n].add_node(name, style="invis")
+                    name += " "
         else:
+            lab = k
+            while "*" in lab:
+                lab = lab[:-1]
             # var which value has changed has a green node
-            g.add_node(k, label=k, style="filled", fillcolor='green')
+            if n > 0:
+                prev[n-1].add_node(k, label=lab, style="filled", fillcolor='green')
+            # var which value has changed has a green node
+            else:
+                g.add_node(k, label=lab, style="filled", fillcolor='green')
             j = 0
             # ex: var a = 2
             if len(v) == 1:
                 if v[0] not in g:
                     g.add_node(v[0], label=v[0], style="filled")
-                # var depends of a conditional statement so before the node conects to final var
-                # it has to pass through the node of the conditional cluster
-                if k[-1] == "*":
-                    g.add_edge(v[0], stmt)
-                    g.add_edge(stmt, k)
-                    g.get_node(k).attr['label'] = k[:-1]
-                else:
-                    g.add_edge(v[0], k)
+                g.add_edge(v[0], k)
                 j = 1
             # ex: var a = 2 + 3
             while j < len(v):
@@ -203,19 +195,13 @@ def dataGraph(graph, function):
                         g.add_edge(v[j], v[j-1])
                         # last position of v conects to k
                         if j == len(v)-1:
-                            # k depends of a conditional statement so before the node conects to final var
-                            # it has to pass through the node of the conditional cluster
-                            if "*" in k:
-                                g.get_node(k).attr['label'] = k[:-1]
-                                g.add_edge(v[j-1], stmt)
-                                g.add_edge(stmt, k)
-                            else:
-                                g.add_edge(v[j-1], k)
+                            g.add_edge(v[j-1], k)
                     # node operation conect with previous node operation that represents the final
                     # result of that operation
                     else:
                         g.add_edge(v[j-2], v[j])
                 j += 1
+    # list = getSubgraphList(g)
     # delete subgraphs that don't have data dependecies
     for sub in g.subgraphs():
         has_input = 0
@@ -223,10 +209,24 @@ def dataGraph(graph, function):
             if g.in_degree(node) != 0:
                 has_input = 1
                 break
-        if has_input == 0:
+        if has_input == 0 and not sub.subgraphs():
             for node in sub.nodes():
                 g.remove_node(node)
-            g.remove_subgraph(sub.name)
+            parent = sub.subgraph_parent()
+            if parent.name is None:
+                g.delete_subgraph(sub.name)
+            else:
+                parent.delete_subgraph(sub.name)
     g.layout(prog='dot')
     g.draw('datagraph.png')
     return 'datagraph.png'
+
+
+def getSubgraphList(graph):
+    list = []
+    for g in graph.subgraphs():
+        if g.subgraphs():
+            list = list + getSubgraphList(g)
+        list.append(g)
+    return list
+
