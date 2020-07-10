@@ -19,6 +19,7 @@ except:
 import json
 import pg_logger
 import sys
+import os
 
 sys.path.append("graph_generator/src/")
 sys.path.append("graph_generator/gen/")
@@ -59,6 +60,13 @@ def viz_graph():
     function = request.query.func
     res = main.testefunc(graph, code, function)
     return res
+
+
+@route('/del_img.py')
+def del_img():
+    path = request.query.path
+    os.remove(path)
+    return "done"
 
 # Note that this will run either Python 2 or 3, depending on which
 # version of Python you used to start the server, REGARDLESS of which

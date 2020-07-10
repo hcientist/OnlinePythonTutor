@@ -47,14 +47,16 @@ $(document).ready(function() {
 
     $("#graphBtn").click(function() {
         var selectorVal = $('#graphSelector').val();
-        console.log("ahaha", selectorVal);
         var funct :string = ""
         if (selectorVal != "FCG")
             funct = $("#functionSelector").val();
+        var path = ""
         $.get("/viz_graph.py", {code: code, graph: selectorVal, func: funct} , function(data){
-            console.log(data);
-            document.getElementById("imageid").setAttribute('src',data + "?t=" + new Date().getTime());
+            path = data
+            document.getElementById("imageid").setAttribute('src',data);
+            $.get("/del_img.py", {path: path});
         })
+
     });
 
 });

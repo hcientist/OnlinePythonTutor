@@ -1,6 +1,7 @@
 import sys
-
+import time
 import pygraphviz as pgv
+
 
 #Call graph function generator
 #blue for functions defined on user program
@@ -23,8 +24,9 @@ def callGraph(graph):
                     g.add_node(function2, style="filled", fillcolor='greenyellow')
             g.add_edge(function1, function2)
     g.layout(prog='dot')
-    g.draw('callgraph.png')
-    return 'callgraph.png'
+    res = "callgraph"+time.asctime(time.localtime(time.time()))+".png"
+    g.draw(res)
+    return res
 
 
 # returns position of previous for or while
@@ -121,8 +123,9 @@ def controlGraph(graph, function):
                     g.add_edge(tupple[2], prev[tmp])
         i += 1
     g.layout(prog='dot')
-    g.draw('controllgraph.png')
-    return 'controllgraph.png'
+    res = "controlgraph"+time.asctime(time.localtime(time.time()))+".png"
+    g.draw(res)
+    return res
 
 
 # data graph function generator to show data dependecies
@@ -218,8 +221,9 @@ def dataGraph(graph, function):
             else:
                 parent.delete_subgraph(sub.name)
     g.layout(prog='dot')
-    g.draw('datagraph.png')
-    return 'datagraph.png'
+    res = "datagraph"+time.asctime(time.localtime(time.time()))+".png"
+    g.draw(res)
+    return res
 
 
 def getSubgraphList(graph):
