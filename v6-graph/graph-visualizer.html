@@ -24,38 +24,20 @@
 
 <table>
     <tr>
-        <td valign="top">
-            <div id="pyInputPane">
+        <td valign="top" width="50%">
+            <div id="pyInputPane" >
                 <div id="codeInputWarnings">Write code in
                     <select id="pythonVersionSelector">
                         <option value="2">Python 2.7</option>
                         <option value="3" selected>Python 3.6</option>
                     </select>
 
-                    <span id="liveModeExtraWarning" style="color: #888; font-size: 8pt; float: right;">(drag lower right corner to resize code editor)</span>
                 </div>
                 <div id="someoneIsTypingDiv" style="color: #e93f34; font-weight: bold; display: none;">Someone is typing ...</div>
 
                 <div id="codeInputPane"></div>
                 <div id="legendDiv"></div>
                 <div id="executionSlider" style="margin-top: 10px;"></div>
-
-                <!-- copied and pasted from pytutor.js
-                     TODO: integrate all this together and modularize -->
-
-                <div id="vcrControls" style="display: none;">
-                    <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>
-                    <button id="jmpStepBack", type="button">&lt; Prev</button>
-                    <button id="jmpStepFwd", type="button">Next &gt;</button>
-                    <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>
-                </div>
-                <div id="curInstr" style="display: none;"></div>
-
-                <div id="rawUserInputDiv" style="display: none;">
-                    <span id="userInputPromptStr"></span>
-                    <input type="text" id="raw_input_textbox" size="30"/>
-                    <button id="raw_input_submit_btn">Submit</button>
-                </div>
 
                 <div id="frontendErrorOutput"></div>
             </div>
@@ -64,8 +46,21 @@
         <td valign="top">
             <div id="pyOutputPane"/>
         </td>
-        <td valign="top">
-            <img id="imageid" src="" height="450" width="450" >
+        <td valign="center" width="50%" >
+            <!--  <img id="imageid" src="" height="450" width="450" > -->
+            <!-- Trigger/Open the Modal -->
+            <div class="w3-container">
+
+                <img src="data:," alt id="imageid" style='max-width: 100%;max-height: 100%; object-fit: contain;cursor:zoom-in'
+                     onclick="document.getElementById('modal').style.display='block'" valign="center">
+
+                <div id="modal" class="modal" onclick="this.style.display='none'">
+                    <span class="close">&times;</span>
+                    <div class="modal-content">
+                        <img src="data:," id="modalimg" style='max-width: 100%;max-height: 100%' valign="center">
+                    </div>
+                </div>
+            </div>
     </tr>
 </table>
 

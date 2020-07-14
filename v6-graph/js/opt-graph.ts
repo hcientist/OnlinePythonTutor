@@ -1,4 +1,5 @@
 require('../css/opt-frontend.css');
+require('../css/graph-visualizer.css');
 
 import {OptFrontend} from './opt-frontend';
 import {allTabsRE} from './opt-frontend';
@@ -23,8 +24,7 @@ constructor(params) {
                 document.getElementById("functionSelector").innerHTML = str;
     });
     $("#functionSelector").hide();
-
-
+    $('#codeInputPane').css('width', '600px');
     $("#footer").append(privacyAndEndingHTML);
 }
 
@@ -54,6 +54,7 @@ $(document).ready(function() {
         $.get("/viz_graph.py", {code: code, graph: selectorVal, func: funct} , function(data){
             path = data
             document.getElementById("imageid").setAttribute('src',data);
+            document.getElementById("modalimg").setAttribute('src',data);
             $.get("/del_img.py", {path: path});
         })
 
