@@ -51,13 +51,19 @@
             <!-- Trigger/Open the Modal -->
             <div class="w3-container">
 
-                <img src="data:," alt id="imageid" style='max-width: 100%;max-height: 100%; object-fit: contain;cursor:zoom-in'
-                     onclick="document.getElementById('modal').style.display='block'" valign="center">
+                <img src="data:," alt id="imageid" style='max-width: 100%;max-height: 100%; object-fit: contain;cursor:zoom-in' valign="center">
 
-                <div id="modal" class="modal" onclick="this.style.display='none'">
-                    <span class="close">&times;</span>
-                    <div class="modal-content">
-                        <img src="data:," id="modalimg" style='max-width: 100%;max-height: 100%' valign="center">
+                <div id="modal" class="modal">
+                    <span class="close" id="close">&times;</span>
+                    <div class="modal-content" >
+                        <div class="modal-body">
+                            <img class = "zoomimg" src="data:," id="modalimg" style='max-width: 100%;max-height: 100%;' valign="center">
+                        </div>
+                        <br>
+                        <div class="modal-footer">
+                            <button id="zoom-in" type="button">+</button>
+                            <button id="zoom-out" type="button">-</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,7 +78,9 @@
     </select>
     <select id="functionSelector" ></select>
     <button style="margin-left: 20px;" id="graphBtn" type="button">Visualize Graph</button>
-
+    <i class="tooltip" style="font-size:26px;margin:10px">&#9432;
+        <span class="tooltiptext" id="info"></span>
+    </i>
 </p>
 
 <div id="footer"></div>
