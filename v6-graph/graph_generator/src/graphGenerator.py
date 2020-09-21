@@ -151,11 +151,11 @@ def dataGraph(graph, function):
                 cl += 1
                 if n > 0:
                     c = prev[n-1]
-                    c.add_subgraph(name="cluster_%d" %cl, label=k)
-                    prev[n] = c.subgraphs()[-1]
+                    c.add_subgraph(name="cluster_%d" % cl, label=k)
+                    prev[n] = c.get_subgraph("cluster_%d" % cl)
                 else:
-                    g.add_subgraph(name="cluster_%d" %cl, label=k)
-                    prev[n] = g.subgraphs()[-1]
+                    g.add_subgraph(name="cluster_%d" % cl, label=k)
+                    prev[n] = g.get_subgraph("cluster_%d" % cl)
                 for i in v:
                     prev[n].add_node(i, label=i, style="filled")
                 if not v:
