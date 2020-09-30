@@ -123,6 +123,8 @@ What kinds of things do we want to log?
   On the execution of each line, log:
     - the line number just executed
     - all data created by the program
+    
+    ThankYou!
 
   Also log calls and returns of a student's function 
   (but NOT library functions)
