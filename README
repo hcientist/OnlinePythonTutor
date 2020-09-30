@@ -1,4 +1,4 @@
-Online Python Tutor
+Online Python Tutor -- 
 Copyright (C) 2010 Philip J. Guo (philip@pgbovine.net)
 https://github.com/pgbovine/OnlinePythonTutor/
 
@@ -29,7 +29,7 @@ code gets executed.
 
 Try it out live at: http://www.onlinepythontutor.com/
 
-======
+===================================================================
 System architecture overview:
 
 The Online Python Tutor is implemented as a web application, with a
