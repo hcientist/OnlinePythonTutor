@@ -101,7 +101,7 @@ def controlGraph(graph, function):
                     break
                 j += 1
         # check nodes with missing edges
-        elif (tupple[1] == "simple" and g.out_degree(v) == 0) or (tupple[1] == "loop" and g.out_degree(v) == 1):
+        elif ("return " not in tupple[2]) and ((tupple[1] == "simple" and g.out_degree(v) == 0) or (tupple[1] == "loop" and g.out_degree(v) == 1)):
             j = i+1
             # search next stmts for the ones where to link previous node
             while j < len(control):
@@ -131,6 +131,7 @@ def controlGraph(graph, function):
 # data graph function generator to show data dependecies
 def dataGraph(graph, function):
     data = graph[function]
+    print(data)
     cl = -1
     prev = {}
     name = " "
