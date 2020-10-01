@@ -1,4 +1,4 @@
-Online Python Tutor
+## Online Python Tutor 
 Copyright (C) 2010 Philip J. Guo (philip@pgbovine.net)
 https://github.com/pgbovine/OnlinePythonTutor/
 
@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ======
-Introduction:
+## Introduction:
 
 The Online Python Tutor is a web application where you can type Python
 scripts directly into your web browser, execute those scripts, and
@@ -27,10 +27,10 @@ Using this tool, teachers and students can write small Python code
 snippets together and see what happens to the data structures when the
 code gets executed.
 
-Try it out live at: http://www.onlinepythontutor.com/
+Try it out live at: ** http://www.onlinepythontutor.com/ **
 
 ======
-System architecture overview:
+## System architecture overview:
 
 The Online Python Tutor is implemented as a web application, with a
 JavaScript front-end making AJAX calls to a pure-Python back-end.
@@ -101,7 +101,7 @@ deployed on the same server (unless you do some fancy proxy magic).
 
 
 ======
-Original founding vision (from January 2010):
+## Original founding vision (from January 2010):
 
 I want to create a web-based interactive learning platform for students
 to explore programming.  I envision an HTML UI where a student can enter
