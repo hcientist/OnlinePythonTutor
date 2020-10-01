@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-======
+====================================================================
 Introduction:
-
+====================================================================
 The Online Python Tutor is a web application where you can type Python
 scripts directly into your web browser, execute those scripts, and
 single-step FORWARDS AND BACKWARDS through execution in order to view
@@ -29,9 +29,9 @@ code gets executed.
 
 Try it out live at: http://www.onlinepythontutor.com/
 
-======
+====================================================================
 System architecture overview:
-
+====================================================================
 The Online Python Tutor is implemented as a web application, with a
 JavaScript front-end making AJAX calls to a pure-Python back-end.
 
@@ -100,9 +100,9 @@ Due to the AJAX same-origin policy, the front-end and back-end must be
 deployed on the same server (unless you do some fancy proxy magic).
 
 
-======
+=====================================================================
 Original founding vision (from January 2010):
-
+=====================================================================
 I want to create a web-based interactive learning platform for students
 to explore programming.  I envision an HTML UI where a student can enter
 in code and then single-step through it and see how the data structures
