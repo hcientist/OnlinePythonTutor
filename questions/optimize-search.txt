@@ -1,7 +1,7 @@
 Name:
 Optimize: List search
 
-Question:
+Question 1:
 
 The following search function finds the index of the first occurrence of
 elt in a sorted list lst (or -1 if elt not found).  Optimize this
