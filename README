@@ -130,8 +130,8 @@ What kinds of things do we want to log?
 We can use the Python JSON module to encode data structures in JSON and
 send it to the client's web browser
 
-The PDB debugger (Lib/pdb.py) is written in pure Python:
+** The PDB debugger (Lib/pdb.py) is written in pure Python:
   http://docs.python.org/library/pdb.html
   - the bdb debugger framework is the C module that pdb calls
-    http://docs.python.org/library/bdb.html
+    http://docs.python.org/library/bdb.html **
 
