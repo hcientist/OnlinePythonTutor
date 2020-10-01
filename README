@@ -30,7 +30,7 @@ code gets executed.
 Try it out live at: http://www.onlinepythontutor.com/
 
 ======
-System architecture overview:
+System Architecture Overview:
 
 The Online Python Tutor is implemented as a web application, with a
 JavaScript front-end making AJAX calls to a pure-Python back-end.
@@ -101,14 +101,14 @@ deployed on the same server (unless you do some fancy proxy magic).
 
 
 ======
-Original founding vision (from January 2010):
+Original Founding Vision (from January 2010):
 
 I want to create a web-based interactive learning platform for students
-to explore programming.  I envision an HTML UI where a student can enter
+to explore programming. I envision an HTML UI where a student can enter
 in code and then single-step through it and see how the data structures
 change during execution.
 
-Key insight: I realized that for the small programs that teachers and
+KEY INSIGHT: I realized that for the small programs that teachers and
 students write for educational purposes, it's possible to simply LOG
 everything that happens to data structures during execution.  Then we
 can simply play back that log in the front-end, which allows
