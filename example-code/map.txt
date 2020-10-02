@@ -11,5 +11,5 @@ def map(func, lst):
 def halveElements(lst):
     return map(lambda x: x / 2.0, lst)
   
-input = [2, 4, 6, 8, 10]
+input = [2, 4, 6, 8, 10, 12]
 output = halveElements(input)
