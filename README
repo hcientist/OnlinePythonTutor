@@ -1,4 +1,4 @@
-Online Python Tutor
+Online Python Tutor .
 Copyright (C) 2010 Philip J. Guo (philip@pgbovine.net)
 https://github.com/pgbovine/OnlinePythonTutor/
 
@@ -114,7 +114,7 @@ everything that happens to data structures during execution.  Then we
 can simply play back that log in the front-end, which allows
 single-stepping forwards and also BACKWARDS.
 
-After all, we don't need students to be able to interactive probe and
+After all, we do not need students to be able to interactive probe and
 make changes in the middle of execution, which is the only value-added
 of a REAL debugger.
 
