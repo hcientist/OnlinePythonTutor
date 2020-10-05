@@ -29,6 +29,7 @@ class MyVisitor(PythonParserVisitor):
         self.finalCondVars = {} # dictionary of final variables of cond bodys
         self.operations = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  # {+,-,*,/,%,&,|,^,**,//,<<,>>}  # number of each sign
         self.saveData = False  # if it's to an operation on data
+        self.multiAssign = False
 
 
     def getCall(self):
@@ -112,17 +113,42 @@ class MyVisitor(PythonParserVisitor):
 
     def visitExpr_stmt(self, ctx:PythonParser.Expr_stmtContext):
         self.varOn = ctx.testlist_star_expr().getText()
-        if self.conditional is True:
-            if self.varOn in self.condVars[self.getBody()]:
-                self.condVars[self.getBody()][self.varOn] += 1
+        list = [self.varOn]
+        equal = ctx.getText().split('=')
+        if 2 < len(equal):
+            list = self.multiAssign1(equal)
+        elif ',' in equal[0]:
+            print(equal)
+            list = self.multiAssign2(equal[0], equal[1])
+        for var in list:
+            if self.conditional is True:
+                if var in self.condVars[self.getBody()]:
+                    self.condVars[self.getBody()][var] += 1
+                else:
+                    self.condVars[self.getBody()][var] = 0
             else:
-                self.condVars[self.getBody()][self.varOn] = 0
-        else:
-            if self.varOn in self.listVars:
-                self.listVars[self.varOn] += 1
-            else:
-                self.listVars[self.varOn] = 0
+                if var in self.listVars:
+                    self.listVars[var] += 1
+                else:
+                    self.listVars[var] = 0
         return self.visitChildren(ctx)
+
+    def multiAssign1(self, list):
+        for var in list[:-1]:
+            self.dataFlow[self.functiOn].append((self.nbody, var, [list[-1]]))
+        self.multiAssign = True
+        return list[:-1]
+
+    def multiAssign2(self, vars, values):
+        vars = vars.split(',')
+        if ',' in values:
+            values = values.split(',')
+        else:
+            values = values.replace("'", "")
+        for i in range(len(vars)):
+            self.dataFlow[self.functiOn].append((self.nbody, vars[i], [values[i]]))
+        self.multiAssign = True
+        return vars
 
     def visitSimple_stmt(self, ctx:PythonParser.Simple_stmtContext):
         stmt = ctx.getText().rstrip()
@@ -389,7 +415,11 @@ class MyVisitor(PythonParserVisitor):
         return self.visitChildren(ctx)
 
     def visitAssign1(self, ctx: PythonParser.Assign1Context):
-        self.saveData = True
+        if self.multiAssign:
+            self.saveData = False
+            self.multiAssign = False
+        else:
+            self.saveData = True
         return super().visitAssign1(ctx)
 
     def visitExprOp(self, ctx:PythonParser.ExprOpContext):
