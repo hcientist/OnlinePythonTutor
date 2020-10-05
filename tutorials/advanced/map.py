@@ -1,6 +1,6 @@
 def square(x):
     return x*x
-
+#(*)ashteric used as multiplication in python
 def map(f, lst):
     ret = []
     for elt in lst:
