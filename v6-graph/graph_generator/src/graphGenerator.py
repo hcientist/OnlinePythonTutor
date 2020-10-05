@@ -52,13 +52,19 @@ def controlGraph(graph, function):
             prev[nbody] = value
         else:
             if "continue" in value:
-                g.add_edge(prev[nbody], value)
+                if "if" in prev[nbody] or "elif" in prev[nbody]:
+                    g.add_edge(prev[nbody], value, color="green")
+                else:
+                    g.add_edge(prev[nbody], value)
                 # conect to previous loop
                 tmp = checkBetween(prev, body-1, 0)
                 g.add_edge(value, prev[tmp])
                 nbody = body
             elif "break" in value:
-                g.add_edge(prev[nbody], value)
+                if "if" in prev[nbody] or "elif" in prev[nbody]:
+                    g.add_edge(prev[nbody], value, color="green")
+                else:
+                    g.add_edge(prev[nbody], value)
                 nbody = body
             # continuous flow
             elif nbody == body:
@@ -66,7 +72,10 @@ def controlGraph(graph, function):
                 prev[nbody] = value
             # enters a loop/conditional body
             elif nbody < body:
-                g.add_edge(prev[nbody], value)
+                if "else" not in prev[nbody]:
+                    g.add_edge(prev[nbody], value, color="green")
+                else:
+                    g.add_edge(prev[nbody], value)
                 nbody += 1
                 prev[nbody] = value
             # exits a loop/conditional body
@@ -80,7 +89,7 @@ def controlGraph(graph, function):
                         g.add_edge(prev[n], prev[nbody])
                         con = 1
                 if "else" not in prev[nbody]:
-                    g.add_edge(prev[nbody], value)
+                    g.add_edge(prev[nbody], value, color="red")
                 prev[nbody] = value
     prev = {}
     i = 0
