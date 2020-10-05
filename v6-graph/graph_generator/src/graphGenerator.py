@@ -89,7 +89,7 @@ def controlGraph(graph, function):
                         g.add_edge(prev[n], prev[nbody])
                         con = 1
                 if "else" not in prev[nbody]:
-                    g.add_edge(prev[nbody], value, color="red")
+                    g.add_edge(prev[nbody], value, color="red", arrowhead="onormal")
                 prev[nbody] = value
     prev = {}
     i = 0
