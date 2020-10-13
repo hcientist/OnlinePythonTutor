@@ -9,15 +9,19 @@ import os
 
 def create_db():
   assert not os.path.exists(DB_FILE)
+  #connecting to database
   (con, cur) = db_connect()
+  # SQL Query for creating table 
   cur.execute('''CREATE TABLE query_log
     (id INTEGER PRIMARY KEY,
-     post_date TEXT,
-     ip_addr TEXT,
-     user_agent TEXT,
-     input_script TEXT,
+     post_date TEXT NOT NULL,
+     ip_addr TEXT NOT NULL,
+     user_agent TEXT NOT NULL,
+     input_script TEXT NOT NULL,
      had_error INTEGER)''')
+  #Execute query
   con.commit()
+  #close database connection
   cur.close()
 
 if __name__ == "__main__":
