@@ -12,7 +12,7 @@
     "stack_locals" : [ [ "Point",
           {  }
         ] ],
-    "stdout" : ""
+    "stdout" : "
   },
   { "event" : "step_line",
     "func_name" : "Point",
