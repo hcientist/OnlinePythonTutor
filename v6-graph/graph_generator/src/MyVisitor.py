@@ -118,7 +118,6 @@ class MyVisitor(PythonParserVisitor):
         if 2 < len(equal):
             list = self.multiAssign1(equal)
         elif ',' in equal[0]:
-            print(equal)
             list = self.multiAssign2(equal[0], equal[1])
         for var in list:
             if self.conditional is True:
