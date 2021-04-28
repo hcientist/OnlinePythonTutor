@@ -24,7 +24,7 @@ def callGraph(graph):
                     g.add_node(function2, style="filled", fillcolor='greenyellow')
             g.add_edge(function1, function2)
     g.layout(prog='dot')
-    res = "callgraph"+time.asctime(time.localtime(time.time()))+".png"
+    res = "img/callgraph"+time.asctime(time.localtime(time.time()))+".png"
     g.draw(res)
     return res
 
@@ -132,7 +132,7 @@ def controlGraph(graph, function):
                     g.add_edge(tupple[2], prev[tmp])
         i += 1
     g.layout(prog='dot')
-    res = "controlgraph"+time.asctime(time.localtime(time.time()))+".png"
+    res = "img/controlgraph"+time.asctime(time.localtime(time.time()))+".png"
     g.draw(res)
     return res
 
@@ -230,7 +230,7 @@ def dataGraph(graph, function):
             else:
                 parent.delete_subgraph(sub.name)
     g.layout(prog='dot')
-    res = "datagraph"+time.asctime(time.localtime(time.time()))+".png"
+    res = "img/datagraph"+time.asctime(time.localtime(time.time()))+".png"
     g.draw(res)
     return res
 
