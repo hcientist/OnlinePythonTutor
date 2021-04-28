@@ -94,7 +94,9 @@ $(document).ready(function() {
             path = data;
             document.getElementById("imageid").setAttribute('src',data);
             document.getElementById("modalimg").setAttribute('src',data);
-            $.get("/del_img.py", {path: path});
+            setTimeout(() => {
+                $.get("/del_img.py", {path: path});
+            }, 5000);
         });
     });
 

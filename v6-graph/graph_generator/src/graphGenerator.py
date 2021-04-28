@@ -140,7 +140,6 @@ def controlGraph(graph, function):
 # data graph function generator to show data dependecies
 def dataGraph(graph, function):
     data = graph[function]
-    print(data)
     cl = -1
     prev = {}
     name = " "
